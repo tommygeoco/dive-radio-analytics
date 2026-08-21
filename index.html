@@ -14,10 +14,17 @@
     font: 14px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
   .wrap { max-width: 1240px; margin: 0 auto; padding: 24px; }
   h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
-  .stamp { color: var(--muted); font-size: 12px; margin: 2px 0 18px; }
+  .stamp { color: var(--muted); font-size: 12px; margin: 2px 0 14px; }
+
+  /* top-level view tabs — they control everything below, so they sit above everything below */
+  .tabs { display: flex; gap: 2px; margin: 0 0 16px; border-bottom: 1px solid var(--border); }
+  .tabs button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 14.5px;
+    padding: 10px 18px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .tabs button.on { color: var(--text); border-bottom-color: var(--accent); font-weight: 650; }
+  .tabs button:hover { color: var(--text); }
 
   .verdict { background: linear-gradient(90deg, #16233a, #141922); border: 1px solid #2c4266;
-    border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; font-size: 16px; line-height: 1.45; }
+    border-radius: 12px; padding: 13px 18px; margin-bottom: 14px; font-size: 15.5px; line-height: 1.45; }
   .verdict b { color: var(--accent); }
 
   .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -46,20 +53,34 @@
   .seg button { background: transparent; border: 0; color: var(--muted); padding: 7px 14px;
     cursor: pointer; font: inherit; font-size: 13px; }
   .seg button.on { background: var(--accent); color: #0b1220; font-weight: 650; }
-  .seg#view button.on { background: #e6c74a; }
   .chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
   .chip { border: 1px solid var(--border); background: var(--panel); color: var(--muted);
-    border-radius: 9px; padding: 6px 11px; cursor: pointer; font: inherit; font-size: 12.5px; }
+    border-radius: 9px; padding: 6px 11px; cursor: pointer; font: inherit; font-size: 12.5px;
+    display: inline-flex; align-items: center; gap: 7px; }
   .chip.on { color: var(--text); border-color: #3d4c68; background: var(--panel2); }
-  .chip .sq { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px;
-    background: #4a5670; }
-  .chip.on .sq { background: var(--accent); }
+  .chip .sq { display: inline-block; width: 9px; height: 9px; border-radius: 2.5px; background: #3a4458; }
   .reset { margin-left: auto; color: var(--muted); font-size: 12.5px; background: none; border: 0;
     cursor: pointer; text-decoration: underline; }
 
   #chartbox { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
     padding: 18px 14px 10px; height: 480px; position: relative; }
   .hint { color: var(--muted); font-size: 12px; margin: 8px 2px 22px; }
+
+  /* HTML tooltip with color-coded channel list */
+  .tt { position: absolute; pointer-events: none; background: #171d29; border: 1px solid #3d4c68;
+    border-radius: 10px; padding: 10px 12px; font-size: 12.5px; min-width: 216px; opacity: 0;
+    transition: opacity .08s; z-index: 5; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  .tt .h { display: flex; align-items: center; gap: 7px; font-weight: 700; }
+  .tt .h .dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+  .tt .meta { color: var(--muted); font-size: 11.5px; margin: 1px 0 7px; }
+  .tt .big { font-size: 16px; font-weight: 700; }
+  .tt .chg { font-size: 11.5px; color: var(--muted); margin-bottom: 2px; }
+  .tt .div { border-top: 1px solid #273043; margin: 7px 0 5px; }
+  .tt .row { display: flex; align-items: center; gap: 7px; padding: 2.5px 0; font-size: 12px;
+    color: #c6cede; }
+  .tt .row .sq { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .tt .row .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--text); }
+  .tt .note { color: #d9a24a; font-size: 11px; margin-top: 5px; }
 
   h2 { font-size: 15px; margin: 22px 0 8px; }
   .insights { display: grid; gap: 8px; }
@@ -75,17 +96,18 @@
   <h1>Dive Radio — Episode Analytics</h1>
   <div class="stamp" id="stamp"></div>
 
+  <div class="tabs" id="view">
+    <button data-v="growth">Audience growth</button>
+    <button data-v="live">Live session</button>
+  </div>
+
   <div class="verdict" id="verdict"></div>
 
   <div class="board" id="board"></div>
 
   <div class="controls">
-    <span class="seg" id="view">
-      <button data-v="growth">Audience growth</button>
-      <button data-v="live">Live session</button>
-    </span>
     <span class="seg growth-only" id="xmode">
-      <button data-v="weeks">Episode race — weeks since premiere</button>
+      <button data-v="weeks">Episode race — time since premiere</button>
       <button data-v="calendar">Timeline — calendar</button>
     </span>
     <span class="seg growth-only" id="ymode">
@@ -96,7 +118,7 @@
     <button class="reset" id="reset">reset view</button>
   </div>
 
-  <div id="chartbox"><canvas id="chart"></canvas></div>
+  <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt"></div></div>
   <div class="hint" id="hint"></div>
 
   <h2>What the data says</h2>
@@ -109,22 +131,36 @@
 <script src="data.js"></script>
 <script>
 const DATA = window.DIVE_DATA;
-const EPS = DATA.episodes; // dive-radio only, premiere order, .ep numbers, optional .live
+const EPS = DATA.episodes;
 const DAY = 86400000, WEEK = 7 * DAY, PHX = 7 * 3600000;
 const PALETTE = ["#6b7a94", "#8a6bd6", "#3ecf8e", "#e6c74a", "#ff7a59", "#59b0ff", "#ff5d8f", "#5eead4"];
 const color = (e) => PALETTE[(e.ep - 1) % PALETTE.length];
 const NEWEST = EPS[EPS.length - 1];
 
+// fixed platform colors — used in the filter chips AND the tooltip channel list
+const PLAT_COLORS = {
+  "yt:joindiveclub": "#ff4f5e",
+  "yt:designertom": "#ffa14f",
+  "x:ridd_design": "#d7dbe0",
+  "x:designertom": "#59b0ff",
+};
+const PLAT_NAME = {
+  "yt:joindiveclub": "YouTube · Dive Club",
+  "yt:designertom": "YouTube · DesignerTom",
+  "x:ridd_design": "X · @ridd_design",
+  "x:designertom": "X · @designertom",
+};
+
 const HINTS = {
-  growth: "Click an episode card to focus it. Hover any point for the per-channel split. ◐ = registered late: totals are right, early week-by-week history doesn't exist.",
+  growth: "Click an episode card to focus it. Hover any point for the color-coded channel split. ◐ = registered late: totals are right, early week-by-week history doesn't exist.",
   live: "Concurrent viewers minute-by-minute during the live broadcast, from Restream. Click a card to focus one episode; hover for viewers + chat at that minute.",
 };
 
 const state = {
-  view: "growth",          // growth | live
-  xMode: "weeks",          // weeks | calendar
-  yMode: "cumulative",     // cumulative | delta
-  dests: new Set(DATA.dests.map(d => d.key)),
+  view: "growth",
+  xMode: "weeks",
+  yMode: "cumulative",
+  dests: new Set(Object.keys(PLAT_COLORS)),
   solo: null,
 };
 
@@ -154,6 +190,7 @@ function kfmt(n) {
   if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k";
   return String(Math.round(n));
 }
+function nfmt(n) { return n.toLocaleString("en-US"); }
 function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, ""); }
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 
@@ -164,9 +201,6 @@ function seriesFor(e) {
     if (state.xMode === "calendar") {
       for (const s of e.snapshots) pts.push({ x: Date.parse(s.ts), y: sum(s.byDest), meta: { ts: s.ts, split: splitOf(s.byDest) } });
     } else {
-      // race mode: every real snapshot plotted at its true age in days.
-      // No resampled "week 0" points, no fractional orphan dots — late-registered
-      // episodes simply start mid-chart where their data actually begins.
       for (const s of e.snapshots) {
         const d = (Date.parse(s.ts) - prem) / DAY;
         pts.push({ x: Math.round(d * 10) / 10, y: sum(s.byDest), meta: { ts: s.ts, day: d, split: splitOf(s.byDest) } });
@@ -189,7 +223,6 @@ function seriesFor(e) {
   return pts;
 }
 
-// episode labels at each line's end
 const endLabels = {
   id: "endLabels",
   afterDatasetsDraw(chart) {
@@ -217,12 +250,62 @@ const endLabels = {
   }
 };
 
+// --- HTML tooltip: color-coded channel breakdown ---
+function externalTooltip(context) {
+  const { chart, tooltip } = context;
+  const el = document.getElementById("tt");
+  if (!tooltip.opacity || !tooltip.dataPoints?.length) { el.style.opacity = 0; return; }
+  const item = tooltip.dataPoints[0];
+  const ds = item.dataset, e = ds.episode, p = item.raw;
+  const isLive = state.view === "live";
+  const isDelta = !isLive && state.yMode === "delta";
+
+  let html = `<div class="h"><span class="dot" style="background:${ds.borderColor}"></span>${label(e)}</div>`;
+
+  if (isLive) {
+    html += `<div class="meta">Minute ${p.x}</div>`;
+    html += `<div class="big">${p.y} watching</div>`;
+    html += `<div class="chg">${p.meta.c} chat message${p.meta.c === 1 ? "" : "s"} this minute</div>`;
+  } else {
+    if (p.meta.week !== undefined) {
+      html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
+    } else {
+      const days = Math.round(p.meta.day ?? 0);
+      html += `<div class="meta">Day ${days} (week ${Math.floor(days / 7) + 1}) · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
+    }
+    html += `<div class="big">${nfmt(p.y)} views${isDelta ? " gained" : ""}</div>`;
+    if (!isDelta && item.dataIndex > 0) {
+      const prev = ds.data[item.dataIndex - 1].y;
+      const d = p.y - prev;
+      html += `<div class="chg">since prior snapshot: ${d >= 0 ? "+" : ""}${nfmt(d)}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}</div>`;
+    }
+    if (p.meta.split) {
+      html += `<div class="div"></div>`;
+      for (const k of Object.keys(PLAT_COLORS)) {
+        if (!state.dests.has(k)) continue;
+        const v = p.meta.split[k] ?? 0;
+        html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${PLAT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
+      }
+    }
+    if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
+  }
+
+  el.innerHTML = html;
+  el.style.opacity = 1;
+  const box = chart.canvas.parentNode;
+  const x = Math.min(Math.max(tooltip.caretX, 120), box.clientWidth - 130);
+  const above = tooltip.caretY > 190;
+  el.style.left = x + "px";
+  el.style.top = (tooltip.caretY + (above ? -14 : 14)) + "px";
+  el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
+}
+
 let chart;
 function render() {
   const isLive = state.view === "live";
   const isDelta = !isLive && state.yMode === "delta";
   const isCal = !isLive && state.xMode === "calendar";
-  const isRace = !isLive && !isDelta && !isCal; // snapshots vs days-since-premiere
+  const isRace = !isLive && !isDelta && !isCal;
 
   const source = isLive ? EPS.filter(e => e.live) : EPS;
   const datasets = source.map((e) => {
@@ -233,13 +316,11 @@ function render() {
       label: label(e),
       epNum: e.ep,
       slug: e.slug,
-      data: isLive
-        ? e.live.series.map(p => ({ x: p.m, y: p.v, meta: p }))
-        : seriesFor(e),
+      data: isLive ? e.live.series.map(p => ({ x: p.m, y: p.v, meta: p })) : seriesFor(e),
       borderColor: color(e),
       backgroundColor: color(e) + (isDelta ? "dd" : "22"),
       borderWidth: soloed ? 3.5 : (isNewest ? 3.5 : 2),
-      pointRadius: isLive || isRace || (isCal && state.yMode === "cumulative") ? 0 : 3,
+      pointRadius: isLive || isRace || isCal ? 0 : 3,
       pointHoverRadius: 5,
       tension: 0.3, spanGaps: false, hidden,
       episode: e,
@@ -281,43 +362,7 @@ function render() {
       },
       plugins: {
         legend: { display: false },
-        tooltip: {
-          backgroundColor: "#1a2130", borderColor: "#3d4c68", borderWidth: 1,
-          titleColor: "#eef1f6", bodyColor: "#c6cede", padding: 10,
-          callbacks: {
-            title: items => items.length ? items[0].dataset.label : "",
-            label: item => {
-              const p = item.raw, e = item.dataset.episode;
-              if (isLive) {
-                return [`Minute ${p.x} · ${p.y} watching · ${p.meta.c} chat msg${p.meta.c === 1 ? "" : "s"}`];
-              }
-              const out = [];
-              if (p.meta.week !== undefined) {
-                out.push(`Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}`);
-              } else {
-                const days = Math.round(p.meta.day ?? (Date.parse(p.meta.ts) - premiereMs(e.premiere)) / DAY);
-                out.push(`Day ${days} (week ${Math.floor(days / 7) + 1}) · ${fmtDate(Date.parse(p.meta.ts))}`);
-              }
-              out.push(`${isDelta ? "Gained" : "Total"}: ${p.y.toLocaleString("en-US")} views`);
-              if (!isDelta && item.dataIndex > 0) {
-                const prev = item.dataset.data[item.dataIndex-1].y;
-                const d = p.y - prev;
-                out.push(`Since prior snapshot: ${d >= 0 ? "+" : ""}${d.toLocaleString("en-US")}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}`);
-              }
-              // per-channel drilldown
-              if (p.meta.split) {
-                out.push("— by channel —");
-                for (const dd of DATA.dests) {
-                  if (!state.dests.has(dd.key)) continue;
-                  const v = p.meta.split[dd.key] ?? 0;
-                  out.push(`${dd.label}: ${v.toLocaleString("en-US")}${isDelta && p.meta.note === null ? "" : ""}`);
-                }
-              }
-              if (p.meta.note) out.push(p.meta.note);
-              return out;
-            },
-          },
-        },
+        tooltip: { enabled: false, external: externalTooltip },
       },
     },
     plugins: [endLabels],
@@ -325,13 +370,12 @@ function render() {
 
   if (chart) chart.destroy();
   chart = new Chart(document.getElementById("chart"), cfg);
+  document.getElementById("tt").style.opacity = 0;
   buildBoard();
   syncUI();
 }
 
-// --- scoreboard ---
 function sameAgeSub(e) {
-  // peer only counts if its tracked history covers this episode's current age
   const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
   const peers = [];
   for (const o of EPS) {
@@ -366,7 +410,7 @@ function buildBoard() {
     if (isLive) {
       if (e.live) {
         big = `${e.live.peak} <small>peak live</small>`;
-        sub = `avg ${e.live.avg} · ${e.live.chatMessages.toLocaleString("en-US")} chat msgs · ${e.live.durationMin ?? "?"} min`;
+        sub = `avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat msgs · ${e.live.durationMin ?? "?"} min`;
       } else {
         big = `<small>no live data</small>`;
         sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
@@ -406,11 +450,26 @@ function syncUI() {
     c.classList.toggle("solo", state.solo === c.dataset.slug);
     c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
   }
-  for (const ch of document.querySelectorAll("#platforms .chip"))
-    ch.classList.toggle("on", state.dests.has(ch.dataset.key));
+  for (const ch of document.querySelectorAll("#platforms .chip")) {
+    const on = state.dests.has(ch.dataset.key);
+    ch.classList.toggle("on", on);
+    ch.querySelector(".sq").style.background = on ? PLAT_COLORS[ch.dataset.key] : "#3a4458";
+  }
+  // verdict adapts to the active view
+  const v = document.getElementById("verdict");
+  if (isLive) {
+    const live = DATA.insights.find(i => i.id === "live-peak");
+    v.innerHTML = live
+      ? `<b>Live:</b> ${live.text.replace(/^Live turnout:\s*/, "")}`
+      : `<b>Live session</b> metrics from Restream.`;
+  } else {
+    const pace = DATA.insights.find(i => i.id === "pace-rank");
+    v.innerHTML = pace
+      ? `<b>E${NEWEST.ep} — ${short(NEWEST.title)}:</b> ${pace.text.replace(/^[^:]*? is /, "")}`
+      : `<b>E${NEWEST.ep} — ${short(NEWEST.title)}</b> is the latest episode.`;
+  }
 }
 
-// --- controls ---
 document.getElementById("view").addEventListener("click", e => {
   if (e.target.dataset.v) { state.view = e.target.dataset.v; state.solo = null; render(); }
 });
@@ -422,29 +481,23 @@ document.getElementById("ymode").addEventListener("click", e => {
 });
 document.getElementById("reset").addEventListener("click", () => {
   state.view = "growth"; state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
-  state.dests = new Set(DATA.dests.map(d => d.key));
+  state.dests = new Set(Object.keys(PLAT_COLORS));
   render();
 });
 const plat = document.getElementById("platforms");
-for (const d of DATA.dests) {
+for (const k of Object.keys(PLAT_COLORS)) {
   const b = document.createElement("button");
   b.className = "chip on";
-  b.dataset.key = d.key;
-  b.innerHTML = `<span class="sq"></span>${d.label.replace("YT ", "YouTube · ").replace("X @", "X · @")}`;
+  b.dataset.key = k;
+  b.innerHTML = `<span class="sq"></span>${PLAT_NAME[k]}`;
   b.addEventListener("click", () => {
-    if (state.dests.has(d.key)) {
-      if (state.dests.size > 1) state.dests.delete(d.key);
-    } else state.dests.add(d.key);
+    if (state.dests.has(k)) {
+      if (state.dests.size > 1) state.dests.delete(k);
+    } else state.dests.add(k);
     render();
   });
   plat.appendChild(b);
 }
-
-// --- verdict + insights ---
-const pace = DATA.insights.find(i => i.id === "pace-rank");
-document.getElementById("verdict").innerHTML = pace
-  ? `<b>E${NEWEST.ep} — ${short(NEWEST.title)}:</b> ${pace.text.replace(/^[^:]*? is /, "")}`
-  : `<b>E${NEWEST.ep} — ${short(NEWEST.title)}</b> is the latest episode.`;
 
 const panel = document.getElementById("insights");
 for (const ins of DATA.insights) {
@@ -458,7 +511,7 @@ for (const ins of DATA.insights) {
     state.xMode = cs.xMode || "weeks";
     state.yMode = cs.yMode || "cumulative";
     state.solo = cs.solo || null;
-    state.dests = new Set(cs.dests || DATA.dests.map(d => d.key));
+    state.dests = new Set(cs.dests || Object.keys(PLAT_COLORS));
     render();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
