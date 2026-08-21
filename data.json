@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-21T19:24:54.415Z",
+ "generatedAt": "2026-08-21T19:30:08.892Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1230,6 +1230,31 @@
        "comments": 3
       }
      }
+    },
+    {
+     "ts": "2026-08-21T19:30:08.840Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1227,
+       "likes": 48,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 844,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1520,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3649,
+       "likes": 26,
+       "comments": 3
+      }
+     }
     }
    ],
    "weekly": [
@@ -1339,7 +1364,7 @@
     }
    ],
    "latest": {
-    "ts": "2026-08-21T17:39:19.285Z",
+    "ts": "2026-08-21T19:30:08.840Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1227,
@@ -1364,9 +1389,10 @@
     },
     "total": 7240,
     "ytTotal": 2071,
-    "xImpressions": 5169
+    "xImpressions": 5169,
+    "xPlays": null
    },
-   "ageDays": 34.9,
+   "ageDays": 35,
    "metrics": {
     "week1Velocity": 1830,
     "week1Note": null,
@@ -3551,6 +3577,31 @@
        "comments": 1
       }
      }
+    },
+    {
+     "ts": "2026-08-21T19:30:08.840Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1149,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 914,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2226,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3886,
+       "likes": 3,
+       "comments": 1
+      }
+     }
     }
    ],
    "weekly": [
@@ -3660,10 +3711,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-08-21T17:39:19.285Z",
+    "ts": "2026-08-21T19:30:08.840Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1148,
+      "views": 1149,
       "likes": 39,
       "comments": 2
      },
@@ -3683,16 +3734,17 @@
       "comments": 1
      }
     },
-    "total": 8174,
-    "ytTotal": 2062,
-    "xImpressions": 6112
+    "total": 8175,
+    "ytTotal": 2063,
+    "xImpressions": 6112,
+    "xPlays": null
    },
-   "ageDays": 28.9,
+   "ageDays": 29,
    "metrics": {
     "week1Velocity": 1751,
     "week1Note": null,
     "flatlineWeek": 3,
-    "engagementPer1k": 40.3,
+    "engagementPer1k": 40.2,
     "anomaly": null
    },
    "ep": 2,
@@ -5032,11 +5084,36 @@
        "comments": 2
       }
      }
+    },
+    {
+     "ts": "2026-08-21T19:30:08.840Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 937,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 664,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3074,
+       "likes": 10,
+       "comments": 1
+      },
+      "x:designertom": {
+       "views": 16539,
+       "likes": 12,
+       "comments": 2
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-21T17:39:19.285Z",
+    "ts": "2026-08-21T19:30:08.840Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 937,
@@ -5049,7 +5126,7 @@
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 3072,
+      "views": 3074,
       "likes": 10,
       "comments": 1
      },
@@ -5059,11 +5136,12 @@
       "comments": 2
      }
     },
-    "total": 21212,
+    "total": 21214,
     "ytTotal": 1601,
-    "xImpressions": 19611
+    "xImpressions": 19613,
+    "xPlays": null
    },
-   "ageDays": 21.9,
+   "ageDays": 22,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -6340,11 +6418,36 @@
        "comments": 1
       }
      }
+    },
+    {
+     "ts": "2026-08-21T19:30:08.840Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1190,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 705,
+       "likes": 21,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 3391,
+       "likes": 20,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 1127,
+       "likes": 11,
+       "comments": 1
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-21T17:39:19.285Z",
+    "ts": "2026-08-21T19:30:08.840Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1190,
@@ -6369,9 +6472,10 @@
     },
     "total": 6413,
     "ytTotal": 1895,
-    "xImpressions": 4518
+    "xImpressions": 4518,
+    "xPlays": null
    },
-   "ageDays": 14.9,
+   "ageDays": 15,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -7756,14 +7860,39 @@
        "comments": 0
       }
      }
+    },
+    {
+     "ts": "2026-08-21T19:30:08.840Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 635,
+       "likes": 20,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 500,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2886,
+       "likes": 12,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 5934,
+       "likes": 8,
+       "comments": 0
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-21T17:39:19.285Z",
+    "ts": "2026-08-21T19:30:08.840Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 636,
+      "views": 635,
       "likes": 20,
       "comments": 2
      },
@@ -7778,16 +7907,17 @@
       "comments": 0
      },
      "x:designertom": {
-      "views": 5933,
+      "views": 5934,
       "likes": 8,
       "comments": 0
      }
     },
     "total": 9955,
-    "ytTotal": 1136,
-    "xImpressions": 8819
+    "ytTotal": 1135,
+    "xImpressions": 8820,
+    "xPlays": null
    },
-   "ageDays": 7.9,
+   "ageDays": 8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -9072,43 +9202,69 @@
        "comments": 0
       }
      }
+    },
+    {
+     "ts": "2026-08-21T19:30:08.840Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 461,
+       "likes": 11,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 362,
+       "likes": 12,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 6240,
+       "likes": 8,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 1042,
+       "likes": 1,
+       "comments": 0
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-21T17:39:19.285Z",
+    "ts": "2026-08-21T19:30:08.840Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 452,
+      "views": 461,
       "likes": 11,
       "comments": 1
      },
      "yt:designertom": {
-      "views": 321,
+      "views": 362,
       "likes": 12,
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 5898,
-      "likes": 7,
+      "views": 6240,
+      "likes": 8,
       "comments": 0
      },
      "x:designertom": {
-      "views": 1023,
+      "views": 1042,
       "likes": 1,
       "comments": 0
      }
     },
-    "total": 7694,
-    "ytTotal": 773,
-    "xImpressions": 6921
+    "total": 8105,
+    "ytTotal": 823,
+    "xImpressions": 7282,
+    "xPlays": null
    },
-   "ageDays": 0.9,
+   "ageDays": 1,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "pending: episode under 7 days old",
     "flatlineWeek": null,
-    "engagementPer1k": 31,
+    "engagementPer1k": 29.2,
     "anomaly": null
    },
    "ep": 6,
@@ -10322,7 +10478,7 @@
  "insights": [
   {
    "id": "pace-rank",
-   "text": "The Mascot Industrial Complex + Live Call-Ins is at 773 YouTube views (plus 6,921 X post impressions), but no prior episode has real data this early — first comparable checkpoint comes as snapshots age.",
+   "text": "The Mascot Industrial Complex + Live Call-Ins is at 823 YouTube views (plus 7,282 X post impressions), but no prior episode has real data this early — first comparable checkpoint comes as snapshots age.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -10367,7 +10523,7 @@
   },
   {
    "id": "host-split",
-   "text": "On X, @designertom is the stronger announce arm — 60% of all-episode X post impressions (20,653 ridd vs 30,497 tom). Impressions = timeline reach, not video plays.",
+   "text": "On X, @designertom is the stronger announce arm — 59% of all-episode X post impressions (20,997 ridd vs 30,517 tom). Impressions = timeline reach, not video plays.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -10380,7 +10536,7 @@
   },
   {
    "id": "engagement",
-   "text": "YT engagement (likes+comments per 1k views): Bumpy Takeoff leads at 49.7, Mixed Media Workflows, Game Design, + Live Call-Ins trails at 30. Reach and resonance are separating.",
+   "text": "YT engagement (likes+comments per 1k views): Bumpy Takeoff leads at 49.7, The Mascot Industrial Complex + Live Call-Ins trails at 29.2. Reach and resonance are separating.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
