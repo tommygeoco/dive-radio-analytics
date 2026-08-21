@@ -268,6 +268,15 @@ function externalTooltip(context) {
     html += `<div class="meta">Minute ${p.x}</div>`;
     html += `<div class="big">${p.y} watching</div>`;
     html += `<div class="chg">Chat: ${nfmt(p.meta.ct ?? 0)} messages so far${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
+    const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#d7dbe0", "X #2": "#59b0ff" };
+    const chans = Object.entries(p.meta.byChan || {});
+    if (chans.length) {
+      html += `<div class="div"></div>`;
+      for (const [l, v] of chans) {
+        html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${l}<span class="val">${v}</span></div>`;
+      }
+      html += `<div class="note" style="color:#94a0b4">Restream total across all simulcast destinations</div>`;
+    }
   } else {
     if (p.meta.week !== undefined) {
       html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;

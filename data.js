@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-21T19:09:57.173Z",
+ "generatedAt": "2026-08-21T19:21:04.797Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1386,745 +1386,1241 @@ window.DIVE_DATA = {
       "m": 0,
       "v": 3,
       "c": 1,
-      "ct": 1
+      "ct": 1,
+      "byChan": {
+       "YT Dive Club": 2,
+       "YT DesignerTom": 1
+      }
      },
      {
       "m": 1,
       "v": 29,
       "c": 3,
-      "ct": 4
+      "ct": 4,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 2,
       "v": 42,
       "c": 4,
-      "ct": 8
+      "ct": 8,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 3,
       "v": 49,
       "c": 2,
-      "ct": 10
+      "ct": 10,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 4,
       "v": 51,
       "c": 4,
-      "ct": 14
+      "ct": 14,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 5,
       "v": 59,
       "c": 4,
-      "ct": 18
+      "ct": 18,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 6,
       "v": 60,
       "c": 6,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 7,
       "v": 63,
       "c": 4,
-      "ct": 28
+      "ct": 28,
+      "byChan": {
+       "YT Dive Club": 49,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 8,
       "v": 61,
       "c": 6,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 9,
       "v": 61,
       "c": 1,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 10,
       "v": 59,
       "c": 2,
-      "ct": 37
+      "ct": 37,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 11,
       "v": 60,
       "c": 2,
-      "ct": 39
+      "ct": 39,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 12,
       "v": 65,
       "c": 6,
-      "ct": 45
+      "ct": 45,
+      "byChan": {
+       "YT Dive Club": 50,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 13,
       "v": 68,
       "c": 2,
-      "ct": 47
+      "ct": 47,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 14,
       "v": 73,
       "c": 4,
-      "ct": 51
+      "ct": 51,
+      "byChan": {
+       "YT Dive Club": 55,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 15,
       "v": 76,
       "c": 2,
-      "ct": 53
+      "ct": 53,
+      "byChan": {
+       "YT Dive Club": 62,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 16,
       "v": 79,
       "c": 4,
-      "ct": 57
+      "ct": 57,
+      "byChan": {
+       "YT Dive Club": 65,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 17,
       "v": 79,
       "c": 7,
-      "ct": 64
+      "ct": 64,
+      "byChan": {
+       "YT Dive Club": 65,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 18,
       "v": 77,
       "c": 6,
-      "ct": 70
+      "ct": 70,
+      "byChan": {
+       "YT Dive Club": 60,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 19,
       "v": 77,
       "c": 2,
-      "ct": 72
+      "ct": 72,
+      "byChan": {
+       "YT Dive Club": 59,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 20,
       "v": 84,
       "c": 2,
-      "ct": 74
+      "ct": 74,
+      "byChan": {
+       "YT Dive Club": 63,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 21,
       "v": 84,
       "c": 2,
-      "ct": 76
+      "ct": 76,
+      "byChan": {
+       "YT Dive Club": 62,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 22,
       "v": 88,
       "c": 1,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "YT Dive Club": 67,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 23,
       "v": 89,
       "c": 3,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "YT Dive Club": 63,
+       "YT DesignerTom": 26
+      }
      },
      {
       "m": 24,
       "v": 85,
       "c": 4,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "YT Dive Club": 62,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 25,
       "v": 81,
       "c": 1,
-      "ct": 85
+      "ct": 85,
+      "byChan": {
+       "YT Dive Club": 56,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 26,
       "v": 76,
       "c": 5,
-      "ct": 90
+      "ct": 90,
+      "byChan": {
+       "YT Dive Club": 54,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 27,
       "v": 79,
       "c": 3,
-      "ct": 93
+      "ct": 93,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 28,
       "v": 78,
       "c": 3,
-      "ct": 96
+      "ct": 96,
+      "byChan": {
+       "YT Dive Club": 56,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 29,
       "v": 79,
       "c": 1,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 59,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 30,
       "v": 79,
       "c": 2,
-      "ct": 99
+      "ct": 99,
+      "byChan": {
+       "YT Dive Club": 58,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 31,
       "v": 79,
       "c": 0,
-      "ct": 99
+      "ct": 99,
+      "byChan": {
+       "YT Dive Club": 59,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 32,
       "v": 78,
       "c": 1,
-      "ct": 100
+      "ct": 100,
+      "byChan": {
+       "YT Dive Club": 55,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 33,
       "v": 75,
       "c": 1,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "YT Dive Club": 52,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 34,
       "v": 82,
       "c": 4,
-      "ct": 105
+      "ct": 105,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 35,
       "v": 90,
       "c": 3,
-      "ct": 108
+      "ct": 108,
+      "byChan": {
+       "YT Dive Club": 64,
+       "YT DesignerTom": 26
+      }
      },
      {
       "m": 36,
       "v": 83,
       "c": 7,
-      "ct": 115
+      "ct": 115,
+      "byChan": {
+       "YT Dive Club": 63,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 37,
       "v": 76,
       "c": 2,
-      "ct": 117
+      "ct": 117,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 38,
       "v": 80,
       "c": 2,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 58,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 39,
       "v": 82,
       "c": 2,
-      "ct": 121
+      "ct": 121,
+      "byChan": {
+       "YT Dive Club": 61,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 40,
       "v": 78,
       "c": 0,
-      "ct": 121
+      "ct": 121,
+      "byChan": {
+       "YT Dive Club": 60,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 41,
       "v": 78,
       "c": 2,
-      "ct": 123
+      "ct": 123,
+      "byChan": {
+       "YT Dive Club": 58,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 42,
       "v": 74,
       "c": 3,
-      "ct": 126
+      "ct": 126,
+      "byChan": {
+       "YT Dive Club": 55,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 43,
       "v": 75,
       "c": 0,
-      "ct": 126
+      "ct": 126,
+      "byChan": {
+       "YT Dive Club": 56,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 44,
       "v": 74,
       "c": 1,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "YT Dive Club": 54,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 45,
       "v": 79,
       "c": 1,
-      "ct": 128
+      "ct": 128,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 46,
       "v": 81,
       "c": 2,
-      "ct": 130
+      "ct": 130,
+      "byChan": {
+       "YT Dive Club": 59,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 47,
       "v": 82,
       "c": 2,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 61,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 48,
       "v": 81,
       "c": 2,
-      "ct": 134
+      "ct": 134,
+      "byChan": {
+       "YT Dive Club": 60,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 49,
       "v": 76,
       "c": 2,
-      "ct": 136
+      "ct": 136,
+      "byChan": {
+       "YT Dive Club": 58,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 50,
       "v": 78,
       "c": 4,
-      "ct": 140
+      "ct": 140,
+      "byChan": {
+       "YT Dive Club": 60,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 51,
       "v": 81,
       "c": 5,
-      "ct": 145
+      "ct": 145,
+      "byChan": {
+       "YT Dive Club": 64,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 52,
       "v": 86,
       "c": 0,
-      "ct": 145
+      "ct": 145,
+      "byChan": {
+       "YT Dive Club": 67,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 53,
       "v": 83,
       "c": 0,
-      "ct": 145
+      "ct": 145,
+      "byChan": {
+       "YT Dive Club": 65,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 54,
       "v": 78,
       "c": 0,
-      "ct": 145
+      "ct": 145,
+      "byChan": {
+       "YT Dive Club": 60,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 55,
       "v": 82,
       "c": 0,
-      "ct": 145
+      "ct": 145,
+      "byChan": {
+       "YT Dive Club": 62,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 56,
       "v": 79,
       "c": 0,
-      "ct": 145
+      "ct": 145,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 57,
       "v": 76,
       "c": 1,
-      "ct": 146
+      "ct": 146,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 58,
       "v": 78,
       "c": 2,
-      "ct": 148
+      "ct": 148,
+      "byChan": {
+       "YT Dive Club": 58,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 59,
       "v": 81,
       "c": 3,
-      "ct": 151
+      "ct": 151,
+      "byChan": {
+       "YT Dive Club": 60,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 60,
       "v": 76,
       "c": 1,
-      "ct": 152
+      "ct": 152,
+      "byChan": {
+       "YT Dive Club": 57,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 61,
       "v": 74,
       "c": 4,
-      "ct": 156
+      "ct": 156,
+      "byChan": {
+       "YT Dive Club": 55,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 62,
       "v": 72,
       "c": 0,
-      "ct": 156
+      "ct": 156,
+      "byChan": {
+       "YT Dive Club": 54,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 63,
       "v": 70,
       "c": 1,
-      "ct": 157
+      "ct": 157,
+      "byChan": {
+       "YT Dive Club": 53,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 64,
       "v": 68,
       "c": 0,
-      "ct": 157
+      "ct": 157,
+      "byChan": {
+       "YT Dive Club": 52,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 65,
       "v": 67,
       "c": 0,
-      "ct": 157
+      "ct": 157,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 66,
       "v": 68,
       "c": 3,
-      "ct": 160
+      "ct": 160,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 67,
       "v": 69,
       "c": 2,
-      "ct": 162
+      "ct": 162,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 68,
       "v": 70,
       "c": 2,
-      "ct": 164
+      "ct": 164,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 69,
       "v": 71,
       "c": 2,
-      "ct": 166
+      "ct": 166,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 70,
       "v": 72,
       "c": 2,
-      "ct": 168
+      "ct": 168,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 71,
       "v": 74,
       "c": 4,
-      "ct": 172
+      "ct": 172,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 72,
       "v": 72,
       "c": 1,
-      "ct": 173
+      "ct": 173,
+      "byChan": {
+       "YT Dive Club": 49,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 73,
       "v": 71,
       "c": 2,
-      "ct": 175
+      "ct": 175,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 74,
       "v": 69,
       "c": 1,
-      "ct": 176
+      "ct": 176,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 75,
       "v": 68,
       "c": 1,
-      "ct": 177
+      "ct": 177,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 76,
       "v": 66,
       "c": 3,
-      "ct": 180
+      "ct": 180,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 77,
       "v": 65,
       "c": 1,
-      "ct": 181
+      "ct": 181,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 78,
       "v": 63,
       "c": 0,
-      "ct": 181
+      "ct": 181,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 79,
       "v": 61,
       "c": 6,
-      "ct": 187
+      "ct": 187,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 80,
       "v": 60,
       "c": 2,
-      "ct": 189
+      "ct": 189,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 81,
       "v": 58,
       "c": 2,
-      "ct": 191
+      "ct": 191,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 82,
       "v": 57,
       "c": 3,
-      "ct": 194
+      "ct": 194,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 83,
       "v": 58,
       "c": 4,
-      "ct": 198
+      "ct": 198,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 84,
       "v": 59,
       "c": 2,
-      "ct": 200
+      "ct": 200,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 85,
       "v": 60,
       "c": 2,
-      "ct": 202
+      "ct": 202,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 86,
       "v": 61,
       "c": 0,
-      "ct": 202
+      "ct": 202,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 87,
       "v": 62,
       "c": 2,
-      "ct": 204
+      "ct": 204,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 88,
       "v": 64,
       "c": 3,
-      "ct": 207
+      "ct": 207,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 89,
       "v": 63,
       "c": 1,
-      "ct": 208
+      "ct": 208,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 90,
       "v": 62,
       "c": 4,
-      "ct": 212
+      "ct": 212,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 91,
       "v": 61,
       "c": 3,
-      "ct": 215
+      "ct": 215,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 92,
       "v": 60,
       "c": 6,
-      "ct": 221
+      "ct": 221,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 93,
       "v": 59,
       "c": 14,
-      "ct": 235
+      "ct": 235,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 94,
       "v": 58,
       "c": 10,
-      "ct": 245
+      "ct": 245,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 95,
       "v": 57,
       "c": 17,
-      "ct": 262
+      "ct": 262,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 96,
       "v": 57,
       "c": 9,
-      "ct": 271
+      "ct": 271,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 97,
       "v": 56,
       "c": 10,
-      "ct": 281
+      "ct": 281,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 98,
       "v": 56,
       "c": 11,
-      "ct": 292
+      "ct": 292,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 99,
       "v": 56,
       "c": 8,
-      "ct": 300
+      "ct": 300,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 100,
       "v": 55,
       "c": 0,
-      "ct": 300
+      "ct": 300,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 101,
       "v": 55,
       "c": 3,
-      "ct": 303
+      "ct": 303,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 102,
       "v": 55,
       "c": 8,
-      "ct": 311
+      "ct": 311,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 103,
       "v": 55,
       "c": 6,
-      "ct": 317
+      "ct": 317,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 104,
       "v": 55,
       "c": 0,
-      "ct": 317
+      "ct": 317,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 105,
       "v": 55,
       "c": 1,
-      "ct": 318
+      "ct": 318,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 106,
       "v": 55,
       "c": 3,
-      "ct": 321
+      "ct": 321,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 107,
       "v": 55,
       "c": 5,
-      "ct": 326
+      "ct": 326,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 108,
       "v": 55,
       "c": 10,
-      "ct": 336
+      "ct": 336,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 109,
       "v": 55,
       "c": 4,
-      "ct": 340
+      "ct": 340,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 110,
       "v": 55,
       "c": 3,
-      "ct": 343
+      "ct": 343,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 111,
       "v": 53,
       "c": 4,
-      "ct": 347
+      "ct": 347,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 112,
       "v": 51,
       "c": 2,
-      "ct": 349
+      "ct": 349,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 113,
       "v": 49,
       "c": 1,
-      "ct": 350
+      "ct": 350,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 114,
       "v": 47,
       "c": 2,
-      "ct": 352
+      "ct": 352,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 115,
       "v": 45,
       "c": 0,
-      "ct": 352
+      "ct": 352,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 116,
       "v": 43,
       "c": 3,
-      "ct": 355
+      "ct": 355,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 117,
       "v": 42,
       "c": 2,
-      "ct": 357
+      "ct": 357,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 118,
       "v": 42,
       "c": 3,
-      "ct": 360
+      "ct": 360,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 119,
       "v": 42,
       "c": 0,
-      "ct": 360
+      "ct": 360,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 120,
       "v": 42,
       "c": 2,
-      "ct": 362
+      "ct": 362,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 121,
       "v": 42,
       "c": 4,
-      "ct": 366
+      "ct": 366,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 122,
       "v": 42,
       "c": 16,
-      "ct": 382
+      "ct": 382,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 123,
       "v": 42,
       "c": 1,
-      "ct": 383
+      "ct": 383,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 10
+      }
      }
     ],
     "byChannel": [
@@ -3209,721 +3705,1201 @@ window.DIVE_DATA = {
       "m": 0,
       "v": 9,
       "c": 0,
-      "ct": 0
+      "ct": 0,
+      "byChan": {
+       "YT Dive Club": 7,
+       "YT DesignerTom": 2
+      }
      },
      {
       "m": 1,
       "v": 28,
       "c": 5,
-      "ct": 5
+      "ct": 5,
+      "byChan": {
+       "YT Dive Club": 20,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 2,
       "v": 35,
       "c": 2,
-      "ct": 7
+      "ct": 7,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 3,
       "v": 39,
       "c": 4,
-      "ct": 11
+      "ct": 11,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 4,
       "v": 44,
       "c": 3,
-      "ct": 14
+      "ct": 14,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 5,
       "v": 45,
       "c": 4,
-      "ct": 18
+      "ct": 18,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 6,
       "v": 48,
       "c": 6,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 7,
       "v": 50,
       "c": 2,
-      "ct": 26
+      "ct": 26,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 8,
       "v": 53,
       "c": 1,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 9,
       "v": 55,
       "c": 1,
-      "ct": 28
+      "ct": 28,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 10,
       "v": 57,
       "c": 4,
-      "ct": 32
+      "ct": 32,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 11,
       "v": 56,
       "c": 2,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 12,
       "v": 53,
       "c": 1,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 13,
       "v": 51,
       "c": 0,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 14,
       "v": 48,
       "c": 0,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 15,
       "v": 49,
       "c": 2,
-      "ct": 37
+      "ct": 37,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 16,
       "v": 48,
       "c": 1,
-      "ct": 38
+      "ct": 38,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 17,
       "v": 59,
       "c": 0,
-      "ct": 38
+      "ct": 38,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 18,
       "v": 55,
       "c": 5,
-      "ct": 43
+      "ct": 43,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 19,
       "v": 54,
       "c": 0,
-      "ct": 43
+      "ct": 43,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 20,
       "v": 46,
       "c": 3,
-      "ct": 46
+      "ct": 46,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 21,
       "v": 54,
       "c": 0,
-      "ct": 46
+      "ct": 46,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 22,
       "v": 52,
       "c": 0,
-      "ct": 46
+      "ct": 46,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 23,
       "v": 53,
       "c": 3,
-      "ct": 49
+      "ct": 49,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 24,
       "v": 56,
       "c": 4,
-      "ct": 53
+      "ct": 53,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 25,
       "v": 58,
       "c": 1,
-      "ct": 54
+      "ct": 54,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 26,
       "v": 61,
       "c": 0,
-      "ct": 54
+      "ct": 54,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 27,
       "v": 51,
       "c": 1,
-      "ct": 55
+      "ct": 55,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 28,
       "v": 48,
       "c": 2,
-      "ct": 57
+      "ct": 57,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 29,
       "v": 50,
       "c": 0,
-      "ct": 57
+      "ct": 57,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 30,
       "v": 49,
       "c": 1,
-      "ct": 58
+      "ct": 58,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 31,
       "v": 53,
       "c": 9,
-      "ct": 67
+      "ct": 67,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 32,
       "v": 53,
       "c": 1,
-      "ct": 68
+      "ct": 68,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 33,
       "v": 55,
       "c": 3,
-      "ct": 71
+      "ct": 71,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 34,
       "v": 56,
       "c": 2,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 35,
       "v": 55,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 36,
       "v": 59,
       "c": 2,
-      "ct": 75
+      "ct": 75,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 37,
       "v": 60,
       "c": 1,
-      "ct": 76
+      "ct": 76,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 38,
       "v": 60,
       "c": 1,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 39,
       "v": 59,
       "c": 3,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 40,
       "v": 63,
       "c": 4,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 41,
       "v": 66,
       "c": 2,
-      "ct": 86
+      "ct": 86,
+      "byChan": {
+       "YT Dive Club": 49,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 42,
       "v": 66,
       "c": 1,
-      "ct": 87
+      "ct": 87,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 43,
       "v": 67,
       "c": 0,
-      "ct": 87
+      "ct": 87,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 44,
       "v": 65,
       "c": 4,
-      "ct": 91
+      "ct": 91,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 45,
       "v": 63,
       "c": 2,
-      "ct": 93
+      "ct": 93,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 46,
       "v": 60,
       "c": 4,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 47,
       "v": 63,
       "c": 3,
-      "ct": 100
+      "ct": 100,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 48,
       "v": 63,
       "c": 1,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 49,
       "v": 66,
       "c": 5,
-      "ct": 106
+      "ct": 106,
+      "byChan": {
+       "YT Dive Club": 50,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 50,
       "v": 65,
       "c": 0,
-      "ct": 106
+      "ct": 106,
+      "byChan": {
+       "YT Dive Club": 51,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 51,
       "v": 64,
       "c": 3,
-      "ct": 109
+      "ct": 109,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 52,
       "v": 61,
       "c": 1,
-      "ct": 110
+      "ct": 110,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 53,
       "v": 64,
       "c": 3,
-      "ct": 113
+      "ct": 113,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 54,
       "v": 64,
       "c": 1,
-      "ct": 114
+      "ct": 114,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 55,
       "v": 68,
       "c": 4,
-      "ct": 118
+      "ct": 118,
+      "byChan": {
+       "YT Dive Club": 49,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 56,
       "v": 68,
       "c": 3,
-      "ct": 121
+      "ct": 121,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 57,
       "v": 68,
       "c": 6,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "YT Dive Club": 49,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 58,
       "v": 67,
       "c": 2,
-      "ct": 129
+      "ct": 129,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 59,
       "v": 69,
       "c": 3,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 60,
       "v": 71,
       "c": 0,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 50,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 61,
       "v": 70,
       "c": 1,
-      "ct": 133
+      "ct": 133,
+      "byChan": {
+       "YT Dive Club": 49,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 62,
       "v": 69,
       "c": 0,
-      "ct": 133
+      "ct": 133,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 63,
       "v": 68,
       "c": 1,
-      "ct": 134
+      "ct": 134,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 64,
       "v": 67,
       "c": 1,
-      "ct": 135
+      "ct": 135,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 65,
       "v": 67,
       "c": 1,
-      "ct": 136
+      "ct": 136,
+      "byChan": {
+       "YT Dive Club": 47,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 66,
       "v": 66,
       "c": 3,
-      "ct": 139
+      "ct": 139,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 67,
       "v": 65,
       "c": 2,
-      "ct": 141
+      "ct": 141,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 68,
       "v": 65,
       "c": 2,
-      "ct": 143
+      "ct": 143,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 69,
       "v": 64,
       "c": 1,
-      "ct": 144
+      "ct": 144,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 70,
       "v": 63,
       "c": 0,
-      "ct": 144
+      "ct": 144,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 71,
       "v": 63,
       "c": 2,
-      "ct": 146
+      "ct": 146,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 72,
       "v": 62,
       "c": 0,
-      "ct": 146
+      "ct": 146,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 73,
       "v": 61,
       "c": 0,
-      "ct": 146
+      "ct": 146,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 74,
       "v": 60,
       "c": 4,
-      "ct": 150
+      "ct": 150,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 75,
       "v": 59,
       "c": 2,
-      "ct": 152
+      "ct": 152,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 76,
       "v": 58,
       "c": 0,
-      "ct": 152
+      "ct": 152,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 77,
       "v": 57,
       "c": 0,
-      "ct": 152
+      "ct": 152,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 78,
       "v": 59,
       "c": 1,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 79,
       "v": 61,
       "c": 0,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 80,
       "v": 63,
       "c": 0,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 81,
       "v": 65,
       "c": 0,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 82,
       "v": 68,
       "c": 0,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 48,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 83,
       "v": 66,
       "c": 0,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 46,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 84,
       "v": 65,
       "c": 3,
-      "ct": 156
+      "ct": 156,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 85,
       "v": 63,
       "c": 2,
-      "ct": 158
+      "ct": 158,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 86,
       "v": 62,
       "c": 5,
-      "ct": 163
+      "ct": 163,
+      "byChan": {
+       "YT Dive Club": 42,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 87,
       "v": 60,
       "c": 3,
-      "ct": 166
+      "ct": 166,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 88,
       "v": 59,
       "c": 2,
-      "ct": 168
+      "ct": 168,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 89,
       "v": 59,
       "c": 2,
-      "ct": 170
+      "ct": 170,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 90,
       "v": 59,
       "c": 0,
-      "ct": 170
+      "ct": 170,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 91,
       "v": 59,
       "c": 0,
-      "ct": 170
+      "ct": 170,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 92,
       "v": 59,
       "c": 2,
-      "ct": 172
+      "ct": 172,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 93,
       "v": 60,
       "c": 0,
-      "ct": 172
+      "ct": 172,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 94,
       "v": 59,
       "c": 4,
-      "ct": 176
+      "ct": 176,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 95,
       "v": 59,
       "c": 4,
-      "ct": 180
+      "ct": 180,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 96,
       "v": 59,
       "c": 5,
-      "ct": 185
+      "ct": 185,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 97,
       "v": 58,
       "c": 4,
-      "ct": 189
+      "ct": 189,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 98,
       "v": 58,
       "c": 2,
-      "ct": 191
+      "ct": 191,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 99,
       "v": 58,
       "c": 1,
-      "ct": 192
+      "ct": 192,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 100,
       "v": 57,
       "c": 2,
-      "ct": 194
+      "ct": 194,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 101,
       "v": 57,
       "c": 3,
-      "ct": 197
+      "ct": 197,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 102,
       "v": 56,
       "c": 9,
-      "ct": 206
+      "ct": 206,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 103,
       "v": 56,
       "c": 32,
-      "ct": 238
+      "ct": 238,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 104,
       "v": 55,
       "c": 19,
-      "ct": 257
+      "ct": 257,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 105,
       "v": 55,
       "c": 13,
-      "ct": 270
+      "ct": 270,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 106,
       "v": 52,
       "c": 14,
-      "ct": 284
+      "ct": 284,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 107,
       "v": 49,
       "c": 12,
-      "ct": 296
+      "ct": 296,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 108,
       "v": 46,
       "c": 2,
-      "ct": 298
+      "ct": 298,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 109,
       "v": 43,
       "c": 0,
-      "ct": 298
+      "ct": 298,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 110,
       "v": 41,
       "c": 0,
-      "ct": 298
+      "ct": 298,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 111,
       "v": 41,
       "c": 1,
-      "ct": 299
+      "ct": 299,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 112,
       "v": 42,
       "c": 3,
-      "ct": 302
+      "ct": 302,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 113,
       "v": 43,
       "c": 0,
-      "ct": 302
+      "ct": 302,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 114,
       "v": 43,
       "c": 0,
-      "ct": 302
+      "ct": 302,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 115,
       "v": 44,
       "c": 1,
-      "ct": 303
+      "ct": 303,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 116,
       "v": 45,
       "c": 0,
-      "ct": 303
+      "ct": 303,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 117,
       "v": 45,
       "c": 2,
-      "ct": 305
+      "ct": 305,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 118,
       "v": 45,
       "c": 2,
-      "ct": 307
+      "ct": 307,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 119,
       "v": 45,
       "c": 3,
-      "ct": 310
+      "ct": 310,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 13
+      }
      }
     ],
     "byChannel": [
@@ -4103,685 +5079,1141 @@ window.DIVE_DATA = {
       "m": 0,
       "v": 5,
       "c": 0,
-      "ct": 0
+      "ct": 0,
+      "byChan": {
+       "YT Dive Club": 2,
+       "YT DesignerTom": 3
+      }
      },
      {
       "m": 1,
       "v": 11,
       "c": 1,
-      "ct": 1
+      "ct": 1,
+      "byChan": {
+       "YT Dive Club": 5,
+       "YT DesignerTom": 6
+      }
      },
      {
       "m": 2,
       "v": 18,
       "c": 2,
-      "ct": 3
+      "ct": 3,
+      "byChan": {
+       "YT Dive Club": 11,
+       "YT DesignerTom": 7
+      }
      },
      {
       "m": 3,
       "v": 20,
       "c": 4,
-      "ct": 7
+      "ct": 7,
+      "byChan": {
+       "YT Dive Club": 11,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 4,
       "v": 24,
       "c": 2,
-      "ct": 9
+      "ct": 9,
+      "byChan": {
+       "YT Dive Club": 14,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 5,
       "v": 27,
       "c": 4,
-      "ct": 13
+      "ct": 13,
+      "byChan": {
+       "YT Dive Club": 18,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 6,
       "v": 28,
       "c": 2,
-      "ct": 15
+      "ct": 15,
+      "byChan": {
+       "YT Dive Club": 18,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 7,
       "v": 30,
       "c": 2,
-      "ct": 17
+      "ct": 17,
+      "byChan": {
+       "YT Dive Club": 20,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 8,
       "v": 33,
       "c": 1,
-      "ct": 18
+      "ct": 18,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 9,
       "v": 32,
       "c": 0,
-      "ct": 18
+      "ct": 18,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 10,
       "v": 30,
       "c": 1,
-      "ct": 19
+      "ct": 19,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 7
+      }
      },
      {
       "m": 11,
       "v": 30,
       "c": 1,
-      "ct": 20
+      "ct": 20,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 12,
       "v": 33,
       "c": 1,
-      "ct": 21
+      "ct": 21,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 13,
       "v": 30,
       "c": 2,
-      "ct": 23
+      "ct": 23,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 14,
       "v": 33,
       "c": 1,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 15,
       "v": 38,
       "c": 0,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 16,
       "v": 38,
       "c": 0,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 17,
       "v": 41,
       "c": 1,
-      "ct": 25
+      "ct": 25,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 18,
       "v": 38,
       "c": 0,
-      "ct": 25
+      "ct": 25,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 19,
       "v": 34,
       "c": 2,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 20,
       "v": 39,
       "c": 2,
-      "ct": 29
+      "ct": 29,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 21,
       "v": 38,
       "c": 2,
-      "ct": 31
+      "ct": 31,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 22,
       "v": 35,
       "c": 9,
-      "ct": 40
+      "ct": 40,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 23,
       "v": 37,
       "c": 2,
-      "ct": 42
+      "ct": 42,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 24,
       "v": 37,
       "c": 0,
-      "ct": 42
+      "ct": 42,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 25,
       "v": 39,
       "c": 3,
-      "ct": 45
+      "ct": 45,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 26,
       "v": 37,
       "c": 4,
-      "ct": 49
+      "ct": 49,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 27,
       "v": 41,
       "c": 5,
-      "ct": 54
+      "ct": 54,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 28,
       "v": 42,
       "c": 3,
-      "ct": 57
+      "ct": 57,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 29,
       "v": 44,
       "c": 1,
-      "ct": 58
+      "ct": 58,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 30,
       "v": 44,
       "c": 1,
-      "ct": 59
+      "ct": 59,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 31,
       "v": 37,
       "c": 1,
-      "ct": 60
+      "ct": 60,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 32,
       "v": 34,
       "c": 0,
-      "ct": 60
+      "ct": 60,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 33,
       "v": 33,
       "c": 0,
-      "ct": 60
+      "ct": 60,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 34,
       "v": 37,
       "c": 2,
-      "ct": 62
+      "ct": 62,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 35,
       "v": 36,
       "c": 2,
-      "ct": 64
+      "ct": 64,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 36,
       "v": 39,
       "c": 1,
-      "ct": 65
+      "ct": 65,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 37,
       "v": 42,
       "c": 0,
-      "ct": 65
+      "ct": 65,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 38,
       "v": 39,
       "c": 1,
-      "ct": 66
+      "ct": 66,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 39,
       "v": 37,
       "c": 4,
-      "ct": 70
+      "ct": 70,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 40,
       "v": 37,
       "c": 3,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 41,
       "v": 37,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 42,
       "v": 44,
       "c": 2,
-      "ct": 75
+      "ct": 75,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 43,
       "v": 41,
       "c": 1,
-      "ct": 76
+      "ct": 76,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 44,
       "v": 40,
       "c": 0,
-      "ct": 76
+      "ct": 76,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 45,
       "v": 44,
       "c": 1,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 46,
       "v": 44,
       "c": 2,
-      "ct": 79
+      "ct": 79,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 47,
       "v": 42,
       "c": 0,
-      "ct": 79
+      "ct": 79,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 48,
       "v": 42,
       "c": 0,
-      "ct": 79
+      "ct": 79,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 49,
       "v": 47,
       "c": 2,
-      "ct": 81
+      "ct": 81,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 50,
       "v": 48,
       "c": 0,
-      "ct": 81
+      "ct": 81,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 51,
       "v": 49,
       "c": 1,
-      "ct": 82
+      "ct": 82,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 52,
       "v": 50,
       "c": 2,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 53,
       "v": 48,
       "c": 0,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 54,
       "v": 47,
       "c": 3,
-      "ct": 87
+      "ct": 87,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 55,
       "v": 48,
       "c": 1,
-      "ct": 88
+      "ct": 88,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 56,
       "v": 45,
       "c": 4,
-      "ct": 92
+      "ct": 92,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 57,
       "v": 51,
       "c": 1,
-      "ct": 93
+      "ct": 93,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 58,
       "v": 52,
       "c": 1,
-      "ct": 94
+      "ct": 94,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 59,
       "v": 46,
       "c": 2,
-      "ct": 96
+      "ct": 96,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 60,
       "v": 45,
       "c": 1,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 21,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 61,
       "v": 45,
       "c": 0,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 62,
       "v": 46,
       "c": 1,
-      "ct": 98
+      "ct": 98,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 63,
       "v": 47,
       "c": 0,
-      "ct": 98
+      "ct": 98,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 64,
       "v": 48,
       "c": 0,
-      "ct": 98
+      "ct": 98,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 65,
       "v": 49,
       "c": 2,
-      "ct": 100
+      "ct": 100,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 66,
       "v": 50,
       "c": 3,
-      "ct": 103
+      "ct": 103,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 67,
       "v": 48,
       "c": 4,
-      "ct": 107
+      "ct": 107,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 68,
       "v": 47,
       "c": 1,
-      "ct": 108
+      "ct": 108,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 69,
       "v": 45,
       "c": 1,
-      "ct": 109
+      "ct": 109,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 70,
       "v": 44,
       "c": 2,
-      "ct": 111
+      "ct": 111,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 71,
       "v": 42,
       "c": 0,
-      "ct": 111
+      "ct": 111,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 72,
       "v": 41,
       "c": 0,
-      "ct": 111
+      "ct": 111,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 73,
       "v": 41,
       "c": 1,
-      "ct": 112
+      "ct": 112,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 74,
       "v": 42,
       "c": 0,
-      "ct": 112
+      "ct": 112,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 75,
       "v": 43,
       "c": 1,
-      "ct": 113
+      "ct": 113,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 76,
       "v": 44,
       "c": 0,
-      "ct": 113
+      "ct": 113,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 77,
       "v": 45,
       "c": 2,
-      "ct": 115
+      "ct": 115,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 78,
       "v": 46,
       "c": 0,
-      "ct": 115
+      "ct": 115,
+      "byChan": {
+       "YT Dive Club": 22,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 79,
       "v": 47,
       "c": 1,
-      "ct": 116
+      "ct": 116,
+      "byChan": {
+       "YT Dive Club": 23,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 80,
       "v": 48,
       "c": 0,
-      "ct": 116
+      "ct": 116,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 81,
       "v": 49,
       "c": 1,
-      "ct": 117
+      "ct": 117,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 82,
       "v": 50,
       "c": 1,
-      "ct": 118
+      "ct": 118,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 83,
       "v": 51,
       "c": 0,
-      "ct": 118
+      "ct": 118,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 84,
       "v": 50,
       "c": 1,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 85,
       "v": 50,
       "c": 0,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 86,
       "v": 49,
       "c": 0,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 87,
       "v": 49,
       "c": 0,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 88,
       "v": 49,
       "c": 0,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 89,
       "v": 49,
       "c": 0,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 90,
       "v": 50,
       "c": 1,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 91,
       "v": 51,
       "c": 0,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 92,
       "v": 51,
       "c": 0,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 93,
       "v": 52,
       "c": 0,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 26
+      }
      },
      {
       "m": 94,
       "v": 53,
       "c": 0,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 95,
       "v": 53,
       "c": 2,
-      "ct": 122
+      "ct": 122,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 96,
       "v": 53,
       "c": 1,
-      "ct": 123
+      "ct": 123,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 97,
       "v": 53,
       "c": 0,
-      "ct": 123
+      "ct": 123,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 98,
       "v": 53,
       "c": 2,
-      "ct": 125
+      "ct": 125,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 99,
       "v": 53,
       "c": 4,
-      "ct": 129
+      "ct": 129,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 100,
       "v": 53,
       "c": 12,
-      "ct": 141
+      "ct": 141,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 28
+      }
      },
      {
       "m": 101,
       "v": 52,
       "c": 1,
-      "ct": 142
+      "ct": 142,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 102,
       "v": 51,
       "c": 11,
-      "ct": 153
+      "ct": 153,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 27
+      }
      },
      {
       "m": 103,
       "v": 51,
       "c": 6,
-      "ct": 159
+      "ct": 159,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 26
+      }
      },
      {
       "m": 104,
       "v": 50,
       "c": 1,
-      "ct": 160
+      "ct": 160,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 26
+      }
      },
      {
       "m": 105,
       "v": 50,
       "c": 1,
-      "ct": 161
+      "ct": 161,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 26
+      }
      },
      {
       "m": 106,
       "v": 50,
       "c": 0,
-      "ct": 161
+      "ct": 161,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 107,
       "v": 50,
       "c": 0,
-      "ct": 161
+      "ct": 161,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 108,
       "v": 51,
       "c": 0,
-      "ct": 161
+      "ct": 161,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 109,
       "v": 51,
       "c": 2,
-      "ct": 163
+      "ct": 163,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 110,
       "v": 51,
       "c": 2,
-      "ct": 165
+      "ct": 165,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 111,
       "v": 52,
       "c": 1,
-      "ct": 166
+      "ct": 166,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 112,
       "v": 52,
       "c": 3,
-      "ct": 169
+      "ct": 169,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 113,
       "v": 52,
       "c": 0,
-      "ct": 169
+      "ct": 169,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 23
+      }
      }
     ],
     "byChannel": [
@@ -4953,745 +6385,1241 @@ window.DIVE_DATA = {
       "m": 0,
       "v": 3,
       "c": 2,
-      "ct": 2
+      "ct": 2,
+      "byChan": {
+       "YT Dive Club": 1,
+       "YT DesignerTom": 2
+      }
      },
      {
       "m": 1,
       "v": 14,
       "c": 5,
-      "ct": 7
+      "ct": 7,
+      "byChan": {
+       "YT Dive Club": 9,
+       "YT DesignerTom": 5
+      }
      },
      {
       "m": 2,
       "v": 18,
       "c": 3,
-      "ct": 10
+      "ct": 10,
+      "byChan": {
+       "YT Dive Club": 12,
+       "YT DesignerTom": 6
+      }
      },
      {
       "m": 3,
       "v": 21,
       "c": 4,
-      "ct": 14
+      "ct": 14,
+      "byChan": {
+       "YT Dive Club": 14,
+       "YT DesignerTom": 7
+      }
      },
      {
       "m": 4,
       "v": 28,
       "c": 3,
-      "ct": 17
+      "ct": 17,
+      "byChan": {
+       "YT Dive Club": 18,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 5,
       "v": 28,
       "c": 3,
-      "ct": 20
+      "ct": 20,
+      "byChan": {
+       "YT Dive Club": 19,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 6,
       "v": 30,
       "c": 0,
-      "ct": 20
+      "ct": 20,
+      "byChan": {
+       "YT Dive Club": 19,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 7,
       "v": 30,
       "c": 1,
-      "ct": 21
+      "ct": 21,
+      "byChan": {
+       "YT Dive Club": 18,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 8,
       "v": 36,
       "c": 3,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 20,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 9,
       "v": 41,
       "c": 0,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "YT Dive Club": 24,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 10,
       "v": 42,
       "c": 1,
-      "ct": 25
+      "ct": 25,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 11,
       "v": 46,
       "c": 1,
-      "ct": 26
+      "ct": 26,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 12,
       "v": 40,
       "c": 0,
-      "ct": 26
+      "ct": 26,
+      "byChan": {
+       "YT Dive Club": 25,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 13,
       "v": 43,
       "c": 0,
-      "ct": 26
+      "ct": 26,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 14,
       "v": 42,
       "c": 1,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 15,
       "v": 49,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 16,
       "v": 46,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 17,
       "v": 47,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 18,
       "v": 51,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 19,
       "v": 51,
       "c": 1,
-      "ct": 28
+      "ct": 28,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 20,
       "v": 48,
       "c": 0,
-      "ct": 28
+      "ct": 28,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 21,
       "v": 51,
       "c": 2,
-      "ct": 30
+      "ct": 30,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 22,
       "v": 50,
       "c": 0,
-      "ct": 30
+      "ct": 30,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 23,
       "v": 52,
       "c": 1,
-      "ct": 31
+      "ct": 31,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 24,
       "v": 51,
       "c": 1,
-      "ct": 32
+      "ct": 32,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 25,
       "v": 48,
       "c": 1,
-      "ct": 33
+      "ct": 33,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 26,
       "v": 48,
       "c": 0,
-      "ct": 33
+      "ct": 33,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 27,
       "v": 54,
       "c": 1,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 28,
       "v": 51,
       "c": 0,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 29,
       "v": 54,
       "c": 1,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 30,
       "v": 50,
       "c": 0,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 31,
       "v": 51,
       "c": 0,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 32,
       "v": 45,
       "c": 0,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 33,
       "v": 49,
       "c": 0,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 34,
       "v": 51,
       "c": 1,
-      "ct": 36
+      "ct": 36,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 35,
       "v": 49,
       "c": 5,
-      "ct": 41
+      "ct": 41,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 36,
       "v": 52,
       "c": 1,
-      "ct": 42
+      "ct": 42,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 37,
       "v": 53,
       "c": 1,
-      "ct": 43
+      "ct": 43,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 38,
       "v": 54,
       "c": 1,
-      "ct": 44
+      "ct": 44,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 39,
       "v": 56,
       "c": 1,
-      "ct": 45
+      "ct": 45,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 40,
       "v": 53,
       "c": 2,
-      "ct": 47
+      "ct": 47,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 41,
       "v": 55,
       "c": 1,
-      "ct": 48
+      "ct": 48,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 42,
       "v": 53,
       "c": 2,
-      "ct": 50
+      "ct": 50,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 43,
       "v": 56,
       "c": 3,
-      "ct": 53
+      "ct": 53,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 44,
       "v": 56,
       "c": 4,
-      "ct": 57
+      "ct": 57,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 45,
       "v": 55,
       "c": 1,
-      "ct": 58
+      "ct": 58,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 46,
       "v": 55,
       "c": 0,
-      "ct": 58
+      "ct": 58,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 47,
       "v": 53,
       "c": 1,
-      "ct": 59
+      "ct": 59,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 48,
       "v": 56,
       "c": 1,
-      "ct": 60
+      "ct": 60,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 49,
       "v": 60,
       "c": 1,
-      "ct": 61
+      "ct": 61,
+      "byChan": {
+       "YT Dive Club": 44,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 50,
       "v": 59,
       "c": 1,
-      "ct": 62
+      "ct": 62,
+      "byChan": {
+       "YT Dive Club": 45,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 51,
       "v": 59,
       "c": 5,
-      "ct": 67
+      "ct": 67,
+      "byChan": {
+       "YT Dive Club": 43,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 52,
       "v": 55,
       "c": 1,
-      "ct": 68
+      "ct": 68,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 53,
       "v": 55,
       "c": 4,
-      "ct": 72
+      "ct": 72,
+      "byChan": {
+       "YT Dive Club": 41,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 54,
       "v": 52,
       "c": 1,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 55,
       "v": 51,
       "c": 1,
-      "ct": 74
+      "ct": 74,
+      "byChan": {
+       "YT Dive Club": 39,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 56,
       "v": 53,
       "c": 0,
-      "ct": 74
+      "ct": 74,
+      "byChan": {
+       "YT Dive Club": 38,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 57,
       "v": 55,
       "c": 3,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 58,
       "v": 63,
       "c": 3,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "YT Dive Club": 40,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 59,
       "v": 57,
       "c": 3,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 60,
       "v": 57,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 61,
       "v": 53,
       "c": 1,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 62,
       "v": 50,
       "c": 5,
-      "ct": 89
+      "ct": 89,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 63,
       "v": 46,
       "c": 4,
-      "ct": 93
+      "ct": 93,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 64,
       "v": 43,
       "c": 4,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 65,
       "v": 40,
       "c": 0,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 66,
       "v": 41,
       "c": 0,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 67,
       "v": 42,
       "c": 0,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 68,
       "v": 44,
       "c": 0,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 69,
       "v": 45,
       "c": 2,
-      "ct": 99
+      "ct": 99,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 70,
       "v": 46,
       "c": 0,
-      "ct": 99
+      "ct": 99,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 71,
       "v": 48,
       "c": 0,
-      "ct": 99
+      "ct": 99,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 72,
       "v": 49,
       "c": 2,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 73,
       "v": 51,
       "c": 0,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 74,
       "v": 52,
       "c": 0,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 75,
       "v": 54,
       "c": 0,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 76,
       "v": 55,
       "c": 2,
-      "ct": 103
+      "ct": 103,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 77,
       "v": 57,
       "c": 1,
-      "ct": 104
+      "ct": 104,
+      "byChan": {
+       "YT Dive Club": 37,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 78,
       "v": 55,
       "c": 3,
-      "ct": 107
+      "ct": 107,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 79,
       "v": 53,
       "c": 1,
-      "ct": 108
+      "ct": 108,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 80,
       "v": 51,
       "c": 1,
-      "ct": 109
+      "ct": 109,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 81,
       "v": 49,
       "c": 0,
-      "ct": 109
+      "ct": 109,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 82,
       "v": 48,
       "c": 0,
-      "ct": 109
+      "ct": 109,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 83,
       "v": 49,
       "c": 0,
-      "ct": 109
+      "ct": 109,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 84,
       "v": 50,
       "c": 9,
-      "ct": 118
+      "ct": 118,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 85,
       "v": 51,
       "c": 5,
-      "ct": 123
+      "ct": 123,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 86,
       "v": 52,
       "c": 1,
-      "ct": 124
+      "ct": 124,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 87,
       "v": 53,
       "c": 1,
-      "ct": 125
+      "ct": 125,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 88,
       "v": 55,
       "c": 2,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 89,
       "v": 53,
       "c": 4,
-      "ct": 131
+      "ct": 131,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 90,
       "v": 51,
       "c": 1,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 91,
       "v": 49,
       "c": 0,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 92,
       "v": 47,
       "c": 0,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 93,
       "v": 46,
       "c": 0,
-      "ct": 132
+      "ct": 132,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 94,
       "v": 46,
       "c": 1,
-      "ct": 133
+      "ct": 133,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 95,
       "v": 47,
       "c": 1,
-      "ct": 134
+      "ct": 134,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 96,
       "v": 48,
       "c": 1,
-      "ct": 135
+      "ct": 135,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 97,
       "v": 48,
       "c": 0,
-      "ct": 135
+      "ct": 135,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 98,
       "v": 49,
       "c": 1,
-      "ct": 136
+      "ct": 136,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 99,
       "v": 50,
       "c": 3,
-      "ct": 139
+      "ct": 139,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 100,
       "v": 51,
       "c": 0,
-      "ct": 139
+      "ct": 139,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 101,
       "v": 52,
       "c": 3,
-      "ct": 142
+      "ct": 142,
+      "byChan": {
+       "YT Dive Club": 29,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 102,
       "v": 53,
       "c": 1,
-      "ct": 143
+      "ct": 143,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 103,
       "v": 54,
       "c": 3,
-      "ct": 146
+      "ct": 146,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 104,
       "v": 55,
       "c": 1,
-      "ct": 147
+      "ct": 147,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 105,
       "v": 57,
       "c": 0,
-      "ct": 147
+      "ct": 147,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 25
+      }
      },
      {
       "m": 106,
       "v": 57,
       "c": 2,
-      "ct": 149
+      "ct": 149,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 24
+      }
      },
      {
       "m": 107,
       "v": 57,
       "c": 5,
-      "ct": 154
+      "ct": 154,
+      "byChan": {
+       "YT Dive Club": 33,
+       "YT DesignerTom": 23
+      }
      },
      {
       "m": 108,
       "v": 57,
       "c": 1,
-      "ct": 155
+      "ct": 155,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 22
+      }
      },
      {
       "m": 109,
       "v": 57,
       "c": 1,
-      "ct": 156
+      "ct": 156,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 110,
       "v": 57,
       "c": 2,
-      "ct": 158
+      "ct": 158,
+      "byChan": {
+       "YT Dive Club": 36,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 111,
       "v": 56,
       "c": 2,
-      "ct": 160
+      "ct": 160,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 112,
       "v": 55,
       "c": 3,
-      "ct": 163
+      "ct": 163,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 113,
       "v": 54,
       "c": 0,
-      "ct": 163
+      "ct": 163,
+      "byChan": {
+       "YT Dive Club": 35,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 114,
       "v": 53,
       "c": 1,
-      "ct": 164
+      "ct": 164,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 115,
       "v": 52,
       "c": 1,
-      "ct": 165
+      "ct": 165,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 116,
       "v": 52,
       "c": 0,
-      "ct": 165
+      "ct": 165,
+      "byChan": {
+       "YT Dive Club": 34,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 117,
       "v": 50,
       "c": 0,
-      "ct": 165
+      "ct": 165,
+      "byChan": {
+       "YT Dive Club": 32,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 118,
       "v": 49,
       "c": 0,
-      "ct": 165
+      "ct": 165,
+      "byChan": {
+       "YT Dive Club": 31,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 119,
       "v": 48,
       "c": 0,
-      "ct": 165
+      "ct": 165,
+      "byChan": {
+       "YT Dive Club": 30,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 120,
       "v": 46,
       "c": 2,
-      "ct": 167
+      "ct": 167,
+      "byChan": {
+       "YT Dive Club": 28,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 121,
       "v": 45,
       "c": 0,
-      "ct": 167
+      "ct": 167,
+      "byChan": {
+       "YT Dive Club": 27,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 122,
       "v": 44,
       "c": 0,
-      "ct": 167
+      "ct": 167,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 123,
       "v": 44,
       "c": 0,
-      "ct": 167
+      "ct": 167,
+      "byChan": {
+       "YT Dive Club": 26,
+       "YT DesignerTom": 18
+      }
      }
     ],
     "byChannel": [
@@ -5871,571 +7799,1141 @@ window.DIVE_DATA = {
       "m": 0,
       "v": 13,
       "c": 1,
-      "ct": 1
+      "ct": 1,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 3,
+       "X": 1,
+       "YT DesignerTom": 3
+      }
      },
      {
       "m": 1,
       "v": 20,
       "c": 3,
-      "ct": 4
+      "ct": 4,
+      "byChan": {
+       "X #2": 12,
+       "YT Dive Club": 5,
+       "X": 0,
+       "YT DesignerTom": 3
+      }
      },
      {
       "m": 2,
       "v": 27,
       "c": 3,
-      "ct": 7
+      "ct": 7,
+      "byChan": {
+       "X #2": 10,
+       "YT Dive Club": 8,
+       "X": 1,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 3,
       "v": 26,
       "c": 0,
-      "ct": 7
+      "ct": 7,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 9,
+       "X": 0,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 4,
       "v": 30,
       "c": 1,
-      "ct": 8
+      "ct": 8,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 15,
+       "X": 1,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 5,
       "v": 32,
       "c": 2,
-      "ct": 10
+      "ct": 10,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 15,
+       "X": 1,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 6,
       "v": 37,
       "c": 4,
-      "ct": 14
+      "ct": 14,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 17,
+       "X": 1,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 7,
       "v": 37,
       "c": 9,
-      "ct": 23
+      "ct": 23,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 16,
+       "X": 1,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 8,
       "v": 39,
       "c": 1,
-      "ct": 24
+      "ct": 24,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 16,
+       "X": 3,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 9,
       "v": 37,
       "c": 1,
-      "ct": 25
+      "ct": 25,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 17,
+       "X": 3,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 10,
       "v": 38,
       "c": 1,
-      "ct": 26
+      "ct": 26,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 17,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 11,
       "v": 38,
       "c": 1,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 18,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 12,
       "v": 40,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "X #2": 10,
+       "YT Dive Club": 15,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 13,
       "v": 40,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 19,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 14,
       "v": 43,
       "c": 0,
-      "ct": 27
+      "ct": 27,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 19,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 15,
       "v": 43,
       "c": 1,
-      "ct": 28
+      "ct": 28,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 21,
+       "X": 3,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 16,
       "v": 41,
       "c": 1,
-      "ct": 29
+      "ct": 29,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 23,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 17,
       "v": 46,
       "c": 2,
-      "ct": 31
+      "ct": 31,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 24,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 18,
       "v": 47,
       "c": 1,
-      "ct": 32
+      "ct": 32,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 25,
+       "X": 2,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 19,
       "v": 52,
       "c": 0,
-      "ct": 32
+      "ct": 32,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 24,
+       "X": 4,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 20,
       "v": 50,
       "c": 1,
-      "ct": 33
+      "ct": 33,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 27,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 21,
       "v": 52,
       "c": 0,
-      "ct": 33
+      "ct": 33,
+      "byChan": {
+       "X #2": 10,
+       "YT Dive Club": 24,
+       "X": 3,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 22,
       "v": 50,
       "c": 1,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 24,
+       "X": 3,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 23,
       "v": 51,
       "c": 1,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 22,
+       "X": 4,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 24,
       "v": 53,
       "c": 7,
-      "ct": 42
+      "ct": 42,
+      "byChan": {
+       "X #2": 10,
+       "YT Dive Club": 22,
+       "X": 4,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 25,
       "v": 55,
       "c": 2,
-      "ct": 44
+      "ct": 44,
+      "byChan": {
+       "X #2": 12,
+       "YT Dive Club": 24,
+       "X": 5,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 26,
       "v": 48,
       "c": 0,
-      "ct": 44
+      "ct": 44,
+      "byChan": {
+       "X #2": 10,
+       "YT Dive Club": 21,
+       "X": 3,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 27,
       "v": 57,
       "c": 0,
-      "ct": 44
+      "ct": 44,
+      "byChan": {
+       "X #2": 15,
+       "YT Dive Club": 21,
+       "X": 3,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 28,
       "v": 55,
       "c": 2,
-      "ct": 46
+      "ct": 46,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 23,
+       "X": 4,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 29,
       "v": 57,
       "c": 0,
-      "ct": 46
+      "ct": 46,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 24,
+       "X": 5,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 30,
       "v": 57,
       "c": 2,
-      "ct": 48
+      "ct": 48,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 24,
+       "X": 4,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 31,
       "v": 54,
       "c": 1,
-      "ct": 49
+      "ct": 49,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 25,
+       "X": 5,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 32,
       "v": 55,
       "c": 1,
-      "ct": 50
+      "ct": 50,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 26,
+       "X": 6,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 33,
       "v": 55,
       "c": 1,
-      "ct": 51
+      "ct": 51,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 25,
+       "X": 5,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 34,
       "v": 55,
       "c": 1,
-      "ct": 52
+      "ct": 52,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 24,
+       "X": 6,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 35,
       "v": 54,
       "c": 0,
-      "ct": 52
+      "ct": 52,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 25,
+       "X": 6,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 36,
       "v": 56,
       "c": 2,
-      "ct": 54
+      "ct": 54,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 27,
+       "X": 6,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 37,
       "v": 55,
       "c": 0,
-      "ct": 54
+      "ct": 54,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 25,
+       "X": 5,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 38,
       "v": 50,
       "c": 4,
-      "ct": 58
+      "ct": 58,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 23,
+       "X": 6,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 39,
       "v": 55,
       "c": 2,
-      "ct": 60
+      "ct": 60,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 22,
+       "X": 9,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 40,
       "v": 54,
       "c": 2,
-      "ct": 62
+      "ct": 62,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 24,
+       "X": 7,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 41,
       "v": 58,
       "c": 1,
-      "ct": 63
+      "ct": 63,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 26,
+       "X": 7,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 42,
       "v": 58,
       "c": 0,
-      "ct": 63
+      "ct": 63,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 26,
+       "X": 6,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 43,
       "v": 58,
       "c": 0,
-      "ct": 63
+      "ct": 63,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 28,
+       "X": 7,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 44,
       "v": 58,
       "c": 1,
-      "ct": 64
+      "ct": 64,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 28,
+       "X": 9,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 45,
       "v": 60,
       "c": 0,
-      "ct": 64
+      "ct": 64,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 27,
+       "X": 8,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 46,
       "v": 62,
       "c": 4,
-      "ct": 68
+      "ct": 68,
+      "byChan": {
+       "X #2": 12,
+       "YT Dive Club": 30,
+       "X": 6,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 47,
       "v": 58,
       "c": 1,
-      "ct": 69
+      "ct": 69,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 26,
+       "X": 7,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 48,
       "v": 60,
       "c": 2,
-      "ct": 71
+      "ct": 71,
+      "byChan": {
+       "X #2": 10,
+       "YT Dive Club": 27,
+       "X": 8,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 49,
       "v": 62,
       "c": 1,
-      "ct": 72
+      "ct": 72,
+      "byChan": {
+       "X #2": 12,
+       "YT Dive Club": 28,
+       "X": 7,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 50,
       "v": 63,
       "c": 1,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 30,
+       "X": 7,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 51,
       "v": 64,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 34,
+       "X": 6,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 52,
       "v": 62,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 31,
+       "X": 7,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 53,
       "v": 61,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 28,
+       "X": 6,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 54,
       "v": 53,
       "c": 1,
-      "ct": 74
+      "ct": 74,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 23,
+       "X": 6,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 55,
       "v": 48,
       "c": 0,
-      "ct": 74
+      "ct": 74,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 21,
+       "X": 7,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 56,
       "v": 48,
       "c": 0,
-      "ct": 74
+      "ct": 74,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 19,
+       "X": 7,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 57,
       "v": 45,
       "c": 1,
-      "ct": 75
+      "ct": 75,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 20,
+       "X": 6,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 58,
       "v": 49,
       "c": 2,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 20,
+       "X": 6,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 59,
       "v": 45,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 20,
+       "X": 6,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 60,
       "v": 49,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 21,
+       "X": 6,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 61,
       "v": 49,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 21,
+       "X": 6,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 62,
       "v": 49,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 21,
+       "X": 6,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 63,
       "v": 49,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 21,
+       "X": 6,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 64,
       "v": 49,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 21,
+       "X": 6,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 65,
       "v": 50,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 21,
+       "X": 6,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 66,
       "v": 49,
       "c": 0,
-      "ct": 77
+      "ct": 77,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 20,
+       "X": 5,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 67,
       "v": 48,
       "c": 1,
-      "ct": 78
+      "ct": 78,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 20,
+       "X": 5,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 68,
       "v": 48,
       "c": 2,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 20,
+       "X": 5,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 69,
       "v": 47,
       "c": 0,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 20,
+       "X": 4,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 70,
       "v": 46,
       "c": 0,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 20,
+       "X": 4,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 71,
       "v": 46,
       "c": 0,
-      "ct": 80
+      "ct": 80,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 20,
+       "X": 4,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 72,
       "v": 45,
       "c": 1,
-      "ct": 81
+      "ct": 81,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 19,
+       "X": 3,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 73,
       "v": 44,
       "c": 0,
-      "ct": 81
+      "ct": 81,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 19,
+       "X": 3,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 74,
       "v": 44,
       "c": 2,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 18,
+       "X": 3,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 75,
       "v": 44,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 18,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 76,
       "v": 43,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 17,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 77,
       "v": 43,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 17,
+       "X": 3,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 78,
       "v": 42,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 79,
       "v": 42,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 80,
       "v": 41,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 81,
       "v": 41,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 82,
       "v": 41,
       "c": 0,
-      "ct": 83
+      "ct": 83,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 83,
       "v": 41,
       "c": 1,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 2,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 84,
       "v": 40,
       "c": 0,
-      "ct": 84
+      "ct": 84,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 17,
+       "X": 2,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 85,
       "v": 41,
       "c": 1,
-      "ct": 85
+      "ct": 85,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 18,
+       "X": 2,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 86,
       "v": 41,
       "c": 4,
-      "ct": 89
+      "ct": 89,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 18,
+       "X": 2,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 87,
       "v": 40,
       "c": 4,
-      "ct": 93
+      "ct": 93,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 19,
+       "X": 2,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 88,
       "v": 41,
       "c": 0,
-      "ct": 93
+      "ct": 93,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 20,
+       "X": 2,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 89,
       "v": 40,
       "c": 2,
-      "ct": 95
+      "ct": 95,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 19,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 90,
       "v": 40,
       "c": 0,
-      "ct": 95
+      "ct": 95,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 18,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 91,
       "v": 40,
       "c": 2,
-      "ct": 97
+      "ct": 97,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 17,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 92,
       "v": 40,
       "c": 3,
-      "ct": 100
+      "ct": 100,
+      "byChan": {
+       "X #2": 9,
+       "YT Dive Club": 16,
+       "X": 2,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 93,
       "v": 40,
       "c": 0,
-      "ct": 100
+      "ct": 100,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 16,
+       "X": 2,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 94,
       "v": 40,
       "c": 0,
-      "ct": 100
+      "ct": 100,
+      "byChan": {
+       "X #2": 11,
+       "YT Dive Club": 16,
+       "X": 2,
+       "YT DesignerTom": 11
+      }
      }
     ],
     "byChannel": [
@@ -6615,577 +9113,1153 @@ window.DIVE_DATA = {
       "m": 0,
       "v": 10,
       "c": 0,
-      "ct": 0
+      "ct": 0,
+      "byChan": {
+       "X #2": 0,
+       "YT Dive Club": 8,
+       "X": 0,
+       "YT DesignerTom": 2
+      }
      },
      {
       "m": 1,
       "v": 22,
       "c": 4,
-      "ct": 4
+      "ct": 4,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 12,
+       "X": 1,
+       "YT DesignerTom": 5
+      }
      },
      {
       "m": 2,
       "v": 22,
       "c": 2,
-      "ct": 6
+      "ct": 6,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 13,
+       "X": 1,
+       "YT DesignerTom": 5
+      }
      },
      {
       "m": 3,
       "v": 28,
       "c": 0,
-      "ct": 6
+      "ct": 6,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 16,
+       "X": 0,
+       "YT DesignerTom": 7
+      }
      },
      {
       "m": 4,
       "v": 33,
       "c": 3,
-      "ct": 9
+      "ct": 9,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 17,
+       "X": 1,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 5,
       "v": 35,
       "c": 1,
-      "ct": 10
+      "ct": 10,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 21,
+       "X": 0,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 6,
       "v": 39,
       "c": 0,
-      "ct": 10
+      "ct": 10,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 23,
+       "X": 0,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 7,
       "v": 38,
       "c": 1,
-      "ct": 11
+      "ct": 11,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 27,
+       "X": 0,
+       "YT DesignerTom": 7
+      }
      },
      {
       "m": 8,
       "v": 38,
       "c": 0,
-      "ct": 11
+      "ct": 11,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 26,
+       "X": 0,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 9,
       "v": 39,
       "c": 1,
-      "ct": 12
+      "ct": 12,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 27,
+       "X": 0,
+       "YT DesignerTom": 8
+      }
      },
      {
       "m": 10,
       "v": 46,
       "c": 4,
-      "ct": 16
+      "ct": 16,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 31,
+       "X": 1,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 11,
       "v": 50,
       "c": 3,
-      "ct": 19
+      "ct": 19,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 30,
+       "X": 4,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 12,
       "v": 50,
       "c": 1,
-      "ct": 20
+      "ct": 20,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 29,
+       "X": 3,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 13,
       "v": 49,
       "c": 0,
-      "ct": 20
+      "ct": 20,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 30,
+       "X": 3,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 14,
       "v": 45,
       "c": 0,
-      "ct": 20
+      "ct": 20,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 25,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 15,
       "v": 49,
       "c": 1,
-      "ct": 21
+      "ct": 21,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 30,
+       "X": 1,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 16,
       "v": 57,
       "c": 4,
-      "ct": 25
+      "ct": 25,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 38,
+       "X": 1,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 17,
       "v": 53,
       "c": 4,
-      "ct": 29
+      "ct": 29,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 34,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 18,
       "v": 58,
       "c": 1,
-      "ct": 30
+      "ct": 30,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 36,
+       "X": 3,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 19,
       "v": 57,
       "c": 0,
-      "ct": 30
+      "ct": 30,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 37,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 20,
       "v": 54,
       "c": 0,
-      "ct": 30
+      "ct": 30,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 33,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 21,
       "v": 53,
       "c": 0,
-      "ct": 30
+      "ct": 30,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 35,
+       "X": 1,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 22,
       "v": 57,
       "c": 1,
-      "ct": 31
+      "ct": 31,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 37,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 23,
       "v": 63,
       "c": 1,
-      "ct": 32
+      "ct": 32,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 40,
+       "X": 1,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 24,
       "v": 68,
       "c": 2,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 41,
+       "X": 2,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 25,
       "v": 60,
       "c": 0,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 35,
+       "X": 1,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 26,
       "v": 61,
       "c": 0,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 36,
+       "X": 3,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 27,
       "v": 63,
       "c": 0,
-      "ct": 34
+      "ct": 34,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 36,
+       "X": 5,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 28,
       "v": 59,
       "c": 1,
-      "ct": 35
+      "ct": 35,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 37,
+       "X": 1,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 29,
       "v": 62,
       "c": 1,
-      "ct": 36
+      "ct": 36,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 39,
+       "X": 3,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 30,
       "v": 64,
       "c": 0,
-      "ct": 36
+      "ct": 36,
+      "byChan": {
+       "X #2": 8,
+       "YT Dive Club": 38,
+       "X": 5,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 31,
       "v": 57,
       "c": 0,
-      "ct": 36
+      "ct": 36,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 38,
+       "X": 2,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 32,
       "v": 62,
       "c": 1,
-      "ct": 37
+      "ct": 37,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 41,
+       "X": 2,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 33,
       "v": 64,
       "c": 1,
-      "ct": 38
+      "ct": 38,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 42,
+       "X": 2,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 34,
       "v": 67,
       "c": 1,
-      "ct": 39
+      "ct": 39,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 45,
+       "X": 2,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 35,
       "v": 64,
       "c": 1,
-      "ct": 40
+      "ct": 40,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 39,
+       "X": 2,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 36,
       "v": 57,
       "c": 0,
-      "ct": 40
+      "ct": 40,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 36,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 37,
       "v": 62,
       "c": 1,
-      "ct": 41
+      "ct": 41,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 38,
+       "X": 1,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 38,
       "v": 67,
       "c": 2,
-      "ct": 43
+      "ct": 43,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 41,
+       "X": 1,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 39,
       "v": 68,
       "c": 0,
-      "ct": 43
+      "ct": 43,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 38,
+       "X": 3,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 40,
       "v": 65,
       "c": 1,
-      "ct": 44
+      "ct": 44,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 36,
+       "X": 3,
+       "YT DesignerTom": 21
+      }
      },
      {
       "m": 41,
       "v": 64,
       "c": 2,
-      "ct": 46
+      "ct": 46,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 38,
+       "X": 4,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 42,
       "v": 67,
       "c": 3,
-      "ct": 49
+      "ct": 49,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 39,
+       "X": 4,
+       "YT DesignerTom": 20
+      }
      },
      {
       "m": 43,
       "v": 65,
       "c": 0,
-      "ct": 49
+      "ct": 49,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 38,
+       "X": 3,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 44,
       "v": 68,
       "c": 1,
-      "ct": 50
+      "ct": 50,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 42,
+       "X": 2,
+       "YT DesignerTom": 19
+      }
      },
      {
       "m": 45,
       "v": 60,
       "c": 1,
-      "ct": 51
+      "ct": 51,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 37,
+       "X": 2,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 46,
       "v": 64,
       "c": 2,
-      "ct": 53
+      "ct": 53,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 38,
+       "X": 2,
+       "YT DesignerTom": 18
+      }
      },
      {
       "m": 47,
       "v": 61,
       "c": 1,
-      "ct": 54
+      "ct": 54,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 37,
+       "X": 4,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 48,
       "v": 56,
       "c": 1,
-      "ct": 55
+      "ct": 55,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 38,
+       "X": 4,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 49,
       "v": 57,
       "c": 3,
-      "ct": 58
+      "ct": 58,
+      "byChan": {
+       "X #2": 7,
+       "YT Dive Club": 37,
+       "X": 3,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 50,
       "v": 59,
       "c": 6,
-      "ct": 64
+      "ct": 64,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 34,
+       "X": 2,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 51,
       "v": 60,
       "c": 1,
-      "ct": 65
+      "ct": 65,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 39,
+       "X": 2,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 52,
       "v": 58,
       "c": 0,
-      "ct": 65
+      "ct": 65,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 38,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 53,
       "v": 61,
       "c": 1,
-      "ct": 66
+      "ct": 66,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 38,
+       "X": 3,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 54,
       "v": 63,
       "c": 1,
-      "ct": 67
+      "ct": 67,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 40,
+       "X": 3,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 55,
       "v": 61,
       "c": 0,
-      "ct": 67
+      "ct": 67,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 39,
+       "X": 3,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 56,
       "v": 61,
       "c": 1,
-      "ct": 68
+      "ct": 68,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 39,
+       "X": 3,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 57,
       "v": 53,
       "c": 3,
-      "ct": 71
+      "ct": 71,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 36,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 58,
       "v": 53,
       "c": 2,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 38,
+       "X": 1,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 59,
       "v": 48,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 6,
+       "YT Dive Club": 32,
+       "X": 1,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 60,
       "v": 44,
       "c": 0,
-      "ct": 73
+      "ct": 73,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 31,
+       "X": 1,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 61,
       "v": 44,
       "c": 2,
-      "ct": 75
+      "ct": 75,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 30,
+       "X": 0,
+       "YT DesignerTom": 9
+      }
      },
      {
       "m": 62,
       "v": 44,
       "c": 3,
-      "ct": 78
+      "ct": 78,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 30,
+       "X": 0,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 63,
       "v": 44,
       "c": 16,
-      "ct": 94
+      "ct": 94,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 30,
+       "X": 0,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 64,
       "v": 44,
       "c": 7,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 0,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 65,
       "v": 44,
       "c": 0,
-      "ct": 101
+      "ct": 101,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 0,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 66,
       "v": 45,
       "c": 1,
-      "ct": 102
+      "ct": 102,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 0,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 67,
       "v": 45,
       "c": 1,
-      "ct": 103
+      "ct": 103,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 0,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 68,
       "v": 45,
       "c": 0,
-      "ct": 103
+      "ct": 103,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 69,
       "v": 45,
       "c": 0,
-      "ct": 103
+      "ct": 103,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 70,
       "v": 45,
       "c": 1,
-      "ct": 104
+      "ct": 104,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 71,
       "v": 45,
       "c": 0,
-      "ct": 104
+      "ct": 104,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 72,
       "v": 46,
       "c": 3,
-      "ct": 107
+      "ct": 107,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 3,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 73,
       "v": 45,
       "c": 0,
-      "ct": 107
+      "ct": 107,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 74,
       "v": 44,
       "c": 0,
-      "ct": 107
+      "ct": 107,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 1,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 75,
       "v": 44,
       "c": 6,
-      "ct": 113
+      "ct": 113,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 1,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 76,
       "v": 43,
       "c": 6,
-      "ct": 119
+      "ct": 119,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 0,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 77,
       "v": 43,
       "c": 1,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 29,
+       "X": 0,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 78,
       "v": 43,
       "c": 0,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 28,
+       "X": 0,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 79,
       "v": 43,
       "c": 0,
-      "ct": 120
+      "ct": 120,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 28,
+       "X": 1,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 80,
       "v": 43,
       "c": 2,
-      "ct": 122
+      "ct": 122,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 28,
+       "X": 1,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 81,
       "v": 43,
       "c": 1,
-      "ct": 123
+      "ct": 123,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 28,
+       "X": 2,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 82,
       "v": 43,
       "c": 0,
-      "ct": 123
+      "ct": 123,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 28,
+       "X": 2,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 83,
       "v": 43,
       "c": 1,
-      "ct": 124
+      "ct": 124,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 28,
+       "X": 3,
+       "YT DesignerTom": 10
+      }
      },
      {
       "m": 84,
       "v": 43,
       "c": 0,
-      "ct": 124
+      "ct": 124,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 27,
+       "X": 2,
+       "YT DesignerTom": 11
+      }
      },
      {
       "m": 85,
       "v": 44,
       "c": 1,
-      "ct": 125
+      "ct": 125,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 26,
+       "X": 2,
+       "YT DesignerTom": 12
+      }
      },
      {
       "m": 86,
       "v": 44,
       "c": 0,
-      "ct": 125
+      "ct": 125,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 25,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 87,
       "v": 45,
       "c": 0,
-      "ct": 125
+      "ct": 125,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 24,
+       "X": 1,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 88,
       "v": 46,
       "c": 0,
-      "ct": 125
+      "ct": 125,
+      "byChan": {
+       "X #2": 5,
+       "YT Dive Club": 23,
+       "X": 1,
+       "YT DesignerTom": 17
+      }
      },
      {
       "m": 89,
       "v": 45,
       "c": 1,
-      "ct": 126
+      "ct": 126,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 23,
+       "X": 1,
+       "YT DesignerTom": 16
+      }
      },
      {
       "m": 90,
       "v": 45,
       "c": 0,
-      "ct": 126
+      "ct": 126,
+      "byChan": {
+       "X #2": 4,
+       "YT Dive Club": 24,
+       "X": 1,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 91,
       "v": 44,
       "c": 0,
-      "ct": 126
+      "ct": 126,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 25,
+       "X": 1,
+       "YT DesignerTom": 15
+      }
      },
      {
       "m": 92,
       "v": 44,
       "c": 1,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "X #2": 3,
+       "YT Dive Club": 25,
+       "X": 1,
+       "YT DesignerTom": 14
+      }
      },
      {
       "m": 93,
       "v": 43,
       "c": 0,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 26,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 94,
       "v": 43,
       "c": 0,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 27,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      },
      {
       "m": 95,
       "v": 43,
       "c": 0,
-      "ct": 127
+      "ct": 127,
+      "byChan": {
+       "X #2": 2,
+       "YT Dive Club": 27,
+       "X": 1,
+       "YT DesignerTom": 13
+      }
      }
     ],
     "byChannel": [
