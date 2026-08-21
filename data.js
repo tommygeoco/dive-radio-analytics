@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-21T19:21:04.797Z",
+ "generatedAt": "2026-08-21T19:24:54.415Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1362,13 +1362,15 @@ window.DIVE_DATA = {
       "comments": 3
      }
     },
-    "total": 7240
+    "total": 7240,
+    "ytTotal": 2071,
+    "xImpressions": 5169
    },
    "ageDays": 34.9,
    "metrics": {
-    "week1Velocity": 6471,
+    "week1Velocity": 1830,
     "week1Note": null,
-    "flatlineWeek": 3,
+    "flatlineWeek": 2,
     "engagementPer1k": 49.7,
     "anomaly": null
    },
@@ -3681,11 +3683,13 @@ window.DIVE_DATA = {
       "comments": 1
      }
     },
-    "total": 8174
+    "total": 8174,
+    "ytTotal": 2062,
+    "xImpressions": 6112
    },
    "ageDays": 28.9,
    "metrics": {
-    "week1Velocity": 7391,
+    "week1Velocity": 1751,
     "week1Note": null,
     "flatlineWeek": 3,
     "engagementPer1k": 40.3,
@@ -5055,7 +5059,9 @@ window.DIVE_DATA = {
       "comments": 2
      }
     },
-    "total": 21212
+    "total": 21212,
+    "ytTotal": 1601,
+    "xImpressions": 19611
    },
    "ageDays": 21.9,
    "metrics": {
@@ -5063,7 +5069,7 @@ window.DIVE_DATA = {
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 30,
-    "anomaly": "total 21,212 is >2x the all-episode median (8,174) — treat as promo-driven outlier, not topic signal"
+    "anomaly": null
    },
    "ep": 3,
    "live": {
@@ -6361,7 +6367,9 @@ window.DIVE_DATA = {
       "comments": 1
      }
     },
-    "total": 6413
+    "total": 6413,
+    "ytTotal": 1895,
+    "xImpressions": 4518
    },
    "ageDays": 14.9,
    "metrics": {
@@ -7775,7 +7783,9 @@ window.DIVE_DATA = {
       "comments": 0
      }
     },
-    "total": 9955
+    "total": 9955,
+    "ytTotal": 1136,
+    "xImpressions": 8819
    },
    "ageDays": 7.9,
    "metrics": {
@@ -9089,7 +9099,9 @@ window.DIVE_DATA = {
       "comments": 0
      }
     },
-    "total": 7694
+    "total": 7694,
+    "ytTotal": 773,
+    "xImpressions": 6921
    },
    "ageDays": 0.9,
    "metrics": {
@@ -10310,7 +10322,7 @@ window.DIVE_DATA = {
  "insights": [
   {
    "id": "pace-rank",
-   "text": "The Mascot Industrial Complex + Live Call-Ins is at 7,694 views, but no prior episode has real data this early — first comparable checkpoint comes as snapshots age.",
+   "text": "The Mascot Industrial Complex + Live Call-Ins is at 773 YouTube views (plus 6,921 X post impressions), but no prior episode has real data this early — first comparable checkpoint comes as snapshots age.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -10325,7 +10337,7 @@ window.DIVE_DATA = {
   },
   {
    "id": "flatline",
-   "text": "Bumpy Takeoff flatlined at week 3; Data vs. Intuition, Web Designers Are Back + Call-Ins flatlined at week 3 (weekly gain <3% of total). Plan promo around a ~3-week active window (sample of 2).",
+   "text": "Bumpy Takeoff flatlined at week 2; Data vs. Intuition, Web Designers Are Back + Call-Ins flatlined at week 3 (weekly gain <3% of total). Plan promo around a ~3-week active window (sample of 2).",
    "chartState": {
     "xMode": "weeks",
     "yMode": "delta",
@@ -10355,7 +10367,7 @@ window.DIVE_DATA = {
   },
   {
    "id": "host-split",
-   "text": "On X, @designertom is the stronger distribution arm — 60% of all-episode X views (20,653 ridd vs 30,497 tom).",
+   "text": "On X, @designertom is the stronger announce arm — 60% of all-episode X post impressions (20,653 ridd vs 30,497 tom). Impressions = timeline reach, not video plays.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -10364,21 +10376,6 @@ window.DIVE_DATA = {
      "x:designertom"
     ],
     "solo": null
-   }
-  },
-  {
-   "id": "anomaly-2026-07-30-dive-radio-mixed-media-workflows-game-de",
-   "text": "Mixed Media Workflows, Game Design, + Live Call-Ins: total 21,212 is >2x the all-episode median (8,174) — treat as promo-driven outlier, not topic signal.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de"
    }
   },
   {
@@ -10430,14 +10427,14 @@ window.DIVE_DATA = {
     "slug": "2026-07-17-dive-radio-bumpy-takeoff",
     "title": "Dive Radio: Bumpy Takeoff",
     "premiere": "2026-07-17",
-    "value": 6471,
+    "value": 1830,
     "note": null
    },
    {
     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
     "premiere": "2026-07-23",
-    "value": 7391,
+    "value": 1751,
     "note": null
    },
    {

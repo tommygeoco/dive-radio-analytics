@@ -147,9 +147,11 @@ const PLAT_COLORS = {
 const PLAT_NAME = {
   "yt:joindiveclub": "YouTube · Dive Club",
   "yt:designertom": "YouTube · DesignerTom",
-  "x:ridd_design": "X · @ridd_design",
-  "x:designertom": "X · @designertom",
+  "x:ridd_design": "X · @ridd_design (post impressions)",
+  "x:designertom": "X · @designertom (post impressions)",
 };
+const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
+const X_KEYS = ["x:ridd_design", "x:designertom"];
 
 const HINTS = {
   growth: "Click an episode card to focus it. Hover any point for the color-coded channel split. ◐ = registered late: totals are right, early week-by-week history doesn't exist.",
@@ -160,7 +162,9 @@ const state = {
   view: "growth",
   xMode: "weeks",
   yMode: "cumulative",
-  dests: new Set(Object.keys(PLAT_COLORS)),
+  // YT only by default: YT reports real video plays, X reports post
+  // impressions (timeline reach). Different units — never summed silently.
+  dests: new Set(YT_KEYS),
   solo: null,
   showAllCards: false,
 };
@@ -297,6 +301,9 @@ function externalTooltip(context) {
         const v = p.meta.split[k] ?? 0;
         html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${PLAT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
       }
+      if (X_KEYS.some(k => state.dests.has(k))) {
+        html += `<div class="note" style="color:#94a0b4">X rows are post impressions (reach), not video plays — different unit than YT views</div>`;
+      }
     }
     if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
   }
@@ -387,6 +394,8 @@ function render() {
 }
 
 function sameAgeSub(e) {
+  // YT views only — same unit discipline as the build-side metrics
+  const ytSum = (byDest) => YT_KEYS.reduce((a,k) => a + (byDest[k]?.views || 0), 0);
   const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
   const peers = [];
   for (const o of EPS) {
@@ -397,7 +406,7 @@ function sameAgeSub(e) {
     let best = null;
     for (const s of o.snapshots) {
       const t = Date.parse(s.ts);
-      if (t - prem <= age && (!best || t > best.t)) best = { t, v: Object.values(s.byDest).reduce((a,m)=>a+(m.views||0),0) };
+      if (t - prem <= age && (!best || t > best.t)) best = { t, v: ytSum(s.byDest) };
     }
     if (best) peers.push(best.v);
   }
@@ -405,7 +414,7 @@ function sameAgeSub(e) {
   peers.sort((a,b)=>a-b);
   const med = peers[Math.floor(peers.length/2)];
   if (med <= 0) return null;
-  const pct = Math.round(((e.latest.total - med) / med) * 100);
+  const pct = Math.round((((e.latest.ytTotal ?? 0) - med) / med) * 100);
   return { pct, n: peers.length };
 }
 
@@ -431,7 +440,7 @@ function buildBoard() {
         sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
       }
     } else {
-      big = kfmt(e.latest.total);
+      big = `${kfmt(e.latest.ytTotal ?? 0)} <small>YT views</small>`;
       const pace = sameAgeSub(e);
       if (pace) {
         sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (of ${pace.n})`;
@@ -439,6 +448,7 @@ function buildBoard() {
       } else {
         sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;
       }
+      sub += `<br>X reach: ${kfmt(e.latest.xImpressions ?? 0)} impressions`;
     }
     card.innerHTML = `
       <span class="ep"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>
@@ -512,13 +522,13 @@ document.getElementById("ymode").addEventListener("click", e => {
 });
 document.getElementById("reset").addEventListener("click", () => {
   state.view = "growth"; state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
-  state.dests = new Set(Object.keys(PLAT_COLORS));
+  state.dests = new Set(YT_KEYS);
   render();
 });
 const plat = document.getElementById("platforms");
 for (const k of Object.keys(PLAT_COLORS)) {
   const b = document.createElement("button");
-  b.className = "chip on";
+  b.className = state.dests.has(k) ? "chip on" : "chip";
   b.dataset.key = k;
   b.innerHTML = `<span class="sq"></span>${PLAT_NAME[k]}`;
   b.addEventListener("click", () => {
