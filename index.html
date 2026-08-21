@@ -16,16 +16,14 @@
   h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
   .stamp { color: var(--muted); font-size: 12px; margin: 2px 0 18px; }
 
-  /* verdict banner */
   .verdict { background: linear-gradient(90deg, #16233a, #141922); border: 1px solid #2c4266;
     border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; font-size: 16px; line-height: 1.45; }
   .verdict b { color: var(--accent); }
 
-  /* scoreboard */
   .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 10px; margin-bottom: 16px; }
   .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-    padding: 12px 14px; cursor: pointer; transition: border-color .15s, transform .1s; position: relative; }
+    padding: 12px 14px; cursor: pointer; transition: border-color .15s; position: relative; }
   .card:hover { border-color: var(--accent); }
   .card.dim { opacity: .38; }
   .card.solo { border-color: var(--accent); background: var(--panel2); }
@@ -35,20 +33,21 @@
   .card .ttl { font-size: 12.5px; color: var(--text); margin: 3px 0 8px; min-height: 34px;
     line-height: 1.3; overflow: hidden; }
   .card .views { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .card .views small { font-size: 12px; font-weight: 500; color: var(--muted); }
   .card .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
   .card .sub.up { color: var(--good); }
   .card .sub.down { color: var(--bad); }
   .card .flag { position: absolute; top: 10px; right: 12px; font-size: 10px; color: #d9a24a;
     border: 1px solid #6b5320; border-radius: 4px; padding: 0 5px; }
 
-  /* controls */
   .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 12px; }
   .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 9px; overflow: hidden;
     background: var(--panel); }
   .seg button { background: transparent; border: 0; color: var(--muted); padding: 7px 14px;
     cursor: pointer; font: inherit; font-size: 13px; }
   .seg button.on { background: var(--accent); color: #0b1220; font-weight: 650; }
-  .chips { display: inline-flex; gap: 6px; }
+  .seg#view button.on { background: #e6c74a; }
+  .chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
   .chip { border: 1px solid var(--border); background: var(--panel); color: var(--muted);
     border-radius: 9px; padding: 6px 11px; cursor: pointer; font: inherit; font-size: 12.5px; }
   .chip.on { color: var(--text); border-color: #3d4c68; background: var(--panel2); }
@@ -81,40 +80,50 @@
   <div class="board" id="board"></div>
 
   <div class="controls">
-    <span class="seg" id="xmode">
+    <span class="seg" id="view">
+      <button data-v="growth">Audience growth</button>
+      <button data-v="live">Live session</button>
+    </span>
+    <span class="seg growth-only" id="xmode">
       <button data-v="weeks">Episode race — weeks since premiere</button>
       <button data-v="calendar">Timeline — calendar</button>
     </span>
-    <span class="seg" id="ymode">
+    <span class="seg growth-only" id="ymode">
       <button data-v="cumulative">Total views</button>
       <button data-v="delta">Views gained per week</button>
     </span>
-    <span class="chips" id="platforms"></span>
+    <span class="chips growth-only" id="platforms"></span>
     <button class="reset" id="reset">reset view</button>
   </div>
 
   <div id="chartbox"><canvas id="chart"></canvas></div>
-  <div class="hint">Click an episode card to focus it. ◐ = registered late: totals are right, early week-by-week history doesn't exist.</div>
+  <div class="hint" id="hint"></div>
 
   <h2>What the data says</h2>
   <div class="insights" id="insights"></div>
 
-  <footer>Static page — no server, no tracking. Data refreshes every Monday noon (Phoenix); new episodes are discovered and registered automatically. Built from <code>data/restream/postlive/</code>.</footer>
+  <footer>Static page — no server, no tracking. Post-live views refresh daily; live-session metrics come from Restream event archives. New episodes are discovered and registered automatically. Built from <code>data/restream/</code>.</footer>
 </div>
 
 <script src="chart.umd.js"></script>
 <script src="data.js"></script>
 <script>
 const DATA = window.DIVE_DATA;
-const EPS = DATA.episodes; // dive-radio only, in premiere order, with .ep numbers
+const EPS = DATA.episodes; // dive-radio only, premiere order, .ep numbers, optional .live
 const DAY = 86400000, WEEK = 7 * DAY, PHX = 7 * 3600000;
 const PALETTE = ["#6b7a94", "#8a6bd6", "#3ecf8e", "#e6c74a", "#ff7a59", "#59b0ff", "#ff5d8f", "#5eead4"];
 const color = (e) => PALETTE[(e.ep - 1) % PALETTE.length];
 const NEWEST = EPS[EPS.length - 1];
 
+const HINTS = {
+  growth: "Click an episode card to focus it. Hover any point for the per-channel split. ◐ = registered late: totals are right, early week-by-week history doesn't exist.",
+  live: "Concurrent viewers minute-by-minute during the live broadcast, from Restream. Click a card to focus one episode; hover for viewers + chat at that minute.",
+};
+
 const state = {
-  xMode: "weeks",
-  yMode: "cumulative",
+  view: "growth",          // growth | live
+  xMode: "weeks",          // weeks | calendar
+  yMode: "cumulative",     // cumulative | delta
   dests: new Set(DATA.dests.map(d => d.key)),
   solo: null,
 };
@@ -128,11 +137,21 @@ function sum(byDest) {
   for (const k of state.dests) t += (byDest[k]?.views || 0);
   return t;
 }
+function splitOf(byDest) {
+  const o = {};
+  for (const k of Object.keys(byDest)) o[k] = byDest[k]?.views || 0;
+  return o;
+}
+function splitDelta(cur, prev) {
+  const o = {};
+  for (const k of Object.keys(cur)) o[k] = (cur[k]?.views || 0) - (prev?.[k]?.views || 0);
+  return o;
+}
 function fmtDate(ms) {
   return new Date(ms - PHX).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 }
 function kfmt(n) {
-  if (Math.abs(n) >= 1000) return (n/1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k";
+  if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k";
   return String(Math.round(n));
 }
 function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, ""); }
@@ -143,23 +162,24 @@ function seriesFor(e) {
   const pts = [];
   if (state.yMode === "cumulative") {
     if (state.xMode === "calendar") {
-      for (const s of e.snapshots) pts.push({ x: Date.parse(s.ts), y: sum(s.byDest), meta: { ts: s.ts } });
+      for (const s of e.snapshots) pts.push({ x: Date.parse(s.ts), y: sum(s.byDest), meta: { ts: s.ts, split: splitOf(s.byDest) } });
     } else {
-      for (const w of e.weekly) pts.push({ x: w.week, y: sum(w.byDest), meta: { ts: w.boundary, week: w.week } });
+      for (const w of e.weekly) pts.push({ x: w.week, y: sum(w.byDest), meta: { ts: w.boundary, week: w.week, split: splitOf(w.byDest) } });
       const last = e.snapshots[e.snapshots.length - 1];
       const age = (Date.parse(last.ts) - prem) / WEEK;
       const lastX = pts.length ? pts[pts.length-1].x : -1;
-      if (age > lastX) pts.push({ x: Math.round(age*100)/100, y: sum(last.byDest), meta: { ts: last.ts, live: true } });
+      if (age > lastX) pts.push({ x: Math.round(age*100)/100, y: sum(last.byDest), meta: { ts: last.ts, live: true, split: splitOf(last.byDest) } });
     }
   } else {
     for (let i = 0; i < e.weekly.length; i++) {
-      const cur = sum(e.weekly[i].byDest);
-      const prev = i === 0 ? null : sum(e.weekly[i-1].byDest);
+      const cur = e.weekly[i].byDest;
+      const prev = i === 0 ? null : e.weekly[i-1].byDest;
       const first = i === 0;
+      const split = first ? splitOf(cur) : splitDelta(cur, prev);
       pts.push({
         x: state.xMode === "calendar" ? Date.parse(e.weekly[i].boundary) : e.weekly[i].week,
-        y: first ? cur : cur - prev,
-        meta: { ts: e.weekly[i].boundary, week: e.weekly[i].week,
+        y: Object.keys(split).filter(k => state.dests.has(k)).reduce((a,k) => a + split[k], 0),
+        meta: { ts: e.weekly[i].boundary, week: e.weekly[i].week, split,
           note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null }
       });
     }
@@ -167,7 +187,7 @@ function seriesFor(e) {
   return pts;
 }
 
-// draw episode labels at each line's end — no legend hunting
+// episode labels at each line's end
 const endLabels = {
   id: "endLabels",
   afterDatasetsDraw(chart) {
@@ -197,9 +217,12 @@ const endLabels = {
 
 let chart;
 function render() {
-  const isDelta = state.yMode === "delta";
-  const isCal = state.xMode === "calendar";
-  const datasets = EPS.map((e) => {
+  const isLive = state.view === "live";
+  const isDelta = !isLive && state.yMode === "delta";
+  const isCal = !isLive && state.xMode === "calendar";
+
+  const source = isLive ? EPS.filter(e => e.live) : EPS;
+  const datasets = source.map((e) => {
     const isNewest = e.slug === NEWEST.slug;
     const soloed = state.solo === e.slug;
     const hidden = state.solo !== null && !soloed;
@@ -207,11 +230,13 @@ function render() {
       label: label(e),
       epNum: e.ep,
       slug: e.slug,
-      data: seriesFor(e),
+      data: isLive
+        ? e.live.series.map(p => ({ x: p.m, y: p.v, meta: p }))
+        : seriesFor(e),
       borderColor: color(e),
       backgroundColor: color(e) + (isDelta ? "dd" : "22"),
       borderWidth: soloed ? 3.5 : (isNewest ? 3.5 : 2),
-      pointRadius: isCal && state.yMode === "cumulative" ? 0 : 3,
+      pointRadius: isLive || (isCal && state.yMode === "cumulative") ? 0 : 3,
       pointHoverRadius: 5,
       tension: 0.3, spanGaps: false, hidden,
       episode: e,
@@ -228,10 +253,11 @@ function render() {
       scales: {
         x: {
           type: "linear",
-          title: { display: true, text: isCal ? "" : "Weeks since premiere", color: "#94a0b4" },
+          title: { display: true, color: "#94a0b4",
+            text: isLive ? "Minutes into the show" : (isCal ? "" : "Weeks since premiere") },
           ticks: {
             color: "#94a0b4",
-            callback: v => isCal ? fmtDate(v) : (Number.isInteger(v) ? "wk " + v : ""),
+            callback: v => isLive ? v : (isCal ? fmtDate(v) : (Number.isInteger(v) ? "wk " + v : "")),
             maxTicksLimit: isCal ? 9 : 16,
           },
           grid: { color: "#1d2433" },
@@ -239,7 +265,7 @@ function render() {
         },
         y: {
           beginAtZero: true,
-          title: { display: false },
+          title: { display: isLive, text: isLive ? "Concurrent viewers" : "", color: "#94a0b4" },
           ticks: { color: "#94a0b4", callback: v => kfmt(v) },
           grid: { color: "#1d2433" },
         },
@@ -253,6 +279,9 @@ function render() {
             title: items => items.length ? items[0].dataset.label : "",
             label: item => {
               const p = item.raw, e = item.dataset.episode;
+              if (isLive) {
+                return [`Minute ${p.x} · ${p.y} watching · ${p.meta.c} chat msg${p.meta.c === 1 ? "" : "s"}`];
+              }
               const wk = p.meta.week !== undefined ? p.meta.week
                 : Math.floor((Date.parse(p.meta.ts) - premiereMs(e.premiere)) / WEEK);
               const out = [];
@@ -262,6 +291,15 @@ function render() {
                 const prev = item.dataset.data[item.dataIndex-1].y;
                 const d = p.y - prev;
                 out.push(`Change: ${d >= 0 ? "+" : ""}${d.toLocaleString("en-US")}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}`);
+              }
+              // per-channel drilldown
+              if (p.meta.split) {
+                out.push("— by channel —");
+                for (const dd of DATA.dests) {
+                  if (!state.dests.has(dd.key)) continue;
+                  const v = p.meta.split[dd.key] ?? 0;
+                  out.push(`${dd.label}: ${v.toLocaleString("en-US")}${isDelta && p.meta.note === null ? "" : ""}`);
+                }
               }
               if (p.meta.note) out.push(p.meta.note);
               return out;
@@ -275,23 +313,20 @@ function render() {
 
   if (chart) chart.destroy();
   chart = new Chart(document.getElementById("chart"), cfg);
+  buildBoard();
   syncUI();
 }
 
 // --- scoreboard ---
 function sameAgeSub(e) {
-  // compare episode's latest total vs other episodes at the same age.
-  // A peer only counts if its tracked history actually COVERS that age:
-  // first snapshot at-or-before it AND last snapshot at-or-after it.
-  // Otherwise old episodes get compared against younger peers' smaller
-  // running totals, which flatters them.
+  // peer only counts if its tracked history covers this episode's current age
   const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
   const peers = [];
   for (const o of EPS) {
     if (o.slug === e.slug) continue;
     const prem = premiereMs(o.premiere);
-    if (Date.parse(o.snapshots[0].ts) - prem > age) continue;                    // starts too late
-    if (Date.parse(o.snapshots[o.snapshots.length-1].ts) - prem < age) continue; // hasn't reached this age
+    if (Date.parse(o.snapshots[0].ts) - prem > age) continue;
+    if (Date.parse(o.snapshots[o.snapshots.length-1].ts) - prem < age) continue;
     let best = null;
     for (const s of o.snapshots) {
       const t = Date.parse(s.ts);
@@ -308,25 +343,37 @@ function sameAgeSub(e) {
 }
 
 function buildBoard() {
+  const isLive = state.view === "live";
   const board = document.getElementById("board");
   board.innerHTML = "";
   for (const e of EPS) {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.slug = e.slug;
-    const pace = sameAgeSub(e);
-    let sub = "", subCls = "";
-    if (pace) {
-      sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (of ${pace.n})`;
-      subCls = pace.pct >= 0 ? "up" : "down";
+    let big = "", sub = "", subCls = "";
+    if (isLive) {
+      if (e.live) {
+        big = `${e.live.peak} <small>peak live</small>`;
+        sub = `avg ${e.live.avg} · ${e.live.chatMessages.toLocaleString("en-US")} chat msgs · ${e.live.durationMin ?? "?"} min`;
+      } else {
+        big = `<small>no live data</small>`;
+        sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
+      }
     } else {
-      sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;
+      big = kfmt(e.latest.total);
+      const pace = sameAgeSub(e);
+      if (pace) {
+        sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (of ${pace.n})`;
+        subCls = pace.pct >= 0 ? "up" : "down";
+      } else {
+        sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;
+      }
     }
     card.innerHTML = `
       <span class="ep"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>
-      ${e.partialHistory ? '<span class="flag">◐ late reg</span>' : ""}
+      ${e.partialHistory && !isLive ? '<span class="flag">◐ late reg</span>' : ""}
       <div class="ttl">${short(e.title)}</div>
-      <div class="views">${kfmt(e.latest.total)}</div>
+      <div class="views">${big}</div>
       <div class="sub ${subCls}">${sub}</div>`;
     card.addEventListener("click", () => {
       state.solo = state.solo === e.slug ? null : e.slug;
@@ -337,8 +384,12 @@ function buildBoard() {
 }
 
 function syncUI() {
+  const isLive = state.view === "live";
+  for (const b of document.querySelectorAll("#view button")) b.classList.toggle("on", b.dataset.v === state.view);
   for (const b of document.querySelectorAll("#xmode button")) b.classList.toggle("on", b.dataset.v === state.xMode);
   for (const b of document.querySelectorAll("#ymode button")) b.classList.toggle("on", b.dataset.v === state.yMode);
+  for (const el of document.querySelectorAll(".growth-only")) el.style.display = isLive ? "none" : "";
+  document.getElementById("hint").textContent = HINTS[state.view];
   for (const c of document.querySelectorAll(".card")) {
     c.classList.toggle("solo", state.solo === c.dataset.slug);
     c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
@@ -348,6 +399,9 @@ function syncUI() {
 }
 
 // --- controls ---
+document.getElementById("view").addEventListener("click", e => {
+  if (e.target.dataset.v) { state.view = e.target.dataset.v; state.solo = null; render(); }
+});
 document.getElementById("xmode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.xMode = e.target.dataset.v; render(); }
 });
@@ -355,7 +409,7 @@ document.getElementById("ymode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.yMode = e.target.dataset.v; render(); }
 });
 document.getElementById("reset").addEventListener("click", () => {
-  state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
+  state.view = "growth"; state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
   state.dests = new Set(DATA.dests.map(d => d.key));
   render();
 });
@@ -382,12 +436,13 @@ document.getElementById("verdict").innerHTML = pace
 
 const panel = document.getElementById("insights");
 for (const ins of DATA.insights) {
-  if (ins.id === "pace-rank") continue; // already the verdict
+  if (ins.id === "pace-rank") continue;
   const div = document.createElement("div");
   div.className = "insight";
   div.innerHTML = `${ins.text} <span class="go">show me →</span>`;
   div.addEventListener("click", () => {
     const cs = ins.chartState || {};
+    state.view = cs.view || "growth";
     state.xMode = cs.xMode || "weeks";
     state.yMode = cs.yMode || "cumulative";
     state.solo = cs.solo || null;
@@ -399,9 +454,8 @@ for (const ins of DATA.insights) {
 }
 
 document.getElementById("stamp").textContent =
-  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC · updates Mondays automatically`;
+  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC · updates daily, full refresh Mondays`;
 
-buildBoard();
 render();
 </script>
 </body>
