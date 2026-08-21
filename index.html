@@ -6,41 +6,69 @@
 <title>Dive Radio — Episode Analytics</title>
 <style>
   :root {
-    --bg: #0e1116; --panel: #161b22; --border: #2a3140; --text: #e6e8ec;
-    --muted: #8b93a3; --accent: #4da3ff;
+    --bg: #0b0e13; --panel: #141922; --panel2: #1a2130; --border: #273043;
+    --text: #eef1f6; --muted: #94a0b4; --accent: #59b0ff; --good: #3ecf8e; --bad: #ff7a59;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
     font: 14px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
-  h1 { font-size: 20px; margin: 0 0 2px; }
-  .stamp { color: var(--muted); font-size: 12px; margin-bottom: 16px; }
-  .controls { display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
-    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 12px 16px; margin-bottom: 16px; }
-  .group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-  .group .lbl { color: var(--muted); font-size: 11px; text-transform: uppercase;
-    letter-spacing: .06em; margin-right: 2px; }
-  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
-  .seg button { background: transparent; border: 0; color: var(--muted); padding: 5px 12px;
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
+  .stamp { color: var(--muted); font-size: 12px; margin: 2px 0 18px; }
+
+  /* verdict banner */
+  .verdict { background: linear-gradient(90deg, #16233a, #141922); border: 1px solid #2c4266;
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; font-size: 16px; line-height: 1.45; }
+  .verdict b { color: var(--accent); }
+
+  /* scoreboard */
+  .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px; margin-bottom: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 14px; cursor: pointer; transition: border-color .15s, transform .1s; position: relative; }
+  .card:hover { border-color: var(--accent); }
+  .card.dim { opacity: .38; }
+  .card.solo { border-color: var(--accent); background: var(--panel2); }
+  .card .ep { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 12px;
+    color: var(--muted); letter-spacing: .04em; }
+  .card .dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .card .ttl { font-size: 12.5px; color: var(--text); margin: 3px 0 8px; min-height: 34px;
+    line-height: 1.3; overflow: hidden; }
+  .card .views { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .card .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .card .sub.up { color: var(--good); }
+  .card .sub.down { color: var(--bad); }
+  .card .flag { position: absolute; top: 10px; right: 12px; font-size: 10px; color: #d9a24a;
+    border: 1px solid #6b5320; border-radius: 4px; padding: 0 5px; }
+
+  /* controls */
+  .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 9px; overflow: hidden;
+    background: var(--panel); }
+  .seg button { background: transparent; border: 0; color: var(--muted); padding: 7px 14px;
     cursor: pointer; font: inherit; font-size: 13px; }
-  .seg button.on { background: var(--accent); color: #0b1220; font-weight: 600; }
-  label.chk { display: inline-flex; gap: 5px; align-items: center; cursor: pointer;
-    color: var(--text); font-size: 13px; padding: 3px 8px; border: 1px solid var(--border);
-    border-radius: 7px; }
-  label.chk input { accent-color: var(--accent); }
-  #chartbox { background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 16px; height: 520px; position: relative; }
-  .hint { color: var(--muted); font-size: 12px; margin: 8px 2px 20px; }
-  h2 { font-size: 15px; margin: 24px 0 8px; }
+  .seg button.on { background: var(--accent); color: #0b1220; font-weight: 650; }
+  .chips { display: inline-flex; gap: 6px; }
+  .chip { border: 1px solid var(--border); background: var(--panel); color: var(--muted);
+    border-radius: 9px; padding: 6px 11px; cursor: pointer; font: inherit; font-size: 12.5px; }
+  .chip.on { color: var(--text); border-color: #3d4c68; background: var(--panel2); }
+  .chip .sq { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px;
+    background: #4a5670; }
+  .chip.on .sq { background: var(--accent); }
+  .reset { margin-left: auto; color: var(--muted); font-size: 12.5px; background: none; border: 0;
+    cursor: pointer; text-decoration: underline; }
+
+  #chartbox { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 14px 10px; height: 480px; position: relative; }
+  .hint { color: var(--muted); font-size: 12px; margin: 8px 2px 22px; }
+
+  h2 { font-size: 15px; margin: 22px 0 8px; }
   .insights { display: grid; gap: 8px; }
   .insight { background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 14px; cursor: pointer; transition: border-color .15s; }
+    padding: 10px 14px; cursor: pointer; transition: border-color .15s; font-size: 13.5px; }
   .insight:hover { border-color: var(--accent); }
   .insight .go { color: var(--accent); font-size: 12px; margin-left: 6px; white-space: nowrap; }
-  .badge { display: inline-block; font-size: 11px; color: #d9a24a; border: 1px solid #6b5320;
-    border-radius: 5px; padding: 0 6px; margin-left: 6px; vertical-align: 1px; }
-  footer { color: var(--muted); font-size: 12px; margin-top: 28px; }
+  footer { color: var(--muted); font-size: 12px; margin-top: 26px; }
 </style>
 </head>
 <body>
@@ -48,47 +76,46 @@
   <h1>Dive Radio — Episode Analytics</h1>
   <div class="stamp" id="stamp"></div>
 
+  <div class="verdict" id="verdict"></div>
+
+  <div class="board" id="board"></div>
+
   <div class="controls">
-    <div class="group"><span class="lbl">X</span>
-      <span class="seg" id="xmode">
-        <button data-v="weeks">Weeks since premiere</button>
-        <button data-v="calendar">Calendar date</button>
-      </span>
-    </div>
-    <div class="group"><span class="lbl">Y</span>
-      <span class="seg" id="ymode">
-        <button data-v="cumulative">Cumulative views</button>
-        <button data-v="delta">Weekly delta</button>
-      </span>
-    </div>
-    <div class="group" id="platforms"><span class="lbl">Platforms</span></div>
-    <div class="group">
-      <label class="chk"><input type="checkbox" id="includeOther" /> include non–Dive&nbsp;Radio</label>
-    </div>
+    <span class="seg" id="xmode">
+      <button data-v="weeks">Episode race — weeks since premiere</button>
+      <button data-v="calendar">Timeline — calendar</button>
+    </span>
+    <span class="seg" id="ymode">
+      <button data-v="cumulative">Total views</button>
+      <button data-v="delta">Views gained per week</button>
+    </span>
+    <span class="chips" id="platforms"></span>
+    <button class="reset" id="reset">reset view</button>
   </div>
 
   <div id="chartbox"><canvas id="chart"></canvas></div>
-  <div class="hint">Click a legend entry to isolate an episode; click again to restore. Late-registered episodes carry a ◐ partial-history mark — their totals are correct but early weekly history doesn't exist.</div>
+  <div class="hint">Click an episode card to focus it. ◐ = registered late: totals are right, early week-by-week history doesn't exist.</div>
 
-  <h2>Trends &amp; insights <span class="badge">deterministic — same math as the Monday report</span></h2>
+  <h2>What the data says</h2>
   <div class="insights" id="insights"></div>
 
-  <footer>Static page, no server, no network calls at view time. Data built by <code>tools/dive-analytics/build-data.mjs</code> from <code>data/restream/postlive/</code>.</footer>
+  <footer>Static page — no server, no tracking. Data refreshes every Monday noon (Phoenix); new episodes are discovered and registered automatically. Built from <code>data/restream/postlive/</code>.</footer>
 </div>
 
 <script src="chart.umd.js"></script>
 <script src="data.js"></script>
 <script>
 const DATA = window.DIVE_DATA;
-const DAY = 86400000, WEEK = 7 * DAY;
-const PHX = 7 * 3600000;
-const COLORS = ["#4da3ff","#ff7a59","#3ecf8e","#e6c74a","#c084fc","#ff5d8f","#5eead4","#f97316"];
+const EPS = DATA.episodes; // dive-radio only, in premiere order, with .ep numbers
+const DAY = 86400000, WEEK = 7 * DAY, PHX = 7 * 3600000;
+const PALETTE = ["#6b7a94", "#8a6bd6", "#3ecf8e", "#e6c74a", "#ff7a59", "#59b0ff", "#ff5d8f", "#5eead4"];
+const color = (e) => PALETTE[(e.ep - 1) % PALETTE.length];
+const NEWEST = EPS[EPS.length - 1];
 
 const state = {
-  xMode: "weeks",          // weeks | calendar
-  yMode: "cumulative",     // cumulative | delta
+  xMode: "weeks",
+  yMode: "cumulative",
   dests: new Set(DATA.dests.map(d => d.key)),
-  includeOther: false,
   solo: null,
 };
 
@@ -101,15 +128,16 @@ function sum(byDest) {
   for (const k of state.dests) t += (byDest[k]?.views || 0);
   return t;
 }
-function fmtDate(ms) { return new Date(ms - PHX).toISOString().slice(0,10); }
-function short(t) { return t.replace(/^Dive Radio:\s*/i, "").slice(0, 34); }
-function episodes() {
-  return DATA.episodes.filter(e => e.active && (state.includeOther || e.show === "dive-radio"));
+function fmtDate(ms) {
+  return new Date(ms - PHX).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 }
+function kfmt(n) {
+  if (Math.abs(n) >= 1000) return (n/1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k";
+  return String(Math.round(n));
+}
+function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, ""); }
+function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 
-// Build per-episode series for current state.
-// weeks mode: weekly boundary points + a final partial-week point from the latest snapshot.
-// calendar mode: every snapshot (cumulative) or weekly boundaries (delta).
 function seriesFor(e) {
   const prem = premiereMs(e.premiere);
   const pts = [];
@@ -120,123 +148,198 @@ function seriesFor(e) {
       for (const w of e.weekly) pts.push({ x: w.week, y: sum(w.byDest), meta: { ts: w.boundary, week: w.week } });
       const last = e.snapshots[e.snapshots.length - 1];
       const age = (Date.parse(last.ts) - prem) / WEEK;
-      const lastWeekX = pts.length ? pts[pts.length-1].x : -1;
-      if (age > lastWeekX) pts.push({ x: Math.round(age*100)/100, y: sum(last.byDest), meta: { ts: last.ts, partialWeek: true } });
+      const lastX = pts.length ? pts[pts.length-1].x : -1;
+      if (age > lastX) pts.push({ x: Math.round(age*100)/100, y: sum(last.byDest), meta: { ts: last.ts, live: true } });
     }
-  } else { // weekly delta
+  } else {
     for (let i = 0; i < e.weekly.length; i++) {
       const cur = sum(e.weekly[i].byDest);
       const prev = i === 0 ? null : sum(e.weekly[i-1].byDest);
-      const isFirst = i === 0;
-      const delta = isFirst ? cur : cur - prev;
+      const first = i === 0;
       pts.push({
         x: state.xMode === "calendar" ? Date.parse(e.weekly[i].boundary) : e.weekly[i].week,
-        y: delta,
+        y: first ? cur : cur - prev,
         meta: { ts: e.weekly[i].boundary, week: e.weekly[i].week,
-          firstTracked: isFirst,
-          label: isFirst && e.partialHistory ? "views at registration (late-registered)" : (isFirst ? "first tracked week" : null) }
+          note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null }
       });
     }
   }
   return pts;
 }
 
+// draw episode labels at each line's end — no legend hunting
+const endLabels = {
+  id: "endLabels",
+  afterDatasetsDraw(chart) {
+    if (chart.config.type !== "line") return;
+    const { ctx, chartArea } = chart;
+    const placed = [];
+    const items = [];
+    chart.data.datasets.forEach((ds, i) => {
+      const meta = chart.getDatasetMeta(i);
+      if (meta.hidden || !meta.data.length) return;
+      const pt = meta.data[meta.data.length - 1];
+      items.push({ x: pt.x, y: pt.y, text: "E" + ds.epNum, color: ds.borderColor });
+    });
+    items.sort((a, b) => a.y - b.y);
+    ctx.save();
+    ctx.font = "700 12px -apple-system, 'Segoe UI', sans-serif";
+    for (const it of items) {
+      let y = it.y;
+      for (const p of placed) if (Math.abs(y - p) < 15) y = p + 15;
+      placed.push(y);
+      ctx.fillStyle = it.color;
+      ctx.fillText(it.text, Math.min(it.x + 8, chartArea.right + 4), y + 4);
+    }
+    ctx.restore();
+  }
+};
+
 let chart;
 function render() {
-  const eps = episodes();
-  const datasets = eps.map((e, i) => {
-    const hidden = state.solo !== null && state.solo !== e.slug;
+  const isDelta = state.yMode === "delta";
+  const isCal = state.xMode === "calendar";
+  const datasets = EPS.map((e) => {
+    const isNewest = e.slug === NEWEST.slug;
+    const soloed = state.solo === e.slug;
+    const hidden = state.solo !== null && !soloed;
     return {
-      label: short(e.title) + (e.partialHistory ? " ◐" : ""),
+      label: label(e),
+      epNum: e.ep,
       slug: e.slug,
       data: seriesFor(e),
-      borderColor: COLORS[i % COLORS.length],
-      backgroundColor: COLORS[i % COLORS.length] + (state.yMode === "delta" ? "cc" : "33"),
-      borderWidth: 2, pointRadius: 3, pointHoverRadius: 5,
-      tension: 0.25, spanGaps: false, hidden,
+      borderColor: color(e),
+      backgroundColor: color(e) + (isDelta ? "dd" : "22"),
+      borderWidth: soloed ? 3.5 : (isNewest ? 3.5 : 2),
+      pointRadius: isCal && state.yMode === "cumulative" ? 0 : 3,
+      pointHoverRadius: 5,
+      tension: 0.3, spanGaps: false, hidden,
       episode: e,
     };
   });
 
-  const isDelta = state.yMode === "delta";
-  const isCal = state.xMode === "calendar";
   const cfg = {
     type: isDelta ? "bar" : "line",
     data: { datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
+      layout: { padding: { right: isDelta ? 8 : 34 } },
       interaction: { mode: "nearest", intersect: false },
       scales: {
         x: {
           type: "linear",
-          title: { display: true, text: isCal ? "Date" : "Weeks since premiere",
-            color: "#8b93a3" },
+          title: { display: true, text: isCal ? "" : "Weeks since premiere", color: "#94a0b4" },
           ticks: {
-            color: "#8b93a3",
+            color: "#94a0b4",
             callback: v => isCal ? fmtDate(v) : (Number.isInteger(v) ? "wk " + v : ""),
-            maxTicksLimit: isCal ? 10 : 20,
+            maxTicksLimit: isCal ? 9 : 16,
           },
-          grid: { color: "#232a36" },
+          grid: { color: "#1d2433" },
           offset: isDelta,
         },
         y: {
           beginAtZero: true,
-          title: { display: true, text: isDelta ? "Views gained per week" : "Cumulative views", color: "#8b93a3" },
-          ticks: { color: "#8b93a3", callback: v => v.toLocaleString("en-US") },
-          grid: { color: "#232a36" },
+          title: { display: false },
+          ticks: { color: "#94a0b4", callback: v => kfmt(v) },
+          grid: { color: "#1d2433" },
         },
       },
       plugins: {
-        legend: {
-          labels: { color: "#e6e8ec", usePointStyle: true, pointStyle: "line" },
-          onClick: (evt, item, legend) => {
-            const ds = legend.chart.data.datasets[item.datasetIndex];
-            state.solo = state.solo === ds.slug ? null : ds.slug;
-            render();
-          },
-        },
+        legend: { display: false },
         tooltip: {
+          backgroundColor: "#1a2130", borderColor: "#3d4c68", borderWidth: 1,
+          titleColor: "#eef1f6", bodyColor: "#c6cede", padding: 10,
           callbacks: {
-            title: items => items.length ? items[0].dataset.label.replace(" ◐","") : "",
+            title: items => items.length ? items[0].dataset.label : "",
             label: item => {
               const p = item.raw, e = item.dataset.episode;
-              const lines = [];
               const wk = p.meta.week !== undefined ? p.meta.week
                 : Math.floor((Date.parse(p.meta.ts) - premiereMs(e.premiere)) / WEEK);
-              lines.push(`week ${wk}${p.meta.partialWeek ? " (in progress)" : ""} — ${p.meta.ts.slice(0,10)}`);
-              lines.push(`${isDelta ? "gained" : "views"}: ${p.y.toLocaleString("en-US")}`);
-              if (p.meta.label) lines.push(p.meta.label);
-              if (!isDelta) {
-                const idx = item.dataIndex;
-                if (idx > 0) {
-                  const prev = item.dataset.data[idx-1].y;
-                  const d = p.y - prev;
-                  const pct = prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : "";
-                  lines.push(`vs prior point: ${d >= 0 ? "+" : ""}${d.toLocaleString("en-US")}${pct}`);
-                }
+              const out = [];
+              out.push(`Week ${wk}${p.meta.live ? " (in progress)" : ""} · ${fmtDate(Date.parse(p.meta.ts))}`);
+              out.push(`${isDelta ? "Gained" : "Total"}: ${p.y.toLocaleString("en-US")} views`);
+              if (!isDelta && item.dataIndex > 0) {
+                const prev = item.dataset.data[item.dataIndex-1].y;
+                const d = p.y - prev;
+                out.push(`Change: ${d >= 0 ? "+" : ""}${d.toLocaleString("en-US")}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}`);
               }
-              if (e.partialHistory) lines.push("partial history — registered late");
-              return lines;
+              if (p.meta.note) out.push(p.meta.note);
+              return out;
             },
           },
         },
       },
     },
+    plugins: [endLabels],
   };
 
   if (chart) chart.destroy();
   chart = new Chart(document.getElementById("chart"), cfg);
-  syncControls();
+  syncUI();
 }
 
-function syncControls() {
-  for (const b of document.querySelectorAll("#xmode button"))
-    b.classList.toggle("on", b.dataset.v === state.xMode);
-  for (const b of document.querySelectorAll("#ymode button"))
-    b.classList.toggle("on", b.dataset.v === state.yMode);
-  for (const c of document.querySelectorAll("#platforms input"))
-    c.checked = state.dests.has(c.dataset.key);
-  document.getElementById("includeOther").checked = state.includeOther;
+// --- scoreboard ---
+function sameAgeSub(e) {
+  // compare episode's latest total vs other episodes at the same age
+  const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
+  const peers = [];
+  for (const o of EPS) {
+    if (o.slug === e.slug) continue;
+    const prem = premiereMs(o.premiere);
+    if (Date.parse(o.snapshots[0].ts) - prem > age) continue;
+    let best = null;
+    for (const s of o.snapshots) {
+      const t = Date.parse(s.ts);
+      if (t - prem <= age && (!best || t > best.t)) best = { t, v: Object.values(s.byDest).reduce((a,m)=>a+(m.views||0),0) };
+    }
+    if (best) peers.push(best.v);
+  }
+  if (!peers.length) return null;
+  peers.sort((a,b)=>a-b);
+  const med = peers[Math.floor(peers.length/2)];
+  if (med <= 0) return null;
+  const pct = Math.round(((e.latest.total - med) / med) * 100);
+  return { pct, n: peers.length };
+}
+
+function buildBoard() {
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+  for (const e of EPS) {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.slug = e.slug;
+    const pace = sameAgeSub(e);
+    let sub = "", subCls = "";
+    if (pace) {
+      sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median`;
+      subCls = pace.pct >= 0 ? "up" : "down";
+    } else {
+      sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
+    }
+    card.innerHTML = `
+      <span class="ep"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>
+      ${e.partialHistory ? '<span class="flag">◐ late reg</span>' : ""}
+      <div class="ttl">${short(e.title)}</div>
+      <div class="views">${kfmt(e.latest.total)}</div>
+      <div class="sub ${subCls}">${sub}</div>`;
+    card.addEventListener("click", () => {
+      state.solo = state.solo === e.slug ? null : e.slug;
+      render();
+    });
+    board.appendChild(card);
+  }
+}
+
+function syncUI() {
+  for (const b of document.querySelectorAll("#xmode button")) b.classList.toggle("on", b.dataset.v === state.xMode);
+  for (const b of document.querySelectorAll("#ymode button")) b.classList.toggle("on", b.dataset.v === state.yMode);
+  for (const c of document.querySelectorAll(".card")) {
+    c.classList.toggle("solo", state.solo === c.dataset.slug);
+    c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
+  }
+  for (const ch of document.querySelectorAll("#platforms .chip"))
+    ch.classList.toggle("on", state.dests.has(ch.dataset.key));
 }
 
 // --- controls ---
@@ -246,25 +349,35 @@ document.getElementById("xmode").addEventListener("click", e => {
 document.getElementById("ymode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.yMode = e.target.dataset.v; render(); }
 });
+document.getElementById("reset").addEventListener("click", () => {
+  state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
+  state.dests = new Set(DATA.dests.map(d => d.key));
+  render();
+});
 const plat = document.getElementById("platforms");
 for (const d of DATA.dests) {
-  const l = document.createElement("label");
-  l.className = "chk";
-  l.innerHTML = `<input type="checkbox" data-key="${d.key}" checked /> ${d.label}`;
-  l.querySelector("input").addEventListener("change", ev => {
-    ev.target.checked ? state.dests.add(d.key) : state.dests.delete(d.key);
-    if (state.dests.size === 0) { state.dests.add(d.key); ev.target.checked = true; }
+  const b = document.createElement("button");
+  b.className = "chip on";
+  b.dataset.key = d.key;
+  b.innerHTML = `<span class="sq"></span>${d.label.replace("YT ", "YouTube · ").replace("X @", "X · @")}`;
+  b.addEventListener("click", () => {
+    if (state.dests.has(d.key)) {
+      if (state.dests.size > 1) state.dests.delete(d.key);
+    } else state.dests.add(d.key);
     render();
   });
-  plat.appendChild(l);
+  plat.appendChild(b);
 }
-document.getElementById("includeOther").addEventListener("change", ev => {
-  state.includeOther = ev.target.checked; render();
-});
 
-// --- insights panel ---
+// --- verdict + insights ---
+const pace = DATA.insights.find(i => i.id === "pace-rank");
+document.getElementById("verdict").innerHTML = pace
+  ? `<b>E${NEWEST.ep} — ${short(NEWEST.title)}:</b> ${pace.text.replace(/^[^:]*? is /, "")}`
+  : `<b>E${NEWEST.ep} — ${short(NEWEST.title)}</b> is the latest episode.`;
+
 const panel = document.getElementById("insights");
 for (const ins of DATA.insights) {
+  if (ins.id === "pace-rank") continue; // already the verdict
   const div = document.createElement("div");
   div.className = "insight";
   div.innerHTML = `${ins.text} <span class="go">show me →</span>`;
@@ -281,8 +394,9 @@ for (const ins of DATA.insights) {
 }
 
 document.getElementById("stamp").textContent =
-  `data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC — ${DATA.episodes.filter(e=>e.show==="dive-radio").length} Dive Radio episodes tracked across ${DATA.dests.length} destinations`;
+  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC · updates Mondays automatically`;
 
+buildBoard();
 render();
 </script>
 </body>

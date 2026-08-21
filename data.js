@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-21T17:39:19.358Z",
+ "generatedAt": "2026-08-21T18:49:08.657Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -23,221 +23,6 @@ window.DIVE_DATA = {
   }
  ],
  "episodes": [
-  {
-   "slug": "2026-07-15-jason-yuan-designing-99-nos-for-a-single",
-   "title": "Jason Yuan - Designing 99 Nos for a single Yes",
-   "premiere": "2026-07-15",
-   "show": "other",
-   "active": false,
-   "partialHistory": true,
-   "snapshots": [
-    {
-     "ts": "2026-07-20T19:04:45.842Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 3639,
-       "likes": 137,
-       "comments": 9
-      }
-     }
-    },
-    {
-     "ts": "2026-07-20T19:23:10.690Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 3639,
-       "likes": 137,
-       "comments": 9
-      }
-     }
-    },
-    {
-     "ts": "2026-07-21T14:25:00.740Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 3845,
-       "likes": 142,
-       "comments": 9
-      }
-     }
-    },
-    {
-     "ts": "2026-07-22T14:25:00.850Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4118,
-       "likes": 146,
-       "comments": 9
-      }
-     }
-    },
-    {
-     "ts": "2026-07-23T14:25:00.698Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4249,
-       "likes": 149,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-24T14:25:00.712Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4386,
-       "likes": 149,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-25T14:46:47.686Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4484,
-       "likes": 150,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-25T15:06:42.691Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4484,
-       "likes": 150,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-25T15:16:48.419Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4484,
-       "likes": 150,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-25T17:07:03.668Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4500,
-       "likes": 150,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-25T17:37:07.042Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4496,
-       "likes": 150,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-26T14:25:00.654Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4564,
-       "likes": 152,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-27T14:25:00.697Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4652,
-       "likes": 154,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "ts": "2026-07-27T18:22:35.222Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4673,
-       "likes": 155,
-       "comments": 10
-      }
-     }
-    }
-   ],
-   "weekly": [
-    {
-     "week": 1,
-     "boundary": "2026-07-27T19:00:00.000Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4673,
-       "likes": 155,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "week": 2,
-     "boundary": "2026-08-03T19:00:00.000Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4673,
-       "likes": 155,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "week": 3,
-     "boundary": "2026-08-10T19:00:00.000Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4673,
-       "likes": 155,
-       "comments": 10
-      }
-     }
-    },
-    {
-     "week": 4,
-     "boundary": "2026-08-17T19:00:00.000Z",
-     "byDest": {
-      "yt:joindiveclub": {
-       "views": 4673,
-       "likes": 155,
-       "comments": 10
-      }
-     }
-    }
-   ],
-   "latest": {
-    "ts": "2026-07-27T18:22:35.222Z",
-    "byDest": {
-     "yt:joindiveclub": {
-      "views": 4673,
-      "likes": 155,
-      "comments": 10
-     }
-    },
-    "total": 4673
-   },
-   "ageDays": 12,
-   "metrics": {
-    "week1Velocity": null,
-    "week1Note": "excluded: partial history",
-    "flatlineWeek": null,
-    "engagementPer1k": 35.3,
-    "anomaly": null
-   }
-  },
   {
    "slug": "2026-07-17-dive-radio-bumpy-takeoff",
    "title": "Dive Radio: Bumpy Takeoff",
@@ -1586,7 +1371,8 @@ window.DIVE_DATA = {
     "flatlineWeek": 3,
     "engagementPer1k": 49.7,
     "anomaly": null
-   }
+   },
+   "ep": 1
   },
   {
    "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -2611,7 +2397,8 @@ window.DIVE_DATA = {
     "flatlineWeek": 3,
     "engagementPer1k": 40.3,
     "anomaly": null
-   }
+   },
+   "ep": 2
   },
   {
    "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
@@ -2731,7 +2518,8 @@ window.DIVE_DATA = {
     "flatlineWeek": null,
     "engagementPer1k": 30,
     "anomaly": "total 21,212 is >2x the all-episode median (8,174) — treat as promo-driven outlier, not topic signal"
-   }
+   },
+   "ep": 3
   },
   {
    "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -2851,7 +2639,8 @@ window.DIVE_DATA = {
     "flatlineWeek": null,
     "engagementPer1k": 34.3,
     "anomaly": null
-   }
+   },
+   "ep": 4
   },
   {
    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -2971,7 +2760,8 @@ window.DIVE_DATA = {
     "flatlineWeek": null,
     "engagementPer1k": 36.1,
     "anomaly": null
-   }
+   },
+   "ep": 5
   },
   {
    "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
@@ -3091,7 +2881,8 @@ window.DIVE_DATA = {
     "flatlineWeek": null,
     "engagementPer1k": 31,
     "anomaly": null
-   }
+   },
+   "ep": 6
   }
  ],
  "insights": [
