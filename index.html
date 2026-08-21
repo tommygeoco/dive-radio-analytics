@@ -265,7 +265,7 @@ function externalTooltip(context) {
   if (isLive) {
     html += `<div class="meta">Minute ${p.x}</div>`;
     html += `<div class="big">${p.y} watching</div>`;
-    html += `<div class="chg">${p.meta.c} chat message${p.meta.c === 1 ? "" : "s"} this minute</div>`;
+    html += `<div class="chg">Chat: ${nfmt(p.meta.ct ?? 0)} messages so far${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
   } else {
     if (p.meta.week !== undefined) {
       html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
