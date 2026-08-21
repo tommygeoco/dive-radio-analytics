@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-21T18:49:08.657Z",
+ "generatedAt": "2026-08-21T18:54:03.403Z",
  "dests": [
   {
    "key": "yt:joindiveclub",

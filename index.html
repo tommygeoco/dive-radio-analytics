@@ -280,13 +280,18 @@ function render() {
 
 // --- scoreboard ---
 function sameAgeSub(e) {
-  // compare episode's latest total vs other episodes at the same age
+  // compare episode's latest total vs other episodes at the same age.
+  // A peer only counts if its tracked history actually COVERS that age:
+  // first snapshot at-or-before it AND last snapshot at-or-after it.
+  // Otherwise old episodes get compared against younger peers' smaller
+  // running totals, which flatters them.
   const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
   const peers = [];
   for (const o of EPS) {
     if (o.slug === e.slug) continue;
     const prem = premiereMs(o.premiere);
-    if (Date.parse(o.snapshots[0].ts) - prem > age) continue;
+    if (Date.parse(o.snapshots[0].ts) - prem > age) continue;                    // starts too late
+    if (Date.parse(o.snapshots[o.snapshots.length-1].ts) - prem < age) continue; // hasn't reached this age
     let best = null;
     for (const s of o.snapshots) {
       const t = Date.parse(s.ts);
@@ -312,10 +317,10 @@ function buildBoard() {
     const pace = sameAgeSub(e);
     let sub = "", subCls = "";
     if (pace) {
-      sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median`;
+      sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (of ${pace.n})`;
       subCls = pace.pct >= 0 ? "up" : "down";
     } else {
-      sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
+      sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;
     }
     card.innerHTML = `
       <span class="ep"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>
