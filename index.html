@@ -164,11 +164,13 @@ function seriesFor(e) {
     if (state.xMode === "calendar") {
       for (const s of e.snapshots) pts.push({ x: Date.parse(s.ts), y: sum(s.byDest), meta: { ts: s.ts, split: splitOf(s.byDest) } });
     } else {
-      for (const w of e.weekly) pts.push({ x: w.week, y: sum(w.byDest), meta: { ts: w.boundary, week: w.week, split: splitOf(w.byDest) } });
-      const last = e.snapshots[e.snapshots.length - 1];
-      const age = (Date.parse(last.ts) - prem) / WEEK;
-      const lastX = pts.length ? pts[pts.length-1].x : -1;
-      if (age > lastX) pts.push({ x: Math.round(age*100)/100, y: sum(last.byDest), meta: { ts: last.ts, live: true, split: splitOf(last.byDest) } });
+      // race mode: every real snapshot plotted at its true age in days.
+      // No resampled "week 0" points, no fractional orphan dots — late-registered
+      // episodes simply start mid-chart where their data actually begins.
+      for (const s of e.snapshots) {
+        const d = (Date.parse(s.ts) - prem) / DAY;
+        pts.push({ x: Math.round(d * 10) / 10, y: sum(s.byDest), meta: { ts: s.ts, day: d, split: splitOf(s.byDest) } });
+      }
     }
   } else {
     for (let i = 0; i < e.weekly.length; i++) {
@@ -220,6 +222,7 @@ function render() {
   const isLive = state.view === "live";
   const isDelta = !isLive && state.yMode === "delta";
   const isCal = !isLive && state.xMode === "calendar";
+  const isRace = !isLive && !isDelta && !isCal; // snapshots vs days-since-premiere
 
   const source = isLive ? EPS.filter(e => e.live) : EPS;
   const datasets = source.map((e) => {
@@ -236,7 +239,7 @@ function render() {
       borderColor: color(e),
       backgroundColor: color(e) + (isDelta ? "dd" : "22"),
       borderWidth: soloed ? 3.5 : (isNewest ? 3.5 : 2),
-      pointRadius: isLive || (isCal && state.yMode === "cumulative") ? 0 : 3,
+      pointRadius: isLive || isRace || (isCal && state.yMode === "cumulative") ? 0 : 3,
       pointHoverRadius: 5,
       tension: 0.3, spanGaps: false, hidden,
       episode: e,
@@ -254,11 +257,17 @@ function render() {
         x: {
           type: "linear",
           title: { display: true, color: "#94a0b4",
-            text: isLive ? "Minutes into the show" : (isCal ? "" : "Weeks since premiere") },
+            text: isLive ? "Minutes into the show" : (isCal ? "" : (isRace ? "Time since premiere" : "")) },
           ticks: {
             color: "#94a0b4",
-            callback: v => isLive ? v : (isCal ? fmtDate(v) : (Number.isInteger(v) ? "wk " + v : "")),
-            maxTicksLimit: isCal ? 9 : 16,
+            stepSize: isRace ? 7 : undefined,
+            callback: v => {
+              if (isLive) return v;
+              if (isCal) return fmtDate(v);
+              if (isRace) return v === 0 ? "premiere" : (v % 7 === 0 && v > 0 ? `${v/7} wk${v/7 > 1 ? "s" : ""}` : "");
+              return Number.isInteger(v) ? "week " + (v + 1) : "";
+            },
+            maxTicksLimit: isCal ? 9 : 24,
           },
           grid: { color: "#1d2433" },
           offset: isDelta,
@@ -282,15 +291,18 @@ function render() {
               if (isLive) {
                 return [`Minute ${p.x} · ${p.y} watching · ${p.meta.c} chat msg${p.meta.c === 1 ? "" : "s"}`];
               }
-              const wk = p.meta.week !== undefined ? p.meta.week
-                : Math.floor((Date.parse(p.meta.ts) - premiereMs(e.premiere)) / WEEK);
               const out = [];
-              out.push(`Week ${wk}${p.meta.live ? " (in progress)" : ""} · ${fmtDate(Date.parse(p.meta.ts))}`);
+              if (p.meta.week !== undefined) {
+                out.push(`Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}`);
+              } else {
+                const days = Math.round(p.meta.day ?? (Date.parse(p.meta.ts) - premiereMs(e.premiere)) / DAY);
+                out.push(`Day ${days} (week ${Math.floor(days / 7) + 1}) · ${fmtDate(Date.parse(p.meta.ts))}`);
+              }
               out.push(`${isDelta ? "Gained" : "Total"}: ${p.y.toLocaleString("en-US")} views`);
               if (!isDelta && item.dataIndex > 0) {
                 const prev = item.dataset.data[item.dataIndex-1].y;
                 const d = p.y - prev;
-                out.push(`Change: ${d >= 0 ? "+" : ""}${d.toLocaleString("en-US")}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}`);
+                out.push(`Since prior snapshot: ${d >= 0 ? "+" : ""}${d.toLocaleString("en-US")}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}`);
               }
               // per-channel drilldown
               if (p.meta.split) {
