@@ -162,7 +162,9 @@ const state = {
   yMode: "cumulative",
   dests: new Set(Object.keys(PLAT_COLORS)),
   solo: null,
+  showAllCards: false,
 };
+const CARD_CAP = 6; // newest-first; older episodes collapse behind an expander
 
 function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
@@ -402,7 +404,11 @@ function buildBoard() {
   const isLive = state.view === "live";
   const board = document.getElementById("board");
   board.innerHTML = "";
-  for (const e of EPS) {
+  // newest episode always first, descending from there
+  const ordered = [...EPS].reverse();
+  const visible = state.showAllCards ? ordered : ordered.slice(0, CARD_CAP);
+  const hiddenCount = ordered.length - visible.length;
+  for (const e of visible) {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.slug = e.slug;
@@ -436,6 +442,22 @@ function buildBoard() {
       render();
     });
     board.appendChild(card);
+  }
+  if (hiddenCount > 0 || (state.showAllCards && ordered.length > CARD_CAP)) {
+    const more = document.createElement("div");
+    more.className = "card more";
+    more.style.display = "flex";
+    more.style.alignItems = "center";
+    more.style.justifyContent = "center";
+    more.innerHTML = state.showAllCards
+      ? `<div class="sub">Show latest ${CARD_CAP} only</div>`
+      : `<div class="sub">Show ${hiddenCount} older episode${hiddenCount === 1 ? "" : "s"} →</div>`;
+    more.addEventListener("click", () => {
+      state.showAllCards = !state.showAllCards;
+      buildBoard();
+      syncUI();
+    });
+    board.appendChild(more);
   }
 }
 
