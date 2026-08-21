@@ -1,0 +1,3114 @@
+{
+ "generatedAt": "2026-08-21T17:29:24.063Z",
+ "dests": [
+  {
+   "key": "yt:joindiveclub",
+   "label": "YT Dive Club",
+   "platform": "yt"
+  },
+  {
+   "key": "yt:designertom",
+   "label": "YT DesignerTom",
+   "platform": "yt"
+  },
+  {
+   "key": "x:ridd_design",
+   "label": "X @ridd_design",
+   "platform": "x"
+  },
+  {
+   "key": "x:designertom",
+   "label": "X @designertom",
+   "platform": "x"
+  }
+ ],
+ "episodes": [
+  {
+   "slug": "2026-07-15-jason-yuan-designing-99-nos-for-a-single",
+   "title": "Jason Yuan - Designing 99 Nos for a single Yes",
+   "premiere": "2026-07-15",
+   "show": "other",
+   "active": false,
+   "partialHistory": true,
+   "snapshots": [
+    {
+     "ts": "2026-07-20T19:04:45.842Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3639,
+       "likes": 137,
+       "comments": 9
+      }
+     }
+    },
+    {
+     "ts": "2026-07-20T19:23:10.690Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3639,
+       "likes": 137,
+       "comments": 9
+      }
+     }
+    },
+    {
+     "ts": "2026-07-21T14:25:00.740Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3845,
+       "likes": 142,
+       "comments": 9
+      }
+     }
+    },
+    {
+     "ts": "2026-07-22T14:25:00.850Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4118,
+       "likes": 146,
+       "comments": 9
+      }
+     }
+    },
+    {
+     "ts": "2026-07-23T14:25:00.698Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4249,
+       "likes": 149,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-24T14:25:00.712Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4386,
+       "likes": 149,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T14:46:47.686Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4484,
+       "likes": 150,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T15:06:42.691Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4484,
+       "likes": 150,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T15:16:48.419Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4484,
+       "likes": 150,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T17:07:03.668Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4500,
+       "likes": 150,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T17:37:07.042Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4496,
+       "likes": 150,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-26T14:25:00.654Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4564,
+       "likes": 152,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T14:25:00.697Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4652,
+       "likes": 154,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T18:22:35.222Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4673,
+       "likes": 155,
+       "comments": 10
+      }
+     }
+    }
+   ],
+   "weekly": [
+    {
+     "week": 1,
+     "boundary": "2026-07-27T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4673,
+       "likes": 155,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "week": 2,
+     "boundary": "2026-08-03T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4673,
+       "likes": 155,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "week": 3,
+     "boundary": "2026-08-10T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4673,
+       "likes": 155,
+       "comments": 10
+      }
+     }
+    },
+    {
+     "week": 4,
+     "boundary": "2026-08-17T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4673,
+       "likes": 155,
+       "comments": 10
+      }
+     }
+    }
+   ],
+   "latest": {
+    "ts": "2026-07-27T18:22:35.222Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 4673,
+      "likes": 155,
+      "comments": 10
+     }
+    },
+    "total": 4673
+   },
+   "ageDays": 12,
+   "metrics": {
+    "week1Velocity": null,
+    "week1Note": "excluded: partial history",
+    "flatlineWeek": null,
+    "engagementPer1k": 35.3,
+    "anomaly": null
+   }
+  },
+  {
+   "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+   "title": "Dive Radio: Bumpy Takeoff",
+   "premiere": "2026-07-17",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": false,
+   "snapshots": [
+    {
+     "ts": "2026-07-20T19:23:10.690Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 971,
+       "likes": 44,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 616,
+       "likes": 34,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 1302,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 2778,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-21T14:25:00.740Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1020,
+       "likes": 44,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 642,
+       "likes": 36,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 1321,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 2949,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-22T14:25:00.850Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1050,
+       "likes": 44,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 666,
+       "likes": 36,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1346,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3042,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-23T14:25:00.698Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1088,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 692,
+       "likes": 37,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1369,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3143,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-24T14:25:00.712Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1104,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 726,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1400,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3241,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T14:46:47.686Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1121,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1415,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3264,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T15:06:42.691Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1121,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1415,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3264,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T15:16:48.419Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1121,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1415,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3264,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T17:07:03.668Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1123,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1416,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3266,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-25T17:37:07.042Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1123,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1416,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3266,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-26T14:25:00.654Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1133,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 739,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1422,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3284,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T14:25:00.697Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1138,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 753,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1443,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3303,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T18:22:35.222Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1141,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 758,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1443,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3305,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T18:38:01.337Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1141,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 758,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1444,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3305,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T19:00:00.708Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1141,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 758,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1445,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3305,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-28T14:25:00.725Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1146,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 764,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1448,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3356,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-29T14:25:00.724Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1149,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 767,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1454,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3397,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-30T14:25:00.749Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1164,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 769,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1462,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3409,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-07-31T14:25:00.706Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1167,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 770,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1474,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3428,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-01T14:25:00.732Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1173,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 769,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1486,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3456,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-02T14:25:00.737Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1174,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 768,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1493,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3481,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-03T14:25:00.742Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1174,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 770,
+       "likes": 39,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1497,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3491,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-03T19:00:01.343Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1174,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 771,
+       "likes": 39,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1499,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3491,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-04T14:25:00.849Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1178,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 772,
+       "likes": 39,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1499,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3498,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-05T14:25:00.707Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1182,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 774,
+       "likes": 40,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1500,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3506,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-06T14:25:01.910Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1187,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 817,
+       "likes": 43,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1501,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3530,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-07T14:25:00.828Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1193,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 822,
+       "likes": 43,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1504,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3537,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-08T14:25:00.689Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1195,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 827,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1505,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3551,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-09T14:25:00.691Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1198,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 828,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1507,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3561,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-10T14:25:00.757Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1198,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 831,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3580,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-10T19:00:00.820Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1199,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 831,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3580,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T14:41:41.471Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1200,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 836,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3582,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T14:51:46.469Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1200,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 836,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3582,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T16:42:03.203Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1200,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 836,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3582,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T17:12:04.953Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1200,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 836,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3582,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-12T14:25:00.784Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1203,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 838,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1511,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3582,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-13T14:25:00.715Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1209,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 839,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1512,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3584,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-14T14:25:00.694Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1212,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 839,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1513,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3590,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-15T14:25:30.930Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1212,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1515,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3604,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-16T14:25:31.286Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1212,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1516,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3611,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-17T14:25:03.263Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1216,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1518,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3624,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-17T19:01:25.256Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1216,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1518,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3630,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-18T14:25:03.248Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1217,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1519,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3636,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-19T14:25:02.983Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1220,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1520,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3641,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-20T14:25:02.558Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1225,
+       "likes": 48,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 843,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1520,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3645,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T04:53:16.790Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1226,
+       "likes": 48,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 843,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1520,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3648,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T14:25:03.094Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1227,
+       "likes": 48,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 844,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1520,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3649,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    }
+   ],
+   "weekly": [
+    {
+     "week": 1,
+     "boundary": "2026-07-27T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1141,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 758,
+       "likes": 38,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1444,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3305,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "week": 2,
+     "boundary": "2026-08-03T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1174,
+       "likes": 46,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 770,
+       "likes": 39,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1497,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3491,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "week": 3,
+     "boundary": "2026-08-10T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1198,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 831,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1509,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3580,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    },
+    {
+     "week": 4,
+     "boundary": "2026-08-17T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1216,
+       "likes": 47,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 841,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1518,
+       "likes": 10,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 3624,
+       "likes": 26,
+       "comments": 3
+      }
+     }
+    }
+   ],
+   "latest": {
+    "ts": "2026-08-21T14:25:03.094Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 1227,
+      "likes": 48,
+      "comments": 7
+     },
+     "yt:designertom": {
+      "views": 844,
+      "likes": 44,
+      "comments": 4
+     },
+     "x:ridd_design": {
+      "views": 1520,
+      "likes": 10,
+      "comments": 0
+     },
+     "x:designertom": {
+      "views": 3649,
+      "likes": 26,
+      "comments": 3
+     }
+    },
+    "total": 7240
+   },
+   "ageDays": 34.8,
+   "metrics": {
+    "week1Velocity": 6471,
+    "week1Note": null,
+    "flatlineWeek": 3,
+    "engagementPer1k": 49.7,
+    "anomaly": null
+   }
+  },
+  {
+   "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+   "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+   "premiere": "2026-07-23",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": false,
+   "snapshots": [
+    {
+     "ts": "2026-07-27T18:38:01.337Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 794,
+       "likes": 33,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 707,
+       "likes": 31,
+       "comments": 1
+      },
+      "x:designertom": {
+       "views": 1810,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3580,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-07-27T19:00:00.708Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 807,
+       "likes": 33,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 707,
+       "likes": 31,
+       "comments": 1
+      },
+      "x:designertom": {
+       "views": 1810,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3581,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-07-28T14:25:00.725Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 850,
+       "likes": 34,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 750,
+       "likes": 33,
+       "comments": 2
+      },
+      "x:designertom": {
+       "views": 1889,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3607,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-07-29T14:25:00.724Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 901,
+       "likes": 35,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 784,
+       "likes": 36,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 1939,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3623,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-07-30T14:25:00.749Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 936,
+       "likes": 35,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 815,
+       "likes": 37,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 1989,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3651,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-07-31T14:25:00.706Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 968,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 832,
+       "likes": 37,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2078,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3685,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-01T14:25:00.732Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 991,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 842,
+       "likes": 37,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2106,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3707,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-02T14:25:00.737Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1002,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 860,
+       "likes": 38,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2125,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3721,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-03T14:25:00.742Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1011,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 863,
+       "likes": 38,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2135,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3736,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-03T19:00:01.343Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1015,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 865,
+       "likes": 38,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2137,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3742,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-04T14:25:00.849Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1023,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 878,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2156,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3749,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-05T14:25:00.707Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1045,
+       "likes": 37,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 885,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2172,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3765,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-06T14:25:01.910Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1061,
+       "likes": 37,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 891,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2183,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3778,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-07T14:25:00.828Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1077,
+       "likes": 37,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 897,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2200,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3785,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-08T14:25:00.689Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1091,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 898,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2212,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3787,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-09T14:25:00.691Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1097,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 903,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2212,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3789,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-10T14:25:00.757Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1099,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 909,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3799,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-10T19:00:00.820Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1101,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 909,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3803,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T14:41:41.471Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1111,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 908,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3813,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T14:51:46.469Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1111,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 908,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3815,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T16:42:03.203Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1111,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 908,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3818,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-11T17:12:04.953Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1111,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 908,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3819,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-12T14:25:00.784Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1115,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 909,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2216,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3833,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-13T14:25:00.715Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1123,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 911,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2216,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3849,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-14T14:25:00.694Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1130,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 912,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2218,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3851,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-15T14:25:30.930Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1136,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2218,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3854,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-16T14:25:31.286Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1137,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2219,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3856,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-17T14:25:03.263Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1139,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2224,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3861,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-17T19:01:25.256Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1139,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2224,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3863,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-18T14:25:03.248Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1140,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2226,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3870,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-19T14:25:02.983Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1141,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2226,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3877,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-20T14:25:02.558Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1144,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2226,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3884,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T04:53:16.790Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1146,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 914,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2226,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3885,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T14:25:03.094Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1147,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 914,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2226,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3886,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    }
+   ],
+   "weekly": [
+    {
+     "week": 0,
+     "boundary": "2026-07-27T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 794,
+       "likes": 33,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 707,
+       "likes": 31,
+       "comments": 1
+      },
+      "x:designertom": {
+       "views": 1810,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3580,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "week": 1,
+     "boundary": "2026-08-03T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1011,
+       "likes": 36,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 863,
+       "likes": 38,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2135,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3736,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "week": 2,
+     "boundary": "2026-08-10T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1099,
+       "likes": 38,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 909,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2214,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3799,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "week": 3,
+     "boundary": "2026-08-17T19:00:00.000Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1139,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 913,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2224,
+       "likes": 1,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3861,
+       "likes": 3,
+       "comments": 1
+      }
+     }
+    }
+   ],
+   "latest": {
+    "ts": "2026-08-21T14:25:03.094Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 1147,
+      "likes": 39,
+      "comments": 2
+     },
+     "yt:designertom": {
+      "views": 914,
+      "likes": 39,
+      "comments": 3
+     },
+     "x:designertom": {
+      "views": 2226,
+      "likes": 1,
+      "comments": 1
+     },
+     "x:ridd_design": {
+      "views": 3886,
+      "likes": 3,
+      "comments": 1
+     }
+    },
+    "total": 8173
+   },
+   "ageDays": 28.8,
+   "metrics": {
+    "week1Velocity": 7391,
+    "week1Note": null,
+    "flatlineWeek": 3,
+    "engagementPer1k": 40.3,
+    "anomaly": null
+   }
+  },
+  {
+   "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+   "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+   "premiere": "2026-07-30",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": true,
+   "snapshots": [
+    {
+     "ts": "2026-08-21T04:53:16.790Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 937,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 664,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3068,
+       "likes": 10,
+       "comments": 1
+      },
+      "x:designertom": {
+       "views": 16528,
+       "likes": 12,
+       "comments": 2
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T14:25:03.094Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 937,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 663,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3072,
+       "likes": 10,
+       "comments": 1
+      },
+      "x:designertom": {
+       "views": 16536,
+       "likes": 12,
+       "comments": 2
+      }
+     }
+    }
+   ],
+   "weekly": [],
+   "latest": {
+    "ts": "2026-08-21T14:25:03.094Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 937,
+      "likes": 21,
+      "comments": 3
+     },
+     "yt:designertom": {
+      "views": 663,
+      "likes": 24,
+      "comments": 0
+     },
+     "x:ridd_design": {
+      "views": 3072,
+      "likes": 10,
+      "comments": 1
+     },
+     "x:designertom": {
+      "views": 16536,
+      "likes": 12,
+      "comments": 2
+     }
+    },
+    "total": 21208
+   },
+   "ageDays": 21.8,
+   "metrics": {
+    "week1Velocity": null,
+    "week1Note": "excluded: partial history",
+    "flatlineWeek": null,
+    "engagementPer1k": 30,
+    "anomaly": "total 21,208 is >2x the all-episode median (8,173) — treat as promo-driven outlier, not topic signal"
+   }
+  },
+  {
+   "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+   "title": "Dive Radio: Backyard Designers behind-the-scenes",
+   "premiere": "2026-08-06",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": true,
+   "snapshots": [
+    {
+     "ts": "2026-08-21T04:53:16.790Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1186,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 706,
+       "likes": 21,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 3385,
+       "likes": 20,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 1127,
+       "likes": 11,
+       "comments": 1
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T14:25:03.094Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1189,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 705,
+       "likes": 21,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 3387,
+       "likes": 20,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 1127,
+       "likes": 11,
+       "comments": 1
+      }
+     }
+    }
+   ],
+   "weekly": [],
+   "latest": {
+    "ts": "2026-08-21T14:25:03.094Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 1189,
+      "likes": 36,
+      "comments": 5
+     },
+     "yt:designertom": {
+      "views": 705,
+      "likes": 21,
+      "comments": 3
+     },
+     "x:ridd_design": {
+      "views": 3387,
+      "likes": 20,
+      "comments": 0
+     },
+     "x:designertom": {
+      "views": 1127,
+      "likes": 11,
+      "comments": 1
+     }
+    },
+    "total": 6408
+   },
+   "ageDays": 14.8,
+   "metrics": {
+    "week1Velocity": null,
+    "week1Note": "excluded: partial history",
+    "flatlineWeek": null,
+    "engagementPer1k": 34.3,
+    "anomaly": null
+   }
+  },
+  {
+   "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+   "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+   "premiere": "2026-08-13",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": true,
+   "snapshots": [
+    {
+     "ts": "2026-08-21T04:53:16.790Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 629,
+       "likes": 19,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 498,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2883,
+       "likes": 12,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 5877,
+       "likes": 8,
+       "comments": 0
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T14:25:03.094Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 634,
+       "likes": 19,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 500,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2885,
+       "likes": 12,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 5915,
+       "likes": 8,
+       "comments": 0
+      }
+     }
+    }
+   ],
+   "weekly": [],
+   "latest": {
+    "ts": "2026-08-21T14:25:03.094Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 634,
+      "likes": 19,
+      "comments": 2
+     },
+     "yt:designertom": {
+      "views": 500,
+      "likes": 17,
+      "comments": 2
+     },
+     "x:ridd_design": {
+      "views": 2885,
+      "likes": 12,
+      "comments": 0
+     },
+     "x:designertom": {
+      "views": 5915,
+      "likes": 8,
+      "comments": 0
+     }
+    },
+    "total": 9934
+   },
+   "ageDays": 7.8,
+   "metrics": {
+    "week1Velocity": null,
+    "week1Note": "excluded: partial history",
+    "flatlineWeek": null,
+    "engagementPer1k": 35.3,
+    "anomaly": null
+   }
+  },
+  {
+   "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+   "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+   "premiere": "2026-08-20",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": false,
+   "snapshots": [
+    {
+     "ts": "2026-08-21T04:53:16.790Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 305,
+       "likes": 9,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 227,
+       "likes": 8,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 2246,
+       "likes": 7,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 562,
+       "likes": 11,
+       "comments": 0
+      }
+     }
+    },
+    {
+     "ts": "2026-08-21T14:25:03.094Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 412,
+       "likes": 11,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 296,
+       "likes": 12,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 4786,
+       "likes": 7,
+       "comments": 0
+      },
+      "x:designertom": {
+       "views": 724,
+       "likes": 11,
+       "comments": 1
+      }
+     }
+    }
+   ],
+   "weekly": [],
+   "latest": {
+    "ts": "2026-08-21T14:25:03.094Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 412,
+      "likes": 11,
+      "comments": 1
+     },
+     "yt:designertom": {
+      "views": 296,
+      "likes": 12,
+      "comments": 0
+     },
+     "x:ridd_design": {
+      "views": 4786,
+      "likes": 7,
+      "comments": 0
+     },
+     "x:designertom": {
+      "views": 724,
+      "likes": 11,
+      "comments": 1
+     }
+    },
+    "total": 6218
+   },
+   "ageDays": 0.8,
+   "metrics": {
+    "week1Velocity": null,
+    "week1Note": "pending: episode under 7 days old",
+    "flatlineWeek": null,
+    "engagementPer1k": 33.9,
+    "anomaly": null
+   }
+  }
+ ],
+ "insights": [
+  {
+   "id": "pace-rank",
+   "text": "The Mascot Industrial Complex + Live Call-Ins is at 6,218 views, but no prior episode has real data this early — first comparable checkpoint comes as snapshots age.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-08-20-dive-radio-the-mascot-industrial-complex"
+   }
+  },
+  {
+   "id": "flatline",
+   "text": "Bumpy Takeoff flatlined at week 3; Data vs. Intuition, Web Designers Are Back + Call-Ins flatlined at week 3 (weekly gain <3% of total). Plan promo around a ~3-week active window (sample of 2).",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "delta",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "platform-phase",
+   "text": "X delivers 79% of first-week views; after week 2, YouTube carries 37% of new views (full-history sample of 3). X and YT views are different units — read as share, not equivalence.",
+   "chartState": {
+    "xMode": "calendar",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "host-split",
+   "text": "On X, @designertom is the stronger distribution arm — 61% of all-episode X views (19,536 ridd vs 30,177 tom).",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "anomaly-2026-07-30-dive-radio-mixed-media-workflows-game-de",
+   "text": "Mixed Media Workflows, Game Design, + Live Call-Ins: total 21,208 is >2x the all-episode median (8,173) — treat as promo-driven outlier, not topic signal.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de"
+   }
+  },
+  {
+   "id": "engagement",
+   "text": "YT engagement (likes+comments per 1k views): Bumpy Takeoff leads at 49.7, Mixed Media Workflows, Game Design, + Live Call-Ins trails at 30. Reach and resonance are separating.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "partial-history",
+   "text": "Mixed Media Workflows, Game Design, + Live Call-Ins, Backyard Designers behind-the-scenes, Goodbye, Blank Canvas + Live Call-Ins were registered late — cumulative totals are correct, but early weekly history doesn't exist. They are excluded from velocity/decay baselines and marked \"partial history.\"",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  }
+ ],
+ "showTrend": {
+  "week1VelocityByEpisode": [
+   {
+    "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+    "title": "Dive Radio: Bumpy Takeoff",
+    "premiere": "2026-07-17",
+    "value": 6471,
+    "note": null
+   },
+   {
+    "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+    "premiere": "2026-07-23",
+    "value": 7391,
+    "note": null
+   },
+   {
+    "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+    "premiere": "2026-07-30",
+    "value": null,
+    "note": "excluded: partial history"
+   },
+   {
+    "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+    "title": "Dive Radio: Backyard Designers behind-the-scenes",
+    "premiere": "2026-08-06",
+    "value": null,
+    "note": "excluded: partial history"
+   },
+   {
+    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+    "premiere": "2026-08-13",
+    "value": null,
+    "note": "excluded: partial history"
+   },
+   {
+    "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+    "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+    "premiere": "2026-08-20",
+    "value": null,
+    "note": "pending: episode under 7 days old"
+   }
+  ],
+  "cumulativeAllEpisodes": [
+   {
+    "boundary": "2026-07-27T19:00:00.000Z",
+    "total": 13539
+   },
+   {
+    "boundary": "2026-08-03T19:00:00.000Z",
+    "total": 14677
+   },
+   {
+    "boundary": "2026-08-10T19:00:00.000Z",
+    "total": 15139
+   },
+   {
+    "boundary": "2026-08-17T19:00:00.000Z",
+    "total": 15336
+   }
+  ]
+ }
+}
