@@ -1,17 +1,18 @@
 {
- "version": 1,
- "algorithm": "composite-v1",
+ "version": 2,
+ "algorithm": "ratio-v2",
  "weights": {
   "watch": 0.5,
   "engagement": 0.2,
   "retention": 0.15,
   "live": 0.15
  },
- "updatedAt": "2026-08-22T19:52:57.472Z",
+ "updatedAt": "2026-08-22T20:29:06.681Z",
  "ratings": [
   {
    "ep": 1,
    "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+   "algorithm": "ratio-v2",
    "windowIds": [
     "2026-07-17-dive-radio-bumpy-takeoff"
    ],
@@ -20,18 +21,21 @@
    "score": null,
    "pillarScores": {
     "watch": {
-     "value": 1830,
-     "pctl": null,
+     "value": null,
+     "typical": null,
+     "ratio": null,
      "weight": 0
     },
     "engagement": {
      "value": 49.7,
-     "pctl": null,
+     "typical": null,
+     "ratio": null,
      "weight": 0
     },
     "retention": {
      "value": 9.61,
-     "pctl": null,
+     "typical": null,
+     "ratio": null,
      "weight": 0
     },
     "live": {
@@ -39,50 +43,50 @@
       "peak": 90,
       "chat": 383
      },
-     "pctl": null,
+     "typical": null,
+     "ratio": null,
      "weight": 0
     }
    },
    "coverage": {
-    "missingPillars": [
-     "watch (no peer to compare)",
-     "engagement (no peer to compare)",
-     "retention (no peer to compare)",
-     "live (no peer to compare)"
-    ],
-    "watchBasis": "yt-day7",
+    "missingPillars": [],
+    "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
     "retentionChannels": [
      "yt:designertom"
     ]
    },
    "provisional": false,
-   "computedAt": "2026-08-22T19:52:57.433Z",
-   "frozenAt": "2026-08-22T19:52:57.433Z"
+   "computedAt": "2026-08-22T20:29:06.681Z",
+   "frozenAt": "2026-08-22T20:29:06.681Z"
   },
   {
    "ep": 2,
    "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+   "algorithm": "ratio-v2",
    "windowIds": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
    ],
    "rank": 2,
    "n": 2,
-   "score": 0.15,
+   "score": 0.9679,
    "pillarScores": {
     "watch": {
-     "value": 1751,
-     "pctl": 0,
+     "value": 2034,
+     "typical": 2015,
+     "ratio": 1.009,
      "weight": 0.5
     },
     "engagement": {
      "value": 40.2,
-     "pctl": 0,
+     "typical": 44.95,
+     "ratio": 0.894,
      "weight": 0.2
     },
     "retention": {
      "value": 9.76,
-     "pctl": 100,
+     "typical": 9.685,
+     "ratio": 1.008,
      "weight": 0.15
     },
     "live": {
@@ -90,24 +94,29 @@
       "peak": 71,
       "chat": 310
      },
-     "pctl": 0,
+     "typical": {
+      "peak": 80.5,
+      "chat": 346.5
+     },
+     "ratio": 0.889,
      "weight": 0.15
     }
    },
    "coverage": {
     "missingPillars": [],
-    "watchBasis": "yt-day7",
+    "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
     "retentionChannels": [
      "yt:designertom"
     ]
    },
    "provisional": false,
-   "computedAt": "2026-08-22T19:52:57.433Z",
-   "frozenAt": "2026-08-22T19:52:57.433Z"
+   "computedAt": "2026-08-22T20:29:06.681Z",
+   "frozenAt": "2026-08-22T20:29:06.681Z"
   },
   {
    "ep": 3,
    "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+   "algorithm": "ratio-v2",
    "windowIds": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -115,48 +124,54 @@
    ],
    "rank": 3,
    "n": 3,
-   "score": 0,
+   "score": 0.777,
    "pillarScores": {
     "watch": {
-     "value": null,
-     "pctl": null,
-     "weight": 0
+     "value": 1601,
+     "typical": 2025,
+     "ratio": 0.791,
+     "weight": 0.5
     },
     "engagement": {
      "value": 30,
-     "pctl": 0,
-     "weight": 0.4
+     "typical": 40.2,
+     "ratio": 0.746,
+     "weight": 0.2
     },
     "retention": {
      "value": 8.68,
-     "pctl": 0,
-     "weight": 0.3
+     "typical": 9.61,
+     "ratio": 0.903,
+     "weight": 0.15
     },
     "live": {
      "value": {
       "peak": 53,
       "chat": 169
      },
-     "pctl": 0,
-     "weight": 0.3
+     "typical": {
+      "peak": 71,
+      "chat": 310
+     },
+     "ratio": 0.646,
+     "weight": 0.15
     }
    },
    "coverage": {
-    "missingPillars": [
-     "watch"
-    ],
-    "watchBasis": "yt-day7",
+    "missingPillars": [],
+    "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
     "retentionChannels": [
      "yt:designertom"
     ]
    },
    "provisional": false,
-   "computedAt": "2026-08-22T19:52:57.433Z",
-   "frozenAt": "2026-08-22T19:52:57.433Z"
+   "computedAt": "2026-08-22T20:29:06.681Z",
+   "frozenAt": "2026-08-22T20:29:06.681Z"
   },
   {
    "ep": 4,
    "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+   "algorithm": "ratio-v2",
    "windowIds": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -165,48 +180,54 @@
    ],
    "rank": 3,
    "n": 4,
-   "score": 0.282,
+   "score": 0.9337,
    "pillarScores": {
     "watch": {
-     "value": null,
-     "pctl": null,
-     "weight": 0
+     "value": 1900,
+     "typical": 1966,
+     "ratio": 0.967,
+     "weight": 0.5
     },
     "engagement": {
      "value": 34.2,
-     "pctl": 33,
-     "weight": 0.4
+     "typical": 37.2,
+     "ratio": 0.919,
+     "weight": 0.2
     },
     "retention": {
      "value": 8.81,
-     "pctl": 33,
-     "weight": 0.3
+     "typical": 9.21,
+     "ratio": 0.957,
+     "weight": 0.15
     },
     "live": {
      "value": {
       "peak": 63,
       "chat": 167
      },
-     "pctl": 17,
-     "weight": 0.3
+     "typical": {
+      "peak": 67,
+      "chat": 239.5
+     },
+     "ratio": 0.819,
+     "weight": 0.15
     }
    },
    "coverage": {
-    "missingPillars": [
-     "watch"
-    ],
-    "watchBasis": "yt-day7",
+    "missingPillars": [],
+    "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
     "retentionChannels": [
      "yt:designertom"
     ]
    },
    "provisional": false,
-   "computedAt": "2026-08-22T19:52:57.433Z",
-   "frozenAt": "2026-08-22T19:52:57.433Z"
+   "computedAt": "2026-08-22T20:29:06.681Z",
+   "frozenAt": "2026-08-22T20:29:06.681Z"
   },
   {
    "ep": 5,
    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+   "algorithm": "ratio-v2",
    "windowIds": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -214,50 +235,56 @@
     "2026-08-06-dive-radio-backyard-designers-behind-the",
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
    ],
-   "rank": 2,
+   "rank": 5,
    "n": 5,
-   "score": 0.575,
+   "score": 0.8159,
    "pillarScores": {
     "watch": {
-     "value": null,
-     "pctl": null,
-     "weight": 0
+     "value": 1140,
+     "typical": 1853,
+     "ratio": 0.615,
+     "weight": 0.5
     },
     "engagement": {
      "value": 36,
-     "pctl": 50,
-     "weight": 0.4
+     "typical": 36,
+     "ratio": 1,
+     "weight": 0.2
     },
     "retention": {
      "value": 12.11,
-     "pctl": 100,
-     "weight": 0.3
+     "typical": 9.61,
+     "ratio": 1.26,
+     "weight": 0.15
     },
     "live": {
      "value": {
       "peak": 64,
       "chat": 100
      },
-     "pctl": 25,
-     "weight": 0.3
+     "typical": {
+      "peak": 64,
+      "chat": 169
+     },
+     "ratio": 0.796,
+     "weight": 0.15
     }
    },
    "coverage": {
-    "missingPillars": [
-     "watch"
-    ],
-    "watchBasis": "yt-day7",
+    "missingPillars": [],
+    "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
     "retentionChannels": [
      "yt:designertom"
     ]
    },
    "provisional": false,
-   "computedAt": "2026-08-22T19:52:57.433Z",
-   "frozenAt": "2026-08-22T19:52:57.433Z"
+   "computedAt": "2026-08-22T20:29:06.681Z",
+   "frozenAt": "2026-08-22T20:29:06.681Z"
   },
   {
    "ep": 6,
    "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+   "algorithm": "ratio-v2",
    "windowIds": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -266,23 +293,26 @@
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "2026-08-20-dive-radio-the-mascot-industrial-complex"
    ],
-   "rank": 5,
+   "rank": 4,
    "n": 6,
-   "score": 0.1929,
+   "score": 0.8514,
    "pillarScores": {
     "watch": {
      "value": null,
-     "pctl": null,
+     "typical": null,
+     "ratio": null,
      "weight": 0
     },
     "engagement": {
      "value": 28.5,
-     "pctl": 0,
+     "typical": 35.1,
+     "ratio": 0.812,
      "weight": 0.5714
     },
     "retention": {
      "value": null,
-     "pctl": null,
+     "typical": null,
+     "ratio": null,
      "weight": 0
     },
     "live": {
@@ -290,7 +320,11 @@
       "peak": 71,
       "chat": 127
      },
-     "pctl": 45,
+     "typical": {
+      "peak": 67.5,
+      "chat": 168
+     },
+     "ratio": 0.904,
      "weight": 0.4286
     }
    },
@@ -299,12 +333,14 @@
      "watch",
      "retention"
     ],
-    "watchBasis": "yt-day7",
+    "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
     "retentionChannels": []
    },
    "provisional": true,
-   "computedAt": "2026-08-22T19:52:57.472Z",
+   "computedAt": "2026-08-22T20:29:06.681Z",
    "frozenAt": null
   }
- ]
+ ],
+ "rederivedFrom": "composite-v1",
+ "rederivedAt": "2026-08-22T20:29:06.681Z"
 }

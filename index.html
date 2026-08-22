@@ -470,7 +470,7 @@ function buildHero() {
     const r = ratingOf(e);
     const pace = sameAgeSub(e);
     html += `<div class="verdict">${r
-      ? `Ranks #${r.rank} of ${r.n} at the same age${r.provisional ? ` — provisional until ${freezeDateOf(e)}` : ""}${(r.coverage?.missingPillars || []).length && r.n > 1 ? " · ◐ partial basis" : ""}.`
+      ? `Ranks #${r.rank} of ${r.n} against the episodes up to its air date${r.provisional ? ` — provisional until ${freezeDateOf(e)}` : ""}${(r.coverage?.missingPillars || []).length && r.n > 1 ? " · ◐ partial basis" : ""}.`
       : pace
       ? `YouTube pace: #${pace.rank} of ${pace.of} at this age.`
       : `Too early to compare — no prior episode has data this young; the first same-age checkpoint comes as snapshots age.`}</div>`;
@@ -638,18 +638,18 @@ function buildPanel() {
     if (r.n === 1) {
       html += `<div class="mut">first episode — nothing to compare against yet</div>`;
     } else {
-      const PLABEL = { watch: "week-1 views (YT)", engagement: "likes+comments per 1k views", retention: "avg % of video watched", live: "live turnout" };
+      const PLABEL = { watch: "YouTube views", engagement: "likes+comments per 1k views", retention: "avg % of video watched", live: "live turnout" };
       for (const [p, lab] of Object.entries(PLABEL)) {
         const ps = r.pillarScores?.[p];
+        const labTxt = p === "watch" && ps?.atDay ? `YouTube views at day ${ps.atDay}` : lab;
+        const fmtV = (v) => p === "live" ? `${v.peak} peak · ${nfmt(v.chat)} chat` : p === "retention" ? `${v}%` : nfmt(v);
         let val = `<span class="hint">no data</span>`;
-        if (ps && ps.pctl != null) {
-          const v = p === "live" ? `${ps.value.peak} peak · ${nfmt(ps.value.chat)} chat` : p === "retention" ? `${ps.value}%` : nfmt(ps.value);
-          val = `${v} <span class="hint">· beats ${ps.pctl}%</span>`;
+        if (ps && ps.ratio != null) {
+          val = `${fmtV(ps.value)} <span class="hint">· ${ps.ratio}× typical</span>`;
         } else if (ps && ps.value != null) {
-          const v = p === "live" ? `${ps.value.peak} peak · ${nfmt(ps.value.chat)} chat` : p === "retention" ? `${ps.value}%` : nfmt(ps.value);
-          val = `${v} <span class="hint">· no peer to compare</span>`;
+          val = `${fmtV(ps.value)} <span class="hint">· no peer to compare</span>`;
         }
-        html += `<div class="row">${lab}<span class="val">${val}</span></div>`;
+        html += `<div class="row">${labTxt}<span class="val">${val}</span></div>`;
       }
       if (partial) html += `<div class="note">◐ partial basis — missing: ${r.coverage.missingPillars.map(m => esc(m.replace(/ \(.*\)$/, ""))).join(", ")}; their weight moved to the pillars that exist</div>`;
       if (r.provisional) html += `<div class="note">provisional — freezes ${freezeDateOf(e)} when week-1 data completes</div>`;
@@ -1336,7 +1336,7 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the high-water figure is kept — absence is never shown as zero). <b>late reg</b> = the episode was registered late: cumulative totals are correct, early weekly history doesn't exist, and it is excluded from velocity/decay baselines.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes (X plays have no history before 08/21, so a blended pace would fabricate a disadvantage for older episodes).</p>
-  <p><b>Rating</b> (“#2 of 6”) ranks each episode within the 10 most recent episodes as of its air date — with 6 episodes that's “of 6”. It's a composite of four pillars, each scored as a percentile within that window: week-1 YouTube views (50%), likes+comments per 1k views (20%), average % of the video watched (15%), and live turnout — peak concurrents + chat (15%). A pillar with no honest data (late registration, analytics not yet available) drops out and its weight spreads across the rest — marked <b>◐ partial basis</b>. A rating is <b>~ provisional</b> until day 7, then freezes and never changes: the window never includes later episodes, so re-processing can't move it. Week-1 views are YouTube-only (X plays have no history before 08/21); retention currently covers the DesignerTom channel only.</p>
+  <p><b>Rating</b> (“#2 of 6”) ranks each episode within the 10 most recent episodes as of its air date — with 6 episodes that's “of 6”. Every pillar is a <b>ratio against the typical episode</b>, so nobody is docked for when tracking started: YouTube views at the episode's own age vs the median of episodes with real snapshots at that same age (50%), likes+comments per 1k views vs typical (20%), average % of the video watched vs typical (15%), and live turnout — peak concurrents and chat vs typical (15%). 1.0× = a typical episode. A pillar with no honest data (no peer measured at that age yet, analytics not yet available) drops out and its weight spreads across the rest — marked <b>◐ partial basis</b>; nothing is ever estimated or zero-filled. A rating is <b>~ provisional</b> until day 7, then freezes and never changes: the window never includes later episodes, so re-processing can't move it. Views ratios are YouTube-only (X plays have no history before 08/21); retention currently covers the DesignerTom channel only. Algorithm changes re-derive all ratings visibly, never silently (current: ratio-v2, adopted 08/22).</p>
   <p><b>Comment counts</b> are audience comments only: YouTube top-level comments <b>and reply threads</b> (both channels) plus X replies to the announce posts. The hosts' own comments and replies are excluded, so the number here can sit below YouTube's public count. Comments later deleted on the platform stay counted (they were said). <b>Comment sentiment</b> is a deterministic wordlist (v1) over those comments, classified once per comment and never silently reclassified. Sarcasm reads literally; counts are directional. Host comments are excluded at collection. Featured quotes must be positive <b>and</b> carry zero negative wording — "love it, but fix the audio" is a complaint, not a pull-quote. Episodes that aired before tracking started are marked "X replies missing" — we can't search X more than 7 days back, and we never show a gap as a zero.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }

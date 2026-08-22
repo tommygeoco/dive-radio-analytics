@@ -356,6 +356,7 @@ function premiereMs(dateStr) {
   if (!store) {
     warn("ratings: episode-ratings.json absent — rating surfaces will not render (run tools/dive-analytics/ratings.mjs)");
   } else {
+    if (store.algorithm !== "ratio-v2") { bad++; fail(`ratings: store algorithm "${store.algorithm}" — expected ratio-v2 (stale store; rerun ratings.mjs)`); }
     const bySlug = new Map((store.ratings || []).map((r) => [r.slug, r]));
     const epOrder = [...eps].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
     for (const e of epOrder) {
@@ -381,8 +382,9 @@ function premiereMs(dateStr) {
         let sum = 0;
         for (const [p, ps] of Object.entries(r.pillarScores || {})) {
           sum += ps.weight || 0;
-          if (ps.pctl == null && (ps.weight || 0) !== 0) { bad++; fail(`ratings: ${e.slug} pillar ${p} has no percentile but weight ${ps.weight}`); }
-          if (ps.pctl != null && (ps.pctl < 0 || ps.pctl > 100)) { bad++; fail(`ratings: ${e.slug} pillar ${p} percentile ${ps.pctl} outside 0..100`); }
+          if (ps.ratio == null && (ps.weight || 0) !== 0) { bad++; fail(`ratings: ${e.slug} pillar ${p} has no ratio but weight ${ps.weight}`); }
+          if (ps.ratio != null && !(ps.ratio > 0 && ps.ratio < 100)) { bad++; fail(`ratings: ${e.slug} pillar ${p} ratio ${ps.ratio} outside sane range`); }
+          if (ps.ratio != null && ps.typical == null) { bad++; fail(`ratings: ${e.slug} pillar ${p} has a ratio but no stated typical — baseline must ship`); }
         }
         if (Math.abs(sum - 1) > 0.002) { bad++; fail(`ratings: ${e.slug} redistributed weights sum to ${sum.toFixed(4)}, not 1`); }
       }
