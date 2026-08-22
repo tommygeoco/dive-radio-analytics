@@ -573,8 +573,12 @@ function buildPanel() {
   html += `<div class="row">@ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
   if (e.live) {
+    // one row grammar everywhere: label left, value right (owner call 2026-08-22
+    // — no inline dot-separated stat lines in the panel)
     html += `<div class="row head" style="margin-top:6px">Live<span class="val big">${e.live.peak} <span class="hint">peak</span></span></div>`;
-    html += `<div class="row"><span class="hint">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat · ${e.live.durationMin ?? "?"} min</span></div>`;
+    html += `<div class="row">avg live viewers<span class="val">${e.live.avg}</span></div>`;
+    html += `<div class="row">chat messages<span class="val">${nfmt(e.live.chatMessages)}</span></div>`;
+    html += `<div class="row">duration<span class="val">${e.live.durationMin ?? "–"} min</span></div>`;
   }
   html += `</div></div>`;
 
