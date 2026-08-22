@@ -92,6 +92,12 @@
   .sitem .r1 .num { font-size: 16px; font-weight: 700; letter-spacing: -.01em; color: var(--t1); }
   .sitem .r1 .mk { font-size: 12px; font-weight: 600; color: var(--amber); }
   .sitem .r1 .flag { margin-left: auto; font-size: 12px; color: var(--amber); font-weight: 600; }
+  /* W9 rating badge — "#2 of 6" like YouTube Studio; ◐ = partial basis, ~ = provisional */
+  .rb { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--t2);
+    border: 1px solid var(--border-strong); border-radius: 9px; padding: 1px 7px;
+    white-space: nowrap; flex: none; }
+  .rb.top { color: var(--good); border-color: rgba(74,222,128,.4); }
+  .rb .pm { color: var(--amber); font-weight: 600; }
   .sitem .t { font-size: 12px; color: var(--t2); white-space: nowrap; overflow: hidden;
     text-overflow: ellipsis; margin: 1px 0 2px; }
   .sitem .r3 { font-size: 12px; color: var(--t3); display: flex; gap: 8px; }
@@ -380,6 +386,26 @@ function heroMarker(e) {
   return "";
 }
 
+/* W9 rating: read-only render of the frozen/provisional store entry attached by
+   build-data (definition-lock — no rank math at render time, ever). */
+function ratingOf(e) { return e.rating && e.rating.rank != null ? e.rating : null; }
+function freezeDateOf(e) {
+  const d = new Date(premiereMs(e.premiere) + 7 * DAY - PHX);
+  return `${String(d.getUTCMonth() + 1).padStart(2, "0")}/${String(d.getUTCDate()).padStart(2, "0")}`;
+}
+function ratingBadge(e) {
+  const r = ratingOf(e);
+  if (!r) return "";
+  const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
+  const marks = `${partial ? " ◐" : ""}${r.provisional ? ` <span class="pm">~</span>` : ""}`;
+  const why = [
+    `composite rating within the ${r.n} most recent episode${r.n === 1 ? "" : "s"} as of air date (watch · engagement · retention · live)`,
+    partial ? `◐ partial basis — missing: ${r.coverage.missingPillars.map(m => m.replace(/ \(.*\)$/, "")).join(", ")}` : "",
+    r.provisional ? `~ provisional — freezes ${freezeDateOf(e)} when week-1 data completes` : "",
+  ].filter(Boolean).join(" · ");
+  return `<span class="rb${r.rank === 1 && r.n > 1 ? " top" : ""}" title="${esc(why)}">#${r.rank} of ${r.n}${marks}</span>`;
+}
+
 function sameAgeSub(e) {
   const ytSum = (byDest) => YT_KEYS.reduce((a,k) => a + (byDest[k]?.views || 0), 0);
   const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
@@ -441,8 +467,11 @@ function buildHero() {
     const tv = e.latest.totalViews ?? e.latest.ytTotal ?? 0;
     html += `<div class="big">${nfmt(tv)} <small>total views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>`;
     html += `<div class="sub">${nfmt(e.latest.ytTotal ?? 0)} YouTube + ${nfmt(e.latest.xPlays ?? 0)} X plays · X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
+    const r = ratingOf(e);
     const pace = sameAgeSub(e);
-    html += `<div class="verdict">${pace
+    html += `<div class="verdict">${r
+      ? `Ranks #${r.rank} of ${r.n} at the same age${r.provisional ? ` — provisional until ${freezeDateOf(e)}` : ""}${(r.coverage?.missingPillars || []).length && r.n > 1 ? " · ◐ partial basis" : ""}.`
+      : pace
       ? `YouTube pace: #${pace.rank} of ${pace.of} at this age.`
       : `Too early to compare — no prior episode has data this young; the first same-age checkpoint comes as snapshots age.`}</div>`;
   }
@@ -529,7 +558,7 @@ function buildStrip() {
     } else {
       const mk = heroMarker(e);
       // number rides the identity row; the unit is stated once in the hero
-      num = `<span class="num">${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
+      num = `<span class="num">${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}${ratingBadge(e)}`;
       const pace = sameAgeSub(e);
       // No reach on the small cards (owner call 2026-08-22): sitting next to
       // the ▲/▼ it read like the arrow graded reach. The arrow grades pace —
@@ -598,6 +627,35 @@ function buildPanel() {
     html += `<div class="row">duration<span class="val">${e.live.durationMin ?? "–"} min</span></div>`;
   }
   html += `</div></div>`;
+
+  // W9 rating: one row per pillar — underlying number + percentile, plain words.
+  // Missing pillars say so; they are never rendered as zeros.
+  const r = ratingOf(e);
+  if (r) {
+    const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
+    html += `<div class="sect">`;
+    html += `<div class="row head">Rating<span class="val big">#${r.rank} of ${r.n}${partial ? ` <span class="hint">◐</span>` : ""}</span></div>`;
+    if (r.n === 1) {
+      html += `<div class="mut">first episode — nothing to compare against yet</div>`;
+    } else {
+      const PLABEL = { watch: "week-1 views (YT)", engagement: "likes+comments per 1k views", retention: "avg % of video watched", live: "live turnout" };
+      for (const [p, lab] of Object.entries(PLABEL)) {
+        const ps = r.pillarScores?.[p];
+        let val = `<span class="hint">no data</span>`;
+        if (ps && ps.pctl != null) {
+          const v = p === "live" ? `${ps.value.peak} peak · ${nfmt(ps.value.chat)} chat` : p === "retention" ? `${ps.value}%` : nfmt(ps.value);
+          val = `${v} <span class="hint">· beats ${ps.pctl}%</span>`;
+        } else if (ps && ps.value != null) {
+          const v = p === "live" ? `${ps.value.peak} peak · ${nfmt(ps.value.chat)} chat` : p === "retention" ? `${ps.value}%` : nfmt(ps.value);
+          val = `${v} <span class="hint">· no peer to compare</span>`;
+        }
+        html += `<div class="row">${lab}<span class="val">${val}</span></div>`;
+      }
+      if (partial) html += `<div class="note">◐ partial basis — missing: ${r.coverage.missingPillars.map(m => esc(m.replace(/ \(.*\)$/, ""))).join(", ")}; their weight moved to the pillars that exist</div>`;
+      if (r.provisional) html += `<div class="note">provisional — freezes ${freezeDateOf(e)} when week-1 data completes</div>`;
+    }
+    html += `</div>`;
+  }
 
   const s = e.comments?.sentiment;
   if (e.comments) {
@@ -1150,12 +1208,14 @@ function buildTable() {
       html += "</tr>";
     }
   } else {
-    html += "<th>Episode</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>X reach</th><th>Pace (YT)</th></tr>";
+    html += "<th>Episode</th><th>Rating</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>X reach</th><th>Pace (YT)</th></tr>";
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);
       const pace = sameAgeSub(e);
+      const rr = ratingOf(e);
       html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<td class="t">${rr ? `#${rr.rank} of ${rr.n}${(rr.coverage?.missingPillars || []).length && rr.n > 1 ? " <span class=\"mk\">◐</span>" : ""}${rr.provisional ? " <span class=\"mk\">~</span>" : ""}` : "–"}</td>`;
       html += `<td class="t">${nfmt(e.latest.totalViews ?? 0)}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
       html += `<td>${nfmt(bd["yt:joindiveclub"]?.views ?? 0)}</td><td>${nfmt(bd["yt:designertom"]?.views ?? 0)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
@@ -1276,6 +1336,7 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the high-water figure is kept — absence is never shown as zero). <b>late reg</b> = the episode was registered late: cumulative totals are correct, early weekly history doesn't exist, and it is excluded from velocity/decay baselines.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes (X plays have no history before 08/21, so a blended pace would fabricate a disadvantage for older episodes).</p>
+  <p><b>Rating</b> (“#2 of 6”) ranks each episode within the 10 most recent episodes as of its air date — with 6 episodes that's “of 6”. It's a composite of four pillars, each scored as a percentile within that window: week-1 YouTube views (50%), likes+comments per 1k views (20%), average % of the video watched (15%), and live turnout — peak concurrents + chat (15%). A pillar with no honest data (late registration, analytics not yet available) drops out and its weight spreads across the rest — marked <b>◐ partial basis</b>. A rating is <b>~ provisional</b> until day 7, then freezes and never changes: the window never includes later episodes, so re-processing can't move it. Week-1 views are YouTube-only (X plays have no history before 08/21); retention currently covers the DesignerTom channel only.</p>
   <p><b>Comment counts</b> are audience comments only: YouTube top-level comments <b>and reply threads</b> (both channels) plus X replies to the announce posts. The hosts' own comments and replies are excluded, so the number here can sit below YouTube's public count. Comments later deleted on the platform stay counted (they were said). <b>Comment sentiment</b> is a deterministic wordlist (v1) over those comments, classified once per comment and never silently reclassified. Sarcasm reads literally; counts are directional. Host comments are excluded at collection. Featured quotes must be positive <b>and</b> carry zero negative wording — "love it, but fix the audio" is a complaint, not a pull-quote. Episodes that aired before tracking started are marked "X replies missing" — we can't search X more than 7 days back, and we never show a gap as a zero.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }

@@ -348,6 +348,61 @@ function premiereMs(dateStr) {
   if (!bad) ok(`insight categories: ${data.insights.length} insights all carry a legal strategy category + recommendation`);
 }
 
+// --- 1g. episode ratings (W9): frozen immutability, window sanity, weight math, definition-lock ---
+{
+  let bad = 0;
+  let store = null;
+  try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
+  if (!store) {
+    warn("ratings: episode-ratings.json absent — rating surfaces will not render (run tools/dive-analytics/ratings.mjs)");
+  } else {
+    const bySlug = new Map((store.ratings || []).map((r) => [r.slug, r]));
+    const epOrder = [...eps].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
+    for (const e of epOrder) {
+      const r = bySlug.get(e.slug);
+      if (!r) { bad++; fail(`ratings: ${e.slug} has no store entry`); continue; }
+      // definition-lock: what shipped in data.json IS the store entry
+      const a = e.rating;
+      if (!a) { bad++; fail(`ratings: ${e.slug} rating not attached to data.json — surfaces read nothing`); }
+      else if (a.rank !== r.rank || a.n !== r.n || a.score !== r.score || a.provisional !== r.provisional || a.frozenAt !== r.frozenAt) {
+        bad++; fail(`ratings: ${e.slug} attached rating disagrees with store (rank ${a.rank}/${r.rank}, n ${a.n}/${r.n}) — definition-lock broken`);
+      }
+      // window: exactly this episode + up to 9 that aired before it, never later
+      const expectedWin = epOrder.filter((x) => x.ep <= e.ep && x.ep > e.ep - 10).map((x) => x.slug);
+      if (JSON.stringify(r.windowIds) !== JSON.stringify(expectedWin)) { bad++; fail(`ratings: ${e.slug} windowIds != the ${expectedWin.length} most recent as of air date`); }
+      if (r.n !== r.windowIds.length) { bad++; fail(`ratings: ${e.slug} n=${r.n} != window size ${r.windowIds.length}`); }
+      if (r.rank == null || r.rank < 1 || r.rank > r.n) { bad++; fail(`ratings: ${e.slug} rank ${r.rank} outside 1..${r.n}`); }
+      // freeze discipline: ≥7d episodes frozen, younger provisional
+      if (e.ageDays >= 7 && (!r.frozenAt || r.provisional)) { bad++; fail(`ratings: ${e.slug} is ${e.ageDays}d old but not frozen`); }
+      if (e.ageDays < 7 && (r.frozenAt || !r.provisional)) { bad++; fail(`ratings: ${e.slug} is ${e.ageDays}d old but marked frozen — week 1 incomplete`); }
+      if (r.frozenAt && r.computedAt > r.frozenAt) { bad++; fail(`ratings: ${e.slug} computedAt after frozenAt`); }
+      // weight math: redistributed weights sum to 1; absent pillars carry weight 0
+      if (r.score != null) {
+        let sum = 0;
+        for (const [p, ps] of Object.entries(r.pillarScores || {})) {
+          sum += ps.weight || 0;
+          if (ps.pctl == null && (ps.weight || 0) !== 0) { bad++; fail(`ratings: ${e.slug} pillar ${p} has no percentile but weight ${ps.weight}`); }
+          if (ps.pctl != null && (ps.pctl < 0 || ps.pctl > 100)) { bad++; fail(`ratings: ${e.slug} pillar ${p} percentile ${ps.pctl} outside 0..100`); }
+        }
+        if (Math.abs(sum - 1) > 0.002) { bad++; fail(`ratings: ${e.slug} redistributed weights sum to ${sum.toFixed(4)}, not 1`); }
+      }
+    }
+    // frozen immutability: a re-run must pass frozen entries through untouched
+    try {
+      const mod = await import(join(TOOL, "ratings.mjs"));
+      const rerun = mod.computeRatings({ now: Date.parse(data.generatedAt) });
+      for (const r of store.ratings || []) {
+        if (!r.frozenAt) continue;
+        const again = rerun.ratings.find((x) => x.slug === r.slug);
+        if (JSON.stringify(again) !== JSON.stringify(r)) { bad++; fail(`ratings: frozen entry ${r.slug} CHANGED on recompute — frozen must be immutable`); }
+      }
+    } catch (err) {
+      bad++; fail(`ratings: recompute threw — ${err.message}`);
+    }
+    if (!bad) ok(`ratings: ${(store.ratings || []).length} entries — windows exclude the future, frozen entries immutable, weights sum to 1, surfaces definition-locked`);
+  }
+}
+
 // --- warnings: broadcast-resolution latches and plays coverage ---
 {
   for (const show of registry.shows) {

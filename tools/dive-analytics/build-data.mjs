@@ -276,6 +276,7 @@ export function computeAll({ now = Date.now() } = {}) {
 
   attachLiveSessions(dive, registry);
   attachComments(dive);
+  attachRatings(dive);
 
   const insights = buildInsights(dive, { now, median });
   insights.push(...liveInsights(dive));
@@ -309,6 +310,20 @@ export function computeAll({ now = Date.now() } = {}) {
     insights,
     showTrend,
   };
+}
+
+// --- episode ratings (W9): computed + frozen by ratings.mjs, attached from its store ---
+// Definition-lock: every surface (card badge, hero verdict, panel, table, Slack
+// line) reads THIS attached entry — nobody recomputes a rank at render time.
+const RATINGS_PATH = join(ROOT, "data", "restream", "episode-ratings.json");
+function attachRatings(dive) {
+  let store = null;
+  try { store = JSON.parse(readFileSync(RATINGS_PATH, "utf8")); } catch { return; /* store absent → ratings simply don't render (absence ≠ zero) */ }
+  const bySlug = new Map((store.ratings || []).map((r) => [r.slug, r]));
+  for (const e of dive) {
+    const r = bySlug.get(e.slug);
+    if (r) e.rating = r;
+  }
 }
 
 // --- audience comments (collected by comments-pull.mjs) ---
@@ -819,6 +834,19 @@ export function trendsText(data) {
     lines.push(
       `• Week-1 velocity in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
     );
+  }
+  // W9: newest episode's rating, read from the same store as every dashboard surface
+  const newest = data.episodes[data.episodes.length - 1];
+  const r = newest?.rating;
+  if (r && r.rank != null) {
+    const missing = r.coverage?.missingPillars || [];
+    const basis = missing.length
+      ? ` — basis excludes ${missing.map((m) => m.replace(/ \(.*\)$/, "")).join(", ")}`
+      : "";
+    const prov = r.provisional
+      ? ` (provisional; freezes ${new Date(premiereMs(newest.premiere) + 7 * DAY).toISOString().slice(5, 10).replace("-", "/")} when week 1 completes)`
+      : "";
+    lines.push(`• Rating: ${shortTitle(newest.title)} ranks #${r.rank} of ${r.n} against the most recent episodes as of its air date${prov}${basis}.`);
   }
   return lines.join("\n");
 }
