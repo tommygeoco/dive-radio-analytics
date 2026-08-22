@@ -5,141 +5,271 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dive Radio — Episode Analytics</title>
 <style>
+  /* Design tokens (2026-08-22 redesign): 3-step surface ramp, 2 border tints,
+     3 text tiers, one accent that data never wears. Type scale 11/12/13/14/16/
+     20/28, weights 400/500/700, radii 4/8/12, 4px spacing grid. */
   :root {
-    --bg: #0b0e13; --panel: #141922; --panel2: #1a2130; --border: #273043;
-    --text: #eef1f6; --muted: #94a0b4; --accent: #59b0ff; --good: #3ecf8e; --bad: #ff7a59;
+    --bg: #0b0e13; --s1: #12161f; --s2: #1a212e;
+    --border: rgba(148,163,184,.10); --border-strong: rgba(148,163,184,.18);
+    --t1: #eef1f6; --t2: #b7c1d1; --t3: #8a94a8;
+    --accent: #59b0ff; --good: #3ecf8e; --bad: #ff7a59; --amber: #d9a24a;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text);
+  body { margin: 0; background: var(--bg); color: var(--t1);
     font: 14px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
-  .wrap { max-width: 1240px; margin: 0 auto; padding: 24px; }
-  h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
-  .stamp { color: var(--muted); font-size: 12px; margin: 2px 0 14px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 20px 24px 24px; }
+  button { font: inherit; }
 
-  /* top-level view tabs — they control everything below, so they sit above everything below */
-  .tabs { display: flex; gap: 2px; margin: 0 0 16px; border-bottom: 1px solid var(--border); }
-  .tabs button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 14.5px;
-    padding: 10px 18px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-  .tabs button.on { color: var(--text); border-bottom-color: var(--accent); font-weight: 650; }
-  .tabs button:hover { color: var(--text); }
+  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; font-weight: 700; }
+  .stamp { color: var(--t3); font-size: 12px; margin-left: auto; }
 
-  .verdict { background: linear-gradient(90deg, #16233a, #141922); border: 1px solid #2c4266;
-    border-radius: 12px; padding: 13px 18px; margin-bottom: 14px; font-size: 15.5px; line-height: 1.45; }
-  .verdict b { color: var(--accent); }
+  .tabs { display: flex; gap: 2px; margin: 8px 0 16px; border-bottom: 1px solid var(--border-strong); }
+  .tabs button { background: none; border: 0; color: var(--t3); font-size: 14px;
+    padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .tabs button.on { color: var(--t1); border-bottom-color: var(--accent); font-weight: 700; }
+  .tabs button:hover { color: var(--t1); }
 
-  .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 10px; margin-bottom: 16px; }
-  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-    padding: 12px 14px; cursor: pointer; transition: border-color .15s; position: relative; }
-  .card:hover { border-color: var(--accent); }
-  .card.dim { opacity: .38; }
-  .card.solo { border-color: var(--accent); background: var(--panel2); }
-  .card .ep { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 12px;
-    color: var(--muted); letter-spacing: .04em; }
-  .card .dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
-  .card .ttl { font-size: 12.5px; color: var(--text); margin: 3px 0 8px; min-height: 34px;
-    line-height: 1.3; overflow: hidden; }
-  .card .views { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
-  .card .views small { font-size: 12px; font-weight: 500; color: var(--muted); }
-  .card .views.hero { font-size: 26px; }
-  .card .views .mk { font-size: 10px; font-weight: 600; color: #d9a24a; margin-left: 5px; vertical-align: 2px; }
-  .card .reach { font-size: 11px; color: var(--muted); margin-top: 1px; }
-  #cardtip { position: fixed; pointer-events: none; z-index: 40; }
-  .card .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
-  .card .sub.up { color: var(--good); }
-  .card .sub.down { color: var(--bad); }
-  .card .flag { position: absolute; top: 10px; right: 12px; font-size: 10px; color: #d9a24a;
-    border: 1px solid #6b5320; border-radius: 4px; padding: 0 5px; }
+  /* ---- Layer 1: newest-episode hero (merged verdict + card) ---- */
+  .hero { display: flex; gap: 20px; align-items: stretch; background: var(--s1);
+    border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+  .hero .main { flex: 1; min-width: 0; }
+  .hero .idrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .hero .ep { font-weight: 700; font-size: 12px; color: var(--t3); letter-spacing: .04em;
+    display: inline-flex; align-items: center; gap: 6px; }
+  .hero .dot, .dot { width: 10px; height: 10px; border-radius: 4px; display: inline-block; flex: none; }
+  .hero .ttl { font-size: 16px; font-weight: 700; }
+  .hero .big { font-size: 28px; font-weight: 700; letter-spacing: -.02em; margin-top: 6px; }
+  .hero .big small { font-size: 13px; font-weight: 500; color: var(--t3); }
+  .hero .mk { font-size: 11px; font-weight: 600; color: var(--amber); margin-left: 6px; vertical-align: 4px; }
+  .hero .sub { font-size: 12px; color: var(--t3); margin-top: 2px; }
+  .hero .verdict { font-size: 13px; color: var(--t2); margin-top: 10px; max-width: 72ch; }
+  .chiprow { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .chip { border: 1px solid var(--border-strong); background: var(--s2); color: var(--t2);
+    border-radius: 999px; padding: 4px 10px; font-size: 12px; cursor: pointer; display: inline-flex;
+    align-items: center; gap: 6px; }
+  .chip:hover { border-color: var(--accent); color: var(--t1); }
+  .chip.pace.up { color: var(--good); } .chip.pace.down { color: var(--bad); }
+  .chip.alert { color: var(--amber); }
+  .chip.senti b { font-weight: 700; }
+  .chip.static { cursor: default; }
+  .chip.static:hover { border-color: var(--border-strong); color: var(--t2); }
+  .hero .spark { width: 190px; flex: none; display: flex; flex-direction: column; gap: 4px; justify-content: flex-end; }
+  .hero .spark .cv { position: relative; height: 64px; width: 100%; }
+  .hero .spark .cap { font-size: 11px; color: var(--t3); text-align: right; }
 
-  .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 12px; }
-  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 9px; overflow: hidden;
-    background: var(--panel); }
-  .seg button { background: transparent; border: 0; color: var(--muted); padding: 7px 14px;
-    cursor: pointer; font: inherit; font-size: 13px; }
-  .seg button.on { background: var(--accent); color: #0b1220; font-weight: 650; }
-  .chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
-  .chip { border: 1px solid var(--border); background: var(--panel); color: var(--muted);
-    border-radius: 9px; padding: 6px 11px; cursor: pointer; font: inherit; font-size: 12.5px;
-    display: inline-flex; align-items: center; gap: 7px; }
-  .chip.on { color: var(--text); border-color: #3d4c68; background: var(--panel2); }
-  .chip .sq { display: inline-block; width: 9px; height: 9px; border-radius: 2.5px; background: #3a4458; }
-  .reset { margin-left: auto; color: var(--muted); font-size: 12.5px; background: none; border: 0;
+  /* ---- Layer 1: episode strip (selector + legend; oldest → newest, latest far right) ---- */
+  .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
+    scrollbar-width: thin; }
+  .sitem { flex: 1 0 150px; min-width: 150px; background: var(--s1); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+  .sitem:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+  .sitem.solo { border-color: var(--accent); background: var(--s2); }
+  .sitem.dim { opacity: .38; }
+  .sitem .r1 { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700;
+    color: var(--t3); letter-spacing: .04em; }
+  .sitem .r1 .flag { margin-left: auto; font-size: 10px; color: var(--amber); font-weight: 600; }
+  .sitem .t { font-size: 12px; color: var(--t2); white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; margin: 2px 0; }
+  .sitem .v { font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+  .sitem .v small { font-size: 11px; font-weight: 500; color: var(--t3); }
+  .sitem .v .mk { font-size: 10px; font-weight: 600; color: var(--amber); margin-left: 4px; }
+  .sitem .r3 { font-size: 11px; color: var(--t3); display: flex; gap: 8px; }
+  .sitem .r3 .pace.up { color: var(--good); } .sitem .r3 .pace.down { color: var(--bad); }
+
+  /* ---- Layer 2: pinned episode detail panel ---- */
+  .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
+    padding: 14px 18px; margin-bottom: 12px; position: relative; font-size: 13px; }
+  .panel .x { position: absolute; top: 8px; right: 12px; background: none; border: 0;
+    color: var(--t3); font-size: 16px; cursor: pointer; padding: 4px; }
+  .panel .x:hover { color: var(--t1); }
+  .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; }
+  .panel .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 4px 28px; margin-top: 10px; }
+  .panel .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: var(--t2); }
+  .panel .row .sq { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+  .panel .row .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--t1); }
+  .panel .sect { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 8px; }
+  .panel .note { color: var(--amber); font-size: 12px; margin-top: 4px; }
+  .panel .mut { color: var(--t3); font-size: 12px; margin-top: 4px; }
+  .panel .q { color: var(--t2); font-size: 12.5px; margin: 6px 0; }
+  .panel .q .by { color: var(--t3); }
+  .panel .senti-link { color: var(--accent); cursor: pointer; text-decoration: underline; }
+
+  /* ---- controls ---- */
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+  .seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 8px;
+    overflow: hidden; background: var(--s1); }
+  .seg button { background: transparent; border: 0; color: var(--t3); padding: 7px 14px;
+    cursor: pointer; font-size: 13px; }
+  .seg button.on { background: var(--s2); color: var(--t1); font-weight: 700; }
+  .toggle { border: 1px solid var(--border); background: var(--s1); color: var(--t3);
+    border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 12px; }
+  .toggle.on { color: var(--t1); border-color: var(--border-strong); background: var(--s2); }
+  .reset { margin-left: auto; color: var(--t3); font-size: 12px; background: none; border: 0;
     cursor: pointer; text-decoration: underline; }
+  .reset:hover { color: var(--t1); }
 
-  #chartbox { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-    padding: 18px 14px 10px; height: 480px; position: relative; }
-  .hint { color: var(--muted); font-size: 12px; margin: 8px 2px 22px; }
+  /* ---- chart card ---- */
+  #chartcard { background: var(--s1); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 14px 10px; margin-bottom: 6px; }
+  .chead { display: flex; align-items: baseline; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
+  .chead .ct { font-size: 13px; font-weight: 700; }
+  .chead .cs { font-size: 12px; color: var(--t3); }
+  .chead .tbtn { margin-left: auto; }
+  #chartbox { height: 440px; position: relative; }
+  #tablebox { overflow-x: auto; display: none; }
+  #tablebox table { border-collapse: collapse; width: 100%; font-size: 12.5px;
+    font-variant-numeric: tabular-nums; }
+  #tablebox th { text-align: right; color: var(--t3); font-size: 11px; text-transform: uppercase;
+    letter-spacing: .06em; padding: 8px 10px; border-bottom: 1px solid var(--border-strong); white-space: nowrap; }
+  #tablebox th:first-child, #tablebox td:first-child { text-align: left; }
+  #tablebox td { padding: 7px 10px; border-bottom: 1px solid var(--border); text-align: right;
+    color: var(--t2); white-space: nowrap; }
+  #tablebox td.t { color: var(--t1); }
+  #tablebox .mk { color: var(--amber); font-size: 10px; }
+  .emptynote { color: var(--t3); font-size: 12px; margin: 6px 4px 0; }
 
-  /* HTML tooltip with color-coded channel list */
-  .tt { position: absolute; pointer-events: none; background: #171d29; border: 1px solid #3d4c68;
-    border-radius: 10px; padding: 10px 12px; font-size: 12.5px; min-width: 216px; opacity: 0;
+  .tt { position: absolute; pointer-events: none; background: var(--s2); border: 1px solid var(--border-strong);
+    border-radius: 8px; padding: 10px 12px; font-size: 12.5px; min-width: 216px; opacity: 0;
     transition: opacity .08s; z-index: 5; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
   .tt .h { display: flex; align-items: center; gap: 7px; font-weight: 700; }
-  .tt .h .dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
-  .tt .meta { color: var(--muted); font-size: 11.5px; margin: 1px 0 7px; }
+  .tt .meta { color: var(--t3); font-size: 11.5px; margin: 1px 0 7px; }
   .tt .big { font-size: 16px; font-weight: 700; }
-  .tt .chg { font-size: 11.5px; color: var(--muted); margin-bottom: 2px; }
-  .tt .div { border-top: 1px solid #273043; margin: 7px 0 5px; }
-  .tt .row { display: flex; align-items: center; gap: 7px; padding: 2.5px 0; font-size: 12px;
-    color: #c6cede; }
+  .tt .chg { font-size: 11.5px; color: var(--t3); margin-bottom: 2px; }
+  .tt .div { border-top: 1px solid var(--border); margin: 7px 0 5px; }
+  .tt .row { display: flex; align-items: center; gap: 7px; padding: 2.5px 0; font-size: 12px; color: var(--t2); }
   .tt .row .sq { width: 8px; height: 8px; border-radius: 2px; flex: none; }
-  .tt .row .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--text); }
-  .tt .note { color: #d9a24a; font-size: 11px; margin-top: 5px; }
+  .tt .row .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--t1); }
+  .tt .note { color: var(--amber); font-size: 11px; margin-top: 5px; }
 
-  h2 { font-size: 15px; margin: 22px 0 8px; }
-  .insights { display: grid; gap: 8px; }
-  .insight { background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 11px 14px; cursor: pointer; transition: border-color .15s; font-size: 13.5px;
-    display: flex; align-items: flex-start; gap: 12px; }
-  .insight:hover { border-color: var(--accent); }
-  .insight .ic { width: 32px; height: 32px; border-radius: 9px; flex: none;
-    display: flex; align-items: center; justify-content: center; margin-top: 2px; }
-  .insight .ic svg { width: 17px; height: 17px; }
-  .insight .cat { font-size: 10px; font-weight: 700; letter-spacing: .08em;
-    text-transform: uppercase; margin-bottom: 2px; }
-  .insight .body { flex: 1; }
-  .insight .go { color: var(--accent); font-size: 12px; margin-left: 6px; white-space: nowrap; }
-  footer { color: var(--muted); font-size: 12px; margin-top: 26px; }
+  /* ---- insights: readable claim up front, recommendation one click away ---- */
+  h2 { font-size: 15px; margin: 20px 0 8px; }
+  .insights { display: grid; gap: 6px; }
+  .cat-head { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--t3); margin: 10px 0 2px; }
+  .insight { background: var(--s1); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; font-size: 13px; display: flex; align-items: flex-start; gap: 12px;
+    cursor: pointer; transition: border-color .15s; }
+  .insight:hover { border-color: var(--border-strong); }
+  .insight .ic { width: 28px; height: 28px; border-radius: 8px; flex: none; display: flex;
+    align-items: center; justify-content: center; margin-top: 1px; }
+  .insight .ic svg { width: 15px; height: 15px; }
+  .insight .body { flex: 1; min-width: 0; }
+  .insight .cat { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    margin-bottom: 1px; }
+  .insight .txt { color: var(--t1); }
+  .insight .cav { display: none; color: var(--t3); font-size: 11.5px; margin-top: 4px; }
+  .insight .rec { display: none; margin-top: 8px; padding: 8px 12px; border-left: 2px solid var(--good);
+    background: rgba(62,207,142,.06); border-radius: 0 6px 6px 0; color: var(--t2); font-size: 12.5px; }
+  .insight .rec b { color: var(--good); font-size: 10px; letter-spacing: .08em; display: block; margin-bottom: 2px; }
+  .insight.open .rec, .insight.open .cav { display: block; }
+  .insight .more { color: var(--t3); font-size: 11px; flex: none; margin-top: 2px; }
+  .expander { background: none; border: 1px dashed var(--border-strong); border-radius: 8px;
+    color: var(--t3); padding: 8px; cursor: pointer; font-size: 12.5px; }
+  .expander:hover { color: var(--t1); border-color: var(--accent); }
+
+  /* ---- drilldown modal ---- */
+  #drill { position: fixed; inset: 0; background: rgba(4,6,10,.62); z-index: 50; display: none;
+    align-items: flex-start; justify-content: center; padding: 6vh 16px; }
+  #drill.on { display: flex; }
+  .dcard { background: var(--s1); border: 1px solid var(--border-strong); border-radius: 12px;
+    max-width: 680px; width: 100%; max-height: 82vh; display: flex; flex-direction: column;
+    box-shadow: 0 24px 64px rgba(0,0,0,.6); }
+  .dhead { display: flex; align-items: center; gap: 10px; padding: 14px 18px 10px; }
+  .dhead .h { font-weight: 700; font-size: 14px; flex: 1; min-width: 0; }
+  .dhead .x { background: none; border: 0; color: var(--t3); font-size: 18px; cursor: pointer; padding: 2px 6px; }
+  .dhead .x:hover { color: var(--t1); }
+  .dtabs { display: flex; gap: 6px; padding: 0 18px 10px; flex-wrap: wrap; }
+  .dtabs button { border: 1px solid var(--border); background: var(--s1); color: var(--t3);
+    border-radius: 999px; padding: 4px 12px; font-size: 12px; cursor: pointer; }
+  .dtabs button.on { background: var(--s2); color: var(--t1); border-color: var(--border-strong); font-weight: 700; }
+  .dlist { overflow-y: auto; border-top: 1px solid var(--border); padding: 6px 18px 14px; }
+  .drow { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .drow:last-child { border-bottom: none; }
+  .drow .m { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--t3); flex-wrap: wrap; }
+  .drow .m .who { color: var(--t1); font-weight: 700; }
+  .drow .m .src { border: 1px solid var(--border-strong); border-radius: 4px; padding: 0 5px;
+    font-size: 10px; letter-spacing: .04em; }
+  .drow .m .senti { margin-left: auto; font-size: 11px; }
+  .drow .m .senti.positive { color: var(--good); } .drow .m .senti.negative { color: var(--bad); }
+  .drow .m .senti.neutral { color: var(--t3); }
+  .drow .txt { color: var(--t2); font-size: 13px; margin-top: 4px; white-space: pre-wrap; word-wrap: break-word; }
+  .dempty { color: var(--t3); padding: 18px 0; text-align: center; }
+
+  /* ---- about / footer ---- */
+  details.about { margin-top: 20px; color: var(--t3); font-size: 12.5px; }
+  details.about summary { cursor: pointer; color: var(--t3); }
+  details.about summary:hover { color: var(--t1); }
+  details.about .inner { border-left: 2px solid var(--border-strong); margin-top: 8px;
+    padding: 2px 0 2px 14px; max-width: 78ch; }
+  details.about p { margin: 6px 0; }
+  details.about b { color: var(--t2); }
+  footer { color: var(--t3); font-size: 12px; margin-top: 18px; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 14px 14px 20px; }
+    .hero { flex-direction: column; gap: 10px; }
+    .hero .spark { width: 100%; }
+    .sitem { flex: 0 0 150px; }
+    #chartbox { height: 340px; }
+    .stamp { margin-left: 0; width: 100%; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Dive Radio — Episode Analytics</h1>
-  <div class="stamp" id="stamp"></div>
+  <header>
+    <h1>Dive Radio — Episode Analytics</h1>
+    <div class="stamp" id="stamp"></div>
+  </header>
 
   <div class="tabs" id="view">
     <button data-v="growth">Audience growth</button>
     <button data-v="live">Live session</button>
   </div>
 
-  <div class="verdict" id="verdict"></div>
-
-  <div class="board" id="board"></div>
+  <div class="hero" id="hero"></div>
+  <div class="strip" id="strip"></div>
+  <div class="panel" id="panel" style="display:none"></div>
 
   <div class="controls">
-    <span class="seg growth-only" id="cmode">
+    <span class="seg growth-only" id="mode">
       <button data-v="standings">Standings</button>
-      <button data-v="trajectory">Trajectory</button>
+      <button data-v="race">Pacing race</button>
+      <button data-v="delta">Weekly gains</button>
     </span>
-    <span class="seg traj-only" id="xmode">
-      <button data-v="weeks">Since premiere</button>
-      <button data-v="calendar">Calendar</button>
-    </span>
-    <span class="seg traj-only" id="ymode">
-      <button data-v="cumulative">Cumulative</button>
-      <button data-v="delta">Per week</button>
-    </span>
+    <button class="toggle traj-only" id="bydate">by date</button>
     <button class="reset" id="reset">reset view</button>
   </div>
 
-  <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt"></div></div>
-  <div class="hint" id="hint"></div>
+  <div id="chartcard">
+    <div class="chead">
+      <span class="ct" id="ctitle"></span>
+      <span class="cs" id="cscope"></span>
+      <button class="toggle tbtn" id="tbtn">table</button>
+    </div>
+    <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt"></div></div>
+    <div id="tablebox"></div>
+    <div class="emptynote" id="emptynote" style="display:none"></div>
+  </div>
 
   <h2>What the data says</h2>
   <div class="insights" id="insights"></div>
 
+  <details class="about">
+    <summary>About this data</summary>
+    <div class="inner" id="about"></div>
+  </details>
+
   <footer>Refreshes daily · new episodes registered automatically.</footer>
 </div>
+
+<div id="drill"><div class="dcard">
+  <div class="dhead"><span class="h" id="dtitle"></span><button class="x" id="dclose">×</button></div>
+  <div class="dtabs" id="dtabs"></div>
+  <div class="dlist" id="dlist"></div>
+</div></div>
 
 <script src="chart.umd.js"></script>
 <script src="data.js"></script>
@@ -147,371 +277,76 @@
 const DATA = window.DIVE_DATA;
 const EPS = DATA.episodes;
 const DAY = 86400000, WEEK = 7 * DAY, PHX = 7 * 3600000;
-const PALETTE = ["#6b7a94", "#8a6bd6", "#3ecf8e", "#e6c74a", "#ff7a59", "#59b0ff", "#ff5d8f", "#5eead4"];
+// Episode palette: E2 re-stepped 2026-08-22 (#8a6bd6 → #8e4ce0) to clear the
+// normal-vision floor vs E1's slate (ΔE 12.7 → 18.2, validator-checked).
+// E1 low-chroma and E6=platform-blue are accepted, documented debts — episode
+// identity is always doubled by labels (strip, end labels, tooltips).
+const PALETTE = ["#6b7a94", "#8e4ce0", "#3ecf8e", "#e6c74a", "#ff7a59", "#59b0ff", "#ff5d8f", "#5eead4"];
 const color = (e) => PALETTE[(e.ep - 1) % PALETTE.length];
 const NEWEST = EPS[EPS.length - 1];
+const FONT = getComputedStyle(document.body).fontFamily;
+if (window.Chart) { Chart.defaults.font.family = FONT; Chart.defaults.animation.duration = 300; }
 
-// fixed platform colors — used in the filter chips AND the tooltip channel list
 const PLAT_COLORS = {
-  "yt:joindiveclub": "#ff4f5e",
-  "yt:designertom": "#ffa14f",
-  "x:ridd_design": "#d7dbe0",
-  "x:designertom": "#59b0ff",
+  "yt:joindiveclub": "#ff4f5e", "yt:designertom": "#ffa14f",
+  "x:ridd_design": "#d7dbe0", "x:designertom": "#59b0ff",
 };
-const PLAT_NAME = {
-  "yt:joindiveclub": "YouTube · Dive Club",
-  "yt:designertom": "YouTube · DesignerTom",
-  "x:ridd_design": "X · @ridd_design (reach)",
-  "x:designertom": "X · @designertom (reach)",
+const TT_NAME = {
+  "yt:joindiveclub": "Dive Club", "yt:designertom": "DesignerTom",
+  "x:ridd_design": "@ridd_design", "x:designertom": "@designertom",
 };
 const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const X_KEYS = ["x:ridd_design", "x:designertom"];
+const GRID = "#1d2433", DIMLINE = "#3a4458";
 
-const HINTS = {
-  standings: "Every segment is a watch count · hover for exact numbers · ◐ = partial plays coverage.",
-  trajectory: "YouTube views only — the one complete history · click a card to focus.",
-  live: "Concurrent viewers per minute, from Restream · click a card to focus · hover for chat.",
+// Strategy-impact categories: colors validated distinct from the platform
+// colors AND the episode palette (OKLab ΔE, 2026-08-22). Falls back to an
+// id-based mapping for data.js files built before categories shipped.
+const CATS = {
+  content:      { name: "Content",         color: "#a8b339", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.1 5.4L20 10l-5.9 1.6L12 17l-2.1-5.4L4 10l5.9-1.6z"/></svg>` },
+  distribution: { name: "Distribution",    color: "#32b5ae", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v8M12 12l-6 6M12 12l6 6"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r="1.6" fill="currentColor" stroke="none"/><circle cx="18" cy="18" r="1.6" fill="currentColor" stroke="none"/></svg>` },
+  promotion:    { name: "Promotion",       color: "#c04a6e", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4l10 4V6L4 10z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>` },
+  audience:     { name: "Audience health", color: "#d946ef", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 3 9 2-6 1.5 2H21"/></svg>` },
+  data:         { name: "Data note",       color: "#8b95a7", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/></svg>` },
 };
+const CAT_RANK = { content: 0, distribution: 1, promotion: 2, audience: 3, data: 4 };
+function catKeyFor(ins) {
+  if (ins.category && CATS[ins.category]) return ins.category;
+  const id = ins.id;
+  if (id === "pace-rank") return "content";
+  if (id === "engagement" || id.startsWith("live")) return "audience";
+  if (id === "host-split" || id === "reach-conversion" || id.startsWith("anomaly")) return "promotion";
+  if (id === "flatline" || id === "platform-phase" || id === "watch-split" || id === "host-plays-split") return "distribution";
+  return "data";
+}
 
-const state = {
-  view: "growth",
-  chart: "standings", // standings (stacked watch bars) | trajectory (lines)
-  xMode: "weeks",
-  yMode: "cumulative",
-  solo: null,
-  showAllCards: false,
-};
-const CARD_CAP = 6; // newest-first; older episodes collapse behind an expander
+const state = { view: "growth", mode: "standings", byDate: false, solo: null, panel: null, table: false, allInsights: false };
 
 function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
   return Date.UTC(y, m-1, d, 12) + PHX;
 }
-// Trajectory sums YouTube views only — the only complete watch time series.
-// X broadcast plays have no history before 2026-08-21; blending them into
-// old dates would draw a fake cliff. They join as their series accumulates.
-function sum(byDest) {
-  let t = 0;
-  for (const k of YT_KEYS) t += (byDest[k]?.views || 0);
-  return t;
-}
-function splitOf(byDest) {
-  const o = {};
-  for (const k of Object.keys(byDest)) o[k] = byDest[k]?.views || 0;
-  return o;
-}
-function splitDelta(cur, prev) {
-  const o = {};
-  for (const k of Object.keys(cur)) o[k] = (cur[k]?.views || 0) - (prev?.[k]?.views || 0);
-  return o;
-}
-function fmtDate(ms) {
-  return new Date(ms - PHX).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-}
-function kfmt(n) {
-  if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k";
-  return String(Math.round(n));
-}
+// Trajectory math sums YouTube views only — the one complete watch history.
+// X broadcast plays have no series before 2026-08-21; the chart title states
+// this scope in place (no fabricated history, no silently mixed units).
+function sum(byDest) { let t = 0; for (const k of YT_KEYS) t += (byDest[k]?.views || 0); return t; }
+function splitOf(byDest) { const o = {}; for (const k of YT_KEYS) o[k] = byDest[k]?.views || 0; return o; }
+function splitDelta(cur, prev) { const o = {}; for (const k of YT_KEYS) o[k] = (cur[k]?.views || 0) - (prev?.[k]?.views || 0); return o; }
+function fmtDate(ms) { return new Date(ms - PHX).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); }
+function kfmt(n) { if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k"; return String(Math.round(n)); }
 function nfmt(n) { return n.toLocaleString("en-US"); }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, "").replace(/[,\s]+$/, ""); }
-// compact channel names for tooltips/hover panels; colors carry the platform
-const TT_NAME = {
-  "yt:joindiveclub": "Dive Club",
-  "yt:designertom": "DesignerTom",
-  "x:ridd_design": "@ridd_design",
-  "x:designertom": "@designertom",
-};
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
-
-function seriesFor(e) {
-  const prem = premiereMs(e.premiere);
-  const pts = [];
-  if (state.yMode === "cumulative") {
-    if (state.xMode === "calendar") {
-      for (const s of e.snapshots) pts.push({ x: Date.parse(s.ts), y: sum(s.byDest), meta: { ts: s.ts, split: splitOf(s.byDest) } });
-    } else {
-      for (const s of e.snapshots) {
-        const d = (Date.parse(s.ts) - prem) / DAY;
-        pts.push({ x: Math.round(d * 10) / 10, y: sum(s.byDest), meta: { ts: s.ts, day: d, split: splitOf(s.byDest) } });
-      }
-    }
-  } else {
-    for (let i = 0; i < e.weekly.length; i++) {
-      const cur = e.weekly[i].byDest;
-      const prev = i === 0 ? null : e.weekly[i-1].byDest;
-      const first = i === 0;
-      const split = first ? splitOf(cur) : splitDelta(cur, prev);
-      pts.push({
-        x: state.xMode === "calendar" ? Date.parse(e.weekly[i].boundary) : e.weekly[i].week,
-        y: YT_KEYS.reduce((a,k) => a + (split[k] || 0), 0),
-        meta: { ts: e.weekly[i].boundary, week: e.weekly[i].week, split,
-          note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null }
-      });
-    }
-  }
-  return pts;
-}
-
-const endLabels = {
-  id: "endLabels",
-  afterDatasetsDraw(chart) {
-    if (chart.config.type !== "line") return;
-    const { ctx, chartArea } = chart;
-    const placed = [];
-    const items = [];
-    chart.data.datasets.forEach((ds, i) => {
-      const meta = chart.getDatasetMeta(i);
-      if (meta.hidden || !meta.data.length) return;
-      const pt = meta.data[meta.data.length - 1];
-      items.push({ x: pt.x, y: pt.y, text: "E" + ds.epNum, color: ds.borderColor });
-    });
-    items.sort((a, b) => a.y - b.y);
-    ctx.save();
-    ctx.font = "700 12px -apple-system, 'Segoe UI', sans-serif";
-    for (const it of items) {
-      let y = it.y;
-      for (const p of placed) if (Math.abs(y - p) < 15) y = p + 15;
-      placed.push(y);
-      ctx.fillStyle = it.color;
-      ctx.fillText(it.text, Math.min(it.x + 8, chartArea.right + 4), y + 4);
-    }
-    ctx.restore();
-  }
-};
-
-// --- HTML tooltip: color-coded channel breakdown ---
-function externalTooltip(context) {
-  const { chart, tooltip } = context;
-  const el = document.getElementById("tt");
-  if (!tooltip.opacity || !tooltip.dataPoints?.length) { el.style.opacity = 0; return; }
-  const item = tooltip.dataPoints[0];
-  const ds = item.dataset, e = ds.episode, p = item.raw;
-  const isLive = state.view === "live";
-  const isStandings = !isLive && state.chart === "standings";
-  const isDelta = !isLive && !isStandings && state.yMode === "delta";
-
-  if (isStandings) {
-    const ep = (chart.config._ordered || [])[item.dataIndex];
-    if (!ep) { el.style.opacity = 0; return; }
-    let html = `<div class="h"><span class="dot" style="background:${color(ep)}"></span>${label(ep)}</div>`;
-    html += `<div class="big">${nfmt(item.raw)} <small style="font-weight:500;color:#94a0b4">${ds.key?.startsWith("x:") ? "plays" : "views"} · ${ds.label}</small></div>`;
-    html += `<div class="chg">of ${nfmt(ep.latest.totalViews ?? 0)} total views</div>`;
-    el.innerHTML = html;
-    el.style.opacity = 1;
-    const box = chart.canvas.parentNode;
-    el.style.left = Math.min(Math.max(tooltip.caretX, 120), box.clientWidth - 130) + "px";
-    el.style.top = (tooltip.caretY - 12) + "px";
-    el.style.transform = "translate(-50%, -100%)";
-    return;
-  }
-
-  let html = `<div class="h"><span class="dot" style="background:${ds.borderColor}"></span>${label(e)}</div>`;
-
-  if (isLive) {
-    html += `<div class="meta">Minute ${p.x}</div>`;
-    html += `<div class="big">${p.y} watching</div>`;
-    html += `<div class="chg">Chat: ${nfmt(p.meta.ct ?? 0)} messages so far${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
-    const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#d7dbe0", "X #2": "#59b0ff" };
-    const chans = Object.entries(p.meta.byChan || {});
-    if (chans.length) {
-      html += `<div class="div"></div>`;
-      for (const [l, v] of chans) {
-        html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${l}<span class="val">${v}</span></div>`;
-      }
-      html += `<div class="note" style="color:#94a0b4">Restream total across all simulcast destinations</div>`;
-    }
-  } else {
-    if (p.meta.week !== undefined) {
-      html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
-    } else {
-      const days = Math.round(p.meta.day ?? 0);
-      html += `<div class="meta">Day ${days} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
-    }
-    html += `<div class="big">${nfmt(p.y)} YT views${isDelta ? " gained" : ""}</div>`;
-    if (!isDelta && item.dataIndex > 0) {
-      const prev = ds.data[item.dataIndex - 1].y;
-      const d = p.y - prev;
-      if (d !== 0) html += `<div class="chg">${d >= 0 ? "+" : ""}${nfmt(d)}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}</div>`;
-    }
-    if (p.meta.split) {
-      html += `<div class="div"></div>`;
-      for (const k of YT_KEYS) {
-        const v = p.meta.split[k] ?? 0;
-        html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
-      }
-    }
-    if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
-  }
-
-  el.innerHTML = html;
-  el.style.opacity = 1;
-  const box = chart.canvas.parentNode;
-  const x = Math.min(Math.max(tooltip.caretX, 120), box.clientWidth - 130);
-  const above = tooltip.caretY > 190;
-  el.style.left = x + "px";
-  el.style.top = (tooltip.caretY + (above ? -14 : 14)) + "px";
-  el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
-}
-
-// Standings: total at the end of each stacked bar (+ coverage marker)
-const barTotals = {
-  id: "barTotals",
-  afterDatasetsDraw(chart) {
-    if (chart.config.options.indexAxis !== "y") return;
-    const { ctx } = chart;
-    const eps = chart.config._ordered || [];
-    ctx.save();
-    ctx.font = "700 12px -apple-system, 'Segoe UI', sans-serif";
-    ctx.textBaseline = "middle";
-    const lastMeta = chart.getDatasetMeta(chart.data.datasets.length - 1);
-    eps.forEach((e, i) => {
-      const bar = lastMeta.data[i];
-      if (!bar) return;
-      const tvi = e.latest.totalViewsInfo || {};
-      const mark = tvi.partial ? " ◐" : "";
-      ctx.fillStyle = state.solo && state.solo !== e.slug ? "#3a4458" : "#e8ecf4";
-      ctx.fillText(nfmt(e.latest.totalViews ?? 0) + mark, bar.x + 8, bar.y);
-    });
-    ctx.restore();
-  }
-};
-
-let chart;
-function renderStandings() {
-  const ordered = [...EPS].reverse(); // newest first, matches the cards
-  const SEGS = [
-    ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views || 0],
-    ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views || 0],
-    ["x:ridd_design", (e) => e.latest.byDest["x:ridd_design"]?.plays || 0],
-    ["x:designertom", (e) => e.latest.byDest["x:designertom"]?.plays || 0],
-  ];
-  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "33" : hex;
-  const cfg = {
-    type: "bar",
-    data: {
-      labels: ordered.map(e => "E" + e.ep),
-      datasets: SEGS.map(([key, val]) => ({
-        label: TT_NAME[key],
-        key,
-        data: ordered.map(val),
-        backgroundColor: ordered.map(e => dim(PLAT_COLORS[key], e)),
-        borderRadius: 2,
-        barPercentage: 0.72,
-      })),
-    },
-    options: {
-      indexAxis: "y",
-      responsive: true, maintainAspectRatio: false,
-      layout: { padding: { right: 64 } },
-      interaction: { mode: "nearest", intersect: true },
-      scales: {
-        x: { stacked: true, beginAtZero: true, ticks: { color: "#94a0b4", callback: v => kfmt(v) }, grid: { color: "#1d2433" } },
-        y: { stacked: true, ticks: { color: "#c6cede", font: { weight: 700 } }, grid: { display: false } },
-      },
-      plugins: {
-        legend: { display: true, position: "bottom", labels: { color: "#94a0b4", boxWidth: 10, boxHeight: 10, padding: 14 } },
-        tooltip: { enabled: false, external: externalTooltip },
-      },
-      onClick: (_, els) => {
-        if (!els.length) return;
-        const e = ordered[els[0].index];
-        state.solo = state.solo === e.slug ? null : e.slug;
-        render();
-      },
-    },
-    plugins: [barTotals],
-  };
-  cfg._ordered = ordered;
-  return cfg;
-}
-
-function render() {
-  const isLive = state.view === "live";
-  if (!isLive && state.chart === "standings") {
-    const cfg = renderStandings();
-    if (chart) chart.destroy();
-    chart = new Chart(document.getElementById("chart"), cfg);
-    chart.config._ordered = cfg._ordered;
-    document.getElementById("tt").style.opacity = 0;
-    buildBoard();
-    syncUI();
-    return;
-  }
-  const isDelta = !isLive && state.yMode === "delta";
-  const isCal = !isLive && state.xMode === "calendar";
-  const isRace = !isLive && !isDelta && !isCal;
-
-  const source = isLive ? EPS.filter(e => e.live) : EPS;
-  const datasets = source.map((e) => {
-    const isNewest = e.slug === NEWEST.slug;
-    const soloed = state.solo === e.slug;
-    const hidden = state.solo !== null && !soloed;
-    return {
-      label: label(e),
-      epNum: e.ep,
-      slug: e.slug,
-      data: isLive ? e.live.series.map(p => ({ x: p.m, y: p.v, meta: p })) : seriesFor(e),
-      borderColor: color(e),
-      backgroundColor: color(e) + (isDelta ? "dd" : "22"),
-      borderWidth: soloed ? 3.5 : (isNewest ? 3.5 : 2),
-      pointRadius: isLive || isRace || isCal ? 0 : 3,
-      pointHoverRadius: 5,
-      tension: 0.3, spanGaps: false, hidden,
-      episode: e,
-    };
-  });
-
-  const cfg = {
-    type: isDelta ? "bar" : "line",
-    data: { datasets },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      layout: { padding: { right: isDelta ? 8 : 34 } },
-      interaction: { mode: "nearest", intersect: false },
-      scales: {
-        x: {
-          type: "linear",
-          title: { display: true, color: "#94a0b4",
-            text: isLive ? "Minutes into the show" : (isCal ? "" : (isRace ? "Time since premiere" : "")) },
-          ticks: {
-            color: "#94a0b4",
-            stepSize: isRace ? 7 : undefined,
-            callback: v => {
-              if (isLive) return v;
-              if (isCal) return fmtDate(v);
-              if (isRace) return v === 0 ? "premiere" : (v % 7 === 0 && v > 0 ? `${v/7} wk${v/7 > 1 ? "s" : ""}` : "");
-              return Number.isInteger(v) ? "week " + (v + 1) : "";
-            },
-            maxTicksLimit: isCal ? 9 : 24,
-          },
-          grid: { color: "#1d2433" },
-          offset: isDelta,
-        },
-        y: {
-          beginAtZero: true,
-          title: { display: true, text: isLive ? "Concurrent viewers" : "YouTube views", color: "#94a0b4" },
-          ticks: { color: "#94a0b4", callback: v => kfmt(v) },
-          grid: { color: "#1d2433" },
-        },
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false, external: externalTooltip },
-      },
-    },
-    plugins: [endLabels],
-  };
-
-  if (chart) chart.destroy();
-  chart = new Chart(document.getElementById("chart"), cfg);
-  document.getElementById("tt").style.opacity = 0;
-  buildBoard();
-  syncUI();
+function heroMarker(e) {
+  const tvi = e.latest.totalViewsInfo || {};
+  if (!tvi.includesPlays) return "YT only";
+  if (tvi.partial) return `◐${tvi.have}/${tvi.total}`;
+  if (tvi.stale && tvi.asOf) return `→${tvi.asOf.slice(5, 10).replace("-", "/")}`;
+  return "";
 }
 
 function sameAgeSub(e) {
-  // YT views only — same unit discipline as the build-side metrics
   const ytSum = (byDest) => YT_KEYS.reduce((a,k) => a + (byDest[k]?.views || 0), 0);
   const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
   const peers = [];
@@ -531,228 +366,755 @@ function sameAgeSub(e) {
   peers.sort((a,b)=>a-b);
   const med = peers[Math.floor(peers.length/2)];
   if (med <= 0) return null;
-  const pct = Math.round((((e.latest.ytTotal ?? 0) - med) / med) * 100);
-  return { pct, n: peers.length };
+  return { pct: Math.round((((e.latest.ytTotal ?? 0) - med) / med) * 100), n: peers.length };
 }
 
-// Card hover panel (progressive disclosure): full per-channel breakdown —
-// exact totals per channel, plays coverage, reach kept visibly separate.
-const cardTip = document.createElement("div");
-cardTip.className = "tt";
-cardTip.id = "cardtip";
-document.body.appendChild(cardTip);
-function hideCardTip() { cardTip.style.opacity = 0; }
-function showCardTip(card, e) {
-  const bd = e.latest.byDest || {};
-  const tvi = e.latest.totalViewsInfo || {};
-  let html = `<div class="h"><span class="dot" style="background:${color(e)}"></span>E${e.ep} · ${short(e.title)}</div>`;
-  html += `<div class="big">${nfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)} views</div>`;
-  html += `<div class="div"></div>`;
-  const rows = [
-    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
-    ["yt:designertom", bd["yt:designertom"]?.views],
-    ["x:ridd_design", bd["x:ridd_design"]?.plays],
-    ["x:designertom", bd["x:designertom"]?.plays],
-  ];
-  for (const [k, v] of rows) {
-    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
-  }
-  if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
-  else if (tvi.stale && tvi.asOf) html += `<div class="note">plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
-  else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
-  html += `<div class="div"></div>`;
-  html += `<div class="row">X reach<span class="val">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
-  html += `<div class="chg">ridd ${nfmt(bd["x:ridd_design"]?.views ?? 0)} · tom ${nfmt(bd["x:designertom"]?.views ?? 0)} · not in total</div>`;
-  // what people said — top praise quotes (collected daily from YT comments
-  // + X replies, hosts excluded, ranked by likes + positive signal)
-  const quotes = (e.comments?.featured || []).slice(0, 2);
-  if (quotes.length) {
-    html += `<div class="div"></div>`;
-    for (const q of quotes) {
-      html += `<div class="chg" style="margin:3px 0">“${esc(q.text.length > 110 ? q.text.slice(0, 108).trimEnd() + "…" : q.text)}”<br><span style="color:#6d788c">— ${esc(q.author)}${q.likes ? ` · ${q.likes}♥` : ""}</span></div>`;
-    }
-  }
-  cardTip.innerHTML = html;
-  const r = card.getBoundingClientRect();
-  cardTip.style.left = Math.min(r.left, window.innerWidth - 250) + "px";
-  cardTip.style.top = Math.min(r.bottom + 8, window.innerHeight - 240) + "px";
-  cardTip.style.opacity = 1;
-}
-
-function buildBoard() {
+/* ================= hero ================= */
+let sparkChart = null;
+function buildHero() {
+  const el = document.getElementById("hero");
+  const e = NEWEST;
   const isLive = state.view === "live";
-  const board = document.getElementById("board");
-  board.innerHTML = "";
-  // oldest → newest left → right: the latest episode is always the
-  // far-right card. When collapsed, the OLDEST episodes hide behind the
-  // left-edge expander.
-  const ordered = [...EPS];
-  const visible = state.showAllCards ? ordered : ordered.slice(-CARD_CAP);
-  const hiddenCount = ordered.length - visible.length;
-  if (hiddenCount > 0 || (state.showAllCards && ordered.length > CARD_CAP)) {
-    const more = document.createElement("div");
-    more.className = "card more";
-    more.style.display = "flex";
-    more.style.alignItems = "center";
-    more.style.justifyContent = "center";
-    more.innerHTML = state.showAllCards
-      ? `<div class="sub">Show latest ${CARD_CAP} only</div>`
-      : `<div class="sub">← ${hiddenCount} older episode${hiddenCount === 1 ? "" : "s"}</div>`;
-    more.addEventListener("click", () => {
-      state.showAllCards = !state.showAllCards;
-      buildBoard();
-      syncUI();
-    });
-    board.appendChild(more);
-  }
-  for (const e of visible) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.dataset.slug = e.slug;
-    let big = "", sub = "", subCls = "";
-    if (isLive) {
-      if (e.live) {
-        big = `${e.live.peak} <small>peak live</small>`;
-        sub = `avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat msgs · ${e.live.durationMin ?? "?"} min`;
-      } else {
-        big = `<small>no live data</small>`;
-        sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
-      }
+  const c = color(e);
+  let html = `<div class="main"><div class="idrow">
+    <span class="ep"><span class="dot" style="background:${c}"></span>E${e.ep} · latest episode</span>
+    <span class="ttl">${esc(short(e.title))}</span></div>`;
+
+  if (isLive) {
+    if (e.live) {
+      html += `<div class="big">${e.live.peak} <small>peak live viewers</small></div>`;
+      html += `<div class="sub">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat messages · ${e.live.durationMin ?? "?"} min</div>`;
     } else {
-      // One hero per card (CARD-RULING-2026-08-21): Total views = YT views +
-      // X broadcast plays (both video playback). X reach (impressions) is a
-      // different unit: visible but secondary, never part of the total.
-      const tvi = e.latest.totalViewsInfo || {};
-      const tv = e.latest.totalViews ?? e.latest.ytTotal ?? 0;
-      let mk = "";
-      if (!tvi.includesPlays) mk = "YT only";
-      else if (tvi.partial) mk = `◐${tvi.have}/${tvi.total}`;
-      else if (tvi.stale && tvi.asOf) mk = `→${tvi.asOf.slice(5, 10).replace("-", "/")}`;
-      big = `<div class="views hero">${kfmt(tv)} <small>views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>
-      <div class="reach">X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
-      const pace = sameAgeSub(e);
-      if (pace) {
-        sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (YT)`;
-        subCls = pace.pct >= 0 ? "up" : "down";
-      } else {
-        sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;
-      }
+      html += `<div class="big"><small>no live data for this episode</small></div>`;
     }
-    card.innerHTML = `
-      <span class="ep"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>
-      ${e.partialHistory && !isLive ? '<span class="flag">◐ late reg</span>' : ""}
-      <div class="ttl">${short(e.title)}</div>
-      ${isLive ? `<div class="views">${big}</div>` : big}
-      <div class="sub ${subCls}">${sub}</div>`;
-    card.addEventListener("click", () => {
-      state.solo = state.solo === e.slug ? null : e.slug;
+    const liveIns = DATA.insights.find(i => i.id === "live-peak");
+    if (liveIns) html += `<div class="verdict">${esc(liveIns.text)}</div>`;
+  } else {
+    const mk = heroMarker(e);
+    const tv = e.latest.totalViews ?? e.latest.ytTotal ?? 0;
+    html += `<div class="big">${nfmt(tv)} <small>total views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>`;
+    html += `<div class="sub">${nfmt(e.latest.ytTotal ?? 0)} YouTube + ${nfmt(e.latest.xPlays ?? 0)} X plays · X reach ${kfmt(e.latest.xImpressions ?? 0)} (never counted in views)</div>`;
+    const pace = DATA.insights.find(i => i.id === "pace-rank");
+    if (pace) html += `<div class="verdict">${esc(pace.text)}</div>`;
+  }
+
+  html += `<div class="chiprow" id="herochips"></div></div>`;
+  html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">${isLive ? "concurrent viewers by minute" : "YouTube views since premiere"}</div></div>`;
+  el.innerHTML = html;
+
+  const chips = el.querySelector("#herochips");
+  if (!isLive) {
+    const pace = sameAgeSub(e);
+    if (pace) {
+      const chip = document.createElement("span");
+      chip.className = `chip static pace ${pace.pct > 0 ? "up" : pace.pct < 0 ? "down" : ""}`;
+      chip.textContent = pace.pct === 0 ? `= at same-age median (YT)` : `${pace.pct > 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (YT)`;
+      chips.appendChild(chip);
+    }
+    if (e.partialHistory) {
+      const chip = document.createElement("span");
+      chip.className = "chip static alert";
+      chip.textContent = "late reg — early weekly history missing";
+      chips.appendChild(chip);
+    }
+  }
+  addSentimentChip(chips, e);
+  // alert chips: promo-outlier anomalies, max 2, deep-link to their evidence
+  for (const ins of DATA.insights.filter(i => i.id.startsWith("anomaly")).slice(0, 2)) {
+    const epA = EPS.find(x => ins.id === `anomaly-${x.slug}`);
+    const chip = document.createElement("span");
+    chip.className = "chip alert";
+    chip.textContent = `⚠ promo outlier: ${epA ? "E" + epA.ep : "episode"}`;
+    chip.title = ins.text;
+    chip.addEventListener("click", () => applyChartState(ins.chartState || {}));
+    chips.appendChild(chip);
+  }
+
+  if (sparkChart) { sparkChart.destroy(); sparkChart = null; }
+  const ctx = document.getElementById("spark");
+  let pts = [];
+  if (isLive) pts = e.live ? e.live.series.map(p => ({ x: p.m, y: p.v })) : [];
+  else {
+    const prem = premiereMs(e.premiere);
+    pts = e.snapshots.map(s => ({ x: (Date.parse(s.ts) - prem) / DAY, y: sum(s.byDest) }));
+  }
+  el.querySelector(".spark").style.visibility = pts.length > 1 ? "" : "hidden";
+  if (pts.length > 1 && window.Chart) {
+    sparkChart = new Chart(ctx, {
+      type: "line",
+      data: { datasets: [{ data: pts, borderColor: c, backgroundColor: c + "22", borderWidth: 2,
+        pointRadius: 0, fill: true, tension: 0.3 }] },
+      options: { responsive: true, maintainAspectRatio: false, animation: false,
+        scales: { x: { type: "linear", display: false }, y: { display: false, beginAtZero: true } },
+        plugins: { legend: { display: false }, tooltip: { enabled: false } }, events: [] },
+    });
+  }
+}
+
+function addSentimentChip(container, e) {
+  const s = e.comments?.sentiment;
+  if (!s || state.view === "live") return;
+  const chip = document.createElement("span");
+  chip.className = "chip senti";
+  chip.innerHTML = `<b style="color:var(--good)">${s.positive}</b> pos · <b style="color:var(--bad)">${s.negative}</b> neg · ${e.comments.total} comments`;
+  chip.title = "audience comments — click for the full list";
+  chip.addEventListener("click", () => openDrill(e.slug, "all"));
+  container.appendChild(chip);
+}
+
+/* ================= strip ================= */
+function buildStrip() {
+  const isLive = state.view === "live";
+  const strip = document.getElementById("strip");
+  strip.innerHTML = "";
+  // oldest → newest, left → right: the latest episode is always far right (locked rule)
+  for (const e of EPS) {
+    const it = document.createElement("div");
+    it.className = "sitem";
+    it.dataset.slug = e.slug;
+    let mid = "", r3 = "";
+    if (isLive) {
+      mid = e.live ? `${e.live.peak} <small>peak live</small>` : `<small>no live data</small>`;
+      r3 = e.live ? `<span>avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat</span>` : `<span>premiered ${e.premiere.slice(5).replace("-", "/")}</span>`;
+    } else {
+      const mk = heroMarker(e);
+      mid = `${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)} <small>views</small>${mk ? `<span class="mk">${mk}</span>` : ""}`;
+      const pace = sameAgeSub(e);
+      r3 = `<span>reach ${kfmt(e.latest.xImpressions ?? 0)}</span>` +
+        (pace ? (pace.pct === 0 ? `<span>= median</span>`
+          : `<span class="pace ${pace.pct > 0 ? "up" : "down"}">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}%</span>`) : "");
+    }
+    it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep}
+        ${e.partialHistory && !isLive ? '<span class="flag">late reg</span>' : ""}</div>
+      <div class="t">${esc(short(e.title))}</div>
+      <div class="v">${mid}</div>
+      <div class="r3">${r3}</div>`;
+    it.addEventListener("click", () => {
+      if (state.panel === e.slug) { state.panel = null; state.solo = null; }
+      else { state.panel = e.slug; state.solo = e.slug; }
       render();
     });
-    if (!isLive) {
-      card.addEventListener("mouseenter", () => showCardTip(card, e));
-      card.addEventListener("mouseleave", hideCardTip);
-    }
-    board.appendChild(card);
+    strip.appendChild(it);
   }
 }
 
+/* ================= detail panel (Layer 2) ================= */
+function buildPanel() {
+  const el = document.getElementById("panel");
+  const e = EPS.find(x => x.slug === state.panel);
+  if (!e) { el.style.display = "none"; el.innerHTML = ""; return; }
+  const bd = e.latest.byDest || {};
+  const tvi = e.latest.totalViewsInfo || {};
+  let html = `<button class="x" id="panelx" title="close">×</button>`;
+  html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
+    <span style="color:var(--t3);font-weight:400;font-size:12px">· premiered ${e.premiere}</span></div>`;
+  html += `<div class="grid"><div>`;
+  html += `<div class="row" style="font-weight:700;color:var(--t1)">Total views<span class="val">${nfmt(e.latest.totalViews ?? 0)}</span></div>`;
+  const rows = [
+    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views, "views"],
+    ["yt:designertom", bd["yt:designertom"]?.views, "views"],
+    ["x:ridd_design", bd["x:ridd_design"]?.plays, "plays"],
+    ["x:designertom", bd["x:designertom"]?.plays, "plays"],
+  ];
+  for (const [k, v, unit] of rows) {
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]} <span style="color:var(--t3);font-size:11px">${unit}</span><span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+  }
+  if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts — true total is higher</div>`;
+  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays last confirmed ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">YT only — X broadcast plays unavailable</div>`;
+  html += `<div class="mut">YouTube counts a qualified view (~30s); X counts a play start — treat the sum as directional.</div>`;
+  html += `</div><div>`;
+  html += `<div class="row" style="font-weight:700;color:var(--t1)">X reach <span style="color:var(--t3);font-size:11px;font-weight:400">impressions — not in total</span><span class="val">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
+  html += `<div class="row">@ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
+  html += `<div class="row">@designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
+  html += `<div class="mut">An impression = the post appeared on a timeline. Exposure, not watching.</div>`;
+  if (e.live) {
+    html += `<div class="row" style="font-weight:700;color:var(--t1);margin-top:8px">Live session<span class="val">${e.live.peak} peak</span></div>`;
+    html += `<div class="mut">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat messages · ${e.live.durationMin ?? "?"} min</div>`;
+  }
+  html += `</div></div>`;
+
+  const s = e.comments?.sentiment;
+  if (e.comments) {
+    html += `<div class="sect">`;
+    if (s) {
+      html += `<span style="font-weight:700">Audience comments</span> — <span class="senti-link" data-f="positive"><b style="color:var(--good)">${s.positive}</b> positive</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${s.negative}</b> negative</span> · <span class="senti-link" data-f="neutral">${s.neutral} neutral</span>${s.unclassified ? ` · ${s.unclassified} unclassified` : ""} · <span class="senti-link" data-f="all">view all ${e.comments.total} →</span>`;
+    } else {
+      html += `<span style="font-weight:700">Audience comments</span> — ${e.comments.total} collected`;
+    }
+    if (e.partialHistory) html += `<div class="mut">late reg: registered late — cumulative totals correct, early weekly history missing.</div>`;
+    for (const q of (e.comments.featured || []).slice(0, 2)) {
+      html += `<div class="q">“${esc(q.text.length > 110 ? q.text.slice(0, 108).trimEnd() + "…" : q.text)}” <span class="by">— ${esc(q.author)}${q.likes ? ` · ${q.likes}♥` : ""}</span></div>`;
+    }
+    html += `</div>`;
+  }
+  el.innerHTML = html;
+  el.style.display = "";
+  el.querySelector("#panelx").addEventListener("click", () => { state.panel = null; render(); });
+  el.querySelectorAll(".senti-link").forEach(a =>
+    a.addEventListener("click", () => openDrill(e.slug, a.dataset.f)));
+}
+
+/* ================= drilldown modal (Layer 3) ================= */
+const drillState = { slug: null, filter: "all" };
+function openDrill(slug, filter) {
+  const e = EPS.find(x => x.slug === slug);
+  if (!e?.comments?.list) return;
+  drillState.slug = slug;
+  drillState.filter = filter || "all";
+  renderDrill();
+  document.getElementById("drill").classList.add("on");
+}
+function closeDrill() { document.getElementById("drill").classList.remove("on"); }
+function renderDrill() {
+  const e = EPS.find(x => x.slug === drillState.slug);
+  if (!e) return;
+  const list = e.comments.list || [];
+  const s = e.comments.sentiment || {};
+  document.getElementById("dtitle").textContent = `Comments — ${label(e)}`;
+  const tabs = [["all", `All ${list.length}`], ["positive", `Positive ${s.positive ?? 0}`],
+    ["negative", `Negative ${s.negative ?? 0}`], ["neutral", `Neutral ${s.neutral ?? 0}`]];
+  if (s.unclassified) tabs.push(["unclassified", `Unclassified ${s.unclassified}`]);
+  const tEl = document.getElementById("dtabs");
+  tEl.innerHTML = "";
+  for (const [f, lab] of tabs) {
+    const b = document.createElement("button");
+    b.textContent = lab;
+    b.className = drillState.filter === f ? "on" : "";
+    b.addEventListener("click", () => { drillState.filter = f; renderDrill(); });
+    tEl.appendChild(b);
+  }
+  const rows = list.filter(c => drillState.filter === "all" ? true :
+    drillState.filter === "unclassified" ? c.sentiment == null : c.sentiment === drillState.filter);
+  const lEl = document.getElementById("dlist");
+  lEl.innerHTML = rows.length ? "" : `<div class="dempty">no comments in this bucket</div>`;
+  for (const c of rows) {
+    const d = document.createElement("div");
+    d.className = "drow";
+    d.innerHTML = `<div class="m"><span class="who">${esc(c.author)}</span>
+      <span class="src">${c.source === "yt" ? "YouTube" : "X"}</span>
+      ${c.likes ? `<span>${c.likes}♥</span>` : ""}
+      <span class="senti ${c.sentiment ?? ""}">${c.sentiment ?? "unclassified"}</span></div>
+      <div class="txt">${esc(c.text)}</div>`;
+    lEl.appendChild(d);
+  }
+}
+document.getElementById("dclose").addEventListener("click", closeDrill);
+document.getElementById("drill").addEventListener("click", (ev) => { if (ev.target.id === "drill") closeDrill(); });
+document.addEventListener("keydown", (ev) => {
+  if (ev.key !== "Escape") return;
+  if (document.getElementById("drill").classList.contains("on")) closeDrill();
+  else if (state.panel) { state.panel = null; render(); }
+});
+
+/* ================= chart titles / scope (unit trap fix) ================= */
+function chartTitle() {
+  if (state.view === "live") return ["Concurrent viewers by minute", "from Restream · newest episode highlighted, priors in gray — click a strip card to focus one"];
+  if (state.mode === "standings") return ["Total views by episode", "YouTube views + X broadcast plays (all video playback) · ◐ = partial plays coverage"];
+  if (state.mode === "race") return ["Pacing race — YouTube views only", "X plays have no history before 08/21, so this race is YT-scoped · cumulative " + (state.byDate ? "by calendar date" : "since premiere")];
+  return ["Weekly gains — YouTube views only", "views gained per week · X plays have no weekly history yet"];
+}
+
+/* ================= charts ================= */
+function seriesFor(e) {
+  const prem = premiereMs(e.premiere);
+  const pts = [];
+  if (state.mode === "race") {
+    for (const s of e.snapshots) {
+      const t = Date.parse(s.ts);
+      pts.push(state.byDate
+        ? { x: t, y: sum(s.byDest), meta: { ts: s.ts, split: splitOf(s.byDest) } }
+        : { x: Math.round(((t - prem) / DAY) * 10) / 10, y: sum(s.byDest), meta: { ts: s.ts, day: (t - prem) / DAY, split: splitOf(s.byDest) } });
+    }
+  } else {
+    for (let i = 0; i < e.weekly.length; i++) {
+      const cur = e.weekly[i].byDest;
+      const prev = i === 0 ? null : e.weekly[i-1].byDest;
+      const first = i === 0;
+      const split = first ? splitOf(cur) : splitDelta(cur, prev);
+      pts.push({
+        x: state.byDate ? Date.parse(e.weekly[i].boundary) : e.weekly[i].week,
+        y: YT_KEYS.reduce((a,k) => a + (split[k] || 0), 0),
+        meta: { ts: e.weekly[i].boundary, week: e.weekly[i].week, split,
+          note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null }
+      });
+    }
+  }
+  return pts;
+}
+
+const endLabels = {
+  id: "endLabels",
+  afterDatasetsDraw(chart) {
+    if (chart.config.type !== "line") return;
+    const { ctx, chartArea } = chart;
+    const placed = [];
+    const items = [];
+    chart.data.datasets.forEach((ds, i) => {
+      const meta = chart.getDatasetMeta(i);
+      if (meta.hidden || !meta.data.length || ds.spark) return;
+      const pt = meta.data[meta.data.length - 1];
+      items.push({ x: pt.x, y: pt.y, text: "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
+    });
+    items.sort((a, b) => a.y - b.y);
+    ctx.save();
+    ctx.font = `700 12px ${FONT}`;
+    for (const it of items) {
+      let y = it.y;
+      for (const p of placed) if (Math.abs(y - p) < 15) y = p + 15;
+      placed.push(y);
+      const lx = Math.min(it.x + 8, chartArea.right + 4);
+      if (Math.abs(y - it.y) > 6) {
+        // leader line: keep a displaced label attached to its series
+        ctx.strokeStyle = it.color; ctx.lineWidth = 1; ctx.globalAlpha = 0.6;
+        ctx.beginPath(); ctx.moveTo(it.x + 2, it.y); ctx.lineTo(lx - 2, y - 4); ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+      ctx.fillStyle = it.color;
+      ctx.fillText(it.text, lx, y + 4);
+    }
+    ctx.restore();
+  }
+};
+
+const barTotals = {
+  id: "barTotals",
+  afterDatasetsDraw(chart) {
+    if (chart.config.options.indexAxis !== "y") return;
+    const { ctx } = chart;
+    const eps = chart.config._ordered || [];
+    ctx.save();
+    ctx.font = `700 12px ${FONT}`;
+    ctx.textBaseline = "middle";
+    const lastMeta = chart.getDatasetMeta(chart.data.datasets.length - 1);
+    eps.forEach((e, i) => {
+      const bar = lastMeta.data[i];
+      if (!bar) return;
+      const tvi = e.latest.totalViewsInfo || {};
+      const mark = tvi.partial ? " ◐" : "";
+      ctx.fillStyle = state.solo && state.solo !== e.slug ? DIMLINE : "#e8ecf4";
+      ctx.fillText(nfmt(e.latest.totalViews ?? 0) + mark, bar.x + 8, bar.y);
+    });
+    ctx.restore();
+  }
+};
+
+function externalTooltip(context) {
+  const { chart, tooltip } = context;
+  const el = document.getElementById("tt");
+  if (!tooltip.opacity || !tooltip.dataPoints?.length) { el.style.opacity = 0; return; }
+  const isLive = state.view === "live";
+  const isStandings = !isLive && state.mode === "standings";
+  const isDelta = !isLive && state.mode === "delta";
+  let html = "";
+
+  if (isStandings) {
+    // index mode: one hover reads the whole stack — every channel + total
+    const idx = tooltip.dataPoints[0].dataIndex;
+    const ep = (chart.config._ordered || [])[idx];
+    if (!ep) { el.style.opacity = 0; return; }
+    const bd = ep.latest.byDest || {};
+    html = `<div class="h"><span class="sq dot" style="background:${color(ep)}"></span>${esc(label(ep))}</div>`;
+    html += `<div class="big">${nfmt(ep.latest.totalViews ?? 0)} <small style="font-weight:500;color:var(--t3)">total views</small></div>`;
+    html += `<div class="div"></div>`;
+    const rows = [
+      ["yt:joindiveclub", bd["yt:joindiveclub"]?.views, "views"],
+      ["yt:designertom", bd["yt:designertom"]?.views, "views"],
+      ["x:ridd_design", bd["x:ridd_design"]?.plays, "plays"],
+      ["x:designertom", bd["x:designertom"]?.plays, "plays"],
+    ];
+    for (const [k, v, unit] of rows) {
+      html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)} <span style="color:var(--t3);font-size:10px">${unit}</span></span></div>`;
+    }
+    const tvi = ep.latest.totalViewsInfo || {};
+    if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
+  } else {
+    const item = tooltip.dataPoints[0];
+    const ds = item.dataset, e = ds.episode, p = item.raw;
+    html = `<div class="h"><span class="sq dot" style="background:${color(e)}"></span>${esc(label(e))}</div>`;
+    if (isLive) {
+      html += `<div class="meta">Minute ${p.x}</div>`;
+      html += `<div class="big">${p.y} watching</div>`;
+      html += `<div class="chg">Chat: ${nfmt(p.meta.ct ?? 0)} messages so far${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
+      const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#d7dbe0", "X #2": "#59b0ff" };
+      const chans = Object.entries(p.meta.byChan || {});
+      if (chans.length) {
+        html += `<div class="div"></div>`;
+        for (const [l, v] of chans) html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${esc(l)}<span class="val">${v}</span></div>`;
+        html += `<div class="chg" style="margin-top:5px">Restream total across all simulcast destinations</div>`;
+      }
+    } else {
+      if (p.meta.week !== undefined) html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
+      else html += `<div class="meta">Day ${Math.round(p.meta.day ?? 0)} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
+      html += `<div class="big">${nfmt(p.y)} YT views${isDelta ? " gained" : ""}</div>`;
+      if (!isDelta && item.dataIndex > 0) {
+        const prev = ds.data[item.dataIndex - 1].y;
+        const d = p.y - prev;
+        if (d !== 0) html += `<div class="chg">${d >= 0 ? "+" : ""}${nfmt(d)}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}</div>`;
+      }
+      if (p.meta.split) {
+        html += `<div class="div"></div>`;
+        for (const k of YT_KEYS) {
+          const v = p.meta.split[k] ?? 0;
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && p.meta.note === null && v >= 0 ? "+" : ""}${nfmt(v)}</span></div>`;
+        }
+      }
+      if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
+    }
+  }
+
+  el.innerHTML = html;
+  el.style.opacity = 1;
+  const box = chart.canvas.parentNode;
+  const x = Math.min(Math.max(tooltip.caretX, 120), box.clientWidth - 130);
+  const above = tooltip.caretY > 190;
+  el.style.left = x + "px";
+  el.style.top = (tooltip.caretY + (above ? -14 : 14)) + "px";
+  el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
+}
+
+let chart;
+function renderStandings() {
+  const ordered = [...EPS].reverse(); // newest bar on top — the anchor position
+  const SEGS = [
+    ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views || 0],
+    ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views || 0],
+    ["x:ridd_design", (e) => e.latest.byDest["x:ridd_design"]?.plays || 0],
+    ["x:designertom", (e) => e.latest.byDest["x:designertom"]?.plays || 0],
+  ];
+  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "33" : hex;
+  const cfg = {
+    type: "bar",
+    data: {
+      labels: ordered.map(e => "E" + e.ep),
+      datasets: SEGS.map(([key, val]) => ({
+        label: TT_NAME[key],
+        key,
+        data: ordered.map(val),
+        backgroundColor: ordered.map(e => dim(PLAT_COLORS[key], e)),
+        borderColor: "#12161f", borderWidth: 1.5, // surface gap between segments
+        borderSkipped: false, borderRadius: 2,
+        barThickness: 22,
+      })),
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      layout: { padding: { right: 64 } },
+      interaction: { mode: "index", axis: "y", intersect: false },
+      scales: {
+        x: { stacked: true, beginAtZero: true, ticks: { color: "#8a94a8", callback: v => kfmt(v) }, grid: { color: GRID } },
+        y: { stacked: true, ticks: { color: "#b7c1d1", font: { weight: 700 } }, grid: { display: false } },
+      },
+      plugins: {
+        legend: { display: true, position: "bottom", labels: { color: "#8a94a8", boxWidth: 10, boxHeight: 10, padding: 14 } },
+        tooltip: { enabled: false, external: externalTooltip },
+      },
+      onClick: (_, els) => {
+        if (!els.length) return;
+        const e = ordered[els[0].index];
+        const same = state.solo === e.slug;
+        state.solo = same ? null : e.slug;
+        state.panel = same ? null : e.slug;
+        render();
+      },
+    },
+    plugins: [barTotals],
+  };
+  cfg._ordered = ordered;
+  return cfg;
+}
+
+function render() {
+  const isLive = state.view === "live";
+  const [t, s] = chartTitle();
+  document.getElementById("ctitle").textContent = t;
+  document.getElementById("cscope").textContent = s;
+
+  buildHero();
+  buildStrip();
+  buildPanel();
+  buildTable();
+  buildEmptyNote();
+  syncUI();
+
+  if (state.table) { if (chart) { chart.destroy(); chart = null; } return; }
+
+  if (!isLive && state.mode === "standings") {
+    const cfg = renderStandings();
+    if (chart) chart.destroy();
+    chart = new Chart(document.getElementById("chart"), cfg);
+    chart.config._ordered = cfg._ordered;
+    document.getElementById("tt").style.opacity = 0;
+    return;
+  }
+
+  const isDelta = !isLive && state.mode === "delta";
+  const isCal = !isLive && state.byDate;
+  const isRace = !isLive && state.mode === "race" && !isCal;
+  const source = isLive ? EPS.filter(e => e.live) : EPS;
+
+  const datasets = source.map((e) => {
+    const isNewest = e.slug === NEWEST.slug;
+    const soloed = state.solo === e.slug;
+    const hidden = state.solo !== null && !soloed;
+    // live view: emphasis form — newest keeps its color, priors recede to one
+    // context gray until soloed (identity stays one click/hover away)
+    const deemph = isLive && !isNewest && !soloed;
+    return {
+      label: label(e),
+      epNum: e.ep,
+      slug: e.slug,
+      data: isLive ? e.live.series.map(p => ({ x: p.m, y: p.v, meta: p })) : seriesFor(e),
+      borderColor: deemph ? DIMLINE : color(e),
+      labelColor: deemph ? "#5a6478" : color(e),
+      backgroundColor: (deemph ? DIMLINE : color(e)) + (isDelta ? "dd" : "22"),
+      borderWidth: soloed || isNewest ? 3 : 2,
+      pointRadius: 0,
+      pointHoverRadius: 5,
+      tension: 0.3, spanGaps: false, hidden,
+      episode: e,
+      order: isNewest ? 0 : 1, // newest drawn on top
+      barThickness: isDelta ? 14 : undefined,
+    };
+  });
+
+  const cfg = {
+    type: isDelta ? "bar" : "line",
+    data: { datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      layout: { padding: { right: isDelta ? 8 : 34 } },
+      interaction: { mode: "nearest", intersect: false },
+      scales: {
+        x: {
+          type: "linear",
+          ticks: {
+            color: "#8a94a8",
+            stepSize: isRace ? 7 : (isDelta && !isCal ? 1 : undefined),
+            callback: v => {
+              if (isLive) return v;
+              if (isCal) return fmtDate(v);
+              if (isRace) return v === 0 ? "premiere" : (v % 7 === 0 && v > 0 ? `${v/7} wk${v/7 > 1 ? "s" : ""}` : "");
+              return Number.isInteger(v) ? "week " + (v + 1) : "";
+            },
+            maxTicksLimit: isCal ? 9 : 24,
+          },
+          grid: { color: GRID },
+          offset: isDelta,
+          title: { display: isLive, text: "Minutes into the show", color: "#8a94a8" },
+        },
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: isLive ? "Concurrent viewers" : "YouTube views", color: "#8a94a8" },
+          ticks: { color: "#8a94a8", callback: v => kfmt(v) },
+          grid: { color: GRID },
+        },
+      },
+      plugins: {
+        legend: { display: false }, // the episode strip directly above is the legend
+        tooltip: { enabled: false, external: externalTooltip },
+      },
+      onClick: (_, els, ch) => {
+        if (!els.length) return;
+        const ds = ch.data.datasets[els[0].datasetIndex];
+        const same = state.solo === ds.slug;
+        state.solo = same ? null : ds.slug;
+        state.panel = same ? null : ds.slug;
+        render();
+      },
+    },
+    plugins: [endLabels],
+  };
+
+  if (chart) chart.destroy();
+  chart = new Chart(document.getElementById("chart"), cfg);
+  document.getElementById("tt").style.opacity = 0;
+}
+
+/* ================= table view (Layer 3: every value, no hover needed) ================= */
+function buildTable() {
+  const box = document.getElementById("tablebox");
+  if (!state.table) { box.style.display = "none"; return; }
+  const isLive = state.view === "live";
+  let html = "<table><tr>";
+  if (isLive) {
+    html += "<th>Episode</th><th>Peak live</th><th>Avg</th><th>Chat msgs</th><th>Chatters</th><th>Duration</th></tr>";
+    for (const e of [...EPS].reverse()) {
+      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += e.live
+        ? `<td class="t">${e.live.peak}</td><td>${e.live.avg}</td><td>${nfmt(e.live.chatMessages)}</td><td>${nfmt(e.live.chatters)}</td><td>${e.live.durationMin ?? "–"} min</td>`
+        : `<td colspan="5" style="text-align:left;color:var(--t3)">no live data</td>`;
+      html += "</tr>";
+    }
+  } else {
+    html += "<th>Episode</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>X reach</th><th>Pace (YT)</th></tr>";
+    for (const e of [...EPS].reverse()) {
+      const bd = e.latest.byDest || {};
+      const mk = heroMarker(e);
+      const pace = sameAgeSub(e);
+      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<td class="t">${nfmt(e.latest.totalViews ?? 0)}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
+      html += `<td>${nfmt(bd["yt:joindiveclub"]?.views ?? 0)}</td><td>${nfmt(bd["yt:designertom"]?.views ?? 0)}</td>`;
+      html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
+      html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
+      html += `<td>${nfmt(e.latest.xImpressions ?? 0)}</td>`;
+      html += `<td>${pace ? (pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%" : "–"}</td></tr>`;
+    }
+  }
+  html += "</table>";
+  box.innerHTML = html;
+  box.style.display = "";
+}
+
+/* M-1: the per-week view silently rendered nothing for episodes first tracked
+   this week — say so instead of showing an unexplained empty state. */
+function buildEmptyNote() {
+  const el = document.getElementById("emptynote");
+  el.style.display = "none";
+  if (state.view === "live" || state.mode !== "delta" || state.table) return;
+  const missing = EPS.filter(e => !e.weekly || e.weekly.length === 0);
+  if (!missing.length) return;
+  const next = new Date(mondayNoonAfter(Date.now()) - PHX);
+  const when = next.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  el.textContent = `${missing.map(e => "E" + e.ep).join(", ")} ${missing.length === 1 ? "was" : "were"} first tracked this week — weekly bars appear after the next Monday-noon boundary (${when}).`;
+  el.style.display = "";
+}
+function mondayNoonAfter(ms) {
+  const shifted = new Date(ms - PHX);
+  const noon = Date.UTC(shifted.getUTCFullYear(), shifted.getUTCMonth(), shifted.getUTCDate(), 12) + PHX;
+  const dow = shifted.getUTCDay();
+  let candidate = noon - ((dow + 6) % 7) * DAY;
+  while (candidate <= ms) candidate += WEEK;
+  return candidate;
+}
+
+/* ============ insights: readable claims, recommendation one click away ============ */
+function applyChartState(cs) {
+  state.view = cs.view || "growth";
+  if (cs.view === "live") { state.mode = "standings"; }
+  else {
+    const chartKind = cs.chart || (cs.yMode === "delta" || cs.xMode === "calendar" ? "trajectory" : "standings");
+    state.mode = chartKind === "standings" ? "standings" : (cs.yMode === "delta" ? "delta" : "race");
+    state.byDate = cs.xMode === "calendar";
+  }
+  state.solo = cs.solo || null;
+  state.panel = null;
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function buildInsightsPanel() {
+  const panel = document.getElementById("insights");
+  panel.innerHTML = "";
+  const all = DATA.insights
+    .filter(i => i.id !== "pace-rank") // pace-rank lives in the hero verdict
+    .map(i => ({ ...i, cat: catKeyFor(i) }))
+    .sort((a, b) => (CAT_RANK[a.cat] ?? 9) - (CAT_RANK[b.cat] ?? 9));
+
+  // top 3: the first insight of each category in priority order — one decision
+  // per lane, not three variations of the same lane
+  const top = [];
+  for (const key of Object.keys(CATS)) {
+    const first = all.find(i => i.cat === key && !top.includes(i));
+    if (first) top.push(first);
+    if (top.length === 3) break;
+  }
+  const rest = all.filter(i => !top.includes(i));
+
+  const add = (ins, container) => {
+    const cat = CATS[ins.cat];
+    const div = document.createElement("div");
+    div.className = "insight";
+    const hasMore = !!(ins.recommendation || ins.caveat);
+    div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span>
+      <span class="body"><div class="cat" style="color:${cat.color}">${cat.name}</div>
+      <span class="txt">${esc(ins.text)}</span>
+      ${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}
+      ${ins.recommendation ? `<div class="rec"><b>RECOMMENDATION</b>${esc(ins.recommendation)}</div>` : ""}</span>
+      ${hasMore ? `<span class="more">▾</span>` : ""}`;
+    if (hasMore) div.addEventListener("click", () => {
+      div.classList.toggle("open");
+      const m = div.querySelector(".more");
+      if (m) m.textContent = div.classList.contains("open") ? "▴" : "▾";
+    });
+    container.appendChild(div);
+  };
+
+  for (const ins of top) add(ins, panel);
+
+  if (rest.length) {
+    const btn = document.createElement("button");
+    btn.className = "expander";
+    btn.textContent = state.allInsights ? "Show top 3 only" : `All ${all.length} insights ▾`;
+    btn.addEventListener("click", () => { state.allInsights = !state.allInsights; buildInsightsPanel(); });
+    if (state.allInsights) {
+      let lastCat = null;
+      for (const ins of rest) {
+        if (ins.cat !== lastCat) {
+          lastCat = ins.cat;
+          const h = document.createElement("div");
+          h.className = "cat-head";
+          h.textContent = CATS[ins.cat].name;
+          panel.appendChild(h);
+        }
+        add(ins, panel);
+      }
+    }
+    panel.appendChild(btn);
+  }
+}
+
+/* ================= about ================= */
+function buildAbout() {
+  document.getElementById("about").innerHTML = `
+  <p><b>Total views</b> = YouTube views (both channels) + X broadcast plays (both hosts). Both count video playback — YouTube counts a qualified view (~30s), X counts a play start, so treat the sum as directional.</p>
+  <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
+  <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the high-water figure is kept — absence is never shown as zero). <b>late reg</b> = the episode was registered late: cumulative totals are correct, early weekly history doesn't exist, and it is excluded from velocity/decay baselines.</p>
+  <p><b>Pace</b> compares YouTube views at the same age across episodes (X plays have no history before 08/21, so a blended pace would fabricate a disadvantage for older episodes).</p>
+  <p><b>Comment sentiment</b> is a deterministic wordlist (v1) over collected YouTube comments and X replies, classified once per comment and never silently reclassified. Sarcasm reads literally; counts are directional. Host comments are excluded at collection.</p>
+  <p><b>Cadence</b>: snapshots daily (07:25 Phoenix), full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
+}
+
+/* ================= sync / events ================= */
 function syncUI() {
   const isLive = state.view === "live";
-  const isTraj = !isLive && state.chart === "trajectory";
+  const isTraj = !isLive && state.mode !== "standings";
   for (const b of document.querySelectorAll("#view button")) b.classList.toggle("on", b.dataset.v === state.view);
-  for (const b of document.querySelectorAll("#cmode button")) b.classList.toggle("on", b.dataset.v === state.chart);
-  for (const b of document.querySelectorAll("#xmode button")) b.classList.toggle("on", b.dataset.v === state.xMode);
-  for (const b of document.querySelectorAll("#ymode button")) b.classList.toggle("on", b.dataset.v === state.yMode);
-  for (const el of document.querySelectorAll(".growth-only")) el.style.display = isLive ? "none" : "";
-  for (const el of document.querySelectorAll(".traj-only")) el.style.display = isTraj ? "" : "none";
-  document.getElementById("hint").textContent = isLive ? HINTS.live : HINTS[state.chart];
-  for (const c of document.querySelectorAll(".card")) {
+  for (const b of document.querySelectorAll("#mode button")) b.classList.toggle("on", b.dataset.v === state.mode);
+  document.querySelector("#mode").style.display = isLive ? "none" : "";
+  const bd = document.getElementById("bydate");
+  bd.style.display = isTraj ? "" : "none";
+  bd.classList.toggle("on", state.byDate);
+  document.getElementById("tbtn").classList.toggle("on", state.table);
+  document.getElementById("tbtn").textContent = state.table ? "chart" : "table";
+  document.getElementById("chartbox").style.display = state.table ? "none" : "";
+  for (const c of document.querySelectorAll(".sitem")) {
     c.classList.toggle("solo", state.solo === c.dataset.slug);
     c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
-  }
-  // verdict adapts to the active view
-  const v = document.getElementById("verdict");
-  if (isLive) {
-    const live = DATA.insights.find(i => i.id === "live-peak");
-    v.innerHTML = live
-      ? `<b>Live:</b> ${live.text.replace(/^Live turnout:\s*/, "")}`
-      : `<b>Live session</b> metrics from Restream.`;
-  } else {
-    const pace = DATA.insights.find(i => i.id === "pace-rank");
-    v.innerHTML = pace
-      ? `<b>E${NEWEST.ep} — ${short(NEWEST.title)}:</b> ${pace.text.replace(/^[^:]*? is /, "")}`
-      : `<b>E${NEWEST.ep} — ${short(NEWEST.title)}</b> is the latest episode.`;
   }
 }
 
 document.getElementById("view").addEventListener("click", e => {
-  if (e.target.dataset.v) { state.view = e.target.dataset.v; state.solo = null; render(); }
+  if (e.target.dataset.v && e.target.dataset.v !== state.view) {
+    state.view = e.target.dataset.v; state.solo = null; state.panel = null; render();
+  }
 });
-document.getElementById("cmode").addEventListener("click", e => {
-  if (e.target.dataset.v) { state.chart = e.target.dataset.v; render(); }
+document.getElementById("mode").addEventListener("click", e => {
+  if (e.target.dataset.v) { state.mode = e.target.dataset.v; render(); }
 });
-document.getElementById("xmode").addEventListener("click", e => {
-  if (e.target.dataset.v) { state.xMode = e.target.dataset.v; render(); }
-});
-document.getElementById("ymode").addEventListener("click", e => {
-  if (e.target.dataset.v) { state.yMode = e.target.dataset.v; render(); }
-});
+document.getElementById("bydate").addEventListener("click", () => { state.byDate = !state.byDate; render(); });
+document.getElementById("tbtn").addEventListener("click", () => { state.table = !state.table; render(); });
+// reset is scoped to the current tab (it no longer teleports Live → Growth)
 document.getElementById("reset").addEventListener("click", () => {
-  state.view = "growth"; state.chart = "standings"; state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
+  state.mode = "standings"; state.byDate = false; state.solo = null; state.panel = null; state.table = false;
   render();
 });
 
-// Insight categories — fixed colors (distinct roles, not platform colors),
-// icon carries the category at a glance, label confirms it.
-// Category colors are their own hue family — deliberately NOT the platform
-// colors (#ff4f5e/#ffa14f/#d7dbe0/#59b0ff) or episode palette, so category
-// badges never read as chart data (review H-5).
-const CATS = {
-  momentum:   { name: "Momentum",   color: "#a8b339", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 16 9 7 13 12 21 12"/></svg>` },
-  platforms:  { name: "Platforms",  color: "#32b5ae", svg: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="5" width="18" height="5" rx="1.5"/><rect x="3" y="14" width="11" height="5" rx="1.5"/></svg>` },
-  conversion: { name: "Conversion", color: "#b168d6", svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8v7l-4-3v-4L3 4z"/></svg>` },
-  hosts:      { name: "Hosts",      color: "#b07aa8", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="8.5" cy="12" r="4.5"/><circle cx="15.5" cy="12" r="4.5"/></svg>` },
-  outlier:    { name: "Outlier",    color: "#ffb020", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 21.5 20h-19L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg>` },
-  engagement: { name: "Engagement", color: "#4ade80", svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.6-9.3-9C1 7.5 3 4.5 6.2 4.5c2 0 3.3 1 4.3 2.4 1-1.4 2.3-2.4 4.3-2.4 3.2 0 5.2 3 3.5 6.5C19 15.4 12 20 12 20z"/></svg>` },
-  live:       { name: "Live",       color: "#d946ef", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M7.6 7.6a6.2 6.2 0 0 0 0 8.8M16.4 7.6a6.2 6.2 0 0 1 0 8.8"/></svg>` },
-  note:       { name: "Data note",  color: "#8b95a7", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/></svg>` },
-};
-function catFor(id) {
-  if (id === "flatline") return CATS.momentum;
-  if (id === "platform-phase" || id === "watch-split") return CATS.platforms;
-  if (id === "reach-conversion") return CATS.conversion;
-  if (id === "host-split" || id === "host-plays-split") return CATS.hosts;
-  if (id.startsWith("anomaly")) return CATS.outlier;
-  if (id === "engagement") return CATS.engagement;
-  if (id.startsWith("live")) return CATS.live;
-  return CATS.note;
-}
-
-const panel = document.getElementById("insights");
-for (const ins of DATA.insights) {
-  if (ins.id === "pace-rank") continue;
-  const cat = catFor(ins.id);
-  const div = document.createElement("div");
-  div.className = "insight";
-  div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span><span class="body"><div class="cat" style="color:${cat.color}">${cat.name}</div>${ins.text} <span class="go">show me →</span></span>`;
-  div.addEventListener("click", () => {
-    const cs = ins.chartState || {};
-    state.view = cs.view || "growth";
-    // unit-based routing (review H-2): each insight declares which chart can
-    // actually show its claim; fallback is standings (the only all-units view)
-    state.chart = cs.chart || (cs.yMode === "delta" || cs.xMode === "calendar" ? "trajectory" : "standings");
-    state.xMode = cs.xMode || "weeks";
-    state.yMode = cs.yMode || "cumulative";
-    state.solo = cs.solo || null;
-    render();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-  panel.appendChild(div);
-}
-
 document.getElementById("stamp").textContent =
-  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC · updates daily, full refresh Mondays`;
+  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC · updates daily`;
 
+buildAbout();
+buildInsightsPanel();
 render();
 </script>
 </body>
