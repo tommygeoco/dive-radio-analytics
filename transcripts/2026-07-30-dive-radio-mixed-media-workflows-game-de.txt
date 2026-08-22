@@ -1,0 +1,3472 @@
+Dive Radio E3 — Mixed Media Workflows, Game Design, + Live Call-Ins
+Aired: 2026-07-30 · YouTube: https://youtube.com/watch?v=szvTFybWfK4
+Source: YouTube auto-captions (pulled 2026-08-22, timestamped re-pull). No speaker labels; auto-transcription — verify quotes against video.
+
+00:00:02  [music]
+00:01:59  >> Mhm.
+00:02:39  >> [music]
+00:02:48  [music]
+00:03:18  >> And desire for people to just see
+00:03:20  workflows and kind of the different
+00:03:22  experiments that people are running and
+00:03:24  the different learnings that others
+00:03:25  have.
+00:03:27  have.
+00:03:28  Twilling kind of increases our capacity
+00:03:30  in the day. We have more things we can
+00:03:32  do now because of twilling makes those
+00:03:34  kind of road things easier.
+00:03:37  I'm able to go through the spectrum of
+00:03:40  exploration that is so much larger than
+00:03:42  I could do in a day and I can do it in
+00:03:44  minutes.
+00:03:47  minutes.
+00:03:47  Agents are using tools.
+00:03:50  What does that look like and what does
+00:03:51  that mean?
+00:03:53  that mean?
+00:03:53  Show up, try things, be curious.
+00:03:56  I think the future is bright, but it has
+00:03:58  to be built.
+00:04:00  I always see things that I didn't plan
+00:04:01  on seeing. I'm making like decisions
+00:04:04  that I didn't have a grid for a year
+00:04:05  ago, and it's only because of the
+00:04:07  ability today I can see.
+00:04:09  I feel like there's this binary thinking
+00:04:11  that like AI means fully automated. It's
+00:04:13  like, no, in fact, I think some of the
+00:04:14  better work will be the ones that aren't
+00:04:16  fully automated.
+00:04:17  The ability to effectively multi-task at
+00:04:21  a really high level is one of the core
+00:04:23  skills of operating in this like AI
+00:04:26  world.
+00:04:27  world.
+00:04:27  No uh no preconceived notions about how
+00:04:29  things should be done.
+00:04:31  This is the moment in time right now to
+00:04:34  reap the rewards of being publicly
+00:04:36  curious.
+00:04:37  curious.
+00:04:37  >> What do you do with the question, what
+00:04:39  if?
+00:04:40  if?
+00:04:40  >> Hey guys.
+00:04:40  >> Hi.
+00:04:41  >> What's up, design fam?
+00:04:42  >> This is Corey Park.
+00:04:43  >> Jenny Wen.
+00:04:43  >> This is Selayo, and you're listening
+00:04:45  >> And you're listening to the Dive
+00:04:46  >> Dive
+00:04:47  >> Dive radio show.
+00:04:53  >> Nah.
+00:04:54  That's not red.
+00:04:56  >> [snorts]
+00:04:56  [laughter]
+00:04:58  [laughter]
+00:04:58  >> Nailed it.
+00:04:59  >> Start.
+00:04:59  >> Nailed it.
+00:05:00  >> Start.
+00:05:01  >> [laughter]
+00:05:01  >> Goodness.
+00:05:03  Uh
+00:05:04  Uh
+00:05:04  >> Red, you missed it. In the intro,
+00:05:06  [clears throat]
+00:05:07  and someone said, "What's with the logo
+00:05:08  on logo on logo?" I agree, I need to
+00:05:11  space them out. Brought in a couple
+00:05:13  elements from new partners of the show,
+00:05:17  who we'll be talking about over the next
+00:05:18  few weeks, Notion, Lovable, and Mobbin.
+00:05:22  Very, very happy uh to have tools that
+00:05:25  we already use in our kit partnering
+00:05:27  with us. Uh thank you for that.
+00:05:30  To the three of them.
+00:05:32  Yes, yes, yes. How you doing, man?
+00:05:35  >> Good, dude. Excited to be here. I also
+00:05:37  love the element of this show that is
+00:05:41  in the hours and minutes leading up to
+00:05:43  going live, we're always just having
+00:05:45  Fable or Opus just spin on something in
+00:05:48  the background. Like there's this
+00:05:49  frantic energy about the start of this
+00:05:52  that fuels me, man. This is going to be
+00:05:54  fun. I didn't expect to like be building
+00:05:56  and experimenting so much just as a part
+00:05:58  of the core show itself, but this will
+00:05:59  be fun.
+00:06:00  be fun.
+00:06:00  >> There's There was some talk earlier this
+00:06:02  year which was like the way software can
+00:06:04  be built now has so many other more
+00:06:07  ephemeral uses. The way you like you can
+00:06:09  bring community into a software idea and
+00:06:13  I'm noticing with this show I'm always
+00:06:14  like trying to spin something up and it
+00:06:16  feels like we're giving a live demo that
+00:06:19  we've never even tested yet and I think
+00:06:21  we're probably going to continue that
+00:06:22  trend today.
+00:06:23  >> I like it. I'm here for it.
+00:06:26  >> Awesome.
+00:06:27  I want to kick off right away as we're
+00:06:29  going to do with our designer of the
+00:06:31  week voting. Because that seems really
+00:06:34  cool and I'm loving how many people in
+00:06:36  the community are getting involved in
+00:06:38  sending submissions for like no, no, no,
+00:06:39  I want to nominate somebody.
+00:06:41  And we're going to kick right off.
+00:06:43  Voting will happen all through the show
+00:06:45  and we will announce the winner by the
+00:06:47  end.
+00:06:48  end.
+00:06:48  With
+00:06:50  With
+00:06:50  I like this. I like this better. Here we
+00:06:53  go.
+00:06:53  go.
+00:06:53  >> Nice.
+00:06:54  >> All right. Here we go.
+00:06:55  >> Hey Dive Radio, it's Pedro from Raycast
+00:06:58  and Glaze and thanks Rob for the
+00:07:00  nomination. I'd like to recommend
+00:07:02  Daniela Munca. She's an amazing designer
+00:07:05  and builder currently working at Figma
+00:07:09  where she's helped build Figma motion
+00:07:12  and she's been doing some crazy stuff
+00:07:13  with shaders. She's also been building
+00:07:16  her own apps, Biscuit Camera which is a
+00:07:18  really cool way to take photos on your
+00:07:20  phone. That was her first solo iOS
+00:07:23  project. And Mia Calendar, a handwritten
+00:07:26  canvas calendar that is a great way to
+00:07:28  store your memories. Her sensitivity to
+00:07:31  design is really refreshing and on top
+00:07:34  of everything else she takes excellent
+00:07:37  analog photos. And now I'd like to
+00:07:39  nominate Danilo Campos, an insanely
+00:07:41  talented engineer at Resend, to share
+00:07:45  his current inspiration.
+00:07:46  >> Ooh.
+00:07:48  >> Did the nomination piece kind of happen
+00:07:49  organically? Was that just Robert
+00:07:51  started that?
+00:07:52  >> No, I I asked a couple of people.
+00:07:54  >> the seed. Okay, okay. You something have
+00:07:56  I kind of like it. I kind of like it.
+00:07:57  That's quickly becoming my favorite
+00:07:58  part.
+00:07:59  part.
+00:07:59  >> Rob took it to the next step and I think
+00:08:01  it's sticking up a fun little momentum.
+00:08:03  >> Yeah.
+00:08:04  >> Um but I have to say, if you do win
+00:08:06  you if you do win
+00:08:08  you got to pay it forward. You got to
+00:08:09  nominate someone and that's what he
+00:08:10  needs.
+00:08:11  needs.
+00:08:11  >> Yeah, I I like it. I love that
+00:08:12  recommendation, too. I wasn't familiar
+00:08:15  with like you know how you see people's
+00:08:17  work in isolation, but you don't connect
+00:08:19  it to like oh my gosh, that's one
+00:08:21  person, right? For me, that was the
+00:08:22  moment when uh they had the Glaze
+00:08:24  Awards. So many cool things came out of
+00:08:26  that like the
+00:08:28  And that calendar was really fresh. And
+00:08:32  so that kind of got me to be like, wait,
+00:08:33  who who is this? And then you start to
+00:08:36  realize, oh, I
+00:08:38  saved the kid and all this
+00:08:40  come
+00:08:40  come
+00:08:40  >> I take I take notes of when someone's
+00:08:42  work when they're like, you know, cuz we
+00:08:44  were talking about how people would be
+00:08:45  like, no, I'm this person on social
+00:08:47  media and I'll see an avatar, but if I
+00:08:48  see your if you're like, oh no, I made
+00:08:50  that thing and I connect that, yeah,
+00:08:52  that's a fun moment.
+00:08:53  >> Totally.
+00:08:54  >> Totally.
+00:08:55  >> Hi, my name is Eniola. I am honored to
+00:08:57  be the inaugural designer of the week on
+00:08:59  Dive Radio. And now I would love to pay
+00:09:01  this forward. My nominee is Melissa
+00:09:03  Seay. She spent 5 years at YouTube and
+00:09:06  Google and really understood what it
+00:09:08  meant to design experiences for hundreds
+00:09:10  of millions of users. And she digs into
+00:09:12  culture at scale. Now she's leading
+00:09:15  storytelling at Reeve and you can
+00:09:17  absolutely feel the palpable joy through
+00:09:19  each she designs and creates. For
+00:09:21  example, Reeve's latest campaign has
+00:09:24  captured the internet with such joyful,
+00:09:26  magnetic storytelling. And I believe
+00:09:28  Melissa's genuinely diverse background
+00:09:30  contributes to all of this. From product
+00:09:32  marketing to creative direction and even
+00:09:35  beyond that, she's deeply exploring new
+00:09:37  age typography, creative interfaces, and
+00:09:40  the future of how we all design. And all
+00:09:42  of these feed into work, and it's
+00:09:44  infectious. Every time her work pops up
+00:09:46  on the timeline, and I hope you enjoy
+00:09:48  seeing it, too.
+00:09:50  >> Eeni, I enjoy listening to you talk
+00:09:52  about topics.
+00:09:54  >> [laughter]
+00:09:54  >> I know.
+00:09:55  >> You have very good articulation, and
+00:09:56  it's uh awesome suggestion or nominee,
+00:09:59  rather.
+00:10:00  rather.
+00:10:00  >> Have you played with Reeve yet?
+00:10:01  >> [clears throat]
+00:10:02  >> I know what it is, and I have not.
+00:10:04  >> I have I mean, I've Everyone speaks very
+00:10:06  highly of it. It's like one of those
+00:10:08  things that's on my list where I'm like,
+00:10:09  I know I got to tinker with this thing.
+00:10:10  I just haven't gotten to it yet, but I
+00:10:12  think they're onto something.
+00:10:13  >> I I have a lot of thoughts about where a
+00:10:15  lot of this tooling is, cuz we're going
+00:10:17  to talk a lot about mixed media tooling
+00:10:19  and workflows today
+00:10:21  uh
+00:10:22  uh
+00:10:22  not long after this. Now, I think for
+00:10:24  these
+00:10:25  these
+00:10:25  designers of the week, last week we had
+00:10:28  five, I believe. I think we're going to
+00:10:29  keep it to a nice four.
+00:10:31  >> I like that.
+00:10:31  >> Um
+00:10:32  and and so that's typically, ideally, if
+00:10:34  these
+00:10:35  these
+00:10:35  uh nominee community contributions come
+00:10:38  in, two from the community, one from me,
+00:10:40  one from you. By the way, I am one and
+00:10:42  oh, Eeni was my nominee last week. Uh
+00:10:45  I'm not uh
+00:10:47  I'm not uh
+00:10:47  I'm not going to be quiet about that
+00:10:48  every week. Um
+00:10:50  but I I do want to go ahead and uh make
+00:10:52  my candidate
+00:10:54  recommendation. And I have talked about
+00:10:56  Sebastian in the past. He's climbing in
+00:10:59  the follower count. He's not quite
+00:11:01  >> Yeah, well deserved.
+00:11:02  >> Yeah, well deserved. And and all on
+00:11:04  work. All on sharing his work. Started
+00:11:07  sharing his work on Twitter, I think at
+00:11:09  the beginning of last year, if I'm not
+00:11:11  mistaken.
+00:11:12  mistaken.
+00:11:12  And I randomly stumbled upon him, and
+00:11:15  there are people who came up in the like
+00:11:18  iPhone era as these
+00:11:21  interaction designers who kind of like
+00:11:23  knew how to code and do these different
+00:11:25  things, and I'm not sure if Seb knows
+00:11:26  how to code, but he is what I consider a
+00:11:30  very uh
+00:11:32  very uh
+00:11:32  it What's the word I'm looking for? When
+00:11:34  I think of an interaction designer
+00:11:36  that's that's sub. And and it's the
+00:11:38  micro details and and the thing. So, I
+00:11:40  want to show this to you real quick
+00:11:42  because it's it's anything from like if
+00:11:45  this got motion, if it's got an ability
+00:11:47  to be
+00:11:48  to be
+00:11:48  uh
+00:11:49  uh
+00:11:49  Let's look at this. I probably should
+00:11:51  have prepped some of my favorites here.
+00:11:52  I didn't do that.
+00:11:53  >> [laughter]
+00:11:53  >> He he has like the There's like a I
+00:11:55  don't know what it is, but it's like
+00:11:56  pages. Like there's like a doc reader of
+00:11:58  sort.
+00:11:59  sort.
+00:11:59  >> Yeah, yeah, yeah. It was It was his doc
+00:12:01  reader that had just
+00:12:03  >> [clears throat]
+00:12:03  >> That project is really freaking good.
+00:12:06  Like I have saved multiple snapshots of
+00:12:08  that progress. Like over the last like 6
+00:12:10  months I just I save it all cuz it's
+00:12:12  really really good work.
+00:12:15  >> He takes things like productivity tools.
+00:12:17  And this is like one of the things,
+00:12:18  right? A lot of people work on
+00:12:20  productivity tools, and they will look
+00:12:23  at all the stuff that I typically like
+00:12:24  to share, the mixed media, kind of like
+00:12:27  not very strong on the conversion side,
+00:12:30  maybe not even a great UX occasionally.
+00:12:32  And he's somebody who rather than in the
+00:12:34  comments of those things says, "That's
+00:12:36  bad UX, and that's a terrible
+00:12:38  conversion." He says, "Hmm, I wonder
+00:12:40  what of that I could feasibly implement
+00:12:44  in a way that is positive UX, is
+00:12:46  positive conversion in something like a
+00:12:48  productivity tool." And he does it so
+00:12:51  well. So incredibly well.
+00:12:53  Um
+00:12:55  Um
+00:12:55  I I I just I can't I can't
+00:12:58  vouch for him enough. So, anyway, I've
+00:12:59  taken up my 60 seconds.
+00:13:00  >> Yeah, I was about to say, "Come on, get
+00:13:01  off the stage, man. You you can't
+00:13:03  You can't go You can't go two and 0
+00:13:05  today.
+00:13:06  today.
+00:13:06  >> That is okay. All right. What you got
+00:13:07  for us, Red?
+00:13:09  >> Um I got
+00:13:12  >> You don't have to share screen.
+00:13:13  >> Matt Sellers.
+00:13:16  >> Matt Sellers.
+00:13:18  >> Okay. So, this is also somebody that I
+00:13:20  have talked about before.
+00:13:22  Few things that I love about Matt. He
+00:13:25  self-proclaimed interface alchemist.
+00:13:28  Um I love his portfolio.
+00:13:30  I
+00:13:31  I
+00:13:31  this all at Lovable. I've talked about
+00:13:33  it at length. I think it's incredible.
+00:13:35  He just went above and beyond and really
+00:13:37  leaned all the way into this idea of
+00:13:39  what's the best way that I can create an
+00:13:41  experience around my work for people to
+00:13:43  consume and this hits, right? Like I
+00:13:45  literally saw multiple hiring managers
+00:13:47  experience clicking through this. It
+00:13:49  hits, I promise you. But, what is cool,
+00:13:53  I'm going to try to as seamlessly as
+00:13:55  possible
+00:13:56  possible
+00:13:56  uh share different tabs here. He's doing
+00:13:58  a few few things that I like. One
+00:14:01  is
+00:14:03  is
+00:14:03  if we head over here, uh
+00:14:05  he's working on this tool. And And
+00:14:07  there's like this category of tool I
+00:14:09  would consider like Agentation and
+00:14:11  Dialpad to be some of the early
+00:14:13  pioneers, but this idea of like the
+00:14:14  local widget that allows you to
+00:14:16  fine-tune UI And
+00:14:21  it's really, really cool, right? Like
+00:14:22  you you're able to he's just going all
+00:14:24  in on interaction design. Like how can
+00:14:26  we make it as seamless as possible to
+00:14:28  edit that? I love this. I think that
+00:14:30  we're still in the first inning of the
+00:14:32  explosion that is this type of tool. And
+00:14:35  then on top of that, the the reason that
+00:14:38  I I really want to shout it out is
+00:14:43  I've been clicking through Lovable
+00:14:45  and
+00:14:47  and
+00:14:47  um it's not going to let me share my
+00:14:48  screen on Lovable. There we go. Okay.
+00:14:50  Uh I've been clicking through
+00:14:52  Lovable recently. And you know, this is
+00:14:54  one of those companies that
+00:14:56  hyper-growth, they're just holding on
+00:14:58  for dear life kind of thing. I wouldn't
+00:14:59  necessarily say that it was a a
+00:15:01  well-crafted
+00:15:03  product, right? But, this dude got a job
+00:15:07  at Lovable I can't remember how many
+00:15:09  months ago through the talent network.
+00:15:10  Maybe it's like six plus months ago now.
+00:15:13  And man, you can see the impact that he
+00:15:16  is having. He had this color system he
+00:15:18  totally redid the color system that are
+00:15:21  are
+00:15:21  are
+00:15:21  And by uh he I've tried many times to
+00:15:24  copy this tab bar, but like it's just
+00:15:26  ridiculous the the level of of quality
+00:15:29  in all of these little tiny components
+00:15:32  and hover states. And also he's just a
+00:15:34  good dude. I was struggling with my own
+00:15:36  theming system for In Flight back in the
+00:15:38  day and the way that we met is he
+00:15:39  responded to my tweet asking for advice
+00:15:42  being like, "Hey, can I just I'll just
+00:15:44  help you." We got on a call. He pulled
+00:15:46  back the curtain on his entire Figma
+00:15:48  theming system, which was way more
+00:15:50  robust than anything I'd ever even
+00:15:51  sniffed. Like it was crazy how he was
+00:15:53  thinking about variables and shadows and
+00:15:55  theming. And he's just like, "Here's
+00:15:57  exactly how it works." I recorded the
+00:15:58  whole thing and I used it to build my
+00:15:59  own system. Just a good dude, so I
+00:16:01  wanted to formally shine a spotlight on
+00:16:04  him.
+00:16:05  him.
+00:16:05  >> Matt Sellers.
+00:16:06  Let's go, dude. I uh, love seeing that
+00:16:09  and I agree. Lovable has come a long way
+00:16:13  in their product offering. And so, uh,
+00:16:17  you can vote now. Uh, I guess I should
+00:16:19  probably put this one up. You can vote
+00:16:21  now at dive.radio/vote.
+00:16:24  This will be up until the end of the
+00:16:26  show and we'll announce the winner then.
+00:16:27  Um,
+00:16:28  Um,
+00:16:28  go give some love to your favorite I'm
+00:16:30  going to go vote right now, actually.
+00:16:31  >> I I was was yeah,
+00:16:32  >> [laughter]
+00:16:33  >> I'm not
+00:16:34  Trying to win, man.
+00:16:36  I'm going to start practicing my
+00:16:37  pitches.
+00:16:39  pitches.
+00:16:39  >> I know I need to do it better, but uh,
+00:16:41  Sebs, all right. We got some ties going
+00:16:43  on. We'll see what happens. Um,
+00:16:47  see what happens. See if I can go two
+00:16:49  for two.
+00:16:50  for two.
+00:16:50  Uh, I found that interesting that you
+00:16:52  called out something about his
+00:16:56  kind of Figma
+00:16:58  theming setup.
+00:17:01  I am rapidly moving through projects
+00:17:04  right now. And most of it's experimental
+00:17:06  stuff, so we can talk about it and and
+00:17:07  get a lay of the land.
+00:17:09  Um, but as I do that, I'm finding that
+00:17:12  I'm creating my own design systems. Like
+00:17:15  I have created three different design
+00:17:17  systems built for different use cases.
+00:17:19  One's kind of a game design system
+00:17:21  that's evolving. Another is
+00:17:24  a sort of notion-esque productivity type
+00:17:26  of design system, and then I've got
+00:17:28  another one.
+00:17:29  Um
+00:17:31  Um
+00:17:31  And the way that I'm using those is I
+00:17:33  create the the version I need to see. I
+00:17:35  I I should probably pull this up in a
+00:17:37  sec, but it's a lot of different visuals
+00:17:40  in the components, the typical way we
+00:17:42  consume design systems, and then it's
+00:17:44  the more markdown design MD, what
+00:17:47  Vercel's doing with this,
+00:17:49  >> [clears throat]
+00:17:50  >> so that agents can consume these design
+00:17:52  systems and use them.
+00:17:54  And I found this interesting to see
+00:17:55  cursors now creating kind of this
+00:17:58  the there's more pipelines coming out on
+00:18:00  how do you get your agent to very
+00:18:03  specifically understand how and when to
+00:18:05  use different components and parts of
+00:18:07  your design system, and how do you carry
+00:18:09  that across all the different tools that
+00:18:11  they use. Uh
+00:18:14  And I just wanted to call out the fact
+00:18:15  that cursors kind of thinking about
+00:18:16  this. A lot of companies have been
+00:18:17  thinking about this. I mean, this has
+00:18:19  been a a long-running
+00:18:21  problem space, but now this axis of how
+00:18:23  do you get your AI tooling to understand
+00:18:26  it is kind of this new invention. How
+00:18:28  are you guys Do you do you do anything
+00:18:29  like that? Is Is that a a thing you have
+00:18:31  wrapped in conductor, or what?
+00:18:33  >> I I have a design MD file that I've
+00:18:37  invested a good amount into that maps to
+00:18:41  tokens inside of paper, but the design
+00:18:43  MD file, like honestly, I don't even
+00:18:45  really need it for paper because all of
+00:18:47  that is native. So, whenever I'm doing
+00:18:49  um like prototyping stuff in paper, it's
+00:18:51  pretty good. Um but, I do a lot in HTML.
+00:18:56  And so, I've I've honestly invested most
+00:18:58  of my system in just helping me create
+00:19:00  really quick HTML prototypes that look
+00:19:02  and feel pretty real.
+00:19:03  >> Right.
+00:19:04  >> I still kind of have the feeling that
+00:19:05  there's like a lot more that I can do,
+00:19:07  though, and
+00:19:09  part of me is
+00:19:11  I guess like a trend that I didn't
+00:19:13  necessarily see coming is
+00:19:16  the idea of the built-in browser. Like
+00:19:18  how important the built-in browser is
+00:19:21  and what it unlocks for these IDEs like
+00:19:23  Cursor where
+00:19:24  it it you know that just being able to
+00:19:26  wrap Figma inside of it is pretty
+00:19:28  interesting. Magic has been doing that
+00:19:30  too. Cuz like for me, I don't really
+00:19:32  have
+00:19:34  have
+00:19:34  this in a local
+00:19:36  agent inside of my design tool because
+00:19:38  it's never going to be the source of
+00:19:40  truth for me. Like design is always
+00:19:41  going to be a thing that I am doing on
+00:19:45  as a part of my broader process with
+00:19:47  which ultimately is direct from the code
+00:19:49  base. I'm going to ship code. Like that
+00:19:51  is every single project that I start,
+00:19:52  every single bot chunk of work is always
+00:19:53  going to be I want to ship code and I'm
+00:19:56  going to use the canvas in a certain way
+00:19:57  in order to facilitate that. So my
+00:19:59  source of truth has to be tied to the
+00:20:00  code base. I don't want it locally. So
+00:20:02  this kind of stuff
+00:20:04  is interesting to me because I'm I'm way
+00:20:06  more compelled by the ability to
+00:20:09  wield Figma from Cursor as an adjacent
+00:20:13  chat to whatever I'm doing while
+00:20:14  building than I am like spin up one of
+00:20:16  their agents locally inside of Figma.
+00:20:19  >> Yeah.
+00:20:20  Yeah.
+00:20:21  Yeah.
+00:20:21  Uh this is probably a topic I'm going to
+00:20:23  talk a lot more about too. Uh we'll have
+00:20:25  a week kind of dedicated to this cuz I
+00:20:26  think this is a really interesting
+00:20:30  I think this is an area with a lot of
+00:20:31  different variations of workflows and
+00:20:33  I'd love to see it. Um I'm getting some
+00:20:35  feedback saying, "Hey, bump that volume
+00:20:37  up, Tommy, just to balance out a little
+00:20:38  bit. I probably need to speak up."
+00:20:41  That's why I love chat. Please let us
+00:20:42  know
+00:20:44  know
+00:20:44  how we can make it better
+00:20:46  and we are uh continuing to do our best.
+00:20:48  >> 1%. So first-time live listener
+00:20:52  Cope, what's up? Shawn Cope, yo. What is
+00:20:54  up, guys? This is I love this. This is
+00:20:56  such a cool way to hang out with people
+00:20:59  and talk about this stuff. Now, Rid
+00:21:01  we were talking about demos
+00:21:03  and you have a demo
+00:21:05  of something or other. This is uh one of
+00:21:08  one of your authored segments and I have
+00:21:10  no idea what it is. And I'm going to put
+00:21:12  you on the spot and say is it time?
+00:21:15  >> I think it is. I think it is. I've
+00:21:16  literally been like side eyeing Fable
+00:21:18  over here but like is it time? Is it
+00:21:19  time? And I just
+00:21:21  I just got the yes confirmed with fresh
+00:21:24  checks against the live domain. So
+00:21:26  >> We're going to test it live.
+00:21:29  >> [laughter]
+00:21:29  >> Last week it was the call in app that we
+00:21:31  built and it it it just made it with a
+00:21:35  couple kinks. This week it's What are we
+00:21:38  calling it?
+00:21:38  >> So so I'm calling this Backyard
+00:21:41  Designers.
+00:21:42  Designers.
+00:21:42  >> Backyard
+00:21:43  >> This is a little bit of a risk because I
+00:21:45  I want I'm going to date myself and two
+00:21:46  I'm like it's really hinges on people's
+00:21:48  experience. Like has anybody here ever
+00:21:52  played Backyard Baseball
+00:21:54  on PC?
+00:21:56  on PC?
+00:21:56  >> No.
+00:21:57  >> Oh no, Tommy. No, really? Oh my
+00:22:00  >> think so. I'd have to Let me look it up.
+00:22:01  >> Okay. Okay. Okay. Okay. Hold on. Hold
+00:22:03  on. Hold on. Hold on. Let me give you a
+00:22:05  little bit of context. Let me give a
+00:22:06  little bit of context. So
+00:22:08  Backyard Baseball was this
+00:22:12  literally the PC
+00:22:15  childhood. Like it was so good. One of
+00:22:17  It was incredible. Like you would you'd
+00:22:19  have this bench and you'd pick your team
+00:22:22  and it was a mixture of like these kid
+00:22:24  creators
+00:22:25  creators
+00:22:25  or this the this kids that these this
+00:22:27  team created but then also you had real
+00:22:30  people. So you could like pick A-Rod and
+00:22:32  Vladimir Guerrero and all
+00:22:35  players that I loved. Which is I'm so
+00:22:37  glad people get Pablo Sanchez references
+00:22:39  cuz he was the best player. He was this
+00:22:41  little guy here. I can't find him.
+00:22:43  Anyway, the UI is fun. It was a huge
+00:22:45  part of my childhood. This is Pablo
+00:22:46  Sanchez by the way. And
+00:22:50  you sent me a text and you asked me like
+00:22:54  hey, have you tried to one shot a game
+00:22:56  yet? And I was like no.
+00:22:59  But I should.
+00:23:02  And
+00:23:03  And
+00:23:04  so,
+00:23:05  so,
+00:23:05  I kind of I kind of started
+00:23:06  experimenting. I went down some more
+00:23:07  predictable paths like little like diver
+00:23:10  games and whatnot. I was like, you know,
+00:23:12  these are just kind of
+00:23:13  >> What did you do, Rid?
+00:23:15  >> They're whatever. So, what I did instead
+00:23:18  is I tried to recreate
+00:23:21  the Backyard Baseball team selection
+00:23:26  for Design Twitter.
+00:23:28  >> [laughter]
+00:23:28  >> Yes.
+00:23:30  >> So, so this is we're going to just let's
+00:23:33  hope. Let's hope, man. Let's hope this
+00:23:35  works.
+00:23:36  works.
+00:23:36  >> [gasps]
+00:23:37  >> Please God, work.
+00:23:38  >> So, you built Okay, you went It was
+00:23:40  supposed So, I was like, "Hey, Rid, why
+00:23:42  don't you do a segment like something?"
+00:23:44  And he had an idea. I did not know you
+00:23:46  were going to go this deep.
+00:23:47  >> I went really rogue. I went really
+00:23:50  rogue. I We had a For every I'm throwing
+00:23:52  Tommy the biggest wrench for everybody
+00:23:54  who's watching right now. Like, this is
+00:23:55  not what we talked about at all.
+00:23:58  >> [laughter]
+00:23:59  >> I just had an idea, man, and I had to
+00:24:02  run with it. So,
+00:24:03  >> [clears throat]
+00:24:03  >> this is how it works. You can draft
+00:24:06  seven real designers,
+00:24:08  but you have a salary cap of 400,000,
+00:24:11  and each person's cost is the amount of
+00:24:14  followers that they have on Twitter. And
+00:24:16  you can assemble a team. So, if I hit
+00:24:17  start
+00:24:18  start
+00:24:18  >> 400,000 is the budget?
+00:24:20  >> Yeah. Yeah, because I
+00:24:22  You'll see. You'll see why.
+00:24:24  >> is
+00:24:25  this?
+00:24:25  this?
+00:24:25  >> So,
+00:24:26  >> [laughter]
+00:24:28  >> you'll notice a lot of familiar people
+00:24:30  here, and you can click in on somebody
+00:24:33  and like boom, there's Inga Hampton.
+00:24:36  >> [laughter]
+00:24:37  >> Oh, dude.
+00:24:38  >> It It gets all their information. You
+00:24:41  can like add her, and I'm like, "Yeah,
+00:24:42  I'm going to make her my brand
+00:24:44  designer." And then she gets drafted.
+00:24:46  >> [laughter]
+00:24:48  >> Here's Jørn.
+00:24:49  >> Does this Does this pull in their their
+00:24:50  follower count and automate the
+00:24:52  budgeting?
+00:24:53  budgeting?
+00:24:53  >> Yeah.
+00:24:55  Yeah, it does. Here's Brett.
+00:24:57  >> There's Jorn hanging out there. There's
+00:24:59  Jørn Jorn.
+00:25:00  Jørn Jorn.
+00:25:00  >> There's Yeah, it it did like a real like
+00:25:02  here's Pablo. Like it did a really
+00:25:04  Jason.
+00:25:05  Jason.
+00:25:05  >> [laughter]
+00:25:07  >> Wow.
+00:25:08  >> I had so much so much names I want to
+00:25:10  add to this. So how how do I add to
+00:25:12  this?
+00:25:12  this?
+00:25:12  >> I haven't built that yet, but for sure
+00:25:15  we have to have a way to add to it.
+00:25:17  Right now it's like I I actually have a
+00:25:19  whole pipeline that I don't
+00:25:21  I think there's like another 20 that are
+00:25:22  still building.
+00:25:24  Um
+00:25:24  Um
+00:25:24  >> So here's Here's what Tell what what's
+00:25:26  the plan? What's the game plan? So
+00:25:28  before we get into what you want me to
+00:25:30  do or us to do with this, what is the
+00:25:33  plan for this thing? Or is that a
+00:25:35  afterwards thing?
+00:25:38  >> Okay. All right, let me just show you.
+00:25:39  I'm just going to run I'm going to run
+00:25:40  through how it works because I'll show
+00:25:42  you the plan and it's kind of tied to
+00:25:43  the last screen kind of thing.
+00:25:45  Um So oh man, I still I definitely am
+00:25:49  one deployment behind, so it'll be a
+00:25:50  little bit more polished. But
+00:25:52  what the way that it works so like if
+00:25:55  I'm just going to assemble a team really
+00:25:56  quickly. Dan's too expensive. Let's get
+00:25:58  Maggie. So Maggie's going to be my
+00:26:00  design engineer.
+00:26:02  Definitely going to get
+00:26:04  Tiago here. Let's make him a product
+00:26:06  designer.
+00:26:08  designer.
+00:26:08  Um
+00:26:11  Let's go Fee on Oh, Fee is expensive,
+00:26:14  too.
+00:26:15  too.
+00:26:15  >> Yeah, I'll say Fee is going to be
+00:26:16  pricey.
+00:26:17  pricey.
+00:26:17  >> Yeah, dude, I didn't realize Fee got so
+00:26:18  many so many Okay, evil rabbit.
+00:26:20  >> play baseball, duh. My bad.
+00:26:23  >> [laughter]
+00:26:24  >> Let's do this. Let's find a couple more.
+00:26:27  Grace, I like Grace.
+00:26:29  We'll make her our web designer. We need
+00:26:30  a design leader.
+00:26:32  Let's go Let's go Katie.
+00:26:36  And all right, two more.
+00:26:39  >> Yeah, Katie, don't tweet anymore. You're
+00:26:40  going to get too expensive.
+00:26:42  >> [laughter]
+00:26:44  >> Daniel's a nice budget pick. And so then
+00:26:46  you have your wild card. I'll do any
+00:26:48  I'll go any on the wild card. So a
+00:26:50  couple of I want to show. One,
+00:26:53  this is the ending animation. And you
+00:26:54  get like this is your team. This is kind
+00:26:56  of the plan for this thing is you can
+00:26:59  build your team and then
+00:27:01  >> Evil looks here.
+00:27:03  >> [laughter]
+00:27:03  >> Yeah, the models had a lot I had this
+00:27:05  whole pipeline set up where it's like
+00:27:07  pull it did like unbelievable amounts of
+00:27:09  research on each person to come up with
+00:27:10  their little quirks and stuff which I'll
+00:27:12  show in a second. But you can copy the
+00:27:14  image and actually it will uh let's see
+00:27:17  if this works.
+00:27:19  Big money, big money. Not looking good.
+00:27:22  Not looking good. We'll fix
+00:27:24  >> [laughter]
+00:27:24  >> we'll fix the
+00:27:25  we'll fix that.
+00:27:27  Um
+00:27:27  Um
+00:27:27  so
+00:27:29  so
+00:27:29  there we go. You can copy
+00:27:30  [clears throat] images and share them
+00:27:32  and it actually will like link who we
+00:27:34  are who who you've mentioned. But what I
+00:27:36  want
+00:27:37  want
+00:27:37  people to do also
+00:27:40  if I go back to the bench here, there
+00:27:41  are so
+00:27:44  are so
+00:27:44  there are so many wild um little Easter
+00:27:46  eggs in here.
+00:27:48  I want to find
+00:27:51  like find the Easter eggs basically is a
+00:27:53  whole part of this.
+00:27:55  Oh man, I can't even find the one that I
+00:27:57  want.
+00:27:59  want.
+00:27:59  Uh is that Amy?
+00:28:02  Uh
+00:28:02  Uh
+00:28:03  >> Is that is that Yeah, let's say that's
+00:28:05  Amy. Yeah.
+00:28:06  Amy. Yeah.
+00:28:06  >> Hold on hold on hold on I want
+00:28:07  >> great I can recognize Pocket. There's I
+00:28:09  see two I saw two
+00:28:10  >> It does a pretty good job, right? Hold
+00:28:12  on. I got to find I got to find Pocket.
+00:28:14  Oh my gosh, I need to make this
+00:28:16  clipboard draggable. I want to be able
+00:28:18  to click that thing. One more time. See
+00:28:20  if I can get this to work.
+00:28:23  Dude, no it's not going to work. Okay.
+00:28:25  Find all the Easter eggs though.
+00:28:27  It's so
+00:28:30  It's so
+00:28:30  This is Evil P basically people bring
+00:28:32  objects. So like
+00:28:34  Evil Rabbit just makes everything dark
+00:28:36  mode and just eliminates all of the
+00:28:38  color.
+00:28:41  Um
+00:28:42  there's
+00:28:43  there's
+00:28:43  >> Let's see if I can What's another
+00:28:45  >> Please tell me Pablo's just turns this
+00:28:47  into an entire app tool.
+00:28:49  >> watch this. Watch Watch Rios. Watch
+00:28:50  Rios. So, he said something about
+00:28:53  uh
+00:28:53  uh
+00:28:53  about uh being a K-pop star.
+00:28:56  So, you can debut him.
+00:28:58  >> [laughter]
+00:29:02  >> There are many in there to find. So,
+00:29:06  I'm going to drop the link. Even I'll
+00:29:08  probably make a uh
+00:29:10  >> What is the Yeah, put it in chat. Put it
+00:29:12  in
+00:29:12  in
+00:29:12  >> There's the link in chat. Build your
+00:29:14  teams.
+00:29:15  teams.
+00:29:16  And tag us.
+00:29:16  >> So, I want to do this. One, your frames
+00:29:18  are choppy, they're complaining.
+00:29:20  >> Okay. Okay. Okay.
+00:29:21  >> with this.
+00:29:22  >> All right. Do it.
+00:29:23  >> Uh backyarddesigners.club.
+00:29:25  Damn, you already branded and
+00:29:26  everything. Backyarddesigners.club.
+00:29:30  Uh how does your boy get access to the
+00:29:32  get on this?
+00:29:34  >> Yeah. Yeah. We're We're We're not quite
+00:29:35  there yet. We'll We'll We will do this.
+00:29:38  >> [laughter]
+00:29:39  >> Um all right. So, here we go.
+00:29:42  Backyard Designers. I'm going to create
+00:29:44  my team.
+00:29:47  Oh, this is fun, dude. So, Yorn,
+00:29:50  Nad, yep. And it randomizes where they
+00:29:52  sit because they were
+00:29:54  sitting in places.
+00:29:55  >> It should randomize them.
+00:29:57  >> Dude, this is so great. I want to be
+00:29:59  able to zoom in the rows.
+00:30:02  >> Yeah.
+00:30:04  >> Look at Brett so happy here.
+00:30:06  It's uh Ooh, he's pricey.
+00:30:10  We're going to grab Brett.
+00:30:11  >> You got to be a little bit strategic
+00:30:12  with it, for sure.
+00:30:13  >> Yeah. Yeah. Oh, all right. Pick a slot.
+00:30:15  What do I want Brett as?
+00:30:17  Um
+00:30:20  Ooh.
+00:30:23  Product web.
+00:30:25  And then design it. So, we'll do We'll
+00:30:27  do web cuz he's kind of He can He can
+00:30:29  service. Oh, Jamie.
+00:30:31  Oh, before she gets too big, we're going
+00:30:33  to grab Jamie and
+00:30:34  >> Watch Watch the little sprite change.
+00:30:37  So, each Each person has two different
+00:30:39  images. Some of them I think are still
+00:30:41  building.
+00:30:42  building.
+00:30:42  But, that was kind of a fun part of it,
+00:30:43  too.
+00:30:44  too.
+00:30:44  >> I'm going Frank.
+00:30:47  Product. That's [laughter] sick.
+00:30:50  >> Rockstar. It did such a good job. It It
+00:30:52  literally like did like a deep dive in
+00:30:54  all of these individual people to find
+00:30:56  their quirks.
+00:30:56  >> To be clear,
+00:30:58  you created a pipeline. You didn't go in
+00:31:01  and manually tell it to do all that. You
+00:31:03  said
+00:31:04  said
+00:31:04  >> nothing.
+00:31:05  >> Oh, we need a follow-up on that next
+00:31:07  week or something.
+00:31:09  >> made a plan.
+00:31:11  Yeah, I did. It's just It's literally a
+00:31:13  pipeline. So, once I got I got it to
+00:31:15  work like a little bit more manually
+00:31:16  five times, and then I just pasted
+00:31:19  Twitter links and the output is
+00:31:20  >> me you're you don't have budget.
+00:31:22  >> Yeah, I can't afford Dan anymore.
+00:31:24  >> Oh, man. This is so good.
+00:31:27  >> So, each person has a whole blob
+00:31:29  associated with them, which is all of
+00:31:30  their information. And then there's a
+00:31:32  bunch of little things. Like if you
+00:31:33  hover over them for like 10 seconds,
+00:31:36  they'll speak they'll say something.
+00:31:39  And it has Each person has like an idea
+00:31:41  of a quirk is what it's called, which is
+00:31:43  like their weird thing that they built
+00:31:44  their personality around.
+00:31:49  >> Is Kevin Kev Oh, Kevin?
+00:31:51  >> Kevin's Kevin's a bargain buy, man.
+00:31:53  >> He is. I didn't mean to wild card him. I
+00:31:55  was actually going to put That's hard.
+00:31:59  Kev, I think you're leadership material.
+00:32:01  Ooh. I mean, like I would put him at
+00:32:03  wild card, too, but I don't I don't
+00:32:05  know.
+00:32:06  know.
+00:32:06  It won't let me
+00:32:07  >> Oh, you know what? He's not a leader.
+00:32:09  So, there's eligibility blocks
+00:32:11  associated with each person.
+00:32:13  >> They're a little looser than I think I
+00:32:15  wanted them to be, but the quarterback
+00:32:16  position. Okay.
+00:32:17  >> Exactly. Exactly. So, sorry, Kevin. We
+00:32:19  have programmatically decided that you
+00:32:21  cannot lead.
+00:32:22  >> Well, Nad, you're going leader, but and
+00:32:25  then Kev, you are going to be my wild
+00:32:26  card. All right, I got my team, dude.
+00:32:27  I'm ready. I don't know how they face
+00:32:29  off at this point.
+00:32:31  Prototype llama?
+00:32:32  >> Oh, you're missing one, maybe? You're
+00:32:34  missing one person.
+00:32:36  >> Oh, a design engineer. I don't think I
+00:32:39  >> can filter you can filter at the top of
+00:32:41  the page, too, to make it easy.
+00:32:44  >> Oh, this is
+00:32:46  this is clean.
+00:32:48  I can afford Rano? Yeah, let's go.
+00:32:53  Team photo.
+00:32:56  Dude.
+00:32:58  Does post on X work?
+00:33:00  >> I don't know.
+00:33:01  >> Yeah, it's not working.
+00:33:02  >> Yeah, bummer. Okay.
+00:33:03  >> That's so good, man. Like this is this
+00:33:06  is fun.
+00:33:07  is fun.
+00:33:08  Copy image.
+00:33:09  Uh
+00:33:10  Uh
+00:33:10  just made Hold on. Just made my
+00:33:14  design baseball team featuring Who did I
+00:33:18  add here?
+00:33:20  add here?
+00:33:20  I added
+00:33:20  I added
+00:33:20  >> See, this is the this is the
+00:33:23  Man, that's a bummer that the post on X
+00:33:24  cuz it actually would it I had it
+00:33:26  working I must have just broke it, but
+00:33:28  like it'll automatically draft a tweet
+00:33:30  with everybody's handles in it for you.
+00:33:33  So kind of bummed that that didn't
+00:33:34  >> Yeah, that worked cuz that is sick.
+00:33:37  And then uh we're going to do
+00:33:40  uh real quick. We're doing this live
+00:33:42  though. No, we are we are doing this.
+00:33:44  >> Ethan says sell this to dribble to
+00:33:45  revive their business model.
+00:33:47  >> I I could see it. I could see it.
+00:33:49  Um
+00:33:52  yeah.
+00:33:53  Yeah, this is good. And then Rano.
+00:33:58  Whoops.
+00:33:59  >> [laughter]
+00:34:00  >> Uh and then the link and there you go.
+00:34:04  Try it here.
+00:34:06  Made by Rid.
+00:34:08  >> [snorts and laughter]
+00:34:09  >> This is sick, dude. This is this is
+00:34:11  Okay. So just so everyone knows, Rid had
+00:34:14  an idea and he was like, "Hey, we should
+00:34:16  do a thing where every week we, you
+00:34:18  know,
+00:34:19  know,
+00:34:19  draft a team of designers as like a way
+00:34:21  to spotlight more people." Um
+00:34:24  and I was like, "Okay, like what you
+00:34:25  know, that could be interesting. There's
+00:34:26  a lot of things to figure out. What's
+00:34:27  what's cool? Uh how do you win? All all
+00:34:30  things."
+00:34:31  things."
+00:34:31  And he you go up and make this, and I'm
+00:34:34  so interested in the pipeline. I want to
+00:34:36  see the pipeline. If you you should prep
+00:34:38  something in the next couple weeks. I'd
+00:34:39  love to see that
+00:34:41  as we build this out. And also,
+00:34:42  community, like if you guys have some
+00:34:45  suggestions to make this interesting,
+00:34:48  let us know.
+00:34:49  >> It's kind of a
+00:34:51  a
+00:34:51  a
+00:34:51  a first app and something that Tommy and
+00:34:53  I are interested in. Is fact is, games
+00:34:57  are cheap to make now, or a little like
+00:34:58  I wouldn't even call this a game. Like
+00:35:00  yeah, it's a game, but it's more like
+00:35:02  it's like a community-driven
+00:35:04  experience, you know? I'm obsessed with
+00:35:08  this nugget of an idea. Like what are
+00:35:10  all of the little things that we can
+00:35:11  make just to
+00:35:13  hang together and do weird things
+00:35:15  together, you know? And
+00:35:17  I don't know. We'll see how often we
+00:35:19  crank them out, but I'm I'm hoping
+00:35:21  this is one of many in my mind, at
+00:35:23  least.
+00:35:24  least.
+00:35:24  >> Um where's Tommy and Rid to add them to
+00:35:27  my my team on the side?
+00:35:29  >> You can't You can't add them to the team
+00:35:30  cuz I was like, "I'm not going to be
+00:35:31  that self-centered."
+00:35:32  >> [laughter]
+00:35:33  >> I want to see what the pipeline thinks
+00:35:35  my quirk is.
+00:35:36  >> Dude, it's
+00:35:38  Ah, yeah. I don't have quirks. We are in
+00:35:40  here. I will tell you that. There is a
+00:35:42  light Easter egg where you can see us.
+00:35:44  You can see what you look
+00:35:46  >> Wait a second.
+00:35:48  Well, now I want to go play with it.
+00:35:49  That's fun.
+00:35:50  This is This is well done.
+00:35:52  How long did it take you to make that?
+00:35:54  >> I start Well, I'll tell you, man. I'll
+00:35:56  I'll look at the timestamp of our chat.
+00:35:58  >> nominations need to get added to the
+00:36:00  rosters as well. I love love that. And
+00:36:03  we can automate that, by the way. I can
+00:36:06  connect my app to your pipeline
+00:36:08  >> Yeah, we totally could.
+00:36:09  >> Oh, yes, dude.
+00:36:11  >> I literally all I need is a Twitter URL
+00:36:13  and it runs.
+00:36:14  >> Yeah.
+00:36:15  >> Every once in a while, if it can't like
+00:36:16  if people have a weird image and it
+00:36:18  can't find them on
+00:36:20  Every once in a while, you need to help
+00:36:21  it a little bit on just the image, but
+00:36:23  it works. So, I I had this idea at 1:30
+00:36:27  yesterday.
+00:36:28  yesterday.
+00:36:28  >> 1:30 p.m.?
+00:36:30  >> Yeah.
+00:36:31  >> Okay. All right.
+00:36:32  >> Yeah. So, it's about
+00:36:34  I've been done for a little bit. I was
+00:36:35  about It took me about I mean, gosh, I
+00:36:37  wasn't actually doing that much other
+00:36:40  than overseeing, but it it the whole
+00:36:42  thing was built in like 24 hours.
+00:36:43  >> of just yapping into super whisper
+00:36:46  whisper flow?
+00:36:47  >> Yeah, totally. I mean, I just I just
+00:36:48  yapped for
+00:36:50  yapped for
+00:36:50  a good
+00:36:52  a good
+00:36:52  bit. And I was like I had the nugget of
+00:36:54  idea and then I was like, okay, what are
+00:36:55  the riskiest parts? Like, what do we
+00:36:56  need to validate? And the two things I
+00:36:57  wanted to validate are one, can I create
+00:37:00  the image gen pipeline?
+00:37:02  Did like five times to refine that
+00:37:03  prompt. And I was just doing it I was
+00:37:05  actually just using uh no like chat GPT
+00:37:07  GPT-2 just making the image and then I
+00:37:10  had it create a prompt, save that, and
+00:37:13  then
+00:37:15  then
+00:37:15  um
+00:37:16  um
+00:37:16  once I had felt good about that, I was
+00:37:17  like, okay, now let's get like the five
+00:37:18  people into the world. Like, can we can
+00:37:21  we actually build something that feels
+00:37:23  fun and doesn't feel lame?
+00:37:26  And so, I just built a small bench with
+00:37:27  five people and I was like, okay, this
+00:37:28  is pretty cool. And then I just had it
+00:37:30  run the pipeline and then I had
+00:37:33  um Fable come up with
+00:37:36  five waves of like 10 to 15 product
+00:37:39  questions each.
+00:37:40  >> Yes.
+00:37:40  >> And then I just done I just rambled
+00:37:42  probably for about 20 minutes of
+00:37:44  straight talking based off of prompts
+00:37:47  and I had it create like a an actual PRD
+00:37:50  based off of that.
+00:37:52  And some things I was very specific
+00:37:54  about like I had If I had an idea for
+00:37:56  like how I wanted the UX to function,
+00:37:58  like this top bar for instance with the
+00:38:00  search and the chips. Like, I kind of I
+00:38:01  could picture that in my head, so I
+00:38:02  described it exactly. And the player
+00:38:04  card, like I just Oh, I did do a little
+00:38:07  riff on the player card. I saw that like
+00:38:08  five different ways with like a quick
+00:38:09  HTML prototype, so I kind of cheated
+00:38:11  there a bit. But then
+00:38:14  I left a lot of wiggle room. Like, on
+00:38:16  the share experience, I sent a couple
+00:38:18  links for inspiration and then I I like,
+00:38:20  do
+00:38:22  do
+00:38:22  do your darndest Kind of thing. And then
+00:38:24  the the final prompt to kick it all off,
+00:38:26  I just said,
+00:38:27  for like I basically just told it to
+00:38:28  write the prompt. It's like, "What's the
+00:38:30  prompt that's going to get the best
+00:38:31  possible output that you're going to
+00:38:32  like not cut corners at all?" It wrote
+00:38:33  the prompt. I hit enter and I went to
+00:38:34  sleep. [laughter]
+00:38:36  >> That is awesome.
+00:38:38  Um I'm getting feedback that my mic's
+00:38:40  still kind of
+00:38:42  >> [clears throat]
+00:38:42  >> I don't know if it's changing for me at
+00:38:44  least.
+00:38:45  least.
+00:38:45  >> Things are turned up quite a bit. So,
+00:38:47  I'm trying to see
+00:38:49  >> Just just like just like put that thing
+00:38:51  on your mouth, man.
+00:38:52  >> Hello.
+00:38:54  Hello.
+00:38:55  Hello.
+00:38:55  >> I'll back up I'll back up on mine so
+00:38:57  everybody can just turn it up without me
+00:38:59  overpowering.
+00:39:01  >> Yeah, I don't know. I don't know. I hope
+00:39:02  this is is better. Can anyone give me
+00:39:05  some feedback? I have something I want
+00:39:06  to really dig into in a second and I
+00:39:09  want to make sure this mic's good. Um
+00:39:12  yeah, this is great, man. I I people are
+00:39:14  already playing with this by the way.
+00:39:16  And they're like, "What am I looking
+00:39:17  at?"
+00:39:18  at?"
+00:39:18  Uh
+00:39:19  Uh
+00:39:19  >> [laughter]
+00:39:19  >> Josh
+00:39:20  >> I'll take what Yeah, anchor otters.
+00:39:23  >> Hey, Josh Josh picked himself by the
+00:39:25  way. He picked himself. Um
+00:39:28  >> god.
+00:39:29  >> Gabe. That was a good pick. I was
+00:39:30  looking at Gabe. Mary Kafta
+00:39:32  uh Kaftar.
+00:39:35  uh Kaftar.
+00:39:35  Who else we got?
+00:39:37  Yeah.
+00:39:38  Yeah.
+00:39:38  Um
+00:39:39  Um
+00:39:39  anyway. I think we're good on sound
+00:39:41  maybe. We'll see. I don't know. I'm
+00:39:42  going to just yell into this microphone
+00:39:45  and hope you guys can hear me just fine.
+00:39:48  >> [sighs]
+00:39:49  >> I can hear Tommy just fine. Heck yeah,
+00:39:50  Adrian. All right. So, you're talking
+00:39:52  about games and you're talking about how
+00:39:54  easy this has gotten.
+00:39:59  Do you know how just how easy this has
+00:40:01  gotten? Have you seen this wave? So, I
+00:40:03  don't know what it is about Opus 5 that
+00:40:05  kicked off this trend of look at the
+00:40:08  game I just one-shotted, but that has
+00:40:11  become a a thing that my feed is now
+00:40:14  filled with. Uh
+00:40:16  >> Yeah.
+00:40:18  >> over last, I don't know, week maybe.
+00:40:22  I think we can yeah.
+00:40:23  >> And
+00:40:24  pretty insane. So, Matt Schumer kind of
+00:40:32  five one shotted this in 24 hours.
+00:40:36  >> I sent this link to Fable by the way cuz
+00:40:39  it made something that was like pretty
+00:40:40  lame and I was like, "No, no, no, you
+00:40:41  don't understand. This is where the
+00:40:43  ceiling is."
+00:40:45  >> [laughter]
+00:40:46  >> And and and you know, Matt claims and
+00:40:48  there's a lot of skepticism in his claim
+00:40:51  uh from a lot of people. They're like,
+00:40:52  "There's no way." Um
+00:40:55  that every asset here is completely
+00:40:57  custom.
+00:40:58  custom.
+00:40:58  From the objects to the noise, the
+00:41:00  audio, everything.
+00:41:02  And that this was a one shot prompt.
+00:41:04  Pretty incredible. And he goes into talk
+00:41:07  about uh what this what this is and
+00:41:11  we'll talk about it in a second, but
+00:41:13  like
+00:41:14  like
+00:41:14  can I just Can I just show us Like, look
+00:41:16  at the games coming out.
+00:41:19  >> Ooh, look at this one. This one is
+00:41:20  beautiful.
+00:41:24  Wait.
+00:41:24  >> Like this What? These This imagery is
+00:41:27  really
+00:41:28  really
+00:41:28  really good.
+00:41:29  >> It's crispy.
+00:41:30  >> Yeah.
+00:41:32  >> This is crispy.
+00:41:38  >> Uh let's see.
+00:41:40  >> So, there's something there and and you
+00:41:42  know,
+00:41:44  know,
+00:41:44  excuse me. [clears throat]
+00:41:45  The just the physics that we're seeing
+00:41:48  coming out of this and again, everyone
+00:41:50  claiming this is like a Opus 5.
+00:41:53  And I don't know why Opus 5 is getting
+00:41:54  all the love for this. Like, where's the
+00:41:56  F-
+00:41:56  F-
+00:41:56  >> I think it's just cheaper. I think it's
+00:41:57  just cheaper. It's expensive to run
+00:42:00  Fable on a whole game like that.
+00:42:01  >> It It It really is. By the way, what did
+00:42:03  you use for our baseball?
+00:42:05  >> I did all the planning and writing with
+00:42:08  Fable. I pretty consistently told it to
+00:42:10  use sub agents when it made sense and
+00:42:12  then I just built it. I'm sorry. I'm
+00:42:14  sorry. I got Yeah, yeah. No, planning
+00:42:15  and everything with Fable, and then I
+00:42:16  built it with Opus 5.
+00:42:18  >> Ah, also an Opus 5 product.
+00:42:21  >> Yeah.
+00:42:22  >> Okay.
+00:42:23  All right. Yeah, look at this like the
+00:42:24  the physics on that are really
+00:42:25  interesting, all the particles. I love
+00:42:27  that. Another another one here.
+00:42:39  Look at that sound.
+00:42:44  There's pain's relief aisle. So, just a
+00:42:46  couple of these examples I wanted to
+00:42:48  show cuz
+00:42:49  show cuz
+00:42:49  it got me really inspired. And this is
+00:42:51  where I sent Reed a text last week, and
+00:42:53  I said, "Create for us uh a one-shot
+00:42:57  game." And I'm going to do the same, and
+00:42:58  we're going to compare some notes.
+00:43:01  >> [clears throat]
+00:43:01  >> And I I'm sorry. I hate one-shot
+00:43:04  challenges because I can't stop.
+00:43:07  I'm like, "No, no, no, no. We got to
+00:43:08  keep going. We got to make it better."
+00:43:09  Like, this is nuts to me.
+00:43:13  This is pretty nuts. Very No Man's Sky.
+00:43:15  You big gamer? Do you game still? I know
+00:43:17  you that was based on a game from the
+00:43:18  days of yore.
+00:43:20  >> I I was really into sports games, and
+00:43:22  then like Call of Duty,
+00:43:24  Halo. That's pretty much it.
+00:43:26  >> Little shooter guy.
+00:43:27  >> Yeah.
+00:43:28  >> What was the token cost for these games?
+00:43:29  Well, it's Opus 5, so not as much as
+00:43:31  Fable 5.
+00:43:34  But, I want to be clear to everybody of
+00:43:36  what we're showing here, right? We're
+00:43:38  talking about games, and I'm going to
+00:43:40  get deep into games for a second. But,
+00:43:42  the what I'm trying to show you is what
+00:43:45  is a game?
+00:43:46  is a game?
+00:43:46  A game is really just a way to
+00:43:49  it it's a collection of mixed media
+00:43:51  assets, audio, visual, animation. It's
+00:43:55  mechanics. But, something a lot of games
+00:43:57  do that I that I really started to
+00:43:59  figure out or or ask myself questions
+00:44:02  about as I was going through a workflow
+00:44:04  I'm going to show,
+00:44:05  is how do you get somebody to care about
+00:44:08  a pixel?
+00:44:09  a pixel?
+00:44:09  Right? How do you get somebody to invest
+00:44:12  their time if we build B2B tools
+00:44:15  or things that offer like some sort of
+00:44:17  problem-solving value,
+00:44:19  that's that's an easier sell. How do you
+00:44:21  get somebody to sit down and waste their
+00:44:23  time caring about pixels for
+00:44:26  hours at a time?
+00:44:27  It's a really interesting thought
+00:44:28  exercise. And it immediately comes up in
+00:44:32  the criticisms when people are in these
+00:44:33  comments, they're like, look how
+00:44:35  beautiful, but other people are like,
+00:44:36  this is not this is not a game. Right?
+00:44:39  And I think people evaluate these demos
+00:44:43  differently because
+00:44:45  what what I think a lot of these demos
+00:44:47  are showing is that um not look what
+00:44:50  this is, it's a finished product, I'm
+00:44:51  about to go make a bunch of money with
+00:44:53  this. What these demos are really
+00:44:55  showing is is we're we're seeing tool
+00:44:57  workflows now. We are seeing these tool
+00:45:00  workflows that are tool chaining
+00:45:01  together. We are seeing the ceiling and
+00:45:03  the bounds or the possibilities of
+00:45:05  tools. If you open up Higgs Field, maybe
+00:45:08  even Reeve, I haven't opened up Reeve.
+00:45:10  You open up a lot of these different
+00:45:11  tools, Flora, um you know,
+00:45:13  >> [clears throat]
+00:45:13  >> the canvas tools were fairly familiar
+00:45:15  with and we see some additional features
+00:45:18  coming out and we have to learn them.
+00:45:20  But for the most part, there's there's a
+00:45:21  lot of overwhelm in some of these new
+00:45:23  tools cuz they're trying to do so many
+00:45:24  things across an asset pipeline.
+00:45:27  >> Mhm.
+00:45:27  >> But I I think what we're seeing in these
+00:45:29  are prototypes of not just look at the
+00:45:31  output, but more of look at the output
+00:45:34  of a workflow that I am experimenting
+00:45:37  with.
+00:45:38  with.
+00:45:38  >> Yeah.
+00:45:38  >> And and I wish more people looked at it
+00:45:41  that way. But also what I'll say to
+00:45:43  that, too, is uh
+00:45:45  you know, I I made a take uh recently
+00:45:47  and I kind of called this out that
+00:45:50  I'm enjoying these mixed-media
+00:45:51  workflows. It's kind of the best name I
+00:45:53  have for it. Mixed media in design is
+00:45:56  not anything new. This was big in Flash,
+00:45:58  as Adrian is calling out. Um multimedia
+00:46:00  designer was kind of a running title for
+00:46:02  a good while.
+00:46:04  But, there's a lot of people
+00:46:05  experimenting with these workflows.
+00:46:07  We're seeing like Blender mixed with
+00:46:09  Higgs Field mixed with Claude. That's a
+00:46:11  workflow I'm going to show you guys in a
+00:46:12  second. Or Open AI's image two with
+00:46:15  paper with Claude. Like there's so many
+00:46:18  tool chain workflows happening. I'd be
+00:46:20  very curious to hear what tools were
+00:46:22  involved when you created the baseball
+00:46:24  game.
+00:46:25  game.
+00:46:25  And there's a lot of people exploring
+00:46:27  these different ways. And I built out a
+00:46:28  game that is very much a game demo.
+00:46:32  But, then we're going to pull back and I
+00:46:33  want to show you how this whole game
+00:46:36  area, cuz a lot of us are like, we're
+00:46:37  not game designers. Why are we talking
+00:46:38  about games? It's just a collection of
+00:46:41  tools that brought these outputs
+00:46:42  together in mixed media that tried to
+00:46:45  get people to care about a pixel and to
+00:46:47  spend their time using an app. And I
+00:46:49  want to show how people are actually
+00:46:50  doing that, product and web designers in
+00:46:53  products and web. We'll We'll get into
+00:46:54  that in a second. But, this stood out
+00:46:57  [clears throat] to me. I called out Finn
+00:46:58  cuz he's been experimenting with a lot
+00:46:59  of stuff I like. And he says, "Thanks
+00:47:01  for the shout out. I've been trying to
+00:47:02  think of what to call this." And I like
+00:47:05  mixed media.
+00:47:07  Um
+00:47:08  Um
+00:47:08  He's having the same problem a lot of us
+00:47:10  are having, which is like, "What do What
+00:47:12  am I demoing?
+00:47:13  What am I showing here? Let me show you
+00:47:14  a game. Look at what Opus did. Look at
+00:47:16  what I did with these tools." And it's
+00:47:18  like, "No, no, no. Yes, it's a game,
+00:47:20  but it's the workflow. And it's the
+00:47:22  mixed media workflow, and we don't know
+00:47:24  how to We don't know how to critique it,
+00:47:26  and we don't know how to share it. So,
+00:47:28  there's this gap, and hopefully we can
+00:47:30  fill a little bit of that gap today.
+00:47:32  Uh
+00:47:35  Uh
+00:47:35  I also want to call out the fact that
+00:47:36  3.js, which is getting a ton of usage in
+00:47:40  a lot of these one-shot games,
+00:47:42  is at 13 million downloads a week.
+00:47:45  Like
+00:47:46  Like
+00:47:46  Bro, look at Look at
+00:47:47  >> Whoa, I didn't realize that was
+00:47:48  happening.
+00:47:49  happening.
+00:47:49  >> Look at that.
+00:47:49  >> [laughter]
+00:47:49  >> Over 5 years
+00:47:51  since 2022 or just before.
+00:47:54  That's an insane spike.
+00:47:57  And this is kind of the same thing.
+00:48:00  You kind of have TypeScript 3.js and
+00:48:03  WebGL. All these things just getting
+00:48:05  insane usage because of
+00:48:07  because of AI tools. I also want to call
+00:48:09  out everything we've seen has been 3D,
+00:48:12  right? Very 3.js WebGL heavy.
+00:48:15  And I'm somebody who loves the point and
+00:48:17  click, the text adventures, the how do
+00:48:20  we pull in assets that aren't
+00:48:21  necessarily 3D? And I just want to call
+00:48:23  in
+00:48:24  in
+00:48:24  >> WQWR is quieter than you remember.
+00:48:28  Rain taps the booth glass and every old
+00:48:31  machine seems to be waiting for a voice.
+00:48:34  >> So this is from a community member Brad.
+00:48:36  He actually is a mod for our Discord and
+00:48:38  he's like, "Oh, I made a thing." And
+00:48:40  it's a it's based on his love for the
+00:48:41  text adventure point and clicks. And I
+00:48:43  love this. Mixing audio, mixing static
+00:48:46  images. There's SFX. There's
+00:48:49  I think the rain back there is moving,
+00:48:51  too. So a lot of fun stuff. I dig this a
+00:48:53  lot.
+00:48:55  lot.
+00:48:55  Now, before I get into my workflows,
+00:48:59  Matt, who shared that first like Call of
+00:49:01  Duty
+00:49:03  Duty
+00:49:03  thing that we saw,
+00:49:04  he calls it a gauntlet loop. And I don't
+00:49:07  care what you call these loops. This is
+00:49:09  you know, packaged to be consumed as as
+00:49:12  content. That's great.
+00:49:14  But loops are getting a whole bunch of
+00:49:16  love over the last month. You just ran a
+00:49:19  loop to build that entire asset creation
+00:49:22  workflow that shipped overnight. I've
+00:49:25  built loops that I'll show you. The
+00:49:28  gauntlet loop, it's
+00:49:30  >> [clears throat]
+00:49:31  >> you know, the whole it's like what's the
+00:49:32  idea? You have to use an actual agent
+00:49:34  like OpenClaw. Give it a goal. I want to
+00:49:38  create a game that achieves the
+00:49:39  following outcomes.
+00:49:42  Give it like a bar. Now I want to talk
+00:49:44  about how to set this bar because the
+00:49:46  way Matt introduced this is something
+00:49:48  I've been doing a lot, but he inspired
+00:49:50  me to do something a step further. and
+00:49:52  basically every time we talk about
+00:49:53  taste,
+00:49:55  taste,
+00:49:55  how do we create a gate so that the
+00:49:57  loop, as it's running through this,
+00:49:59  meets a gate and has a really angry
+00:50:03  critic who looks at the work and says,
+00:50:05  "No, all this is trash. These This gets
+00:50:07  four out of 10s across the board. Get
+00:50:10  back in there and cook again."
+00:50:12  And that little process, we first called
+00:50:14  that Ralphing. I'd say like at the end
+00:50:17  of last year, this concept of Ralphing,
+00:50:18  where it's like pointing the agent at a
+00:50:20  problem and have it smash its head at it
+00:50:23  over and over again until it gets
+00:50:24  better. And loops are just a better way
+00:50:27  to do that with more gates to evaluate
+00:50:29  the work. So, just something to think
+00:50:31  about.
+00:50:33  about.
+00:50:33  Now, when we did our one shots, go
+00:50:34  ahead, man.
+00:50:35  >> Well, I
+00:50:37  it's almost cliche at this point, but I
+00:50:39  really I just want to underline what
+00:50:40  you're talking about in terms of
+00:50:42  focusing on the underlying workflow
+00:50:43  rather than the output, because
+00:50:45  everything that you're saying, it
+00:50:46  reminds me of that
+00:50:47  I think it's the Chris Dixon quote,
+00:50:49  where he talks about like the thing that
+00:50:50  the smartest people are doing on the
+00:50:51  weekends is what we're going to do
+00:50:53  during the actual work week, you know,
+00:50:55  in the future years from now. It feels
+00:50:57  like that, right? It's like, "Of course.
+00:50:59  Of course I don't actually care about
+00:51:01  this game." But, for me, it was
+00:51:05  you know, Asha from Perplexity, and I
+00:51:07  remember she was talking to me, this
+00:51:09  would have been over a year ago, and she
+00:51:11  was designing She built this generation
+00:51:14  system for the invite cards for Comet,
+00:51:17  and every single one of them was unique.
+00:51:18  And at the time, it felt I mean, it it
+00:51:20  blew my mind, right? Like, it felt
+00:51:22  really almost unattainable.
+00:51:24  And this What I just did was not that. I
+00:51:27  think hers was way more complex. But,
+00:51:31  it felt like it's just like that little
+00:51:32  step, it's like, "Oh, I kind of It's not
+00:51:34  actually that hard to just chain things
+00:51:36  together and have a nice little clean
+00:51:38  input output." And yeah, I'm not always
+00:51:41  going to be using that for a game, but I
+00:51:42  can start to imagine ways that I would
+00:51:44  apply that in the actual UX that I'm
+00:51:47  responsible for.
+00:51:49  >> Yeah.
+00:51:49  I also want to recreate the old Spy Fox,
+00:51:53  Pajama Sam, Freddy Fish games. This is
+00:51:56  throwback gaming.
+00:51:57  >> Golden Eye, that's really what we need
+00:51:59  to start working on.
+00:51:59  >> A new Golden Eye that changed the the
+00:52:01  state of multiplayer? Yes.
+00:52:04  >> Yes. And and so like one of my favorite
+00:52:06  games cuz we were talking about this one
+00:52:07  shot and I was like, "Well, you know
+00:52:08  what I like?" Like, yes, I I know the 3D
+00:52:11  the 3 JS games and all of the it's very
+00:52:14  visually
+00:52:15  visually
+00:52:15  Listen, the content strategy today is to
+00:52:17  just go make something, vibe code some
+00:52:19  visually compelling thing, and just rack
+00:52:21  up the the likes.
+00:52:23  >> Yeah.
+00:52:23  >> But I like, as as Brad does, the
+00:52:27  the kind of point and click stuff. And I
+00:52:28  like roguelikes. In fact, one of my
+00:52:30  favorite games is called Faster Than
+00:52:32  Light, FTL.
+00:52:33  And so I was like, "Okay."
+00:52:35  Um it's a game you kind of play on
+00:52:36  repeat, and every run you do, you get
+00:52:39  upgrades, and you go through these
+00:52:41  procedurally generated nodes to get to
+00:52:43  the end or you you die before you get to
+00:52:45  the end.
+00:52:46  the end.
+00:52:46  And so I was like, "Cool, let's do it."
+00:52:49  So I want to walk you guys through what
+00:52:50  I did here and some of the things I
+00:52:52  learned. And I want to show you what the
+00:52:53  one shot yielded me. And I did a one
+00:52:56  shot with Fable and with Opus, and both
+00:52:58  were
+00:52:59  were
+00:52:59  were this. All right?
+00:53:02  It's called Forward Deployed Engineers.
+00:53:04  Right?
+00:53:05  Right?
+00:53:05  So this was uh this was the one shot.
+00:53:08  Let's roll out.
+00:53:11  It made some audio with the web audio
+00:53:12  engine in real time. It it pulled in its
+00:53:15  own images. I didn't create any of this.
+00:53:18  It created this randomized node with the
+00:53:20  different encounters
+00:53:22  different mechanics, things. It's very
+00:53:29  This would have been a game in the early
+00:53:31  2000s, right?
+00:53:32  >> For sure. For sure.
+00:53:34  >> But [music] it sucks.
+00:53:36  I was like, "This could be better."
+00:53:39  And so uh that's what I started to work
+00:53:42  on.
+00:53:43  on.
+00:53:43  Uh, here here was version one. We'll
+00:53:45  we'll call if that was the alpha, we
+00:53:47  will call this
+00:53:49  uh, version one here.
+00:53:51  I just realized I
+00:53:53  There we go.
+00:53:56  Okay.
+00:53:58  Is that the same one? I might have the
+00:53:59  same one pulled up.
+00:54:01  Let's do this one.
+00:54:02  >> Sure looks the same.
+00:54:04  >> Yeah, it's the same.
+00:54:06  Got a little
+00:54:07  Got a little
+00:54:08  >> [music]
+00:54:08  >> deliberate now.
+00:54:10  And this I had started to get my hands
+00:54:11  involved in the play.
+00:54:14  Um
+00:54:15  Um
+00:54:15  Here's where it gets interesting.
+00:54:20  So now we've got like the interface and
+00:54:21  we've got we've got some more stuff
+00:54:23  coming up and I'm like, okay, there's
+00:54:24  something here. We're going in the pixel
+00:54:26  style again inspired by FTL.
+00:54:29  Um, sounds very Tron. Yeah, I wanted to
+00:54:32  get some stuff in there.
+00:54:34  Now let me kind of show you where it's
+00:54:36  at right now [music]
+00:54:38  after a day or so of of
+00:54:41  really getting my hands in this clay.
+00:54:42  [music]
+00:54:46  Okay.
+00:54:53  Cool.
+00:54:54  Prologue.
+00:54:57  >> Breakfast off to Junction.
+00:55:01  Nothing owed this morning.
+00:55:03  >> [music]
+00:55:05  >> Cold contact, shoulder side.
+00:55:08  Where is everybody?
+00:55:11  Carston. Good name.
+00:55:16  Stripped, [music]
+00:55:17  not burned.
+00:55:20  >> Got some Got some delays. So it goes
+00:55:22  through this like intro, we get into
+00:55:24  things, we go down the hallways.
+00:55:28  Um
+00:55:33  Let's just Let's kind of click around
+00:55:34  and just
+00:55:36  and just
+00:55:36  for a second here.
+00:55:39  >> [music]
+00:55:42  >> You generated a lot of stuff for this.
+00:55:48  >> Is your Is your dollar counter?
+00:55:50  >> Yeah, I'm like unbelievable.
+00:55:52  >> I mean you did it looks it all looks
+00:55:54  fantastic.
+00:55:56  fantastic.
+00:55:56  Which one is it?
+00:55:59  >> These are you can see it live.
+00:56:01  >> They're almost dead or they're going to
+00:56:02  die?
+00:56:03  die?
+00:56:03  >> Oh, I ran out of missiles.
+00:56:08  >> Work the frame.
+00:56:11  >> Oh, he's got to land in the park here.
+00:56:13  Hold on.
+00:56:15  Hold on.
+00:56:15  Oh, the tree didn't give up now cuz I'm
+00:56:16  like uh-oh.
+00:56:18  No, end of
+00:56:20  No, end of
+00:56:20  Oh, we got it.
+00:56:23  And then anything else
+00:56:25  >> She's smiling.
+00:56:25  >> So good. You know, and it's so it's got
+00:56:28  a marketplace. It has this There's a lot
+00:56:30  of stuff happening here and it's great.
+00:56:32  It's fun, right? This is not something
+00:56:33  I'm going to ship and I'm You can
+00:56:35  actually go play this right now at uh
+00:56:37  feel free to check it out. I'll post it
+00:56:39  in the chat. Um but again, when I share
+00:56:42  this, what I'm what I'm not sharing is a
+00:56:45  game where I is a is me saying, "Hey,
+00:56:47  look, I made a game. It's ready for the
+00:56:50  market and it's going to compete against
+00:56:52  people who are dedicating their time
+00:56:54  making games." That's not what I'm
+00:56:55  saying.
+00:56:56  saying.
+00:56:56  But what I am saying is you heard voice
+00:56:58  over. You see consistent design. You see
+00:57:01  mechanics. You see uh images, all kinds
+00:57:04  of stuff. And there was a bunch of
+00:57:07  workflows that were involved in making
+00:57:09  this happen. And so I want to talk about
+00:57:12  what some of those workflows are.
+00:57:14  And before I do,
+00:57:15  I do want to remind everybody
+00:57:17  to please go and vote at dive.radio/vote
+00:57:22  for our designer of the week.
+00:57:25  I want to see who uh
+00:57:27  who's winning here.
+00:57:28  >> Melissa. Melissa.
+00:57:30  >> Melissa
+00:57:32  is winning.
+00:57:33  Ooh.
+00:57:34  Ooh.
+00:57:34  >> Kind of commanding lead, too. Man.
+00:57:36  >> All right, yeah. Yeah, okay. So, go over
+00:57:40  here and vote for the designer of the
+00:57:41  week.
+00:57:43  week.
+00:57:43  That will be going on for a little
+00:57:44  while. And as a reminder, we will be
+00:57:46  doing show call-ins near the end, in the
+00:57:49  last 30 minutes. We'll put that up once
+00:57:51  it's ready.
+00:57:53  So,
+00:57:54  So,
+00:57:55  this game, right? Let's go back over to
+00:57:57  this view.
+00:57:59  this view.
+00:57:59  There's a lot of fun. I'm having a blast
+00:58:01  with this. In fact, there is a real game
+00:58:03  I want to create that follows a lot of
+00:58:05  similar mechanics. And so, what this is
+00:58:07  doing for me, in addition to creating
+00:58:09  these mixed media workflows, is I'm also
+00:58:11  creating a game engine. There's a a sort
+00:58:13  of as I'm going through what's works
+00:58:16  about this and what doesn't, um I want
+00:58:18  to create a game engine around it to
+00:58:19  recreate some of this and to change
+00:58:21  other parts of it. That combat flow,
+00:58:24  that's not going to make the cut. We're
+00:58:26  going to change that a lot. But, it's
+00:58:28  like there's a lot of lessons learned in
+00:58:29  just doing this. And that's what I've
+00:58:31  learned about working with AI tools,
+00:58:32  man. Do you feel this way? For me, it
+00:58:34  feels like
+00:58:36  feels like
+00:58:36  working with AI outputs is like a big
+00:58:39  mass of clay.
+00:58:41  And by the end of the result, you're
+00:58:43  going to have pruned away so much of
+00:58:46  this clay. You're you're you're taking
+00:58:47  things away, taking things away, shaping
+00:58:50  it into the thing you want. Um whereas,
+00:58:52  I think a lot of us are used to kind of
+00:58:54  starting with no clay and like
+00:58:57  materializing as we need things.
+00:59:00  And this is the opposite. It's just
+00:59:01  taking things away from a big mass that
+00:59:03  kind of just shows up into existence,
+00:59:05  you know?
+00:59:06  you know?
+00:59:06  >> Yeah.
+00:59:09  I think for me, another piece of it,
+00:59:10  too, is
+00:59:12  too, is
+00:59:12  it's almost impossible not to learn
+00:59:13  something about how
+00:59:16  technology or your computer works
+00:59:17  whenever you do it, too.
+00:59:19  And like like an example for me is like
+00:59:21  I I hadn't actually really went very
+00:59:22  deep into what you could do with sprite
+00:59:24  sheets and like setting up a workflow to
+00:59:25  take an image and slice it up a bunch of
+00:59:27  different ways. Like I literally never
+00:59:28  done that before. I didn't even know how
+00:59:30  it worked. I didn't even trust that it
+00:59:31  could be good. Then I'm like having AI
+00:59:33  explain to me Okay, oh, that's how that
+00:59:36  actually works. Oh, now I can imagine
+00:59:37  what other like how other apps pulled it
+00:59:40  off.
+00:59:42  off.
+00:59:42  >> That's my favorite part, too.
+00:59:43  >> Yeah.
+00:59:44  >> Just you just learn, man.
+00:59:46  >> Well, and so what I want to
+00:59:47  >> Bring the book.
+00:59:48  >> Oh, we've got barks. They bark randomly.
+00:59:52  Um what I want to tell designers, too,
+00:59:54  and we'll back out of this is that uh
+00:59:57  Oh, my Christmas lights. Is that
+01:00:00  there's a lot to be had from this. You
+01:00:03  don't have to be a game designer to
+01:00:04  think about what Brad Woods calls juice.
+01:00:07  How do you make something feel haptic or
+01:00:10  or emotional? How do you care about a
+01:00:12  pixel when it's a landing page or when
+01:00:15  it's a productivity tool, you know? Uh
+01:00:17  not just a game.
+01:00:19  I [clears throat] would say it's easier
+01:00:21  to make someone care about a
+01:00:22  productivity tool cuz they are there for
+01:00:24  a reason. They know what they're trying
+01:00:25  to get. Keeping someone in a game
+01:00:26  harder.
+01:00:28  harder.
+01:00:28  >> Mhm.
+01:00:28  >> But there are some great examples of of
+01:00:30  where people are bringing mixed media
+01:00:32  flows into the design process in ways
+01:00:35  that they're not subtractive from like
+01:00:37  the goal of the business, right? Like I
+01:00:40  love this and it's very interactive and
+01:00:43  it's it's moves a little bit if I'm not
+01:00:45  mistaken.
+01:00:49  It's moving with the mouse, I think, or
+01:00:51  it's moving on its own and with the
+01:00:53  mouse.
+01:00:58  I can't tell. And actually, let's go
+01:01:00  look at this cuz I want to see this. Is
+01:01:02  there
+01:01:03  there
+01:01:03  >> [laughter]
+01:01:04  >> a lot of inspiration people are taking.
+01:01:05  Is there a website for this?
+01:01:07  I don't know.
+01:01:09  That's really That kind of stuff is fun.
+01:01:11  Amelia Wattenberger was one of the first
+01:01:12  examples I saw of telling stories
+01:01:15  through mixed media in these landing
+01:01:17  pages.
+01:01:18  pages.
+01:01:18  And so she writes a blog post about like
+01:01:20  what is this new way of workflow? And I
+01:01:24  love the way she brings in media, right?
+01:01:26  Like she'll she'll have like all of this
+01:01:29  is just part of like a very AI-driven
+01:01:31  workflow across tool chains.
+01:01:35  And it just, in my opinion, tells a
+01:01:36  compelling story. Again, not necessarily
+01:01:39  with things that you would use for like
+01:01:40  a a hard conversion rate,
+01:01:43  but there's ideas that you can pull from
+01:01:45  this, and you can see some of those
+01:01:46  ideas in
+01:01:48  ideas in
+01:01:49  like look at what I'm about to show you,
+01:01:50  because nothing on this landing page is
+01:01:53  text.
+01:01:57  None of this is text. Why? Why was that
+01:01:59  decision made? Well, I'll show you why
+01:02:01  they made that decision.
+01:02:05  Right? But this is the part like right
+01:02:07  here that refraction kind of like right
+01:02:10  here. Right here is perfect example.
+01:02:12  Watch this.
+01:02:14  Oh, dude, that's fun. You know, like
+01:02:17  you're telling me you can't take um an
+01:02:19  interaction from this, something visual
+01:02:21  there, and apply it in an interesting
+01:02:23  way
+01:02:24  way
+01:02:24  without being super destructive? That
+01:02:27  you know, of course of course you can.
+01:02:29  >> You're teeing up one of my one up so
+01:02:31  perfectly, too.
+01:02:32  >> Am I? Well, we'll get into the one ups.
+01:02:34  Um we'll do one ups after this, and then
+01:02:36  I'll get into the mixed media workflows
+01:02:38  that I learned. But like look at this.
+01:02:40  So, if you haven't seen Stripe Press's
+01:02:43  website, they've got like the books
+01:02:44  lined up in really cool way to interact
+01:02:47  interact with it. But SEO!
+01:02:50  Uh we we've solved that problem, haven't
+01:02:52  we?
+01:02:53  we?
+01:02:53  Um
+01:02:53  Um
+01:02:53  like SEO when you have very deep rich no
+01:02:56  text, you just write it in the back. But
+01:02:59  this is cool, and I want to see
+01:03:03  inspired by Trevin knows Trevin knows
+01:03:05  design.
+01:03:07  design.
+01:03:07  So, that's the original site, but let's
+01:03:09  go look at
+01:03:10  go look at
+01:03:10  uh
+01:03:12  uh
+01:03:12  Is his not available?
+01:03:14  I thought his was, but that's fine. I
+01:03:15  mainly I'm just trying show some
+01:03:16  examples of these different ones. Um
+01:03:20  Fred Moon, community member, shared a
+01:03:23  really sick
+01:03:25  design a landing page here.
+01:03:29  This is uh
+01:03:31  This is uh
+01:03:31  a live URL. Let's look at this.
+01:03:33  I want to see.
+01:03:37  Draw zero.
+01:03:39  >> Just do it. No, no, you're not trying to
+01:03:41  tap. Hold on, hold on. Don't mess it up.
+01:03:42  Don't Don't break it. Share the tab cuz
+01:03:44  this is actually one of my one ups, but
+01:03:45  it's perfect cuz apparently my screen
+01:03:46  shots suck anyway.
+01:03:47  >> Oh, wait. This is one of your one ups?
+01:03:49  >> Yeah, yeah, but like do it though
+01:03:50  because
+01:03:51  because
+01:03:51  >> Okay, I'll I'll give I'll I'll give you
+01:03:53  this one up.
+01:03:54  Yeah, I'll give you this one up, but I'm
+01:03:56  going to do it. So, draw zero.
+01:04:02  >> It's so good.
+01:04:04  >> You believed.
+01:04:06  >> [music]
+01:04:06  >> Is this your first time going through
+01:04:07  this?
+01:04:08  this?
+01:04:08  >> Yeah.
+01:04:09  >> Oh, I'm so glad. I've looked at this 10
+01:04:10  times. I'm obsessed.
+01:04:12  >> [music]
+01:04:14  >> College would land you
+01:04:17  a job. You believed college would land
+01:04:19  you a job.
+01:04:21  you a job.
+01:04:21  Tap to hold.
+01:04:26  >> It's so good,
+01:04:27  right?
+01:04:28  right?
+01:04:28  The flip [music] box.
+01:04:29  >> Oh, man.
+01:04:32  Oh, wow.
+01:04:33  Oh, wow.
+01:04:33  >> [music]
+01:04:34  >> It feels like Stranger Things music.
+01:04:37  >> Yeah.
+01:04:38  The hand's moving. Like, what is the
+01:04:41  Oh, scroll.
+01:04:43  Look [music] at this.
+01:04:45  >> Yeah.
+01:04:48  And so, I'm going to pause for a second
+01:04:49  because if you're [music] a designer and
+01:04:51  you're looking at this, you're probably
+01:04:53  going to say like, "Well,
+01:04:55  >> [music]
+01:04:56  >> how do you do this with layers, with
+01:04:58  objects?" Well, I don't know how this
+01:05:00  was done, but what I learned from my
+01:05:03  gaming experiments is every object
+01:05:06  created by itself and thinking layers,
+01:05:09  right? And every one of these can have
+01:05:11  so much more. [music] You create an
+01:05:12  object like this with some sort of
+01:05:13  refraction
+01:05:15  refraction
+01:05:15  or transparency, add a little glow to
+01:05:17  it, and then
+01:05:19  push that effect even more. And And you
+01:05:21  can get this with this video background.
+01:05:23  I would even make this hand its own
+01:05:25  object and this background its own layer
+01:05:28  as well. But I don't know how they did
+01:05:29  it.
+01:05:30  it.
+01:05:30  >> [music]
+01:05:31  >> That's cool.
+01:05:35  That's a fun by the way. That typeface I
+01:05:36  like.
+01:05:37  like.
+01:05:37  >> [music]
+01:05:42  >> Can you turn down the desktop audio? Is
+01:05:44  that possible? I don't
+01:05:46  >> Yeah, I can do that.
+01:05:47  You can cut it in half.
+01:05:49  >> [music]
+01:05:55  [music]
+01:05:56  >> All right.
+01:05:58  Hard to hear you.
+01:05:58  >> Sorry guys, I got to figure out why the
+01:06:00  mic is having these issues today. We'll
+01:06:01  get that sorted.
+01:06:08  >> [music]
+01:06:13  >> Zero.
+01:06:19  I love the typeface combinations here.
+01:06:21  >> Oh, ready?
+01:06:24  >> Join the wait list.
+01:06:27  >> How do I join?
+01:06:30  >> Oh, it's just here. Yeah. That's cool,
+01:06:32  man.
+01:06:33  man.
+01:06:33  That's cool. I like it a lot.
+01:06:35  >> probably my favorite scroll of the week.
+01:06:37  >> Yeah.
+01:06:38  Like that a lot. Um
+01:06:43  And uh yeah, so I just I wanted like
+01:06:45  there There are ideas in ways to think
+01:06:47  about this. And someone like Sebastian,
+01:06:49  my nominee for the week, uh would
+01:06:51  probably look at a lot of this stuff.
+01:06:53  And I I won't speak for him, but it's
+01:06:55  what I love about his style is that he
+01:06:58  can take some of these fun interactions
+01:06:59  cuz some designer might look at that
+01:07:01  website we just looked at and said, "Ah,
+01:07:02  it's probably terrible on conversions."
+01:07:04  And who knows? Maybe it is. Maybe it's
+01:07:06  doing exactly what it means to.
+01:07:08  But there's definitely ways you can look
+01:07:10  at that and extract really joyful little
+01:07:13  moments and apply them
+01:07:16  maybe more intentionally to something
+01:07:19  else. And and that's really what I want
+01:07:20  you guys to kind of think about.
+01:07:23  >> I'm going to get I'm going to get
+01:07:24  vulnerable here for a second because
+01:07:27  I've had some moments
+01:07:29  over the last I would say month and this
+01:07:32  website is one of those where and even
+01:07:35  making the game last night. I mean 24
+01:07:36  hours I made so much stuff, you know.
+01:07:40  Sometimes I'm I I'm like am I actually
+01:07:43  not that creative?
+01:07:44  >> [laughter]
+01:07:44  >> You know, you can do anything and you'll
+01:07:47  see examples of people doing stuff where
+01:07:49  you're like, "Oh my gosh, that's
+01:07:52  ingenious or that's beautiful or how did
+01:07:54  you think of that, you know?" Like
+01:07:57  is currency, you know.
+01:07:59  And
+01:08:01  And
+01:08:01  part of me is like, "Man, was I Did I
+01:08:03  make a career because I'm really good at
+01:08:06  functional, practical front-end
+01:08:08  layouts?"
+01:08:10  layouts?"
+01:08:10  Dude, like I feel I it's like deep in my
+01:08:12  soul that question now that it feels
+01:08:14  like the roof has been blown off of what
+01:08:17  you can accomplish.
+01:08:18  >> It's a I I've I've felt the exact same
+01:08:21  way because if I spend too much of my
+01:08:23  time in the B2B building like some of
+01:08:27  the best in class or trying to achieve a
+01:08:28  best in class product experience, you
+01:08:31  you do occasionally have to like get rid
+01:08:33  of a lot of the things that you think
+01:08:35  would make that a fun visual or just
+01:08:38  you know, step-to-step experience.
+01:08:41  And then you get stuck in that and
+01:08:42  you're like, "Oh, I'm thinking in like
+01:08:44  really rigid boxes now."
+01:08:46  What I've found is going back to that
+01:08:49  kind of the clay metaphor
+01:08:51  and I I want to show some workflows
+01:08:52  around this and then I want to get into
+01:08:54  our one-ups. Does that Does that work
+01:08:55  out? We do workflows and one-ups
+01:08:57  instead?
+01:08:58  instead?
+01:08:58  >> Yeah, makes [clears throat] sense.
+01:08:59  >> Okay, since we since we kind of cut I I
+01:09:01  stole your thunder, I didn't mean to,
+01:09:02  but I I got to show that that cool
+01:09:04  thing.
+01:09:04  thing.
+01:09:04  >> is part of the game. We talked about
+01:09:05  this. It's like sometimes you're just
+01:09:06  going to beat me to it, which is totally
+01:09:08  fine.
+01:09:08  fine.
+01:09:08  >> Yeah. Yeah. Um so, let me let me show
+01:09:12  this, right? Because
+01:09:14  I talked about mood boarding, I think it
+01:09:16  was last week or the week before.
+01:09:18  And
+01:09:19  And
+01:09:19  let's use your problem. You you kind of
+01:09:21  teed me up really nicely here.
+01:09:24  If you are someone who's like, I can do
+01:09:26  so much now, is what I'm hearing.
+01:09:30  And I don't really know how to do it.
+01:09:31  Well, there on one hand, you don't know
+01:09:33  how to do it cuz you don't know how to
+01:09:34  use the tools.
+01:09:36  But like you've got ideas.
+01:09:38  Or on the other hand, like I know how to
+01:09:39  use the tools, but like I don't really
+01:09:41  think I have very good ideas right now.
+01:09:44  And I think that's a very real thing to
+01:09:46  do. And for me, what I would say is
+01:09:50  think about it as a block of clay in
+01:09:52  front of you.
+01:09:53  And let's say you you're like, you know
+01:09:55  what? I want to make a hand like that
+01:09:57  landing page.
+01:09:59  Well, literally what you would do is you
+01:10:00  would shape the block of clay into like
+01:10:02  the most atrocious-looking
+01:10:05  arm hand. It doesn't look anatomically
+01:10:07  correct. It's just this blob. And in a
+01:10:10  lot of places like and whether that's a
+01:10:12  a wireframe, whether that's something
+01:10:14  you sketched on a piece of paper, no
+01:10:15  matter what, that is a fantastic place
+01:10:18  to start. But if you don't even know
+01:10:20  what to carve that blob out of, well,
+01:10:22  then wireframe first. And so, using the
+01:10:24  example of well, I want some really good
+01:10:25  2D point and click UI interfaces. Well,
+01:10:29  I come in I make a collection. I spend
+01:10:31  my time collecting interfaces that speak
+01:10:34  to me, right?
+01:10:35  And then
+01:10:36  And then
+01:10:36  another thing that I'll do
+01:10:39  is when I start thinking about the clay,
+01:10:41  I'm like, okay, I have like the general
+01:10:43  bullet points of things I want. I'll
+01:10:45  kind of do a you do and I'll yap to my
+01:10:47  agent.
+01:10:49  agent.
+01:10:49  And it'll build stuff for me.
+01:10:51  And it's like
+01:10:52  this is a really ugly piece of clay.
+01:10:56  You know what I mean?
+01:10:57  But it's forming. Like clay is being
+01:10:59  formed here over time. And now I'm
+01:11:03  starting to just I'm starting to just
+01:11:05  get rid of clay material. Like no,
+01:11:07  that's bad. That's bad. And then
+01:11:10  eventually it'll start to become more
+01:11:11  additive than just
+01:11:14  um
+01:11:15  um
+01:11:15  >> [clears throat]
+01:11:15  >> than just taking things away.
+01:11:17  >> Clarifying question. Those images that
+01:11:19  you just showed, were those
+01:11:20  [clears throat] just being generated as
+01:11:22  images? Was anything being built at all?
+01:11:26  >> On this moment
+01:11:31  Oh, you know what this was doing? So,
+01:11:32  these were generated from the one shot.
+01:11:36  This conversation that you're looking
+01:11:37  at, cuz I don't typically code through
+01:11:39  my open claw agent. This is evaluating
+01:11:43  those one shots.
+01:11:45  >> Cool.
+01:11:46  >> So, it's going through. It's like, yeah,
+01:11:47  here's here's my evaluation of the clay
+01:11:50  based on all the context I gave it of
+01:11:52  what I wanted I had fed it a whole bunch
+01:11:54  of
+01:11:55  of
+01:11:55  >> Oh, cool. Okay.
+01:11:56  >> I'll get into the taste gating of this.
+01:11:58  But it essentially was running this
+01:11:59  taste gate against it.
+01:12:01  >> [clears throat]
+01:12:02  >> And then we started to play a game
+01:12:04  where it said, well, let me try to
+01:12:06  improve a few of these and make some
+01:12:07  assets.
+01:12:08  assets.
+01:12:08  And when I do that, I'll take these
+01:12:10  crappy blocks of clay.
+01:12:13  Sometimes I make the crappy blocks of
+01:12:15  clay. Sometimes AI will make those
+01:12:18  blocks of clay. And sometimes we'll both
+01:12:20  do it. They'll make some and I'll add
+01:12:21  some stuff. And then I'll go over and
+01:12:24  right now my tool of choice that I adore
+01:12:27  is image two.
+01:12:29  Uh whenever I want to generate
+01:12:33  concepts of good-looking clay for
+01:12:36  specifically for like web and
+01:12:37  product-based UI, I will go to image
+01:12:40  two. And I will post things uh this is a
+01:12:43  bit further in the process. I I have so
+01:12:45  many sessions I couldn't find the
+01:12:46  original. But I'll say, hey, here's kind
+01:12:49  of where we're at. I want some help
+01:12:51  imagining what this could look like.
+01:12:54  Um and and I'm cheating through a lot of
+01:12:56  this. I'm not putting I'm actually
+01:12:57  letting it run pretty autonomously on on
+01:13:00  where it thinks directions could go. But
+01:13:02  then I just start kind of pruning that
+01:13:03  clay away again. Like this was one of
+01:13:05  the screens that the clay created. And I
+01:13:07  was like, this is not it. That's not it
+01:13:09  at all. And let's like let's get a
+01:13:10  better version of that. Or let me show a
+01:13:12  better
+01:13:13  better
+01:13:13  um Let's get to something
+01:13:18  that kind of
+01:13:19  >> While you're looking, this is exactly
+01:13:20  what I should have done in retrospect.
+01:13:22  Like if I would have changed one thing
+01:13:23  about my own workflow, I built the scene
+01:13:27  with the benches in code first, but I
+01:13:30  totally should have seen that 20
+01:13:32  different ways in image two, and then
+01:13:35  just use that as a blueprint to build
+01:13:37  it. Because even right now, I'm like,
+01:13:38  ah, I I
+01:13:39  ah, I I
+01:13:39  I just I want to change some things
+01:13:40  about the benches, but it's a big lift
+01:13:41  cuz now all of a sudden I'm changing
+01:13:43  10,000 lines of code, you know, which is
+01:13:45  just touching everything. And I I mean,
+01:13:48  I made mistakes. This is I'm I'm
+01:13:50  learning as you're going.
+01:13:51  >> Well, and and you know, so like I was
+01:13:53  showing it. I'm like, listen, there's
+01:13:55  kind of these end of run uh summaries
+01:13:58  that show up every time you go through a
+01:13:59  run of the game FDE.
+01:14:02  And they they're kind of I just like
+01:14:04  these don't cut it. I was like, this is
+01:14:06  where we're at. This is a look I really
+01:14:09  like. Now, I didn't do any human
+01:14:11  additions to this. I said, I like this a
+01:14:13  lot,
+01:14:14  lot,
+01:14:14  um and I want some more variations of
+01:14:16  that version, and that's essentially
+01:14:18  what it gave me here. Uh well, let me
+01:14:20  zoom in on that. It won't right now for
+01:14:22  some reason.
+01:14:24  There we go.
+01:14:25  So, it kind of gave me these other ones,
+01:14:27  and then I could pull from like look at
+01:14:30  it it it'll
+01:14:31  Image two has this uh this tool is image
+01:14:35  two. It's Chat GPT for those who just
+01:14:37  joined. And we're walking through a
+01:14:38  workflow of asset creation and how I
+01:14:40  shape clay with AI outputs.
+01:14:43  And what we have here,
+01:14:45  it'll add a lot of unnecessary details.
+01:14:48  That is something image two or just AI
+01:14:50  in general loves to do. Let's give
+01:14:51  eyebrow text and subtext and tooltips
+01:14:53  and like let's add the most amount of
+01:14:57  visual noises as we can. And it is
+01:14:59  definitely part of your job to like
+01:15:01  parse that out. And but there are a lot
+01:15:04  of good ideas occasionally that come
+01:15:05  through these concepting. And so like
+01:15:08  for example, it gave me an idea. I I
+01:15:11  like we we liked this sort of console to
+01:15:14  show dialogue happening. And this was
+01:15:17  the web version. This was the block of
+01:15:19  clay and it's lower fidelity. And I said
+01:15:21  I really want to I want to add some
+01:15:23  detail of being inside of the rig that
+01:15:27  this the player would be in to the walls
+01:15:30  here instead of just web based. And so
+01:15:32  it gave me this. I said, "Cool. What
+01:15:34  we're going to have to do is cut out
+01:15:36  this window so that that can be its own
+01:15:38  live background and we can use in a lot
+01:15:40  of different scenes. We're going to have
+01:15:41  to create stuff here. So let's go ahead
+01:15:44  and do that." And that's kind of where
+01:15:46  me and this agent were were living for a
+01:15:49  while. And I said, "Listen, image two
+01:15:50  can't generate transparency. You need to
+01:15:53  send it to me and I'll go and I'll cut
+01:15:55  out things that we need." So it would
+01:15:56  give me these
+01:15:58  It would give me all sorts of different
+01:15:59  assets. And then I could come in here
+01:16:02  and I'll be like, "Oh great.
+01:16:05  Oh, I don't think I'm logged in on Figma
+01:16:06  so this is read only. But I'd come in I
+01:16:08  just right click, remove background, you
+01:16:10  know, same like you could see an example
+01:16:12  here. Here's the the background of it.
+01:16:14  Here it is here. And then I'm going in
+01:16:16  and I'm telling the agent, "Hey, what I
+01:16:18  need you to do is basically crop out the
+01:16:21  console by itself, crop out the wall by
+01:16:23  itself, generate the missing piece of
+01:16:26  the wall. Now we have two layers of
+01:16:28  assets and we can add and take and
+01:16:30  create all kinds of stuff that we want
+01:16:32  from there." And it does a really good
+01:16:34  job of starting to create all these
+01:16:35  assets.
+01:16:36  assets.
+01:16:36  And then you could create a pipeline if
+01:16:38  you wanted to, you know, or you could
+01:16:40  take those over to a video
+01:16:42  to a video app and this is kind of how I
+01:16:44  created my intro background
+01:16:48  of the the title screen, right? Let's
+01:16:50  see, does this have
+01:16:52  What does this one do for me?
+01:16:57  Okay, so that's one end of it. On this
+01:16:59  end, there's the swarm. Oh, that's not
+01:17:01  very good.
+01:17:02  very good.
+01:17:02  Where are we at?
+01:17:04  And you get you get the idea. We we have
+01:17:06  these like you pull in your different
+01:17:08  scenes, your start frame, your end
+01:17:10  frame, you prompt to fill in the middle,
+01:17:12  and you can create a lot of motion and
+01:17:14  animation here.
+01:17:16  So, that is that is kind of a workflow
+01:17:17  that I call shaping clay. And I have a
+01:17:19  few more to show, but I want to stop for
+01:17:21  a second.
+01:17:22  a second.
+01:17:22  And you see
+01:17:24  Do you work this way?
+01:17:28  >> I mean, I
+01:17:29  I'm starting to. I'm starting to.
+01:17:31  It's funny, I really think the last 3
+01:17:33  weeks of just doing random experiments
+01:17:36  as a part of Dive Radio is what has
+01:17:39  pulled me way more in this direction.
+01:17:41  And a part of it has been seeing how you
+01:17:42  work, too. Like I wouldn't been able to
+01:17:43  say yes to literally 3 weeks ago.
+01:17:46  >> Yeah.
+01:17:48  Yeah.
+01:17:50  Yeah.
+01:17:50  Yeah, it's
+01:17:51  Yeah, it's
+01:17:51  there's a lot of different stuff here.
+01:17:52  There's something I ran into, which was
+01:17:55  kind of interesting,
+01:17:56  was So, I said, "Okay, this is great as
+01:17:58  like a 2D app,
+01:18:01  but I really want to start making 3D
+01:18:03  objects." That's never I spent 2 years
+01:18:05  learning Blender many moons ago, and I
+01:18:08  still don't know how to use Blender.
+01:18:10  >> [laughter]
+01:18:10  >> I've made a chessboard, I've made a
+01:18:12  bunch of tutorial stuff, and it's just a
+01:18:15  unwieldy tool, man. An unwieldy tool.
+01:18:18  And
+01:18:19  And
+01:18:19  Claude and a bunch of others, like
+01:18:21  Unity, but Claude has announced like
+01:18:24  these different ways that they work
+01:18:25  inside of Blender or Autodesk. A lot of
+01:18:27  these 3D toolings
+01:18:30  a lot of the game engines are getting
+01:18:31  MCPs. And so, I said, "Okay, I have no
+01:18:34  idea how to use any of that type
+01:18:38  [snorts] of stuff, you know, but like I
+01:18:40  know that Higgs Field has an MCP. I
+01:18:42  haven't really touched Higgs Field a
+01:18:43  lot. Um
+01:18:45  lot. Um
+01:18:45  and so
+01:18:46  and so
+01:18:46  I come over to like the Blender MCP and
+01:18:48  you can see people have these different
+01:18:50  things. What you're watching here is AI
+01:18:53  just building this thing while he's just
+01:18:56  recording it.
+01:18:58  And it's pretty fascinating. And so I
+01:19:00  was like, well, can can you do that? Can
+01:19:02  we do this, you know? Um
+01:19:06  and I want to find
+01:19:09  I have to find
+01:19:12  Oh, I thought I pulled in my
+01:19:15  Give me a second. Cuz I want to show you
+01:19:17  this. I want to show what it looks like
+01:19:20  when you're generating assets and a
+01:19:22  problem that I learned in working with
+01:19:24  3D assets
+01:19:26  3D assets
+01:19:26  uh
+01:19:27  uh
+01:19:27  about like an empty
+01:19:29  fist here. Give me a second.
+01:19:32  >> Which is deep in your bones open
+01:19:35  archives right now.
+01:19:36  >> Yeah, you are. This is
+01:19:37  >> Whenever I think I have an understanding
+01:19:39  of how many back and forths you have
+01:19:41  with bones, then you share your screen
+01:19:42  on something like this and I'm like,
+01:19:44  "Good god."
+01:19:45  >> [laughter]
+01:19:47  >> Um I know. It's I I live inside of this.
+01:19:50  I genuinely do. And uh here we go. This
+01:19:53  should This should get us to where I'm
+01:19:55  trying to go.
+01:19:58  Right?
+01:20:00  There we are. That's the one I want.
+01:20:02  And so
+01:20:03  And so
+01:20:03  >> You're sharing screen.
+01:20:04  >> No. No, I'm not sharing it. I'm not I
+01:20:05  got to remember to do that.
+01:20:08  Like so I want to show this cuz I was
+01:20:09  like, "Okay, cool." Another one of my
+01:20:11  favorite games all time was Shadow of
+01:20:13  the Colossus.
+01:20:14  Uh for anyone anyone who knows that,
+01:20:16  great game. One of the best. What's up,
+01:20:18  Omar? Good to see you.
+01:20:20  And so I said, "Cool. Okay, let's create
+01:20:22  some monsters. Let's create some giants,
+01:20:24  you know, huge larger-than-life
+01:20:26  monsters." And literally, if if my
+01:20:28  metaphor of of bad clay needs a visual,
+01:20:32  Here you go.
+01:20:33  That is That was kind of the first thing
+01:20:36  it did. And so, uh my prompt, by the
+01:20:38  way, up here was as simple as I have
+01:20:40  Blender installed. I want you to make
+01:20:42  use of its MCP to build two video game
+01:20:44  bosses in the spirit of Shadow of the
+01:20:47  Colossus.
+01:20:48  Colossus.
+01:20:48  And it's like on it. And it basically
+01:20:50  set it up and then within
+01:20:52  uh
+01:20:53  uh
+01:20:53  within 7 minutes had a really
+01:20:56  bad-looking render,
+01:20:58  you know? And I was like, "Cool. That's
+01:21:00  terrible. Is there something we can do
+01:21:02  with with Higgs field, which has a
+01:21:04  number of tools for rendering things,
+01:21:06  creating video, and then little
+01:21:08  additional plugins that'll turn a video
+01:21:10  asset into like a sort of
+01:21:12  uh it'll look like it's an object, a 3D
+01:21:15  object." And so, that's kind of what it
+01:21:16  did. And it built this guy. And I'm
+01:21:17  like, "Okay, we're getting somewhere."
+01:21:18  This it built in Higgs field, then
+01:21:21  brought it over to Blender on its own,
+01:21:23  and actually modeled it, right? And so,
+01:21:26  when you when you bring a 3D model from
+01:21:29  a video into Blender and it actually
+01:21:31  models it, the kind of freedoms you're
+01:21:33  now provided is the ability to just
+01:21:35  manipulate lighting and shading and add
+01:21:37  texture and a number of other things.
+01:21:39  So, it's doing that. It built out this
+01:21:41  other monster. I'm like, "All right,
+01:21:42  these are fine, you know? This is cool.
+01:21:45  Like, here's a flying Starting to look
+01:21:47  like Pokémon kind of, whatever, you
+01:21:49  [laughter] know?"
+01:21:50  Um and I said, "I actually want this to
+01:21:51  be more grim dark. And we need a hero.
+01:21:53  And actually, I want our hero to be like
+01:21:55  a kid fighting his monsters." And so,
+01:21:57  we're getting like deep into it. And
+01:21:58  then there's like a companion. And so,
+01:22:01  it was like, "You know, there's a better
+01:22:02  way to do this. There's another modeling
+01:22:04  tool called so-and-so. So, let's use
+01:22:06  it." And it starts modeling out these
+01:22:07  grim dark creatures. And I'm like, "Oh,
+01:22:10  we're back at the shitty clay stage
+01:22:11  again, you know?" And I was worried that
+01:22:14  this is where it was going to stay. Um
+01:22:16  but as it started to kind of form these
+01:22:18  things, like this is not a very
+01:22:20  acceptable rendition,
+01:22:22  uh you know, especially like, "What is
+01:22:24  this? This is our kid?"
+01:22:26  I'm not going to play a game with that.
+01:22:27  It literally looks like terrible clay.
+01:22:30  But it started to really then bring them
+01:22:32  in and it started to inform me of the
+01:22:35  different tools that we could use to
+01:22:37  improve the fidelity of all of these
+01:22:39  things. And eventually
+01:22:41  we get ourselves like none of this like
+01:22:43  what is this? This looks like the
+01:22:45  spaghetti problem, right? And then like
+01:22:47  like the seven
+01:22:48  the 11 hand digit.
+01:22:50  >> Quick clarifying question. Quick quick
+01:22:51  quick question.
+01:22:52  >> Go.
+01:22:52  >> Were you specifically asking what other
+01:22:55  tools should I be using or did it
+01:22:56  proactively do that?
+01:22:58  >> I I was I was I I did ask well
+01:23:01  I said Higgs
+01:23:01  >> that's a big unlock. That's right?
+01:23:03  >> The So what I said was hey
+01:23:06  Higgsfield is supposed to be pretty good
+01:23:08  as like a way to visualize the game
+01:23:10  worlds here and it went and it pulled
+01:23:12  down I connected to Higgsfield it pulled
+01:23:13  down all its tools and it told me what
+01:23:15  they were and I said so like are we able
+01:23:17  to use Higgsfield to generate objects
+01:23:20  and it said it actually has a couple 3D
+01:23:22  modeling that are specifically for this
+01:23:25  just to get a feel for it. So what it
+01:23:27  would do on its own is it would image to
+01:23:29  generate a
+01:23:30  generate a
+01:23:30  concept
+01:23:32  concept
+01:23:32  and then it would come over and in fact
+01:23:34  like
+01:23:35  like
+01:23:35  this is our concept sheet right here.
+01:23:38  So it would concept
+01:23:41  the hero. It only showed me this version
+01:23:43  but it's doing all of this on its own.
+01:23:46  It is literally concept arting out these
+01:23:48  creatures
+01:23:50  creatures
+01:23:50  in one tool on Higgsfield and then it's
+01:23:52  moving over into the other tool called
+01:23:54  like Houdini or something like that and
+01:23:56  it's creating the the mesh the clay that
+01:23:59  sucks in that tool
+01:24:02  and then it's bringing it over to
+01:24:03  Blender and it's building it properly
+01:24:06  based on this reference the the starting
+01:24:09  point and then it it gets to that last
+01:24:11  moment. And it didn't stop there though.
+01:24:14  That's not the last thing that it did.
+01:24:16  Um
+01:24:17  Um
+01:24:17  I I just I'll I'll get to one final
+01:24:20  piece here.
+01:24:22  Oops.
+01:24:25  You know, so like our kids getting
+01:24:26  angrier is getting a little bit more
+01:24:27  lifelike, but we're still kind of far
+01:24:29  away from where it eventually landed.
+01:24:31  Um
+01:24:36  You know, it's like it's starting to
+01:24:37  color these things and add lighting to
+01:24:39  them and uh
+01:24:41  it's building a lore Bible essentially
+01:24:44  to this.
+01:24:45  to this.
+01:24:45  >> I'm laughing cuz the last The last chat
+01:24:47  message just says, "What if I walked
+01:24:49  into"
+01:24:50  into"
+01:24:50  >> Yeah, you've walked into some mixed
+01:24:51  media workflows and we're now
+01:24:53  demonstrating from a game perspective,
+01:24:56  right?
+01:24:57  right?
+01:24:57  But the thing that's really interesting
+01:24:59  here was this sword.
+01:25:03  And I'm not going to spend the I I Slack
+01:25:06  links are kind of weird, but it found
+01:25:08  that this sword
+01:25:11  I In order to make this like movable for
+01:25:13  a game, what it told me was like, "Hey,
+01:25:15  just so you know, the way this has been
+01:25:17  meshed and modeled up
+01:25:20  is uh
+01:25:21  is uh
+01:25:21  it's basically vector soup and it's not
+01:25:24  workable in the way we need it." And I
+01:25:25  said, "Oh, no.
+01:25:27  Like this all just was superficially
+01:25:29  cool, but not really working." And it
+01:25:31  said, "No, but we can fix it and I'm
+01:25:33  going to do that now." And then it went
+01:25:35  and meshed out like and I haven't I'm
+01:25:37  not a a 3D modeler. I haven't looked at
+01:25:39  this to verify it claims that it is now
+01:25:43  workable and I haven't turned this into
+01:25:44  a game yet, but that's kind of
+01:25:46  interesting that it was smart enough to
+01:25:48  recognize that his sword
+01:25:51  basically his his sword and his hand
+01:25:53  there was no hole in his hand. It was
+01:25:55  just like all connected and it's like,
+01:25:57  "No, you need to separate these as
+01:25:59  objects and they need to be rendered in
+01:26:01  such a way that it's workable in the
+01:26:02  code."
+01:26:03  code."
+01:26:03  And so kind of the
+01:26:05  kind of an interesting uh
+01:26:07  call out that I led from it.
+01:26:09  The way that it was telling that all of
+01:26:12  these were good or bad in the same
+01:26:14  process I used for the game I showed you
+01:26:17  called FDE was I created something
+01:26:20  called uh
+01:26:23  called uh
+01:26:23  I guess we'll call it like
+01:26:25  I created a wiki of of of things that I
+01:26:28  want us to learn from. And then I I
+01:26:30  guess we'll call it the wiki fed critic
+01:26:32  or something like that.
+01:26:34  So it was just another agent. We talk
+01:26:35  about loops. We talk about setting a
+01:26:37  gate that approves if that output from
+01:26:39  that loop is can continue or not.
+01:26:42  And so the way that I did that and
+01:26:44  someone talked about it here by the way.
+01:26:46  They called it this adversarial agent
+01:26:48  and he said uh Anshu is his name. He
+01:26:51  created the one-shot Opus 5 game
+01:26:55  which is
+01:26:57  which is
+01:26:57  just wild from a that looks crazy.
+01:27:00  And he said I made sure one of the
+01:27:01  biggest things that I did and Matt
+01:27:02  Schumer talks about this in his gauntlet
+01:27:04  loop was creating an adversarial critic
+01:27:08  who just sits there and nitpicks
+01:27:10  everything you're doing.
+01:27:12  And they do it by giving it a proper
+01:27:14  prompt and it just says like, "Hey,
+01:27:16  build a build a sense of of taste and
+01:27:19  evaluate against this."
+01:27:21  Well, I did something a little bit
+01:27:23  deeper than that. And I actually went in
+01:27:26  and the first thing I like to do if I'm
+01:27:28  going to create a game or if I'm doing
+01:27:30  something specific is I want to create
+01:27:32  kind of a knowledge house of what's
+01:27:35  known as best practices. And I do this
+01:27:37  for a lot of stuff. And a lot of times
+01:27:38  it's includes a bunch of stuff from me.
+01:27:41  And then it'll also include a bunch of
+01:27:43  stuff from experts in the industry of
+01:27:45  whatever it is I'm trying to do. So
+01:27:46  let's take the game for example. I said,
+01:27:48  "Hey, here are six games that I love
+01:27:51  FTL, Monster Train, a bunch of similar
+01:27:54  like games. Go out in the internet, find
+01:27:58  game developer conference talks,
+01:28:00  anything that basically amounts to
+01:28:02  lessons learned from the creators of
+01:28:04  these games. Synthesize those videos and
+01:28:08  takeaways into a wiki about what we
+01:28:11  want. And then
+01:28:12  tell me what you think is worth calling
+01:28:15  out to make this the best experience
+01:28:17  within the context of what we're trying
+01:28:18  to do. So, it builds out kind of the
+01:28:21  wiki, the lessons from FTL, lessons from
+01:28:23  the game Hades, etc.
+01:28:26  And then it builds out the research.
+01:28:27  This is all inside of Obsidian.
+01:28:30  And so, it's pulling all this in. It
+01:28:31  gives me all these different lessons. It
+01:28:33  gives me an entire complete synthesis
+01:28:36  of the topic we're trying to do.
+01:28:39  And then I say, "Okay, cool. Now create
+01:28:41  a game critic. Do all the things that
+01:28:43  the last two people did with their game
+01:28:45  critic, and make sure you're using our
+01:28:48  search experience, and look at this wiki
+01:28:51  every single time when you do this
+01:28:53  evaluation."
+01:28:55  >> So smart.
+01:28:55  >> And so, the critic comes out, and he's
+01:28:58  looking at these things, and he's like,
+01:29:00  "Listen,
+01:29:01  "Listen,
+01:29:01  this is ass. And here are the things
+01:29:03  that need to change in order for this,
+01:29:05  you know, to go." And so, you have that
+01:29:07  critic. And so, that critic is something
+01:29:09  I'm learning how to build quickly in
+01:29:12  every project that I do. I still intend
+01:29:15  to be the final D decision-maker. But
+01:29:18  having that critic to monitor parts of
+01:29:20  the loop that I don't always want to be
+01:29:22  involved in is really helpful. And I
+01:29:25  would recommend uh creating not just an
+01:29:27  agent that gates the progress, but
+01:29:30  something an agent that is wiki-fed.
+01:29:33  Build a wiki that is custom to your
+01:29:34  project, and then feed it to a critic
+01:29:37  who is going to be the crankiest member
+01:29:39  of your agentic team
+01:29:41  for the project you're working on.
+01:29:43  >> I love that, man.
+01:29:45  >> Yeah.
+01:29:47  And then
+01:29:50  for anyone making games, just like it's
+01:29:52  kind of fun. I do this with games, do it
+01:29:54  with your app.
+01:29:56  I had uh
+01:29:58  I had uh
+01:29:58  what I'm learning
+01:29:59  Oh, this isn't playing.
+01:30:04  All right, screen share. I see you.
+01:30:08  I was
+01:30:09  I was
+01:30:09  recording how
+01:30:11  it spun up an agent to go and play
+01:30:13  through the game. You can do this to
+01:30:15  also play through your app, to step
+01:30:18  through your app. And it might have
+01:30:19  certain actions or time to task, things
+01:30:22  you measure.
+01:30:23  And the reason that those types of
+01:30:24  evaluations are kind of interesting is
+01:30:26  especially with games, you want to make
+01:30:28  sure balance is correct. And we were
+01:30:30  having issues where like you'd get stuck
+01:30:32  in a fight for 7 minutes or fights would
+01:30:35  just never conclude because they're kind
+01:30:37  of a tie.
+01:30:39  of a tie.
+01:30:39  And so on version 8 it was like, "What's
+01:30:41  the longest fight?" 5.68 minutes across
+01:30:44  three playthroughs. And then you see it
+01:30:46  go down. So this is kind of a fun way
+01:30:48  that I don't don't replace user testing.
+01:30:52  Of course not with real people, you need
+01:30:54  that. But before you graduate to that
+01:30:56  step, some of the some of the user
+01:30:58  testing you can do is to have a before
+01:31:00  and an after state on versions and have
+01:31:03  an agent walk through the app and
+01:31:04  perform this on certain KPIs. I think
+01:31:06  that's a really compelling way to do
+01:31:08  this.
+01:31:09  this.
+01:31:09  Um
+01:31:11  Um
+01:31:11  I'm going to stop there. I'm going to
+01:31:12  stop there. I went through I just
+01:31:14  ran through.
+01:31:15  >> [laughter]
+01:31:16  >> No, it's it's great. Like it even gets
+01:31:17  sparked some multiple ideas for me, too.
+01:31:20  And
+01:31:21  And
+01:31:21  I remember
+01:31:23  I remember
+01:31:23  I talking I think I was talking with
+01:31:24  Lordana, the Figma chief design officer.
+01:31:27  And she just talked about how like how
+01:31:29  important evals are. Designing the right
+01:31:32  eval and how that was going to be more
+01:31:34  and more of a part of
+01:31:36  like what good designers just do, you
+01:31:38  know? Like there's creativity in
+01:31:40  thinking about the right evals and
+01:31:42  tests. And it's an again, it's like one
+01:31:44  of those same things where
+01:31:46  something that was previously completely
+01:31:48  out of my realm of responsibilities now
+01:31:49  is completely up to me to prompt
+01:31:52  effectively, kind of have an idea of
+01:31:54  what's possible, and then just think of
+01:31:56  the right way that I could build this
+01:31:58  one little test to improve the output
+01:32:00  automatically, like capture all that
+01:32:02  low-hanging fruit.
+01:32:04  >> Yeah, there's there's a lot here. I'm
+01:32:06  going to dig into these workflows on an
+01:32:08  upcoming YouTube video and really
+01:32:10  showcase any of this. If you guys have
+01:32:12  questions,
+01:32:13  questions,
+01:32:13  I do want to introduce you
+01:32:16  1-833-DIVEIN1
+01:32:18  to the call-in line
+01:32:20  that we have available. I am going to
+01:32:23  arm this now, Rid, if you want to arm
+01:32:25  your side.
+01:32:26  your side.
+01:32:26  >> Yep.
+01:32:27  >> And uh what's pretty cool, guys, is I
+01:32:29  don't know.
+01:32:31  You know? Last uh
+01:32:34  the line is open.
+01:32:36  Last week,
+01:32:38  Last week,
+01:32:38  uh as Rid was frantically trying to get
+01:32:40  his baseball game going in time for the
+01:32:43  stream today, I was frantically trying
+01:32:45  to get our call line working.
+01:32:48  Uh there are options out there that do
+01:32:49  it, but it it had a couple features that
+01:32:51  just weren't going to fly for us, so I
+01:32:52  just built it. And we got it working,
+01:32:55  I'd say 90% of the way there.
+01:32:58  >> Very very
+01:32:58  >> proud proud to have it. Um this week, we
+01:33:02  should be ready to rock. So, if you have
+01:33:04  a question, if you have a gripe, if you
+01:33:07  just want to talk a little smack, this
+01:33:09  is the time to do it for the next uh
+01:33:11  probably 20 minutes here. We'll take
+01:33:13  your calls. We want to hear from you.
+01:33:15  This is a fun little segment. In the
+01:33:17  meantime, Rid,
+01:33:19  how do you feel about all this mixed
+01:33:20  media stuff? Do you think Do you think
+01:33:22  this is like
+01:33:24  Let me ask you a a debate question.
+01:33:26  Maybe we agree to disagree. I think
+01:33:28  mixed media is going to be the next
+01:33:30  massive
+01:33:31  massive
+01:33:31  I don't know what you want to call it,
+01:33:32  trend, movement, design discipline that
+01:33:35  we start to see more and more of in
+01:33:37  spades.
+01:33:38  spades.
+01:33:38  Agree disagree?
+01:33:44  >> I think that it is
+01:33:46  Here's the thing. Like the mixed media
+01:33:48  piece,
+01:33:50  piece,
+01:33:50  the value is in the initial creativity,
+01:33:53  which can come from one person,
+01:33:56  and in the ability to effectively build
+01:33:58  the pipeline that scales to end number
+01:34:00  of people, which can also come from one
+01:34:02  person. So, I think the
+01:34:04  >> Yeah.
+01:34:05  >> impact, like the the ROI of being able
+01:34:07  to leverage mixed media is will
+01:34:11  skyrocket. And if you can bring that to
+01:34:12  the table, it's a really attractive
+01:34:13  thing.
+01:34:15  thing.
+01:34:15  I think it's still going to be a little
+01:34:16  bit niche though, just because it's so
+01:34:19  unbelievably scalable. It goes back to
+01:34:20  what we were talking about last week
+01:34:21  where I was I was saying how brand
+01:34:23  engineer was going to be like the big
+01:34:25  role for the remainder of the year. And
+01:34:29  this is kind of that, right? Like you
+01:34:31  could be a killer brand engineer by just
+01:34:35  understanding how to build these little
+01:34:37  mixed media pipelines that allow your
+01:34:41  company or product or whatever you're
+01:34:42  doing to
+01:34:44  doing to
+01:34:44  to scale your own creativity. So, it's
+01:34:46  like yes and no, I guess. I'm not saying
+01:34:48  like a hard disagree,
+01:34:50  but I don't think there's going to be
+01:34:55  I don't know. The way that we were
+01:34:55  talking about it right now, I don't know
+01:34:56  if there's going to be like really
+01:34:58  scaled out mixed media teams in an org.
+01:35:01  I think you still have like more
+01:35:02  specialty skills like like sound, video
+01:35:04  editing, that kind of things. But in
+01:35:06  terms of like the creative pipeline,
+01:35:09  I think it's just like a small subset of
+01:35:10  people in tech that are printing money
+01:35:13  and can get any job they want.
+01:35:15  >> [laughter]
+01:35:15  >> Speaking of sound and you made this call
+01:35:17  out last week
+01:35:20  seeing a lot more sound across the web.
+01:35:23  Um there's ways to do it well, ways
+01:35:25  where it's overdone. But every one of
+01:35:27  those examples that I showed, not the
+01:35:30  games, but the kind of more gamified web
+01:35:33  designs, every one of those had some
+01:35:35  sort of sound design.
+01:35:37  And I thought that that was really
+01:35:38  interesting to see as a call out because
+01:35:41  back to the question of how do you make
+01:35:42  someone care about a pixel, it's all of
+01:35:44  those ingredients.
+01:35:45  >> Yeah.
+01:35:46  There's a freshness about sound design
+01:35:48  too right now. Like I'm not a sound
+01:35:49  engineer.
+01:35:51  engineer.
+01:35:51  I'm I have a musical background and yet
+01:35:53  still I'm not actually able to
+01:35:55  distinguish between like the 90th
+01:35:57  percentile of quality sound design and
+01:35:59  the 100th percentile. There's just no
+01:36:00  way, right? Like for me, I'm still in
+01:36:03  the phase of oh, cool, this website has
+01:36:04  sound. This is fun. Wow, I'm enjoying
+01:36:06  myself way more than I was
+01:36:08  uh
+01:36:09  uh
+01:36:09  in some copy experience that was just
+01:36:10  silent, right? Like it's it's fun and
+01:36:12  fresh.
+01:36:13  fresh.
+01:36:13  I don't uh
+01:36:17  I don't uh
+01:36:17  I don't know. There's this moment in
+01:36:17  time where it's like it's such an easy
+01:36:19  win.
+01:36:20  win.
+01:36:20  But the professional sound designers are
+01:36:22  probably looking at us like, dude,
+01:36:24  it's trash. [laughter]
+01:36:26  >> Well, and you know, in Yeah, I agree. I
+01:36:28  agree. And I have some stuff to talk
+01:36:30  about on the sound side. I won't get too
+01:36:31  deep into it, but on the YouTube video I
+01:36:32  will. Adrian says, "Sure, but will you
+01:36:35  work on your game three time three time
+01:36:38  from now, or is it just momentary hype
+01:36:40  and you will be
+01:36:42  >> Three months from now, and then is it
+01:36:43  momentary hype? Um
+01:36:45  Well, so two things. One, you have to
+01:36:47  understand that part of my job is to
+01:36:49  explore these tools, go deep into them,
+01:36:53  and come out with where do I think they
+01:36:54  fit into the lay of the land of all the
+01:36:56  things we do.
+01:36:57  Uh two, I personally have an interest in
+01:37:01  making a game. I have for a very long
+01:37:03  time. And as I said earlier, the game I
+01:37:05  showed you, that's not the game that I
+01:37:07  will go to market with. But I am I have
+01:37:10  been working on the narrative and
+01:37:12  everything for that game.
+01:37:13  But what that game taught me, the one I
+01:37:15  just showed off here, was how to turn
+01:37:17  that into a game engine and I do plan.
+01:37:20  So, is all of that throwaway work? No.
+01:37:23  Will I continue to work on that game? I
+01:37:25  do have some stuff I'd like to finish
+01:37:26  and then call that done.
+01:37:28  But understand that a lot of I I go back
+01:37:31  to the quote that says, "People Some
+01:37:34  people like to think in order to make,
+01:37:37  but other people like to make in order
+01:37:39  to think." And I am the latter. And
+01:37:42  experiments like these allow me to do
+01:37:44  that.
+01:37:45  that.
+01:37:45  Yeah.
+01:37:46  Yeah.
+01:37:46  We've got some calls. Let's go ahead and
+01:37:48  take these on uh on the show here. And
+01:37:50  let's find out, Rid, if this works.
+01:37:53  James, you are on the line with live.
+01:37:56  What's going on, dude?
+01:38:05  >> [laughter]
+01:38:07  >> How you doing, man?
+01:38:41  Hold on. Hold on. Hold on.
+01:38:45  Can't hear him.
+01:38:46  Oh, I can hear him. Oh, [groaning]
+01:38:49  I
+01:38:51  Broke it for you and now you fixed it
+01:38:52  for me.
+01:38:54  for me.
+01:38:54  No.
+01:38:57  Share your screen, Rid.
+01:38:58  >> Oh, other people can't hear James.
+01:39:00  >> Share your screen, Rid.
+01:39:02  Brutal.
+01:39:04  Brutal.
+01:39:04  Hold on.
+01:39:04  Hold on.
+01:39:05  Hold on, James. Hold on. Hold on. Stay
+01:39:06  with
+01:39:06  with
+01:39:06  >> One one sec, James. We're going to solve
+01:39:07  this with you on the line.
+01:39:09  >> What's this what's this what what you're
+01:39:11  allowed to have to share?
+01:39:13  Tommy?
+01:39:14  Tommy?
+01:39:14  >> Screen share in the bridge. Screen share
+01:39:16  this tab.
+01:39:17  this tab.
+01:39:17  >> It's not going to let you.
+01:39:19  There cuz it's not going to let you
+01:39:20  access it right away.
+01:39:23  Oh.
+01:39:27  No, no, no. I got you. I got you.
+01:39:31  I keep forgetting I keep forgetting it's
+01:39:32  the screen.
+01:39:34  >> Yeah, cuz I I I am hearing
+01:39:36  >> We can hear you right now.
+01:39:39  >> Okay.
+01:39:40  You can hear me?
+01:39:41  >> Yeah. other people hear him?
+01:39:44  >> Yes.
+01:39:45  >> Chat, hit hit us up. Can you hear James?
+01:39:48  >> I could hear both of you.
+01:39:51  Do you both want to put up the peace
+01:39:53  sign and just make sure you could
+01:39:55  >> I can hear you. I got you. I'm just want
+01:39:57  to make sure that I can
+01:39:58  >> We we we we are good now. You're going
+01:40:00  to hear me a little echoey.
+01:40:03  I will fix that when we get back. Go
+01:40:04  ahead with your question.
+01:40:06  >> It's echoey, but it's it's epic and it's
+01:40:08  cool cuz uh yeah, my heart's beating a
+01:40:12  a mile a minute. I can't believe I'm on
+01:40:14  here.
+01:40:15  here.
+01:40:15  This is really Tim Heidecker show. We're
+01:40:17  not helping ourselves either. Tim
+01:40:18  Heidecker miss.
+01:40:20  Uh yeah, so what again, I came in
+01:40:24  uh watching the live feed when my um
+01:40:27  what was it? You're showing that website
+01:40:29  with the the hand
+01:40:31  and uh it had like a message messaging
+01:40:33  about what happens after you graduate.
+01:40:35  Totally relate with that.
+01:40:37  Um yeah, and I I immediately thought of
+01:40:40  all the ways you could build that in
+01:40:42  Spline and in Blender and then
+01:40:45  uh it like right now I'm integrating
+01:40:47  chat to have my
+01:40:51  Webflow account talk with Spline so that
+01:40:54  you could have this nice
+01:40:55  you know, this sort of interactive
+01:40:57  portfolio. So
+01:40:59  yeah,
+01:41:00  yeah,
+01:41:00  I came to just talk about that and
+01:41:05  and also
+01:41:06  and also
+01:41:06  it sounds a little pick me, but you said
+01:41:08  that we could talk
+01:41:10  [ __ ] if we wanted to. So I was going to
+01:41:12  ask you if you could defecate on my site
+01:41:15  live.
+01:41:17  live.
+01:41:17  >> Colorful language. What's your site?
+01:41:20  >> Uh mindjavalin.com
+01:41:24  >> Mind
+01:41:26  Javelin?
+01:41:26  Javelin?
+01:41:26  >> Yeah.
+01:41:27  Yeah.
+01:41:30  >> All right, I'm going to switch view.
+01:41:39  >> Wait, this is cool.
+01:41:51  Uh there's no shadows. Right away I'm
+01:41:52  like it's it's that one hour of the one
+01:41:55  day of the year in Hawaii where there's
+01:41:56  no shadows on any objects and it kind of
+01:41:58  floats oddly. I get that vibe.
+01:42:03  The
+01:42:07  Woah.
+01:42:11  Yeah, yeah, you you you you just you
+01:42:13  just be quiet, James. We're just just
+01:42:23  >> [laughter]
+01:42:26  >> Yeah. Yeah, the VHS overlay is cool,
+01:42:29  too. This is kind of proving to be a
+01:42:31  little bit hard to [ __ ] on so far.
+01:42:33  >> [laughter]
+01:42:35  >> Um
+01:42:36  dig that.
+01:42:43  I'm here. I'm here. I'm here. Yeah, you
+01:42:45  can hear me.
+01:42:46  Chat's just delayed.
+01:42:49  There we go.
+01:42:52  Okay.
+01:42:53  I like
+01:42:56  I like
+01:42:56  It's hard to read.
+01:43:01  This is
+01:43:02  >> not like an emer like if you're not
+01:43:04  >> bringing
+01:43:04  >> the skill set of like crazy immersive
+01:43:07  web design. Like if that is what you
+01:43:09  are, then this is really interesting. If
+01:43:12  you are something else, then
+01:43:15  it's it it's it doesn't like click
+01:43:17  immediately. I'm kind of like part of me
+01:43:18  is just like, "What are you?"
+01:43:20  You know?
+01:43:22  So
+01:43:23  >> To be clear.
+01:43:24  >> To be clear.
+01:43:25  >> This is
+01:43:26  >> This is
+01:43:29  >> This is a portfolio
+01:43:30  >> portfolio
+01:43:31  >> Yeah.
+01:43:33  >> And what do you want your portfolio
+01:43:34  website to do?
+01:43:36  >> Yeah, that's the question.
+01:43:37  >> Well, I'm I'm I was uh
+01:43:42  What do I want it to do? I want it to
+01:43:43  get me a job like in in branding and uh
+01:43:47  I I I'm like with my peers and my uh
+01:43:52  colleagues, I noticed that their
+01:43:53  websites are super flat and I
+01:43:56  I needed a way to differentiate myself
+01:43:58  and
+01:44:00  and
+01:44:00  I came up with this.
+01:44:06  >> I think this is sick. I think it can
+01:44:07  work. I think you have to expose the
+01:44:10  easy path somehow, too. Like if I could
+01:44:13  click a button and just have the single
+01:44:17  vertical scroll of an overlay of all of
+01:44:19  your work and then I could just kind of
+01:44:21  rip through. Like if I'm only going to
+01:44:23  give this like 20 seconds kind of thing,
+01:44:25  I might get a little bit frustrated cuz
+01:44:27  I can't I can't really evaluate you
+01:44:29  other than the fact that you can make a
+01:44:30  really cool website. So, let people
+01:44:32  explore if they want to, but if there's
+01:44:34  some way that you could like just give
+01:44:36  me the show reel or or give me the like
+01:44:38  quick hitting boom boom boom, here's 10
+01:44:40  pieces of work where I can kind of check
+01:44:42  that box as somebody who's evaluating. I
+01:44:44  think there's a way to accomplish both
+01:44:45  of those goals where you're not really
+01:44:46  doing the latter for me.
+01:44:50  >> Yeah, I would I would say on this page
+01:44:53  I want
+01:44:55  I want
+01:44:55  This is fun.
+01:44:57  This should be an accent.
+01:44:59  Like it should be just a part of
+01:45:02  an opt-in. Oh, cool, he can do some cool
+01:45:04  stuff.
+01:45:06  stuff.
+01:45:06  Out here and and even even if this was
+01:45:09  the main meal,
+01:45:10  you got to do something with this
+01:45:11  background, man. You got to complete the
+01:45:13  You got to complete the metaphor here.
+01:45:15  But outside of that, show me some of the
+01:45:18  quick paths up here. Some work.
+01:45:21  Make it clear that I'm looking at a
+01:45:22  portfolio. This doesn't I've no idea
+01:45:24  what I'm landing on.
+01:45:27  Uh give me your name, give me your way
+01:45:28  to work around here.
+01:45:30  Make this one object on a little
+01:45:32  neighborhood of objects,
+01:45:34  you know?
+01:45:36  you know?
+01:45:36  >> Yeah, I think that's kind of what I was
+01:45:37  getting at, too, maybe. It's just like
+01:45:39  expose the happy path for somebody who
+01:45:41  just doesn't want to deal with it.
+01:45:44  >> I think this is
+01:45:45  Yeah.
+01:45:46  Yeah.
+01:45:46  Are you You should You should jump in
+01:45:48  the Talent Network, though. I think this
+01:45:49  is actually really cool.
+01:45:51  >> Uh, where do you Where do you find the
+01:45:53  Talent Network?
+01:45:55  >> Um, I'll just put it in the chat.
+01:45:58  >> Yeah, if you
+01:45:58  >> Yeah, if you or someone you know
+01:46:00  >> are looking to
+01:46:01  >> to
+01:46:02  >> work for some of the
+01:46:03  >> work for some of the
+01:46:03  >> I think best
+01:46:04  >> best companies uh, companies
+01:46:06  >> in tech.
+01:46:06  >> in tech.
+01:46:07  >> The uh, the
+01:46:09  >> Dive Plant Talent Network
+01:46:10  >> People People want People want
+01:46:12  brand
+01:46:13  brand
+01:46:13  brand specialists who can do wacky stuff
+01:46:16  on the web. That is an in-demand overlap
+01:46:18  of skills. So, I I do think you're
+01:46:20  I think you're directionally correct.
+01:46:22  Like, there's something here. I think
+01:46:23  you can You can think a little bit more
+01:46:25  about like
+01:46:27  about like
+01:46:27  how to optimize for different types of
+01:46:29  hiring managers.
+01:46:31  >> Mhm.
+01:46:31  >> And if you do that, then I think you
+01:46:32  actually have a slam dunk here.
+01:46:35  >> Yeah, it's been a whirlwind uh, past 2
+01:46:38  months. Uh, I actually
+01:46:41  I saw one of Tommy's earlier videos
+01:46:44  where he posted that challenge where you
+01:46:47  know, just try to integrate AI into your
+01:46:49  workflow. And [clears throat]
+01:46:52  I just took it as a sign. It's like,
+01:46:53  yeah, what what what can I Why can I try
+01:46:55  this? Um, how can I make
+01:46:58  >> It's awesome.
+01:46:58  >> Is there a way that I could take
+01:46:59  everything that I could could do
+01:47:01  skill-wise and represent it online cuz
+01:47:04  that's always
+01:47:05  been the backstop for me or the
+01:47:07  bottleneck is, oh, I have to code. Oh, I
+01:47:09  There's no way for me to integrate 3D
+01:47:11  without involving a
+01:47:13  uh, a programmer. So,
+01:47:16  yeah, it's been it's been like
+01:47:18  on top of uh, raising my kid and
+01:47:20  you know, dealing with regular life
+01:47:21  stuff, it's
+01:47:23  it's been crazy because it's always
+01:47:27  like you don't know what you're doing
+01:47:28  and you're always you're constantly
+01:47:30  afraid, but then you're like, "Oh, but
+01:47:31  that's where you're going to find the
+01:47:33  treasure is the cave that you're afraid
+01:47:34  to go in." So,
+01:47:36  >> And yeah, yeah.
+01:47:36  >> That's where I'm at and I I appreciate
+01:47:39  the clarity.
+01:47:40  It makes It makes a lot of sense.
+01:47:42  >> Oh, yeah, James.
+01:47:42  >> Oh, yeah, James. We appreciate We
+01:47:44  appreciate you calling in, man.
+01:47:46  >> Yeah, thanks, guys.
+01:47:46  >> I'll keep doing this. This was This was
+01:47:48  great. I really appreciate uh
+01:47:50  uh I'm still nervous. I can't talk. I
+01:47:52  really appreciate what the both of you
+01:47:53  are doing. Thank you for bringing back
+01:47:55  live radio. This is This is tits, man.
+01:47:58  This is the best.
+01:47:59  >> Oh, yeah.
+01:47:59  >> And I feel supported uh
+01:48:02  but having you guys up here
+01:48:04  um listening to us.
+01:48:06  All right.
+01:48:07  All right.
+01:48:07  >> Awesome, brother.
+01:48:07  >> All right, you too and thank you.
+01:48:09  >> Yep.
+01:48:09  >> Peace.
+01:48:11  >> I'm going to shut the line up. I've got
+01:48:13  a couple people waiting. Um
+01:48:15  I need to solve the problem.
+01:48:19  Ah.
+01:48:20  Too many problems. I need to solve a lot
+01:48:21  of problems.
+01:48:23  Uh
+01:48:24  Uh
+01:48:24  I was getting some echo. Did you get Did
+01:48:25  you get echo?
+01:48:26  >> Oh, yeah. It's the quadruple echo.
+01:48:29  >> Yeah.
+01:48:30  >> it takes a I almost find myself
+01:48:32  listening more effectively cuz I have to
+01:48:34  use all of my mental capacity to
+01:48:37  understand what is being said or I'm
+01:48:38  locked in, you
+01:48:39  >> I'm fairly certain I know what the issue
+01:48:42  is though cuz it it worked well for it
+01:48:44  worked on your side and I just have to
+01:48:46  flip that toggle for mine as well. So,
+01:48:48  anyway.
+01:48:49  anyway.
+01:48:49  >> Thanks for bearing
+01:48:50  >> inspired by I think the combination of
+01:48:52  both James' website and then your
+01:48:55  pipeline.
+01:48:56  pipeline.
+01:48:56  you you demonstrated is
+01:49:00  it's it's inspiring me cuz like spline
+01:49:02  is another one of those tools, right?
+01:49:03  Like Blender. I never
+01:49:06  Blender. That
+01:49:07  Blender. Spline in three
+01:49:10  offered the lightweight kind of 80/20.
+01:49:12  It almost felt to me like similar what
+01:49:15  Sketch did to Adobe Illustrator where I
+01:49:16  was in Illustrator and all of a sudden
+01:49:17  you're in Sketch, and right away you're
+01:49:19  like, "Oh my gosh, they took the 20% of
+01:49:21  features that I actually use and built a
+01:49:22  product for it."
+01:49:24  >> Yeah.
+01:49:24  >> It feels like that might be what Spline
+01:49:25  is. Still, I don't have the
+01:49:29  I don't have the 3D skills or I I can't
+01:49:31  really evaluate I'm just it's not me,
+01:49:34  you know, like it's not like a skill set
+01:49:35  of mine, but
+01:49:37  seeing how you're using bones, for
+01:49:39  instance,
+01:49:41  instance,
+01:49:41  like I I feel like I could just prompt
+01:49:43  my way into building little adjacent 3D
+01:49:47  worlds that I can manipulate.
+01:49:50  Something Something there?
+01:49:53  >> The The number one thing, and Cope,
+01:49:56  please call in next week. I'm sorry we
+01:49:57  got to we got to call it here.
+01:49:59  We keep running the show long.
+01:50:01  But, we do want to hear from you, and
+01:50:02  thanks for calling in everybody else.
+01:50:04  The one thing that I will say is
+01:50:07  and you were doing this when I brought
+01:50:08  bones into our shared Slack, but in
+01:50:10  general,
+01:50:12  general,
+01:50:12  like I was about to ask you a question,
+01:50:13  "Hey, does Spline Spline have an MCP?"
+01:50:16  Just ask your agent. And then connect
+01:50:19  it, and then figure it out, and then
+01:50:20  learn through asking, and and just do
+01:50:22  the same thing. Like
+01:50:23  any workflow that you want, that you
+01:50:25  have questions about, that you're like,
+01:50:27  "Can I even do that?"
+01:50:28  Ask Those are the questions you got to
+01:50:30  catch those out of the thin air before
+01:50:32  they just are fleeting, and throw it
+01:50:34  into a prompt, and learn about the
+01:50:37  answer to that question. And you
+01:50:38  suddenly in 5 minutes you'll be
+01:50:40  generating 3D assets in Blender, and
+01:50:43  you're like, "Whoa, I didn't even know
+01:50:44  that was possible."
+01:50:45  And then it's like, "Well, what else can
+01:50:46  I do?" That's the fun part.
+01:50:49  Yeah.
+01:50:50  Yeah.
+01:50:50  >> I've already asked a question about my
+01:50:53  my little backyard designer's game, and
+01:50:55  it just says, "How the hell would we
+01:50:57  make it so that people could add their
+01:50:59  own characters?"
+01:51:00  >> [laughter]
+01:51:01  >> We'll see. We'll see where it takes us.
+01:51:03  >> Yeah.
+01:51:04  All right.
+01:51:05  All right.
+01:51:06  Before we go, I want to announce the
+01:51:08  designer of the week.
+01:51:09  Da da da da! Daniela Mun- Muntian? I
+01:51:13  have to remember how to say her last
+01:51:14  name.
+01:51:17  >> Ooh, we got smoked this week, man.
+01:51:19  >> We did get smoked this week, and let's
+01:51:21  pull her up again.
+01:51:24  Oh, this is sick.
+01:51:26  I love this. This is very, very cool.
+01:51:29  Please go give her a follow.
+01:51:33  Daniela, I will be reaching out to you.
+01:51:36  Hopefully you see it. Would love a
+01:51:38  nomination from you on next week's
+01:51:40  designer of the week.
+01:51:42  Congratulations. We don't have any
+01:51:44  awards for you.
+01:51:45  >> I'm out of that. Your award
+01:51:47  award is you're going to be the next
+01:51:48  person to add to this.
+01:51:49  >> Yeah, you're Oh,
+01:51:51  I like that. I like that. She She's not
+01:51:53  cheap, either. She doesn't come cheap.
+01:51:54  59k.
+01:51:55  59k.
+01:51:55  >> She's not not cheap, no.
+01:51:56  >> So, we'll see we'll see what's going on.
+01:51:59  Um thank you, everybody, for joining us
+01:52:01  today. I
+01:52:03  today. I
+01:52:03  want to get ahead of topics and be like,
+01:52:05  "Next week we're going to talk about."
+01:52:06  But I really don't know.
+01:52:08  Because like, if you If I had tried to
+01:52:11  predict that this week was going to be
+01:52:12  this deep dive into games and juice and
+01:52:15  then I wouldn't have known that.
+01:52:17  >> Yeah. Have you ever seen the South Park
+01:52:19  documentary? I can't remember how many
+01:52:20  It's like 6 Days to Air or something
+01:52:22  like that.
+01:52:22  like that.
+01:52:22  >> of my favorites. It's one of my
+01:52:25  favorites.
+01:52:25  favorites.
+01:52:25  >> Unbelievable documentary. I don't even
+01:52:27  like South Park, and I have so much
+01:52:29  respect for those people. Everybody
+01:52:31  should watch that documentary. I kind of
+01:52:32  think that's what we That's what this
+01:52:33  has to be. It has to be that. You can't
+01:52:36  plan more than a week ahead because the
+01:52:37  world moves too fast. It has to be 6
+01:52:39  Days to Air. And by that I mean like 36
+01:52:41  hours to air.
+01:52:42  >> Like genuinely that's how we've been
+01:52:44  operating, and it's been pretty fun. So,
+01:52:46  yeah.
+01:52:47  yeah.
+01:52:47  Um if you've been hanging out with us,
+01:52:48  we appreciate you.
+01:52:50  Uh thank you for calling in. Thanks for
+01:52:53  being part of this little ride. We will
+01:52:54  see you next week.
+01:52:56  Take care.

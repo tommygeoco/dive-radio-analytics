@@ -669,6 +669,9 @@ function buildPanel() {
   html += `<div class="row head">X reach <span class="hint">not in total</span><span class="val big">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
   html += `<div class="row">@ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
+  if (e.transcript) {
+    html += `<div class="row"><a href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt" style="color:var(--accent)">Download transcript</a><span class="val hint">timestamped</span></div>`;
+  }
   if (e.live) {
     // one row grammar everywhere: label left, value right (owner call 2026-08-22
     // — no inline dot-separated stat lines in the panel)

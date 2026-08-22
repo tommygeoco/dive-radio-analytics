@@ -17,6 +17,7 @@ const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
 const HISTORY_DIR = join(ROOT, "data", "restream", "postlive");
 const EVENTS_DIR = join(ROOT, "data", "restream", "events");
 const COMMENTS_DIR = join(ROOT, "data", "restream", "comments");
+const TRANSCRIPTS_DIR = join(ROOT, "transcripts");
 
 export const DESTS = [
   { key: "yt:joindiveclub", label: "YT Dive Club", platform: "yt" },
@@ -246,6 +247,9 @@ export function computeAll({ now = Date.now() } = {}) {
       // xPlays — both count video playback events. xImpressions (reach) is
       // exposure, a different unit, and is NEVER part of any views total.
       latest: buildLatest(show, latest),
+      // transcript flag: a per-episode file under transcripts/ (served statically);
+      // link renders only when the file actually exists — absence ≠ broken link
+      transcript: existsSync(join(TRANSCRIPTS_DIR, `${show.slug}.txt`)),
       ageDays: Math.round(ageDays * 10) / 10,
       metrics: { week1Velocity, week1Note, flatlineWeek, engagementPer1k, anomaly: null },
     });

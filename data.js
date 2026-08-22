@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-22T22:18:36.065Z",
+ "generatedAt": "2026-08-22T22:37:18.466Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1652,6 +1652,7 @@ window.DIVE_DATA = {
      "total": 2
     }
    },
+   "transcript": true,
    "ageDays": 35.9,
    "metrics": {
     "week1Velocity": 1830,
@@ -4409,6 +4410,7 @@ window.DIVE_DATA = {
      "total": 2
     }
    },
+   "transcript": true,
    "ageDays": 29.9,
    "metrics": {
     "week1Velocity": 1751,
@@ -6197,6 +6199,7 @@ window.DIVE_DATA = {
      "total": 2
     }
    },
+   "transcript": true,
    "ageDays": 22.9,
    "metrics": {
     "week1Velocity": null,
@@ -7884,6 +7887,7 @@ window.DIVE_DATA = {
      "total": 2
     }
    },
+   "transcript": true,
    "ageDays": 15.9,
    "metrics": {
     "week1Velocity": null,
@@ -9711,6 +9715,7 @@ window.DIVE_DATA = {
      "total": 2
     }
    },
+   "transcript": true,
    "ageDays": 8.9,
    "metrics": {
     "week1Velocity": null,
@@ -11439,6 +11444,7 @@ window.DIVE_DATA = {
      "total": 2
     }
    },
+   "transcript": true,
    "ageDays": 1.9,
    "metrics": {
     "week1Velocity": null,
