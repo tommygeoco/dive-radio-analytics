@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-22T16:43:37.092Z",
+ "generatedAt": "2026-08-22T17:25:26.671Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -8980,12 +8980,12 @@ window.DIVE_DATA = {
     ]
    },
    "comments": {
-    "total": 5,
+    "total": 7,
     "featured": [],
     "sentiment": {
      "positive": 1,
      "negative": 0,
-     "neutral": 4,
+     "neutral": 6,
      "unclassified": 0
     },
     "list": [
@@ -9014,6 +9014,14 @@ window.DIVE_DATA = {
       "sentiment": "neutral"
      },
      {
+      "author": "Techne89",
+      "text": "Sorry for long a… comment 😅",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-07T14:48:07Z",
+      "sentiment": "neutral"
+     },
+     {
       "author": "rugu16",
       "text": "banger episode, not able to join live but thanks for sharing guys ! And @tom pls fix your streaming ! :D Its so glitchy",
       "source": "yt",
@@ -9027,6 +9035,14 @@ window.DIVE_DATA = {
       "source": "yt",
       "likes": 0,
       "at": "2026-08-14T05:35:01Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "DeanChateaux",
+      "text": "@designertom lmao that's cold promoting your own stuff and not Ridd's",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-16T12:17:15Z",
       "sentiment": "neutral"
      }
     ],

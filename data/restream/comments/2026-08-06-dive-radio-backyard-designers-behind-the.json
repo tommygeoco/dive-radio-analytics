@@ -57,8 +57,30 @@
       "likes": 0,
       "publishedAt": "2026-08-07T14:47:46Z",
       "firstSeenAt": "2026-08-22T06:19:29.033Z"
+    },
+    {
+      "id": "yt:Ugxg7INEiTqIy81bUsh4AaABAg.A_D-mjoy05zA_ZxFx2JL8T",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "author": "DeanChateaux",
+      "authorId": "UChVOhPakvhDfTFjSmjBkOHA",
+      "text": "@designertom lmao that's cold promoting your own stuff and not Ridd's",
+      "likes": 0,
+      "publishedAt": "2026-08-16T12:17:15Z",
+      "firstSeenAt": "2026-08-22T17:25:24.172Z"
+    },
+    {
+      "id": "yt:UgwwpidBv0sRyniOPpt4AaABAg.A_D2KQLWModA_D2N20meqs",
+      "source": "yt",
+      "channel": "yt:designertom",
+      "author": "Techne89",
+      "authorId": "UC__hQ0rRVf4DqgWgIfr8a1A",
+      "text": "Sorry for long a… comment 😅",
+      "likes": 0,
+      "publishedAt": "2026-08-07T14:48:07Z",
+      "firstSeenAt": "2026-08-22T17:25:24.172Z"
     }
   ],
-  "updatedAt": "2026-08-22T16:43:35.166Z",
+  "updatedAt": "2026-08-22T17:25:24.172Z",
   "xCoverage": "missed"
 }

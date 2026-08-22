@@ -78,29 +78,48 @@ function decodeEntities(s) {
 
 async function pullYouTube(show, key) {
   const out = [];
+  const isHost = (sn) => HOST_YT_CHANNELS.has(sn.authorChannelId?.value) || HOST_YT_NAMES.test((sn.authorDisplayName || "").trim());
+  const push = (id, sn, account) => out.push({
+    id: `yt:${id}`,
+    source: "yt",
+    channel: `yt:${account}`,
+    author: sn.authorDisplayName?.replace(/^@/, "") || "viewer",
+    authorId: sn.authorChannelId?.value || null,
+    text: decodeEntities(sn.textDisplay || "").slice(0, 500),
+    likes: Number(sn.likeCount || 0),
+    publishedAt: sn.publishedAt,
+  });
   // per-target try/catch: one channel with comments disabled must not discard
   // the other channel's already-fetched results (critic F-C12b)
   for (const t of show.targets.filter((t) => t.kind === "youtube")) {
     try {
-    const data = await getJson(
-      "https://www.googleapis.com/youtube/v3/commentThreads?" + String(new URLSearchParams({ part: "snippet", videoId: t.videoId, maxResults: "100", order: "time", textFormat: "plainText", [["k","e","y"].join("")]: key }))
-    );
-    for (const item of data.items || []) {
-      const s = item.snippet?.topLevelComment?.snippet;
-      if (!s) continue;
-      if (HOST_YT_CHANNELS.has(s.authorChannelId?.value)) continue;
-      if (HOST_YT_NAMES.test((s.authorDisplayName || "").trim())) continue;
-      out.push({
-        id: `yt:${item.snippet.topLevelComment.id}`,
-        source: "yt",
-        channel: `yt:${t.account}`,
-        author: s.authorDisplayName?.replace(/^@/, "") || "viewer",
-        authorId: s.authorChannelId?.value || null,
-        text: decodeEntities(s.textDisplay || "").slice(0, 500),
-        likes: Number(s.likeCount || 0),
-        publishedAt: s.publishedAt,
-      });
-    }
+      // Replies count as comments too (owner report 2026-08-22: dashboard
+      // undercounted vs YouTube's public number). part=replies inlines up to
+      // 5 replies per thread; deeper threads get a comments.list follow-up.
+      // Paginated, bounded at 5 pages (500 threads) per video.
+      let pageToken = "";
+      for (let page = 0; page < 5; page++) {
+        const q = new URLSearchParams({ part: "snippet,replies", videoId: t.videoId, maxResults: "100", order: "time", textFormat: "plainText", [["k", "e", "y"].join("")]: key });
+        if (pageToken) q.set("pageToken", pageToken);
+        const data = await getJson("https://www.googleapis.com/youtube/v3/commentThreads?" + String(q));
+        for (const item of data.items || []) {
+          const s = item.snippet?.topLevelComment?.snippet;
+          if (!s) continue;
+          if (!isHost(s)) push(item.snippet.topLevelComment.id, s, t.account);
+          const inline = item.replies?.comments || [];
+          const totalReplies = Number(item.snippet.totalReplyCount || 0);
+          if (totalReplies > inline.length) {
+            // thread deeper than the inline cap — fetch the full reply list
+            const rq = new URLSearchParams({ part: "snippet", parentId: item.snippet.topLevelComment.id, maxResults: "100", textFormat: "plainText", [["k", "e", "y"].join("")]: key });
+            const rd = await getJson("https://www.googleapis.com/youtube/v3/comments?" + String(rq));
+            for (const r of rd.items || []) if (r.snippet && !isHost(r.snippet)) push(r.id, r.snippet, t.account);
+          } else {
+            for (const r of inline) if (r.snippet && !isHost(r.snippet)) push(r.id, r.snippet, t.account);
+          }
+        }
+        pageToken = data.nextPageToken || "";
+        if (!pageToken) break;
+      }
     } catch (e) { console.log(`WARN comments yt ${show.slug} ${t.account}: ${e.message.slice(0, 120)}`); }
   }
   return out;
