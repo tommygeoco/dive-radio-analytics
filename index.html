@@ -128,7 +128,7 @@
   <h2>What the data says</h2>
   <div class="insights" id="insights"></div>
 
-  <footer>Static page — no server, no tracking. Post-live views refresh daily; live-session metrics come from Restream event archives. New episodes are discovered and registered automatically. Built from <code>data/restream/</code>.</footer>
+  <footer>Refreshes daily · new episodes registered automatically.</footer>
 </div>
 
 <script src="chart.umd.js"></script>
@@ -158,7 +158,7 @@ const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const X_KEYS = ["x:ridd_design", "x:designertom"];
 
 const HINTS = {
-  growth: "Click an episode card to focus it. Hover any point for the color-coded channel split. ◐ = registered late: totals are right, early week-by-week history doesn't exist.",
+  growth: "Click a card to focus · hover for channel split · ◐ = registered late, early history missing.",
   live: "Concurrent viewers minute-by-minute during the live broadcast, from Restream. Click a card to focus one episode; hover for viewers + chat at that minute.",
 };
 
@@ -201,7 +201,14 @@ function kfmt(n) {
   return String(Math.round(n));
 }
 function nfmt(n) { return n.toLocaleString("en-US"); }
-function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, ""); }
+function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, "").replace(/[,\s]+$/, ""); }
+// compact channel names for tooltips/hover panels; colors carry the platform
+const TT_NAME = {
+  "yt:joindiveclub": "Dive Club",
+  "yt:designertom": "DesignerTom",
+  "x:ridd_design": "@ridd_design",
+  "x:designertom": "@designertom",
+};
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 
 function seriesFor(e) {
@@ -290,23 +297,20 @@ function externalTooltip(context) {
       html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
     } else {
       const days = Math.round(p.meta.day ?? 0);
-      html += `<div class="meta">Day ${days} (week ${Math.floor(days / 7) + 1}) · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
+      html += `<div class="meta">Day ${days} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
     }
     html += `<div class="big">${nfmt(p.y)} views${isDelta ? " gained" : ""}</div>`;
     if (!isDelta && item.dataIndex > 0) {
       const prev = ds.data[item.dataIndex - 1].y;
       const d = p.y - prev;
-      html += `<div class="chg">since prior snapshot: ${d >= 0 ? "+" : ""}${nfmt(d)}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}</div>`;
+      if (d !== 0) html += `<div class="chg">${d >= 0 ? "+" : ""}${nfmt(d)}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}</div>`;
     }
     if (p.meta.split) {
       html += `<div class="div"></div>`;
       for (const k of Object.keys(PLAT_COLORS)) {
         if (!state.dests.has(k)) continue;
         const v = p.meta.split[k] ?? 0;
-        html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${PLAT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
-      }
-      if (X_KEYS.some(k => state.dests.has(k))) {
-        html += `<div class="note" style="color:#94a0b4">X rows = post impressions (reach), not views</div>`;
+        html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
       }
     }
     if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
@@ -434,24 +438,22 @@ function showCardTip(card, e) {
   const tvi = e.latest.totalViewsInfo || {};
   let html = `<div class="h"><span class="dot" style="background:${color(e)}"></span>E${e.ep} · ${short(e.title)}</div>`;
   html += `<div class="big">${nfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)} views</div>`;
-  html += `<div class="chg">= YouTube views + X broadcast plays</div>`;
   html += `<div class="div"></div>`;
   const rows = [
-    ["yt:joindiveclub", "YouTube · Dive Club", bd["yt:joindiveclub"]?.views],
-    ["yt:designertom", "YouTube · DesignerTom", bd["yt:designertom"]?.views],
-    ["x:ridd_design", "X · @ridd_design broadcast", bd["x:ridd_design"]?.plays],
-    ["x:designertom", "X · @designertom broadcast", bd["x:designertom"]?.plays],
+    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
+    ["yt:designertom", bd["yt:designertom"]?.views],
+    ["x:ridd_design", bd["x:ridd_design"]?.plays],
+    ["x:designertom", bd["x:designertom"]?.plays],
   ];
-  for (const [k, lbl, v] of rows) {
-    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${lbl}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+  for (const [k, v] of rows) {
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
   }
-  if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts — true total is higher</div>`;
-  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays last confirmed ${tvi.asOf.slice(0, 10)}</div>`;
-  else if (!tvi.includesPlays) html += `<div class="note">X broadcast plays unavailable — YouTube only</div>`;
+  if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
+  else if (tvi.stale && tvi.asOf) html += `<div class="note">plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
   html += `<div class="div"></div>`;
-  html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS["x:ridd_design"]}"></span>X reach · @ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
-  html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS["x:designertom"]}"></span>X reach · @designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
-  html += `<div class="chg" style="margin-top:4px">Reach = announce-post impressions (exposure). Never added to views.</div>`;
+  html += `<div class="row">X reach<span class="val">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
+  html += `<div class="chg">ridd ${nfmt(bd["x:ridd_design"]?.views ?? 0)} · tom ${nfmt(bd["x:designertom"]?.views ?? 0)} · not in total</div>`;
   cardTip.innerHTML = html;
   const r = card.getBoundingClientRect();
   cardTip.style.left = Math.min(r.left, window.innerWidth - 250) + "px";
