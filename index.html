@@ -99,6 +99,14 @@
   .rb.top { color: var(--good); border-color: rgba(74,222,128,.4); }
   .rb .pm { color: var(--amber); font-weight: 600; }
   .rb.hero { display: inline-flex; gap: 4px; width: auto; font-size: 13px; padding: 3px 11px; margin-left: 12px; vertical-align: 6px; }
+  .rb { cursor: help; }
+  /* rating tooltip — instant, works on tap; native title is neither */
+  #rtt { position: fixed; z-index: 60; max-width: 300px; background: #0d1017; border: 1px solid var(--border-strong);
+    border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; color: var(--t2);
+    box-shadow: 0 8px 24px rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: opacity .12s ease-out; }
+  #rtt .h { font-weight: 700; color: var(--t1); margin-bottom: 4px; }
+  #rtt .warn { color: var(--amber); margin-top: 4px; }
+  #rtt .mut { color: var(--t3); margin-top: 4px; }
   .sitem .t { font-size: 12px; color: var(--t2); white-space: nowrap; overflow: hidden;
     text-overflow: ellipsis; margin: 1px 0 2px; }
   .sitem .r3 { font-size: 12px; color: var(--t3); display: flex; gap: 8px; }
@@ -406,12 +414,21 @@ function ratingBadge(e, cls) {
   // marks: * = partial basis, ~ = provisional. ◐ is reserved for X-plays
   // coverage on totals — one glyph, one meaning (taste audit F2).
   const marks = `${partial ? ` <span class="pm">*</span>` : ""}${r.provisional ? ` <span class="pm">~</span>` : ""}`;
-  const why = [
-    `composite rating within the ${r.n} most recent episode${r.n === 1 ? "" : "s"} as of air date (watch · engagement · retention · live)`,
-    partial ? `* partial basis — missing: ${r.coverage.missingPillars.map(m => m.replace(/ \(.*\)$/, "")).join(", ")}` : "",
-    r.provisional ? `~ provisional — freezes ${freezeDateOf(e)} when week-1 data completes` : "",
-  ].filter(Boolean).join(" · ");
-  return `<span class="rb${r.rank === 1 && r.n > 1 ? " top" : ""}${cls ? " " + cls : ""}" title="${esc(why)}">#${r.rank} of ${r.n}${marks}</span>`;
+  return `<span class="rb${r.rank === 1 && r.n > 1 ? " top" : ""}${cls ? " " + cls : ""}" data-rslug="${esc(e.slug)}" aria-label="episode rating">#${r.rank} of ${r.n}${marks}</span>`;
+}
+
+/* rating tooltip (owner request 2026-08-22): every badge explains itself on
+   hover or tap — what the rank is, what * and ~ mean for THIS episode. One
+   shared fixed-position box; reads the same store entry as every surface. */
+function ratingTipHTML(e, r) {
+  const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
+  let h = `<div class="h">#${r.rank} of ${r.n} — ${esc(short(e.title))}</div>`;
+  h += `<div>Rated against the ${r.n === 1 ? "only episode" : `${r.n} episodes`} up to its air date — later episodes never count, and the rating freezes at day 7.</div>`;
+  if (r.score != null) h += `<div class="mut">composite ${r.score}× the typical episode · watch 50% · engagement 20% · retention 15% · live 15%</div>`;
+  if (r.n === 1) h += `<div class="mut">first episode — nothing to compare against.</div>`;
+  if (partial) h += `<div class="warn">* partial basis — no honest data yet for ${r.coverage.missingPillars.map(m => esc(m.replace(/ \(.*\)$/, ""))).join(" + ")}; their weight moved to the pillars that exist.</div>`;
+  if (r.provisional) h += `<div class="warn">~ provisional — freezes ${freezeDateOf(e)} when week-1 data completes.</div>`;
+  return h;
 }
 
 function sameAgeSub(e) {
@@ -790,6 +807,30 @@ function renderDrill() {
 // stale-tooltip kill (taste audit F5): Chart.js external tooltips only hide on
 // tooltip events; a fast pointer exit could strand one over the chart
 document.getElementById("chartbox").addEventListener("mouseleave", () => { document.getElementById("tt").style.opacity = 0; });
+
+// rating-badge tooltip: delegated so it survives every re-render
+const rtt = document.createElement("div");
+rtt.id = "rtt";
+document.body.appendChild(rtt);
+function showRtt(badge) {
+  const e = EPS.find(x => x.slug === badge.dataset.rslug);
+  const r = e && ratingOf(e);
+  if (!r) return;
+  rtt.innerHTML = ratingTipHTML(e, r);
+  const b = badge.getBoundingClientRect();
+  rtt.style.opacity = 1;
+  // measure after content is set; clamp inside the viewport, flip above if low
+  const w = rtt.offsetWidth, h = rtt.offsetHeight;
+  let x = Math.min(Math.max(b.left + b.width / 2 - w / 2, 8), window.innerWidth - w - 8);
+  let y = b.bottom + 8;
+  if (y + h > window.innerHeight - 8) y = b.top - h - 8;
+  rtt.style.left = x + "px";
+  rtt.style.top = y + "px";
+}
+function hideRtt() { rtt.style.opacity = 0; }
+document.addEventListener("mouseover", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); });
+document.addEventListener("mouseout", (ev) => { if (ev.target.closest?.(".rb")) hideRtt(); });
+document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); else hideRtt(); });
 document.getElementById("dclose").addEventListener("click", closeDrill);
 document.getElementById("drill").addEventListener("click", (ev) => { if (ev.target.id === "drill") closeDrill(); });
 document.addEventListener("keydown", (ev) => {
