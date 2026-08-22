@@ -458,15 +458,20 @@ function buildHero() {
     }
   }
   addSentimentChip(chips, e);
-  // alert chips: promo-outlier anomalies, max 2, deep-link to their evidence
-  for (const ins of DATA.insights.filter(i => i.id.startsWith("anomaly")).slice(0, 2)) {
-    const epA = EPS.find(x => ins.id === `anomaly-${x.slug}`);
-    const chip = document.createElement("span");
-    chip.className = "chip alert";
-    chip.textContent = `⚠ promo outlier: ${epA ? "E" + epA.ep : "episode"}`;
-    chip.title = ins.text;
-    chip.addEventListener("click", () => applyChartState(ins.chartState || {}));
-    chips.appendChild(chip);
+  // Anomaly flags belong to the episode that owns them (owner call 2026-08-22:
+  // an E3 promo-outlier chip on E6's hero card is noise). If the LATEST episode
+  // is itself an outlier, say so here; other episodes' flags live in the
+  // insights panel and on their own detail panels.
+  {
+    const own = DATA.insights.find(i => i.id === `anomaly-${e.slug}`);
+    if (own && !isLive) {
+      const chip = document.createElement("span");
+      chip.className = "chip alert";
+      chip.textContent = "⚠ promo outlier — this episode";
+      chip.title = own.text;
+      chip.addEventListener("click", () => applyChartState(own.chartState || {}));
+      chips.appendChild(chip);
+    }
   }
 
   if (sparkChart) { sparkChart.destroy(); sparkChart = null; }
