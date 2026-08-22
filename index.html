@@ -449,7 +449,13 @@ function buildBoard() {
         sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;
       }
       sub += `<br>X reach: ${kfmt(e.latest.xImpressions ?? 0)} impressions`;
-      if (e.latest.xPlays != null) sub += ` · X plays: ${kfmt(e.latest.xPlays)}`;
+      if (e.latest.xPlays != null) {
+        const pi = e.latest.xPlaysInfo || {};
+        let playsStr = kfmt(e.latest.xPlays);
+        if (pi.partial) playsStr += ` (partial ${pi.have}/${pi.total})`;
+        else if (pi.stale && pi.asOf) playsStr += ` (as of ${pi.asOf.slice(5, 10).replace("-", "/")})`;
+        sub += ` · X plays: ${playsStr}`;
+      }
     }
     card.innerHTML = `
       <span class="ep"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>
