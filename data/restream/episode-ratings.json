@@ -1,323 +1,310 @@
 {
-  "version": 1,
-  "note": "Episode ratings, YouTube-Studio-style. Window = episode + up to 9 prior as of air date; frozen entries are immutable.",
-  "ratings": {
-    "2026-07-17-dive-radio-bumpy-takeoff": {
-      "ep": 1,
-      "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-      "title": "Dive Radio: Bumpy Takeoff",
-      "premiere": "2026-07-17",
-      "windowIds": [
-        "2026-07-17-dive-radio-bumpy-takeoff"
-      ],
-      "n": 1,
-      "rank": 1,
-      "composite": null,
-      "pillars": {
-        "watch": {
-          "value": 1830,
-          "pct": null,
-          "weight": 0,
-          "note": "YT views at day 7 (X plays series starts 2026-08-21) — nothing to compare against"
-        },
-        "engagement": {
-          "value": 49.7,
-          "pct": null,
-          "weight": 0,
-          "note": "likes + comments per 1k YT views — nothing to compare against"
-        },
-        "retention": {
-          "value": 9.61,
-          "pct": null,
-          "weight": 0,
-          "note": "designertom only (other channel not authorized yet) — nothing to compare against"
-        },
-        "live": {
-          "value": {
-            "peak": 90,
-            "chat": 383
-          },
-          "pct": null,
-          "weight": 0,
-          "note": "peak concurrents + chat messages — nothing to compare against"
-        }
-      },
-      "missing": [],
-      "uncompared": [
-        "watch",
-        "engagement",
-        "retention",
-        "live"
-      ],
-      "partialBasis": false,
-      "provisional": false,
-      "version": 1,
-      "computedAt": "2026-08-22T19:50:43.277Z",
-      "frozenAt": "2026-08-22T19:50:43.277Z"
+ "version": 1,
+ "algorithm": "composite-v1",
+ "weights": {
+  "watch": 0.5,
+  "engagement": 0.2,
+  "retention": 0.15,
+  "live": 0.15
+ },
+ "updatedAt": "2026-08-22T19:52:57.472Z",
+ "ratings": [
+  {
+   "ep": 1,
+   "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+   "windowIds": [
+    "2026-07-17-dive-radio-bumpy-takeoff"
+   ],
+   "rank": 1,
+   "n": 1,
+   "score": null,
+   "pillarScores": {
+    "watch": {
+     "value": 1830,
+     "pctl": null,
+     "weight": 0
     },
-    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-      "ep": 2,
-      "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-      "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
-      "premiere": "2026-07-23",
-      "windowIds": [
-        "2026-07-17-dive-radio-bumpy-takeoff",
-        "2026-07-23-dive-radio-data-vs-intuition-web-designe"
-      ],
-      "n": 2,
-      "rank": 2,
-      "composite": 0.15,
-      "pillars": {
-        "watch": {
-          "value": 1751,
-          "pct": 0,
-          "weight": 0.5,
-          "note": "YT views at day 7 (X plays series starts 2026-08-21)"
-        },
-        "engagement": {
-          "value": 40.2,
-          "pct": 0,
-          "weight": 0.2,
-          "note": "likes + comments per 1k YT views"
-        },
-        "retention": {
-          "value": 9.76,
-          "pct": 1,
-          "weight": 0.15,
-          "note": "designertom only (other channel not authorized yet)"
-        },
-        "live": {
-          "value": {
-            "peak": 71,
-            "chat": 310
-          },
-          "pct": 0,
-          "weight": 0.15,
-          "note": "peak concurrents + chat messages"
-        }
-      },
-      "missing": [],
-      "uncompared": [],
-      "partialBasis": false,
-      "provisional": false,
-      "version": 1,
-      "computedAt": "2026-08-22T19:50:43.277Z",
-      "frozenAt": "2026-08-22T19:50:43.277Z"
+    "engagement": {
+     "value": 49.7,
+     "pctl": null,
+     "weight": 0
     },
-    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
-      "ep": 3,
-      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
-      "premiere": "2026-07-30",
-      "windowIds": [
-        "2026-07-17-dive-radio-bumpy-takeoff",
-        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "2026-07-30-dive-radio-mixed-media-workflows-game-de"
-      ],
-      "n": 3,
-      "rank": 3,
-      "composite": 0,
-      "pillars": {
-        "watch": {
-          "value": null,
-          "pct": null,
-          "weight": 0,
-          "note": "no week-1 history (registered late)"
-        },
-        "engagement": {
-          "value": 30,
-          "pct": 0,
-          "weight": 0.4,
-          "note": "likes + comments per 1k YT views"
-        },
-        "retention": {
-          "value": 8.68,
-          "pct": 0,
-          "weight": 0.3,
-          "note": "designertom only (other channel not authorized yet)"
-        },
-        "live": {
-          "value": {
-            "peak": 53,
-            "chat": 169
-          },
-          "pct": 0,
-          "weight": 0.3,
-          "note": "peak concurrents + chat messages"
-        }
-      },
-      "missing": [
-        "watch"
-      ],
-      "uncompared": [],
-      "partialBasis": true,
-      "provisional": false,
-      "version": 1,
-      "computedAt": "2026-08-22T19:50:43.277Z",
-      "frozenAt": "2026-08-22T19:50:43.277Z"
+    "retention": {
+     "value": 9.61,
+     "pctl": null,
+     "weight": 0
     },
-    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-      "ep": 4,
-      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-      "title": "Dive Radio: Backyard Designers behind-the-scenes",
-      "premiere": "2026-08-06",
-      "windowIds": [
-        "2026-07-17-dive-radio-bumpy-takeoff",
-        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "2026-08-06-dive-radio-backyard-designers-behind-the"
-      ],
-      "n": 4,
-      "rank": 3,
-      "composite": 0.283,
-      "pillars": {
-        "watch": {
-          "value": null,
-          "pct": null,
-          "weight": 0,
-          "note": "no week-1 history (registered late)"
-        },
-        "engagement": {
-          "value": 34.2,
-          "pct": 0.333,
-          "weight": 0.4,
-          "note": "likes + comments per 1k YT views"
-        },
-        "retention": {
-          "value": 8.81,
-          "pct": 0.333,
-          "weight": 0.3,
-          "note": "designertom only (other channel not authorized yet)"
-        },
-        "live": {
-          "value": {
-            "peak": 63,
-            "chat": 167
-          },
-          "pct": 0.167,
-          "weight": 0.3,
-          "note": "peak concurrents + chat messages"
-        }
-      },
-      "missing": [
-        "watch"
-      ],
-      "uncompared": [],
-      "partialBasis": true,
-      "provisional": false,
-      "version": 1,
-      "computedAt": "2026-08-22T19:50:43.277Z",
-      "frozenAt": "2026-08-22T19:50:43.277Z"
-    },
-    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-      "ep": 5,
-      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-      "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
-      "premiere": "2026-08-13",
-      "windowIds": [
-        "2026-07-17-dive-radio-bumpy-takeoff",
-        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
-      ],
-      "n": 5,
-      "rank": 2,
-      "composite": 0.575,
-      "pillars": {
-        "watch": {
-          "value": null,
-          "pct": null,
-          "weight": 0,
-          "note": "no week-1 history (registered late)"
-        },
-        "engagement": {
-          "value": 36,
-          "pct": 0.5,
-          "weight": 0.4,
-          "note": "likes + comments per 1k YT views"
-        },
-        "retention": {
-          "value": 12.11,
-          "pct": 1,
-          "weight": 0.3,
-          "note": "designertom only (other channel not authorized yet)"
-        },
-        "live": {
-          "value": {
-            "peak": 64,
-            "chat": 100
-          },
-          "pct": 0.25,
-          "weight": 0.3,
-          "note": "peak concurrents + chat messages"
-        }
-      },
-      "missing": [
-        "watch"
-      ],
-      "uncompared": [],
-      "partialBasis": true,
-      "provisional": false,
-      "version": 1,
-      "computedAt": "2026-08-22T19:50:43.277Z",
-      "frozenAt": "2026-08-22T19:50:43.277Z"
-    },
-    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-      "ep": 6,
-      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-      "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
-      "premiere": "2026-08-20",
-      "windowIds": [
-        "2026-07-17-dive-radio-bumpy-takeoff",
-        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-        "2026-08-20-dive-radio-the-mascot-industrial-complex"
-      ],
-      "n": 6,
-      "rank": 5,
-      "composite": 0.193,
-      "pillars": {
-        "watch": {
-          "value": null,
-          "pct": null,
-          "weight": 0,
-          "note": "week 1 completes 08/27"
-        },
-        "engagement": {
-          "value": 28.5,
-          "pct": 0,
-          "weight": 0.571,
-          "note": "likes + comments per 1k YT views"
-        },
-        "retention": {
-          "value": null,
-          "pct": null,
-          "weight": 0,
-          "note": "no retention data yet"
-        },
-        "live": {
-          "value": {
-            "peak": 71,
-            "chat": 127
-          },
-          "pct": 0.45,
-          "weight": 0.429,
-          "note": "peak concurrents + chat messages"
-        }
-      },
-      "missing": [
-        "watch",
-        "retention"
-      ],
-      "uncompared": [],
-      "partialBasis": true,
-      "provisional": true,
-      "version": 1,
-      "computedAt": "2026-08-22T19:50:43.277Z",
-      "frozenAt": null
+    "live": {
+     "value": {
+      "peak": 90,
+      "chat": 383
+     },
+     "pctl": null,
+     "weight": 0
     }
+   },
+   "coverage": {
+    "missingPillars": [
+     "watch (no peer to compare)",
+     "engagement (no peer to compare)",
+     "retention (no peer to compare)",
+     "live (no peer to compare)"
+    ],
+    "watchBasis": "yt-day7",
+    "retentionChannels": [
+     "yt:designertom"
+    ]
+   },
+   "provisional": false,
+   "computedAt": "2026-08-22T19:52:57.433Z",
+   "frozenAt": "2026-08-22T19:52:57.433Z"
+  },
+  {
+   "ep": 2,
+   "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+   "windowIds": [
+    "2026-07-17-dive-radio-bumpy-takeoff",
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+   ],
+   "rank": 2,
+   "n": 2,
+   "score": 0.15,
+   "pillarScores": {
+    "watch": {
+     "value": 1751,
+     "pctl": 0,
+     "weight": 0.5
+    },
+    "engagement": {
+     "value": 40.2,
+     "pctl": 0,
+     "weight": 0.2
+    },
+    "retention": {
+     "value": 9.76,
+     "pctl": 100,
+     "weight": 0.15
+    },
+    "live": {
+     "value": {
+      "peak": 71,
+      "chat": 310
+     },
+     "pctl": 0,
+     "weight": 0.15
+    }
+   },
+   "coverage": {
+    "missingPillars": [],
+    "watchBasis": "yt-day7",
+    "retentionChannels": [
+     "yt:designertom"
+    ]
+   },
+   "provisional": false,
+   "computedAt": "2026-08-22T19:52:57.433Z",
+   "frozenAt": "2026-08-22T19:52:57.433Z"
+  },
+  {
+   "ep": 3,
+   "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+   "windowIds": [
+    "2026-07-17-dive-radio-bumpy-takeoff",
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de"
+   ],
+   "rank": 3,
+   "n": 3,
+   "score": 0,
+   "pillarScores": {
+    "watch": {
+     "value": null,
+     "pctl": null,
+     "weight": 0
+    },
+    "engagement": {
+     "value": 30,
+     "pctl": 0,
+     "weight": 0.4
+    },
+    "retention": {
+     "value": 8.68,
+     "pctl": 0,
+     "weight": 0.3
+    },
+    "live": {
+     "value": {
+      "peak": 53,
+      "chat": 169
+     },
+     "pctl": 0,
+     "weight": 0.3
+    }
+   },
+   "coverage": {
+    "missingPillars": [
+     "watch"
+    ],
+    "watchBasis": "yt-day7",
+    "retentionChannels": [
+     "yt:designertom"
+    ]
+   },
+   "provisional": false,
+   "computedAt": "2026-08-22T19:52:57.433Z",
+   "frozenAt": "2026-08-22T19:52:57.433Z"
+  },
+  {
+   "ep": 4,
+   "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+   "windowIds": [
+    "2026-07-17-dive-radio-bumpy-takeoff",
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "2026-08-06-dive-radio-backyard-designers-behind-the"
+   ],
+   "rank": 3,
+   "n": 4,
+   "score": 0.282,
+   "pillarScores": {
+    "watch": {
+     "value": null,
+     "pctl": null,
+     "weight": 0
+    },
+    "engagement": {
+     "value": 34.2,
+     "pctl": 33,
+     "weight": 0.4
+    },
+    "retention": {
+     "value": 8.81,
+     "pctl": 33,
+     "weight": 0.3
+    },
+    "live": {
+     "value": {
+      "peak": 63,
+      "chat": 167
+     },
+     "pctl": 17,
+     "weight": 0.3
+    }
+   },
+   "coverage": {
+    "missingPillars": [
+     "watch"
+    ],
+    "watchBasis": "yt-day7",
+    "retentionChannels": [
+     "yt:designertom"
+    ]
+   },
+   "provisional": false,
+   "computedAt": "2026-08-22T19:52:57.433Z",
+   "frozenAt": "2026-08-22T19:52:57.433Z"
+  },
+  {
+   "ep": 5,
+   "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+   "windowIds": [
+    "2026-07-17-dive-radio-bumpy-takeoff",
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "2026-08-06-dive-radio-backyard-designers-behind-the",
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+   ],
+   "rank": 2,
+   "n": 5,
+   "score": 0.575,
+   "pillarScores": {
+    "watch": {
+     "value": null,
+     "pctl": null,
+     "weight": 0
+    },
+    "engagement": {
+     "value": 36,
+     "pctl": 50,
+     "weight": 0.4
+    },
+    "retention": {
+     "value": 12.11,
+     "pctl": 100,
+     "weight": 0.3
+    },
+    "live": {
+     "value": {
+      "peak": 64,
+      "chat": 100
+     },
+     "pctl": 25,
+     "weight": 0.3
+    }
+   },
+   "coverage": {
+    "missingPillars": [
+     "watch"
+    ],
+    "watchBasis": "yt-day7",
+    "retentionChannels": [
+     "yt:designertom"
+    ]
+   },
+   "provisional": false,
+   "computedAt": "2026-08-22T19:52:57.433Z",
+   "frozenAt": "2026-08-22T19:52:57.433Z"
+  },
+  {
+   "ep": 6,
+   "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+   "windowIds": [
+    "2026-07-17-dive-radio-bumpy-takeoff",
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "2026-08-06-dive-radio-backyard-designers-behind-the",
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "2026-08-20-dive-radio-the-mascot-industrial-complex"
+   ],
+   "rank": 5,
+   "n": 6,
+   "score": 0.1929,
+   "pillarScores": {
+    "watch": {
+     "value": null,
+     "pctl": null,
+     "weight": 0
+    },
+    "engagement": {
+     "value": 28.5,
+     "pctl": 0,
+     "weight": 0.5714
+    },
+    "retention": {
+     "value": null,
+     "pctl": null,
+     "weight": 0
+    },
+    "live": {
+     "value": {
+      "peak": 71,
+      "chat": 127
+     },
+     "pctl": 45,
+     "weight": 0.4286
+    }
+   },
+   "coverage": {
+    "missingPillars": [
+     "watch",
+     "retention"
+    ],
+    "watchBasis": "yt-day7",
+    "retentionChannels": []
+   },
+   "provisional": true,
+   "computedAt": "2026-08-22T19:52:57.472Z",
+   "frozenAt": null
   }
+ ]
 }
