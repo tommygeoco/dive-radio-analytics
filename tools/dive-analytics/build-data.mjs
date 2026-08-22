@@ -10,6 +10,7 @@ import { join, dirname } from "node:path";
 // negative-signal veto for featured quotes (comments critic 2026-08-22 C1):
 // same deterministic wordlist the sentiment labels come from
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
+import { projectHealth } from "./health.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -18,6 +19,7 @@ const HISTORY_DIR = join(ROOT, "data", "restream", "postlive");
 const EVENTS_DIR = join(ROOT, "data", "restream", "events");
 const COMMENTS_DIR = join(ROOT, "data", "restream", "comments");
 const TRANSCRIPTS_DIR = join(ROOT, "transcripts");
+const HEALTH_PATH = join(ROOT, "data", "restream", "health-history.json");
 
 export const DESTS = [
   { key: "yt:joindiveclub", label: "YT Dive Club", platform: "yt" },
@@ -308,6 +310,11 @@ export function computeAll({ now = Date.now() } = {}) {
       return p && p.rank ? { slug: p.newest.slug, rank: p.rank, of: p.of } : null;
     })(),
   };
+  const health = (() => {
+    if (!existsSync(HEALTH_PATH)) return null;
+    const store = JSON.parse(readFileSync(HEALTH_PATH, "utf8"));
+    return projectHealth(store, { now });
+  })();
 
   return {
     generatedAt: new Date(now).toISOString(),
@@ -316,6 +323,7 @@ export function computeAll({ now = Date.now() } = {}) {
     insights,
     showTrend,
     commentSummary,
+    health,
   };
 }
 

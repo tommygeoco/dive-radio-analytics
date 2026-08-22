@@ -27,6 +27,7 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -526,13 +527,143 @@ function premiereMs(dateStr) {
   }
 }
 
-// --- 1h. plain reader-facing words (constitution rule 6) ---
+// --- 1h. W10 show health: deterministic math, grounding, history, surface lock ---
+{
+  let bad = 0;
+  let store = null;
+  try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "health-history.json"), "utf8")); } catch { /* first pre-health build is legal */ }
+  const health = await import(join(TOOL, "health.mjs"));
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const phxDate = (value) => new Date(Date.parse(value) - 7 * 3600000).toISOString().slice(0, 10);
+  const expectedParts = Object.keys(health.BASE_WEIGHTS).sort();
+
+  if (!html.includes('id="health"') || !html.includes("function buildHealth()") || !html.includes("Number.isFinite(h.score)")) {
+    bad++; fail("health: dashboard surface is missing or could turn a real zero score into absence");
+  }
+  const renderer = html.match(/function buildHealth\(\) \{[\s\S]*?\n\}/)?.[0] || "";
+  if (/subScores|weightedMean|BASE_WEIGHTS/.test(renderer)) {
+    bad++; fail("health: browser renderer reaches into scoring inputs instead of reading the saved public projection");
+  }
+
+  if (!store) {
+    if (data.health !== null) { bad++; fail("health: data.json exposes health without a health-history store"); }
+    warn("health: no saved entry yet — page must show that the update is unavailable");
+  } else {
+    if (store.version !== health.HEALTH_STORE_VERSION || !Array.isArray(store.entries)) {
+      bad++; fail("health: store schema/version is unsupported");
+    } else {
+      const currentDate = phxDate(data.generatedAt);
+      const seenDates = new Set();
+      let previousDate = null;
+      const prompt = readFileSync(join(TOOL, "health-prompt.md"), "utf8");
+      const promptHash = createHash("sha256").update(prompt).digest("hex");
+
+      // Strong local append-only guard: every entry already committed at HEAD
+      // must remain byte-identical; a working run may add at most today's row.
+      try {
+        const committed = JSON.parse(execFileSync("git", ["show", "HEAD:data/restream/health-history.json"], { cwd: ROOT, encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "pipe"] }));
+        if (store.entries.length < committed.entries.length || store.entries.length > committed.entries.length + 1) {
+          bad++; fail("health: working store removed history or added more than one daily entry");
+        }
+        for (let index = 0; index < committed.entries.length; index++) {
+          if (JSON.stringify(store.entries[index]) !== JSON.stringify(committed.entries[index])) {
+            bad++; fail(`health: committed entry ${committed.entries[index].date} changed — history is append-only`);
+          }
+        }
+      } catch { /* initial W10 commit has no HEAD store */ }
+
+      for (const entry of store.entries) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.date) || seenDates.has(entry.date) || (previousDate && entry.date <= previousDate)) {
+          bad++; fail(`health: entry date ${JSON.stringify(entry.date)} is duplicate, malformed, or out of order`);
+        }
+        seenDates.add(entry.date);
+        previousDate = entry.date;
+        if (entry.date > currentDate) { bad++; fail(`health: ${entry.date} is future-dated`); }
+        if (!entry.createdAt || phxDate(entry.createdAt) !== entry.date) { bad++; fail(`health: ${entry.date} does not match its Phoenix creation day`); }
+        if (entry.formulaVersion !== health.FORMULA_VERSION) { bad++; fail(`health: ${entry.date} uses formula ${entry.formulaVersion}, expected ${health.FORMULA_VERSION}`); }
+        if (entry.promptVersion !== health.PROMPT_VERSION || entry.promptHash !== promptHash) { bad++; fail(`health: ${entry.date} prompt stamp is stale`); }
+        if (!entry.model || !entry.provider || !entry.bundleHash || !entry.dataGeneratedAt || !entry.dataThrough) { bad++; fail(`health: ${entry.date} is missing provenance stamps`); }
+        if (!Number.isInteger(entry.score) || entry.score < 0 || entry.score > 100) { bad++; fail(`health: ${entry.date} score is outside 0..100`); }
+
+        const partKeys = Object.keys(entry.subScores || {}).sort();
+        if (JSON.stringify(partKeys) !== JSON.stringify(expectedParts)) {
+          bad++; fail(`health: ${entry.date} does not carry exactly the six required checks`);
+          continue;
+        }
+        const availableWeight = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
+        for (const key of expectedParts) {
+          const part = entry.subScores[key];
+          if (part.baseWeight !== health.BASE_WEIGHTS[key]) { bad++; fail(`health: ${entry.date} ${key} has the wrong planned weight`); }
+          if (!part.measures || !Object.keys(part.measures).length) { bad++; fail(`health: ${entry.date} ${key} has no recorded measures`); continue; }
+          const measureScores = [];
+          for (const [measureKey, measure] of Object.entries(part.measures)) {
+            if (measure.score == null) {
+              if (!measure.reason) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} is missing without a reason`); }
+            } else {
+              if (!Number.isFinite(measure.score) || measure.score < 0 || measure.score > 100 || !Number.isFinite(measure.value)) {
+                bad++; fail(`health: ${entry.date} ${key}.${measureKey} has an invalid score/value`);
+              } else measureScores.push(measure.score);
+            }
+          }
+          const expectedScore = measureScores.length ? Math.round(measureScores.reduce((sum, value) => sum + value, 0) / measureScores.length) : null;
+          if (part.score !== expectedScore) { bad++; fail(`health: ${entry.date} ${key} score does not equal its available measures`); }
+          if (part.score == null && (!part.reason || part.effectiveWeight !== 0)) { bad++; fail(`health: ${entry.date} ${key} absence lacks a reason or carries weight`); }
+          if (part.score != null) {
+            const expectedWeight = Math.round(part.baseWeight / availableWeight * 10000) / 10000;
+            if (part.effectiveWeight !== expectedWeight) { bad++; fail(`health: ${entry.date} ${key} shared weight is wrong`); }
+          }
+        }
+        const recomputed = health.deterministicMean(entry.subScores);
+        if (entry.weightedMean !== recomputed.weightedMean) { bad++; fail(`health: ${entry.date} stored mean ${entry.weightedMean} != recomputed ${recomputed.weightedMean}`); }
+        if (Math.abs(entry.score - entry.weightedMean) > 8) { bad++; fail(`health: ${entry.date} model score moves more than eight points from the deterministic mean`); }
+        if (entry.deviation !== Math.round((entry.score - entry.weightedMean) * 10) / 10) { bad++; fail(`health: ${entry.date} stored score move is wrong`); }
+        try {
+          health.validateSynthesis(
+            { score: entry.score, headline: entry.headline, pros: entry.pros, cons: entry.cons, drivers: entry.drivers },
+            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [] },
+          );
+        } catch (error) {
+          bad++; fail(`health: ${entry.date} model copy/grounding is invalid — ${error.message}`);
+        }
+      }
+
+      const expectedProjection = health.projectHealth(store, { now: Date.parse(data.generatedAt) });
+      if (JSON.stringify(data.health) !== JSON.stringify(expectedProjection)) {
+        bad++; fail("health: data.json does not exactly project the latest saved entry and real history");
+      }
+      if (store.entries.length < 7 && data.health?.trend != null) { bad++; fail("health: trend surfaced before seven real saved days exist"); }
+      if (store.entries.length >= 7) {
+        const expectedPoints = store.entries.filter((entry) => entry.date <= currentDate).map((entry) => ({ date: entry.date, score: entry.score }));
+        if (JSON.stringify(data.health?.trend?.points) !== JSON.stringify(expectedPoints)) { bad++; fail("health: trend points do not exactly match saved days"); }
+      }
+
+      const latest = store.entries.at(-1);
+      if (latest?.date === currentDate) {
+        try {
+          const recomputed = health.computeHealthInputs({ data, now: Date.parse(latest.dataGeneratedAt), root: ROOT });
+          if (recomputed.bundleHash !== latest.bundleHash || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
+            bad++; fail("health: today's entry does not recompute from the current source stores");
+          }
+        } catch (error) {
+          bad++; fail(`health: today's source recompute threw — ${error.message}`);
+        }
+      }
+      if (!bad && store.entries.length) ok(`health: ${store.entries.length} saved day(s), deterministic mean and model move valid, bullets grounded, surface definition-locked`);
+    }
+  }
+}
+
+// --- 1i. plain reader-facing words (constitution rule 6) ---
 {
   let bad = 0;
   const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
   const readerStrings = [];
   for (const insight of data.insights || []) {
     for (const key of ["text", "recommendation", "caveat"]) if (insight[key]) readerStrings.push(`insight ${insight.id} ${key}: ${insight[key]}`);
+  }
+  if (data.health) {
+    readerStrings.push(`health headline: ${data.health.headline}`);
+    for (const item of [...(data.health.pros || []), ...(data.health.cons || [])]) readerStrings.push(`health bullet: ${item.text}`);
   }
   try {
     const build = await import(join(TOOL, "build-data.mjs"));
@@ -551,7 +682,7 @@ function premiereMs(dateStr) {
   if (!bad) ok("plain words: insights, Slack, and About avoid the banned dashboard jargon");
 }
 
-// --- 1i. trend and strip honesty gates (critic follow-up) ---
+// --- 1j. trend and strip honesty gates (critic follow-up) ---
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");

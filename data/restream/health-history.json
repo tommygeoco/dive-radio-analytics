@@ -1,0 +1,365 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-22T23:51:41.435Z",
+  "entries": [
+    {
+      "date": "2026-08-22",
+      "score": 52,
+      "weightedMean": 53.3,
+      "deviation": -1.3,
+      "subScores": {
+        "growth": {
+          "score": null,
+          "baseWeight": 0.25,
+          "effectiveWeight": 0,
+          "measures": {
+            "firstWeek": {
+              "id": "firstWeek",
+              "value": null,
+              "typical": null,
+              "sample": 2,
+              "score": null,
+              "reason": "Only 2 clean first weeks exist; at least three are required."
+            },
+            "sameAge": {
+              "id": "sameAge",
+              "value": null,
+              "typical": null,
+              "sample": 1,
+              "score": null,
+              "reason": "Only 0 prior episodes were tracked this early; at least three are required."
+            }
+          },
+          "reason": "Only 2 clean first weeks exist; at least three are required. Only 0 prior episodes were tracked this early; at least three are required."
+        },
+        "audienceQuality": {
+          "score": 49,
+          "baseWeight": 0.2,
+          "effectiveWeight": 0.2667,
+          "measures": {
+            "engagement": {
+              "id": "engagement",
+              "value": 28.5,
+              "typical": 38.1,
+              "sample": 5,
+              "score": 37,
+              "reason": null
+            },
+            "watching": {
+              "id": "watching",
+              "value": 12.9,
+              "typical": 10.8,
+              "sample": 5,
+              "score": 60,
+              "reason": null
+            }
+          },
+          "reason": "The latest episode is still under a week old, so these checks may move."
+        },
+        "reachEfficiency": {
+          "score": 51,
+          "baseWeight": 0.15,
+          "effectiveWeight": 0.2,
+          "measures": {
+            "announceToPlay": {
+              "id": "announceToPlay",
+              "value": 23,
+              "typical": 34.5,
+              "sample": 4,
+              "score": 33,
+              "reason": null
+            },
+            "xShare": {
+              "id": "xShare",
+              "value": 64.2,
+              "typical": 46.6,
+              "sample": 4,
+              "score": 69,
+              "reason": null
+            }
+          },
+          "reason": "The newest episode is under a week old, so this check uses the latest finished episode."
+        },
+        "livePull": {
+          "score": 47,
+          "baseWeight": 0.15,
+          "effectiveWeight": 0.2,
+          "measures": {
+            "peak": {
+              "id": "peak",
+              "value": 71,
+              "typical": 64,
+              "sample": 6,
+              "score": 55,
+              "reason": null
+            },
+            "chat": {
+              "id": "chat",
+              "value": 127,
+              "typical": 169,
+              "sample": 6,
+              "score": 38,
+              "reason": null
+            }
+          },
+          "reason": null
+        },
+        "conversion": {
+          "score": 26,
+          "baseWeight": 0.1,
+          "effectiveWeight": 0.1333,
+          "measures": {
+            "subscribers": {
+              "id": "subscribers",
+              "value": 1.6,
+              "typical": 3,
+              "sample": 5,
+              "score": 26,
+              "reason": null
+            }
+          },
+          "reason": "The latest episode is still under a week old, so this check may move."
+        },
+        "sentiment": {
+          "score": 86,
+          "baseWeight": 0.15,
+          "effectiveWeight": 0.2,
+          "measures": {
+            "balance": {
+              "id": "balance",
+              "value": 85.7,
+              "typical": null,
+              "sample": 7,
+              "score": 86,
+              "reason": null
+            },
+            "commentRate": {
+              "id": "commentRate",
+              "value": null,
+              "typical": null,
+              "sample": 1,
+              "score": null,
+              "reason": "Only 1 episode has complete replies and watch counts; at least four are required."
+            }
+          },
+          "reason": "Only 1 episode has complete replies and watch counts; at least four are required."
+        }
+      },
+      "headline": "Live turnout and viewer goodwill look healthy, but engagement and subscriber pull are fragile.",
+      "pros": [
+        {
+          "text": "The latest show peaked at 71 live viewers, a stronger live pull than the show usually draws.",
+          "factId": "latest-live-peak"
+        },
+        {
+          "text": "Viewers watched 12.9% of the latest YouTube episode on average, above the usual hold, though it is still early.",
+          "factId": "latest-watch-percent"
+        }
+      ],
+      "cons": [
+        {
+          "text": "The latest episode added 1.6 subscribers for each thousand YouTube views, below the usual pace, though it is still early.",
+          "factId": "latest-subscriber-rate"
+        },
+        {
+          "text": "The latest show drew 127 chat messages, a quieter live conversation than the show usually gets.",
+          "factId": "latest-live-chat"
+        }
+      ],
+      "drivers": [
+        "The score sits just under the weighted mean because soft engagement, weak subscriber pull, and quieter chat slightly outweigh the strong live peak and warm feedback balance.",
+        "The growth check could not run because too few clean first weeks exist, so it neither helped nor hurt the score.",
+        "The newest episode is under a week old, so several of its checks are early reads and may move."
+      ],
+      "facts": [
+        {
+          "id": "clean-first-weeks",
+          "value": 2,
+          "display": "2",
+          "text": "Only 2 episodes have clean first-week records.",
+          "sources": [
+            "data.json#showTrend.week1VelocityByEpisode"
+          ]
+        },
+        {
+          "id": "latest-engagement",
+          "value": 28.5,
+          "display": "28.5",
+          "text": "The latest episode drew 28.5 engagements for each thousand YouTube views.",
+          "sources": [
+            "data.json#episodes.2026-08-20-dive-radio-the-mascot-industrial-complex.metrics.engagementPer1k"
+          ],
+          "requiredPhrase": "still early"
+        },
+        {
+          "id": "typical-engagement",
+          "value": 38.1,
+          "display": "38.1",
+          "text": "Prior episodes typically drew 38.1 engagements for each thousand YouTube views.",
+          "sources": [
+            "data.json#episodes.metrics.engagementPer1k"
+          ]
+        },
+        {
+          "id": "latest-watch-percent",
+          "value": 12.9,
+          "display": "12.9%",
+          "text": "Viewers watched 12.9% of the latest YouTube episode on average.",
+          "sources": [
+            "data/restream/yt-analytics/2026-08-20-dive-radio-the-mascot-industrial-complex.json"
+          ],
+          "requiredPhrase": "still early"
+        },
+        {
+          "id": "typical-watch-percent",
+          "value": 10.8,
+          "display": "10.8%",
+          "text": "Prior episodes typically held viewers for 10.8% of their YouTube run time.",
+          "sources": [
+            "data/restream/yt-analytics/*.json"
+          ]
+        },
+        {
+          "id": "latest-finished-announce-play",
+          "value": 23,
+          "display": "23%",
+          "text": "23% of the latest finished episode's X announce impressions became plays.",
+          "sources": [
+            "data.json#episodes.2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.latest"
+          ]
+        },
+        {
+          "id": "typical-announce-play",
+          "value": 34.5,
+          "display": "34.5%",
+          "text": "Prior clean episodes typically turned 34.5% of X announce impressions into plays.",
+          "sources": [
+            "data.json#episodes.latest"
+          ]
+        },
+        {
+          "id": "latest-finished-x-share",
+          "value": 64.2,
+          "display": "64.2%",
+          "text": "X supplied 64.2% of watching for the latest finished episode.",
+          "sources": [
+            "data.json#episodes.2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.latest"
+          ]
+        },
+        {
+          "id": "latest-live-peak",
+          "value": 71,
+          "display": "71",
+          "text": "The latest show peaked at 71 live viewers.",
+          "sources": [
+            "data.json#episodes.2026-08-20-dive-radio-the-mascot-industrial-complex.live.peak"
+          ]
+        },
+        {
+          "id": "typical-live-peak",
+          "value": 64,
+          "display": "64",
+          "text": "Prior shows typically peaked at 64 live viewers.",
+          "sources": [
+            "data.json#episodes.live.peak"
+          ]
+        },
+        {
+          "id": "latest-live-chat",
+          "value": 127,
+          "display": "127",
+          "text": "The latest show drew 127 chat messages.",
+          "sources": [
+            "data.json#episodes.2026-08-20-dive-radio-the-mascot-industrial-complex.live.chatMessages"
+          ]
+        },
+        {
+          "id": "typical-live-chat",
+          "value": 169,
+          "display": "169",
+          "text": "Prior shows typically drew 169 chat messages.",
+          "sources": [
+            "data.json#episodes.live.chatMessages"
+          ]
+        },
+        {
+          "id": "latest-subscriber-rate",
+          "value": 1.6,
+          "display": "1.6",
+          "text": "The latest episode added 1.6 subscribers for each thousand YouTube views.",
+          "sources": [
+            "data/restream/yt-analytics/2026-08-20-dive-radio-the-mascot-industrial-complex.json"
+          ],
+          "requiredPhrase": "still early"
+        },
+        {
+          "id": "typical-subscriber-rate",
+          "value": 3,
+          "display": "3",
+          "text": "Prior clean episodes typically added 3 subscribers for each thousand YouTube views.",
+          "sources": [
+            "data/restream/yt-analytics/*.json"
+          ]
+        },
+        {
+          "id": "recent-positive-feedback",
+          "value": 5,
+          "display": "5",
+          "text": "5 recent comments were clearly positive.",
+          "sources": [
+            "data.json#episodes[-3:].comments.list"
+          ],
+          "requiredPhrase": "X replies are missing"
+        },
+        {
+          "id": "recent-mixed-feedback",
+          "value": 2,
+          "display": "2",
+          "text": "2 recent comments mixed praise with a concern.",
+          "sources": [
+            "data.json#episodes[-3:].comments.list"
+          ],
+          "requiredPhrase": "X replies are missing"
+        },
+        {
+          "id": "recent-feedback-people",
+          "value": 7,
+          "display": "7",
+          "text": "7 people left recent directional feedback.",
+          "sources": [
+            "data.json#episodes[-3:].comments.list"
+          ],
+          "requiredPhrase": "X replies are missing"
+        },
+        {
+          "id": "latest-comment-rate",
+          "value": 2,
+          "display": "2",
+          "text": "The latest episode drew 2 commenters for each thousand watches.",
+          "sources": [
+            "data.json#episodes.2026-08-20-dive-radio-the-mascot-industrial-complex.comments.commentersPer1k"
+          ],
+          "requiredPhrase": "only one episode"
+        },
+        {
+          "id": "data-age-hours",
+          "value": 7,
+          "display": "7",
+          "text": "The newest audience numbers were refreshed 7 hours ago.",
+          "sources": [
+            "data.json#episodes.latest.ts"
+          ]
+        }
+      ],
+      "provider": "anthropic",
+      "model": "claude-fable-5",
+      "promptVersion": 1,
+      "promptHash": "a2d448bf359fca7802a19dc41c59b79d50c9257b00535b49bd3afe1f3a2890a0",
+      "formulaVersion": "health-v1",
+      "bundleHash": "5b66bdc4a08421e968a5b8cfd8529df7aaa8a208dd274a8fdfe9a8b11f4c253f",
+      "dataGeneratedAt": "2026-08-22T23:51:24.356Z",
+      "dataThrough": "2026-08-22T23:35:58.103Z",
+      "createdAt": "2026-08-22T23:51:41.435Z"
+    }
+  ]
+}

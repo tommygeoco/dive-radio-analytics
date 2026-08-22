@@ -31,6 +31,23 @@
   .tabs button.on { color: var(--t1); border-bottom-color: var(--accent); font-weight: 700; }
   .tabs button:hover { color: var(--t1); }
 
+  /* ---- W10: saved show health (one decision number; all math lives upstream) ---- */
+  .health { display: grid; grid-template-columns: 92px minmax(230px, 1.35fr) minmax(180px, 1fr) minmax(180px, 1fr);
+    gap: 18px; align-items: start; background: var(--s1); border: 1px solid var(--border-strong);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; }
+  .health .eyebrow { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .health .score { font-size: 42px; line-height: 1; font-weight: 700; letter-spacing: -.04em; margin-top: 4px; }
+  .health .saved { color: var(--t3); font-size: 12px; margin-top: 5px; }
+  .health .headline { color: var(--t1); font-size: 17px; font-weight: 700; line-height: 1.35; margin-top: 2px; }
+  .health .trend-note { color: var(--t3); font-size: 12px; margin-top: 7px; }
+  .health .trend { width: 150px; height: 28px; margin-top: 7px; display: block; }
+  .health .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .health .group-title { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 5px; }
+  .health ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
+  .health li { color: var(--t2); font-size: 13px; line-height: 1.4; padding-left: 12px; position: relative; }
+  .health li::before { content: "·"; position: absolute; left: 0; color: var(--t3); font-weight: 700; }
+  .health.empty { display: block; color: var(--t2); font-size: 14px; }
+
   /* ---- Layer 1: newest-episode hero (merged verdict + card) ---- */
   .hero { display: flex; gap: 20px; align-items: stretch; background: var(--s1);
     border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
@@ -262,6 +279,9 @@
 
   @media (max-width: 720px) {
     .wrap { padding: 14px 14px 20px; }
+    .health { grid-template-columns: 76px 1fr; gap: 12px 14px; }
+    .health .score { font-size: 36px; }
+    .health .hgroup { grid-column: 1 / -1; }
     .hero { flex-direction: column; gap: 10px; }
     .hero .spark { width: 100%; }
     .sitem { flex: 0 0 150px; }
@@ -283,6 +303,7 @@
     <button data-v="live">Live session</button>
   </div>
 
+  <section class="health" id="health" aria-label="Show health"></section>
   <div class="hero" id="hero"></div>
   <div class="strip" id="strip"></div>
   <div class="panel" id="panel" style="display:none"></div>
@@ -471,6 +492,38 @@ function sameAgeSub(e) {
     rank: peers.filter((v) => v > cur).length + 1,
     of: peers.length + 1,
   };
+}
+
+/* ================= W10 saved show health ================= */
+function healthTrend(points) {
+  if (!Array.isArray(points) || points.length < 7) return "";
+  const values = points.map(point => point.score);
+  const lo = Math.min(...values), hi = Math.max(...values);
+  const span = Math.max(1, hi - lo);
+  const coords = values.map((value, index) => {
+    const x = values.length === 1 ? 75 : Math.round(index / (values.length - 1) * 148) + 1;
+    const y = Math.round(25 - (value - lo) / span * 22) + 1;
+    return `${x},${y}`;
+  }).join(" ");
+  return `<svg class="trend" viewBox="0 0 150 28" role="img" aria-label="Saved health scores over time"><polyline points="${coords}"></polyline></svg>`;
+}
+
+function buildHealth() {
+  const el = document.getElementById("health");
+  const h = DATA.health;
+  if (!h || !Number.isFinite(h.score) || !h.headline || !Array.isArray(h.pros) || !Array.isArray(h.cons)) {
+    el.className = "health empty";
+    el.innerHTML = "Health update is not available yet.";
+    return;
+  }
+  const saved = new Date(`${h.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  const bullets = (rows) => rows.map(item => `<li>${esc(typeof item === "string" ? item : item.text)}</li>`).join("");
+  const trend = healthTrend(h.trend?.points);
+  el.className = "health";
+  el.innerHTML = `<div><div class="eyebrow">Show health</div><div class="score">${h.score}</div><div class="saved">Saved ${esc(saved)}</div></div>
+    <div><div class="headline">${esc(h.headline)}</div>${trend || `<div class="trend-note">A trend will appear after a week of saved scores.</div>`}</div>
+    <div class="hgroup"><div class="group-title">Helping</div><ul>${bullets(h.pros)}</ul></div>
+    <div class="hgroup"><div class="group-title">Needs work</div><ul>${bullets(h.cons)}</ul></div>`;
 }
 
 /* ================= hero ================= */
@@ -1117,6 +1170,7 @@ function render() {
   document.getElementById("ctitle").textContent = t;
   document.getElementById("cscope").textContent = s;
 
+  buildHealth();
   buildHero();
   buildStrip();
   buildPanel();
@@ -1434,6 +1488,7 @@ function buildAbout() {
   <p><b>Pace</b> compares YouTube views at the same age across episodes (X plays have no history before 08/21, so a blended pace would fabricate a disadvantage for older episodes).</p>
   <p><b>Rating</b> (“#2 of 6”) ranks an episode against itself and up to nine episodes that aired before it. Later episodes never enter that comparison. The rating weighs YouTube views at the same age (50%), likes and comments per 1,000 views (20%), how much of the video people watched (15%), and live turnout (15%). Each check asks whether the episode is above or below what recent episodes usually did. If an honest number is not in yet, that check drops out and the remaining checks share its weight; <b>*</b> marks that state, and nothing is guessed or filled with zero. <b>~</b> means the rating is not final until day 7, when it freezes. Views use YouTube only because older X play history does not exist. Watch-time data currently comes from the DesignerTom channel.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
+  <p><b>Show health</b> combines the checks that are honestly available on the saved date. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }
 

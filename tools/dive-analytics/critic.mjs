@@ -28,6 +28,8 @@ function harvest() {
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   let ratings = null;
   try { ratings = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
+  let healthHistory = null;
+  try { healthHistory = JSON.parse(readFileSync(join(ROOT, "data", "restream", "health-history.json"), "utf8")); } catch { /* absent */ }
 
   // episodes: the numbers a reader can see, compact
   const episodes = data.episodes.map((e) => ({
@@ -57,7 +59,7 @@ function harvest() {
       complaintThemes: e.comments.complaintThemes,
       xReplies: e.comments.xCoverage,
     } : null,
-    rating: e.rating ? { rank: e.rating.rank, n: e.rating.n, score: e.rating.score, provisional: e.rating.provisional, missingPillars: e.rating.coverage?.missingPillars, pillarScores: e.rating.pillarScores } : null,
+    rating: e.rating ? { rank: e.rating.rank, n: e.rating.n, score: e.rating.score, provisional: e.rating.provisional, coverage: e.rating.coverage, pillarScores: e.rating.pillarScores } : null,
   }));
 
   return {
@@ -66,6 +68,11 @@ function harvest() {
     insights: data.insights.map((i) => ({ id: i.id, category: i.category, text: i.text, recommendation: i.recommendation, caveat: i.caveat })),
     showTrend: data.showTrend,
     commentSummary: data.commentSummary,
+    health: data.health || null,
+    healthStore: healthHistory?.entries?.length ? {
+      count: healthHistory.entries.length,
+      latest: healthHistory.entries.at(-1),
+    } : null,
     ratingsStoreMeta: ratings ? { algorithm: ratings.algorithm, updatedAt: ratings.updatedAt, count: ratings.ratings?.length } : null,
     indexHtml: html,
   };
