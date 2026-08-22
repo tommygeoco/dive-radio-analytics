@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%2359b0ff'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%230b0e13'/%3E%3C/svg%3E" />
 <title>Dive Radio — Episode Analytics</title>
 <style>
   /* Design tokens (2026-08-22 redesign): 3-step surface ramp, 2 border tints,
@@ -61,25 +62,37 @@
   /* ---- Layer 1: episode strip (selector + legend; oldest → newest, latest far right) ---- */
   .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
     scrollbar-width: thin; }
-  .sitem { flex: 1 0 150px; min-width: 150px; background: var(--s1); border: 1px solid var(--border);
-    border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+  .sitem { flex: 1 0 132px; min-width: 132px; background: var(--s1); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 10px 7px; cursor: pointer; position: relative;
+    transition: border-color .15s, box-shadow .15s; }
   .sitem:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+  .sitem::after { content: "▾"; position: absolute; right: 9px; bottom: 5px; font-size: 10px;
+    color: var(--t3); opacity: 0; transition: opacity .15s; }
+  .sitem:hover::after { opacity: .8; }
+  .sitem.solo::after { content: "▴"; opacity: 1; color: var(--accent); }
   .sitem.solo { border-color: var(--accent); background: var(--s2); }
   .sitem.dim { opacity: .38; }
-  .sitem .r1 { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700;
+  .sitem .r1 { display: flex; align-items: baseline; gap: 6px; font-size: 11px; font-weight: 700;
     color: var(--t3); letter-spacing: .04em; }
+  .sitem .r1 .num { font-size: 15px; font-weight: 700; letter-spacing: -.01em; color: var(--t1); }
+  .sitem .r1 .mk { font-size: 10px; font-weight: 600; color: var(--amber); }
   .sitem .r1 .flag { margin-left: auto; font-size: 10px; color: var(--amber); font-weight: 600; }
-  .sitem .t { font-size: 12px; color: var(--t2); white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis; margin: 2px 0; }
-  .sitem .v { font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
-  .sitem .v small { font-size: 11px; font-weight: 500; color: var(--t3); }
-  .sitem .v .mk { font-size: 10px; font-weight: 600; color: var(--amber); margin-left: 4px; }
+  .sitem .t { font-size: 11px; color: var(--t2); white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; margin: 1px 0 2px; }
   .sitem .r3 { font-size: 11px; color: var(--t3); display: flex; gap: 8px; }
   .sitem .r3 .pace.up { color: var(--good); } .sitem .r3 .pace.down { color: var(--bad); }
 
   /* ---- Layer 2: pinned episode detail panel ---- */
+  @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
-    padding: 14px 18px; margin-bottom: 12px; position: relative; font-size: 13px; }
+    padding: 14px 18px; margin-bottom: 12px; position: relative; font-size: 13px;
+    animation: panelIn .16s ease-out; }
+  @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } }
+  .panel .row.head { font-weight: 700; color: var(--t1); }
+  .panel .val.big { font-size: 16px; }
+  .panel .hint { color: var(--t3); font-size: 11px; font-weight: 400; }
+  .panel .pchip { font-size: 10px; color: var(--amber); border: 1px solid rgba(217,162,74,.4);
+    border-radius: 4px; padding: 1px 6px; font-weight: 600; }
   .panel .x { position: absolute; top: 8px; right: 12px; background: none; border: 0;
     color: var(--t3); font-size: 16px; cursor: pointer; padding: 4px; }
   .panel .x:hover { color: var(--t1); }
@@ -155,16 +168,17 @@
   .insight .ic { width: 28px; height: 28px; border-radius: 8px; flex: none; display: flex;
     align-items: center; justify-content: center; margin-top: 1px; }
   .insight .ic svg { width: 15px; height: 15px; }
-  .insight .body { flex: 1; min-width: 0; }
+  .insight .body { flex: 1; min-width: 0; max-width: 78ch; }
   .insight .cat { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     margin-bottom: 1px; }
   .insight .txt { color: var(--t1); }
   .insight .cav { display: none; color: var(--t3); font-size: 11.5px; margin-top: 4px; }
-  .insight .rec { display: none; margin-top: 8px; padding: 8px 12px; border-left: 2px solid var(--good);
+  .insight .reveal { display: inline-block; margin-top: 6px; color: var(--good); font-size: 11.5px;
+    font-weight: 700; letter-spacing: .02em; cursor: pointer; }
+  .insight .reveal:hover { text-decoration: underline; }
+  .insight .rec { display: none; margin-top: 6px; padding: 8px 12px; border-left: 2px solid var(--good);
     background: rgba(62,207,142,.06); border-radius: 0 6px 6px 0; color: var(--t2); font-size: 12.5px; }
-  .insight .rec b { color: var(--good); font-size: 10px; letter-spacing: .08em; display: block; margin-bottom: 2px; }
   .insight.open .rec, .insight.open .cav { display: block; }
-  .insight .more { color: var(--t3); font-size: 11px; flex: none; margin-top: 2px; }
   .expander { background: none; border: 1px dashed var(--border-strong); border-radius: 8px;
     color: var(--t3); padding: 8px; cursor: pointer; font-size: 12.5px; }
   .expander:hover { color: var(--t1); border-color: var(--accent); }
@@ -277,19 +291,24 @@
 const DATA = window.DIVE_DATA;
 const EPS = DATA.episodes;
 const DAY = 86400000, WEEK = 7 * DAY, PHX = 7 * 3600000;
-// Episode palette: E2 re-stepped 2026-08-22 (#8a6bd6 → #8e4ce0) to clear the
-// normal-vision floor vs E1's slate (ΔE 12.7 → 18.2, validator-checked).
-// E1 low-chroma and E6=platform-blue are accepted, documented debts — episode
-// identity is always doubled by labels (strip, end labels, tooltips).
-const PALETTE = ["#6b7a94", "#8e4ce0", "#3ecf8e", "#e6c74a", "#ff7a59", "#59b0ff", "#ff5d8f", "#5eead4"];
+// Episode palette, 2026-08-22: E2 re-stepped (#8a6bd6 → #8e4ce0) to clear the
+// normal-vision floor vs E1's slate; slots 3↔8 and 5↔7 swapped so no ACTIVE
+// episode wears a status hue (#3ecf8e = --good, #ff7a59 = --bad now sit in
+// the unused tail; anti-pattern "status color as series identity").
+// E1 low-chroma and E6=platform-blue remain accepted, documented debts —
+// episode identity is always doubled by labels (strip, end labels, tooltips).
+const PALETTE = ["#6b7a94", "#8e4ce0", "#5eead4", "#e6c74a", "#ff5d8f", "#59b0ff", "#ff7a59", "#3ecf8e"];
 const color = (e) => PALETTE[(e.ep - 1) % PALETTE.length];
 const NEWEST = EPS[EPS.length - 1];
 const FONT = getComputedStyle(document.body).fontFamily;
 if (window.Chart) { Chart.defaults.font.family = FONT; Chart.defaults.animation.duration = 300; }
 
+// @ridd_design's near-white #d7dbe0 (chroma 0.008, the brightest mark on the
+// page — read as "highlighted" in every bar) stepped down to a true light
+// gray; still unmistakably "the gray one".
 const PLAT_COLORS = {
   "yt:joindiveclub": "#ff4f5e", "yt:designertom": "#ffa14f",
-  "x:ridd_design": "#d7dbe0", "x:designertom": "#59b0ff",
+  "x:ridd_design": "#b7c2d4", "x:designertom": "#59b0ff",
 };
 const TT_NAME = {
   "yt:joindiveclub": "Dive Club", "yt:designertom": "DesignerTom",
@@ -366,7 +385,13 @@ function sameAgeSub(e) {
   peers.sort((a,b)=>a-b);
   const med = peers[Math.floor(peers.length/2)];
   if (med <= 0) return null;
-  return { pct: Math.round((((e.latest.ytTotal ?? 0) - med) / med) * 100), n: peers.length };
+  const cur = e.latest.ytTotal ?? 0;
+  return {
+    pct: Math.round(((cur - med) / med) * 100),
+    n: peers.length,
+    rank: peers.filter((v) => v > cur).length + 1,
+    of: peers.length + 1,
+  };
 }
 
 /* ================= hero ================= */
@@ -380,22 +405,31 @@ function buildHero() {
     <span class="ep"><span class="dot" style="background:${c}"></span>E${e.ep} · latest episode</span>
     <span class="ttl">${esc(short(e.title))}</span></div>`;
 
+  // Verdict lines carry only JUDGMENT — never numbers the hero already shows
+  // (critic re-review: the old pace-rank text duplicated the hero ~60%).
   if (isLive) {
     if (e.live) {
       html += `<div class="big">${e.live.peak} <small>peak live viewers</small></div>`;
       html += `<div class="sub">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat messages · ${e.live.durationMin ?? "?"} min</div>`;
+      const withLive = EPS.filter(x => x.live);
+      if (withLive.length > 1) {
+        const priors = withLive.filter(x => x.slug !== e.slug).map(x => x.live.peak).sort((a,b)=>a-b);
+        const med = priors[Math.floor(priors.length/2)];
+        const rank = withLive.filter(x => x.live.peak > e.live.peak).length + 1;
+        html += `<div class="verdict">#${rank} turnout of ${withLive.length} episodes; the typical peak is ${med}.</div>`;
+      }
     } else {
       html += `<div class="big"><small>no live data for this episode</small></div>`;
     }
-    const liveIns = DATA.insights.find(i => i.id === "live-peak");
-    if (liveIns) html += `<div class="verdict">${esc(liveIns.text)}</div>`;
   } else {
     const mk = heroMarker(e);
     const tv = e.latest.totalViews ?? e.latest.ytTotal ?? 0;
     html += `<div class="big">${nfmt(tv)} <small>total views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>`;
-    html += `<div class="sub">${nfmt(e.latest.ytTotal ?? 0)} YouTube + ${nfmt(e.latest.xPlays ?? 0)} X plays · X reach ${kfmt(e.latest.xImpressions ?? 0)} (never counted in views)</div>`;
-    const pace = DATA.insights.find(i => i.id === "pace-rank");
-    if (pace) html += `<div class="verdict">${esc(pace.text)}</div>`;
+    html += `<div class="sub">${nfmt(e.latest.ytTotal ?? 0)} YouTube + ${nfmt(e.latest.xPlays ?? 0)} X plays · X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
+    const pace = sameAgeSub(e);
+    html += `<div class="verdict">${pace
+      ? `YouTube pace: #${pace.rank} of ${pace.of} at this age.`
+      : `Too early to compare — no prior episode has data this young; the first same-age checkpoint comes as snapshots age.`}</div>`;
   }
 
   html += `<div class="chiprow" id="herochips"></div></div>`;
@@ -472,22 +506,22 @@ function buildStrip() {
     const it = document.createElement("div");
     it.className = "sitem";
     it.dataset.slug = e.slug;
-    let mid = "", r3 = "";
+    let num = "", r3 = "";
     if (isLive) {
-      mid = e.live ? `${e.live.peak} <small>peak live</small>` : `<small>no live data</small>`;
-      r3 = e.live ? `<span>avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat</span>` : `<span>premiered ${e.premiere.slice(5).replace("-", "/")}</span>`;
+      num = e.live ? `<span class="num">${e.live.peak}</span> peak` : `<span class="num">–</span>`;
+      r3 = e.live ? `<span>avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat</span>` : `<span>no live data</span>`;
     } else {
       const mk = heroMarker(e);
-      mid = `${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)} <small>views</small>${mk ? `<span class="mk">${mk}</span>` : ""}`;
+      // number rides the identity row; the unit is stated once in the hero
+      num = `<span class="num">${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
       const pace = sameAgeSub(e);
       r3 = `<span>reach ${kfmt(e.latest.xImpressions ?? 0)}</span>` +
         (pace ? (pace.pct === 0 ? `<span>= median</span>`
           : `<span class="pace ${pace.pct > 0 ? "up" : "down"}">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}%</span>`) : "");
     }
-    it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep}
+    it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}
         ${e.partialHistory && !isLive ? '<span class="flag">late reg</span>' : ""}</div>
       <div class="t">${esc(short(e.title))}</div>
-      <div class="v">${mid}</div>
       <div class="r3">${r3}</div>`;
     it.addEventListener("click", () => {
       if (state.panel === e.slug) { state.panel = null; state.solo = null; }
@@ -496,6 +530,9 @@ function buildStrip() {
     });
     strip.appendChild(it);
   }
+  // on phones the strip scrolls; land it on the NEWEST episode (far right),
+  // not E1 — the locked order rule keeps its value on small screens
+  if (window.innerWidth <= 720) strip.scrollLeft = strip.scrollWidth;
 }
 
 /* ================= detail panel (Layer 2) ================= */
@@ -503,46 +540,47 @@ function buildPanel() {
   const el = document.getElementById("panel");
   const e = EPS.find(x => x.slug === state.panel);
   if (!e) { el.style.display = "none"; el.innerHTML = ""; return; }
+  // Numbers lead, labels recede. Unit words, methodology sentences, and the
+  // late-reg explainer live in "About this data" — never repeated here.
   const bd = e.latest.byDest || {};
   const tvi = e.latest.totalViewsInfo || {};
   let html = `<button class="x" id="panelx" title="close">×</button>`;
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
-    <span style="color:var(--t3);font-weight:400;font-size:12px">· premiered ${e.premiere}</span></div>`;
+    <span style="color:var(--t3);font-weight:400;font-size:12px">· ${e.premiere.slice(5).replace("-", "/")}</span>
+    ${e.partialHistory ? `<span class="pchip">late reg</span>` : ""}</div>`;
   html += `<div class="grid"><div>`;
-  html += `<div class="row" style="font-weight:700;color:var(--t1)">Total views<span class="val">${nfmt(e.latest.totalViews ?? 0)}</span></div>`;
+  html += `<div class="row head">Total views<span class="val big">${nfmt(e.latest.totalViews ?? 0)}</span></div>`;
   const rows = [
-    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views, "views"],
-    ["yt:designertom", bd["yt:designertom"]?.views, "views"],
-    ["x:ridd_design", bd["x:ridd_design"]?.plays, "plays"],
-    ["x:designertom", bd["x:designertom"]?.plays, "plays"],
+    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
+    ["yt:designertom", bd["yt:designertom"]?.views],
+    ["x:ridd_design", bd["x:ridd_design"]?.plays],
+    ["x:designertom", bd["x:designertom"]?.plays],
   ];
-  for (const [k, v, unit] of rows) {
-    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]} <span style="color:var(--t3);font-size:11px">${unit}</span><span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+  for (const [k, v] of rows) {
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
   }
-  if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts — true total is higher</div>`;
-  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays last confirmed ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
-  else if (!tvi.includesPlays) html += `<div class="note">YT only — X broadcast plays unavailable</div>`;
-  html += `<div class="mut">YouTube counts a qualified view (~30s); X counts a play start — treat the sum as directional.</div>`;
+  if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
+  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
   html += `</div><div>`;
-  html += `<div class="row" style="font-weight:700;color:var(--t1)">X reach <span style="color:var(--t3);font-size:11px;font-weight:400">impressions — not in total</span><span class="val">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
+  html += `<div class="row head">X reach <span class="hint">not in total</span><span class="val big">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
   html += `<div class="row">@ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
-  html += `<div class="mut">An impression = the post appeared on a timeline. Exposure, not watching.</div>`;
   if (e.live) {
-    html += `<div class="row" style="font-weight:700;color:var(--t1);margin-top:8px">Live session<span class="val">${e.live.peak} peak</span></div>`;
-    html += `<div class="mut">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat messages · ${e.live.durationMin ?? "?"} min</div>`;
+    html += `<div class="row head" style="margin-top:6px">Live<span class="val big">${e.live.peak} <span class="hint">peak</span></span></div>`;
+    html += `<div class="row"><span class="hint">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat · ${e.live.durationMin ?? "?"} min</span></div>`;
   }
   html += `</div></div>`;
 
   const s = e.comments?.sentiment;
   if (e.comments) {
     html += `<div class="sect">`;
+    html += `<span class="row head" style="display:inline">Comments</span> `;
     if (s) {
-      html += `<span style="font-weight:700">Audience comments</span> — <span class="senti-link" data-f="positive"><b style="color:var(--good)">${s.positive}</b> positive</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${s.negative}</b> negative</span> · <span class="senti-link" data-f="neutral">${s.neutral} neutral</span>${s.unclassified ? ` · ${s.unclassified} unclassified` : ""} · <span class="senti-link" data-f="all">view all ${e.comments.total} →</span>`;
+      html += `<span class="senti-link" data-f="positive"><b style="color:var(--good)">${s.positive}</b>▲</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${s.negative}</b>▼</span> · <span class="senti-link" data-f="all">all ${e.comments.total} →</span>`;
     } else {
-      html += `<span style="font-weight:700">Audience comments</span> — ${e.comments.total} collected`;
+      html += `<span class="hint">${e.comments.total} collected</span>`;
     }
-    if (e.partialHistory) html += `<div class="mut">late reg: registered late — cumulative totals correct, early weekly history missing.</div>`;
     for (const q of (e.comments.featured || []).slice(0, 2)) {
       html += `<div class="q">“${esc(q.text.length > 110 ? q.text.slice(0, 108).trimEnd() + "…" : q.text)}” <span class="by">— ${esc(q.author)}${q.likes ? ` · ${q.likes}♥` : ""}</span></div>`;
     }
@@ -550,7 +588,7 @@ function buildPanel() {
   }
   el.innerHTML = html;
   el.style.display = "";
-  el.querySelector("#panelx").addEventListener("click", () => { state.panel = null; render(); });
+  el.querySelector("#panelx").addEventListener("click", () => { state.panel = null; state.solo = null; render(); });
   el.querySelectorAll(".senti-link").forEach(a =>
     a.addEventListener("click", () => openDrill(e.slug, a.dataset.f)));
 }
@@ -604,15 +642,25 @@ document.getElementById("drill").addEventListener("click", (ev) => { if (ev.targ
 document.addEventListener("keydown", (ev) => {
   if (ev.key !== "Escape") return;
   if (document.getElementById("drill").classList.contains("on")) closeDrill();
-  else if (state.panel) { state.panel = null; render(); }
+  else if (state.panel || state.solo) { state.panel = null; state.solo = null; render(); }
+});
+// clicking anywhere outside the interactive surfaces closes the panel AND the
+// solo emphasis — closing must never strand the page in a dimmed state
+document.addEventListener("click", (ev) => {
+  if (!state.panel && !state.solo) return;
+  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, .tabs, #drill, .chip, .insight, .expander, .dcard")) return;
+  state.panel = null; state.solo = null; render();
 });
 
 /* ================= chart titles / scope (unit trap fix) ================= */
 function chartTitle() {
   if (state.view === "live") return ["Concurrent viewers by minute", "from Restream · newest episode highlighted, priors in gray — click a strip card to focus one"];
-  if (state.mode === "standings") return ["Total views by episode", "YouTube views + X broadcast plays (all video playback) · ◐ = partial plays coverage"];
-  if (state.mode === "race") return ["Pacing race — YouTube views only", "X plays have no history before 08/21, so this race is YT-scoped · cumulative " + (state.byDate ? "by calendar date" : "since premiere")];
-  return ["Weekly gains — YouTube views only", "views gained per week · X plays have no weekly history yet"];
+  if (state.mode === "standings") {
+    const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
+    return ["Total views by episode", "YouTube views + X broadcast plays (all video playback)" + (anyPartial ? " · ◐ = partial plays coverage" : "")];
+  }
+  if (state.mode === "race") return ["Pacing race — YouTube views only", "newest highlighted, priors gray · click any card to focus it · cumulative " + (state.byDate ? "by date" : "since premiere")];
+  return ["Weekly gains — YouTube views only", "views gained per week, episodes side by side"];
 }
 
 /* ================= charts ================= */
@@ -736,7 +784,7 @@ function externalTooltip(context) {
       html += `<div class="meta">Minute ${p.x}</div>`;
       html += `<div class="big">${p.y} watching</div>`;
       html += `<div class="chg">Chat: ${nfmt(p.meta.ct ?? 0)} messages so far${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
-      const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#d7dbe0", "X #2": "#59b0ff" };
+      const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#b7c2d4", "X #2": "#59b0ff" };
       const chans = Object.entries(p.meta.byChan || {});
       if (chans.length) {
         html += `<div class="div"></div>`;
@@ -744,22 +792,28 @@ function externalTooltip(context) {
         html += `<div class="chg" style="margin-top:5px">Restream total across all simulcast destinations</div>`;
       }
     } else {
-      if (p.meta.week !== undefined) html += `<div class="meta">Week ${p.meta.week + 1} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
-      else html += `<div class="meta">Day ${Math.round(p.meta.day ?? 0)} · ${fmtDate(Date.parse(p.meta.ts))}</div>`;
-      html += `<div class="big">${nfmt(p.y)} YT views${isDelta ? " gained" : ""}</div>`;
+      // grouped weekly-gains bars carry plain numbers + a parallel metas array;
+      // line views carry {x, y, meta} points
+      const grouped = isDelta && !state.byDate;
+      const yVal = grouped ? item.raw : p.y;
+      const meta = grouped ? ds.metas?.[item.dataIndex] : p.meta;
+      if (meta == null) { el.style.opacity = 0; return; }
+      if (meta.week !== undefined) html += `<div class="meta">Week ${grouped ? meta.week : meta.week + 1} · ${fmtDate(Date.parse(meta.ts))}</div>`;
+      else html += `<div class="meta">Day ${Math.round(meta.day ?? 0)} · ${fmtDate(Date.parse(meta.ts))}</div>`;
+      html += `<div class="big">${nfmt(yVal)} YT views${isDelta ? " gained" : ""}</div>`;
       if (!isDelta && item.dataIndex > 0) {
         const prev = ds.data[item.dataIndex - 1].y;
-        const d = p.y - prev;
+        const d = yVal - prev;
         if (d !== 0) html += `<div class="chg">${d >= 0 ? "+" : ""}${nfmt(d)}${prev > 0 ? ` (${d >= 0 ? "+" : ""}${Math.round(d/prev*1000)/10}%)` : ""}</div>`;
       }
-      if (p.meta.split) {
+      if (meta.split) {
         html += `<div class="div"></div>`;
         for (const k of YT_KEYS) {
-          const v = p.meta.split[k] ?? 0;
-          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && p.meta.note === null && v >= 0 ? "+" : ""}${nfmt(v)}</span></div>`;
+          const v = meta.split[k] ?? 0;
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && meta.note === null && v >= 0 ? "+" : ""}${nfmt(v)}</span></div>`;
         }
       }
-      if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
+      if (meta.note) html += `<div class="note">${meta.note}</div>`;
     }
   }
 
@@ -782,7 +836,9 @@ function renderStandings() {
     ["x:ridd_design", (e) => e.latest.byDest["x:ridd_design"]?.plays || 0],
     ["x:designertom", (e) => e.latest.byDest["x:designertom"]?.plays || 0],
   ];
-  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "33" : hex;
+  // base fills at ~85% alpha: softens the saturated-block read while the
+  // 1.5px surface gaps keep segments crisp
+  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "33" : hex + "d9";
   const cfg = {
     type: "bar",
     data: {
@@ -853,14 +909,69 @@ function render() {
   const isCal = !isLive && state.byDate;
   const isRace = !isLive && state.mode === "race" && !isCal;
   const source = isLive ? EPS.filter(e => e.live) : EPS;
+  const clickSolo = (_, els, ch) => {
+    if (!els.length) return;
+    const ds = ch.data.datasets[els[0].datasetIndex];
+    const same = state.solo === ds.slug;
+    state.solo = same ? null : ds.slug;
+    state.panel = same ? null : ds.slug;
+    render();
+  };
+
+  // Weekly gains: grouped bars on a category axis — one column per week,
+  // episodes side by side (a linear axis stacked every episode's week-1 bar
+  // on the same x and made the view unreadable).
+  if (isDelta && !isCal) {
+    const maxWeek = Math.max(1, ...EPS.flatMap(e => (e.weekly || []).map(w => w.week)));
+    const labels = Array.from({ length: maxWeek }, (_, i) => "week " + (i + 1));
+    const datasets = source.map((e) => {
+      const soloed = state.solo === e.slug;
+      const hidden = state.solo !== null && !soloed;
+      const byWeek = new Map((e.weekly || []).map((w, i) => [w.week, i]));
+      const data = [], metas = [];
+      for (let wk = 1; wk <= maxWeek; wk++) {
+        const i = byWeek.get(wk);
+        if (i === undefined) { data.push(null); metas.push(null); continue; }
+        const w = e.weekly[i];
+        const first = i === 0;
+        const split = first ? splitOf(w.byDest) : splitDelta(w.byDest, e.weekly[i - 1].byDest);
+        data.push(YT_KEYS.reduce((a, k) => a + (split[k] || 0), 0));
+        metas.push({ ts: w.boundary, week: w.week, split,
+          note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null });
+      }
+      return { label: label(e), epNum: e.ep, slug: e.slug, data, metas,
+        backgroundColor: (state.solo && !soloed ? color(e) + "33" : color(e) + "d9"),
+        borderRadius: 3, hidden, episode: e, categoryPercentage: 0.74, barPercentage: 0.9 };
+    });
+    const cfg = {
+      type: "bar",
+      data: { labels, datasets },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: "nearest", intersect: true },
+        scales: {
+          x: { ticks: { color: "#b7c1d1", font: { weight: 700 } }, grid: { display: false } },
+          y: { beginAtZero: true, title: { display: true, text: "YouTube views gained", color: "#8a94a8" },
+            ticks: { color: "#8a94a8", callback: v => kfmt(v) }, grid: { color: GRID } },
+        },
+        plugins: { legend: { display: false }, tooltip: { enabled: false, external: externalTooltip } },
+        onClick: clickSolo,
+      },
+    };
+    if (chart) chart.destroy();
+    chart = new Chart(document.getElementById("chart"), cfg);
+    document.getElementById("tt").style.opacity = 0;
+    return;
+  }
 
   const datasets = source.map((e) => {
     const isNewest = e.slug === NEWEST.slug;
     const soloed = state.solo === e.slug;
     const hidden = state.solo !== null && !soloed;
-    // live view: emphasis form — newest keeps its color, priors recede to one
-    // context gray until soloed (identity stays one click/hover away)
-    const deemph = isLive && !isNewest && !soloed;
+    // emphasis form (live AND pacing race): the newest episode keeps its
+    // color, priors recede to one context gray until soloed — the question
+    // both views answer is "newest vs typical", not "six equal series"
+    const deemph = (isLive || state.mode === "race") && !isNewest && !soloed;
     return {
       label: label(e),
       epNum: e.ep,
@@ -891,7 +1002,7 @@ function render() {
           type: "linear",
           ticks: {
             color: "#8a94a8",
-            stepSize: isRace ? 7 : (isDelta && !isCal ? 1 : undefined),
+            stepSize: isRace ? 7 : undefined,
             callback: v => {
               if (isLive) return v;
               if (isCal) return fmtDate(v);
@@ -915,14 +1026,7 @@ function render() {
         legend: { display: false }, // the episode strip directly above is the legend
         tooltip: { enabled: false, external: externalTooltip },
       },
-      onClick: (_, els, ch) => {
-        if (!els.length) return;
-        const ds = ch.data.datasets[els[0].datasetIndex];
-        const same = state.solo === ds.slug;
-        state.solo = same ? null : ds.slug;
-        state.panel = same ? null : ds.slug;
-        render();
-      },
+      onClick: clickSolo,
     },
     plugins: [endLabels],
   };
@@ -964,7 +1068,7 @@ function buildTable() {
   }
   html += "</table>";
   box.innerHTML = html;
-  box.style.display = "";
+  box.style.display = "block"; // stylesheet default is none — must set explicitly
 }
 
 /* M-1: the per-week view silently rendered nothing for episodes first tracked
@@ -977,8 +1081,9 @@ function buildEmptyNote() {
   if (!missing.length) return;
   const next = new Date(mondayNoonAfter(Date.now()) - PHX);
   const when = next.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-  el.textContent = `${missing.map(e => "E" + e.ep).join(", ")} ${missing.length === 1 ? "was" : "were"} first tracked this week — weekly bars appear after the next Monday-noon boundary (${when}).`;
-  el.style.display = "";
+  // in the scope line, IN VIEW — not a note below 440px of empty grid
+  document.getElementById("cscope").textContent =
+    `${missing.map(e => "E" + e.ep).join(", ")} first tracked this week — their weekly bars appear after ${when}`;
 }
 function mondayNoonAfter(ms) {
   const shifted = new Date(ms - PHX);
@@ -1021,21 +1126,21 @@ function buildInsightsPanel() {
   }
   const rest = all.filter(i => !top.includes(i));
 
-  const add = (ins, container) => {
+  const add = (ins, container, underHeader = false) => {
     const cat = CATS[ins.cat];
     const div = document.createElement("div");
     div.className = "insight";
     const hasMore = !!(ins.recommendation || ins.caveat);
     div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span>
-      <span class="body"><div class="cat" style="color:${cat.color}">${cat.name}</div>
+      <span class="body">${underHeader ? "" : `<div class="cat" style="color:${cat.color}">${cat.name}</div>`}
       <span class="txt">${esc(ins.text)}</span>
+      ${ins.recommendation ? `<br><span class="reveal">Recommendation ▾</span>` : ""}
       ${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}
-      ${ins.recommendation ? `<div class="rec"><b>RECOMMENDATION</b>${esc(ins.recommendation)}</div>` : ""}</span>
-      ${hasMore ? `<span class="more">▾</span>` : ""}`;
+      ${ins.recommendation ? `<div class="rec">${esc(ins.recommendation)}</div>` : ""}</span>`;
     if (hasMore) div.addEventListener("click", () => {
       div.classList.toggle("open");
-      const m = div.querySelector(".more");
-      if (m) m.textContent = div.classList.contains("open") ? "▴" : "▾";
+      const r = div.querySelector(".reveal");
+      if (r) r.textContent = div.classList.contains("open") ? "Recommendation ▴" : "Recommendation ▾";
     });
     container.appendChild(div);
   };
@@ -1057,7 +1162,7 @@ function buildInsightsPanel() {
           h.textContent = CATS[ins.cat].name;
           panel.appendChild(h);
         }
-        add(ins, panel);
+        add(ins, panel, true);
       }
     }
     panel.appendChild(btn);
@@ -1111,7 +1216,7 @@ document.getElementById("reset").addEventListener("click", () => {
 });
 
 document.getElementById("stamp").textContent =
-  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC · updates daily`;
+  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC`;
 
 buildAbout();
 buildInsightsPanel();

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-22T06:24:11.270Z",
+ "generatedAt": "2026-08-22T08:12:49.176Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -2803,7 +2803,7 @@
      {
       "source": "yt",
       "author": "Xijbor",
-      "text": "Appreciate the conversations and the love for the community. Very inspiring, and excited for what's to come! <3",
+      "text": "Appreciate the conversations and the love for the community. Very inspiring, and excited for what's to come! \u003c3",
       "likes": 1
      },
      {
@@ -2817,6 +2817,78 @@
       "author": "BetterNeil",
       "text": "Love the intro vid, we need a breakdown of that... clickin' play on the rest of this while I work! So good",
       "likes": 1
+     }
+    ],
+    "sentiment": {
+     "positive": 6,
+     "negative": 1,
+     "neutral": 1,
+     "unclassified": 0
+    },
+    "list": [
+     {
+      "author": "StangeDeCastro",
+      "text": "finally a release notes successor",
+      "source": "yt",
+      "likes": 3,
+      "at": "2026-07-17T13:47:33Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "BetterNeil",
+      "text": "Love the intro vid, we need a breakdown of that... clickin' play on the rest of this while I work! So good",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T10:37:32Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "simonbloom1",
+      "text": "Love this !!",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T15:44:33Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "BaAllen7239",
+      "text": "Excited for this! I've been watching you guys for the past 4 or 5 months. I'm a traditional graphic designer turned web designer and now in the last few years doing more product design. Thankful for you guys keeping excitement alive for digital design in the age of AI!",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-18T15:20:15Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "Xijbor",
+      "text": "Appreciate the conversations and the love for the community. Very inspiring, and excited for what's to come! \u003c3",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-18T15:33:03Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "BaAllen7239",
+      "text": "35:47 yeah vscode is so dumb! (Slowly closing vscode and downloading cursor)",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-18T15:42:03Z",
+      "sentiment": "negative"
+     },
+     {
+      "author": "anandastimm",
+      "text": "Very cool first show! Looking forward to the next editions :-) One question: what is the other moodboard tool called? Cosmos, Pinterest and ? Orina?",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-21T12:28:06Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "DGlazeAllDay",
+      "text": "THIS is the kind of content we need right now. Friendly, inviting, informative, and CURRENT! \n\nY'all's comments about how much y'all talk to your AI made me feel seen - I spend most of my commute talking with Claude, but the moment I want to use Claude around another person - my fingers malfunction and I forget how to type.",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-21T20:03:01Z",
+      "sentiment": "positive"
      }
     ]
    }
@@ -5245,9 +5317,63 @@
      },
      {
       "source": "yt",
+      "author": "albertvargasUX",
+      "text": "That intro music reminds me of early Future Sounds of London.  Also I JUST came back from Alaska, very cool!",
+      "likes": 1
+     },
+     {
+      "source": "yt",
       "author": "AndresTheDesigner",
       "text": "Love the data vs intuition conversation. Couldn't agree more with \"enough data to make a bet\"",
       "likes": 0
+     }
+    ],
+    "sentiment": {
+     "positive": 4,
+     "negative": 0,
+     "neutral": 1,
+     "unclassified": 0
+    },
+    "list": [
+     {
+      "author": "SFTK_Creators",
+      "text": "Seek first the kingdom of God 📖Matthew 6:33",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-07-24T00:03:41Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "Jegteix",
+      "text": "The Sound design in the Intro is so fire 🔥",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-24T05:34:10Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "albertvargasUX",
+      "text": "That intro music reminds me of early Future Sounds of London.  Also I JUST came back from Alaska, very cool!",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-28T14:13:39Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "BentoBox",
+      "text": "If it's not too much work, y'all should share the links to the articles you're referencing throughout in the show notes :) Thanks for the pod!",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-07-29T10:28:47Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "AndresTheDesigner",
+      "text": "Love the data vs intuition conversation. Couldn't agree more with \"enough data to make a bet\"",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-06T16:49:23Z",
+      "sentiment": "positive"
      }
     ]
    }
@@ -6696,6 +6822,30 @@
       "author": "khangdbui",
       "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
       "likes": 2
+     }
+    ],
+    "sentiment": {
+     "positive": 1,
+     "negative": 1,
+     "neutral": 0,
+     "unclassified": 0
+    },
+    "list": [
+     {
+      "author": "khangdbui",
+      "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-07-31T04:05:55Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "bgdnsr",
+      "text": "this show is boring af, you only talk about AI slop, have nothing good to add",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-08-01T12:12:38Z",
+      "sentiment": "negative"
      }
     ]
    }
@@ -8251,21 +8401,57 @@
     "featured": [
      {
       "source": "yt",
-      "author": "qwertyPechenkO",
-      "text": "Guys, love the show, but the quality is sooo poor. Like, come on, you're constantly talking about a high quality bar, craft, etc., yet we have to watch slideshows instead of videos, robovoices, drops",
-      "likes": 3
-     },
-     {
-      "source": "yt",
-      "author": "jasonrabboathceo",
-      "text": "What is the beginning music guys? Help a fellow designer out lol.",
-      "likes": 0
-     },
-     {
-      "source": "yt",
       "author": "rugu16",
       "text": "banger episode, not able to join live but thanks for sharing guys ! And @tom pls fix your streaming ! :D Its so glitchy",
       "likes": 0
+     }
+    ],
+    "sentiment": {
+     "positive": 1,
+     "negative": 0,
+     "neutral": 4,
+     "unclassified": 0
+    },
+    "list": [
+     {
+      "author": "qwertyPechenkO",
+      "text": "Guys, love the show, but the quality is sooo poor. Like, come on, you're constantly talking about a high quality bar, craft, etc., yet we have to watch slideshows instead of videos, robovoices, drops",
+      "source": "yt",
+      "likes": 3,
+      "at": "2026-08-07T14:25:33Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "Learning-design",
+      "text": "hmmm being a web designer but i would you to call alan on your weekly podcast ep !!",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-07T06:35:33Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "Techne89",
+      "text": "Coming from an interdisciplinary background—jumping from automotive design in Turin to design research near the Polar Circle for HMI concept vehicle for 2035  , and now balancing heavy corporate UXR for complex B2B systems (AEM, PLM).Running my own small kitchen  spatial and speculative design—I recognize I don't fit into just one bucket. Little bit one whole discourse …\n\nWe all carry our own lenses and biases. Overcoming childhood hurdles to get into one of the top design schools in the world n",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-07T14:47:46Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "rugu16",
+      "text": "banger episode, not able to join live but thanks for sharing guys ! And @tom pls fix your streaming ! :D Its so glitchy",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-10T08:53:22Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "jasonrabboathceo",
+      "text": "What is the beginning music guys? Help a fellow designer out lol.",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-14T05:35:01Z",
+      "sentiment": "neutral"
      }
     ]
    }
@@ -9716,7 +9902,62 @@
    },
    "comments": {
     "total": 5,
-    "featured": []
+    "featured": [
+     {
+      "source": "yt",
+      "author": "DeanChateaux",
+      "text": "I think 90 mins is perfect!",
+      "likes": 0
+     }
+    ],
+    "sentiment": {
+     "positive": 1,
+     "negative": 0,
+     "neutral": 4,
+     "unclassified": 0
+    },
+    "list": [
+     {
+      "author": "joydeeproni",
+      "text": "this is like mkbhd waveform podcast equivalent but for design industry",
+      "source": "yt",
+      "likes": 3,
+      "at": "2026-08-14T12:14:25Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "JustinPerea",
+      "text": "wow Tommy have you tried Hermes? Idk how you are still on Open Claw. But if that works for you how you want it then I understand not wanting to take the time to migrate.",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-14T11:42:23Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "BetterNeil",
+      "text": "Sagi Haviv says a good logo needs to be 3 things: 1. Appropriate [like a feeling or personality that fits an industry], 2. Distinctive/memorable and 3. Super simple (the most important of the 3 things). A bad logo is: 1. Too complicated 2. Generic.",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-14T14:14:38Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "BentoBox",
+      "text": "The discussion around the lack of designer founders I think is a topic that should be expounded upon. \n\nI think these times should clarify for a lot of designers whether their craft actually aids their companies in creating real business moats. \n\nIt is very much the case that the design showcased by Google would be totally fine (to ship, maybe not share) in a context where they are still unsure about PMF. It is also the case that it probably doesn't matter what you think about their designs beca",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-18T16:14:02Z",
+      "sentiment": "neutral"
+     },
+     {
+      "author": "DeanChateaux",
+      "text": "I think 90 mins is perfect!",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-21T16:25:17Z",
+      "sentiment": "positive"
+     }
+    ]
    }
   },
   {
@@ -11190,15 +11431,55 @@
      },
      {
       "source": "yt",
-      "author": "Sukhbat_builds",
-      "text": "Peak intro, i love it🔥👀",
-      "likes": 0
+      "author": "tylerhuntdesign",
+      "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
+      "likes": 1
      },
      {
       "source": "yt",
+      "author": "Sukhbat_builds",
+      "text": "Peak intro, i love it🔥👀",
+      "likes": 0
+     }
+    ],
+    "sentiment": {
+     "positive": 4,
+     "negative": 0,
+     "neutral": 0,
+     "unclassified": 0
+    },
+    "list": [
+     {
+      "author": "@robhope",
+      "text": "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!",
+      "source": "x",
+      "likes": 2,
+      "at": "2026-08-21T09:40:50.000Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "tylerhuntdesign",
+      "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-08-20T23:27:56Z",
+      "sentiment": "positive"
+     },
+     {
       "author": "ohnaursadface",
       "text": "I love this new format!",
-      "likes": 0
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-21T00:31:56Z",
+      "sentiment": "positive"
+     },
+     {
+      "author": "Sukhbat_builds",
+      "text": "Peak intro, i love it🔥👀",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-21T05:51:33Z",
+      "sentiment": "positive"
      }
     ]
    }
@@ -11207,7 +11488,9 @@
  "insights": [
   {
    "id": "pace-rank",
-   "text": "The Mascot Industrial Complex + Live Call-Ins is at 1,833 total views (880 YouTube + 953 X plays) — no prior episode has real data this early; first comparable checkpoint comes as snapshots age.",
+   "text": "The Mascot Industrial Complex + Live Call-Ins has 1,833 total views so far (880 YouTube + 953 X plays). Too early to compare — no prior episode has data this young.",
+   "recommendation": "Nothing to decide yet. The first same-age comparison appears automatically as snapshots age.",
+   "caveat": "Same-age pace math needs a prior episode with a snapshot at this age.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11219,11 +11502,14 @@
     ],
     "solo": "2026-08-20-dive-radio-the-mascot-industrial-complex",
     "chart": "standings"
-   }
+   },
+   "category": "content"
   },
   {
    "id": "flatline",
-   "text": "Bumpy Takeoff flatlined at week 2; Data vs. Intuition, Web Designers Are Back + Call-Ins flatlined at week 3 (weekly gain <3% of total). Plan promo around a ~3-week active window (sample of 2).",
+   "text": "Episodes stop growing after about 3 weeks: E1 (Bumpy Takeoff) flatlined at week 2; E2 (Data vs. Intuition) flatlined at week 3.",
+   "recommendation": "Spend promo inside the first 3 weeks — a push after the flatline is fighting a dead curve.",
+   "caveat": "Flatline = a week that adds under 3% of the running total; only 2 full-history episodes so far.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "delta",
@@ -11234,11 +11520,14 @@
      "x:designertom"
     ],
     "solo": null
-   }
+   },
+   "category": "distribution"
   },
   {
    "id": "platform-phase",
-   "text": "Both platforms front-load, X slightly more: 91% of lifetime X reach vs 87% of lifetime YouTube views lands in week 1 (≥7-day episodes, sample of 2). Whatever a platform is going to do for an episode, it mostly does in the first week.",
+   "text": "Launch week is nearly the whole story on both platforms: 91% of an episode's X reach and 87% of its YouTube views arrive in the first 7 days.",
+   "recommendation": "Treat launch week as the entire campaign — announce, clip, and cross-post inside it instead of drip-feeding afterward.",
+   "caveat": "Within-platform shares (units never mixed); ≥7-day-old episodes only, sample of 2.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11250,27 +11539,14 @@
     ],
     "solo": null,
     "chart": "standings"
-   }
-  },
-  {
-   "id": "host-split",
-   "text": "Announce reach on X: @ridd_design leads with 57% of impressions (18,336 ridd vs 14,044 tom, 5 episodes, promo outlier excluded). Reach isn't charted — it's exposure, not watching; small sample, read as tendency.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "standings"
-   }
+   },
+   "category": "distribution"
   },
   {
    "id": "watch-split",
-   "text": "X broadcasts carry 57% of all actual watches (12,658 of 22,308 total views, 6 episodes) — range 46% (Bumpy Takeoff) to 72% (Mixed Media Workflows, Game Design, + Live Call-Ins). This is a genuinely two-platform show, not YouTube with an X echo.",
+   "text": "This is a genuinely two-platform show: 57% of all actual watching happens on X broadcasts (12,658 of 22,308 total views), not just YouTube with an X echo.",
+   "recommendation": "Give X broadcasts first-class treatment — real titles, thumbnails, and call-outs, not simulcast leftovers.",
+   "caveat": "Per-episode X share ranges 46% (E1 (Bumpy Takeoff)) to 72% (E3 (Mixed Media Workflows)); episodes with full plays coverage only (6).",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11282,27 +11558,14 @@
     ],
     "solo": null,
     "chart": "standings"
-   }
-  },
-  {
-   "id": "reach-conversion",
-   "text": "Reach→watch conversion on X: Backyard Designers behind-the-scenes turns 41 of every 100 announce impressions into broadcast plays; Mixed Media Workflows, Game Design, + Live Call-Ins only 21. High reach with low conversion means the announce traveled but the hook didn't close (sample of 5, ≥7-day-old episodes).",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "standings"
-   }
+   },
+   "category": "distribution"
   },
   {
    "id": "host-plays-split",
-   "text": "Actual broadcast watching splits 53% to @ridd_design (6,698 ridd vs 5,960 tom across 6 episodes) — compare with the reach split above: reach tells you whose announce traveled, this tells you whose room people actually sat in.",
+   "text": "Broadcast watching splits nearly evenly — 53% ridd / 47% tom (6,698 vs 5,960 plays). Announce reach is where the hosts actually differ.",
+   "recommendation": "No flagship change warranted — both rooms pull their weight. Optimize the announces (where the split is real) instead.",
+   "caveat": "Episodes where both hosts' plays are known (6).",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11314,11 +11577,52 @@
     ],
     "solo": null,
     "chart": "standings"
-   }
+   },
+   "category": "distribution"
+  },
+  {
+   "id": "host-split",
+   "text": "@ridd_design's announce posts travel further on X — 57% of announce impressions (18,336 ridd vs 14,044 tom).",
+   "recommendation": "Lead each announcement from @ridd_design's account and have @designertom quote-post it — order the announce machine around what actually travels.",
+   "caveat": "Reach = exposure, not watching, and is never charted or summed with views. Promo outlier excluded; small sample (5 episodes) — read as tendency.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "reach-conversion",
+   "text": "Announce hooks close very differently: E4 (Backyard Designers behind-the-scenes) turned 41 of every 100 announce impressions into actual plays; E3 (Mixed Media Workflows) managed only 21.",
+   "recommendation": "Reuse E4 (Backyard Designers behind-the-scenes)'s announce format — its hook converted 2× better. High reach with low conversion means the post traveled but didn't sell the click.",
+   "caveat": "X-only ratio (broadcast plays per announce impression); ≥7-day-old episodes, sample of 5.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "promotion"
   },
   {
    "id": "anomaly-2026-07-30-dive-radio-mixed-media-workflows-game-de",
-   "text": "Mixed Media Workflows, Game Design, + Live Call-Ins: >2x the all-episode median (4,206 X plays vs 1,870 median; 19,616 X reach vs 7,723 median) — treat as promo-driven outlier, not topic signal.",
+   "text": "E3 (Mixed Media Workflows) is a promo-driven outlier, not a topic winner: >2x the all-episode median (4,206 X plays vs 1,870 median; 19,616 X reach vs 7,723 median).",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than 2× the all-episode median on that unit; excluded from host-split aggregates automatically.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11330,11 +11634,14 @@
     ],
     "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "chart": "standings"
-   }
+   },
+   "category": "promotion"
   },
   {
    "id": "engagement",
-   "text": "YT engagement (likes+comments per 1k views, ≥7-day episodes): Bumpy Takeoff leads at 49.7, Mixed Media Workflows, Game Design, + Live Call-Ins trails at 30 (sample of 5).",
+   "text": "E1 (Bumpy Takeoff) pulled the most engaged viewers — 49.7 likes+comments per 1,000 YouTube views; E3 (Mixed Media Workflows) the least at 30.",
+   "recommendation": "Mine E1 (Bumpy Takeoff)'s comments for what hooked people — that topic drove interaction, not just plays.",
+   "caveat": "YouTube only; ≥7-day-old episodes (engagement ratios drift with age), sample of 5.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11346,11 +11653,34 @@
     ],
     "solo": null,
     "chart": "trajectory"
-   }
+   },
+   "category": "audience"
+  },
+  {
+   "id": "live-peak",
+   "text": "The Mascot Industrial Complex + Live Call-Ins drew a live peak of 71 concurrent viewers (avg 50) — #2 of 6 episodes, against a typical peak of 64.",
+   "recommendation": "Turnout held up — keep the same time slot and announce rhythm.",
+   "caveat": "Peak concurrents from Restream across all simulcast destinations; prior-episode median of 5.",
+   "chartState": {
+    "view": "live"
+   },
+   "category": "audience"
+  },
+  {
+   "id": "live-chat",
+   "text": "Live chat is trending down: E1 383 → E2 310 → E3 169 → E4 167 → E5 100 → E6 127 messages in air order. The Mascot Industrial Complex + Live Call-Ins drew 127 from 41 chatters.",
+   "recommendation": "Chat is the call-in pipeline — seed prompts and questions mid-show instead of waiting for organic chat.",
+   "caveat": "Message totals from Restream chat archives, all destinations combined.",
+   "chartState": {
+    "view": "live"
+   },
+   "category": "audience"
   },
   {
    "id": "partial-history",
-   "text": "Mixed Media Workflows, Game Design, + Live Call-Ins, Backyard Designers behind-the-scenes, Goodbye, Blank Canvas + Live Call-Ins were registered late — cumulative totals are correct, but early weekly history doesn't exist. They are excluded from velocity/decay baselines and marked \"partial history.\"",
+   "text": "E3, E4 and E5 were registered late — their early weekly history doesn't exist. Totals are right; week-1 and velocity comparisons aren't.",
+   "recommendation": "Nothing to do — the flags are automatic. Just don't read week-1 or velocity comparisons for these episodes.",
+   "caveat": "Late-registered: E3 (Mixed Media Workflows), E4 (Backyard Designers behind-the-scenes), E5 (Goodbye). Marked \"late reg\" wherever they appear.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11361,21 +11691,8 @@
      "x:designertom"
     ],
     "solo": null
-   }
-  },
-  {
-   "id": "live-peak",
-   "text": "Live turnout: The Mascot Industrial Complex + Live Call-Ins peaked at 71 concurrent viewers (avg 50) — #2 of 6 episodes; prior-episode median peak is 64.",
-   "chartState": {
-    "view": "live"
-   }
-  },
-  {
-   "id": "live-chat",
-   "text": "Live chat in air order: E1 383 → E2 310 → E3 169 → E4 167 → E5 100 → E6 127 messages — trending down. The Mascot Industrial Complex + Live Call-Ins drew 127 messages from 41 chatters.",
-   "chartState": {
-    "view": "live"
-   }
+   },
+   "category": "data"
   }
  ],
  "showTrend": {
