@@ -89,8 +89,15 @@
   h2 { font-size: 15px; margin: 22px 0 8px; }
   .insights { display: grid; gap: 8px; }
   .insight { background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 14px; cursor: pointer; transition: border-color .15s; font-size: 13.5px; }
+    padding: 11px 14px; cursor: pointer; transition: border-color .15s; font-size: 13.5px;
+    display: flex; align-items: flex-start; gap: 12px; }
   .insight:hover { border-color: var(--accent); }
+  .insight .ic { width: 32px; height: 32px; border-radius: 9px; flex: none;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .insight .ic svg { width: 17px; height: 17px; }
+  .insight .cat { font-size: 10px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: 2px; }
+  .insight .body { flex: 1; }
   .insight .go { color: var(--accent); font-size: 12px; margin-left: 6px; white-space: nowrap; }
   footer { color: var(--muted); font-size: 12px; margin-top: 26px; }
 </style>
@@ -566,10 +573,28 @@ function buildBoard() {
   const isLive = state.view === "live";
   const board = document.getElementById("board");
   board.innerHTML = "";
-  // newest episode always first, descending from there
-  const ordered = [...EPS].reverse();
-  const visible = state.showAllCards ? ordered : ordered.slice(0, CARD_CAP);
+  // oldest → newest left → right: the latest episode is always the
+  // far-right card. When collapsed, the OLDEST episodes hide behind the
+  // left-edge expander.
+  const ordered = [...EPS];
+  const visible = state.showAllCards ? ordered : ordered.slice(-CARD_CAP);
   const hiddenCount = ordered.length - visible.length;
+  if (hiddenCount > 0 || (state.showAllCards && ordered.length > CARD_CAP)) {
+    const more = document.createElement("div");
+    more.className = "card more";
+    more.style.display = "flex";
+    more.style.alignItems = "center";
+    more.style.justifyContent = "center";
+    more.innerHTML = state.showAllCards
+      ? `<div class="sub">Show latest ${CARD_CAP} only</div>`
+      : `<div class="sub">← ${hiddenCount} older episode${hiddenCount === 1 ? "" : "s"}</div>`;
+    more.addEventListener("click", () => {
+      state.showAllCards = !state.showAllCards;
+      buildBoard();
+      syncUI();
+    });
+    board.appendChild(more);
+  }
   for (const e of visible) {
     const card = document.createElement("div");
     card.className = "card";
@@ -619,22 +644,6 @@ function buildBoard() {
     }
     board.appendChild(card);
   }
-  if (hiddenCount > 0 || (state.showAllCards && ordered.length > CARD_CAP)) {
-    const more = document.createElement("div");
-    more.className = "card more";
-    more.style.display = "flex";
-    more.style.alignItems = "center";
-    more.style.justifyContent = "center";
-    more.innerHTML = state.showAllCards
-      ? `<div class="sub">Show latest ${CARD_CAP} only</div>`
-      : `<div class="sub">Show ${hiddenCount} older episode${hiddenCount === 1 ? "" : "s"} →</div>`;
-    more.addEventListener("click", () => {
-      state.showAllCards = !state.showAllCards;
-      buildBoard();
-      syncUI();
-    });
-    board.appendChild(more);
-  }
 }
 
 function syncUI() {
@@ -683,12 +692,36 @@ document.getElementById("reset").addEventListener("click", () => {
   render();
 });
 
+// Insight categories — fixed colors (distinct roles, not platform colors),
+// icon carries the category at a glance, label confirms it.
+const CATS = {
+  momentum:   { name: "Momentum",   color: "#e6c74a", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 16 9 7 13 12 21 12"/></svg>` },
+  platforms:  { name: "Platforms",  color: "#3ecf8e", svg: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="5" width="18" height="5" rx="1.5"/><rect x="3" y="14" width="11" height="5" rx="1.5"/></svg>` },
+  conversion: { name: "Conversion", color: "#8a6bd6", svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8v7l-4-3v-4L3 4z"/></svg>` },
+  hosts:      { name: "Hosts",      color: "#ff7a59", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="8.5" cy="12" r="4.5"/><circle cx="15.5" cy="12" r="4.5"/></svg>` },
+  outlier:    { name: "Outlier",    color: "#ff5d8f", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 21.5 20h-19L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg>` },
+  engagement: { name: "Engagement", color: "#59b0ff", svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.6-9.3-9C1 7.5 3 4.5 6.2 4.5c2 0 3.3 1 4.3 2.4 1-1.4 2.3-2.4 4.3-2.4 3.2 0 5.2 3 3.5 6.5C19 15.4 12 20 12 20z"/></svg>` },
+  live:       { name: "Live",       color: "#ff4f5e", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M7.6 7.6a6.2 6.2 0 0 0 0 8.8M16.4 7.6a6.2 6.2 0 0 1 0 8.8"/></svg>` },
+  note:       { name: "Data note",  color: "#94a0b4", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/></svg>` },
+};
+function catFor(id) {
+  if (id === "flatline") return CATS.momentum;
+  if (id === "platform-phase" || id === "watch-split") return CATS.platforms;
+  if (id === "reach-conversion") return CATS.conversion;
+  if (id === "host-split" || id === "host-plays-split") return CATS.hosts;
+  if (id.startsWith("anomaly")) return CATS.outlier;
+  if (id === "engagement") return CATS.engagement;
+  if (id.startsWith("live")) return CATS.live;
+  return CATS.note;
+}
+
 const panel = document.getElementById("insights");
 for (const ins of DATA.insights) {
   if (ins.id === "pace-rank") continue;
+  const cat = catFor(ins.id);
   const div = document.createElement("div");
   div.className = "insight";
-  div.innerHTML = `${ins.text} <span class="go">show me →</span>`;
+  div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span><span class="body"><div class="cat" style="color:${cat.color}">${cat.name}</div>${ins.text} <span class="go">show me →</span></span>`;
   div.addEventListener("click", () => {
     const cs = ins.chartState || {};
     state.view = cs.view || "growth";
