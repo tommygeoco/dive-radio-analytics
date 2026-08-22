@@ -110,15 +110,18 @@
   <div class="board" id="board"></div>
 
   <div class="controls">
-    <span class="seg growth-only" id="xmode">
-      <button data-v="weeks">Episode race — time since premiere</button>
-      <button data-v="calendar">Timeline — calendar</button>
+    <span class="seg growth-only" id="cmode">
+      <button data-v="standings">Standings</button>
+      <button data-v="trajectory">Trajectory</button>
     </span>
-    <span class="seg growth-only" id="ymode">
-      <button data-v="cumulative">Cumulative views</button>
-      <button data-v="delta">Views gained per week</button>
+    <span class="seg traj-only" id="xmode">
+      <button data-v="weeks">Since premiere</button>
+      <button data-v="calendar">Calendar</button>
     </span>
-    <span class="chips growth-only" id="platforms"></span>
+    <span class="seg traj-only" id="ymode">
+      <button data-v="cumulative">Cumulative</button>
+      <button data-v="delta">Per week</button>
+    </span>
     <button class="reset" id="reset">reset view</button>
   </div>
 
@@ -158,17 +161,16 @@ const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const X_KEYS = ["x:ridd_design", "x:designertom"];
 
 const HINTS = {
-  growth: "Click a card to focus · hover for channel split · ◐ = registered late, early history missing.",
-  live: "Concurrent viewers minute-by-minute during the live broadcast, from Restream. Click a card to focus one episode; hover for viewers + chat at that minute.",
+  standings: "Every segment is a watch count · hover for exact numbers · ◐ = partial plays coverage.",
+  trajectory: "YouTube views over time (X plays history accumulates from Aug 21) · click a card to focus.",
+  live: "Concurrent viewers per minute, from Restream · click a card to focus · hover for chat.",
 };
 
 const state = {
   view: "growth",
+  chart: "standings", // standings (stacked watch bars) | trajectory (lines)
   xMode: "weeks",
   yMode: "cumulative",
-  // YT only by default: YT reports real video plays, X reports post
-  // impressions (timeline reach). Different units — never summed silently.
-  dests: new Set(YT_KEYS),
   solo: null,
   showAllCards: false,
 };
@@ -178,9 +180,12 @@ function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
   return Date.UTC(y, m-1, d, 12) + PHX;
 }
+// Trajectory sums YouTube views only — the only complete watch time series.
+// X broadcast plays have no history before 2026-08-21; blending them into
+// old dates would draw a fake cliff. They join as their series accumulates.
 function sum(byDest) {
   let t = 0;
-  for (const k of state.dests) t += (byDest[k]?.views || 0);
+  for (const k of YT_KEYS) t += (byDest[k]?.views || 0);
   return t;
 }
 function splitOf(byDest) {
@@ -231,7 +236,7 @@ function seriesFor(e) {
       const split = first ? splitOf(cur) : splitDelta(cur, prev);
       pts.push({
         x: state.xMode === "calendar" ? Date.parse(e.weekly[i].boundary) : e.weekly[i].week,
-        y: Object.keys(split).filter(k => state.dests.has(k)).reduce((a,k) => a + split[k], 0),
+        y: YT_KEYS.reduce((a,k) => a + (split[k] || 0), 0),
         meta: { ts: e.weekly[i].boundary, week: e.weekly[i].week, split,
           note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null }
       });
@@ -275,7 +280,23 @@ function externalTooltip(context) {
   const item = tooltip.dataPoints[0];
   const ds = item.dataset, e = ds.episode, p = item.raw;
   const isLive = state.view === "live";
-  const isDelta = !isLive && state.yMode === "delta";
+  const isStandings = !isLive && state.chart === "standings";
+  const isDelta = !isLive && !isStandings && state.yMode === "delta";
+
+  if (isStandings) {
+    const ep = (chart.config._ordered || [])[item.dataIndex];
+    if (!ep) { el.style.opacity = 0; return; }
+    let html = `<div class="h"><span class="dot" style="background:${color(ep)}"></span>${label(ep)}</div>`;
+    html += `<div class="big">${nfmt(item.raw)} <small style="font-weight:500;color:#94a0b4">${ds.label}</small></div>`;
+    html += `<div class="chg">of ${nfmt(ep.latest.totalViews ?? 0)} total views</div>`;
+    el.innerHTML = html;
+    el.style.opacity = 1;
+    const box = chart.canvas.parentNode;
+    el.style.left = Math.min(Math.max(tooltip.caretX, 120), box.clientWidth - 130) + "px";
+    el.style.top = (tooltip.caretY - 12) + "px";
+    el.style.transform = "translate(-50%, -100%)";
+    return;
+  }
 
   let html = `<div class="h"><span class="dot" style="background:${ds.borderColor}"></span>${label(e)}</div>`;
 
@@ -307,8 +328,7 @@ function externalTooltip(context) {
     }
     if (p.meta.split) {
       html += `<div class="div"></div>`;
-      for (const k of Object.keys(PLAT_COLORS)) {
-        if (!state.dests.has(k)) continue;
+      for (const k of YT_KEYS) {
         const v = p.meta.split[k] ?? 0;
         html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
       }
@@ -326,9 +346,90 @@ function externalTooltip(context) {
   el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
 }
 
+// Standings: total at the end of each stacked bar (+ coverage marker)
+const barTotals = {
+  id: "barTotals",
+  afterDatasetsDraw(chart) {
+    if (chart.config.options.indexAxis !== "y") return;
+    const { ctx } = chart;
+    const eps = chart.config._ordered || [];
+    ctx.save();
+    ctx.font = "700 12px -apple-system, 'Segoe UI', sans-serif";
+    ctx.textBaseline = "middle";
+    const lastMeta = chart.getDatasetMeta(chart.data.datasets.length - 1);
+    eps.forEach((e, i) => {
+      const bar = lastMeta.data[i];
+      if (!bar) return;
+      const tvi = e.latest.totalViewsInfo || {};
+      const mark = tvi.partial ? " ◐" : "";
+      ctx.fillStyle = state.solo && state.solo !== e.slug ? "#3a4458" : "#e8ecf4";
+      ctx.fillText(nfmt(e.latest.totalViews ?? 0) + mark, bar.x + 8, bar.y);
+    });
+    ctx.restore();
+  }
+};
+
 let chart;
+function renderStandings() {
+  const ordered = [...EPS].reverse(); // newest first, matches the cards
+  const SEGS = [
+    ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views || 0],
+    ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views || 0],
+    ["x:ridd_design", (e) => e.latest.byDest["x:ridd_design"]?.plays || 0],
+    ["x:designertom", (e) => e.latest.byDest["x:designertom"]?.plays || 0],
+  ];
+  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "33" : hex;
+  const cfg = {
+    type: "bar",
+    data: {
+      labels: ordered.map(e => "E" + e.ep),
+      datasets: SEGS.map(([key, val]) => ({
+        label: TT_NAME[key],
+        key,
+        data: ordered.map(val),
+        backgroundColor: ordered.map(e => dim(PLAT_COLORS[key], e)),
+        borderRadius: 2,
+        barPercentage: 0.72,
+      })),
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      layout: { padding: { right: 64 } },
+      interaction: { mode: "nearest", intersect: true },
+      scales: {
+        x: { stacked: true, beginAtZero: true, ticks: { color: "#94a0b4", callback: v => kfmt(v) }, grid: { color: "#1d2433" } },
+        y: { stacked: true, ticks: { color: "#c6cede", font: { weight: 700 } }, grid: { display: false } },
+      },
+      plugins: {
+        legend: { display: true, position: "bottom", labels: { color: "#94a0b4", boxWidth: 10, boxHeight: 10, padding: 14 } },
+        tooltip: { enabled: false, external: externalTooltip },
+      },
+      onClick: (_, els) => {
+        if (!els.length) return;
+        const e = ordered[els[0].index];
+        state.solo = state.solo === e.slug ? null : e.slug;
+        render();
+      },
+    },
+    plugins: [barTotals],
+  };
+  cfg._ordered = ordered;
+  return cfg;
+}
+
 function render() {
   const isLive = state.view === "live";
+  if (!isLive && state.chart === "standings") {
+    const cfg = renderStandings();
+    if (chart) chart.destroy();
+    chart = new Chart(document.getElementById("chart"), cfg);
+    chart.config._ordered = cfg._ordered;
+    document.getElementById("tt").style.opacity = 0;
+    buildBoard();
+    syncUI();
+    return;
+  }
   const isDelta = !isLive && state.yMode === "delta";
   const isCal = !isLive && state.xMode === "calendar";
   const isRace = !isLive && !isDelta && !isCal;
@@ -538,19 +639,17 @@ function buildBoard() {
 
 function syncUI() {
   const isLive = state.view === "live";
+  const isTraj = !isLive && state.chart === "trajectory";
   for (const b of document.querySelectorAll("#view button")) b.classList.toggle("on", b.dataset.v === state.view);
+  for (const b of document.querySelectorAll("#cmode button")) b.classList.toggle("on", b.dataset.v === state.chart);
   for (const b of document.querySelectorAll("#xmode button")) b.classList.toggle("on", b.dataset.v === state.xMode);
   for (const b of document.querySelectorAll("#ymode button")) b.classList.toggle("on", b.dataset.v === state.yMode);
   for (const el of document.querySelectorAll(".growth-only")) el.style.display = isLive ? "none" : "";
-  document.getElementById("hint").textContent = HINTS[state.view];
+  for (const el of document.querySelectorAll(".traj-only")) el.style.display = isTraj ? "" : "none";
+  document.getElementById("hint").textContent = isLive ? HINTS.live : HINTS[state.chart];
   for (const c of document.querySelectorAll(".card")) {
     c.classList.toggle("solo", state.solo === c.dataset.slug);
     c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
-  }
-  for (const ch of document.querySelectorAll("#platforms .chip")) {
-    const on = state.dests.has(ch.dataset.key);
-    ch.classList.toggle("on", on);
-    ch.querySelector(".sq").style.background = on ? PLAT_COLORS[ch.dataset.key] : "#3a4458";
   }
   // verdict adapts to the active view
   const v = document.getElementById("verdict");
@@ -570,6 +669,9 @@ function syncUI() {
 document.getElementById("view").addEventListener("click", e => {
   if (e.target.dataset.v) { state.view = e.target.dataset.v; state.solo = null; render(); }
 });
+document.getElementById("cmode").addEventListener("click", e => {
+  if (e.target.dataset.v) { state.chart = e.target.dataset.v; render(); }
+});
 document.getElementById("xmode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.xMode = e.target.dataset.v; render(); }
 });
@@ -577,24 +679,9 @@ document.getElementById("ymode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.yMode = e.target.dataset.v; render(); }
 });
 document.getElementById("reset").addEventListener("click", () => {
-  state.view = "growth"; state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
-  state.dests = new Set(YT_KEYS);
+  state.view = "growth"; state.chart = "standings"; state.xMode = "weeks"; state.yMode = "cumulative"; state.solo = null;
   render();
 });
-const plat = document.getElementById("platforms");
-for (const k of Object.keys(PLAT_COLORS)) {
-  const b = document.createElement("button");
-  b.className = state.dests.has(k) ? "chip on" : "chip";
-  b.dataset.key = k;
-  b.innerHTML = `<span class="sq"></span>${PLAT_NAME[k]}`;
-  b.addEventListener("click", () => {
-    if (state.dests.has(k)) {
-      if (state.dests.size > 1) state.dests.delete(k);
-    } else state.dests.add(k);
-    render();
-  });
-  plat.appendChild(b);
-}
 
 const panel = document.getElementById("insights");
 for (const ins of DATA.insights) {
@@ -605,10 +692,11 @@ for (const ins of DATA.insights) {
   div.addEventListener("click", () => {
     const cs = ins.chartState || {};
     state.view = cs.view || "growth";
+    // trend-shaped insights open the trajectory; standings answers the rest
+    state.chart = (cs.yMode === "delta" || cs.xMode === "calendar" || cs.solo) ? "trajectory" : "standings";
     state.xMode = cs.xMode || "weeks";
     state.yMode = cs.yMode || "cumulative";
     state.solo = cs.solo || null;
-    state.dests = new Set(cs.dests || Object.keys(PLAT_COLORS));
     render();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
