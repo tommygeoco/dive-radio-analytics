@@ -536,9 +536,14 @@ function buildStrip() {
       // number rides the identity row; the unit is stated once in the hero
       num = `<span class="num">${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
       const pace = sameAgeSub(e);
-      r3 = `<span>reach ${kfmt(e.latest.xImpressions ?? 0)}</span>` +
-        (pace ? (pace.pct === 0 ? `<span>= median</span>`
-          : `<span class="pace ${pace.pct > 0 ? "up" : "down"}">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}%</span>`) : "");
+      // No reach on the small cards (owner call 2026-08-22): sitting next to
+      // the ▲/▼ it read like the arrow graded reach. The arrow grades pace —
+      // YouTube views vs the typical episode at the same age — so it now says
+      // "vs median" outright. Reach lives in the detail panel, clearly labeled.
+      r3 = pace
+        ? (pace.pct === 0 ? `<span title="even with the typical episode at this age (YouTube views)">= same-age median</span>`
+          : `<span class="pace ${pace.pct > 0 ? "up" : "down"}" title="YouTube views vs the typical episode at this age">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs median</span>`)
+        : `<span>no same-age peer yet</span>`;
     }
     it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}
         ${e.partialHistory && !isLive ? '<span class="flag">late reg</span>' : ""}</div>
