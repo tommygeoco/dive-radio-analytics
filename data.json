@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-22T20:29:06.719Z",
+ "generatedAt": "2026-08-22T22:01:10.944Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -12729,9 +12729,9 @@
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
-    "rank": 4,
+    "rank": 3,
     "n": 6,
-    "score": 0.8514,
+    "score": 0.9533,
     "pillarScores": {
      "watch": {
       "value": null,
@@ -12743,13 +12743,13 @@
       "value": 28.5,
       "typical": 35.1,
       "ratio": 0.812,
-      "weight": 0.5714
+      "weight": 0.4
      },
      "retention": {
-      "value": null,
-      "typical": null,
-      "ratio": null,
-      "weight": 0
+      "value": 12.85,
+      "typical": 10.785,
+      "ratio": 1.191,
+      "weight": 0.3
      },
      "live": {
       "value": {
@@ -12761,19 +12761,21 @@
        "chat": 168
       },
       "ratio": 0.904,
-      "weight": 0.4286
+      "weight": 0.3
      }
     },
     "coverage": {
      "missingPillars": [
-      "watch",
-      "retention"
+      "watch"
      ],
      "watchBasis": "yt-views-at-own-age-vs-peer-median (cap 21d; X plays excluded — no plays history before 2026-08-21)",
-     "retentionChannels": []
+     "retentionChannels": [
+      "yt:designertom",
+      "yt:joindiveclub"
+     ]
     },
     "provisional": true,
-    "computedAt": "2026-08-22T20:29:06.681Z",
+    "computedAt": "2026-08-22T22:01:10.898Z",
     "frozenAt": null
    }
   }

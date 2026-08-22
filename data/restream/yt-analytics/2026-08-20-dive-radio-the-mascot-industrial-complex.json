@@ -5,11 +5,121 @@
   "channels": {
     "yt:designertom": {
       "videoId": "eLA79C1jq1g",
-      "pulledAt": "2026-08-22T18:59:00.719Z",
-      "totals": null,
-      "trafficSources": [],
+      "pulledAt": "2026-08-22T22:00:46.078Z",
+      "totals": {
+        "views": 265,
+        "estimatedMinutesWatched": 2131,
+        "averageViewDuration": 493,
+        "averageViewPercentage": 10.43,
+        "subscribersGained": 0,
+        "likes": 8,
+        "comments": 0
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 191,
+          "estimatedMinutesWatched": 1540
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 31,
+          "estimatedMinutesWatched": 231
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 18,
+          "estimatedMinutesWatched": 211
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 6,
+          "estimatedMinutesWatched": 63
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 6,
+          "estimatedMinutesWatched": 52
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 5,
+          "estimatedMinutesWatched": 5
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 4,
+          "estimatedMinutesWatched": 17
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 4,
+          "estimatedMinutesWatched": 7
+        }
+      ],
+      "retention": []
+    },
+    "yt:joindiveclub": {
+      "videoId": "RhemcDEc_-A",
+      "pulledAt": "2026-08-22T22:00:46.078Z",
+      "totals": {
+        "views": 370,
+        "estimatedMinutesWatched": 4650,
+        "averageViewDuration": 772,
+        "averageViewPercentage": 14.59,
+        "subscribersGained": 1,
+        "likes": 10,
+        "comments": 3
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 216,
+          "estimatedMinutesWatched": 2875
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 35,
+          "estimatedMinutesWatched": 141
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 32,
+          "estimatedMinutesWatched": 260
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 25,
+          "estimatedMinutesWatched": 226
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 24,
+          "estimatedMinutesWatched": 328
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 14,
+          "estimatedMinutesWatched": 208
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 13,
+          "estimatedMinutesWatched": 251
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 10,
+          "estimatedMinutesWatched": 352
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 1,
+          "estimatedMinutesWatched": 6
+        }
+      ],
       "retention": []
     }
   },
-  "updatedAt": "2026-08-22T18:59:00.719Z"
+  "updatedAt": "2026-08-22T22:00:46.078Z"
 }
