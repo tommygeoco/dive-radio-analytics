@@ -41,10 +41,9 @@
     line-height: 1.3; overflow: hidden; }
   .card .views { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
   .card .views small { font-size: 12px; font-weight: 500; color: var(--muted); }
-  .card .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 5px; }
-  .card .stat .v { font-size: 17px; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
-  .card .stat .v .mk { font-size: 9.5px; font-weight: 600; color: #d9a24a; margin-left: 1px; }
-  .card .stat .l { font-size: 10px; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+  .card .views.hero { font-size: 26px; }
+  .card .views .mk { font-size: 10px; font-weight: 600; color: #d9a24a; margin-left: 5px; vertical-align: 2px; }
+  .card .reach { font-size: 11px; color: var(--muted); margin-top: 1px; }
   .card .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
   .card .sub.up { color: var(--good); }
   .card .sub.down { color: var(--bad); }
@@ -115,7 +114,7 @@
       <button data-v="calendar">Timeline — calendar</button>
     </span>
     <span class="seg growth-only" id="ymode">
-      <button data-v="cumulative">Total views</button>
+      <button data-v="cumulative">Cumulative views</button>
       <button data-v="delta">Views gained per week</button>
     </span>
     <span class="chips growth-only" id="platforms"></span>
@@ -444,27 +443,25 @@ function buildBoard() {
         sub = `premiered ${e.premiere.slice(5).replace("-", "/")}`;
       }
     } else {
-      // Three first-class units per card: YT views · X plays · X reach.
-      // Different units, shown side by side, never summed.
-      const pi = e.latest.xPlaysInfo || {};
-      let playsV = e.latest.xPlays == null ? "–" : kfmt(e.latest.xPlays);
-      let playsMk = "";
-      let playsTitle = "X broadcast plays (real video plays)";
-      if (e.latest.xPlays != null && pi.partial) {
-        playsMk = `◐${pi.have}/${pi.total}`;
-        playsTitle = `partial: plays from ${pi.have} of ${pi.total} broadcasts`;
-      } else if (e.latest.xPlays != null && pi.stale && pi.asOf) {
-        playsMk = `→${pi.asOf.slice(5, 10).replace("-", "/")}`;
-        playsTitle = `broadcast pull stale — last known count, as of ${pi.asOf.slice(0, 10)}`;
-      }
-      big = `<div class="stats">
-        <div class="stat" title="YouTube views, both channels"><div class="v">${kfmt(e.latest.ytTotal ?? 0)}</div><div class="l">YT views</div></div>
-        <div class="stat" title="${playsTitle}"><div class="v">${playsV}${playsMk ? `<span class="mk">${playsMk}</span>` : ""}</div><div class="l">X plays</div></div>
-        <div class="stat" title="X post impressions (timeline reach), both hosts"><div class="v">${kfmt(e.latest.xImpressions ?? 0)}</div><div class="l">X reach</div></div>
-      </div>`;
+      // One hero per card (CARD-RULING-2026-08-21): Total views = YT views +
+      // X broadcast plays (both video playback). X reach (impressions) is a
+      // different unit: visible but secondary, never part of the total.
+      const tvi = e.latest.totalViewsInfo || {};
+      const tv = e.latest.totalViews ?? e.latest.ytTotal ?? 0;
+      let mk = "";
+      if (!tvi.includesPlays) mk = "YT only";
+      else if (tvi.partial) mk = `◐${tvi.have}/${tvi.total}`;
+      else if (tvi.stale && tvi.asOf) mk = `→${tvi.asOf.slice(5, 10).replace("-", "/")}`;
+      const playsStr = e.latest.xPlays == null
+        ? "unavailable"
+        : `${nfmt(e.latest.xPlays)} (${tvi.have}/${tvi.total} broadcasts${tvi.stale && tvi.asOf ? `, last confirmed ${tvi.asOf.slice(0, 10)}` : ""})`;
+      const heroTitle = `Total views = YouTube views (both channels) + X broadcast plays (both hosts). YouTube: ${nfmt(e.latest.ytTotal ?? 0)} · X plays: ${playsStr}. Both count video playback: YouTube counts a qualified view (~30s), X counts a play start, so treat the sum as directional. X post impressions (reach) are never included.`;
+      const reachTitle = `X reach = impressions on the two hosts' X announce posts for this episode (@ridd_design + @designertom). An impression = one time the post appeared on someone's timeline. It measures exposure, not watching, and is never added to views.`;
+      big = `<div class="views hero" title="${heroTitle}">${kfmt(tv)} <small>views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>
+      <div class="reach" title="${reachTitle}">X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
       const pace = sameAgeSub(e);
       if (pace) {
-        sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median YT (of ${pace.n})`;
+        sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (YT)`;
         subCls = pace.pct >= 0 ? "up" : "down";
       } else {
         sub = `premiered ${e.premiere.slice(5).replace("-", "/")} · no same-age peer yet`;

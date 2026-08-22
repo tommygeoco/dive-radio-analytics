@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-22T00:45:14.633Z",
+ "generatedAt": "2026-08-22T04:44:19.638Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1484,6 +1484,15 @@ window.DIVE_DATA = {
      "partial": false,
      "stale": false,
      "asOf": null
+    },
+    "totalViews": 3853,
+    "totalViewsInfo": {
+     "includesPlays": true,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
     }
    },
    "ageDays": 35.2,
@@ -3929,6 +3938,15 @@ window.DIVE_DATA = {
      "partial": false,
      "stale": false,
      "asOf": null
+    },
+    "totalViews": 3864,
+    "totalViewsInfo": {
+     "includesPlays": true,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
     }
    },
    "ageDays": 29.2,
@@ -5425,6 +5443,15 @@ window.DIVE_DATA = {
      "partial": false,
      "stale": false,
      "asOf": null
+    },
+    "totalViews": 5807,
+    "totalViewsInfo": {
+     "includesPlays": true,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
     }
    },
    "ageDays": 22.2,
@@ -6855,6 +6882,15 @@ window.DIVE_DATA = {
      "partial": false,
      "stale": false,
      "asOf": null
+    },
+    "totalViews": 3767,
+    "totalViewsInfo": {
+     "includesPlays": true,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
     }
    },
    "ageDays": 15.2,
@@ -8391,6 +8427,15 @@ window.DIVE_DATA = {
      "partial": false,
      "stale": false,
      "asOf": null
+    },
+    "totalViews": 3184,
+    "totalViewsInfo": {
+     "includesPlays": true,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
     }
    },
    "ageDays": 8.2,
@@ -9831,6 +9876,15 @@ window.DIVE_DATA = {
      "partial": false,
      "stale": false,
      "asOf": null
+    },
+    "totalViews": 1833,
+    "totalViewsInfo": {
+     "includesPlays": true,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
     }
    },
    "ageDays": 1.2,
