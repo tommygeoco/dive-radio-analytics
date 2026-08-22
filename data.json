@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-22T04:44:19.638Z",
+ "generatedAt": "2026-08-22T04:56:27.012Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -5460,7 +5460,7 @@
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 30,
-    "anomaly": null
+    "anomaly": ">2x the all-episode median (4,206 X plays vs 1,870 median; 19,616 X reach vs 7,723 median) — treat as promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -11160,6 +11160,64 @@
      "x:designertom"
     ],
     "solo": null
+   }
+  },
+  {
+   "id": "watch-split",
+   "text": "X broadcasts carry 57% of all actual watches (12,658 of 22,308 total views, 6 episodes) — range 46% (Bumpy Takeoff) to 72% (Mixed Media Workflows, Game Design, + Live Call-Ins). This is a genuinely two-platform show, not YouTube with an X echo.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "reach-conversion",
+   "text": "Reach→watch conversion on X: Backyard Designers behind-the-scenes turns 41 of every 100 announce impressions into broadcast plays; Mixed Media Workflows, Game Design, + Live Call-Ins only 21. High reach with low conversion means the announce traveled but the hook didn't close (sample of 5, ≥7-day-old episodes).",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "host-plays-split",
+   "text": "Actual broadcast watching splits 53% to @ridd_design (6,698 ridd vs 5,960 tom across 6 episodes) — compare with the reach split above: reach tells you whose announce traveled, this tells you whose room people actually sat in.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   }
+  },
+  {
+   "id": "anomaly-2026-07-30-dive-radio-mixed-media-workflows-game-de",
+   "text": "Mixed Media Workflows, Game Design, + Live Call-Ins: >2x the all-episode median (4,206 X plays vs 1,870 median; 19,616 X reach vs 7,723 median) — treat as promo-driven outlier, not topic signal.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de"
    }
   },
   {
