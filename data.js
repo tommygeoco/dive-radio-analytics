@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-22T04:56:27.012Z",
+ "generatedAt": "2026-08-22T06:24:11.270Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -2796,6 +2796,29 @@ window.DIVE_DATA = {
       "chatters": 9
      }
     ]
+   },
+   "comments": {
+    "total": 8,
+    "featured": [
+     {
+      "source": "yt",
+      "author": "Xijbor",
+      "text": "Appreciate the conversations and the love for the community. Very inspiring, and excited for what's to come! <3",
+      "likes": 1
+     },
+     {
+      "source": "yt",
+      "author": "simonbloom1",
+      "text": "Love this !!",
+      "likes": 1
+     },
+     {
+      "source": "yt",
+      "author": "BetterNeil",
+      "text": "Love the intro vid, we need a breakdown of that... clickin' play on the rest of this while I work! So good",
+      "likes": 1
+     }
+    ]
    }
   },
   {
@@ -5210,6 +5233,23 @@ window.DIVE_DATA = {
       "chatters": 5
      }
     ]
+   },
+   "comments": {
+    "total": 5,
+    "featured": [
+     {
+      "source": "yt",
+      "author": "Jegteix",
+      "text": "The Sound design in the Intro is so fire 🔥",
+      "likes": 1
+     },
+     {
+      "source": "yt",
+      "author": "AndresTheDesigner",
+      "text": "Love the data vs intuition conversation. Couldn't agree more with \"enough data to make a bet\"",
+      "likes": 0
+     }
+    ]
    }
   },
   {
@@ -6645,6 +6685,17 @@ window.DIVE_DATA = {
       "views": 120,
       "messages": 88,
       "chatters": 16
+     }
+    ]
+   },
+   "comments": {
+    "total": 2,
+    "featured": [
+     {
+      "source": "yt",
+      "author": "khangdbui",
+      "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+      "likes": 2
      }
     ]
    }
@@ -8194,6 +8245,29 @@ window.DIVE_DATA = {
       "chatters": 4
      }
     ]
+   },
+   "comments": {
+    "total": 5,
+    "featured": [
+     {
+      "source": "yt",
+      "author": "qwertyPechenkO",
+      "text": "Guys, love the show, but the quality is sooo poor. Like, come on, you're constantly talking about a high quality bar, craft, etc., yet we have to watch slideshows instead of videos, robovoices, drops",
+      "likes": 3
+     },
+     {
+      "source": "yt",
+      "author": "jasonrabboathceo",
+      "text": "What is the beginning music guys? Help a fellow designer out lol.",
+      "likes": 0
+     },
+     {
+      "source": "yt",
+      "author": "rugu16",
+      "text": "banger episode, not able to join live but thanks for sharing guys ! And @tom pls fix your streaming ! :D Its so glitchy",
+      "likes": 0
+     }
+    ]
    }
   },
   {
@@ -9639,6 +9713,10 @@ window.DIVE_DATA = {
       "chatters": 2
      }
     ]
+   },
+   "comments": {
+    "total": 5,
+    "featured": []
    }
   },
   {
@@ -11100,13 +11178,36 @@ window.DIVE_DATA = {
       "chatters": 3
      }
     ]
+   },
+   "comments": {
+    "total": 4,
+    "featured": [
+     {
+      "source": "x",
+      "author": "@robhope",
+      "text": "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!",
+      "likes": 2
+     },
+     {
+      "source": "yt",
+      "author": "Sukhbat_builds",
+      "text": "Peak intro, i love it🔥👀",
+      "likes": 0
+     },
+     {
+      "source": "yt",
+      "author": "ohnaursadface",
+      "text": "I love this new format!",
+      "likes": 0
+     }
+    ]
    }
   }
  ],
  "insights": [
   {
    "id": "pace-rank",
-   "text": "The Mascot Industrial Complex + Live Call-Ins is at 880 YouTube views (plus 7,723 X post impressions), but no prior episode has real data this early — first comparable checkpoint comes as snapshots age.",
+   "text": "The Mascot Industrial Complex + Live Call-Ins is at 1,833 total views (880 YouTube + 953 X plays) — no prior episode has real data this early; first comparable checkpoint comes as snapshots age.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
@@ -11116,7 +11217,8 @@ window.DIVE_DATA = {
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    "solo": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+    "chart": "standings"
    }
   },
   {
@@ -11136,9 +11238,9 @@ window.DIVE_DATA = {
   },
   {
    "id": "platform-phase",
-   "text": "Front-loading: 95% of an episode's lifetime X reach lands in week 1, vs 89% of its lifetime YouTube views — X spikes at announce, YouTube compounds over weeks. Within-unit shares (full-history sample of 3); X reach and YT views are never summed.",
+   "text": "Both platforms front-load, X slightly more: 91% of lifetime X reach vs 87% of lifetime YouTube views lands in week 1 (≥7-day episodes, sample of 2). Whatever a platform is going to do for an episode, it mostly does in the first week.",
    "chartState": {
-    "xMode": "calendar",
+    "xMode": "weeks",
     "yMode": "cumulative",
     "dests": [
      "yt:joindiveclub",
@@ -11146,20 +11248,24 @@ window.DIVE_DATA = {
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": null
+    "solo": null,
+    "chart": "standings"
    }
   },
   {
    "id": "host-split",
-   "text": "On X, @designertom is the stronger announce arm — 59% of all-episode X post impressions (21,411 ridd vs 30,585 tom). Impressions = timeline reach, not video plays.",
+   "text": "Announce reach on X: @ridd_design leads with 57% of impressions (18,336 ridd vs 14,044 tom, 5 episodes, promo outlier excluded). Reach isn't charted — it's exposure, not watching; small sample, read as tendency.",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
     "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": null
+    "solo": null,
+    "chart": "standings"
    }
   },
   {
@@ -11174,7 +11280,8 @@ window.DIVE_DATA = {
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": null
+    "solo": null,
+    "chart": "standings"
    }
   },
   {
@@ -11189,7 +11296,8 @@ window.DIVE_DATA = {
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": null
+    "solo": null,
+    "chart": "standings"
    }
   },
   {
@@ -11199,10 +11307,13 @@ window.DIVE_DATA = {
     "xMode": "weeks",
     "yMode": "cumulative",
     "dests": [
+     "yt:joindiveclub",
+     "yt:designertom",
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": null
+    "solo": null,
+    "chart": "standings"
    }
   },
   {
@@ -11217,20 +11328,24 @@ window.DIVE_DATA = {
      "x:ridd_design",
      "x:designertom"
     ],
-    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de"
+    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "chart": "standings"
    }
   },
   {
    "id": "engagement",
-   "text": "YT engagement (likes+comments per 1k views): Bumpy Takeoff leads at 49.7, The Mascot Industrial Complex + Live Call-Ins trails at 28.4. Reach and resonance are separating.",
+   "text": "YT engagement (likes+comments per 1k views, ≥7-day episodes): Bumpy Takeoff leads at 49.7, Mixed Media Workflows, Game Design, + Live Call-Ins trails at 30 (sample of 5).",
    "chartState": {
     "xMode": "weeks",
     "yMode": "cumulative",
     "dests": [
      "yt:joindiveclub",
-     "yt:designertom"
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
     ],
-    "solo": null
+    "solo": null,
+    "chart": "trajectory"
    }
   },
   {
