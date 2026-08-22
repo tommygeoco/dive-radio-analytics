@@ -502,13 +502,23 @@ function buildHero() {
     // a badge (taste audit F3); the verdict line below keeps the caveats
     html += `<div class="big">${nfmt(tv)} <small>total views</small>${mk ? `<span class="mk">${mk}</span>` : ""}${ratingBadge(e, "hero")}</div>`;
     html += `<div class="sub">${nfmt(e.latest.ytTotal ?? 0)} YouTube + ${nfmt(e.latest.xPlays ?? 0)} X plays · X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
+    // verdict carries judgment only — the badge next to the hero number already
+    // says "#x of N", so the verdict must not restate it (critic 2026-08-22)
     const r = ratingOf(e);
     const pace = sameAgeSub(e);
-    html += `<div class="verdict">${r
-      ? `Ranks #${r.rank} of ${r.n} against the episodes up to its air date${r.provisional ? ` — provisional until ${freezeDateOf(e)}` : ""}${(r.coverage?.missingPillars || []).length && r.n > 1 ? " · * partial basis" : ""}.`
-      : pace
-      ? `YouTube pace: #${pace.rank} of ${pace.of} at this age.`
-      : `Too early to compare — no prior episode has data this young; the first same-age checkpoint comes as snapshots age.`}</div>`;
+    let vtext;
+    if (r && r.score != null) {
+      const pct = Math.round(Math.abs(r.score - 1) * 100);
+      const perf = pct <= 3 ? "Performing right at the show's typical level" : r.score > 1 ? `Performing about ${pct}% above a typical episode` : `Performing about ${pct}% below a typical episode`;
+      vtext = `${perf}${r.provisional ? ` — not final until ${freezeDateOf(e)}` : ""}.`;
+    } else if (r && r.n === 1) {
+      vtext = `First episode — nothing to compare against yet.`;
+    } else if (pace) {
+      vtext = `YouTube pace: #${pace.rank} of ${pace.of} at this age.`;
+    } else {
+      vtext = `Too early to compare — no prior episode has data this young.`;
+    }
+    html += `<div class="verdict">${vtext}</div>`;
   }
 
   html += `<div class="chiprow" id="herochips"></div></div>`;
@@ -604,8 +614,8 @@ function buildStrip() {
       // shows when there is genuinely nothing else to say
       const rr = ratingOf(e);
       r3 = pace
-        ? (pace.pct === 0 ? `<span title="even with the typical episode at this age (YouTube views)">= same-age median</span>`
-          : `<span class="pace ${pace.pct > 0 ? "up" : "down"}" title="YouTube views vs the typical episode at this age">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs median</span>`)
+        ? (pace.pct === 0 ? `<span title="even with the typical episode at this age (YouTube views)">= typical at this age</span>`
+          : `<span class="pace ${pace.pct > 0 ? "up" : "down"}" title="YouTube views vs the typical episode at this age">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical</span>`)
         : rr && rr.provisional ? `<span>provisional — settles ${freezeDateOf(e)}</span>`
         : rr && rr.n === 1 ? `<span>first episode</span>`
         : `<span>no same-age peer yet</span>`;

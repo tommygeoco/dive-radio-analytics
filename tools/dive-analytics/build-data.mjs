@@ -259,18 +259,20 @@ export function computeAll({ now = Date.now() } = {}) {
   // X reach each checked within their own unit — critic ruling item 7 / F-8)
   const medianOf = (vals) => {
     const v = vals.filter((x) => x != null).sort((a, b) => a - b);
-    return v.length ? v[Math.floor(v.length / 2)] : 0;
+    if (!v.length) return 0;
+    const m = Math.floor(v.length / 2);
+    return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; // true median (critic 2026-08-22: upper-middle convention overstated it)
   };
   const median = medianOf(dive.map((e) => e.latest.ytTotal));
   const medPlays = medianOf(dive.map((e) => e.latest.xPlays));
   const medReach = medianOf(dive.map((e) => e.latest.xImpressions));
   for (const e of dive) {
     const hits = [];
-    if (median > 0 && e.latest.ytTotal > 2 * median) hits.push(`${num(e.latest.ytTotal)} YT views vs ${num(median)} median`);
-    if (medPlays > 0 && e.latest.xPlays != null && e.latest.xPlays > 2 * medPlays) hits.push(`${num(e.latest.xPlays)} X plays vs ${num(medPlays)} median`);
-    if (medReach > 0 && e.latest.xImpressions > 2 * medReach) hits.push(`${num(e.latest.xImpressions)} X reach vs ${num(medReach)} median`);
+    if (median > 0 && e.latest.ytTotal > 2 * median) hits.push(`${num(e.latest.ytTotal)} YT views vs a typical ${num(median)}`);
+    if (medPlays > 0 && e.latest.xPlays != null && e.latest.xPlays > 2 * medPlays) hits.push(`${num(e.latest.xPlays)} X plays vs a typical ${num(medPlays)}`);
+    if (medReach > 0 && e.latest.xImpressions > 2 * medReach) hits.push(`${num(e.latest.xImpressions)} X reach vs a typical ${num(medReach)}`);
     if (hits.length) {
-      e.metrics.anomaly = `>2x the all-episode median (${hits.join("; ")}) — treat as promo-driven outlier, not topic signal`;
+      e.metrics.anomaly = `more than double what a typical episode gets (${hits.join("; ")}) — treat as promo-driven outlier, not topic signal`;
     }
   }
 
@@ -644,9 +646,10 @@ function buildInsights(dive, { median }) {
     });
   }
 
-  // 2. flatline / shelf life
+  // 2. flatline / shelf life — suppressed below 3 clean samples (simplicity
+  // contract: n<3 claims don't ship as trends; critic 2026-08-22)
   const flats = full.filter((e) => e.metrics.flatlineWeek !== null);
-  if (flats.length) {
+  if (flats.length >= 3) {
     const weeks = flats.map((e) => e.metrics.flatlineWeek);
     const maxW = Math.max(...weeks);
     insights.push({
@@ -663,8 +666,9 @@ function buildInsights(dive, { median }) {
   // YT views. Cross-unit sums are forbidden math and never happen here.
   // ≥7-day-old episodes only: a 1-day-old episode's "week 1" IS its lifetime,
   // which trivially inflates the share (review H-4).
+  // suppressed below 3 clean samples (simplicity contract; critic 2026-08-22)
   const phasePool = full.filter((e) => e.ageDays >= 7);
-  if (phasePool.length >= 2) {
+  if (phasePool.length >= 3) {
     let w1x = 0, w1yt = 0, lifeX = 0, lifeYt = 0;
     for (const e of phasePool) {
       const prem = premiereMs(e.premiere);
@@ -781,7 +785,7 @@ function buildInsights(dive, { median }) {
         id: `anomaly-${e.slug}`,
         text: `${refOf(e)} is a promo-driven outlier, not a topic winner: ${e.metrics.anomaly.replace(/ — treat as promo-driven outlier, not topic signal$/, "")}.`,
         recommendation: `Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.`,
-        caveat: `Outlier = more than 2× the all-episode median on that unit; excluded from host-split aggregates automatically.`,
+        caveat: `Outlier = more than double the typical episode on that unit; excluded from host-split aggregates automatically.`,
         chartState: state({ chart: "standings", solo: e.slug }),
       });
     }
@@ -810,7 +814,7 @@ function buildInsights(dive, { median }) {
       id: "partial-history",
       text: `${codeList} ${partial.length === 1 ? "was" : "were"} registered late — ${partial.length === 1 ? "its" : "their"} early weekly history doesn't exist. Totals are right; week-1 and velocity comparisons aren't.`,
       recommendation: `Nothing to do — the flags are automatic. Just don't read week-1 or velocity comparisons for these episodes.`,
-      caveat: `Late-registered: ${partial.map((e) => refOf(e)).join(", ")}. Marked "late reg" wherever they appear.`,
+      caveat: `Tracked late: ${partial.map((e) => refOf(e)).join(", ")}. Marked "tracked late" in the episode panel.`,
       chartState: state({}),
     });
   }
