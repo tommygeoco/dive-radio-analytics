@@ -422,12 +422,20 @@ function ratingBadge(e, cls) {
    shared fixed-position box; reads the same store entry as every surface. */
 function ratingTipHTML(e, r) {
   const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
+  const PLAIN = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout" };
   let h = `<div class="h">#${r.rank} of ${r.n} — ${esc(short(e.title))}</div>`;
-  h += `<div>Rated against the ${r.n === 1 ? "only episode" : `${r.n} episodes`} up to its air date — later episodes never count, and the rating freezes at day 7.</div>`;
-  if (r.score != null) h += `<div class="mut">composite ${r.score}× the typical episode · watch 50% · engagement 20% · retention 15% · live 15%</div>`;
-  if (r.n === 1) h += `<div class="mut">first episode — nothing to compare against.</div>`;
-  if (partial) h += `<div class="warn">* partial basis — no honest data yet for ${r.coverage.missingPillars.map(m => esc(m.replace(/ \(.*\)$/, ""))).join(" + ")}; their weight moved to the pillars that exist.</div>`;
-  if (r.provisional) h += `<div class="warn">~ provisional — freezes ${freezeDateOf(e)} when week-1 data completes.</div>`;
+  h += `<div>Ranked only against the episodes that came before it — newer ones never change it.</div>`;
+  if (r.n === 1) {
+    h += `<div class="mut">First episode — nothing to compare it against.</div>`;
+  } else if (r.score != null) {
+    const pct = Math.round(Math.abs(r.score - 1) * 100);
+    h += `<div>${pct <= 3 ? "Performing right at the show's typical level." : r.score > 1 ? `Performing about ${pct}% above a typical episode.` : `Performing about ${pct}% below a typical episode.`}</div>`;
+  }
+  if (partial) {
+    const have = Object.entries(r.pillarScores || {}).filter(([, ps]) => ps.ratio != null).map(([p]) => PLAIN[p]);
+    h += `<div class="warn">* Not all its numbers are in yet — this rating uses ${have.join(" and ")} only.</div>`;
+  }
+  if (r.provisional) h += `<div class="warn">~ Not final — settles ${freezeDateOf(e)} once its first week is complete.</div>`;
   return h;
 }
 
