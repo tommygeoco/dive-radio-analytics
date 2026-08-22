@@ -294,6 +294,12 @@ export function computeAll({ now = Date.now() } = {}) {
       note: e.metrics.week1Note,
     })),
     cumulativeAllEpisodes: cumulativeSeries(dive, now),
+    // newest episode's same-age YouTube pace rank, exported as data so the
+    // alerts diff (W4) never has to parse insight prose
+    paceRank: (() => {
+      const p = sameAgePace(dive);
+      return p && p.rank ? { slug: p.newest.slug, rank: p.rank, of: p.of } : null;
+    })(),
   };
 
   return {

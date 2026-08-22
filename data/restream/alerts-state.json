@@ -1,0 +1,22 @@
+{
+  "episodeCount": 6,
+  "newestSlug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+  "paceRank": null,
+  "neg": {
+    "2026-07-17-dive-radio-bumpy-takeoff": 1,
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe": 0,
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de": 1,
+    "2026-08-06-dive-radio-backyard-designers-behind-the": 0,
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": 0,
+    "2026-08-20-dive-radio-the-mascot-industrial-complex": 0
+  },
+  "w1v": {
+    "2026-07-17-dive-radio-bumpy-takeoff": 1830,
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe": 1751,
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de": null,
+    "2026-08-06-dive-radio-backyard-designers-behind-the": null,
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": null,
+    "2026-08-20-dive-radio-the-mascot-industrial-complex": null
+  },
+  "staleCount": 0
+}

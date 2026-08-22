@@ -465,12 +465,7 @@ function buildHero() {
       chip.textContent = pace.pct === 0 ? `= at same-age median (YT)` : `${pace.pct > 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (YT)`;
       chips.appendChild(chip);
     }
-    if (e.partialHistory) {
-      const chip = document.createElement("span");
-      chip.className = "chip static alert";
-      chip.textContent = "late reg — early weekly history missing";
-      chips.appendChild(chip);
-    }
+
   }
   addSentimentChip(chips, e);
   // Anomaly flags belong to the episode that owns them (owner call 2026-08-22:
@@ -545,8 +540,10 @@ function buildStrip() {
           : `<span class="pace ${pace.pct > 0 ? "up" : "down"}" title="YouTube views vs the typical episode at this age">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs median</span>`)
         : `<span>no same-age peer yet</span>`;
     }
-    it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}
-        ${e.partialHistory && !isLive ? '<span class="flag">late reg</span>' : ""}</div>
+    // "late reg" flag removed from cards (owner call 2026-08-22) — the
+    // partial-history caveat lives in the detail panel and About, where it
+    // has room to mean something.
+    it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</div>
       <div class="t">${esc(short(e.title))}</div>
       <div class="r3">${r3}</div>`;
     it.addEventListener("click", () => {
@@ -656,25 +653,28 @@ function buildCompound() {
     else if (pct > 0) { verdict = `E${last.e.ep}'s first week beat E${prev.e.ep}'s by ${pct}% — each launch is starting bigger.`; cls = "up"; }
     else { verdict = `E${last.e.ep}'s first week came in ${Math.abs(pct)}% under E${prev.e.ep}'s — launches aren't growing yet.`; cls = "down"; }
   }
+  // IA rule (owner, 2026-08-22): no empty-slot parade. Bars render only for
+  // episodes with a real week-1 number, and only once ≥3 exist — until then
+  // this section is one sentence, not a chart of missing data.
+  const missing = [];
+  const lateEps = enriched.filter((r) => r.value == null && !/pending/i.test(r.note || "")).map((r) => `E${r.e.ep}`);
+  if (lateEps.length) missing.push(`${lateEps.join("/")} registered late — no clean week 1`);
+  for (const r of enriched.filter((r) => r.value == null && /pending/i.test(r.note || ""))) {
+    const end = new Date(premiereMs(r.premiere) + 7 * DAY);
+    missing.push(`E${r.e.ep} completes ${String(end.getUTCMonth() + 1).padStart(2, "0")}/${String(end.getUTCDate()).padStart(2, "0")}`);
+  }
   let bars = "";
-  const pending = [];
-  for (const r of enriched) {
-    const isPending = r.value == null && /pending/i.test(r.note || "");
-    if (isPending) {
-      const end = new Date(premiereMs(r.premiere) + 7 * DAY);
-      pending.push(`E${r.e.ep}'s first week completes ${String(end.getUTCMonth() + 1).padStart(2, "0")}/${String(end.getUTCDate()).padStart(2, "0")}`);
+  if (vals.length >= 3) {
+    for (const r of vals) {
+      bars += `<div class="cbar" title="${r.value} YouTube views in week 1">
+        <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div></div>
+        <div class="bl" style="color:${color(r.e)}">E${r.e.ep}</div><div class="bv">${kfmt(r.value)}</div></div>`;
     }
-    const bv = r.value != null ? kfmt(r.value) : (isPending ? "soon" : "late reg");
-    bars += `<div class="cbar" title="${r.value != null ? r.value + " YouTube views in week 1" : (r.note || "")}">
-      <div class="bwrap">${r.value != null
-        ? `<div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div>`
-        : `<div class="b none"></div>`}</div>
-      <div class="bl" style="color:${color(r.e)}">E${r.e.ep}</div><div class="bv">${bv}</div></div>`;
   }
   el.innerHTML = `<div class="ch">Is the show growing?</div>
     <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>
-    <div class="bars">${bars}</div>
-    <div class="note">Each bar = YouTube views in that episode's first 7 days — the cleanest same-age comparison we have. Hollow bars have no honest week-1 number (registered late — we never invent history).${pending.length ? " " + pending.join(" · ") + "." : ""}</div>`;
+    ${bars ? `<div class="bars">${bars}</div>` : ""}
+    <div class="note">YouTube views in each episode's first 7 days · clean weeks: ${vals.length} of ${enriched.length}${missing.length ? " · " + missing.join(" · ") : ""}</div>`;
   el.style.display = "";
 }
 

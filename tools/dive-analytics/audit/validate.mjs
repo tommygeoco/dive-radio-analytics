@@ -182,6 +182,21 @@ function premiereMs(dateStr) {
   if (!bad) ok(`roster: ${eps.length} episodes match registry (active dive-radio with history)`);
 }
 
+// --- 5b. episode tags schema (PRD v2 W3) ---
+{
+  const FORMATS = new Set(["topic", "interview", "call-in", "bts", "panel"]);
+  let bad = 0, tagged = 0, unconfirmed = 0;
+  for (const s of registry.shows) {
+    if (s.active === false || !s.tags) continue;
+    tagged++;
+    if (s.tags.unconfirmed) unconfirmed++;
+    if (!FORMATS.has(s.tags.format)) { bad++; fail(`${s.slug}: illegal tag format "${s.tags.format}"`); }
+    if (!Array.isArray(s.tags.guests)) { bad++; fail(`${s.slug}: tags.guests must be an array`); }
+    if (typeof s.tags.unconfirmed !== "boolean") { bad++; fail(`${s.slug}: tags.unconfirmed must be a boolean`); }
+  }
+  if (!bad) ok(`tags: ${tagged} episode(s) tagged, schema-legal (${unconfirmed} unconfirmed draft(s) — excluded from insights until blessed)`);
+}
+
 // --- 6. publish integrity (public repo copies match source of truth) ---
 // The cron chain runs build && validate && publish: at validate time a fresh
 // build legitimately puts the source AHEAD of the public repo, so that state

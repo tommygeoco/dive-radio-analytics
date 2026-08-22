@@ -63,7 +63,13 @@
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "tags": {
+        "format": "topic",
+        "topic": "show launch / bumpy takeoff",
+        "guests": [],
+        "unconfirmed": true
+      }
     },
     {
       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -111,7 +117,13 @@
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "tags": {
+        "format": "topic",
+        "topic": "data vs intuition in design",
+        "guests": [],
+        "unconfirmed": true
+      }
     },
     {
       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
@@ -161,7 +173,13 @@
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "tags": {
+        "format": "topic",
+        "topic": "mixed media workflows / game design",
+        "guests": [],
+        "unconfirmed": true
+      }
     },
     {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -210,7 +228,13 @@
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "tags": {
+        "format": "bts",
+        "topic": "Backyard Designers launch",
+        "guests": [],
+        "unconfirmed": true
+      }
     },
     {
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -260,7 +284,13 @@
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "tags": {
+        "format": "call-in",
+        "topic": "goodbye blank canvas (AI tools)",
+        "guests": [],
+        "unconfirmed": true
+      }
     },
     {
       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
@@ -317,7 +347,13 @@
           "role": "promo",
           "playsStatus": "none"
         }
-      ]
+      ],
+      "tags": {
+        "format": "topic",
+        "topic": "mascots / brand personification",
+        "guests": [],
+        "unconfirmed": true
+      }
     }
   ]
 }

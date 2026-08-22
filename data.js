@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-22T18:45:41.072Z",
+ "generatedAt": "2026-08-22T18:52:31.647Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -12723,6 +12723,7 @@ window.DIVE_DATA = {
     "ytViews": 4109,
     "xReach": 11227
    }
-  ]
+  ],
+  "paceRank": null
  }
 };

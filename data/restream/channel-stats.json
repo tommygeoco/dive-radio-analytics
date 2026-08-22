@@ -1,0 +1,36 @@
+{
+  "note": "audience assets — one point per channel per UTC day; absence means the pull did not run or failed, never zero",
+  "series": {
+    "yt:designertom": [
+      {
+        "date": "2026-08-22",
+        "subscribers": 170000,
+        "totalViews": 106001867,
+        "videos": 437
+      }
+    ],
+    "yt:joindiveclub": [
+      {
+        "date": "2026-08-22",
+        "subscribers": 67300,
+        "totalViews": 1867274,
+        "videos": 412
+      }
+    ],
+    "x:ridd_design": [
+      {
+        "date": "2026-08-22",
+        "followers": 75320,
+        "tweets": 20745
+      }
+    ],
+    "x:designertom": [
+      {
+        "date": "2026-08-22",
+        "followers": 19192,
+        "tweets": 8608
+      }
+    ]
+  },
+  "updatedAt": "2026-08-22T18:50:56.397Z"
+}
