@@ -640,7 +640,7 @@ function buildPanel() {
   let html = `<button class="x" id="panelx" title="close">×</button>`;
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
     <span style="color:var(--t3);font-weight:400;font-size: 13px">· ${e.premiere.slice(5).replace("-", "/")}</span>
-    ${e.partialHistory ? `<span class="pchip">late reg</span>` : ""}</div>`;
+    ${e.partialHistory ? `<span class="pchip" title="tracking started late for this episode — totals are right, early weekly history is missing">tracked late</span>` : ""}</div>`;
   html += `<div class="grid"><div>`;
   html += `<div class="row head">Total views<span class="val big">${nfmt(e.latest.totalViews ?? 0)}</span></div>`;
   const rows = [
@@ -679,21 +679,27 @@ function buildPanel() {
     if (r.n === 1) {
       html += `<div class="mut">first episode — nothing to compare against yet</div>`;
     } else {
-      const PLABEL = { watch: "YouTube views", engagement: "likes+comments per 1k views", retention: "avg % of video watched", live: "live turnout" };
+      const PLABEL = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout" };
+      const plainRatio = (ratio) => {
+        const pct = Math.round(Math.abs(ratio - 1) * 100);
+        return pct <= 3 ? "typical" : ratio > 1 ? `${pct}% above typical` : `${pct}% below typical`;
+      };
       for (const [p, lab] of Object.entries(PLABEL)) {
         const ps = r.pillarScores?.[p];
-        const labTxt = p === "watch" && ps?.atDay ? `YouTube views at day ${ps.atDay}` : lab;
-        const fmtV = (v) => p === "live" ? `${v.peak} peak · ${nfmt(v.chat)} chat` : p === "retention" ? `${v}%` : nfmt(v);
-        let val = `<span class="hint">no data</span>`;
+        const fmtV = (v) => p === "live" ? `${v.peak} live · ${nfmt(v.chat)} chat` : p === "retention" ? `${v}%` : nfmt(v);
+        let val = `<span class="hint">not in yet</span>`;
         if (ps && ps.ratio != null) {
-          val = `${fmtV(ps.value)} <span class="hint">· ${ps.ratio}× typical</span>`;
+          val = `${fmtV(ps.value)} <span class="hint">· ${plainRatio(ps.ratio)}</span>`;
         } else if (ps && ps.value != null) {
-          val = `${fmtV(ps.value)} <span class="hint">· no peer to compare</span>`;
+          val = `${fmtV(ps.value)} <span class="hint">· nothing to compare yet</span>`;
         }
-        html += `<div class="row">${labTxt}<span class="val">${val}</span></div>`;
+        html += `<div class="row">${lab}<span class="val">${val}</span></div>`;
       }
-      if (partial) html += `<div class="note">* partial basis — missing: ${r.coverage.missingPillars.map(m => esc(m.replace(/ \(.*\)$/, ""))).join(", ")}; their weight moved to the pillars that exist</div>`;
-      if (r.provisional) html += `<div class="note">provisional — freezes ${freezeDateOf(e)} when week-1 data completes</div>`;
+      if (partial) {
+        const have = Object.entries(r.pillarScores || {}).filter(([, ps]) => ps.ratio != null).map(([p]) => PLABEL[p]);
+        html += `<div class="note">* Not all its numbers are in yet — rated on ${have.join(" and ")} only</div>`;
+      }
+      if (r.provisional) html += `<div class="note">~ Not final — settles ${freezeDateOf(e)} once its first week is complete</div>`;
     }
     html += `</div>`;
   }
