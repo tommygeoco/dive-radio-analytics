@@ -1,0 +1,323 @@
+{
+  "shows": [
+    {
+      "slug": "2026-07-15-jason-yuan-designing-99-nos-for-a-single",
+      "title": "Jason Yuan - Designing 99 Nos for a single Yes",
+      "date": "2026-07-15",
+      "active": false,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "qsuqgj4tn0k",
+          "url": "https://www.youtube.com/watch?v=qsuqgj4tn0k",
+          "account": "joindiveclub",
+          "videoTitle": "Jason Yuan - Designing 99 \"No\"s for a single \"Yes\""
+        }
+      ]
+    },
+    {
+      "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+      "title": "Dive Radio: Bumpy Takeoff",
+      "date": "2026-07-17",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "VcLm0kAGCck",
+          "url": "https://www.youtube.com/live/VcLm0kAGCck",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: Bumpy Takeoff"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "FqsXWbfKmGw",
+          "url": "https://www.youtube.com/live/FqsXWbfKmGw",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: Bumpy Takeoff"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2077862030455800172",
+          "url": "https://x.com/ridd_design/status/2077862030455800172",
+          "broadcastResolved": true,
+          "broadcastId": "1AxRnnrOvlrxl",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 1022,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2077862031730815011",
+          "url": "https://x.com/designertom/status/2077862031730815011",
+          "broadcastResolved": true,
+          "broadcastId": "1pKdRRwpkaQJW",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 760,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+      "date": "2026-07-23",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "TJqSfnadiGM",
+          "url": "https://www.youtube.com/watch?v=TJqSfnadiGM",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: Linear on Data vs. Intuition, the Web Designer Is Back, Dialkit + Live Call-Ins"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "Pn6U5nWgD-g",
+          "url": "https://www.youtube.com/watch?v=Pn6U5nWgD-g",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2080382612900606273",
+          "url": "https://x.com/designertom/status/2080382612900606273",
+          "broadcastId": "1kKzDDbmjWqJv",
+          "broadcastResolved": true,
+          "playsHighWater": {
+            "value": 635,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2080382611671626194",
+          "url": "https://x.com/ridd_design/status/2080382611671626194",
+          "broadcastId": "1yxBeeoanDOJN",
+          "broadcastResolved": true,
+          "playsHighWater": {
+            "value": 1166,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+      "date": "2026-07-30",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "9HYGZgaHdlw",
+          "url": "https://www.youtube.com/watch?v=9HYGZgaHdlw",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "szvTFybWfK4",
+          "url": "https://www.youtube.com/watch?v=szvTFybWfK4",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2082919224268169560",
+          "url": "https://x.com/ridd_design/status/2082919224268169560",
+          "broadcastResolved": true,
+          "broadcastId": "1nGnRRMEPDkGO",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 1429,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2082919223639052481",
+          "url": "https://x.com/designertom/status/2082919223639052481",
+          "broadcastResolved": true,
+          "broadcastId": "1nGeLLpzNAQKX",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 2777,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "title": "Dive Radio: Backyard Designers behind-the-scenes",
+      "date": "2026-08-06",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "0tRHVW0qRt4",
+          "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: Backyard Designers behind-the-scenes"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "ziyWxt6qzfM",
+          "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: Backyard Designers behind-the-scenes"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2085456049541427675",
+          "url": "https://x.com/ridd_design/status/2085456049541427675",
+          "broadcastResolved": true,
+          "broadcastId": "1vJpPPMgdDoJE",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 1329,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2085456051626029562",
+          "url": "https://x.com/designertom/status/2085456051626029562",
+          "broadcastId": "1rGmqqBdNVkGy",
+          "broadcastResolved": true,
+          "playsHighWater": {
+            "value": 541,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+      "date": "2026-08-13",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "njOU7GKZcvc",
+          "url": "https://www.youtube.com/watch?v=njOU7GKZcvc",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "G2_F3dd3RkA",
+          "url": "https://www.youtube.com/watch?v=G2_F3dd3RkA",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2087992765372375435",
+          "url": "https://x.com/ridd_design/status/2087992765372375435",
+          "broadcastResolved": true,
+          "broadcastId": "1pKdRDDymlnJW",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 1089,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2087992765942837550",
+          "url": "https://x.com/designertom/status/2087992765942837550",
+          "broadcastResolved": true,
+          "broadcastId": "1AxRnZZeVNzxl",
+          "broadcastIdSource": "entities.urls backfill 2026-08-21",
+          "playsHighWater": {
+            "value": 959,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+      "date": "2026-08-20",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "RhemcDEc_-A",
+          "url": "https://www.youtube.com/watch?v=RhemcDEc_-A",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "eLA79C1jq1g",
+          "url": "https://www.youtube.com/watch?v=eLA79C1jq1g",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2090529384369381505",
+          "url": "https://x.com/ridd_design/status/2090529384369381505",
+          "broadcastId": "1DGleVBNBVjJL",
+          "broadcastResolved": true,
+          "playsHighWater": {
+            "value": 693,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2090529387162878297",
+          "url": "https://x.com/designertom/status/2090529387162878297",
+          "broadcastId": "1aKbdEoAoEBJX",
+          "broadcastResolved": true,
+          "playsHighWater": {
+            "value": 305,
+            "asOf": "2026-08-22T14:57:10.136Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2090519715097747965",
+          "url": "https://x.com/designertom/status/2090519715097747965",
+          "broadcastResolved": true,
+          "role": "promo",
+          "playsStatus": "none"
+        }
+      ]
+    }
+  ]
+}

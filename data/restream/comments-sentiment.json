@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "method": "wordlist-v1",
+  "updatedAt": "2026-08-22T07:15:15.945Z",
+  "classified": {
+    "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
+      "label": "negative",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgyYEIb6QFUmQUAuiB14AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:Ugz9WleMTJ4Ey7HR2kF4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzOmG6-eJRGYTwiRNZ4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:Ugxwjib7K70jpgikqXR4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgwlYI2C7EEJ1yf5gQJ4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgyJOzX10_droNMkaWx4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgxE-eFVC2ezvRlRspt4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgxEVqoA6QUwVVMcrnV4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzaM6yr8BIj0GRZ55F4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgxyeBCR7SZb4xqjaC14AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzCGnyDEHv0pITrT0t4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:Ugw0_SE5nx-kzg7mi6N4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgwxQM1P37Fvu-uQMsZ4AaABAg": {
+      "label": "negative",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzVits6pK6eIXQLIeN4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgwlosaebdKcQpgr8bR4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:Ugxg7INEiTqIy81bUsh4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:Ugz-gpechmoRhLvLgkx4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgxUElzqQyNzo8mWeKd4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgwwpidBv0sRyniOPpt4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgwNVZEMoKDsM6gaRtx4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzeVCMu5-gXAiXR7wF4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgztFQjLpgrYSOwjofV4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzH1qjxgyCGSNWq-vp4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgwcRtAZCssi_VeZzYd4AaABAg": {
+      "label": "neutral",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "x:2090735871938970092": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgzcQ7tLhmDU8Hw_Ln14AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgykYeq0fuXgPS6uzzt4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    },
+    "yt:UgycC2EjwPzptqmQnox4AaABAg": {
+      "label": "positive",
+      "v": 1,
+      "at": "2026-08-22T07:15:15.945Z"
+    }
+  }
+}

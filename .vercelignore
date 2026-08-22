@@ -1,0 +1,7 @@
+data/
+scripts/
+tools/
+.claude/
+README.md
+.gitignore
+.git/

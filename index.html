@@ -433,7 +433,12 @@ function buildHero() {
   }
 
   html += `<div class="chiprow" id="herochips"></div></div>`;
-  html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">${isLive ? "concurrent viewers by minute" : "YouTube views since premiere"}</div></div>`;
+  // Sparkline is live-view only. In growth view it plotted YouTube-only
+  // history on the total-views hero — spotlighting one platform on a card
+  // about the whole picture (owner call, 2026-08-22). A total-views history
+  // line can't replace it yet: X plays have no week-1 history before 8/21,
+  // and we never fabricate history.
+  if (isLive) html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">concurrent viewers by minute</div></div>`;
   el.innerHTML = html;
 
   const chips = el.querySelector("#herochips");
@@ -465,13 +470,9 @@ function buildHero() {
   }
 
   if (sparkChart) { sparkChart.destroy(); sparkChart = null; }
+  if (!isLive) return;
   const ctx = document.getElementById("spark");
-  let pts = [];
-  if (isLive) pts = e.live ? e.live.series.map(p => ({ x: p.m, y: p.v })) : [];
-  else {
-    const prem = premiereMs(e.premiere);
-    pts = e.snapshots.map(s => ({ x: (Date.parse(s.ts) - prem) / DAY, y: sum(s.byDest) }));
-  }
+  const pts = e.live ? e.live.series.map(p => ({ x: p.m, y: p.v })) : [];
   el.querySelector(".spark").style.visibility = pts.length > 1 ? "" : "hidden";
   if (pts.length > 1 && window.Chart) {
     sparkChart = new Chart(ctx, {
@@ -581,6 +582,9 @@ function buildPanel() {
     } else {
       html += `<span class="hint">${e.comments.total} collected</span>`;
     }
+    if (e.comments.xCoverage === "missed") {
+      html += `<div class="note">X replies missing — this episode aired before comment tracking started, and X only lets us search back 7 days. YouTube comments only.</div>`;
+    }
     for (const q of (e.comments.featured || []).slice(0, 2)) {
       html += `<div class="q">“${esc(q.text.length > 110 ? q.text.slice(0, 108).trimEnd() + "…" : q.text)}” <span class="by">— ${esc(q.author)}${q.likes ? ` · ${q.likes}♥` : ""}</span></div>`;
     }
@@ -625,7 +629,9 @@ function renderDrill() {
   const rows = list.filter(c => drillState.filter === "all" ? true :
     drillState.filter === "unclassified" ? c.sentiment == null : c.sentiment === drillState.filter);
   const lEl = document.getElementById("dlist");
-  lEl.innerHTML = rows.length ? "" : `<div class="dempty">no comments in this bucket</div>`;
+  const missedNote = e.comments?.xCoverage === "missed"
+    ? `<div class="dempty" style="padding:8px 0 4px;font-size:12px">X replies missing for this episode — it aired before comment tracking started (X search reaches back 7 days). YouTube comments only.</div>` : "";
+  lEl.innerHTML = (rows.length ? "" : `<div class="dempty">no comments in this bucket</div>`) + missedNote;
   for (const c of rows) {
     const d = document.createElement("div");
     d.className = "drow";
@@ -1176,8 +1182,8 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the high-water figure is kept — absence is never shown as zero). <b>late reg</b> = the episode was registered late: cumulative totals are correct, early weekly history doesn't exist, and it is excluded from velocity/decay baselines.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes (X plays have no history before 08/21, so a blended pace would fabricate a disadvantage for older episodes).</p>
-  <p><b>Comment sentiment</b> is a deterministic wordlist (v1) over collected YouTube comments and X replies, classified once per comment and never silently reclassified. Sarcasm reads literally; counts are directional. Host comments are excluded at collection.</p>
-  <p><b>Cadence</b>: snapshots daily (07:25 Phoenix), full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
+  <p><b>Comment sentiment</b> is a deterministic wordlist (v1) over collected YouTube comments and X replies, classified once per comment and never silently reclassified. Sarcasm reads literally; counts are directional. Host comments are excluded at collection. Featured quotes must be positive <b>and</b> carry zero negative wording — "love it, but fix the audio" is a complaint, not a pull-quote. Episodes that aired before tracking started are marked "X replies missing" — we can't search X more than 7 days back, and we never show a gap as a zero.</p>
+  <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }
 
 /* ================= sync / events ================= */
