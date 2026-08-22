@@ -44,6 +44,7 @@
   .card .views.hero { font-size: 26px; }
   .card .views .mk { font-size: 10px; font-weight: 600; color: #d9a24a; margin-left: 5px; vertical-align: 2px; }
   .card .reach { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  #cardtip { position: fixed; pointer-events: none; z-index: 40; }
   .card .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
   .card .sub.up { color: var(--good); }
   .card .sub.down { color: var(--bad); }
@@ -150,8 +151,8 @@ const PLAT_COLORS = {
 const PLAT_NAME = {
   "yt:joindiveclub": "YouTube · Dive Club",
   "yt:designertom": "YouTube · DesignerTom",
-  "x:ridd_design": "X · @ridd_design (post impressions)",
-  "x:designertom": "X · @designertom (post impressions)",
+  "x:ridd_design": "X · @ridd_design (reach)",
+  "x:designertom": "X · @designertom (reach)",
 };
 const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const X_KEYS = ["x:ridd_design", "x:designertom"];
@@ -305,7 +306,7 @@ function externalTooltip(context) {
         html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${PLAT_NAME[k]}<span class="val">${isDelta && p.meta.note === null ? (v >= 0 ? "+" : "") : ""}${nfmt(v)}</span></div>`;
       }
       if (X_KEYS.some(k => state.dests.has(k))) {
-        html += `<div class="note" style="color:#94a0b4">X rows are post impressions (reach), not video plays — different unit than YT views</div>`;
+        html += `<div class="note" style="color:#94a0b4">X rows = post impressions (reach), not views</div>`;
       }
     }
     if (p.meta.note) html += `<div class="note">${p.meta.note}</div>`;
@@ -421,6 +422,43 @@ function sameAgeSub(e) {
   return { pct, n: peers.length };
 }
 
+// Card hover panel (progressive disclosure): full per-channel breakdown —
+// exact totals per channel, plays coverage, reach kept visibly separate.
+const cardTip = document.createElement("div");
+cardTip.className = "tt";
+cardTip.id = "cardtip";
+document.body.appendChild(cardTip);
+function hideCardTip() { cardTip.style.opacity = 0; }
+function showCardTip(card, e) {
+  const bd = e.latest.byDest || {};
+  const tvi = e.latest.totalViewsInfo || {};
+  let html = `<div class="h"><span class="dot" style="background:${color(e)}"></span>E${e.ep} · ${short(e.title)}</div>`;
+  html += `<div class="big">${nfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)} views</div>`;
+  html += `<div class="chg">= YouTube views + X broadcast plays</div>`;
+  html += `<div class="div"></div>`;
+  const rows = [
+    ["yt:joindiveclub", "YouTube · Dive Club", bd["yt:joindiveclub"]?.views],
+    ["yt:designertom", "YouTube · DesignerTom", bd["yt:designertom"]?.views],
+    ["x:ridd_design", "X · @ridd_design broadcast", bd["x:ridd_design"]?.plays],
+    ["x:designertom", "X · @designertom broadcast", bd["x:designertom"]?.plays],
+  ];
+  for (const [k, lbl, v] of rows) {
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${lbl}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+  }
+  if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts — true total is higher</div>`;
+  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays last confirmed ${tvi.asOf.slice(0, 10)}</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">X broadcast plays unavailable — YouTube only</div>`;
+  html += `<div class="div"></div>`;
+  html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS["x:ridd_design"]}"></span>X reach · @ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
+  html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS["x:designertom"]}"></span>X reach · @designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
+  html += `<div class="chg" style="margin-top:4px">Reach = announce-post impressions (exposure). Never added to views.</div>`;
+  cardTip.innerHTML = html;
+  const r = card.getBoundingClientRect();
+  cardTip.style.left = Math.min(r.left, window.innerWidth - 250) + "px";
+  cardTip.style.top = Math.min(r.bottom + 8, window.innerHeight - 240) + "px";
+  cardTip.style.opacity = 1;
+}
+
 function buildBoard() {
   const isLive = state.view === "live";
   const board = document.getElementById("board");
@@ -452,13 +490,8 @@ function buildBoard() {
       if (!tvi.includesPlays) mk = "YT only";
       else if (tvi.partial) mk = `◐${tvi.have}/${tvi.total}`;
       else if (tvi.stale && tvi.asOf) mk = `→${tvi.asOf.slice(5, 10).replace("-", "/")}`;
-      const playsStr = e.latest.xPlays == null
-        ? "unavailable"
-        : `${nfmt(e.latest.xPlays)} (${tvi.have}/${tvi.total} broadcasts${tvi.stale && tvi.asOf ? `, last confirmed ${tvi.asOf.slice(0, 10)}` : ""})`;
-      const heroTitle = `Total views = YouTube views (both channels) + X broadcast plays (both hosts). YouTube: ${nfmt(e.latest.ytTotal ?? 0)} · X plays: ${playsStr}. Both count video playback: YouTube counts a qualified view (~30s), X counts a play start, so treat the sum as directional. X post impressions (reach) are never included.`;
-      const reachTitle = `X reach = impressions on the two hosts' X announce posts for this episode (@ridd_design + @designertom). An impression = one time the post appeared on someone's timeline. It measures exposure, not watching, and is never added to views.`;
-      big = `<div class="views hero" title="${heroTitle}">${kfmt(tv)} <small>views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>
-      <div class="reach" title="${reachTitle}">X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
+      big = `<div class="views hero">${kfmt(tv)} <small>views</small>${mk ? `<span class="mk">${mk}</span>` : ""}</div>
+      <div class="reach">X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
       const pace = sameAgeSub(e);
       if (pace) {
         sub = `${pace.pct >= 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs same-age median (YT)`;
@@ -477,6 +510,10 @@ function buildBoard() {
       state.solo = state.solo === e.slug ? null : e.slug;
       render();
     });
+    if (!isLive) {
+      card.addEventListener("mouseenter", () => showCardTip(card, e));
+      card.addEventListener("mouseleave", hideCardTip);
+    }
     board.appendChild(card);
   }
   if (hiddenCount > 0 || (state.showAllCards && ordered.length > CARD_CAP)) {
