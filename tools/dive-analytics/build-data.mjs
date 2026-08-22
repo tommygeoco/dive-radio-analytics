@@ -220,6 +220,18 @@ export function computeAll({ now = Date.now() } = {}) {
       (latest.byDest["yt:designertom"]?.comments || 0);
     const engagementPer1k = ytViews > 0 ? Math.round((ytEng / ytViews) * 1000 * 10) / 10 : null;
 
+    // Announce receipts (PRD v2 W6): when each host's X post went out.
+    // Timestamps come from the tweet id itself (snowflake epoch) — stored
+    // fact, no network, no guessing.
+    const announces = (show.targets || [])
+      .filter((t) => t.kind === "x" && t.postId)
+      .map((t) => ({
+        account: t.account,
+        role: t.role || "announce",
+        ts: new Date(Number((BigInt(t.postId) >> 22n) + 1288834974657n)).toISOString(),
+      }))
+      .sort((a, b) => (a.ts < b.ts ? -1 : 1));
+
     episodes.push({
       slug: show.slug,
       title: show.title,
@@ -227,6 +239,7 @@ export function computeAll({ now = Date.now() } = {}) {
       show: isDiveRadio ? "dive-radio" : "other",
       active: show.active !== false,
       partialHistory,
+      announces,
       snapshots: snaps,
       weekly,
       // Unit discipline (CARD-RULING-2026-08-21): totalViews = ytTotal +

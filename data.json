@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-22T17:25:26.671Z",
+ "generatedAt": "2026-08-22T18:45:41.072Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -30,6 +30,18 @@
    "show": "dive-radio",
    "active": true,
    "partialHistory": false,
+   "announces": [
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-07-16T21:04:47.527Z"
+    },
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-07-16T21:04:47.831Z"
+    }
+   ],
    "snapshots": [
     {
      "ts": "2026-07-20T19:23:10.690Z",
@@ -3046,6 +3058,18 @@
    "show": "dive-radio",
    "active": true,
    "partialHistory": false,
+   "announces": [
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-07-23T20:00:40.919Z"
+    },
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-07-23T20:00:41.212Z"
+    }
+   ],
    "snapshots": [
     {
      "ts": "2026-07-27T18:38:01.337Z",
@@ -5677,6 +5701,18 @@
    "show": "dive-radio",
    "active": true,
    "partialHistory": true,
+   "announces": [
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-07-30T20:00:16.340Z"
+    },
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-07-30T20:00:16.490Z"
+    }
+   ],
    "snapshots": [
     {
      "ts": "2026-08-21T04:53:16.790Z",
@@ -7295,6 +7331,18 @@
    "show": "dive-radio",
    "active": true,
    "partialHistory": true,
+   "announces": [
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-08-06T20:00:42.767Z"
+    },
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-08-06T20:00:43.264Z"
+    }
+   ],
    "snapshots": [
     {
      "ts": "2026-08-21T04:53:16.790Z",
@@ -9056,6 +9104,18 @@
    "show": "dive-radio",
    "active": true,
    "partialHistory": true,
+   "announces": [
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-08-13T20:00:42.951Z"
+    },
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-08-13T20:00:43.087Z"
+    }
+   ],
    "snapshots": [
     {
      "ts": "2026-08-21T04:53:16.790Z",
@@ -10706,6 +10766,23 @@
    "show": "dive-radio",
    "active": true,
    "partialHistory": false,
+   "announces": [
+    {
+     "account": "designertom",
+     "role": "promo",
+     "ts": "2026-08-20T19:21:54.714Z"
+    },
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-08-20T20:00:20.048Z"
+    },
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-08-20T20:00:20.714Z"
+    }
+   ],
    "snapshots": [
     {
      "ts": "2026-08-21T04:53:16.790Z",

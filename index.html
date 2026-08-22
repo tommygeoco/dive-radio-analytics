@@ -59,6 +59,21 @@
   .hero .spark .cv { position: relative; height: 64px; width: 100%; }
   .hero .spark .cap { font-size: 12px; color: var(--t3); text-align: right; }
 
+  /* ---- compounding strip: is the show growing? (PRD v2 W2) ---- */
+  .compound { background: var(--s1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px 14px; margin-bottom: 12px; }
+  .compound .ch { font-size: 13px; font-weight: 700; color: var(--t2); text-transform: uppercase;
+    letter-spacing: .04em; margin-bottom: 2px; }
+  .compound .cv2 { font-size: 15px; font-weight: 600; margin: 2px 0 10px; }
+  .compound .bars { display: flex; gap: 10px; align-items: flex-end; }
+  .compound .cbar { flex: 1; text-align: center; min-width: 0; }
+  .compound .cbar .bwrap { height: 56px; display: flex; align-items: flex-end; justify-content: center; }
+  .compound .cbar .b { width: 70%; max-width: 46px; border-radius: 4px 4px 0 0; min-height: 3px; }
+  .compound .cbar .b.none { border: 1px dashed var(--border-strong); background: none; height: 100%; border-bottom: none; }
+  .compound .cbar .bl { font-size: 12px; font-weight: 700; margin-top: 4px; }
+  .compound .cbar .bv { font-size: 12px; color: var(--t3); }
+  .compound .note { font-size: 12px; color: var(--t3); margin-top: 8px; }
+
   /* ---- Layer 1: episode strip (selector + legend; oldest → newest, latest far right) ---- */
   .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
     scrollbar-width: thin; }
@@ -246,12 +261,12 @@
   <div class="hero" id="hero"></div>
   <div class="strip" id="strip"></div>
   <div class="panel" id="panel" style="display:none"></div>
+  <div class="compound" id="compound" style="display:none"></div>
 
   <div class="controls">
     <span class="seg growth-only" id="mode">
       <button data-v="standings">Standings</button>
       <button data-v="race">Pacing race</button>
-      <button data-v="delta">Weekly gains</button>
     </span>
     <button class="toggle traj-only" id="bydate">by date</button>
     <button class="reset" id="reset">reset view</button>
@@ -617,6 +632,47 @@ function openDrill(slug, filter) {
   document.getElementById("drill").classList.add("on");
 }
 function closeDrill() { document.getElementById("drill").classList.remove("on"); }
+/* ================= compounding strip: is the show growing? (PRD v2 W2) ================= */
+function buildCompound() {
+  const el = document.getElementById("compound");
+  const rows = DATA.showTrend?.week1VelocityByEpisode || [];
+  if (state.view === "live" || !rows.length) { el.style.display = "none"; el.innerHTML = ""; return; }
+  const enriched = rows.map(r => ({ ...r, e: EPS.find(x => x.slug === r.slug) })).filter(r => r.e);
+  const vals = enriched.filter(r => r.value != null);
+  const max = Math.max(1, ...vals.map(r => r.value));
+  // verdict in plain words — same-unit comparison only (YT views, week 1)
+  let verdict, cls = "";
+  if (vals.length < 2) {
+    verdict = "Not enough clean first weeks to call a trend yet.";
+  } else {
+    const last = vals[vals.length - 1], prev = vals[vals.length - 2];
+    const pct = Math.round(((last.value - prev.value) / prev.value) * 100);
+    if (Math.abs(pct) <= 5) { verdict = `E${last.e.ep}'s first week matched E${prev.e.ep}'s (±${Math.abs(pct)}%) — week-1 audience is holding flat.`; }
+    else if (pct > 0) { verdict = `E${last.e.ep}'s first week beat E${prev.e.ep}'s by ${pct}% — each launch is starting bigger.`; cls = "up"; }
+    else { verdict = `E${last.e.ep}'s first week came in ${Math.abs(pct)}% under E${prev.e.ep}'s — launches aren't growing yet.`; cls = "down"; }
+  }
+  let bars = "";
+  const pending = [];
+  for (const r of enriched) {
+    const isPending = r.value == null && /pending/i.test(r.note || "");
+    if (isPending) {
+      const end = new Date(premiereMs(r.premiere) + 7 * DAY);
+      pending.push(`E${r.e.ep}'s first week completes ${String(end.getUTCMonth() + 1).padStart(2, "0")}/${String(end.getUTCDate()).padStart(2, "0")}`);
+    }
+    const bv = r.value != null ? kfmt(r.value) : (isPending ? "soon" : "late reg");
+    bars += `<div class="cbar" title="${r.value != null ? r.value + " YouTube views in week 1" : (r.note || "")}">
+      <div class="bwrap">${r.value != null
+        ? `<div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div>`
+        : `<div class="b none"></div>`}</div>
+      <div class="bl" style="color:${color(r.e)}">E${r.e.ep}</div><div class="bv">${bv}</div></div>`;
+  }
+  el.innerHTML = `<div class="ch">Is the show growing?</div>
+    <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>
+    <div class="bars">${bars}</div>
+    <div class="note">Each bar = YouTube views in that episode's first 7 days — the cleanest same-age comparison we have. Hollow bars have no honest week-1 number (registered late — we never invent history).${pending.length ? " " + pending.join(" · ") + "." : ""}</div>`;
+  el.style.display = "";
+}
+
 function renderDrill() {
   const e = EPS.find(x => x.slug === drillState.slug);
   if (!e) return;
@@ -674,7 +730,7 @@ function chartTitle() {
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
     return ["Total views by episode", "YouTube views + X broadcast plays (all video playback)" + (anyPartial ? " · ◐ = partial plays coverage" : "")];
   }
-  if (state.mode === "race") return ["Pacing race — YouTube views only", "newest highlighted, priors gray · click any card to focus it · cumulative " + (state.byDate ? "by date" : "since premiere")];
+  if (state.mode === "race") return ["Pacing race — YouTube views only", "newest highlighted, priors gray · ▲ on the floor = announce post · click any card to focus it · cumulative " + (state.byDate ? "by date" : "since premiere")];
   return ["Weekly gains — YouTube views only", "views gained per week, episodes side by side"];
 }
 
@@ -715,7 +771,7 @@ const endLabels = {
     const items = [];
     chart.data.datasets.forEach((ds, i) => {
       const meta = chart.getDatasetMeta(i);
-      if (meta.hidden || !meta.data.length || ds.spark) return;
+      if (meta.hidden || !meta.data.length || ds.spark || ds.isAnnounce) return;
       const pt = meta.data[meta.data.length - 1];
       items.push({ x: pt.x, y: pt.y, text: "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
     });
@@ -905,6 +961,7 @@ function render() {
   buildHero();
   buildStrip();
   buildPanel();
+  buildCompound();
   buildTable();
   buildEmptyNote();
   syncUI();
@@ -1004,6 +1061,27 @@ function render() {
       barThickness: isDelta ? 14 : undefined,
     };
   });
+
+  // Announce receipts (PRD v2 W6): each host's X announce post as a triangle
+  // on the chart floor — a views bump gets a visible cause candidate. Markers
+  // sit at y=0 on purpose: plotting them on the line would fake a data point.
+  if (isRace) {
+    const mpts = [];
+    for (const e of source) {
+      if (state.solo && state.solo !== e.slug) continue;
+      for (const a of e.announces || []) {
+        const x = (Date.parse(a.ts) - premiereMs(e.premiere)) / DAY;
+        if (!isFinite(x) || x < 0 || x > 60) continue;
+        mpts.push({ x, y: 0, acct: a.account });
+      }
+    }
+    if (mpts.length) datasets.push({
+      isAnnounce: true, type: "scatter", data: mpts, showLine: false,
+      pointStyle: "triangle", pointRadius: 5, pointHoverRadius: 5, pointHitRadius: 0,
+      backgroundColor: mpts.map(p => PLAT_COLORS["x:" + p.acct] || "#8a94a7"),
+      borderColor: "transparent", order: 5,
+    });
+  }
 
   const cfg = {
     type: isDelta ? "bar" : "line",
@@ -1114,8 +1192,10 @@ function applyChartState(cs) {
   state.view = cs.view || "growth";
   if (cs.view === "live") { state.mode = "standings"; }
   else {
+    // Weekly-gains (delta) chart removed 2026-08-22 (owner: "only YouTube and
+    // not clear") — anything that used to route there goes to the race view.
     const chartKind = cs.chart || (cs.yMode === "delta" || cs.xMode === "calendar" ? "trajectory" : "standings");
-    state.mode = chartKind === "standings" ? "standings" : (cs.yMode === "delta" ? "delta" : "race");
+    state.mode = chartKind === "standings" ? "standings" : "race";
     state.byDate = cs.xMode === "calendar";
   }
   state.solo = cs.solo || null;
