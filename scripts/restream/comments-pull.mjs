@@ -228,16 +228,6 @@ async function main() {
   }
   console.log(`comments: pulled ${shows.length} show(s), ${totalNew} new comment(s)${sourceErrors.length ? ` — WARN ${sourceErrors.join("; ")}` : ""}`);
 
-  // Sentiment: classify only comments new to the store (incremental; existing
-  // labels are never touched here). Best-effort — a classifier failure must
-  // never block the pull; the validator surfaces unclassified backlog instead.
-  try {
-    const { classifyNew } = await import("./comments-sentiment.mjs");
-    const res = classifyNew();
-    if (res.added > 0) console.log(`comments: sentiment classified ${res.added} new (${res.total} in store)`);
-  } catch (e) {
-    console.log(`WARN comments sentiment: ${e.message.slice(0, 120)}`);
-  }
 }
 
 main().catch((err) => {

@@ -27,6 +27,7 @@ const ROOT = join(HERE, "..", "..");
 const DATA_PATH = join(ROOT, "data.json");
 const STATE_PATH = join(ROOT, "data", "restream", "alerts-state.json");
 const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
+const CLASSIFIED_PATH = join(ROOT, "data", "restream", "comments-classified.json");
 const NEG_SPIKE = 3; // new negative comments in one day that count as a spike
 
 function loadJson(path, fallback) {
@@ -41,25 +42,27 @@ function saveAtomic(path, obj) {
 }
 const short = (t) => t.replace(/^Dive Radio:\s*/i, "");
 
-function snapshotState(data) {
+export function snapshotState(data) {
   const eps = data.episodes;
   const newest = eps[eps.length - 1];
-  const neg = {}, w1v = {};
+  const complaints = {}, w1v = {};
   let staleCount = 0;
   for (const e of eps) {
-    neg[e.slug] = e.comments?.sentiment?.negative ?? 0;
+    complaints[e.slug] = e.comments?.complaintCount ?? 0;
     if (e.latest?.totalViewsInfo?.stale) staleCount++;
   }
   for (const v of data.showTrend?.week1VelocityByEpisode || []) w1v[v.slug] = v.value;
+  const classified = loadJson(CLASSIFIED_PATH, { classified: {} });
+  const reviewCount = Object.values(classified.classified || {}).filter((x) => x.state === "review").length;
   return {
     episodeCount: eps.length,
     newestSlug: newest?.slug ?? null,
     paceRank: data.showTrend?.paceRank ?? null,
-    neg, w1v, staleCount,
+    complaints, reviewCount, w1v, staleCount,
   };
 }
 
-function detect(prev, cur, data) {
+export function detect(prev, cur, data) {
   const out = [];
   const eps = data.episodes;
   const byslug = (s) => eps.find((e) => e.slug === s);
@@ -79,13 +82,19 @@ function detect(prev, cur, data) {
     out.push(`E${e?.ep} (${short(e?.title ?? cur.newestSlug)}) moved ${dir} to #${cur.paceRank.rank} of ${cur.paceRank.of} on same-age YouTube pace (was #${prev.paceRank.rank}).`);
   }
 
-  // 3. negative-comment spike
-  for (const [slug, n] of Object.entries(cur.neg)) {
-    const before = prev.neg?.[slug] ?? 0;
+  // 3. new people raising concerns
+  for (const [slug, n] of Object.entries(cur.complaints)) {
+    const before = prev.complaints?.[slug] ?? n;
     if (n - before >= NEG_SPIKE) {
       const e = byslug(slug);
-      out.push(`E${e?.ep} (${short(e?.title ?? slug)}) picked up ${n - before} negative comments since yesterday — worth a read (dashboard → episode → comments).`);
+      out.push(`E${e?.ep} (${short(e?.title ?? slug)}) had ${n - before} more people raise concerns since yesterday — worth a read (dashboard → episode → audience feedback).`);
     }
+  }
+
+  // 3b. classifier disagreements need human review and never reach the page.
+  if (cur.reviewCount > (prev.reviewCount ?? 0)) {
+    const added = cur.reviewCount - (prev.reviewCount ?? 0);
+    out.push(`${added} audience comment${added === 1 ? " needs" : "s need"} label review — held off the dashboard until a person resolves it.`);
   }
 
   // 4. a first week just completed (week-1 number newly available)
@@ -106,29 +115,31 @@ function detect(prev, cur, data) {
   return out;
 }
 
-const emitMode = process.argv.includes("--emit");
-
-if (emitMode) {
-  const queue = loadJson(QUEUE_PATH, []);
-  if (!queue.length) { console.log("dive-alerts: queue empty — nothing to say."); process.exit(0); }
-  console.log("Dive Radio — what changed:");
-  for (const line of queue) console.log(`• ${line}`);
-  saveAtomic(QUEUE_PATH, []);
-} else {
-  const data = JSON.parse(readFileSync(DATA_PATH, "utf8"));
-  const cur = snapshotState(data);
-  const prev = loadJson(STATE_PATH, null);
-  if (!prev) {
-    saveAtomic(STATE_PATH, cur);
-    console.log("alerts: state bootstrapped — no alerts on first run.");
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  const emitMode = process.argv.includes("--emit");
+  if (emitMode) {
+    const queue = loadJson(QUEUE_PATH, []);
+    if (!queue.length) { console.log("dive-alerts: queue empty — nothing to say."); process.exit(0); }
+    console.log("Dive Radio — what changed:");
+    for (const line of queue) console.log(`• ${line}`);
+    saveAtomic(QUEUE_PATH, []);
   } else {
-    const found = detect(prev, cur, data);
-    if (found.length) {
-      const queue = loadJson(QUEUE_PATH, []);
-      for (const line of found) if (!queue.includes(line)) queue.push(line);
-      saveAtomic(QUEUE_PATH, queue);
+    const data = JSON.parse(readFileSync(DATA_PATH, "utf8"));
+    const cur = snapshotState(data);
+    const prev = loadJson(STATE_PATH, null);
+    if (!prev) {
+      saveAtomic(STATE_PATH, cur);
+      console.log("alerts: state bootstrapped — no alerts on first run.");
+    } else {
+      const found = detect(prev, cur, data);
+      if (found.length) {
+        const queue = loadJson(QUEUE_PATH, []);
+        for (const line of found) if (!queue.includes(line)) queue.push(line);
+        saveAtomic(QUEUE_PATH, queue);
+      }
+      saveAtomic(STATE_PATH, cur);
+      console.log(`alerts: ${found.length} material change(s)${found.length ? " queued" : ""}.`);
     }
-    saveAtomic(STATE_PATH, cur);
-    console.log(`alerts: ${found.length} material change(s)${found.length ? " queued" : ""}.`);
   }
 }

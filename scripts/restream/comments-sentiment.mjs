@@ -1,6 +1,9 @@
 #!/usr/bin/env node
-// comments-sentiment.mjs — deterministic sentiment classification for stored
-// audience comments (data/restream/comments/*.json).
+// comments-sentiment.mjs — legacy deterministic sentiment helper.
+// W8 replaced this store as the source of truth with comments-classify.mjs.
+// The dashboard now imports only hasNegativeSignal() as a conservative veto:
+// a model-confirmed positive comment carrying complaint wording cannot become
+// a featured quote. This script is not part of the daily classification chain.
 //
 // Method: wordlist-v1. Zero-model, zero-network, pure function of the text —
 // same text always yields the same label. Known limits (accepted for v1, see
@@ -18,7 +21,6 @@
 // CLI:  node scripts/restream/comments-sentiment.mjs            # classify new
 //       node scripts/restream/comments-sentiment.mjs --reclassify-all
 // API:  classifyText(text) -> label · classifyNew() -> {added, total}
-//       (comments-pull.mjs calls classifyNew() best-effort after each pull)
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";

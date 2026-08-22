@@ -281,7 +281,7 @@ export function computeAll({ now = Date.now() } = {}) {
   }
 
   attachLiveSessions(dive, registry);
-  attachComments(dive);
+  const commentSummary = attachComments(dive);
   attachRatings(dive);
 
   const insights = buildInsights(dive, { now, median });
@@ -315,6 +315,7 @@ export function computeAll({ now = Date.now() } = {}) {
     episodes,
     insights,
     showTrend,
+    commentSummary,
   };
 }
 
@@ -332,57 +333,110 @@ function attachRatings(dive) {
   }
 }
 
-// --- audience comments (collected by comments-pull.mjs) ---
-// Featured = positive, non-host comments ranked by likes + positive signal.
-// Hosts are excluded at pull time; ranking is deterministic (no model).
-// PRAISE is a positive-signal booster for ranking, no longer the gate: a
-// featured quote must ALSO be sentiment-positive (critic F-C1 \u2014 the regex
-// alone featured "love the show, but the quality is sooo poor" as praise).
-// \blol\b removed: a laugh marker is not praise.
+// --- audience comments (captured by comments-pull.mjs, labeled by comments-classify.mjs) ---
+// The model store is the only surfacing source of truth. This exporter stays
+// deterministic. The old wordlist remains only as the featured-quote negative
+// veto required by the W8 cross-check contract.
 const PRAISE = /love|great|awesome|amazing|best|fantastic|incredible|fire|banger|peak|favorite|favourite|brilliant|gold|smiled|laughed|chuckl|funny|haha|enjoyed|insightful|learned|excellent|goated|so good|well done|nailed|\ud83d\udd25|\ud83d\ude02|\u2764|\ud83d\udcaf|\ud83d\udc4f/i;
-const SENTIMENT_PATH = join(ROOT, "data", "restream", "comments-sentiment.json");
-const SENTIMENT_LABELS = new Set(["positive", "negative", "neutral"]);
+const CLASSIFIED_PATH = join(ROOT, "data", "restream", "comments-classified.json");
+const SURFACE_SENTIMENTS = new Set(["positive", "negative", "mixed"]);
+
+function commenterKey(c) {
+  if (c.authorId) return `${c.source}:id:${c.authorId}`;
+  const name = String(c.author || "viewer").trim().toLowerCase().replace(/^@/, "").replace(/\s+/g, " ");
+  return `${c.source}:name:${name}`;
+}
+
+function peopleCount(rows) {
+  return new Set(rows.map(commenterKey)).size;
+}
+
+function topThemes(rows) {
+  const peopleByTheme = new Map();
+  for (const { comment, label } of rows) {
+    const person = commenterKey(comment);
+    for (const theme of label.themes || []) {
+      if (!peopleByTheme.has(theme)) peopleByTheme.set(theme, new Set());
+      peopleByTheme.get(theme).add(person);
+    }
+  }
+  // A theme claim needs at least three clean people behind it.
+  return [...peopleByTheme.entries()]
+    .map(([theme, people]) => ({ theme, count: people.size }))
+    .filter((x) => x.count >= 3)
+    .sort((a, b) => b.count - a.count || a.theme.localeCompare(b.theme))
+    .slice(0, 3);
+}
+
+function summarizeComments(rows, { totalViews = null, rateComplete = false } = {}) {
+  const feedback = rows.filter(({ label }) => label?.state === "ready" && label.relevance === "feedback");
+  const enjoy = feedback.filter(({ label }) => label.sentiment === "positive" || label.sentiment === "mixed");
+  const complaints = feedback.filter(({ label }) => label.sentiment === "negative" || label.sentiment === "mixed");
+  const uniqueCommenters = peopleCount(feedback.map(({ comment }) => comment));
+  return {
+    captured: rows.length,
+    feedbackCount: feedback.length,
+    uniqueCommenters,
+    enjoyCount: peopleCount(enjoy.map(({ comment }) => comment)),
+    complaintCount: peopleCount(complaints.map(({ comment }) => comment)),
+    commentersPer1k: rateComplete && totalViews > 0
+      ? Math.round((uniqueCommenters / totalViews) * 10000) / 10
+      : null,
+    commentersPer1kNote: rateComplete
+      ? null
+      : "Not available because some replies or watch counts are missing.",
+    enjoyThemes: topThemes(enjoy),
+    complaintThemes: topThemes(complaints),
+  };
+}
+
 function attachComments(dive) {
-  // Labels come ONLY from the persisted store (written by comments-sentiment.mjs,
-  // incremental, never silently reclassified). A comment with no stored label
-  // counts as "unclassified" \u2014 absence is never turned into a label here.
   let labels = {};
-  try { labels = JSON.parse(readFileSync(SENTIMENT_PATH, "utf8")).classified || {}; } catch { /* store absent \u2192 all unclassified */ }
+  try { labels = JSON.parse(readFileSync(CLASSIFIED_PATH, "utf8")).classified || {}; } catch { /* store absent -> nothing surfaces */ }
+  const showRows = [];
+  let showViews = 0;
+  let showRateComplete = true;
   for (const e of dive) {
     const path = join(COMMENTS_DIR, `${e.slug}.json`);
     if (!existsSync(path)) continue;
     let store;
     try { store = JSON.parse(readFileSync(path, "utf8")); } catch { continue; }
     const all = store.comments || [];
-    // Gate: sentiment-positive (when the store has labels) AND length-sane.
-    // Rank: likes, with a PRAISE-regex hit as a positive-signal boost.
-    // Falls back to PRAISE-only gating when no labels exist yet.
-    const hasLabels = Object.keys(labels).length > 0;
-    // Featuring is stricter than labeling: a quote with ANY negative evidence
-    // is vetoed even when its net label is positive ("banger episode… pls fix
-    // your streaming" must never be a pull-quote).
-    const featured = all
-      .filter((c) => c.text && c.text.length >= 8 && c.text.length <= 300 &&
-        !hasNegativeSignal(c.text) &&
-        (hasLabels ? labels[c.id]?.label === "positive" : PRAISE.test(c.text)))
+    const labeled = all.map((comment) => ({ comment, label: labels[comment.id] || null }));
+    showRows.push(...labeled);
+    showViews += e.latest.totalViews || 0;
+    const tvi = e.latest.totalViewsInfo || {};
+    const rateComplete = store.xCoverage === "covered" && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
+    if (!rateComplete) showRateComplete = false;
+    const summary = summarizeComments(labeled, { totalViews: e.latest.totalViews, rateComplete });
+    const featured = labeled
+      .filter(({ label }) => label?.state === "ready" && label.relevance === "feedback" && label.sentiment === "positive")
+      .map(({ comment }) => comment)
+      .filter((c) => c.text && c.text.length >= 8 && c.text.length <= 300 && !hasNegativeSignal(c.text))
       .map((c) => ({ ...c, score: (c.likes || 0) * 2 + (PRAISE.test(c.text) ? 1 : 0) }))
       .sort((a, b) => b.score - a.score || (a.publishedAt < b.publishedAt ? 1 : -1))
       .slice(0, 3)
       .map((c) => ({ source: c.source, author: c.author, text: c.text.slice(0, 200), likes: c.likes || 0 }));
-    const sentiment = { positive: 0, negative: 0, neutral: 0, unclassified: 0 };
-    const list = all
-      .map((c) => {
-        const label = SENTIMENT_LABELS.has(labels[c.id]?.label) ? labels[c.id].label : null;
-        sentiment[label ?? "unclassified"]++;
-        return { author: c.author, text: c.text, source: c.source, likes: c.likes || 0, at: c.publishedAt, sentiment: label };
-      })
+    const list = labeled
+      .filter(({ label }) => label?.state === "ready" && label.relevance === "feedback" && SURFACE_SENTIMENTS.has(label.sentiment))
+      .map(({ comment: c, label }) => ({
+        id: c.id,
+        author: c.author,
+        text: c.text,
+        source: c.source,
+        likes: c.likes || 0,
+        at: c.publishedAt,
+        sentiment: label.sentiment,
+        themes: label.themes,
+      }))
       .sort((a, b) => b.likes - a.likes || (a.at < b.at ? -1 : a.at > b.at ? 1 : 0) || (a.text < b.text ? -1 : 1));
     // xCoverage: "covered" = the X reply window was actually searched during
     // this episode's first week; "missed" = the episode aired before comment
     // tracking existed (X search only reaches back 7 days). Absence ≠ zero:
     // the UI must say "couldn't see it", never imply "no X replies".
-    e.comments = { total: all.length, featured, sentiment, list, xCoverage: store.xCoverage ?? null };
+    e.comments = { ...summary, featured, list, xCoverage: store.xCoverage ?? null };
   }
+  return summarizeComments(showRows, { totalViews: showViews, rateComplete: showRateComplete });
 }
 
 // --- Restream live-session data (archived by restream-analytics-ingest) ---
@@ -522,16 +576,21 @@ function liveInsights(dive) {
     recommendation: held
       ? `Turnout held up — keep the same time slot and announce rhythm.`
       : `Turnout dipped — vary the announce timing or day before touching the format itself.`,
-    caveat: `Peak concurrents from Restream across all simulcast destinations; prior-episode median of ${withLive.length - 1}.`,
+    caveat: `Peak concurrents from Restream across all simulcast destinations; compared with the typical result from ${withLive.length - 1} prior episodes.`,
     chartState: { view: "live" },
   });
   const chatLine = withLive.map((e) => `E${e.ep} ${e.live.chatMessages}`).join(" → ");
-  const chatUp =
-    withLive[withLive.length - 1].live.chatMessages >= withLive[0].live.chatMessages;
+  const launchChat = withLive[0].live.chatMessages;
+  const latestChat = newest.live.chatMessages;
+  const chatDirection = latestChat > launchChat
+    ? "up from launch"
+    : latestChat < launchChat
+      ? "down from launch"
+      : "where it started";
   out.push({
     id: "live-chat",
-    text: `Live chat is trending ${chatUp ? "up" : "down"}: ${chatLine} messages in air order. ${shortTitle(newest.title)} drew ${newest.live.chatMessages} from ${newest.live.chatters} chatters.`,
-    recommendation: chatUp
+    text: `Live chat is ${chatDirection}: ${chatLine} messages in air order. The latest show had ${newest.live.chatters} chatters.`,
+    recommendation: latestChat >= launchChat
       ? `Chat is climbing — keep the call-in segments; they're feeding it.`
       : `Chat is the call-in pipeline — seed prompts and questions mid-show instead of waiting for organic chat.`,
     caveat: `Message totals from Restream chat archives, all destinations combined.`,
@@ -637,7 +696,7 @@ function buildInsights(dive, { median }) {
       recommendation: ahead
         ? `This topic/format is landing. Note what's different about it and repeat that on the next episode.`
         : `If this episode deserves a push, push now — gains concentrate in the first weeks and the gap won't close on its own.`,
-      caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); median of ${pace.peers.length} prior episode${pace.peers.length === 1 ? "" : "s"}.`,
+      caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} prior episode${pace.peers.length === 1 ? "" : "s"}.`,
       chartState: state({ chart: "standings", solo: pace.newest.slug }),
     });
   } else if (pace) {
@@ -731,7 +790,7 @@ function buildInsights(dive, { median }) {
       id: "watch-split",
       text: `This is a genuinely two-platform show: ${Math.round((plays / views) * 100)}% of all actual watching happens on X broadcasts (${num(plays)} of ${num(views)} total views), not just YouTube with an X echo.`,
       recommendation: `Give X broadcasts first-class treatment — real titles, thumbnails, and call-outs, not simulcast leftovers.`,
-      caveat: `Per-episode X share ranges ${Math.round(shares[shares.length - 1].s * 100)}% (${refOf(shares[shares.length - 1].e)}) to ${Math.round(shares[0].s * 100)}% (${refOf(shares[0].e)}); episodes with full plays coverage only (${withPlays.length}).`,
+      caveat: `Per-episode X share ranges ${Math.round(shares[shares.length - 1].s * 100)}% (${refOf(shares[shares.length - 1].e)}) to ${Math.round(shares[0].s * 100)}% (${refOf(shares[0].e)}); only episodes with complete X play counts are included (${withPlays.length}).`,
       chartState: state({ chart: "standings" }),
     });
   }
@@ -739,16 +798,18 @@ function buildInsights(dive, { median }) {
   // 4c. reach→watch conversion on X (plays per announce impression — a
   // within-platform ratio, the legitimate way to relate the two X units).
   // Episodes under 7 days old are excluded: early reach spikes bias the
-  // ratio low before plays accumulate.
-  const convPool = withPlays.filter((e) => e.ageDays >= 7 && e.latest.xImpressions > 0);
+  // ratio low before plays accumulate. Promo outliers are excluded because
+  // promotion changes the audience mix and makes the hook comparison noisy.
+  const cleanWithPlays = withPlays.filter((e) => !e.metrics.anomaly);
+  const convPool = cleanWithPlays.filter((e) => e.ageDays >= 7 && e.latest.xImpressions > 0);
   if (convPool.length >= 3) {
     const ranked = convPool.map((e) => ({ e, r: e.latest.xPlays / e.latest.xImpressions })).sort((a, b) => b.r - a.r);
     const hi = ranked[0], lo = ranked[ranked.length - 1];
     insights.push({
       id: "reach-conversion",
       text: `Announce hooks close very differently: ${refOf(hi.e)} turned ${Math.round(hi.r * 100)} of every 100 announce impressions into actual plays; ${refOf(lo.e)} managed only ${Math.round(lo.r * 100)}.`,
-      recommendation: `Reuse ${refOf(hi.e)}'s announce format — its hook converted ${Math.max(2, Math.round(hi.r / Math.max(lo.r, 0.001)))}× better. High reach with low conversion means the post traveled but didn't sell the click.`,
-      caveat: `X-only ratio (broadcast plays per announce impression); ≥7-day-old episodes, sample of ${ranked.length}.`,
+      recommendation: `Reuse ${refOf(hi.e)}'s announce format — more of the people who saw that post chose to watch. High reach with few plays means the post traveled but didn't sell the click.`,
+      caveat: `X broadcast plays for every 100 announce impressions; episodes at least 7 days old, with promo outliers left out, sample of ${ranked.length}.`,
       chartState: state({ chart: "standings" }),
     });
   }
@@ -757,7 +818,7 @@ function buildInsights(dive, { median }) {
   // the watch-side complement to the reach-based host split above
   {
     let riddP = 0, tomP = 0, n = 0;
-    for (const e of withPlays) {
+    for (const e of cleanWithPlays) {
       const r = e.latest.byDest["x:ridd_design"]?.plays;
       const t = e.latest.byDest["x:designertom"]?.plays;
       if (r != null && t != null) { riddP += r; tomP += t; n++; }
@@ -776,7 +837,7 @@ function buildInsights(dive, { median }) {
         recommendation: nearEven
           ? `No flagship change warranted — both rooms pull their weight. Optimize the announces (where the split is real) instead.`
           : `If the split holds, make ${lead}'s account the flagship broadcast and use ${other}'s for clips and reposts.`,
-        caveat: `Episodes where both hosts' plays are known (${n}).`,
+        caveat: `Episodes where both hosts' plays are known, with promo outliers left out (${n}).`,
         chartState: state({ chart: "standings" }),
       });
     }
@@ -804,7 +865,7 @@ function buildInsights(dive, { median }) {
       id: "engagement",
       text: `${refOf(hi)} pulled the most engaged viewers — ${hi.metrics.engagementPer1k} likes+comments per 1,000 YouTube views; ${refOf(lo)} the least at ${lo.metrics.engagementPer1k}.`,
       recommendation: `Mine ${refOf(hi)}'s comments for what hooked people — that topic drove interaction, not just plays.`,
-      caveat: `YouTube only; ≥7-day-old episodes (engagement ratios drift with age), sample of ${eng.length}.`,
+      caveat: `YouTube only; episodes at least 7 days old because likes and comments per 1,000 views change with age, sample of ${eng.length}.`,
       chartState: state({ chart: "trajectory" }),
     });
   }
@@ -816,8 +877,8 @@ function buildInsights(dive, { median }) {
     const codeList = codes.length > 1 ? codes.slice(0, -1).join(", ") + " and " + codes[codes.length - 1] : codes[0];
     insights.push({
       id: "partial-history",
-      text: `${codeList} ${partial.length === 1 ? "was" : "were"} registered late — ${partial.length === 1 ? "its" : "their"} early weekly history doesn't exist. Totals are right; week-1 and velocity comparisons aren't.`,
-      recommendation: `Nothing to do — the flags are automatic. Just don't read week-1 or velocity comparisons for these episodes.`,
+      text: `${codeList} ${partial.length === 1 ? "was" : "were"} registered late — ${partial.length === 1 ? "its" : "their"} early weekly history doesn't exist. Totals are right; first-week growth comparisons aren't.`,
+      recommendation: `Nothing to do — the flags are automatic. Just don't read first-week growth comparisons for these episodes.`,
       caveat: `Tracked late: ${partial.map((e) => refOf(e)).join(", ")}. Marked "tracked late" in the episode panel.`,
       chartState: state({}),
     });
@@ -840,7 +901,7 @@ export function trendsText(data) {
   if (vels.length >= 2) {
     const dir = vels[vels.length - 1].value >= vels[0].value ? "up" : "down";
     lines.push(
-      `• Week-1 velocity in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
+      `• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
     );
   }
   // W9: newest episode's rating, read from the same store as every dashboard surface
@@ -849,12 +910,21 @@ export function trendsText(data) {
   if (r && r.rank != null) {
     const missing = r.coverage?.missingPillars || [];
     const basis = missing.length
-      ? ` — basis excludes ${missing.map((m) => m.replace(/ \(.*\)$/, "")).join(", ")}`
+      ? ` — still missing ${missing.map((m) => m.replace(/ \(.*\)$/, "")).join(", ")}`
       : "";
     const prov = r.provisional
       ? ` (provisional; freezes ${new Date(premiereMs(newest.premiere) + 7 * DAY).toISOString().slice(5, 10).replace("-", "/")} when week 1 completes)`
       : "";
     lines.push(`• Rating: ${shortTitle(newest.title)} ranks #${r.rank} of ${r.n} against the most recent episodes as of its air date${prov}${basis}.`);
+  }
+  // W8: newest-episode feedback, read from the same exported rollup as the page.
+  const c = newest?.comments;
+  if (c) {
+    const enjoyed = c.enjoyCount ? `${c.enjoyCount} ${c.enjoyCount === 1 ? "person enjoyed" : "people enjoyed"} something` : "no praise yet";
+    const concerns = c.complaintCount ? `${c.complaintCount} ${c.complaintCount === 1 ? "person raised" : "people raised"} a concern` : "no complaints";
+    const rate = c.commentersPer1k != null ? `; ${c.commentersPer1k} people per 1,000 watches` : "";
+    const top = c.enjoyThemes?.[0] ? `; top bright spot: ${c.enjoyThemes[0].theme} — ${c.enjoyThemes[0].count} people` : "";
+    lines.push(`• Audience feedback: ${c.uniqueCommenters} ${c.uniqueCommenters === 1 ? "person" : "people"} commented; ${enjoyed}; ${concerns}${rate}${top}.`);
   }
   return lines.join("\n");
 }

@@ -26,6 +26,7 @@
 //   missing plays in the latest snapshot, snapshot gaps > 26h in the last 7 days.
 
 import { readFileSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -237,12 +238,12 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const HOSTS = new Set(["@ridd_design", "@designertom", "ridd_design", "designertom"]);
-  // negative-signal veto uses the same deterministic wordlist as the labels
+  // Featured quotes still pass the old deterministic negative-word cross-check.
   let negSignal = null;
   try { ({ hasNegativeSignal: negSignal } = await import(join(ROOT, "scripts", "restream", "comments-sentiment.mjs"))); }
   catch { warn("comments: sentiment module unavailable — negative-veto check skipped"); }
-  let sentiStore = null;
-  try { sentiStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments-sentiment.json"), "utf8")); } catch { /* absent */ }
+  let classifiedStore = null;
+  try { classifiedStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments-classified.json"), "utf8")); } catch { /* absent */ }
   const XCOV = new Set(["covered", "missed", null]);
   for (const e of eps) {
     if (!e.comments) continue;
@@ -263,9 +264,11 @@ function premiereMs(dateStr) {
       if (raw) {
         const src = (raw.comments || []).find((c) => c.author === q.author && c.text.startsWith(q.text.replace(/…$/, "")));
         if (!src) { bad++; fail(`${e.slug}: featured quote by "${q.author}" not found in the comments store — provenance broken`); }
-        else if (sentiStore?.classified && Object.keys(sentiStore.classified).length) {
-          const lbl = sentiStore.classified[src.id]?.label;
-          if (lbl !== "positive") { bad++; fail(`${e.slug}: featured quote by "${q.author}" is classified "${lbl ?? "unclassified"}" — only sentiment-positive comments may be featured`); }
+        else if (classifiedStore?.classified) {
+          const lbl = classifiedStore.classified[src.id];
+          if (lbl?.state !== "ready" || lbl.relevance !== "feedback" || lbl.sentiment !== "positive") {
+            bad++; fail(`${e.slug}: featured quote by "${q.author}" is not ready positive feedback — only confirmed praise may be featured`);
+          }
         }
       }
     }
@@ -273,64 +276,164 @@ function premiereMs(dateStr) {
   if (!bad) ok("comments: featured quotes capped, host-free, length-bounded, inert, provenance-checked, sentiment-positive");
 }
 
-// --- 1e. comment sentiment (counts match the persisted store; shipped text inert) ---
-// Sentiment labels live in data/restream/comments-sentiment.json (per comment
-// id, incremental, explicit reclassification only). data.json must agree with
-// a recompute from raw comments + store, so a count can never drift from its
-// classifications. Absence ≠ zero: unlabeled comments are "unclassified".
+// --- 1e. W8 audience feedback: model store, gates, rollups, and surface exclusion ---
 {
   let bad = 0;
-  const LEGAL = new Set(["positive", "negative", "neutral"]);
-  const BUCKETS = ["positive", "negative", "neutral", "unclassified"];
+  const RELEVANCE = new Set(["feedback", "noise"]);
+  const SENTIMENTS = new Set(["positive", "negative", "neutral", "mixed"]);
+  const SURFACED = new Set(["positive", "negative", "mixed"]);
   const ACTIVE = /<script|javascript:|on\w+\s*=|<iframe|data:text\/html/i;
   let store = null;
-  try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments-sentiment.json"), "utf8")); } catch { /* absent */ }
+  try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments-classified.json"), "utf8")); } catch { /* absent */ }
   const labels = store?.classified || {};
-  let sawSentiment = false;
-  let unclassifiedTotal = 0;
-  for (const e of eps) {
-    if (!e.comments) continue;
-    const s = e.comments.sentiment;
-    const list = e.comments.list;
-    if (!s || !list) { bad++; fail(`${e.slug}: comments.sentiment/list missing — sentiment fields must ship with comments`); continue; }
-    sawSentiment = true;
-    for (const k of Object.keys(s)) if (!BUCKETS.includes(k)) { bad++; fail(`${e.slug}: illegal sentiment bucket "${k}"`); }
-    const sum = BUCKETS.reduce((a, k) => a + (s[k] || 0), 0);
-    if (sum !== e.comments.total) { bad++; fail(`${e.slug}: sentiment buckets sum ${sum} != comments.total ${e.comments.total}`); }
-    if (list.length !== e.comments.total) { bad++; fail(`${e.slug}: comments.list has ${list.length} rows, total says ${e.comments.total}`); }
-    unclassifiedTotal += s.unclassified || 0;
-    // recompute from the raw comments file + store — catches build/store drift
+  if (!store) {
+    bad++; fail("comments: comments-classified.json absent — no feedback may publish without the gated store");
+  } else {
     try {
-      const raw = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments", `${e.slug}.json`), "utf8"));
-      const rec = { positive: 0, negative: 0, neutral: 0, unclassified: 0 };
-      for (const c of raw.comments || []) {
-        const l = labels[c.id]?.label;
-        rec[LEGAL.has(l) ? l : "unclassified"]++;
+      const classifier = await import(join(ROOT, "scripts", "restream", "comments-classify.mjs"));
+      const vocabulary = classifier.THEME_VOCABULARY;
+      const prompt = readFileSync(join(ROOT, "scripts", "restream", "comments-classify-prompt.md"), "utf8");
+      const promptHash = createHash("sha256").update(prompt).digest("hex");
+      const configHash = createHash("sha256").update(JSON.stringify({
+        version: classifier.CLASSIFIER_VERSION,
+        promptVersion: classifier.PROMPT_VERSION,
+        promptHash,
+        model: store.model,
+        provider: store.provider,
+        vocabulary,
+      })).digest("hex");
+      if (store.version !== classifier.CLASSIFIER_VERSION) { bad++; fail(`comments: store version ${store.version} != classifier version ${classifier.CLASSIFIER_VERSION}`); }
+      if (store.promptVersion !== classifier.PROMPT_VERSION || store.promptHash !== promptHash) { bad++; fail("comments: prompt stamp does not match the versioned classifier prompt"); }
+      if (JSON.stringify(store.vocabulary) !== JSON.stringify(vocabulary)) { bad++; fail("comments: stored theme vocabulary does not match the classifier"); }
+      if (store.configHash !== configHash) { bad++; fail("comments: classifier config hash does not match model, prompt, version, and vocabulary"); }
+      if (!store.golden?.passed || store.golden.configHash !== configHash || store.golden.relevance?.pct !== 100 || store.golden.sentiment?.pct < 95) {
+        bad++; fail("comments: current classifier config lacks a passing 100% relevance / 95% sentiment golden gate");
       }
-      for (const k of BUCKETS) {
-        if (rec[k] !== (s[k] || 0)) { bad++; fail(`${e.slug}: sentiment.${k}=${s[k] || 0} but store recompute gives ${rec[k]} — counts drifted from stored classifications`); }
+      if (store.lastRun?.status !== "complete" || store.lastRun?.pendingIds?.length) { bad++; fail("comments: latest classifier run is pending — publish must stop"); }
+      const themeSet = new Set(vocabulary);
+      for (const [id, label] of Object.entries(labels)) {
+        if (!new Set(["ready", "review"]).has(label.state)) { bad++; fail(`comments: ${id} has illegal state "${label.state}"`); }
+        if (!RELEVANCE.has(label.relevance) || !SENTIMENTS.has(label.sentiment)) { bad++; fail(`comments: ${id} has an illegal relevance or sentiment label`); }
+        if (!Array.isArray(label.themes) || label.themes.length > 2 || label.themes.some((t) => !themeSet.has(t))) { bad++; fail(`comments: ${id} has illegal themes`); }
+        if (label.relevance === "noise" && (label.sentiment !== "neutral" || label.themes.length)) { bad++; fail(`comments: ${id} noise must be neutral with no themes`); }
+        if (label.relevance === "feedback" && label.sentiment !== "neutral" && label.themes.length < 1) { bad++; fail(`comments: ${id} evaluative feedback needs a theme`); }
+        if (typeof label.confidence !== "number" || label.confidence < 0 || label.confidence > 1) { bad++; fail(`comments: ${id} confidence outside 0..1`); }
+        if (label.classifierVersion !== store.version || label.promptVersion == null || !label.model || !label.classifiedAt) { bad++; fail(`comments: ${id} missing classifier stamps`); }
       }
     } catch (err) {
-      bad++; fail(`${e.slug}: cannot recompute sentiment from raw comments — ${err.message}`);
-    }
-    for (const row of list) {
-      if (row.sentiment != null && !LEGAL.has(row.sentiment)) { bad++; fail(`${e.slug}: comment row carries illegal sentiment "${row.sentiment}"`); }
-      if (ACTIVE.test(row.text || "") || ACTIVE.test(row.author || "")) { bad++; fail(`${e.slug}: active content in shipped comment text/author — escape/render risk`); }
+      bad++; fail(`comments: classifier config validation threw — ${err.message}`);
     }
   }
-  if (unclassifiedTotal > 0) warn(`sentiment: ${unclassifiedTotal} comment(s) unclassified — classifier behind the pull (run scripts/restream/comments-sentiment.mjs)`);
+
+  const personKey = (c) => {
+    if (c.authorId) return `${c.source}:id:${c.authorId}`;
+    return `${c.source}:name:${String(c.author || "viewer").trim().toLowerCase().replace(/^@/, "").replace(/\s+/g, " ")}`;
+  };
+  const peopleCount = (rows) => new Set(rows.map(personKey)).size;
+  const topThemes = (rows) => {
+    const byTheme = new Map();
+    for (const { comment, label } of rows) {
+      for (const theme of label.themes || []) {
+        if (!byTheme.has(theme)) byTheme.set(theme, new Set());
+        byTheme.get(theme).add(personKey(comment));
+      }
+    }
+    return [...byTheme.entries()].map(([theme, people]) => ({ theme, count: people.size }))
+      .filter((x) => x.count >= 3)
+      .sort((a, b) => b.count - a.count || a.theme.localeCompare(b.theme)).slice(0, 3);
+  };
+  const summarize = (rows, totalViews, rateComplete) => {
+    const feedback = rows.filter(({ label }) => label?.state === "ready" && label.relevance === "feedback");
+    const enjoy = feedback.filter(({ label }) => label.sentiment === "positive" || label.sentiment === "mixed");
+    const complaints = feedback.filter(({ label }) => label.sentiment === "negative" || label.sentiment === "mixed");
+    const uniqueCommenters = peopleCount(feedback.map(({ comment }) => comment));
+    return {
+      captured: rows.length,
+      feedbackCount: feedback.length,
+      uniqueCommenters,
+      enjoyCount: peopleCount(enjoy.map(({ comment }) => comment)),
+      complaintCount: peopleCount(complaints.map(({ comment }) => comment)),
+      commentersPer1k: rateComplete && totalViews > 0 ? Math.round((uniqueCommenters / totalViews) * 10000) / 10 : null,
+      commentersPer1kNote: rateComplete ? null : "Not available because some replies or watch counts are missing.",
+      enjoyThemes: topThemes(enjoy),
+      complaintThemes: topThemes(complaints),
+    };
+  };
+
+  const known = new Set();
+  const showRows = [];
+  let showViews = 0;
+  let showRateComplete = true;
+  let reviewCount = 0;
+  for (const e of eps) {
+    if (!e.comments) continue;
+    try {
+      const raw = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments", `${e.slug}.json`), "utf8"));
+      const rows = (raw.comments || []).map((comment) => {
+        known.add(comment.id);
+        if (!labels[comment.id]) { bad++; fail(`${e.slug}: ${comment.id} has no classifier entry — pending comments block publish`); }
+        return { comment, label: labels[comment.id] || null };
+      });
+      showRows.push(...rows);
+      showViews += e.latest.totalViews || 0;
+      const tvi = e.latest.totalViewsInfo || {};
+      const rateComplete = raw.xCoverage === "covered" && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
+      if (!rateComplete) showRateComplete = false;
+      const expected = summarize(rows, e.latest.totalViews, rateComplete);
+      for (const [key, value] of Object.entries(expected)) {
+        if (JSON.stringify(e.comments[key]) !== JSON.stringify(value)) { bad++; fail(`${e.slug}: comments.${key} disagrees with the classified-store recompute`); }
+      }
+      if ((e.comments.xCoverage ?? null) !== (raw.xCoverage ?? null)) { bad++; fail(`${e.slug}: X reply marker was lost between capture and export`); }
+
+      const expectedIds = rows.filter(({ label }) => label?.state === "ready" && label.relevance === "feedback" && SURFACED.has(label.sentiment)).map(({ comment }) => comment.id).sort();
+      const gotIds = (e.comments.list || []).map((row) => row.id).sort();
+      if (JSON.stringify(gotIds) !== JSON.stringify(expectedIds)) { bad++; fail(`${e.slug}: public feedback rows do not exactly match ready positive, negative, and mixed feedback`); }
+      for (const row of e.comments.list || []) {
+        const rawComment = (raw.comments || []).find((c) => c.id === row.id);
+        const label = labels[row.id];
+        if (!rawComment || label?.state !== "ready" || label.relevance !== "feedback" || !SURFACED.has(label.sentiment)) { bad++; fail(`${e.slug}: ${row.id} surfaced without a ready feedback label`); continue; }
+        if (row.sentiment !== label.sentiment || JSON.stringify(row.themes) !== JSON.stringify(label.themes) || row.text !== rawComment.text || row.author !== rawComment.author) { bad++; fail(`${e.slug}: ${row.id} public row drifted from raw text or stored label`); }
+        if (ACTIVE.test(row.text || "") || ACTIVE.test(row.author || "")) { bad++; fail(`${e.slug}: active content in shipped feedback text or author`); }
+      }
+    } catch (err) {
+      bad++; fail(`${e.slug}: cannot recompute audience feedback — ${err.message}`);
+    }
+  }
   if (store) {
-    const known = new Set();
-    for (const e of eps) {
-      try {
-        const raw = JSON.parse(readFileSync(join(ROOT, "data", "restream", "comments", `${e.slug}.json`), "utf8"));
-        for (const c of raw.comments || []) known.add(c.id);
-      } catch { /* covered above */ }
-    }
     const orphans = Object.keys(labels).filter((id) => !known.has(id));
-    if (orphans.length) warn(`sentiment: ${orphans.length} store entr${orphans.length === 1 ? "y" : "ies"} for ids not in any comments file (deleted/pruned comments — harmless, kept for id stability)`);
+    if (orphans.length) warn(`comments: ${orphans.length} stored label${orphans.length === 1 ? "" : "s"} no longer has a raw comment — kept for id stability`);
+    reviewCount = Object.values(labels).filter((label) => label.state === "review").length;
+    if (reviewCount) warn(`comments: ${reviewCount} label disagreement${reviewCount === 1 ? "" : "s"} held for human review and absent from the export`);
   }
-  if (!bad) ok("sentiment: buckets legal, counts match store recompute exactly, shipped text inert");
+  const expectedShow = summarize(showRows, showViews, showRateComplete);
+  if (JSON.stringify(data.commentSummary) !== JSON.stringify(expectedShow)) { bad++; fail("comments: show-level summary disagrees with the classified-store recompute"); }
+
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  if (!html.includes('c.sentiment === "positive" || c.sentiment === "mixed"') || !html.includes('c.sentiment === "negative" || c.sentiment === "mixed"')) {
+    bad++; fail("comments: mixed feedback is not wired into both dashboard reading lists");
+  }
+  try {
+    const build = await import(join(TOOL, "build-data.mjs"));
+    const slack = build.trendsText(data);
+    const newest = eps[eps.length - 1]?.comments;
+    const commenterPhrase = newest ? `${newest.uniqueCommenters} ${newest.uniqueCommenters === 1 ? "person" : "people"} commented` : "";
+    if (!slack.includes("• Audience feedback:") || (newest && !slack.includes(commenterPhrase))) {
+      bad++; fail("comments: Monday Slack line is missing or does not read the newest exported count");
+    }
+  } catch (err) {
+    bad++; fail(`comments: Slack definition-lock check threw — ${err.message}`);
+  }
+  try {
+    const alerts = await import(join(TOOL, "alerts.mjs"));
+    const alertState = alerts.snapshotState(data);
+    for (const e of eps) {
+      if (alertState.complaints?.[e.slug] !== e.comments?.complaintCount) { bad++; fail(`${e.slug}: alert concern count does not read the exported feedback count`); }
+    }
+    if (alertState.reviewCount !== reviewCount) { bad++; fail("comments: alert review count does not match the classified store"); }
+  } catch (err) {
+    bad++; fail(`comments: alert definition-lock check threw — ${err.message}`);
+  }
+  if (!bad) ok(`comments: gated model store and golden scores valid; counts/themes/store/Slack match; noise, neutral text, pending and ${reviewCount} review item(s) stay off the page`);
 }
 
 // --- 1f. insight strategy categories ---
@@ -344,6 +447,24 @@ function premiereMs(dateStr) {
     else if (i.category === "data" && !KNOWN_DATA_IDS.has(i.id)) warn(`insight ${i.id}: landed on the "data" fallback category — add it to categoryFor()`);
     if (!i.recommendation) { bad++; fail(`insight ${i.id}: recommendation missing — every insight ships the decision it informs`); }
     if (!i.text || i.text.length < 20) { bad++; fail(`insight ${i.id}: text missing or too short to be an insight`); }
+  }
+  const liveChat = data.insights.find((i) => i.id === "live-chat");
+  if (liveChat && (/\btrending\b/i.test(liveChat.text) || !/(from launch|where it started)/i.test(liveChat.text))) {
+    bad++; fail("insight live-chat: direction must say whether the newest show is up or down from launch");
+  }
+  const anomalyEpisodes = eps.filter((e) => e.metrics?.anomaly);
+  for (const id of ["reach-conversion", "host-plays-split"]) {
+    const insight = data.insights.find((i) => i.id === id);
+    if (!insight || !anomalyEpisodes.length) continue;
+    if (!/promo outliers left out/i.test(insight.caveat || "")) {
+      bad++; fail(`insight ${id}: caveat does not say promo outliers were left out`);
+    }
+    if (id === "reach-conversion") {
+      const copy = `${insight.text} ${insight.recommendation}`;
+      for (const e of anomalyEpisodes) {
+        if (new RegExp(`\\bE${e.ep}\\b`).test(copy)) { bad++; fail(`insight ${id}: cites promo outlier E${e.ep}`); }
+      }
+    }
   }
   if (!bad) ok(`insight categories: ${data.insights.length} insights all carry a legal strategy category + recommendation`);
 }
@@ -403,6 +524,47 @@ function premiereMs(dateStr) {
     }
     if (!bad) ok(`ratings: ${(store.ratings || []).length} entries — windows exclude the future, frozen entries immutable, weights sum to 1, surfaces definition-locked`);
   }
+}
+
+// --- 1h. plain reader-facing words (constitution rule 6) ---
+{
+  let bad = 0;
+  const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
+  const readerStrings = [];
+  for (const insight of data.insights || []) {
+    for (const key of ["text", "recommendation", "caveat"]) if (insight[key]) readerStrings.push(`insight ${insight.id} ${key}: ${insight[key]}`);
+  }
+  try {
+    const build = await import(join(TOOL, "build-data.mjs"));
+    readerStrings.push(`Slack trends: ${build.trendsText(data)}`);
+  } catch (err) {
+    bad++; fail(`plain words: could not build the Slack text — ${err.message}`);
+  }
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const about = html.match(/function buildAbout\(\) \{[\s\S]*?innerHTML = `([\s\S]*?)`;\n\}/)?.[1];
+  if (!about) { bad++; fail("plain words: About copy could not be found in index.html"); }
+  else readerStrings.push(`About: ${about.replace(/<[^>]+>/g, " ")}`);
+  for (const line of readerStrings) {
+    const hit = line.match(BANNED);
+    if (hit) { bad++; fail(`plain words: reader-facing copy contains "${hit[0]}" — ${line.slice(0, 180)}`); }
+  }
+  if (!bad) ok("plain words: insights, Slack, and About avoid the banned dashboard jargon");
+}
+
+// --- 1i. trend and strip honesty gates (critic follow-up) ---
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
+    bad++; fail("dashboard: first-week trend verdict is not gated until three clean weeks exist");
+  }
+  if ((html.match(/pct\s*<=\s*5/g) || []).length < 2) {
+    bad++; fail("dashboard: rating verdict does not suppress differences inside the five-point noise band");
+  }
+  if (/provisional\s+—\s+settles/i.test(html)) {
+    bad++; fail('dashboard: strip uses "provisional" instead of the plain "Not final" label');
+  }
+  if (!bad) ok("dashboard honesty: trend waits for three clean weeks and unfinished ratings use plain words");
 }
 
 // --- warnings: broadcast-resolution latches and plays coverage ---

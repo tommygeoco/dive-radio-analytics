@@ -9,6 +9,7 @@
 //
 // Run: node tools/dive-analytics/critic.mjs            (full run)
 //      node tools/dive-analytics/critic.mjs --dry      (print bundle stats, no call)
+//      node tools/dive-analytics/critic.mjs --tag W8   (keep same-day workstream reports separate)
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -45,7 +46,17 @@ function harvest() {
     engagementPer1k: e.metrics.engagementPer1k,
     anomaly: e.metrics.anomaly,
     live: e.live ? { peak: e.live.peak, avg: e.live.avg, chat: e.live.chatMessages, durationMin: e.live.durationMin } : null,
-    comments: e.comments ? { total: e.comments.total, sentiment: e.comments.sentiment, xCoverage: e.comments.xCoverage } : null,
+    comments: e.comments ? {
+      captured: e.comments.captured,
+      feedbackCount: e.comments.feedbackCount,
+      uniqueCommenters: e.comments.uniqueCommenters,
+      enjoyCount: e.comments.enjoyCount,
+      complaintCount: e.comments.complaintCount,
+      commentersPer1k: e.comments.commentersPer1k,
+      enjoyThemes: e.comments.enjoyThemes,
+      complaintThemes: e.comments.complaintThemes,
+      xReplies: e.comments.xCoverage,
+    } : null,
     rating: e.rating ? { rank: e.rating.rank, n: e.rating.n, score: e.rating.score, provisional: e.rating.provisional, missingPillars: e.rating.coverage?.missingPillars, pillarScores: e.rating.pillarScores } : null,
   }));
 
@@ -54,6 +65,7 @@ function harvest() {
     episodes,
     insights: data.insights.map((i) => ({ id: i.id, category: i.category, text: i.text, recommendation: i.recommendation, caveat: i.caveat })),
     showTrend: data.showTrend,
+    commentSummary: data.commentSummary,
     ratingsStoreMeta: ratings ? { algorithm: ratings.algorithm, updatedAt: ratings.updatedAt, count: ratings.ratings?.length } : null,
     indexHtml: html,
   };
@@ -90,7 +102,10 @@ async function callModel(system, user) {
 
 const dry = process.argv.includes("--dry");
 const date = new Date().toISOString().slice(0, 10);
-const outPath = join(OUT_DIR, `CRITIC-${date}.md`);
+const tagAt = process.argv.indexOf("--tag");
+const tag = tagAt >= 0 ? process.argv[tagAt + 1] : null;
+if (tagAt >= 0 && (!tag || !/^[A-Za-z0-9-]+$/.test(tag))) throw new Error("--tag requires letters, numbers, or hyphens");
+const outPath = join(OUT_DIR, `CRITIC-${date}${tag ? `-${tag}` : ""}.md`);
 
 const bundle = harvest();
 const system = readFileSync(join(HERE, "critic-prompt.md"), "utf8");
