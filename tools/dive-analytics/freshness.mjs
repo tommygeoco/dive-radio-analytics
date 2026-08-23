@@ -13,7 +13,11 @@
 // stdout for the midday cron's own payload. Always exits 0 — a watchdog
 // that blocks the chain would recreate the problem it watches for.
 //
-//   node tools/dive-analytics/freshness.mjs        # check prod, queue if stale
+//   node tools/dive-analytics/freshness.mjs           # check prod, queue if stale (always exit 0)
+//   node tools/dive-analytics/freshness.mjs --strict  # midday watchdog mode: silent when
+//                                                     # fresh, exit 1 stale / 2 unreachable —
+//                                                     # a non-zero exit makes the cron job
+//                                                     # itself page through its failure alert
 //
 // DIVE_PROD_URL overrides the prod URL (acceptance tests only).
 
@@ -43,6 +47,8 @@ export function staleLine(generatedAt, now = Date.now()) {
   return `${LINE_PREFIX} ${generatedAt}, ${Math.round(hours)} hours old — the morning publish likely failed.`;
 }
 
+const strict = process.argv.includes("--strict");
+
 async function main() {
   let body;
   try {
@@ -51,15 +57,19 @@ async function main() {
     body = await res.json();
   } catch (error) {
     console.log(`freshness: prod fetch failed (${error.message}) — cannot judge staleness this run`);
+    if (strict) process.exit(2);
     return;
   }
   if (!Number.isFinite(Date.parse(body?.generatedAt))) {
     console.log("freshness: prod data.json has no readable generatedAt — cannot judge staleness this run");
+    if (strict) process.exit(2);
     return;
   }
   const line = staleLine(body.generatedAt);
   if (!line) {
-    console.log(`freshness: prod is serving data from ${body.generatedAt} — fresh.`);
+    // strict mode stays silent when all is well — its cron job only speaks
+    // (through its own failure alert) when something is wrong
+    if (!strict) console.log(`freshness: prod is serving data from ${body.generatedAt} — fresh.`);
     return;
   }
   console.log(line);
@@ -71,6 +81,7 @@ async function main() {
   queue.push(line);
   saveAtomic(QUEUE_PATH, queue);
   console.log("freshness: alert queued for the next dive-alerts delivery.");
+  if (strict) process.exit(1);
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
