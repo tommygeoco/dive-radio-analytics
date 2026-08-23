@@ -570,6 +570,7 @@
         </div>
         <span class="cs" id="cscope"></span></div>
       <div class="controls">
+        <button type="button" class="toggle" id="astable" aria-pressed="false">Table</button>
         <button type="button" class="toggle traj-only" id="bydate">Dates</button>
         <button type="button" class="reset" id="reset">Reset</button>
       </div>
@@ -1020,13 +1021,14 @@ const VIEW_DEFS = [
   { key: "race", group: "Over time", title: "Views after release", mode: "race", metric: "views" },
   { key: "watch", group: "Over time", title: "How much people watch", mode: "watch", metric: "views" },
   { key: "minutes", group: "Over time", title: "Live viewers by minute", mode: "live", metric: "views" },
-  // the table mirrors whichever chart was last on screen, so it keeps the
-  // current mode and measure and simply swaps the drawing for the numbers
-  { key: "table", group: null, title: "Data table", table: true },
 ];
+// The table is a DISPLAY of the current view, not a view of its own: the
+// Table toggle beside the chart swaps the drawing for the numbers while the
+// dropdown keeps deciding what data is on screen (owner feedback 2026-08-23:
+// a "Data table" menu row that showed whichever view came before it read as
+// a mystery option).
 const METRIC_TITLES = Object.fromEntries(VIEW_DEFS.filter((v) => v.mode === "standings").map((v) => [v.metric, v.title]));
 function currentView() {
-  if (state.table) return VIEW_DEFS.find((v) => v.table);
   return VIEW_DEFS.find((v) => v.mode === state.mode && (state.mode !== "standings" || v.metric === state.metric)) || VIEW_DEFS[0];
 }
 const METRIC_TREND_TITLE = {
@@ -1622,10 +1624,6 @@ function scopeTag(mark, name) {
   return `<b class="scopepill" data-tip="${esc(name)}" tabindex="0">${mark}<span class="sr">${esc(name)}</span></b> ·`;
 }
 function chartTitle() {
-  if (state.table) {
-    const mirrored = VIEW_DEFS.find((v) => !v.table && v.mode === state.mode && (state.mode !== "standings" || v.metric === state.metric));
-    return [currentView().title, mirrored ? mirrored.title : ""];
-  }
   if (state.mode === "live") return [currentView().title, "Restream, all destinations"];
   if (state.mode === "standings") {
     // The measure picker IS this view's title (owner directive 2026-08-23):
@@ -2436,10 +2434,13 @@ function syncUI() {
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
-  // the heading always IS the picker now; the table view keeps it (the table
-  // mirrors whatever the chart shows). The menu is closed only by pickView,
-  // Escape/Tab, or a true outside click — never by a render, so opening it
-  // with an episode selected works.
+  const at = document.getElementById("astable");
+  at.classList.toggle("on", state.table);
+  at.setAttribute("aria-pressed", String(state.table));
+  // the heading always IS the picker, and it always names the data — the
+  // Table toggle only swaps the drawing for the numbers. The menu is closed
+  // only by pickView, Escape/Tab, or a true outside click — never by a
+  // render, so opening it with an episode selected works.
   const chartbox = document.getElementById("chartbox");
   chartbox.style.display = state.table ? "none" : "";
   // solo collapse applies to the totals view only — line views already give
@@ -2454,6 +2455,7 @@ function syncUI() {
 }
 
 document.getElementById("bydate").addEventListener("click", () => { state.byDate = !state.byDate; render(); });
+document.getElementById("astable").addEventListener("click", () => { state.table = !state.table; render(); });
 
 /* ---- view dropdown: the heading is the control (listbox pattern) ---- */
 const viewBtn = document.getElementById("viewbtn");
@@ -2482,8 +2484,9 @@ const viewMenu = document.getElementById("viewmenu");
 function pickView(key) {
   const v = VIEW_DEFS.find((x) => x.key === key);
   if (!v) return;
-  if (v.table) state.table = true;
-  else { state.table = false; state.mode = v.mode; state.metric = v.metric; }
+  // the picker only decides WHAT is on screen; the Table toggle decides how
+  // it renders, and survives a view switch
+  state.mode = v.mode; state.metric = v.metric;
   closeViewMenu({ focus: true });
   render();
 }
