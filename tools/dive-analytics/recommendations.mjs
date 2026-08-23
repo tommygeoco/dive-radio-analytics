@@ -69,8 +69,7 @@ const r1 = (x) => Math.round(x * 10) / 10;
 
 // --- deterministic fact sheet: everything the model may cite ---
 
-export function collectFacts() {
-  const data = readJson(DATA_PATH);
+export function collectFacts(data = readJson(DATA_PATH)) {
   if (!data?.episodes?.length) throw new Error("data.json has no episodes");
   const facts = [];
   const add = (id, value, text) => { if (Number.isFinite(value)) facts.push({ id, value: r1(value), text }); };
@@ -196,6 +195,14 @@ function checkItem(item, allowed, seen) {
   if (item.caveat != null && (typeof item.caveat !== "string" || item.caveat.length > 200 || BANNED.test(item.caveat))) throw new Error(`${item.id}: bad caveat`);
 }
 
+// Exports for build-data's currency check (PRD v7 baselines F32): an item
+// whose numbers have since left today's fact sheet is held back as stale.
+export const allowedNumbers = allowedTokens;
+export function validateItem(item, facts, allowed = allowedTokens(facts)) {
+  checkItem(item, allowed, new Set());
+  return item;
+}
+
 export function validateItems(items, facts) {
   if (!Array.isArray(items) || items.length < 3 || items.length > 8) throw new Error("between three and eight items required");
   const allowed = allowedTokens(facts);
@@ -236,6 +243,8 @@ export function pruneStore(sheet) {
     ...store,
     updatedAt: new Date().toISOString(),
     factsGeneratedAt: sheet.generatedAt,
+    // the facts the items were grounded on (baselines PRD v7 §4.6)
+    facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
     prunedAt: new Date().toISOString(),
     prunedIds,
     items: kept,
@@ -322,6 +331,8 @@ async function main() {
       provider: "anthropic",
       model: gen.model,
       factsGeneratedAt: sheet.generatedAt,
+    // the facts the items were grounded on (baselines PRD v7 §4.6)
+    facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
       attempts: gen.attempts,
       items: gen.items,
     });

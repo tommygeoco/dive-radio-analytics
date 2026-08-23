@@ -17,6 +17,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W19a; this only adds the projection.
 import { computeBaselines, anomalyFlags, paceFor } from "./baselines.mjs";
+import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -300,10 +301,25 @@ export function computeAll({ now = Date.now() } = {}) {
   // insights remain only as the fallback when no store has ever been written.
   let insights;
   let recStore = null;
+  let insightsStale = [];
   try { recStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "recommendations.json"), "utf8")); } catch { /* no store yet */ }
   if (Array.isArray(recStore?.items) && recStore.items.length) {
-    insights = recStore.items.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
-  } else {
+    // Currency (PRD v7 F32): an item stays on the page only while every
+    // number it cites still exists in TODAY's fact sheet. A number that moved
+    // or was retired (a re-derived score, a changed rate) makes the item stale:
+    // dropped here with its reason, never shown against numbers it no longer
+    // matches; the next model run rewrites the store.
+    const sheet = collectFacts({ episodes: dive, baselines, generatedAt: new Date(now).toISOString() });
+    const allowed = allowedNumbers(sheet.facts);
+    const current = [];
+    for (const r of recStore.items) {
+      try { validateItem(r, sheet.facts, allowed); current.push(r); }
+      catch (err) { insightsStale.push({ id: r.id, why: String(err.message).replace(/^[a-z0-9-]+: /, "") }); }
+    }
+    insights = current.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
+  }
+  if (!insights || !insights.length) {
+    insightsStale = insights ? insightsStale : [];
     insights = buildInsights(dive, { flags });
     insights.push(...liveInsights(dive));
     // Strategy-impact categories (owner directive 2026-08-22): each insight is
@@ -339,6 +355,7 @@ export function computeAll({ now = Date.now() } = {}) {
     dests: DESTS,
     episodes,
     insights,
+    insightsStale,
     showTrend,
     commentSummary,
     health,
@@ -1043,21 +1060,26 @@ export function trendsText(data) {
   }
   if (data.insights.length === 0) lines.push("• Not enough data for trend calls yet.");
   const vels = data.showTrend.week1VelocityByEpisode.filter((v) => v.value !== null);
-  if (vels.length >= 2) {
+  // first-week line only from three clean weeks (rule 7; PRD v7 F14) — below
+  // that the numbers are listed without a direction word
+  if (vels.length >= 3) {
     const dir = vels[vels.length - 1].value >= vels[0].value ? "up" : "down";
     lines.push(
       `• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
     );
+  } else if (vels.length) {
+    lines.push(`• First-week YouTube views so far: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" · ")} — a direction needs three clean first weeks.`);
   }
-  // W12: episode health, read from the same store as every dashboard surface.
-  // Only finished three-week reads carry a number; younger episodes state when
-  // their read completes instead of showing anything early.
+  // W12/PRD v7: episode health, read from the same store as every dashboard
+  // surface. Only finished reads WITH a score appear; an episode with too few
+  // comparison episodes is simply not listed (absence is silent; the panel
+  // carries its reason). The wording says what each number is — its own read
+  // against the episodes before it — never a trend across them.
   const newest = data.episodes[data.episodes.length - 1];
-  const finished = data.episodes.filter((e) => e.health && !e.health.pending);
-  const scored = finished.filter((e) => e.health.score != null);
+  const scored = data.episodes.filter((e) => e.health && !e.health.pending && e.health.score != null);
   if (scored.length) {
-    const seq = finished.map((e) => `${e.premiere.slice(5)} ${e.health.score ?? "sets the baseline"}`).join(" → ");
-    lines.push(`• Episode health (each episode's own three-week read; 50 is a typical episode): ${seq}.`);
+    const seq = scored.map((e) => `${e.premiere.slice(5)} ${e.health.score}`).join(" · ");
+    lines.push(`• Episode health, each against the episodes before it (50 is a typical episode): ${seq}.`);
   }
   if (newest?.health?.pending) {
     lines.push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);

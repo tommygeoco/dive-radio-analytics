@@ -8,6 +8,7 @@
 // Run by validate.mjs (block 1u) and on its own: node tools/dive-analytics/audit/baselines.test.mjs
 import assert from "node:assert/strict";
 import * as B from "../baselines.mjs";
+import { scoreEpisode, readAgeOf, WEIGHTS, MIN_WEIGHT } from "../ratings.mjs";
 
 const DAY = 86400000;
 const PHX = 7 * 3600000;
@@ -159,5 +160,70 @@ assert.equal(B.scoreOf(300, 100), 100);
 assert.equal(B.scoreOf(10, 0), null);
 assert.equal(B.trueMedian([3, 1, 2, 4]), 2.5);
 assert.equal(B.trueMedian([]), null);
+
+// --- episode health (health21-v2) on the fixture ---
+{
+  // live sessions, comments, and an injectable analytics/history reader
+  for (const [i, e] of eps.entries()) {
+    e.live = { peak: 60 + i * 2, chatMessages: 150 + i * 5 };
+    const at = (d) => new Date(B.premiereMs(e.premiere) + d * DAY).toISOString();
+    e.comments = { xCoverage: i % 2 ? "covered" : "missed", list: [
+      { source: "yt", author: `a${i}`, sentiment: "positive", at: at(1) },
+      { source: "yt", author: `b${i}`, sentiment: "positive", at: at(2) },
+      { source: "yt", author: `c${i}`, sentiment: "negative", at: at(3) },
+      { source: "x", author: `d${i}`, sentiment: "positive", at: at(1) },
+      { source: "yt", author: `late${i}`, sentiment: "negative", at: at(30) }, // outside the read window
+    ] };
+  }
+  const totals = (e, views) => ({ "yt:joindiveclub": { totals: { views: Math.round(views * 0.6), averageViewPercentage: 12 + e.ep, subscribersGained: 3 } }, "yt:designertom": { totals: { views: Math.round(views * 0.4), averageViewPercentage: 10 + e.ep, subscribersGained: 2 } } });
+  eps.forEach((e, i) => { e.ep = i + 1; });
+  const io = {
+    readAnalytics: (slug) => { const e = eps.find((x) => x.slug === slug); return e.watch ? { updatedAt: ts(e.premiere, 40), channels: totals(e, 2000) } : null; },
+    readHistory: (slug) => {
+      const e = eps.find((x) => x.slug === slug);
+      if (!e.watch || e.ep > 7) return []; // only E1–E7 have a day-21 history line
+      const ch = totals(e, 1500);
+      return [{ date: ts(e.premiere, 21).slice(0, 10), ageDays: 21.2, channels: Object.fromEntries(Object.entries(ch).map(([k, v]) => [k, v.totals])) }];
+    },
+  };
+  const flags = B.anomalyFlags(eps);
+  const target = eps[7]; // E8: window E1–E7, E5 flagged
+  const window = B.windowFor(target, eps);
+  const r = scoreEpisode(target, window, flags, io);
+  assert.equal(typeof r.score, "number");
+  assert.ok(r.score >= 0 && r.score <= 100);
+  assert.equal(r.checks.watch.ageBasis, "sameAge");
+  assert.equal(r.checks.watch.peers.length, 6, "E1–E7 minus the outlier");
+  assert.ok(r.checks.watch.peers.every((p) => p.atDay === readAgeOf(target) && p.source === "snapshot"));
+  assert.ok(r.checks.watch.excluded.some((x) => x.slug === "e05" && x.why === "promo outlier"));
+  assert.equal(r.checks.retention.ageBasis, "mature", "E8 has no history line → all from the current file");
+  assert.equal(r.checks.retention.note, B.NOTES.mature);
+  assert.equal(r.reproducible, false, "a current-file input is not rebuildable");
+  assert.equal(r.checks.live.ageBasis, "ageFree");
+  assert.equal(r.checks.sentiment.ageBasis, "mature");
+  assert.deepEqual(r.checks.sentiment.sources, ["yt"], "window has a missed-X member → YouTube-only for everyone");
+  assert.equal(r.checks.sentiment.value, 66.7, "late comment outside 21 d excluded; 2 of 3 positive");
+  const weightSum = Object.values(r.checks).reduce((a, c) => a + (c.weight || 0), 0);
+  assert.ok(Math.abs(weightSum - 1) < 0.002);
+  const rebuilt = Object.entries(r.checks).filter(([, c]) => c.ratio != null).reduce((a, [, c]) => a + c.score * c.weight, 0);
+  assert.equal(Math.round(rebuilt), r.score, "score rebuilds from the stored checks");
+  for (const [k, c] of Object.entries(r.checks)) {
+    if (c.ratio == null || k === "live") continue;
+    assert.equal(c.typical, B.round1(B.trueMedian(c.peers.map((p) => p.value))), `${k} typical rebuilds from stored peers`);
+    assert.equal(c.score, B.scoreOf(c.value, c.typical), `${k} score rebuilds`);
+  }
+  // E7: window E1–E6 all carry history lines → retention is same-age and rebuildable
+  const r7 = scoreEpisode(eps[6], B.windowFor(eps[6], eps), flags, io);
+  assert.equal(r7.checks.retention.ageBasis, "sameAge");
+  assert.ok(r7.checks.retention.peers.every((p) => p.source === "history" && Math.abs(p.atDay - 21) <= B.HISTORY_TOL));
+  assert.equal(r7.reproducible, true);
+  // too few peers → no score, reason, every check absent with its own reason
+  const r3 = scoreEpisode(eps[2], B.windowFor(eps[2], eps), flags, io);
+  assert.equal(r3.score, null);
+  assert.equal(r3.reason, B.NOTES.fewPeers);
+  assert.ok(Object.values(r3.checks).every((c) => c.ratio == null && c.weight === 0));
+  assert.equal(r3.missingChecks.length, Object.keys(WEIGHTS).length);
+  assert.ok(MIN_WEIGHT === 0.5);
+}
 
 console.log("baselines.test: ok");

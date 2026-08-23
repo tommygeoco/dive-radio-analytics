@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T09:14:51.546Z",
+ "generatedAt": "2026-08-23T09:22:08.607Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -3089,63 +3089,114 @@
     "ep": 1,
     "slug": "2026-07-17-dive-radio-bumpy-takeoff",
     "premiere": "2026-07-17",
-    "algorithm": "health21-v1",
+    "algorithm": "health21-v2",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff"
     ],
+    "excluded": [],
     "readDays": 21,
     "atDay": 21,
+    "frozenAtDay": 35.9,
     "readCompleteOn": "2026-08-07",
     "score": null,
     "checks": {
      "watch": {
-      "value": null,
+      "value": 2015,
       "typical": null,
       "ratio": null,
       "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "atDay": 21,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [],
       "weight": 0
      },
      "engagement": {
-      "value": null,
+      "value": 50.1,
       "typical": null,
       "ratio": null,
       "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "atDay": 21,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [],
       "weight": 0
      },
      "retention": {
-      "value": null,
+      "value": 10.55,
       "typical": null,
       "ratio": null,
       "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
+      "channels": [
+       "yt:designertom",
+       "yt:joindiveclub"
+      ],
       "weight": 0
      },
      "live": {
-      "value": null,
+      "value": {
+       "peak": 90,
+       "chat": 383
+      },
       "typical": null,
       "ratio": null,
       "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "ageFree",
+      "note": null,
+      "excluded": [],
       "weight": 0
      },
      "conversion": {
-      "value": null,
+      "value": 8.9,
       "typical": null,
       "ratio": null,
       "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
       "weight": 0
      },
      "sentiment": {
-      "value": null,
+      "value": 100,
       "typical": null,
       "ratio": null,
       "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
+      "sources": [
+       "yt"
+      ],
+      "people": 7,
       "weight": 0
      }
     },
     "missingChecks": [],
     "reason": "first episode — it sets the baseline, with nothing earlier to compare against",
-    "basis": "yt-views-at-own-read-age-vs-peer-values-at-theirs (read 21d; X plays excluded — no plays history before 2026-08-21)",
-    "computedAt": "2026-08-23T01:52:10.333Z",
-    "frozenAt": "2026-08-23T01:52:10.333Z"
+    "reproducible": true,
+    "computedAt": "2026-08-23T09:19:12.860Z",
+    "frozenAt": "2026-08-23T09:19:12.860Z"
    },
    "watch": {
     "channels": [
@@ -6301,82 +6352,162 @@
     "ep": 2,
     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "premiere": "2026-07-23",
-    "algorithm": "health21-v1",
+    "algorithm": "health21-v2",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe"
     ],
+    "excluded": [],
     "readDays": 21,
     "atDay": 21,
+    "frozenAtDay": 29.9,
     "readCompleteOn": "2026-08-13",
-    "score": 44,
+    "score": null,
     "checks": {
      "watch": {
       "value": 2034,
-      "typical": 2015,
-      "ratio": 1.009,
-      "score": 50,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 1,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 2015,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-07"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
       "atDay": 21,
-      "weight": 0.35
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [],
+      "weight": 0
      },
      "engagement": {
       "value": 40.3,
-      "typical": 50.1,
-      "ratio": 0.804,
-      "score": 40,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 1,
-      "weight": 0.15
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 50.1,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-07"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "atDay": 21,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [],
+      "weight": 0
      },
      "retention": {
       "value": 11.02,
-      "typical": 10.55,
-      "ratio": 1.045,
-      "score": 52,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 1,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 10.55,
+        "atDay": 36.1,
+        "source": "analytics-file",
+        "readDate": "2026-08-22"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
       "channels": [
        "yt:designertom",
        "yt:joindiveclub"
       ],
-      "weight": 0.15
+      "weight": 0
      },
      "live": {
       "value": {
        "peak": 71,
        "chat": 310
       },
-      "typical": {
-       "peak": 90,
-       "chat": 383
-      },
-      "ratio": 0.799,
-      "score": 40,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 1,
-      "weight": 0.15
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "ageFree",
+      "note": null,
+      "excluded": [],
+      "weight": 0
      },
      "conversion": {
       "value": 2.9,
-      "typical": 8.9,
-      "ratio": 0.326,
-      "score": 16,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 1,
-      "weight": 0.1
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 8.9,
+        "atDay": 36.1,
+        "source": "analytics-file",
+        "readDate": "2026-08-22"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
+      "weight": 0
      },
      "sentiment": {
       "value": 100,
-      "typical": 100,
-      "ratio": 1,
-      "score": 50,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 1,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 100,
+        "atDay": 21,
+        "source": "comments",
+        "readDate": null
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
+      "sources": [
+       "yt"
+      ],
       "people": 3,
-      "weight": 0.1
+      "weight": 0
      }
     },
-    "missingChecks": [],
-    "reason": null,
-    "basis": "yt-views-at-own-read-age-vs-peer-values-at-theirs (read 21d; X plays excluded — no plays history before 2026-08-21)",
-    "computedAt": "2026-08-23T01:52:10.333Z",
-    "frozenAt": "2026-08-23T01:52:10.333Z"
+    "missingChecks": [
+     "watch",
+     "engagement",
+     "retention",
+     "live",
+     "conversion",
+     "sentiment"
+    ],
+    "reason": "Fewer than three earlier episodes to compare with.",
+    "reproducible": true,
+    "computedAt": "2026-08-23T09:19:12.860Z",
+    "frozenAt": "2026-08-23T09:19:12.860Z"
    },
    "watch": {
     "channels": [
@@ -8532,83 +8663,179 @@
     "ep": 3,
     "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "premiere": "2026-07-30",
-    "algorithm": "health21-v1",
+    "algorithm": "health21-v2",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de"
     ],
+    "excluded": [],
     "readDays": 21,
     "atDay": 21.4,
+    "frozenAtDay": 22.9,
     "readCompleteOn": "2026-08-20",
-    "score": 33,
+    "score": null,
     "checks": {
      "watch": {
       "value": 1601,
-      "typical": 2024.5,
-      "ratio": 0.791,
-      "score": 40,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 2,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 2022,
+        "atDay": 21.4,
+        "source": "snapshot",
+        "readDate": "2026-08-08"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 2042,
+        "atDay": 21.4,
+        "source": "snapshot",
+        "readDate": "2026-08-14"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
       "atDay": 21.4,
-      "weight": 0.3889
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [],
+      "weight": 0
      },
      "engagement": {
       "value": 30,
-      "typical": 45.2,
-      "ratio": 0.664,
-      "score": 33,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 2,
-      "weight": 0.1667
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 50.1,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-07"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 40.3,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-13"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "atDay": 21.4,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [],
+      "weight": 0
      },
      "retention": {
       "value": 8.95,
-      "typical": 10.785,
-      "ratio": 0.83,
-      "score": 42,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 2,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 10.55,
+        "atDay": 36.1,
+        "source": "analytics-file",
+        "readDate": "2026-08-22"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 11.02,
+        "atDay": 30.1,
+        "source": "analytics-file",
+        "readDate": "2026-08-22"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
       "channels": [
        "yt:designertom",
        "yt:joindiveclub"
       ],
-      "weight": 0.1667
+      "weight": 0
      },
      "live": {
       "value": {
        "peak": 53,
        "chat": 169
       },
-      "typical": {
-       "peak": 80.5,
-       "chat": 346.5
-      },
-      "ratio": 0.573,
-      "score": 29,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 2,
-      "weight": 0.1667
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "ageFree",
+      "note": null,
+      "excluded": [],
+      "weight": 0
      },
      "conversion": {
       "value": 0,
-      "typical": 5.9,
-      "ratio": 0,
-      "score": 0,
+      "typical": null,
+      "ratio": null,
+      "score": null,
       "sample": 2,
-      "weight": 0.1111
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 8.9,
+        "atDay": 36.1,
+        "source": "analytics-file",
+        "readDate": "2026-08-22"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 2.9,
+        "atDay": 30.1,
+        "source": "analytics-file",
+        "readDate": "2026-08-22"
+       }
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [],
+      "weight": 0
      },
      "sentiment": {
       "value": null,
       "typical": null,
       "ratio": null,
       "score": null,
-      "weight": 0
+      "weight": 0,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": null,
+      "note": null,
+      "excluded": []
      }
     },
     "missingChecks": [
+     "watch",
+     "engagement",
+     "retention",
+     "live",
+     "conversion",
      "sentiment"
     ],
-    "reason": null,
-    "basis": "yt-views-at-own-read-age-vs-peer-values-at-theirs (read 21d; X plays excluded — no plays history before 2026-08-21)",
-    "computedAt": "2026-08-23T01:52:10.333Z",
-    "frozenAt": "2026-08-23T01:52:10.333Z"
+    "reason": "Fewer than three earlier episodes to compare with.",
+    "reproducible": true,
+    "computedAt": "2026-08-23T09:19:12.860Z",
+    "frozenAt": "2026-08-23T09:19:12.860Z"
    },
    "watch": {
     "channels": [
@@ -15326,12 +15553,6 @@
    "category": "content"
   },
   {
-   "id": "best-open-template",
-   "text": "Goodbye, Blank Canvas is the watch-time winner at 13.2% of the video seen on average; every other episode sits between 8.9 and 12.9%.",
-   "recommendation": "Break down what its first 5 minutes do differently and reuse that structure for the next two openings; compare their finished health reads against 33 and 44.",
-   "category": "content"
-  },
-  {
    "id": "mid-show-exit",
    "text": "The sharpest mid-show exit measured is E4 about 48 minutes in: 6.2 of every 100 viewers leave during the backyard-baseball-character bit, even though the stretch around minute 38 was pulling extra viewers in.",
    "recommendation": "Rewatch E4 around minute 48, mark the segment seam there, and test a tighter handoff next show — trim the tail, re-order, or tease what comes next before the lull.",
@@ -15367,6 +15588,12 @@
    "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
    "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode.",
    "category": "audience"
+  }
+ ],
+ "insightsStale": [
+  {
+   "id": "best-open-template",
+   "why": "number 44 is not in the fact sheet"
   }
  ],
  "showTrend": {
