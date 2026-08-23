@@ -777,6 +777,22 @@ const TRAFFIC_ICONS = {
   YT_OTHER_PAGE: "grid", NOTIFICATION: "bell", PLAYLIST: "list", EXT_URL: "link",
   NO_LINK_OTHER: "question", END_SCREEN: "monitor", SHORTS: "monitor", OTHER_COMBINED: "dots",
 };
+// hover on the label only: one short phrase saying what the source actually
+// is (owner directive 2026-08-23) — the row's own hover keeps showing views
+const TRAFFIC_TIPS = {
+  SUBSCRIBER: "the YouTube home feed and the subscriptions feed",
+  RELATED_VIDEO: "recommended next to or after other videos",
+  YT_SEARCH: "YouTube search results",
+  YT_CHANNEL: "visits to a channel’s own page",
+  YT_OTHER_PAGE: "other pages on YouTube",
+  NOTIFICATION: "taps on a YouTube notification",
+  PLAYLIST: "played from a playlist",
+  EXT_URL: "links on other sites and apps",
+  NO_LINK_OTHER: "typed links or sources YouTube can’t name",
+  END_SCREEN: "the end screen of another video",
+  SHORTS: "the Shorts feed",
+  OTHER_COMBINED: "all smaller sources combined",
+};
 const CHECK_WORDS = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout", conversion: "new subscribers", sentiment: "feedback" };
 function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }
 function healthChip(e) {
@@ -1333,7 +1349,8 @@ function buildPanel() {
       html += `<div class="psec"><div class="kicker">Where views came from <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
       for (const t of w.traffic) {
         const tname = TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "));
-        html += `<div class="trow" tabindex="0" aria-label="${tname} — ${esc(nfmt(t.views))} views, ${t.share}% of views">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl">${tname}</span>
+        const ttip = TRAFFIC_TIPS[t.source];
+        html += `<div class="trow" tabindex="0" aria-label="${tname} — ${esc(nfmt(t.views))} views, ${t.share}% of views">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl"${ttip ? ` data-tip="${esc(ttip)}" tabindex="0"` : ""}>${tname}</span>
           <span class="tb" aria-hidden="true"><span style="width:${topShare > 0 ? Math.max(2, Math.round((t.share / topShare) * 100)) : 0}%"></span></span>
           <span class="tbv" aria-hidden="true">${esc(nfmt(t.views))} views</span>
           <span class="tv">${t.share}%</span></div>`;
