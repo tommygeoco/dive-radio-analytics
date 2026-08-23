@@ -375,13 +375,16 @@
   .chead .cs .scopepill .plogo { width: 18px; height: 18px; }
   /* ---- the chart heading IS the view picker ---- */
   .ctsel { position: relative; }
-  .viewbtn { margin-left: -11px; font-weight: 700; color: var(--t1); }
+  /* the view picker wears its fill at rest — a bare bold title reads as a
+     label, not a control (owner directive 2026-08-23); hover/open step one
+     tone brighter than the resting s2 */
+  .viewbtn { font-weight: 700; color: var(--t1); background: var(--s2); }
   .viewbtn svg { width: 15px; height: 15px; color: var(--t3); flex: none; }
-  .viewbtn:hover { background: var(--s2); }
+  .viewbtn:hover { background: #212a3a; }
   .viewbtn:hover svg, .viewbtn[aria-expanded="true"] svg { color: var(--t1); }
-  .viewbtn[aria-expanded="true"] { background: var(--s2); }
+  .viewbtn[aria-expanded="true"] { background: #212a3a; }
   .viewbtn[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .viewmenu { position: absolute; top: calc(100% + 6px); left: -11px; z-index: 40; min-width: 232px;
+  .viewmenu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 40; min-width: 232px;
     background: #0d1017; border: 1px solid var(--border-strong); border-radius: 10px;
     padding: 6px; box-shadow: 0 14px 40px rgba(0,0,0,.5); }
   .viewmenu .vgroup { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .09em;
