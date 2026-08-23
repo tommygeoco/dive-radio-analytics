@@ -191,6 +191,11 @@
   .panel .q { color: var(--t2); font-size: 13.5px; margin: 6px 0; }
   .panel .q .by { color: var(--t3); }
   .panel .senti-link { color: var(--accent); cursor: pointer; text-decoration: underline; }
+  .panel .wcurve { margin: 8px 0 2px; max-width: 520px; }
+  .panel .wcurve svg { display: block; width: 100%; height: 64px; }
+  .panel .wcurve line { stroke: var(--border); stroke-width: 0.4; }
+  .panel .wcurve polyline { fill: none; stroke: var(--accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .panel .wcap { display: flex; justify-content: space-between; color: var(--t3); font-size: 12px; margin-top: 3px; max-width: 520px; }
   .panel .themegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
   .panel .themehead { color: var(--t2); font-size: 12px; font-weight: 700; margin-bottom: 3px; }
   .panel .themeitem { color: var(--t2); font-size: 13px; padding: 2px 0; }
@@ -369,6 +374,7 @@
         <span class="seg growth-only" id="mode">
           <button type="button" data-v="standings">Totals</button>
           <button type="button" data-v="race">Over time</button>
+          <button type="button" data-v="watch">Watching</button>
         </span>
         <button type="button" class="toggle traj-only" id="bydate">Dates</button>
         <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
@@ -498,6 +504,20 @@ function heroMarker(e) {
    build-data (definition-lock — no score math at render time, ever). An episode
    younger than three weeks carries only the date its read completes; nothing
    score-like renders for it anywhere. */
+const TRAFFIC_NAMES = {
+  SUBSCRIBER: "Subscriptions and home feed",
+  RELATED_VIDEO: "Suggested videos",
+  YT_SEARCH: "YouTube search",
+  YT_CHANNEL: "Channel pages",
+  YT_OTHER_PAGE: "Other YouTube pages",
+  NOTIFICATION: "Notifications",
+  PLAYLIST: "Playlists",
+  EXT_URL: "Outside links",
+  NO_LINK_OTHER: "Direct or unknown",
+  END_SCREEN: "End screens",
+  SHORTS: "Shorts feed",
+  OTHER_COMBINED: "Everything else",
+};
 const CHECK_WORDS = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout", conversion: "new subscribers", sentiment: "feedback" };
 function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }
 function healthWaitDate(e) {
@@ -860,6 +880,33 @@ function buildPanel() {
     if ((h.missingChecks || []).length) html += `<div class="note">* ${h.missingChecks.map((c) => CHECK_WORDS[c] || c).join(" and ")} had too little honest data and sat out</div>`;
   }
 
+  // W13 watching: verified analytics — how long people stay and where views
+  // come from. An absent report renders as absent, never zero.
+  const w = e.watch;
+  if (w) {
+    const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+    html += `<div class="sect">`;
+    html += `<div class="row head">How people watch <span class="hint">YouTube</span><span class="val big">${w.avgPercent == null ? "not available" : `${w.avgPercent}% <span class="hint">of the video on average</span>`}</span></div>`;
+    if (w.avgDurationSec != null) html += `<div class="row">average time watched<span class="val">${fmtDur(w.avgDurationSec)}</span></div>`;
+    if (w.minutesWatched != null) html += `<div class="row">total watch time<span class="val">${nfmt(Math.round(w.minutesWatched / 60))} hours</span></div>`;
+    if (w.curve) {
+      const pts = w.curve.map(p => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching) * 40).toFixed(1)}`).join(" ");
+      html += `<div class="wcurve"><svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Share of the audience still watching across the video: ${Math.round(w.curve[0].watching * 100)}% near the start, ${Math.round(w.curve[w.curve.length - 1].watching * 100)}% at the end.">
+        <line x1="25" y1="0" x2="25" y2="40"></line><line x1="50" y1="0" x2="50" y2="40"></line><line x1="75" y1="0" x2="75" y2="40"></line>
+        <polyline points="${pts}"></polyline></svg>
+      <div class="wcap" aria-hidden="true"><span>start</span><span>still watching, through the video</span><span>end</span></div></div>`;
+    } else {
+      html += `<div class="mut">watch curve is not in yet</div>`;
+    }
+    if (w.traffic) {
+      html += `<div class="row head" style="margin-top:8px">Where views came from</div>`;
+      for (const t of w.traffic) {
+        html += `<div class="row">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}<span class="val">${t.share}% <span class="hint">· ${nfmt(t.views)}</span></span></div>`;
+      }
+    }
+    html += `</div>`;
+  }
+
   const comments = e.comments;
   if (comments) {
     html += `<div class="sect">`;
@@ -1026,6 +1073,10 @@ function chartTitle() {
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
     return ["Episode views", "YouTube + X playback" + (anyPartial ? " · some X plays missing" : "")];
   }
+  if (state.mode === "watch") {
+    const missing = EPS.filter(e => !(e.watch?.curve?.length));
+    return ["How much people watch", `<b class="scopepill">YouTube only</b> · share still watching through the video${missing.length ? ` · ${missing.map(e => "E" + e.ep).join(", ")} not in yet` : ""}`];
+  }
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
     return ["Views after release", `<b class="scopepill">YouTube only</b> · ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}`];
@@ -1070,9 +1121,9 @@ const endLabels = {
     const items = [];
     chart.data.datasets.forEach((ds, i) => {
       const meta = chart.getDatasetMeta(i);
-      if (meta.hidden || !meta.data.length || ds.spark || ds.isAnnounce) return;
+      if (meta.hidden || ds.hidden || !meta.data.length || ds.spark || ds.isAnnounce || ds.noEndLabel) return;
       const pt = meta.data[meta.data.length - 1];
-      items.push({ x: pt.x, y: pt.y, text: "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
+      items.push({ x: pt.x, y: pt.y, text: ds.isTypical ? "typical" : "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
     });
     items.sort((a, b) => a.y - b.y);
     ctx.save();
@@ -1150,6 +1201,24 @@ function externalTooltip(context) {
   } else {
     const item = tooltip.dataPoints[0];
     const ds = item.dataset, e = ds.episode, p = item.raw;
+    const isWatch = !isLive && state.mode === "watch";
+    if (isWatch) {
+      const at = p.x <= 0 ? "the start" : p.x >= 100 ? "the end" : `${Math.round(p.x)}% through`;
+      if (ds.isTypical) {
+        html = `<div class="h">Typical episode</div><div class="meta">At ${at}</div><div class="big">${p.y}% still watching</div><div class="chg">The middle value across episodes with watch curves</div>`;
+      } else {
+        html = `<div class="h"><span class="sq dot" style="background:${color(e)}"></span>${esc(label(e))}</div><div class="meta">At ${at}</div><div class="big">${p.y}% still watching</div>`;
+      }
+      el.innerHTML = html;
+      el.style.opacity = 1;
+      const box0 = chart.canvas.parentNode;
+      const x0 = Math.min(Math.max(tooltip.caretX, 120), box0.clientWidth - 130);
+      const above0 = tooltip.caretY > 190;
+      el.style.left = x0 + "px";
+      el.style.top = (tooltip.caretY + (above0 ? -14 : 14)) + "px";
+      el.style.transform = `translate(-50%, ${above0 ? "-100%" : "0"})`;
+      return;
+    }
     html = `<div class="h"><span class="sq dot" style="background:${color(e)}"></span>${esc(label(e))}</div>`;
     if (isLive) {
       html += `<div class="meta">Minute ${p.x}</div>`;
@@ -1288,11 +1357,75 @@ function render() {
   const clickSolo = (_, els, ch) => {
     if (!els.length) return;
     const ds = ch.data.datasets[els[0].datasetIndex];
+    if (!ds.slug) return; // the typical line is a reference, not a selectable episode
     const same = state.solo === ds.slug;
     state.solo = same ? null : ds.slug;
     state.panel = same ? null : ds.slug;
     render();
   };
+
+  // W13 Watching: every finished drop-off curve overlaid, newest in color,
+  // priors receding to gray until soloed — plus a dashed typical line once
+  // three real curves exist (the same three-peer honesty gate as everywhere).
+  if (!isLive && state.mode === "watch") {
+    const withCurve = EPS.filter(e => e.watch?.curve?.length);
+    const refSlug = withCurve.length ? withCurve[withCurve.length - 1].slug : null; // newest episode whose curve exists
+    const datasets = withCurve.map((e) => {
+      const isRef = e.slug === refSlug;
+      const soloed = state.solo === e.slug;
+      const hidden = state.solo !== null && !soloed;
+      const deemph = !isRef && !soloed;
+      return {
+        label: label(e), epNum: e.ep, slug: e.slug,
+        data: e.watch.curve.map(p => ({ x: Math.round(p.at * 100), y: Math.round(p.watching * 1000) / 10 })),
+        borderColor: deemph ? DIMLINE : color(e),
+        labelColor: deemph ? "#5a6478" : color(e),
+        backgroundColor: "transparent",
+        borderWidth: soloed || isRef ? 3 : 2,
+        pointRadius: 0, pointHoverRadius: 4, tension: 0.25, spanGaps: false, hidden,
+        // tails converge: only the emphasized line keeps an end label
+        noEndLabel: deemph,
+        episode: e, order: isRef ? 0 : 1,
+      };
+    });
+    const curves = withCurve.map(e => e.watch.curve);
+    if (curves.length >= 3) {
+      const byAt = new Map();
+      for (const c of curves) for (const p of c) {
+        const arr = byAt.get(p.at) || [];
+        arr.push(p.watching);
+        byAt.set(p.at, arr);
+      }
+      const mid = (vals) => { const v = [...vals].sort((a, b) => a - b); const m = Math.floor(v.length / 2); return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; };
+      const pts = [...byAt.entries()].filter(([, vals]) => vals.length === curves.length).sort((a, b) => a[0] - b[0])
+        .map(([at, vals]) => ({ x: Math.round(at * 100), y: Math.round(mid(vals) * 1000) / 10 }));
+      if (pts.length) datasets.push({ isTypical: true, data: pts, borderColor: "#8a94a8", backgroundColor: "transparent",
+        borderDash: [6, 5], borderWidth: 1.5, pointRadius: 0, pointHoverRadius: 4, tension: 0.25, order: 3 });
+    }
+    const cfg = {
+      type: "line",
+      data: { datasets },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { right: 64 } },
+        interaction: { mode: "nearest", intersect: false },
+        scales: {
+          x: { type: "linear", min: 0, max: 100, title: { display: true, text: "How far into the video", color: "#8a94a8" },
+            ticks: { color: "#8a94a8", stepSize: 25, callback: v => v === 0 ? "start" : v === 100 ? "end" : v + "%" }, grid: { color: GRID } },
+          y: { beginAtZero: true, title: { display: true, text: "Still watching", color: "#8a94a8" },
+            ticks: { color: "#8a94a8", callback: v => v + "%" }, grid: { color: GRID } },
+        },
+        plugins: { legend: { display: false }, tooltip: { enabled: false, external: externalTooltip } },
+        onClick: clickSolo,
+      },
+      plugins: [endLabels],
+    };
+    if (chart) chart.destroy();
+    chart = new Chart(document.getElementById("chart"), cfg);
+    document.getElementById("tt").style.opacity = 0;
+    return;
+  }
+
 
   // Weekly gains: grouped bars on a category axis — one column per week,
   // episodes side by side (a linear axis stacked every episode's week-1 bar
@@ -1449,7 +1582,7 @@ function buildTable() {
       html += "</tr>";
     }
   } else {
-    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>Pace (YT)</th></tr>";
+    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>Watched</th><th>Pace (YT)</th></tr>";
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);
@@ -1465,6 +1598,7 @@ function buildTable() {
       html += `<td>${metricText(bd["yt:joindiveclub"]?.views)}</td><td>${metricText(bd["yt:designertom"]?.views)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
       html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
+      html += `<td>${e.watch?.avgPercent == null ? "–" : e.watch.avgPercent + "%"}</td>`;
       html += `<td>${pace ? (pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%" : "–"}</td></tr>`;
     }
   }
@@ -1580,6 +1714,7 @@ function buildAbout() {
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero; <b>*</b> marks a score that shipped without every check. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score.</p>
+  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says so instead of showing zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
@@ -1588,7 +1723,7 @@ function buildAbout() {
 /* ================= sync / events ================= */
 function syncUI() {
   const isLive = state.view === "live";
-  const isTraj = !isLive && state.mode !== "standings";
+  const isTraj = !isLive && state.mode === "race";
   for (const b of document.querySelectorAll("#view button")) {
     const selected = b.dataset.v === state.view;
     b.classList.toggle("on", selected);

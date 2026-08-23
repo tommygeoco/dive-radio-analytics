@@ -15,8 +15,14 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   nowhere until those three weeks are over
 - Latest-episode card keeps unit discipline: total views = YouTube views + X
   broadcast plays; X reach shown separately and never summed into views
-- Episode carousel + two chart views: Totals (stacked per destination) and
-  Over time (YouTube cumulative since premiere)
+- Episode carousel + three chart views: Totals (stacked per destination),
+  Over time (YouTube cumulative since premiere), and Watching (every episode's
+  drop-off curve from verified YouTube analytics, with a dashed typical line
+  once three curves exist)
+- Episode panel adds the verified watch numbers: share watched, average time
+  watched, total watch time, the drop-off curve, and where views came from
+  (traffic sources) — view-weighted across both channels, absent when a
+  report has not arrived
 - Click any episode for a detail panel: per-channel breakdown, reach split,
   episode-health checks, featured quotes, recurring audience themes, and
   praise/concern drilldown

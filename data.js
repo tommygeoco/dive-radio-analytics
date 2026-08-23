@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-23T01:52:10.427Z",
+ "generatedAt": "2026-08-23T03:06:42.798Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -3140,6 +3140,450 @@ window.DIVE_DATA = {
     "basis": "yt-views-at-own-read-age-vs-peer-values-at-theirs (read 21d; X plays excluded — no plays history before 2026-08-21)",
     "computedAt": "2026-08-23T01:52:10.333Z",
     "frozenAt": "2026-08-23T01:52:10.333Z"
+   },
+   "watch": {
+    "channels": [
+     "yt:designertom",
+     "yt:joindiveclub"
+    ],
+    "avgPercent": 10.55,
+    "avgDurationSec": 778,
+    "minutesWatched": 15960,
+    "curve": [
+     {
+      "at": 0.01,
+      "watching": 0.673
+     },
+     {
+      "at": 0.02,
+      "watching": 0.117
+     },
+     {
+      "at": 0.03,
+      "watching": 0.122
+     },
+     {
+      "at": 0.04,
+      "watching": 0.218
+     },
+     {
+      "at": 0.05,
+      "watching": 0.285
+     },
+     {
+      "at": 0.06,
+      "watching": 0.222
+     },
+     {
+      "at": 0.07,
+      "watching": 0.205
+     },
+     {
+      "at": 0.08,
+      "watching": 0.204
+     },
+     {
+      "at": 0.09,
+      "watching": 0.188
+     },
+     {
+      "at": 0.1,
+      "watching": 0.196
+     },
+     {
+      "at": 0.11,
+      "watching": 0.181
+     },
+     {
+      "at": 0.12,
+      "watching": 0.183
+     },
+     {
+      "at": 0.13,
+      "watching": 0.174
+     },
+     {
+      "at": 0.14,
+      "watching": 0.169
+     },
+     {
+      "at": 0.15,
+      "watching": 0.162
+     },
+     {
+      "at": 0.16,
+      "watching": 0.161
+     },
+     {
+      "at": 0.17,
+      "watching": 0.164
+     },
+     {
+      "at": 0.18,
+      "watching": 0.152
+     },
+     {
+      "at": 0.19,
+      "watching": 0.158
+     },
+     {
+      "at": 0.2,
+      "watching": 0.166
+     },
+     {
+      "at": 0.21,
+      "watching": 0.17
+     },
+     {
+      "at": 0.22,
+      "watching": 0.151
+     },
+     {
+      "at": 0.23,
+      "watching": 0.146
+     },
+     {
+      "at": 0.24,
+      "watching": 0.156
+     },
+     {
+      "at": 0.25,
+      "watching": 0.154
+     },
+     {
+      "at": 0.26,
+      "watching": 0.17
+     },
+     {
+      "at": 0.27,
+      "watching": 0.151
+     },
+     {
+      "at": 0.28,
+      "watching": 0.144
+     },
+     {
+      "at": 0.29,
+      "watching": 0.139
+     },
+     {
+      "at": 0.3,
+      "watching": 0.144
+     },
+     {
+      "at": 0.31,
+      "watching": 0.134
+     },
+     {
+      "at": 0.32,
+      "watching": 0.141
+     },
+     {
+      "at": 0.33,
+      "watching": 0.134
+     },
+     {
+      "at": 0.34,
+      "watching": 0.141
+     },
+     {
+      "at": 0.35,
+      "watching": 0.146
+     },
+     {
+      "at": 0.36,
+      "watching": 0.149
+     },
+     {
+      "at": 0.37,
+      "watching": 0.15
+     },
+     {
+      "at": 0.38,
+      "watching": 0.144
+     },
+     {
+      "at": 0.39,
+      "watching": 0.167
+     },
+     {
+      "at": 0.4,
+      "watching": 0.162
+     },
+     {
+      "at": 0.41,
+      "watching": 0.154
+     },
+     {
+      "at": 0.42,
+      "watching": 0.164
+     },
+     {
+      "at": 0.43,
+      "watching": 0.15
+     },
+     {
+      "at": 0.44,
+      "watching": 0.14
+     },
+     {
+      "at": 0.45,
+      "watching": 0.139
+     },
+     {
+      "at": 0.46,
+      "watching": 0.142
+     },
+     {
+      "at": 0.47,
+      "watching": 0.151
+     },
+     {
+      "at": 0.48,
+      "watching": 0.15
+     },
+     {
+      "at": 0.49,
+      "watching": 0.135
+     },
+     {
+      "at": 0.5,
+      "watching": 0.134
+     },
+     {
+      "at": 0.51,
+      "watching": 0.147
+     },
+     {
+      "at": 0.52,
+      "watching": 0.135
+     },
+     {
+      "at": 0.53,
+      "watching": 0.139
+     },
+     {
+      "at": 0.54,
+      "watching": 0.135
+     },
+     {
+      "at": 0.55,
+      "watching": 0.134
+     },
+     {
+      "at": 0.56,
+      "watching": 0.145
+     },
+     {
+      "at": 0.57,
+      "watching": 0.145
+     },
+     {
+      "at": 0.58,
+      "watching": 0.142
+     },
+     {
+      "at": 0.59,
+      "watching": 0.147
+     },
+     {
+      "at": 0.6,
+      "watching": 0.138
+     },
+     {
+      "at": 0.61,
+      "watching": 0.144
+     },
+     {
+      "at": 0.62,
+      "watching": 0.14
+     },
+     {
+      "at": 0.63,
+      "watching": 0.146
+     },
+     {
+      "at": 0.64,
+      "watching": 0.15
+     },
+     {
+      "at": 0.65,
+      "watching": 0.146
+     },
+     {
+      "at": 0.66,
+      "watching": 0.142
+     },
+     {
+      "at": 0.67,
+      "watching": 0.138
+     },
+     {
+      "at": 0.68,
+      "watching": 0.131
+     },
+     {
+      "at": 0.69,
+      "watching": 0.128
+     },
+     {
+      "at": 0.7,
+      "watching": 0.14
+     },
+     {
+      "at": 0.71,
+      "watching": 0.147
+     },
+     {
+      "at": 0.72,
+      "watching": 0.144
+     },
+     {
+      "at": 0.73,
+      "watching": 0.135
+     },
+     {
+      "at": 0.74,
+      "watching": 0.13
+     },
+     {
+      "at": 0.75,
+      "watching": 0.13
+     },
+     {
+      "at": 0.76,
+      "watching": 0.118
+     },
+     {
+      "at": 0.77,
+      "watching": 0.119
+     },
+     {
+      "at": 0.78,
+      "watching": 0.118
+     },
+     {
+      "at": 0.79,
+      "watching": 0.116
+     },
+     {
+      "at": 0.8,
+      "watching": 0.118
+     },
+     {
+      "at": 0.81,
+      "watching": 0.117
+     },
+     {
+      "at": 0.82,
+      "watching": 0.11
+     },
+     {
+      "at": 0.83,
+      "watching": 0.104
+     },
+     {
+      "at": 0.84,
+      "watching": 0.113
+     },
+     {
+      "at": 0.85,
+      "watching": 0.111
+     },
+     {
+      "at": 0.86,
+      "watching": 0.111
+     },
+     {
+      "at": 0.87,
+      "watching": 0.105
+     },
+     {
+      "at": 0.88,
+      "watching": 0.1
+     },
+     {
+      "at": 0.89,
+      "watching": 0.103
+     },
+     {
+      "at": 0.9,
+      "watching": 0.107
+     },
+     {
+      "at": 0.91,
+      "watching": 0.099
+     },
+     {
+      "at": 0.92,
+      "watching": 0.101
+     },
+     {
+      "at": 0.93,
+      "watching": 0.102
+     },
+     {
+      "at": 0.94,
+      "watching": 0.095
+     },
+     {
+      "at": 0.95,
+      "watching": 0.101
+     },
+     {
+      "at": 0.96,
+      "watching": 0.107
+     },
+     {
+      "at": 0.97,
+      "watching": 0.098
+     },
+     {
+      "at": 0.98,
+      "watching": 0.108
+     },
+     {
+      "at": 0.99,
+      "watching": 0.086
+     },
+     {
+      "at": 1,
+      "watching": 0.072
+     }
+    ],
+    "traffic": [
+     {
+      "source": "SUBSCRIBER",
+      "views": 534,
+      "share": 43.4
+     },
+     {
+      "source": "NO_LINK_OTHER",
+      "views": 262,
+      "share": 21.3
+     },
+     {
+      "source": "YT_CHANNEL",
+      "views": 97,
+      "share": 7.9
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "views": 90,
+      "share": 7.3
+     },
+     {
+      "source": "YT_SEARCH",
+      "views": 80,
+      "share": 6.5
+     },
+     {
+      "source": "OTHER_COMBINED",
+      "views": 167,
+      "share": 13.6
+     }
+    ],
+    "updatedAt": "2026-08-22T22:00:46.078Z"
    }
   },
   {
@@ -5863,6 +6307,450 @@ window.DIVE_DATA = {
     "basis": "yt-views-at-own-read-age-vs-peer-values-at-theirs (read 21d; X plays excluded — no plays history before 2026-08-21)",
     "computedAt": "2026-08-23T01:52:10.333Z",
     "frozenAt": "2026-08-23T01:52:10.333Z"
+   },
+   "watch": {
+    "channels": [
+     "yt:designertom",
+     "yt:joindiveclub"
+    ],
+    "avgPercent": 11.02,
+    "avgDurationSec": 791,
+    "minutesWatched": 27171,
+    "curve": [
+     {
+      "at": 0.01,
+      "watching": 0.662
+     },
+     {
+      "at": 0.02,
+      "watching": 0.149
+     },
+     {
+      "at": 0.03,
+      "watching": 0.139
+     },
+     {
+      "at": 0.04,
+      "watching": 0.195
+     },
+     {
+      "at": 0.05,
+      "watching": 0.295
+     },
+     {
+      "at": 0.06,
+      "watching": 0.297
+     },
+     {
+      "at": 0.07,
+      "watching": 0.281
+     },
+     {
+      "at": 0.08,
+      "watching": 0.28
+     },
+     {
+      "at": 0.09,
+      "watching": 0.277
+     },
+     {
+      "at": 0.1,
+      "watching": 0.244
+     },
+     {
+      "at": 0.11,
+      "watching": 0.243
+     },
+     {
+      "at": 0.12,
+      "watching": 0.21
+     },
+     {
+      "at": 0.13,
+      "watching": 0.21
+     },
+     {
+      "at": 0.14,
+      "watching": 0.191
+     },
+     {
+      "at": 0.15,
+      "watching": 0.183
+     },
+     {
+      "at": 0.16,
+      "watching": 0.185
+     },
+     {
+      "at": 0.17,
+      "watching": 0.174
+     },
+     {
+      "at": 0.18,
+      "watching": 0.175
+     },
+     {
+      "at": 0.19,
+      "watching": 0.174
+     },
+     {
+      "at": 0.2,
+      "watching": 0.16
+     },
+     {
+      "at": 0.21,
+      "watching": 0.156
+     },
+     {
+      "at": 0.22,
+      "watching": 0.156
+     },
+     {
+      "at": 0.23,
+      "watching": 0.148
+     },
+     {
+      "at": 0.24,
+      "watching": 0.148
+     },
+     {
+      "at": 0.25,
+      "watching": 0.134
+     },
+     {
+      "at": 0.26,
+      "watching": 0.146
+     },
+     {
+      "at": 0.27,
+      "watching": 0.146
+     },
+     {
+      "at": 0.28,
+      "watching": 0.137
+     },
+     {
+      "at": 0.29,
+      "watching": 0.133
+     },
+     {
+      "at": 0.3,
+      "watching": 0.147
+     },
+     {
+      "at": 0.31,
+      "watching": 0.15
+     },
+     {
+      "at": 0.32,
+      "watching": 0.148
+     },
+     {
+      "at": 0.33,
+      "watching": 0.152
+     },
+     {
+      "at": 0.34,
+      "watching": 0.154
+     },
+     {
+      "at": 0.35,
+      "watching": 0.136
+     },
+     {
+      "at": 0.36,
+      "watching": 0.138
+     },
+     {
+      "at": 0.37,
+      "watching": 0.144
+     },
+     {
+      "at": 0.38,
+      "watching": 0.158
+     },
+     {
+      "at": 0.39,
+      "watching": 0.141
+     },
+     {
+      "at": 0.4,
+      "watching": 0.135
+     },
+     {
+      "at": 0.41,
+      "watching": 0.134
+     },
+     {
+      "at": 0.42,
+      "watching": 0.132
+     },
+     {
+      "at": 0.43,
+      "watching": 0.136
+     },
+     {
+      "at": 0.44,
+      "watching": 0.124
+     },
+     {
+      "at": 0.45,
+      "watching": 0.122
+     },
+     {
+      "at": 0.46,
+      "watching": 0.125
+     },
+     {
+      "at": 0.47,
+      "watching": 0.132
+     },
+     {
+      "at": 0.48,
+      "watching": 0.143
+     },
+     {
+      "at": 0.49,
+      "watching": 0.13
+     },
+     {
+      "at": 0.5,
+      "watching": 0.133
+     },
+     {
+      "at": 0.51,
+      "watching": 0.125
+     },
+     {
+      "at": 0.52,
+      "watching": 0.127
+     },
+     {
+      "at": 0.53,
+      "watching": 0.12
+     },
+     {
+      "at": 0.54,
+      "watching": 0.13
+     },
+     {
+      "at": 0.55,
+      "watching": 0.116
+     },
+     {
+      "at": 0.56,
+      "watching": 0.116
+     },
+     {
+      "at": 0.57,
+      "watching": 0.115
+     },
+     {
+      "at": 0.58,
+      "watching": 0.132
+     },
+     {
+      "at": 0.59,
+      "watching": 0.13
+     },
+     {
+      "at": 0.6,
+      "watching": 0.126
+     },
+     {
+      "at": 0.61,
+      "watching": 0.117
+     },
+     {
+      "at": 0.62,
+      "watching": 0.108
+     },
+     {
+      "at": 0.63,
+      "watching": 0.11
+     },
+     {
+      "at": 0.64,
+      "watching": 0.123
+     },
+     {
+      "at": 0.65,
+      "watching": 0.126
+     },
+     {
+      "at": 0.66,
+      "watching": 0.124
+     },
+     {
+      "at": 0.67,
+      "watching": 0.125
+     },
+     {
+      "at": 0.68,
+      "watching": 0.126
+     },
+     {
+      "at": 0.69,
+      "watching": 0.12
+     },
+     {
+      "at": 0.7,
+      "watching": 0.137
+     },
+     {
+      "at": 0.71,
+      "watching": 0.137
+     },
+     {
+      "at": 0.72,
+      "watching": 0.119
+     },
+     {
+      "at": 0.73,
+      "watching": 0.121
+     },
+     {
+      "at": 0.74,
+      "watching": 0.119
+     },
+     {
+      "at": 0.75,
+      "watching": 0.124
+     },
+     {
+      "at": 0.76,
+      "watching": 0.114
+     },
+     {
+      "at": 0.77,
+      "watching": 0.11
+     },
+     {
+      "at": 0.78,
+      "watching": 0.111
+     },
+     {
+      "at": 0.79,
+      "watching": 0.103
+     },
+     {
+      "at": 0.8,
+      "watching": 0.104
+     },
+     {
+      "at": 0.81,
+      "watching": 0.097
+     },
+     {
+      "at": 0.82,
+      "watching": 0.092
+     },
+     {
+      "at": 0.83,
+      "watching": 0.092
+     },
+     {
+      "at": 0.84,
+      "watching": 0.092
+     },
+     {
+      "at": 0.85,
+      "watching": 0.093
+     },
+     {
+      "at": 0.86,
+      "watching": 0.1
+     },
+     {
+      "at": 0.87,
+      "watching": 0.096
+     },
+     {
+      "at": 0.88,
+      "watching": 0.094
+     },
+     {
+      "at": 0.89,
+      "watching": 0.094
+     },
+     {
+      "at": 0.9,
+      "watching": 0.093
+     },
+     {
+      "at": 0.91,
+      "watching": 0.076
+     },
+     {
+      "at": 0.92,
+      "watching": 0.075
+     },
+     {
+      "at": 0.93,
+      "watching": 0.079
+     },
+     {
+      "at": 0.94,
+      "watching": 0.073
+     },
+     {
+      "at": 0.95,
+      "watching": 0.069
+     },
+     {
+      "at": 0.96,
+      "watching": 0.066
+     },
+     {
+      "at": 0.97,
+      "watching": 0.067
+     },
+     {
+      "at": 0.98,
+      "watching": 0.065
+     },
+     {
+      "at": 0.99,
+      "watching": 0.063
+     },
+     {
+      "at": 1,
+      "watching": 0.056
+     }
+    ],
+    "traffic": [
+     {
+      "source": "SUBSCRIBER",
+      "views": 1096,
+      "share": 53.2
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "views": 253,
+      "share": 12.3
+     },
+     {
+      "source": "NO_LINK_OTHER",
+      "views": 239,
+      "share": 11.6
+     },
+     {
+      "source": "YT_SEARCH",
+      "views": 121,
+      "share": 5.9
+     },
+     {
+      "source": "YT_CHANNEL",
+      "views": 119,
+      "share": 5.8
+     },
+     {
+      "source": "OTHER_COMBINED",
+      "views": 233,
+      "share": 11.3
+     }
+    ],
+    "updatedAt": "2026-08-22T22:00:46.078Z"
    }
   },
   {
@@ -7587,6 +8475,450 @@ window.DIVE_DATA = {
     "basis": "yt-views-at-own-read-age-vs-peer-values-at-theirs (read 21d; X plays excluded — no plays history before 2026-08-21)",
     "computedAt": "2026-08-23T01:52:10.333Z",
     "frozenAt": "2026-08-23T01:52:10.333Z"
+   },
+   "watch": {
+    "channels": [
+     "yt:designertom",
+     "yt:joindiveclub"
+    ],
+    "avgPercent": 8.95,
+    "avgDurationSec": 606,
+    "minutesWatched": 16166,
+    "curve": [
+     {
+      "at": 0.01,
+      "watching": 0.73
+     },
+     {
+      "at": 0.02,
+      "watching": 0.121
+     },
+     {
+      "at": 0.03,
+      "watching": 0.105
+     },
+     {
+      "at": 0.04,
+      "watching": 0.133
+     },
+     {
+      "at": 0.05,
+      "watching": 0.239
+     },
+     {
+      "at": 0.06,
+      "watching": 0.228
+     },
+     {
+      "at": 0.07,
+      "watching": 0.26
+     },
+     {
+      "at": 0.08,
+      "watching": 0.229
+     },
+     {
+      "at": 0.09,
+      "watching": 0.221
+     },
+     {
+      "at": 0.1,
+      "watching": 0.194
+     },
+     {
+      "at": 0.11,
+      "watching": 0.186
+     },
+     {
+      "at": 0.12,
+      "watching": 0.203
+     },
+     {
+      "at": 0.13,
+      "watching": 0.198
+     },
+     {
+      "at": 0.14,
+      "watching": 0.195
+     },
+     {
+      "at": 0.15,
+      "watching": 0.188
+     },
+     {
+      "at": 0.16,
+      "watching": 0.182
+     },
+     {
+      "at": 0.17,
+      "watching": 0.173
+     },
+     {
+      "at": 0.18,
+      "watching": 0.167
+     },
+     {
+      "at": 0.19,
+      "watching": 0.173
+     },
+     {
+      "at": 0.2,
+      "watching": 0.172
+     },
+     {
+      "at": 0.21,
+      "watching": 0.177
+     },
+     {
+      "at": 0.22,
+      "watching": 0.163
+     },
+     {
+      "at": 0.23,
+      "watching": 0.166
+     },
+     {
+      "at": 0.24,
+      "watching": 0.159
+     },
+     {
+      "at": 0.25,
+      "watching": 0.156
+     },
+     {
+      "at": 0.26,
+      "watching": 0.144
+     },
+     {
+      "at": 0.27,
+      "watching": 0.154
+     },
+     {
+      "at": 0.28,
+      "watching": 0.148
+     },
+     {
+      "at": 0.29,
+      "watching": 0.142
+     },
+     {
+      "at": 0.3,
+      "watching": 0.142
+     },
+     {
+      "at": 0.31,
+      "watching": 0.145
+     },
+     {
+      "at": 0.32,
+      "watching": 0.139
+     },
+     {
+      "at": 0.33,
+      "watching": 0.137
+     },
+     {
+      "at": 0.34,
+      "watching": 0.137
+     },
+     {
+      "at": 0.35,
+      "watching": 0.142
+     },
+     {
+      "at": 0.36,
+      "watching": 0.143
+     },
+     {
+      "at": 0.37,
+      "watching": 0.146
+     },
+     {
+      "at": 0.38,
+      "watching": 0.138
+     },
+     {
+      "at": 0.39,
+      "watching": 0.154
+     },
+     {
+      "at": 0.4,
+      "watching": 0.15
+     },
+     {
+      "at": 0.41,
+      "watching": 0.137
+     },
+     {
+      "at": 0.42,
+      "watching": 0.124
+     },
+     {
+      "at": 0.43,
+      "watching": 0.13
+     },
+     {
+      "at": 0.44,
+      "watching": 0.148
+     },
+     {
+      "at": 0.45,
+      "watching": 0.138
+     },
+     {
+      "at": 0.46,
+      "watching": 0.132
+     },
+     {
+      "at": 0.47,
+      "watching": 0.129
+     },
+     {
+      "at": 0.48,
+      "watching": 0.135
+     },
+     {
+      "at": 0.49,
+      "watching": 0.139
+     },
+     {
+      "at": 0.5,
+      "watching": 0.128
+     },
+     {
+      "at": 0.51,
+      "watching": 0.112
+     },
+     {
+      "at": 0.52,
+      "watching": 0.116
+     },
+     {
+      "at": 0.53,
+      "watching": 0.122
+     },
+     {
+      "at": 0.54,
+      "watching": 0.124
+     },
+     {
+      "at": 0.55,
+      "watching": 0.142
+     },
+     {
+      "at": 0.56,
+      "watching": 0.137
+     },
+     {
+      "at": 0.57,
+      "watching": 0.146
+     },
+     {
+      "at": 0.58,
+      "watching": 0.139
+     },
+     {
+      "at": 0.59,
+      "watching": 0.133
+     },
+     {
+      "at": 0.6,
+      "watching": 0.139
+     },
+     {
+      "at": 0.61,
+      "watching": 0.128
+     },
+     {
+      "at": 0.62,
+      "watching": 0.124
+     },
+     {
+      "at": 0.63,
+      "watching": 0.135
+     },
+     {
+      "at": 0.64,
+      "watching": 0.118
+     },
+     {
+      "at": 0.65,
+      "watching": 0.127
+     },
+     {
+      "at": 0.66,
+      "watching": 0.12
+     },
+     {
+      "at": 0.67,
+      "watching": 0.118
+     },
+     {
+      "at": 0.68,
+      "watching": 0.117
+     },
+     {
+      "at": 0.69,
+      "watching": 0.119
+     },
+     {
+      "at": 0.7,
+      "watching": 0.119
+     },
+     {
+      "at": 0.71,
+      "watching": 0.117
+     },
+     {
+      "at": 0.72,
+      "watching": 0.106
+     },
+     {
+      "at": 0.73,
+      "watching": 0.112
+     },
+     {
+      "at": 0.74,
+      "watching": 0.107
+     },
+     {
+      "at": 0.75,
+      "watching": 0.093
+     },
+     {
+      "at": 0.76,
+      "watching": 0.107
+     },
+     {
+      "at": 0.77,
+      "watching": 0.113
+     },
+     {
+      "at": 0.78,
+      "watching": 0.13
+     },
+     {
+      "at": 0.79,
+      "watching": 0.122
+     },
+     {
+      "at": 0.8,
+      "watching": 0.108
+     },
+     {
+      "at": 0.81,
+      "watching": 0.099
+     },
+     {
+      "at": 0.82,
+      "watching": 0.1
+     },
+     {
+      "at": 0.83,
+      "watching": 0.094
+     },
+     {
+      "at": 0.84,
+      "watching": 0.091
+     },
+     {
+      "at": 0.85,
+      "watching": 0.092
+     },
+     {
+      "at": 0.86,
+      "watching": 0.087
+     },
+     {
+      "at": 0.87,
+      "watching": 0.097
+     },
+     {
+      "at": 0.88,
+      "watching": 0.094
+     },
+     {
+      "at": 0.89,
+      "watching": 0.095
+     },
+     {
+      "at": 0.9,
+      "watching": 0.095
+     },
+     {
+      "at": 0.91,
+      "watching": 0.1
+     },
+     {
+      "at": 0.92,
+      "watching": 0.092
+     },
+     {
+      "at": 0.93,
+      "watching": 0.088
+     },
+     {
+      "at": 0.94,
+      "watching": 0.084
+     },
+     {
+      "at": 0.95,
+      "watching": 0.086
+     },
+     {
+      "at": 0.96,
+      "watching": 0.092
+     },
+     {
+      "at": 0.97,
+      "watching": 0.083
+     },
+     {
+      "at": 0.98,
+      "watching": 0.077
+     },
+     {
+      "at": 0.99,
+      "watching": 0.069
+     },
+     {
+      "at": 1,
+      "watching": 0.06
+     }
+    ],
+    "traffic": [
+     {
+      "source": "SUBSCRIBER",
+      "views": 862,
+      "share": 53.9
+     },
+     {
+      "source": "EXT_URL",
+      "views": 186,
+      "share": 11.6
+     },
+     {
+      "source": "NO_LINK_OTHER",
+      "views": 142,
+      "share": 8.9
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "views": 132,
+      "share": 8.3
+     },
+     {
+      "source": "YT_CHANNEL",
+      "views": 87,
+      "share": 5.4
+     },
+     {
+      "source": "OTHER_COMBINED",
+      "views": 191,
+      "share": 11.9
+     }
+    ],
+    "updatedAt": "2026-08-22T22:00:46.078Z"
    }
   },
   {
@@ -9337,6 +10669,450 @@ window.DIVE_DATA = {
    "health": {
     "pending": true,
     "readCompleteOn": "2026-08-27"
+   },
+   "watch": {
+    "channels": [
+     "yt:designertom",
+     "yt:joindiveclub"
+    ],
+    "avgPercent": 8.88,
+    "avgDurationSec": 658,
+    "minutesWatched": 20767,
+    "curve": [
+     {
+      "at": 0.01,
+      "watching": 0.704
+     },
+     {
+      "at": 0.02,
+      "watching": 0.119
+     },
+     {
+      "at": 0.03,
+      "watching": 0.107
+     },
+     {
+      "at": 0.04,
+      "watching": 0.18
+     },
+     {
+      "at": 0.05,
+      "watching": 0.217
+     },
+     {
+      "at": 0.06,
+      "watching": 0.2
+     },
+     {
+      "at": 0.07,
+      "watching": 0.185
+     },
+     {
+      "at": 0.08,
+      "watching": 0.211
+     },
+     {
+      "at": 0.09,
+      "watching": 0.182
+     },
+     {
+      "at": 0.1,
+      "watching": 0.165
+     },
+     {
+      "at": 0.11,
+      "watching": 0.165
+     },
+     {
+      "at": 0.12,
+      "watching": 0.158
+     },
+     {
+      "at": 0.13,
+      "watching": 0.157
+     },
+     {
+      "at": 0.14,
+      "watching": 0.15
+     },
+     {
+      "at": 0.15,
+      "watching": 0.156
+     },
+     {
+      "at": 0.16,
+      "watching": 0.155
+     },
+     {
+      "at": 0.17,
+      "watching": 0.151
+     },
+     {
+      "at": 0.18,
+      "watching": 0.136
+     },
+     {
+      "at": 0.19,
+      "watching": 0.137
+     },
+     {
+      "at": 0.2,
+      "watching": 0.135
+     },
+     {
+      "at": 0.21,
+      "watching": 0.139
+     },
+     {
+      "at": 0.22,
+      "watching": 0.134
+     },
+     {
+      "at": 0.23,
+      "watching": 0.124
+     },
+     {
+      "at": 0.24,
+      "watching": 0.131
+     },
+     {
+      "at": 0.25,
+      "watching": 0.123
+     },
+     {
+      "at": 0.26,
+      "watching": 0.121
+     },
+     {
+      "at": 0.27,
+      "watching": 0.119
+     },
+     {
+      "at": 0.28,
+      "watching": 0.116
+     },
+     {
+      "at": 0.29,
+      "watching": 0.115
+     },
+     {
+      "at": 0.3,
+      "watching": 0.113
+     },
+     {
+      "at": 0.31,
+      "watching": 0.115
+     },
+     {
+      "at": 0.32,
+      "watching": 0.134
+     },
+     {
+      "at": 0.33,
+      "watching": 0.123
+     },
+     {
+      "at": 0.34,
+      "watching": 0.126
+     },
+     {
+      "at": 0.35,
+      "watching": 0.129
+     },
+     {
+      "at": 0.36,
+      "watching": 0.145
+     },
+     {
+      "at": 0.37,
+      "watching": 0.129
+     },
+     {
+      "at": 0.38,
+      "watching": 0.218
+     },
+     {
+      "at": 0.39,
+      "watching": 0.158
+     },
+     {
+      "at": 0.4,
+      "watching": 0.156
+     },
+     {
+      "at": 0.41,
+      "watching": 0.137
+     },
+     {
+      "at": 0.42,
+      "watching": 0.129
+     },
+     {
+      "at": 0.43,
+      "watching": 0.127
+     },
+     {
+      "at": 0.44,
+      "watching": 0.13
+     },
+     {
+      "at": 0.45,
+      "watching": 0.133
+     },
+     {
+      "at": 0.46,
+      "watching": 0.119
+     },
+     {
+      "at": 0.47,
+      "watching": 0.122
+     },
+     {
+      "at": 0.48,
+      "watching": 0.121
+     },
+     {
+      "at": 0.49,
+      "watching": 0.12
+     },
+     {
+      "at": 0.5,
+      "watching": 0.117
+     },
+     {
+      "at": 0.51,
+      "watching": 0.106
+     },
+     {
+      "at": 0.52,
+      "watching": 0.111
+     },
+     {
+      "at": 0.53,
+      "watching": 0.111
+     },
+     {
+      "at": 0.54,
+      "watching": 0.116
+     },
+     {
+      "at": 0.55,
+      "watching": 0.11
+     },
+     {
+      "at": 0.56,
+      "watching": 0.119
+     },
+     {
+      "at": 0.57,
+      "watching": 0.105
+     },
+     {
+      "at": 0.58,
+      "watching": 0.099
+     },
+     {
+      "at": 0.59,
+      "watching": 0.1
+     },
+     {
+      "at": 0.6,
+      "watching": 0.107
+     },
+     {
+      "at": 0.61,
+      "watching": 0.096
+     },
+     {
+      "at": 0.62,
+      "watching": 0.102
+     },
+     {
+      "at": 0.63,
+      "watching": 0.097
+     },
+     {
+      "at": 0.64,
+      "watching": 0.103
+     },
+     {
+      "at": 0.65,
+      "watching": 0.098
+     },
+     {
+      "at": 0.66,
+      "watching": 0.095
+     },
+     {
+      "at": 0.67,
+      "watching": 0.107
+     },
+     {
+      "at": 0.68,
+      "watching": 0.108
+     },
+     {
+      "at": 0.69,
+      "watching": 0.103
+     },
+     {
+      "at": 0.7,
+      "watching": 0.105
+     },
+     {
+      "at": 0.71,
+      "watching": 0.099
+     },
+     {
+      "at": 0.72,
+      "watching": 0.102
+     },
+     {
+      "at": 0.73,
+      "watching": 0.093
+     },
+     {
+      "at": 0.74,
+      "watching": 0.092
+     },
+     {
+      "at": 0.75,
+      "watching": 0.082
+     },
+     {
+      "at": 0.76,
+      "watching": 0.084
+     },
+     {
+      "at": 0.77,
+      "watching": 0.089
+     },
+     {
+      "at": 0.78,
+      "watching": 0.09
+     },
+     {
+      "at": 0.79,
+      "watching": 0.088
+     },
+     {
+      "at": 0.8,
+      "watching": 0.081
+     },
+     {
+      "at": 0.81,
+      "watching": 0.081
+     },
+     {
+      "at": 0.82,
+      "watching": 0.084
+     },
+     {
+      "at": 0.83,
+      "watching": 0.082
+     },
+     {
+      "at": 0.84,
+      "watching": 0.088
+     },
+     {
+      "at": 0.85,
+      "watching": 0.09
+     },
+     {
+      "at": 0.86,
+      "watching": 0.097
+     },
+     {
+      "at": 0.87,
+      "watching": 0.089
+     },
+     {
+      "at": 0.88,
+      "watching": 0.086
+     },
+     {
+      "at": 0.89,
+      "watching": 0.083
+     },
+     {
+      "at": 0.9,
+      "watching": 0.087
+     },
+     {
+      "at": 0.91,
+      "watching": 0.077
+     },
+     {
+      "at": 0.92,
+      "watching": 0.074
+     },
+     {
+      "at": 0.93,
+      "watching": 0.075
+     },
+     {
+      "at": 0.94,
+      "watching": 0.07
+     },
+     {
+      "at": 0.95,
+      "watching": 0.063
+     },
+     {
+      "at": 0.96,
+      "watching": 0.062
+     },
+     {
+      "at": 0.97,
+      "watching": 0.059
+     },
+     {
+      "at": 0.98,
+      "watching": 0.054
+     },
+     {
+      "at": 0.99,
+      "watching": 0.047
+     },
+     {
+      "at": 1,
+      "watching": 0.046
+     }
+    ],
+    "traffic": [
+     {
+      "source": "SUBSCRIBER",
+      "views": 1067,
+      "share": 56.4
+     },
+     {
+      "source": "NO_LINK_OTHER",
+      "views": 226,
+      "share": 11.9
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "views": 163,
+      "share": 8.6
+     },
+     {
+      "source": "EXT_URL",
+      "views": 149,
+      "share": 7.9
+     },
+     {
+      "source": "YT_CHANNEL",
+      "views": 84,
+      "share": 4.4
+     },
+     {
+      "source": "OTHER_COMBINED",
+      "views": 204,
+      "share": 10.8
+     }
+    ],
+    "updatedAt": "2026-08-22T22:00:46.078Z"
    }
   },
   {
@@ -10978,6 +12754,450 @@ window.DIVE_DATA = {
    "health": {
     "pending": true,
     "readCompleteOn": "2026-09-03"
+   },
+   "watch": {
+    "channels": [
+     "yt:designertom",
+     "yt:joindiveclub"
+    ],
+    "avgPercent": 13.22,
+    "avgDurationSec": 753,
+    "minutesWatched": 14296,
+    "curve": [
+     {
+      "at": 0.01,
+      "watching": 0.694
+     },
+     {
+      "at": 0.02,
+      "watching": 0.123
+     },
+     {
+      "at": 0.03,
+      "watching": 0.102
+     },
+     {
+      "at": 0.04,
+      "watching": 0.11
+     },
+     {
+      "at": 0.05,
+      "watching": 0.156
+     },
+     {
+      "at": 0.06,
+      "watching": 0.228
+     },
+     {
+      "at": 0.07,
+      "watching": 0.222
+     },
+     {
+      "at": 0.08,
+      "watching": 0.22
+     },
+     {
+      "at": 0.09,
+      "watching": 0.229
+     },
+     {
+      "at": 0.1,
+      "watching": 0.269
+     },
+     {
+      "at": 0.11,
+      "watching": 0.273
+     },
+     {
+      "at": 0.12,
+      "watching": 0.227
+     },
+     {
+      "at": 0.13,
+      "watching": 0.211
+     },
+     {
+      "at": 0.14,
+      "watching": 0.225
+     },
+     {
+      "at": 0.15,
+      "watching": 0.236
+     },
+     {
+      "at": 0.16,
+      "watching": 0.22
+     },
+     {
+      "at": 0.17,
+      "watching": 0.218
+     },
+     {
+      "at": 0.18,
+      "watching": 0.231
+     },
+     {
+      "at": 0.19,
+      "watching": 0.233
+     },
+     {
+      "at": 0.2,
+      "watching": 0.225
+     },
+     {
+      "at": 0.21,
+      "watching": 0.201
+     },
+     {
+      "at": 0.22,
+      "watching": 0.199
+     },
+     {
+      "at": 0.23,
+      "watching": 0.181
+     },
+     {
+      "at": 0.24,
+      "watching": 0.192
+     },
+     {
+      "at": 0.25,
+      "watching": 0.201
+     },
+     {
+      "at": 0.26,
+      "watching": 0.184
+     },
+     {
+      "at": 0.27,
+      "watching": 0.208
+     },
+     {
+      "at": 0.28,
+      "watching": 0.182
+     },
+     {
+      "at": 0.29,
+      "watching": 0.192
+     },
+     {
+      "at": 0.3,
+      "watching": 0.189
+     },
+     {
+      "at": 0.31,
+      "watching": 0.18
+     },
+     {
+      "at": 0.32,
+      "watching": 0.164
+     },
+     {
+      "at": 0.33,
+      "watching": 0.163
+     },
+     {
+      "at": 0.34,
+      "watching": 0.172
+     },
+     {
+      "at": 0.35,
+      "watching": 0.182
+     },
+     {
+      "at": 0.36,
+      "watching": 0.184
+     },
+     {
+      "at": 0.37,
+      "watching": 0.186
+     },
+     {
+      "at": 0.38,
+      "watching": 0.166
+     },
+     {
+      "at": 0.39,
+      "watching": 0.182
+     },
+     {
+      "at": 0.4,
+      "watching": 0.172
+     },
+     {
+      "at": 0.41,
+      "watching": 0.179
+     },
+     {
+      "at": 0.42,
+      "watching": 0.177
+     },
+     {
+      "at": 0.43,
+      "watching": 0.173
+     },
+     {
+      "at": 0.44,
+      "watching": 0.177
+     },
+     {
+      "at": 0.45,
+      "watching": 0.176
+     },
+     {
+      "at": 0.46,
+      "watching": 0.17
+     },
+     {
+      "at": 0.47,
+      "watching": 0.185
+     },
+     {
+      "at": 0.48,
+      "watching": 0.185
+     },
+     {
+      "at": 0.49,
+      "watching": 0.203
+     },
+     {
+      "at": 0.5,
+      "watching": 0.175
+     },
+     {
+      "at": 0.51,
+      "watching": 0.163
+     },
+     {
+      "at": 0.52,
+      "watching": 0.168
+     },
+     {
+      "at": 0.53,
+      "watching": 0.183
+     },
+     {
+      "at": 0.54,
+      "watching": 0.17
+     },
+     {
+      "at": 0.55,
+      "watching": 0.173
+     },
+     {
+      "at": 0.56,
+      "watching": 0.184
+     },
+     {
+      "at": 0.57,
+      "watching": 0.201
+     },
+     {
+      "at": 0.58,
+      "watching": 0.2
+     },
+     {
+      "at": 0.59,
+      "watching": 0.188
+     },
+     {
+      "at": 0.6,
+      "watching": 0.181
+     },
+     {
+      "at": 0.61,
+      "watching": 0.177
+     },
+     {
+      "at": 0.62,
+      "watching": 0.173
+     },
+     {
+      "at": 0.63,
+      "watching": 0.177
+     },
+     {
+      "at": 0.64,
+      "watching": 0.185
+     },
+     {
+      "at": 0.65,
+      "watching": 0.181
+     },
+     {
+      "at": 0.66,
+      "watching": 0.171
+     },
+     {
+      "at": 0.67,
+      "watching": 0.166
+     },
+     {
+      "at": 0.68,
+      "watching": 0.155
+     },
+     {
+      "at": 0.69,
+      "watching": 0.162
+     },
+     {
+      "at": 0.7,
+      "watching": 0.154
+     },
+     {
+      "at": 0.71,
+      "watching": 0.157
+     },
+     {
+      "at": 0.72,
+      "watching": 0.147
+     },
+     {
+      "at": 0.73,
+      "watching": 0.14
+     },
+     {
+      "at": 0.74,
+      "watching": 0.147
+     },
+     {
+      "at": 0.75,
+      "watching": 0.157
+     },
+     {
+      "at": 0.76,
+      "watching": 0.145
+     },
+     {
+      "at": 0.77,
+      "watching": 0.143
+     },
+     {
+      "at": 0.78,
+      "watching": 0.149
+     },
+     {
+      "at": 0.79,
+      "watching": 0.138
+     },
+     {
+      "at": 0.8,
+      "watching": 0.134
+     },
+     {
+      "at": 0.81,
+      "watching": 0.131
+     },
+     {
+      "at": 0.82,
+      "watching": 0.131
+     },
+     {
+      "at": 0.83,
+      "watching": 0.129
+     },
+     {
+      "at": 0.84,
+      "watching": 0.122
+     },
+     {
+      "at": 0.85,
+      "watching": 0.138
+     },
+     {
+      "at": 0.86,
+      "watching": 0.135
+     },
+     {
+      "at": 0.87,
+      "watching": 0.145
+     },
+     {
+      "at": 0.88,
+      "watching": 0.136
+     },
+     {
+      "at": 0.89,
+      "watching": 0.139
+     },
+     {
+      "at": 0.9,
+      "watching": 0.132
+     },
+     {
+      "at": 0.91,
+      "watching": 0.127
+     },
+     {
+      "at": 0.92,
+      "watching": 0.136
+     },
+     {
+      "at": 0.93,
+      "watching": 0.119
+     },
+     {
+      "at": 0.94,
+      "watching": 0.124
+     },
+     {
+      "at": 0.95,
+      "watching": 0.117
+     },
+     {
+      "at": 0.96,
+      "watching": 0.103
+     },
+     {
+      "at": 0.97,
+      "watching": 0.096
+     },
+     {
+      "at": 0.98,
+      "watching": 0.098
+     },
+     {
+      "at": 0.99,
+      "watching": 0.089
+     },
+     {
+      "at": 1,
+      "watching": 0.086
+     }
+    ],
+    "traffic": [
+     {
+      "source": "SUBSCRIBER",
+      "views": 713,
+      "share": 62.7
+     },
+     {
+      "source": "NO_LINK_OTHER",
+      "views": 96,
+      "share": 8.4
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "views": 79,
+      "share": 6.9
+     },
+     {
+      "source": "YT_SEARCH",
+      "views": 57,
+      "share": 5
+     },
+     {
+      "source": "YT_CHANNEL",
+      "views": 56,
+      "share": 4.9
+     },
+     {
+      "source": "OTHER_COMBINED",
+      "views": 137,
+      "share": 12
+     }
+    ],
+    "updatedAt": "2026-08-22T22:00:46.078Z"
    }
   },
   {
@@ -12688,6 +14908,49 @@ window.DIVE_DATA = {
    "health": {
     "pending": true,
     "readCompleteOn": "2026-09-10"
+   },
+   "watch": {
+    "channels": [
+     "yt:designertom",
+     "yt:joindiveclub"
+    ],
+    "avgPercent": 12.85,
+    "avgDurationSec": 656,
+    "minutesWatched": 6781,
+    "curve": null,
+    "traffic": [
+     {
+      "source": "SUBSCRIBER",
+      "views": 407,
+      "share": 64.1
+     },
+     {
+      "source": "NO_LINK_OTHER",
+      "views": 55,
+      "share": 8.7
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "views": 50,
+      "share": 7.9
+     },
+     {
+      "source": "EXT_URL",
+      "views": 39,
+      "share": 6.1
+     },
+     {
+      "source": "NOTIFICATION",
+      "views": 30,
+      "share": 4.7
+     },
+     {
+      "source": "OTHER_COMBINED",
+      "views": 54,
+      "share": 8.5
+     }
+    ],
+    "updatedAt": "2026-08-22T22:00:46.078Z"
    }
   }
  ],

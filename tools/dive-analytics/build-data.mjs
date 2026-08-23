@@ -285,6 +285,7 @@ export function computeAll({ now = Date.now() } = {}) {
   attachLiveSessions(dive, registry);
   const commentSummary = attachComments(dive);
   attachEpisodeHealth(dive);
+  attachWatch(dive);
 
   const insights = buildInsights(dive, { now, median });
   insights.push(...liveInsights(dive));
@@ -343,6 +344,86 @@ function attachEpisodeHealth(dive) {
     e.health = r || {
       pending: true,
       readCompleteOn: new Date(premiereMs(e.premiere) + READ_DAYS * DAY - PHX_OFFSET).toISOString().slice(0, 10),
+    };
+  }
+}
+
+// --- W13 watching: verified YouTube Analytics exported for the page ---
+// Owner-level analytics (yt-analytics-pull.mjs) hold how LONG people watch,
+// where they came from, and the drop-off curve. This attaches a per-episode
+// view-weighted blend of the two channels so the page never recomputes:
+//   avgPercent      share of the video watched on average (both channels,
+//                   weighted by their views)
+//   avgDurationSec  average time watched, same weighting
+//   minutesWatched  total minutes watched across channels with reports
+//   curve           still-watching share at each point of the video (the
+//                   channels' aligned 100-point curves, view-weighted);
+//                   null until YouTube produces the curves — absence ≠ zero
+//   traffic         top view sources summed across channels + the remainder
+// A channel with no report simply drops out; an episode with no report at all
+// carries no watch block.
+const WATCH_DIR = join(ROOT, "data", "restream", "yt-analytics");
+function attachWatch(dive) {
+  for (const e of dive) {
+    let j = null;
+    try { j = JSON.parse(readFileSync(join(WATCH_DIR, `${e.slug}.json`), "utf8")); } catch { continue; }
+    const chans = Object.entries(j.channels || {}).filter(([, c]) => c?.totals && Number.isFinite(c.totals.views) && c.totals.views > 0);
+    if (!chans.length) continue;
+    const weighted = (pick) => {
+      let num = 0, den = 0;
+      for (const [, c] of chans) {
+        const v = pick(c.totals);
+        if (Number.isFinite(v)) { num += v * c.totals.views; den += c.totals.views; }
+      }
+      return den > 0 ? num / den : null;
+    };
+    const avgPercent = weighted((t) => t.averageViewPercentage);
+    const avgDurationSec = weighted((t) => t.averageViewDuration);
+    const minutesWatched = chans.reduce((a, [, c]) => a + (Number.isFinite(c.totals.estimatedMinutesWatched) ? c.totals.estimatedMinutesWatched : 0), 0);
+
+    const withCurve = chans.filter(([, c]) => Array.isArray(c.retention) && c.retention.length);
+    let curve = null;
+    if (withCurve.length) {
+      const byAt = new Map();
+      for (const [, c] of withCurve) {
+        for (const p of c.retention) {
+          if (!Number.isFinite(p.elapsedVideoTimeRatio) || !Number.isFinite(p.audienceWatchRatio)) continue;
+          const row = byAt.get(p.elapsedVideoTimeRatio) || { num: 0, den: 0 };
+          row.num += p.audienceWatchRatio * c.totals.views;
+          row.den += c.totals.views;
+          byAt.set(p.elapsedVideoTimeRatio, row);
+        }
+      }
+      curve = [...byAt.entries()].sort((a, b) => a[0] - b[0])
+        .map(([at, r]) => ({ at, watching: Math.round((r.num / r.den) * 1000) / 1000 }));
+      if (!curve.length) curve = null;
+    }
+
+    const bySource = new Map();
+    let trafficTotal = 0;
+    for (const [, c] of chans) {
+      for (const t of c.trafficSources || []) {
+        if (!Number.isFinite(t.views) || t.views <= 0) continue;
+        bySource.set(t.insightTrafficSourceType, (bySource.get(t.insightTrafficSourceType) || 0) + t.views);
+        trafficTotal += t.views;
+      }
+    }
+    let traffic = null;
+    if (trafficTotal > 0) {
+      const rows = [...bySource.entries()].sort((a, b) => b[1] - a[1]);
+      traffic = rows.slice(0, 5).map(([source, views]) => ({ source, views, share: Math.round((views / trafficTotal) * 1000) / 10 }));
+      const rest = rows.slice(5).reduce((a, [, v]) => a + v, 0);
+      if (rest > 0) traffic.push({ source: "OTHER_COMBINED", views: rest, share: Math.round((rest / trafficTotal) * 1000) / 10 });
+    }
+
+    e.watch = {
+      channels: chans.map(([k]) => k),
+      avgPercent: avgPercent != null ? Math.round(avgPercent * 100) / 100 : null,
+      avgDurationSec: avgDurationSec != null ? Math.round(avgDurationSec) : null,
+      minutesWatched: minutesWatched > 0 ? Math.round(minutesWatched) : null,
+      curve,
+      traffic,
+      updatedAt: j.updatedAt ?? null,
     };
   }
 }

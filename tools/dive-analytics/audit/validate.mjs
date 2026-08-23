@@ -635,6 +635,46 @@ function premiereMs(dateStr) {
   }
 }
 
+// --- 1m. W13 watching export: verified-analytics blend sanity ---
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  if (!/data-v="watch"/.test(html)) { bad++; fail("watching: the chart has no Watching view"); }
+  for (const e of eps) {
+    const w = e.watch;
+    const storePath = join(ROOT, "data", "restream", "yt-analytics", `${e.slug}.json`);
+    if (!w) {
+      if (existsSync(storePath)) {
+        try {
+          const j = JSON.parse(readFileSync(storePath, "utf8"));
+          const usable = Object.values(j.channels || {}).some((c) => c?.totals && c.totals.views > 0);
+          if (usable) { bad++; fail(`watching: ${e.slug} has analytics but no exported watch block`); }
+        } catch { /* unreadable store — pull warns separately */ }
+      }
+      continue;
+    }
+    if (!existsSync(storePath)) { bad++; fail(`watching: ${e.slug} exports watch data with no analytics store — fabricated`); continue; }
+    if (!Array.isArray(w.channels) || !w.channels.length) { bad++; fail(`watching: ${e.slug} watch block names no channels`); }
+    if (w.avgPercent != null && !(w.avgPercent >= 0 && w.avgPercent <= 100)) { bad++; fail(`watching: ${e.slug} average share ${w.avgPercent} outside 0..100`); }
+    if (w.avgDurationSec != null && !(w.avgDurationSec > 0)) { bad++; fail(`watching: ${e.slug} average duration must be positive when present`); }
+    if (w.curve) {
+      let last = -1;
+      for (const point of w.curve) {
+        if (!(point.at > 0 && point.at <= 1) || !(point.watching >= 0 && point.watching <= 3) || point.at <= last) {
+          bad++; fail(`watching: ${e.slug} curve point out of range or order (at=${point.at})`); break;
+        }
+        last = point.at;
+      }
+    }
+    if (w.traffic) {
+      const shareSum = w.traffic.reduce((sum, t) => sum + t.share, 0);
+      if (shareSum > 100.6) { bad++; fail(`watching: ${e.slug} view-source shares sum to ${shareSum.toFixed(1)}`); }
+      if (w.traffic.some((t) => !(t.views > 0) || !(t.share >= 0 && t.share <= 100))) { bad++; fail(`watching: ${e.slug} view-source row out of range`); }
+    }
+  }
+  if (!bad) ok(`watching: ${eps.filter((e) => e.watch).length} episode(s) export verified watch data — blends in range, curves ordered, absence never zero`);
+}
+
 // --- 1h. W10 show health: deterministic math, grounding, history, surface lock ---
 {
   let bad = 0;
@@ -832,6 +872,14 @@ function premiereMs(dateStr) {
   if (!/lands after \$\{healthWaitDate\(e\)\}/.test(html) || !/arrives after \$\{healthWaitDate\(e\)\}/.test(html)) {
     bad++; fail("dashboard: young episodes must state when their three-week read completes instead of showing a score");
   }
+  // W13: the typical watch line is a claim about the show — it waits for three
+  // real curves, and episodes without curves are named in the scope, not hidden
+  if (!/curves\.length >= 3/.test(html)) {
+    bad++; fail("dashboard: the typical watch line is not gated behind three real curves");
+  }
+  if (!/not in yet` : ""\}/.test(html) || !/watch curve is not in yet/.test(html)) {
+    bad++; fail("dashboard: episodes without watch curves must be named as missing, never silently absent");
+  }
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks, scores wait for finished three-week reads, plain words throughout");
 }
 
@@ -938,6 +986,9 @@ function premiereMs(dateStr) {
     // the panel must explain the score's basis and its missing checks
     if (!/Episode health/.test(panelSource) || !/missingChecks/.test(panelSource) || !/newer episodes never change this score/.test(panelSource)) {
       bad++; fail("card layout: the episode panel does not explain the finished score, its basis, and its missing checks");
+    }
+    if (!/How people watch/.test(panelSource) || !/Where views came from/.test(panelSource)) {
+      bad++; fail("card layout: the episode panel is missing its watching and view-source sections");
     }
     if (!html.includes('role="tablist"') || !/setAttribute\("aria-selected"/.test(html)
       || !/addEventListener\("focusin"[\s\S]*showRtt/.test(html)) {
