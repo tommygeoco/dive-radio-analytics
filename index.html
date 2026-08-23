@@ -223,6 +223,7 @@
   .panel .tlink:hover, .panel .tlink:focus-visible { background: var(--s2); border-color: var(--accent); }
   .panel .h .hmeta { margin-left: auto; margin-right: 34px; color: var(--t3); font-weight: 400; font-size: 13px; white-space: nowrap; }
   .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .panel .frate { color: var(--t3); font-size: 13px; margin-top: 2px; font-variant-numeric: tabular-nums; }
   .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
   .panel .trow { display: flex; align-items: center; gap: 9px; padding: 4.5px 0; color: var(--t2); font-size: 13.5px; }
   .panel .trow .tl { width: 118px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1272,7 +1273,9 @@ function buildPanel() {
     html += `<div class="psec wide"><div class="kicker">Audience feedback</div>`;
     html += `<div class="fline"><span class="senti-link" data-f="positive"><b style="color:var(--good)">${comments.enjoyCount}</b> enjoyed</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${comments.complaintCount}</b> didn’t</span> · <span class="senti-link" data-f="all">${comments.uniqueCommenters} ${comments.uniqueCommenters === 1 ? "person" : "people"} commented →</span></div>`;
     if (comments.commentersPer1k != null) {
-      html += `<div class="row">people commenting per 1,000 watches<span class="val">${comments.commentersPer1k}</span></div>`;
+      // a sentence, not a label/value row: in this full-width tile a
+      // right-pushed value strands the number a panel-width from its words
+      html += `<div class="frate">${comments.commentersPer1k} people commenting per 1,000 watches</div>`;
     } else {
       html += `<div class="note">${esc(comments.commentersPer1kNote)}</div>`;
     }
