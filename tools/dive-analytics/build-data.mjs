@@ -11,7 +11,8 @@ import { join, dirname } from "node:path";
 // same deterministic wordlist the sentiment labels come from
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { projectHealth } from "./health.mjs";
-import { watchMoments } from "./watch-moments.mjs";
+import { watchMoments, excerptWords } from "./watch-moments.mjs";
+import { BANNED as BANNED_JARGON } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -1013,6 +1014,14 @@ function buildInsights(dive, { median }) {
 
 // --- Slack trends block (used by postlive-track.mjs report --trends) ---
 
+// exported so the validator can recompute the sharpest-exit line verbatim
+export function minutesInWords(sec) {
+  const m = Math.round(sec / 60);
+  if (m < 60) return `${m} minute${m === 1 ? "" : "s"} in`;
+  const h = Math.floor(m / 60);
+  return `${h} hour${h === 1 ? "" : "s"}${m % 60 ? ` ${m % 60} minutes` : ""} in`;
+}
+
 export function trendsText(data) {
   const CAT_LABEL = { content: "Content", distribution: "Distribution", promotion: "Promotion", audience: "Audience health", data: "Data note" };
   const lines = ["", "Trends"];
@@ -1040,6 +1049,16 @@ export function trendsText(data) {
   }
   if (newest?.health?.pending) {
     lines.push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
+  }
+  // v6 W16: the newest episode's sharpest exit moment, read from the same
+  // stored moments the panel pins render. The transcript words ride along only
+  // when they pass the plain-words gate — spoken quotes can contain words the
+  // report bans, and then the numbers stand alone.
+  const momentEp = [...data.episodes].reverse().find((e) => e.watch?.moments?.some((m) => m.kind === "drop"));
+  if (momentEp) {
+    const drop = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
+    const quote = excerptWords(drop.excerpt);
+    lines.push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${quote && !BANNED_JARGON.test(quote) ? ` — “${quote}”` : ""}.`);
   }
   // W8: newest-episode feedback, read from the same exported rollup as the page.
   const c = newest?.comments;

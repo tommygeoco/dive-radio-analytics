@@ -756,7 +756,25 @@ function premiereMs(dateStr) {
       if (hit && (!byId.get(f.id) || f.value !== byId.get(f.id).points)) { bad++; fail(`moments: engine fact ${f.id} does not equal the stored moment's points`); }
     }
   } catch (err) { bad++; fail(`moments: engine parity check threw — ${err.message}`); }
-  if (!bad) ok(`moments: ${eps.filter((x) => x.watch?.moments).length} episode(s) carry transcript-anchored moments — recompute-locked, floors/spacing/caps hold, excerpts verbatim, absence silent`);
+  // Slack definition-lock: the Monday report's sharpest-exit line is rebuilt
+  // verbatim from the stored moments (quote included only when it passes the
+  // plain-words gate — 1i re-checks the whole report separately)
+  try {
+    const build = await import(join(TOOL, "build-data.mjs"));
+    const recs = await import(join(TOOL, "recommendations.mjs"));
+    const slack = build.trendsText(data);
+    const exitLines = slack.split("\n").filter((l) => l.startsWith("• Sharpest exit in "));
+    const momentEp = [...eps].reverse().find((x) => x.watch?.moments?.some((m) => m.kind === "drop"));
+    if (!momentEp) {
+      if (exitLines.length) { bad++; fail("moments: Slack reports an exit moment no episode carries"); }
+    } else {
+      const d = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
+      const quote = wm.excerptWords(d.excerpt);
+      const expected = `• Sharpest exit in ${momentEp.title.replace(/^Dive Radio:\s*/i, "")}: ${d.points} of every 100 viewers leave ${d.approx ? "roughly" : "about"} ${build.minutesInWords(d.estSec)}${quote && !recs.BANNED.test(quote) ? ` — “${quote}”` : ""}.`;
+      if (exitLines.length !== 1 || exitLines[0] !== expected) { bad++; fail("moments: Slack sharpest-exit line does not exactly rebuild from the stored moment"); }
+    }
+  } catch (err) { bad++; fail(`moments: Slack line check threw — ${err.message}`); }
+  if (!bad) ok(`moments: ${eps.filter((x) => x.watch?.moments).length} episode(s) carry transcript-anchored moments — recompute-locked, floors/spacing/caps hold, excerpts verbatim, absence silent, Slack line locked`);
 }
 
 // --- 1n. W15 recommendation engine: grounded store, definition-locked into insights ---

@@ -36,7 +36,9 @@ const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 export const STORE_VERSION = 1;
 export const PROMPT_VERSION = 2; // v6: watch-moment facts + excerpt context
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
-const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
+// exported so other prose surfaces (the Slack trends line) can gate spoken
+// quotes with the same plain-words contract the validator enforces
+export const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
 const MARKUP = /<\/?[a-z]|```|https?:\/\/|\[[^\]]+\]\(/i;
 
 function readJson(path, fallback = null) {
