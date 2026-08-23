@@ -219,6 +219,7 @@
   #rtt .mv b { font-size: 15px; color: var(--t1); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
   #rtt .mv .mt { color: var(--t3); font-size: 12.5px; }
   #rtt .mv.mr { font-size: 12.5px; line-height: 1.4; color: var(--t3); display: block; }
+  #rtt .mnote { color: var(--t3); font-size: 11.5px; line-height: 1.35; margin-top: 3px; opacity: .85; }
   #rtt .fnote { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 12.5px; }
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
@@ -924,21 +925,32 @@ function buildHealth() {
     const [label, sub] = CHECK_LABELS[c.key] || [c.key, ""];
     const [cls, word] = checkState(c.score);
     const fmtM = (k, v) => `${nfmt(v)}${PCT_MEASURES.has(k) ? "%" : ""}`;
-    // each measure's stored note says how it was compared (same age, or as the
-    // earlier episodes stand now); a scored check's reason (which episode was
-    // read, what is still early) renders too — stored honesty reaches the
-    // click layer (PRD v9 rule 17)
+    // structured drill rows for the tooltip: label, strong value, comparison
+    // direction (the shared quiet-zone gate from data.baselines), the sample,
+    // and each measure's stored note — how it was compared (same age, or as
+    // the earlier episodes stand now). Stored honesty reaches the click layer
+    // (PRD v9 rule 17) inside the measure-block layout, never as prose lines.
     const drill = (c.measures || []).map((m) => {
       const name = MEASURE_WORDS[m.key] || m.key;
-      if (m.value == null) return m.reason ? `${name}: ${m.reason}` : null;
-      return `${name}: ${fmtM(m.key, m.value)}${m.typical != null ? ` · typically ${fmtM(m.key, m.typical)}` : ""}${m.sample ? ` · from ${m.sample} episodes` : ""}${m.note ? ` · ${m.note}` : ""}`;
+      if (m.value == null) return m.reason ? { n: name, r: m.reason } : null;
+      const row = { n: name, v: fmtM(m.key, m.value), note: m.note || null };
+      if (m.typical != null) {
+        row.t = fmtM(m.key, m.typical);
+        if (m.typical > 0) {
+          const pct = Math.round(Math.abs(m.value / m.typical - 1) * 100);
+          row.d = pct <= QUIET_ZONE ? "mid" : m.value > m.typical ? "up" : "down";
+          if (row.d !== "mid") row.p = pct;
+        }
+      }
+      if (m.sample) row.s = m.sample;
+      return row;
     }).filter(Boolean);
     // an unscored check's stored reason is the measure reasons joined — when
     // the measure rows already say it, a footer repeating them is noise
     const note = c.score != null
       ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${c.reason ? ` ${c.reason.charAt(0).toUpperCase() + c.reason.slice(1)}` : ""}`
-      : (c.reason || "");
-    return `<div class="checkrow" tabindex="0" data-stat="${esc(`${label} — ${word}`)}"${drill.length ? ` data-rows="${esc(drill.join("||"))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}><span class="cl">${label}</span>
+      : (drill.length ? "" : (c.reason || ""));
+    return `<div class="checkrow" tabindex="0" data-stat="${esc(label)}" data-state="${esc(word)}" data-stcls="${cls}"${drill.length ? ` data-mrows="${esc(JSON.stringify(drill))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}><span class="cl">${label}</span>
       <span class="st ${cls}"><i aria-hidden="true"></i>${word}</span></div>`;
   }).join("");
   // each bullet carries exactly one validated number — bolding it gives the
@@ -1571,6 +1583,14 @@ function lineHoverHandler(evt, els, ch) {
 
 // stale-tooltip kill (taste audit F5): Chart.js external tooltips only hide on
 // tooltip events; a fast pointer exit could strand one over the chart
+// chart tooltips follow the pointer, not the bar's caret — the reader's eye
+// is at the cursor (owner feedback 2026-08-23). Falls back to the caret when
+// no pointer has moved yet (keyboard, touch synthesis).
+let chartCursor = null;
+document.getElementById("chartbox").addEventListener("pointermove", (ev) => {
+  const r = ev.currentTarget.getBoundingClientRect();
+  chartCursor = { x: ev.clientX - r.left, y: ev.clientY - r.top };
+});
 document.getElementById("chartbox").addEventListener("mouseleave", () => {
   document.getElementById("tt").style.opacity = 0;
   if (chart) lineHoverHandler(null, [], chart);
@@ -1602,7 +1622,8 @@ function showRtt(badge) {
         const head = `<div class="ml"><span>${esc(m.n)}</span>${m.s ? `<span class="ms">${esc(String(m.s))} episodes</span>` : ""}</div>`;
         if (m.r) return `<div class="mrow">${head}<div class="mv mr">${esc(m.r)}</div></div>`;
         const dir = m.d ? `<span class="db ${m.d}">${m.d === "mid" ? "≈" : (m.d === "up" ? "▲" : "▼") + m.p + "%"}</span>` : "";
-        return `<div class="mrow">${head}<div class="mv"><b>${esc(m.v)}</b>${dir}${m.t ? `<span class="mt">typically ${esc(m.t)}</span>` : ""}</div></div>`;
+        const mnote = m.note ? `<div class="mnote">${esc(m.note)}</div>` : "";
+        return `<div class="mrow">${head}<div class="mv"><b>${esc(m.v)}</b>${dir}${m.t ? `<span class="mt">typically ${esc(m.t)}</span>` : ""}</div>${mnote}</div>`;
       }).join("");
       html += badge.dataset.note ? `<div class="mut fnote">${esc(badge.dataset.note)}</div>` : "";
     } else {
@@ -1839,9 +1860,10 @@ function externalTooltip(context) {
       el.innerHTML = html;
       el.style.opacity = 1;
       const boxM = chart.canvas.parentNode;
-      el.style.left = Math.min(Math.max(tooltip.caretX, 120), boxM.clientWidth - 130) + "px";
-      const aboveM = tooltip.caretY > 190;
-      el.style.top = (tooltip.caretY + (aboveM ? -14 : 14)) + "px";
+      const pM = chartCursor || { x: tooltip.caretX, y: tooltip.caretY };
+      el.style.left = Math.min(Math.max(pM.x, 120), boxM.clientWidth - 130) + "px";
+      const aboveM = pM.y > 190;
+      el.style.top = (pM.y + (aboveM ? -14 : 14)) + "px";
       el.style.transform = `translate(-50%, ${aboveM ? "-100%" : "0"})`;
       return;
     }
@@ -1884,10 +1906,11 @@ function externalTooltip(context) {
       el.innerHTML = html;
       el.style.opacity = 1;
       const box0 = chart.canvas.parentNode;
-      const x0 = Math.min(Math.max(tooltip.caretX, 120), box0.clientWidth - 130);
-      const above0 = tooltip.caretY > 190;
+      const p0 = chartCursor || { x: tooltip.caretX, y: tooltip.caretY };
+      const x0 = Math.min(Math.max(p0.x, 120), box0.clientWidth - 130);
+      const above0 = p0.y > 190;
       el.style.left = x0 + "px";
-      el.style.top = (tooltip.caretY + (above0 ? -14 : 14)) + "px";
+      el.style.top = (p0.y + (above0 ? -14 : 14)) + "px";
       el.style.transform = `translate(-50%, ${above0 ? "-100%" : "0"})`;
       return;
     }
@@ -1935,10 +1958,11 @@ function externalTooltip(context) {
   el.innerHTML = html;
   el.style.opacity = 1;
   const box = chart.canvas.parentNode;
-  const x = Math.min(Math.max(tooltip.caretX, 120), box.clientWidth - 130);
-  const above = tooltip.caretY > 190;
+  const p = chartCursor || { x: tooltip.caretX, y: tooltip.caretY };
+  const x = Math.min(Math.max(p.x, 120), box.clientWidth - 130);
+  const above = p.y > 190;
   el.style.left = x + "px";
-  el.style.top = (tooltip.caretY + (above ? -14 : 14)) + "px";
+  el.style.top = (p.y + (above ? -14 : 14)) + "px";
   el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
 }
 

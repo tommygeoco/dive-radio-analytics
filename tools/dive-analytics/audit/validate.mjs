@@ -1689,7 +1689,12 @@ function premiereMs(dateStr) {
       if (cs.reason && BANNED.test(cs.reason)) { bad++; fail(`notes: episode health ${r.slug} ${c} reason uses banned words`); }
     }
   }
-  if (!/\$\{m\.note \? ` · \$\{m\.note\}` : ""\}/.test(html) || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
+  // the drill-in tooltip is the structured measure-block layout (owner
+  // directive 2026-08-23): the builder must carry each measure's stored note
+  // into the block payload, and the renderer must draw it as its own line
+  if (!/note: m\.note \|\| null/.test(html)
+    || !/m\.note \? `<div class="mnote">\$\{esc\(m\.note\)\}<\/div>` : ""/.test(html)
+    || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
     bad++; fail("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
   }
   if (!bad) ok(`honesty on data: ${slackLines.length} Slack lines and the alert lines carry directions only on ${BL.MIN_PEERS}+ samples; episode-health surfaces carry no trend word; every stored note is one of the fixed strings`);
