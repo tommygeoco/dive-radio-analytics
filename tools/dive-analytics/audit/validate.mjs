@@ -923,9 +923,9 @@ function premiereMs(dateStr) {
     bad++; fail("card layout: could not locate every dashboard surface in index.html");
   } else {
     // reading order: health cards → latest/trend cards → carousel → panel → chart
-    const order = ['id="health"', 'id="hero"', 'id="strip"', 'id="panel"', 'id="chartcard"'].map((m) => html.indexOf(m));
+    const order = ['id="health"', 'id="hero"', 'id="strip"', 'id="chartcard"', 'id="panel"'].map((m) => html.indexOf(m));
     if (order.some((at) => at < 0) || order.some((at, i) => i > 0 && at < order[i - 1])) {
-      bad++; fail("card layout: locked order broken — health, latest episode, episode carousel, panel, then the chart");
+      bad++; fail("card layout: locked order broken — health, latest episode, episode carousel, the chart, then the panel (the chart must never be displaced by an open panel)");
     }
     // glance-number discipline: gauge 1; hero one primary number per tab;
     // cards one primary number per tab; the health chip exactly one score
@@ -949,7 +949,7 @@ function premiereMs(dateStr) {
     // evidence: starts closed, is a real disclosure, and carries every saved fact
     if (!/evidenceOpen: false/.test(html) || !/state\.evidenceOpen/.test(healthSource)
       || !/aria-expanded/.test(healthSource)
-      || !healthSource.includes("bullets(h.pros)") || !healthSource.includes("bullets(h.cons)")) {
+      || !healthSource.includes("bullets(h.pros") || !healthSource.includes("bullets(h.cons")) {
       bad++; fail("card layout: health evidence must start closed behind a real button and contain every exact saved fact");
     }
     if (!/h\.readState === "early"/.test(healthSource) || !/Updated \$\{esc\(saved\)\}/.test(healthSource)) {

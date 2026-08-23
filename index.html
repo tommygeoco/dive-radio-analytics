@@ -82,11 +82,23 @@
     color: var(--accent); font-size: 14px; cursor: pointer; text-decoration: underline;
     text-underline-offset: 3px; }
   .health-evidence { grid-column: 1 / -1; }
-  .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-  .health-evidence h3 { margin: 0 0 6px; color: var(--t2); font-size: 14px; font-weight: 700; }
-  .health-evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
-  .health-evidence li { color: var(--t2); font-size: 14.5px; line-height: 1.45; }
-  .health-evidence .waitlist { margin-top: 14px; color: var(--t3); font-size: 13.5px; line-height: 1.5; }
+  .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; }
+  .health-evidence h3 { margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+  .health-evidence h3.up { color: var(--good); }
+  .health-evidence h3.down { color: var(--bad); }
+  .health-evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .health-evidence li { display: flex; gap: 10px; color: var(--t2); font-size: 14px; line-height: 1.5; }
+  .health-evidence li i { width: 7px; height: 7px; border-radius: 50%; flex: none; margin-top: 7px; }
+  .health-evidence li.up i { background: var(--good); }
+  .health-evidence li.down i { background: var(--bad); }
+  .health-evidence li span { max-width: 54ch; }
+  .health-evidence li b { color: var(--t1); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .health-evidence .waitlist { margin-top: 14px; display: grid; gap: 6px; }
+  .health-evidence .wrow { display: flex; gap: 10px; color: var(--t3); font-size: 13.5px; line-height: 1.5; }
+  .health-evidence .wrow i { width: 7px; height: 7px; border-radius: 50%; flex: none; margin-top: 6px;
+    border: 1px solid var(--border-strong); }
+  .health-evidence .wrow b { color: var(--t2); font-weight: 600; }
+  .health-evidence .wrow span { max-width: 76ch; }
   .health-evidence .trend { width: 150px; height: 28px; margin-top: 14px; display: block; }
   .health-evidence .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
   .healthrow.empty { display: block; color: var(--t2); font-size: 15px; }
@@ -168,9 +180,26 @@
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
-    padding: 14px 18px; margin-bottom: 12px; position: relative; font-size: 14px;
+    padding: 14px 18px; margin: 14px 0 12px; position: relative; font-size: 14px;
     animation: panelIn .16s ease-out; }
   @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } }
+  .panel .pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 6px 48px; margin-top: 12px; }
+  .panel .psec { min-width: 0; padding: 6px 0 10px; }
+  .panel .psec .kicker { margin-bottom: 8px; }
+  .panel .kicker .kh { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--t3); margin-left: 4px; }
+  .panel .pnum { font-size: 22px; font-weight: 700; color: var(--t1); letter-spacing: -.01em;
+    font-variant-numeric: tabular-nums; margin-bottom: 6px; }
+  .panel .pnum.hint { font-size: 15px; font-weight: 600; color: var(--t3); }
+  .panel .pnum .hint { font-size: 13px; font-weight: 500; letter-spacing: 0; }
+  .panel .tlink { color: var(--accent); font-size: 13px; font-weight: 500; margin-left: 4px; }
+  .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
+  .panel .trow { display: flex; align-items: center; gap: 10px; padding: 4px 0; color: var(--t2); font-size: 13.5px; }
+  .panel .trow .tl { width: 178px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .panel .trow .tb { flex: 1; height: 4px; border-radius: 2px; background: var(--s1); overflow: hidden; }
+  .panel .trow .tb span { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+  .panel .trow .tv { width: 52px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t1); flex: none; }
+  .panel .trow .tn { width: 48px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t3); font-size: 12px; flex: none; }
   .panel .row.head { font-weight: 700; color: var(--t1); }
   .panel .val.big { font-size: 17px; }
   .panel .hint { color: var(--t3); font-size: 12px; font-weight: 400; }
@@ -240,6 +269,7 @@
     color: var(--t2); white-space: nowrap; }
   #tablebox td.t { color: var(--t1); }
   #tablebox .mk { color: var(--amber); font-size: 12px; }
+  .st-good { color: var(--good); } .st-bad { color: var(--bad); } .st-mid { color: var(--t2); }
   .emptynote { color: var(--t3); font-size: 13px; margin: 6px 4px 0; }
 
   .tt { position: absolute; pointer-events: none; background: var(--s2); border: 1px solid var(--border-strong);
@@ -365,7 +395,6 @@
   </div>
 
   <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
-  <div class="panel" id="panel" style="display:none"></div>
 
   <div id="chartcard" class="card">
     <div class="chead">
@@ -385,6 +414,7 @@
     <div id="tablebox"></div>
     <div class="emptynote" id="emptynote" style="display:none"></div>
   </div>
+  <div class="panel" id="panel" style="display:none"></div>
 
   <h2>What matters</h2>
   <div class="insights" id="insights"></div>
@@ -623,13 +653,16 @@ function buildHealth() {
     return `<div class="checkrow"><span class="cl">${label}</span><span class="cs">${sub}</span>
       <span class="st ${cls}"><i aria-hidden="true"></i>${word}</span></div>`;
   }).join("");
-  const bullets = (items) => items.map(item => `<li>${esc(typeof item === "string" ? item : item.text)}</li>`).join("");
+  // each bullet carries exactly one validated number — bolding it gives the
+  // eye an anchor; the dot carries direction alongside the column header
+  const emphNum = (text) => esc(text).replace(/\d[\d,]*(?:\.\d+)?%?/, (m) => `<b>${m}</b>`);
+  const bullets = (items, dir) => items.map(item => `<li class="${dir}"><i aria-hidden="true"></i><span>${emphNum(typeof item === "string" ? item : item.text)}</span></li>`).join("");
   const waiting = (h.checks || []).filter((c) => c.score == null && c.reason);
   const evidence = !state.evidenceOpen ? "" : `<div class="card health-evidence" id="evidence">
       <div class="kicker">Why this score</div>
-      <div class="evidence"><div><h3>Helping</h3><ul>${bullets(h.pros)}</ul></div>
-      <div><h3>Needs work</h3><ul>${bullets(h.cons)}</ul></div></div>
-      ${waiting.length ? `<div class="waitlist">${waiting.map((c) => `${(CHECK_LABELS[c.key] || [c.key])[0]} isn’t in yet — ${esc(c.reason)}`).join("<br>")}</div>` : ""}
+      <div class="evidence"><div><h3 class="up">Helping</h3><ul>${bullets(h.pros, "up")}</ul></div>
+      <div><h3 class="down">Needs work</h3><ul>${bullets(h.cons, "down")}</ul></div></div>
+      ${waiting.length ? `<div class="waitlist">${waiting.map((c) => `<div class="wrow"><i aria-hidden="true"></i><span><b>${(CHECK_LABELS[c.key] || [c.key])[0]}</b> isn’t in yet — ${esc(c.reason)}</span></div>`).join("")}</div>` : ""}
       ${healthTrend(h.trend?.points)}
     </div>`;
   el.className = "healthrow";
@@ -772,8 +805,9 @@ function buildStrip() {
       if (opening) { state.panel = e.slug; state.solo = e.slug; }
       else { state.panel = null; state.solo = null; }
       render();
-      // the click asked for the panel — make sure it is actually on screen
-      if (opening) document.getElementById("panel").scrollIntoView({
+      // the click's answer is the soloed chart — bring it into view; the
+      // detail panel waits directly beneath it
+      if (opening) document.getElementById("chartcard").scrollIntoView({
         block: "nearest",
         behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
       });
@@ -792,15 +826,24 @@ function buildPanel() {
   if (!e) { el.style.display = "none"; el.innerHTML = ""; return; }
   // Numbers lead, labels recede. Unit words, methodology sentences, and the
   // late-reg explainer live in "About this data" — never repeated here.
+  // Section grammar (readability pass 2026-08-23): one kicker per section, a
+  // single lead number, short rows beneath; sections flow in a two-column
+  // grid so no line stretches the full panel width.
   const bd = e.latest.byDest || {};
   const tvi = e.latest.totalViewsInfo || {};
   let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
     <span style="color:var(--t3);font-weight:400;font-size: 13px">· ${e.premiere.slice(5).replace("-", "/")}</span>
-    ${e.partialHistory ? `<span class="pchip" tabindex="0" data-tip="Tracking started late for this episode — its totals are right, but early weekly history is missing.">tracked late</span>` : ""}</div>`;
-  html += `<div class="grid"><div>`;
+    ${e.partialHistory ? `<span class="pchip" tabindex="0" data-tip="Tracking started late for this episode — its totals are right, but early weekly history is missing.">tracked late</span>` : ""}`;
+  if (e.transcript) {
+    html += ` <a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">transcript ↓</a>`;
+  }
+  html += `</div><div class="pgrid">`;
+
+  // — total views —
   const panelTotal = e.latest.totalViews ?? e.latest.ytTotal;
-  html += `<div class="row head">Total views<span class="val big">${panelTotal == null ? "not available" : nfmt(panelTotal)}</span></div>`;
+  html += `<div class="psec"><div class="kicker">Total views</div>`;
+  html += `<div class="pnum">${panelTotal == null ? "not available" : nfmt(panelTotal)}</div>`;
   const rows = [
     ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
     ["yt:designertom", bd["yt:designertom"]?.views],
@@ -813,80 +856,83 @@ function buildPanel() {
   if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
   else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
-  html += `</div><div>`;
-  html += `<div class="row head">X reach <span class="hint">not in total</span><span class="val big">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</span></div>`;
+  html += `</div>`;
+
+  // — X reach —
+  html += `<div class="psec"><div class="kicker">X reach <span class="kh">not in total</span></div>`;
+  html += `<div class="pnum">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</div>`;
   html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
-  if (e.transcript) {
-    html += `<div class="row"><a href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt" style="color:var(--accent)">Download transcript</a><span class="val hint">timestamped</span></div>`;
-  }
+  html += `</div>`;
+
+  // — live —
   if (e.live) {
-    // one row grammar everywhere: label left, value right (owner call 2026-08-22
-    // — no inline dot-separated stat lines in the panel)
-    html += `<div class="row head" style="margin-top:6px">Live<span class="val big">${e.live.peak} <span class="hint">peak</span></span></div>`;
+    html += `<div class="psec"><div class="kicker">Live</div>`;
+    html += `<div class="pnum">${e.live.peak} <span class="hint">peak viewers</span></div>`;
     html += `<div class="row">avg live viewers<span class="val">${e.live.avg}</span></div>`;
     html += `<div class="row">chat messages<span class="val">${nfmt(e.live.chatMessages)}</span></div>`;
     html += `<div class="row">duration<span class="val">${e.live.durationMin ?? "–"} min</span></div>`;
-  }
-  html += `</div></div>`;
-
-  // Same-age YouTube pace belongs in the click layer, not on every glance
-  // card. It uses the same stored snapshots as the pacing chart; nothing is
-  // guessed when no comparable history exists.
-  if (state.view !== "live") {
-    const pace = sameAgeSub(e);
-    const paceText = !pace
-      ? `<span class="hint">no same-age comparison yet</span>`
-      : pace.pct === 0
-        ? "typical"
-        : `${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical`;
-    html += `<div class="sect"><div class="row head">YouTube views at the same age<span class="val big">${paceText}</span></div></div>`;
+    html += `</div>`;
   }
 
-  // W12 episode health: one row per check — the stored number + a plain
-  // comparison. Missing checks say so; they are never rendered as zeros. A
-  // young episode states when its read completes; no score renders early.
+  // — episode health (W12): one row per check, stored number + plain colored
+  //   comparison. Missing checks say so; never rendered as zeros. Young
+  //   episodes state when their read completes; no score renders early. —
   const h = e.health;
+  const pace = sameAgeSub(e);
+  const paceText = !pace
+    ? `<span class="hint">no same-age comparison yet</span>`
+    : pace.pct === 0
+      ? "typical"
+      : `${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical`;
+  html += `<div class="psec"><div class="kicker">Episode health</div>`;
   if (h?.pending) {
-    html += `<div class="sect"><div class="row head">Episode health<span class="val hint">arrives after ${healthWaitDate(e)}</span></div>
-      <div class="mut">Every episode is scored on its first three weeks against the show before it — nothing shows until that read is complete.</div></div>`;
+    html += `<div class="pnum hint">arrives after ${healthWaitDate(e)}</div>`;
+    html += `<div class="mut">Every episode is scored on its first three weeks against the show before it — nothing shows until that read is complete.</div>`;
   } else if (h && h.score == null) {
-    html += `<div class="sect"><div class="row head">Episode health<span class="val hint">sets the baseline</span></div>
-      <div class="mut">${esc(h.reason || "not enough honest numbers to score this episode")}.</div></div>`;
+    html += `<div class="pnum hint">sets the baseline</div>`;
+    html += `<div class="mut">${esc(h.reason || "not enough honest numbers to score this episode")}.</div>`;
   } else if (h) {
     const CLABEL = {
       watch: "views at three weeks",
-      engagement: "likes + comments per 1,000 views",
+      engagement: "likes + comments per 1,000",
       retention: "how much people watch",
       live: "live turnout",
-      conversion: "subscribers per 1,000 views",
+      conversion: "subscribers per 1,000",
       sentiment: "feedback leaning positive",
     };
     const plainRatio = (ratio) => {
       const pct = Math.round(Math.abs(ratio - 1) * 100);
       return pct <= 5 ? "typical" : ratio > 1 ? `${pct}% above typical` : `${pct}% below typical`;
     };
-    html += `<div class="sect">`;
-    html += `<div class="row head">Episode health<span class="val big">${h.score} <span class="hint">of 100 · 50 is typical</span></span></div>`;
+    html += `<div class="pnum">${h.score} <span class="hint">of 100 · 50 is typical</span></div>`;
     for (const [k, lab] of Object.entries(CLABEL)) {
       const c = h.checks?.[k];
       const fmtV = (v) => k === "live" ? `${v.peak} live · ${nfmt(v.chat)} chat` : (k === "retention" || k === "sentiment") ? `${v}%` : nfmt(v);
       let val = `<span class="hint">not in</span>`;
-      if (c && c.ratio != null) val = `${fmtV(c.value)} <span class="hint">· ${plainRatio(c.ratio)}</span>`;
+      if (c && c.ratio != null) {
+        const pr = plainRatio(c.ratio);
+        const cls = pr === "typical" ? "hint" : c.ratio > 1 ? "hint st-good" : "hint st-bad";
+        val = `${fmtV(c.value)} <span class="${cls}">· ${pr}</span>`;
+      }
       html += `<div class="row">${lab}<span class="val">${val}</span></div>`;
     }
     const peers = Math.max(0, (h.windowIds || []).length - 1);
     html += `<div class="mut">Its first three weeks against the ${peers === 1 ? "episode" : `${peers} episodes`} before it — newer episodes never change this score.</div>`;
     if ((h.missingChecks || []).length) html += `<div class="note">* ${h.missingChecks.map((c) => CHECK_WORDS[c] || c).join(" and ")} had too little honest data and sat out</div>`;
   }
+  if (state.view !== "live") {
+    html += `<div class="row" style="margin-top:4px">YouTube views at the same age<span class="val">${paceText}</span></div>`;
+  }
+  html += `</div>`;
 
-  // W13 watching: verified analytics — how long people stay and where views
-  // come from. An absent report renders as absent, never zero.
+  // — W13 watching: verified analytics — how long people stay. Absent
+  //   reports render as absent, never zero. —
   const w = e.watch;
   if (w) {
     const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
-    html += `<div class="sect">`;
-    html += `<div class="row head">How people watch <span class="hint">YouTube</span><span class="val big">${w.avgPercent == null ? "not available" : `${w.avgPercent}% <span class="hint">of the video on average</span>`}</span></div>`;
+    html += `<div class="psec"><div class="kicker">How people watch <span class="kh">YouTube</span></div>`;
+    html += `<div class="pnum">${w.avgPercent == null ? "not available" : `${w.avgPercent}% <span class="hint">of the video on average</span>`}</div>`;
     if (w.avgDurationSec != null) html += `<div class="row">average time watched<span class="val">${fmtDur(w.avgDurationSec)}</span></div>`;
     if (w.minutesWatched != null) html += `<div class="row">total watch time<span class="val">${nfmt(Math.round(w.minutesWatched / 60))} hours</span></div>`;
     if (w.curve) {
@@ -898,20 +944,26 @@ function buildPanel() {
     } else {
       html += `<div class="mut">watch curve is not in yet</div>`;
     }
-    if (w.traffic) {
-      html += `<div class="row head" style="margin-top:8px">Where views came from</div>`;
-      for (const t of w.traffic) {
-        html += `<div class="row">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}<span class="val">${t.share}% <span class="hint">· ${nfmt(t.views)}</span></span></div>`;
-      }
-    }
     html += `</div>`;
+
+    // — where views came from: share bars, scaled to the top source —
+    if (w.traffic) {
+      const topShare = Math.max(...w.traffic.map((t) => t.share));
+      html += `<div class="psec"><div class="kicker">Where views came from <span class="kh">YouTube</span></div>`;
+      for (const t of w.traffic) {
+        html += `<div class="trow"><span class="tl">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}</span>
+          <span class="tb" aria-hidden="true"><span style="width:${topShare > 0 ? Math.max(2, Math.round((t.share / topShare) * 100)) : 0}%"></span></span>
+          <span class="tv">${t.share}%</span><span class="tn">${nfmt(t.views)}</span></div>`;
+      }
+      html += `</div>`;
+    }
   }
 
+  // — audience feedback —
   const comments = e.comments;
   if (comments) {
-    html += `<div class="sect">`;
-    html += `<span class="row head" style="display:inline">Audience feedback</span> `;
-    html += `<span class="senti-link" data-f="positive"><b style="color:var(--good)">${comments.enjoyCount}</b> enjoyed</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${comments.complaintCount}</b> didn’t</span> · <span class="senti-link" data-f="all">${comments.uniqueCommenters} ${comments.uniqueCommenters === 1 ? "person" : "people"} commented →</span>`;
+    html += `<div class="psec"><div class="kicker">Audience feedback</div>`;
+    html += `<div class="fline"><span class="senti-link" data-f="positive"><b style="color:var(--good)">${comments.enjoyCount}</b> enjoyed</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${comments.complaintCount}</b> didn’t</span> · <span class="senti-link" data-f="all">${comments.uniqueCommenters} ${comments.uniqueCommenters === 1 ? "person" : "people"} commented →</span></div>`;
     if (comments.commentersPer1k != null) {
       html += `<div class="row">people commenting per 1,000 watches<span class="val">${comments.commentersPer1k}</span></div>`;
     } else {
@@ -929,6 +981,8 @@ function buildPanel() {
     }
     html += `</div>`;
   }
+
+  html += `</div>`;
   el.innerHTML = html;
   el.style.display = "";
   el.querySelector("#panelx").addEventListener("click", () => { state.panel = null; state.solo = null; render(); });
@@ -1016,9 +1070,35 @@ function renderDrill() {
     lEl.appendChild(d);
   }
 }
+/* hover highlight (owner request 2026-08-23): pointing at any line lights it
+   up in its episode color without needing a carousel selection. Base styles
+   ride on each dataset; hover only swaps between them — no re-render. */
+function lineHoverHandler(evt, els, ch) {
+  const ds0 = els?.length ? ch.data.datasets[els[0].datasetIndex] : null;
+  const slug = ds0 && ds0.slug ? ds0.slug : null;
+  if (ch._hoverSlug === slug) return;
+  ch._hoverSlug = slug;
+  let changed = false;
+  for (const ds of ch.data.datasets) {
+    if (!ds.slug || ds.baseBorderColor === undefined) continue;
+    const hl = slug !== null && ds.slug === slug;
+    ds.borderColor = hl ? ds.hoverColor : ds.baseBorderColor;
+    ds.labelColor = hl ? ds.hoverColor : ds.baseLabelColor;
+    ds.borderWidth = hl ? 3 : ds.baseWidth;
+    ds.order = hl ? -1 : ds.baseOrder;
+    if (ds.baseNoEndLabel !== undefined) ds.noEndLabel = hl ? false : ds.baseNoEndLabel;
+    changed = true;
+  }
+  if (changed) ch.update("none");
+  ch.canvas.style.cursor = slug ? "pointer" : "";
+}
+
 // stale-tooltip kill (taste audit F5): Chart.js external tooltips only hide on
 // tooltip events; a fast pointer exit could strand one over the chart
-document.getElementById("chartbox").addEventListener("mouseleave", () => { document.getElementById("tt").style.opacity = 0; });
+document.getElementById("chartbox").addEventListener("mouseleave", () => {
+  document.getElementById("tt").style.opacity = 0;
+  if (chart) lineHoverHandler(null, [], chart);
+});
 
 // health-chip tooltip: delegated so it survives every re-render
 const rtt = document.createElement("div");
@@ -1375,17 +1455,19 @@ function render() {
       const soloed = state.solo === e.slug;
       const hidden = state.solo !== null && !soloed;
       const deemph = !isRef && !soloed;
+      const base = { border: deemph ? DIMLINE : color(e), lab: deemph ? "#5a6478" : color(e), width: soloed || isRef ? 3 : 2, ord: isRef ? 0 : 1 };
       return {
         label: label(e), epNum: e.ep, slug: e.slug,
         data: e.watch.curve.map(p => ({ x: Math.round(p.at * 100), y: Math.round(p.watching * 1000) / 10 })),
-        borderColor: deemph ? DIMLINE : color(e),
-        labelColor: deemph ? "#5a6478" : color(e),
+        borderColor: base.border, labelColor: base.lab,
         backgroundColor: "transparent",
-        borderWidth: soloed || isRef ? 3 : 2,
+        borderWidth: base.width,
         pointRadius: 0, pointHoverRadius: 4, tension: 0.25, spanGaps: false, hidden,
         // tails converge: only the emphasized line keeps an end label
         noEndLabel: deemph,
-        episode: e, order: isRef ? 0 : 1,
+        baseBorderColor: base.border, baseLabelColor: base.lab, baseWidth: base.width,
+        baseOrder: base.ord, baseNoEndLabel: deemph, hoverColor: color(e),
+        episode: e, order: base.ord,
       };
     });
     const curves = withCurve.map(e => e.watch.curve);
@@ -1417,6 +1499,7 @@ function render() {
         },
         plugins: { legend: { display: false }, tooltip: { enabled: false, external: externalTooltip } },
         onClick: clickSolo,
+        onHover: lineHoverHandler,
       },
       plugins: [endLabels],
     };
@@ -1481,20 +1564,23 @@ function render() {
     // color, priors recede to one context gray until soloed — the question
     // both views answer is "newest vs typical", not "six equal series"
     const deemph = (isLive || state.mode === "race") && !isNewest && !soloed;
+    const base = { border: deemph ? DIMLINE : color(e), lab: deemph ? "#5a6478" : color(e), width: soloed || isNewest ? 3 : 2, ord: isNewest ? 0 : 1 };
     return {
       label: label(e),
       epNum: e.ep,
       slug: e.slug,
       data: isLive ? e.live.series.map(p => ({ x: p.m, y: p.v, meta: p })) : seriesFor(e),
-      borderColor: deemph ? DIMLINE : color(e),
-      labelColor: deemph ? "#5a6478" : color(e),
+      borderColor: base.border,
+      labelColor: base.lab,
       backgroundColor: (deemph ? DIMLINE : color(e)) + (isDelta ? "dd" : "22"),
-      borderWidth: soloed || isNewest ? 3 : 2,
+      borderWidth: base.width,
       pointRadius: 0,
       pointHoverRadius: 5,
       tension: 0.3, spanGaps: false, hidden,
+      baseBorderColor: base.border, baseLabelColor: base.lab, baseWidth: base.width,
+      baseOrder: base.ord, hoverColor: color(e),
       episode: e,
-      order: isNewest ? 0 : 1, // newest drawn on top
+      order: base.ord, // newest drawn on top
       barThickness: isDelta ? 14 : undefined,
     };
   });
@@ -1557,6 +1643,7 @@ function render() {
         tooltip: { enabled: false, external: externalTooltip },
       },
       onClick: clickSolo,
+      onHover: lineHoverHandler,
     },
     plugins: [endLabels],
   };
@@ -1583,13 +1670,18 @@ function buildTable() {
     }
   } else {
     html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>Watched</th><th>Pace (YT)</th></tr>";
+    const watchedVals = EPS.map((x) => x.watch?.avgPercent).filter(Number.isFinite).sort((a, b) => a - b);
+    const wMidIdx = Math.floor(watchedVals.length / 2);
+    const wTypical = !watchedVals.length ? null
+      : watchedVals.length % 2 ? watchedVals[wMidIdx] : (watchedVals[wMidIdx - 1] + watchedVals[wMidIdx]) / 2;
+    const HB_CLS = { healthy: "st-good", steady: "st-mid", fragile: "st-bad" };
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);
       const pace = sameAgeSub(e);
       const hh = e.health;
       const healthCell = healthOf(e)
-        ? `${healthOf(e).score}${(healthOf(e).missingChecks || []).length ? " <span class=\"mk\">*</span>" : ""}`
+        ? `<span class="${HB_CLS[checkState(healthOf(e).score)[0]] || ""}">${healthOf(e).score}</span>${(healthOf(e).missingChecks || []).length ? " <span class=\"mk\">*</span>" : ""}`
         : hh?.pending ? `<span style="color:var(--t3)">after ${healthWaitDate(e)}</span>`
         : hh ? `<span style="color:var(--t3)">baseline</span>` : "–";
       html += `<tr><td class="t">${esc(label(e))}</td>`;
@@ -1598,8 +1690,15 @@ function buildTable() {
       html += `<td>${metricText(bd["yt:joindiveclub"]?.views)}</td><td>${metricText(bd["yt:designertom"]?.views)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
       html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
-      html += `<td>${e.watch?.avgPercent == null ? "–" : e.watch.avgPercent + "%"}</td>`;
-      html += `<td>${pace ? (pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%" : "–"}</td></tr>`;
+      let watchedCell = "–";
+      if (e.watch?.avgPercent != null) {
+        const v = e.watch.avgPercent;
+        if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical > 0.05) {
+          watchedCell = v > wTypical ? `<span class="st-good">▲${v}%</span>` : `<span class="st-bad">▼${v}%</span>`;
+        } else watchedCell = `<span class="st-mid">${v}%</span>`;
+      }
+      html += `<td>${watchedCell}</td>`;
+      html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= 5 ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%"}</span>` : "–"}</td></tr>`;
     }
   }
   html += "</table>";
