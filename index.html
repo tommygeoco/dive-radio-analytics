@@ -31,18 +31,6 @@
   .stamp i.old { background: var(--amber); }
 
   .plogo { width: 13px; height: 13px; vertical-align: -2px; }
-  /* the measure picker IS the chart title in the Totals view: it reads as the
-     heading, and the chevron says the heading can be changed */
-  .ctsel { display: none; align-items: center; gap: 4px; position: relative; border-radius: 7px;
-    margin-left: -6px; padding: 1px 4px 1px 6px; }
-  .ctsel.on { display: inline-flex; }
-  .ctsel select { appearance: none; -webkit-appearance: none; background: none; border: 0; padding: 0;
-    font: inherit; font-size: 15px; font-weight: 700; color: var(--t1); cursor: pointer; outline: none; }
-  .ctsel svg { width: 15px; height: 15px; color: var(--t3); flex: none; }
-  .ctsel:hover { background: var(--s2); }
-  .ctsel:hover svg { color: var(--t1); }
-  .ctsel:has(select:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .ctsel select option { background: var(--s2); color: var(--t1); font-weight: 500; }
   button:focus-visible, summary:focus-visible, .hs:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   /* ---- Card system (2026-08-23 redesign): every surface is a quiet card on
@@ -330,8 +318,33 @@
   .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
   .chead .ct { font-size: 15px; font-weight: 700; }
   .chead .cs { font-size: 14px; color: var(--t3); }
-  .chead .cs .scopepill { font-weight: 700; color: var(--t1); background: var(--s2);
-    border: 1px solid var(--border-strong); border-radius: 6px; padding: 1px 7px; }
+  .chead .cs .scopepill { display: inline-flex; align-items: center; background: var(--s2);
+    border: 1px solid var(--border-strong); border-radius: 6px; padding: 3px 7px; cursor: help;
+    vertical-align: -3px; }
+  .chead .cs .scopepill .plogo { width: 14px; height: 14px; }
+  /* ---- the chart heading IS the view picker ---- */
+  .ctsel { position: relative; }
+  .viewbtn { display: inline-flex; align-items: center; gap: 5px; background: none; border: 0;
+    border-radius: 7px; margin-left: -7px; padding: 2px 6px 2px 7px; cursor: pointer;
+    font-size: 15px; font-weight: 700; color: var(--t1); }
+  .viewbtn svg { width: 15px; height: 15px; color: var(--t3); flex: none; }
+  .viewbtn:hover { background: var(--s2); }
+  .viewbtn:hover svg, .viewbtn[aria-expanded="true"] svg { color: var(--t1); }
+  .viewbtn[aria-expanded="true"] { background: var(--s2); }
+  .viewbtn[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .viewmenu { position: absolute; top: calc(100% + 6px); left: -7px; z-index: 40; min-width: 232px;
+    background: #0d1017; border: 1px solid var(--border-strong); border-radius: 10px;
+    padding: 6px; box-shadow: 0 14px 40px rgba(0,0,0,.5); }
+  .viewmenu .vgroup { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .09em;
+    text-transform: uppercase; padding: 8px 8px 4px; }
+  .viewmenu .vopt { display: flex; align-items: center; gap: 8px; width: 100%; background: none;
+    border: 0; border-radius: 7px; padding: 7px 8px; cursor: pointer; text-align: left;
+    color: var(--t2); font-size: 14px; font-weight: 500; }
+  .viewmenu .vopt .vtick { width: 14px; height: 14px; flex: none; color: var(--accent); opacity: 0; }
+  .viewmenu .vopt .vtick svg { width: 14px; height: 14px; }
+  .viewmenu .vopt.on { color: var(--t1); font-weight: 600; }
+  .viewmenu .vopt.on .vtick { opacity: 1; }
+  .viewmenu .vopt:hover, .viewmenu .vopt:focus-visible { background: var(--s2); color: var(--t1); outline: none; }
   .chart-copy { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   #chartbox { height: 440px; position: relative; transition: height .25s ease; }
   #chartbox.mini { height: 168px; }
@@ -494,26 +507,17 @@
   <div id="chartcard" class="card">
     <div class="chead">
       <div class="chart-copy">
-        <span class="ct" id="ctitle"></span>
-        <span class="ctsel" id="ctsel">
-          <select id="metric" aria-label="What the totals chart measures">
-            <option value="views">Episode views</option>
-            <option value="watched">Share watched</option>
-            <option value="live">Live viewers</option>
-            <option value="reach">X reach</option>
-          </select>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
-        </span>
+        <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
+        <div class="ctsel">
+          <button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="viewmenu">
+            <span id="ctitle"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+          </button>
+          <div class="viewmenu" id="viewmenu" role="listbox" aria-label="What the chart shows" hidden></div>
+        </div>
         <span class="cs" id="cscope"></span></div>
       <div class="controls">
-        <span class="seg" id="mode" role="tablist" aria-label="Chart view">
-          <button type="button" role="tab" data-v="standings">Totals</button>
-          <button type="button" role="tab" data-v="race">Over time</button>
-          <button type="button" role="tab" data-v="watch">Watching</button>
-          <button type="button" role="tab" data-v="live">Live minutes</button>
-        </span>
         <button type="button" class="toggle traj-only" id="bydate">Dates</button>
-        <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
         <button type="button" class="reset" id="reset">Reset</button>
       </div>
     </div>
@@ -667,6 +671,7 @@ const ICONS = {
   flag: IC('<path d="M6 21V4.5"/><path d="M6 5h11l-2.5 3.5L17 12H6"/>'),
   pulse: IC('<path d="M3 12.5h4l2-5.5 3.5 9.5 2-6.5 1.5 2.5H21"/>'),
   download: IC('<path d="M12 4.5v10"/><path d="M8 11l4 4 4-4"/><path d="M5 19.5h14"/>'),
+  check: IC('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
   chevdown: IC('<path d="M6.5 9.5 12 15l5.5-5.5" stroke-width="3"/>'),
   chevup: IC('<path d="M6.5 14.5 12 9l5.5 5.5" stroke-width="3"/>'),
   info: IC('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/>', "ki"),
@@ -919,13 +924,24 @@ function splitBar(segments, wholeWords) {
     <div class="splitlabels">${parts.map(({ s, stat, share, tip }) =>
       `<span class="sl" ${tip} tabindex="0" aria-label="${esc(`${s.label}: ${stat}, ${share}% of ${wholeWords}`)}"><i style="background:${s.color}" aria-hidden="true"></i>${esc(s.label)}</span>`).join("")}</div>`;
 }
-// the Totals view's titles — the exact strings the picker's options carry
-const METRIC_TITLES = {
-  views: "Episode views",
-  watched: "Share watched",
-  live: "Live viewers",
-  reach: "X reach",
-};
+// Every chart this dashboard draws, in ONE list (owner directive
+// 2026-08-23): the view tabs and the measure picker were two controls for one
+// decision, so they collapse into a single dropdown whose current item IS the
+// chart's heading. Each entry names the chart's mode and, for the per-episode
+// bars, which measure it charts.
+const VIEW_DEFS = [
+  { key: "views", group: "By episode", title: "Episode views", mode: "standings", metric: "views" },
+  { key: "watched", group: "By episode", title: "Share watched", mode: "standings", metric: "watched" },
+  { key: "liveavg", group: "By episode", title: "Average live viewers", mode: "standings", metric: "live" },
+  { key: "reach", group: "By episode", title: "X reach", mode: "standings", metric: "reach" },
+  { key: "race", group: "Over time", title: "Views after release", mode: "race", metric: "views" },
+  { key: "watch", group: "Over time", title: "How much people watch", mode: "watch", metric: "views" },
+  { key: "minutes", group: "Over time", title: "Live viewers by minute", mode: "live", metric: "views" },
+];
+const METRIC_TITLES = Object.fromEntries(VIEW_DEFS.filter((v) => v.mode === "standings").map((v) => [v.metric, v.title]));
+function currentView() {
+  return VIEW_DEFS.find((v) => v.mode === state.mode && (state.mode !== "standings" || v.metric === state.metric)) || VIEW_DEFS[0];
+}
 const METRIC_TREND_TITLE = {
   watched: "Share watched — by episode",
   live: "Live viewers — by episode",
@@ -1474,16 +1490,21 @@ document.addEventListener("click", (ev) => {
 });
 
 /* ================= chart titles / scope (unit trap fix) ================= */
+// A platform-scope tag: the mark plus its spoken name, so a unit switch is
+// announced by shape and words, never by gray text alone (v4 honesty gate).
+function scopeTag(mark, name) {
+  return `<b class="scopepill" data-tip="${esc(name)}" tabindex="0">${mark}<span class="sr">${esc(name)}</span></b> ·`;
+}
 function chartTitle() {
-  if (state.mode === "live") return ["Live viewers", "Concurrent viewers by minute · Restream, all destinations"];
+  if (state.mode === "live") return [currentView().title, "Restream, all destinations"];
   if (state.mode === "standings") {
     // The measure picker IS this view's title (owner directive 2026-08-23):
     // titles come from METRIC_TITLES, the same strings the options carry, so
     // the heading and the picker can never disagree. Each measure charts
     // alone, in its own unit — nothing is ever added across units.
-    if (state.metric === "watched") return [METRIC_TITLES.watched, `<b class="scopepill">${PLOGO.yt} only</b> · % of the video viewed on average`];
-    if (state.metric === "live") return [METRIC_TITLES.live, "Average concurrent viewers · Restream, all destinations"];
-    if (state.metric === "reach") return [METRIC_TITLES.reach, `<b class="scopepill">${PLOGO.x} reach</b> · exposure — never added into views`];
+    if (state.metric === "watched") return [METRIC_TITLES.watched, `${scopeTag(PLOGO.yt, "YouTube only")} % of the video viewed on average`];
+    if (state.metric === "live") return [METRIC_TITLES.live, "Concurrent viewers, averaged across each live session"];
+    if (state.metric === "reach") return [METRIC_TITLES.reach, `${scopeTag(PLOGO.x, "X only")} exposure — never added into views`];
     // no unit blurb here: the legend names all four destinations and the
     // tooltip states each one's unit. The coverage warning is not decoration,
     // so it stays whenever a play count is genuinely incomplete.
@@ -1492,11 +1513,11 @@ function chartTitle() {
   }
   if (state.mode === "watch") {
     // absence is silent (v5 rule): episodes without curves simply aren't drawn
-    return ["How much people watch", `<b class="scopepill">${PLOGO.yt} only</b> · share still watching through the video`];
+    return [currentView().title, `${scopeTag(PLOGO.yt, "YouTube only")} share still watching through the video`];
   }
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
-    return ["Views after release", `<b class="scopepill">${PLOGO.yt} only</b> · ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}`];
+    return [currentView().title, `${scopeTag(PLOGO.yt, "YouTube only")} ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}`];
   }
   return ["Weekly YouTube views", "Episodes side by side"];
 }
@@ -2285,21 +2306,18 @@ function buildAbout() {
 function syncUI() {
   const isLive = state.mode === "live";
   const isTraj = !isLive && state.mode === "race";
-  for (const b of document.querySelectorAll("#mode button")) {
-    const selected = b.dataset.v === state.mode;
-    b.classList.toggle("on", selected);
-    b.setAttribute("aria-selected", String(selected));
+  const view = currentView();
+  for (const o of document.querySelectorAll("#viewmenu .vopt")) {
+    const selected = o.dataset.view === view.key;
+    o.classList.toggle("on", selected);
+    o.setAttribute("aria-selected", String(selected));
   }
-  document.querySelector("#mode").style.display = state.table ? "none" : "";
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
-  // in Totals the picker stands in for the heading; every other view has a
-  // fixed title, so the plain heading takes the slot back
-  const pickerIsTitle = state.mode === "standings" && !state.table;
-  document.getElementById("ctsel").classList.toggle("on", pickerIsTitle);
-  document.getElementById("ctitle").style.display = pickerIsTitle ? "none" : "";
-  document.getElementById("metric").value = state.metric;
+  // the heading always IS the picker now; the table view keeps it (the table
+  // mirrors whatever the chart shows)
+  closeViewMenu();
   document.getElementById("tbtn").classList.toggle("on", state.table);
   document.getElementById("tbtn").textContent = state.table ? "Chart" : "Data table";
   const chartbox = document.getElementById("chartbox");
@@ -2315,11 +2333,67 @@ function syncUI() {
   }
 }
 
-document.getElementById("mode").addEventListener("click", e => {
-  if (e.target.dataset.v) { state.mode = e.target.dataset.v; render(); }
-});
 document.getElementById("bydate").addEventListener("click", () => { state.byDate = !state.byDate; render(); });
-document.getElementById("metric").addEventListener("change", (e) => { state.metric = e.target.value; render(); });
+
+/* ---- view dropdown: the heading is the control (listbox pattern) ---- */
+const viewBtn = document.getElementById("viewbtn");
+const viewMenu = document.getElementById("viewmenu");
+(function buildViewMenu() {
+  let lastGroup = null;
+  for (const v of VIEW_DEFS) {
+    if (v.group !== lastGroup) {
+      const g = document.createElement("div");
+      g.className = "vgroup";
+      g.textContent = v.group;
+      g.setAttribute("role", "presentation");
+      viewMenu.appendChild(g);
+      lastGroup = v.group;
+    }
+    const o = document.createElement("button");
+    o.type = "button";
+    o.className = "vopt";
+    o.setAttribute("role", "option");
+    o.dataset.view = v.key;
+    o.innerHTML = `<span class="vtick" aria-hidden="true">${ICONS.check}</span>${esc(v.title)}`;
+    o.addEventListener("click", () => { pickView(v.key); });
+    viewMenu.appendChild(o);
+  }
+})();
+function pickView(key) {
+  const v = VIEW_DEFS.find((x) => x.key === key);
+  if (!v) return;
+  state.mode = v.mode;
+  state.metric = v.metric;
+  closeViewMenu({ focus: true });
+  render();
+}
+function openViewMenu() {
+  viewMenu.hidden = false;
+  viewBtn.setAttribute("aria-expanded", "true");
+  const on = viewMenu.querySelector('.vopt[aria-selected="true"]') || viewMenu.querySelector(".vopt");
+  on?.focus();
+}
+function closeViewMenu({ focus = false } = {}) {
+  if (viewMenu.hidden) return;
+  viewMenu.hidden = true;
+  viewBtn.setAttribute("aria-expanded", "false");
+  if (focus) viewBtn.focus();
+}
+viewBtn.addEventListener("click", () => { viewMenu.hidden ? openViewMenu() : closeViewMenu(); });
+viewBtn.addEventListener("keydown", (ev) => {
+  if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { ev.preventDefault(); openViewMenu(); }
+});
+viewMenu.addEventListener("keydown", (ev) => {
+  const opts = [...viewMenu.querySelectorAll(".vopt")];
+  const at = opts.indexOf(document.activeElement);
+  if (ev.key === "Escape") { ev.preventDefault(); closeViewMenu({ focus: true }); }
+  else if (ev.key === "ArrowDown") { ev.preventDefault(); opts[Math.min(at + 1, opts.length - 1)]?.focus(); }
+  else if (ev.key === "ArrowUp") { ev.preventDefault(); opts[Math.max(at - 1, 0)]?.focus(); }
+  else if (ev.key === "Home") { ev.preventDefault(); opts[0]?.focus(); }
+  else if (ev.key === "End") { ev.preventDefault(); opts.at(-1)?.focus(); }
+  else if (ev.key === "Tab") closeViewMenu();
+});
+document.addEventListener("click", (ev) => { if (!ev.target.closest?.(".ctsel")) closeViewMenu(); });
 document.getElementById("tbtn").addEventListener("click", () => { state.table = !state.table; render(); });
 // reset is scoped to the current tab (it no longer teleports Live → Growth)
 document.getElementById("reset").addEventListener("click", () => {

@@ -643,7 +643,7 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
-  if (!/data-v="watch"/.test(html)) { bad++; fail("watching: the chart has no Watching view"); }
+  if (!/mode: "watch"/.test(html)) { bad++; fail("watching: the chart has no Watching view"); }
   for (const e of eps) {
     const w = e.watch;
     const storePath = join(ROOT, "data", "restream", "yt-analytics", `${e.slug}.json`);
@@ -1114,8 +1114,8 @@ function premiereMs(dateStr) {
     if (/id="view"/.test(html) || /class="tabs"/.test(html)) {
       bad++; fail("card layout: the retired Growth/Live page tabs are back");
     }
-    if (!/<span class="seg" id="mode" role="tablist"/.test(html) || !/data-v="live">Live minutes/.test(html)) {
-      bad++; fail("card layout: the chart view switch must be the tablist and must carry the live per-minute view");
+    if (!/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html) || !/mode: "live"/.test(html)) {
+      bad++; fail("card layout: the chart view switch must be the one dropdown and must carry the live per-minute view");
     }
     if ((chipSource.match(/data-fold-number/g) || []).length !== 1) {
       bad++; fail("card layout: the health chip must carry exactly one tagged score");
@@ -1201,9 +1201,9 @@ function premiereMs(dateStr) {
     if (!/How people watch/.test(panelSource) || !/Where views came from/.test(panelSource)) {
       bad++; fail("card layout: the episode panel is missing its watching and view-source sections");
     }
-    if (!html.includes('role="tablist"') || !/setAttribute\("aria-selected"/.test(html)
+    if (!html.includes('role="listbox"') || !/setAttribute\("aria-selected"/.test(html)
       || !/addEventListener\("focusin"[\s\S]*showRtt/.test(html)) {
-      bad++; fail("card layout: tabs or health-chip help are not keyboard-readable");
+      bad++; fail("card layout: the view switch or health-chip help is not keyboard-readable");
     }
   }
   if (!bad) {
@@ -1224,25 +1224,41 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
-  if (!/<select id="metric"[^>]*aria-label/.test(html)
-    || !html.includes('<option value="views">') || !html.includes('<option value="watched">')
-    || !html.includes('<option value="live">') || !html.includes('<option value="reach">')) {
-    bad++; fail("chart metrics: the measure picker must be a labeled select with exactly views/watched/live/reach");
+  // ONE control for one decision (owner directive 2026-08-23): every chart the
+  // dashboard draws lives in a single dropdown whose current item IS the
+  // heading. No parallel tab strip, no native select.
+  const defsBlock = html.match(/const VIEW_DEFS = \[([\s\S]*?)\n\];/)?.[1] || "";
+  const defs = [...defsBlock.matchAll(/\{ key: "([a-z]+)", group: "([^"]+)", title: "([^"]+)", mode: "([a-z]+)"(?:, metric: "([a-z]+)")? \}/g)]
+    .map(([, key, group, title, mode, metric]) => ({ key, group, title, mode, metric }));
+  if (defs.length < 5) { bad++; fail("chart metrics: the view list could not be read — every chart must be declared in VIEW_DEFS"); }
+  const modes = new Set(defs.map((d) => d.mode));
+  for (const required of ["standings", "race", "watch", "live"]) {
+    if (!modes.has(required)) { bad++; fail(`chart metrics: the view list is missing the ${required} chart`); }
   }
-  // the picker IS the Totals heading: it sits in the chart's title slot, and
-  // each option's words are exactly the title that view renders
-  const titleBlock = html.match(/const METRIC_TITLES = \{([\s\S]*?)\};/)?.[1] || "";
-  const titles = Object.fromEntries([...titleBlock.matchAll(/(\w+): "([^"]+)",/g)].map(([, k, v]) => [k, v]));
-  for (const key of ["views", "watched", "live", "reach"]) {
-    const opt = html.match(new RegExp(`<option value="${key}">([^<]+)</option>`))?.[1];
-    if (!opt || !titles[key] || opt !== titles[key]) {
-      bad++; fail(`chart metrics: the ${key} option ("${opt}") does not read exactly like its chart title ("${titles[key]}")`);
+  for (const metric of ["views", "watched", "live", "reach"]) {
+    if (!defs.some((d) => d.mode === "standings" && d.metric === metric)) {
+      bad++; fail(`chart metrics: the per-episode ${metric} measure is missing from the view list`);
     }
   }
-  if (!/<span class="ctsel" id="ctsel">/.test(html) || !/chart-copy[\s\S]{0,120}id="ctitle"/.test(html)
-    || !/const pickerIsTitle = state\.mode === "standings" && !state\.table;/.test(html)
-    || !/ctitle"\)\.style\.display = pickerIsTitle \? "none" : "";/.test(html)) {
-    bad++; fail("chart metrics: the picker must occupy the chart's title slot in Totals, with the plain heading taking it back elsewhere");
+  if (/id="mode"/.test(html) || /data-v="standings"/.test(html) || /<select id="metric"/.test(html)) {
+    bad++; fail("chart metrics: the retired tab strip or native measure select is back — one dropdown owns this decision");
+  }
+  if (!/<button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox"/.test(html)
+    || !/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html)
+    || !/o\.setAttribute\("role", "option"\)/.test(html)
+    || !/o\.setAttribute\("aria-selected", String\(selected\)\)/.test(html)
+    || !/ev\.key === "Escape"/.test(html) || !/ev\.key === "ArrowDown"/.test(html)) {
+    bad++; fail("chart metrics: the view dropdown must be a keyboard-operable listbox whose button reports its expanded state");
+  }
+  // a scope tag never repeats the heading, and never rides on gray text alone
+  if (!/function scopeTag\(mark, name\)/.test(html) || !/<span class="sr">\$\{esc\(name\)\}<\/span>/.test(html)) {
+    bad++; fail("chart metrics: platform scope tags must carry a spoken name beside the mark");
+  }
+  for (const d of defs) {
+    const scopes = [...html.matchAll(new RegExp(`METRIC_TITLES\\.${d.metric}, \`([^\`]*)\``, "g"))].map((m) => m[1]);
+    for (const scope of scopes) {
+      if (scope.includes(d.title)) { bad++; fail(`chart metrics: the ${d.key} scope line repeats its own heading ("${d.title}")`); }
+    }
   }
   // hero split bar: both the segments and their labels explain themselves,
   // from one definition, with the labels keyboard-reachable
