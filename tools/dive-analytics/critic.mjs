@@ -47,7 +47,7 @@ function harvest() {
     week1Note: e.metrics.week1Note,
     engagementPer1k: e.metrics.engagementPer1k,
     anomaly: e.metrics.anomaly,
-    live: e.live ? { peak: e.live.peak, avg: e.live.avg, chat: e.live.chatMessages, durationMin: e.live.durationMin } : null,
+    live: e.live ? { peak: e.live.peak, avg: e.live.avg, chat: e.live.chatMessages, chatters: e.live.chatters, durationMin: e.live.durationMin } : null,
     comments: e.comments ? {
       captured: e.comments.captured,
       feedbackCount: e.comments.feedbackCount,
