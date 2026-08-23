@@ -221,7 +221,15 @@
     border-radius: 999px; padding: 3px 10px; background: var(--s1); vertical-align: -1px; }
   .panel .tlink svg { width: 13px; height: 13px; }
   .panel .tlink:hover, .panel .tlink:focus-visible { background: var(--s2); border-color: var(--accent); }
-  .panel .h .hmeta { margin-left: auto; margin-right: 34px; color: var(--t3); font-weight: 400; font-size: 13px; white-space: nowrap; }
+  .panel .h .hmeta { margin-left: auto; margin-right: 34px; color: var(--t3); font-weight: 400; font-size: 13px;
+    display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .panel .h .pdate { margin-right: 2px; }
+  /* destination links share the close button's circle; the ring wears the
+     destination's identity color, the mark names the platform */
+  .panel .plink { width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center;
+    justify-content: center; background: var(--s1); border: 1px solid var(--border-strong); }
+  .panel .plink .plogo { width: 13px; height: 13px; }
+  .panel .plink:hover, .panel .plink:focus-visible { background: var(--s2); }
   .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .panel .frate { color: var(--t3); font-size: 13px; margin-top: 2px; font-variant-numeric: tabular-nums; }
   .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
@@ -1109,9 +1117,19 @@ function buildPanel() {
   const bd = e.latest.byDest || {};
   const tvi = e.latest.totalViewsInfo || {};
   let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
-  let hmeta = e.premiere.slice(5).replace("-", "/");
+  // header cluster: premiere date · one circular link per destination the
+  // episode actually lives on (platform mark, identity-colored ring, named in
+  // its tooltip) · the transcript pill. Rendered ONLY from stored e.links —
+  // a destination without a stored link renders nothing.
+  let hmeta = `<span class="pdate">${e.premiere.slice(5).replace("-", "/")}</span>`;
+  for (const d of DATA.dests) {
+    const url = e.links?.[d.key];
+    if (!url) continue;
+    const name = TT_NAME[d.key] || d.key;
+    hmeta += `<a class="plink" href="${esc(url)}" target="_blank" rel="noopener" data-tip="${esc(`Open on ${name.replace(/^YT /, "")}${d.key.startsWith("x:") ? " · X" : " · YouTube"}`)}" aria-label="${esc(`Open this episode on ${name}`)}" style="border-color:${PLAT_COLORS[d.key]}55">${d.key.startsWith("yt:") ? PLOGO.yt : PLOGO.x}</a>`;
+  }
   if (e.transcript) {
-    hmeta += ` · <a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}transcript</a>`;
+    hmeta += `<a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}transcript</a>`;
   }
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}<span class="hmeta">${hmeta}</span></div>`;
   html += `<div class="pgrid">`;

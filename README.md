@@ -32,8 +32,9 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   transcript quote); the verbatim excerpts stay in the data as provenance
   and feed the recommendation engine alongside the shape and moment facts
 - Click any episode for a detail panel: per-channel breakdown, reach split,
-  episode-health checks, featured quotes, recurring audience themes, and
-  praise/concern drilldown
+  episode-health checks, featured quotes, recurring audience themes,
+  praise/concern drilldown, and direct links to the episode on every
+  destination it lives on (registry-locked; validated URL shapes)
 - Table view mirrors every charted number; "About this data" defines units
   and missing-data marks
 - "What matters" is a model-backed recommendation engine

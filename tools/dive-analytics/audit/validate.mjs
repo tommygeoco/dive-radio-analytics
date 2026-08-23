@@ -1359,6 +1359,35 @@ function premiereMs(dateStr) {
   if (!bad) ok("page gutter: one spacing token drives every card, column, and row; container insets compensated so painted edges align");
 }
 
+// --- 1r. destination links (W18): stored, recomputed from the registry, opened safely ---
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  for (const e of eps) {
+    const show = registry.shows.find((s) => s.slug === e.slug);
+    const expected = {};
+    for (const t of show?.targets || []) {
+      if (t.kind === "youtube" && t.videoId) expected[`yt:${t.account}`] = `https://youtube.com/watch?v=${t.videoId}`;
+      if (t.kind === "x" && t.role !== "promo") {
+        if (t.broadcastId) expected[`x:${t.account}`] = `https://x.com/i/broadcasts/${t.broadcastId}`;
+        else if (t.postId) expected[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
+      }
+    }
+    const want = Object.keys(expected).length ? expected : undefined;
+    if (JSON.stringify(e.links ?? null) !== JSON.stringify(want ?? null)) { bad++; fail(`links: ${e.slug} stored destination links do not recompute from the registry`); }
+    for (const url of Object.values(e.links || {})) {
+      if (!/^https:\/\/(youtube\.com\/watch\?v=[A-Za-z0-9_-]+|x\.com\/(i\/broadcasts\/[A-Za-z0-9]+|[A-Za-z0-9_]+\/status\/\d+))$/.test(url)) {
+        bad++; fail(`links: ${e.slug} link has an unexpected shape — ${url}`);
+      }
+    }
+  }
+  if (!html.includes('const url = e.links?.[d.key];')
+    || !/class="plink" href="\$\{esc\(url\)\}" target="_blank" rel="noopener"/.test(html)) {
+    bad++; fail("links: the panel must render destination links only from stored e.links, opened in a new tab with noopener");
+  }
+  if (!bad) ok(`links: ${eps.filter((e) => e.links).length} episode(s) store destination links — registry-locked, safe URL shapes, panel renders only what is stored`);
+}
+
 // --- warnings: broadcast-resolution latches and plays coverage ---
 {
   for (const show of registry.shows) {

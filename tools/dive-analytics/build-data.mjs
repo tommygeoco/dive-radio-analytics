@@ -237,6 +237,19 @@ export function computeAll({ now = Date.now() } = {}) {
       }))
       .sort((a, b) => (a.ts < b.ts ? -1 : 1));
 
+    // Where the episode lives on each destination (W18): YouTube watch pages
+    // from the registered videoIds; on X the broadcast itself when its id was
+    // resolved, else the announce post. A destination with neither stores no
+    // link — absence stays silent on the page.
+    const links = {};
+    for (const t of show.targets || []) {
+      if (t.kind === "youtube" && t.videoId) links[`yt:${t.account}`] = `https://youtube.com/watch?v=${t.videoId}`;
+      if (t.kind === "x" && t.role !== "promo") {
+        if (t.broadcastId) links[`x:${t.account}`] = `https://x.com/i/broadcasts/${t.broadcastId}`;
+        else if (t.postId) links[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
+      }
+    }
+
     episodes.push({
       slug: show.slug,
       title: show.title,
@@ -251,6 +264,7 @@ export function computeAll({ now = Date.now() } = {}) {
       // xPlays — both count video playback events. xImpressions (reach) is
       // exposure, a different unit, and is NEVER part of any views total.
       latest: buildLatest(show, latest),
+      links: Object.keys(links).length ? links : undefined,
       // transcript flag: a per-episode file under transcripts/ (served statically);
       // link renders only when the file actually exists — absence ≠ broken link
       transcript: existsSync(join(TRANSCRIPTS_DIR, `${show.slug}.txt`)),

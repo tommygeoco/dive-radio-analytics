@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T08:12:47.597Z",
+ "generatedAt": "2026-08-23T08:29:41.063Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1651,6 +1651,12 @@
      "have": 2,
      "total": 2
     }
+   },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=VcLm0kAGCck",
+    "yt:designertom": "https://youtube.com/watch?v=FqsXWbfKmGw",
+    "x:ridd_design": "https://x.com/i/broadcasts/1AxRnnrOvlrxl",
+    "x:designertom": "https://x.com/i/broadcasts/1pKdRRwpkaQJW"
    },
    "transcript": true,
    "ageDays": 35.9,
@@ -4952,6 +4958,12 @@
      "total": 2
     }
    },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=TJqSfnadiGM",
+    "yt:designertom": "https://youtube.com/watch?v=Pn6U5nWgD-g",
+    "x:designertom": "https://x.com/i/broadcasts/1kKzDDbmjWqJv",
+    "x:ridd_design": "https://x.com/i/broadcasts/1yxBeeoanDOJN"
+   },
    "transcript": true,
    "ageDays": 29.9,
    "metrics": {
@@ -7268,6 +7280,12 @@
      "total": 2
     }
    },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=9HYGZgaHdlw",
+    "yt:designertom": "https://youtube.com/watch?v=szvTFybWfK4",
+    "x:ridd_design": "https://x.com/i/broadcasts/1nGnRRMEPDkGO",
+    "x:designertom": "https://x.com/i/broadcasts/1nGeLLpzNAQKX"
+   },
    "transcript": true,
    "ageDays": 22.9,
    "metrics": {
@@ -9505,6 +9523,12 @@
      "have": 2,
      "total": 2
     }
+   },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=0tRHVW0qRt4",
+    "yt:designertom": "https://youtube.com/watch?v=ziyWxt6qzfM",
+    "x:ridd_design": "https://x.com/i/broadcasts/1vJpPPMgdDoJE",
+    "x:designertom": "https://x.com/i/broadcasts/1rGmqqBdNVkGy"
    },
    "transcript": true,
    "ageDays": 15.9,
@@ -11756,6 +11780,12 @@
      "total": 2
     }
    },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=njOU7GKZcvc",
+    "yt:designertom": "https://youtube.com/watch?v=G2_F3dd3RkA",
+    "x:ridd_design": "https://x.com/i/broadcasts/1pKdRDDymlnJW",
+    "x:designertom": "https://x.com/i/broadcasts/1AxRnZZeVNzxl"
+   },
    "transcript": true,
    "ageDays": 8.9,
    "metrics": {
@@ -13917,6 +13947,12 @@
      "have": 2,
      "total": 2
     }
+   },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=RhemcDEc_-A",
+    "yt:designertom": "https://youtube.com/watch?v=eLA79C1jq1g",
+    "x:ridd_design": "https://x.com/i/broadcasts/1DGleVBNBVjJL",
+    "x:designertom": "https://x.com/i/broadcasts/1aKbdEoAoEBJX"
    },
    "transcript": true,
    "ageDays": 1.9,
