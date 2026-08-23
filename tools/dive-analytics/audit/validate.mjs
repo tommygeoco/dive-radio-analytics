@@ -1159,8 +1159,12 @@ function premiereMs(dateStr) {
       || !healthSource.includes("bullets(h.pros") || !healthSource.includes("bullets(h.cons")) {
       bad++; fail("card layout: health evidence must start closed behind a real button and contain every exact saved fact");
     }
-    if (!/h\.readState === "early"/.test(healthSource) || !/Updated \$\{esc\(saved\)\}/.test(healthSource)) {
-      bad++; fail("card layout: the health surface does not show its saved age and projected early-read state");
+    // Retired 2026-08-23 (owner directive): the saved-age and early-read line
+    // is off the card. Freshness lives in the header stamp, and an early read
+    // shows itself as a diagnosis check that isn't in yet — so the gate still
+    // holds without a status line announcing it.
+    if (/Updated \$\{esc\(saved\)\}/.test(healthSource) || /Early read/.test(healthSource)) {
+      bad++; fail("card layout: the retired saved-age / early-read line is back on the health surface");
     }
     if (!/document\.createElement\("button"\)/.test(stripSource) || !/it\.type = "button"/.test(stripSource)) {
       bad++; fail("card layout: episode cards are not real keyboard-operable buttons");
@@ -1169,10 +1173,10 @@ function premiereMs(dateStr) {
     if (!/strip\.scrollLeft = strip\.scrollWidth/.test(stripSource)) {
       bad++; fail("card layout: the carousel does not land on the newest episode (far right, locked rule)");
     }
-    if (!/const saved = relativeDayWords\(h\.date\)/.test(healthSource)
-      || !/relativeDayWords\(phoenixDateKey\(DATA\.generatedAt\)\)/.test(html)
+    // the one freshness statement left on the page still reads as words
+    if (!/relativeDayWords\(phoenixDateKey\(DATA\.generatedAt\)\)/.test(html)
       || !/Data refreshed \$\{esc\(when\)\}/.test(html)) {
-      bad++; fail("card layout: saved dates must render as relative words, not numeric tokens");
+      bad++; fail("card layout: the header freshness stamp must render as relative words, not numeric tokens");
     }
     if (/addSentimentChip|chip\.senti/.test(html) || !/Audience feedback/.test(panelSource)) {
       bad++; fail("card layout: audience feedback counts must live only in the click-open episode panel");

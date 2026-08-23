@@ -76,10 +76,6 @@
   .checkrow .st.fragile { color: var(--bad); }
   .checkrow .st.waiting { color: var(--t3); font-weight: 500; }
   .checkrow .st.waiting i { background: none; border: 1px solid var(--border-strong); }
-  /* metadata, not a headline: the saved-day line sits quiet at the card foot */
-  .hc-meta .updated { display: flex; align-items: center; gap: 7px; color: var(--t3); font-size: 12.5px;
-    font-weight: 500; margin-top: 12px; }
-  .hc-meta .updated svg { width: 14px; height: 14px; color: var(--t3); flex: none; }
   .hc-meta .headline { font-size: 15.5px; margin: 0 0 6px; }
   .hc-meta .scope { color: var(--t3); font-size: 13.5px; line-height: 1.5; margin: 10px 0 0; }
   .healthrow .why { display: inline-block; margin-top: 2px; background: none; border: 0; padding: 0;
@@ -776,8 +772,9 @@ function buildHealth() {
     el.innerHTML = `<div class="card">Health update is not available yet.</div>`;
     return;
   }
-  const saved = relativeDayWords(h.date);
-  const readState = h.readState === "early" ? " · Early read" : "";
+  // No saved-age or early-read line here (owner directive 2026-08-23): the
+  // header stamp already says when the data last refreshed, and an early read
+  // shows itself in the diagnosis card as a check that isn't in yet.
   const R = 76, C = Math.round(2 * Math.PI * R * 10) / 10;
   // drill data behind each row: the SAVED measures from the public projection
   // (never scoring inputs) — this value against the show's typical, or the
@@ -859,7 +856,6 @@ function buildHealth() {
       <div class="kicker">Today’s read</div>
       <p class="headline">${esc(h.headline)}</p>
       ${topRecs.length ? `<div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div>` : ""}
-      <div class="updated"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Updated ${esc(saved)}${readState}</div>
     </div>${evidence}`;
   document.getElementById("whyscore").addEventListener("click", () => { state.evidenceOpen = !state.evidenceOpen; render(); });
 }
@@ -2197,7 +2193,7 @@ function buildAbout() {
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline and the top do-next actions from What matters; hover an action for the finding behind it. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline, then the top do-next actions from What matters, in order — the full finding behind each one is in What matters below. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }
 
