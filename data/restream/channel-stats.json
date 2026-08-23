@@ -7,6 +7,12 @@
         "subscribers": 170000,
         "totalViews": 106001867,
         "videos": 437
+      },
+      {
+        "date": "2026-08-23",
+        "subscribers": 170000,
+        "totalViews": 106004239,
+        "videos": 437
       }
     ],
     "yt:joindiveclub": [
@@ -15,6 +21,12 @@
         "subscribers": 67300,
         "totalViews": 1867274,
         "videos": 412
+      },
+      {
+        "date": "2026-08-23",
+        "subscribers": 67300,
+        "totalViews": 1867909,
+        "videos": 412
       }
     ],
     "x:ridd_design": [
@@ -22,6 +34,11 @@
         "date": "2026-08-22",
         "followers": 75320,
         "tweets": 20745
+      },
+      {
+        "date": "2026-08-23",
+        "followers": 75343,
+        "tweets": 20744
       }
     ],
     "x:designertom": [
@@ -29,8 +46,13 @@
         "date": "2026-08-22",
         "followers": 19192,
         "tweets": 8608
+      },
+      {
+        "date": "2026-08-23",
+        "followers": 19197,
+        "tweets": 8623
       }
     ]
   },
-  "updatedAt": "2026-08-22T18:50:56.397Z"
+  "updatedAt": "2026-08-23T14:00:58.679Z"
 }
