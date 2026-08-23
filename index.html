@@ -2260,15 +2260,15 @@ function buildInsightsPanel() {
 
   // Every insight shows, always (owner directive 2026-08-23): no top-3 fold,
   // no expander, no outer group headers. Like categories sit together (the
-  // sort above), the FIRST card of each group carries the category label
-  // inside its container, and the shared grid gap is the only rhythm.
-  const add = (ins, firstOfGroup) => {
+  // sort above), every card carries its category label inside its container,
+  // and the shared grid gap is the only rhythm.
+  const add = (ins) => {
     const cat = CATS[ins.cat];
     const div = document.createElement("div");
     div.className = "insight";
     const hasMore = !!(ins.recommendation || ins.caveat);
     div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span>
-      <span class="body">${firstOfGroup ? `<div class="cat" style="color:${cat.color}">${cat.name}</div>` : ""}
+      <span class="body"><div class="cat" style="color:${cat.color}">${cat.name}</div>
       <span class="txt">${esc(ins.text)}</span>
       ${ins.recommendation ? `<br><span class="reveal">Recommendation ▾</span>` : ""}
       ${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}
@@ -2281,11 +2281,7 @@ function buildInsightsPanel() {
     panel.appendChild(div);
   };
 
-  let lastCat = null;
-  for (const ins of all) {
-    add(ins, ins.cat !== lastCat);
-    lastCat = ins.cat;
-  }
+  for (const ins of all) add(ins);
 }
 
 /* ================= about ================= */
