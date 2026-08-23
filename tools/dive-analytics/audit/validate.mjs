@@ -414,7 +414,7 @@ function premiereMs(dateStr) {
       enjoyCount: peopleCount(enjoy.map(({ comment }) => comment)),
       complaintCount: peopleCount(complaints.map(({ comment }) => comment)),
       commentersPer1k: rateComplete && totalViews > 0 ? Math.round((uniqueCommenters / totalViews) * 10000) / 10 : null,
-      commentersPer1kNote: rateComplete ? null : "Not available because some replies or watch counts are missing.",
+      commentersPer1kNote: rateComplete ? null : "The commenting rate isn’t available — some replies or watch counts are missing.",
       enjoyThemes: topThemes(enjoy),
       complaintThemes: topThemes(complaints),
     };
@@ -1288,8 +1288,10 @@ function premiereMs(dateStr) {
     || !/const endX = Math\.max\(\.\.\.bars\.map\(\(b\) => b\.x\)\);/.test(totalsPlugin)
     || !/const whole = visible\.length === chart\.data\.datasets\.length;/.test(totalsPlugin)
     || !/const total = whole \? \(e\.latest\.totalViews \?\? e\.latest\.ytTotal\) : drawn;/.test(totalsPlugin)
-    || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)) {
-    bad++; fail("chart metrics: bar totals must anchor past the rightmost visible segment and sum only the drawn segments");
+    || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)
+    || !/const segVis = chart\.data\.datasets\.map\(\(_, di\) => chart\.isDatasetVisible\(di\)\);/.test(html)
+    || !/across shown destinations/.test(html)) {
+    bad++; fail("chart metrics: bar totals AND the tooltip must follow legend visibility — one rule for both numbers");
   }
   // reader-facing prose rows fill their card: no arbitrary character caps
   if (/\.insight \.body \{[^}]*max-width/.test(html) || /\.health-evidence li span \{[^}]*max-width/.test(html)) {
@@ -1335,7 +1337,6 @@ function premiereMs(dateStr) {
     ["#chartcard", /#chartcard \{[^}]*margin-bottom: var\(--gap\);/],
     [".panel", /\.panel \{[^}]*padding: var\(--gap\); margin: var\(--gap\) 0;/],
     [".pgrid", /\.panel \.pgrid \{[^}]*gap: var\(--gap\); margin-top: var\(--gap\);/],
-    ["h2", /h2 \{ font-size: 16px; margin: var\(--gap\) 0; \}/],
     [".insights", /\.insights \{ display: grid; gap: var\(--gap\); \}/],
     ["header", /header \{[^}]*margin-bottom: var\(--gap\);/],
   ];

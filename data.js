@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-23T06:45:08.888Z",
+ "generatedAt": "2026-08-23T08:12:47.597Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -2962,7 +2962,7 @@ window.DIVE_DATA = {
     "enjoyCount": 7,
     "complaintCount": 0,
     "commentersPer1k": null,
-    "commentersPer1kNote": "Not available because some replies or watch counts are missing.",
+    "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "enjoyThemes": [
      {
       "theme": "other",
@@ -6222,7 +6222,7 @@ window.DIVE_DATA = {
     "enjoyCount": 3,
     "complaintCount": 0,
     "commentersPer1k": null,
-    "commentersPer1kNote": "Not available because some replies or watch counts are missing.",
+    "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "enjoyThemes": [],
     "complaintThemes": [],
     "featured": [
@@ -8470,7 +8470,7 @@ window.DIVE_DATA = {
     "enjoyCount": 1,
     "complaintCount": 1,
     "commentersPer1k": null,
-    "commentersPer1kNote": "Not available because some replies or watch counts are missing.",
+    "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "enjoyThemes": [],
     "complaintThemes": [],
     "featured": [
@@ -10816,7 +10816,7 @@ window.DIVE_DATA = {
     "enjoyCount": 2,
     "complaintCount": 2,
     "commentersPer1k": null,
-    "commentersPer1kNote": "Not available because some replies or watch counts are missing.",
+    "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "enjoyThemes": [],
     "complaintThemes": [],
     "featured": [],
@@ -12966,7 +12966,7 @@ window.DIVE_DATA = {
     "enjoyCount": 1,
     "complaintCount": 0,
     "commentersPer1k": null,
-    "commentersPer1kNote": "Not available because some replies or watch counts are missing.",
+    "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "enjoyThemes": [],
     "complaintThemes": [],
     "featured": [
@@ -15409,7 +15409,7 @@ window.DIVE_DATA = {
   "enjoyCount": 18,
   "complaintCount": 3,
   "commentersPer1k": null,
-  "commentersPer1kNote": "Not available because some replies or watch counts are missing.",
+  "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
   "enjoyThemes": [
    {
     "theme": "other",

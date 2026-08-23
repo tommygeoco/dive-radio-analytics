@@ -527,7 +527,7 @@ function summarizeComments(rows, { totalViews = null, rateComplete = false } = {
       : null,
     commentersPer1kNote: rateComplete
       ? null
-      : "Not available because some replies or watch counts are missing.",
+      : "The commenting rate isn’t available — some replies or watch counts are missing.",
     enjoyThemes: topThemes(enjoy),
     complaintThemes: topThemes(complaints),
   };

@@ -65,6 +65,11 @@
   .checkrow { display: flex; align-items: center; gap: 12px; padding: 7px 0; font-size: 14px; }
   .checkrow + .checkrow { border-top: 1px solid var(--border); }
   .checkrow .cl { color: var(--t1); font-weight: 600; flex: 1; min-width: 0; }
+  /* drillable rows say so: the label wears a quiet dotted underline, the
+     standard "there is a definition here" mark — hover, tap, or focus opens it */
+  .checkrow[data-stat] .cl, .panel .irow[data-tip] .lb, .panel .trow[data-tip] .tl,
+  .hero .splitlabels .sl[data-stat] {
+    text-decoration: underline dotted rgba(148,163,184,.45); text-underline-offset: 3px; }
   .checkrow .cs { color: var(--t3); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
     text-overflow: ellipsis; }
   .checkrow .st { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; white-space: nowrap;
@@ -120,7 +125,7 @@
   .hero .platform-bar .pseg { min-width: 2px; }
   .hero .splitlabels .sl { display: inline-flex; align-items: center; gap: 6px; border-radius: 4px; }
   .hero .splitlabels .sl:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .hero .platform-bar { display: flex; width: min(100%, 520px); height: 8px; overflow: hidden;
+  .hero .platform-bar { display: flex; gap: 2px; width: min(100%, 520px); height: 8px; overflow: hidden;
     border-radius: 4px; background: var(--s2); margin-top: 16px; }
   /* segment colors ride inline from one definition (see splitBar); the
      YouTube red is a brand hue and must not read as the --bad status coral */
@@ -147,12 +152,7 @@
     background: rgba(148,163,184,.22); }
   .compound .cbar .bep { font-size: 11px; font-weight: 600; color: var(--t3); letter-spacing: .03em; }
   .compound .cbar.hot .bep { color: var(--t1); }
-  .compound .waitbox { border: 0; padding: 22px 0 12px; display: flex; flex-direction: column;
-    align-items: center; gap: 12px; background:
-      repeating-linear-gradient(to bottom, var(--border) 0 1px, transparent 1px 26px); }
-  .compound .waitbox svg { width: 40px; height: 40px; color: var(--t3); background: var(--s1);
-    border: 1px solid var(--border-strong); border-radius: 50%; padding: 9px; box-sizing: border-box; }
-  .compound .waitbox .cv2 { background: var(--s1); padding: 2px 10px; }
+  .compound .waitline { color: var(--t3); font-size: 14px; }
 
   /* ---- Episode carousel: selector + legend + finished health reads,
      oldest → newest, latest always far right (locked rule) ---- */
@@ -166,7 +166,7 @@
     border: 0; border-radius: 12px; padding: 12px 14px; cursor: pointer;
     position: relative; transition: background .15s, box-shadow .15s; color: inherit; text-align: left; }
   .sitem:hover { background: var(--s2); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
-  .sitem.newest { box-shadow: inset 0 0 0 1px rgba(89,176,255,.35); }
+  .sitem.newest { box-shadow: inset 0 0 0 1px rgba(148,163,184,.3); }
   /* selection still has to be unmistakable — an inset ring reads as state,
      not as card chrome, so the flat surface survives it */
   .sitem.solo { background: var(--s2); box-shadow: inset 0 0 0 2px var(--accent); }
@@ -321,7 +321,7 @@
 
   /* ---- chart card ---- */
   #chartcard { background: var(--s1); border: 0; border-radius: 14px;
-    padding: 12px 14px 10px; margin-bottom: var(--gap); }
+    padding: 12px 16px 10px; margin-bottom: var(--gap); }
   .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
   .chead .ct { font-size: 15px; font-weight: 700; }
   .chead .cs { font-size: 14px; color: var(--t3); }
@@ -342,7 +342,7 @@
     background: #0d1017; border: 1px solid var(--border-strong); border-radius: 10px;
     padding: 6px; box-shadow: 0 14px 40px rgba(0,0,0,.5); }
   .viewmenu .vgroup { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .09em;
-    text-transform: uppercase; padding: 8px 8px 4px; }
+    text-transform: uppercase; padding: 8px 8px 4px 30px; }
   .viewmenu .vsep { height: 1px; background: var(--border); margin: 6px 8px; }
   .viewmenu .vopt { display: flex; align-items: center; gap: 8px; width: 100%; background: none;
     border: 0; border-radius: 7px; padding: 7px 8px; cursor: pointer; text-align: left;
@@ -391,7 +391,6 @@
   .tt .note { color: var(--amber); font-size: 12px; margin-top: 5px; }
 
   /* ---- insights: readable claim up front, recommendation one click away ---- */
-  h2 { font-size: 16px; margin: var(--gap) 0; }
   .insights { display: grid; gap: var(--gap); }
   .cat-head { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     color: var(--t3); margin: 10px 0 2px; }
@@ -533,8 +532,7 @@
   </div>
   <div class="panel" id="panel" style="display:none"></div>
 
-  <h2>What matters</h2>
-  <div class="insights" id="insights"></div>
+  <div class="insights" id="insights" aria-label="What matters"></div>
 
   <details class="about">
     <summary>About this data</summary>
@@ -705,10 +703,12 @@ const PLOGO = {
 // html row labels: platform mark + the channel/account name (chart legends
 // stay text — canvas can't carry the svg, and words remain the fallback)
 const TT_HTML = {
-  "yt:joindiveclub": `${PLOGO.yt} Dive Club`,
-  "yt:designertom": `${PLOGO.yt} DesignerTom`,
-  "x:ridd_design": `${PLOGO.x} @ridd_design`,
-  "x:designertom": `${PLOGO.x} @designertom`,
+  // chip-led rows: the color chip carries the destination, the name carries
+  // the words — no platform logo stacked on top (one identity mark per row)
+  "yt:joindiveclub": "Dive Club",
+  "yt:designertom": "DesignerTom",
+  "x:ridd_design": "@ridd_design",
+  "x:designertom": "@designertom",
 };
 const TRAFFIC_NAMES = {
   SUBSCRIBER: "Home & subs",
@@ -999,11 +999,11 @@ function buildHero() {
     if (splitReady) {
       const bd2 = e.latest.byDest || {};
       html += splitBar([
-        { label: "YouTube", color: "#ff4f5e", value: yt, unit: "views", rows: [
+        { label: "YouTube", color: "#c25560", value: yt, unit: "views", rows: [
           { name: "Dive Club", value: bd2["yt:joindiveclub"]?.views },
           { name: "DesignerTom", value: bd2["yt:designertom"]?.views },
         ] },
-        { label: "X", color: "var(--accent)", value: x, unit: "plays", rows: [
+        { label: "X", color: "#7d95b5", value: x, unit: "plays", rows: [
           { name: "@ridd_design", value: bd2["x:ridd_design"]?.plays },
           { name: "@designertom", value: bd2["x:designertom"]?.plays },
         ] },
@@ -1323,8 +1323,7 @@ function buildCompound() {
     const have = EPS.map((e) => ({ e, v: M.get(e) })).filter((r) => r.v != null);
     if (have.length < 3) {
       el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>
-        <div class="waitbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
-        <div class="cv2">Not enough episodes to call a direction yet.</div></div>`;
+        <div class="waitline">Not enough episodes to call a direction yet.</div>`;
       el.style.display = "";
       return;
     }
@@ -1355,8 +1354,7 @@ function buildCompound() {
   let verdict, cls = "";
   if (vals.length < 3) {
     el.innerHTML = `<div class="kicker">Growth trend</div>
-      <div class="waitbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
-      <div class="cv2">Growth trend isn’t ready yet.</div></div>`;
+      <div class="waitline">Growth trend isn’t ready yet.</div>`;
     el.style.display = "";
     return;
   } else {
@@ -1502,7 +1500,7 @@ document.addEventListener("click", (ev) => {
   // expanders) is detached by the time this bubble arrives — closest() can't
   // see its old ancestors, so a detached target is always an INSIDE click
   if (!(ev.target instanceof Element) || !ev.target.isConnected) return;
-  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, #drill, .chip, .insight, .expander, .dcard")) return;
+  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .expander, .dcard")) return;
   state.panel = null; state.solo = null; render();
 });
 
@@ -1513,7 +1511,10 @@ function scopeTag(mark, name) {
   return `<b class="scopepill" data-tip="${esc(name)}" tabindex="0">${mark}<span class="sr">${esc(name)}</span></b> ·`;
 }
 function chartTitle() {
-  if (state.table) return [currentView().title, "Every value behind the charts"];
+  if (state.table) {
+    const mirrored = VIEW_DEFS.find((v) => !v.table && v.mode === state.mode && (state.mode !== "standings" || v.metric === state.metric));
+    return [currentView().title, mirrored ? mirrored.title : ""];
+  }
   if (state.mode === "live") return [currentView().title, "Restream, all destinations"];
   if (state.mode === "standings") {
     // The measure picker IS this view's title (owner directive 2026-08-23):
@@ -1698,20 +1699,30 @@ function externalTooltip(context) {
       return;
     }
     const bd = ep.latest.byDest || {};
+    // one visibility rule for the whole tooltip (same rule as the bar labels):
+    // a destination hidden from the legend leaves the rows AND the big number,
+    // which then sums only what is drawn and says so
+    const segVis = chart.data.datasets.map((_, di) => chart.isDatasetVisible(di));
+    const allShown = segVis.every(Boolean);
     html = `<div class="h"><span class="sq dot" style="background:${color(ep)}"></span>${esc(label(ep))}</div>`;
-    html += `<div class="big">${metricText(ep.latest.totalViews, "not available")} <small style="font-weight:500;color:var(--t3)">total views</small></div>`;
-    html += `<div class="div"></div>`;
     const rows = [
       ["yt:joindiveclub", bd["yt:joindiveclub"]?.views, "views"],
       ["yt:designertom", bd["yt:designertom"]?.views, "views"],
       ["x:ridd_design", bd["x:ridd_design"]?.plays, "plays"],
       ["x:designertom", bd["x:designertom"]?.plays, "plays"],
-    ];
+    ].filter((_, ri) => segVis[ri] !== false);
+    if (allShown) {
+      html += `<div class="big">${metricText(ep.latest.totalViews, "not available")} <small style="font-weight:500;color:var(--t3)">total views</small></div>`;
+    } else {
+      const drawn = rows.reduce((a, [, v]) => a + (Number.isFinite(v) ? v : 0), 0);
+      html += `<div class="big">${nfmt(drawn)} <small style="font-weight:500;color:var(--t3)">across shown destinations</small></div>`;
+    }
+    html += `<div class="div"></div>`;
     for (const [k, v, unit] of rows) {
       html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)} <span style="color:var(--t3);font-size: 12px">${unit}</span></span></div>`;
     }
     const tvi = ep.latest.totalViewsInfo || {};
-    if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
+    if (allShown && tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
   } else {
     const item = tooltip.dataPoints[0];
     const ds = item.dataset, e = ds.episode, p = item.raw;
@@ -2316,7 +2327,7 @@ function buildAbout() {
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline, then the top do-next actions from What matters, in order — the full finding behind each one is in What matters below. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline, then the top do-next actions from the recommendation list, in order — the full finding behind each one is in the list below the chart. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }
 
@@ -2334,8 +2345,9 @@ function syncUI() {
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
   // the heading always IS the picker now; the table view keeps it (the table
-  // mirrors whatever the chart shows)
-  closeViewMenu();
+  // mirrors whatever the chart shows). The menu is closed only by pickView,
+  // Escape/Tab, or a true outside click — never by a render, so opening it
+  // with an episode selected works.
   const chartbox = document.getElementById("chartbox");
   chartbox.style.display = state.table ? "none" : "";
   // solo collapse applies to the totals view only — line views already give
