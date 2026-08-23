@@ -1,11 +1,10 @@
 # PRD — Dive Radio analytics v8: publish integrity (2026-08-23)
 
-Owner: Tommy. Status: REPO CODE LANDED 2026-08-23 — W19 (prune mode +
-prune-on-failure), W20 (allowed-number payload, error-feedback retries,
-health.mjs audit recorded in its header: frozen entries are judged against
-their own saved facts, no staleness), and W21 (audit/freshness.mjs watchdog
-+ end-of-chain probe in alerts.mjs) are implemented. Still open: the cron
-chain edit (W19 step 3) and the 12:00 watchdog cron, both operator-run.
+Owner: Tommy. Status: SCRIPT SIDE SHIPPED 2026-08-23 (same day — code +
+validator + local acceptance; see the implementation record. Two parallel
+script-side implementations landed the same day and were reconciled into
+this one). The cron edits, the live replay test, and the supervised
+end-to-end run are owner steps and remain OPEN.
 Numbering note: first drafted as v7 with work items W17–W19, renumbered
 the same day — W17 (moment summaries, v6.1) and W18 (destination links)
 were already claimed by shipped work, so this PRD is v8 and its work items
@@ -145,10 +144,50 @@ Acceptance:
 
 ## Rollout
 
-1. W19 script change + acceptance runs locally.
+1. W19 script change + acceptance runs locally. — DONE 2026-08-23
 2. Cron chain edit (owner-approved, six-point checklist in the workspace
-   AGENTS.md), then one supervised `cron run` end-to-end.
-3. W20 prompt/retry change, replay test.
-4. W21 watchdog + midday cron.
+   AGENTS.md), then one supervised `cron run` end-to-end. — OPEN (owner)
+3. W20 prompt/retry change, replay test. — code DONE 2026-08-23; the replay
+   test needs ANTHROPIC_API_KEY, so it runs on the owner machine
+4. W21 watchdog + midday cron. — script DONE 2026-08-23; the midday cron is
+   owner-side
 5. Watch two consecutive 7:00 runs; done when both publish with parity
-   confirmed and zero manual touches.
+   confirmed and zero manual touches. — OPEN
+
+## Implementation record (2026-08-23, session)
+
+- **W19** in `recommendations.mjs`: `--prune` mode re-validates the saved
+  store item-by-item against the current fact sheet (the per-item core of
+  `validateItems`, so prune and gate can never disagree), drops what no
+  longer grounds, and atomic-writes survivors with `prunedAt` +
+  `prunedIds`. Fewer than three survivors deletes the store file. A prune
+  that drops nothing leaves the file byte-untouched. The default run
+  regenerates and falls back to the prune on ANY model or grounding
+  failure — keep-previous is retired, and the script's exit is always 0
+  with a grounded (or absent) store on disk.
+- **W20** in `recommendations.mjs`: the payload carries `allowedNumbers`
+  (every spelling `validateItems` accepts, sorted); system rule 7 makes
+  compliance copy-work. A grounding failure feeds the exact validation
+  error, the offending item, and the offending reply back to the model, up
+  to three attempts total; the saved store records `attempts`.
+  PROMPT_VERSION → 3.
+  `health.mjs` audit verdict: its store CANNOT go stale this way — entries
+  are dated append-only history judged against their own stamps and the
+  committed bytes at HEAD, never the current facts; recorded in its header
+  so nobody ports the prune pattern there.
+- **W21** as `freshness.mjs` (sibling — `alerts.mjs` stays no-network by
+  design): fetches prod `data.json`, and past 26 hours queues the one-line
+  alert into `alerts-pending.json` (replacing any earlier freshness line,
+  so the delivered alert names what prod serves NOW) and prints it for the
+  midday cron's payload. Fetch failures and crashes report on stdout and
+  exit 0 — the watchdog can never block the chain it watches.
+- **Validator**: 1n now sanity-checks the audit fields when present
+  (`prunedIds` non-empty strings none of which remain in `items`,
+  `prunedAt` parseable, `attempts` an integer 1..3).
+- **Acceptance run locally (this repo, no API key)**: (1) keyless default
+  run → WARN + prune fallback, exit 0, untouched store; (2) hand-broken
+  number → exactly that item pruned and named in `prunedIds`, then
+  build-data → validate green on the pruned store; (3) store cut to three
+  with one broken → prune left two, file deleted, build-data fell back to
+  deterministic insights, validate WARNed on the absent store and exited 0.
+  Store and artifacts restored from git after the runs.

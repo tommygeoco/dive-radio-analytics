@@ -12,25 +12,27 @@
 // Discipline (mirrors health.mjs):
 //   - The model receives a deterministic fact sheet and may only use numbers
 //     from it. Every number token in a saved item must appear in the facts.
-//     The payload carries the exact allowed-number list so the model can
-//     comply, and a failed attempt is retried with the validation error and
-//     the offending item appended to the conversation (up to 3 attempts).
+//     The payload carries the exact allowed spellings, and a grounding
+//     failure is fed back to the model for up to two retries (v8 W20).
 //   - Plain words: the banned-jargon list is enforced on every item.
-//   - Failure is non-fatal but never leaves stale numbers behind (PRD v8 W19):
-//     when the model cannot produce a valid store, the saved items are pruned
-//     against the CURRENT fact sheet instead of kept as-is. Items that no
-//     longer ground are dropped; fewer than 3 survivors deletes the store and
-//     the page falls back to the rule-based insights. The store on disk is
-//     grounded in the current facts on every exit path.
+//   - Failure is non-fatal AND never leaves the store stale (v8 W19): when
+//     the model cannot produce a grounded set, the saved store is pruned
+//     item-by-item against the CURRENT facts. Items that no longer ground
+//     are dropped (recorded in prunedAt/prunedIds); fewer than three
+//     survivors and the store file is removed entirely — build-data then
+//     falls back to the deterministic rule-based insights and validate
+//     treats the absent store as WARN, not FAIL. Keep-previous is retired:
+//     it turned one bad model call into a blocked publish (2026-08-23).
 //
 // Run:
 //   node tools/dive-analytics/recommendations.mjs --facts   # print the fact sheet
-//   node tools/dive-analytics/recommendations.mjs --prune   # drop stored items that
-//                                                           # no longer ground (no model)
-//   node tools/dive-analytics/recommendations.mjs           # regenerate the store
+//   node tools/dive-analytics/recommendations.mjs --prune   # deterministic prune only (no model)
+//   node tools/dive-analytics/recommendations.mjs           # regenerate; prune is the floor
 //
-// Chain (owner machine): ratings → build-data → recommendations (non-fatal
-//   wrapper) → build-data → validate → publish → alerts
+// Chain (cron + owner machine): … ratings → build-data →
+//   recommendations (this script, non-fatal) → build-data → validate →
+//   publish → alerts. The second build-data projects the store into the
+//   page so validate's page-matches-store lock holds.
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync, unlinkSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -44,7 +46,7 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 3; // v8: allowed-number list rides in the payload
+export const PROMPT_VERSION = 3; // v8: allowed-number list in the payload + grounding-error retries
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 // exported so other prose surfaces (the Slack trends line) can gate spoken
 // quotes with the same plain-words contract the validator enforces
@@ -165,10 +167,9 @@ function numberTokens(text) {
   return String(text).match(/\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?/g) || [];
 }
 
-// The exact set of number tokens an item may contain. This same set rides in
-// the model payload (W20) so the model sees precisely what the validator will
-// accept — one list, two consumers, no drift.
-export function allowedTokens(facts) {
+// every spelling of every fact value the model may write; also sent to the
+// model verbatim (v8 W20) so compliance is copy-work, not arithmetic
+function allowedTokens(facts) {
   const allowed = new Set();
   for (const f of facts) {
     const v = f.value;
@@ -179,10 +180,7 @@ export function allowedTokens(facts) {
   return allowed;
 }
 
-// One item's checks, exactly as validateItems applies them. Shared with the
-// W19 prune so "does this stored item still hold" can never drift from the
-// set-level validation.
-function validateItem(item, allowed, seen) {
+function checkItem(item, allowed, seen) {
   if (!item || typeof item !== "object") throw new Error("item must be an object");
   if (typeof item.id !== "string" || !/^[a-z0-9-]{3,40}$/.test(item.id) || seen.has(item.id)) throw new Error(`bad or duplicate id ${JSON.stringify(item.id)}`);
   seen.add(item.id);
@@ -202,50 +200,51 @@ export function validateItems(items, facts) {
   if (!Array.isArray(items) || items.length < 3 || items.length > 8) throw new Error("between three and eight items required");
   const allowed = allowedTokens(facts);
   const seen = new Set();
-  for (const item of items) validateItem(item, allowed, seen);
+  for (const item of items) checkItem(item, allowed, seen);
   return items;
 }
 
-// --- W19 deterministic prune: the stored items re-earn their place against
-// the CURRENT facts, no model involved. Items that no longer ground are
-// dropped with an audit trail; fewer than 3 survivors deletes the store
-// (build-data falls back to the rule-based insights, validate WARNs). ---
+// --- v8 W19: deterministic prune — the store can always be made true ---
 
-export function pruneStore(sheet, { attempts = null } = {}) {
+// Re-validate the saved store item-by-item against the CURRENT fact sheet
+// and drop what no longer grounds. Below three survivors the store file is
+// deleted (build-data falls back to the deterministic insights; validate
+// WARNs on an absent store). Never calls a model.
+export function pruneStore(sheet) {
   const store = readJson(STORE_PATH);
-  if (!store || !Array.isArray(store.items)) {
-    console.log("prune: no recommendations store on disk — nothing to prune");
-    return { kept: 0, prunedIds: [], deleted: false, absent: true };
+  if (!store?.items?.length) {
+    console.log("recommendations: prune — no store on disk, nothing to prune");
+    return { kept: 0, prunedIds: [], existed: false };
   }
   const allowed = allowedTokens(sheet.facts);
   const seen = new Set();
-  const kept = [];
-  const prunedIds = [];
+  const kept = [], prunedIds = [];
   for (const item of store.items) {
-    try {
-      validateItem(item, allowed, seen);
-      kept.push(item);
-    } catch (error) {
-      prunedIds.push(typeof item?.id === "string" ? item.id : "unknown");
-      console.log(`prune: dropped ${typeof item?.id === "string" ? item.id : "an item with no id"} — ${error.message}`);
-    }
+    try { checkItem(item, allowed, seen); kept.push(item); }
+    catch (error) { prunedIds.push(String(item?.id ?? "?")); console.log(`recommendations: prune dropped ${item?.id ?? "?"} — ${error.message}`); }
   }
+  // the three-item floor comes FIRST: a store that is already under three
+  // items (however it got that way) must not survive as "untouched" — the
+  // gate would fail it and block publish, the exact failure this retires
   if (kept.length < 3) {
     unlinkSync(STORE_PATH);
-    console.log(`prune: only ${kept.length} of ${store.items.length} item(s) still hold against the current facts — store deleted; the page falls back to the rule-based insights`);
-    return { kept: kept.length, prunedIds, deleted: true, absent: false };
+    console.log(`recommendations: prune left ${kept.length} item(s) — below the three-item floor, store removed; the page falls back to the deterministic insights`);
+    return { kept: 0, prunedIds, existed: true, removed: true };
+  }
+  if (!prunedIds.length) {
+    console.log(`recommendations: prune — all ${kept.length} item(s) still ground against the current facts; store untouched`);
+    return { kept: kept.length, prunedIds, existed: true };
   }
   saveAtomic(STORE_PATH, {
     ...store,
-    items: kept,
+    updatedAt: new Date().toISOString(),
+    factsGeneratedAt: sheet.generatedAt,
     prunedAt: new Date().toISOString(),
     prunedIds,
-    ...(attempts != null ? { attempts } : {}),
+    items: kept,
   });
-  console.log(prunedIds.length
-    ? `prune: kept ${kept.length} of ${store.items.length} item(s); store rewritten against the current facts — rebuild data to publish`
-    : `prune: all ${kept.length} item(s) still hold against the current facts`);
-  return { kept: kept.length, prunedIds, deleted: false, absent: false };
+  console.log(`recommendations: prune dropped ${prunedIds.length} item(s) (${prunedIds.join(", ")}), kept ${kept.length} — store re-grounded`);
+  return { kept: kept.length, prunedIds, existed: true };
 }
 
 // --- model call (same provider plumbing as health.mjs) ---
@@ -259,7 +258,7 @@ Rules:
 4. Plain words. Never write: composite, percentile, pillar, ratio, multiple-times comparisons, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.
 5. Association is not cause — recommend tests and changes, never certainties.
 6. Watch-moment facts (drop-*/hold-*) arrive with transcript excerpts in the payload. Excerpts are quotable context, not numbers. Name a moment's position in plain words ("about a third of the way in") and treat its timing as approximate — it comes from the live recording. Never claim the words caused the exit; recommend a test instead (trim, tighten, re-order).
-7. The payload's allowedNumbers list is every number token the validator accepts. Every digit sequence in your output must appear verbatim in that list. Never compute, round, combine, or convert numbers — if the number you want is not in the list, make the point without a number.`;
+7. The payload's allowedNumbers list is the complete set of number spellings you may write. Every digit sequence in your output must appear verbatim in that list. Never compute, round, combine, or convert numbers — if the number you want is not in the list, make the point without a number.`;
 
 async function callModel(messages) {
   const key = process.env.ANTHROPIC_API_KEY;
@@ -277,16 +276,37 @@ async function callModel(messages) {
   return { text, model };
 }
 
-// The item a validation error points at, so the retry conversation can show
-// the model exactly what it wrote wrong (W20). Errors are prefixed with the
-// item id by validateItem; anything unprefixed (bad JSON, bad shape) has no
-// single item to blame.
-function offendingItem(error, items) {
-  const id = /^([a-z0-9-]{3,40}): /.exec(error.message)?.[1];
-  return (id && Array.isArray(items) && items.find((item) => item?.id === id)) || null;
+// v8 W20: up to three attempts; a grounding failure goes back to the model
+// verbatim so the retry is a correction, not a re-roll. Transport errors
+// (no key, HTTP, timeout) throw immediately — retrying those wastes the
+// window and the prune floor handles the day.
+async function regenerate(sheet) {
+  const messages = [{ role: "user", content: JSON.stringify({
+    task: "Write this week's tactical recommendations.",
+    facts: sheet.facts,
+    excerpts: sheet.excerpts,
+    allowedNumbers: [...allowedTokens(sheet.facts)].sort((a, b) =>
+      (parseFloat(a.replace(/,/g, "")) - parseFloat(b.replace(/,/g, ""))) || a.localeCompare(b)),
+  }) }];
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const result = await callModel(messages);
+    let parsed = null;
+    try {
+      parsed = JSON.parse(result.text);
+      validateItems(parsed.items, sheet.facts);
+      return { items: parsed.items, model: result.model, attempts: attempt };
+    } catch (error) {
+      console.log(`recommendations: attempt ${attempt}/3 failed grounding — ${error.message}`);
+      // the exact failure and the item it points at go back with the reply,
+      // so the retry is a targeted correction (v8 W20)
+      const id = /^([a-z0-9-]{3,40}): /.exec(error.message)?.[1];
+      const offender = (id && Array.isArray(parsed?.items) && parsed.items.find((x) => x?.id === id)) || null;
+      messages.push({ role: "assistant", content: result.text });
+      messages.push({ role: "user", content: `Your reply failed validation: ${error.message}.${offender ? ` The offending item was: ${JSON.stringify(offender)}.` : ""} Return the corrected full JSON now — same rules, every digit sequence copied verbatim from allowedNumbers.` });
+    }
+  }
+  throw new Error("three attempts all failed grounding");
 }
-
-const MAX_ATTEMPTS = 3;
 
 async function main() {
   const sheet = collectFacts();
@@ -298,57 +318,26 @@ async function main() {
     pruneStore(sheet);
     return;
   }
-  // sorted numerically so the list reads as a list, not a grab bag
-  const allowedNumbers = [...allowedTokens(sheet.facts)]
-    .sort((a, b) => parseFloat(a.replace(/,/g, "")) - parseFloat(b.replace(/,/g, "")) || a.localeCompare(b));
-  const payload = { task: "Write this week's tactical recommendations.", allowedNumbers, facts: sheet.facts, excerpts: sheet.excerpts };
-  const messages = [{ role: "user", content: JSON.stringify(payload) }];
-  let attempts = 0;
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-    attempts = attempt;
-    let result;
-    try {
-      result = await callModel(messages);
-    } catch (error) {
-      console.log(`WARN recommendations: attempt ${attempt}/${MAX_ATTEMPTS}: ${error.message}`);
-      if (!process.env.ANTHROPIC_API_KEY) break; // no key — more attempts cannot help
-      continue;
-    }
-    let parsed = null;
-    try {
-      parsed = JSON.parse(result.text);
-      validateItems(parsed.items, sheet.facts);
-    } catch (error) {
-      console.log(`WARN recommendations: attempt ${attempt}/${MAX_ATTEMPTS}: ${error.message}`);
-      // hand the model its own output plus the exact failure, and ask again
-      messages.push({ role: "assistant", content: result.text });
-      messages.push({
-        role: "user",
-        content: JSON.stringify({
-          validationError: error.message,
-          offendingItem: offendingItem(error, parsed?.items),
-          instruction: "Your last answer failed validation. Fix it and return the complete corrected JSON. Every digit sequence must appear verbatim in the allowedNumbers list — never compute, round, combine, or convert numbers.",
-        }),
-      });
-      continue;
-    }
+  // default: regenerate; on ANY model or grounding failure the deterministic
+  // prune is the floor — the store on disk always grounds in the current
+  // facts when this script exits (v8 W19)
+  try {
+    const gen = await regenerate(sheet);
     saveAtomic(STORE_PATH, {
       version: STORE_VERSION,
       promptVersion: PROMPT_VERSION,
       updatedAt: new Date().toISOString(),
       provider: "anthropic",
-      model: result.model,
-      attempts: attempt,
+      model: gen.model,
       factsGeneratedAt: sheet.generatedAt,
-      items: parsed.items,
+      attempts: gen.attempts,
+      items: gen.items,
     });
-    console.log(`recommendations: saved ${parsed.items.length} item(s) in ${attempt} attempt(s) — rebuild data to publish`);
-    return;
+    console.log(`recommendations: saved ${gen.items.length} item(s) after ${gen.attempts} attempt(s) — rebuild data to publish`);
+  } catch (error) {
+    console.log(`WARN recommendations: ${error.message}; falling back to the deterministic prune`);
+    pruneStore(sheet);
   }
-  // W19: a failed regeneration never leaves stale numbers behind — prune the
-  // saved items against the current facts instead of keeping them as-is.
-  console.log(`WARN recommendations: no valid store after ${attempts} attempt(s) — pruning the saved items against the current facts`);
-  pruneStore(sheet, { attempts });
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

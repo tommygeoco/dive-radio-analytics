@@ -823,6 +823,21 @@ function premiereMs(dateStr) {
     } catch (err) {
       bad++; fail(`recommendations: store failed grounding validation — ${err.message}`);
     }
+    // v7 W17/W18 audit fields, when present: a prune records when and what it
+    // dropped (and nothing dropped may still be in the store); a model run
+    // records how many attempts the grounded set needed (three is the cap)
+    if ("prunedIds" in store || "prunedAt" in store) {
+      if (!Array.isArray(store.prunedIds) || !store.prunedIds.length || store.prunedIds.some((x) => typeof x !== "string")) {
+        bad++; fail("recommendations: prunedIds must be a non-empty list of item ids");
+      } else if (!Number.isFinite(Date.parse(store.prunedAt))) {
+        bad++; fail("recommendations: a prune must stamp prunedAt");
+      } else if ((store.items || []).some((item) => store.prunedIds.includes(item.id))) {
+        bad++; fail("recommendations: a pruned id is still in the store");
+      }
+    }
+    if ("attempts" in store && (!Number.isInteger(store.attempts) || store.attempts < 1 || store.attempts > 3)) {
+      bad++; fail(`recommendations: attempts ${JSON.stringify(store.attempts)} outside 1..3`);
+    }
     const storeIds = (store.items || []).map((r) => r.id).sort();
     const dataIds = (data.insights || []).map((i) => i.id).sort();
     if (JSON.stringify(storeIds) !== JSON.stringify(dataIds)) {

@@ -54,12 +54,18 @@ The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:
 
 ```text
-ratings → build-data → validate → health → recommendations → moment-summaries → build-data → validate → publish
+ratings → build-data → validate → health → recommendations → moment-summaries → build-data → validate → publish → freshness
 ```
 
 (`recommendations` and `moment-summaries` need ANTHROPIC_API_KEY like
-`health`; on failure the previous store stays the public truth, so the
-steps are safe to skip.)
+`health`. On any model or grounding failure `recommendations` prunes its
+saved store to the items that still ground in the current facts — below
+three survivors the store is removed and the page falls back to the
+deterministic insights — so a stale store can never block a publish. For
+`health` and `moment-summaries` the previous store stays the public truth.
+`freshness` checks the LIVE site at the end of the chain and again from a
+midday cron, raising one plain line when prod serves data older than 26
+hours.)
 
 The classifier, health writer, recommendation engine, moment summarizer,
 and standing critic are the only model-backed scripts. `build-data.mjs`

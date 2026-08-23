@@ -7,10 +7,8 @@
 // cron (dive-alerts) delivers the queue to Slack and stays silent when it is
 // empty.
 //
-// Deterministic: no model calls. The one network step is the W21 prod
-// freshness probe at the end of a chain run (PRD v8, 2026-08-23): fetch the
-// live data.json and queue one plain line when it is older than 26 hours.
-// State and queue live next to the data they describe:
+// Deterministic: no model calls, no network. State and queue live next to the
+// data they describe:
 //   state:  data/restream/alerts-state.json    (last-seen values)
 //   queue:  data/restream/alerts-pending.json  (lines awaiting delivery)
 //
@@ -19,13 +17,10 @@
 //   node tools/dive-analytics/alerts.mjs --emit   # print queue + clear it
 //                                                 # (dive-alerts cron payload)
 // First run bootstraps state and queues nothing — history is not news.
-// The midday watchdog cron runs tools/dive-analytics/audit/freshness.mjs
-// standalone instead, which catches the chain-died-before-alerts case.
 
 import { readFileSync, writeFileSync, existsSync, renameSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkProdFreshness } from "./audit/freshness.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -145,20 +140,6 @@ if (isMain) {
       }
       saveAtomic(STATE_PATH, cur);
       console.log(`alerts: ${found.length} material change(s)${found.length ? " queued" : ""}.`);
-    }
-    // W21: end-of-chain prod freshness probe. Stale queues one plain line;
-    // an unreachable prod is only noted here — publish just confirmed parity,
-    // and the midday freshness cron re-checks on its own.
-    const prod = await checkProdFreshness();
-    if (prod.state === "stale") {
-      const queue = loadJson(QUEUE_PATH, []);
-      if (!queue.includes(prod.sentence)) queue.push(prod.sentence);
-      saveAtomic(QUEUE_PATH, queue);
-      console.log(`alerts: prod is stale — queued: ${prod.sentence}`);
-    } else if (prod.state === "unreachable") {
-      console.log(`alerts: ${prod.sentence}`);
-    } else {
-      console.log(`alerts: prod dashboard is serving data from ${prod.generatedAt}, ${prod.hours} hour(s) old.`);
     }
   }
 }
