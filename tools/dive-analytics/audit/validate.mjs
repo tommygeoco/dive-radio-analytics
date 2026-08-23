@@ -1187,8 +1187,15 @@ function premiereMs(dateStr) {
     if (!/const pace = sameAgeSub\(e\)/.test(panelSource) || !/YouTube views at the same age/.test(panelSource)) {
       bad++; fail("card layout: the same-age pace comparison is not present in the click-open episode panel");
     }
-    if (/data-fold-number|class="(?:bl|bv)"|clean weeks:/.test(compoundSource)) {
-      bad++; fail("card layout: the growth-trend card still carries visible counts instead of a quiet readiness state");
+    // trend card (re-ruled 2026-08-23): bars name value and episode in small
+    // print with ONE emphasized bar — still no tagged glance numbers and no
+    // clean-week bookkeeping copy
+    if (/data-fold-number|clean weeks:/.test(compoundSource)) {
+      bad++; fail("card layout: the trend card must not tag glance numbers or carry clean-week counts");
+    }
+    if (!/class="bnum"/.test(compoundSource) || !/class="bep"/.test(compoundSource)
+      || (compoundSource.match(/cbar\$\{hot \? " hot" : ""\}/g) || []).length !== 2) {
+      bad++; fail("card layout: trend bars must label value and episode with one emphasized bar, in both trend branches");
     }
     if (!/splitReady = Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
       || /e\.latest\.(?:ytTotal|xPlays) \?\? 0/.test(heroSource)) {

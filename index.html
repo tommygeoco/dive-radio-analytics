@@ -101,12 +101,6 @@
   .health-evidence li.down i { background: var(--bad); }
   .health-evidence li span { min-width: 0; }
   .health-evidence li b { color: var(--t1); font-weight: 700; font-variant-numeric: tabular-nums; }
-  .health-evidence .waitlist { margin-top: 14px; display: grid; gap: 6px; }
-  .health-evidence .wrow { display: flex; gap: 10px; color: var(--t3); font-size: 13.5px; line-height: 1.5; }
-  .health-evidence .wrow i { width: 7px; height: 7px; border-radius: 50%; flex: none; margin-top: 6px;
-    border: 1px solid var(--border-strong); }
-  .health-evidence .wrow b { color: var(--t2); font-weight: 600; }
-  .health-evidence .wrow span { min-width: 0; }
   .health-evidence .trend { width: 150px; height: 28px; margin-top: 14px; display: block; }
   .health-evidence .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
   .healthrow.empty { display: block; color: var(--t2); font-size: 15px; }
@@ -140,10 +134,19 @@
   .hero .spark .cap { font-size: 13.5px; color: var(--t3); text-align: right; }
 
   .compound .cv2 { color: var(--t2); font-size: 15px; font-weight: 600; line-height: 1.4; margin: 0; }
-  .compound .bars { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
-  .compound .cbar { flex: 1; text-align: center; min-width: 0; }
-  .compound .cbar .bwrap { height: 56px; display: flex; align-items: flex-end; justify-content: center; }
-  .compound .cbar .b { width: 70%; max-width: 46px; border-radius: 4px 4px 0 0; min-height: 3px; }
+  /* trend bars (owner directive 2026-08-23: minimal, modern, useful): slim
+     neutral columns from a shared baseline; ONE bar — the selected episode,
+     else the newest — carries its episode color; each bar names its value
+     above and its episode below, so the shape and the numbers read together */
+  .compound .bars { display: flex; gap: 10px; align-items: stretch; margin-bottom: 12px; }
+  .compound .cbar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+  .compound .cbar .bnum { font-size: 11.5px; color: var(--t3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .compound .cbar.hot .bnum { color: var(--t1); font-weight: 700; }
+  .compound .cbar .bwrap { height: 68px; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+  .compound .cbar .b { width: 100%; max-width: 28px; border-radius: 3px 3px 0 0; min-height: 4px;
+    background: rgba(148,163,184,.22); }
+  .compound .cbar .bep { font-size: 11px; font-weight: 600; color: var(--t3); letter-spacing: .03em; }
+  .compound .cbar.hot .bep { color: var(--t1); }
   .compound .waitbox { border: 0; padding: 22px 0 12px; display: flex; flex-direction: column;
     align-items: center; gap: 12px; background:
       repeating-linear-gradient(to bottom, var(--border) 0 1px, transparent 1px 26px); }
@@ -170,7 +173,8 @@
   .sitem.dim { opacity: .38; }
   .sitem .r1 { display: flex; align-items: baseline; gap: 6px; font-size: 12px; font-weight: 700;
     color: var(--t3); letter-spacing: .04em; }
-  .sitem .r1 .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; align-self: center; }
+  .sitem .r1 .epk { display: inline-flex; align-items: center; gap: 6px; }
+  .sitem .r1 .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .sitem .r1 .num { font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: var(--t1); }
   .sitem .r1 .mk { font-size: 12px; font-weight: 600; color: var(--amber); margin-left: auto; }
   .sitem .t { font-size: 12.5px; color: var(--t2); white-space: nowrap; overflow: hidden;
@@ -850,12 +854,10 @@ function buildHealth() {
   // eye an anchor; the dot carries direction alongside the column header
   const emphNum = (text) => esc(text).replace(/\d[\d,]*(?:\.\d+)?%?/, (m) => `<b>${m}</b>`);
   const bullets = (items, dir) => items.map(item => `<li class="${dir}"><i aria-hidden="true"></i><span>${emphNum(typeof item === "string" ? item : item.text)}</span></li>`).join("");
-  const waiting = (h.checks || []).filter((c) => c.score == null && c.reason);
   const evidence = !state.evidenceOpen ? "" : `<div class="card health-evidence" id="evidence">
       <div class="kicker">Why this score</div>
       <div class="evidence"><div><h3 class="up">Helping</h3><ul>${bullets(h.pros, "up")}</ul></div>
       <div><h3 class="down">Needs work</h3><ul>${bullets(h.cons, "down")}</ul></div></div>
-      ${waiting.length ? `<div class="waitlist">${waiting.map((c) => `<div class="wrow"><i aria-hidden="true"></i><span><b>${(CHECK_LABELS[c.key] || [c.key])[0]}</b> isn’t in yet — ${esc(c.reason)}</span></div>`).join("")}</div>` : ""}
       ${healthTrend(h.trend?.points)}
     </div>`;
   el.className = "healthrow";
@@ -1072,7 +1074,7 @@ function buildStrip() {
     // episodes show nothing score-like at all (their wait date lives in the
     // click panel).
     const hs = healthOf(e) ? healthChip(e) : `<span class="hs quiet" aria-hidden="true"></span>`;
-    it.innerHTML = `<span class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</span>
+    it.innerHTML = `<span class="r1"><span class="epk"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>${num}</span>
       <span class="t">${esc(short(e.title))}</span>${hs}`;
     it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
     it.addEventListener("click", (ev) => {
@@ -1324,14 +1326,17 @@ function buildCompound() {
       return;
     }
     const maxV = Math.max(...have.map((r) => r.v));
+    const hotSlug = state.solo && have.some((r) => r.e.slug === state.solo) ? state.solo : have.at(-1).e.slug;
     const last = have.at(-1).v, prev = have.at(-2).v;
     const pct = prev > 0 ? Math.round(((last - prev) / prev) * 100) : 0;
     const cls2 = Math.abs(pct) <= 5 ? "" : pct > 0 ? "up" : "down";
     const verdict2 = Math.abs(pct) <= 5 ? "Holding steady episode to episode."
       : pct > 0 ? "Climbing on the newest episode." : "Slipping on the newest episode.";
     el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>
-      <div class="bars">${have.map((r) => `<div class="cbar" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
-        <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.v / maxV) * 100))}%;background:${color(r.e)}"></div></div></div>`).join("")}</div>
+      <div class="bars">${have.map((r) => { const hot = r.e.slug === hotSlug; return `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
+        <span class="bnum" aria-hidden="true">${M.card(r.v)}</span>
+        <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.v / maxV) * 100))}%${hot ? `;background:${color(r.e)}` : ""}"></div></div>
+        <span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`; }).join("")}</div>
       <div class="cv2 ${cls2}" style="${cls2 === "up" ? "color:var(--good)" : cls2 === "down" ? "color:var(--bad)" : ""}">${verdict2}</div>`;
     el.style.display = "";
     return;
@@ -1358,10 +1363,14 @@ function buildCompound() {
     else if (pct > 0) { verdict = "Each launch is starting stronger."; cls = "up"; }
     else { verdict = "New launches are starting softer."; cls = "down"; }
   }
+  const hotSlug = state.solo && vals.some((r) => r.e.slug === state.solo) ? state.solo : vals.at(-1).e.slug;
   let bars = "";
   for (const r of vals) {
-    bars += `<div class="cbar" role="img" aria-label="${esc(short(r.e.title))}: ${nfmt(r.value)} YouTube views in its first week">
-      <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div></div></div>`;
+    const hot = r.e.slug === hotSlug;
+    bars += `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(short(r.e.title))}: ${nfmt(r.value)} YouTube views in its first week">
+      <span class="bnum" aria-hidden="true">${kfmt(r.value)}</span>
+      <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.value / max) * 100))}%${hot ? `;background:${color(r.e)}` : ""}"></div></div>
+      <span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
   }
   el.innerHTML = `<div class="kicker">Growth trend — first weeks</div><div class="bars">${bars}</div>
     <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>`;
