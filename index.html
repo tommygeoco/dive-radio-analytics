@@ -179,13 +179,14 @@
   #rtt .mut { color: var(--t3); margin-top: 4px; }
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
-    padding: 14px 18px; margin: 14px 0 12px; position: relative; font-size: 14px;
+  .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 14px;
+    padding: 10px; margin: 14px 0 12px; position: relative; font-size: 14px;
     animation: panelIn .16s ease-out; }
   @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } #chartbox { transition: none; } }
-  .panel .pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 6px 48px; margin-top: 12px; }
-  .panel .psec { min-width: 0; padding: 6px 0 10px; }
+  .panel .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px; margin-top: 10px; grid-auto-flow: dense; }
+  .panel .psec { min-width: 0; background: var(--s1); border-radius: 10px; padding: 13px 15px 14px; }
+  .panel .psec.wide { grid-column: 1 / -1; }
   .panel .psec .kicker { margin-bottom: 8px; }
   .panel .kicker .kh { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--t3); margin-left: 4px; }
   .panel .pnum { font-size: 22px; font-weight: 700; color: var(--t1); letter-spacing: -.01em;
@@ -195,8 +196,8 @@
   .panel .tlink { color: var(--accent); font-size: 13px; font-weight: 500; margin-left: 4px; }
   .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
   .panel .trow { display: flex; align-items: center; gap: 10px; padding: 4px 0; color: var(--t2); font-size: 13.5px; }
-  .panel .trow .tl { width: 178px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .panel .trow .tb { flex: 1; height: 4px; border-radius: 2px; background: var(--s1); overflow: hidden; }
+  .panel .trow .tl { width: 150px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .panel .trow .tb { flex: 1; height: 4px; border-radius: 2px; background: var(--s2); overflow: hidden; }
   .panel .trow .tb span { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
   .panel .trow .tv { width: 52px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t1); flex: none; }
   .panel .trow .tn { width: 48px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t3); font-size: 12px; flex: none; }
@@ -205,10 +206,10 @@
   .panel .hint { color: var(--t3); font-size: 12px; font-weight: 400; }
   .panel .pchip { font-size: 12px; color: var(--amber); border: 1px solid rgba(217,162,74,.4);
     border-radius: 4px; padding: 1px 6px; font-weight: 600; }
-  .panel .x { position: absolute; top: 8px; right: 12px; background: none; border: 0;
+  .panel .x { position: absolute; top: 10px; right: 14px; background: none; border: 0;
     color: var(--t3); font-size: 17px; cursor: pointer; padding: 4px; }
   .panel .x:hover { color: var(--t1); }
-  .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; }
+  .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 6px 8px 2px; }
   .panel .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 4px 28px; margin-top: 10px; }
   .panel .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: var(--t2); }
@@ -217,14 +218,14 @@
   .panel .sect { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 8px; }
   .panel .note { color: var(--amber); font-size: 13px; margin-top: 4px; }
   .panel .mut { color: var(--t3); font-size: 13px; margin-top: 4px; }
-  .panel .q { color: var(--t2); font-size: 13.5px; margin: 6px 0; }
+  .panel .q { color: var(--t2); font-size: 13.5px; margin: 6px 0; max-width: 82ch; }
   .panel .q .by { color: var(--t3); }
   .panel .senti-link { color: var(--accent); cursor: pointer; text-decoration: underline; }
-  .panel .wcurve { margin: 8px 0 2px; max-width: 520px; }
+  .panel .wcurve { margin: 10px 0 2px; }
   .panel .wcurve svg { display: block; width: 100%; height: 64px; }
   .panel .wcurve line { stroke: var(--border); stroke-width: 0.4; }
   .panel .wcurve polyline { fill: none; stroke: var(--accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-  .panel .wcap { display: flex; justify-content: space-between; color: var(--t3); font-size: 12px; margin-top: 3px; max-width: 520px; }
+  .panel .wcap { display: flex; justify-content: space-between; color: var(--t3); font-size: 12px; margin-top: 3px; }
   .panel .themegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
   .panel .themehead { color: var(--t2); font-size: 12px; font-weight: 700; margin-bottom: 3px; }
   .panel .themeitem { color: var(--t2); font-size: 13px; padding: 2px 0; }
@@ -354,22 +355,39 @@
   @media (max-width: 1020px) {
     .healthrow { grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr); }
     .healthrow .hc-meta { grid-column: 1 / -1; }
+    .panel .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 720px) {
-    .wrap { padding: 14px 14px 20px; }
-    .healthrow, .overview { grid-template-columns: 1fr; }
-    .gauge { width: 140px; height: 140px; }
-    .gauge .num b { font-size: 38px; }
-    .healthrow .headline { font-size: 16px; }
+    /* Mobile is a denser cut of the same system: inline stamp, compact tabs,
+       the gauge riding beside its caption instead of a tall centered column,
+       8px card rhythm, and methodology copy deferred to About. */
+    .wrap { padding: 12px 12px 20px; }
+    h1 { font-size: 19px; }
+    .stamp { font-size: 12.5px; }
+    .tabs { margin: 4px 0 12px; }
+    .tabs button { padding: 8px 12px; font-size: 14px; }
+    .healthrow, .overview { grid-template-columns: 1fr; gap: 8px; margin-bottom: 8px; }
+    .card { padding: 13px 14px; }
+    .kicker { margin-bottom: 8px; }
+    .healthrow .gaugewrap { flex-direction: row; align-items: center; gap: 16px; padding-top: 0; }
+    .gauge { width: 84px; height: 84px; flex: none; }
+    .gauge .track, .gauge .fill { stroke-width: 13; }
+    .gauge .num b { font-size: 26px; }
+    .gauge .num small { display: none; }
+    .healthrow .scale { max-width: 17ch; text-align: left; }
+    .healthrow .headline { font-size: 15px; margin-bottom: 10px; }
+    .checkrow { padding: 6px 0; font-size: 13.5px; }
+    .hc-meta .scope { display: none; }
     .health-evidence .evidence { grid-template-columns: 1fr; gap: 16px; }
     .hero { flex-direction: column; gap: 10px; }
     .hero .spark { width: 100%; }
+    .hero .big { font-size: 30px; }
     .controls { width: 100%; margin-left: 0; }
-    .card { padding: 15px 16px; }
-    .sitem { flex: 0 0 168px; }
+    .carousel { gap: 8px; margin-bottom: 8px; }
+    .sitem { flex: 0 0 160px; padding: 11px 12px; }
     #chartbox { height: 340px; }
-    .stamp { margin-left: 0; width: 100%; }
     .panel .themegrid { grid-template-columns: 1fr; }
+    .panel .pgrid { grid-template-columns: 1fr; }
     /* diagnosis rows: the sub-label is explainer copy — on phones it pushed
        the status past the card edge, so it yields the row entirely */
     .checkrow .cs { display: none; }
@@ -841,41 +859,10 @@ function buildPanel() {
   }
   html += `</div><div class="pgrid">`;
 
-  // — total views —
-  const panelTotal = e.latest.totalViews ?? e.latest.ytTotal;
-  html += `<div class="psec"><div class="kicker">Total views</div>`;
-  html += `<div class="pnum">${panelTotal == null ? "not available" : nfmt(panelTotal)}</div>`;
-  const rows = [
-    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
-    ["yt:designertom", bd["yt:designertom"]?.views],
-    ["x:ridd_design", bd["x:ridd_design"]?.plays],
-    ["x:designertom", bd["x:designertom"]?.plays],
-  ];
-  for (const [k, v] of rows) {
-    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
-  }
-  if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
-  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
-  else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
-  html += `</div>`;
-
-  // — X reach —
-  html += `<div class="psec"><div class="kicker">X reach <span class="kh">not in total</span></div>`;
-  html += `<div class="pnum">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</div>`;
-  html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
-  html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
-  html += `</div>`;
-
-  // — live —
-  if (e.live) {
-    html += `<div class="psec"><div class="kicker">Live</div>`;
-    html += `<div class="pnum">${e.live.peak} <span class="hint">peak viewers</span></div>`;
-    html += `<div class="row">avg live viewers<span class="val">${e.live.avg}</span></div>`;
-    html += `<div class="row">chat messages<span class="val">${nfmt(e.live.chatMessages)}</span></div>`;
-    html += `<div class="row">duration<span class="val">${e.live.durationMin ?? "–"} min</span></div>`;
-    html += `</div>`;
-  }
-
+  // Bento IA (owner readability pass 2026-08-23 r2): contrasted tiles on a
+  // tight 6px grid. Row one answers "how did it do" (verdict, views, reach),
+  // row two "how the session and watching went" (live, watch, sources), and
+  // the voices span the bottom. Absent sections simply leave the grid.
   // — episode health (W12): one row per check, stored number + plain colored
   //   comparison. Missing checks say so; never rendered as zeros. Young
   //   episodes state when their read completes; no score renders early. —
@@ -927,6 +914,41 @@ function buildPanel() {
   }
   html += `</div>`;
 
+  // — total views —
+  const panelTotal = e.latest.totalViews ?? e.latest.ytTotal;
+  html += `<div class="psec"><div class="kicker">Total views</div>`;
+  html += `<div class="pnum">${panelTotal == null ? "not available" : nfmt(panelTotal)}</div>`;
+  const rows = [
+    ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
+    ["yt:designertom", bd["yt:designertom"]?.views],
+    ["x:ridd_design", bd["x:ridd_design"]?.plays],
+    ["x:designertom", bd["x:designertom"]?.plays],
+  ];
+  for (const [k, v] of rows) {
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+  }
+  if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
+  else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
+  html += `</div>`;
+
+  // — X reach —
+  html += `<div class="psec"><div class="kicker">X reach <span class="kh">not in total</span></div>`;
+  html += `<div class="pnum">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</div>`;
+  html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
+  html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
+  html += `</div>`;
+
+  // — live —
+  if (e.live) {
+    html += `<div class="psec"><div class="kicker">Live</div>`;
+    html += `<div class="pnum">${e.live.peak} <span class="hint">peak viewers</span></div>`;
+    html += `<div class="row">avg live viewers<span class="val">${e.live.avg}</span></div>`;
+    html += `<div class="row">chat messages<span class="val">${nfmt(e.live.chatMessages)}</span></div>`;
+    html += `<div class="row">duration<span class="val">${e.live.durationMin ?? "–"} min</span></div>`;
+    html += `</div>`;
+  }
+
   // — W13 watching: verified analytics — how long people stay. Absent
   //   reports render as absent, never zero. —
   const w = e.watch;
@@ -963,7 +985,7 @@ function buildPanel() {
   // — audience feedback —
   const comments = e.comments;
   if (comments) {
-    html += `<div class="psec"><div class="kicker">Audience feedback</div>`;
+    html += `<div class="psec wide"><div class="kicker">Audience feedback</div>`;
     html += `<div class="fline"><span class="senti-link" data-f="positive"><b style="color:var(--good)">${comments.enjoyCount}</b> enjoyed</span> · <span class="senti-link" data-f="negative"><b style="color:var(--bad)">${comments.complaintCount}</b> didn’t</span> · <span class="senti-link" data-f="all">${comments.uniqueCommenters} ${comments.uniqueCommenters === 1 ? "person" : "people"} commented →</span></div>`;
     if (comments.commentersPer1k != null) {
       html += `<div class="row">people commenting per 1,000 watches<span class="val">${comments.commentersPer1k}</span></div>`;
