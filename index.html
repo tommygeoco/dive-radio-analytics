@@ -191,12 +191,32 @@
   .hs .htrack span { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: var(--accent); }
   .sitem .hs.quiet { font-size: 12px; color: var(--t3); cursor: default; }
   /* health tooltip — instant, works on tap; native title is neither */
-  #rtt { position: fixed; z-index: 60; max-width: 300px; background: #0d1017; border: 1px solid var(--border-strong);
+  #rtt { position: fixed; z-index: 60; max-width: 320px; background: #0d1017; border: 1px solid var(--border-strong);
     border-radius: 10px; padding: 10px 12px; font-size: 14px; line-height: 1.45; color: var(--t2);
     box-shadow: 0 8px 24px rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: opacity .12s ease-out; }
   #rtt .h { font-weight: 700; color: var(--t1); margin-bottom: 4px; }
   #rtt .warn { color: var(--amber); margin-top: 4px; }
   #rtt .mut { color: var(--t3); margin-top: 4px; }
+  /* structured check tooltip: name + state chip up top, then one block per
+     measure (muted label over a strong value with its comparison), and the
+     score sentence as a hairline footer — organization over labels */
+  #rtt .th { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 2px; }
+  #rtt .tst { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; flex: none; }
+  #rtt .tst i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+  #rtt .tst.healthy { color: var(--good); }
+  #rtt .tst.steady { color: var(--t2); }
+  #rtt .tst.fragile { color: var(--bad); }
+  #rtt .tst.waiting { color: var(--t3); font-weight: 500; }
+  #rtt .tst.waiting i { background: none; border: 1px solid var(--border-strong); }
+  #rtt .mrow { margin-top: 9px; }
+  #rtt .ml { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    font-size: 12px; line-height: 1.35; color: var(--t3); }
+  #rtt .ml .ms { font-size: 11px; opacity: .75; white-space: nowrap; }
+  #rtt .mv { display: flex; align-items: center; gap: 7px; margin-top: 3px; }
+  #rtt .mv b { font-size: 15px; color: var(--t1); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+  #rtt .mv .mt { color: var(--t3); font-size: 12.5px; }
+  #rtt .mv.mr { font-size: 12.5px; line-height: 1.4; color: var(--t3); display: block; }
+  #rtt .fnote { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 12.5px; }
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   .panel { background: var(--s2); border: 0; border-radius: 14px;
@@ -217,8 +237,8 @@
   /* The transcript chip is the header's one emphasized action: a soft
      accent-tinted fill, no hairline — border chrome left this page. */
   .panel .tlink { display: inline-flex; align-items: center; gap: 6px; color: var(--accent);
-    font-size: 12.5px; font-weight: 600; text-decoration: none;
-    border-radius: 999px; padding: 4px 11px; background: rgba(89,176,255,.12); }
+    font-size: 12.5px; font-weight: 600; line-height: 1; text-decoration: none;
+    border-radius: 999px; padding: 5px 11px; background: rgba(89,176,255,.12); }
   .panel .tlink svg { width: 12px; height: 12px; }
   .panel .tlink:hover, .panel .tlink:focus-visible { background: rgba(89,176,255,.22); }
   /* basis 0 so the close button always fits the title line — a long title
@@ -285,7 +305,9 @@
     background: none; border: 0;
     color: var(--t3); font-size: 16px; line-height: 1; cursor: pointer; }
   .panel .x:hover, .panel .x:focus-visible { color: var(--t1); background: var(--s2); }
-  .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 6px 8px 2px; }
+  /* symmetric padding: the title, chips, and close button sit on the row's
+     true vertical center instead of riding high on a 6px/2px split */
+  .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 4px 8px; }
   .panel .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 4px 28px; margin-top: 10px; }
   .panel .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: var(--t2); }
@@ -863,15 +885,30 @@ function buildHealth() {
     const [label, sub] = CHECK_LABELS[c.key] || [c.key, ""];
     const [cls, word] = checkState(c.score);
     const fmtM = (k, v) => `${nfmt(v)}${PCT_MEASURES.has(k) ? "%" : ""}`;
+    // structured drill rows for the tooltip: label, strong value, comparison
+    // direction (same ≤5% quiet gate as deltaBadge), and the sample size —
+    // organization the tooltip lays out instead of one prose line per measure
     const drill = (c.measures || []).map((m) => {
       const name = MEASURE_WORDS[m.key] || m.key;
-      if (m.value == null) return m.reason ? `${name}: ${m.reason}` : null;
-      return `${name}: ${fmtM(m.key, m.value)}${m.typical != null ? ` · typically ${fmtM(m.key, m.typical)}` : ""}${m.sample ? ` · from ${m.sample} episodes` : ""}`;
+      if (m.value == null) return m.reason ? { n: name, r: m.reason } : null;
+      const row = { n: name, v: fmtM(m.key, m.value) };
+      if (m.typical != null) {
+        row.t = fmtM(m.key, m.typical);
+        if (m.typical > 0) {
+          const pct = Math.round(Math.abs(m.value / m.typical - 1) * 100);
+          row.d = pct <= 5 ? "mid" : m.value > m.typical ? "up" : "down";
+          if (row.d !== "mid") row.p = pct;
+        }
+      }
+      if (m.sample) row.s = m.sample;
+      return row;
     }).filter(Boolean);
+    // an unscored check's stored reason is the measure reasons joined — when
+    // the measure rows already say it, a footer repeating them is noise
     const note = c.score != null
       ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.`
-      : (c.reason || "");
-    return `<div class="checkrow" tabindex="0" data-stat="${esc(`${label} — ${word}`)}"${drill.length ? ` data-rows="${esc(drill.join("||"))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}><span class="cl">${label}</span>
+      : (drill.length ? "" : (c.reason || ""));
+    return `<div class="checkrow" tabindex="0" data-stat="${esc(label)}" data-state="${esc(word)}" data-stcls="${cls}"${drill.length ? ` data-mrows="${esc(JSON.stringify(drill))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}><span class="cl">${label}</span>
       <span class="st ${cls}"><i aria-hidden="true"></i>${word}</span></div>`;
   }).join("");
   // each bullet carries exactly one validated number — bolding it gives the
@@ -1488,12 +1525,29 @@ function showRtt(badge) {
     const r = e && healthOf(e);
     if (r) html = healthTipHTML(e, r);
   } else if (badge.dataset.stat) {
-    // structured tooltip grammar: bold payoff, plain data rows, muted note
-    const rows = badge.dataset.rows ? badge.dataset.rows.split("||") : [];
-    html = `<div class="h">${esc(badge.dataset.stat)}</div>`
-      + (badge.dataset.meta ? `<div>${esc(badge.dataset.meta)}</div>` : "")
-      + rows.map((r) => `<div>${esc(r)}</div>`).join("")
-      + (badge.dataset.note ? `<div class="mut">${esc(badge.dataset.note)}</div>` : "");
+    // structured tooltip grammar: bold payoff (with a state chip when the
+    // badge carries one), measure blocks or plain data rows, muted note
+    const state = badge.dataset.state
+      ? `<span class="tst ${badge.dataset.stcls || ""}"><i aria-hidden="true"></i>${esc(badge.dataset.state)}</span>` : "";
+    html = `<div class="h${state ? " th" : ""}"><span>${esc(badge.dataset.stat)}</span>${state}</div>`
+      + (badge.dataset.meta ? `<div>${esc(badge.dataset.meta)}</div>` : "");
+    if (badge.dataset.mrows) {
+      // measure blocks: muted label (sample right-aligned), then the value
+      // with its direction badge and the typical level beside it
+      let measures = [];
+      try { measures = JSON.parse(badge.dataset.mrows); } catch { measures = []; }
+      html += measures.map((m) => {
+        const head = `<div class="ml"><span>${esc(m.n)}</span>${m.s ? `<span class="ms">${esc(String(m.s))} episodes</span>` : ""}</div>`;
+        if (m.r) return `<div class="mrow">${head}<div class="mv mr">${esc(m.r)}</div></div>`;
+        const dir = m.d ? `<span class="db ${m.d}">${m.d === "mid" ? "≈" : (m.d === "up" ? "▲" : "▼") + m.p + "%"}</span>` : "";
+        return `<div class="mrow">${head}<div class="mv"><b>${esc(m.v)}</b>${dir}${m.t ? `<span class="mt">typically ${esc(m.t)}</span>` : ""}</div></div>`;
+      }).join("");
+      html += badge.dataset.note ? `<div class="mut fnote">${esc(badge.dataset.note)}</div>` : "";
+    } else {
+      const rows = badge.dataset.rows ? badge.dataset.rows.split("||") : [];
+      html += rows.map((r) => `<div>${esc(r)}</div>`).join("")
+        + (badge.dataset.note ? `<div class="mut">${esc(badge.dataset.note)}</div>` : "");
+    }
   } else if (badge.dataset.tip) {
     html = `<div>${esc(badge.dataset.tip)}</div>`;
   }
