@@ -1231,6 +1231,12 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  // A template placeholder inside a QUOTED string never interpolates — it
+  // renders as literal ${...} text on the page (the table header shipped
+  // that way 2026-08-23). Quoted strings must not carry placeholders.
+  for (const m of html.matchAll(/[+=]=? ("[^"\n]*\$\{[^"\n]*"|'[^'\n]*\$\{[^'\n]*')/g)) {
+    bad++; fail(`template hygiene: a quoted string carries an uninterpolated placeholder — ${m[1].slice(0, 60)}`);
+  }
   // ONE control for one decision (owner directive 2026-08-23): every chart the
   // dashboard draws lives in a single dropdown whose current item IS the
   // heading. No parallel tab strip, no native select.

@@ -67,7 +67,7 @@
   .checkrow .cl { color: var(--t1); font-weight: 600; flex: 1; min-width: 0; }
   /* drillable rows say so: the label wears a quiet dotted underline, the
      standard "there is a definition here" mark — hover, tap, or focus opens it */
-  .checkrow[data-stat] .cl, .panel .irow[data-tip] .lb, .panel .trow[data-tip] .tl,
+  .checkrow[data-stat] .cl, .panel .irow[data-tip] .lb, .panel .trow[tabindex] .tl,
   .hero .splitlabels .sl[data-stat] {
     text-decoration: underline dotted rgba(148,163,184,.45); text-underline-offset: 3px; }
   .checkrow .cs { color: var(--t3); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
@@ -214,14 +214,17 @@
     font-variant-numeric: tabular-nums; margin-bottom: 6px; }
   .panel .pnum.hint { font-size: 15px; font-weight: 600; color: var(--t3); }
   .panel .pnum .hint { font-size: 13px; font-weight: 500; letter-spacing: 0; }
-  /* Actionable glyphs read as controls, quietly: a hairline pill that fills in
-     on hover/focus, so the affordance is visible without shouting. */
-  .panel .tlink { display: inline-flex; align-items: center; gap: 5px; color: var(--accent);
-    font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-strong);
-    border-radius: 999px; padding: 3px 10px; background: var(--s1); vertical-align: -1px; }
-  .panel .tlink svg { width: 13px; height: 13px; }
-  .panel .tlink:hover, .panel .tlink:focus-visible { background: var(--s2); border-color: var(--accent); }
-  .panel .h .hmeta { margin-left: auto; margin-right: 34px; color: var(--t3); font-weight: 400; font-size: 13px;
+  /* The transcript chip is the header's one emphasized action: a soft
+     accent-tinted fill, no hairline — border chrome left this page. */
+  .panel .tlink { display: inline-flex; align-items: center; gap: 6px; color: var(--accent);
+    font-size: 12.5px; font-weight: 600; text-decoration: none;
+    border-radius: 999px; padding: 4px 11px; background: rgba(89,176,255,.12); }
+  .panel .tlink svg { width: 12px; height: 12px; }
+  .panel .tlink:hover, .panel .tlink:focus-visible { background: rgba(89,176,255,.22); }
+  /* basis 0 so the close button always fits the title line — a long title
+     wraps inside its own span instead of pushing the × to the next row */
+  .panel .h .htitle { flex: 1 1 0; min-width: 0; }
+  .panel .h .hmeta { color: var(--t3); font-weight: 400; font-size: 13px;
     display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
   .panel .h .pdate { margin-right: 2px; }
   /* destination links are quiet text links — platform mark + channel name,
@@ -239,6 +242,12 @@
   .panel .trow .tl { width: 118px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .panel .trow .tb { flex: 1; height: 4px; border-radius: 2px; background: var(--s2); overflow: hidden; }
   .panel .trow .tb span { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+  /* the detail swaps in WHERE the bar was — a floating tooltip anchored to a
+     full-width row lands nowhere near the pointer, so the row answers in place */
+  .panel .trow .tbv { flex: 1; display: none; text-align: right; color: var(--t3);
+    font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  .panel .trow:hover .tb, .panel .trow:focus-visible .tb { display: none; }
+  .panel .trow:hover .tbv, .panel .trow:focus-visible .tbv { display: block; }
   .panel .trow .tv { width: 52px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t1); flex: none; }
   .panel .trow .tn { width: 48px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t3); font-size: 12px; flex: none; }
   /* W14 glyph grammar: icons carry identity, badges carry direction */
@@ -269,11 +278,13 @@
   .panel .hint { color: var(--t3); font-size: 12px; font-weight: 400; }
   .panel .pchip { font-size: 12px; color: var(--amber); border: 1px solid rgba(217,162,74,.4);
     border-radius: 4px; padding: 1px 6px; font-weight: 600; }
-  .panel .x { position: absolute; top: 10px; right: 14px; width: 26px; height: 26px; padding: 0;
+  /* The close button rides IN the header row (last flex item), so it shares
+     one centerline with the links and chip instead of floating above them. */
+  .panel .x { width: 26px; height: 26px; padding: 0; flex: none; margin-left: 2px;
     display: flex; align-items: center; justify-content: center; border-radius: 50%;
-    background: var(--s1); border: 1px solid var(--border-strong);
+    background: none; border: 0;
     color: var(--t3); font-size: 16px; line-height: 1; cursor: pointer; }
-  .panel .x:hover, .panel .x:focus-visible { color: var(--t1); background: var(--s2); border-color: var(--accent); }
+  .panel .x:hover, .panel .x:focus-visible { color: var(--t1); background: var(--s2); }
   .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 6px 8px 2px; }
   .panel .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 4px 28px; margin-top: 10px; }
@@ -496,10 +507,10 @@
     .panel .pgrid { grid-template-columns: 1fr; }
     /* the destination links leave the title row on phones: squeezed beside
        the title they stack one per line, so they take a wrapped row of
-       their own under it instead; the title keeps clear of the absolute
-       close button */
-    .panel .h { flex-wrap: wrap; padding-right: 40px; }
-    .panel .h .hmeta { flex-basis: 100%; justify-content: flex-start; margin-left: 0; margin-right: 0; row-gap: 5px; }
+       their own under it; order keeps the in-row close button up on the
+       title line */
+    .panel .h { flex-wrap: wrap; }
+    .panel .h .hmeta { flex-basis: 100%; order: 5; justify-content: flex-start; row-gap: 6px; }
     /* diagnosis rows: the sub-label is explainer copy — on phones it pushed
        the status past the card edge, so it yields the row entirely */
     .checkrow .cs { display: none; }
@@ -1124,11 +1135,12 @@ function buildPanel() {
   // grid so no line stretches the full panel width.
   const bd = e.latest.byDest || {};
   const tvi = e.latest.totalViewsInfo || {};
-  let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
+  let html = "";
   // header cluster: premiere date · one quiet text link (platform mark +
   // channel name) per destination the episode actually lives on · the
-  // transcript pill, the row's one emphasized action. Rendered ONLY from
-  // stored e.links — a destination without a stored link renders nothing.
+  // transcript chip, the row's one emphasized action · the close button,
+  // in-row so everything shares a centerline. Rendered ONLY from stored
+  // e.links — a destination without a stored link renders nothing.
   let hmeta = `<span class="pdate">${e.premiere.slice(5).replace("-", "/")}</span>`;
   for (const d of DATA.dests) {
     const url = e.links?.[d.key];
@@ -1138,7 +1150,7 @@ function buildPanel() {
   if (e.transcript) {
     hmeta += `<a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}transcript</a>`;
   }
-  html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}<span class="hmeta">${hmeta}</span></div>`;
+  html += `<div class="h"><span class="dot" style="background:${color(e)}"></span><span class="htitle">${esc(label(e))}</span><span class="hmeta">${hmeta}</span><button type="button" class="x" id="panelx" aria-label="Close episode details">×</button></div>`;
   html += `<div class="pgrid">`;
 
   // Bento IA (owner readability pass 2026-08-23 r2): contrasted tiles on a
@@ -1280,8 +1292,10 @@ function buildPanel() {
       const topShare = Math.max(...w.traffic.map((t) => t.share));
       html += `<div class="psec"><div class="kicker">Where views came from <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
       for (const t of w.traffic) {
-        html += `<div class="trow" data-tip="${esc(nfmt(t.views))} views" tabindex="0">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}</span>
+        const tname = TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "));
+        html += `<div class="trow" tabindex="0" aria-label="${tname} — ${esc(nfmt(t.views))} views, ${t.share}% of views">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl">${tname}</span>
           <span class="tb" aria-hidden="true"><span style="width:${topShare > 0 ? Math.max(2, Math.round((t.share / topShare) * 100)) : 0}%"></span></span>
+          <span class="tbv" aria-hidden="true">${esc(nfmt(t.views))} views</span>
           <span class="tv">${t.share}%</span></div>`;
       }
       html += `</div>`;
@@ -2203,7 +2217,7 @@ function buildTable() {
       html += "</tr>";
     }
   } else {
-    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>";
+    html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>`;
     const watchedVals = EPS.map((x) => x.watch?.avgPercent).filter(Number.isFinite).sort((a, b) => a - b);
     const wMidIdx = Math.floor(watchedVals.length / 2);
     const wTypical = !watchedVals.length ? null
