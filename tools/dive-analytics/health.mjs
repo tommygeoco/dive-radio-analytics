@@ -316,6 +316,14 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT } = {
   if (retentionMeasure.score != null) {
     addFact("latest-watch-percent", latestRetention, "%", (display) => `Viewers watched ${display} of the latest YouTube episode on average.`, [repoPath(join(ANALYTICS_DIR, `${newest.slug}.json`))], observedAgeMs(newest) < 7 * DAY ? "still early" : null);
     addFact("typical-watch-percent", retentionMeasure.typical, "%", (display) => `Prior episodes typically held viewers for ${display} of their YouTube run time.`, ["data/restream/yt-analytics/*.json"]);
+    // per-channel splits (owner directive 2026-08-23): the blend never hides
+    // which channel a number came from — the model may call out the gap
+    for (const [channelKey, channelName] of [["yt:joindiveclub", "Dive Club"], ["yt:designertom", "DesignerTom"]]) {
+      const totals = analyticsBySlug.get(newest.slug)?.channels?.[channelKey]?.totals;
+      if (totals && Number.isFinite(totals.averageViewPercentage) && totals.views > 0) {
+        addFact(`latest-watch-percent-${channelKey.slice(3)}`, totals.averageViewPercentage, "%", (display) => `Viewers watched ${display} of the latest episode on ${channelName} on average.`, [repoPath(join(ANALYTICS_DIR, `${newest.slug}.json`))], observedAgeMs(newest) < 7 * DAY ? "still early" : null);
+      }
+    }
   }
   const audienceAgeReason = observedAgeMs(newest) < 7 * DAY ? "The latest episode is still under a week old, so these checks may move." : null;
   subScores.audienceQuality = finishSubScore(
@@ -397,6 +405,12 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT } = {
     conversionMeasure = measurement("subscribers", value, typical, conversionEligible.length);
     addFact("latest-subscriber-rate", value, "", (display) => `The latest episode added ${display} subscribers for each thousand YouTube views.`, [repoPath(join(ANALYTICS_DIR, `${latestFinished.slug}.json`))], observedAgeMs(latestFinished) < 7 * DAY ? "still early" : null);
     addFact("typical-subscriber-rate", typical, "", (display) => `Prior clean episodes typically added ${display} subscribers for each thousand YouTube views.`, ["data/restream/yt-analytics/*.json"]);
+    for (const [channelKey, channelName] of [["yt:joindiveclub", "Dive Club"], ["yt:designertom", "DesignerTom"]]) {
+      const totals = analyticsBySlug.get(latestFinished.slug)?.channels?.[channelKey]?.totals;
+      if (totals && Number.isFinite(totals.subscribersGained) && totals.views > 0) {
+        addFact(`latest-subscriber-rate-${channelKey.slice(3)}`, totals.subscribersGained / totals.views * 1000, "", (display) => `${channelName} added ${display} subscribers for each thousand of its YouTube views on the latest comparable episode.`, [repoPath(join(ANALYTICS_DIR, `${latestFinished.slug}.json`))], observedAgeMs(latestFinished) < 7 * DAY ? "still early" : null);
+      }
+    }
     if (observedAgeMs(latestFinished) < 7 * DAY) conversionReason = "The latest episode is still under a week old, so this check may move.";
   } else {
     conversionMeasure = measurement("subscribers", null, null, conversionEligible.length, "Fewer than four clean episodes have subscriber results from both YouTube channels.");

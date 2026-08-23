@@ -287,12 +287,21 @@ export function computeAll({ now = Date.now() } = {}) {
   attachEpisodeHealth(dive);
   attachWatch(dive);
 
-  const insights = buildInsights(dive, { now, median });
-  insights.push(...liveInsights(dive));
-  // Strategy-impact categories (owner directive 2026-08-22): each insight is
-  // tagged by the DECISION it informs, not the data type it reads, and the
-  // list is ordered by decision priority (stable within a category).
-  for (const i of insights) i.category = categoryFor(i.id);
+  // W15 recommendation engine: when the saved store exists, its model-written,
+  // number-grounded items ARE "What matters" — the deterministic rule-based
+  // insights remain only as the fallback when no store has ever been written.
+  let insights;
+  let recStore = null;
+  try { recStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "recommendations.json"), "utf8")); } catch { /* no store yet */ }
+  if (Array.isArray(recStore?.items) && recStore.items.length) {
+    insights = recStore.items.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
+  } else {
+    insights = buildInsights(dive, { now, median });
+    insights.push(...liveInsights(dive));
+    // Strategy-impact categories (owner directive 2026-08-22): each insight is
+    // tagged by the DECISION it informs, not the data type it reads.
+    for (const i of insights) i.category = categoryFor(i.id);
+  }
   const catRank = { content: 0, distribution: 1, promotion: 2, audience: 3, data: 4 };
   insights.sort((a, b) => (catRank[a.category] ?? 9) - (catRank[b.category] ?? 9));
   const showTrend = {
@@ -418,6 +427,16 @@ function attachWatch(dive) {
 
     e.watch = {
       channels: chans.map(([k]) => k),
+      // per-channel split (owner directive 2026-08-23): the blend never hides
+      // which channel a number came from
+      byChannel: chans.map(([k, c]) => ({
+        key: k,
+        views: c.totals.views,
+        avgPercent: Number.isFinite(c.totals.averageViewPercentage) ? Math.round(c.totals.averageViewPercentage * 100) / 100 : null,
+        avgDurationSec: Number.isFinite(c.totals.averageViewDuration) ? Math.round(c.totals.averageViewDuration) : null,
+        subs: Number.isFinite(c.totals.subscribersGained) ? c.totals.subscribersGained : null,
+        subsPer1k: Number.isFinite(c.totals.subscribersGained) && c.totals.views > 0 ? Math.round((c.totals.subscribersGained / c.totals.views) * 10000) / 10 : null,
+      })),
       avgPercent: avgPercent != null ? Math.round(avgPercent * 100) / 100 : null,
       avgDurationSec: avgDurationSec != null ? Math.round(avgDurationSec) : null,
       minutesWatched: minutesWatched > 0 ? Math.round(minutesWatched) : null,

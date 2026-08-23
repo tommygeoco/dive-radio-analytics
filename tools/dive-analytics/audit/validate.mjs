@@ -509,12 +509,16 @@ function premiereMs(dateStr) {
     if (!i.text || i.text.length < 20) { bad++; fail(`insight ${i.id}: text missing or too short to be an insight`); }
   }
   const liveChat = data.insights.find((i) => i.id === "live-chat");
+  // The deterministic live-chat sentence is a FALLBACK contract: when the
+  // recommendation engine's store drives What matters, it replaces the
+  // rule-based insights wholesale (W15).
+  const recStorePresent = existsSync(join(ROOT, "data", "restream", "recommendations.json"));
   try {
     const build = await import(join(TOOL, "build-data.mjs"));
     const withLive = eps.filter((episode) => episode.live);
     const launchChat = withLive[0]?.live?.chatMessages;
     const latestChat = withLive.at(-1)?.live?.chatMessages;
-    const expectedChat = withLive.length >= 2 ? build.liveChatText(launchChat, latestChat) : null;
+    const expectedChat = !recStorePresent && withLive.length >= 2 ? build.liveChatText(launchChat, latestChat) : null;
     if (expectedChat && liveChat?.text !== expectedChat) {
       bad++; fail("insight live-chat: text does not exactly compare the stored first and latest message totals");
     }
@@ -673,6 +677,36 @@ function premiereMs(dateStr) {
     }
   }
   if (!bad) ok(`watching: ${eps.filter((e) => e.watch).length} episode(s) export verified watch data — blends in range, curves ordered, absence never zero`);
+}
+
+// --- 1n. W15 recommendation engine: grounded store, definition-locked into insights ---
+{
+  let bad = 0;
+  let store = null;
+  try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "recommendations.json"), "utf8")); } catch { /* absent */ }
+  if (!store) {
+    warn("recommendations: no store — What matters falls back to the deterministic rules (run tools/dive-analytics/recommendations.mjs)");
+  } else {
+    try {
+      const recs = await import(join(TOOL, "recommendations.mjs"));
+      const sheet = recs.collectFacts();
+      recs.validateItems(store.items, sheet.facts);
+    } catch (err) {
+      bad++; fail(`recommendations: store failed grounding validation — ${err.message}`);
+    }
+    const storeIds = (store.items || []).map((r) => r.id).sort();
+    const dataIds = (data.insights || []).map((i) => i.id).sort();
+    if (JSON.stringify(storeIds) !== JSON.stringify(dataIds)) {
+      bad++; fail("recommendations: data.json insights do not match the saved store — definition-lock broken");
+    }
+    for (const item of store.items || []) {
+      const shipped = data.insights.find((i) => i.id === item.id);
+      if (shipped && (shipped.text !== item.text || shipped.recommendation !== item.recommendation)) {
+        bad++; fail(`recommendations: ${item.id} text drifted between store and page`);
+      }
+    }
+    if (!bad) ok(`recommendations: ${(store.items || []).length} saved item(s) — every number grounded in the fact sheet, page matches the store`);
+  }
 }
 
 // --- 1h. W10 show health: deterministic math, grounding, history, surface lock ---
@@ -869,16 +903,16 @@ function premiereMs(dateStr) {
   if (!html.includes("function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }")) {
     bad++; fail("dashboard: episode health is not locked behind the finished-three-week gate (healthOf)");
   }
-  if (!/lands after \$\{healthWaitDate\(e\)\}/.test(html) || !/arrives after \$\{healthWaitDate\(e\)\}/.test(html)) {
-    bad++; fail("dashboard: young episodes must state when their three-week read completes instead of showing a score");
+  // W15 (owner directive 2026-08-23): absence renders as absence — no wait
+  // dates, no sat-out notes, no baseline chips. The gate itself still holds:
+  // nothing score-like may render before healthOf() passes.
+  if (/healthWaitDate|sat out|sets the baseline<\/span>/.test(html)) {
+    bad++; fail("dashboard: retired absence copy (wait dates, sat-out notes, baseline chips) is back on a surface");
   }
   // W13: the typical watch line is a claim about the show — it waits for three
-  // real curves, and episodes without curves are named in the scope, not hidden
+  // real curves
   if (!/curves\.length >= 3/.test(html)) {
     bad++; fail("dashboard: the typical watch line is not gated behind three real curves");
-  }
-  if (!/not in yet` : ""\}/.test(html) || !/watch curve is not in yet/.test(html)) {
-    bad++; fail("dashboard: episodes without watch curves must be named as missing, never silently absent");
   }
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks, scores wait for finished three-week reads, plain words throughout");
 }
@@ -984,8 +1018,8 @@ function premiereMs(dateStr) {
       bad++; fail("card layout: the platform bar is not locked to complete stored YouTube and X values");
     }
     // the panel must explain the score's basis and its missing checks
-    if (!/Episode health/.test(panelSource) || !/missingChecks/.test(panelSource) || !/newer episodes never change this score/.test(panelSource)) {
-      bad++; fail("card layout: the episode panel does not explain the finished score, its basis, and its missing checks");
+    if (!/Episode health/.test(panelSource) || !/healthOf\(e\)/.test(panelSource) || !/newer episodes never change this score/.test(panelSource)) {
+      bad++; fail("card layout: the episode panel does not gate and explain the finished score");
     }
     if (!/How people watch/.test(panelSource) || !/Where views came from/.test(panelSource)) {
       bad++; fail("card layout: the episode panel is missing its watching and view-source sections");

@@ -28,8 +28,12 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   praise/concern drilldown
 - Table view mirrors every charted number; "About this data" defines units
   and missing-data marks
-- Deterministic insights & recommendations computed at build time
-  (no model calls), categorized by the decision they inform
+- "What matters" is a model-backed recommendation engine
+  (tools/dive-analytics/recommendations.mjs): it reads the full fact sheet —
+  watch curves, view sources, per-channel subscribers and watch shares,
+  health reads, live sessions, platform split — and saves four to seven
+  tactical items whose every number is validated against the stored facts;
+  deterministic rule-based insights remain the fallback when no store exists
 - Static site — no server, no network calls at view time
 
 Data is exported daily (07:25 America/Phoenix) by an automated pipeline that
@@ -41,8 +45,11 @@ The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:
 
 ```text
-ratings → build-data → validate → health → build-data → validate → publish
+ratings → build-data → validate → health → recommendations → build-data → validate → publish
 ```
 
-The classifier, health writer, and standing critic are the only model-backed
-scripts. `build-data.mjs` stays deterministic and never calls a model.
+(`recommendations` needs ANTHROPIC_API_KEY like `health`; on failure the
+previous store stays the public truth, so the step is safe to skip.)
+
+The classifier, health writer, recommendation engine, and standing critic
+are the only model-backed scripts. `build-data.mjs` stays deterministic and never calls a model.

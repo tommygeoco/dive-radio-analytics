@@ -67,7 +67,8 @@
   .checkrow .cl { color: var(--t1); font-weight: 600; flex: 1; min-width: 0; }
   .checkrow .cs { color: var(--t3); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
     text-overflow: ellipsis; }
-  .checkrow .st { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; white-space: nowrap; }
+  .checkrow .st { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; white-space: nowrap;
+    width: 96px; flex: none; justify-content: flex-start; }
   .checkrow .st i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
   .checkrow .st.healthy { color: var(--good); }
   .checkrow .st.steady { color: var(--t2); }
@@ -193,7 +194,9 @@
     font-variant-numeric: tabular-nums; margin-bottom: 6px; }
   .panel .pnum.hint { font-size: 15px; font-weight: 600; color: var(--t3); }
   .panel .pnum .hint { font-size: 13px; font-weight: 500; letter-spacing: 0; }
-  .panel .tlink { color: var(--accent); font-size: 13px; font-weight: 500; margin-left: 4px; }
+  .panel .tlink { color: var(--accent); font-size: 13px; font-weight: 500; }
+  .panel .h .hmeta { margin-left: auto; margin-right: 34px; color: var(--t3); font-weight: 400; font-size: 13px; white-space: nowrap; }
+  .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
   .panel .trow { display: flex; align-items: center; gap: 9px; padding: 4.5px 0; color: var(--t2); font-size: 13.5px; }
   .panel .trow .tl { width: 118px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: help; }
@@ -461,7 +464,6 @@
     <div class="inner" id="about"></div>
   </details>
 
-  <footer>Refreshes daily · new episodes registered automatically.</footer>
 </div>
 
 <div id="drill"><div class="dcard">
@@ -601,8 +603,8 @@ const ICONS = {
 };
 // comparison badge: glyph + delta instead of words; the small-difference gate
 // stays at pct <= 5 so noise never reads as signal
-function deltaBadge(ratio, tip) {
-  if (ratio == null) return `<span class="db none" data-tip="${esc(tip || "not enough honest data — this check sat out")}" tabindex="0">–</span>`;
+function deltaBadge(ratio) {
+  if (ratio == null) return "";
   const pct = Math.round(Math.abs(ratio - 1) * 100);
   if (pct <= 5) return `<span class="db mid" data-tip="right at the show’s typical level" tabindex="0">≈</span>`;
   return ratio > 1
@@ -630,17 +632,10 @@ const TRAFFIC_ICONS = {
 };
 const CHECK_WORDS = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout", conversion: "new subscribers", sentiment: "feedback" };
 function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }
-function healthWaitDate(e) {
-  const on = e.health?.readCompleteOn;
-  return on ? `${on.slice(5, 7)}/${on.slice(8, 10)}` : "";
-}
 function healthChip(e) {
   const h = healthOf(e);
   if (!h) return "";
-  const missing = (h.missingChecks || []).length > 0;
-  const spoken = [`Episode health ${h.score} out of 100; 50 is typical.`];
-  if (missing) spoken.push("Some checks are not in.");
-  return `<span class="hs" data-hslug="${esc(e.slug)}" aria-label="${esc(spoken.join(" "))}">${ICONS.pulse}<b data-fold-number>${h.score}</b>${missing ? `<span class="mk">*</span>` : ""}<span class="htrack" aria-hidden="true"><span style="width:${h.score}%"></span></span></span>`;
+  return `<span class="hs" data-hslug="${esc(e.slug)}" aria-label="Episode health ${h.score} out of 100; 50 is typical.">${ICONS.pulse}<b data-fold-number>${h.score}</b><span class="htrack" aria-hidden="true"><span style="width:${h.score}%"></span></span></span>`;
 }
 
 /* health tooltip (owner request 2026-08-22): every chip explains itself on
@@ -649,9 +644,6 @@ function healthChip(e) {
 function healthTipHTML(e, h) {
   let out = `<div class="h">Health ${h.score} — ${esc(short(e.title))}</div>`;
   out += `<div>Its first three weeks, measured against the show as it stood when it aired. 50 means a typical episode; newer episodes never change it.</div>`;
-  if ((h.missingChecks || []).length) {
-    out += `<div class="warn">* Not every check had honest numbers — missing ${h.missingChecks.map((c) => CHECK_WORDS[c] || c).join(" and ")}.</div>`;
-  }
   return out;
 }
 
@@ -804,9 +796,8 @@ function buildHero() {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
     // Episode health never shows early: a finished read gets its chip; a young
-    // episode states when its three-week read completes, nothing more.
+    // episode simply shows nothing — absence is its own signal.
     if (healthOf(e)) html += `<div class="state">${healthChip(e)}</div>`;
-    else if (e.health?.pending) html += `<div class="state">Health score lands after ${healthWaitDate(e)}, once its first three weeks are in.</div>`;
   }
 
   html += `</div>`;
@@ -870,9 +861,7 @@ function buildStrip() {
     // nothing score-like at all (their wait date lives in the click panel).
     let hs = "";
     if (!isLive) {
-      if (healthOf(e)) hs = healthChip(e);
-      else if (e.health && !e.health.pending && e.health.score == null) hs = `<span class="hs quiet">${ICONS.flag}baseline</span>`;
-      else hs = `<span class="hs quiet" aria-hidden="true"></span>`;
+      hs = healthOf(e) ? healthChip(e) : `<span class="hs quiet" aria-hidden="true"></span>`;
     }
     it.innerHTML = `<span class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</span>
       <span class="t">${esc(short(e.title))}</span>${hs}`;
@@ -912,13 +901,12 @@ function buildPanel() {
   const bd = e.latest.byDest || {};
   const tvi = e.latest.totalViewsInfo || {};
   let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
-  html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
-    <span style="color:var(--t3);font-weight:400;font-size: 13px">· ${e.premiere.slice(5).replace("-", "/")}</span>
-    ${e.partialHistory ? `<span class="pchip" tabindex="0" data-tip="Tracking started late for this episode — its totals are right, but early weekly history is missing.">tracked late</span>` : ""}`;
+  let hmeta = e.premiere.slice(5).replace("-", "/");
   if (e.transcript) {
-    html += ` <a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">transcript ↓</a>`;
+    hmeta += ` · <a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">transcript ↓</a>`;
   }
-  html += `</div><div class="pgrid">`;
+  html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}<span class="hmeta">${hmeta}</span></div>`;
+  html += `<div class="pgrid">`;
 
   // Bento IA (owner readability pass 2026-08-23 r2): contrasted tiles on a
   // tight 6px grid. Row one answers "how did it do" (verdict, views, reach),
@@ -934,39 +922,37 @@ function buildPanel() {
     : pace.pct === 0
       ? "typical"
       : `${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical`;
-  const peers = h && !h.pending ? Math.max(0, (h.windowIds || []).length - 1) : 0;
-  const basisTip = `Its first three weeks against the ${peers === 1 ? "episode" : `${peers} episodes`} before it — newer episodes never change this score. Nothing shows until that read is complete.`;
-  html += `<div class="psec"><div class="kicker">Episode health<span data-tip="${esc(basisTip)}" tabindex="0">${ICONS.info}</span></div>`;
-  if (h?.pending) {
-    html += `<div class="pnum hint">arrives after ${healthWaitDate(e)}</div>`;
-  } else if (h && h.score == null) {
-    html += `<div class="pnum hint" data-tip="${esc((h.reason || "not enough honest numbers to score this episode") + ".")}" tabindex="0">sets the baseline</div>`;
-  } else if (h) {
+  if (healthOf(e)) {
+    const peers = Math.max(0, (h.windowIds || []).length - 1);
+    const basisTip = `Its first three weeks against the ${peers === 1 ? "episode" : `${peers} episodes`} before it — newer episodes never change this score.`;
+    html += `<div class="psec"><div class="kicker">Episode health<span data-tip="${esc(basisTip)}" tabindex="0">${ICONS.info}</span></div>`;
+    const bc = Object.fromEntries((e.watch?.byChannel || []).map((c) => [c.key, c]));
+    const subsSplit = bc["yt:joindiveclub"]?.subsPer1k != null && bc["yt:designertom"]?.subsPer1k != null
+      ? ` — Dive Club ${bc["yt:joindiveclub"].subsPer1k} · DesignerTom ${bc["yt:designertom"].subsPer1k}` : "";
     const CHECK_ROWS = [
       ["watch", "eye", "Views", "YouTube views at three weeks, same age as the episodes before it"],
       ["engagement", "heart", "Engagement", "likes + comments per 1,000 views"],
       ["retention", "clock", "Watching", "how much of the video people watch"],
       ["live", "signal", "Live turnout", "peak viewers and chat messages"],
-      ["conversion", "userplus", "Subscribers", "subscribers gained per 1,000 views"],
+      ["conversion", "userplus", "Subscribers", `subscribers gained per 1,000 views${subsSplit}`],
       ["sentiment", "smile", "Goodwill", "share of feedback leaning positive"],
     ];
-    const missing = (h.missingChecks || []);
-    html += `<div class="pnum">${h.score} <span class="hint">of 100 · 50 is typical</span>${missing.length ? `<span class="mk" data-tip="${esc(missing.map((c) => CHECK_WORDS[c] || c).join(" and "))} had too little honest data and sat out" tabindex="0">*</span>` : ""}</div>`;
+    html += `<div class="pnum">${h.score} <span class="hint">of 100 · 50 is typical</span></div>`;
     for (const [k, icon, lab, tip] of CHECK_ROWS) {
       const c = h.checks?.[k];
+      if (!c || c.ratio == null) continue;
       const fmtV = (v) => k === "live" ? `${v.peak} · ${nfmt(v.chat)}` : (k === "retention" || k === "sentiment") ? `${v}%` : nfmt(v);
-      html += `<div class="irow">${ICONS[icon]}<span class="lb" data-tip="${esc(tip)}" tabindex="0">${lab}</span>${c && c.ratio != null ? `<b>${fmtV(c.value)}</b>` : ""}${deltaBadge(c?.ratio)}</div>`;
+      html += `<div class="irow">${ICONS[icon]}<span class="lb" data-tip="${esc(tip)}" tabindex="0">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
     }
+    if (state.view !== "live" && pace) {
+      const paceTip = "YouTube views at the same age as earlier episodes — appears after three of them have real data at that age.";
+      html += `<div class="irow">${ICONS.gauge}<span class="lb" data-tip="${esc(paceTip)}" tabindex="0">Same-age pace</span>${
+        Math.abs(pace.pct) <= 5
+          ? `<span class="db mid" data-tip="right at the typical level" tabindex="0">≈</span>`
+          : pace.pct > 0 ? `<span class="db up">▲${Math.abs(pace.pct)}%</span>` : `<span class="db down">▼${Math.abs(pace.pct)}%</span>`}</div>`;
+    }
+    html += `</div>`;
   }
-  if (state.view !== "live") {
-    const paceTip = "YouTube views at the same age as earlier episodes — appears after three of them have real data at that age.";
-    html += `<div class="irow">${ICONS.gauge}<span class="lb" data-tip="${esc(paceTip)}" tabindex="0">Same-age pace</span>${
-      pace ? (Math.abs(pace.pct) <= 5
-        ? `<span class="db mid" data-tip="right at the typical level" tabindex="0">≈</span>`
-        : pace.pct > 0 ? `<span class="db up">▲${Math.abs(pace.pct)}%</span>` : `<span class="db down">▼${Math.abs(pace.pct)}%</span>`)
-      : `<span class="db none" data-tip="no same-age comparison yet" tabindex="0">–</span>`}</div>`;
-  }
-  html += `</div>`;
 
   // — total views —
   const panelTotal = e.latest.totalViews ?? e.latest.ytTotal;
@@ -1011,6 +997,11 @@ function buildPanel() {
     const wparts = [];
     if (w.avgDurationSec != null) wparts.push(`<span class="g" data-tip="average time watched" tabindex="0">${ICONS.clock}<b>${fmtDur(w.avgDurationSec)}</b></span>`);
     if (w.minutesWatched != null) wparts.push(`<span class="g" data-tip="total watch time across both channels" tabindex="0">${ICONS.stack}<b>${nfmt(Math.round(w.minutesWatched / 60))} h</b></span>`);
+    // per-channel split rides beside the blend — same colors as everywhere
+    for (const c of w.byChannel || []) {
+      if (c.avgPercent == null) continue;
+      wparts.push(`<span class="g" data-tip="${esc(`${TT_NAME[c.key] || c.key}: ${c.avgPercent}% watched · ${nfmt(c.views)} views${c.subsPer1k != null ? ` · ${c.subsPer1k} subscribers per 1,000` : ""}`)}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></i><b>${c.avgPercent}%</b></span>`);
+    }
     if (wparts.length) html += `<div class="gline">${wparts.join("")}</div>`;
     if (w.curve) {
       const pts = w.curve.map(p => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching) * 40).toFixed(1)}`).join(" ");
@@ -1767,9 +1758,8 @@ function buildTable() {
       const pace = sameAgeSub(e);
       const hh = e.health;
       const healthCell = healthOf(e)
-        ? `<span class="${HB_CLS[checkState(healthOf(e).score)[0]] || ""}">${healthOf(e).score}</span>${(healthOf(e).missingChecks || []).length ? " <span class=\"mk\">*</span>" : ""}`
-        : hh?.pending ? `<span style="color:var(--t3)">after ${healthWaitDate(e)}</span>`
-        : hh ? `<span style="color:var(--t3)">baseline</span>` : "–";
+        ? `<span class="${HB_CLS[checkState(healthOf(e).score)[0]] || ""}">${healthOf(e).score}</span>`
+        : "–";
       html += `<tr><td class="t">${esc(label(e))}</td>`;
       html += `<td class="t">${healthCell}</td>`;
       html += `<td class="t">${metricText(e.latest.totalViews)}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
@@ -1898,7 +1888,7 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
-  <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero; <b>*</b> marks a score that shipped without every check. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level, <b>≈</b> means right at it, and <b>–</b> means a check sat out for lack of honest data; hover or tap any label or mark for its definition.</p>
+  <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says so instead of showing zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>

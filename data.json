@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T03:06:42.798Z",
+ "generatedAt": "2026-08-23T04:52:29.663Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -3145,6 +3145,24 @@
     "channels": [
      "yt:designertom",
      "yt:joindiveclub"
+    ],
+    "byChannel": [
+     {
+      "key": "yt:designertom",
+      "views": 527,
+      "avgPercent": 9.6,
+      "avgDurationSec": 708,
+      "subs": 7,
+      "subsPer1k": 13.3
+     },
+     {
+      "key": "yt:joindiveclub",
+      "views": 703,
+      "avgPercent": 11.26,
+      "avgDurationSec": 831,
+      "subs": 4,
+      "subsPer1k": 5.7
+     }
     ],
     "avgPercent": 10.55,
     "avgDurationSec": 778,
@@ -6313,6 +6331,24 @@
      "yt:designertom",
      "yt:joindiveclub"
     ],
+    "byChannel": [
+     {
+      "key": "yt:designertom",
+      "views": 914,
+      "avgPercent": 9.75,
+      "avgDurationSec": 700,
+      "subs": 1,
+      "subsPer1k": 1.1
+     },
+     {
+      "key": "yt:joindiveclub",
+      "views": 1147,
+      "avgPercent": 12.04,
+      "avgDurationSec": 864,
+      "subs": 5,
+      "subsPer1k": 4.4
+     }
+    ],
     "avgPercent": 11.02,
     "avgDurationSec": 791,
     "minutesWatched": 27171,
@@ -8480,6 +8516,24 @@
     "channels": [
      "yt:designertom",
      "yt:joindiveclub"
+    ],
+    "byChannel": [
+     {
+      "key": "yt:designertom",
+      "views": 663,
+      "avgPercent": 8.68,
+      "avgDurationSec": 587,
+      "subs": 0,
+      "subsPer1k": 0
+     },
+     {
+      "key": "yt:joindiveclub",
+      "views": 937,
+      "avgPercent": 9.14,
+      "avgDurationSec": 619,
+      "subs": 0,
+      "subsPer1k": 0
+     }
     ],
     "avgPercent": 8.95,
     "avgDurationSec": 606,
@@ -10675,6 +10729,24 @@
      "yt:designertom",
      "yt:joindiveclub"
     ],
+    "byChannel": [
+     {
+      "key": "yt:designertom",
+      "views": 705,
+      "avgPercent": 8.74,
+      "avgDurationSec": 647,
+      "subs": 0,
+      "subsPer1k": 0
+     },
+     {
+      "key": "yt:joindiveclub",
+      "views": 1188,
+      "avgPercent": 8.97,
+      "avgDurationSec": 665,
+      "subs": 6,
+      "subsPer1k": 5.1
+     }
+    ],
     "avgPercent": 8.88,
     "avgDurationSec": 658,
     "minutesWatched": 20767,
@@ -12759,6 +12831,24 @@
     "channels": [
      "yt:designertom",
      "yt:joindiveclub"
+    ],
+    "byChannel": [
+     {
+      "key": "yt:designertom",
+      "views": 499,
+      "avgPercent": 12.12,
+      "avgDurationSec": 691,
+      "subs": 0,
+      "subsPer1k": 0
+     },
+     {
+      "key": "yt:joindiveclub",
+      "views": 630,
+      "avgPercent": 14.09,
+      "avgDurationSec": 803,
+      "subs": 1,
+      "subsPer1k": 1.6
+     }
     ],
     "avgPercent": 13.22,
     "avgDurationSec": 753,
@@ -14914,6 +15004,24 @@
      "yt:designertom",
      "yt:joindiveclub"
     ],
+    "byChannel": [
+     {
+      "key": "yt:designertom",
+      "views": 265,
+      "avgPercent": 10.43,
+      "avgDurationSec": 493,
+      "subs": 0,
+      "subsPer1k": 0
+     },
+     {
+      "key": "yt:joindiveclub",
+      "views": 370,
+      "avgPercent": 14.59,
+      "avgDurationSec": 772,
+      "subs": 1,
+      "subsPer1k": 2.7
+     }
+    ],
     "avgPercent": 12.85,
     "avgDurationSec": 656,
     "minutesWatched": 6781,
@@ -14956,156 +15064,46 @@
  ],
  "insights": [
   {
-   "id": "watch-split",
-   "text": "This is a genuinely two-platform show: 57% of all actual watching happens on X broadcasts (12,710 of 22,436 total views), not just YouTube with an X echo.",
-   "recommendation": "Give X broadcasts first-class treatment — real titles, thumbnails, and call-outs, not simulcast leftovers.",
-   "caveat": "Per-episode X share ranges 46% (E1 (Bumpy Takeoff)) to 72% (E3 (Mixed Media Workflows)); only episodes with complete X play counts are included (6).",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "standings"
-   },
+   "id": "open-cliff",
+   "text": "Every episode loses its crowd at the door: around 70.4% of starters are watching near the open, and only 11.7–14.9% remain by the 2% mark — the largest single loss anywhere in the show.",
+   "recommendation": "Rebuild the first 90 seconds: cold-open the strongest exchange, move intros and housekeeping after it, and check the next episode's open against that 14.9% high-water mark.",
+   "category": "content"
+  },
+  {
+   "id": "best-open-template",
+   "text": "Goodbye, Blank Canvas is the watch-time winner at 13.2% of the video seen on average; every other episode sits between 8.9 and 12.9%.",
+   "recommendation": "Break down what its first 5 minutes do differently and reuse that structure for the next two openings; compare their finished health reads against 33 and 44.",
+   "category": "content"
+  },
+  {
+   "id": "end-screens-dead",
+   "text": "End screens have produced 7 views across the entire catalog — a free surface at the exact moment the remaining audience is most committed.",
+   "recommendation": "Add an end screen on both channels linking the next episode and the subscribe button; it costs nothing and every finished viewer sees it.",
    "category": "distribution"
   },
   {
-   "id": "host-plays-split",
-   "text": "People actually sit in @ridd_design's room: 62% of broadcast watching happens there (5,303 ridd vs 3,201 tom).",
-   "recommendation": "If the split holds, make @ridd_design's account the flagship broadcast and use @designertom's for clips and reposts.",
-   "caveat": "Episodes where both hosts' plays are known, with promo outliers left out (5).",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "standings"
-   },
+   "id": "discovery-gap",
+   "text": "54.7% of YouTube views come from subscriptions and home while search brings 5% — current packaging mostly reaches people the show already has.",
+   "recommendation": "Package the next launch for strangers: title and thumbnail on the guest's topic as someone would search it, then watch whether search and suggested move.",
    "category": "distribution"
   },
   {
-   "id": "host-split",
-   "text": "@ridd_design's announce posts travel further on X — 57% of announce impressions (18,784 ridd vs 14,148 tom).",
-   "recommendation": "Lead each announcement from @ridd_design's account and have @designertom quote-post it — order the announce machine around what actually travels.",
-   "caveat": "Reach = exposure, not watching, and is never charted or summed with views. Promo outlier excluded; small sample (5 episodes) — read as tendency.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "standings"
-   },
+   "id": "x-bridge",
+   "text": "X carries 56.7% of all watching (12,710 of 22,436 views), but a viewer can only subscribe on YouTube — the biggest audience never gets asked.",
+   "recommendation": "Pin the YouTube link as the first reply under both hosts' announce posts and say the YouTube handoff out loud as each live ends.",
    "category": "promotion"
   },
   {
-   "id": "reach-conversion",
-   "text": "Announce hooks close very differently: E4 (Backyard Designers behind-the-scenes) turned 41 of every 100 announce impressions into actual plays; E5 (Goodbye) managed only 23.",
-   "recommendation": "Reuse E4 (Backyard Designers behind-the-scenes)'s announce format — more of the people who saw that post chose to watch. High reach with few plays means the post traveled but didn't sell the click.",
-   "caveat": "X broadcast plays for every 100 announce impressions; episodes at least 7 days old, with promo outliers left out, sample of 4.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "standings"
-   },
-   "category": "promotion"
-  },
-  {
-   "id": "anomaly-2026-07-30-dive-radio-mixed-media-workflows-game-de",
-   "text": "E3 (Mixed Media Workflows) is a promo-driven outlier, not a topic winner: more than double what a typical episode gets (4,206 X plays vs a typical 1,836; 19,633 X reach vs a typical 7,164).",
-   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
-   "caveat": "Outlier = more than double the typical episode on that unit; excluded from host-split aggregates automatically.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "chart": "standings"
-   },
-   "category": "promotion"
-  },
-  {
-   "id": "engagement",
-   "text": "E1 (Bumpy Takeoff) pulled the most engaged viewers — 49.7 likes+comments per 1,000 YouTube views; E3 (Mixed Media Workflows) the least at 30.",
-   "recommendation": "Mine E1 (Bumpy Takeoff)'s comments for what hooked people — that topic drove interaction, not just plays.",
-   "caveat": "YouTube only; episodes at least 7 days old because likes and comments per 1,000 views change with age, sample of 5.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null,
-    "chart": "trajectory"
-   },
+   "id": "subscribe-window",
+   "text": "Subscriber pull spent itself on launch day one: 8.9 subscribers per 1,000 views on the first episode, then 2.9 or less on every episode since.",
+   "recommendation": "Script one spoken subscribe ask at minute 2–3, right where the drop levels off, plus a pinned comment with the link — and judge it against that 8.9 start.",
    "category": "audience"
   },
   {
-   "id": "live-peak",
-   "text": "The Mascot Industrial Complex + Live Call-Ins drew a live peak of 71 concurrent viewers (avg 50) — #2 of 6 episodes, against a typical peak of 64.",
-   "recommendation": "Turnout held up — keep the same time slot and announce rhythm.",
-   "caveat": "Peak concurrents from Restream across all simulcast destinations; compared with the typical result from 5 prior episodes.",
-   "chartState": {
-    "view": "live"
-   },
+   "id": "channel-gap",
+   "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
+   "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode.",
    "category": "audience"
-  },
-  {
-   "id": "live-chat",
-   "text": "Live chat is down from launch: 383 messages on the first show, 127 on the latest.",
-   "recommendation": "Chat is the call-in pipeline — seed prompts and questions mid-show instead of waiting for organic chat.",
-   "caveat": "Message totals from Restream chat archives, all destinations combined.",
-   "chartState": {
-    "view": "live"
-   },
-   "category": "audience"
-  },
-  {
-   "id": "partial-history",
-   "text": "E3, E4 and E5 were registered late — their early weekly history doesn't exist. Totals are right; first-week growth comparisons aren't.",
-   "recommendation": "Nothing to do — the flags are automatic. Just don't read first-week growth comparisons for these episodes.",
-   "caveat": "Tracked late: E3 (Mixed Media Workflows), E4 (Backyard Designers behind-the-scenes), E5 (Goodbye). Marked \"tracked late\" in the episode panel.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": null
-   },
-   "category": "data"
   }
  ],
  "showTrend": {
