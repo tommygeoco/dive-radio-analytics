@@ -1,9 +1,14 @@
 # PRD — Dive Radio analytics v7: publish integrity (2026-08-23)
 
-Owner: Tommy. Status: PROPOSED 2026-08-23. Builds on v5 (recommendation
-engine, W15) and v6 (transcript moments, W16). Goal: the morning publish can
-never be blocked by a stale model artifact, and the model artifact can never
-go stale silently.
+Owner: Tommy. Status: REPO CODE LANDED 2026-08-23 — W17 (prune mode +
+prune-on-failure), W18 (allowed-number payload, error-feedback retries,
+health.mjs audit recorded in its header: frozen entries are judged against
+their own saved facts, no staleness), and W19 (audit/freshness.mjs watchdog
++ end-of-chain probe in alerts.mjs) are implemented. Still open: the cron
+chain edit (W17 step 3) and the 12:00 watchdog cron, both operator-run.
+Builds on v5 (recommendation engine, W15) and v6 (transcript moments, W16).
+Goal: the morning publish can never be blocked by a stale model artifact,
+and the model artifact can never go stale silently.
 
 ## Incident (2026-08-23, the motivating failure)
 

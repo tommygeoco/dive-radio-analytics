@@ -12,17 +12,27 @@
 // Discipline (mirrors health.mjs):
 //   - The model receives a deterministic fact sheet and may only use numbers
 //     from it. Every number token in a saved item must appear in the facts.
+//     The payload carries the exact allowed-number list so the model can
+//     comply, and a failed attempt is retried with the validation error and
+//     the offending item appended to the conversation (up to 3 attempts).
 //   - Plain words: the banned-jargon list is enforced on every item.
-//   - Failure is non-fatal: the previous store stays the public truth.
+//   - Failure is non-fatal but never leaves stale numbers behind (PRD v7 W17):
+//     when the model cannot produce a valid store, the saved items are pruned
+//     against the CURRENT fact sheet instead of kept as-is. Items that no
+//     longer ground are dropped; fewer than 3 survivors deletes the store and
+//     the page falls back to the rule-based insights. The store on disk is
+//     grounded in the current facts on every exit path.
 //
 // Run:
 //   node tools/dive-analytics/recommendations.mjs --facts   # print the fact sheet
+//   node tools/dive-analytics/recommendations.mjs --prune   # drop stored items that
+//                                                           # no longer ground (no model)
 //   node tools/dive-analytics/recommendations.mjs           # regenerate the store
 //
-// Chain (owner machine): ratings → build-data → validate → health →
-//   recommendations → build-data → validate → publish
+// Chain (owner machine): ratings → build-data → recommendations (non-fatal
+//   wrapper) → build-data → validate → publish → alerts
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync, unlinkSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -34,7 +44,7 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 2; // v6: watch-moment facts + excerpt context
+export const PROMPT_VERSION = 3; // v7: allowed-number list rides in the payload
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 // exported so other prose surfaces (the Slack trends line) can gate spoken
 // quotes with the same plain-words contract the validator enforces
@@ -155,8 +165,10 @@ function numberTokens(text) {
   return String(text).match(/\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?/g) || [];
 }
 
-export function validateItems(items, facts) {
-  if (!Array.isArray(items) || items.length < 3 || items.length > 8) throw new Error("between three and eight items required");
+// The exact set of number tokens an item may contain. This same set rides in
+// the model payload (W18) so the model sees precisely what the validator will
+// accept — one list, two consumers, no drift.
+export function allowedTokens(facts) {
   const allowed = new Set();
   for (const f of facts) {
     const v = f.value;
@@ -164,23 +176,76 @@ export function validateItems(items, facts) {
   }
   // small structural constants an action may name (positions, ranges, dates)
   for (const s of ["1", "2", "3", "5", "90", "100", "1,000", "07", "17", "23", "30"]) allowed.add(s);
-  const seen = new Set();
-  for (const item of items) {
-    if (!item || typeof item !== "object") throw new Error("item must be an object");
-    if (typeof item.id !== "string" || !/^[a-z0-9-]{3,40}$/.test(item.id) || seen.has(item.id)) throw new Error(`bad or duplicate id ${JSON.stringify(item.id)}`);
-    seen.add(item.id);
-    if (!CATEGORIES.has(item.category)) throw new Error(`${item.id}: illegal category`);
-    for (const key of ["text", "recommendation"]) {
-      const value = item[key];
-      if (typeof value !== "string" || !value.trim() || value.length > 260) throw new Error(`${item.id}: ${key} missing or too long`);
-      if (BANNED.test(value) || MARKUP.test(value)) throw new Error(`${item.id}: ${key} contains banned jargon or markup`);
-      for (const token of numberTokens(value)) {
-        if (!allowed.has(token)) throw new Error(`${item.id}: number ${token} is not in the fact sheet`);
-      }
+  return allowed;
+}
+
+// One item's checks, exactly as validateItems applies them. Shared with the
+// W17 prune so "does this stored item still hold" can never drift from the
+// set-level validation.
+function validateItem(item, allowed, seen) {
+  if (!item || typeof item !== "object") throw new Error("item must be an object");
+  if (typeof item.id !== "string" || !/^[a-z0-9-]{3,40}$/.test(item.id) || seen.has(item.id)) throw new Error(`bad or duplicate id ${JSON.stringify(item.id)}`);
+  seen.add(item.id);
+  if (!CATEGORIES.has(item.category)) throw new Error(`${item.id}: illegal category`);
+  for (const key of ["text", "recommendation"]) {
+    const value = item[key];
+    if (typeof value !== "string" || !value.trim() || value.length > 260) throw new Error(`${item.id}: ${key} missing or too long`);
+    if (BANNED.test(value) || MARKUP.test(value)) throw new Error(`${item.id}: ${key} contains banned jargon or markup`);
+    for (const token of numberTokens(value)) {
+      if (!allowed.has(token)) throw new Error(`${item.id}: number ${token} is not in the fact sheet`);
     }
-    if (item.caveat != null && (typeof item.caveat !== "string" || item.caveat.length > 200 || BANNED.test(item.caveat))) throw new Error(`${item.id}: bad caveat`);
   }
+  if (item.caveat != null && (typeof item.caveat !== "string" || item.caveat.length > 200 || BANNED.test(item.caveat))) throw new Error(`${item.id}: bad caveat`);
+}
+
+export function validateItems(items, facts) {
+  if (!Array.isArray(items) || items.length < 3 || items.length > 8) throw new Error("between three and eight items required");
+  const allowed = allowedTokens(facts);
+  const seen = new Set();
+  for (const item of items) validateItem(item, allowed, seen);
   return items;
+}
+
+// --- W17 deterministic prune: the stored items re-earn their place against
+// the CURRENT facts, no model involved. Items that no longer ground are
+// dropped with an audit trail; fewer than 3 survivors deletes the store
+// (build-data falls back to the rule-based insights, validate WARNs). ---
+
+export function pruneStore(sheet, { attempts = null } = {}) {
+  const store = readJson(STORE_PATH);
+  if (!store || !Array.isArray(store.items)) {
+    console.log("prune: no recommendations store on disk — nothing to prune");
+    return { kept: 0, prunedIds: [], deleted: false, absent: true };
+  }
+  const allowed = allowedTokens(sheet.facts);
+  const seen = new Set();
+  const kept = [];
+  const prunedIds = [];
+  for (const item of store.items) {
+    try {
+      validateItem(item, allowed, seen);
+      kept.push(item);
+    } catch (error) {
+      prunedIds.push(typeof item?.id === "string" ? item.id : "unknown");
+      console.log(`prune: dropped ${typeof item?.id === "string" ? item.id : "an item with no id"} — ${error.message}`);
+    }
+  }
+  if (kept.length < 3) {
+    unlinkSync(STORE_PATH);
+    console.log(`prune: only ${kept.length} of ${store.items.length} item(s) still hold against the current facts — store deleted; the page falls back to the rule-based insights`);
+    return { kept: kept.length, prunedIds, deleted: true, absent: false };
+  }
+  saveAtomic(STORE_PATH, {
+    ...store,
+    items: kept,
+    prunedAt: new Date().toISOString(),
+    prunedIds,
+    ...(attempts != null ? { attempts } : {}),
+  });
+  console.log(prunedIds.length
+    ? `prune: kept ${kept.length} of ${store.items.length} item(s); store rewritten against the current facts — rebuild data to publish`
+    : `prune: all ${kept.length} item(s) still hold against the current facts`);
+  return { kept: kept.length, prunedIds, deleted: false, absent: false };
 }
 
 // --- model call (same provider plumbing as health.mjs) ---
@@ -193,16 +258,17 @@ Rules:
 3. Call out per-channel differences (Dive Club vs DesignerTom) whenever the gap matters, alongside the blended number.
 4. Plain words. Never write: composite, percentile, pillar, ratio, multiple-times comparisons, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.
 5. Association is not cause — recommend tests and changes, never certainties.
-6. Watch-moment facts (drop-*/hold-*) arrive with transcript excerpts in the payload. Excerpts are quotable context, not numbers. Name a moment's position in plain words ("about a third of the way in") and treat its timing as approximate — it comes from the live recording. Never claim the words caused the exit; recommend a test instead (trim, tighten, re-order).`;
+6. Watch-moment facts (drop-*/hold-*) arrive with transcript excerpts in the payload. Excerpts are quotable context, not numbers. Name a moment's position in plain words ("about a third of the way in") and treat its timing as approximate — it comes from the live recording. Never claim the words caused the exit; recommend a test instead (trim, tighten, re-order).
+7. The payload's allowedNumbers list is every number token the validator accepts. Every digit sequence in your output must appear verbatim in that list. Never compute, round, combine, or convert numbers — if the number you want is not in the list, make the point without a number.`;
 
-async function callModel(payload) {
+async function callModel(messages) {
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) throw new Error("ANTHROPIC_API_KEY not set");
   const model = process.env.RECS_MODEL || DEFAULT_ANTHROPIC_MODEL;
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages: [{ role: "user", content: JSON.stringify(payload) }] }),
+    body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages }),
     signal: AbortSignal.timeout(180000),
   });
   if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
@@ -211,37 +277,78 @@ async function callModel(payload) {
   return { text, model };
 }
 
+// The item a validation error points at, so the retry conversation can show
+// the model exactly what it wrote wrong (W18). Errors are prefixed with the
+// item id by validateItem; anything unprefixed (bad JSON, bad shape) has no
+// single item to blame.
+function offendingItem(error, items) {
+  const id = /^([a-z0-9-]{3,40}): /.exec(error.message)?.[1];
+  return (id && Array.isArray(items) && items.find((item) => item?.id === id)) || null;
+}
+
+const MAX_ATTEMPTS = 3;
+
 async function main() {
   const sheet = collectFacts();
   if (process.argv.includes("--facts")) {
     console.log(JSON.stringify(sheet, null, 1));
     return;
   }
-  let result;
-  try {
-    result = await callModel({ task: "Write this week's tactical recommendations.", facts: sheet.facts, excerpts: sheet.excerpts });
-  } catch (error) {
-    console.log(`WARN recommendations: ${error.message}; previous store kept`);
+  if (process.argv.includes("--prune")) {
+    pruneStore(sheet);
     return;
   }
-  let parsed;
-  try {
-    parsed = JSON.parse(result.text);
-    validateItems(parsed.items, sheet.facts);
-  } catch (error) {
-    console.log(`WARN recommendations: invalid model output (${error.message}); previous store kept`);
+  // sorted numerically so the list reads as a list, not a grab bag
+  const allowedNumbers = [...allowedTokens(sheet.facts)]
+    .sort((a, b) => parseFloat(a.replace(/,/g, "")) - parseFloat(b.replace(/,/g, "")) || a.localeCompare(b));
+  const payload = { task: "Write this week's tactical recommendations.", allowedNumbers, facts: sheet.facts, excerpts: sheet.excerpts };
+  const messages = [{ role: "user", content: JSON.stringify(payload) }];
+  let attempts = 0;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    attempts = attempt;
+    let result;
+    try {
+      result = await callModel(messages);
+    } catch (error) {
+      console.log(`WARN recommendations: attempt ${attempt}/${MAX_ATTEMPTS}: ${error.message}`);
+      if (!process.env.ANTHROPIC_API_KEY) break; // no key — more attempts cannot help
+      continue;
+    }
+    let parsed = null;
+    try {
+      parsed = JSON.parse(result.text);
+      validateItems(parsed.items, sheet.facts);
+    } catch (error) {
+      console.log(`WARN recommendations: attempt ${attempt}/${MAX_ATTEMPTS}: ${error.message}`);
+      // hand the model its own output plus the exact failure, and ask again
+      messages.push({ role: "assistant", content: result.text });
+      messages.push({
+        role: "user",
+        content: JSON.stringify({
+          validationError: error.message,
+          offendingItem: offendingItem(error, parsed?.items),
+          instruction: "Your last answer failed validation. Fix it and return the complete corrected JSON. Every digit sequence must appear verbatim in the allowedNumbers list — never compute, round, combine, or convert numbers.",
+        }),
+      });
+      continue;
+    }
+    saveAtomic(STORE_PATH, {
+      version: STORE_VERSION,
+      promptVersion: PROMPT_VERSION,
+      updatedAt: new Date().toISOString(),
+      provider: "anthropic",
+      model: result.model,
+      attempts: attempt,
+      factsGeneratedAt: sheet.generatedAt,
+      items: parsed.items,
+    });
+    console.log(`recommendations: saved ${parsed.items.length} item(s) in ${attempt} attempt(s) — rebuild data to publish`);
     return;
   }
-  saveAtomic(STORE_PATH, {
-    version: STORE_VERSION,
-    promptVersion: PROMPT_VERSION,
-    updatedAt: new Date().toISOString(),
-    provider: "anthropic",
-    model: result.model,
-    factsGeneratedAt: sheet.generatedAt,
-    items: parsed.items,
-  });
-  console.log(`recommendations: saved ${parsed.items.length} item(s) — rebuild data to publish`);
+  // W17: a failed regeneration never leaves stale numbers behind — prune the
+  // saved items against the current facts instead of keeping them as-is.
+  console.log(`WARN recommendations: no valid store after ${attempts} attempt(s) — pruning the saved items against the current facts`);
+  pruneStore(sheet, { attempts });
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

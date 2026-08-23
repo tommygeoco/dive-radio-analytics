@@ -31,6 +31,14 @@
 // entry is appended per Phoenix calendar day. Model failure is non-fatal: the
 // previous entry remains the public truth and its saved date stays visible.
 //
+// Staleness audit (PRD v7 W18, 2026-08-23): this store does NOT share the
+// staleness class that broke recommendations.json. Each saved entry carries
+// the fact sheet it was written against, and validate.mjs judges every entry
+// against ITS OWN saved facts and stamped prompt/formula versions — never
+// against the current fact sheet. Frozen daily reads are immutable by design,
+// so a data refresh can never turn an old entry into a publish blocker.
+// Keep-previous is safe here; do not add pruning or regeneration.
+//
 // Run:
 //   node tools/dive-analytics/health.mjs --dry          # math only, no model/write
 //   node tools/dive-analytics/health.mjs --probe-model  # live model test, no write
