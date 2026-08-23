@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T09:11:02.621Z",
+ "generatedAt": "2026-08-23T09:14:51.546Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -7293,7 +7293,7 @@
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 30,
-    "anomaly": "more than double what a typical episode gets (4,206 X plays vs a typical 1,836; 19,633 X reach vs a typical 7,164) — treat as promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,206 X plays vs a typical 1,801; 19,633 X reach vs a typical 6,114) — treat as promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {

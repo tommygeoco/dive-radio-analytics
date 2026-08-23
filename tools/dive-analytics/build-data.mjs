@@ -16,7 +16,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // PRD v7 W19a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W19a; this only adds the projection.
-import { computeBaselines } from "./baselines.mjs";
+import { computeBaselines, anomalyFlags, paceFor } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -281,32 +281,19 @@ export function computeAll({ now = Date.now() } = {}) {
   episodes.forEach((e, i) => { e.ep = i + 1; });
   const dive = episodes;
 
-  // anomaly flags: any unit >2x its all-episode median (YT views, X plays,
-  // X reach each checked within their own unit — critic ruling item 7 / F-8)
-  const medianOf = (vals) => {
-    const v = vals.filter((x) => x != null).sort((a, b) => a - b);
-    if (!v.length) return 0;
-    const m = Math.floor(v.length / 2);
-    return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; // true median (critic 2026-08-22: upper-middle convention overstated it)
-  };
-  const median = medianOf(dive.map((e) => e.latest.ytTotal));
-  const medPlays = medianOf(dive.map((e) => e.latest.xPlays));
-  const medReach = medianOf(dive.map((e) => e.latest.xImpressions));
-  for (const e of dive) {
-    const hits = [];
-    if (median > 0 && e.latest.ytTotal > 2 * median) hits.push(`${num(e.latest.ytTotal)} YT views vs a typical ${num(median)}`);
-    if (medPlays > 0 && e.latest.xPlays != null && e.latest.xPlays > 2 * medPlays) hits.push(`${num(e.latest.xPlays)} X plays vs a typical ${num(medPlays)}`);
-    if (medReach > 0 && e.latest.xImpressions > 2 * medReach) hits.push(`${num(e.latest.xImpressions)} X reach vs a typical ${num(medReach)}`);
-    if (hits.length) {
-      e.metrics.anomaly = `more than double what a typical episode gets (${hits.join("; ")}) — treat as promo-driven outlier, not topic signal`;
-    }
-  }
+  // Promo-outlier flags (PRD v7 W19b): the one definition lives in
+  // baselines.mjs — a unit more than double the SAME-AGE typical of the
+  // nearby episodes (settled at day 21; provisional before that; the
+  // window-limited lifetime test only while history is too thin for either).
+  // A flagged episode is left out of host, announce, topic, and every typical.
+  const flags = anomalyFlags(dive);
+  for (const e of dive) e.metrics.anomaly = flags.get(e.slug)?.text ?? null;
 
   attachLiveSessions(dive, registry);
   const commentSummary = attachComments(dive);
   attachEpisodeHealth(dive);
   attachWatch(dive);
-  const baselines = computeBaselines(dive);
+  const baselines = computeBaselines(dive, { flags });
 
   // W15 recommendation engine: when the saved store exists, its model-written,
   // number-grounded items ARE "What matters" — the deterministic rule-based
@@ -317,7 +304,7 @@ export function computeAll({ now = Date.now() } = {}) {
   if (Array.isArray(recStore?.items) && recStore.items.length) {
     insights = recStore.items.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
   } else {
-    insights = buildInsights(dive, { now, median });
+    insights = buildInsights(dive, { flags });
     insights.push(...liveInsights(dive));
     // Strategy-impact categories (owner directive 2026-08-22): each insight is
     // tagged by the DECISION it informs, not the data type it reads.
@@ -337,7 +324,7 @@ export function computeAll({ now = Date.now() } = {}) {
     // newest episode's same-age YouTube pace rank, exported as data so the
     // alerts diff (W4) never has to parse insight prose
     paceRank: (() => {
-      const p = sameAgePace(dive);
+      const p = sameAgePace(dive, flags);
       return p && p.rank ? { slug: p.newest.slug, rank: p.rank, of: p.of } : null;
     })(),
   };
@@ -785,26 +772,19 @@ function cumulativeSeries(dive, now) {
   return out;
 }
 
-// same-age comparison: newest episode at its current age vs prior episodes at the same age.
-// Only prior episodes whose first snapshot is at-or-before that age qualify (no extrapolation).
-export function sameAgePace(dive) {
+// Same-age pace for the newest episode (PRD v7 W19b): read from baselines.mjs
+// — YouTube views at the newest episode's current age against the other
+// episodes' readings at that same age, promo outliers left out, at least
+// three peers or nothing. Same function feeds data.baselines.pace for the
+// panel and table, so every surface shows one pace.
+export function sameAgePace(dive, flags = anomalyFlags(dive)) {
   if (dive.length < 2) return null;
   const newest = dive[dive.length - 1];
-  const ageMs = Date.parse(newest.latest.ts) - premiereMs(newest.premiere);
-  const peers = [];
-  for (const e of dive.slice(0, -1)) {
-    const prem = premiereMs(e.premiere);
-    if (Date.parse(e.snapshots[0].ts) - prem > ageMs) continue; // no real data at that age
-    const s = lastAtOrBefore(e.snapshots, prem + ageMs);
-    if (s) peers.push({ title: e.title, slug: e.slug, value: total(s.byDest, YT_KEYS), partial: e.partialHistory });
-  }
-  if (peers.length < 3) return { newest, ageMs, peers, rank: null };
-  const sorted = [...peers].sort((a, b) => b.value - a.value);
-  const newestVal = newest.latest.ytTotal;
-  const rank = sorted.filter((p) => p.value > newestVal).length + 1;
-  const vals = peers.map((p) => p.value).sort((a, b) => a - b);
-  const med = vals[Math.floor(vals.length / 2)];
-  return { newest, ageMs, peers: sorted, rank, of: peers.length + 1, median: med, newestVal };
+  const p = paceFor(newest, dive, flags);
+  if (!p) return null;
+  const bySlug = new Map(dive.map((e) => [e.slug, e]));
+  const peers = p.peers.map((slug) => ({ title: bySlug.get(slug)?.title, slug, partial: bySlug.get(slug)?.partialHistory }));
+  return { newest, ageMs: p.ageDays * DAY, peers, rank: p.rank, of: p.of, median: p.typical, newestVal: p.value, pct: p.pct, excluded: p.excluded };
 }
 
 function shortTitle(t) {
@@ -842,7 +822,7 @@ export function categoryFor(id) {
   return "data";
 }
 
-function buildInsights(dive, { median }) {
+function buildInsights(dive, { flags }) {
   const insights = [];
   const full = dive.filter((e) => !e.partialHistory);
   const state = (o) => ({ xMode: "weeks", yMode: "cumulative", dests: DESTS.map((d) => d.key), solo: null, ...o });
@@ -850,18 +830,18 @@ function buildInsights(dive, { median }) {
   // 1. same-age pace rank for the newest episode
   // Insight texts are written for a human first: a plain-English claim up
   // front, action in `recommendation`, methodology in `caveat` (small print).
-  const pace = sameAgePace(dive);
+  const pace = sameAgePace(dive, flags);
   if (pace && pace.rank) {
     const days = Math.round((pace.ageMs / DAY) * 10) / 10;
     const ahead = pace.newestVal >= pace.median;
-    const pct = pace.median > 0 ? Math.abs(Math.round(((pace.newestVal - pace.median) / pace.median) * 100)) : 0;
+    const pct = Math.abs(pace.pct ?? 0);
     insights.push({
       id: "pace-rank",
       text: `${shortTitle(pace.newest.title)} has ${num(pace.newest.latest.totalViews)} total views ${days} days in — on YouTube it's pacing #${pace.rank} of ${pace.of} at this age, ${pct}% ${ahead ? "ahead of" : "behind"} the typical episode.`,
       recommendation: ahead
         ? `This topic/format is landing. Note what's different about it and repeat that on the next episode.`
         : `If this episode deserves a push, push now — gains concentrate in the first weeks and the gap won't close on its own.`,
-      caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} prior episode${pace.peers.length === 1 ? "" : "s"}.`,
+      caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} other episode${pace.peers.length === 1 ? "" : "s"} at the same age, promo outliers left out.`,
       chartState: state({ chart: "standings", solo: pace.newest.slug }),
     });
   }
@@ -1007,7 +987,7 @@ function buildInsights(dive, { median }) {
         id: `anomaly-${e.slug}`,
         text: `${refOf(e)} is a promo-driven outlier, not a topic winner: ${e.metrics.anomaly.replace(/ — treat as promo-driven outlier, not topic signal$/, "")}.`,
         recommendation: `Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.`,
-        caveat: `Outlier = more than double the typical episode on that unit; excluded from host-split aggregates automatically.`,
+        caveat: `Outlier = more than double what nearby episodes did on that unit at the same age${flags.get(e.slug)?.provisional ? " (an early read until three of them reach three weeks)" : ""}; left out of host, announce, and topic comparisons automatically.`,
         chartState: state({ chart: "standings", solo: e.slug }),
       });
     }

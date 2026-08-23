@@ -291,8 +291,7 @@ export function typicalCurve(episodes, flags, { exclude = null, minPeers = MIN_P
 
 // --- the projection build-data writes as data.baselines --------------------
 
-export function computeBaselines(episodes) {
-  const flags = anomalyFlags(episodes);
+export function computeBaselines(episodes, { flags = anomalyFlags(episodes) } = {}) {
   const anomaly = {};
   for (const [slug, f] of flags) anomaly[slug] = { flagged: f.flagged, provisional: f.provisional, units: f.units };
   const mature = episodes.filter((e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics);

@@ -75,8 +75,11 @@ export function detect(prev, cur, data) {
 
   // 2. same-age pace rank change for the newest episode (same episode only —
   // a new episode resets the comparison and is covered by alert 1)
+  // (PRD v7 F31: only when the peer set is the same size — a rank that moves
+  // because more episodes started spanning the age is not a change)
   if (prev.paceRank && cur.paceRank && prev.newestSlug === cur.newestSlug &&
-      cur.paceRank.rank != null && prev.paceRank.rank != null && cur.paceRank.rank !== prev.paceRank.rank) {
+      cur.paceRank.rank != null && prev.paceRank.rank != null && cur.paceRank.rank !== prev.paceRank.rank &&
+      cur.paceRank.of === prev.paceRank.of) {
     const e = byslug(cur.newestSlug);
     const dir = cur.paceRank.rank < prev.paceRank.rank ? "up" : "down";
     out.push(`E${e?.ep} (${short(e?.title ?? cur.newestSlug)}) moved ${dir} to #${cur.paceRank.rank} of ${cur.paceRank.of} on same-age YouTube pace (was #${prev.paceRank.rank}).`);

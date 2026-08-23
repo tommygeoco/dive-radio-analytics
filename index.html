@@ -770,36 +770,14 @@ function healthTipHTML(e, h) {
 }
 
 function sameAgeSub(e) {
-  const ytSum = (byDest) => YT_KEYS.reduce((a,k) => a + (byDest[k]?.views || 0), 0);
-  const age = Date.parse(e.latest.ts) - premiereMs(e.premiere);
-  const peers = [];
-  for (const o of EPS) {
-    if (o.slug === e.slug) continue;
-    const prem = premiereMs(o.premiere);
-    if (Date.parse(o.snapshots[0].ts) - prem > age) continue;
-    if (Date.parse(o.snapshots[o.snapshots.length-1].ts) - prem < age) continue;
-    let best = null;
-    for (const s of o.snapshots) {
-      const t = Date.parse(s.ts);
-      if (t - prem <= age && (!best || t > best.t)) best = { t, v: ytSum(s.byDest) };
-    }
-    if (best) peers.push(best.v);
-  }
-  if (peers.length < 3) return null;
-  peers.sort((a,b)=>a-b);
-  const med = peers[Math.floor(peers.length/2)];
-  if (med <= 0) return null;
-  const cur = e.latest.ytTotal;
-  if (!Number.isFinite(cur)) return null;
-  return {
-    pct: Math.round(((cur - med) / med) * 100),
-    n: peers.length,
-    rank: peers.filter((v) => v > cur).length + 1,
-    of: peers.length + 1,
-  };
+  // PRD v7 W19b: pace is read from data.baselines — YouTube views at this
+  // episode's current age against the other episodes' readings at that age,
+  // promo outliers left out, at least three peers or nothing. Never recomputed here.
+  const p = DATA.baselines?.pace?.[e.slug];
+  if (!p || p.rank == null || !Number.isFinite(p.pct)) return null;
+  return { pct: p.pct, n: p.n, rank: p.rank, of: p.of };
 }
 
-/* ================= W10 saved show health ================= */
 function healthTrend(points) {
   if (!Array.isArray(points) || points.length < 7) return "";
   const values = points.map(point => point.score);
@@ -1190,7 +1168,7 @@ function buildPanel() {
       html += `<div class="irow" data-tip="${esc(tip)}" tabindex="0">${ICONS[icon]}<span class="lb">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
     }
     if (pace) {
-      const paceTip = "YouTube views at the same age as earlier episodes — appears after three of them have real data at that age.";
+      const paceTip = "YouTube views at the same age as the other episodes, promo outliers left out — appears after three of them have real data at that age.";
       html += `<div class="irow" data-tip="${esc(paceTip)}" tabindex="0">${ICONS.gauge}<span class="lb">Same-age pace</span>${
         Math.abs(pace.pct) <= 5
           ? `<span class="db mid" data-tip="right at the typical level" tabindex="0">≈</span>`
@@ -2339,7 +2317,7 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
-  <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
+  <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>

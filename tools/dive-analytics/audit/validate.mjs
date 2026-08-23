@@ -538,16 +538,14 @@ function premiereMs(dateStr) {
   }
   const paceInsights = data.insights.filter((insight) => insight.id === "pace-rank");
   const newest = eps.at(-1);
-  const targetAge = Date.parse(newest.latest.ts) - premiereMs(newest.premiere);
-  const pacePeers = eps.slice(0, -1).filter((episode) => {
-    const premiere = premiereMs(episode.premiere);
-    const firstAge = Date.parse(episode.snapshots[0].ts) - premiere;
-    const lastAge = Date.parse(episode.snapshots.at(-1).ts) - premiere;
-    return firstAge <= targetAge && lastAge >= targetAge;
-  });
-  const paceReady = pacePeers.length >= 3 && Number.isFinite(newest.latest.ytTotal);
+  // PRD v7 W19b: pace readiness and rank come from the one baselines definition
+  const pacePublic = data.baselines?.pace?.[newest.slug] || null;
+  const paceReady = !!(pacePublic && pacePublic.rank != null);
   if (paceReady !== (data.showTrend?.paceRank != null)) {
-    bad++; fail("insight pace-rank: public pace readiness does not match the three-peer gate");
+    bad++; fail("insight pace-rank: public pace readiness does not match the baselines three-peer gate");
+  }
+  if (paceReady && (data.showTrend.paceRank.rank !== pacePublic.rank || data.showTrend.paceRank.of !== pacePublic.of)) {
+    bad++; fail("insight pace-rank: showTrend.paceRank disagrees with data.baselines.pace");
   }
   if (paceInsights.length !== (paceReady ? 1 : 0)) {
     bad++; fail(`insight pace-rank: expected ${paceReady ? "one grounded insight" : "no small-sample insight"}, found ${paceInsights.length}`);
@@ -1031,10 +1029,12 @@ function premiereMs(dateStr) {
   if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
     bad++; fail("dashboard: first-week trend verdict is not gated until three clean weeks exist");
   }
-  if (!/if \(peers\.length < 3\) return null;/.test(html)
+  if (!/const p = DATA\.baselines\?\.pace\?\.\[e\.slug\];/.test(html)
+    || /peers\.length < 3/.test(html)
     || /filter\(i => i\.id !== "pace-rank"\)/.test(html)
-    || !/after three earlier episodes have real data at that age/.test(html)) {
-    bad++; fail("dashboard: same-age pace is not consistently gated to three real peers across panel, insights, and About");
+    || !/after three other episodes have real data at that age/.test(html)
+    || !/appears after three of them have real data at that age/.test(html)) {
+    bad++; fail("dashboard: same-age pace must be read from data.baselines.pace (never recomputed in the browser) and say so in the panel tip and About");
   }
   if (!/pct\s*<=\s*5/.test(html) || !/Math\.abs\(pct\)\s*<=\s*5/.test(html)) {
     bad++; fail("dashboard: rating and growth conclusions do not suppress small differences");
@@ -1441,6 +1441,11 @@ function premiereMs(dateStr) {
         if (p && p.rank != null && p.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} pace ranked on ${p.n} peers`); }
         if (p && p.rank == null && !p.reason) { bad++; fail(`baselines: ${slug} pace absent without a reason`); }
         for (const x of p?.peers || []) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: ${slug} pace peers include outlier ${x}`); }
+      }
+      const flagsAgain = B.anomalyFlags(eps);
+      for (const e of eps) {
+        const want = flagsAgain.get(e.slug)?.text ?? null;
+        if ((e.metrics?.anomaly ?? null) !== want) { bad++; fail(`baselines: ${e.slug} metrics.anomaly does not match the baselines outlier test`); }
       }
       if (shipped.typicalCurve.points && shipped.typicalCurve.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: typical curve drawn from fewer than MIN_PEERS curves"); }
       for (const x of shipped.typicalCurve.window) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: typical curve includes outlier ${x}`); }
