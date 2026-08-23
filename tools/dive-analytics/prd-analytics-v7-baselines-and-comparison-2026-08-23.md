@@ -1,6 +1,6 @@
 # PRD — Dive Radio analytics v7: baselines, like-for-like comparison, freshness (2026-08-23)
 
-**Owner:** Tommy · **Author:** Claude (Fable 5) from a code audit of `github.com/tommygeoco/dive-radio-analytics` at commit `96a4f2f` (2026-08-23), then three independent fresh-context audit passes (§10) · **Status:** PLANNED — nothing in this document is built.
+**Owner:** Tommy · **Author:** Claude (Fable 5) from a code audit of `github.com/tommygeoco/dive-radio-analytics` at commit `96a4f2f` (2026-08-23), then three independent fresh-context audit passes (§10) · **Status:** IMPLEMENTED 2026-08-23 (W19a–W23; see the implementation notes at the end) — awaiting merge and the chain machine's first model runs.
 **Supersedes:** the baseline / "typical" definitions in v4 §1–2 and the W10 section of v5. Everything else in v2–v6 stands.
 **Trigger:** owner question 2026-08-23 — "are the averages calculated intelligently, or are we comparing against stale averages / sentiment?"
 **Runtime truth:** `/Users/bones/Dev/2026/dive-radio-analytics` (the chain machine). A copy of this file lives at `tools/dive-analytics/` in the repo; `CLAUDE.md` and `ARCHITECTURE.md` there describe the system as it is today.
@@ -322,4 +322,19 @@ Three fresh-context passes ran against the draft before this version (2026-08-23
 3. **Gap-finding** (20 findings, 7 HIGH): the day-1 store stall under the existing append gate (F33 — gate relaxed to ≥3 checks); the absolute-scale sentiment balance dominating after honest absences (F8b — no redistributed weight into absolute measures; check-set guard); two browser-side typicals missed by the draft (F29 typical curve, F30 per-row pace — both move to `data.baselines`); the collision with the "absence is silent" directive (D7); the recommendation engine comparing unlike-age rates (F28); sentiment starvation at current volumes (F34, stated with its replacement); alerts firing on window changes and n<3 (F31); recommendations grounded against today's sheet (F32); the outlier test made same-age and two-tier with stamped verdicts so frozen windows never flip; YouTube lag handled by a wider history tolerance; two-point trend-card verdicts lose trend words; `SLOPE_N` exported; critic harvest extended so the critic can actually re-derive.
 
 ## Status log
-- 2026-08-23 — written from the code audit; three audit passes folded in. Awaiting D1–D7.
+- 2026-08-23 — written from the code audit; three audit passes folded in.
+- 2026-08-23 — owner adopted the recommended D1a–D7; implemented the same day (notes below).
+
+## Implementation notes (2026-08-23, branch `docs/agent-guide-architecture-prd-v7`, W19a–W23 + feedback-tile redesign)
+
+Owner adopted the recommended answers to D1a–D7 ("Do your recommendations"). Where the build diverged from the text above, the build is right and the divergence is recorded here:
+
+- **Outlier test has a third tier.** With `MIN_PEERS = 3`, neither same-age tier can run for E3 today (only E1/E2 have readings at its age), so §3.0's "E3 stays flagged under tier 2" was wrong — it would have silently un-flagged for four days. `baselines.anomalyFlags` falls back to the window-limited lifetime test (the pre-v7 rule, self excluded, ≥3 peers) only when neither same-age tier has `MIN_PEERS`, stamped `provisional`. E3 stays flagged; tier 1 takes over when three peers have day-21 readings.
+- **`data.baselines` lives in `data.json`**, not in a separate `data/restream/baselines.json`; rebuild-currency (validator 7) covers it and the page reads it from `data.js`.
+- **Show-health peer filters moved to W21**, not W19b: switching the window under `health-v2` would have changed numbers without a formula bump. W19b switched only the outlier test and pace.
+- **The recommendation currency rule (§4.6, F32) landed in W20**, because the episode-health re-derive retired a cited score ("44") the same day. Two saved items are held back as stale today (one cites the retired score; one compares a 2-day-old subscriber rate with E1's) and named in `data.insightsStale`; the next model run rewrites the store. The fact-sheet channel-total re-sum (F19, S3) is deferred.
+- **Day-1 numbers, confirmed by dry runs:** show health under `health-v3` scores reach (51) + live (40) + sentiment (83) with weighted mean 51.1 (sentiment keeps its 0.15; reach and live share 0.85); growth, audience quality, and subscribers are "Not in yet" with reasons. Episode health: E1 sets the baseline; E2 and E3 carry "Fewer than three earlier episodes to compare with."; E4 will have no score (E3 excluded → two peers); E5 expected first, on the 07:25 run after 2026-09-03.
+- **The served health read is still the 2026-08-22 `health-v1` entry** until the chain machine runs `health.mjs` with an API key; the header already says "health read is behind", the validator warns about the formula, and the drill-in renders the old entry's stored reasons (rule 17).
+- **Validator blocks** landed as 1u (baselines + fixture test), 1v (chain freshness), 1x/1y/1z (honesty on data), with 1g/1h/1j/1n rewritten rather than new 1s/1t/1w blocks; the fixture-equality idea of 1t is the fixture test itself plus 1j's "no in-page arithmetic" regexes.
+- **`postlive-publish.sh`** stashes local data, pulls `--rebase`, and aborts on a moved remote or a conflict. After merging this branch, pull on the chain machine; regenerating `data.json` with `build-data.mjs` resolves any data conflict.
+- Added outside the PRD at the owner's request: the panel's Audience feedback tile redesign (pills, quote blockquotes, theme chips, one footnote).

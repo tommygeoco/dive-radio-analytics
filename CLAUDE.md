@@ -42,11 +42,16 @@ the audit ledgers (`tools/dive-analytics/audit/*.md`).
 asterisks, no "sat out", no wait dates. The gates still hold; they are not
 announced. The validator fails if retired absence copy reappears.
 
-**Planned, not yet adopted** — PRD v7 (`prd-analytics-v7-*.md`) proposes rules
-11–17 (like-for-like ages, windowed typicals, minimum peers, reproducible
-freezes, visible freshness, one baseline module, stored honesty renders).
-Until its owner decisions are made, the code follows rules 1–10 only; do not
-half-implement v7.
+**Rules 11–17 (PRD v7, implemented 2026-08-23 on branch
+`docs/agent-guide-architecture-prd-v7`, W19a–W23):**
+
+11. **Like for like.** Every comparison carries one basis — `sameAge` (readings at the same days-since-premiere), `mature` (own and peers past the measure's maturity age, as they stand now), or `ageFree` — and the same comment-source coverage. A comparison that cannot meet its basis is absent with a reason.
+12. **Windowed typical.** Typical = true median of the `WINDOW_N` (8) episodes before the one being read, minus promo outliers and peers with no honest reading. Lifetime medians are gone.
+13. **Minimum peers, per measure.** `MIN_PEERS` (3) or absent with a reason. An absolute-scale measure (sentiment balance) never absorbs the weight of absent checks.
+14. **Reproducible freezes.** A frozen episode-health entry stores every peer value it used (`peers[]`, `excluded[]`); the validator rebuilds the score from the entry and snapshot-sourced inputs from the snapshots. Inputs read from the overwritten analytics file are stamped `reproducible: false`.
+15. **Freshness is visible, then withheld.** The header says "health read is behind" when the saved read's date differs from the data's; after 7 days the score is withheld (empty state). Data always publishes. `tools/dive-analytics/chain.json` defines which input stores must be fresh.
+16. **One baseline per concept.** `tools/dive-analytics/baselines.mjs` is the only definition of median, window, peer filter, outlier test, reading rule, quiet zone, bands, and constants. The page reads `data.baselines`; the scorers import the module; the fixture test (`audit/baselines.test.mjs`) and validator blocks 1u/1v/1x/1y/1z prove it.
+17. **Stored honesty reaches the click layer.** Each measure's `note` ("compared at the same age" / "compared with earlier episodes as they stand now, not at the same age") and reason render in the drill-in and panel — never on chips (absence stays silent at a glance, D7).
 
 ## The five layers
 
@@ -56,8 +61,9 @@ L0 sources     YouTube Data API · YouTube Analytics API (owner OAuth, both chan
      │
 L1 capture     scripts/restream/*.mjs  →  data/restream/**        (records of what platforms reported)
      │
-L2 synthesis   tools/dive-analytics/ratings.mjs     → episode-ratings.json   (episode health, frozen)
- (deterministic) tools/dive-analytics/build-data.mjs → data.json / data.js   (EVERY number the page shows)
+L2 synthesis   tools/dive-analytics/baselines.mjs   (pure: windows, reading rule, outlier test, typicals — imported by all three below)
+ (deterministic) tools/dive-analytics/ratings.mjs   → episode-ratings.json   (episode health, frozen, rebuildable)
+               tools/dive-analytics/build-data.mjs  → data.json / data.js   (EVERY number the page shows, incl. data.baselines)
                tools/dive-analytics/watch-moments.mjs (pure functions, imported by build-data)
      │
 L3 model       scripts/restream/comments-classify.mjs → comments-classified.json
@@ -76,9 +82,9 @@ L5 page        index.html reads data.js only. It never fetches, never recomputes
 
 Rules that follow from the shape:
 
-- **L2 is the only place a comparison is computed.** If you need a new "typical", "pace", "vs", or "trend", it is computed in `build-data.mjs` / `ratings.mjs` (or, after v7, `baselines.mjs`) and shipped in `data.json`. The page formats; it does not derive.
+- **L2 is the only place a comparison is computed.** If you need a new "typical", "pace", "vs", or "trend", it is computed through `baselines.mjs` (windows, reading rule, peers, median) inside `build-data.mjs` / `ratings.mjs` / `health.mjs` and shipped in `data.json` (`data.baselines` for page-side comparisons). The page formats; it does not derive — validator 1j fails on in-page medians or thresholds.
 - **L3 scripts receive a deterministic fact sheet and may only use numbers from it.** Every number token in saved prose is validated against the facts (`health.mjs` `validateSynthesis`, `recommendations.mjs` `validateItems`). On model failure the previous store stays the public truth — every L3 step is safe to skip, and the validator checks the store, not the run.
-- **L1 stores have different time semantics.** Snapshots (`postlive/`) are append-only time series. YouTube analytics (`yt-analytics/`) is an overwrite of lifetime-to-date totals (no history today — PRD v7 W19a adds one). Comments are append-only by id; a label is never re-read without a classifier version bump. Live events are frozen at first ingest. Read `ARCHITECTURE.md` §2 before comparing two numbers from different stores.
+- **L1 stores have different time semantics.** Snapshots (`postlive/`) are append-only time series. YouTube analytics (`yt-analytics/`) is an overwrite of lifetime-to-date totals; `yt-analytics-history/<slug>.jsonl` (since 2026-08-23) keeps one line per episode per day so share watched and subscribers can be read at the same age — no backfill, so same-age readings for those two measures exist only for episodes from E7 on. Comments are append-only by id; a label is never re-read without a classifier version bump. Live events are frozen at first ingest. Read `ARCHITECTURE.md` §2 before comparing two numbers from different stores.
 - **`build-data.mjs` must be reproducible.** Validator check 7 recomputes `data.json` byte-for-byte from the stores with `generatedAt` pinned. Anything non-deterministic (time, randomness, network, a model) breaks publish.
 
 ## The daily chain
@@ -94,8 +100,8 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
-- The schedule itself is not versioned in this repo (PRD v7 F22 proposes a versioned `chain.json`). Do not add a crontab here.
-- **`postlive-publish.sh` commits and pushes `main` without pulling.** A commit pushed to `origin/main` from any other machine makes the next publish push non-fast-forward and the script aborts under `set -eu` — no deploy that day. Work from another machine lands on a branch + PR, and the owner pulls on the chain machine before the next 07:25 run.
+- `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The crontab itself lives on the owner machine; do not add one here.
+- **`postlive-publish.sh` pulls `--rebase` before it pushes** (since W21) and aborts loudly on a moved remote or a data conflict. Work from another machine still lands on a branch + PR; after a merge, pull on the chain machine before the next 07:25 run so the rebase is trivial (regenerating `data.json` with `build-data.mjs` resolves any data conflict).
 
 ## How to change a number (the procedure)
 
@@ -113,7 +119,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - Do keep `build-data.mjs` model-free and network-free.
 - Do keep prose surfaces within the banned-word list (rule 6). The validator (block 1i) and each model script's `BANNED` regex enforce it; About is the only place methodology words belong.
 - Do write reasons, not zeros, for missing data (`{value: null, reason}`), and let the page render nothing.
-- Don't add a second implementation of median / window / anomaly / band thresholds. Today there are three (`health.mjs`, `ratings.mjs`, `build-data.mjs`) and the page has its own quiet-zone and band constants; PRD v7 consolidates them. Don't make it four.
+- Don't add a second implementation of median / window / outlier / quiet zone / bands. `baselines.mjs` is the one; validator 1j/1u/1z and the fixture test fail on a second.
 - Don't add glance-layer numbers without removing others (≤12 above the fold, counted on a screenshot).
 - Don't commit secrets. API keys come from the login-shell environment (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, YouTube/X credentials via the owner's tooling); `restream-token.mjs` reads 1Password.
 - Don't run the chain or `postlive-publish.sh` from a machine that is not the owner's; the publish script is hard-wired to `/Users/bones/...` and to production Vercel.
@@ -127,18 +133,19 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 | Why does this number exist / what decision does it serve? | `PRODUCT.md`; PRD v5 §1 rule 8; the PRD section that introduced the workstream (`W<n>`) |
 | What is the exact definition and its honesty gates? | `ARCHITECTURE.md` §3; the header comment of the script that writes it; the validator block that locks it |
 | What did a critic or audit say and what was decided? | `tools/dive-analytics/audit/*.md` — every finding is fixed, rejected with evidence, or queued |
-| What is planned next? | `prd-analytics-v7-*.md` (baselines, like-for-like comparison, freshness) and its owner decisions D1–D7 |
+| Why are the comparison rules what they are? | `prd-analytics-v7-*.md` — findings F1–F34, the comparison contract (§3), the audit record (§10), and the status log's implementation notes |
 | What is the chain and cadence? | this file; `README.md` bottom; `ARCHITECTURE.md` §1 |
 
 ## Glossary (the words the code and PRDs use precisely)
 
-- **typical** — the median of a peer set. Today: all prior non-anomaly episodes (show health) or up to 9 prior episodes (episode health) or all episodes (anomaly test). v7 makes it a trailing window of 8 with ≥3 peers.
+- **typical** — the true median of the usable peers among the eight episodes before the one being read (`baselines.windowFor` + `peersFor`): promo outliers out, peers without a reading at the needed basis out, three or nothing.
 - **same-age** — a value taken from the snapshot at the same days-since-premiere as the episode under test. The only honest way to compare a young episode's views or engagement with older ones.
 - **finished / mature** — an episode at least 7 days old (reach, insights) or 21 days old (episode health read complete). Rates drift with age; finished values are comparable with each other.
 - **clean** — not an anomaly, not late-registered (`partialHistory`), with the needed snapshot coverage.
-- **anomaly / promo outlier** — an episode whose YouTube views, X plays, or X reach exceed 2× the median of the same unit; excluded from host, announce, and topic comparisons (but included in the all-show platform split, which is descriptive).
+- **anomaly / promo outlier** — an episode whose YouTube views, X plays, or X reach exceed 2× the same-age typical of the nearby episodes (settled at day 21; provisional before; the window-limited lifetime test only while history is too thin). Excluded from host, announce, topic, and every typical (but included in the all-show platform split, which is descriptive). Frozen episode-health entries store the verdicts they used.
 - **partial / stale (X plays)** — `partial`: some X targets have no plays count; `stale`: this run's plays were missing and the high-water mark was substituted. Both exclude the episode from reach comparisons.
 - **tracked late (`partialHistory`)** — first snapshot more than 5 days after premiere; first-week velocity and flatline are undefined for it.
-- **read complete / frozen** — an episode-health score is written once, on the first run at ≥21 days, and never changes within `health21-v<n>`.
+- **read complete / frozen** — an episode-health score is written once, on the first run whose last snapshot is ≥21 days old, and never changes within `health21-v<n>`; its inputs are stored so it can be rebuilt.
+- **basis / note** — `ageBasis` (sameAge / mature / ageFree) is the field; the reader sees its fixed `note` at the click layer. The word "basis" itself is banned on the page.
 - **window-relative** — each episode-health score compares the episode only with episodes that aired *before* it. Two scores are not on one baseline; a row of them answers "did each beat the show's own bar at the time", not "which episode was best".
 - **glance / click / About** — the three layers: a sentence the owners read in seconds; the detail behind it on click/hover; the methodology in "About this data".
