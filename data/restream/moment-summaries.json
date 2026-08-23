@@ -1,9 +1,9 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-23T06:55:00.000Z",
- "provider": "session",
- "model": null,
+ "updatedAt": "2026-08-23T20:22:38.792Z",
+ "provider": "anthropic",
+ "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
  "entries": {
   "2026-07-17-dive-radio-bumpy-takeoff|drop|0.06": {
@@ -73,6 +73,26 @@
   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|hold|0.56": {
    "summary": "A guest walks through how their prototyping workflow changed — from making messes on top of the production codebase to isolated quick mockups — and shares a screen of the new setup.",
    "writtenAt": "2026-08-23T06:55:00.000Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.1": {
+   "summary": "Hosts open designer of the week with recorded nominations: Taylor Palmer pitches Ruchita's Pixar and Blizzard work, and another video praises Adiv Dhar's playful song-making site.",
+   "writtenAt": "2026-08-23T20:22:38.791Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.16": {
+   "summary": "Hosts chat about tinkering with shaders, then one nominates Rive animator Bartek, showing his flaming sentiment slider, before urging listeners to vote for designer of the week.",
+   "writtenAt": "2026-08-23T20:22:38.792Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.39": {
+   "summary": "Hosts play a teaser clip of a guest, John, on giving agents little characters, recount debates inside Cursor over what became Grokbot, and turn to mascots like Duolingo and Claude.",
+   "writtenAt": "2026-08-23T20:22:38.792Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.54": {
+   "summary": "Host live-tinkers with open source mascot builders, tweaking eyes and movement, showing cute animal characters, then reveals a detailed mixed media mascot of his co-host in sneakers.",
+   "writtenAt": "2026-08-23T20:22:38.792Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.67": {
+   "summary": "Host demos a homemade SVG story animator named for his daughter, guiding a character uphill with a stamina bar, while the co-host talks about making stories with his own kid.",
+   "writtenAt": "2026-08-23T20:22:38.792Z"
   }
  }
 }
