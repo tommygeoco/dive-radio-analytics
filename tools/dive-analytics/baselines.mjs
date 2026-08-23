@@ -291,7 +291,7 @@ export function typicalCurve(episodes, flags, { exclude = null, minPeers = MIN_P
 
 // --- the projection build-data writes as data.baselines --------------------
 
-export function computeBaselines(episodes, { flags = anomalyFlags(episodes) } = {}) {
+export function computeBaselines(episodes, { flags = anomalyFlags(episodes), history = null } = {}) {
   const anomaly = {};
   for (const [slug, f] of flags) anomaly[slug] = { flagged: f.flagged, provisional: f.provisional, units: f.units };
   const mature = episodes.filter((e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics);
@@ -300,11 +300,50 @@ export function computeBaselines(episodes, { flags = anomalyFlags(episodes) } = 
     const typical = vals.length >= MIN_PEERS ? trueMedian(vals.map((e) => e.watch.avgPercent)) : null;
     return { typical: Number.isFinite(typical) ? round1(typical) : null, n: vals.length, window: vals.map((e) => e.slug), ageBasis: "mature" };
   })();
+  // per-episode watched typical for the table's ▲/▼: the other mature,
+  // unflagged episodes (the row itself never in its own typical)
+  const watchPctBySlug = Object.fromEntries(episodes.map((e) => {
+    const others = mature.filter((o) => o.slug !== e.slug && !flags.get(o.slug)?.flagged && Number.isFinite(o.watch?.avgPercent));
+    const typical = others.length >= MIN_PEERS ? trueMedian(others.map((o) => o.watch.avgPercent)) : null;
+    return [e.slug, { typical: Number.isFinite(typical) ? round1(typical) : null, n: others.length, window: others.map((o) => o.slug), ageBasis: "mature" }];
+  }));
   return {
     constants: CONSTANTS,
     anomaly,
     watchPct,
+    watchPctBySlug,
     typicalCurve: typicalCurve(episodes, flags),
     pace: Object.fromEntries(episodes.map((e) => [e.slug, paceFor(e, episodes, flags)])),
+    newestVsPrevious: newestVsPrevious(episodes, flags, { history }),
   };
+}
+
+// The growth-trend card's verdict for the alternate measures: the newest
+// episode against the one before it, like for like — reach from snapshots at
+// the same age, share watched from analytics history lines at the same age,
+// live turnout age-free. Absent with a reason when no same-age reading exists.
+export const TOO_YOUNG = "Too young to compare with the episode before it at the same age.";
+export function newestVsPrevious(episodes, flags, { history = null } = {}) {
+  const sorted = [...episodes].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
+  const newest = sorted.at(-1);
+  const previous = sorted.at(-2);
+  if (!newest || !previous) return null;
+  const pct = (a, b) => (Number.isFinite(a) && Number.isFinite(b) && b > 0 ? Math.round(((a - b) / b) * 100) : null);
+  const A = currentAge(newest);
+  const out = { newest: newest.slug, previous: previous.slug, ageDays: Number.isFinite(A) ? round1(A) : null };
+  const ns = Number.isFinite(A) ? snapshotAt(newest, A) : null;
+  const ps = Number.isFinite(A) ? snapshotAt(previous, A) : null;
+  out.reach = ns && ps ? { pct: pct(xImpressionsOf(ns), xImpressionsOf(ps)), ageBasis: "sameAge" } : { pct: null, reason: TOO_YOUNG };
+  const nl = history ? historyAt(history(newest.slug), A) : null;
+  const pl = history ? historyAt(history(previous.slug), A) : null;
+  const blend = (line) => {
+    let num = 0, den = 0;
+    for (const t of Object.values(line?.channels || {})) { if (Number.isFinite(t.views) && t.views > 0 && Number.isFinite(t.averageViewPercentage)) { num += t.averageViewPercentage * t.views; den += t.views; } }
+    return den > 0 ? num / den : null;
+  };
+  out.watched = nl && pl ? { pct: pct(blend(nl), blend(pl)), ageBasis: "sameAge" } : { pct: null, reason: TOO_YOUNG };
+  out.live = Number.isFinite(newest.live?.peak) && Number.isFinite(previous.live?.peak)
+    ? { pct: pct(newest.live.peak, previous.live.peak), ageBasis: "ageFree" }
+    : { pct: null, reason: "No live session to compare." };
+  return out;
 }

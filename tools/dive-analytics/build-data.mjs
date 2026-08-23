@@ -294,7 +294,7 @@ export function computeAll({ now = Date.now() } = {}) {
   const commentSummary = attachComments(dive);
   attachEpisodeHealth(dive);
   attachWatch(dive);
-  const baselines = computeBaselines(dive, { flags });
+  const baselines = computeBaselines(dive, { flags, history: readHistoryLines });
 
   // W15 recommendation engine: when the saved store exists, its model-written,
   // number-grounded items ARE "What matters" — the deterministic rule-based
@@ -361,6 +361,14 @@ export function computeAll({ now = Date.now() } = {}) {
     health,
     baselines,
   };
+}
+
+// analytics history lines (PRD v7 W19a) for same-age comparisons of analytics measures
+const ANALYTICS_HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-history");
+function readHistoryLines(slug) {
+  const p = join(ANALYTICS_HISTORY_DIR, `${slug}.jsonl`);
+  if (!existsSync(p)) return [];
+  try { return readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; }
 }
 
 // --- episode health (W12): computed + frozen by ratings.mjs, attached from its store ---

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T09:31:31.313Z",
+ "generatedAt": "2026-08-23T09:34:50.764Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -15578,12 +15578,6 @@
    "category": "promotion"
   },
   {
-   "id": "subscribe-window",
-   "text": "Subscriber pull spent itself on launch day one: 8.9 subscribers per 1,000 views on the first episode, then 2.9 or less on every episode since.",
-   "recommendation": "Script one spoken subscribe ask at minute 2–3, right where the drop levels off, plus a pinned comment with the link — and judge it against that 8.9 start.",
-   "category": "audience"
-  },
-  {
    "id": "channel-gap",
    "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
    "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode.",
@@ -15594,6 +15588,10 @@
   {
    "id": "best-open-template",
    "why": "number 44 is not in the fact sheet"
+  },
+  {
+   "id": "subscribe-window",
+   "why": "compares a young episode's rate with a finished episode's"
   }
  ],
  "showTrend": {
@@ -16175,6 +16173,60 @@
    ],
    "ageBasis": "mature"
   },
+  "watchPctBySlug": {
+   "2026-07-17-dive-radio-bumpy-takeoff": {
+    "typical": null,
+    "n": 1,
+    "window": [
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
+    "typical": null,
+    "n": 1,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
+    "typical": null,
+    "n": 2,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-08-06-dive-radio-backyard-designers-behind-the": {
+    "typical": null,
+    "n": 2,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+    "typical": null,
+    "n": 2,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+    "typical": null,
+    "n": 2,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+    ],
+    "ageBasis": "mature"
+   }
+  },
   "typicalCurve": {
    "points": null,
    "n": 2,
@@ -16364,6 +16416,23 @@
      }
     ],
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
+   }
+  },
+  "newestVsPrevious": {
+   "newest": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+   "previous": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+   "ageDays": 1.9,
+   "reach": {
+    "pct": null,
+    "reason": "Too young to compare with the episode before it at the same age."
+   },
+   "watched": {
+    "pct": null,
+    "reason": "Too young to compare with the episode before it at the same age."
+   },
+   "live": {
+    "pct": 11,
+    "ageBasis": "ageFree"
    }
   }
  }

@@ -724,11 +724,15 @@ const ICONS = {
   info: IC('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/>', "ki"),
 };
 // comparison badge: glyph + delta instead of words; the small-difference gate
-// stays at pct <= 5 so noise never reads as signal
+// stays inside the quiet zone (data.baselines.constants) so noise never reads as signal
+// comparison constants come from the one baselines definition (PRD v7 rule 16)
+const BASE_CONST = DATA.baselines?.constants || {};
+const QUIET_ZONE = BASE_CONST.QUIET_ZONE_PCT ?? 5;
+const BANDS = BASE_CONST.BANDS || { healthy: 55, steady: 45 };
 function deltaBadge(ratio) {
   if (ratio == null) return "";
   const pct = Math.round(Math.abs(ratio - 1) * 100);
-  if (pct <= 5) return `<span class="db mid" data-tip="right at the show’s typical level" tabindex="0">≈</span>`;
+  if (pct <= QUIET_ZONE) return `<span class="db mid" data-tip="right at the show’s typical level" tabindex="0">≈</span>`;
   return ratio > 1
     ? `<span class="db up">▲${pct}%</span>`
     : `<span class="db down">▼${pct}%</span>`;
@@ -823,8 +827,8 @@ const CHECK_LABELS = {
 };
 function checkState(score) {
   if (score == null) return ["waiting", "Not in yet"];
-  if (score >= 55) return ["healthy", "Healthy"];
-  if (score >= 45) return ["steady", "Steady"];
+  if (score >= BANDS.healthy) return ["healthy", "Healthy"];
+  if (score >= BANDS.steady) return ["steady", "Steady"];
   return ["fragile", "Fragile"];
 }
 
@@ -861,13 +865,17 @@ function buildHealth() {
     const [label, sub] = CHECK_LABELS[c.key] || [c.key, ""];
     const [cls, word] = checkState(c.score);
     const fmtM = (k, v) => `${nfmt(v)}${PCT_MEASURES.has(k) ? "%" : ""}`;
+    // each measure's stored note says how it was compared (same age, or as the
+    // earlier episodes stand now); a scored check's reason (which episode was
+    // read, what is still early) renders too — stored honesty reaches the
+    // click layer (PRD v7 rule 17)
     const drill = (c.measures || []).map((m) => {
       const name = MEASURE_WORDS[m.key] || m.key;
       if (m.value == null) return m.reason ? `${name}: ${m.reason}` : null;
-      return `${name}: ${fmtM(m.key, m.value)}${m.typical != null ? ` · typically ${fmtM(m.key, m.typical)}` : ""}${m.sample ? ` · from ${m.sample} episodes` : ""}`;
+      return `${name}: ${fmtM(m.key, m.value)}${m.typical != null ? ` · typically ${fmtM(m.key, m.typical)}` : ""}${m.sample ? ` · from ${m.sample} episodes` : ""}${m.note ? ` · ${m.note}` : ""}`;
     }).filter(Boolean);
     const note = c.score != null
-      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.`
+      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${c.reason ? ` ${c.reason.charAt(0).toUpperCase() + c.reason.slice(1)}` : ""}`
       : (c.reason || "");
     return `<div class="checkrow" tabindex="0" data-stat="${esc(`${label} — ${word}`)}"${drill.length ? ` data-rows="${esc(drill.join("||"))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}><span class="cl">${label}</span>
       <span class="st ${cls}"><i aria-hidden="true"></i>${word}</span></div>`;
@@ -1196,7 +1204,7 @@ function buildPanel() {
     if (pace) {
       const paceTip = "YouTube views at the same age as the other episodes, promo outliers left out — appears after three of them have real data at that age.";
       html += `<div class="irow" data-tip="${esc(paceTip)}" tabindex="0">${ICONS.gauge}<span class="lb">Same-age pace</span>${
-        Math.abs(pace.pct) <= 5
+        Math.abs(pace.pct) <= QUIET_ZONE
           ? `<span class="db mid" data-tip="right at the typical level" tabindex="0">≈</span>`
           : pace.pct > 0 ? `<span class="db up">▲${Math.abs(pace.pct)}%</span>` : `<span class="db down">▼${Math.abs(pace.pct)}%</span>`}</div>`;
     }
@@ -1376,11 +1384,15 @@ function buildCompound() {
     }
     const maxV = Math.max(...have.map((r) => r.v));
     const hotSlug = state.solo && have.some((r) => r.e.slug === state.solo) ? state.solo : have.at(-1).e.slug;
-    const last = have.at(-1).v, prev = have.at(-2).v;
-    const pct = prev > 0 ? Math.round(((last - prev) / prev) * 100) : 0;
-    const cls2 = Math.abs(pct) <= 5 ? "" : pct > 0 ? "up" : "down";
-    const verdict2 = Math.abs(pct) <= 5 ? "Holding steady episode to episode."
-      : pct > 0 ? "Climbing on the newest episode." : "Slipping on the newest episode.";
+    // the verdict compares the newest episode with the one before it LIKE FOR
+    // LIKE (reach and share watched at the same age, live turnout age-free),
+    // read from data.baselines — never from the lifetime bars above (PRD v7 F15)
+    const cmp = DATA.baselines?.newestVsPrevious?.[metric] || null;
+    const pct = cmp && Number.isFinite(cmp.pct) ? cmp.pct : null;
+    const cls2 = pct == null || Math.abs(pct) <= QUIET_ZONE ? "" : pct > 0 ? "up" : "down";
+    const verdict2 = pct == null ? (cmp?.reason || "Too young to compare with the episode before it at the same age.")
+      : Math.abs(pct) <= QUIET_ZONE ? "Holding steady episode to episode."
+      : pct > 0 ? `The newest episode is up ${pct}% on the one before it.` : `The newest episode is down ${Math.abs(pct)}% on the one before it.`;
     el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>
       <div class="bars">${have.map((r) => { const hot = r.e.slug === hotSlug; return `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
         <span class="bnum" aria-hidden="true">${M.card(r.v)}</span>
@@ -1405,11 +1417,15 @@ function buildCompound() {
     el.style.display = "";
     return;
   } else {
-    const last = vals[vals.length - 1], prev = vals[vals.length - 2];
+    const last = vals[vals.length - 1], prev = vals[vals.length - 2], before = vals[vals.length - 3];
     const pct = Math.round(((last.value - prev.value) / prev.value) * 100);
-    if (Math.abs(pct) <= 5) { verdict = "First-week audience is holding steady."; }
-    else if (pct > 0) { verdict = "Each launch is starting stronger."; cls = "up"; }
-    else { verdict = "New launches are starting softer."; cls = "down"; }
+    const prevPct = Math.round(((prev.value - before.value) / before.value) * 100);
+    // a trend word needs a three-point run in one direction; two points only
+    // say how the newest first week compares with the one before it
+    const run = Math.abs(pct) > QUIET_ZONE && Math.abs(prevPct) > QUIET_ZONE && Math.sign(pct) === Math.sign(prevPct);
+    if (Math.abs(pct) <= QUIET_ZONE) { verdict = "First-week audience is holding steady."; }
+    else if (pct > 0) { verdict = run ? "Each launch is starting stronger." : `The newest first week beat the one before by ${pct}%.`; cls = "up"; }
+    else { verdict = run ? "New launches are starting softer." : `The newest first week came in ${Math.abs(pct)}% under the one before.`; cls = "down"; }
   }
   const hotSlug = state.solo && vals.some((r) => r.e.slug === state.solo) ? state.solo : vals.at(-1).e.slug;
   let bars = "";
@@ -2030,18 +2046,13 @@ function render() {
         episode: e, order: base.ord,
       };
     });
-    const curves = withCurve.map(e => e.watch.curve);
-    if (curves.length >= 3) {
-      const byAt = new Map();
-      for (const c of curves) for (const p of c) {
-        const arr = byAt.get(p.at) || [];
-        arr.push(p.watching);
-        byAt.set(p.at, arr);
-      }
-      const mid = (vals) => { const v = [...vals].sort((a, b) => a - b); const m = Math.floor(v.length / 2); return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; };
-      const pts = [...byAt.entries()].filter(([, vals]) => vals.length === curves.length).sort((a, b) => a[0] - b[0])
-        .map(([at, vals]) => ({ x: Math.round(at * 100), y: Math.round(mid(vals) * 1000) / 10 }));
-      if (pts.length) datasets.push({ isTypical: true, data: pts, borderColor: "#8a94a8", backgroundColor: "transparent",
+    // the typical line is read from data.baselines.typicalCurve — the middle
+    // value across three-week-old episodes' curves with promo outliers left out,
+    // drawn only once three such curves exist; never computed here (PRD v7 F29)
+    const typical = DATA.baselines?.typicalCurve;
+    if (typical?.points?.length) {
+      const pts = typical.points.map((p) => ({ x: Math.round(p.at * 100), y: Math.round(p.watching * 1000) / 10 }));
+      datasets.push({ isTypical: true, data: pts, borderColor: "#8a94a8", backgroundColor: "transparent",
         borderDash: [6, 5], borderWidth: 1.5, pointRadius: 0, pointHoverRadius: 4, tension: 0.25, order: 3 });
     }
     const cfg = {
@@ -2230,10 +2241,9 @@ function buildTable() {
     }
   } else {
     html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>`;
-    const watchedVals = EPS.map((x) => x.watch?.avgPercent).filter(Number.isFinite).sort((a, b) => a - b);
-    const wMidIdx = Math.floor(watchedVals.length / 2);
-    const wTypical = !watchedVals.length ? null
-      : watchedVals.length % 2 ? watchedVals[wMidIdx] : (watchedVals[wMidIdx - 1] + watchedVals[wMidIdx]) / 2;
+    // watched-vs-typical reads each row's typical from data.baselines (the
+    // other three-week-old episodes, outliers and the row itself left out);
+    // nothing is computed here (PRD v7 F16)
     // episode scores are each against a different set of earlier episodes —
     // one neutral colour, never the show-health bands (PRD v7 F17)
     for (const e of [...EPS].reverse()) {
@@ -2253,12 +2263,13 @@ function buildTable() {
       let watchedCell = "–";
       if (e.watch?.avgPercent != null) {
         const v = e.watch.avgPercent;
-        if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical > 0.05) {
+        const wTypical = DATA.baselines?.watchPctBySlug?.[e.slug]?.typical ?? null;
+        if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical * 100 > QUIET_ZONE) {
           watchedCell = v > wTypical ? `<span class="st-good">▲${v}%</span>` : `<span class="st-bad">▼${v}%</span>`;
         } else watchedCell = `<span class="st-mid">${v}%</span>`;
       }
       html += `<td>${watchedCell}</td>`;
-      html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= 5 ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%"}</span>` : "–"}</td></tr>`;
+      html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= QUIET_ZONE ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%"}</span>` : "–"}</td></tr>`;
     }
   }
   html += "</table>";
@@ -2356,8 +2367,8 @@ function buildAbout() {
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline, then the top do-next actions from the recommendation list, in order — the full finding behind each one is in the list below the chart. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
-  <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
+  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline, then the top do-next actions from the recommendation list, in order — the full finding behind each one is in the list below the chart. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically. Snapshots stop 60 days after an episode’s premiere, long after its totals have settled. YouTube’s analytics arrive two to three days late for every episode alike, so “three weeks in” means the numbers as they stood about then.</p>`;
 }
 
 /* ================= sync / events ================= */
@@ -2459,9 +2470,13 @@ document.getElementById("reset").addEventListener("click", () => {
 const stamp = document.getElementById("stamp");
 {
   const when = relativeDayWords(phoenixDateKey(DATA.generatedAt));
-  // dot state is honest: green only when the data really is from today
-  stamp.innerHTML = `<i class="${when === "today" ? "" : "old"}" aria-hidden="true"></i>Data refreshed ${esc(when)}`;
-  stamp.title = `Exact refresh: ${DATA.generatedAt}`;
+  // dot state is honest: green only when the data really is from today; when
+  // the saved show-health read is behind the data it says so (D5 — the date
+  // lives in the hover title, so no digit is added above the fold)
+  const h = DATA.health;
+  const behind = h && Number.isFinite(h.ageDays) && h.ageDays >= 1;
+  stamp.innerHTML = `<i class="${when === "today" && !behind ? "" : "old"}" aria-hidden="true"></i>Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}`;
+  stamp.title = `Exact refresh: ${DATA.generatedAt}${h?.date ? ` · health read saved ${h.date}` : ""}`;
 }
 
 buildAbout();

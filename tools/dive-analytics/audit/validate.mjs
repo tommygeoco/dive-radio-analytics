@@ -1134,8 +1134,14 @@ function premiereMs(dateStr) {
     || !/appears after three of them have real data at that age/.test(html)) {
     bad++; fail("dashboard: same-age pace must be read from data.baselines.pace (never recomputed in the browser) and say so in the panel tip and About");
   }
-  if (!/pct\s*<=\s*5/.test(html) || !/Math\.abs\(pct\)\s*<=\s*5/.test(html)) {
-    bad++; fail("dashboard: rating and growth conclusions do not suppress small differences");
+  // quiet zone and bands are read from data.baselines.constants (PRD v7 rule 16);
+  // the page carries no second definition of either
+  if (!/const QUIET_ZONE = BASE_CONST\.QUIET_ZONE_PCT \?\? 5;/.test(html) || !/pct <= QUIET_ZONE/.test(html) || !/Math\.abs\(pct\) <= QUIET_ZONE/.test(html)
+    || /pct\s*<=\s*5\b/.test(html) || /Math\.abs\(pct\)\s*<=\s*5\b/.test(html) || /> 0\.05\)/.test(html)) {
+    bad++; fail("dashboard: comparison conclusions must read the quiet zone from data.baselines.constants and nowhere else");
+  }
+  if (!/score >= BANDS\.healthy/.test(html) || !/score >= BANDS\.steady/.test(html) || /score >= 55\b/.test(html)) {
+    bad++; fail("dashboard: health bands must read data.baselines.constants.BANDS");
   }
   if (/provisional\s+—\s+settles/i.test(html)) {
     bad++; fail('dashboard: strip uses "provisional" instead of the plain "Not final" label');
@@ -1151,11 +1157,22 @@ function premiereMs(dateStr) {
   if (/healthWaitDate|sat out|sets the baseline<\/span>|not in yet/.test(html)) {
     bad++; fail("dashboard: retired absence copy (wait dates, sat-out notes, baseline chips, not-in-yet suffixes) is back on a surface");
   }
-  // W13: the typical watch line is a claim about the show — it waits for three
-  // real curves
-  if (!/curves\.length >= 3/.test(html)) {
-    bad++; fail("dashboard: the typical watch line is not gated behind three real curves");
+  // W13/PRD v7 F29: the typical watch line is read from data.baselines.typicalCurve
+  // (mature, unflagged curves, three or nothing) — never computed in the browser
+  if (!/const typical = DATA\.baselines\?\.typicalCurve;/.test(html) || /curves\.length >= 3/.test(html) || /const mid = \(vals\)/.test(html)) {
+    bad++; fail("dashboard: the typical watch line must be read from data.baselines.typicalCurve, never computed in the page");
   }
+  // F16/F15: watched-vs-typical and the trend verdict read data.baselines too
+  if (!/DATA\.baselines\?\.watchPctBySlug\?\.\[e\.slug\]\?\.typical/.test(html) || /const watchedVals = EPS\.map/.test(html)) {
+    bad++; fail("dashboard: the table's watched typical must come from data.baselines.watchPctBySlug");
+  }
+  if (!/DATA\.baselines\?\.newestVsPrevious\?\.\[metric\]/.test(html) || /Climbing on the newest episode/.test(html)) {
+    bad++; fail("dashboard: the trend-card verdict must compare like for like from data.baselines.newestVsPrevious");
+  }
+  if (!/health read is \$\{h\.withheld \? "withheld" : "behind"\}/.test(html)) {
+    bad++; fail("dashboard: the header stamp must say when the saved health read is behind the data (D5)");
+  }
+  if (/"<th>Episode<\/th>[^\n]*\$\{PLOGO/.test(html)) { bad++; fail("dashboard: the table header is not a template literal (F25)"); }
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks, scores wait for finished three-week reads, plain words throughout");
 }
 
