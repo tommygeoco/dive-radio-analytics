@@ -1,54 +1,51 @@
 {
-  "version": 1,
-  "promptVersion": 2,
-  "updatedAt": "2026-08-23T05:45:00.000Z",
-  "provider": "session",
-  "model": null,
-  "note": "Seeded from the owner session on 2026-08-23 against the full fact sheet (watch curves, view sources, per-channel subscribers and watch shares, health reads, live, platform split); mid-show-exit added the same day from the v6 watch-moment facts and transcript excerpts. recommendations.mjs regenerates this store when the pipeline runs with an API key.",
-  "factsGeneratedAt": "2026-08-23T05:27:54.460Z",
-  "items": [
-    {
-      "id": "open-cliff",
-      "category": "content",
-      "text": "Every episode loses its crowd at the door: around 70.4% of starters are watching near the open, and only 11.7–14.9% remain by the 2% mark — the largest single loss anywhere in the show.",
-      "recommendation": "Rebuild the first 90 seconds: cold-open the strongest exchange, move intros and housekeeping after it, and check the next episode's open against that 14.9% high-water mark."
-    },
-    {
-      "id": "best-open-template",
-      "category": "content",
-      "text": "Goodbye, Blank Canvas is the watch-time winner at 13.2% of the video seen on average; every other episode sits between 8.9 and 12.9%.",
-      "recommendation": "Break down what its first 5 minutes do differently and reuse that structure for the next two openings; compare their finished health reads against 33 and 44."
-    },
-    {
-      "id": "mid-show-exit",
-      "category": "content",
-      "text": "The sharpest mid-show exit measured is E4 about 48 minutes in: 6.2 of every 100 viewers leave during the backyard-baseball-character bit, even though the stretch around minute 38 was pulling extra viewers in.",
-      "recommendation": "Rewatch E4 around minute 48, mark the segment seam there, and test a tighter handoff next show — trim the tail, re-order, or tease what comes next before the lull.",
-      "caveat": "Moment timing is approximate — transcript timestamps come from the live recording, not the edited video."
-    },
-    {
-      "id": "end-screens-dead",
-      "category": "distribution",
-      "text": "End screens have produced 7 views across the entire catalog — a free surface at the exact moment the remaining audience is most committed.",
-      "recommendation": "Add an end screen on both channels linking the next episode and the subscribe button; it costs nothing and every finished viewer sees it."
-    },
-    {
-      "id": "discovery-gap",
-      "category": "distribution",
-      "text": "54.7% of YouTube views come from subscriptions and home while search brings 5% — current packaging mostly reaches people the show already has.",
-      "recommendation": "Package the next launch for strangers: title and thumbnail on the guest's topic as someone would search it, then watch whether search and suggested move."
-    },
-    {
-      "id": "subscribe-window",
-      "category": "audience",
-      "text": "Subscriber pull spent itself on launch day one: 8.9 subscribers per 1,000 views on the first episode, then 2.9 or less on every episode since.",
-      "recommendation": "Script one spoken subscribe ask at minute 2–3, right where the drop levels off, plus a pinned comment with the link — and judge it against that 8.9 start."
-    },
-    {
-      "id": "channel-gap",
-      "category": "audience",
-      "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
-      "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode."
-    }
-  ]
+ "version": 1,
+ "promptVersion": 3,
+ "updatedAt": "2026-08-23T18:25:53.025Z",
+ "provider": "anthropic",
+ "model": "claude-fable-5",
+ "factsGeneratedAt": "2026-08-23T18:24:16.633Z",
+ "attempts": 2,
+ "items": [
+  {
+   "id": "fix-the-opening-cliff",
+   "category": "content",
+   "text": "Every episode loses most of its audience right at the start: E1 opens with 67.3 of 100 watching but only 11.7 remain at the 2% mark; E3 opens at 73 and falls to 12.1. In E1, 8 of every 100 viewers left around minute 7 during in-progress housekeeping talk.",
+   "recommendation": "Test a tighter cold open this week: lead with the single strongest demo or story in the first minute, move housekeeping and show-status chatter to after the rebound peak, and compare the 2% mark next episode."
+  },
+  {
+   "id": "restore-the-subscribe-ask",
+   "category": "audience",
+   "text": "E1 converted 8.9 subscribers per 1,000 views (13.3 on DesignerTom), but E3 converted 0 on both channels and E5 just 0.9. Whatever E1 did to turn viewers into subscribers has disappeared.",
+   "recommendation": "Rewatch E1 and copy its subscribe moments. Script two clear asks per show — one near the early rebound peak, one mid-show — each tied to a concrete reason to subscribe, and check per-episode conversion next week."
+  },
+  {
+   "id": "designertom-conversion-stall",
+   "category": "audience",
+   "text": "DesignerTom gained 0 subscribers in E3, E4, E5 and E6, and sits at 2.2 per 1,000 views overall versus Dive Club's 3.4. Its share watched is also lower: 9.7 versus 11.1.",
+   "recommendation": "Treat DesignerTom as its own audience this week: pin a comment with a reason to subscribe, test a title and thumbnail written for Tom's followers rather than reusing the Dive Club framing, and compare subscribers gained on the next episode."
+  },
+  {
+   "id": "discovery-surfaces-bring-nothing",
+   "category": "distribution",
+   "text": "54.7 of every 100 YouTube views come from existing subscribers. Discovery surfaces are near zero: Shorts brought 2 views, end screens 7, playlists 56.",
+   "recommendation": "This week, cut three Shorts from the best E5 moments, add end screens on every past episode pointing to the newest one, and publish a single show playlist. Any lift from these surfaces is nearly free reach."
+  },
+  {
+   "id": "demos-hold-viewers",
+   "category": "content",
+   "text": "E5 held viewers best: 17.6 of 100 through the middle half and 11.7 near the end. A bit past halfway, around minute 53, showing the week's HTML prototypes lined up with 2.8 extra viewers of every 100 watching.",
+   "recommendation": "Structure next episode around scheduled screen-share demos — one every segment — and tease the biggest one in the opening. Test whether the middle half holds above E5's level."
+  },
+  {
+   "id": "live-room-is-shrinking",
+   "category": "promotion",
+   "text": "Peak live viewers fell from 90 in E1 to 53 in E3, recovering only to 71 by E6. Chat fell harder: 383 messages in E1 down to 100 in E5 and 127 in E6.",
+   "recommendation": "Lock a consistent day and time, announce the agenda on both channels and X a day ahead, and bring back an interactive segment like designer of the week with a call for chat nominations. Compare peak viewers and chat volume over the next two shows."
+  }
+ ],
+ "prunedAt": "2026-08-23T18:25:53.026Z",
+ "prunedIds": [
+  "convert-the-x-audience"
+ ]
 }

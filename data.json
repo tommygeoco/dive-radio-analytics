@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T15:34:31.159Z",
+ "generatedAt": "2026-08-23T18:25:53.071Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -1611,6 +1611,35 @@
        "peakConcurrent": 286
       }
      }
+    },
+    {
+     "ts": "2026-08-23T18:23:52.780Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1228,
+       "likes": 48,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 845,
+       "likes": 44,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1520,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1022,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3657,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
     }
    ],
    "weekly": [
@@ -1720,7 +1749,7 @@
     }
    ],
    "latest": {
-    "ts": "2026-08-23T14:38:15.453Z",
+    "ts": "2026-08-23T18:23:52.780Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1228,
@@ -1775,7 +1804,7 @@
     "x:designertom": "https://x.com/i/broadcasts/1pKdRRwpkaQJW"
    },
    "transcript": true,
-   "ageDays": 36.8,
+   "ageDays": 37,
    "metrics": {
     "week1Velocity": 1830,
     "week1Note": null,
@@ -3723,7 +3752,7 @@
       "share": 13.6
      }
     ],
-    "updatedAt": "2026-08-23T14:38:49.941Z",
+    "updatedAt": "2026-08-23T18:24:08.560Z",
     "shape": {
      "openStart": 67.3,
      "openFloor": 11.7,
@@ -5033,6 +5062,35 @@
        "peakConcurrent": 599
       }
      }
+    },
+    {
+     "ts": "2026-08-23T18:23:52.780Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1151,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 914,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2230,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3886,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1166,
+       "peakConcurrent": 599
+      }
+     }
     }
    ],
    "weekly": [
@@ -5142,10 +5200,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-08-23T14:38:15.453Z",
+    "ts": "2026-08-23T18:23:52.780Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1150,
+      "views": 1151,
       "likes": 39,
       "comments": 2
      },
@@ -5155,7 +5213,7 @@
       "comments": 3
      },
      "x:designertom": {
-      "views": 2228,
+      "views": 2230,
       "likes": 1,
       "comments": 1,
       "plays": 635,
@@ -5169,8 +5227,8 @@
       "peakConcurrent": 599
      }
     },
-    "ytTotal": 2064,
-    "xImpressions": 6114,
+    "ytTotal": 2065,
+    "xImpressions": 6116,
     "xPlays": 1801,
     "xPlaysInfo": {
      "value": 1801,
@@ -5180,7 +5238,7 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3865,
+    "totalViews": 3866,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -5197,7 +5255,7 @@
     "x:ridd_design": "https://x.com/i/broadcasts/1yxBeeoanDOJN"
    },
    "transcript": true,
-   "ageDays": 30.8,
+   "ageDays": 31,
    "metrics": {
     "week1Velocity": 1751,
     "week1Note": null,
@@ -7070,7 +7128,7 @@
       "share": 11.3
      }
     ],
-    "updatedAt": "2026-08-23T14:38:49.941Z",
+    "updatedAt": "2026-08-23T18:24:08.560Z",
     "shape": {
      "openStart": 66.2,
      "openFloor": 13.9,
@@ -7576,11 +7634,40 @@
        "peakConcurrent": 399
       }
      }
+    },
+    {
+     "ts": "2026-08-23T18:23:52.780Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 939,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 664,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3078,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16563,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2777,
+       "peakConcurrent": 399
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-23T14:38:15.453Z",
+    "ts": "2026-08-23T18:23:52.780Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 939,
@@ -7635,13 +7722,13 @@
     "x:designertom": "https://x.com/i/broadcasts/1nGeLLpzNAQKX"
    },
    "transcript": true,
-   "ageDays": 23.8,
+   "ageDays": 24,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 29.9,
-    "anomaly": "more than double what a typical episode gets (4,206 X plays vs a typical 1,836; 19,641 X reach vs a typical 7,292) — treat as promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,206 X plays vs a typical 1,836; 19,641 X reach vs a typical 7,312) — treat as promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -9418,7 +9505,7 @@
       "share": 11.9
      }
     ],
-    "updatedAt": "2026-08-23T14:38:49.941Z",
+    "updatedAt": "2026-08-23T18:24:08.560Z",
     "shape": {
      "openStart": 73,
      "openFloor": 10.5,
@@ -9936,14 +10023,43 @@
        "peakConcurrent": 216
       }
      }
+    },
+    {
+     "ts": "2026-08-23T18:23:52.780Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1200,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 706,
+       "likes": 21,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 3411,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1329,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1130,
+       "likes": 11,
+       "comments": 1,
+       "plays": 541,
+       "peakConcurrent": 216
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-23T14:38:15.453Z",
+    "ts": "2026-08-23T18:23:52.780Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1199,
+      "views": 1200,
       "likes": 36,
       "comments": 5
      },
@@ -9953,7 +10069,7 @@
       "comments": 3
      },
      "x:ridd_design": {
-      "views": 3409,
+      "views": 3411,
       "likes": 20,
       "comments": 0,
       "plays": 1329,
@@ -9967,8 +10083,8 @@
       "peakConcurrent": 216
      }
     },
-    "ytTotal": 1905,
-    "xImpressions": 4539,
+    "ytTotal": 1906,
+    "xImpressions": 4541,
     "xPlays": 1870,
     "xPlaysInfo": {
      "value": 1870,
@@ -9978,7 +10094,7 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3775,
+    "totalViews": 3776,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -9995,7 +10111,7 @@
     "x:designertom": "https://x.com/i/broadcasts/1rGmqqBdNVkGy"
    },
    "transcript": true,
-   "ageDays": 16.8,
+   "ageDays": 17,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -11802,7 +11918,7 @@
       "share": 10.8
      }
     ],
-    "updatedAt": "2026-08-23T14:38:49.941Z",
+    "updatedAt": "2026-08-23T18:24:08.560Z",
     "shape": {
      "openStart": 70.4,
      "openFloor": 10.7,
@@ -12308,11 +12424,40 @@
        "peakConcurrent": 131
       }
      }
+    },
+    {
+     "ts": "2026-08-23T18:23:52.780Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 642,
+       "likes": 20,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 507,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2902,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1091,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6042,
+       "likes": 8,
+       "comments": 0,
+       "plays": 959,
+       "peakConcurrent": 131
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-23T14:38:15.453Z",
+    "ts": "2026-08-23T18:23:52.780Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 642,
@@ -12320,27 +12465,27 @@
       "comments": 2
      },
      "yt:designertom": {
-      "views": 505,
+      "views": 507,
       "likes": 17,
       "comments": 2
      },
      "x:ridd_design": {
-      "views": 2900,
+      "views": 2902,
       "likes": 12,
       "comments": 0,
       "plays": 1091,
       "peakConcurrent": 415
      },
      "x:designertom": {
-      "views": 6030,
+      "views": 6042,
       "likes": 8,
       "comments": 0,
       "plays": 959,
       "peakConcurrent": 131
      }
     },
-    "ytTotal": 1147,
-    "xImpressions": 8930,
+    "ytTotal": 1149,
+    "xImpressions": 8944,
     "xPlays": 2050,
     "xPlaysInfo": {
      "value": 2050,
@@ -12350,7 +12495,7 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3197,
+    "totalViews": 3199,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -12367,7 +12512,7 @@
     "x:designertom": "https://x.com/i/broadcasts/1AxRnZZeVNzxl"
    },
    "transcript": true,
-   "ageDays": 9.8,
+   "ageDays": 10,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -14067,7 +14212,7 @@
       "share": 12
      }
     ],
-    "updatedAt": "2026-08-23T14:38:49.941Z",
+    "updatedAt": "2026-08-23T18:24:08.560Z",
     "shape": {
      "openStart": 69.4,
      "openFloor": 10.2,
@@ -14592,49 +14737,78 @@
        "peakConcurrent": 125
       }
      }
+    },
+    {
+     "ts": "2026-08-23T18:23:52.780Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 592,
+       "likes": 13,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 422,
+       "likes": 12,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 7322,
+       "likes": 8,
+       "comments": 0,
+       "plays": 723,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1185,
+       "likes": 1,
+       "comments": 0,
+       "plays": 323,
+       "peakConcurrent": 125
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-08-23T14:38:15.453Z",
+    "ts": "2026-08-23T18:23:52.780Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 583,
+      "views": 592,
       "likes": 13,
       "comments": 3
      },
      "yt:designertom": {
-      "views": 418,
+      "views": 422,
       "likes": 12,
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 7295,
+      "views": 7322,
       "likes": 8,
       "comments": 0,
-      "plays": 722,
+      "plays": 723,
       "peakConcurrent": 201
      },
      "x:designertom": {
-      "views": 1175,
+      "views": 1185,
       "likes": 1,
       "comments": 0,
-      "plays": 322,
+      "plays": 323,
       "peakConcurrent": 125
      }
     },
-    "ytTotal": 1001,
-    "xImpressions": 8470,
-    "xPlays": 1044,
+    "ytTotal": 1014,
+    "xImpressions": 8507,
+    "xPlays": 1046,
     "xPlaysInfo": {
-     "value": 1044,
+     "value": 1046,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 2045,
+    "totalViews": 2060,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -14651,12 +14825,12 @@
     "x:designertom": "https://x.com/i/broadcasts/1aKbdEoAoEBJX"
    },
    "transcript": true,
-   "ageDays": 2.8,
+   "ageDays": 3,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "pending: episode under 7 days old",
     "flatlineWeek": null,
-    "engagementPer1k": 28,
+    "engagementPer1k": 27.6,
     "anomaly": null
    },
    "ep": 6,
@@ -15871,7 +16045,7 @@
     "uniqueCommenters": 4,
     "enjoyCount": 4,
     "complaintCount": 0,
-    "commentersPer1k": 2,
+    "commentersPer1k": 1.9,
     "commentersPer1kNote": null,
     "enjoyThemes": [],
     "complaintThemes": [],
@@ -16010,52 +16184,45 @@
       "share": 8.5
      }
     ],
-    "updatedAt": "2026-08-23T14:38:49.941Z"
+    "updatedAt": "2026-08-23T18:24:08.560Z"
    }
   }
  ],
  "insights": [
   {
-   "id": "open-cliff",
-   "text": "Every episode loses its crowd at the door: around 70.4% of starters are watching near the open, and only 11.7–14.9% remain by the 2% mark — the largest single loss anywhere in the show.",
-   "recommendation": "Rebuild the first 90 seconds: cold-open the strongest exchange, move intros and housekeeping after it, and check the next episode's open against that 14.9% high-water mark.",
+   "id": "fix-the-opening-cliff",
+   "text": "Every episode loses most of its audience right at the start: E1 opens with 67.3 of 100 watching but only 11.7 remain at the 2% mark; E3 opens at 73 and falls to 12.1. In E1, 8 of every 100 viewers left around minute 7 during in-progress housekeeping talk.",
+   "recommendation": "Test a tighter cold open this week: lead with the single strongest demo or story in the first minute, move housekeeping and show-status chatter to after the rebound peak, and compare the 2% mark next episode.",
    "category": "content"
   },
   {
-   "id": "best-open-template",
-   "text": "Goodbye, Blank Canvas is the watch-time winner at 13.2% of the video seen on average; every other episode sits between 8.9 and 12.9%.",
-   "recommendation": "Break down what its first 5 minutes do differently and reuse that structure for the next two openings; compare their finished health reads against 33 and 44.",
+   "id": "demos-hold-viewers",
+   "text": "E5 held viewers best: 17.6 of 100 through the middle half and 11.7 near the end. A bit past halfway, around minute 53, showing the week's HTML prototypes lined up with 2.8 extra viewers of every 100 watching.",
+   "recommendation": "Structure next episode around scheduled screen-share demos — one every segment — and tease the biggest one in the opening. Test whether the middle half holds above E5's level.",
    "category": "content"
   },
   {
-   "id": "mid-show-exit",
-   "text": "The sharpest mid-show exit measured is E4 about 48 minutes in: 6.2 of every 100 viewers leave during the backyard-baseball-character bit, even though the stretch around minute 38 was pulling extra viewers in.",
-   "recommendation": "Rewatch E4 around minute 48, mark the segment seam there, and test a tighter handoff next show — trim the tail, re-order, or tease what comes next before the lull.",
-   "caveat": "Moment timing is approximate — transcript timestamps come from the live recording, not the edited video.",
-   "category": "content"
-  },
-  {
-   "id": "end-screens-dead",
-   "text": "End screens have produced 7 views across the entire catalog — a free surface at the exact moment the remaining audience is most committed.",
-   "recommendation": "Add an end screen on both channels linking the next episode and the subscribe button; it costs nothing and every finished viewer sees it.",
+   "id": "discovery-surfaces-bring-nothing",
+   "text": "54.7 of every 100 YouTube views come from existing subscribers. Discovery surfaces are near zero: Shorts brought 2 views, end screens 7, playlists 56.",
+   "recommendation": "This week, cut three Shorts from the best E5 moments, add end screens on every past episode pointing to the newest one, and publish a single show playlist. Any lift from these surfaces is nearly free reach.",
    "category": "distribution"
   },
   {
-   "id": "discovery-gap",
-   "text": "54.7% of YouTube views come from subscriptions and home while search brings 5% — current packaging mostly reaches people the show already has.",
-   "recommendation": "Package the next launch for strangers: title and thumbnail on the guest's topic as someone would search it, then watch whether search and suggested move.",
-   "category": "distribution"
+   "id": "live-room-is-shrinking",
+   "text": "Peak live viewers fell from 90 in E1 to 53 in E3, recovering only to 71 by E6. Chat fell harder: 383 messages in E1 down to 100 in E5 and 127 in E6.",
+   "recommendation": "Lock a consistent day and time, announce the agenda on both channels and X a day ahead, and bring back an interactive segment like designer of the week with a call for chat nominations. Compare peak viewers and chat volume over the next two shows.",
+   "category": "promotion"
   },
   {
-   "id": "subscribe-window",
-   "text": "Subscriber pull spent itself on launch day one: 8.9 subscribers per 1,000 views on the first episode, then 2.9 or less on every episode since.",
-   "recommendation": "Script one spoken subscribe ask at minute 2–3, right where the drop levels off, plus a pinned comment with the link — and judge it against that 8.9 start.",
+   "id": "restore-the-subscribe-ask",
+   "text": "E1 converted 8.9 subscribers per 1,000 views (13.3 on DesignerTom), but E3 converted 0 on both channels and E5 just 0.9. Whatever E1 did to turn viewers into subscribers has disappeared.",
+   "recommendation": "Rewatch E1 and copy its subscribe moments. Script two clear asks per show — one near the early rebound peak, one mid-show — each tied to a concrete reason to subscribe, and check per-episode conversion next week.",
    "category": "audience"
   },
   {
-   "id": "channel-gap",
-   "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
-   "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode.",
+   "id": "designertom-conversion-stall",
+   "text": "DesignerTom gained 0 subscribers in E3, E4, E5 and E6, and sits at 2.2 per 1,000 views overall versus Dive Club's 3.4. Its share watched is also lower: 9.7 versus 11.1.",
+   "recommendation": "Treat DesignerTom as its own audience this week: pin a comment with a reason to subscribe, test a title and thumbnail written for Tom's followers rather than reusing the Dive Club framing, and compare subscribers gained on the next episode.",
    "category": "audience"
   }
  ],
@@ -16145,11 +16312,11 @@
   "complaintThemes": []
  },
  "health": {
-  "date": "2026-08-22",
-  "dataThrough": "2026-08-22T23:35:58.103Z",
-  "score": 52,
+  "date": "2026-08-23",
+  "dataThrough": "2026-08-23T18:24:08.560Z",
+  "score": 51,
   "readState": "early",
-  "headline": "Live turnout and viewer goodwill look healthy, but engagement and subscriber pull are fragile.",
+  "headline": "Warm feedback and steady live turnout, but new viewers rarely subscribe right now.",
   "checks": [
    {
     "key": "growth",
@@ -16174,13 +16341,13 @@
    },
    {
     "key": "audienceQuality",
-    "score": 49,
+    "score": 48,
     "reason": "The latest episode is still under a week old, so these checks may move.",
     "measures": [
      {
       "key": "engagement",
-      "value": 28.5,
-      "typical": 38.1,
+      "value": 27.6,
+      "typical": 38,
       "sample": 5,
       "reason": null
      },
@@ -16200,14 +16367,14 @@
     "measures": [
      {
       "key": "announceToPlay",
-      "value": 23,
-      "typical": 34.5,
+      "value": 22.9,
+      "typical": 34.4,
       "sample": 4,
       "reason": null
      },
      {
       "key": "xShare",
-      "value": 64.2,
+      "value": 64.1,
       "typical": 46.6,
       "sample": 4,
       "reason": null
@@ -16273,22 +16440,22 @@
   ],
   "pros": [
    {
-    "text": "The latest show peaked at 71 live viewers, a stronger live pull than the show usually draws.",
+    "text": "The latest show peaked at 71 live viewers, a touch above what prior shows usually draw.",
     "factId": "latest-live-peak"
    },
    {
-    "text": "Viewers watched 12.9% of the latest YouTube episode on average, above the usual hold, though it is still early.",
+    "text": "Viewers watched 12.9% of the latest YouTube episode on average, a slightly better hold than usual, though still early.",
     "factId": "latest-watch-percent"
    }
   ],
   "cons": [
    {
-    "text": "The latest episode added 1.6 subscribers for each thousand YouTube views, below the usual pace, though it is still early.",
+    "text": "The latest episode added 1.6 subscribers for each thousand YouTube views, below the usual pace, though still early.",
     "factId": "latest-subscriber-rate"
    },
    {
-    "text": "The latest show drew 127 chat messages, a quieter live conversation than the show usually gets.",
-    "factId": "latest-live-chat"
+    "text": "The latest episode drew 27.6 engagements for each thousand YouTube views, under the usual pull, though still early.",
+    "factId": "latest-engagement"
    }
   ],
   "trend": null
