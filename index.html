@@ -685,7 +685,10 @@ function deltaBadge(ratio) {
 // in for the platform words on tight surfaces. Every use keeps its text name
 // via role="img" + aria-label; About spells the words out.
 const PLOGO = {
-  yt: `<svg class="plogo" viewBox="0 0 24 24" role="img" aria-label="YouTube"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.3 5 12 5 12 5s-6.3 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.7 19 12 19 12 19s6.3 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8z"/><path fill="var(--s1)" d="M10 15.2V8.8l5.4 3.2z"/></svg>`,
+  // YouTube red, with the play triangle punched out (evenodd) rather than
+  // knocked out in a surface color — the mark sits on s1 cards, s2 tooltips,
+  // and table rows alike, so it can't assume what's behind it.
+  yt: `<svg class="plogo" viewBox="0 0 24 24" role="img" aria-label="YouTube"><path fill="#ff4f5e" fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.3 5 12 5 12 5s-6.3 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.7 19 12 19 12 19s6.3 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.2V8.8l5.4 3.2z"/></svg>`,
   x: `<svg class="plogo" viewBox="0 0 24 24" role="img" aria-label="X"><path fill="currentColor" d="M17.7 3H20.6l-6.36 7.27L21.72 21h-5.85l-4.59-6-5.24 6H3.14l6.8-7.78L2.56 3h6l4.14 5.47zm-1.02 16.25h1.61L7.7 4.66H5.97z"/></svg>`,
 };
 // html row labels: platform mark + the channel/account name (chart legends
@@ -1481,8 +1484,11 @@ function chartTitle() {
     if (state.metric === "watched") return [METRIC_TITLES.watched, `<b class="scopepill">${PLOGO.yt} only</b> · % of the video viewed on average`];
     if (state.metric === "live") return [METRIC_TITLES.live, "Average concurrent viewers · Restream, all destinations"];
     if (state.metric === "reach") return [METRIC_TITLES.reach, `<b class="scopepill">${PLOGO.x} reach</b> · exposure — never added into views`];
+    // no unit blurb here: the legend names all four destinations and the
+    // tooltip states each one's unit. The coverage warning is not decoration,
+    // so it stays whenever a play count is genuinely incomplete.
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
-    return [METRIC_TITLES.views, `${PLOGO.yt} + ${PLOGO.x} playback` + (anyPartial ? " · some X plays missing" : "")];
+    return [METRIC_TITLES.views, anyPartial ? `some ${PLOGO.x} plays missing` : ""];
   }
   if (state.mode === "watch") {
     // absence is silent (v5 rule): episodes without curves simply aren't drawn
