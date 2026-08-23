@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-23T17:09:53.705Z",
+ "generatedAt": "2026-08-23T17:20:03.894Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -16274,16 +16274,7 @@ window.DIVE_DATA = {
    "category": "audience"
   }
  ],
- "insightsStale": [
-  {
-   "id": "best-open-template",
-   "why": "number 44 is not in the fact sheet"
-  },
-  {
-   "id": "subscribe-window",
-   "why": "compares a young episode's rate with a finished episode's"
-  }
- ],
+ "insightsStale": [],
  "showTrend": {
   "week1VelocityByEpisode": [
    {
