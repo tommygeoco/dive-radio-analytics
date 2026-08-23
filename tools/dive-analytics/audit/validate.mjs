@@ -1382,7 +1382,7 @@ function premiereMs(dateStr) {
     }
   }
   if (!html.includes('const url = e.links?.[d.key];')
-    || !/class="plink" href="\$\{esc\(url\)\}" target="_blank" rel="noopener"/.test(html)) {
+    || !/class="plink" href="\$\{esc\(url\)\}" target="_blank" rel="noopener">/.test(html)) {
     bad++; fail("links: the panel must render destination links only from stored e.links, opened in a new tab with noopener");
   }
   if (!bad) ok(`links: ${eps.filter((e) => e.links).length} episode(s) store destination links — registry-locked, safe URL shapes, panel renders only what is stored`);
