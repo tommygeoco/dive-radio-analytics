@@ -1206,7 +1206,9 @@ function buildPanel() {
   if (e.transcript) {
     hmeta += `<a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}transcript</a>`;
   }
-  html += `<div class="h"><span class="dot" style="background:${color(e)}"></span><span class="htitle">${esc(label(e))}</span><span class="hmeta">${hmeta}</span><button type="button" class="x" id="panelx" aria-label="Close episode details">×</button></div>`;
+  // no leading dot: the span had no size rule, so it drew nothing and only
+  // pushed the title off the left edge the wrapped meta rows share on mobile
+  html += `<div class="h"><span class="htitle">${esc(label(e))}</span><span class="hmeta">${hmeta}</span><button type="button" class="x" id="panelx" aria-label="Close episode details">×</button></div>`;
   html += `<div class="pgrid">`;
 
   // Bento IA (owner readability pass 2026-08-23 r2): contrasted tiles on a
