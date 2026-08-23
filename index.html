@@ -219,6 +219,7 @@
   #rtt .mv b { font-size: 15px; color: var(--t1); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
   #rtt .mv .mt { color: var(--t3); font-size: 12.5px; }
   #rtt .mv.mr { font-size: 12.5px; line-height: 1.4; color: var(--t3); display: block; }
+  #rtt .hdot { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 8px; }
   #rtt .mnote { color: var(--t3); font-size: 11.5px; line-height: 1.35; margin-top: 3px; opacity: .85; }
   #rtt .fnote { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 12.5px; }
   /* ---- Layer 2: pinned episode detail panel ---- */
@@ -1083,7 +1084,8 @@ function buildHero() {
     if (e.watch?.avgPercent != null) {
       html += `<div class="metricline"><div class="big"><span data-fold-number>${e.watch.avgPercent}%</span> <small>of the video watched on average</small></div></div>`;
       const chans = (e.watch.byChannel || []).filter(ch => ch.avgPercent != null);
-      if (chans.length) html += `<div class="gline">${chans.map(ch => `<span class="g" data-tip="${esc(`${TT_NAME[ch.key] || ch.key}: ${ch.avgPercent}% watched · ${nfmt(ch.views)} views`)}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[ch.key] || "#8a94a8"}"></i><b>${ch.avgPercent}%</b></span>`).join("")}</div>`;
+      // multi-number chips get the structured tooltip, never a prose wrap
+      if (chans.length) html += `<div class="gline">${chans.map(ch => `<span class="g" data-stat="${esc(TT_NAME[ch.key] || ch.key)}" data-dot="${esc(PLAT_COLORS[ch.key] || "#8a94a8")}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${ch.avgPercent}%` }, { n: "YouTube views", v: nfmt(ch.views) }]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[ch.key] || "#8a94a8"}"></i><b>${ch.avgPercent}%</b></span>`).join("")}</div>`;
     } else {
       html += `<div class="unavailable">Watch data is not available for this episode.</div>`;
     }
@@ -1343,7 +1345,7 @@ function buildPanel() {
     // per-channel split rides beside the blend — same colors as everywhere
     for (const c of w.byChannel || []) {
       if (c.avgPercent == null) continue;
-      wparts.push(`<span class="g" data-tip="${esc(`${TT_NAME[c.key] || c.key}: ${c.avgPercent}% watched · ${nfmt(c.views)} views${c.subsPer1k != null ? ` · ${c.subsPer1k} subscribers per 1,000` : ""}`)}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></i><b>${c.avgPercent}%</b></span>`);
+      wparts.push(`<span class="g" data-stat="${esc(TT_NAME[c.key] || c.key)}" data-dot="${esc(PLAT_COLORS[c.key] || "#8a94a8")}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${c.avgPercent}%` }, { n: "YouTube views", v: nfmt(c.views) }, ...(c.subsPer1k != null ? [{ n: "Subscribers per 1,000 views", v: String(c.subsPer1k) }] : [])]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></i><b>${c.avgPercent}%</b></span>`);
     }
     if (wparts.length) html += `<div class="gline">${wparts.join("")}</div>`;
     if (w.curve) {
@@ -1590,6 +1592,17 @@ let chartCursor = null;
 document.getElementById("chartbox").addEventListener("pointermove", (ev) => {
   const r = ev.currentTarget.getBoundingClientRect();
   chartCursor = { x: ev.clientX - r.left, y: ev.clientY - r.top };
+  // the tooltip TRACKS the pointer, not just its opening spot — Chart.js only
+  // re-fires the handler when the hovered element changes, so gliding within
+  // one bar would otherwise leave the tip behind
+  const el = document.getElementById("tt");
+  if (el && el.style.opacity === "1") {
+    const x = Math.min(Math.max(chartCursor.x, 120), r.width - 130);
+    const above = chartCursor.y > 190;
+    el.style.left = x + "px";
+    el.style.top = (chartCursor.y + (above ? -14 : 14)) + "px";
+    el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
+  }
 });
 document.getElementById("chartbox").addEventListener("mouseleave", () => {
   document.getElementById("tt").style.opacity = 0;
@@ -1611,7 +1624,8 @@ function showRtt(badge) {
     // badge carries one), measure blocks or plain data rows, muted note
     const state = badge.dataset.state
       ? `<span class="tst ${badge.dataset.stcls || ""}"><i aria-hidden="true"></i>${esc(badge.dataset.state)}</span>` : "";
-    html = `<div class="h${state ? " th" : ""}"><span>${esc(badge.dataset.stat)}</span>${state}</div>`
+    const hdot = badge.dataset.dot ? `<i class="hdot" style="background:${esc(badge.dataset.dot)}" aria-hidden="true"></i>` : "";
+    html = `<div class="h${state ? " th" : ""}"><span>${hdot}${esc(badge.dataset.stat)}</span>${state}</div>`
       + (badge.dataset.meta ? `<div>${esc(badge.dataset.meta)}</div>` : "");
     if (badge.dataset.mrows) {
       // measure blocks: muted label (sample right-aligned), then the value
