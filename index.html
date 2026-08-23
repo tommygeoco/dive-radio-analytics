@@ -82,9 +82,12 @@
   .checkrow .st.waiting i { background: none; border: 1px solid var(--border-strong); }
   .hc-meta .headline { font-size: 15.5px; margin: 0 0 6px; }
   .hc-meta .scope { color: var(--t3); font-size: 13.5px; line-height: 1.5; margin: 10px 0 0; }
-  .healthrow .why { display: inline-block; margin-top: 2px; background: none; border: 0; padding: 0;
-    color: var(--accent); font-size: 14px; cursor: pointer; text-decoration: underline;
-    text-underline-offset: 3px; }
+  /* the card's one action wears the same soft accent pill as the transcript
+     link — a bare underlined phrase read as body copy, not a control */
+  .healthrow .why { display: inline-flex; align-items: center; margin-top: 2px; border: 0;
+    border-radius: 999px; padding: 7px 14px; background: rgba(89,176,255,.12);
+    color: var(--accent); font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer; }
+  .healthrow .why:hover, .healthrow .why:focus-visible { background: rgba(89,176,255,.22); }
   /* Today's read: the grounded headline leads, then the do-next actions —
      each led by a quiet ordinal so two actions read as a short ranked list
      (decorative: the order is the ranking, and it carries no measurement) */
@@ -532,12 +535,26 @@
     .healthrow, .overview { grid-template-columns: 1fr; }
     .card { padding: 13px 14px; }
     .kicker { margin-bottom: 8px; }
-    .healthrow .gaugewrap { flex-direction: row; align-items: center; gap: 16px; padding-top: 0; }
-    .gauge { width: 84px; height: 84px; flex: none; }
+    /* the score card becomes a media object: gauge left, caption over its
+       one action on the right — no more link floating in dead space */
+    .healthrow .gaugewrap { display: grid; grid-template-columns: auto 1fr; align-items: center;
+      column-gap: 16px; row-gap: 8px; padding-top: 0; }
+    .gauge { grid-row: 1 / 3; width: 84px; height: 84px; flex: none; }
     .gauge .track, .gauge .fill { stroke-width: 13; }
     .gauge .num b { font-size: 26px; }
     .gauge .num small { display: none; }
-    .healthrow .scale { max-width: 17ch; text-align: left; }
+    .healthrow .scale { max-width: 22ch; text-align: left; align-self: end; }
+    .healthrow .why { margin-top: 0; align-self: start; justify-self: start; }
+    /* answers appear where the question was asked: opening "Why this score"
+       slots the evidence card directly under the score card, not below the
+       whole column (single-column grid obeys order) */
+    .healthrow > .hc-score { order: 0; }
+    .healthrow > .health-evidence { order: 1; }
+    .healthrow > .hc-diag { order: 2; }
+    .healthrow > .hc-meta { order: 3; }
+    /* a card whose only content is a one-line wait note keeps its words but
+       not a tall frame */
+    .card:has(.waitline) { padding: 11px 14px; }
     .healthrow .headline { font-size: 15px; margin-bottom: 10px; }
     .checkrow { padding: 6px 0; font-size: 13.5px; }
     .hc-meta .scope { display: none; }
@@ -971,7 +988,13 @@ function buildHealth() {
       <p class="headline">${esc(h.headline)}</p>
       ${topRecs.length ? `<div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div>` : ""}
     </div>${evidence}`;
-  document.getElementById("whyscore").addEventListener("click", () => { state.evidenceOpen = !state.evidenceOpen; render(); });
+  document.getElementById("whyscore").addEventListener("click", () => {
+    state.evidenceOpen = !state.evidenceOpen;
+    render();
+    // the evidence must land where the eye already is — on phones the card
+    // opens right under the score, and anywhere it is off-screen we bring it in
+    if (state.evidenceOpen) document.getElementById("evidence")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
 }
 
 /* ================= hero: latest episode card ================= */

@@ -1,201 +1,211 @@
 {
-  "cron": "25 7 * * * America/Phoenix",
-  "note": "Ordered chain definition (PRD v9 \u00a74.5). The scheduler line above is documentation; the owner machine's crontab runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
-  "steps": [
-    {
-      "step": "discover",
-      "script": "scripts/restream/postlive-discover.mjs",
-      "writes": [
-        "data/restream/postlive-registry.json"
-      ],
-      "freshnessKey": null,
-      "required": false,
-      "scope": "all"
-    },
-    {
-      "step": "transcripts",
-      "script": "scripts/restream/transcripts-pull.mjs",
-      "writes": [
-        "transcripts/*.txt"
-      ],
-      "freshnessKey": null,
-      "required": false,
-      "scope": "all"
-    },
-    {
-      "step": "snapshot",
-      "script": "scripts/restream/postlive-track.mjs snapshot",
-      "writes": [
-        "data/restream/postlive/*.json"
-      ],
-      "freshnessKey": "snapshots[-1].ts",
-      "required": true,
-      "scope": "episodes-within-60d"
-    },
-    {
-      "step": "yt-analytics",
-      "script": "scripts/restream/yt-analytics-pull.mjs",
-      "writes": [
-        "data/restream/yt-analytics/*.json",
-        "data/restream/yt-analytics-history/*.jsonl"
-      ],
-      "freshnessKey": "updatedAt",
-      "required": true,
-      "scope": "active-episodes"
-    },
-    {
-      "step": "comments",
-      "script": "scripts/restream/comments-pull.mjs",
-      "writes": [
-        "data/restream/comments/*.json"
-      ],
-      "freshnessKey": "updatedAt",
-      "required": false,
-      "scope": "active-episodes"
-    },
-    {
-      "step": "classify",
-      "script": "scripts/restream/comments-classify.mjs",
-      "writes": [
-        "data/restream/comments-classified.json"
-      ],
-      "freshnessKey": "updatedAt",
-      "required": false,
-      "scope": "all",
-      "model": true
-    },
-    {
-      "step": "channel-stats",
-      "script": "scripts/restream/channel-stats-pull.mjs",
-      "writes": [
-        "data/restream/channel-stats.json"
-      ],
-      "freshnessKey": "updatedAt",
-      "required": false,
-      "scope": "all"
-    },
-    {
-      "step": "live",
-      "script": "scripts/restream/ingest-restream.mjs",
-      "writes": [
-        "data/restream/events/*.json",
-        "data/restream/state.json"
-      ],
-      "freshnessKey": null,
-      "required": false,
-      "scope": "all"
-    },
-    {
-      "step": "ratings",
-      "script": "tools/dive-analytics/ratings.mjs",
-      "writes": [
-        "data/restream/episode-ratings.json"
-      ],
-      "freshnessKey": "updatedAt",
-      "required": true,
-      "scope": "all"
-    },
-    {
-      "step": "build-data",
-      "script": "tools/dive-analytics/build-data.mjs",
-      "writes": [
-        "data.json",
-        "data.js"
-      ],
-      "freshnessKey": "generatedAt",
-      "required": true,
-      "scope": "all"
-    },
-    {
-      "step": "validate",
-      "script": "tools/dive-analytics/audit/validate.mjs",
-      "writes": [],
-      "freshnessKey": null,
-      "required": true,
-      "scope": "all"
-    },
-    {
-      "step": "health",
-      "script": "tools/dive-analytics/health.mjs",
-      "writes": [
-        "data/restream/health-history.json"
-      ],
-      "freshnessKey": "entries[-1].date",
-      "required": false,
-      "scope": "all",
-      "model": true
-    },
-    {
-      "step": "recommendations",
-      "script": "tools/dive-analytics/recommendations.mjs",
-      "writes": [
-        "data/restream/recommendations.json"
-      ],
-      "freshnessKey": "updatedAt",
-      "required": false,
-      "scope": "all",
-      "model": true
-    },
-    {
-      "step": "moment-summaries",
-      "script": "tools/dive-analytics/moment-summaries.mjs",
-      "writes": [
-        "data/restream/moment-summaries.json"
-      ],
-      "freshnessKey": null,
-      "required": false,
-      "scope": "all",
-      "model": true
-    },
-    {
-      "step": "build-data",
-      "script": "tools/dive-analytics/build-data.mjs",
-      "writes": [
-        "data.json",
-        "data.js"
-      ],
-      "freshnessKey": "generatedAt",
-      "required": true,
-      "scope": "all"
-    },
-    {
-      "step": "validate",
-      "script": "tools/dive-analytics/audit/validate.mjs",
-      "writes": [],
-      "freshnessKey": null,
-      "required": true,
-      "scope": "all"
-    },
-    {
-      "step": "publish",
-      "script": "scripts/restream/postlive-publish.sh",
-      "writes": [],
-      "freshnessKey": null,
-      "required": true,
-      "scope": "all"
-    },
-    {
-      "step": "alerts",
-      "script": "tools/dive-analytics/alerts.mjs",
-      "writes": [
-        "data/restream/alerts-state.json",
-        "data/restream/alerts-pending.json"
-      ],
-      "freshnessKey": null,
-      "required": false,
-      "scope": "all"
-    },
-    {
-      "step": "critic",
-      "script": "tools/dive-analytics/critic.mjs",
-      "writes": [
-        "tools/dive-analytics/audit/CRITIC-*.md"
-      ],
-      "freshnessKey": null,
-      "required": false,
-      "scope": "all",
-      "model": true,
-      "when": "Mondays"
-    }
-  ]
+ "cron": "25 7 * * * America/Phoenix",
+ "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's crontab runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
+ "steps": [
+  {
+   "step": "discover",
+   "script": "scripts/restream/postlive-discover.mjs",
+   "writes": [
+    "data/restream/postlive-registry.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "transcripts",
+   "script": "scripts/restream/transcripts-pull.mjs",
+   "writes": [
+    "transcripts/*.txt"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "snapshot",
+   "script": "scripts/restream/postlive-track.mjs snapshot",
+   "writes": [
+    "data/restream/postlive/*.json"
+   ],
+   "freshnessKey": "snapshots[-1].ts",
+   "required": true,
+   "scope": "episodes-within-60d"
+  },
+  {
+   "step": "yt-analytics",
+   "script": "scripts/restream/yt-analytics-pull.mjs",
+   "writes": [
+    "data/restream/yt-analytics/*.json",
+    "data/restream/yt-analytics-history/*.jsonl"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": true,
+   "scope": "active-episodes"
+  },
+  {
+   "step": "comments",
+   "script": "scripts/restream/comments-pull.mjs",
+   "writes": [
+    "data/restream/comments/*.json"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": false,
+   "scope": "active-episodes"
+  },
+  {
+   "step": "classify",
+   "script": "scripts/restream/comments-classify.mjs",
+   "writes": [
+    "data/restream/comments-classified.json"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": false,
+   "scope": "all",
+   "model": true
+  },
+  {
+   "step": "channel-stats",
+   "script": "scripts/restream/channel-stats-pull.mjs",
+   "writes": [
+    "data/restream/channel-stats.json"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "live",
+   "script": "scripts/restream/ingest-restream.mjs",
+   "writes": [
+    "data/restream/events/*.json",
+    "data/restream/state.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "ratings",
+   "script": "tools/dive-analytics/ratings.mjs",
+   "writes": [
+    "data/restream/episode-ratings.json"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "build-data",
+   "script": "tools/dive-analytics/build-data.mjs",
+   "writes": [
+    "data.json",
+    "data.js"
+   ],
+   "freshnessKey": "generatedAt",
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "validate",
+   "script": "tools/dive-analytics/audit/validate.mjs",
+   "writes": [],
+   "freshnessKey": null,
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "health",
+   "script": "tools/dive-analytics/health.mjs",
+   "writes": [
+    "data/restream/health-history.json"
+   ],
+   "freshnessKey": "entries[-1].date",
+   "required": false,
+   "scope": "all",
+   "model": true
+  },
+  {
+   "step": "recommendations",
+   "script": "tools/dive-analytics/recommendations.mjs",
+   "writes": [
+    "data/restream/recommendations.json"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": false,
+   "scope": "all",
+   "model": true
+  },
+  {
+   "step": "moment-summaries",
+   "script": "tools/dive-analytics/moment-summaries.mjs",
+   "writes": [
+    "data/restream/moment-summaries.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all",
+   "model": true
+  },
+  {
+   "step": "build-data",
+   "script": "tools/dive-analytics/build-data.mjs",
+   "writes": [
+    "data.json",
+    "data.js"
+   ],
+   "freshnessKey": "generatedAt",
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "validate",
+   "script": "tools/dive-analytics/audit/validate.mjs",
+   "writes": [],
+   "freshnessKey": null,
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "publish",
+   "script": "scripts/restream/postlive-publish.sh",
+   "writes": [],
+   "freshnessKey": null,
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "alerts",
+   "script": "tools/dive-analytics/alerts.mjs",
+   "writes": [
+    "data/restream/alerts-state.json",
+    "data/restream/alerts-pending.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "freshness",
+   "script": "tools/dive-analytics/freshness.mjs",
+   "writes": [
+    "data/restream/alerts-pending.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "critic",
+   "script": "tools/dive-analytics/critic.mjs",
+   "writes": [
+    "tools/dive-analytics/audit/CRITIC-*.md"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all",
+   "model": true,
+   "when": "Mondays"
+  }
+ ]
 }
