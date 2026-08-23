@@ -1095,11 +1095,27 @@ function premiereMs(dateStr) {
     if ((healthSource.match(/data-fold-number/g) || []).length !== 1) {
       bad++; fail("card layout: the gauge must contribute exactly its saved score to the glance-number budget");
     }
-    if ((heroSource.match(/data-fold-number/g) || []).length !== 2) {
-      bad++; fail("card layout: each hero tab must expose only its one primary number");
+    // one tagged number per measure branch (views/watched/live/reach); exactly
+    // one branch ever renders, so the glance budget stays at one number
+    if ((heroSource.match(/data-fold-number/g) || []).length !== 4) {
+      bad++; fail("card layout: the hero must expose exactly one primary number per measure branch");
     }
     if ((stripSource.match(/data-fold-number/g) || []).length !== 2) {
-      bad++; fail("card layout: each episode card must expose exactly one tagged glance number per tab");
+      bad++; fail("card layout: each episode card must expose exactly one tagged glance number per measure branch");
+    }
+    // the hero and the cards follow the chart: same measure, same selection
+    if (!/const sel = state\.solo \|\| state\.panel/.test(heroSource)
+      || !/heroMetricKey\(\)/.test(heroSource) || !/heroMetricKey\(\)/.test(stripSource)
+      || !/function heroMetricKey\(\) \{ return state\.mode === "live" \? "live" : state\.metric; \}/.test(html)) {
+      bad++; fail("card layout: the hero and episode cards must read the chart's measure and its selected episode (latest when none)");
+    }
+    // the Growth/Live page tabs are retired: the chart's own views are the
+    // only view switch, and they carry the tablist semantics
+    if (/id="view"/.test(html) || /class="tabs"/.test(html)) {
+      bad++; fail("card layout: the retired Growth/Live page tabs are back");
+    }
+    if (!/<span class="seg" id="mode" role="tablist"/.test(html) || !/data-v="live">Live minutes/.test(html)) {
+      bad++; fail("card layout: the chart view switch must be the tablist and must carry the live per-minute view");
     }
     if ((chipSource.match(/data-fold-number/g) || []).length !== 1) {
       bad++; fail("card layout: the health chip must carry exactly one tagged score");

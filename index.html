@@ -14,6 +14,8 @@
     --border: rgba(148,163,184,.10); --border-strong: rgba(148,163,184,.18);
     --t1: #eef1f6; --t2: #b7c1d1; --t3: #8a94a8;
     --accent: #59b0ff; --good: #3ecf8e; --bad: #ff7a59; --amber: #d9a24a;
+    /* one gutter for every card, column, and row (owner directive 2026-08-23) */
+    --gap: 14px;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--t1);
@@ -21,18 +23,13 @@
   .wrap { max-width: 1240px; margin: 0 auto; padding: 20px 24px 24px; }
   button { font: inherit; }
 
-  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: var(--gap); }
   h1 { font-size: 21px; margin: 0; letter-spacing: -.01em; font-weight: 700; }
   .stamp { color: var(--t3); font-size: 14px; margin-left: auto; }
   .stamp i { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
     margin-right: 7px; vertical-align: 1px; background: var(--good); }
   .stamp i.old { background: var(--amber); }
 
-  .tabs { display: flex; gap: 2px; margin: 8px 0 16px; border-bottom: 1px solid var(--border-strong); }
-  .tabs button { background: none; border: 0; color: var(--t3); font-size: 15px;
-    padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-  .tabs button.on { color: var(--t1); border-bottom-color: var(--accent); font-weight: 700; }
-  .tabs button:hover { color: var(--t1); }
   .plogo { width: 13px; height: 13px; vertical-align: -2px; }
   .metric-sel { background: var(--s2); color: var(--t2); border: 1px solid var(--border-strong);
     border-radius: 8px; font: inherit; font-size: 13.5px; padding: 5px 8px; cursor: pointer; }
@@ -49,7 +46,7 @@
 
   /* ---- W12: show health — gauge, diagnosis, and today's-read cards ---- */
   .healthrow { display: grid; grid-template-columns: minmax(220px, 3fr) minmax(0, 6fr) minmax(230px, 3.4fr);
-    gap: 14px; margin-bottom: 14px; }
+    gap: var(--gap); margin-bottom: var(--gap); }
   .healthrow .gaugewrap { display: flex; flex-direction: column; align-items: center; gap: 10px;
     padding-top: 6px; }
   .gauge { width: 168px; height: 168px; position: relative; }
@@ -119,7 +116,7 @@
 
   /* ---- Primary answers: latest episode + growth trend cards ---- */
   .overview { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
-    gap: 14px; margin-bottom: 14px; }
+    gap: var(--gap); margin-bottom: var(--gap); }
   .overview.single { grid-template-columns: 1fr; }
   .hero { display: flex; gap: 24px; }
   .hero .main { flex: 1; min-width: 0; }
@@ -157,7 +154,7 @@
 
   /* ---- Episode carousel: selector + legend + finished health reads,
      oldest → newest, latest always far right (locked rule) ---- */
-  .carousel { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 6px; margin-bottom: 14px;
+  .carousel { display: flex; gap: var(--gap); overflow-x: auto; padding: 2px 2px 6px; margin-bottom: var(--gap);
     scrollbar-width: thin; scroll-snap-type: x proximity; }
   .sitem { flex: 1 0 168px; min-width: 168px; scroll-snap-align: end; background: var(--s1);
     border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; cursor: pointer;
@@ -194,11 +191,13 @@
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 14px;
-    padding: 10px; margin: 14px 0 12px; position: relative; font-size: 14px;
+    /* the 1px border counts toward the inset, so the frame gutter reads
+       optically identical to the gutters between tiles */
+    padding: calc(var(--gap) - 1px); margin: var(--gap) 0; position: relative; font-size: 14px;
     animation: panelIn .16s ease-out; }
   @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } #chartbox { transition: none; } }
   .panel .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px; margin-top: 10px; grid-auto-flow: dense; }
+    gap: var(--gap); margin-top: var(--gap); grid-auto-flow: dense; }
   .panel .psec { min-width: 0; background: var(--s1); border-radius: 10px; padding: 13px 15px 14px; }
   .panel .psec.wide { grid-column: 1 / -1; }
   .panel .psec .kicker { margin-bottom: 8px; }
@@ -305,7 +304,7 @@
 
   /* ---- chart card ---- */
   #chartcard { background: var(--s1); border: 1px solid var(--border); border-radius: 14px;
-    padding: 12px 14px 10px; margin-bottom: 6px; }
+    padding: 12px 14px 10px; margin-bottom: var(--gap); }
   .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
   .chead .ct { font-size: 15px; font-weight: 700; }
   .chead .cs { font-size: 14px; color: var(--t3); }
@@ -346,8 +345,8 @@
   .tt .note { color: var(--amber); font-size: 12px; margin-top: 5px; }
 
   /* ---- insights: readable claim up front, recommendation one click away ---- */
-  h2 { font-size: 16px; margin: 20px 0 8px; }
-  .insights { display: grid; gap: 6px; }
+  h2 { font-size: 16px; margin: var(--gap) 0; }
+  .insights { display: grid; gap: var(--gap); }
   .cat-head { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     color: var(--t3); margin: 10px 0 2px; }
   .insight { background: var(--s1); border: 1px solid var(--border); border-radius: 8px;
@@ -416,15 +415,14 @@
     .panel .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 720px) {
-    /* Mobile is a denser cut of the same system: inline stamp, compact tabs,
-       the gauge riding beside its caption instead of a tall centered column,
-       8px card rhythm, and methodology copy deferred to About. */
+    /* Mobile is a denser cut of the same system: inline stamp, the gauge
+       riding beside its caption instead of a tall centered column, one
+       tightened gutter, and methodology copy deferred to About. */
+    :root { --gap: 10px; }
     .wrap { padding: 12px 12px 20px; }
     h1 { font-size: 19px; }
     .stamp { font-size: 12.5px; }
-    .tabs { margin: 4px 0 12px; }
-    .tabs button { padding: 8px 12px; font-size: 14px; }
-    .healthrow, .overview { grid-template-columns: 1fr; gap: 8px; margin-bottom: 8px; }
+    .healthrow, .overview { grid-template-columns: 1fr; }
     .card { padding: 13px 14px; }
     .kicker { margin-bottom: 8px; }
     .healthrow .gaugewrap { flex-direction: row; align-items: center; gap: 16px; padding-top: 0; }
@@ -441,7 +439,6 @@
     .hero .spark { width: 100%; }
     .hero .big { font-size: 30px; }
     .controls { width: 100%; margin-left: 0; }
-    .carousel { gap: 8px; margin-bottom: 8px; }
     .sitem { flex: 0 0 160px; padding: 11px 12px; }
     #chartbox { height: 340px; }
     .panel .themegrid { grid-template-columns: 1fr; }
@@ -460,11 +457,6 @@
     <div class="stamp" id="stamp"></div>
   </header>
 
-  <div class="tabs" id="view" role="tablist" aria-label="Dashboard view">
-    <button type="button" role="tab" data-v="growth">Growth</button>
-    <button type="button" role="tab" data-v="live">Live</button>
-  </div>
-
   <section class="healthrow" id="health" aria-label="Show health"></section>
   <div class="overview" id="overview">
     <div class="card hero" id="hero"></div>
@@ -477,10 +469,11 @@
     <div class="chead">
       <div class="chart-copy"><span class="ct" id="ctitle"></span><span class="cs" id="cscope"></span></div>
       <div class="controls">
-        <span class="seg growth-only" id="mode">
-          <button type="button" data-v="standings">Totals</button>
-          <button type="button" data-v="race">Over time</button>
-          <button type="button" data-v="watch">Watching</button>
+        <span class="seg" id="mode" role="tablist" aria-label="Chart view">
+          <button type="button" role="tab" data-v="standings">Totals</button>
+          <button type="button" role="tab" data-v="race">Over time</button>
+          <button type="button" role="tab" data-v="watch">Watching</button>
+          <button type="button" role="tab" data-v="live">Live minutes</button>
         </span>
         <select id="metric" class="metric-sel" aria-label="What the totals chart measures">
           <option value="views">Views</option>
@@ -569,7 +562,7 @@ function catKeyFor(ins) {
   return "data";
 }
 
-const state = { view: "growth", mode: "standings", metric: "views", byDate: false, solo: null, panel: null, table: false, allInsights: false, evidenceOpen: false };
+const state = { mode: "standings", metric: "views", byDate: false, solo: null, panel: null, table: false, allInsights: false, evidenceOpen: false };
 
 function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
@@ -848,7 +841,7 @@ function buildHealth() {
           <div class="num"><b data-fold-number>${h.score}</b><small>of 100</small></div>
         </div>
         <div class="scale">50 is this show’s usual level</div>
-        <button type="button" class="why" id="whyscore" aria-expanded="${state.evidenceOpen ? "true" : "false"}" aria-controls="evidence">Why this score ${state.evidenceOpen ? "−" : "+"}</button>
+        <button type="button" class="why" id="whyscore" aria-expanded="${state.evidenceOpen ? "true" : "false"}" aria-controls="evidence">Why this score&nbsp;${state.evidenceOpen ? "−" : "+"}</button>
       </div>
     </div>
     <div class="card hc-diag">
@@ -866,18 +859,51 @@ function buildHealth() {
 
 /* ================= hero: latest episode card ================= */
 let sparkChart = null;
+// The hero mirrors the chart (owner directive 2026-08-23): it shows the
+// selected episode — latest when none is selected — and leads with whichever
+// measure the chart is on. One primary number per measure branch; only one
+// branch ever renders.
+function heroMetricKey() { return state.mode === "live" ? "live" : state.metric; }
+const METRIC_TREND_TITLE = {
+  watched: "Share watched — by episode",
+  live: "Live viewers — by episode",
+  reach: "X reach — by episode",
+};
 function buildHero() {
   const el = document.getElementById("hero");
-  const e = NEWEST;
-  const isLive = state.view === "live";
+  const sel = state.solo || state.panel;
+  const e = (sel && EPS.find(x => x.slug === sel)) || NEWEST;
+  const metric = heroMetricKey();
   const c = color(e);
-  let html = `<div class="main"><div class="kicker">${isLive ? "Latest live session" : "Latest episode"}</div><h2>${esc(short(e.title))}</h2>`;
+  let html = `<div class="main"><div class="kicker">${sel && e.slug === sel ? "Selected episode" : "Latest episode"}</div><h2>${esc(short(e.title))}</h2>`;
 
-  if (isLive) {
+  if (metric === "live") {
     if (e.live) {
-      html += `<div class="metricline"><div class="big"><span data-fold-number>${e.live.peak}</span> <small>peak live viewers</small></div></div>`;
+      html += `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.live.avg)}</span> <small>average live viewers</small></div></div>`;
+      html += `<div class="gline"><span class="g" data-tip="peak live viewers" tabindex="0">${ICONS.users}<b>${nfmt(e.live.peak)}</b></span><span class="g" data-tip="chat messages" tabindex="0">${ICONS.chat}<b>${nfmt(e.live.chatMessages)}</b></span><span class="g" data-tip="live session length" tabindex="0">${ICONS.clock}<b>${e.live.durationMin ?? "–"} min</b></span></div>`;
     } else {
       html += `<div class="unavailable">Live data is not available for this episode.</div>`;
+    }
+  } else if (metric === "watched") {
+    if (e.watch?.avgPercent != null) {
+      html += `<div class="metricline"><div class="big"><span data-fold-number>${e.watch.avgPercent}%</span> <small>of the video watched on average</small></div></div>`;
+      const chans = (e.watch.byChannel || []).filter(ch => ch.avgPercent != null);
+      if (chans.length) html += `<div class="gline">${chans.map(ch => `<span class="g" data-tip="${esc(`${TT_NAME[ch.key] || ch.key}: ${ch.avgPercent}% watched · ${nfmt(ch.views)} views`)}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[ch.key] || "#8a94a8"}"></i><b>${ch.avgPercent}%</b></span>`).join("")}</div>`;
+    } else {
+      html += `<div class="unavailable">Watch data is not available for this episode.</div>`;
+    }
+  } else if (metric === "reach") {
+    if (e.latest.xImpressions != null) {
+      html += `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.latest.xImpressions)}</span> <small>times the announces were seen</small></div></div>`;
+      const rr = e.latest.byDest["x:ridd_design"]?.views;
+      const tt = e.latest.byDest["x:designertom"]?.views;
+      if (rr != null && tt != null && rr + tt > 0) {
+        html += `<div class="platform-bar" role="img" aria-label="@ridd_design ${nfmt(rr)}. @designertom ${nfmt(tt)}.">
+          <span class="yt" style="flex:${rr};background:#b7c2d4"></span><span class="x" style="flex:${tt}"></span></div>
+          <div class="splitlabels" aria-hidden="true"><span><i style="background:#b7c2d4"></i>@ridd_design</span><span><i style="background:var(--accent)"></i>@designertom</span></div>`;
+      }
+    } else {
+      html += `<div class="unavailable">X reach is not available for this episode.</div>`;
     }
   } else {
     const mk = heroMarker(e);
@@ -894,17 +920,16 @@ function buildHero() {
     } else {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
-    // Episode health never shows early: a finished read gets its chip; a young
-    // episode simply shows nothing — absence is its own signal.
-    if (healthOf(e)) html += `<div class="state">${healthChip(e)}</div>`;
   }
+  // Episode health never shows early: a finished read gets its chip; a young
+  // episode simply shows nothing — absence is its own signal.
+  if (healthOf(e)) html += `<div class="state">${healthChip(e)}</div>`;
 
   html += `</div>`;
-  // Sparkline is live-view only. In growth view it plotted YouTube-only
-  // history on the total-views hero — spotlighting one platform on a card
-  // about the whole picture (owner call, 2026-08-22). A total-views history
-  // line can't replace it yet: X plays have no week-1 history before 8/21,
-  // and we never fabricate history.
+  // The per-minute sparkline rides the live measure only. Other measures have
+  // no honest per-episode series to draw (X plays have no week-1 history
+  // before 8/21, and we never fabricate history).
+  const isLive = metric === "live";
   if (isLive) html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">concurrent viewers by minute</div></div>`;
   el.innerHTML = html;
 
@@ -927,7 +952,7 @@ function buildHero() {
 
 /* ================= episode carousel (above the chart) ================= */
 function buildStrip() {
-  const isLive = state.view === "live";
+  const isLive = state.mode === "live";
   const strip = document.getElementById("strip");
   strip.innerHTML = "";
   // oldest → newest, left → right: the latest episode is always far right
@@ -939,29 +964,27 @@ function buildStrip() {
     it.className = "sitem" + (e.slug === NEWEST.slug ? " newest" : "");
     it.setAttribute("role", "listitem");
     it.dataset.slug = e.slug;
+    // the card's number IS the chart's measure (owner directive 2026-08-23):
+    // one definition (CHART_METRICS) feeds chart, hero, and card alike
     let num = "";
     let spokenValue = "Data not available.";
-    if (isLive) {
-      if (e.live) {
-        num = `<span class="num" data-fold-number>${e.live.peak}</span> peak`;
-        spokenValue = `${e.live.peak} peak live viewers.`;
-      } else {
-        num = `<span class="num">not available</span>`;
-      }
-    } else {
+    const metric = heroMetricKey();
+    if (metric === "views") {
       const mk = heroMarker(e);
       // number rides the identity row; the unit is stated once in the hero
       const total = e.latest.totalViews ?? e.latest.ytTotal;
       num = total == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
       if (total != null) spokenValue = `${nfmt(total)} total views.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
+    } else {
+      const M = CHART_METRICS[metric];
+      const v = M.get(e);
+      num = v == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${M.card(v)}</span>`;
+      if (v != null) spokenValue = `${M.spoken(v)}.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
     }
-    // Episode health, growth tab only: a finished three-week read shows its
-    // score; the first episode says it set the baseline; younger episodes show
-    // nothing score-like at all (their wait date lives in the click panel).
-    let hs = "";
-    if (!isLive) {
-      hs = healthOf(e) ? healthChip(e) : `<span class="hs quiet" aria-hidden="true"></span>`;
-    }
+    // Episode health: a finished three-week read shows its score; younger
+    // episodes show nothing score-like at all (their wait date lives in the
+    // click panel).
+    const hs = healthOf(e) ? healthChip(e) : `<span class="hs quiet" aria-hidden="true"></span>`;
     it.innerHTML = `<span class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</span>
       <span class="t">${esc(short(e.title))}</span>${hs}`;
     it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
@@ -1043,7 +1066,7 @@ function buildPanel() {
       const fmtV = (v) => k === "live" ? `${v.peak} · ${nfmt(v.chat)}` : (k === "retention" || k === "sentiment") ? `${v}%` : nfmt(v);
       html += `<div class="irow">${ICONS[icon]}<span class="lb" data-tip="${esc(tip)}" tabindex="0">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
     }
-    if (state.view !== "live" && pace) {
+    if (pace) {
       const paceTip = "YouTube views at the same age as earlier episodes — appears after three of them have real data at that age.";
       html += `<div class="irow">${ICONS.gauge}<span class="lb" data-tip="${esc(paceTip)}" tabindex="0">Same-age pace</span>${
         Math.abs(pace.pct) <= 5
@@ -1199,8 +1222,35 @@ function closeDrill() { document.getElementById("drill").classList.remove("on");
 /* ================= growth-trend card: is the show growing? (PRD v2 W2) ================= */
 function buildCompound() {
   const el = document.getElementById("compound");
+  // Alternate measures chart their own across-episodes trend beside the hero,
+  // in air order, from the same stored numbers the chart uses (owner directive
+  // 2026-08-23). Episodes without the measure simply don't draw a bar.
+  const metric = heroMetricKey();
+  if (metric !== "views") {
+    const M = CHART_METRICS[metric];
+    const have = EPS.map((e) => ({ e, v: M.get(e) })).filter((r) => r.v != null);
+    if (have.length < 3) {
+      el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>
+        <div class="waitbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+        <div class="cv2">Not enough episodes to call a direction yet.</div></div>`;
+      el.style.display = "";
+      return;
+    }
+    const maxV = Math.max(...have.map((r) => r.v));
+    const last = have.at(-1).v, prev = have.at(-2).v;
+    const pct = prev > 0 ? Math.round(((last - prev) / prev) * 100) : 0;
+    const cls2 = Math.abs(pct) <= 5 ? "" : pct > 0 ? "up" : "down";
+    const verdict2 = Math.abs(pct) <= 5 ? "Holding steady episode to episode."
+      : pct > 0 ? "Climbing on the newest episode." : "Slipping on the newest episode.";
+    el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>
+      <div class="bars">${have.map((r) => `<div class="cbar" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
+        <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.v / maxV) * 100))}%;background:${color(r.e)}"></div></div></div>`).join("")}</div>
+      <div class="cv2 ${cls2}" style="${cls2 === "up" ? "color:var(--good)" : cls2 === "down" ? "color:var(--bad)" : ""}">${verdict2}</div>`;
+    el.style.display = "";
+    return;
+  }
   const rows = DATA.showTrend?.week1VelocityByEpisode || [];
-  if (state.view === "live" || !rows.length) { el.style.display = "none"; el.innerHTML = ""; return; }
+  if (!rows.length) { el.style.display = "none"; el.innerHTML = ""; return; }
   const enriched = rows.map(r => ({ ...r, e: EPS.find(x => x.slug === r.slug) })).filter(r => r.e);
   const vals = enriched.filter(r => r.value != null);
   const max = Math.max(1, ...vals.map(r => r.value));
@@ -1353,13 +1403,13 @@ document.addEventListener("click", (ev) => {
   // expanders) is detached by the time this bubble arrives — closest() can't
   // see its old ancestors, so a detached target is always an INSIDE click
   if (!(ev.target instanceof Element) || !ev.target.isConnected) return;
-  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, .tabs, #drill, .chip, .insight, .expander, .dcard")) return;
+  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, #drill, .chip, .insight, .expander, .dcard")) return;
   state.panel = null; state.solo = null; render();
 });
 
 /* ================= chart titles / scope (unit trap fix) ================= */
 function chartTitle() {
-  if (state.view === "live") return ["Live viewers", "By minute"];
+  if (state.mode === "live") return ["Live viewers", "Concurrent viewers by minute · Restream, all destinations"];
   if (state.mode === "standings") {
     // metric picker (owner directive 2026-08-23): each measure charts alone,
     // in its own unit — nothing is ever added across units
@@ -1475,7 +1525,7 @@ function externalTooltip(context) {
   const { chart, tooltip } = context;
   const el = document.getElementById("tt");
   if (!tooltip.opacity || !tooltip.dataPoints?.length) { el.style.opacity = 0; return; }
-  const isLive = state.view === "live";
+  const isLive = state.mode === "live";
   const isStandings = !isLive && state.mode === "standings";
   const isDelta = !isLive && state.mode === "delta";
   let html = "";
@@ -1614,9 +1664,12 @@ let chart;
 // stored per-episode number in its own unit; a missing value draws no bar and
 // no label (absence stays silent, never zero).
 const CHART_METRICS = {
-  watched: { get: (e) => e.watch?.avgPercent ?? null, text: (v) => `${v}%`, tick: (v) => `${v}%` },
-  live: { get: (e) => e.live?.avg ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v) },
-  reach: { get: (e) => e.latest?.xImpressions ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v) },
+  watched: { get: (e) => e.watch?.avgPercent ?? null, text: (v) => `${v}%`, tick: (v) => `${v}%`,
+    card: (v) => `${v}%`, spoken: (v) => `${v}% of the video watched on average` },
+  live: { get: (e) => e.live?.avg ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v),
+    card: (v) => nfmt(v), spoken: (v) => `${nfmt(v)} average live viewers` },
+  reach: { get: (e) => e.latest?.xImpressions ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v),
+    card: (v) => kfmt(v), spoken: (v) => `${nfmt(v)} times the announces were seen` },
 };
 function renderMetricBars(all, ordered, soloed) {
   const M = CHART_METRICS[state.metric];
@@ -1726,7 +1779,7 @@ function renderStandings() {
 }
 
 function render() {
-  const isLive = state.view === "live";
+  const isLive = state.mode === "live";
   const [t, s] = chartTitle();
   document.getElementById("ctitle").textContent = t;
   // scope strings are build-authored constants (no data interpolation); the
@@ -1981,7 +2034,7 @@ function render() {
 function buildTable() {
   const box = document.getElementById("tablebox");
   if (!state.table) { box.style.display = "none"; return; }
-  const isLive = state.view === "live";
+  const isLive = state.mode === "live";
   let html = "<table><tr>";
   if (isLive) {
     html += "<th>Episode</th><th>Peak live</th><th>Avg</th><th>Chat msgs</th><th>Chatters</th><th>Duration</th></tr>";
@@ -2034,7 +2087,7 @@ function buildTable() {
 function buildEmptyNote() {
   const el = document.getElementById("emptynote");
   el.style.display = "none";
-  if (state.view === "live" || state.mode !== "delta" || state.table) return;
+  if (state.mode === "live" || state.mode !== "delta" || state.table) return;
   const missing = EPS.filter(e => !e.weekly || e.weekly.length === 0);
   if (!missing.length) return;
   const next = new Date(mondayNoonAfter(Date.now()) - PHX);
@@ -2054,8 +2107,7 @@ function mondayNoonAfter(ms) {
 
 /* ============ insights: readable claims, recommendation one click away ============ */
 function applyChartState(cs) {
-  state.view = cs.view || "growth";
-  if (cs.view === "live") { state.mode = "standings"; }
+  if (cs.view === "live" || cs.mode === "live") { state.mode = "live"; }
   else {
     // Weekly-gains (delta) chart removed 2026-08-22 (owner: "only YouTube and
     // not clear") — anything that used to route there goes to the race view.
@@ -2145,16 +2197,14 @@ function buildAbout() {
 
 /* ================= sync / events ================= */
 function syncUI() {
-  const isLive = state.view === "live";
+  const isLive = state.mode === "live";
   const isTraj = !isLive && state.mode === "race";
-  for (const b of document.querySelectorAll("#view button")) {
-    const selected = b.dataset.v === state.view;
+  for (const b of document.querySelectorAll("#mode button")) {
+    const selected = b.dataset.v === state.mode;
     b.classList.toggle("on", selected);
     b.setAttribute("aria-selected", String(selected));
   }
-  for (const b of document.querySelectorAll("#mode button")) b.classList.toggle("on", b.dataset.v === state.mode);
-  document.getElementById("overview").classList.toggle("single", isLive);
-  document.querySelector("#mode").style.display = isLive || state.table ? "none" : "";
+  document.querySelector("#mode").style.display = state.table ? "none" : "";
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
@@ -2176,11 +2226,6 @@ function syncUI() {
   }
 }
 
-document.getElementById("view").addEventListener("click", e => {
-  if (e.target.dataset.v && e.target.dataset.v !== state.view) {
-    state.view = e.target.dataset.v; state.solo = null; state.panel = null; render();
-  }
-});
 document.getElementById("mode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.mode = e.target.dataset.v; render(); }
 });
