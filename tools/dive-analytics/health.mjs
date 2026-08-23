@@ -60,7 +60,9 @@ export const HEALTH_STORE_VERSION = 1;
 // instead of the retired "#x of N" ranks; the check math itself is unchanged.
 // Saved entries keep the formula stamp they were written under.
 export const FORMULA_VERSION = "health-v2";
-export const PROMPT_VERSION = 1;
+// prompt v2 (2026-08-23): the headline must agree with the per-check states the
+// page renders next to it (critic F3 — one source of truth for check words).
+export const PROMPT_VERSION = 2;
 export const BASE_WEIGHTS = Object.freeze({
   growth: 0.25,
   audienceQuality: 0.20,

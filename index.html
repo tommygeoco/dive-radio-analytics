@@ -64,7 +64,7 @@
   .checkrows { display: grid; }
   .checkrow { display: flex; align-items: center; gap: 12px; padding: 7px 0; font-size: 14px; }
   .checkrow + .checkrow { border-top: 1px solid var(--border); }
-  .checkrow .cl { color: var(--t1); font-weight: 600; width: 108px; flex: none; }
+  .checkrow .cl { color: var(--t1); font-weight: 600; width: 128px; flex: none; }
   .checkrow .cs { color: var(--t3); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
     text-overflow: ellipsis; }
   .checkrow .st { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; white-space: nowrap; }
@@ -105,7 +105,7 @@
   .hero .mk { font-size: 14px; font-weight: 600; color: var(--amber); }
   .hero .platform-bar { display: flex; width: min(100%, 520px); height: 8px; overflow: hidden;
     border-radius: 4px; background: var(--s2); margin-top: 16px; }
-  .hero .platform-bar .yt { background: #ff795b; }
+  .hero .platform-bar .yt { background: #ff4f5e; } /* YouTube family red — must not read as the --bad status coral */
   .hero .platform-bar .x { background: var(--accent); }
   .hero .splitlabels { display: flex; justify-content: space-between; width: min(100%, 520px);
     margin-top: 8px; color: var(--t3); font-size: 13.5px; }
@@ -211,11 +211,13 @@
   .reset:hover { color: var(--t1); }
 
   /* ---- chart card ---- */
-  #chartcard { background: var(--s1); border: 1px solid var(--border); border-radius: 12px;
+  #chartcard { background: var(--s1); border: 1px solid var(--border); border-radius: 14px;
     padding: 12px 14px 10px; margin-bottom: 6px; }
   .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
   .chead .ct { font-size: 15px; font-weight: 700; }
   .chead .cs { font-size: 14px; color: var(--t3); }
+  .chead .cs .scopepill { font-weight: 700; color: var(--t1); background: var(--s2);
+    border: 1px solid var(--border-strong); border-radius: 6px; padding: 1px 7px; }
   .chart-copy { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   #chartbox { height: 440px; position: relative; }
   #tablebox { overflow-x: auto; display: none; }
@@ -332,6 +334,10 @@
     #chartbox { height: 340px; }
     .stamp { margin-left: 0; width: 100%; }
     .panel .themegrid { grid-template-columns: 1fr; }
+    /* diagnosis rows: the sub-label is explainer copy — on phones it pushed
+       the status past the card edge, so it yields the row entirely */
+    .checkrow .cs { display: none; }
+    .checkrow .cl { flex: 1; width: auto; }
   }
 </style>
 </head>
@@ -567,9 +573,9 @@ function healthTrend(points) {
    numbers live one click away in the evidence card, never at glance layer. */
 const CHECK_LABELS = {
   growth: ["Growth", "How new episodes start"],
-  audienceQuality: ["Engagement", "Watching and reacting"],
+  audienceQuality: ["Audience quality", "Watch time and reactions"],
   reachEfficiency: ["Reach", "X posts becoming plays"],
-  livePull: ["Turnout", "Live audience"],
+  livePull: ["Live turnout", "Peak viewers and chat"],
   conversion: ["Subscribers", "Subscriber pull"],
   sentiment: ["Goodwill", "How feedback reads"],
 };
@@ -660,7 +666,7 @@ function buildHero() {
     if (splitReady) {
       html += `<div class="platform-bar" role="img" aria-label="YouTube ${nfmt(yt)} views. X ${nfmt(x)} plays.">
         <span class="yt" style="flex:${yt}"></span><span class="x" style="flex:${x}"></span></div>
-        <div class="splitlabels" aria-hidden="true"><span><i style="background:#ff795b"></i>YouTube</span><span><i style="background:var(--accent)"></i>X</span></div>`;
+        <div class="splitlabels" aria-hidden="true"><span><i style="background:#ff4f5e"></i>YouTube</span><span><i style="background:var(--accent)"></i>X</span></div>`;
     } else {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
@@ -738,10 +744,19 @@ function buildStrip() {
     it.innerHTML = `<span class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</span>
       <span class="t">${esc(short(e.title))}</span>${hs}`;
     it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
-    it.addEventListener("click", () => {
-      if (state.panel === e.slug) { state.panel = null; state.solo = null; }
-      else { state.panel = e.slug; state.solo = e.slug; }
+    it.addEventListener("click", (ev) => {
+      // a tap on the health chip is the tooltip's, not the panel's — one tap,
+      // one disclosure (critic 2026-08-23 F9)
+      if (ev.target.closest(".hs[data-hslug]")) return;
+      const opening = state.panel !== e.slug;
+      if (opening) { state.panel = e.slug; state.solo = e.slug; }
+      else { state.panel = null; state.solo = null; }
       render();
+      // the click asked for the panel — make sure it is actually on screen
+      if (opening) document.getElementById("panel").scrollIntoView({
+        block: "nearest",
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
     });
     strip.appendChild(it);
   }
@@ -762,7 +777,7 @@ function buildPanel() {
   let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
     <span style="color:var(--t3);font-weight:400;font-size: 13px">· ${e.premiere.slice(5).replace("-", "/")}</span>
-    ${e.partialHistory ? `<span class="pchip" title="tracking started late for this episode — totals are right, early weekly history is missing">tracked late</span>` : ""}</div>`;
+    ${e.partialHistory ? `<span class="pchip" tabindex="0" data-tip="Tracking started late for this episode — its totals are right, but early weekly history is missing.">tracked late</span>` : ""}</div>`;
   html += `<div class="grid"><div>`;
   const panelTotal = e.latest.totalViews ?? e.latest.ytTotal;
   html += `<div class="row head">Total views<span class="val big">${panelTotal == null ? "not available" : nfmt(panelTotal)}</span></div>`;
@@ -963,10 +978,16 @@ const rtt = document.createElement("div");
 rtt.id = "rtt";
 document.body.appendChild(rtt);
 function showRtt(badge) {
-  const e = EPS.find(x => x.slug === badge.dataset.hslug);
-  const r = e && healthOf(e);
-  if (!r) return;
-  rtt.innerHTML = healthTipHTML(e, r);
+  let html = null;
+  if (badge.dataset.hslug) {
+    const e = EPS.find(x => x.slug === badge.dataset.hslug);
+    const r = e && healthOf(e);
+    if (r) html = healthTipHTML(e, r);
+  } else if (badge.dataset.tip) {
+    html = `<div>${esc(badge.dataset.tip)}</div>`;
+  }
+  if (!html) return;
+  rtt.innerHTML = html;
   const b = badge.getBoundingClientRect();
   rtt.style.opacity = 1;
   // measure after content is set; clamp inside the viewport, flip above if low
@@ -978,11 +999,11 @@ function showRtt(badge) {
   rtt.style.top = y + "px";
 }
 function hideRtt() { rtt.style.opacity = 0; }
-document.addEventListener("mouseover", (ev) => { const b = ev.target.closest?.(".hs[data-hslug]"); if (b) showRtt(b); });
-document.addEventListener("mouseout", (ev) => { if (ev.target.closest?.(".hs[data-hslug]")) hideRtt(); });
-document.addEventListener("focusin", (ev) => { const b = ev.target.closest?.(".hs[data-hslug]"); if (b) showRtt(b); });
-document.addEventListener("focusout", (ev) => { if (ev.target.closest?.(".hs[data-hslug]")) hideRtt(); });
-document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".hs[data-hslug]"); if (b) showRtt(b); else hideRtt(); });
+document.addEventListener("mouseover", (ev) => { const b = ev.target.closest?.(".hs[data-hslug], [data-tip]"); if (b) showRtt(b); });
+document.addEventListener("mouseout", (ev) => { if (ev.target.closest?.(".hs[data-hslug], [data-tip]")) hideRtt(); });
+document.addEventListener("focusin", (ev) => { const b = ev.target.closest?.(".hs[data-hslug], [data-tip]"); if (b) showRtt(b); });
+document.addEventListener("focusout", (ev) => { if (ev.target.closest?.(".hs[data-hslug], [data-tip]")) hideRtt(); });
+document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".hs[data-hslug], [data-tip]"); if (b) showRtt(b); else hideRtt(); });
 document.getElementById("dclose").addEventListener("click", closeDrill);
 document.getElementById("drill").addEventListener("click", (ev) => { if (ev.target.id === "drill") closeDrill(); });
 document.addEventListener("keydown", (ev) => {
@@ -1005,7 +1026,10 @@ function chartTitle() {
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
     return ["Episode views", "YouTube + X playback" + (anyPartial ? " · some X plays missing" : "")];
   }
-  if (state.mode === "race") return ["Views after release", `YouTube only · ${state.byDate ? "by date" : "since release"}`];
+  if (state.mode === "race") {
+    const hasAnnounce = EPS.some(e => (e.announces || []).length);
+    return ["Views after release", `<b class="scopepill">YouTube only</b> · ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}`];
+  }
   return ["Weekly YouTube views", "Episodes side by side"];
 }
 
@@ -1233,7 +1257,9 @@ function render() {
   const isLive = state.view === "live";
   const [t, s] = chartTitle();
   document.getElementById("ctitle").textContent = t;
-  document.getElementById("cscope").textContent = s;
+  // scope strings are build-authored constants (no data interpolation); the
+  // race view carries a pill so a unit switch is never announced in gray only
+  document.getElementById("cscope").innerHTML = s;
 
   buildHealth();
   buildHero();
@@ -1423,7 +1449,7 @@ function buildTable() {
       html += "</tr>";
     }
   } else {
-    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>X reach</th><th>Pace (YT)</th></tr>";
+    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>Pace (YT)</th></tr>";
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);
@@ -1439,7 +1465,6 @@ function buildTable() {
       html += `<td>${metricText(bd["yt:joindiveclub"]?.views)}</td><td>${metricText(bd["yt:designertom"]?.views)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
       html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
-      html += `<td>${metricText(e.latest.xImpressions)}</td>`;
       html += `<td>${pace ? (pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%" : "–"}</td></tr>`;
     }
   }
@@ -1459,8 +1484,8 @@ function buildEmptyNote() {
   const next = new Date(mondayNoonAfter(Date.now()) - PHX);
   const when = next.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
   // in the scope line, IN VIEW — not a note below 440px of empty grid
-  document.getElementById("cscope").textContent =
-    `${missing.map(e => "E" + e.ep).join(", ")} first tracked this week — their weekly bars appear after ${when}`;
+  document.getElementById("cscope").innerHTML =
+    esc(`${missing.map(e => "E" + e.ep).join(", ")} first tracked this week — their weekly bars appear after ${when}`);
 }
 function mondayNoonAfter(ms) {
   const shifted = new Date(ms - PHX);
@@ -1571,7 +1596,7 @@ function syncUI() {
   }
   for (const b of document.querySelectorAll("#mode button")) b.classList.toggle("on", b.dataset.v === state.mode);
   document.getElementById("overview").classList.toggle("single", isLive);
-  document.querySelector("#mode").style.display = isLive ? "none" : "";
+  document.querySelector("#mode").style.display = isLive || state.table ? "none" : "";
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
