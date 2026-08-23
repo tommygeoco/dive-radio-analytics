@@ -2289,9 +2289,31 @@ function render() {
 function buildTable() {
   const box = document.getElementById("tablebox");
   if (!state.table) { box.style.display = "none"; return; }
-  const isLive = state.mode === "live";
+  // The table mirrors the SELECTED view: the same question, numbers instead
+  // of marks (owner feedback 2026-08-23 — one generic table standing in for
+  // five different views read as a mystery). Each measure gets its own
+  // columns; the views table serves only the views question.
+  const kind = state.mode === "live" || (state.mode === "standings" && state.metric === "live") ? "live"
+    : state.mode === "watch" || (state.mode === "standings" && state.metric === "watched") ? "watched"
+    : state.mode === "standings" && state.metric === "reach" ? "reach"
+    : state.mode === "race" ? "race"
+    : "views";
+  // watched-vs-typical reads each row's typical from data.baselines (the
+  // other three-week-old episodes, outliers and the row itself left out);
+  // nothing is computed here (PRD v9 F16)
+  const watchedCellFor = (e) => {
+    if (e.watch?.avgPercent == null) return "–";
+    const v = e.watch.avgPercent;
+    const wTypical = DATA.baselines?.watchPctBySlug?.[e.slug]?.typical ?? null;
+    if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical * 100 > QUIET_ZONE) {
+      return v > wTypical ? `<span class="st-good">▲${v}%</span>` : `<span class="st-bad">▼${v}%</span>`;
+    }
+    return `<span class="st-mid">${v}%</span>`;
+  };
+  // same shape the panel uses for time watched
+  const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
   let html = "<table><tr>";
-  if (isLive) {
+  if (kind === "live") {
     html += "<th>Episode</th><th>Peak live</th><th>Avg</th><th>Chat msgs</th><th>Chatters</th><th>Duration</th></tr>";
     for (const e of [...EPS].reverse()) {
       html += `<tr><td class="t">${esc(label(e))}</td>`;
@@ -2300,18 +2322,46 @@ function buildTable() {
         : `<td colspan="5" style="text-align:left;color:var(--t3)">no live data</td>`;
       html += "</tr>";
     }
+  } else if (kind === "watched") {
+    html += `<th>Episode</th><th>Watched</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>Avg time</th><th>Total time</th></tr>`;
+    for (const e of [...EPS].reverse()) {
+      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      if (!e.watch) {
+        html += `<td colspan="5" style="text-align:left;color:var(--t3)">no watch report yet</td></tr>`;
+        continue;
+      }
+      const by = (key) => e.watch.byChannel?.find((c) => c.key === key)?.avgPercent;
+      html += `<td class="t">${watchedCellFor(e)}</td>`;
+      html += `<td>${by("yt:joindiveclub") == null ? "–" : by("yt:joindiveclub") + "%"}</td>`;
+      html += `<td>${by("yt:designertom") == null ? "–" : by("yt:designertom") + "%"}</td>`;
+      html += `<td>${e.watch.avgDurationSec == null ? "–" : fmtDur(e.watch.avgDurationSec)}</td>`;
+      html += `<td>${e.watch.minutesWatched == null ? "–" : nfmt(Math.round(e.watch.minutesWatched / 60)) + " h"}</td></tr>`;
+    }
+  } else if (kind === "reach") {
+    html += `<th>Episode</th><th>${PLOGO.x} @ridd_design</th><th>${PLOGO.x} @designertom</th><th>Total reach</th></tr>`;
+    for (const e of [...EPS].reverse()) {
+      const bd = e.latest.byDest || {};
+      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<td class="t">${bd["x:ridd_design"]?.views == null ? "–" : nfmt(bd["x:ridd_design"].views)}</td>`;
+      html += `<td>${bd["x:designertom"]?.views == null ? "–" : nfmt(bd["x:designertom"].views)}</td>`;
+      html += `<td>${e.latest.xImpressions == null ? "–" : nfmt(e.latest.xImpressions)}</td></tr>`;
+    }
+  } else if (kind === "race") {
+    html += `<th>Episode</th><th>Days old</th><th>First week ${PLOGO.yt}</th><th>${PLOGO.yt} views now</th></tr>`;
+    for (const e of [...EPS].reverse()) {
+      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<td class="t">${e.ageDays == null ? "–" : e.ageDays}</td>`;
+      html += `<td>${e.metrics?.week1Velocity == null ? "–" : nfmt(e.metrics.week1Velocity)}</td>`;
+      html += `<td>${e.latest.ytTotal == null ? "–" : nfmt(e.latest.ytTotal)}</td></tr>`;
+    }
   } else {
     html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>`;
-    // watched-vs-typical reads each row's typical from data.baselines (the
-    // other three-week-old episodes, outliers and the row itself left out);
-    // nothing is computed here (PRD v9 F16)
     // episode scores are each against a different set of earlier episodes —
     // one neutral colour, never the show-health bands (PRD v9 F17)
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);
       const pace = sameAgeSub(e);
-      const hh = e.health;
       const healthCell = healthOf(e)
         ? `<span class="st-mid">${healthOf(e).score}</span>`
         : "–";
@@ -2321,15 +2371,7 @@ function buildTable() {
       html += `<td>${metricText(bd["yt:joindiveclub"]?.views)}</td><td>${metricText(bd["yt:designertom"]?.views)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
       html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
-      let watchedCell = "–";
-      if (e.watch?.avgPercent != null) {
-        const v = e.watch.avgPercent;
-        const wTypical = DATA.baselines?.watchPctBySlug?.[e.slug]?.typical ?? null;
-        if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical * 100 > QUIET_ZONE) {
-          watchedCell = v > wTypical ? `<span class="st-good">▲${v}%</span>` : `<span class="st-bad">▼${v}%</span>`;
-        } else watchedCell = `<span class="st-mid">${v}%</span>`;
-      }
-      html += `<td>${watchedCell}</td>`;
+      html += `<td>${watchedCellFor(e)}</td>`;
       html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= QUIET_ZONE ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%"}</span>` : "–"}</td></tr>`;
     }
   }
