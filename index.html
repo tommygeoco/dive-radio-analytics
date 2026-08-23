@@ -320,10 +320,11 @@
   .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
   .chead .ct { font-size: 15px; font-weight: 700; }
   .chead .cs { font-size: 14px; color: var(--t3); }
-  .chead .cs .scopepill { display: inline-flex; align-items: center; background: var(--s2);
-    border: 1px solid var(--border-strong); border-radius: 6px; padding: 3px 7px;
-    vertical-align: -3px; }
-  .chead .cs .scopepill .plogo { width: 14px; height: 14px; }
+  /* the platform scope mark stands bare — no pill box; sized near the
+     heading beside it so the mark itself carries the weight */
+  .chead .cs .scopepill { display: inline-flex; align-items: center; vertical-align: -4px; }
+  .chead .cs .scopepill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .chead .cs .scopepill .plogo { width: 18px; height: 18px; }
   /* ---- the chart heading IS the view picker ---- */
   .ctsel { position: relative; }
   .viewbtn { margin-left: -11px; font-weight: 700; color: var(--t1); }
