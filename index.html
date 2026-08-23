@@ -36,7 +36,9 @@
   /* ---- Card system (2026-08-23 redesign): every surface is a quiet card on
      the page ground — no ruled separators; whitespace and card edges carry the
      grouping. Kickers are the one sanctioned small-caps element. ---- */
-  .card { background: var(--s1); border: 1px solid var(--border); border-radius: 14px;
+  /* Cards carry no border (owner directive 2026-08-23): the surface fill is
+     the whole edge. State — hover, selection — rides fill and shadow instead. */
+  .card { background: var(--s1); border: 0; border-radius: 14px;
     padding: 18px 20px; min-width: 0; }
   .kicker { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
     color: var(--t3); margin-bottom: 12px; }
@@ -159,11 +161,13 @@
     margin: -2px -2px calc(var(--gap) - 2px);
     scrollbar-width: thin; scroll-snap-type: x proximity; }
   .sitem { flex: 1 0 168px; min-width: 168px; scroll-snap-align: end; background: var(--s1);
-    border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; cursor: pointer;
-    position: relative; transition: border-color .15s, box-shadow .15s; color: inherit; text-align: left; }
-  .sitem:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+    border: 0; border-radius: 12px; padding: 12px 14px; cursor: pointer;
+    position: relative; transition: background .15s, box-shadow .15s; color: inherit; text-align: left; }
+  .sitem:hover { background: var(--s2); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
   .sitem.newest { box-shadow: inset 0 0 0 1px rgba(89,176,255,.35); }
-  .sitem.solo { border-color: var(--accent); background: var(--s2); }
+  /* selection still has to be unmistakable — an inset ring reads as state,
+     not as card chrome, so the flat surface survives it */
+  .sitem.solo { background: var(--s2); box-shadow: inset 0 0 0 2px var(--accent); }
   .sitem.dim { opacity: .38; }
   .sitem .r1 { display: flex; align-items: baseline; gap: 6px; font-size: 12px; font-weight: 700;
     color: var(--t3); letter-spacing: .04em; }
@@ -192,10 +196,9 @@
   #rtt .mut { color: var(--t3); margin-top: 4px; }
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 14px;
-    /* the 1px border counts toward the inset, so the frame gutter reads
-       optically identical to the gutters between tiles */
-    padding: calc(var(--gap) - 1px); margin: var(--gap) 0; position: relative; font-size: 14px;
+  .panel { background: var(--s2); border: 0; border-radius: 14px;
+    /* no border to count, so the frame inset is exactly the shared gutter */
+    padding: var(--gap); margin: var(--gap) 0; position: relative; font-size: 14px;
     animation: panelIn .16s ease-out; }
   @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } #chartbox { transition: none; } }
   .panel .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -300,20 +303,20 @@
 
   /* ---- controls ---- */
   .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-left: auto; }
-  .seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 8px;
-    overflow: hidden; background: var(--s1); }
-  .seg button { background: transparent; border: 0; color: var(--t3); padding: 7px 14px;
-    cursor: pointer; font-size: 14px; }
-  .seg button.on { background: var(--s2); color: var(--t1); font-weight: 700; }
-  .toggle { border: 1px solid var(--border); background: var(--s1); color: var(--t3);
-    border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 14px; }
-  .toggle.on { color: var(--t1); border-color: var(--border-strong); background: var(--s2); }
+  /* head-row controls are one shape in two states: same box, same padding,
+     same radius — only weight and fill say which is active */
+  .toggle, .viewbtn { display: inline-flex; align-items: center; gap: 6px; height: 32px;
+    padding: 0 11px; border: 0; border-radius: 8px; background: none; cursor: pointer;
+    font-size: 14px; line-height: 1; }
+  .toggle { color: var(--t3); }
+  .toggle:hover { background: var(--s2); color: var(--t1); }
+  .toggle.on { color: var(--t1); background: var(--s2); font-weight: 700; }
   .reset { color: var(--t3); font-size: 14px; background: none; border: 0;
     cursor: pointer; text-decoration: underline; }
   .reset:hover { color: var(--t1); }
 
   /* ---- chart card ---- */
-  #chartcard { background: var(--s1); border: 1px solid var(--border); border-radius: 14px;
+  #chartcard { background: var(--s1); border: 0; border-radius: 14px;
     padding: 12px 14px 10px; margin-bottom: var(--gap); }
   .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
   .chead .ct { font-size: 15px; font-weight: 700; }
@@ -324,19 +327,18 @@
   .chead .cs .scopepill .plogo { width: 14px; height: 14px; }
   /* ---- the chart heading IS the view picker ---- */
   .ctsel { position: relative; }
-  .viewbtn { display: inline-flex; align-items: center; gap: 5px; background: none; border: 0;
-    border-radius: 7px; margin-left: -7px; padding: 2px 6px 2px 7px; cursor: pointer;
-    font-size: 15px; font-weight: 700; color: var(--t1); }
+  .viewbtn { margin-left: -11px; font-weight: 700; color: var(--t1); }
   .viewbtn svg { width: 15px; height: 15px; color: var(--t3); flex: none; }
   .viewbtn:hover { background: var(--s2); }
   .viewbtn:hover svg, .viewbtn[aria-expanded="true"] svg { color: var(--t1); }
   .viewbtn[aria-expanded="true"] { background: var(--s2); }
   .viewbtn[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .viewmenu { position: absolute; top: calc(100% + 6px); left: -7px; z-index: 40; min-width: 232px;
+  .viewmenu { position: absolute; top: calc(100% + 6px); left: -11px; z-index: 40; min-width: 232px;
     background: #0d1017; border: 1px solid var(--border-strong); border-radius: 10px;
     padding: 6px; box-shadow: 0 14px 40px rgba(0,0,0,.5); }
   .viewmenu .vgroup { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .09em;
     text-transform: uppercase; padding: 8px 8px 4px; }
+  .viewmenu .vsep { height: 1px; background: var(--border); margin: 6px 8px; }
   .viewmenu .vopt { display: flex; align-items: center; gap: 8px; width: 100%; background: none;
     border: 0; border-radius: 7px; padding: 7px 8px; cursor: pointer; text-align: left;
     color: var(--t2); font-size: 14px; font-weight: 500; }
@@ -388,10 +390,10 @@
   .insights { display: grid; gap: var(--gap); }
   .cat-head { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     color: var(--t3); margin: 10px 0 2px; }
-  .insight { background: var(--s1); border: 1px solid var(--border); border-radius: 8px;
+  .insight { background: var(--s1); border: 0; border-radius: 8px;
     padding: 10px 14px; font-size: 14px; display: flex; align-items: flex-start; gap: 12px;
-    cursor: pointer; transition: border-color .15s; }
-  .insight:hover { border-color: var(--border-strong); }
+    cursor: pointer; transition: background .15s; }
+  .insight:hover { background: var(--s2); }
   .insight .ic { width: 28px; height: 28px; border-radius: 8px; flex: none; display: flex;
     align-items: center; justify-content: center; margin-top: 1px; }
   .insight .ic svg { width: 15px; height: 15px; }
@@ -414,7 +416,7 @@
   #drill { position: fixed; inset: 0; background: rgba(4,6,10,.62); z-index: 50; display: none;
     align-items: flex-start; justify-content: center; padding: 6vh 16px; }
   #drill.on { display: flex; }
-  .dcard { background: var(--s1); border: 1px solid var(--border-strong); border-radius: 12px;
+  .dcard { background: var(--s1); border: 0; border-radius: 12px;
     max-width: 680px; width: 100%; max-height: 82vh; display: flex; flex-direction: column;
     box-shadow: 0 24px 64px rgba(0,0,0,.6); }
   .dhead { display: flex; align-items: center; gap: 10px; padding: 14px 18px 10px; }
@@ -507,7 +509,6 @@
   <div id="chartcard" class="card">
     <div class="chead">
       <div class="chart-copy">
-        <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
         <div class="ctsel">
           <button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="viewmenu">
             <span id="ctitle"></span>
@@ -937,9 +938,13 @@ const VIEW_DEFS = [
   { key: "race", group: "Over time", title: "Views after release", mode: "race", metric: "views" },
   { key: "watch", group: "Over time", title: "How much people watch", mode: "watch", metric: "views" },
   { key: "minutes", group: "Over time", title: "Live viewers by minute", mode: "live", metric: "views" },
+  // the table mirrors whichever chart was last on screen, so it keeps the
+  // current mode and measure and simply swaps the drawing for the numbers
+  { key: "table", group: null, title: "Data table", table: true },
 ];
 const METRIC_TITLES = Object.fromEntries(VIEW_DEFS.filter((v) => v.mode === "standings").map((v) => [v.metric, v.title]));
 function currentView() {
+  if (state.table) return VIEW_DEFS.find((v) => v.table);
   return VIEW_DEFS.find((v) => v.mode === state.mode && (state.mode !== "standings" || v.metric === state.metric)) || VIEW_DEFS[0];
 }
 const METRIC_TREND_TITLE = {
@@ -1496,6 +1501,7 @@ function scopeTag(mark, name) {
   return `<b class="scopepill" data-tip="${esc(name)}" tabindex="0">${mark}<span class="sr">${esc(name)}</span></b> ·`;
 }
 function chartTitle() {
+  if (state.table) return [currentView().title, "Every value behind the charts"];
   if (state.mode === "live") return [currentView().title, "Restream, all destinations"];
   if (state.mode === "standings") {
     // The measure picker IS this view's title (owner directive 2026-08-23):
@@ -2318,8 +2324,6 @@ function syncUI() {
   // the heading always IS the picker now; the table view keeps it (the table
   // mirrors whatever the chart shows)
   closeViewMenu();
-  document.getElementById("tbtn").classList.toggle("on", state.table);
-  document.getElementById("tbtn").textContent = state.table ? "Chart" : "Data table";
   const chartbox = document.getElementById("chartbox");
   chartbox.style.display = state.table ? "none" : "";
   // solo collapse applies to the totals view only — line views already give
@@ -2343,8 +2347,8 @@ const viewMenu = document.getElementById("viewmenu");
   for (const v of VIEW_DEFS) {
     if (v.group !== lastGroup) {
       const g = document.createElement("div");
-      g.className = "vgroup";
-      g.textContent = v.group;
+      g.className = v.group ? "vgroup" : "vsep";
+      if (v.group) g.textContent = v.group;
       g.setAttribute("role", "presentation");
       viewMenu.appendChild(g);
       lastGroup = v.group;
@@ -2362,8 +2366,8 @@ const viewMenu = document.getElementById("viewmenu");
 function pickView(key) {
   const v = VIEW_DEFS.find((x) => x.key === key);
   if (!v) return;
-  state.mode = v.mode;
-  state.metric = v.metric;
+  if (v.table) state.table = true;
+  else { state.table = false; state.mode = v.mode; state.metric = v.metric; }
   closeViewMenu({ focus: true });
   render();
 }
@@ -2394,7 +2398,6 @@ viewMenu.addEventListener("keydown", (ev) => {
   else if (ev.key === "Tab") closeViewMenu();
 });
 document.addEventListener("click", (ev) => { if (!ev.target.closest?.(".ctsel")) closeViewMenu(); });
-document.getElementById("tbtn").addEventListener("click", () => { state.table = !state.table; render(); });
 // reset is scoped to the current tab (it no longer teleports Live → Growth)
 document.getElementById("reset").addEventListener("click", () => {
   state.mode = "standings"; state.metric = "views"; state.byDate = false; state.solo = null; state.panel = null; state.table = false;

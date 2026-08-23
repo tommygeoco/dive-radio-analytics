@@ -1326,7 +1326,7 @@ function premiereMs(dateStr) {
     [".overview", /\.overview \{[^}]*gap: var\(--gap\); margin-bottom: var\(--gap\);/],
     [".carousel", /\.carousel \{ display: flex; gap: var\(--gap\);/],
     ["#chartcard", /#chartcard \{[^}]*margin-bottom: var\(--gap\);/],
-    [".panel", /\.panel \{[^}]*padding: calc\(var\(--gap\) - 1px\); margin: var\(--gap\) 0;/],
+    [".panel", /\.panel \{[^}]*padding: var\(--gap\); margin: var\(--gap\) 0;/],
     [".pgrid", /\.panel \.pgrid \{[^}]*gap: var\(--gap\); margin-top: var\(--gap\);/],
     ["h2", /h2 \{ font-size: 16px; margin: var\(--gap\) 0; \}/],
     [".insights", /\.insights \{ display: grid; gap: var\(--gap\); \}/],
@@ -1334,6 +1334,14 @@ function premiereMs(dateStr) {
   ];
   for (const [name, re] of GUTTERED) {
     if (!re.test(html)) { bad++; fail(`page gutter: ${name} does not use the shared spacing token`); }
+  }
+  // page cards carry no border: the fill is the whole edge, so nothing eats
+  // into the gutter (the panel's inset is the token exactly)
+  for (const [name, re] of [[".card", /\.card \{ background: var\(--s1\); border: 0;/],
+    ["#chartcard", /#chartcard \{ background: var\(--s1\); border: 0;/],
+    [".sitem", /\.sitem \{[^}]*border: 0;/], [".insight", /\.insight \{ background: var\(--s1\); border: 0;/],
+    [".panel", /\.panel \{ background: var\(--s2\); border: 0;/]]) {
+    if (!re.test(html)) { bad++; fail(`page gutter: ${name} still draws a border — cards are fill only`); }
   }
   // the carousel's focus-ring inset must be pulled back out, or its cards sit
   // off the grid every other row lands on
