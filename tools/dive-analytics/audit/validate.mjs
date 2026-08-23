@@ -726,12 +726,16 @@ function premiereMs(dateStr) {
       }
     }
   }
-  // panel markers: rendered ONLY from stored moments, as keyboard-reachable tooltip buttons on the positioned plot
-  if (!/for \(const mo of w\.moments \|\| \[\]\)/.test(html)
+  // panel pins: rendered ONLY from stored moments, as keyboard-reachable tooltip buttons on the positioned plot,
+  // with the structured tooltip (payoff, position, quote) wired through the shared box and a short accessible name
+  if (!/\(w\.moments \|\| \[\]\)\.forEach/.test(html)
     || !/class="wmark \$\{mo\.kind\}"/.test(html)
     || !/<button type="button" class="wmark/.test(html)
-    || !html.includes('data-tip="${esc(tip)}" aria-label="${esc(tip)}"')) {
-    bad++; fail("moments: panel markers must render only from episode.watch.moments as keyboard-reachable data-tip buttons");
+    || !html.includes('data-stat="${esc(stat)}" data-meta="${esc(meta)}" data-quote="${esc(quote)}"')
+    || !html.includes("aria-describedby=")
+    || !html.includes("badge.dataset.stat")
+    || !html.includes(".hs[data-hslug], [data-tip], [data-stat]")) {
+    bad++; fail("moments: panel pins must render only from episode.watch.moments as keyboard-reachable structured-tooltip buttons");
   }
   if (!/<div class="wcurve"><div class="wplot">/.test(html)) { bad++; fail("moments: curve markers lack the positioned plot wrapper — marker positions would drift off the curve"); }
   // engine parity: the excerpts handed to the engine ARE the stored moments' excerpts, and moment facts equal their points
