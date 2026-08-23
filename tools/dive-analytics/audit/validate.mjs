@@ -1139,6 +1139,16 @@ function premiereMs(dateStr) {
       || !/esc\(h\.headline\)/.test(healthSource) || /Saved once a day:/.test(healthSource)) {
       bad++; fail("card layout: Today's read must lead with the saved headline and store-backed do-next actions, without methodology copy");
     }
+    // the do-next actions are plain ranked rows: no tooltips, no rules, and
+    // the leading ordinal is decorative only (owner directive 2026-08-23)
+    if (/class="dnrow"[^`]*data-tip/.test(healthSource) || /\.dnrow \+ \.dnrow \{ border-top/.test(html)
+      || !/<span class="dnnum" aria-hidden="true">\$\{i \+ 1\}<\/span>/.test(healthSource)) {
+      bad++; fail("card layout: Today's read actions must be plain ranked rows — decorative ordinal, no tooltip, no dividing rule");
+    }
+    // the hero states one measure: episode health rides the cards and panel
+    if (/healthChip\(/.test(heroSource)) {
+      bad++; fail("card layout: the hero must not carry the episode-health chip");
+    }
     // "Why this score" lives under the gauge, before the diagnosis card
     if (!(healthSource.indexOf('id="whyscore"') > -1 && healthSource.indexOf('id="whyscore"') < healthSource.indexOf('hc-diag'))) {
       bad++; fail("card layout: the Why-this-score disclosure must sit under the gauge, ahead of the diagnosis card");
@@ -1235,6 +1245,39 @@ function premiereMs(dateStr) {
     bad++; fail("platform marks: the YouTube and X logos must exist exactly once each, with accessible names, and label the destination rows");
   }
   if (!bad) ok("chart metrics: measure picker unit-scoped with silent absence, live lowest/highest on the tooltip, platform marks accessibly named");
+}
+
+// --- 1q. one page gutter (owner directive 2026-08-23) ---
+// Every card, column, and row on the page grid shares a single spacing token,
+// and any container inset (scroll padding, borders) is compensated so the
+// PAINTED card edges land on the same grid. Measured in a browser at both
+// widths on 2026-08-23: all edges flush, every gap identical.
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  if (!/--gap: 14px;/.test(html) || !/:root \{ --gap: 10px; \}/.test(html)) {
+    bad++; fail("page gutter: the spacing token must be defined once for desktop and once for the phone cut");
+  }
+  const GUTTERED = [
+    [".healthrow", /\.healthrow \{[^}]*gap: var\(--gap\); margin-bottom: var\(--gap\);/],
+    [".overview", /\.overview \{[^}]*gap: var\(--gap\); margin-bottom: var\(--gap\);/],
+    [".carousel", /\.carousel \{ display: flex; gap: var\(--gap\);/],
+    ["#chartcard", /#chartcard \{[^}]*margin-bottom: var\(--gap\);/],
+    [".panel", /\.panel \{[^}]*padding: calc\(var\(--gap\) - 1px\); margin: var\(--gap\) 0;/],
+    [".pgrid", /\.panel \.pgrid \{[^}]*gap: var\(--gap\); margin-top: var\(--gap\);/],
+    ["h2", /h2 \{ font-size: 16px; margin: var\(--gap\) 0; \}/],
+    [".insights", /\.insights \{ display: grid; gap: var\(--gap\); \}/],
+    ["header", /header \{[^}]*margin-bottom: var\(--gap\);/],
+  ];
+  for (const [name, re] of GUTTERED) {
+    if (!re.test(html)) { bad++; fail(`page gutter: ${name} does not use the shared spacing token`); }
+  }
+  // the carousel's focus-ring inset must be pulled back out, or its cards sit
+  // off the grid every other row lands on
+  if (!/\.carousel \{[^}]*padding: 2px;\s*\n\s*margin: -2px -2px calc\(var\(--gap\) - 2px\);/.test(html)) {
+    bad++; fail("page gutter: the carousel's scroll inset is not compensated — its painted card edges would sit inside the page grid");
+  }
+  if (!bad) ok("page gutter: one spacing token drives every card, column, and row; container insets compensated so painted edges align");
 }
 
 // --- warnings: broadcast-resolution latches and plays coverage ---

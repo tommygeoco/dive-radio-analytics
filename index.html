@@ -85,13 +85,16 @@
   .healthrow .why { display: inline-block; margin-top: 2px; background: none; border: 0; padding: 0;
     color: var(--accent); font-size: 14px; cursor: pointer; text-decoration: underline;
     text-underline-offset: 3px; }
-  /* Today's read: the grounded headline leads; the do-next actions are quiet
-     hairline rows (hovering one shows the finding behind it) */
-  .hc-meta .donext { display: grid; }
-  .hc-meta .dnrow { padding: 8px 0; color: var(--t2); font-size: 13.5px; line-height: 1.5; cursor: help; }
-  .hc-meta .dnrow + .dnrow { border-top: 1px solid var(--border); }
+  /* Today's read: the grounded headline leads, then the do-next actions —
+     each led by a quiet ordinal so two actions read as a short ranked list
+     (decorative: the order is the ranking, and it carries no measurement) */
+  .hc-meta .donext { display: grid; gap: 10px; margin-top: 12px; }
+  .hc-meta .dnrow { display: flex; gap: 10px; color: var(--t2); font-size: 13.5px; line-height: 1.5; }
+  .hc-meta .dnnum { flex: none; width: 19px; height: 19px; margin-top: 1px; border-radius: 50%;
+    border: 1px solid var(--border-strong); color: var(--t3); font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
   .checkrow[data-stat] { cursor: help; }
-  .checkrow:focus-visible, .dnrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .checkrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   .health-evidence { grid-column: 1 / -1; }
   .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; }
   .health-evidence h3 { margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
@@ -154,7 +157,11 @@
 
   /* ---- Episode carousel: selector + legend + finished health reads,
      oldest → newest, latest always far right (locked rule) ---- */
-  .carousel { display: flex; gap: var(--gap); overflow-x: auto; padding: 2px 2px 6px; margin-bottom: var(--gap);
+  /* the 2px inset only exists so a focused card's ring isn't clipped by the
+     scroll container; negative margins pull the painted card edges back onto
+     the page grid, and the bottom gutter subtracts it so the rhythm holds */
+  .carousel { display: flex; gap: var(--gap); overflow-x: auto; padding: 2px;
+    margin: -2px -2px calc(var(--gap) - 2px);
     scrollbar-width: thin; scroll-snap-type: x proximity; }
   .sitem { flex: 1 0 168px; min-width: 168px; scroll-snap-align: end; background: var(--s1);
     border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; cursor: pointer;
@@ -851,7 +858,7 @@ function buildHealth() {
     <div class="card hc-meta">
       <div class="kicker">Today’s read</div>
       <p class="headline">${esc(h.headline)}</p>
-      ${topRecs.length ? `<div class="donext">${topRecs.map((r) => `<div class="dnrow" data-tip="${esc(r.text)}" tabindex="0">${esc(r.recommendation)}</div>`).join("")}</div>` : ""}
+      ${topRecs.length ? `<div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div>` : ""}
       <div class="updated"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Updated ${esc(saved)}${readState}</div>
     </div>${evidence}`;
   document.getElementById("whyscore").addEventListener("click", () => { state.evidenceOpen = !state.evidenceOpen; render(); });
@@ -921,9 +928,8 @@ function buildHero() {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
   }
-  // Episode health never shows early: a finished read gets its chip; a young
-  // episode simply shows nothing — absence is its own signal.
-  if (healthOf(e)) html += `<div class="state">${healthChip(e)}</div>`;
+  // No health chip here (owner directive 2026-08-23): the hero states one
+  // measure. Episode health lives on the episode cards and in the panel.
 
   html += `</div>`;
   // The per-minute sparkline rides the live measure only. Other measures have
