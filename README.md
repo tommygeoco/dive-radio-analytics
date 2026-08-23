@@ -45,6 +45,12 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   deterministic rule-based insights remain the fallback when no store exists
 - Static site — no server, no network calls at view time
 
+For agent sessions and contributors: `CLAUDE.md` states the intent and the
+rules every change must pass; `ARCHITECTURE.md` traces every number on the
+page back to its store, script, and rule, and documents each store's time
+semantics. Planned reliability work (baselines, like-for-like comparison,
+freshness) is `tools/dive-analytics/prd-analytics-v7-*.md`.
+
 Data is exported daily (07:25 America/Phoenix) by an automated pipeline that
 also discovers newly published episodes and collects audience comments. A
 separate model step removes noise, labels reactions, audits a sample, and keeps
