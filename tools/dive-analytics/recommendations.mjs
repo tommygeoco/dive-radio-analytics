@@ -16,7 +16,7 @@
 //     comply, and a failed attempt is retried with the validation error and
 //     the offending item appended to the conversation (up to 3 attempts).
 //   - Plain words: the banned-jargon list is enforced on every item.
-//   - Failure is non-fatal but never leaves stale numbers behind (PRD v7 W17):
+//   - Failure is non-fatal but never leaves stale numbers behind (PRD v8 W19):
 //     when the model cannot produce a valid store, the saved items are pruned
 //     against the CURRENT fact sheet instead of kept as-is. Items that no
 //     longer ground are dropped; fewer than 3 survivors deletes the store and
@@ -44,7 +44,7 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 3; // v7: allowed-number list rides in the payload
+export const PROMPT_VERSION = 3; // v8: allowed-number list rides in the payload
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 // exported so other prose surfaces (the Slack trends line) can gate spoken
 // quotes with the same plain-words contract the validator enforces
@@ -166,7 +166,7 @@ function numberTokens(text) {
 }
 
 // The exact set of number tokens an item may contain. This same set rides in
-// the model payload (W18) so the model sees precisely what the validator will
+// the model payload (W20) so the model sees precisely what the validator will
 // accept — one list, two consumers, no drift.
 export function allowedTokens(facts) {
   const allowed = new Set();
@@ -180,7 +180,7 @@ export function allowedTokens(facts) {
 }
 
 // One item's checks, exactly as validateItems applies them. Shared with the
-// W17 prune so "does this stored item still hold" can never drift from the
+// W19 prune so "does this stored item still hold" can never drift from the
 // set-level validation.
 function validateItem(item, allowed, seen) {
   if (!item || typeof item !== "object") throw new Error("item must be an object");
@@ -206,7 +206,7 @@ export function validateItems(items, facts) {
   return items;
 }
 
-// --- W17 deterministic prune: the stored items re-earn their place against
+// --- W19 deterministic prune: the stored items re-earn their place against
 // the CURRENT facts, no model involved. Items that no longer ground are
 // dropped with an audit trail; fewer than 3 survivors deletes the store
 // (build-data falls back to the rule-based insights, validate WARNs). ---
@@ -278,7 +278,7 @@ async function callModel(messages) {
 }
 
 // The item a validation error points at, so the retry conversation can show
-// the model exactly what it wrote wrong (W18). Errors are prefixed with the
+// the model exactly what it wrote wrong (W20). Errors are prefixed with the
 // item id by validateItem; anything unprefixed (bad JSON, bad shape) has no
 // single item to blame.
 function offendingItem(error, items) {
@@ -345,7 +345,7 @@ async function main() {
     console.log(`recommendations: saved ${parsed.items.length} item(s) in ${attempt} attempt(s) — rebuild data to publish`);
     return;
   }
-  // W17: a failed regeneration never leaves stale numbers behind — prune the
+  // W19: a failed regeneration never leaves stale numbers behind — prune the
   // saved items against the current facts instead of keeping them as-is.
   console.log(`WARN recommendations: no valid store after ${attempts} attempt(s) — pruning the saved items against the current facts`);
   pruneStore(sheet, { attempts });

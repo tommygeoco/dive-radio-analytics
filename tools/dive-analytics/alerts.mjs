@@ -7,8 +7,8 @@
 // cron (dive-alerts) delivers the queue to Slack and stays silent when it is
 // empty.
 //
-// Deterministic: no model calls. The one network step is the W19 prod
-// freshness probe at the end of a chain run (PRD v7, 2026-08-23): fetch the
+// Deterministic: no model calls. The one network step is the W21 prod
+// freshness probe at the end of a chain run (PRD v8, 2026-08-23): fetch the
 // live data.json and queue one plain line when it is older than 26 hours.
 // State and queue live next to the data they describe:
 //   state:  data/restream/alerts-state.json    (last-seen values)
@@ -146,7 +146,7 @@ if (isMain) {
       saveAtomic(STATE_PATH, cur);
       console.log(`alerts: ${found.length} material change(s)${found.length ? " queued" : ""}.`);
     }
-    // W19: end-of-chain prod freshness probe. Stale queues one plain line;
+    // W21: end-of-chain prod freshness probe. Stale queues one plain line;
     // an unreachable prod is only noted here — publish just confirmed parity,
     // and the midday freshness cron re-checks on its own.
     const prod = await checkProdFreshness();

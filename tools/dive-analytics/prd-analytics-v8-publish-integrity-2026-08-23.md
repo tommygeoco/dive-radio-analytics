@@ -1,12 +1,16 @@
-# PRD — Dive Radio analytics v7: publish integrity (2026-08-23)
+# PRD — Dive Radio analytics v8: publish integrity (2026-08-23)
 
-Owner: Tommy. Status: REPO CODE LANDED 2026-08-23 — W17 (prune mode +
-prune-on-failure), W18 (allowed-number payload, error-feedback retries,
+Owner: Tommy. Status: REPO CODE LANDED 2026-08-23 — W19 (prune mode +
+prune-on-failure), W20 (allowed-number payload, error-feedback retries,
 health.mjs audit recorded in its header: frozen entries are judged against
-their own saved facts, no staleness), and W19 (audit/freshness.mjs watchdog
+their own saved facts, no staleness), and W21 (audit/freshness.mjs watchdog
 + end-of-chain probe in alerts.mjs) are implemented. Still open: the cron
-chain edit (W17 step 3) and the 12:00 watchdog cron, both operator-run.
-Builds on v5 (recommendation engine, W15) and v6 (transcript moments, W16).
+chain edit (W19 step 3) and the 12:00 watchdog cron, both operator-run.
+Numbering note: first drafted as v7 with work items W17–W19, renumbered
+the same day — W17 (moment summaries, v6.1) and W18 (destination links)
+were already claimed by shipped work, so this PRD is v8 and its work items
+are W19–W21. Builds on v5 (recommendation engine, W15), v6 (transcript
+moments, W16), and v6.1 (moment summaries, W17).
 Goal: the morning publish can never be blocked by a stale model artifact,
 and the model artifact can never go stale silently.
 
@@ -53,7 +57,7 @@ and the model artifact can never go stale silently.
   live only in dedicated scripts). The cron chain stays a plain command
   payload.
 
-## W17 — self-pruning store + regeneration in the chain
+## W19 — self-pruning store + regeneration in the chain
 
 `recommendations.mjs` changes:
 
@@ -89,7 +93,7 @@ Acceptance:
 - Prune below 3 items: store file is gone, page shows deterministic
   fallback insights, validate WARNs (absent store) and exits 0.
 
-## W18 — grounding-failure hardening for the model call
+## W20 — grounding-failure hardening for the model call
 
 1. **Allowed numbers in the payload.** Send the model the exact allowed
    token list (the same set `validateItems` builds), with the instruction:
@@ -99,7 +103,7 @@ Acceptance:
 2. **Error-feedback retry.** On a grounding failure, retry the model call
    up to 2 more times, appending the exact validation error and the
    offending item to the conversation. Three grounded failures → fall back
-   to W17 prune. Log each attempt (`attempt n/3: <error>`).
+   to W19 prune. Log each attempt (`attempt n/3: <error>`).
 3. **Same treatment audit for `health.mjs`.** It shares the provider
    plumbing. Verify whether its saved reads can go stale against the fact
    sheet the same way; if yes, file the same prune-or-regenerate pattern as
@@ -111,7 +115,7 @@ Acceptance:
   regeneration succeeds within 3 attempts, or prunes and publishes.
 - The saved store's `attempts` field records how many calls were needed.
 
-## W19 — prod freshness watchdog
+## W21 — prod freshness watchdog
 
 The gate can only block; nothing watches the OUTPUT for staleness. Local
 validate checks the local build's freshness, which is useless when publish
@@ -133,7 +137,7 @@ Acceptance:
 
 ## Out of scope
 
-- Hand-editing the store (today's recovery was a one-off; W17 makes the
+- Hand-editing the store (today's recovery was a one-off; W19 makes the
   deterministic prune the sanctioned path).
 - Weakening `validateItems` (the allowed-token set stays exact; structural
   constants list unchanged).
@@ -141,10 +145,10 @@ Acceptance:
 
 ## Rollout
 
-1. W17 script change + acceptance runs locally.
+1. W19 script change + acceptance runs locally.
 2. Cron chain edit (owner-approved, six-point checklist in the workspace
    AGENTS.md), then one supervised `cron run` end-to-end.
-3. W18 prompt/retry change, replay test.
-4. W19 watchdog + midday cron.
+3. W20 prompt/retry change, replay test.
+4. W21 watchdog + midday cron.
 5. Watch two consecutive 7:00 runs; done when both publish with parity
    confirmed and zero manual touches.

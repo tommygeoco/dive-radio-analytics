@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// freshness.mjs — W19 prod freshness watchdog (PRD v7, 2026-08-23).
+// freshness.mjs — W21 prod freshness watchdog (PRD v8, 2026-08-23).
 //
 // The validate gate can only block a bad publish; nothing watched the OUTPUT
 // for staleness, so a blocked morning chain left prod serving yesterday's
