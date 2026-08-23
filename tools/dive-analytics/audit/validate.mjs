@@ -538,16 +538,14 @@ function premiereMs(dateStr) {
   }
   const paceInsights = data.insights.filter((insight) => insight.id === "pace-rank");
   const newest = eps.at(-1);
-  const targetAge = Date.parse(newest.latest.ts) - premiereMs(newest.premiere);
-  const pacePeers = eps.slice(0, -1).filter((episode) => {
-    const premiere = premiereMs(episode.premiere);
-    const firstAge = Date.parse(episode.snapshots[0].ts) - premiere;
-    const lastAge = Date.parse(episode.snapshots.at(-1).ts) - premiere;
-    return firstAge <= targetAge && lastAge >= targetAge;
-  });
-  const paceReady = pacePeers.length >= 3 && Number.isFinite(newest.latest.ytTotal);
+  // PRD v7 W19b: pace readiness and rank come from the one baselines definition
+  const pacePublic = data.baselines?.pace?.[newest.slug] || null;
+  const paceReady = !!(pacePublic && pacePublic.rank != null);
   if (paceReady !== (data.showTrend?.paceRank != null)) {
-    bad++; fail("insight pace-rank: public pace readiness does not match the three-peer gate");
+    bad++; fail("insight pace-rank: public pace readiness does not match the baselines three-peer gate");
+  }
+  if (paceReady && (data.showTrend.paceRank.rank !== pacePublic.rank || data.showTrend.paceRank.of !== pacePublic.of)) {
+    bad++; fail("insight pace-rank: showTrend.paceRank disagrees with data.baselines.pace");
   }
   if (paceInsights.length !== (paceReady ? 1 : 0)) {
     bad++; fail(`insight pace-rank: expected ${paceReady ? "one grounded insight" : "no small-sample insight"}, found ${paceInsights.length}`);
@@ -579,8 +577,11 @@ function premiereMs(dateStr) {
   if (!store) {
     warn("episode health: episode-ratings.json absent — health surfaces will not render (run tools/dive-analytics/ratings.mjs)");
   } else {
-    if (store.algorithm !== "health21-v1") { bad++; fail(`episode health: store algorithm "${store.algorithm}" — expected health21-v1 (stale store; rerun ratings.mjs)`); }
+    const BL = await import(join(TOOL, "baselines.mjs"));
+    if (store.algorithm !== "health21-v2") { bad++; fail(`episode health: store algorithm "${store.algorithm}" — expected health21-v2 (stale store; rerun ratings.mjs)`); }
     if (store.readDays !== 21) { bad++; fail(`episode health: store readDays ${store.readDays} — the read window is 21 days`); }
+    if (store.windowN !== BL.WINDOW_N || store.minPeers !== BL.MIN_PEERS) { bad++; fail("episode health: store window/min-peers stamps differ from baselines.mjs"); }
+    const flagsNow = BL.anomalyFlags(eps);
     const bySlug = new Map((store.scores || []).map((r) => [r.slug, r]));
     const epOrder = [...eps].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
     for (const e of epOrder) {
@@ -597,10 +598,42 @@ function premiereMs(dateStr) {
       if (!r) { bad++; fail(`episode health: ${e.slug} is ${e.ageDays}d old but has no store entry`); continue; }
       // definition-lock: what shipped in data.json IS the store entry
       if (JSON.stringify(a) !== JSON.stringify(r)) { bad++; fail(`episode health: ${e.slug} attached entry disagrees with store — definition-lock broken`); }
-      // window: this episode + up to 9 that aired before it, never later
-      const expectedWin = [...epOrder.filter((x) => x.ep < e.ep && x.ep >= e.ep - 9).map((x) => x.slug), e.slug];
-      if (JSON.stringify(r.windowIds) !== JSON.stringify(expectedWin)) { bad++; fail(`episode health: ${e.slug} windowIds != itself + the episodes that aired before it`); }
-      if (!r.frozenAt || !r.computedAt) { bad++; fail(`episode health: ${e.slug} entry is missing its frozen/computed stamps`); }
+      // window (PRD v7): this episode + the WINDOW_N that aired before it, never later
+      const expectedWin = [...BL.windowFor(e, epOrder).map((x) => x.slug), e.slug];
+      if (JSON.stringify(r.windowIds) !== JSON.stringify(expectedWin)) { bad++; fail(`episode health: ${e.slug} windowIds != itself + the ${BL.WINDOW_N} episodes that aired before it`); }
+      if (!r.frozenAt || !r.computedAt || !Number.isFinite(r.frozenAtDay) || r.frozenAtDay < 21) { bad++; fail(`episode health: ${e.slug} entry is missing its frozen/computed stamps or froze before day 21`); }
+      if (!Array.isArray(r.excluded)) { bad++; fail(`episode health: ${e.slug} entry carries no excluded[] list`); }
+      for (const x of r.excluded || []) if (!r.windowIds.includes(x.slug) || !x.why) { bad++; fail(`episode health: ${e.slug} excludes ${x.slug} outside its window or without a reason`); }
+      // rule 13: every contributing check has MIN_PEERS stored peers, its typical is
+      // the true median of those peers, and its score rebuilds from value vs typical
+      for (const [c, cs] of Object.entries(r.checks || {})) {
+        if (!["sameAge", "mature", "ageFree", null].includes(cs.ageBasis ?? null)) { bad++; fail(`episode health: ${e.slug} check ${c} has an unknown ageBasis`); }
+        if (cs.ratio == null) { if (!cs.reason && r.score != null) { bad++; fail(`episode health: ${e.slug} check ${c} is absent without a reason`); } continue; }
+        if (!Array.isArray(cs.peers) || cs.peers.length < BL.MIN_PEERS) { bad++; fail(`episode health: ${e.slug} check ${c} contributes with ${cs.peers?.length ?? 0} peers — fewer than MIN_PEERS`); continue; }
+        for (const p of cs.peers) if (!r.windowIds.includes(p.slug) || p.slug === e.slug || (r.excluded || []).some((x) => x.slug === p.slug)) { bad++; fail(`episode health: ${e.slug} check ${c} peer ${p.slug} is outside the window, itself, or an excluded outlier`); }
+        if (c === "live") {
+          const tp = BL.round1(BL.trueMedian(cs.peers.map((p) => p.value.peak)));
+          const tc = BL.round1(BL.trueMedian(cs.peers.map((p) => p.value.chat)));
+          if (tp !== cs.typical.peak || tc !== cs.typical.chat) { bad++; fail(`episode health: ${e.slug} live typicals do not rebuild from stored peers`); }
+        } else {
+          if (cs.typical !== BL.round1(BL.trueMedian(cs.peers.map((p) => p.value)))) { bad++; fail(`episode health: ${e.slug} check ${c} typical does not rebuild from its stored peers`); }
+          if (cs.score !== BL.scoreOf(cs.value, cs.typical)) { bad++; fail(`episode health: ${e.slug} check ${c} score does not rebuild from value vs typical`); }
+          if (cs.ageBasis === "sameAge" && cs.peers.some((p) => Math.abs(p.atDay - (c === "engagement" ? p.atDay : cs.atDay ?? r.atDay)) > BL.SNAPSHOT_TOL + 1e-9)) { bad++; fail(`episode health: ${e.slug} check ${c} claims same age but a peer was read at another age`); }
+          if (cs.ageBasis === "sameAge" && cs.note !== BL.NOTES.sameAge) { bad++; fail(`episode health: ${e.slug} check ${c} note does not match its basis`); }
+          if (cs.ageBasis === "mature" && cs.note !== BL.NOTES.mature) { bad++; fail(`episode health: ${e.slug} check ${c} note does not match its basis`); }
+        }
+        // inputs from append-only stores rebuild exactly (1w); the overwritten
+        // analytics file is stamped unreproducible rather than pretended
+        for (const p of cs.peers) {
+          if (p.source === "snapshot") {
+            const pe = epOrder.find((x) => x.slug === p.slug);
+            const snap = pe && BL.snapshotAt(pe, p.atDay);
+            const v = snap ? (c === "watch" ? BL.ytViewsOf(snap) : BL.engagementPer1kOf(snap)) : null;
+            if (v !== p.value) { bad++; fail(`episode health: ${e.slug} check ${c} peer ${p.slug} value ${p.value} does not rebuild from the snapshot at day ${p.atDay} (${v})`); }
+          }
+          if (p.source === "analytics-file" && r.reproducible !== false) { bad++; fail(`episode health: ${e.slug} reads a current analytics file but is stamped reproducible`); }
+        }
+      }
       if (r.score == null) {
         if (!r.reason) { bad++; fail(`episode health: ${e.slug} has no score and no reason — absence must explain itself`); }
       } else {
@@ -624,7 +657,12 @@ function premiereMs(dateStr) {
         if (JSON.stringify(r.missingChecks) !== JSON.stringify(expectMissing)) { bad++; fail(`episode health: ${e.slug} missingChecks does not list exactly the checks without honest numbers`); }
       }
     }
-    // frozen immutability: a re-run must pass every stored entry through untouched
+    // frozen immutability (1w): a re-run keeps stored entries by construction,
+    // so the real check is above — every score rebuilds from what the entry
+    // stores. Here: the stored outlier verdicts never change with today's flags.
+    for (const r of store.scores || []) {
+      for (const x of r.excluded || []) if (x.why === "promo outlier" && !r.windowIds.includes(x.slug)) { bad++; fail(`episode health: ${r.slug} excluded ${x.slug} is not in its window`); }
+    }
     try {
       const mod = await import(join(TOOL, "ratings.mjs"));
       const rerun = mod.computeRatings({ now: Date.parse(data.generatedAt) });
@@ -632,10 +670,11 @@ function premiereMs(dateStr) {
         const again = rerun.scores.find((x) => x.slug === r.slug);
         if (JSON.stringify(again) !== JSON.stringify(r)) { bad++; fail(`episode health: frozen entry ${r.slug} CHANGED on recompute — frozen must be immutable`); }
       }
+      if (rerun.algorithm !== store.algorithm) { bad++; fail("episode health: store algorithm differs from the running one — rerun ratings.mjs"); }
     } catch (err) {
       bad++; fail(`episode health: recompute threw — ${err.message}`);
     }
-    if (!bad) ok(`episode health: ${(store.scores || []).length} finished read(s) — nothing scored before day 21, windows exclude the future, frozen entries immutable, weights sum to 1, surfaces definition-locked`);
+    if (!bad) ok(`episode health: ${(store.scores || []).length} finished read(s) — nothing scored before day 21, windows exclude the future and outliers, every contributing check has ${BL.MIN_PEERS}+ peers and rebuilds from its stored inputs, weights sum to 1, surfaces definition-locked`);
   }
 }
 
@@ -816,12 +855,29 @@ function premiereMs(dateStr) {
   if (!store) {
     warn("recommendations: no store — What matters falls back to the deterministic rules (run tools/dive-analytics/recommendations.mjs)");
   } else {
-    try {
-      const recs = await import(join(TOOL, "recommendations.mjs"));
-      const sheet = recs.collectFacts();
-      recs.validateItems(store.items, sheet.facts);
-    } catch (err) {
-      bad++; fail(`recommendations: store failed grounding validation — ${err.message}`);
+    let recs = null;
+    try { recs = await import(join(TOOL, "recommendations.mjs")); } catch (err) { bad++; fail(`recommendations: module failed to load — ${err.message}`); }
+    if (recs) {
+      // grounding against the facts the store stamps (PRD v7 §4.6); stores
+      // written before fact stamping can only be judged against today's sheet
+      if (Array.isArray(store.facts)) {
+        try { recs.validateItems(store.items, store.facts); }
+        catch (err) { bad++; fail(`recommendations: store is not grounded in its own stamped facts — ${err.message}`); }
+      } else warn("recommendations: store predates fact stamping — grounded against today's sheet only");
+      // currency: shipped items pass today's sheet; stale items fail it, and
+      // data.json names each stale item with its reason (F32)
+      const sheet = recs.collectFacts(data);
+      const allowed = recs.allowedNumbers(sheet.facts);
+      const staleIds = (data.insightsStale || []).map((x) => x.id);
+      for (const item of store.items || []) {
+        let err = null;
+        try { recs.validateItem(item, sheet.facts, allowed); } catch (e) { err = e; }
+        const shipped = data.insights.some((i) => i.id === item.id);
+        if (err && shipped) { bad++; fail(`recommendations: ${item.id} is shipped but no longer grounded — ${err.message}`); }
+        if (!err && !shipped && data.insights.some((i) => !("chartState" in i))) { bad++; fail(`recommendations: ${item.id} is grounded today but missing from the page`); }
+        if (err && !staleIds.includes(item.id)) { bad++; fail(`recommendations: ${item.id} is stale but not named in data.insightsStale`); }
+        if (!err && staleIds.includes(item.id)) { bad++; fail(`recommendations: ${item.id} is named stale but still grounds`); }
+      }
     }
     // v7 W17/W18 audit fields, when present: a prune records when and what it
     // dropped (and nothing dropped may still be in the store); a model run
@@ -838,10 +894,10 @@ function premiereMs(dateStr) {
     if ("attempts" in store && (!Number.isInteger(store.attempts) || store.attempts < 1 || store.attempts > 3)) {
       bad++; fail(`recommendations: attempts ${JSON.stringify(store.attempts)} outside 1..3`);
     }
-    const storeIds = (store.items || []).map((r) => r.id).sort();
+    const storeIds = (store.items || []).map((r) => r.id).filter((id) => !(data.insightsStale || []).some((x) => x.id === id)).sort();
     const dataIds = (data.insights || []).map((i) => i.id).sort();
-    if (JSON.stringify(storeIds) !== JSON.stringify(dataIds)) {
-      bad++; fail("recommendations: data.json insights do not match the saved store — definition-lock broken");
+    if (storeIds.length && JSON.stringify(storeIds) !== JSON.stringify(dataIds)) {
+      bad++; fail("recommendations: data.json insights do not match the saved store minus stale items — definition-lock broken");
     }
     for (const item of store.items || []) {
       const shipped = data.insights.find((i) => i.id === item.id);
@@ -849,7 +905,7 @@ function premiereMs(dateStr) {
         bad++; fail(`recommendations: ${item.id} text drifted between store and page`);
       }
     }
-    if (!bad) ok(`recommendations: ${(store.items || []).length} saved item(s) — every number grounded in the fact sheet, page matches the store`);
+    if (!bad) ok(`recommendations: ${(store.items || []).length} saved item(s), ${(data.insightsStale || []).length} stale and held back — every shipped number grounded in today's fact sheet, page matches the store`);
   }
 }
 
@@ -875,9 +931,10 @@ function premiereMs(dateStr) {
     if (data.health !== null) { bad++; fail("health: data.json exposes health without a health-history store"); }
     warn("health: no saved entry yet — page must show that the update is unavailable");
   } else {
-    if (store.version !== health.HEALTH_STORE_VERSION || !Array.isArray(store.entries)) {
+    if (![1, health.HEALTH_STORE_VERSION].includes(store.version) || !Array.isArray(store.entries)) {
       bad++; fail("health: store schema/version is unsupported");
     } else {
+      const BL = await import(join(TOOL, "baselines.mjs"));
       const currentDate = phxDate(data.generatedAt);
       const seenDates = new Set();
       let previousDate = null;
@@ -921,10 +978,15 @@ function premiereMs(dateStr) {
           bad++; fail(`health: ${entry.date} does not carry exactly the six required checks`);
           continue;
         }
+        // weights are judged by the formula the entry was written under (PRD v7 F5)
+        const plannedWeights = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] || null;
+        if (!plannedWeights) { bad++; fail(`health: ${entry.date} formula ${entry.formulaVersion} has no known weight table`); }
+        const v3 = entry.formulaVersion === "health-v3" || (health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 3);
+        const { effectiveWeightOf } = health.deterministicMean(entry.subScores);
         const availableWeight = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
         for (const key of expectedParts) {
           const part = entry.subScores[key];
-          if (part.baseWeight !== health.BASE_WEIGHTS[key]) { bad++; fail(`health: ${entry.date} ${key} has the wrong planned weight`); }
+          if (plannedWeights && part.baseWeight !== plannedWeights[key]) { bad++; fail(`health: ${entry.date} ${key} has the wrong planned weight for ${entry.formulaVersion}`); }
           if (!part.measures || !Object.keys(part.measures).length) { bad++; fail(`health: ${entry.date} ${key} has no recorded measures`); continue; }
           const measureScores = [];
           for (const [measureKey, measure] of Object.entries(part.measures)) {
@@ -934,24 +996,46 @@ function premiereMs(dateStr) {
               if (!Number.isFinite(measure.score) || measure.score < 0 || measure.score > 100 || !Number.isFinite(measure.value)) {
                 bad++; fail(`health: ${entry.date} ${key}.${measureKey} has an invalid score/value`);
               } else measureScores.push(measure.score);
+              if (v3) {
+                // like-for-like (1s) and windowed typical (1u) on every v3 measure
+                if (!["sameAge", "mature", "ageFree"].includes(measure.ageBasis)) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} scored without a known basis`); }
+                if (measure.typical != null && (!Array.isArray(measure.window) || measure.window.length < BL.MIN_PEERS || measure.sample < BL.MIN_PEERS)) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} has a typical from fewer than ${BL.MIN_PEERS} peers`); }
+                if (measure.typical != null && measure.window.includes(measure.episodeRead)) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} window includes the episode it reads`); }
+                if (measure.typical != null && measure.window.length > BL.WINDOW_N) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} window exceeds WINDOW_N`); }
+                const expectedNote = measure.ageBasis === "sameAge" ? BL.NOTES.sameAge : measure.ageBasis === "mature" ? BL.NOTES.mature : null;
+                if ((measure.note ?? null) !== expectedNote) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} note does not match its basis`); }
+                if (measure.absoluteScale && measure.typical != null) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} is absolute-scale yet carries a typical`); }
+              }
             }
           }
           const expectedScore = measureScores.length ? Math.round(measureScores.reduce((sum, value) => sum + value, 0) / measureScores.length) : null;
           if (part.score !== expectedScore) { bad++; fail(`health: ${entry.date} ${key} score does not equal its available measures`); }
           if (part.score == null && (!part.reason || part.effectiveWeight !== 0)) { bad++; fail(`health: ${entry.date} ${key} absence lacks a reason or carries weight`); }
           if (part.score != null) {
-            const expectedWeight = Math.round(part.baseWeight / availableWeight * 10000) / 10000;
+            const expectedWeight = v3
+              ? Math.round(effectiveWeightOf(part) * 10000) / 10000
+              : Math.round(part.baseWeight / availableWeight * 10000) / 10000;
             if (part.effectiveWeight !== expectedWeight) { bad++; fail(`health: ${entry.date} ${key} shared weight is wrong`); }
+            if (v3 && part.absoluteScale && part.effectiveWeight > part.baseWeight + 1e-9) { bad++; fail(`health: ${entry.date} ${key} is absolute-scale but absorbed redistributed weight`); }
           }
         }
-        const recomputed = health.deterministicMean(entry.subScores);
+        const recomputed = v3 ? health.deterministicMean(entry.subScores) : (() => {
+          // pre-v3 entries shared weight among all available checks
+          const avail = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
+          const wm = avail > 0 ? Math.round(Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.score * part.baseWeight / avail : 0), 0) * 10) / 10 : null;
+          return { weightedMean: wm };
+        })();
         if (entry.weightedMean !== recomputed.weightedMean) { bad++; fail(`health: ${entry.date} stored mean ${entry.weightedMean} != recomputed ${recomputed.weightedMean}`); }
+        if (v3) {
+          const expectedSet = expectedParts.filter((key) => Number.isFinite(entry.subScores[key]?.score)).sort();
+          if (JSON.stringify([...(entry.checkSet || [])].sort()) !== JSON.stringify(expectedSet)) { bad++; fail(`health: ${entry.date} checkSet does not list exactly the scored checks`); }
+        }
         if (Math.abs(entry.score - entry.weightedMean) > 8) { bad++; fail(`health: ${entry.date} model score moves more than eight points from the deterministic mean`); }
         if (entry.deviation !== Math.round((entry.score - entry.weightedMean) * 10) / 10) { bad++; fail(`health: ${entry.date} stored score move is wrong`); }
         try {
           health.validateSynthesis(
             { score: entry.score, headline: entry.headline, pros: entry.pros, cons: entry.cons, drivers: entry.drivers },
-            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [] },
+            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [], checkSetChange: entry.checkSetChange ?? null },
           );
         } catch (error) {
           bad++; fail(`health: ${entry.date} model copy/grounding is invalid — ${error.message}`);
@@ -970,10 +1054,22 @@ function premiereMs(dateStr) {
       if (data.health?.readState !== expectedReadState) {
         bad++; fail("health: the public early/settled state does not match the saved checks");
       }
-      if (store.entries.length < 7 && data.health?.trend != null) { bad++; fail("health: trend surfaced before seven real saved days exist"); }
-      if (store.entries.length >= 7) {
-        const expectedPoints = store.entries.filter((entry) => entry.date <= currentDate).map((entry) => ({ date: entry.date, score: entry.score }));
-        if (JSON.stringify(data.health?.trend?.points) !== JSON.stringify(expectedPoints)) { bad++; fail("health: trend points do not exactly match saved days"); }
+      // the trend plots only entries written under the running formula (F5)
+      const runningEntries = store.entries.filter((entry) => entry.date <= currentDate && entry.formulaVersion === health.FORMULA_VERSION);
+      if (runningEntries.length < 7 && data.health?.trend != null) { bad++; fail("health: trend surfaced before seven real saved days under the running formula exist"); }
+      if (runningEntries.length >= 7) {
+        const expectedPoints = runningEntries.map((entry) => ({ date: entry.date, score: entry.score }));
+        if (JSON.stringify(data.health?.trend?.points) !== JSON.stringify(expectedPoints)) { bad++; fail("health: trend points do not exactly match saved days under the running formula"); }
+      }
+      // freshness (1v, PRD v7 rule 15): the served read's age is stated; past
+      // STALE_WITHHOLD_DAYS the score is withheld; a stale formula only warns
+      if (latestEntry) {
+        const age = Math.round((Date.parse(`${currentDate}T12:00:00Z`) - Date.parse(`${latestEntry.date}T12:00:00Z`)) / DAY);
+        if (data.health?.ageDays !== age) { bad++; fail(`health: projected ageDays ${data.health?.ageDays} != ${age}`); }
+        if (age > health.STALE_WITHHOLD_DAYS && (data.health?.withheld !== true || data.health?.score != null)) { bad++; fail(`health: the served read is ${age} days old and must be withheld`); }
+        if (age <= health.STALE_WITHHOLD_DAYS && data.health?.withheld) { bad++; fail("health: a fresh read is wrongly withheld"); }
+        if (age > 1) warn(`health: the served read is ${age} day(s) behind the data (saved ${latestEntry.date})`);
+        if (latestEntry.formulaVersion !== health.FORMULA_VERSION) warn(`health: the served read was written under ${latestEntry.formulaVersion}; the running formula is ${health.FORMULA_VERSION} — the next successful run replaces it`);
       }
 
       const latest = store.entries.at(-1);
@@ -1031,13 +1127,21 @@ function premiereMs(dateStr) {
   if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
     bad++; fail("dashboard: first-week trend verdict is not gated until three clean weeks exist");
   }
-  if (!/if \(peers\.length < 3\) return null;/.test(html)
+  if (!/const p = DATA\.baselines\?\.pace\?\.\[e\.slug\];/.test(html)
+    || /peers\.length < 3/.test(html)
     || /filter\(i => i\.id !== "pace-rank"\)/.test(html)
-    || !/after three earlier episodes have real data at that age/.test(html)) {
-    bad++; fail("dashboard: same-age pace is not consistently gated to three real peers across panel, insights, and About");
+    || !/after three other episodes have real data at that age/.test(html)
+    || !/appears after three of them have real data at that age/.test(html)) {
+    bad++; fail("dashboard: same-age pace must be read from data.baselines.pace (never recomputed in the browser) and say so in the panel tip and About");
   }
-  if (!/pct\s*<=\s*5/.test(html) || !/Math\.abs\(pct\)\s*<=\s*5/.test(html)) {
-    bad++; fail("dashboard: rating and growth conclusions do not suppress small differences");
+  // quiet zone and bands are read from data.baselines.constants (PRD v7 rule 16);
+  // the page carries no second definition of either
+  if (!/const QUIET_ZONE = BASE_CONST\.QUIET_ZONE_PCT \?\? 5;/.test(html) || !/pct <= QUIET_ZONE/.test(html) || !/Math\.abs\(pct\) <= QUIET_ZONE/.test(html)
+    || /pct\s*<=\s*5\b/.test(html) || /Math\.abs\(pct\)\s*<=\s*5\b/.test(html) || /> 0\.05\)/.test(html)) {
+    bad++; fail("dashboard: comparison conclusions must read the quiet zone from data.baselines.constants and nowhere else");
+  }
+  if (!/score >= BANDS\.healthy/.test(html) || !/score >= BANDS\.steady/.test(html) || /score >= 55\b/.test(html)) {
+    bad++; fail("dashboard: health bands must read data.baselines.constants.BANDS");
   }
   if (/provisional\s+—\s+settles/i.test(html)) {
     bad++; fail('dashboard: strip uses "provisional" instead of the plain "Not final" label');
@@ -1053,11 +1157,22 @@ function premiereMs(dateStr) {
   if (/healthWaitDate|sat out|sets the baseline<\/span>|not in yet/.test(html)) {
     bad++; fail("dashboard: retired absence copy (wait dates, sat-out notes, baseline chips, not-in-yet suffixes) is back on a surface");
   }
-  // W13: the typical watch line is a claim about the show — it waits for three
-  // real curves
-  if (!/curves\.length >= 3/.test(html)) {
-    bad++; fail("dashboard: the typical watch line is not gated behind three real curves");
+  // W13/PRD v7 F29: the typical watch line is read from data.baselines.typicalCurve
+  // (mature, unflagged curves, three or nothing) — never computed in the browser
+  if (!/const typical = DATA\.baselines\?\.typicalCurve;/.test(html) || /curves\.length >= 3/.test(html) || /const mid = \(vals\)/.test(html)) {
+    bad++; fail("dashboard: the typical watch line must be read from data.baselines.typicalCurve, never computed in the page");
   }
+  // F16/F15: watched-vs-typical and the trend verdict read data.baselines too
+  if (!/DATA\.baselines\?\.watchPctBySlug\?\.\[e\.slug\]\?\.typical/.test(html) || /const watchedVals = EPS\.map/.test(html)) {
+    bad++; fail("dashboard: the table's watched typical must come from data.baselines.watchPctBySlug");
+  }
+  if (!/DATA\.baselines\?\.newestVsPrevious\?\.\[metric\]/.test(html) || /Climbing on the newest episode/.test(html)) {
+    bad++; fail("dashboard: the trend-card verdict must compare like for like from data.baselines.newestVsPrevious");
+  }
+  if (!/health read is \$\{h\.withheld \? "withheld" : "behind"\}/.test(html)) {
+    bad++; fail("dashboard: the header stamp must say when the saved health read is behind the data (D5)");
+  }
+  if (/"<th>Episode<\/th>[^\n]*\$\{PLOGO/.test(html)) { bad++; fail("dashboard: the table header is not a template literal (F25)"); }
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks, scores wait for finished three-week reads, plain words throughout");
 }
 
@@ -1407,6 +1522,177 @@ function premiereMs(dateStr) {
     bad++; fail("links: the panel must render destination links only from stored e.links, opened in a new tab with noopener");
   }
   if (!bad) ok(`links: ${eps.filter((e) => e.links).length} episode(s) store destination links — registry-locked, safe URL shapes, panel renders only what is stored`);
+}
+
+// --- 1u. baselines (PRD v7 W19a): one definition of "typical", re-derived and fixture-tested ---
+{
+  let bad = 0;
+  try {
+    execFileSync(process.execPath, [join(HERE, "baselines.test.mjs")], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
+  } catch (err) {
+    bad++; fail(`baselines: fixture test failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
+  }
+  let B = null;
+  try { B = await import(join(TOOL, "baselines.mjs")); }
+  catch (err) { bad++; fail(`baselines: module failed to load — ${err.message}`); }
+  if (B) {
+    const shipped = data.baselines;
+    if (!shipped) { bad++; fail("baselines: data.json carries no baselines projection"); }
+    else {
+      const again = B.computeBaselines(eps);
+      if (JSON.stringify(again) !== JSON.stringify(shipped)) { bad++; fail("baselines: data.baselines does not re-derive from the shipped episodes"); }
+      if (JSON.stringify(shipped.constants) !== JSON.stringify(B.CONSTANTS)) { bad++; fail("baselines: shipped constants differ from baselines.mjs"); }
+      if (shipped.constants.MIN_PEERS < 3) { bad++; fail("baselines: MIN_PEERS below the constitution's small-n rule"); }
+      for (const [slug, a] of Object.entries(shipped.anomaly)) {
+        for (const [unit, u] of Object.entries(a.units)) {
+          if (u.window.includes(slug)) { bad++; fail(`baselines: ${slug} ${unit} outlier window includes itself`); }
+          if (u.tier != null && u.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} ${unit} outlier test ran on ${u.n} peers`); }
+          if (u.flag && a.flagged !== true) { bad++; fail(`baselines: ${slug} ${unit} flags but the episode is not marked flagged`); }
+        }
+        if (a.flagged && a.provisional !== Object.values(a.units).some((u) => u.flag && u.tier !== 1)) { bad++; fail(`baselines: ${slug} provisional stamp disagrees with its tiers`); }
+      }
+      for (const [slug, p] of Object.entries(shipped.pace)) {
+        if (p && p.peers.includes(slug)) { bad++; fail(`baselines: ${slug} pace peers include itself`); }
+        if (p && p.rank != null && p.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} pace ranked on ${p.n} peers`); }
+        if (p && p.rank == null && !p.reason) { bad++; fail(`baselines: ${slug} pace absent without a reason`); }
+        for (const x of p?.peers || []) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: ${slug} pace peers include outlier ${x}`); }
+      }
+      const flagsAgain = B.anomalyFlags(eps);
+      for (const e of eps) {
+        const want = flagsAgain.get(e.slug)?.text ?? null;
+        if ((e.metrics?.anomaly ?? null) !== want) { bad++; fail(`baselines: ${e.slug} metrics.anomaly does not match the baselines outlier test`); }
+      }
+      if (shipped.typicalCurve.points && shipped.typicalCurve.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: typical curve drawn from fewer than MIN_PEERS curves"); }
+      for (const x of shipped.typicalCurve.window) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: typical curve includes outlier ${x}`); }
+      if (shipped.watchPct.typical != null && shipped.watchPct.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: watched typical from fewer than MIN_PEERS episodes"); }
+    }
+  }
+  if (!bad) ok(`baselines: fixture test green; data.baselines re-derives — ${Object.values(data.baselines?.anomaly || {}).filter((a) => a.flagged).length} outlier(s), windows exclude self and outliers, nothing below ${data.baselines?.constants?.MIN_PEERS} peers`);
+}
+
+// --- 1v. chain freshness (PRD v7 W21): every required input store is fresh against the chain definition ---
+{
+  let bad = 0;
+  let chain = null;
+  try { chain = JSON.parse(readFileSync(join(TOOL, "chain.json"), "utf8")); } catch (err) { bad++; fail(`chain: tools/dive-analytics/chain.json unreadable — ${err.message}`); }
+  if (chain) {
+    const builtAt = Date.parse(data.generatedAt);
+    const publishIdx = chain.steps.findIndex((s) => s.step === "publish");
+    const order = chain.steps.map((s) => s.step);
+    for (const must of ["snapshot", "ratings", "build-data", "validate", "publish"]) if (!order.includes(must)) { bad++; fail(`chain: step ${must} missing from chain.json`); }
+    if (order.lastIndexOf("validate") > publishIdx || order.indexOf("health") > order.lastIndexOf("build-data")) { bad++; fail("chain: validate must run before publish and health before the final build-data"); }
+    const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return e && e.ageDays <= 60; };
+    const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e; };
+    const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
+    for (const step of chain.steps) {
+      if (!step.freshnessKey) continue;
+      for (const pattern of step.writes) {
+        if (!pattern.includes("*")) {
+          const path = join(ROOT, pattern);
+          if (!existsSync(path)) { if (step.required) { bad++; fail(`chain: required store ${pattern} is missing`); } continue; }
+          let stamp = null;
+          try {
+            const j = JSON.parse(readFileSync(path, "utf8"));
+            stamp = step.freshnessKey === "updatedAt" ? j.updatedAt : step.freshnessKey === "generatedAt" ? j.generatedAt : step.freshnessKey === "entries[-1].date" ? `${j.entries?.at(-1)?.date}T12:00:00Z` : null;
+          } catch { /* non-JSON */ }
+          if (!stamp) continue;
+          const lag = builtAt - Date.parse(stamp);
+          if (lag > FRESH_MS) {
+            const msg = `chain: ${pattern} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
+            if (step.required) { bad++; fail(msg); } else warn(msg);
+          }
+          continue;
+        }
+        const dir = join(ROOT, pattern.slice(0, pattern.lastIndexOf("/")));
+        const ext = pattern.slice(pattern.lastIndexOf("."));
+        if (!existsSync(dir)) { if (step.required && step.freshnessKey !== "updatedAt") { bad++; fail(`chain: required store directory ${dir} is missing`); } continue; }
+        for (const file of readdirSync(dir).filter((f) => f.endsWith(ext))) {
+          const slug = file.slice(0, -ext.length);
+          if (!inScope(step.scope, slug)) continue;
+          const path = join(dir, file);
+          let stamp = null;
+          try {
+            if (ext === ".jsonl") { const lines = readFileSync(path, "utf8").split("\n").filter(Boolean); stamp = lines.length ? JSON.parse(lines.at(-1)).pulledAt : null; }
+            else { const j = JSON.parse(readFileSync(path, "utf8")); stamp = step.freshnessKey === "snapshots[-1].ts" ? j.snapshots?.at(-1)?.ts : j.updatedAt; }
+          } catch { /* unreadable */ }
+          if (!stamp) continue;
+          const lag = builtAt - Date.parse(stamp);
+          if (lag > FRESH_MS) {
+            const msg = `chain: ${pattern.replace("*", slug)} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
+            if (step.required && ext !== ".jsonl") { bad++; fail(msg); } else warn(msg);
+          }
+        }
+      }
+    }
+    const publish = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
+    if (!/git pull --rebase/.test(publish) || publish.indexOf("git pull --rebase") > publish.indexOf("git push origin main")) { bad++; fail("chain: publish must pull --rebase before it pushes main (F26)"); }
+  }
+  if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
+}
+
+// --- 1x/1y/1z (PRD v7 W23): small-n on data, no trend words over episode health, stored notes only ---
+{
+  let bad = 0;
+  const BL = await import(join(TOOL, "baselines.mjs"));
+  const build = await import(join(TOOL, "build-data.mjs"));
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const TREND_WORDS = /\b(trending|improving|declining|climbing|slipping|best|worst|getting|trajectory)\b/i;
+  // 1x: every Slack or alert line with a direction rests on MIN_PEERS or more
+  const slackLines = build.trendsLines(data);
+  for (const line of slackLines) {
+    if (line.direction && !(line.sample >= BL.MIN_PEERS)) { bad++; fail(`small-n: Slack line carries a direction on ${line.sample} samples — ${line.text.slice(0, 80)}`); }
+    if (line.kind !== "insight" && line.direction == null && /\btrending (up|down)\b/i.test(line.text)) { bad++; fail(`small-n: Slack line says trending without a stamped direction — ${line.text.slice(0, 80)}`); }
+  }
+  if (build.trendsText(data) !== ["", "Trends", ...slackLines.map((l) => l.text)].join("\n")) { bad++; fail("small-n: trendsText does not join trendsLines — two definitions of the Slack block"); }
+  try {
+    const alerts = await import(join(TOOL, "alerts.mjs"));
+    let prev = null;
+    try { prev = JSON.parse(readFileSync(join(ROOT, "data", "restream", "alerts-state.json"), "utf8")); } catch { /* first run */ }
+    if (prev) {
+      for (const line of alerts.alertLines(prev, alerts.snapshotState(data), data)) {
+        if (line.direction && !(line.sample >= BL.MIN_PEERS)) { bad++; fail(`small-n: alert carries a direction on ${line.sample} samples — ${line.text.slice(0, 80)}`); }
+      }
+    }
+  } catch (err) { bad++; fail(`small-n: alerts.mjs failed to load — ${err.message}`); }
+  // 1y: the episode-health sequence is never read as a trend
+  for (const line of slackLines.filter((l) => l.kind === "episode-health")) {
+    if (TREND_WORDS.test(line.text)) { bad++; fail(`episode health: Slack sequence uses a trend word — ${line.text.slice(0, 80)}`); }
+  }
+  const aboutHealth = html.match(/<p><b>Episode health<\/b>[\s\S]*?<\/p>/)?.[0] || "";
+  if (!aboutHealth || TREND_WORDS.test(aboutHealth.replace(/<[^>]+>/g, ""))) { bad++; fail("episode health: About paragraph missing or uses a trend word over the sequence"); }
+  if (!/measured against different earlier episodes/.test(aboutHealth)) { bad++; fail("episode health: About must say two scores were measured against different earlier episodes"); }
+  for (const fn of ["healthChip", "healthTipHTML", "healthCell"]) {
+    const src = html.match(new RegExp(`(?:function ${fn}\\(|const ${fn} = )[\\s\\S]*?\\n(?:\\}|      html \\+=)`))?.[0] || "";
+    if (TREND_WORDS.test(src)) { bad++; fail(`episode health: ${fn} carries a trend word`); }
+  }
+  // 1z: notes are the fixed strings from baselines.mjs; reasons and notes pass the plain-words ban
+  const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b/i;
+  const allowedNotes = new Set([BL.NOTES.sameAge, BL.NOTES.mature]);
+  let healthStore = null;
+  try { healthStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "health-history.json"), "utf8")); } catch { /* absent */ }
+  const newestEntry = healthStore?.entries?.at(-1);
+  if (newestEntry) {
+    for (const [key, part] of Object.entries(newestEntry.subScores || {})) {
+      if (part.reason && BANNED.test(part.reason)) { bad++; fail(`notes: health ${key} reason uses banned words — ${part.reason}`); }
+      for (const [mk, m] of Object.entries(part.measures || {})) {
+        if (m.note != null && !allowedNotes.has(m.note)) { bad++; fail(`notes: health ${key}.${mk} note is not one of the fixed strings`); }
+        if (m.reason && BANNED.test(m.reason)) { bad++; fail(`notes: health ${key}.${mk} reason uses banned words — ${m.reason}`); }
+      }
+    }
+  }
+  let ratings = null;
+  try { ratings = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
+  for (const r of ratings?.scores || []) {
+    if (r.reason && BANNED.test(r.reason)) { bad++; fail(`notes: episode health ${r.slug} reason uses banned words`); }
+    for (const [c, cs] of Object.entries(r.checks || {})) {
+      if (cs.note != null && !allowedNotes.has(cs.note)) { bad++; fail(`notes: episode health ${r.slug} ${c} note is not one of the fixed strings`); }
+      if (cs.reason && BANNED.test(cs.reason)) { bad++; fail(`notes: episode health ${r.slug} ${c} reason uses banned words`); }
+    }
+  }
+  if (!/\$\{m\.note \? ` · \$\{m\.note\}` : ""\}/.test(html) || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
+    bad++; fail("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
+  }
+  if (!bad) ok(`honesty on data: ${slackLines.length} Slack lines and the alert lines carry directions only on ${BL.MIN_PEERS}+ samples; episode-health surfaces carry no trend word; every stored note is one of the fixed strings`);
 }
 
 // --- warnings: broadcast-resolution latches and plays coverage ---

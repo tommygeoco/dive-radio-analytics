@@ -13,6 +13,11 @@ import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs
 import { projectHealth } from "./health.mjs";
 import { watchMoments } from "./watch-moments.mjs";
 import { momentKey } from "./moment-summaries.mjs";
+// PRD v7 W19a: the one definition of "typical" — projected as data.baselines
+// so the page, the scorers, and the critic all read the same windows, flags,
+// and constants. No consumer is switched in W19a; this only adds the projection.
+import { computeBaselines, anomalyFlags, paceFor } from "./baselines.mjs";
+import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -277,42 +282,45 @@ export function computeAll({ now = Date.now() } = {}) {
   episodes.forEach((e, i) => { e.ep = i + 1; });
   const dive = episodes;
 
-  // anomaly flags: any unit >2x its all-episode median (YT views, X plays,
-  // X reach each checked within their own unit — critic ruling item 7 / F-8)
-  const medianOf = (vals) => {
-    const v = vals.filter((x) => x != null).sort((a, b) => a - b);
-    if (!v.length) return 0;
-    const m = Math.floor(v.length / 2);
-    return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; // true median (critic 2026-08-22: upper-middle convention overstated it)
-  };
-  const median = medianOf(dive.map((e) => e.latest.ytTotal));
-  const medPlays = medianOf(dive.map((e) => e.latest.xPlays));
-  const medReach = medianOf(dive.map((e) => e.latest.xImpressions));
-  for (const e of dive) {
-    const hits = [];
-    if (median > 0 && e.latest.ytTotal > 2 * median) hits.push(`${num(e.latest.ytTotal)} YT views vs a typical ${num(median)}`);
-    if (medPlays > 0 && e.latest.xPlays != null && e.latest.xPlays > 2 * medPlays) hits.push(`${num(e.latest.xPlays)} X plays vs a typical ${num(medPlays)}`);
-    if (medReach > 0 && e.latest.xImpressions > 2 * medReach) hits.push(`${num(e.latest.xImpressions)} X reach vs a typical ${num(medReach)}`);
-    if (hits.length) {
-      e.metrics.anomaly = `more than double what a typical episode gets (${hits.join("; ")}) — treat as promo-driven outlier, not topic signal`;
-    }
-  }
+  // Promo-outlier flags (PRD v7 W19b): the one definition lives in
+  // baselines.mjs — a unit more than double the SAME-AGE typical of the
+  // nearby episodes (settled at day 21; provisional before that; the
+  // window-limited lifetime test only while history is too thin for either).
+  // A flagged episode is left out of host, announce, topic, and every typical.
+  const flags = anomalyFlags(dive);
+  for (const e of dive) e.metrics.anomaly = flags.get(e.slug)?.text ?? null;
 
   attachLiveSessions(dive, registry);
   const commentSummary = attachComments(dive);
   attachEpisodeHealth(dive);
   attachWatch(dive);
+  const baselines = computeBaselines(dive, { flags, history: readHistoryLines });
 
   // W15 recommendation engine: when the saved store exists, its model-written,
   // number-grounded items ARE "What matters" — the deterministic rule-based
   // insights remain only as the fallback when no store has ever been written.
   let insights;
   let recStore = null;
+  let insightsStale = [];
   try { recStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "recommendations.json"), "utf8")); } catch { /* no store yet */ }
   if (Array.isArray(recStore?.items) && recStore.items.length) {
-    insights = recStore.items.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
-  } else {
-    insights = buildInsights(dive, { now, median });
+    // Currency (PRD v7 F32): an item stays on the page only while every
+    // number it cites still exists in TODAY's fact sheet. A number that moved
+    // or was retired (a re-derived score, a changed rate) makes the item stale:
+    // dropped here with its reason, never shown against numbers it no longer
+    // matches; the next model run rewrites the store.
+    const sheet = collectFacts({ episodes: dive, baselines, generatedAt: new Date(now).toISOString() });
+    const allowed = allowedNumbers(sheet.facts);
+    const current = [];
+    for (const r of recStore.items) {
+      try { validateItem(r, sheet.facts, allowed); current.push(r); }
+      catch (err) { insightsStale.push({ id: r.id, why: String(err.message).replace(/^[a-z0-9-]+: /, "") }); }
+    }
+    insights = current.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
+  }
+  if (!insights || !insights.length) {
+    insightsStale = insights ? insightsStale : [];
+    insights = buildInsights(dive, { flags });
     insights.push(...liveInsights(dive));
     // Strategy-impact categories (owner directive 2026-08-22): each insight is
     // tagged by the DECISION it informs, not the data type it reads.
@@ -332,7 +340,7 @@ export function computeAll({ now = Date.now() } = {}) {
     // newest episode's same-age YouTube pace rank, exported as data so the
     // alerts diff (W4) never has to parse insight prose
     paceRank: (() => {
-      const p = sameAgePace(dive);
+      const p = sameAgePace(dive, flags);
       return p && p.rank ? { slug: p.newest.slug, rank: p.rank, of: p.of } : null;
     })(),
   };
@@ -347,10 +355,20 @@ export function computeAll({ now = Date.now() } = {}) {
     dests: DESTS,
     episodes,
     insights,
+    insightsStale,
     showTrend,
     commentSummary,
     health,
+    baselines,
   };
+}
+
+// analytics history lines (PRD v7 W19a) for same-age comparisons of analytics measures
+const ANALYTICS_HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-history");
+function readHistoryLines(slug) {
+  const p = join(ANALYTICS_HISTORY_DIR, `${slug}.jsonl`);
+  if (!existsSync(p)) return [];
+  try { return readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; }
 }
 
 // --- episode health (W12): computed + frozen by ratings.mjs, attached from its store ---
@@ -779,26 +797,19 @@ function cumulativeSeries(dive, now) {
   return out;
 }
 
-// same-age comparison: newest episode at its current age vs prior episodes at the same age.
-// Only prior episodes whose first snapshot is at-or-before that age qualify (no extrapolation).
-export function sameAgePace(dive) {
+// Same-age pace for the newest episode (PRD v7 W19b): read from baselines.mjs
+// — YouTube views at the newest episode's current age against the other
+// episodes' readings at that same age, promo outliers left out, at least
+// three peers or nothing. Same function feeds data.baselines.pace for the
+// panel and table, so every surface shows one pace.
+export function sameAgePace(dive, flags = anomalyFlags(dive)) {
   if (dive.length < 2) return null;
   const newest = dive[dive.length - 1];
-  const ageMs = Date.parse(newest.latest.ts) - premiereMs(newest.premiere);
-  const peers = [];
-  for (const e of dive.slice(0, -1)) {
-    const prem = premiereMs(e.premiere);
-    if (Date.parse(e.snapshots[0].ts) - prem > ageMs) continue; // no real data at that age
-    const s = lastAtOrBefore(e.snapshots, prem + ageMs);
-    if (s) peers.push({ title: e.title, slug: e.slug, value: total(s.byDest, YT_KEYS), partial: e.partialHistory });
-  }
-  if (peers.length < 3) return { newest, ageMs, peers, rank: null };
-  const sorted = [...peers].sort((a, b) => b.value - a.value);
-  const newestVal = newest.latest.ytTotal;
-  const rank = sorted.filter((p) => p.value > newestVal).length + 1;
-  const vals = peers.map((p) => p.value).sort((a, b) => a - b);
-  const med = vals[Math.floor(vals.length / 2)];
-  return { newest, ageMs, peers: sorted, rank, of: peers.length + 1, median: med, newestVal };
+  const p = paceFor(newest, dive, flags);
+  if (!p) return null;
+  const bySlug = new Map(dive.map((e) => [e.slug, e]));
+  const peers = p.peers.map((slug) => ({ title: bySlug.get(slug)?.title, slug, partial: bySlug.get(slug)?.partialHistory }));
+  return { newest, ageMs: p.ageDays * DAY, peers, rank: p.rank, of: p.of, median: p.typical, newestVal: p.value, pct: p.pct, excluded: p.excluded };
 }
 
 function shortTitle(t) {
@@ -836,7 +847,7 @@ export function categoryFor(id) {
   return "data";
 }
 
-function buildInsights(dive, { median }) {
+function buildInsights(dive, { flags }) {
   const insights = [];
   const full = dive.filter((e) => !e.partialHistory);
   const state = (o) => ({ xMode: "weeks", yMode: "cumulative", dests: DESTS.map((d) => d.key), solo: null, ...o });
@@ -844,18 +855,18 @@ function buildInsights(dive, { median }) {
   // 1. same-age pace rank for the newest episode
   // Insight texts are written for a human first: a plain-English claim up
   // front, action in `recommendation`, methodology in `caveat` (small print).
-  const pace = sameAgePace(dive);
+  const pace = sameAgePace(dive, flags);
   if (pace && pace.rank) {
     const days = Math.round((pace.ageMs / DAY) * 10) / 10;
     const ahead = pace.newestVal >= pace.median;
-    const pct = pace.median > 0 ? Math.abs(Math.round(((pace.newestVal - pace.median) / pace.median) * 100)) : 0;
+    const pct = Math.abs(pace.pct ?? 0);
     insights.push({
       id: "pace-rank",
       text: `${shortTitle(pace.newest.title)} has ${num(pace.newest.latest.totalViews)} total views ${days} days in — on YouTube it's pacing #${pace.rank} of ${pace.of} at this age, ${pct}% ${ahead ? "ahead of" : "behind"} the typical episode.`,
       recommendation: ahead
         ? `This topic/format is landing. Note what's different about it and repeat that on the next episode.`
         : `If this episode deserves a push, push now — gains concentrate in the first weeks and the gap won't close on its own.`,
-      caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} prior episode${pace.peers.length === 1 ? "" : "s"}.`,
+      caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} other episode${pace.peers.length === 1 ? "" : "s"} at the same age, promo outliers left out.`,
       chartState: state({ chart: "standings", solo: pace.newest.slug }),
     });
   }
@@ -1001,7 +1012,7 @@ function buildInsights(dive, { median }) {
         id: `anomaly-${e.slug}`,
         text: `${refOf(e)} is a promo-driven outlier, not a topic winner: ${e.metrics.anomaly.replace(/ — treat as promo-driven outlier, not topic signal$/, "")}.`,
         recommendation: `Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.`,
-        caveat: `Outlier = more than double the typical episode on that unit; excluded from host-split aggregates automatically.`,
+        caveat: `Outlier = more than double what nearby episodes did on that unit at the same age${flags.get(e.slug)?.provisional ? " (an early read until three of them reach three weeks)" : ""}; left out of host, announce, and topic comparisons automatically.`,
         chartState: state({ chart: "standings", solo: e.slug }),
       });
     }
@@ -1048,33 +1059,39 @@ export function minutesInWords(sec) {
   return `${h} hour${h === 1 ? "" : "s"}${m % 60 ? ` ${m % 60} minutes` : ""} in`;
 }
 
-export function trendsText(data) {
+// Structured Slack lines (PRD v7 1x): each carries its sample and direction
+// so the validator checks the small-n rule on data, not by reading prose.
+export function trendsLines(data) {
   const CAT_LABEL = { content: "Content", distribution: "Distribution", promotion: "Promotion", audience: "Audience health", data: "Data note" };
-  const lines = ["", "Trends"];
+  const lines = [];
+  const push = (text, meta = {}) => lines.push({ text, sample: meta.sample ?? null, direction: meta.direction ?? null, kind: meta.kind ?? "line" });
   for (const i of data.insights) {
-    lines.push(`• [${CAT_LABEL[i.category] ?? "Note"}] ${i.text}`);
-    if (i.recommendation) lines.push(`   ↳ ${i.recommendation}`);
+    push(`• [${CAT_LABEL[i.category] ?? "Note"}] ${i.text}`, { kind: "insight" });
+    if (i.recommendation) push(`   ↳ ${i.recommendation}`, { kind: "insight" });
   }
-  if (data.insights.length === 0) lines.push("• Not enough data for trend calls yet.");
+  if (data.insights.length === 0) push("• Not enough data for trend calls yet.");
   const vels = data.showTrend.week1VelocityByEpisode.filter((v) => v.value !== null);
-  if (vels.length >= 2) {
+  // first-week line only from three clean weeks (rule 7; PRD v7 F14) — below
+  // that the numbers are listed without a direction word
+  if (vels.length >= 3) {
     const dir = vels[vels.length - 1].value >= vels[0].value ? "up" : "down";
-    lines.push(
-      `• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
-    );
+    push(`• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`, { sample: vels.length, direction: dir });
+  } else if (vels.length) {
+    push(`• First-week YouTube views so far: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" · ")} — a direction needs three clean first weeks.`, { sample: vels.length });
   }
-  // W12: episode health, read from the same store as every dashboard surface.
-  // Only finished three-week reads carry a number; younger episodes state when
-  // their read completes instead of showing anything early.
+  // W12/PRD v7: episode health, read from the same store as every dashboard
+  // surface. Only finished reads WITH a score appear; an episode with too few
+  // comparison episodes is simply not listed (absence is silent; the panel
+  // carries its reason). The wording says what each number is — its own read
+  // against the episodes before it — never a trend across them.
   const newest = data.episodes[data.episodes.length - 1];
-  const finished = data.episodes.filter((e) => e.health && !e.health.pending);
-  const scored = finished.filter((e) => e.health.score != null);
+  const scored = data.episodes.filter((e) => e.health && !e.health.pending && e.health.score != null);
   if (scored.length) {
-    const seq = finished.map((e) => `${e.premiere.slice(5)} ${e.health.score ?? "sets the baseline"}`).join(" → ");
-    lines.push(`• Episode health (each episode's own three-week read; 50 is a typical episode): ${seq}.`);
+    const seq = scored.map((e) => `${e.premiere.slice(5)} ${e.health.score}`).join(" · ");
+    push(`• Episode health, each against the episodes before it (50 is a typical episode): ${seq}.`, { sample: scored.length, kind: "episode-health" });
   }
   if (newest?.health?.pending) {
-    lines.push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
+    push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
   }
   // v6 W16/W17: the newest episode's sharpest exit moment, read from the same
   // stored moments the panel pins render. Context is the model-written summary
@@ -1083,7 +1100,7 @@ export function trendsText(data) {
   const momentEp = [...data.episodes].reverse().find((e) => e.watch?.moments?.some((m) => m.kind === "drop"));
   if (momentEp) {
     const drop = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
-    lines.push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${drop.summary ? ` — ${drop.summary}` : ""}.`);
+    push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${drop.summary ? ` — ${drop.summary}` : ""}.`);
   }
   // W8: newest-episode feedback, read from the same exported rollup as the page.
   const c = newest?.comments;
@@ -1092,9 +1109,13 @@ export function trendsText(data) {
     const concerns = c.complaintCount ? `${c.complaintCount} ${c.complaintCount === 1 ? "person raised" : "people raised"} a concern` : "no complaints";
     const rate = c.commentersPer1k != null ? `; ${c.commentersPer1k} people per 1,000 watches` : "";
     const top = c.enjoyThemes?.[0] ? `; top bright spot: ${c.enjoyThemes[0].theme} — ${c.enjoyThemes[0].count} people` : "";
-    lines.push(`• Audience feedback: ${c.uniqueCommenters} ${c.uniqueCommenters === 1 ? "person" : "people"} commented; ${enjoyed}; ${concerns}${rate}${top}.`);
+    push(`• Audience feedback: ${c.uniqueCommenters} ${c.uniqueCommenters === 1 ? "person" : "people"} commented; ${enjoyed}; ${concerns}${rate}${top}.`);
   }
-  return lines.join("\n");
+  return lines;
+}
+
+export function trendsText(data) {
+  return ["", "Trends", ...trendsLines(data).map((l) => l.text)].join("\n");
 }
 
 // --- main ---

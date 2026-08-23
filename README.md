@@ -8,11 +8,14 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   then latest-episode and growth-trend cards, then the episode carousel above
   the chart
 - Saved show-health score (daily; compares the newest episodes with the show's
-  usual levels) with grounded Helping / Needs work bullets; missing checks drop
-  out and history starts only from real saved days
+  usual levels, like for like — same age or three weeks in, never a two-day-old
+  rate against a month-old one) with grounded Helping / Needs work bullets;
+  missing checks drop out, the header says when the read is behind the data,
+  and a read older than a week is withheld
 - Per-episode health score (0–100, 50 = typical): each episode's own
-  three-week read against the episodes before it, frozen at day 21 and shown
-  nowhere until those three weeks are over
+  three-week read against the eight episodes before it (promo outliers left
+  out, at least three to compare), frozen at day 21 with the inputs it used
+  stored, and shown nowhere until those three weeks are over
 - Latest-episode card keeps unit discipline: total views = YouTube views + X
   broadcast plays; X reach shown separately and never summed into views
 - Episode carousel + three chart views: Totals (stacked per destination),
@@ -44,6 +47,13 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   tactical items whose every number is validated against the stored facts;
   deterministic rule-based insights remain the fallback when no store exists
 - Static site — no server, no network calls at view time
+
+For agent sessions and contributors: `CLAUDE.md` states the intent and the
+rules every change must pass; `ARCHITECTURE.md` traces every number on the
+page back to its store, script, and rule, and documents each store's time
+semantics. The comparison rules (one `baselines.mjs`, like-for-like bases,
+eight-episode windows, three-peer minimum, rebuildable freezes, freshness)
+are specified in `tools/dive-analytics/prd-analytics-v7-*.md`.
 
 Data is exported daily (07:25 America/Phoenix) by an automated pipeline that
 also discovers newly published episodes and collects audience comments. A

@@ -1,54 +1,689 @@
 {
-  "version": 1,
-  "promptVersion": 2,
-  "updatedAt": "2026-08-23T05:45:00.000Z",
-  "provider": "session",
-  "model": null,
-  "note": "Seeded from the owner session on 2026-08-23 against the full fact sheet (watch curves, view sources, per-channel subscribers and watch shares, health reads, live, platform split); mid-show-exit added the same day from the v6 watch-moment facts and transcript excerpts. recommendations.mjs regenerates this store when the pipeline runs with an API key.",
-  "factsGeneratedAt": "2026-08-23T05:27:54.460Z",
-  "items": [
-    {
-      "id": "open-cliff",
-      "category": "content",
-      "text": "Every episode loses its crowd at the door: around 70.4% of starters are watching near the open, and only 11.7–14.9% remain by the 2% mark — the largest single loss anywhere in the show.",
-      "recommendation": "Rebuild the first 90 seconds: cold-open the strongest exchange, move intros and housekeeping after it, and check the next episode's open against that 14.9% high-water mark."
-    },
-    {
-      "id": "best-open-template",
-      "category": "content",
-      "text": "Goodbye, Blank Canvas is the watch-time winner at 13.2% of the video seen on average; every other episode sits between 8.9 and 12.9%.",
-      "recommendation": "Break down what its first 5 minutes do differently and reuse that structure for the next two openings; compare their finished health reads against 33 and 44."
-    },
-    {
-      "id": "mid-show-exit",
-      "category": "content",
-      "text": "The sharpest mid-show exit measured is E4 about 48 minutes in: 6.2 of every 100 viewers leave during the backyard-baseball-character bit, even though the stretch around minute 38 was pulling extra viewers in.",
-      "recommendation": "Rewatch E4 around minute 48, mark the segment seam there, and test a tighter handoff next show — trim the tail, re-order, or tease what comes next before the lull.",
-      "caveat": "Moment timing is approximate — transcript timestamps come from the live recording, not the edited video."
-    },
-    {
-      "id": "end-screens-dead",
-      "category": "distribution",
-      "text": "End screens have produced 7 views across the entire catalog — a free surface at the exact moment the remaining audience is most committed.",
-      "recommendation": "Add an end screen on both channels linking the next episode and the subscribe button; it costs nothing and every finished viewer sees it."
-    },
-    {
-      "id": "discovery-gap",
-      "category": "distribution",
-      "text": "54.7% of YouTube views come from subscriptions and home while search brings 5% — current packaging mostly reaches people the show already has.",
-      "recommendation": "Package the next launch for strangers: title and thumbnail on the guest's topic as someone would search it, then watch whether search and suggested move."
-    },
-    {
-      "id": "subscribe-window",
-      "category": "audience",
-      "text": "Subscriber pull spent itself on launch day one: 8.9 subscribers per 1,000 views on the first episode, then 2.9 or less on every episode since.",
-      "recommendation": "Script one spoken subscribe ask at minute 2–3, right where the drop levels off, plus a pinned comment with the link — and judge it against that 8.9 start."
-    },
-    {
-      "id": "channel-gap",
-      "category": "audience",
-      "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
-      "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode."
-    }
-  ]
+ "version": 1,
+ "promptVersion": 2,
+ "updatedAt": "2026-08-23T17:19:52.940Z",
+ "provider": "session",
+ "model": null,
+ "note": "Seeded from the owner session on 2026-08-23 against the full fact sheet (watch curves, view sources, per-channel subscribers and watch shares, health reads, live, platform split); mid-show-exit added the same day from the v6 watch-moment facts and transcript excerpts. recommendations.mjs regenerates this store when the pipeline runs with an API key.",
+ "factsGeneratedAt": "2026-08-23T17:19:52.515Z",
+ "items": [
+  {
+   "id": "open-cliff",
+   "category": "content",
+   "text": "Every episode loses its crowd at the door: around 70.4% of starters are watching near the open, and only 11.7–14.9% remain by the 2% mark — the largest single loss anywhere in the show.",
+   "recommendation": "Rebuild the first 90 seconds: cold-open the strongest exchange, move intros and housekeeping after it, and check the next episode's open against that 14.9% high-water mark."
+  },
+  {
+   "id": "mid-show-exit",
+   "category": "content",
+   "text": "The sharpest mid-show exit measured is E4 about 48 minutes in: 6.2 of every 100 viewers leave during the backyard-baseball-character bit, even though the stretch around minute 38 was pulling extra viewers in.",
+   "recommendation": "Rewatch E4 around minute 48, mark the segment seam there, and test a tighter handoff next show — trim the tail, re-order, or tease what comes next before the lull.",
+   "caveat": "Moment timing is approximate — transcript timestamps come from the live recording, not the edited video."
+  },
+  {
+   "id": "end-screens-dead",
+   "category": "distribution",
+   "text": "End screens have produced 7 views across the entire catalog — a free surface at the exact moment the remaining audience is most committed.",
+   "recommendation": "Add an end screen on both channels linking the next episode and the subscribe button; it costs nothing and every finished viewer sees it."
+  },
+  {
+   "id": "discovery-gap",
+   "category": "distribution",
+   "text": "54.7% of YouTube views come from subscriptions and home while search brings 5% — current packaging mostly reaches people the show already has.",
+   "recommendation": "Package the next launch for strangers: title and thumbnail on the guest's topic as someone would search it, then watch whether search and suggested move."
+  },
+  {
+   "id": "channel-gap",
+   "category": "audience",
+   "text": "The two YouTube channels pull differently: Dive Club holds 11.1% of the video watched and adds 3.4 subscribers per 1,000 views; DesignerTom holds 9.7%, adds 2.2, and has added 0 subscribers since the July 23 episode.",
+   "recommendation": "Lead launches on Dive Club and give DesignerTom a distinct cut — a shorter edit or a different angle — instead of the same upload twice; recheck both channels on the next episode."
+  }
+ ],
+ "facts": [
+  {
+   "id": "open-start-E1",
+   "value": 67.3
+  },
+  {
+   "id": "open-at2-E1",
+   "value": 11.7
+  },
+  {
+   "id": "watched-E1",
+   "value": 10.6
+  },
+  {
+   "id": "subs1k-E1",
+   "value": 8.9
+  },
+  {
+   "id": "watched-E1-designertom",
+   "value": 9.6
+  },
+  {
+   "id": "subs1k-E1-designertom",
+   "value": 13.3
+  },
+  {
+   "id": "subs-E1-designertom",
+   "value": 7
+  },
+  {
+   "id": "watched-E1-joindiveclub",
+   "value": 11.3
+  },
+  {
+   "id": "subs1k-E1-joindiveclub",
+   "value": 5.7
+  },
+  {
+   "id": "subs-E1-joindiveclub",
+   "value": 4
+  },
+  {
+   "id": "peak-E1",
+   "value": 90
+  },
+  {
+   "id": "chat-E1",
+   "value": 383
+  },
+  {
+   "id": "open-start-E2",
+   "value": 66.2
+  },
+  {
+   "id": "open-at2-E2",
+   "value": 14.9
+  },
+  {
+   "id": "watched-E2",
+   "value": 11
+  },
+  {
+   "id": "subs1k-E2",
+   "value": 2.9
+  },
+  {
+   "id": "watched-E2-designertom",
+   "value": 9.8
+  },
+  {
+   "id": "subs1k-E2-designertom",
+   "value": 1.1
+  },
+  {
+   "id": "subs-E2-designertom",
+   "value": 1
+  },
+  {
+   "id": "watched-E2-joindiveclub",
+   "value": 12
+  },
+  {
+   "id": "subs1k-E2-joindiveclub",
+   "value": 4.4
+  },
+  {
+   "id": "subs-E2-joindiveclub",
+   "value": 5
+  },
+  {
+   "id": "peak-E2",
+   "value": 71
+  },
+  {
+   "id": "chat-E2",
+   "value": 310
+  },
+  {
+   "id": "open-start-E3",
+   "value": 73
+  },
+  {
+   "id": "open-at2-E3",
+   "value": 12.1
+  },
+  {
+   "id": "watched-E3",
+   "value": 9
+  },
+  {
+   "id": "subs1k-E3",
+   "value": 0
+  },
+  {
+   "id": "watched-E3-designertom",
+   "value": 8.7
+  },
+  {
+   "id": "subs1k-E3-designertom",
+   "value": 0
+  },
+  {
+   "id": "subs-E3-designertom",
+   "value": 0
+  },
+  {
+   "id": "watched-E3-joindiveclub",
+   "value": 9.1
+  },
+  {
+   "id": "subs1k-E3-joindiveclub",
+   "value": 0
+  },
+  {
+   "id": "subs-E3-joindiveclub",
+   "value": 0
+  },
+  {
+   "id": "peak-E3",
+   "value": 53
+  },
+  {
+   "id": "chat-E3",
+   "value": 169
+  },
+  {
+   "id": "open-start-E4",
+   "value": 70.4
+  },
+  {
+   "id": "open-at2-E4",
+   "value": 11.9
+  },
+  {
+   "id": "watched-E4",
+   "value": 8.9
+  },
+  {
+   "id": "subs1k-E4",
+   "value": 3.2
+  },
+  {
+   "id": "watched-E4-designertom",
+   "value": 8.7
+  },
+  {
+   "id": "subs1k-E4-designertom",
+   "value": 0
+  },
+  {
+   "id": "subs-E4-designertom",
+   "value": 0
+  },
+  {
+   "id": "watched-E4-joindiveclub",
+   "value": 9
+  },
+  {
+   "id": "subs1k-E4-joindiveclub",
+   "value": 5.1
+  },
+  {
+   "id": "subs-E4-joindiveclub",
+   "value": 6
+  },
+  {
+   "id": "peak-E4",
+   "value": 63
+  },
+  {
+   "id": "chat-E4",
+   "value": 167
+  },
+  {
+   "id": "open-start-E5",
+   "value": 69.4
+  },
+  {
+   "id": "open-at2-E5",
+   "value": 12.3
+  },
+  {
+   "id": "watched-E5",
+   "value": 13.2
+  },
+  {
+   "id": "subs1k-E5",
+   "value": 0.9
+  },
+  {
+   "id": "watched-E5-designertom",
+   "value": 12.1
+  },
+  {
+   "id": "subs1k-E5-designertom",
+   "value": 0
+  },
+  {
+   "id": "subs-E5-designertom",
+   "value": 0
+  },
+  {
+   "id": "watched-E5-joindiveclub",
+   "value": 14.1
+  },
+  {
+   "id": "subs1k-E5-joindiveclub",
+   "value": 1.6
+  },
+  {
+   "id": "subs-E5-joindiveclub",
+   "value": 1
+  },
+  {
+   "id": "peak-E5",
+   "value": 64
+  },
+  {
+   "id": "chat-E5",
+   "value": 100
+  },
+  {
+   "id": "watched-E6",
+   "value": 12.9
+  },
+  {
+   "id": "subs1k-E6",
+   "value": 1.6
+  },
+  {
+   "id": "watched-E6-designertom",
+   "value": 10.4
+  },
+  {
+   "id": "subs1k-E6-designertom",
+   "value": 0
+  },
+  {
+   "id": "subs-E6-designertom",
+   "value": 0
+  },
+  {
+   "id": "watched-E6-joindiveclub",
+   "value": 14.6
+  },
+  {
+   "id": "subs1k-E6-joindiveclub",
+   "value": 2.7
+  },
+  {
+   "id": "subs-E6-joindiveclub",
+   "value": 1
+  },
+  {
+   "id": "peak-E6",
+   "value": 71
+  },
+  {
+   "id": "chat-E6",
+   "value": 127
+  },
+  {
+   "id": "open-floor-E1",
+   "value": 11.7
+  },
+  {
+   "id": "recovery-peak-E1",
+   "value": 28.5
+  },
+  {
+   "id": "mid-hold-E1",
+   "value": 14.4
+  },
+  {
+   "id": "end-hold-E1",
+   "value": 10.1
+  },
+  {
+   "id": "drop-E1-6",
+   "value": 8
+  },
+  {
+   "id": "drop-min-E1-6",
+   "value": 7
+  },
+  {
+   "id": "drop-E1-27",
+   "value": 2.6
+  },
+  {
+   "id": "drop-min-E1-27",
+   "value": 33
+  },
+  {
+   "id": "drop-E1-99",
+   "value": 3.6
+  },
+  {
+   "id": "drop-min-E1-99",
+   "value": 122
+  },
+  {
+   "id": "open-floor-E2",
+   "value": 13.9
+  },
+  {
+   "id": "recovery-peak-E2",
+   "value": 29.7
+  },
+  {
+   "id": "mid-hold-E2",
+   "value": 13.1
+  },
+  {
+   "id": "end-hold-E2",
+   "value": 6.9
+  },
+  {
+   "id": "drop-E2-9",
+   "value": 3.6
+  },
+  {
+   "id": "drop-min-E2-9",
+   "value": 11
+  },
+  {
+   "id": "drop-E2-14",
+   "value": 2.7
+  },
+  {
+   "id": "drop-min-E2-14",
+   "value": 17
+  },
+  {
+   "id": "drop-E2-39",
+   "value": 2.3
+  },
+  {
+   "id": "drop-min-E2-39",
+   "value": 47
+  },
+  {
+   "id": "open-floor-E3",
+   "value": 10.5
+  },
+  {
+   "id": "recovery-peak-E3",
+   "value": 26
+  },
+  {
+   "id": "mid-hold-E3",
+   "value": 13.2
+  },
+  {
+   "id": "end-hold-E3",
+   "value": 8.6
+  },
+  {
+   "id": "drop-E3-8",
+   "value": 3.9
+  },
+  {
+   "id": "drop-min-E3-8",
+   "value": 9
+  },
+  {
+   "id": "drop-E3-41",
+   "value": 2.6
+  },
+  {
+   "id": "drop-min-E3-41",
+   "value": 46
+  },
+  {
+   "id": "drop-E3-50",
+   "value": 2.7
+  },
+  {
+   "id": "drop-min-E3-50",
+   "value": 56
+  },
+  {
+   "id": "hold-E3-77",
+   "value": 2.3
+  },
+  {
+   "id": "hold-min-E3-77",
+   "value": 87
+  },
+  {
+   "id": "open-floor-E4",
+   "value": 10.7
+  },
+  {
+   "id": "recovery-peak-E4",
+   "value": 21.7
+  },
+  {
+   "id": "mid-hold-E4",
+   "value": 11.7
+  },
+  {
+   "id": "end-hold-E4",
+   "value": 6.3
+  },
+  {
+   "id": "drop-E4-9",
+   "value": 4.6
+  },
+  {
+   "id": "drop-min-E4-9",
+   "value": 11
+  },
+  {
+   "id": "hold-E4-31",
+   "value": 2.1
+  },
+  {
+   "id": "hold-min-E4-31",
+   "value": 38
+  },
+  {
+   "id": "drop-E4-39",
+   "value": 6.2
+  },
+  {
+   "id": "drop-min-E4-39",
+   "value": 48
+  },
+  {
+   "id": "open-floor-E5",
+   "value": 10.2
+  },
+  {
+   "id": "recovery-peak-E5",
+   "value": 27.3
+  },
+  {
+   "id": "mid-hold-E5",
+   "value": 17.6
+  },
+  {
+   "id": "end-hold-E5",
+   "value": 11.7
+  },
+  {
+   "id": "drop-E5-12",
+   "value": 6.2
+  },
+  {
+   "id": "drop-min-E5-12",
+   "value": 11
+  },
+  {
+   "id": "drop-E5-20",
+   "value": 3.2
+  },
+  {
+   "id": "drop-min-E5-20",
+   "value": 19
+  },
+  {
+   "id": "drop-E5-50",
+   "value": 4
+  },
+  {
+   "id": "drop-min-E5-50",
+   "value": 48
+  },
+  {
+   "id": "hold-E5-56",
+   "value": 2.8
+  },
+  {
+   "id": "hold-min-E5-56",
+   "value": 53
+  },
+  {
+   "id": "traffic-SUBSCRIBER",
+   "value": 4679
+  },
+  {
+   "id": "traffic-share-SUBSCRIBER",
+   "value": 54.7
+  },
+  {
+   "id": "traffic-NO_LINK_OTHER",
+   "value": 1020
+  },
+  {
+   "id": "traffic-share-NO_LINK_OTHER",
+   "value": 11.9
+  },
+  {
+   "id": "traffic-RELATED_VIDEO",
+   "value": 767
+  },
+  {
+   "id": "traffic-share-RELATED_VIDEO",
+   "value": 9
+  },
+  {
+   "id": "traffic-YT_OTHER_PAGE",
+   "value": 387
+  },
+  {
+   "id": "traffic-share-YT_OTHER_PAGE",
+   "value": 4.5
+  },
+  {
+   "id": "traffic-EXT_URL",
+   "value": 500
+  },
+  {
+   "id": "traffic-share-EXT_URL",
+   "value": 5.8
+  },
+  {
+   "id": "traffic-YT_CHANNEL",
+   "value": 459
+  },
+  {
+   "id": "traffic-share-YT_CHANNEL",
+   "value": 5.4
+  },
+  {
+   "id": "traffic-YT_SEARCH",
+   "value": 424
+  },
+  {
+   "id": "traffic-share-YT_SEARCH",
+   "value": 5
+  },
+  {
+   "id": "traffic-NOTIFICATION",
+   "value": 251
+  },
+  {
+   "id": "traffic-share-NOTIFICATION",
+   "value": 2.9
+  },
+  {
+   "id": "traffic-PLAYLIST",
+   "value": 56
+  },
+  {
+   "id": "traffic-share-PLAYLIST",
+   "value": 0.7
+  },
+  {
+   "id": "traffic-END_SCREEN",
+   "value": 7
+  },
+  {
+   "id": "traffic-share-END_SCREEN",
+   "value": 0.1
+  },
+  {
+   "id": "traffic-SHORTS",
+   "value": 2
+  },
+  {
+   "id": "traffic-share-SHORTS",
+   "value": 0
+  },
+  {
+   "id": "traffic-SHORTS_CONTENT_LINKS",
+   "value": 5
+  },
+  {
+   "id": "traffic-share-SHORTS_CONTENT_LINKS",
+   "value": 0.1
+  },
+  {
+   "id": "channel-views-designertom",
+   "value": 3572
+  },
+  {
+   "id": "channel-subs-designertom",
+   "value": 8
+  },
+  {
+   "id": "channel-subs1k-designertom",
+   "value": 2.2
+  },
+  {
+   "id": "channel-watched-designertom",
+   "value": 9.7
+  },
+  {
+   "id": "channel-views-joindiveclub",
+   "value": 4973
+  },
+  {
+   "id": "channel-subs-joindiveclub",
+   "value": 17
+  },
+  {
+   "id": "channel-subs1k-joindiveclub",
+   "value": 3.4
+  },
+  {
+   "id": "channel-watched-joindiveclub",
+   "value": 11.1
+  },
+  {
+   "id": "views-yt-all",
+   "value": 9793
+  },
+  {
+   "id": "views-x-all",
+   "value": 12753
+  },
+  {
+   "id": "share-x-all",
+   "value": 56.6
+  },
+  {
+   "id": "views-total-all",
+   "value": 22546
+  }
+ ],
+ "prunedAt": "2026-08-23T17:19:52.940Z",
+ "prunedIds": [
+  "best-open-template",
+  "subscribe-window"
+ ]
 }

@@ -46,7 +46,7 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 3; // v8: allowed-number list in the payload + grounding-error retries
+export const PROMPT_VERSION = 3; // allowed-number list in the payload + grounding-error retries (v8 publish-integrity) + like-for-like rate facts (v7)
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 // exported so other prose surfaces (the Slack trends line) can gate spoken
 // quotes with the same plain-words contract the validator enforces
@@ -69,13 +69,19 @@ const r1 = (x) => Math.round(x * 10) / 10;
 
 // --- deterministic fact sheet: everything the model may cite ---
 
-export function collectFacts() {
-  const data = readJson(DATA_PATH);
+export function collectFacts(data = readJson(DATA_PATH)) {
   if (!data?.episodes?.length) throw new Error("data.json has no episodes");
   const facts = [];
-  const add = (id, value, text) => { if (Number.isFinite(value)) facts.push({ id, value: r1(value), text }); };
+  const add = (id, value, text, extra = {}) => { if (Number.isFinite(value)) facts.push({ id, value: r1(value), text, ...extra }); };
 
   const eps = data.episodes;
+  // PRD v7 F28: every per-episode RATE fact carries the episode's age and a
+  // basis so the model (and validateItem) can keep comparisons like for like —
+  // "mature" at three weeks or more, "young" before. Rates of young episodes
+  // are still listed for reading, never for ranking against mature ones.
+  const MATURE_DAYS = data.baselines?.constants?.MATURITY_DAYS?.analytics ?? 21;
+  const basisOf = (e) => (e.ageDays >= MATURE_DAYS ? "mature" : "young");
+  const rate = (e) => ({ episode: e.ep, ageDays: e.ageDays, basis: basisOf(e), kind: "episode-rate" });
   for (const e of eps) {
     const w = e.watch;
     if (w?.curve?.length) {
@@ -84,16 +90,16 @@ export function collectFacts() {
       add(`open-start-E${e.ep}`, start.watching * 100, `E${e.ep} share still watching near the start`);
       if (at2) add(`open-at2-E${e.ep}`, at2.watching * 100, `E${e.ep} share still watching at the 2% mark`);
     }
-    if (w?.avgPercent != null) add(`watched-E${e.ep}`, w.avgPercent, `E${e.ep} average share of the video watched`);
+    if (w?.avgPercent != null) add(`watched-E${e.ep}`, w.avgPercent, `E${e.ep} average share of the video watched${basisOf(e) === "young" ? ` (only ${e.ageDays} days in — not comparable with finished episodes)` : ""}`, rate(e));
     const subRows = (w?.byChannel || []).filter((c) => c.subs != null && c.views > 0);
     if (subRows.length) {
       const subs = subRows.reduce((a, c) => a + c.subs, 0);
       const views = subRows.reduce((a, c) => a + c.views, 0);
-      add(`subs1k-E${e.ep}`, (subs / views) * 1000, `E${e.ep} subscribers per 1,000 views, both channels`);
+      add(`subs1k-E${e.ep}`, (subs / views) * 1000, `E${e.ep} subscribers per 1,000 views, both channels${basisOf(e) === "young" ? ` (only ${e.ageDays} days in — not comparable with finished episodes)` : ""}`, rate(e));
     }
     for (const c of w?.byChannel || []) {
-      add(`watched-E${e.ep}-${c.key.slice(3)}`, c.avgPercent, `E${e.ep} ${c.key} share watched`);
-      add(`subs1k-E${e.ep}-${c.key.slice(3)}`, c.subsPer1k, `E${e.ep} ${c.key} subscribers per 1,000 views`);
+      add(`watched-E${e.ep}-${c.key.slice(3)}`, c.avgPercent, `E${e.ep} ${c.key} share watched`, rate(e));
+      add(`subs1k-E${e.ep}-${c.key.slice(3)}`, c.subsPer1k, `E${e.ep} ${c.key} subscribers per 1,000 views`, rate(e));
       add(`subs-E${e.ep}-${c.key.slice(3)}`, c.subs, `E${e.ep} ${c.key} subscribers gained`);
     }
     if (e.health?.score != null) add(`health-E${e.ep}`, e.health.score, `E${e.ep} episode health`);
@@ -167,40 +173,56 @@ function numberTokens(text) {
   return String(text).match(/\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?/g) || [];
 }
 
+function displaysOf(v) {
+  return new Set([String(v), v.toLocaleString("en-US"), String(Math.round(v)), Math.round(v).toLocaleString("en-US"), v.toFixed(1), v.toFixed(2)]);
+}
+
 // every spelling of every fact value the model may write; also sent to the
 // model verbatim (v8 W20) so compliance is copy-work, not arithmetic
 function allowedTokens(facts) {
   const allowed = new Set();
-  for (const f of facts) {
-    const v = f.value;
-    for (const s of [String(v), v.toLocaleString("en-US"), String(Math.round(v)), Math.round(v).toLocaleString("en-US"), v.toFixed(1), v.toFixed(2)]) allowed.add(s);
-  }
+  for (const f of facts) for (const s of displaysOf(f.value)) allowed.add(s);
   // small structural constants an action may name (positions, ranges, dates)
   for (const s of ["1", "2", "3", "5", "90", "100", "1,000", "07", "17", "23", "30"]) allowed.add(s);
   return allowed;
 }
 
-function checkItem(item, allowed, seen) {
+function checkItem(item, allowed, seen, facts = []) {
   if (!item || typeof item !== "object") throw new Error("item must be an object");
   if (typeof item.id !== "string" || !/^[a-z0-9-]{3,40}$/.test(item.id) || seen.has(item.id)) throw new Error(`bad or duplicate id ${JSON.stringify(item.id)}`);
   seen.add(item.id);
   if (!CATEGORIES.has(item.category)) throw new Error(`${item.id}: illegal category`);
+  const basesCited = new Set();
   for (const key of ["text", "recommendation"]) {
     const value = item[key];
     if (typeof value !== "string" || !value.trim() || value.length > 260) throw new Error(`${item.id}: ${key} missing or too long`);
     if (BANNED.test(value) || MARKUP.test(value)) throw new Error(`${item.id}: ${key} contains banned jargon or markup`);
     for (const token of numberTokens(value)) {
       if (!allowed.has(token)) throw new Error(`${item.id}: number ${token} is not in the fact sheet`);
+      // like for like (PRD v7 F28): a number that can only be a young episode's
+      // rate must not sit beside one that can only be a mature episode's rate
+      const matches = facts.filter((f) => f.kind === "episode-rate" && displaysOf(f.value).has(token));
+      if (matches.length && matches.every((f) => f.basis === "young")) basesCited.add("young");
+      if (matches.length && matches.every((f) => f.basis === "mature")) basesCited.add("mature");
     }
   }
+  if (basesCited.has("young") && basesCited.has("mature")) throw new Error(`${item.id}: compares a young episode's rate with a finished episode's`);
   if (item.caveat != null && (typeof item.caveat !== "string" || item.caveat.length > 200 || BANNED.test(item.caveat))) throw new Error(`${item.id}: bad caveat`);
+}
+
+// Exports for build-data's currency check (PRD v7 baselines F32): an item
+// whose numbers have since left today's fact sheet is held back as stale.
+export const allowedNumbers = allowedTokens;
+export function validateItem(item, facts, allowed = allowedTokens(facts)) {
+  checkItem(item, allowed, new Set(), facts);
+  return item;
 }
 
 export function validateItems(items, facts) {
   if (!Array.isArray(items) || items.length < 3 || items.length > 8) throw new Error("between three and eight items required");
   const allowed = allowedTokens(facts);
   const seen = new Set();
-  for (const item of items) checkItem(item, allowed, seen);
+  for (const item of items) checkItem(item, allowed, seen, facts);
   return items;
 }
 
@@ -220,7 +242,7 @@ export function pruneStore(sheet) {
   const seen = new Set();
   const kept = [], prunedIds = [];
   for (const item of store.items) {
-    try { checkItem(item, allowed, seen); kept.push(item); }
+    try { checkItem(item, allowed, seen, sheet.facts); kept.push(item); }
     catch (error) { prunedIds.push(String(item?.id ?? "?")); console.log(`recommendations: prune dropped ${item?.id ?? "?"} — ${error.message}`); }
   }
   // the three-item floor comes FIRST: a store that is already under three
@@ -239,6 +261,8 @@ export function pruneStore(sheet) {
     ...store,
     updatedAt: new Date().toISOString(),
     factsGeneratedAt: sheet.generatedAt,
+    // the facts the items were grounded on (baselines PRD v7 §4.6)
+    facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
     prunedAt: new Date().toISOString(),
     prunedIds,
     items: kept,
@@ -258,7 +282,8 @@ Rules:
 4. Plain words. Never write: composite, percentile, pillar, ratio, multiple-times comparisons, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.
 5. Association is not cause — recommend tests and changes, never certainties.
 6. Watch-moment facts (drop-*/hold-*) arrive with transcript excerpts in the payload. Excerpts are quotable context, not numbers. Name a moment's position in plain words ("about a third of the way in") and treat its timing as approximate — it comes from the live recording. Never claim the words caused the exit; recommend a test instead (trim, tighten, re-order).
-7. The payload's allowedNumbers list is the complete set of number spellings you may write. Every digit sequence in your output must appear verbatim in that list. Never compute, round, combine, or convert numbers — if the number you want is not in the list, make the point without a number.`;
+7. The payload's allowedNumbers list is the complete set of number spellings you may write. Every digit sequence in your output must appear verbatim in that list. Never compute, round, combine, or convert numbers — if the number you want is not in the list, make the point without a number.
+8. Facts marked basis "young" belong to episodes under three weeks old; their rates are not comparable with finished episodes. Never rank, compare, or call "best" across a young and a mature episode's rates; compare finished episodes with finished ones, and say when a number is from an episode still in its first weeks.`;
 
 async function callModel(messages) {
   const key = process.env.ANTHROPIC_API_KEY;
@@ -330,6 +355,8 @@ async function main() {
       provider: "anthropic",
       model: gen.model,
       factsGeneratedAt: sheet.generatedAt,
+    // the facts the items were grounded on (baselines PRD v7 §4.6)
+    facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
       attempts: gen.attempts,
       items: gen.items,
     });
