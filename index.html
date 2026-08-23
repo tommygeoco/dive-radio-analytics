@@ -31,9 +31,18 @@
   .stamp i.old { background: var(--amber); }
 
   .plogo { width: 13px; height: 13px; vertical-align: -2px; }
-  .metric-sel { background: var(--s2); color: var(--t2); border: 1px solid var(--border-strong);
-    border-radius: 8px; font: inherit; font-size: 13.5px; padding: 5px 8px; cursor: pointer; }
-  .metric-sel:hover, .metric-sel:focus-visible { color: var(--t1); border-color: var(--accent); }
+  /* the measure picker IS the chart title in the Totals view: it reads as the
+     heading, and the chevron says the heading can be changed */
+  .ctsel { display: none; align-items: center; gap: 4px; position: relative; border-radius: 7px;
+    margin-left: -6px; padding: 1px 4px 1px 6px; }
+  .ctsel.on { display: inline-flex; }
+  .ctsel select { appearance: none; -webkit-appearance: none; background: none; border: 0; padding: 0;
+    font: inherit; font-size: 15px; font-weight: 700; color: var(--t1); cursor: pointer; outline: none; }
+  .ctsel svg { width: 15px; height: 15px; color: var(--t3); flex: none; }
+  .ctsel:hover { background: var(--s2); }
+  .ctsel:hover svg { color: var(--t1); }
+  .ctsel:has(select:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ctsel select option { background: var(--s2); color: var(--t1); font-weight: 500; }
   button:focus-visible, summary:focus-visible, .hs:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   /* ---- Card system (2026-08-23 redesign): every surface is a quiet card on
@@ -101,14 +110,14 @@
   .health-evidence li i { width: 7px; height: 7px; border-radius: 50%; flex: none; margin-top: 7px; }
   .health-evidence li.up i { background: var(--good); }
   .health-evidence li.down i { background: var(--bad); }
-  .health-evidence li span { max-width: 54ch; }
+  .health-evidence li span { min-width: 0; }
   .health-evidence li b { color: var(--t1); font-weight: 700; font-variant-numeric: tabular-nums; }
   .health-evidence .waitlist { margin-top: 14px; display: grid; gap: 6px; }
   .health-evidence .wrow { display: flex; gap: 10px; color: var(--t3); font-size: 13.5px; line-height: 1.5; }
   .health-evidence .wrow i { width: 7px; height: 7px; border-radius: 50%; flex: none; margin-top: 6px;
     border: 1px solid var(--border-strong); }
   .health-evidence .wrow b { color: var(--t2); font-weight: 600; }
-  .health-evidence .wrow span { max-width: 76ch; }
+  .health-evidence .wrow span { min-width: 0; }
   .health-evidence .trend { width: 150px; height: 28px; margin-top: 14px; display: block; }
   .health-evidence .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
   .healthrow.empty { display: block; color: var(--t2); font-size: 15px; }
@@ -125,14 +134,16 @@
     font-variant-numeric: tabular-nums; }
   .hero .big small { font-size: 14px; font-weight: 500; color: var(--t3); letter-spacing: 0; }
   .hero .mk { font-size: 14px; font-weight: 600; color: var(--amber); }
+  .hero .platform-bar .pseg { min-width: 2px; }
+  .hero .splitlabels .sl { display: inline-flex; align-items: center; gap: 6px; cursor: help; border-radius: 4px; }
+  .hero .splitlabels .sl:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .hero .platform-bar { display: flex; width: min(100%, 520px); height: 8px; overflow: hidden;
     border-radius: 4px; background: var(--s2); margin-top: 16px; }
-  .hero .platform-bar .yt { background: #ff4f5e; } /* YouTube family red — must not read as the --bad status coral */
-  .hero .platform-bar .x { background: var(--accent); }
+  /* segment colors ride inline from one definition (see splitBar); the
+     YouTube red is a brand hue and must not read as the --bad status coral */
   .hero .splitlabels { display: flex; justify-content: space-between; width: min(100%, 520px);
     margin-top: 8px; color: var(--t3); font-size: 13.5px; }
-  .hero .splitlabels i { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-    margin-right: 6px; vertical-align: 1px; }
+  .hero .splitlabels i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; flex: none; }
   .hero .state { color: var(--t3); font-size: 13.5px; margin-top: 14px; }
   .hero .unavailable { color: var(--t3); font-size: 15px; margin-top: 12px; }
   .hero .spark { width: min(34%, 320px); flex: none; display: flex; flex-direction: column; gap: 5px; justify-content: flex-end; }
@@ -209,7 +220,13 @@
     font-variant-numeric: tabular-nums; margin-bottom: 6px; }
   .panel .pnum.hint { font-size: 15px; font-weight: 600; color: var(--t3); }
   .panel .pnum .hint { font-size: 13px; font-weight: 500; letter-spacing: 0; }
-  .panel .tlink { color: var(--accent); font-size: 13px; font-weight: 500; }
+  /* Actionable glyphs read as controls, quietly: a hairline pill that fills in
+     on hover/focus, so the affordance is visible without shouting. */
+  .panel .tlink { display: inline-flex; align-items: center; gap: 5px; color: var(--accent);
+    font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-strong);
+    border-radius: 999px; padding: 3px 10px; background: var(--s1); vertical-align: -1px; }
+  .panel .tlink svg { width: 13px; height: 13px; }
+  .panel .tlink:hover, .panel .tlink:focus-visible { background: var(--s2); border-color: var(--accent); }
   .panel .h .hmeta { margin-left: auto; margin-right: 34px; color: var(--t3); font-weight: 400; font-size: 13px; white-space: nowrap; }
   .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
@@ -247,9 +264,11 @@
   .panel .hint { color: var(--t3); font-size: 12px; font-weight: 400; }
   .panel .pchip { font-size: 12px; color: var(--amber); border: 1px solid rgba(217,162,74,.4);
     border-radius: 4px; padding: 1px 6px; font-weight: 600; }
-  .panel .x { position: absolute; top: 10px; right: 14px; background: none; border: 0;
-    color: var(--t3); font-size: 17px; cursor: pointer; padding: 4px; }
-  .panel .x:hover { color: var(--t1); }
+  .panel .x { position: absolute; top: 10px; right: 14px; width: 26px; height: 26px; padding: 0;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    background: var(--s1); border: 1px solid var(--border-strong);
+    color: var(--t3); font-size: 16px; line-height: 1; cursor: pointer; }
+  .panel .x:hover, .panel .x:focus-visible { color: var(--t1); background: var(--s2); border-color: var(--accent); }
   .panel .h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 6px 8px 2px; }
   .panel .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 4px 28px; margin-top: 10px; }
@@ -259,7 +278,7 @@
   .panel .sect { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 8px; }
   .panel .note { color: var(--amber); font-size: 13px; margin-top: 4px; }
   .panel .mut { color: var(--t3); font-size: 13px; margin-top: 4px; }
-  .panel .q { color: var(--t2); font-size: 13.5px; margin: 6px 0; max-width: 82ch; }
+  .panel .q { color: var(--t2); font-size: 13.5px; margin: 6px 0; }
   .panel .q .by { color: var(--t3); }
   .panel .senti-link { color: var(--accent); cursor: pointer; text-decoration: underline; }
   .panel .wcurve { margin: 10px 0 2px; }
@@ -337,7 +356,11 @@
   .tt { position: absolute; pointer-events: none; background: var(--s2); border: 1px solid var(--border-strong);
     border-radius: 8px; padding: 10px 12px; font-size: 13.5px; min-width: 216px; opacity: 0;
     transition: opacity .08s; z-index: 5; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  /* one text edge for the whole tooltip: the color chips hang in a fixed
+     gutter so the title, the number, and every row name start at the same x */
+  .tt { --chip: 15px; }
   .tt .h { display: flex; align-items: center; gap: 7px; font-weight: 700; }
+  .tt .meta, .tt .big, .tt .chg, .tt .note { padding-left: var(--chip); }
   .tt .meta { color: var(--t3); font-size: 12px; margin: 1px 0 7px; }
   .tt .big { font-size: 17px; font-weight: 700; }
   .tt .chg { font-size: 12px; color: var(--t3); margin-bottom: 2px; }
@@ -359,7 +382,7 @@
   .insight .ic { width: 28px; height: 28px; border-radius: 8px; flex: none; display: flex;
     align-items: center; justify-content: center; margin-top: 1px; }
   .insight .ic svg { width: 15px; height: 15px; }
-  .insight .body { flex: 1; min-width: 0; max-width: 78ch; }
+  .insight .body { flex: 1; min-width: 0; }
   .insight .cat { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     margin-bottom: 1px; }
   .insight .txt { color: var(--t1); }
@@ -470,7 +493,18 @@
 
   <div id="chartcard" class="card">
     <div class="chead">
-      <div class="chart-copy"><span class="ct" id="ctitle"></span><span class="cs" id="cscope"></span></div>
+      <div class="chart-copy">
+        <span class="ct" id="ctitle"></span>
+        <span class="ctsel" id="ctsel">
+          <select id="metric" aria-label="What the totals chart measures">
+            <option value="views">Episode views</option>
+            <option value="watched">Share watched</option>
+            <option value="live">Live viewers</option>
+            <option value="reach">X reach</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+        </span>
+        <span class="cs" id="cscope"></span></div>
       <div class="controls">
         <span class="seg" id="mode" role="tablist" aria-label="Chart view">
           <button type="button" role="tab" data-v="standings">Totals</button>
@@ -478,12 +512,6 @@
           <button type="button" role="tab" data-v="watch">Watching</button>
           <button type="button" role="tab" data-v="live">Live minutes</button>
         </span>
-        <select id="metric" class="metric-sel" aria-label="What the totals chart measures">
-          <option value="views">Views</option>
-          <option value="watched">Share watched</option>
-          <option value="live">Live viewers</option>
-          <option value="reach">X reach</option>
-        </select>
         <button type="button" class="toggle traj-only" id="bydate">Dates</button>
         <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
         <button type="button" class="reset" id="reset">Reset</button>
@@ -602,7 +630,7 @@ function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*L
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 function heroMarker(e) {
   const tvi = e.latest.totalViewsInfo || {};
-  if (!tvi.includesPlays) return "YT only";
+  if (!tvi.includesPlays) return `${PLOGO.yt} only`;
   if (tvi.partial) return "some X plays missing";
   if (tvi.stale && tvi.asOf) return "X plays are old";
   return "";
@@ -638,6 +666,7 @@ const ICONS = {
   dots: IC('<path d="M5.5 12h.01M12 12h.01M18.5 12h.01" stroke-width="3.2"/>'),
   flag: IC('<path d="M6 21V4.5"/><path d="M6 5h11l-2.5 3.5L17 12H6"/>'),
   pulse: IC('<path d="M3 12.5h4l2-5.5 3.5 9.5 2-6.5 1.5 2.5H21"/>'),
+  download: IC('<path d="M12 4.5v10"/><path d="M8 11l4 4 4-4"/><path d="M5 19.5h14"/>'),
   chevdown: IC('<path d="M6.5 9.5 12 15l5.5-5.5" stroke-width="3"/>'),
   chevup: IC('<path d="M6.5 14.5 12 9l5.5 5.5" stroke-width="3"/>'),
   info: IC('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/>', "ki"),
@@ -867,6 +896,33 @@ let sparkChart = null;
 // measure the chart is on. One primary number per measure branch; only one
 // branch ever renders.
 function heroMetricKey() { return state.mode === "live" ? "live" : state.metric; }
+// Split bar + its labels from ONE definition, so the two can never disagree.
+// The 8px bar is too thin to be the only hover target, so each segment and its
+// label share the same tooltip; the labels also carry the keyboard focus and
+// the spoken numbers. A segment with no honest number is left out entirely.
+function splitBar(segments, wholeWords) {
+  const segs = segments.filter((s) => Number.isFinite(s.value) && s.value >= 0);
+  const total = segs.reduce((a, s) => a + s.value, 0);
+  if (segs.length < 2 || !(total > 0)) return "";
+  const parts = segs.map((s) => {
+    const share = Math.round((s.value / total) * 100);
+    const stat = `${nfmt(s.value)} ${s.unit}`;
+    const rows = (s.rows || []).filter((r) => r.value != null).map((r) => `${r.name}: ${nfmt(r.value)}`);
+    const tip = `data-stat="${esc(stat)}"${rows.length ? ` data-rows="${esc(rows.join("||"))}"` : ""} data-note="${esc(`${share}% of ${wholeWords}`)}"`;
+    return { s, stat, share, tip };
+  });
+  return `<div class="platform-bar" aria-hidden="true">${parts.map(({ s, tip }) =>
+      `<span class="pseg" style="flex:${s.value};background:${s.color}" ${tip}></span>`).join("")}</div>
+    <div class="splitlabels">${parts.map(({ s, stat, share, tip }) =>
+      `<span class="sl" ${tip} tabindex="0" aria-label="${esc(`${s.label}: ${stat}, ${share}% of ${wholeWords}`)}"><i style="background:${s.color}" aria-hidden="true"></i>${esc(s.label)}</span>`).join("")}</div>`;
+}
+// the Totals view's titles — the exact strings the picker's options carry
+const METRIC_TITLES = {
+  views: "Episode views",
+  watched: "Share watched",
+  live: "Live viewers",
+  reach: "X reach",
+};
 const METRIC_TREND_TITLE = {
   watched: "Share watched — by episode",
   live: "Live viewers — by episode",
@@ -898,13 +954,10 @@ function buildHero() {
   } else if (metric === "reach") {
     if (e.latest.xImpressions != null) {
       html += `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.latest.xImpressions)}</span> <small>times the announces were seen</small></div></div>`;
-      const rr = e.latest.byDest["x:ridd_design"]?.views;
-      const tt = e.latest.byDest["x:designertom"]?.views;
-      if (rr != null && tt != null && rr + tt > 0) {
-        html += `<div class="platform-bar" role="img" aria-label="@ridd_design ${nfmt(rr)}. @designertom ${nfmt(tt)}.">
-          <span class="yt" style="flex:${rr};background:#b7c2d4"></span><span class="x" style="flex:${tt}"></span></div>
-          <div class="splitlabels" aria-hidden="true"><span><i style="background:#b7c2d4"></i>@ridd_design</span><span><i style="background:var(--accent)"></i>@designertom</span></div>`;
-      }
+      html += splitBar([
+        { label: "@ridd_design", color: "#b7c2d4", value: e.latest.byDest["x:ridd_design"]?.views, unit: "times seen" },
+        { label: "@designertom", color: "var(--accent)", value: e.latest.byDest["x:designertom"]?.views, unit: "times seen" },
+      ], "this episode’s reach");
     } else {
       html += `<div class="unavailable">X reach is not available for this episode.</div>`;
     }
@@ -917,9 +970,17 @@ function buildHero() {
     const x = e.latest.xPlays;
     const splitReady = Number.isFinite(tv) && Number.isFinite(yt) && Number.isFinite(x) && tv > 0 && yt + x === tv;
     if (splitReady) {
-      html += `<div class="platform-bar" role="img" aria-label="YouTube ${nfmt(yt)} views. X ${nfmt(x)} plays.">
-        <span class="yt" style="flex:${yt}"></span><span class="x" style="flex:${x}"></span></div>
-        <div class="splitlabels" aria-hidden="true"><span><i style="background:#ff4f5e"></i>YouTube</span><span><i style="background:var(--accent)"></i>X</span></div>`;
+      const bd2 = e.latest.byDest || {};
+      html += splitBar([
+        { label: "YouTube", color: "#ff4f5e", value: yt, unit: "views", rows: [
+          { name: "Dive Club", value: bd2["yt:joindiveclub"]?.views },
+          { name: "DesignerTom", value: bd2["yt:designertom"]?.views },
+        ] },
+        { label: "X", color: "var(--accent)", value: x, unit: "plays", rows: [
+          { name: "@ridd_design", value: bd2["x:ridd_design"]?.plays },
+          { name: "@designertom", value: bd2["x:designertom"]?.plays },
+        ] },
+      ], "total views");
     } else {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
@@ -1027,7 +1088,7 @@ function buildPanel() {
   let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
   let hmeta = e.premiere.slice(5).replace("-", "/");
   if (e.transcript) {
-    hmeta += ` · <a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">transcript ↓</a>`;
+    hmeta += ` · <a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}transcript</a>`;
   }
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}<span class="hmeta">${hmeta}</span></div>`;
   html += `<div class="pgrid">`;
@@ -1093,7 +1154,7 @@ function buildPanel() {
   }
   if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
-  else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">${PLOGO.yt} only — ${PLOGO.x} plays unavailable</div>`;
   html += `</div>`;
 
   // — X reach —
@@ -1413,13 +1474,15 @@ document.addEventListener("click", (ev) => {
 function chartTitle() {
   if (state.mode === "live") return ["Live viewers", "Concurrent viewers by minute · Restream, all destinations"];
   if (state.mode === "standings") {
-    // metric picker (owner directive 2026-08-23): each measure charts alone,
-    // in its own unit — nothing is ever added across units
-    if (state.metric === "watched") return ["Share watched", `<b class="scopepill">${PLOGO.yt} only</b> · % of the video viewed on average`];
-    if (state.metric === "live") return ["Live viewers", "Average concurrent viewers · Restream, all destinations"];
-    if (state.metric === "reach") return ["X reach", `<b class="scopepill">${PLOGO.x} reach</b> · exposure — never added into views`];
+    // The measure picker IS this view's title (owner directive 2026-08-23):
+    // titles come from METRIC_TITLES, the same strings the options carry, so
+    // the heading and the picker can never disagree. Each measure charts
+    // alone, in its own unit — nothing is ever added across units.
+    if (state.metric === "watched") return [METRIC_TITLES.watched, `<b class="scopepill">${PLOGO.yt} only</b> · % of the video viewed on average`];
+    if (state.metric === "live") return [METRIC_TITLES.live, "Average concurrent viewers · Restream, all destinations"];
+    if (state.metric === "reach") return [METRIC_TITLES.reach, `<b class="scopepill">${PLOGO.x} reach</b> · exposure — never added into views`];
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
-    return ["Episode views", `${PLOGO.yt} + ${PLOGO.x} playback` + (anyPartial ? " · some X plays missing" : "")];
+    return [METRIC_TITLES.views, `${PLOGO.yt} + ${PLOGO.x} playback` + (anyPartial ? " · some X plays missing" : "")];
   }
   if (state.mode === "watch") {
     // absence is silent (v5 rule): episodes without curves simply aren't drawn
@@ -1503,21 +1566,34 @@ const barTotals = {
     ctx.save();
     ctx.font = `700 13px ${FONT}`;
     ctx.textBaseline = "middle";
-    const lastMeta = chart.getDatasetMeta(chart.data.datasets.length - 1);
+    // The label always sits just past the END of what is actually drawn. With
+    // a destination hidden from the legend the last dataset's bar collapses to
+    // the axis, so anchoring to it would drop the label onto the left edge —
+    // read the rightmost VISIBLE segment instead, and sum only those segments
+    // so the number never describes bars that aren't on screen.
+    const visible = chart.data.datasets
+      .map((_, di) => chart.getDatasetMeta(di))
+      .filter((meta) => !meta.hidden && chart.isDatasetVisible(meta.index));
     eps.forEach((e, i) => {
-      const bar = lastMeta.data[i];
-      if (!bar) return;
+      const bars = visible.map((meta) => meta.data[i]).filter(Boolean);
+      if (!bars.length) return;
+      const endX = Math.max(...bars.map((b) => b.x));
+      const y = bars[0].y;
       ctx.fillStyle = state.solo && state.solo !== e.slug ? DIMLINE : "#e8ecf4";
       if (chart.config._valueText) {
         // alternate metric: the bar's own value, nothing when absent
         const text = chart.config._valueText(e);
-        if (text != null) ctx.fillText(text, bar.x + 8, bar.y);
+        if (text != null) ctx.fillText(text, endX + 8, y);
         return;
       }
-      const tvi = e.latest.totalViewsInfo || {};
-      const mark = tvi.partial ? " ◐" : "";
-      const total = e.latest.totalViews ?? e.latest.ytTotal;
-      ctx.fillText(total == null ? "not available" : nfmt(total) + mark, bar.x + 8, bar.y);
+      const showing = visible.map((meta) => chart.data.datasets[meta.index].data[i] ?? 0);
+      const drawn = showing.reduce((a, v) => a + v, 0);
+      const whole = visible.length === chart.data.datasets.length;
+      const total = whole ? (e.latest.totalViews ?? e.latest.ytTotal) : drawn;
+      // the ◐ coverage mark is about X plays — it only means anything while
+      // every destination is on screen
+      const mark = whole && (e.latest.totalViewsInfo || {}).partial ? " ◐" : "";
+      ctx.fillText(total == null ? "not available" : nfmt(total) + mark, endX + 8, y);
     });
     ctx.restore();
   }
@@ -1619,10 +1695,12 @@ function externalTooltip(context) {
       const chatTotal = p.meta.ct == null ? "not available" : `${nfmt(p.meta.ct)} messages so far`;
       html += `<div class="chg">Chat: ${chatTotal}${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
       const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#b7c2d4", "X #2": "#59b0ff" };
+      // stored channel labels keep their "YT"/"X" prefix; the mark replaces it on screen
+      const chanHTML = (l) => esc(l).replace(/^YT /, `${PLOGO.yt} `).replace(/^X\b/, PLOGO.x);
       const chans = Object.entries(p.meta.byChan || {});
       if (chans.length) {
         html += `<div class="div"></div>`;
-        for (const [l, v] of chans) html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${esc(l)}<span class="val">${v}</span></div>`;
+        for (const [l, v] of chans) html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${chanHTML(l)}<span class="val">${v}</span></div>`;
         html += `<div class="chg" style="margin-top:5px">Restream total across all simulcast destinations</div>`;
       }
     } else {
@@ -2048,7 +2126,7 @@ function buildTable() {
       html += "</tr>";
     }
   } else {
-    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>Watched</th><th>Pace (YT)</th></tr>";
+    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>";
     const watchedVals = EPS.map((x) => x.watch?.avgPercent).filter(Number.isFinite).sort((a, b) => a - b);
     const wMidIdx = Math.floor(watchedVals.length / 2);
     const wTypical = !watchedVals.length ? null
@@ -2210,9 +2288,12 @@ function syncUI() {
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
-  const metricSel = document.getElementById("metric");
-  metricSel.style.display = !isLive && state.mode === "standings" && !state.table ? "" : "none";
-  metricSel.value = state.metric;
+  // in Totals the picker stands in for the heading; every other view has a
+  // fixed title, so the plain heading takes the slot back
+  const pickerIsTitle = state.mode === "standings" && !state.table;
+  document.getElementById("ctsel").classList.toggle("on", pickerIsTitle);
+  document.getElementById("ctitle").style.display = pickerIsTitle ? "none" : "";
+  document.getElementById("metric").value = state.metric;
   document.getElementById("tbtn").classList.toggle("on", state.table);
   document.getElementById("tbtn").textContent = state.table ? "Chart" : "Data table";
   const chartbox = document.getElementById("chartbox");

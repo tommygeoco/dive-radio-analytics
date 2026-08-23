@@ -1229,6 +1229,49 @@ function premiereMs(dateStr) {
     || !html.includes('<option value="live">') || !html.includes('<option value="reach">')) {
     bad++; fail("chart metrics: the measure picker must be a labeled select with exactly views/watched/live/reach");
   }
+  // the picker IS the Totals heading: it sits in the chart's title slot, and
+  // each option's words are exactly the title that view renders
+  const titleBlock = html.match(/const METRIC_TITLES = \{([\s\S]*?)\};/)?.[1] || "";
+  const titles = Object.fromEntries([...titleBlock.matchAll(/(\w+): "([^"]+)",/g)].map(([, k, v]) => [k, v]));
+  for (const key of ["views", "watched", "live", "reach"]) {
+    const opt = html.match(new RegExp(`<option value="${key}">([^<]+)</option>`))?.[1];
+    if (!opt || !titles[key] || opt !== titles[key]) {
+      bad++; fail(`chart metrics: the ${key} option ("${opt}") does not read exactly like its chart title ("${titles[key]}")`);
+    }
+  }
+  if (!/<span class="ctsel" id="ctsel">/.test(html) || !/chart-copy[\s\S]{0,120}id="ctitle"/.test(html)
+    || !/const pickerIsTitle = state\.mode === "standings" && !state\.table;/.test(html)
+    || !/ctitle"\)\.style\.display = pickerIsTitle \? "none" : "";/.test(html)) {
+    bad++; fail("chart metrics: the picker must occupy the chart's title slot in Totals, with the plain heading taking it back elsewhere");
+  }
+  // hero split bar: both the segments and their labels explain themselves,
+  // from one definition, with the labels keyboard-reachable
+  if (!/function splitBar\(segments, wholeWords\)/.test(html)
+    || !/<span class="pseg"[^`]*\$\{tip\}/.test(html)
+    || !/<span class="sl" \$\{tip\} tabindex="0" aria-label=/.test(html)
+    || (html.match(/html \+= splitBar\(/g) || []).length !== 2) {
+    bad++; fail("chart metrics: the hero split bar's segments and labels must share one tooltip definition and stay keyboard-reachable");
+  }
+  // one text edge inside the chart tooltip: chips hang in a fixed gutter
+  if (!/\.tt \{ --chip: 15px; \}/.test(html)
+    || !/\.tt \.meta, \.tt \.big, \.tt \.chg, \.tt \.note \{ padding-left: var\(--chip\); \}/.test(html)) {
+    bad++; fail("chart metrics: the chart tooltip's title, number, and rows must share one left text edge");
+  }
+  // bar totals anchor to the rightmost VISIBLE segment and count only what is
+  // drawn — hiding a destination from the legend must never strand the label
+  // on the axis or leave it describing bars that are off screen
+  const totalsPlugin = html.match(/const barTotals = \{[\s\S]*?\n\};/)?.[0] || "";
+  if (!/chart\.isDatasetVisible\(meta\.index\)/.test(totalsPlugin)
+    || !/const endX = Math\.max\(\.\.\.bars\.map\(\(b\) => b\.x\)\);/.test(totalsPlugin)
+    || !/const whole = visible\.length === chart\.data\.datasets\.length;/.test(totalsPlugin)
+    || !/const total = whole \? \(e\.latest\.totalViews \?\? e\.latest\.ytTotal\) : drawn;/.test(totalsPlugin)
+    || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)) {
+    bad++; fail("chart metrics: bar totals must anchor past the rightmost visible segment and sum only the drawn segments");
+  }
+  // reader-facing prose rows fill their card: no arbitrary character caps
+  if (/\.insight \.body \{[^}]*max-width/.test(html) || /\.health-evidence li span \{[^}]*max-width/.test(html)) {
+    bad++; fail("chart metrics: insight and evidence rows must fill the card, not a fixed character measure");
+  }
   if (!/state\.metric = "views"; state\.byDate = false/.test(html) && !/state\.metric = "views";/.test(html)) {
     bad++; fail("chart metrics: reset does not restore the views measure");
   }
