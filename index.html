@@ -33,6 +33,10 @@
     padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
   .tabs button.on { color: var(--t1); border-bottom-color: var(--accent); font-weight: 700; }
   .tabs button:hover { color: var(--t1); }
+  .plogo { width: 13px; height: 13px; vertical-align: -2px; }
+  .metric-sel { background: var(--s2); color: var(--t2); border: 1px solid var(--border-strong);
+    border-radius: 8px; font: inherit; font-size: 13.5px; padding: 5px 8px; cursor: pointer; }
+  .metric-sel:hover, .metric-sel:focus-visible { color: var(--t1); border-color: var(--accent); }
   button:focus-visible, summary:focus-visible, .hs:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   /* ---- Card system (2026-08-23 redesign): every surface is a quiet card on
@@ -75,20 +79,20 @@
   .checkrow .st.fragile { color: var(--bad); }
   .checkrow .st.waiting { color: var(--t3); font-weight: 500; }
   .checkrow .st.waiting i { background: none; border: 1px solid var(--border-strong); }
-  .hc-meta .updated { display: flex; align-items: center; gap: 9px; color: var(--t1); font-size: 15px;
-    font-weight: 600; }
-  .hc-meta .updated svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
+  /* metadata, not a headline: the saved-day line sits quiet at the card foot */
+  .hc-meta .updated { display: flex; align-items: center; gap: 7px; color: var(--t3); font-size: 12.5px;
+    font-weight: 500; margin-top: 12px; }
+  .hc-meta .updated svg { width: 14px; height: 14px; color: var(--t3); flex: none; }
+  .hc-meta .headline { font-size: 15.5px; margin: 0 0 6px; }
   .hc-meta .scope { color: var(--t3); font-size: 13.5px; line-height: 1.5; margin: 10px 0 0; }
   .healthrow .why { display: inline-block; margin-top: 2px; background: none; border: 0; padding: 0;
     color: var(--accent); font-size: 14px; cursor: pointer; text-decoration: underline;
     text-underline-offset: 3px; }
-  /* Today's read: the grounded headline + the top do-next actions from the
-     saved store; hovering a row shows the finding behind the action */
-  .hc-meta .dnhead { color: var(--t3); font-size: 12px; font-weight: 700; letter-spacing: .04em;
-    text-transform: uppercase; margin: 12px 0 6px; }
-  .hc-meta .donext { display: grid; gap: 8px; }
-  .hc-meta .dnrow { display: flex; gap: 9px; color: var(--t2); font-size: 13.5px; line-height: 1.45; cursor: help; }
-  .hc-meta .dnrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; margin-top: 6px; }
+  /* Today's read: the grounded headline leads; the do-next actions are quiet
+     hairline rows (hovering one shows the finding behind it) */
+  .hc-meta .donext { display: grid; }
+  .hc-meta .dnrow { padding: 8px 0; color: var(--t2); font-size: 13.5px; line-height: 1.5; cursor: help; }
+  .hc-meta .dnrow + .dnrow { border-top: 1px solid var(--border); }
   .checkrow[data-stat] { cursor: help; }
   .checkrow:focus-visible, .dnrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   .health-evidence { grid-column: 1 / -1; }
@@ -478,6 +482,12 @@
           <button type="button" data-v="race">Over time</button>
           <button type="button" data-v="watch">Watching</button>
         </span>
+        <select id="metric" class="metric-sel" aria-label="What the totals chart measures">
+          <option value="views">Views</option>
+          <option value="watched">Share watched</option>
+          <option value="live">Live viewers</option>
+          <option value="reach">X reach</option>
+        </select>
         <button type="button" class="toggle traj-only" id="bydate">Dates</button>
         <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
         <button type="button" class="reset" id="reset">Reset</button>
@@ -559,7 +569,7 @@ function catKeyFor(ins) {
   return "data";
 }
 
-const state = { view: "growth", mode: "standings", byDate: false, solo: null, panel: null, table: false, allInsights: false, evidenceOpen: false };
+const state = { view: "growth", mode: "standings", metric: "views", byDate: false, solo: null, panel: null, table: false, allInsights: false, evidenceOpen: false };
 
 function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
@@ -646,6 +656,21 @@ function deltaBadge(ratio) {
     ? `<span class="db up">▲${pct}%</span>`
     : `<span class="db down">▼${pct}%</span>`;
 }
+// Platform marks (owner directive 2026-08-23): the YouTube and X logos stand
+// in for the platform words on tight surfaces. Every use keeps its text name
+// via role="img" + aria-label; About spells the words out.
+const PLOGO = {
+  yt: `<svg class="plogo" viewBox="0 0 24 24" role="img" aria-label="YouTube"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.3 5 12 5 12 5s-6.3 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.7 19 12 19 12 19s6.3 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8z"/><path fill="var(--s1)" d="M10 15.2V8.8l5.4 3.2z"/></svg>`,
+  x: `<svg class="plogo" viewBox="0 0 24 24" role="img" aria-label="X"><path fill="currentColor" d="M17.7 3H20.6l-6.36 7.27L21.72 21h-5.85l-4.59-6-5.24 6H3.14l6.8-7.78L2.56 3h6l4.14 5.47zm-1.02 16.25h1.61L7.7 4.66H5.97z"/></svg>`,
+};
+// html row labels: platform mark + the channel/account name (chart legends
+// stay text — canvas can't carry the svg, and words remain the fallback)
+const TT_HTML = {
+  "yt:joindiveclub": `${PLOGO.yt} Dive Club`,
+  "yt:designertom": `${PLOGO.yt} DesignerTom`,
+  "x:ridd_design": `${PLOGO.x} @ridd_design`,
+  "x:designertom": `${PLOGO.x} @designertom`,
+};
 const TRAFFIC_NAMES = {
   SUBSCRIBER: "Home & subs",
   RELATED_VIDEO: "Suggested",
@@ -832,9 +857,9 @@ function buildHealth() {
     </div>
     <div class="card hc-meta">
       <div class="kicker">Today’s read</div>
-      <div class="updated"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Updated ${esc(saved)}${readState}</div>
       <p class="headline">${esc(h.headline)}</p>
-      ${topRecs.length ? `<div class="dnhead">Do next</div><div class="donext">${topRecs.map((r) => `<div class="dnrow" data-tip="${esc(r.text)}" tabindex="0"><i aria-hidden="true"></i><span>${esc(r.recommendation)}</span></div>`).join("")}</div>` : ""}
+      ${topRecs.length ? `<div class="donext">${topRecs.map((r) => `<div class="dnrow" data-tip="${esc(r.text)}" tabindex="0">${esc(r.recommendation)}</div>`).join("")}</div>` : ""}
+      <div class="updated"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Updated ${esc(saved)}${readState}</div>
     </div>${evidence}`;
   document.getElementById("whyscore").addEventListener("click", () => { state.evidenceOpen = !state.evidenceOpen; render(); });
 }
@@ -1039,7 +1064,7 @@ function buildPanel() {
     ["x:designertom", bd["x:designertom"]?.plays],
   ];
   for (const [k, v] of rows) {
-    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
   }
   if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
@@ -1047,7 +1072,7 @@ function buildPanel() {
   html += `</div>`;
 
   // — X reach —
-  html += `<div class="psec"><div class="kicker">X reach <span class="kh">not in total</span></div>`;
+  html += `<div class="psec"><div class="kicker">${PLOGO.x} reach <span class="kh">not in total</span></div>`;
   html += `<div class="pnum">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</div>`;
   html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
@@ -1066,7 +1091,7 @@ function buildPanel() {
   const w = e.watch;
   if (w) {
     const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
-    html += `<div class="psec"><div class="kicker">How people watch <span class="kh">YouTube</span></div>`;
+    html += `<div class="psec"><div class="kicker">How people watch <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
     html += `<div class="pnum">${w.avgPercent == null ? "not available" : `${w.avgPercent}% <span class="hint">of the video on average</span>`}</div>`;
     const wparts = [];
     if (w.avgDurationSec != null) wparts.push(`<span class="g" data-tip="average time watched" tabindex="0">${ICONS.clock}<b>${fmtDur(w.avgDurationSec)}</b></span>`);
@@ -1119,7 +1144,7 @@ function buildPanel() {
     // — where views came from: share bars, scaled to the top source —
     if (w.traffic) {
       const topShare = Math.max(...w.traffic.map((t) => t.share));
-      html += `<div class="psec"><div class="kicker">Where views came from <span class="kh">YouTube</span></div>`;
+      html += `<div class="psec"><div class="kicker">Where views came from <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
       for (const t of w.traffic) {
         html += `<div class="trow">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl" data-tip="${esc(nfmt(t.views))} views" tabindex="0">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}</span>
           <span class="tb" aria-hidden="true"><span style="width:${topShare > 0 ? Math.max(2, Math.round((t.share / topShare) * 100)) : 0}%"></span></span>
@@ -1336,16 +1361,21 @@ document.addEventListener("click", (ev) => {
 function chartTitle() {
   if (state.view === "live") return ["Live viewers", "By minute"];
   if (state.mode === "standings") {
+    // metric picker (owner directive 2026-08-23): each measure charts alone,
+    // in its own unit — nothing is ever added across units
+    if (state.metric === "watched") return ["Share watched", `<b class="scopepill">${PLOGO.yt} only</b> · % of the video viewed on average`];
+    if (state.metric === "live") return ["Live viewers", "Average concurrent viewers · Restream, all destinations"];
+    if (state.metric === "reach") return ["X reach", `<b class="scopepill">${PLOGO.x} reach</b> · exposure — never added into views`];
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
-    return ["Episode views", "YouTube + X playback" + (anyPartial ? " · some X plays missing" : "")];
+    return ["Episode views", `${PLOGO.yt} + ${PLOGO.x} playback` + (anyPartial ? " · some X plays missing" : "")];
   }
   if (state.mode === "watch") {
     // absence is silent (v5 rule): episodes without curves simply aren't drawn
-    return ["How much people watch", `<b class="scopepill">YouTube only</b> · share still watching through the video`];
+    return ["How much people watch", `<b class="scopepill">${PLOGO.yt} only</b> · share still watching through the video`];
   }
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
-    return ["Views after release", `<b class="scopepill">YouTube only</b> · ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}`];
+    return ["Views after release", `<b class="scopepill">${PLOGO.yt} only</b> · ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}`];
   }
   return ["Weekly YouTube views", "Episodes side by side"];
 }
@@ -1425,10 +1455,16 @@ const barTotals = {
     eps.forEach((e, i) => {
       const bar = lastMeta.data[i];
       if (!bar) return;
+      ctx.fillStyle = state.solo && state.solo !== e.slug ? DIMLINE : "#e8ecf4";
+      if (chart.config._valueText) {
+        // alternate metric: the bar's own value, nothing when absent
+        const text = chart.config._valueText(e);
+        if (text != null) ctx.fillText(text, bar.x + 8, bar.y);
+        return;
+      }
       const tvi = e.latest.totalViewsInfo || {};
       const mark = tvi.partial ? " ◐" : "";
       const total = e.latest.totalViews ?? e.latest.ytTotal;
-      ctx.fillStyle = state.solo && state.solo !== e.slug ? DIMLINE : "#e8ecf4";
       ctx.fillText(total == null ? "not available" : nfmt(total) + mark, bar.x + 8, bar.y);
     });
     ctx.restore();
@@ -1449,6 +1485,45 @@ function externalTooltip(context) {
     const idx = tooltip.dataPoints[0].dataIndex;
     const ep = (chart.config._ordered || [])[idx];
     if (!ep) { el.style.opacity = 0; return; }
+    if (state.metric !== "views") {
+      // alternate measures: the number, then the small honest context —
+      // per-channel split for watching, lowest/highest for live, per-account
+      // split for reach; a missing value never becomes zero
+      html = `<div class="h"><span class="sq dot" style="background:${color(ep)}"></span>${esc(label(ep))}</div>`;
+      if (state.metric === "watched" && ep.watch?.avgPercent != null) {
+        html += `<div class="big">${ep.watch.avgPercent}% <small style="font-weight:500;color:var(--t3)">of the video on average</small></div>`;
+        const chans = (ep.watch.byChannel || []).filter(c => c.avgPercent != null);
+        if (chans.length) {
+          html += `<div class="div"></div>`;
+          for (const c of chans) html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></span>${TT_HTML[c.key] || c.key}<span class="val">${c.avgPercent}%</span></div>`;
+        }
+      } else if (state.metric === "live" && ep.live) {
+        html += `<div class="big">${nfmt(ep.live.avg)} <small style="font-weight:500;color:var(--t3)">average live viewers</small></div>`;
+        const concurrents = (ep.live.series || []).map(pt => pt.v).filter(Number.isFinite);
+        if (concurrents.length) {
+          html += `<div class="div"></div>`;
+          html += `<div class="row">Lowest<span class="val">${nfmt(Math.min(...concurrents))}</span></div>`;
+          html += `<div class="row">Highest<span class="val">${nfmt(Math.max(...concurrents))}</span></div>`;
+        }
+      } else if (state.metric === "reach" && ep.latest.xImpressions != null) {
+        html += `<div class="big">${nfmt(ep.latest.xImpressions)} <small style="font-weight:500;color:var(--t3)">times the announces were seen</small></div>`;
+        const bd2 = ep.latest.byDest || {};
+        html += `<div class="div"></div>`;
+        for (const k of ["x:ridd_design", "x:designertom"]) {
+          const v = bd2[k]?.views;
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+        }
+        html += `<div class="note">Exposure, not watching — never added into views</div>`;
+      }
+      el.innerHTML = html;
+      el.style.opacity = 1;
+      const boxM = chart.canvas.parentNode;
+      el.style.left = Math.min(Math.max(tooltip.caretX, 120), boxM.clientWidth - 130) + "px";
+      const aboveM = tooltip.caretY > 190;
+      el.style.top = (tooltip.caretY + (aboveM ? -14 : 14)) + "px";
+      el.style.transform = `translate(-50%, ${aboveM ? "-100%" : "0"})`;
+      return;
+    }
     const bd = ep.latest.byDest || {};
     html = `<div class="h"><span class="sq dot" style="background:${color(ep)}"></span>${esc(label(ep))}</div>`;
     html += `<div class="big">${metricText(ep.latest.totalViews, "not available")} <small style="font-weight:500;color:var(--t3)">total views</small></div>`;
@@ -1460,7 +1535,7 @@ function externalTooltip(context) {
       ["x:designertom", bd["x:designertom"]?.plays, "plays"],
     ];
     for (const [k, v, unit] of rows) {
-      html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)} <span style="color:var(--t3);font-size: 12px">${unit}</span></span></div>`;
+      html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)} <span style="color:var(--t3);font-size: 12px">${unit}</span></span></div>`;
     }
     const tvi = ep.latest.totalViewsInfo || {};
     if (tvi.partial) html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
@@ -1517,7 +1592,7 @@ function externalTooltip(context) {
         html += `<div class="div"></div>`;
         for (const k of YT_KEYS) {
           const v = meta.split[k];
-          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v)}</span></div>`;
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v)}</span></div>`;
         }
       }
       if (meta.note) html += `<div class="note">${meta.note}</div>`;
@@ -1535,6 +1610,58 @@ function externalTooltip(context) {
 }
 
 let chart;
+// Alternate totals measures (owner directive 2026-08-23). Each charts one
+// stored per-episode number in its own unit; a missing value draws no bar and
+// no label (absence stays silent, never zero).
+const CHART_METRICS = {
+  watched: { get: (e) => e.watch?.avgPercent ?? null, text: (v) => `${v}%`, tick: (v) => `${v}%` },
+  live: { get: (e) => e.live?.avg ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v) },
+  reach: { get: (e) => e.latest?.xImpressions ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v) },
+};
+function renderMetricBars(all, ordered, soloed) {
+  const M = CHART_METRICS[state.metric];
+  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "33" : hex + "d9";
+  const cfg = {
+    type: "bar",
+    data: {
+      labels: ordered.map(e => "E" + e.ep),
+      datasets: [{
+        data: ordered.map(M.get),
+        backgroundColor: ordered.map(e => dim(color(e).slice(0, 7), e)),
+        borderColor: "#12161f", borderWidth: 1.5, borderSkipped: false, borderRadius: 2,
+        barThickness: 22,
+      }],
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      layout: { padding: { right: 64 } },
+      interaction: { mode: "index", axis: "y", intersect: false },
+      scales: {
+        x: { beginAtZero: true,
+          suggestedMax: soloed ? Math.max(...all.map(e => M.get(e) ?? 0)) : undefined,
+          ticks: { color: "#8a94a8", callback: v => M.tick(v) }, grid: { color: GRID } },
+        y: { ticks: { color: "#b7c1d1", font: { weight: 700 } }, grid: { display: false } },
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false, external: externalTooltip },
+      },
+      onClick: (_, els) => {
+        if (!els.length) return;
+        const e = ordered[els[0].index];
+        const same = state.solo === e.slug;
+        state.solo = same ? null : e.slug;
+        state.panel = same ? null : e.slug;
+        render();
+      },
+    },
+    plugins: [barTotals],
+  };
+  cfg._ordered = ordered;
+  cfg._valueText = (e) => { const v = M.get(e); return v == null ? null : M.text(v); };
+  return cfg;
+}
 function renderStandings() {
   const all = [...EPS].reverse(); // newest bar on top — the anchor position
   // solo collapse (owner request 2026-08-23): with an episode selected, the
@@ -1542,6 +1669,7 @@ function renderStandings() {
   // viewport; clearing the selection restores the full standings
   const soloRows = state.solo ? all.filter(e => e.slug === state.solo) : [];
   const ordered = soloRows.length ? soloRows : all;
+  if (state.metric !== "views" && CHART_METRICS[state.metric]) return renderMetricBars(all, ordered, soloRows.length > 0);
   const SEGS = [
     ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views ?? null],
     ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views ?? null],
@@ -1621,6 +1749,7 @@ function render() {
     if (chart) chart.destroy();
     chart = new Chart(document.getElementById("chart"), cfg);
     chart.config._ordered = cfg._ordered;
+    chart.config._valueText = cfg._valueText;
     document.getElementById("tt").style.opacity = 0;
     return;
   }
@@ -2005,6 +2134,7 @@ function buildAbout() {
   <p><b>Total views</b> = YouTube views (both channels) + X broadcast plays (both hosts). Both count video playback — YouTube counts a qualified view (~30s), X counts a play start, so treat the sum as directional.</p>
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
+  <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
@@ -2028,6 +2158,9 @@ function syncUI() {
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
+  const metricSel = document.getElementById("metric");
+  metricSel.style.display = !isLive && state.mode === "standings" && !state.table ? "" : "none";
+  metricSel.value = state.metric;
   document.getElementById("tbtn").classList.toggle("on", state.table);
   document.getElementById("tbtn").textContent = state.table ? "Chart" : "Data table";
   const chartbox = document.getElementById("chartbox");
@@ -2035,7 +2168,7 @@ function syncUI() {
   // solo collapse applies to the totals view only — line views already give
   // the soloed episode the full canvas
   chartbox.classList.toggle("mini", !isLive && state.mode === "standings" && !!state.solo && !state.table);
-  const changed = state.table || state.panel || state.solo || (!isLive && (state.mode !== "standings" || state.byDate));
+  const changed = state.table || state.panel || state.solo || (!isLive && (state.mode !== "standings" || state.metric !== "views" || state.byDate));
   document.getElementById("reset").style.display = changed ? "" : "none";
   for (const c of document.querySelectorAll(".sitem")) {
     c.classList.toggle("solo", state.solo === c.dataset.slug);
@@ -2052,10 +2185,11 @@ document.getElementById("mode").addEventListener("click", e => {
   if (e.target.dataset.v) { state.mode = e.target.dataset.v; render(); }
 });
 document.getElementById("bydate").addEventListener("click", () => { state.byDate = !state.byDate; render(); });
+document.getElementById("metric").addEventListener("change", (e) => { state.metric = e.target.value; render(); });
 document.getElementById("tbtn").addEventListener("click", () => { state.table = !state.table; render(); });
 // reset is scoped to the current tab (it no longer teleports Live → Growth)
 document.getElementById("reset").addEventListener("click", () => {
-  state.mode = "standings"; state.byDate = false; state.solo = null; state.panel = null; state.table = false;
+  state.mode = "standings"; state.metric = "views"; state.byDate = false; state.solo = null; state.panel = null; state.table = false;
   render();
 });
 const stamp = document.getElementById("stamp");

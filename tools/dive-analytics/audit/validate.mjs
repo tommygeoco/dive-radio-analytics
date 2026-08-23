@@ -1186,6 +1186,41 @@ function premiereMs(dateStr) {
   }
 }
 
+// --- 1p. chart metric picker + platform marks (owner directives 2026-08-23) ---
+// Each alternate measure charts one stored per-episode number in its own
+// unit; nothing is summed across units, a missing value never becomes a zero
+// bar, and the live tooltip carries the episode's lowest/highest concurrents.
+// Platform marks always keep an accessible text name.
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  if (!/<select id="metric"[^>]*aria-label/.test(html)
+    || !html.includes('<option value="views">') || !html.includes('<option value="watched">')
+    || !html.includes('<option value="live">') || !html.includes('<option value="reach">')) {
+    bad++; fail("chart metrics: the measure picker must be a labeled select with exactly views/watched/live/reach");
+  }
+  if (!/state\.metric = "views"; state\.byDate = false/.test(html) && !/state\.metric = "views";/.test(html)) {
+    bad++; fail("chart metrics: reset does not restore the views measure");
+  }
+  if (!html.includes("watched: { get: (e) => e.watch?.avgPercent ?? null")
+    || !html.includes("live: { get: (e) => e.live?.avg ?? null")
+    || !html.includes("reach: { get: (e) => e.latest?.xImpressions ?? null")) {
+    bad++; fail("chart metrics: each measure must read exactly its stored per-episode number, null when absent (never zero)");
+  }
+  if (!/state\.metric === "live" && ep\.live/.test(html)
+    || !html.includes(">Lowest<") || !html.includes(">Highest<")) {
+    bad++; fail("chart metrics: the live tooltip must show the episode's lowest and highest concurrents");
+  }
+  if (!/Exposure, not watching — never added into views/.test(html)) {
+    bad++; fail("chart metrics: the reach view must state its unit is exposure, outside every views total");
+  }
+  const logoCount = (html.match(/role="img" aria-label="(?:YouTube|X)"/g) || []).length;
+  if (logoCount !== 2 || !/const PLOGO = \{/.test(html) || !/TT_HTML/.test(html)) {
+    bad++; fail("platform marks: the YouTube and X logos must exist exactly once each, with accessible names, and label the destination rows");
+  }
+  if (!bad) ok("chart metrics: measure picker unit-scoped with silent absence, live lowest/highest on the tooltip, platform marks accessibly named");
+}
+
 // --- warnings: broadcast-resolution latches and plays coverage ---
 {
   for (const show of registry.shows) {
