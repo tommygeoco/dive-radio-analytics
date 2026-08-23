@@ -403,6 +403,7 @@
   .insight .cat { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     margin-bottom: 1px; }
   .insight .txt { color: var(--t1); }
+  .insight .txt b, .insight .rec b { font-weight: 700; color: var(--t1); }
   .insight .cav { display: none; color: var(--t3); font-size: 12px; margin-top: 4px; }
   .insight .reveal { display: inline-block; margin-top: 6px; color: var(--good); font-size: 12px;
     font-weight: 700; letter-spacing: .02em; cursor: pointer; }
@@ -2262,6 +2263,14 @@ function buildInsightsPanel() {
   // no expander, no outer group headers. Like categories sit together (the
   // sort above), every card carries its category label inside its container,
   // and the shared grid gap is the only rhythm.
+  // metrics and key callouts read bold (owner directive 2026-08-23) — same
+  // anchor idea as the evidence bullets, applied at render time only: number
+  // tokens (ranges and % included), episode refs, and the channel names.
+  // The validated store text itself never changes.
+  const emphasize = (text) => esc(text)
+    .replace(/\d{1,3}(?:,\d{3})*(?:\.\d+)?(?:[–-]\d{1,3}(?:,\d{3})*(?:\.\d+)?)?%?/g, (m) => `<b>${m}</b>`)
+    .replace(/\bE<b>(\d+)<\/b>/g, "<b>E$1</b>")
+    .replace(/\b(Dive Club|DesignerTom|@ridd_design|@designertom)\b/g, "<b>$1</b>");
   const add = (ins) => {
     const cat = CATS[ins.cat];
     const div = document.createElement("div");
@@ -2269,10 +2278,10 @@ function buildInsightsPanel() {
     const hasMore = !!(ins.recommendation || ins.caveat);
     div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span>
       <span class="body"><div class="cat" style="color:${cat.color}">${cat.name}</div>
-      <span class="txt">${esc(ins.text)}</span>
+      <span class="txt">${emphasize(ins.text)}</span>
       ${ins.recommendation ? `<br><span class="reveal">Recommendation ▾</span>` : ""}
       ${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}
-      ${ins.recommendation ? `<div class="rec">${esc(ins.recommendation)}</div>` : ""}</span>`;
+      ${ins.recommendation ? `<div class="rec">${emphasize(ins.recommendation)}</div>` : ""}</span>`;
     if (hasMore) div.addEventListener("click", () => {
       div.classList.toggle("open");
       const r = div.querySelector(".reveal");
