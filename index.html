@@ -156,11 +156,21 @@
   .compound .cbar .bep { font-size: 11px; font-weight: 600; color: var(--t3); letter-spacing: .03em; }
   .compound .cbar.hot .bep { color: var(--t1); }
   .compound .waitline { color: var(--t3); font-size: 14px; }
-  /* the not-ready card shows the SHAPE of the coming answer: the same bar
-     grammar, hollow and dashed, no numbers, no direction implied */
-  .compound .bars.skel { margin-bottom: 10px; }
-  .compound .bars.skel .b { background: none; border: 1.5px dashed var(--border-strong); border-radius: 4px 4px 0 0; }
-  .compound .skb { display: inline-block; height: 7px; border-radius: 4px; background: var(--s2); }
+  /* the not-ready card is a sketched empty chart: dashed gridlines, a tick
+     axis, and a circled trend mark around the plain sentence — the frame of
+     the coming answer with no data and no direction implied */
+  .compound .skelplot { position: relative; padding-top: 4px; }
+  .compound .skelgrid { position: absolute; inset: 4px 0 20px; display: flex; flex-direction: column;
+    justify-content: space-between; pointer-events: none; }
+  .compound .skelgrid i { display: block; border-top: 1px dashed var(--border-strong); opacity: .55; }
+  .compound .skelcenter { position: relative; display: flex; flex-direction: column; align-items: center;
+    gap: 12px; padding: 22px 0 26px; text-align: center; }
+  .compound .skelicon { width: 62px; height: 62px; color: var(--t3); flex: none; }
+  .compound .skelplot .waitline { color: var(--t1); font-weight: 700; font-size: 15px; }
+  .compound .waitsub { color: var(--t3); font-size: 12.5px; margin-top: -6px; }
+  .compound .skelaxis { position: relative; border-top: 1px solid var(--border-strong);
+    height: 7px; display: flex; justify-content: space-between; padding: 0 6px; }
+  .compound .skelaxis i { width: 1px; height: 6px; background: var(--border-strong); display: block; }
 
   /* ---- Episode carousel: selector + legend + finished health reads,
      oldest → newest, latest always far right (locked rule) ---- */
@@ -560,8 +570,8 @@
     .healthrow > .hc-diag { order: 2; }
     .healthrow > .hc-meta { order: 3; }
     /* a card whose only content is a one-line wait note keeps its words but
-       not a tall frame — a skeleton preview keeps the full frame */
-    .card:has(.waitline):not(:has(.skel)) { padding: 11px 14px; }
+       not a tall frame — a sketched empty chart keeps the full frame */
+    .card:has(.waitline):not(:has(.skelplot)) { padding: 11px 14px; }
     .healthrow .headline { font-size: 15px; margin-bottom: 10px; }
     .checkrow { padding: 6px 0; font-size: 13.5px; }
     .hc-meta .scope { display: none; }
@@ -1463,20 +1473,22 @@ function buildCompound() {
   // in air order, from the same stored numbers the chart uses (owner directive
   // 2026-08-23). Episodes without the measure simply don't draw a bar.
   const metric = heroMetricKey();
-  // an honest skeleton for the wait states: the exact bar grammar the card
-  // will use, drawn as hollow dashed ghosts with no numbers and heights that
-  // go both ways — the shape of the coming answer, never a fake answer
-  // (aria-hidden; the waitline stays the accessible content)
-  const skelBars = () => `<div class="bars skel" aria-hidden="true">${[38, 62, 46, 74, 58].map((h, i) => `<div class="cbar">
-      <span class="bnum"><i class="skb" style="width:${16 + (i % 3) * 5}px"></i></span>
-      <div class="bwrap"><div class="b" style="height:${h}%"></div></div>
-      <span class="bep"><i class="skb" style="width:14px"></i></span></div>`).join("")}</div>`;
+  // an honest skeleton for the wait states: a sketched empty chart — dashed
+  // gridlines, a tick axis, a circled trend mark — around the plain sentence.
+  // Chrome is aria-hidden; the sentence stays the accessible content.
+  const skelChart = (line, sub) => `<div class="skelplot">
+      <div class="skelgrid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="skelcenter">
+        <svg class="skelicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="21.5"/><path d="M14.5 30.5l6.5-6.5 4 4 8.5-9.5"/><path d="M28.5 18.5h5v5"/></svg>
+        <div class="waitline">${line}</div>${sub ? `<div class="waitsub">${sub}</div>` : ""}
+      </div>
+      <div class="skelaxis" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>`;
   if (metric !== "views") {
     const M = CHART_METRICS[metric];
     const have = EPS.map((e) => ({ e, v: M.get(e) })).filter((r) => r.v != null);
     if (have.length < 3) {
-      el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>${skelBars()}
-        <div class="waitline">Not enough episodes to call a direction yet.</div>`;
+      el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>${skelChart("Not enough episodes to call a direction yet.")}`;
       el.style.display = "";
       return;
     }
@@ -1510,8 +1522,7 @@ function buildCompound() {
   // labels without adding another row of glance-layer numbers.
   let verdict, cls = "";
   if (vals.length < 3) {
-    el.innerHTML = `<div class="kicker">Growth trend</div>${skelBars()}
-      <div class="waitline">Growth trend isn’t ready yet — it appears once three episodes have clean first weeks.</div>`;
+    el.innerHTML = `<div class="kicker">Growth trend</div>${skelChart("Growth trend isn’t ready yet.", "Appears once three episodes have clean first weeks.")}`;
     el.style.display = "";
     return;
   } else {
