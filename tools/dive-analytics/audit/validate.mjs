@@ -538,7 +538,7 @@ function premiereMs(dateStr) {
   }
   const paceInsights = data.insights.filter((insight) => insight.id === "pace-rank");
   const newest = eps.at(-1);
-  // PRD v7 W19b: pace readiness and rank come from the one baselines definition
+  // PRD v9 W22b: pace readiness and rank come from the one baselines definition
   const pacePublic = data.baselines?.pace?.[newest.slug] || null;
   const paceReady = !!(pacePublic && pacePublic.rank != null);
   if (paceReady !== (data.showTrend?.paceRank != null)) {
@@ -598,7 +598,7 @@ function premiereMs(dateStr) {
       if (!r) { bad++; fail(`episode health: ${e.slug} is ${e.ageDays}d old but has no store entry`); continue; }
       // definition-lock: what shipped in data.json IS the store entry
       if (JSON.stringify(a) !== JSON.stringify(r)) { bad++; fail(`episode health: ${e.slug} attached entry disagrees with store — definition-lock broken`); }
-      // window (PRD v7): this episode + the WINDOW_N that aired before it, never later
+      // window (PRD v9): this episode + the WINDOW_N that aired before it, never later
       const expectedWin = [...BL.windowFor(e, epOrder).map((x) => x.slug), e.slug];
       if (JSON.stringify(r.windowIds) !== JSON.stringify(expectedWin)) { bad++; fail(`episode health: ${e.slug} windowIds != itself + the ${BL.WINDOW_N} episodes that aired before it`); }
       if (!r.frozenAt || !r.computedAt || !Number.isFinite(r.frozenAtDay) || r.frozenAtDay < 21) { bad++; fail(`episode health: ${e.slug} entry is missing its frozen/computed stamps or froze before day 21`); }
@@ -858,7 +858,7 @@ function premiereMs(dateStr) {
     let recs = null;
     try { recs = await import(join(TOOL, "recommendations.mjs")); } catch (err) { bad++; fail(`recommendations: module failed to load — ${err.message}`); }
     if (recs) {
-      // grounding against the facts the store stamps (PRD v7 §4.6); stores
+      // grounding against the facts the store stamps (PRD v9 §4.6); stores
       // written before fact stamping can only be judged against today's sheet
       if (Array.isArray(store.facts)) {
         try { recs.validateItems(store.items, store.facts); }
@@ -978,7 +978,7 @@ function premiereMs(dateStr) {
           bad++; fail(`health: ${entry.date} does not carry exactly the six required checks`);
           continue;
         }
-        // weights are judged by the formula the entry was written under (PRD v7 F5)
+        // weights are judged by the formula the entry was written under (PRD v9 F5)
         const plannedWeights = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] || null;
         if (!plannedWeights) { bad++; fail(`health: ${entry.date} formula ${entry.formulaVersion} has no known weight table`); }
         const v3 = entry.formulaVersion === "health-v3" || (health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 3);
@@ -1061,7 +1061,7 @@ function premiereMs(dateStr) {
         const expectedPoints = runningEntries.map((entry) => ({ date: entry.date, score: entry.score }));
         if (JSON.stringify(data.health?.trend?.points) !== JSON.stringify(expectedPoints)) { bad++; fail("health: trend points do not exactly match saved days under the running formula"); }
       }
-      // freshness (1v, PRD v7 rule 15): the served read's age is stated; past
+      // freshness (1v, PRD v9 rule 15): the served read's age is stated; past
       // STALE_WITHHOLD_DAYS the score is withheld; a stale formula only warns
       if (latestEntry) {
         const age = Math.round((Date.parse(`${currentDate}T12:00:00Z`) - Date.parse(`${latestEntry.date}T12:00:00Z`)) / DAY);
@@ -1134,7 +1134,7 @@ function premiereMs(dateStr) {
     || !/appears after three of them have real data at that age/.test(html)) {
     bad++; fail("dashboard: same-age pace must be read from data.baselines.pace (never recomputed in the browser) and say so in the panel tip and About");
   }
-  // quiet zone and bands are read from data.baselines.constants (PRD v7 rule 16);
+  // quiet zone and bands are read from data.baselines.constants (PRD v9 rule 16);
   // the page carries no second definition of either
   if (!/const QUIET_ZONE = BASE_CONST\.QUIET_ZONE_PCT \?\? 5;/.test(html) || !/pct <= QUIET_ZONE/.test(html) || !/Math\.abs\(pct\) <= QUIET_ZONE/.test(html)
     || /pct\s*<=\s*5\b/.test(html) || /Math\.abs\(pct\)\s*<=\s*5\b/.test(html) || /> 0\.05\)/.test(html)) {
@@ -1157,7 +1157,7 @@ function premiereMs(dateStr) {
   if (/healthWaitDate|sat out|sets the baseline<\/span>|not in yet/.test(html)) {
     bad++; fail("dashboard: retired absence copy (wait dates, sat-out notes, baseline chips, not-in-yet suffixes) is back on a surface");
   }
-  // W13/PRD v7 F29: the typical watch line is read from data.baselines.typicalCurve
+  // W13/PRD v9 F29: the typical watch line is read from data.baselines.typicalCurve
   // (mature, unflagged curves, three or nothing) — never computed in the browser
   if (!/const typical = DATA\.baselines\?\.typicalCurve;/.test(html) || /curves\.length >= 3/.test(html) || /const mid = \(vals\)/.test(html)) {
     bad++; fail("dashboard: the typical watch line must be read from data.baselines.typicalCurve, never computed in the page");
@@ -1524,7 +1524,7 @@ function premiereMs(dateStr) {
   if (!bad) ok(`links: ${eps.filter((e) => e.links).length} episode(s) store destination links — registry-locked, safe URL shapes, panel renders only what is stored`);
 }
 
-// --- 1u. baselines (PRD v7 W19a): one definition of "typical", re-derived and fixture-tested ---
+// --- 1u. baselines (PRD v9 W22a): one definition of "typical", re-derived and fixture-tested ---
 {
   let bad = 0;
   try {
@@ -1570,7 +1570,7 @@ function premiereMs(dateStr) {
   if (!bad) ok(`baselines: fixture test green; data.baselines re-derives — ${Object.values(data.baselines?.anomaly || {}).filter((a) => a.flagged).length} outlier(s), windows exclude self and outliers, nothing below ${data.baselines?.constants?.MIN_PEERS} peers`);
 }
 
-// --- 1v. chain freshness (PRD v7 W21): every required input store is fresh against the chain definition ---
+// --- 1v. chain freshness (PRD v9 W24): every required input store is fresh against the chain definition ---
 {
   let bad = 0;
   let chain = null;
@@ -1630,7 +1630,7 @@ function premiereMs(dateStr) {
   if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
 }
 
-// --- 1x/1y/1z (PRD v7 W23): small-n on data, no trend words over episode health, stored notes only ---
+// --- 1x/1y/1z (PRD v9 W26): small-n on data, no trend words over episode health, stored notes only ---
 {
   let bad = 0;
   const BL = await import(join(TOOL, "baselines.mjs"));

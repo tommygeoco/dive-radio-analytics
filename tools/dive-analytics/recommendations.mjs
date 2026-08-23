@@ -46,7 +46,7 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 3; // allowed-number list in the payload + grounding-error retries (v8 publish-integrity) + like-for-like rate facts (v7)
+export const PROMPT_VERSION = 3; // allowed-number list in the payload + grounding-error retries (v8 publish-integrity) + like-for-like rate facts (v9 baselines)
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 // exported so other prose surfaces (the Slack trends line) can gate spoken
 // quotes with the same plain-words contract the validator enforces
@@ -75,7 +75,7 @@ export function collectFacts(data = readJson(DATA_PATH)) {
   const add = (id, value, text, extra = {}) => { if (Number.isFinite(value)) facts.push({ id, value: r1(value), text, ...extra }); };
 
   const eps = data.episodes;
-  // PRD v7 F28: every per-episode RATE fact carries the episode's age and a
+  // PRD v9 F28: every per-episode RATE fact carries the episode's age and a
   // basis so the model (and validateItem) can keep comparisons like for like —
   // "mature" at three weeks or more, "young" before. Rates of young episodes
   // are still listed for reading, never for ranking against mature ones.
@@ -177,13 +177,15 @@ function displaysOf(v) {
   return new Set([String(v), v.toLocaleString("en-US"), String(Math.round(v)), Math.round(v).toLocaleString("en-US"), v.toFixed(1), v.toFixed(2)]);
 }
 
+// small structural constants an action may name (positions, ranges, dates)
+const STRUCTURAL = ["1", "2", "3", "5", "90", "100", "1,000", "07", "17", "23", "30"];
+
 // every spelling of every fact value the model may write; also sent to the
 // model verbatim (v8 W20) so compliance is copy-work, not arithmetic
 function allowedTokens(facts) {
   const allowed = new Set();
   for (const f of facts) for (const s of displaysOf(f.value)) allowed.add(s);
-  // small structural constants an action may name (positions, ranges, dates)
-  for (const s of ["1", "2", "3", "5", "90", "100", "1,000", "07", "17", "23", "30"]) allowed.add(s);
+  for (const s of STRUCTURAL) allowed.add(s);
   return allowed;
 }
 
@@ -199,8 +201,14 @@ function checkItem(item, allowed, seen, facts = []) {
     if (BANNED.test(value) || MARKUP.test(value)) throw new Error(`${item.id}: ${key} contains banned jargon or markup`);
     for (const token of numberTokens(value)) {
       if (!allowed.has(token)) throw new Error(`${item.id}: number ${token} is not in the fact sheet`);
-      // like for like (PRD v7 F28): a number that can only be a young episode's
-      // rate must not sit beside one that can only be a mature episode's rate
+    }
+    // like for like (PRD v9 F28): a number that can only be a young episode's
+    // rate must not sit beside one that can only be a mature episode's rate.
+    // Basis evidence comes only from distinctive citations: an episode label
+    // ("E5") names an episode without citing a rate, and a structural constant
+    // can be a position or a date — neither counts as evidence.
+    for (const token of numberTokens(value.replace(/\bE\d+\b/g, ""))) {
+      if (STRUCTURAL.includes(token)) continue;
       const matches = facts.filter((f) => f.kind === "episode-rate" && displaysOf(f.value).has(token));
       if (matches.length && matches.every((f) => f.basis === "young")) basesCited.add("young");
       if (matches.length && matches.every((f) => f.basis === "mature")) basesCited.add("mature");
@@ -210,7 +218,7 @@ function checkItem(item, allowed, seen, facts = []) {
   if (item.caveat != null && (typeof item.caveat !== "string" || item.caveat.length > 200 || BANNED.test(item.caveat))) throw new Error(`${item.id}: bad caveat`);
 }
 
-// Exports for build-data's currency check (PRD v7 baselines F32): an item
+// Exports for build-data's currency check (PRD v9 baselines F32): an item
 // whose numbers have since left today's fact sheet is held back as stale.
 export const allowedNumbers = allowedTokens;
 export function validateItem(item, facts, allowed = allowedTokens(facts)) {
@@ -261,7 +269,7 @@ export function pruneStore(sheet) {
     ...store,
     updatedAt: new Date().toISOString(),
     factsGeneratedAt: sheet.generatedAt,
-    // the facts the items were grounded on (baselines PRD v7 §4.6)
+    // the facts the items were grounded on (baselines PRD v9 §4.6)
     facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
     prunedAt: new Date().toISOString(),
     prunedIds,
@@ -355,7 +363,7 @@ async function main() {
       provider: "anthropic",
       model: gen.model,
       factsGeneratedAt: sheet.generatedAt,
-    // the facts the items were grounded on (baselines PRD v7 §4.6)
+    // the facts the items were grounded on (baselines PRD v9 §4.6)
     facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
       attempts: gen.attempts,
       items: gen.items,

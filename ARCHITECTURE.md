@@ -2,14 +2,14 @@
 
 Companion to `CLAUDE.md` (intent and rules). This file is the lineage: which
 script writes which store, what each store's timestamps mean, and how each
-number on the page is derived. Verified against the `docs/agent-guide-architecture-prd-v7` branch (2026-08-23, PRD v7 implemented).
+number on the page is derived. Verified against the `docs/agent-guide-architecture-prd-v7` branch (2026-08-23, PRD v9 implemented).
 When code and this file disagree, the code is right and this file needs a
 commit in the same change.
 
 Contents: §1 chain and cadence · §2 stores and their time semantics · §3
 number lineage (page → store → script → rule) · §4 the two scorers side by
 side · §5 model steps and their grounding contracts · §6 the validator's
-contract map · §7 known gaps (pointers to PRD v7)
+contract map · §7 known gaps (pointers to PRD v9)
 
 ---
 
@@ -162,7 +162,7 @@ Blocks in file order, with what each locks (line refs at `96a4f2f`):
 | 6 / 7 | artifact files present; `data.js` wraps `data.json`; **`data.json` byte-reproduces from stores** |
 | 1d / 1e | featured quotes safe and verbatim; W8 store stamps, golden gate, every rollup recomputed, Slack/alerts parity |
 | 1f | insight schema, live-chat sentence contract, pace three-peer gate, anomaly caveat wording |
-| 1g | episode health: 21-day gate, pending markers, windowIds membership, weight math, definition-lock store ⇔ `episode.health`, "immutability" (re-run returns stored entries — tautological, PRD v7 F10) |
+| 1g | episode health: 21-day gate, pending markers, windowIds membership, weight math, definition-lock store ⇔ `episode.health`, "immutability" (re-run returns stored entries — tautological, PRD v9 F10) |
 | 1m / 1m2 | watching export ranges and ordering; moments recompute-locked; summaries verbatim |
 | 1n | recommendations re-grounded; `insights` ⇔ store |
 | 1h | show health: schema, append-only vs HEAD, stamps, weighted mean, ±8, bullets cite facts, projection ⇔ `data.health`, trend gate ≥7; bundle re-derived from stores **only for today's entry under the current formula** |
@@ -183,7 +183,7 @@ verification plan covers the rest.
 
 ## 7. Known gaps and accepted debts
 
-PRD v7 is implemented (W19a–W23, 2026-08-23). What remains, by design or deferred:
+PRD v9 is implemented (W22a–W26, 2026-08-23). What remains, by design or deferred:
 
 - **History depth.** `yt-analytics-history` starts 2026-08-23; share watched and subscribers compare `mature` until three peers carry a line at the needed age (≈E10 for same-age episode health; the show-health measures switch as soon as three peers have lines at the read episode's age). E2/E3 carry no episode score (one and two peers); E4 has none either (E3 is an outlier); E5 is expected to be the first, on the 07:25 run after 2026-09-03.
 - **Sentiment at current volumes.** Episode-health sentiment and show-health commenters-per-1k stay absent until episodes average ≥10 directional comments; feedback counts and themes remain visible.

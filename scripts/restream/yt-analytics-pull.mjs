@@ -16,7 +16,7 @@
 // pulledAt stamp; overwritten per pull (the Analytics API is the source of
 // truth for its own aggregates; nothing here is a high-water guess).
 //
-// History (PRD v7 W19a): data/restream/yt-analytics-history/<slug>.jsonl —
+// History (PRD v9 W22a): data/restream/yt-analytics-history/<slug>.jsonl —
 // one line per episode per Phoenix day, appended only after a pull in which
 // every authorized channel for that episode succeeded; skipped when a line
 // for that date exists; never rewritten (a YouTube restatement shows up as

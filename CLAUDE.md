@@ -42,8 +42,8 @@ the audit ledgers (`tools/dive-analytics/audit/*.md`).
 asterisks, no "sat out", no wait dates. The gates still hold; they are not
 announced. The validator fails if retired absence copy reappears.
 
-**Rules 11–17 (PRD v7, implemented 2026-08-23 on branch
-`docs/agent-guide-architecture-prd-v7`, W19a–W23):**
+**Rules 11–17 (PRD v9, implemented 2026-08-23 on branch
+`docs/agent-guide-architecture-prd-v7`, W22a–W26):**
 
 11. **Like for like.** Every comparison carries one basis — `sameAge` (readings at the same days-since-premiere), `mature` (own and peers past the measure's maturity age, as they stand now), or `ageFree` — and the same comment-source coverage. A comparison that cannot meet its basis is absent with a reason.
 12. **Windowed typical.** Typical = true median of the `WINDOW_N` (8) episodes before the one being read, minus promo outliers and peers with no honest reading. Lifetime medians are gone.
@@ -101,7 +101,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The crontab itself lives on the owner machine; do not add one here.
-- **`postlive-publish.sh` pulls `--rebase` before it pushes** (since W21) and aborts loudly on a moved remote or a data conflict. Work from another machine still lands on a branch + PR; after a merge, pull on the chain machine before the next 07:25 run so the rebase is trivial (regenerating `data.json` with `build-data.mjs` resolves any data conflict).
+- **`postlive-publish.sh` pulls `--rebase` before it pushes** (since W24) and aborts loudly on a moved remote or a data conflict. Work from another machine still lands on a branch + PR; after a merge, pull on the chain machine before the next 07:25 run so the rebase is trivial (regenerating `data.json` with `build-data.mjs` resolves any data conflict).
 
 ## How to change a number (the procedure)
 

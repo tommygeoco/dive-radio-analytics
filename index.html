@@ -751,7 +751,7 @@ const ICONS = {
 };
 // comparison badge: glyph + delta instead of words; the small-difference gate
 // stays inside the quiet zone (data.baselines.constants) so noise never reads as signal
-// comparison constants come from the one baselines definition (PRD v7 rule 16)
+// comparison constants come from the one baselines definition (PRD v9 rule 16)
 const BASE_CONST = DATA.baselines?.constants || {};
 const QUIET_ZONE = BASE_CONST.QUIET_ZONE_PCT ?? 5;
 const BANDS = BASE_CONST.BANDS || { healthy: 55, steady: 45 };
@@ -836,7 +836,7 @@ function healthTipHTML(e, h) {
 }
 
 function sameAgeSub(e) {
-  // PRD v7 W19b: pace is read from data.baselines — YouTube views at this
+  // PRD v9 W22b: pace is read from data.baselines — YouTube views at this
   // episode's current age against the other episodes' readings at that age,
   // promo outliers left out, at least three peers or nothing. Never recomputed here.
   const p = DATA.baselines?.pace?.[e.slug];
@@ -910,7 +910,7 @@ function buildHealth() {
     // each measure's stored note says how it was compared (same age, or as the
     // earlier episodes stand now); a scored check's reason (which episode was
     // read, what is still early) renders too — stored honesty reaches the
-    // click layer (PRD v7 rule 17)
+    // click layer (PRD v9 rule 17)
     const drill = (c.measures || []).map((m) => {
       const name = MEASURE_WORDS[m.key] || m.key;
       if (m.value == null) return m.reason ? `${name}: ${m.reason}` : null;
@@ -1434,7 +1434,7 @@ function buildCompound() {
     const hotSlug = state.solo && have.some((r) => r.e.slug === state.solo) ? state.solo : have.at(-1).e.slug;
     // the verdict compares the newest episode with the one before it LIKE FOR
     // LIKE (reach and share watched at the same age, live turnout age-free),
-    // read from data.baselines — never from the lifetime bars above (PRD v7 F15)
+    // read from data.baselines — never from the lifetime bars above (PRD v9 F15)
     const cmp = DATA.baselines?.newestVsPrevious?.[metric] || null;
     const pct = cmp && Number.isFinite(cmp.pct) ? cmp.pct : null;
     const cls2 = pct == null || Math.abs(pct) <= QUIET_ZONE ? "" : pct > 0 ? "up" : "down";
@@ -2109,7 +2109,7 @@ function render() {
     });
     // the typical line is read from data.baselines.typicalCurve — the middle
     // value across three-week-old episodes' curves with promo outliers left out,
-    // drawn only once three such curves exist; never computed here (PRD v7 F29)
+    // drawn only once three such curves exist; never computed here (PRD v9 F29)
     const typical = DATA.baselines?.typicalCurve;
     if (typical?.points?.length) {
       const pts = typical.points.map((p) => ({ x: Math.round(p.at * 100), y: Math.round(p.watching * 1000) / 10 }));
@@ -2304,9 +2304,9 @@ function buildTable() {
     html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>`;
     // watched-vs-typical reads each row's typical from data.baselines (the
     // other three-week-old episodes, outliers and the row itself left out);
-    // nothing is computed here (PRD v7 F16)
+    // nothing is computed here (PRD v9 F16)
     // episode scores are each against a different set of earlier episodes —
-    // one neutral colour, never the show-health bands (PRD v7 F17)
+    // one neutral colour, never the show-health bands (PRD v9 F17)
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);

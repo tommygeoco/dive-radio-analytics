@@ -1,4 +1,4 @@
-// baselines.mjs — the ONE definition of "typical" (PRD v7, rule 16).
+// baselines.mjs — the ONE definition of "typical" (PRD v9, rule 16).
 //
 // Every comparison in this repo — show health, episode health, the page's
 // pace and watched-vs-typical, the promo-outlier test, the typical watch

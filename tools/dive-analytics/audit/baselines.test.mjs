@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // baselines.test.mjs — fixture test for tools/dive-analytics/baselines.mjs
-// (PRD v7 §8). Twelve synthetic weekly episodes with a 2× growth trend across
+// (PRD v9 §8). Twelve synthetic weekly episodes with a 2× growth trend across
 // the run, one promo outlier, one late-registered episode, one episode with
 // no analytics. Asserts window membership, per-measure exclusions, MIN_PEERS
 // absence, reading-rule tie-breaks, that only the promo episode is flagged

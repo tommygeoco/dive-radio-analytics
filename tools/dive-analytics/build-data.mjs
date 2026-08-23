@@ -13,9 +13,9 @@ import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs
 import { projectHealth } from "./health.mjs";
 import { watchMoments } from "./watch-moments.mjs";
 import { momentKey } from "./moment-summaries.mjs";
-// PRD v7 W19a: the one definition of "typical" — projected as data.baselines
+// PRD v9 W22a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
-// and constants. No consumer is switched in W19a; this only adds the projection.
+// and constants. No consumer is switched in W22a; this only adds the projection.
 import { computeBaselines, anomalyFlags, paceFor } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
@@ -282,7 +282,7 @@ export function computeAll({ now = Date.now() } = {}) {
   episodes.forEach((e, i) => { e.ep = i + 1; });
   const dive = episodes;
 
-  // Promo-outlier flags (PRD v7 W19b): the one definition lives in
+  // Promo-outlier flags (PRD v9 W22b): the one definition lives in
   // baselines.mjs — a unit more than double the SAME-AGE typical of the
   // nearby episodes (settled at day 21; provisional before that; the
   // window-limited lifetime test only while history is too thin for either).
@@ -304,7 +304,7 @@ export function computeAll({ now = Date.now() } = {}) {
   let insightsStale = [];
   try { recStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "recommendations.json"), "utf8")); } catch { /* no store yet */ }
   if (Array.isArray(recStore?.items) && recStore.items.length) {
-    // Currency (PRD v7 F32): an item stays on the page only while every
+    // Currency (PRD v9 F32): an item stays on the page only while every
     // number it cites still exists in TODAY's fact sheet. A number that moved
     // or was retired (a re-derived score, a changed rate) makes the item stale:
     // dropped here with its reason, never shown against numbers it no longer
@@ -363,7 +363,7 @@ export function computeAll({ now = Date.now() } = {}) {
   };
 }
 
-// analytics history lines (PRD v7 W19a) for same-age comparisons of analytics measures
+// analytics history lines (PRD v9 W22a) for same-age comparisons of analytics measures
 const ANALYTICS_HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-history");
 function readHistoryLines(slug) {
   const p = join(ANALYTICS_HISTORY_DIR, `${slug}.jsonl`);
@@ -797,7 +797,7 @@ function cumulativeSeries(dive, now) {
   return out;
 }
 
-// Same-age pace for the newest episode (PRD v7 W19b): read from baselines.mjs
+// Same-age pace for the newest episode (PRD v9 W22b): read from baselines.mjs
 // — YouTube views at the newest episode's current age against the other
 // episodes' readings at that same age, promo outliers left out, at least
 // three peers or nothing. Same function feeds data.baselines.pace for the
@@ -1059,7 +1059,7 @@ export function minutesInWords(sec) {
   return `${h} hour${h === 1 ? "" : "s"}${m % 60 ? ` ${m % 60} minutes` : ""} in`;
 }
 
-// Structured Slack lines (PRD v7 1x): each carries its sample and direction
+// Structured Slack lines (PRD v9 1x): each carries its sample and direction
 // so the validator checks the small-n rule on data, not by reading prose.
 export function trendsLines(data) {
   const CAT_LABEL = { content: "Content", distribution: "Distribution", promotion: "Promotion", audience: "Audience health", data: "Data note" };
@@ -1071,7 +1071,7 @@ export function trendsLines(data) {
   }
   if (data.insights.length === 0) push("• Not enough data for trend calls yet.");
   const vels = data.showTrend.week1VelocityByEpisode.filter((v) => v.value !== null);
-  // first-week line only from three clean weeks (rule 7; PRD v7 F14) — below
+  // first-week line only from three clean weeks (rule 7; PRD v9 F14) — below
   // that the numbers are listed without a direction word
   if (vels.length >= 3) {
     const dir = vels[vels.length - 1].value >= vels[0].value ? "up" : "down";
@@ -1079,7 +1079,7 @@ export function trendsLines(data) {
   } else if (vels.length) {
     push(`• First-week YouTube views so far: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" · ")} — a direction needs three clean first weeks.`, { sample: vels.length });
   }
-  // W12/PRD v7: episode health, read from the same store as every dashboard
+  // W12/PRD v9: episode health, read from the same store as every dashboard
   // surface. Only finished reads WITH a score appear; an episode with too few
   // comparison episodes is simply not listed (absence is silent; the panel
   // carries its reason). The wording says what each number is — its own read

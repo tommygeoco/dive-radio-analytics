@@ -62,7 +62,7 @@ export function snapshotState(data) {
   };
 }
 
-// Structured lines (PRD v7 1x): every line carries its sample and direction
+// Structured lines (PRD v9 1x): every line carries its sample and direction
 // so the validator can check small-n rules on data, not on prose.
 export function alertLines(prev, cur, data) {
   const out = [];
@@ -78,7 +78,7 @@ export function alertLines(prev, cur, data) {
 
   // 2. same-age pace rank change for the newest episode (same episode only —
   // a new episode resets the comparison and is covered by alert 1)
-  // (PRD v7 F31: only when the peer set is the same size — a rank that moves
+  // (PRD v9 F31: only when the peer set is the same size — a rank that moves
   // because more episodes started spanning the age is not a change)
   if (prev.paceRank && cur.paceRank && prev.newestSlug === cur.newestSlug &&
       cur.paceRank.rank != null && prev.paceRank.rank != null && cur.paceRank.rank !== prev.paceRank.rank &&
@@ -88,7 +88,7 @@ export function alertLines(prev, cur, data) {
     push(`E${e?.ep} (${short(e?.title ?? cur.newestSlug)}) moved ${dir} to #${cur.paceRank.rank} of ${cur.paceRank.of} on same-age YouTube pace (was #${prev.paceRank.rank}).`, { sample: cur.paceRank.of - 1, direction: dir });
   }
 
-  // 2b. the served show-health read is behind the data (PRD v7 rule 15):
+  // 2b. the served show-health read is behind the data (PRD v9 rule 15):
   // one line a day from two days behind; withheld after seven
   if (data.health && Number.isFinite(data.health.ageDays) && data.health.ageDays >= 2) {
     push(data.health.withheld

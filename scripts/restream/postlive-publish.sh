@@ -15,7 +15,7 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 cd "$REPO"
 [ -d .git ] || { echo "publish: $REPO is not a git repo" >&2; exit 1; }
 
-# PRD v7 F26: a remote that moved (a merge from another machine) must fail
+# PRD v9 F26: a remote that moved (a merge from another machine) must fail
 # loudly here, never as a rejected push after the build already ran. Local
 # data changes are stashed around the pull; a conflict aborts the publish
 # instead of committing conflict markers.

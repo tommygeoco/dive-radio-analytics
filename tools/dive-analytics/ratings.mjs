@@ -3,7 +3,7 @@
 // measured over its first three weeks against the episodes before it, frozen
 // once written, and rebuildable from what the entry itself stores.
 //
-// Definition (constitutional; PRD v4 §1 as amended by PRD v7 §3.2):
+// Definition (constitutional; PRD v4 §1 as amended by PRD v9 §3.2):
 //   - The read window is the episode's first 21 days (READ_DAYS, the measured
 //     flatline point). An entry exists ONLY once the episode's last snapshot
 //     is at least 21 days old; younger episodes have no entry and no surface.

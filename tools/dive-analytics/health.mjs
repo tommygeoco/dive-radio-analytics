@@ -5,7 +5,7 @@
 // fetch directly and has no runtime dependencies. build-data.mjs only reads
 // the persisted health-history.json store; it never calls a model.
 //
-// Deterministic formulas (health-v3, PRD v7 §3.1; all results clamped 0..100):
+// Deterministic formulas (health-v3, PRD v9 §3.1; all results clamped 0..100):
 //   relative(value, typical) = 50 * value / typical, typical = true median of
 //   the peers left after taking the eight episodes before the one being read
 //   and removing promo outliers and peers with no honest reading (baselines.mjs).
@@ -80,11 +80,11 @@ const PHX_OFFSET = 7 * 3600000;
 const MAX_TOKENS = 16000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
-// store v2 (PRD v7 W21): entries carry per-measure ageBasis/window/note and
+// store v2 (PRD v9 W24): entries carry per-measure ageBasis/window/note and
 // per-entry checkSet; v1 files are accepted and upgraded in place with every
 // existing entry byte-identical.
 export const HEALTH_STORE_VERSION = 2;
-// health-v3 (2026-08-23, PRD v7): like-for-like bases, eight-episode windows,
+// health-v3 (2026-08-23, PRD v9): like-for-like bases, eight-episode windows,
 // three-peer minimum per measure, episode-read selection, absolute-scale
 // sentiment never inflated by absences. Saved entries keep their own stamp.
 export const FORMULA_VERSION = "health-v3";
@@ -255,7 +255,7 @@ function finishSubScore(key, measures, reason) {
     baseWeight: BASE_WEIGHTS[key],
     effectiveWeight: 0,
     // a check scored only by absolute-scale measures never absorbs the weight
-    // of absent checks (PRD v7 rule 13) — an honest absence must not lift it
+    // of absent checks (PRD v9 rule 13) — an honest absence must not lift it
     absoluteScale: present.length > 0 && present.every((m) => m.absoluteScale),
     measures,
     reason,
@@ -362,7 +362,7 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   // analytics measures: own = latest episode ≥ 7 d; sameAge when own and
   // MIN_PEERS peers have a history line at own's current age; otherwise mature
   // (own ≥ 21 d, peers ≥ 21 d, current file). Once a measure has been sameAge
-  // in a saved entry it never falls back (PRD v7 §3.1 transition rule).
+  // in a saved entry it never falls back (PRD v9 §3.1 transition rule).
   const blend = (channels, pick) => {
     let num = 0, den = 0;
     for (const ch of Object.values(channels || {})) {
@@ -688,7 +688,7 @@ export function validateSynthesis(value, inputs) {
   if (!Array.isArray(value.drivers) || value.drivers.length < 1 || value.drivers.length > 3 || value.drivers.some((driver) => typeof driver !== "string" || !driver.trim() || driver.length > 180 || BANNED.test(driver) || MARKUP.test(driver))) {
     throw new Error("drivers must contain one to three short plain strings");
   }
-  // check-set guard (PRD v7 §3.1): when the set of scored checks changed since
+  // check-set guard (PRD v9 §3.1): when the set of scored checks changed since
   // the previous entry and the score moved by more than 5, a driver must name
   // a check that joined or left — a score that moves because honest checks
   // came or went must say so
@@ -719,7 +719,7 @@ export function projectHealth(store, { now = Date.now() } = {}) {
   }
   // age of the served read in Phoenix days; after STALE_WITHHOLD_DAYS the
   // score is withheld — the page shows its empty state rather than a week-old
-  // number as today's (PRD v7 rule 15 / D3). Data still publishes.
+  // number as today's (PRD v9 rule 15 / D3). Data still publishes.
   const ageDays = Math.round((Date.parse(`${cutoff}T12:00:00Z`) - Date.parse(`${latest.date}T12:00:00Z`)) / 86400000);
   const withheld = ageDays > STALE_WITHHOLD_DAYS;
   // The page needs to say when today's score is still an early read, but it
@@ -810,7 +810,7 @@ async function main() {
     console.log(JSON.stringify({ weightedMean: inputs.weightedMean, allowedScore: inputs.allowedScore, availableChecks: inputs.availableChecks, checkSet: inputs.checkSet, checkSetChange: inputs.checkSetChange, subScores: inputs.subScores, facts: inputs.facts }, null, 2));
     return;
   }
-  // gate (PRD v7 F33): three or more available checks. Absent checks already
+  // gate (PRD v9 F33): three or more available checks. Absent checks already
   // relinquish weight and render as "Not in yet"; a three-check read with three
   // honest absences beats a stale six-check read.
   if (!Number.isFinite(inputs.weightedMean) || inputs.availableChecks < 3) {

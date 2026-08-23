@@ -64,7 +64,7 @@ function harvest() {
       : e.health
         ? { score: e.health.score, atDay: e.health.atDay, readCompleteOn: e.health.readCompleteOn, checks: e.health.checks, missingChecks: e.health.missingChecks, reason: e.health.reason, excluded: e.health.excluded, reproducible: e.health.reproducible }
         : null,
-    // PRD v7 W23: the page's pace for this episode, as shipped
+    // PRD v9 W26: the page's pace for this episode, as shipped
     pace: data.baselines?.pace?.[e.slug] ?? null,
     outlier: data.baselines?.anomaly?.[e.slug] ?? null,
   }));
@@ -82,7 +82,7 @@ function harvest() {
     showTrend: data.showTrend,
     commentSummary: data.commentSummary,
     health: data.health || null,
-    // PRD v7 W23: the one baselines definition, so typicals re-derive from
+    // PRD v9 W26: the one baselines definition, so typicals re-derive from
     // their stamped windows — never from the full episode array
     baselines: data.baselines ? { constants: data.baselines.constants, watchPct: data.baselines.watchPct, typicalCurve: { n: data.baselines.typicalCurve?.n, window: data.baselines.typicalCurve?.window }, newestVsPrevious: data.baselines.newestVsPrevious } : null,
     historyLines,
