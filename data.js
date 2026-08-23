@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-23T01:19:18.994Z",
+ "generatedAt": "2026-08-23T01:19:59.957Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -12914,7 +12914,7 @@ window.DIVE_DATA = {
   },
   {
    "id": "live-chat",
-   "text": "Live chat is down from launch: E1 383 → E2 310 → E3 169 → E4 167 → E5 100 → E6 127 messages in air order. The latest show had 41 chatters.",
+   "text": "Live chat is down from launch: 383 messages on the first show, 127 on the latest.",
    "recommendation": "Chat is the call-in pipeline — seed prompts and questions mid-show instead of waiting for organic chat.",
    "caveat": "Message totals from Restream chat archives, all destinations combined.",
    "chartState": {

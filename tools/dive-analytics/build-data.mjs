@@ -568,6 +568,14 @@ function attachLiveSessions(dive, registry) {
   }
 }
 
+export function liveChatText(launchChat, latestChat) {
+  if (latestChat === launchChat) {
+    return `Live chat is where it started: ${launchChat} messages on both the first and latest shows.`;
+  }
+  const direction = latestChat > launchChat ? "up from launch" : "down from launch";
+  return `Live chat is ${direction}: ${launchChat} messages on the first show, ${latestChat} on the latest.`;
+}
+
 function liveInsights(dive) {
   const withLive = dive.filter((e) => e.live);
   if (withLive.length < 2) return [];
@@ -587,17 +595,11 @@ function liveInsights(dive) {
     caveat: `Peak concurrents from Restream across all simulcast destinations; compared with the typical result from ${withLive.length - 1} prior episodes.`,
     chartState: { view: "live" },
   });
-  const chatLine = withLive.map((e) => `E${e.ep} ${e.live.chatMessages}`).join(" → ");
   const launchChat = withLive[0].live.chatMessages;
   const latestChat = newest.live.chatMessages;
-  const chatDirection = latestChat > launchChat
-    ? "up from launch"
-    : latestChat < launchChat
-      ? "down from launch"
-      : "where it started";
   out.push({
     id: "live-chat",
-    text: `Live chat is ${chatDirection}: ${chatLine} messages in air order. The latest show had ${newest.live.chatters} chatters.`,
+    text: liveChatText(launchChat, latestChat),
     recommendation: latestChat >= launchChat
       ? `Chat is climbing — keep the call-in segments; they're feeding it.`
       : `Chat is the call-in pipeline — seed prompts and questions mid-show instead of waiting for organic chat.`,

@@ -509,8 +509,28 @@ function premiereMs(dateStr) {
     if (!i.text || i.text.length < 20) { bad++; fail(`insight ${i.id}: text missing or too short to be an insight`); }
   }
   const liveChat = data.insights.find((i) => i.id === "live-chat");
-  if (liveChat && (/\btrending\b/i.test(liveChat.text) || !/(from launch|where it started)/i.test(liveChat.text))) {
-    bad++; fail("insight live-chat: direction must say whether the newest show is up or down from launch");
+  try {
+    const build = await import(join(TOOL, "build-data.mjs"));
+    const withLive = eps.filter((episode) => episode.live);
+    const launchChat = withLive[0]?.live?.chatMessages;
+    const latestChat = withLive.at(-1)?.live?.chatMessages;
+    const expectedChat = withLive.length >= 2 ? build.liveChatText(launchChat, latestChat) : null;
+    if (expectedChat && liveChat?.text !== expectedChat) {
+      bad++; fail("insight live-chat: text does not exactly compare the stored first and latest message totals");
+    }
+    if (liveChat && ((liveChat.text.match(/\b\d[\d,]*\b/g) || []).length > 2 || /\bE\d+\b|→/.test(liveChat.text))) {
+      bad++; fail("insight live-chat: history sequence adds more numbers than the decision needs");
+    }
+    if (build.liveChatText(10, 20) !== "Live chat is up from launch: 10 messages on the first show, 20 on the latest."
+      || build.liveChatText(20, 10) !== "Live chat is down from launch: 20 messages on the first show, 10 on the latest."
+      || build.liveChatText(10, 10) !== "Live chat is where it started: 10 messages on both the first and latest shows.") {
+      bad++; fail("insight live-chat: up, down, and unchanged copy branches are not deterministic");
+    }
+    if (expectedChat && !build.trendsText(data).includes(`• [Audience health] ${expectedChat}`)) {
+      bad++; fail("insight live-chat: Slack does not read the same stored sentence as the dashboard");
+    }
+  } catch (error) {
+    bad++; fail(`insight live-chat: definition-lock check threw — ${error.message}`);
   }
   const paceInsights = data.insights.filter((insight) => insight.id === "pace-rank");
   const newest = eps.at(-1);
