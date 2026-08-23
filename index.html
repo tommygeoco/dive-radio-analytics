@@ -23,45 +23,64 @@
 
   header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
   h1 { font-size: 21px; margin: 0; letter-spacing: -.01em; font-weight: 700; }
-  .stamp { color: var(--t3); font-size: 13px; margin-left: auto; }
+  .stamp { color: var(--t3); font-size: 14px; margin-left: auto; }
 
   .tabs { display: flex; gap: 2px; margin: 8px 0 16px; border-bottom: 1px solid var(--border-strong); }
   .tabs button { background: none; border: 0; color: var(--t3); font-size: 15px;
     padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
   .tabs button.on { color: var(--t1); border-bottom-color: var(--accent); font-weight: 700; }
   .tabs button:hover { color: var(--t1); }
+  button:focus-visible, summary:focus-visible, .rb:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  /* ---- W10: saved show health (one decision number; all math lives upstream) ---- */
-  .health { display: grid; grid-template-columns: 92px minmax(230px, 1.35fr) minmax(180px, 1fr) minmax(180px, 1fr);
-    gap: 18px; align-items: start; background: var(--s1); border: 1px solid var(--border-strong);
-    border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; }
-  .health .eyebrow { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .health .score { font-size: 42px; line-height: 1; font-weight: 700; letter-spacing: -.04em; margin-top: 4px; }
-  .health .saved { color: var(--t3); font-size: 12px; margin-top: 5px; }
-  .health .headline { color: var(--t1); font-size: 17px; font-weight: 700; line-height: 1.35; margin-top: 2px; }
-  .health .trend-note { color: var(--t3); font-size: 12px; margin-top: 7px; }
-  .health .trend { width: 150px; height: 28px; margin-top: 7px; display: block; }
+  /* ---- W10/W11: one health conclusion, evidence on demand ---- */
+  .health { padding: 16px 0 18px; border-bottom: 1px solid var(--border-strong); }
+  .health-main { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: start;
+    gap: 18px; max-width: 900px; }
+  .health .score { font-size: 44px; line-height: 1; font-weight: 700;
+    letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .health h2, .hero h2, .compound h2 { margin: 0; font-size: 17px; line-height: 1.3; font-weight: 700; }
+  .health .headline { max-width: 68ch; margin: 4px 0 0; color: var(--t1); font-size: 17px;
+    line-height: 1.42; text-wrap: pretty; }
+  .health .scoretrack { width: min(100%, 430px); height: 5px; margin-top: 11px; overflow: hidden;
+    border-radius: 3px; background: var(--s2); }
+  .health .scoretrack span { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+  .health .saved { color: var(--t3); font-size: 14px; margin-top: 8px; }
+  .health-evidence { margin-top: 8px; max-width: 860px; }
+  .health-evidence > summary { width: max-content; list-style: none; color: var(--accent); font-size: 14px;
+    cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .health-evidence > summary::-webkit-details-marker { display: none; }
+  .health-evidence > summary::after { content: " +"; text-decoration: none; }
+  .health-evidence[open] > summary::after { content: " −"; }
+  .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    padding-top: 12px; }
+  .health-evidence h3 { margin: 0 0 6px; color: var(--t2); font-size: 14px; }
+  .health-evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
+  .health-evidence li { color: var(--t2); font-size: 15px; line-height: 1.45; }
+  .health .trend { width: 150px; height: 28px; margin-top: 8px; display: block; }
   .health .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
-  .health .group-title { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 5px; }
-  .health ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
-  .health li { color: var(--t2); font-size: 13px; line-height: 1.4; padding-left: 12px; position: relative; }
-  .health li::before { content: "·"; position: absolute; left: 0; color: var(--t3); font-weight: 700; }
-  .health.empty { display: block; color: var(--t2); font-size: 14px; }
+  .health.empty { color: var(--t2); font-size: 15px; }
 
-  /* ---- Layer 1: newest-episode hero (merged verdict + card) ---- */
-  .hero { display: flex; gap: 20px; align-items: stretch; background: var(--s1);
-    border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+  /* ---- Primary answers: latest episode + audience trend ---- */
+  .overview { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(250px, .75fr);
+    border-bottom: 1px solid var(--border-strong); margin-bottom: 14px; }
+  .overview.single { grid-template-columns: 1fr; }
+  .hero { display: flex; gap: 24px; min-width: 0; padding: 20px 30px 20px 0; }
+  .overview:not(.single) .hero { border-right: 1px solid var(--border); }
   .hero .main { flex: 1; min-width: 0; }
-  .hero .idrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .hero .ep { font-weight: 700; font-size: 13px; color: var(--t3); letter-spacing: .04em;
-    display: inline-flex; align-items: center; gap: 6px; }
-  .hero .dot, .dot { width: 10px; height: 10px; border-radius: 4px; display: inline-block; flex: none; }
-  .hero .ttl { font-size: 17px; font-weight: 700; }
-  .hero .big { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin-top: 6px; }
-  .hero .big small { font-size: 14px; font-weight: 500; color: var(--t3); }
-  .hero .mk { font-size: 12px; font-weight: 600; color: var(--amber); margin-left: 6px; vertical-align: 4px; }
-  .hero .sub { font-size: 13px; color: var(--t3); margin-top: 2px; }
-  .hero .verdict { font-size: 14px; color: var(--t2); margin-top: 10px; max-width: 72ch; }
+  .hero h2 { font-size: 18px; text-wrap: balance; }
+  .hero .metricline { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .hero .big { font-size: 32px; line-height: 1; font-weight: 700; letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums; }
+  .hero .big small { font-size: 14px; font-weight: 500; color: var(--t3); letter-spacing: 0; }
+  .hero .mk { font-size: 14px; font-weight: 600; color: var(--amber); }
+  .hero .platform-bar { display: flex; width: min(100%, 520px); height: 8px; overflow: hidden;
+    border-radius: 4px; background: var(--s2); margin-top: 14px; }
+  .hero .platform-bar .yt { background: #ff795b; }
+  .hero .platform-bar .x { background: var(--accent); }
+  .hero .splitlabels { display: flex; justify-content: space-between; width: min(100%, 520px);
+    margin-top: 7px; color: var(--t3); font-size: 14px; }
+  .hero .state { color: var(--t3); font-size: 14px; margin-top: 10px; }
+  .hero .unavailable { color: var(--t3); font-size: 15px; margin-top: 12px; }
   .chiprow { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
   .chip { border: 1px solid var(--border-strong); background: var(--s2); color: var(--t2);
     border-radius: 999px; padding: 4px 10px; font-size: 13px; cursor: pointer; display: inline-flex;
@@ -69,19 +88,17 @@
   .chip:hover { border-color: var(--accent); color: var(--t1); }
   .chip.pace.up { color: var(--good); } .chip.pace.down { color: var(--bad); }
   .chip.alert { color: var(--amber); }
-  .chip.senti b { font-weight: 700; }
   .chip.static { cursor: default; }
   .chip.static:hover { border-color: var(--border-strong); color: var(--t2); }
-  .hero .spark { width: 190px; flex: none; display: flex; flex-direction: column; gap: 4px; justify-content: flex-end; }
-  .hero .spark .cv { position: relative; height: 64px; width: 100%; }
-  .hero .spark .cap { font-size: 12px; color: var(--t3); text-align: right; }
+  .hero .spark { width: min(34%, 320px); flex: none; display: flex; flex-direction: column; gap: 5px; justify-content: flex-end; }
+  .hero .spark .cv { position: relative; height: 86px; width: 100%; }
+  .hero .spark .cap { font-size: 14px; color: var(--t3); text-align: right; }
 
-  /* ---- compounding strip: is the show growing? (PRD v2 W2) ---- */
-  .compound { background: var(--s1); border: 1px solid var(--border); border-radius: 10px;
-    padding: 12px 16px 14px; margin-bottom: 12px; }
-  .compound .ch { font-size: 13px; font-weight: 700; color: var(--t2); text-transform: uppercase;
-    letter-spacing: .04em; margin-bottom: 2px; }
-  .compound .cv2 { font-size: 15px; font-weight: 600; margin: 2px 0 10px; }
+  .compound { display: flex; flex-direction: column; justify-content: center; padding: 20px 0 20px 30px; }
+  .compound .readiness { display: flex; gap: 7px; margin-bottom: 10px; }
+  .compound .readiness i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--border-strong); }
+  .compound .readiness i.on { border-color: var(--accent); background: var(--accent); }
+  .compound .cv2 { color: var(--t2); font-size: 16px; font-weight: 600; line-height: 1.4; margin: 0; }
   .compound .bars { display: flex; gap: 10px; align-items: flex-end; }
   .compound .cbar { flex: 1; text-align: center; min-width: 0; }
   .compound .cbar .bwrap { height: 56px; display: flex; align-items: flex-end; justify-content: center; }
@@ -89,14 +106,14 @@
   .compound .cbar .b.none { border: 1px dashed var(--border-strong); background: none; height: 100%; border-bottom: none; }
   .compound .cbar .bl { font-size: 12px; font-weight: 700; margin-top: 4px; }
   .compound .cbar .bv { font-size: 12px; color: var(--t3); }
-  .compound .note { font-size: 12px; color: var(--t3); margin-top: 8px; }
+  .compound .note { max-width: 34ch; font-size: 14px; color: var(--t3); margin-top: 7px; }
 
   /* ---- Layer 1: episode strip (selector + legend; oldest → newest, latest far right) ---- */
   .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
     scrollbar-width: thin; }
   .sitem { flex: 1 0 132px; min-width: 132px; background: var(--s1); border: 1px solid var(--border);
     border-radius: 8px; padding: 6px 10px 7px; cursor: pointer; position: relative;
-    transition: border-color .15s, box-shadow .15s; }
+    transition: border-color .15s, box-shadow .15s; color: inherit; text-align: left; }
   .sitem:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
   .sitem::after { content: "▾"; position: absolute; right: 9px; bottom: 5px; font-size: 12px;
     color: var(--t3); opacity: 0; transition: opacity .15s; }
@@ -115,20 +132,26 @@
     white-space: nowrap; flex: none; }
   .rb.top { color: var(--good); border-color: rgba(74,222,128,.4); }
   .rb .pm { color: var(--amber); font-weight: 600; }
-  .rb.hero { display: inline-block; width: auto; font-size: 13px; padding: 3px 11px; margin-left: 10px; vertical-align: 6px; white-space: nowrap; }
+  .rb.hero { display: inline-block; width: auto; font-size: 14px; padding: 3px 11px; margin-left: 10px; vertical-align: 6px; white-space: nowrap; }
   .rb { cursor: help; }
   /* rating tooltip — instant, works on tap; native title is neither */
   #rtt { position: fixed; z-index: 60; max-width: 300px; background: #0d1017; border: 1px solid var(--border-strong);
-    border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; color: var(--t2);
+    border-radius: 10px; padding: 10px 12px; font-size: 14px; line-height: 1.45; color: var(--t2);
     box-shadow: 0 8px 24px rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: opacity .12s ease-out; }
   #rtt .h { font-weight: 700; color: var(--t1); margin-bottom: 4px; }
   #rtt .warn { color: var(--amber); margin-top: 4px; }
   #rtt .mut { color: var(--t3); margin-top: 4px; }
   .sitem .t { font-size: 12px; color: var(--t2); white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis; margin: 1px 0 2px; }
-  .sitem .r3 { font-size: 12px; color: var(--t3); display: flex; gap: 8px; }
-  .sitem .r3 .pace.up { color: var(--good); } .sitem .r3 .pace.down { color: var(--bad); }
+    text-overflow: ellipsis; margin: 1px 0 2px; display: block; }
 
+  .episode-browser { margin: 8px 0 12px; }
+  .episode-browser > summary { list-style: none; width: max-content; padding: 8px 2px;
+    color: var(--t2); font-size: 15px; font-weight: 600; cursor: pointer; }
+  .episode-browser > summary::-webkit-details-marker { display: none; }
+  .episode-browser > summary::after { content: "  ›"; color: var(--t3); font-weight: 500; }
+  .episode-browser[open] > summary::after { content: " ⌄"; }
+  .episode-browser[open] > summary { margin-bottom: 8px; }
+  .episode-browser .strip { margin-bottom: 0; }
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
@@ -161,26 +184,26 @@
   .panel .themeempty { color: var(--t3); font-size: 12px; line-height: 1.35; }
 
   /* ---- controls ---- */
-  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-left: auto; }
   .seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 8px;
     overflow: hidden; background: var(--s1); }
   .seg button { background: transparent; border: 0; color: var(--t3); padding: 7px 14px;
     cursor: pointer; font-size: 14px; }
   .seg button.on { background: var(--s2); color: var(--t1); font-weight: 700; }
   .toggle { border: 1px solid var(--border); background: var(--s1); color: var(--t3);
-    border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 13px; }
+    border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 14px; }
   .toggle.on { color: var(--t1); border-color: var(--border-strong); background: var(--s2); }
-  .reset { margin-left: auto; color: var(--t3); font-size: 13px; background: none; border: 0;
+  .reset { color: var(--t3); font-size: 14px; background: none; border: 0;
     cursor: pointer; text-decoration: underline; }
   .reset:hover { color: var(--t1); }
 
   /* ---- chart card ---- */
   #chartcard { background: var(--s1); border: 1px solid var(--border); border-radius: 12px;
     padding: 12px 14px 10px; margin-bottom: 6px; }
-  .chead { display: flex; align-items: baseline; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
-  .chead .ct { font-size: 14px; font-weight: 700; }
-  .chead .cs { font-size: 13px; color: var(--t3); }
-  .chead .tbtn { margin-left: auto; }
+  .chead { display: flex; align-items: center; gap: 10px; margin: 0 4px 8px; flex-wrap: wrap; }
+  .chead .ct { font-size: 15px; font-weight: 700; }
+  .chead .cs { font-size: 14px; color: var(--t3); }
+  .chart-copy { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   #chartbox { height: 440px; position: relative; }
   #tablebox { overflow-x: auto; display: none; }
   /* visible scroll affordance (taste audit F1): macOS hides scrollbars, so a
@@ -279,11 +302,16 @@
 
   @media (max-width: 720px) {
     .wrap { padding: 14px 14px 20px; }
-    .health { grid-template-columns: 76px 1fr; gap: 12px 14px; }
-    .health .score { font-size: 36px; }
-    .health .hgroup { grid-column: 1 / -1; }
-    .hero { flex-direction: column; gap: 10px; }
+    .health-main { grid-template-columns: 54px minmax(0, 1fr); gap: 14px; }
+    .health .score { font-size: 38px; }
+    .health .headline { font-size: 16px; }
+    .health-evidence .evidence { grid-template-columns: 1fr; gap: 16px; }
+    .overview { grid-template-columns: 1fr; }
+    .overview:not(.single) .hero { border-right: 0; }
+    .hero { flex-direction: column; gap: 10px; padding: 18px 0; }
     .hero .spark { width: 100%; }
+    .compound { border-top: 1px solid var(--border); padding: 16px 0; }
+    .controls { width: 100%; margin-left: 0; }
     .sitem { flex: 0 0 150px; }
     #chartbox { height: 340px; }
     .stamp { margin-left: 0; width: 100%; }
@@ -294,42 +322,46 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Dive Radio — Episode Analytics</h1>
+    <h1>Dive Radio</h1>
     <div class="stamp" id="stamp"></div>
   </header>
 
-  <div class="tabs" id="view">
-    <button data-v="growth">Audience growth</button>
-    <button data-v="live">Live session</button>
+  <div class="tabs" id="view" role="tablist" aria-label="Dashboard view">
+    <button type="button" role="tab" data-v="growth">Growth</button>
+    <button type="button" role="tab" data-v="live">Live</button>
   </div>
 
   <section class="health" id="health" aria-label="Show health"></section>
-  <div class="hero" id="hero"></div>
-  <div class="strip" id="strip"></div>
-  <div class="panel" id="panel" style="display:none"></div>
-  <div class="compound" id="compound" style="display:none"></div>
-
-  <div class="controls">
-    <span class="seg growth-only" id="mode">
-      <button data-v="standings">Standings</button>
-      <button data-v="race">Pacing race</button>
-    </span>
-    <button class="toggle traj-only" id="bydate">by date</button>
-    <button class="reset" id="reset">reset view</button>
+  <div class="overview" id="overview">
+    <div class="hero" id="hero"></div>
+    <div class="compound" id="compound" style="display:none"></div>
   </div>
 
   <div id="chartcard">
     <div class="chead">
-      <span class="ct" id="ctitle"></span>
-      <span class="cs" id="cscope"></span>
-      <button class="toggle tbtn" id="tbtn">table</button>
+      <div class="chart-copy"><span class="ct" id="ctitle"></span><span class="cs" id="cscope"></span></div>
+      <div class="controls">
+        <span class="seg growth-only" id="mode">
+          <button type="button" data-v="standings">Totals</button>
+          <button type="button" data-v="race">Over time</button>
+        </span>
+        <button type="button" class="toggle traj-only" id="bydate">Dates</button>
+        <button type="button" class="toggle tbtn" id="tbtn">Data table</button>
+        <button type="button" class="reset" id="reset">Reset</button>
+      </div>
     </div>
     <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt"></div></div>
     <div id="tablebox"></div>
     <div class="emptynote" id="emptynote" style="display:none"></div>
   </div>
 
-  <h2>What the data says</h2>
+  <details class="episode-browser" id="episodebrowser">
+    <summary>Episodes</summary>
+    <div class="strip" id="strip"></div>
+  </details>
+  <div class="panel" id="panel" style="display:none"></div>
+
+  <h2>What matters</h2>
   <div class="insights" id="insights"></div>
 
   <details class="about">
@@ -341,7 +373,7 @@
 </div>
 
 <div id="drill"><div class="dcard">
-  <div class="dhead"><span class="h" id="dtitle"></span><button class="x" id="dclose">×</button></div>
+  <div class="dhead"><span class="h" id="dtitle"></span><button type="button" class="x" id="dclose" aria-label="Close feedback">×</button></div>
   <div class="dtabs" id="dtabs"></div>
   <div class="dlist" id="dlist"></div>
 </div></div>
@@ -362,7 +394,7 @@ const PALETTE = ["#6b7a94", "#8e4ce0", "#5eead4", "#e6c74a", "#ff5d8f", "#59b0ff
 const color = (e) => PALETTE[(e.ep - 1) % PALETTE.length];
 const NEWEST = EPS[EPS.length - 1];
 const FONT = getComputedStyle(document.body).fontFamily;
-if (window.Chart) { Chart.defaults.font.family = FONT; Chart.defaults.font.size = 13; Chart.defaults.animation.duration = 300; }
+if (window.Chart) { Chart.defaults.font.family = FONT; Chart.defaults.font.size = 14; Chart.defaults.animation.duration = 300; }
 
 // @ridd_design's near-white #d7dbe0 (chroma 0.008, the brightest mark on the
 // page — read as "highlighted" in every bar) stepped down to a true light
@@ -413,6 +445,22 @@ function sum(byDest) { let t = 0; for (const k of YT_KEYS) t += (byDest[k]?.view
 function splitOf(byDest) { const o = {}; for (const k of YT_KEYS) o[k] = byDest[k]?.views || 0; return o; }
 function splitDelta(cur, prev) { const o = {}; for (const k of YT_KEYS) o[k] = (cur[k]?.views || 0) - (prev?.[k]?.views || 0); return o; }
 function fmtDate(ms) { return new Date(ms - PHX).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); }
+const ORDINAL_DAY = ["", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth", "nineteenth", "twentieth", "twenty-first", "twenty-second", "twenty-third", "twenty-fourth", "twenty-fifth", "twenty-sixth", "twenty-seventh", "twenty-eighth", "twenty-ninth", "thirtieth", "thirty-first"];
+const MONTH_NAME = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function phoenixDateKey(value = Date.now()) {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Phoenix", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date(value));
+  const take = (type) => parts.find(part => part.type === type)?.value;
+  return `${take("year")}-${take("month")}-${take("day")}`;
+}
+function dateInWords(dateKey) {
+  const [, month, day] = dateKey.split("-").map(Number);
+  return `${MONTH_NAME[month - 1]} ${ORDINAL_DAY[day]}`;
+}
+function relativeDayWords(dateKey) {
+  const today = phoenixDateKey();
+  const days = Math.round((Date.parse(`${today}T12:00:00Z`) - Date.parse(`${dateKey}T12:00:00Z`)) / DAY);
+  return days === 0 ? "today" : days === 1 ? "yesterday" : dateInWords(dateKey);
+}
 function kfmt(n) { if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k"; return String(Math.round(n)); }
 function nfmt(n) { return n.toLocaleString("en-US"); }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
@@ -421,8 +469,8 @@ function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 function heroMarker(e) {
   const tvi = e.latest.totalViewsInfo || {};
   if (!tvi.includesPlays) return "YT only";
-  if (tvi.partial) return `◐${tvi.have}/${tvi.total}`;
-  if (tvi.stale && tvi.asOf) return `→${tvi.asOf.slice(5, 10).replace("-", "/")}`;
+  if (tvi.partial) return "some X plays missing";
+  if (tvi.stale && tvi.asOf) return "X plays are old";
   return "";
 }
 
@@ -437,10 +485,14 @@ function ratingBadge(e, cls) {
   const r = ratingOf(e);
   if (!r) return "";
   const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
+  const isHero = cls?.split(/\s+/).includes("hero");
   // marks: * = partial basis, ~ = provisional. ◐ is reserved for X-plays
   // coverage on totals — one glyph, one meaning (taste audit F2).
   const marks = `${partial ? ` <span class="pm">*</span>` : ""}${r.provisional ? ` <span class="pm">~</span>` : ""}`;
-  return `<span class="rb${r.rank === 1 && r.n > 1 ? " top" : ""}${cls ? " " + cls : ""}" data-rslug="${esc(e.slug)}" aria-label="episode rating">#${r.rank} of ${r.n}${marks}</span>`;
+  const spoken = [`Episode rating ${r.rank} of ${r.n}.`];
+  if (partial) spoken.push("Some checks are not in yet.");
+  if (r.provisional) spoken.push("The rating is still settling.");
+  return `<span class="rb${r.rank === 1 && r.n > 1 ? " top" : ""}${cls ? " " + cls : ""}" data-rslug="${esc(e.slug)}" tabindex="${isHero ? "0" : "-1"}" aria-label="${esc(spoken.join(" "))}">#${r.rank} of ${r.n}${isHero ? "" : marks}</span>`;
 }
 
 /* rating tooltip (owner request 2026-08-22): every badge explains itself on
@@ -485,7 +537,8 @@ function sameAgeSub(e) {
   peers.sort((a,b)=>a-b);
   const med = peers[Math.floor(peers.length/2)];
   if (med <= 0) return null;
-  const cur = e.latest.ytTotal ?? 0;
+  const cur = e.latest.ytTotal;
+  if (!Number.isFinite(cur)) return null;
   return {
     pct: Math.round(((cur - med) / med) * 100),
     n: peers.length,
@@ -510,20 +563,30 @@ function healthTrend(points) {
 
 function buildHealth() {
   const el = document.getElementById("health");
+  const evidenceWasOpen = el.querySelector(".health-evidence")?.open === true;
   const h = DATA.health;
   if (!h || !Number.isFinite(h.score) || !h.headline || !Array.isArray(h.pros) || !Array.isArray(h.cons)) {
     el.className = "health empty";
     el.innerHTML = "Health update is not available yet.";
     return;
   }
-  const saved = new Date(`${h.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  const saved = relativeDayWords(h.date);
   const bullets = (rows) => rows.map(item => `<li>${esc(typeof item === "string" ? item : item.text)}</li>`).join("");
   const trend = healthTrend(h.trend?.points);
+  const readState = h.readState === "early" ? " · Early read" : "";
   el.className = "health";
-  el.innerHTML = `<div><div class="eyebrow">Show health</div><div class="score">${h.score}</div><div class="saved">Saved ${esc(saved)}</div></div>
-    <div><div class="headline">${esc(h.headline)}</div>${trend || `<div class="trend-note">A trend will appear after a week of saved scores.</div>`}</div>
-    <div class="hgroup"><div class="group-title">Helping</div><ul>${bullets(h.pros)}</ul></div>
-    <div class="hgroup"><div class="group-title">Needs work</div><ul>${bullets(h.cons)}</ul></div>`;
+  el.innerHTML = `<div class="health-main">
+    <div class="score" data-fold-number aria-label="Show health ${h.score} out of 100">${h.score}</div>
+    <div><h2>Show health</h2><p class="headline">${esc(h.headline)}</p>
+      <div class="scoretrack" aria-hidden="true"><span style="width:${h.score}%"></span></div>
+      <div class="saved">Updated ${esc(saved)}${readState}</div>
+      <details class="health-evidence"${evidenceWasOpen ? " open" : ""}>
+        <summary>Why this score</summary>
+        <div class="evidence"><div><h3>Helping</h3><ul>${bullets(h.pros)}</ul></div>
+        <div><h3>Needs work</h3><ul>${bullets(h.cons)}</ul></div></div>
+        ${trend}
+      </details>
+    </div></div>`;
 }
 
 /* ================= hero ================= */
@@ -533,53 +596,35 @@ function buildHero() {
   const e = NEWEST;
   const isLive = state.view === "live";
   const c = color(e);
-  let html = `<div class="main"><div class="idrow">
-    <span class="ep"><span class="dot" style="background:${c}"></span>E${e.ep} · latest episode</span>
-    <span class="ttl">${esc(short(e.title))}</span></div>`;
+  let html = `<div class="main"><h2>${esc(short(e.title))}</h2>`;
 
-  // Verdict lines carry only JUDGMENT — never numbers the hero already shows
-  // (critic re-review: the old pace-rank text duplicated the hero ~60%).
   if (isLive) {
     if (e.live) {
-      html += `<div class="big">${e.live.peak} <small>peak live viewers</small></div>`;
-      html += `<div class="sub">avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat messages · ${e.live.durationMin ?? "?"} min</div>`;
-      const withLive = EPS.filter(x => x.live);
-      if (withLive.length > 1) {
-        const priors = withLive.filter(x => x.slug !== e.slug).map(x => x.live.peak).sort((a,b)=>a-b);
-        const med = priors[Math.floor(priors.length/2)];
-        const rank = withLive.filter(x => x.live.peak > e.live.peak).length + 1;
-        html += `<div class="verdict">#${rank} turnout of ${withLive.length} episodes; the typical peak is ${med}.</div>`;
-      }
+      html += `<div class="metricline"><div class="big"><span data-fold-number>${e.live.peak}</span> <small>peak live viewers</small></div></div>`;
     } else {
-      html += `<div class="big"><small>no live data for this episode</small></div>`;
+      html += `<div class="unavailable">Live data is not available for this episode.</div>`;
     }
   } else {
     const mk = heroMarker(e);
-    const tv = e.latest.totalViews ?? e.latest.ytTotal ?? 0;
-    // the rating is the headline feature — it rides next to the hero number as
-    // a badge (taste audit F3); the verdict line below keeps the caveats
-    html += `<div class="big">${nfmt(tv)} <small>total views</small>${mk ? `<span class="mk">${mk}</span>` : ""}${ratingBadge(e, "hero")}</div>`;
-    html += `<div class="sub">${nfmt(e.latest.ytTotal ?? 0)} YouTube + ${nfmt(e.latest.xPlays ?? 0)} X plays · X reach ${kfmt(e.latest.xImpressions ?? 0)}</div>`;
-    // verdict carries judgment only — the badge next to the hero number already
-    // says "#x of N", so the verdict must not restate it (critic 2026-08-22)
-    const r = ratingOf(e);
-    const pace = sameAgeSub(e);
-    let vtext;
-    if (r && r.score != null) {
-      const pct = Math.round(Math.abs(r.score - 1) * 100);
-      const perf = pct <= 5 ? "Performing right at the show's typical level" : r.score > 1 ? `Performing about ${pct}% above a typical episode` : `Performing about ${pct}% below a typical episode`;
-      vtext = `${perf}${r.provisional ? ` — not final until ${freezeDateOf(e)}` : ""}.`;
-    } else if (r && r.n === 1) {
-      vtext = `First episode — nothing to compare against yet.`;
-    } else if (pace) {
-      vtext = `YouTube pace: #${pace.rank} of ${pace.of} at this age.`;
+    const tv = e.latest.totalViews ?? e.latest.ytTotal;
+    const totalText = tv == null ? `<span class="unavailable">Total views are not available.</span>` : `<span class="big"><span data-fold-number>${nfmt(tv)}</span> <small>total views</small></span>`;
+    html += `<div class="metricline">${totalText}${ratingBadge(e, "hero")}${mk ? `<span class="mk">${mk}</span>` : ""}</div>`;
+    const yt = e.latest.ytTotal;
+    const x = e.latest.xPlays;
+    const splitReady = Number.isFinite(tv) && Number.isFinite(yt) && Number.isFinite(x) && tv > 0 && yt + x === tv;
+    if (splitReady) {
+      html += `<div class="platform-bar" role="img" aria-label="YouTube ${nfmt(yt)} views. X ${nfmt(x)} plays.">
+        <span class="yt" style="flex:${yt}"></span><span class="x" style="flex:${x}"></span></div>
+        <div class="splitlabels" aria-hidden="true"><span>YouTube</span><span>X</span></div>`;
     } else {
-      vtext = `Too early to compare — no prior episode has data this young.`;
+      html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
-    html += `<div class="verdict">${vtext}</div>`;
+    const r = ratingOf(e);
+    const missing = r && (r.coverage?.missingPillars || []).length > 0;
+    if (r?.provisional || missing) html += `<div class="state">Rating is still settling${missing ? "; one check is not in yet" : ""}.</div>`;
   }
 
-  html += `<div class="chiprow" id="herochips"></div></div>`;
+  html += `</div>`;
   // Sparkline is live-view only. In growth view it plotted YouTube-only
   // history on the total-views hero — spotlighting one platform on a card
   // about the whole picture (owner call, 2026-08-22). A total-views history
@@ -587,34 +632,6 @@ function buildHero() {
   // and we never fabricate history.
   if (isLive) html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">concurrent viewers by minute</div></div>`;
   el.innerHTML = html;
-
-  const chips = el.querySelector("#herochips");
-  if (!isLive) {
-    const pace = sameAgeSub(e);
-    if (pace) {
-      const chip = document.createElement("span");
-      chip.className = `chip static pace ${pace.pct > 0 ? "up" : pace.pct < 0 ? "down" : ""}`;
-      chip.textContent = pace.pct === 0 ? `= typical at this age (YT)` : `${pace.pct > 0 ? "▲" : "▼"} ${Math.abs(pace.pct)}% vs typical at this age (YT)`;
-      chips.appendChild(chip);
-    }
-
-  }
-  addSentimentChip(chips, e);
-  // Anomaly flags belong to the episode that owns them (owner call 2026-08-22:
-  // an E3 promo-outlier chip on E6's hero card is noise). If the LATEST episode
-  // is itself an outlier, say so here; other episodes' flags live in the
-  // insights panel and on their own detail panels.
-  {
-    const own = DATA.insights.find(i => i.id === `anomaly-${e.slug}`);
-    if (own && !isLive) {
-      const chip = document.createElement("span");
-      chip.className = "chip alert";
-      chip.textContent = "⚠ promo outlier — this episode";
-      chip.title = own.text;
-      chip.addEventListener("click", () => applyChartState(own.chartState || {}));
-      chips.appendChild(chip);
-    }
-  }
 
   if (sparkChart) { sparkChart.destroy(); sparkChart = null; }
   if (!isLive) return;
@@ -633,17 +650,6 @@ function buildHero() {
   }
 }
 
-function addSentimentChip(container, e) {
-  const c = e.comments;
-  if (!c || state.view === "live") return;
-  const chip = document.createElement("span");
-  chip.className = "chip senti";
-  chip.innerHTML = `<b style="color:var(--good)">${c.enjoyCount}</b> enjoyed · <b style="color:var(--bad)">${c.complaintCount}</b> didn’t · ${c.uniqueCommenters} ${c.uniqueCommenters === 1 ? "person" : "people"} commented`;
-  chip.title = "audience feedback — click to read it";
-  chip.addEventListener("click", () => openDrill(e.slug, "all"));
-  container.appendChild(chip);
-}
-
 /* ================= strip ================= */
 function buildStrip() {
   const isLive = state.view === "live";
@@ -651,39 +657,32 @@ function buildStrip() {
   strip.innerHTML = "";
   // oldest → newest, left → right: the latest episode is always far right (locked rule)
   for (const e of EPS) {
-    const it = document.createElement("div");
+    const it = document.createElement("button");
+    it.type = "button";
     it.className = "sitem";
     it.dataset.slug = e.slug;
-    let num = "", r3 = "";
+    let num = "";
+    let spokenValue = "Data not available.";
     if (isLive) {
-      num = e.live ? `<span class="num">${e.live.peak}</span> peak` : `<span class="num">–</span>`;
-      r3 = e.live ? `<span>avg ${e.live.avg} · ${nfmt(e.live.chatMessages)} chat</span>` : `<span>no live data</span>`;
+      if (e.live) {
+        num = `<span class="num" data-fold-number>${e.live.peak}</span> peak`;
+        spokenValue = `${e.live.peak} peak live viewers.`;
+      } else {
+        num = `<span class="num">not available</span>`;
+      }
     } else {
       const mk = heroMarker(e);
       // number rides the identity row; the unit is stated once in the hero
-      num = `<span class="num">${kfmt(e.latest.totalViews ?? e.latest.ytTotal ?? 0)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}${ratingBadge(e)}`;
-      const pace = sameAgeSub(e);
-      // No reach on the small cards (owner call 2026-08-22): sitting next to
-      // the ▲/▼ it read like the arrow graded reach. The arrow grades pace —
-      // YouTube views vs the typical episode at the same age — so it now says
-      // "vs median" outright. Reach lives in the detail panel, clearly labeled.
-      // two ranking systems must not contradict on one card (taste audit F4):
-      // a provisional rating owns the bottom line; "no same-age peer yet" only
-      // shows when there is genuinely nothing else to say
-      const rr = ratingOf(e);
-      r3 = pace
-        ? (pace.pct === 0 ? `<span title="even with the typical episode at this age (YouTube views)">= typical at this age</span>`
-          : `<span class="pace ${pace.pct > 0 ? "up" : "down"}" title="YouTube views vs the typical episode at this age">${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical</span>`)
-        : rr && rr.provisional ? `<span>Not final — settles ${freezeDateOf(e)}</span>`
-        : rr && rr.n === 1 ? `<span>first episode</span>`
-        : `<span>no same-age peer yet</span>`;
+      const total = e.latest.totalViews ?? e.latest.ytTotal;
+      num = total == null ? `<span class="num">not available</span>${ratingBadge(e)}` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}${ratingBadge(e)}`;
+      if (total != null) spokenValue = `${nfmt(total)} total views.${ratingOf(e) ? ` Rating ${ratingOf(e).rank} of ${ratingOf(e).n}.` : ""}`;
     }
     // "late reg" flag removed from cards (owner call 2026-08-22) — the
     // partial-history caveat lives in the detail panel and About, where it
     // has room to mean something.
-    it.innerHTML = `<div class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</div>
-      <div class="t">${esc(short(e.title))}</div>
-      <div class="r3">${r3}</div>`;
+    it.innerHTML = `<span class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</span>
+      <span class="t">${esc(short(e.title))}</span>`;
+    it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
     it.addEventListener("click", () => {
       if (state.panel === e.slug) { state.panel = null; state.solo = null; }
       else { state.panel = e.slug; state.solo = e.slug; }
@@ -705,12 +704,13 @@ function buildPanel() {
   // late-reg explainer live in "About this data" — never repeated here.
   const bd = e.latest.byDest || {};
   const tvi = e.latest.totalViewsInfo || {};
-  let html = `<button class="x" id="panelx" title="close">×</button>`;
+  let html = `<button type="button" class="x" id="panelx" aria-label="Close episode details">×</button>`;
   html += `<div class="h"><span class="dot" style="background:${color(e)}"></span>${esc(label(e))}
     <span style="color:var(--t3);font-weight:400;font-size: 13px">· ${e.premiere.slice(5).replace("-", "/")}</span>
     ${e.partialHistory ? `<span class="pchip" title="tracking started late for this episode — totals are right, early weekly history is missing">tracked late</span>` : ""}</div>`;
   html += `<div class="grid"><div>`;
-  html += `<div class="row head">Total views<span class="val big">${nfmt(e.latest.totalViews ?? 0)}</span></div>`;
+  const panelTotal = e.latest.totalViews ?? e.latest.ytTotal;
+  html += `<div class="row head">Total views<span class="val big">${panelTotal == null ? "not available" : nfmt(panelTotal)}</span></div>`;
   const rows = [
     ["yt:joindiveclub", bd["yt:joindiveclub"]?.views],
     ["yt:designertom", bd["yt:designertom"]?.views],
@@ -724,9 +724,9 @@ function buildPanel() {
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
   else if (!tvi.includesPlays) html += `<div class="note">YT only — X plays unavailable</div>`;
   html += `</div><div>`;
-  html += `<div class="row head">X reach <span class="hint">not in total</span><span class="val big">${nfmt(e.latest.xImpressions ?? 0)}</span></div>`;
-  html += `<div class="row">@ridd_design<span class="val">${nfmt(bd["x:ridd_design"]?.views ?? 0)}</span></div>`;
-  html += `<div class="row">@designertom<span class="val">${nfmt(bd["x:designertom"]?.views ?? 0)}</span></div>`;
+  html += `<div class="row head">X reach <span class="hint">not in total</span><span class="val big">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</span></div>`;
+  html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
+  html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
   if (e.transcript) {
     html += `<div class="row"><a href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt" style="color:var(--accent)">Download transcript</a><span class="val hint">timestamped</span></div>`;
   }
@@ -739,6 +739,19 @@ function buildPanel() {
     html += `<div class="row">duration<span class="val">${e.live.durationMin ?? "–"} min</span></div>`;
   }
   html += `</div></div>`;
+
+  // Same-age YouTube pace belongs in the click layer, not on every glance
+  // card. It uses the same stored snapshots as the pacing chart; nothing is
+  // guessed when no comparable history exists.
+  if (state.view !== "live") {
+    const pace = sameAgeSub(e);
+    const paceText = !pace
+      ? `<span class="hint">no same-age comparison yet</span>`
+      : pace.pct === 0
+        ? "typical"
+        : `${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical`;
+    html += `<div class="sect"><div class="row head">YouTube views at the same age<span class="val big">${paceText}</span></div></div>`;
+  }
 
   // W9 rating: one row per pillar — underlying number + percentile, plain words.
   // Missing pillars say so; they are never rendered as zeros.
@@ -823,39 +836,29 @@ function buildCompound() {
   const enriched = rows.map(r => ({ ...r, e: EPS.find(x => x.slug === r.slug) })).filter(r => r.e);
   const vals = enriched.filter(r => r.value != null);
   const max = Math.max(1, ...vals.map(r => r.value));
-  // verdict in plain words — same-unit comparison only (YT views, week 1)
+  // Direction stays hidden until three real first weeks exist. When it does
+  // appear, the visual carries the exact stored values through accessible
+  // labels without adding another row of glance-layer numbers.
   let verdict, cls = "";
   if (vals.length < 3) {
-    verdict = "Not enough clean first weeks to call a trend yet.";
+    const dots = Array.from({ length: 3 }, (_, index) => `<i class="${index < vals.length ? "on" : ""}"></i>`).join("");
+    el.innerHTML = `<div class="readiness" aria-hidden="true">${dots}</div><div class="cv2">Growth trend isn’t ready yet.</div>`;
+    el.style.display = "";
+    return;
   } else {
     const last = vals[vals.length - 1], prev = vals[vals.length - 2];
     const pct = Math.round(((last.value - prev.value) / prev.value) * 100);
-    if (Math.abs(pct) <= 5) { verdict = `E${last.e.ep}'s first week matched E${prev.e.ep}'s (±${Math.abs(pct)}%) — week-1 audience is holding flat.`; }
-    else if (pct > 0) { verdict = `E${last.e.ep}'s first week beat E${prev.e.ep}'s by ${pct}% — each launch is starting bigger.`; cls = "up"; }
-    else { verdict = `E${last.e.ep}'s first week came in ${Math.abs(pct)}% under E${prev.e.ep}'s — launches aren't growing yet.`; cls = "down"; }
-  }
-  // IA rule (owner, 2026-08-22): no empty-slot parade. Bars render only for
-  // episodes with a real week-1 number, and only once ≥3 exist — until then
-  // this section is one sentence, not a chart of missing data.
-  const missing = [];
-  const lateEps = enriched.filter((r) => r.value == null && !/pending/i.test(r.note || "")).map((r) => `E${r.e.ep}`);
-  if (lateEps.length) missing.push(`${lateEps.join("/")} registered late — no clean week 1`);
-  for (const r of enriched.filter((r) => r.value == null && /pending/i.test(r.note || ""))) {
-    const end = new Date(premiereMs(r.premiere) + 7 * DAY);
-    missing.push(`E${r.e.ep} completes ${String(end.getUTCMonth() + 1).padStart(2, "0")}/${String(end.getUTCDate()).padStart(2, "0")}`);
+    if (Math.abs(pct) <= 5) { verdict = "First-week audience is holding steady."; }
+    else if (pct > 0) { verdict = "Each launch is starting stronger."; cls = "up"; }
+    else { verdict = "New launches are starting softer."; cls = "down"; }
   }
   let bars = "";
-  if (vals.length >= 3) {
-    for (const r of vals) {
-      bars += `<div class="cbar" title="${r.value} YouTube views in week 1">
-        <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div></div>
-        <div class="bl" style="color:${color(r.e)}">E${r.e.ep}</div><div class="bv">${kfmt(r.value)}</div></div>`;
-    }
+  for (const r of vals) {
+    bars += `<div class="cbar" role="img" aria-label="${esc(short(r.e.title))}: ${nfmt(r.value)} YouTube views in its first week">
+      <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div></div></div>`;
   }
-  el.innerHTML = `<div class="ch">Is the show growing?</div>
-    <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>
-    ${bars ? `<div class="bars">${bars}</div>` : ""}
-    <div class="note">YouTube views in each episode's first 7 days · clean weeks: ${vals.length} of ${enriched.length}${missing.length ? " · " + missing.join(" · ") : ""}</div>`;
+  el.innerHTML = `<h2>First-week growth</h2><div class="bars">${bars}</div>
+    <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>`;
   el.style.display = "";
 }
 
@@ -919,6 +922,8 @@ function showRtt(badge) {
 function hideRtt() { rtt.style.opacity = 0; }
 document.addEventListener("mouseover", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); });
 document.addEventListener("mouseout", (ev) => { if (ev.target.closest?.(".rb")) hideRtt(); });
+document.addEventListener("focusin", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); });
+document.addEventListener("focusout", (ev) => { if (ev.target.closest?.(".rb")) hideRtt(); });
 document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); else hideRtt(); });
 document.getElementById("dclose").addEventListener("click", closeDrill);
 document.getElementById("drill").addEventListener("click", (ev) => { if (ev.target.id === "drill") closeDrill(); });
@@ -937,13 +942,13 @@ document.addEventListener("click", (ev) => {
 
 /* ================= chart titles / scope (unit trap fix) ================= */
 function chartTitle() {
-  if (state.view === "live") return ["Concurrent viewers by minute", "from Restream · newest episode highlighted, priors in gray — click a strip card to focus one"];
+  if (state.view === "live") return ["Live viewers", "By minute"];
   if (state.mode === "standings") {
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
-    return ["Total views by episode", "YouTube views + X broadcast plays (all video playback)" + (anyPartial ? " · ◐ = some X play counts are missing" : "")];
+    return ["Episode views", "YouTube + X playback" + (anyPartial ? " · some X plays missing" : "")];
   }
-  if (state.mode === "race") return ["Pacing race — YouTube views only", "newest highlighted, priors gray · ▲ on the floor = announce post · click any card to focus it · total so far " + (state.byDate ? "by date" : "since premiere")];
-  return ["Weekly gains — YouTube views only", "views gained per week, episodes side by side"];
+  if (state.mode === "race") return ["Views after release", `YouTube only · ${state.byDate ? "by date" : "since release"}`];
+  return ["Weekly YouTube views", "Episodes side by side"];
 }
 
 /* ================= charts ================= */
@@ -989,7 +994,7 @@ const endLabels = {
     });
     items.sort((a, b) => a.y - b.y);
     ctx.save();
-    ctx.font = `700 13px ${FONT}`;
+    ctx.font = `700 14px ${FONT}`;
     for (const it of items) {
       let y = it.y;
       for (const p of placed) if (Math.abs(y - p) < 15) y = p + 15;
@@ -1023,8 +1028,9 @@ const barTotals = {
       if (!bar) return;
       const tvi = e.latest.totalViewsInfo || {};
       const mark = tvi.partial ? " ◐" : "";
+      const total = e.latest.totalViews ?? e.latest.ytTotal;
       ctx.fillStyle = state.solo && state.solo !== e.slug ? DIMLINE : "#e8ecf4";
-      ctx.fillText(nfmt(e.latest.totalViews ?? 0) + mark, bar.x + 8, bar.y);
+      ctx.fillText(total == null ? "not available" : nfmt(total) + mark, bar.x + 8, bar.y);
     });
     ctx.restore();
   }
@@ -1114,10 +1120,10 @@ let chart;
 function renderStandings() {
   const ordered = [...EPS].reverse(); // newest bar on top — the anchor position
   const SEGS = [
-    ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views || 0],
-    ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views || 0],
-    ["x:ridd_design", (e) => e.latest.byDest["x:ridd_design"]?.plays || 0],
-    ["x:designertom", (e) => e.latest.byDest["x:designertom"]?.plays || 0],
+    ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views ?? null],
+    ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views ?? null],
+    ["x:ridd_design", (e) => e.latest.byDest["x:ridd_design"]?.plays ?? null],
+    ["x:designertom", (e) => e.latest.byDest["x:designertom"]?.plays ?? null],
   ];
   // base fills at ~85% alpha: softens the saturated-block read while the
   // 1.5px surface gaps keep segments crisp
@@ -1496,15 +1502,22 @@ function buildAbout() {
 function syncUI() {
   const isLive = state.view === "live";
   const isTraj = !isLive && state.mode !== "standings";
-  for (const b of document.querySelectorAll("#view button")) b.classList.toggle("on", b.dataset.v === state.view);
+  for (const b of document.querySelectorAll("#view button")) {
+    const selected = b.dataset.v === state.view;
+    b.classList.toggle("on", selected);
+    b.setAttribute("aria-selected", String(selected));
+  }
   for (const b of document.querySelectorAll("#mode button")) b.classList.toggle("on", b.dataset.v === state.mode);
+  document.getElementById("overview").classList.toggle("single", isLive);
   document.querySelector("#mode").style.display = isLive ? "none" : "";
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
   bd.classList.toggle("on", state.byDate);
   document.getElementById("tbtn").classList.toggle("on", state.table);
-  document.getElementById("tbtn").textContent = state.table ? "chart" : "table";
+  document.getElementById("tbtn").textContent = state.table ? "Chart" : "Data table";
   document.getElementById("chartbox").style.display = state.table ? "none" : "";
+  const changed = state.table || state.panel || state.solo || (!isLive && (state.mode !== "standings" || state.byDate));
+  document.getElementById("reset").style.display = changed ? "" : "none";
   for (const c of document.querySelectorAll(".sitem")) {
     c.classList.toggle("solo", state.solo === c.dataset.slug);
     c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
@@ -1526,9 +1539,17 @@ document.getElementById("reset").addEventListener("click", () => {
   state.mode = "standings"; state.byDate = false; state.solo = null; state.panel = null; state.table = false;
   render();
 });
+document.getElementById("episodebrowser").addEventListener("toggle", (event) => {
+  if (!event.currentTarget.open || window.innerWidth > 720) return;
+  requestAnimationFrame(() => {
+    const strip = document.getElementById("strip");
+    strip.scrollLeft = strip.scrollWidth;
+  });
+});
 
-document.getElementById("stamp").textContent =
-  `${EPS.length} episodes · data as of ${DATA.generatedAt.replace("T"," ").slice(0,16)} UTC`;
+const stamp = document.getElementById("stamp");
+stamp.textContent = `Data refreshed ${relativeDayWords(phoenixDateKey(DATA.generatedAt))}`;
+stamp.title = `Exact refresh: ${DATA.generatedAt}`;
 
 buildAbout();
 buildInsightsPanel();

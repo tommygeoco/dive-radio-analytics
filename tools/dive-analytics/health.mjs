@@ -599,10 +599,18 @@ export function projectHealth(store, { now = Date.now() } = {}) {
   if (!Number.isFinite(latest.score) || typeof latest.headline !== "string" || !Array.isArray(latest.pros) || !Array.isArray(latest.cons)) {
     throw new Error("latest health entry is incomplete");
   }
+  // The page needs to say when today's score is still an early read, but it
+  // must not guess that state from model-written prose. The health entry
+  // already records unavailable checks and facts that explicitly require an
+  // early-data warning, so project that state as a deterministic field.
+  const hasUnavailableCheck = Object.values(latest.subScores || {}).some((section) =>
+    section?.score == null || Object.values(section?.measures || {}).some((measure) => measure?.score == null));
+  const hasEarlyFact = (latest.facts || []).some((fact) => fact?.requiredPhrase === "still early");
   return {
     date: latest.date,
     dataThrough: latest.dataThrough || null,
     score: latest.score,
+    readState: hasUnavailableCheck || hasEarlyFact ? "early" : "settled",
     headline: latest.headline,
     pros: latest.pros.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     cons: latest.cons.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),

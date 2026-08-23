@@ -631,6 +631,14 @@ function premiereMs(dateStr) {
       if (JSON.stringify(data.health) !== JSON.stringify(expectedProjection)) {
         bad++; fail("health: data.json does not exactly project the latest saved entry and real history");
       }
+      const latestEntry = store.entries.filter((entry) => entry.date <= currentDate).at(-1);
+      const expectedReadState = Object.values(latestEntry?.subScores || {}).some((section) =>
+        section?.score == null || Object.values(section?.measures || {}).some((measure) => measure?.score == null))
+        || (latestEntry?.facts || []).some((fact) => fact?.requiredPhrase === "still early")
+        ? "early" : "settled";
+      if (data.health?.readState !== expectedReadState) {
+        bad++; fail("health: the public early/settled state does not match the saved checks");
+      }
       if (store.entries.length < 7 && data.health?.trend != null) { bad++; fail("health: trend surfaced before seven real saved days exist"); }
       if (store.entries.length >= 7) {
         const expectedPoints = store.entries.filter((entry) => entry.date <= currentDate).map((entry) => ({ date: entry.date, score: entry.score }));
@@ -689,13 +697,109 @@ function premiereMs(dateStr) {
   if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
     bad++; fail("dashboard: first-week trend verdict is not gated until three clean weeks exist");
   }
-  if ((html.match(/pct\s*<=\s*5/g) || []).length < 2) {
-    bad++; fail("dashboard: rating verdict does not suppress differences inside the five-point noise band");
+  if (!/pct\s*<=\s*5/.test(html) || !/Math\.abs\(pct\)\s*<=\s*5/.test(html)) {
+    bad++; fail("dashboard: rating and growth conclusions do not suppress small differences");
   }
   if (/provisional\s+—\s+settles/i.test(html)) {
     bad++; fail('dashboard: strip uses "provisional" instead of the plain "Not final" label');
   }
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks and unfinished ratings use plain words");
+}
+
+// --- 1k. W11 fold budget and progressive-disclosure contract ---
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const between = (start, end) => {
+    const from = html.indexOf(start);
+    const to = html.indexOf(end, from + start.length);
+    return from >= 0 && to > from ? html.slice(from, to) : "";
+  };
+  const healthSource = between("function buildHealth()", "/* ================= hero");
+  const heroSource = between("function buildHero()", "/* ================= strip");
+  const stripSource = between("function buildStrip()", "/* ================= detail panel");
+  const panelSource = between("function buildPanel()", "/* ================= drilldown modal");
+  const compoundSource = between("function buildCompound()", "function renderDrill()");
+
+  if (!healthSource || !heroSource || !stripSource || !panelSource || !compoundSource) {
+    bad++; fail("fold trim: could not locate every dashboard surface in index.html");
+  } else {
+    if ((healthSource.match(/data-fold-number/g) || []).length !== 1) {
+      bad++; fail("fold trim: health must contribute exactly its saved score to the glance-number budget");
+    }
+    if ((heroSource.match(/data-fold-number/g) || []).length !== 2) {
+      bad++; fail("fold trim: each hero tab must expose only its one primary number");
+    }
+    if ((stripSource.match(/data-fold-number/g) || []).length !== 2) {
+      bad++; fail("fold trim: each episode card must expose exactly one tagged glance number in either tab");
+    }
+    if (!/const evidenceWasOpen = el\.querySelector\("\.health-evidence"\)\?\.open === true/.test(healthSource)
+      || !healthSource.includes('<details class="health-evidence"')
+      || !healthSource.includes("bullets(h.pros)") || !healthSource.includes("bullets(h.cons)")
+      || /trend-note/.test(healthSource)) {
+      bad++; fail("fold trim: health evidence must start closed, preserve an owner-opened state, and contain every exact saved fact without a waiting placeholder");
+    }
+    if (!/h\.readState === "early"/.test(healthSource) || !/Updated \$\{esc\(saved\)\}/.test(healthSource)) {
+      bad++; fail("fold trim: the health surface does not show its saved age and projected early-read state");
+    }
+    const episodeBrowser = html.match(/<details class="episode-browser" id="episodebrowser"([^>]*)>/)?.[1];
+    if (episodeBrowser == null || /\bopen\b/.test(episodeBrowser)) {
+      bad++; fail("fold trim: the episode-card browser must start closed so its comparison numbers stay in the click layer");
+    }
+    if (html.indexOf('id="chartcard"') > html.indexOf('id="episodebrowser"')) {
+      bad++; fail("fold trim: episode browsing must sit below the primary chart");
+    }
+    if (!/document\.createElement\("button"\)/.test(stripSource) || !/it\.type = "button"/.test(stripSource)) {
+      bad++; fail("fold trim: episode choices are not real keyboard-operable buttons");
+    }
+    const latest = data.episodes?.at(-1);
+    const latestRatingTokens = data.episodes?.at(-1)?.rating ? 2 : 0;
+    const latestTotal = latest?.latest?.totalViews ?? latest?.latest?.ytTotal;
+    const growthTokens = (latestTotal == null ? 0 : 1) + latestRatingTokens;
+    const liveTokens = Number.isFinite(latest?.live?.peak) ? 1 : 0;
+    const literalBudget = (data.health ? 1 : 0) + Math.max(growthTokens, liveTokens);
+    if (literalBudget > 12) {
+      bad++; fail(`fold trim: ${literalBudget} visible numeric tokens would render in the default overview (limit 12)`);
+    }
+    if (!/const saved = relativeDayWords\(h\.date\)/.test(healthSource)
+      || !/stamp\.textContent = `Data refreshed \$\{relativeDayWords/.test(html)
+      || /E\$\{e\.ep\} · latest episode/.test(heroSource)
+      || /freezeDateOf\(e\)/.test(heroSource)) {
+      bad++; fail("fold trim: dates or episode identifiers still add numeric tokens to the default glance layer");
+    }
+    if (/addSentimentChip|chip\.senti/.test(html) || !/Audience feedback/.test(panelSource)) {
+      bad++; fail("fold trim: audience feedback counts must live only in the click-open episode panel");
+    }
+    if (/sameAgeSub\s*\(/.test(stripSource) || /class=["']r3["']/.test(stripSource)) {
+      bad++; fail("fold trim: pace and status lines still render on the episode cards");
+    }
+    if (!/const pace = sameAgeSub\(e\)/.test(panelSource) || !/YouTube views at the same age/.test(panelSource)) {
+      bad++; fail("fold trim: the removed pace comparison is not present in the click-open episode panel");
+    }
+    if (/data-fold-number|class="(?:bl|bv)"|clean weeks:/.test(compoundSource)) {
+      bad++; fail("fold trim: the growth glance still carries visible counts instead of a quiet readiness state");
+    }
+    if (!/splitReady = Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
+      || /e\.latest\.(?:ytTotal|xPlays) \?\? 0/.test(heroSource)) {
+      bad++; fail("fold trim: the platform bar is not locked to complete stored YouTube and X values");
+    }
+    if (!/missingPillars/.test(heroSource) || !/Rating is still settling/.test(heroSource)) {
+      bad++; fail("fold trim: the compact hero does not explain an unfinished rating in plain words");
+    }
+    if (!html.includes('role="tablist"') || !/setAttribute\("aria-selected"/.test(html)
+      || !/addEventListener\("focusin"[\s\S]*showRtt/.test(html)) {
+      bad++; fail("fold trim: tabs or rating help are not keyboard-readable");
+    }
+  }
+  if (!bad) {
+    const latest = data.episodes?.at(-1);
+    const latestRatingTokens = latest?.rating ? 2 : 0;
+    const latestTotal = latest?.latest?.totalViews ?? latest?.latest?.ytTotal;
+    const growthTokens = (latestTotal == null ? 0 : 1) + latestRatingTokens;
+    const liveTokens = Number.isFinite(latest?.live?.peak) ? 1 : 0;
+    const literalBudget = (data.health ? 1 : 0) + Math.max(growthTokens, liveTokens);
+    ok(`fold trim: ${literalBudget} visible numeric tokens in the default overview; evidence, episodes, feedback, and pace are on demand`);
+  }
 }
 
 // --- warnings: broadcast-resolution latches and plays coverage ---
