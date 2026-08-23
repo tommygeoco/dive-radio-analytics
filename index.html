@@ -182,7 +182,7 @@
   .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
     padding: 14px 18px; margin: 14px 0 12px; position: relative; font-size: 14px;
     animation: panelIn .16s ease-out; }
-  @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .sitem, .insight { transition: none; } #chartbox { transition: none; } }
   .panel .pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 6px 48px; margin-top: 12px; }
   .panel .psec { min-width: 0; padding: 6px 0 10px; }
@@ -253,7 +253,8 @@
   .chead .cs .scopepill { font-weight: 700; color: var(--t1); background: var(--s2);
     border: 1px solid var(--border-strong); border-radius: 6px; padding: 1px 7px; }
   .chart-copy { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  #chartbox { height: 440px; position: relative; }
+  #chartbox { height: 440px; position: relative; transition: height .25s ease; }
+  #chartbox.mini { height: 168px; }
   #tablebox { overflow-x: auto; display: none; }
   /* visible scroll affordance (taste audit F1): macOS hides scrollbars, so a
      clipped column looked cut off instead of scrollable */
@@ -1350,7 +1351,12 @@ function externalTooltip(context) {
 
 let chart;
 function renderStandings() {
-  const ordered = [...EPS].reverse(); // newest bar on top — the anchor position
+  const all = [...EPS].reverse(); // newest bar on top — the anchor position
+  // solo collapse (owner request 2026-08-23): with an episode selected, the
+  // totals chart shrinks to that one bar so the open panel shares the
+  // viewport; clearing the selection restores the full standings
+  const soloRows = state.solo ? all.filter(e => e.slug === state.solo) : [];
+  const ordered = soloRows.length ? soloRows : all;
   const SEGS = [
     ["yt:joindiveclub", (e) => e.latest.byDest["yt:joindiveclub"]?.views ?? null],
     ["yt:designertom", (e) => e.latest.byDest["yt:designertom"]?.views ?? null],
@@ -1380,7 +1386,11 @@ function renderStandings() {
       layout: { padding: { right: 64 } },
       interaction: { mode: "index", axis: "y", intersect: false },
       scales: {
-        x: { stacked: true, beginAtZero: true, ticks: { color: "#8a94a8", callback: v => kfmt(v) }, grid: { color: GRID } },
+        // solo keeps the full-standings scale: the selected bar holds its
+        // length while the others leave, and nothing reads as growth
+        x: { stacked: true, beginAtZero: true,
+          suggestedMax: soloRows.length ? Math.max(...all.map(e => (e.latest.totalViews ?? e.latest.ytTotal) || 0)) : undefined,
+          ticks: { color: "#8a94a8", callback: v => kfmt(v) }, grid: { color: GRID } },
         y: { stacked: true, ticks: { color: "#b7c1d1", font: { weight: 700 } }, grid: { display: false } },
       },
       plugins: {
@@ -1836,7 +1846,11 @@ function syncUI() {
   bd.classList.toggle("on", state.byDate);
   document.getElementById("tbtn").classList.toggle("on", state.table);
   document.getElementById("tbtn").textContent = state.table ? "Chart" : "Data table";
-  document.getElementById("chartbox").style.display = state.table ? "none" : "";
+  const chartbox = document.getElementById("chartbox");
+  chartbox.style.display = state.table ? "none" : "";
+  // solo collapse applies to the totals view only — line views already give
+  // the soloed episode the full canvas
+  chartbox.classList.toggle("mini", !isLive && state.mode === "standings" && !!state.solo && !state.table);
   const changed = state.table || state.panel || state.solo || (!isLive && (state.mode !== "standings" || state.byDate));
   document.getElementById("reset").style.display = changed ? "" : "none";
   for (const c of document.querySelectorAll(".sitem")) {
