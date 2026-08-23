@@ -1409,6 +1409,47 @@ function premiereMs(dateStr) {
   if (!bad) ok(`links: ${eps.filter((e) => e.links).length} episode(s) store destination links — registry-locked, safe URL shapes, panel renders only what is stored`);
 }
 
+// --- 1u. baselines (PRD v7 W19a): one definition of "typical", re-derived and fixture-tested ---
+{
+  let bad = 0;
+  try {
+    execFileSync(process.execPath, [join(HERE, "baselines.test.mjs")], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
+  } catch (err) {
+    bad++; fail(`baselines: fixture test failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
+  }
+  let B = null;
+  try { B = await import(join(TOOL, "baselines.mjs")); }
+  catch (err) { bad++; fail(`baselines: module failed to load — ${err.message}`); }
+  if (B) {
+    const shipped = data.baselines;
+    if (!shipped) { bad++; fail("baselines: data.json carries no baselines projection"); }
+    else {
+      const again = B.computeBaselines(eps);
+      if (JSON.stringify(again) !== JSON.stringify(shipped)) { bad++; fail("baselines: data.baselines does not re-derive from the shipped episodes"); }
+      if (JSON.stringify(shipped.constants) !== JSON.stringify(B.CONSTANTS)) { bad++; fail("baselines: shipped constants differ from baselines.mjs"); }
+      if (shipped.constants.MIN_PEERS < 3) { bad++; fail("baselines: MIN_PEERS below the constitution's small-n rule"); }
+      for (const [slug, a] of Object.entries(shipped.anomaly)) {
+        for (const [unit, u] of Object.entries(a.units)) {
+          if (u.window.includes(slug)) { bad++; fail(`baselines: ${slug} ${unit} outlier window includes itself`); }
+          if (u.tier != null && u.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} ${unit} outlier test ran on ${u.n} peers`); }
+          if (u.flag && a.flagged !== true) { bad++; fail(`baselines: ${slug} ${unit} flags but the episode is not marked flagged`); }
+        }
+        if (a.flagged && a.provisional !== Object.values(a.units).some((u) => u.flag && u.tier !== 1)) { bad++; fail(`baselines: ${slug} provisional stamp disagrees with its tiers`); }
+      }
+      for (const [slug, p] of Object.entries(shipped.pace)) {
+        if (p && p.peers.includes(slug)) { bad++; fail(`baselines: ${slug} pace peers include itself`); }
+        if (p && p.rank != null && p.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} pace ranked on ${p.n} peers`); }
+        if (p && p.rank == null && !p.reason) { bad++; fail(`baselines: ${slug} pace absent without a reason`); }
+        for (const x of p?.peers || []) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: ${slug} pace peers include outlier ${x}`); }
+      }
+      if (shipped.typicalCurve.points && shipped.typicalCurve.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: typical curve drawn from fewer than MIN_PEERS curves"); }
+      for (const x of shipped.typicalCurve.window) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: typical curve includes outlier ${x}`); }
+      if (shipped.watchPct.typical != null && shipped.watchPct.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: watched typical from fewer than MIN_PEERS episodes"); }
+    }
+  }
+  if (!bad) ok(`baselines: fixture test green; data.baselines re-derives — ${Object.values(data.baselines?.anomaly || {}).filter((a) => a.flagged).length} outlier(s), windows exclude self and outliers, nothing below ${data.baselines?.constants?.MIN_PEERS} peers`);
+}
+
 // --- warnings: broadcast-resolution latches and plays coverage ---
 {
   for (const show of registry.shows) {

@@ -13,6 +13,10 @@ import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs
 import { projectHealth } from "./health.mjs";
 import { watchMoments } from "./watch-moments.mjs";
 import { momentKey } from "./moment-summaries.mjs";
+// PRD v7 W19a: the one definition of "typical" — projected as data.baselines
+// so the page, the scorers, and the critic all read the same windows, flags,
+// and constants. No consumer is switched in W19a; this only adds the projection.
+import { computeBaselines } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -302,6 +306,7 @@ export function computeAll({ now = Date.now() } = {}) {
   const commentSummary = attachComments(dive);
   attachEpisodeHealth(dive);
   attachWatch(dive);
+  const baselines = computeBaselines(dive);
 
   // W15 recommendation engine: when the saved store exists, its model-written,
   // number-grounded items ARE "What matters" — the deterministic rule-based
@@ -350,6 +355,7 @@ export function computeAll({ now = Date.now() } = {}) {
     showTrend,
     commentSummary,
     health,
+    baselines,
   };
 }
 
