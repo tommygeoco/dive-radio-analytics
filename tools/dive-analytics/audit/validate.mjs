@@ -25,7 +25,7 @@
 //   Warnings (non-fatal): unresolved broadcast latches, resolved-broadcast targets
 //   missing plays in the latest snapshot, snapshot gaps > 26h in the last 7 days.
 
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { join, dirname } from "node:path";
@@ -36,6 +36,7 @@ const TOOL = join(HERE, "..");
 const ROOT = join(TOOL, "..", "..");
 const REGISTRY = join(ROOT, "data", "restream", "postlive-registry.json");
 const HISTORY = join(ROOT, "data", "restream", "postlive");
+const TRANSCRIPTS = join(ROOT, "transcripts");
 const DAY = 86400000;
 const FRESH_MS = 26 * 3600000;
 const PARTIAL_DAYS = 5; // must match PARTIAL_THRESHOLD_DAYS in build-data.mjs
@@ -182,6 +183,64 @@ function premiereMs(dateStr) {
   const sorted = [...eps].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
   sorted.forEach((e, i) => { if (e.ep !== i + 1) { bad++; fail(`roster: ${e.slug} has ep=${e.ep}, expected ${i + 1}`); } });
   if (!bad) ok(`roster: ${eps.length} episodes match registry (active dive-radio with history)`);
+}
+
+// --- 5a. W12 transcript continuity: file/link parity, headers, and safe pull ---
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const scriptPath = join(ROOT, "scripts", "restream", "transcripts-pull.mjs");
+  let pull = null;
+  try { pull = await import(scriptPath); }
+  catch (error) { bad++; fail(`transcripts: pull script could not load — ${error.message}`); }
+
+  if (!/if\s*\(e\.transcript\)\s*\{[\s\S]{0,400}href="transcripts\/\$\{esc\(e\.slug\)\}\.txt"/.test(html)) {
+    bad++; fail("transcripts: episode download is not gated by the stored transcript flag and slug");
+  }
+
+  const registeredDiveShows = registry.shows.filter(
+    (show) => /dive.?radio/i.test(show.title || "") || /dive-radio/.test(show.slug || "")
+  );
+  const registeredSlugs = new Set(registeredDiveShows.map((show) => show.slug));
+  const files = existsSync(TRANSCRIPTS)
+    ? readdirSync(TRANSCRIPTS).filter((name) => name.endsWith(".txt")).sort()
+    : [];
+  for (const name of files) {
+    const slug = name.slice(0, -4);
+    if (!registeredSlugs.has(slug)) { bad++; fail(`transcripts: ${name} does not map to a registered Dive Radio episode`); }
+  }
+
+  for (const episode of eps) {
+    const show = registeredDiveShows.find((candidate) => candidate.slug === episode.slug);
+    const path = join(TRANSCRIPTS, `${episode.slug}.txt`);
+    const fileExists = existsSync(path);
+    if (typeof episode.transcript !== "boolean" || episode.transcript !== fileExists) {
+      bad++; fail(`${episode.slug}: stored transcript flag does not exactly match file existence`);
+    }
+    if (!fileExists || !show) continue;
+
+    const text = readFileSync(path, "utf8").replace(/^\uFEFF/, "").replace(/\r/g, "");
+    const lines = text.split("\n");
+    if (!lines[0]?.startsWith(`Dive Radio E${episode.ep} — `) || !lines[0].slice(`Dive Radio E${episode.ep} — `.length).trim()) {
+      bad++; fail(`${episode.slug}: transcript does not begin with its episode header`);
+    }
+    if (!lines.slice(1).join("\n").trim()) { bad++; fail(`${episode.slug}: transcript has a header but no transcript body`); }
+  }
+
+  if (pull) {
+    const saturdayMorningPhoenix = Date.parse("2026-08-22T14:00:00Z");
+    if (!pull.isTranscriptDue("2026-08-20", saturdayMorningPhoenix)
+      || pull.isTranscriptDue("2026-08-21", saturdayMorningPhoenix)) {
+      bad++; fail("transcripts: day-two gate is not based on the Phoenix calendar");
+    }
+    for (const show of registeredDiveShows.filter((candidate) => candidate.active !== false && pull.isTranscriptDue(candidate.date))) {
+      if (!existsSync(join(TRANSCRIPTS, `${show.slug}.txt`))) {
+        warn(`transcripts: ${show.slug} reached day two without captions — no link will render; the pull will try again tomorrow`);
+      }
+    }
+  }
+
+  if (!bad) ok(`transcripts: ${files.length} registered file(s), links, episode headers, bodies, and Phoenix day-two gate are valid`);
 }
 
 // --- 5b. episode tags schema (PRD v2 W3) ---
