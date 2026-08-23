@@ -463,6 +463,7 @@ function relativeDayWords(dateKey) {
 }
 function kfmt(n) { if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k"; return String(Math.round(n)); }
 function nfmt(n) { return n.toLocaleString("en-US"); }
+function metricText(value, missing = "–") { return value == null ? missing : nfmt(value); }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, "").replace(/[,\s]+$/, ""); }
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
@@ -1052,7 +1053,7 @@ function externalTooltip(context) {
     if (!ep) { el.style.opacity = 0; return; }
     const bd = ep.latest.byDest || {};
     html = `<div class="h"><span class="sq dot" style="background:${color(ep)}"></span>${esc(label(ep))}</div>`;
-    html += `<div class="big">${nfmt(ep.latest.totalViews ?? 0)} <small style="font-weight:500;color:var(--t3)">total views</small></div>`;
+    html += `<div class="big">${metricText(ep.latest.totalViews, "not available")} <small style="font-weight:500;color:var(--t3)">total views</small></div>`;
     html += `<div class="div"></div>`;
     const rows = [
       ["yt:joindiveclub", bd["yt:joindiveclub"]?.views, "views"],
@@ -1072,7 +1073,8 @@ function externalTooltip(context) {
     if (isLive) {
       html += `<div class="meta">Minute ${p.x}</div>`;
       html += `<div class="big">${p.y} watching</div>`;
-      html += `<div class="chg">Chat: ${nfmt(p.meta.ct ?? 0)} messages so far${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
+      const chatTotal = p.meta.ct == null ? "not available" : `${nfmt(p.meta.ct)} messages so far`;
+      html += `<div class="chg">Chat: ${chatTotal}${p.meta.c ? ` (+${p.meta.c} this minute)` : ""}</div>`;
       const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#b7c2d4", "X #2": "#59b0ff" };
       const chans = Object.entries(p.meta.byChan || {});
       if (chans.length) {
@@ -1088,7 +1090,7 @@ function externalTooltip(context) {
       const meta = grouped ? ds.metas?.[item.dataIndex] : p.meta;
       if (meta == null) { el.style.opacity = 0; return; }
       if (meta.week !== undefined) html += `<div class="meta">Week ${grouped ? meta.week : meta.week + 1} · ${fmtDate(Date.parse(meta.ts))}</div>`;
-      else html += `<div class="meta">Day ${Math.round(meta.day ?? 0)} · ${fmtDate(Date.parse(meta.ts))}</div>`;
+      else html += `<div class="meta">${meta.day == null ? "" : `Day ${Math.round(meta.day)} · `}${fmtDate(Date.parse(meta.ts))}</div>`;
       html += `<div class="big">${nfmt(yVal)} YT views${isDelta ? " gained" : ""}</div>`;
       if (!isDelta && item.dataIndex > 0) {
         const prev = ds.data[item.dataIndex - 1].y;
@@ -1098,8 +1100,8 @@ function externalTooltip(context) {
       if (meta.split) {
         html += `<div class="div"></div>`;
         for (const k of YT_KEYS) {
-          const v = meta.split[k] ?? 0;
-          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${isDelta && meta.note === null && v >= 0 ? "+" : ""}${nfmt(v)}</span></div>`;
+          const v = meta.split[k];
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v)}</span></div>`;
         }
       }
       if (meta.note) html += `<div class="note">${meta.note}</div>`;
@@ -1372,11 +1374,11 @@ function buildTable() {
       const rr = ratingOf(e);
       html += `<tr><td class="t">${esc(label(e))}</td>`;
       html += `<td class="t">${rr ? `#${rr.rank} of ${rr.n}${(rr.coverage?.missingPillars || []).length && rr.n > 1 ? " <span class=\"mk\">*</span>" : ""}${rr.provisional ? " <span class=\"mk\">~</span>" : ""}` : "–"}</td>`;
-      html += `<td class="t">${nfmt(e.latest.totalViews ?? 0)}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
-      html += `<td>${nfmt(bd["yt:joindiveclub"]?.views ?? 0)}</td><td>${nfmt(bd["yt:designertom"]?.views ?? 0)}</td>`;
+      html += `<td class="t">${metricText(e.latest.totalViews)}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
+      html += `<td>${metricText(bd["yt:joindiveclub"]?.views)}</td><td>${metricText(bd["yt:designertom"]?.views)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
       html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
-      html += `<td>${nfmt(e.latest.xImpressions ?? 0)}</td>`;
+      html += `<td>${metricText(e.latest.xImpressions)}</td>`;
       html += `<td>${pace ? (pace.pct >= 0 ? "▲" : "▼") + Math.abs(pace.pct) + "%" : "–"}</td></tr>`;
     }
   }

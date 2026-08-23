@@ -765,6 +765,23 @@ function premiereMs(dateStr) {
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks and unfinished ratings use plain words");
 }
 
+// --- 1j2. missing dashboard values never become visible zeroes ---
+{
+  let bad = 0;
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const tooltipSource = html.match(/function externalTooltip\(context\) \{[\s\S]*?\n\}\n\nlet chart;/)?.[0] || "";
+  const tableSource = html.match(/function buildTable\(\) \{[\s\S]*?\n\}\n\n\/\* M-1/)?.[0] || "";
+  if (!tooltipSource || !tableSource) {
+    bad++; fail("dashboard absence: could not locate tooltip and table renderers");
+  } else if (/\?\?\s*0/.test(tooltipSource + tableSource)) {
+    bad++; fail("dashboard absence: a tooltip or table can turn a missing value into zero");
+  }
+  if (!/function metricText\(value, missing = "–"\) \{ return value == null \? missing : nfmt\(value\); \}/.test(html)) {
+    bad++; fail("dashboard absence: the shared missing-value formatter could hide a real zero or lacks a plain missing state");
+  }
+  if (!bad) ok("dashboard absence: tables and tooltips keep missing values distinct from real zeroes");
+}
+
 // --- 1k. W11 fold budget and progressive-disclosure contract ---
 {
   let bad = 0;
