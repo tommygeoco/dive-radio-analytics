@@ -534,7 +534,7 @@ function sameAgeSub(e) {
     }
     if (best) peers.push(best.v);
   }
-  if (!peers.length) return null;
+  if (peers.length < 3) return null;
   peers.sort((a,b)=>a-b);
   const med = peers[Math.floor(peers.length/2)];
   if (med <= 0) return null;
@@ -1430,7 +1430,6 @@ function buildInsightsPanel() {
   const panel = document.getElementById("insights");
   panel.innerHTML = "";
   const all = DATA.insights
-    .filter(i => i.id !== "pace-rank") // pace-rank lives in the hero verdict
     .map(i => ({ ...i, cat: catKeyFor(i) }))
     .sort((a, b) => (CAT_RANK[a.cat] ?? 9) - (CAT_RANK[b.cat] ?? 9));
 
@@ -1493,7 +1492,7 @@ function buildAbout() {
   <p><b>Total views</b> = YouTube views (both channels) + X broadcast plays (both hosts). Both count video playback — YouTube counts a qualified view (~30s), X counts a play start, so treat the sum as directional.</p>
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
-  <p><b>Pace</b> compares YouTube views at the same age across episodes (X plays have no history before 08/21, so a blended pace would fabricate a disadvantage for older episodes).</p>
+  <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
   <p><b>Rating</b> (“#2 of 6”) ranks an episode against itself and up to nine episodes that aired before it. Later episodes never enter that comparison. The rating weighs YouTube views at the same age (50%), likes and comments per 1,000 views (20%), how much of the video people watched (15%), and live turnout (15%). Each check asks whether the episode is above or below what recent episodes usually did. If an honest number is not in yet, that check drops out and the remaining checks share its weight; <b>*</b> marks that state, and nothing is guessed or filled with zero. <b>~</b> means the rating is not final until day 7, when it freezes. Views use YouTube only because older X play history does not exist. Watch-time data currently comes from the DesignerTom channel.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <p><b>Show health</b> combines the checks that are honestly available on the saved date. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>

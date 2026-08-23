@@ -630,7 +630,7 @@ function cumulativeSeries(dive, now) {
 
 // same-age comparison: newest episode at its current age vs prior episodes at the same age.
 // Only prior episodes whose first snapshot is at-or-before that age qualify (no extrapolation).
-function sameAgePace(dive) {
+export function sameAgePace(dive) {
   if (dive.length < 2) return null;
   const newest = dive[dive.length - 1];
   const ageMs = Date.parse(newest.latest.ts) - premiereMs(newest.premiere);
@@ -641,7 +641,7 @@ function sameAgePace(dive) {
     const s = lastAtOrBefore(e.snapshots, prem + ageMs);
     if (s) peers.push({ title: e.title, slug: e.slug, value: total(s.byDest, YT_KEYS), partial: e.partialHistory });
   }
-  if (!peers.length) return { newest, ageMs, peers: [], rank: null };
+  if (peers.length < 3) return { newest, ageMs, peers, rank: null };
   const sorted = [...peers].sort((a, b) => b.value - a.value);
   const newestVal = newest.latest.ytTotal;
   const rank = sorted.filter((p) => p.value > newestVal).length + 1;
@@ -705,14 +705,6 @@ function buildInsights(dive, { median }) {
         ? `This topic/format is landing. Note what's different about it and repeat that on the next episode.`
         : `If this episode deserves a push, push now — gains concentrate in the first weeks and the gap won't close on its own.`,
       caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} prior episode${pace.peers.length === 1 ? "" : "s"}.`,
-      chartState: state({ chart: "standings", solo: pace.newest.slug }),
-    });
-  } else if (pace) {
-    insights.push({
-      id: "pace-rank",
-      text: `${shortTitle(pace.newest.title)} has ${num(pace.newest.latest.totalViews)} total views so far (${num(pace.newest.latest.ytTotal)} YouTube + ${num(pace.newest.latest.xPlays ?? 0)} X plays). Too early to compare — no prior episode has data this young.`,
-      recommendation: `Nothing to decide yet. The first same-age comparison appears automatically as snapshots age.`,
-      caveat: `Same-age pace math needs a prior episode with a snapshot at this age.`,
       chartState: state({ chart: "standings", solo: pace.newest.slug }),
     });
   }

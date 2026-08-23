@@ -512,6 +512,24 @@ function premiereMs(dateStr) {
   if (liveChat && (/\btrending\b/i.test(liveChat.text) || !/(from launch|where it started)/i.test(liveChat.text))) {
     bad++; fail("insight live-chat: direction must say whether the newest show is up or down from launch");
   }
+  const paceInsights = data.insights.filter((insight) => insight.id === "pace-rank");
+  const newest = eps.at(-1);
+  const targetAge = Date.parse(newest.latest.ts) - premiereMs(newest.premiere);
+  const pacePeers = eps.slice(0, -1).filter((episode) => {
+    const premiere = premiereMs(episode.premiere);
+    const firstAge = Date.parse(episode.snapshots[0].ts) - premiere;
+    const lastAge = Date.parse(episode.snapshots.at(-1).ts) - premiere;
+    return firstAge <= targetAge && lastAge >= targetAge;
+  });
+  const paceReady = pacePeers.length >= 3 && Number.isFinite(newest.latest.ytTotal);
+  if (paceReady !== (data.showTrend?.paceRank != null)) {
+    bad++; fail("insight pace-rank: public pace readiness does not match the three-peer gate");
+  }
+  if (paceInsights.length !== (paceReady ? 1 : 0)) {
+    bad++; fail(`insight pace-rank: expected ${paceReady ? "one grounded insight" : "no small-sample insight"}, found ${paceInsights.length}`);
+  } else if (paceReady && paceInsights[0].chartState?.solo !== newest.slug) {
+    bad++; fail("insight pace-rank: actionable pace insight does not open the newest episode");
+  }
   const anomalyEpisodes = eps.filter((e) => e.metrics?.anomaly);
   for (const id of ["reach-conversion", "host-plays-split"]) {
     const insight = data.insights.find((i) => i.id === id);
@@ -755,6 +773,11 @@ function premiereMs(dateStr) {
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
     bad++; fail("dashboard: first-week trend verdict is not gated until three clean weeks exist");
+  }
+  if (!/if \(peers\.length < 3\) return null;/.test(html)
+    || /filter\(i => i\.id !== "pace-rank"\)/.test(html)
+    || !/after three earlier episodes have real data at that age/.test(html)) {
+    bad++; fail("dashboard: same-age pace is not consistently gated to three real peers across panel, insights, and About");
   }
   if (!/pct\s*<=\s*5/.test(html) || !/Math\.abs\(pct\)\s*<=\s*5/.test(html)) {
     bad++; fail("dashboard: rating and growth conclusions do not suppress small differences");

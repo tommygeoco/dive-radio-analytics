@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-23T00:57:34.889Z",
+ "generatedAt": "2026-08-23T01:19:18.994Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -12788,25 +12788,6 @@ window.DIVE_DATA = {
   }
  ],
  "insights": [
-  {
-   "id": "pace-rank",
-   "text": "The Mascot Industrial Complex + Live Call-Ins has 1,952 total views so far (949 YouTube + 1,003 X plays). Too early to compare — no prior episode has data this young.",
-   "recommendation": "Nothing to decide yet. The first same-age comparison appears automatically as snapshots age.",
-   "caveat": "Same-age pace math needs a prior episode with a snapshot at this age.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-    "chart": "standings"
-   },
-   "category": "content"
-  },
   {
    "id": "watch-split",
    "text": "This is a genuinely two-platform show: 57% of all actual watching happens on X broadcasts (12,710 of 22,436 total views), not just YouTube with an X echo.",
