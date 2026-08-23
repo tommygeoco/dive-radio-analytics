@@ -284,7 +284,7 @@ export function computeAll({ now = Date.now() } = {}) {
 
   attachLiveSessions(dive, registry);
   const commentSummary = attachComments(dive);
-  attachRatings(dive);
+  attachEpisodeHealth(dive);
 
   const insights = buildInsights(dive, { now, median });
   insights.push(...liveInsights(dive));
@@ -327,17 +327,23 @@ export function computeAll({ now = Date.now() } = {}) {
   };
 }
 
-// --- episode ratings (W9): computed + frozen by ratings.mjs, attached from its store ---
-// Definition-lock: every surface (card badge, hero verdict, panel, table, Slack
-// line) reads THIS attached entry — nobody recomputes a rank at render time.
+// --- episode health (W12): computed + frozen by ratings.mjs, attached from its store ---
+// Definition-lock: every surface (card chip, panel, table, Slack line) reads
+// THIS attached entry — nobody recomputes a score at render time. An episode
+// younger than the 21-day read window carries only the date its read completes;
+// no score exists anywhere before then.
 const RATINGS_PATH = join(ROOT, "data", "restream", "episode-ratings.json");
-function attachRatings(dive) {
+const READ_DAYS = 21; // must match READ_DAYS in ratings.mjs
+function attachEpisodeHealth(dive) {
   let store = null;
-  try { store = JSON.parse(readFileSync(RATINGS_PATH, "utf8")); } catch { return; /* store absent → ratings simply don't render (absence ≠ zero) */ }
-  const bySlug = new Map((store.ratings || []).map((r) => [r.slug, r]));
+  try { store = JSON.parse(readFileSync(RATINGS_PATH, "utf8")); } catch { store = null; /* store absent → scores simply don't render (absence ≠ zero) */ }
+  const bySlug = new Map(((store?.scores) || []).map((r) => [r.slug, r]));
   for (const e of dive) {
     const r = bySlug.get(e.slug);
-    if (r) e.rating = r;
+    e.health = r || {
+      pending: true,
+      readCompleteOn: new Date(premiereMs(e.premiere) + READ_DAYS * DAY - PHX_OFFSET).toISOString().slice(0, 10),
+    };
   }
 }
 
@@ -906,18 +912,18 @@ export function trendsText(data) {
       `• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
     );
   }
-  // W9: newest episode's rating, read from the same store as every dashboard surface
+  // W12: episode health, read from the same store as every dashboard surface.
+  // Only finished three-week reads carry a number; younger episodes state when
+  // their read completes instead of showing anything early.
   const newest = data.episodes[data.episodes.length - 1];
-  const r = newest?.rating;
-  if (r && r.rank != null) {
-    const missing = r.coverage?.missingPillars || [];
-    const basis = missing.length
-      ? ` — still missing ${missing.map((m) => m.replace(/ \(.*\)$/, "")).join(", ")}`
-      : "";
-    const prov = r.provisional
-      ? ` (provisional; freezes ${new Date(premiereMs(newest.premiere) + 7 * DAY).toISOString().slice(5, 10).replace("-", "/")} when week 1 completes)`
-      : "";
-    lines.push(`• Rating: ${shortTitle(newest.title)} ranks #${r.rank} of ${r.n} against the most recent episodes as of its air date${prov}${basis}.`);
+  const finished = data.episodes.filter((e) => e.health && !e.health.pending);
+  const scored = finished.filter((e) => e.health.score != null);
+  if (scored.length) {
+    const seq = finished.map((e) => `${e.premiere.slice(5)} ${e.health.score ?? "sets the baseline"}`).join(" → ");
+    lines.push(`• Episode health (each episode's own three-week read; 50 is a typical episode): ${seq}.`);
+  }
+  if (newest?.health?.pending) {
+    lines.push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
   }
   // W8: newest-episode feedback, read from the same exported rollup as the page.
   const c = newest?.comments;

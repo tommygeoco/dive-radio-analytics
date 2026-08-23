@@ -14,9 +14,11 @@ hierarchy, density, and polish require rendered pixels.
 
 ## Procedure
 
-1. **Serve and screenshot.** Serve `tools/dive-analytics/` (`python3 -m http.server`, run from that directory — it is the dashboard root in this repo)
-   and capture PNGs with Playwright (Chromium lives at
-   `/opt/pw-browsers`; if the `playwright` module is missing, `npm install
+1. **Serve and screenshot.** Serve the repo root (`python3 -m http.server`,
+   run from the repository root — `index.html`, `data.js`, and `chart.umd.js`
+   live there) and capture PNGs with Playwright (launch Chromium with
+   `executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'` and
+   `--no-sandbox`; if the `playwright` module is missing, `npm install
    playwright` in a temp dir). Capture at minimum, at 1440×900 and 390×844:
    the default view, the full page, every tab and segmented-control state,
    one chart-hover tooltip, one card-hover panel, the focus/solo state, and

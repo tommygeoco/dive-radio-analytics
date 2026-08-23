@@ -567,60 +567,71 @@ function premiereMs(dateStr) {
   if (!bad) ok(`insight categories: ${data.insights.length} insights all carry a legal strategy category + recommendation`);
 }
 
-// --- 1g. episode ratings (W9): frozen immutability, window sanity, weight math, definition-lock ---
+// --- 1g. episode health (W12): 21-day gate, frozen immutability, window sanity, weight math, definition-lock ---
 {
   let bad = 0;
   let store = null;
   try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
   if (!store) {
-    warn("ratings: episode-ratings.json absent — rating surfaces will not render (run tools/dive-analytics/ratings.mjs)");
+    warn("episode health: episode-ratings.json absent — health surfaces will not render (run tools/dive-analytics/ratings.mjs)");
   } else {
-    if (store.algorithm !== "ratio-v2") { bad++; fail(`ratings: store algorithm "${store.algorithm}" — expected ratio-v2 (stale store; rerun ratings.mjs)`); }
-    const bySlug = new Map((store.ratings || []).map((r) => [r.slug, r]));
+    if (store.algorithm !== "health21-v1") { bad++; fail(`episode health: store algorithm "${store.algorithm}" — expected health21-v1 (stale store; rerun ratings.mjs)`); }
+    if (store.readDays !== 21) { bad++; fail(`episode health: store readDays ${store.readDays} — the read window is 21 days`); }
+    const bySlug = new Map((store.scores || []).map((r) => [r.slug, r]));
     const epOrder = [...eps].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
     for (const e of epOrder) {
       const r = bySlug.get(e.slug);
-      if (!r) { bad++; fail(`ratings: ${e.slug} has no store entry`); continue; }
-      // definition-lock: what shipped in data.json IS the store entry
-      const a = e.rating;
-      if (!a) { bad++; fail(`ratings: ${e.slug} rating not attached to data.json — surfaces read nothing`); }
-      else if (a.rank !== r.rank || a.n !== r.n || a.score !== r.score || a.provisional !== r.provisional || a.frozenAt !== r.frozenAt) {
-        bad++; fail(`ratings: ${e.slug} attached rating disagrees with store (rank ${a.rank}/${r.rank}, n ${a.n}/${r.n}) — definition-lock broken`);
+      const a = e.health;
+      // the 21-day gate is constitutional: no entry, no score, nothing early
+      if (e.ageDays < 21) {
+        if (r) { bad++; fail(`episode health: ${e.slug} is ${e.ageDays}d old but has a stored score — three weeks incomplete`); }
+        if (!a || a.pending !== true || "score" in a) { bad++; fail(`episode health: ${e.slug} must ship only a pending marker before day 21`); continue; }
+        const expectOn = new Date(premiereMs(e.premiere) + 21 * DAY - 7 * 3600000).toISOString().slice(0, 10);
+        if (a.readCompleteOn !== expectOn) { bad++; fail(`episode health: ${e.slug} readCompleteOn ${a.readCompleteOn} != premiere + 21 days (${expectOn})`); }
+        continue;
       }
-      // window: exactly this episode + up to 9 that aired before it, never later
-      const expectedWin = epOrder.filter((x) => x.ep <= e.ep && x.ep > e.ep - 10).map((x) => x.slug);
-      if (JSON.stringify(r.windowIds) !== JSON.stringify(expectedWin)) { bad++; fail(`ratings: ${e.slug} windowIds != the ${expectedWin.length} most recent as of air date`); }
-      if (r.n !== r.windowIds.length) { bad++; fail(`ratings: ${e.slug} n=${r.n} != window size ${r.windowIds.length}`); }
-      if (r.rank == null || r.rank < 1 || r.rank > r.n) { bad++; fail(`ratings: ${e.slug} rank ${r.rank} outside 1..${r.n}`); }
-      // freeze discipline: ≥7d episodes frozen, younger provisional
-      if (e.ageDays >= 7 && (!r.frozenAt || r.provisional)) { bad++; fail(`ratings: ${e.slug} is ${e.ageDays}d old but not frozen`); }
-      if (e.ageDays < 7 && (r.frozenAt || !r.provisional)) { bad++; fail(`ratings: ${e.slug} is ${e.ageDays}d old but marked frozen — week 1 incomplete`); }
-      if (r.frozenAt && r.computedAt > r.frozenAt) { bad++; fail(`ratings: ${e.slug} computedAt after frozenAt`); }
-      // weight math: redistributed weights sum to 1; absent pillars carry weight 0
-      if (r.score != null) {
+      if (!r) { bad++; fail(`episode health: ${e.slug} is ${e.ageDays}d old but has no store entry`); continue; }
+      // definition-lock: what shipped in data.json IS the store entry
+      if (JSON.stringify(a) !== JSON.stringify(r)) { bad++; fail(`episode health: ${e.slug} attached entry disagrees with store — definition-lock broken`); }
+      // window: this episode + up to 9 that aired before it, never later
+      const expectedWin = [...epOrder.filter((x) => x.ep < e.ep && x.ep >= e.ep - 9).map((x) => x.slug), e.slug];
+      if (JSON.stringify(r.windowIds) !== JSON.stringify(expectedWin)) { bad++; fail(`episode health: ${e.slug} windowIds != itself + the episodes that aired before it`); }
+      if (!r.frozenAt || !r.computedAt) { bad++; fail(`episode health: ${e.slug} entry is missing its frozen/computed stamps`); }
+      if (r.score == null) {
+        if (!r.reason) { bad++; fail(`episode health: ${e.slug} has no score and no reason — absence must explain itself`); }
+      } else {
+        if (!Number.isInteger(r.score) || r.score < 0 || r.score > 100) { bad++; fail(`episode health: ${e.slug} score ${r.score} outside 0..100`); }
+        // weight math: redistributed weights sum to 1; absent checks carry weight 0
         let sum = 0;
-        for (const [p, ps] of Object.entries(r.pillarScores || {})) {
-          sum += ps.weight || 0;
-          if (ps.ratio == null && (ps.weight || 0) !== 0) { bad++; fail(`ratings: ${e.slug} pillar ${p} has no ratio but weight ${ps.weight}`); }
-          if (ps.ratio != null && !(ps.ratio > 0 && ps.ratio < 100)) { bad++; fail(`ratings: ${e.slug} pillar ${p} ratio ${ps.ratio} outside sane range`); }
-          if (ps.ratio != null && ps.typical == null) { bad++; fail(`ratings: ${e.slug} pillar ${p} has a ratio but no stated typical — baseline must ship`); }
+        let weighted = 0;
+        for (const [c, cs] of Object.entries(r.checks || {})) {
+          sum += cs.weight || 0;
+          if (cs.ratio == null && (cs.weight || 0) !== 0) { bad++; fail(`episode health: ${e.slug} check ${c} has no honest number but weight ${cs.weight}`); }
+          // a comparison of exactly 0 is legal: a real zero (e.g. no subscribers
+          // gained) is an honest value, never conflated with a missing one
+          if (cs.ratio != null && !(cs.ratio >= 0 && cs.ratio < 100)) { bad++; fail(`episode health: ${e.slug} check ${c} comparison ${cs.ratio} outside sane range`); }
+          if (cs.ratio != null && cs.typical == null) { bad++; fail(`episode health: ${e.slug} check ${c} compares against nothing — the typical value must ship`); }
+          if (cs.score != null && (!Number.isInteger(cs.score) || cs.score < 0 || cs.score > 100)) { bad++; fail(`episode health: ${e.slug} check ${c} score outside 0..100`); }
+          if (cs.ratio != null && cs.weight) weighted += cs.score * cs.weight;
         }
-        if (Math.abs(sum - 1) > 0.002) { bad++; fail(`ratings: ${e.slug} redistributed weights sum to ${sum.toFixed(4)}, not 1`); }
+        if (Math.abs(sum - 1) > 0.002) { bad++; fail(`episode health: ${e.slug} redistributed weights sum to ${sum.toFixed(4)}, not 1`); }
+        if (Math.round(weighted) !== r.score) { bad++; fail(`episode health: ${e.slug} score ${r.score} != weighted mean of its checks (${Math.round(weighted)})`); }
+        const expectMissing = Object.entries(r.checks || {}).filter(([, cs]) => cs.ratio == null).map(([c]) => c);
+        if (JSON.stringify(r.missingChecks) !== JSON.stringify(expectMissing)) { bad++; fail(`episode health: ${e.slug} missingChecks does not list exactly the checks without honest numbers`); }
       }
     }
-    // frozen immutability: a re-run must pass frozen entries through untouched
+    // frozen immutability: a re-run must pass every stored entry through untouched
     try {
       const mod = await import(join(TOOL, "ratings.mjs"));
       const rerun = mod.computeRatings({ now: Date.parse(data.generatedAt) });
-      for (const r of store.ratings || []) {
-        if (!r.frozenAt) continue;
-        const again = rerun.ratings.find((x) => x.slug === r.slug);
-        if (JSON.stringify(again) !== JSON.stringify(r)) { bad++; fail(`ratings: frozen entry ${r.slug} CHANGED on recompute — frozen must be immutable`); }
+      for (const r of store.scores || []) {
+        const again = rerun.scores.find((x) => x.slug === r.slug);
+        if (JSON.stringify(again) !== JSON.stringify(r)) { bad++; fail(`episode health: frozen entry ${r.slug} CHANGED on recompute — frozen must be immutable`); }
       }
     } catch (err) {
-      bad++; fail(`ratings: recompute threw — ${err.message}`);
+      bad++; fail(`episode health: recompute threw — ${err.message}`);
     }
-    if (!bad) ok(`ratings: ${(store.ratings || []).length} entries — windows exclude the future, frozen entries immutable, weights sum to 1, surfaces definition-locked`);
+    if (!bad) ok(`episode health: ${(store.scores || []).length} finished read(s) — nothing scored before day 21, windows exclude the future, frozen entries immutable, weights sum to 1, surfaces definition-locked`);
   }
 }
 
@@ -677,8 +688,13 @@ function premiereMs(dateStr) {
         previousDate = entry.date;
         if (entry.date > currentDate) { bad++; fail(`health: ${entry.date} is future-dated`); }
         if (!entry.createdAt || phxDate(entry.createdAt) !== entry.date) { bad++; fail(`health: ${entry.date} does not match its Phoenix creation day`); }
-        if (entry.formulaVersion !== health.FORMULA_VERSION) { bad++; fail(`health: ${entry.date} uses formula ${entry.formulaVersion}, expected ${health.FORMULA_VERSION}`); }
-        if (entry.promptVersion !== health.PROMPT_VERSION || entry.promptHash !== promptHash) { bad++; fail(`health: ${entry.date} prompt stamp is stale`); }
+        // Entries are immutable history: each is judged against ITS OWN stamped
+        // versions. What must hold: stamps exist, and an entry claiming the
+        // CURRENT prompt/formula version matches the current prompt/formula.
+        if (typeof entry.formulaVersion !== "string" || !entry.formulaVersion) { bad++; fail(`health: ${entry.date} has no formula stamp`); }
+        if (!Number.isInteger(entry.promptVersion)) { bad++; fail(`health: ${entry.date} has no prompt stamp`); }
+        else if (entry.promptVersion > health.PROMPT_VERSION) { bad++; fail(`health: ${entry.date} claims prompt version ${entry.promptVersion}, newer than the current ${health.PROMPT_VERSION}`); }
+        else if (entry.promptVersion === health.PROMPT_VERSION && entry.promptHash !== promptHash) { bad++; fail(`health: ${entry.date} prompt stamp is stale — prompt changed without a version bump`); }
         if (!entry.model || !entry.provider || !entry.bundleHash || !entry.dataGeneratedAt || !entry.dataThrough) { bad++; fail(`health: ${entry.date} is missing provenance stamps`); }
         if (!Number.isInteger(entry.score) || entry.score < 0 || entry.score > 100) { bad++; fail(`health: ${entry.date} score is outside 0..100`); }
 
@@ -743,7 +759,10 @@ function premiereMs(dateStr) {
       }
 
       const latest = store.entries.at(-1);
-      if (latest?.date === currentDate) {
+      // Same-day recompute only proves pipeline ordering when the entry was
+      // written by the CURRENT formula version — an entry saved under an older
+      // version legitimately cannot be reproduced by newer code.
+      if (latest?.date === currentDate && latest.formulaVersion === health.FORMULA_VERSION) {
         try {
           const recomputed = health.computeHealthInputs({ data, now: Date.parse(latest.dataGeneratedAt), root: ROOT });
           if (recomputed.bundleHash !== latest.bundleHash || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
@@ -805,7 +824,15 @@ function premiereMs(dateStr) {
   if (/provisional\s+—\s+settles/i.test(html)) {
     bad++; fail('dashboard: strip uses "provisional" instead of the plain "Not final" label');
   }
-  if (!bad) ok("dashboard honesty: trend waits for three clean weeks and unfinished ratings use plain words");
+  // 21-day gate (W12): every score render goes through the finished-read gate,
+  // and young episodes get wait-date words, never a number
+  if (!html.includes("function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }")) {
+    bad++; fail("dashboard: episode health is not locked behind the finished-three-week gate (healthOf)");
+  }
+  if (!/lands after \$\{healthWaitDate\(e\)\}/.test(html) || !/arrives after \$\{healthWaitDate\(e\)\}/.test(html)) {
+    bad++; fail("dashboard: young episodes must state when their three-week read completes instead of showing a score");
+  }
+  if (!bad) ok("dashboard honesty: trend waits for three clean weeks, scores wait for finished three-week reads, plain words throughout");
 }
 
 // --- 1j2. missing dashboard values never become visible zeroes ---
@@ -825,7 +852,10 @@ function premiereMs(dateStr) {
   if (!bad) ok("dashboard absence: tables and tooltips keep missing values distinct from real zeroes");
 }
 
-// --- 1k. W11 fold budget and progressive-disclosure contract ---
+// --- 1k. W12 card layout and progressive-disclosure contract ---
+// The page is a card system: health cards (gauge → diagnosis → today's read),
+// then the latest-episode and growth-trend cards, then the episode carousel
+// ABOVE the chart (owner directive 2026-08-23), panel and evidence on demand.
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
@@ -835,89 +865,91 @@ function premiereMs(dateStr) {
     return from >= 0 && to > from ? html.slice(from, to) : "";
   };
   const healthSource = between("function buildHealth()", "/* ================= hero");
-  const heroSource = between("function buildHero()", "/* ================= strip");
+  const heroSource = between("function buildHero()", "/* ================= episode carousel");
   const stripSource = between("function buildStrip()", "/* ================= detail panel");
   const panelSource = between("function buildPanel()", "/* ================= drilldown modal");
   const compoundSource = between("function buildCompound()", "function renderDrill()");
+  const chipSource = between("function healthChip(", "function healthTipHTML");
 
-  if (!healthSource || !heroSource || !stripSource || !panelSource || !compoundSource) {
-    bad++; fail("fold trim: could not locate every dashboard surface in index.html");
+  if (!healthSource || !heroSource || !stripSource || !panelSource || !compoundSource || !chipSource) {
+    bad++; fail("card layout: could not locate every dashboard surface in index.html");
   } else {
+    // reading order: health cards → latest/trend cards → carousel → panel → chart
+    const order = ['id="health"', 'id="hero"', 'id="strip"', 'id="panel"', 'id="chartcard"'].map((m) => html.indexOf(m));
+    if (order.some((at) => at < 0) || order.some((at, i) => i > 0 && at < order[i - 1])) {
+      bad++; fail("card layout: locked order broken — health, latest episode, episode carousel, panel, then the chart");
+    }
+    // glance-number discipline: gauge 1; hero one primary number per tab;
+    // cards one primary number per tab; the health chip exactly one score
     if ((healthSource.match(/data-fold-number/g) || []).length !== 1) {
-      bad++; fail("fold trim: health must contribute exactly its saved score to the glance-number budget");
+      bad++; fail("card layout: the gauge must contribute exactly its saved score to the glance-number budget");
     }
     if ((heroSource.match(/data-fold-number/g) || []).length !== 2) {
-      bad++; fail("fold trim: each hero tab must expose only its one primary number");
+      bad++; fail("card layout: each hero tab must expose only its one primary number");
     }
     if ((stripSource.match(/data-fold-number/g) || []).length !== 2) {
-      bad++; fail("fold trim: each episode card must expose exactly one tagged glance number in either tab");
+      bad++; fail("card layout: each episode card must expose exactly one tagged glance number per tab");
     }
-    if (!/const evidenceWasOpen = el\.querySelector\("\.health-evidence"\)\?\.open === true/.test(healthSource)
-      || !healthSource.includes('<details class="health-evidence"')
-      || !healthSource.includes("bullets(h.pros)") || !healthSource.includes("bullets(h.cons)")
-      || /trend-note/.test(healthSource)) {
-      bad++; fail("fold trim: health evidence must start closed, preserve an owner-opened state, and contain every exact saved fact without a waiting placeholder");
+    if ((chipSource.match(/data-fold-number/g) || []).length !== 1) {
+      bad++; fail("card layout: the health chip must carry exactly one tagged score");
+    }
+    // diagnosis: the six saved checks render as plain-word states from the
+    // projection only — never from scoring inputs, never as numbers
+    if (!/h\.checks/.test(healthSource) || !/checkState/.test(healthSource) || !/Not in yet/.test(html)) {
+      bad++; fail("card layout: the diagnosis card does not render every saved check as a plain-word state");
+    }
+    // evidence: starts closed, is a real disclosure, and carries every saved fact
+    if (!/evidenceOpen: false/.test(html) || !/state\.evidenceOpen/.test(healthSource)
+      || !/aria-expanded/.test(healthSource)
+      || !healthSource.includes("bullets(h.pros)") || !healthSource.includes("bullets(h.cons)")) {
+      bad++; fail("card layout: health evidence must start closed behind a real button and contain every exact saved fact");
     }
     if (!/h\.readState === "early"/.test(healthSource) || !/Updated \$\{esc\(saved\)\}/.test(healthSource)) {
-      bad++; fail("fold trim: the health surface does not show its saved age and projected early-read state");
-    }
-    const episodeBrowser = html.match(/<details class="episode-browser" id="episodebrowser"([^>]*)>/)?.[1];
-    if (episodeBrowser == null || /\bopen\b/.test(episodeBrowser)) {
-      bad++; fail("fold trim: the episode-card browser must start closed so its comparison numbers stay in the click layer");
-    }
-    if (html.indexOf('id="chartcard"') > html.indexOf('id="episodebrowser"')) {
-      bad++; fail("fold trim: episode browsing must sit below the primary chart");
+      bad++; fail("card layout: the health surface does not show its saved age and projected early-read state");
     }
     if (!/document\.createElement\("button"\)/.test(stripSource) || !/it\.type = "button"/.test(stripSource)) {
-      bad++; fail("fold trim: episode choices are not real keyboard-operable buttons");
+      bad++; fail("card layout: episode cards are not real keyboard-operable buttons");
     }
-    const latest = data.episodes?.at(-1);
-    const latestRatingTokens = data.episodes?.at(-1)?.rating ? 2 : 0;
-    const latestTotal = latest?.latest?.totalViews ?? latest?.latest?.ytTotal;
-    const growthTokens = (latestTotal == null ? 0 : 1) + latestRatingTokens;
-    const liveTokens = Number.isFinite(latest?.live?.peak) ? 1 : 0;
-    const literalBudget = (data.health ? 1 : 0) + Math.max(growthTokens, liveTokens);
-    if (literalBudget > 12) {
-      bad++; fail(`fold trim: ${literalBudget} visible numeric tokens would render in the default overview (limit 12)`);
+    // locked carousel order: oldest → newest with the newest landed in view
+    if (!/strip\.scrollLeft = strip\.scrollWidth/.test(stripSource)) {
+      bad++; fail("card layout: the carousel does not land on the newest episode (far right, locked rule)");
     }
     if (!/const saved = relativeDayWords\(h\.date\)/.test(healthSource)
-      || !/stamp\.textContent = `Data refreshed \$\{relativeDayWords/.test(html)
-      || /E\$\{e\.ep\} · latest episode/.test(heroSource)
-      || /freezeDateOf\(e\)/.test(heroSource)) {
-      bad++; fail("fold trim: dates or episode identifiers still add numeric tokens to the default glance layer");
+      || !/stamp\.textContent = `Data refreshed \$\{relativeDayWords/.test(html)) {
+      bad++; fail("card layout: saved dates must render as relative words, not numeric tokens");
     }
     if (/addSentimentChip|chip\.senti/.test(html) || !/Audience feedback/.test(panelSource)) {
-      bad++; fail("fold trim: audience feedback counts must live only in the click-open episode panel");
+      bad++; fail("card layout: audience feedback counts must live only in the click-open episode panel");
     }
     if (/sameAgeSub\s*\(/.test(stripSource) || /class=["']r3["']/.test(stripSource)) {
-      bad++; fail("fold trim: pace and status lines still render on the episode cards");
+      bad++; fail("card layout: pace and status lines still render on the episode cards");
     }
     if (!/const pace = sameAgeSub\(e\)/.test(panelSource) || !/YouTube views at the same age/.test(panelSource)) {
-      bad++; fail("fold trim: the removed pace comparison is not present in the click-open episode panel");
+      bad++; fail("card layout: the same-age pace comparison is not present in the click-open episode panel");
     }
     if (/data-fold-number|class="(?:bl|bv)"|clean weeks:/.test(compoundSource)) {
-      bad++; fail("fold trim: the growth glance still carries visible counts instead of a quiet readiness state");
+      bad++; fail("card layout: the growth-trend card still carries visible counts instead of a quiet readiness state");
     }
     if (!/splitReady = Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
       || /e\.latest\.(?:ytTotal|xPlays) \?\? 0/.test(heroSource)) {
-      bad++; fail("fold trim: the platform bar is not locked to complete stored YouTube and X values");
+      bad++; fail("card layout: the platform bar is not locked to complete stored YouTube and X values");
     }
-    if (!/missingPillars/.test(heroSource) || !/Rating is still settling/.test(heroSource)) {
-      bad++; fail("fold trim: the compact hero does not explain an unfinished rating in plain words");
+    // the panel must explain the score's basis and its missing checks
+    if (!/Episode health/.test(panelSource) || !/missingChecks/.test(panelSource) || !/newer episodes never change this score/.test(panelSource)) {
+      bad++; fail("card layout: the episode panel does not explain the finished score, its basis, and its missing checks");
     }
     if (!html.includes('role="tablist"') || !/setAttribute\("aria-selected"/.test(html)
       || !/addEventListener\("focusin"[\s\S]*showRtt/.test(html)) {
-      bad++; fail("fold trim: tabs or rating help are not keyboard-readable");
+      bad++; fail("card layout: tabs or health-chip help are not keyboard-readable");
     }
   }
   if (!bad) {
     const latest = data.episodes?.at(-1);
-    const latestRatingTokens = latest?.rating ? 2 : 0;
-    const latestTotal = latest?.latest?.totalViews ?? latest?.latest?.ytTotal;
-    const growthTokens = (latestTotal == null ? 0 : 1) + latestRatingTokens;
-    const liveTokens = Number.isFinite(latest?.live?.peak) ? 1 : 0;
-    const literalBudget = (data.health ? 1 : 0) + Math.max(growthTokens, liveTokens);
-    ok(`fold trim: ${literalBudget} visible numeric tokens in the default overview; evidence, episodes, feedback, and pace are on demand`);
+    const finished = (data.episodes || []).filter((e) => e.health && !e.health.pending && e.health.score != null).length;
+    const cardNumbers = (data.episodes || []).filter((e) => (e.latest?.totalViews ?? e.latest?.ytTotal) != null).length;
+    const heroChip = latest?.health && !latest.health.pending && latest.health.score != null ? 1 : 0;
+    const literalBudget = (data.health ? 1 : 0) + 1 + heroChip + cardNumbers + finished;
+    ok(`card layout: ${literalBudget} visible numeric tokens at glance (gauge, hero, ${cardNumbers} card totals, ${finished} finished read(s)); evidence, panel, feedback, and pace are on demand`);
   }
 }
 

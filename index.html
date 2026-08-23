@@ -30,128 +30,138 @@
     padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
   .tabs button.on { color: var(--t1); border-bottom-color: var(--accent); font-weight: 700; }
   .tabs button:hover { color: var(--t1); }
-  button:focus-visible, summary:focus-visible, .rb:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  button:focus-visible, summary:focus-visible, .hs:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  /* ---- W10/W11: one health conclusion, evidence on demand ---- */
-  .health { padding: 16px 0 18px; border-bottom: 1px solid var(--border-strong); }
-  .health-main { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: start;
-    gap: 18px; max-width: 900px; }
-  .health .score { font-size: 44px; line-height: 1; font-weight: 700;
-    letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
-  .health h2, .hero h2, .compound h2 { margin: 0; font-size: 17px; line-height: 1.3; font-weight: 700; }
-  .health .headline { max-width: 68ch; margin: 4px 0 0; color: var(--t1); font-size: 17px;
+  /* ---- Card system (2026-08-23 redesign): every surface is a quiet card on
+     the page ground — no ruled separators; whitespace and card edges carry the
+     grouping. Kickers are the one sanctioned small-caps element. ---- */
+  .card { background: var(--s1); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px; min-width: 0; }
+  .kicker { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--t3); margin-bottom: 12px; }
+
+  /* ---- W12: show health — gauge, diagnosis, and today's-read cards ---- */
+  .healthrow { display: grid; grid-template-columns: minmax(220px, 3fr) minmax(0, 6fr) minmax(230px, 3.4fr);
+    gap: 14px; margin-bottom: 14px; }
+  .healthrow .gaugewrap { display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding-top: 6px; }
+  .gauge { width: 168px; height: 168px; position: relative; }
+  .gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .gauge .track { fill: none; stroke: var(--s2); stroke-width: 9; }
+  .gauge .fill { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; }
+  .gauge .tick { stroke: var(--border-strong); stroke-width: 2; }
+  .gauge .num { position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; }
+  .gauge .num b { font-size: 46px; line-height: 1; font-weight: 700; letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums; }
+  .gauge .num small { color: var(--t3); font-size: 13px; margin-top: 4px; font-weight: 500; }
+  .healthrow .scale { color: var(--t3); font-size: 13px; }
+  .healthrow .headline { margin: 0 0 14px; color: var(--t1); font-size: 17px; font-weight: 600;
     line-height: 1.42; text-wrap: pretty; }
-  .health .scoretrack { width: min(100%, 430px); height: 5px; margin-top: 11px; overflow: hidden;
-    border-radius: 3px; background: var(--s2); }
-  .health .scoretrack span { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
-  .health .saved { color: var(--t3); font-size: 14px; margin-top: 8px; }
-  .health-evidence { margin-top: 8px; max-width: 860px; }
-  .health-evidence > summary { width: max-content; list-style: none; color: var(--accent); font-size: 14px;
-    cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-  .health-evidence > summary::-webkit-details-marker { display: none; }
-  .health-evidence > summary::after { content: " +"; text-decoration: none; }
-  .health-evidence[open] > summary::after { content: " −"; }
-  .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
-    padding-top: 12px; }
-  .health-evidence h3 { margin: 0 0 6px; color: var(--t2); font-size: 14px; }
+  .checkrows { display: grid; }
+  .checkrow { display: flex; align-items: center; gap: 12px; padding: 7px 0; font-size: 14px; }
+  .checkrow + .checkrow { border-top: 1px solid var(--border); }
+  .checkrow .cl { color: var(--t1); font-weight: 600; width: 108px; flex: none; }
+  .checkrow .cs { color: var(--t3); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; }
+  .checkrow .st { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; white-space: nowrap; }
+  .checkrow .st i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+  .checkrow .st.healthy { color: var(--good); }
+  .checkrow .st.steady { color: var(--t2); }
+  .checkrow .st.fragile { color: var(--bad); }
+  .checkrow .st.waiting { color: var(--t3); font-weight: 500; }
+  .checkrow .st.waiting i { background: none; border: 1px solid var(--border-strong); }
+  .hc-meta .updated { display: flex; align-items: center; gap: 9px; color: var(--t1); font-size: 15px;
+    font-weight: 600; }
+  .hc-meta .updated svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
+  .hc-meta .scope { color: var(--t3); font-size: 13.5px; line-height: 1.5; margin: 10px 0 0; }
+  .hc-meta .why { display: inline-block; margin-top: 12px; background: none; border: 0; padding: 0;
+    color: var(--accent); font-size: 14px; cursor: pointer; text-decoration: underline;
+    text-underline-offset: 3px; }
+  .health-evidence { grid-column: 1 / -1; }
+  .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .health-evidence h3 { margin: 0 0 6px; color: var(--t2); font-size: 14px; font-weight: 700; }
   .health-evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
-  .health-evidence li { color: var(--t2); font-size: 15px; line-height: 1.45; }
-  .health .trend { width: 150px; height: 28px; margin-top: 8px; display: block; }
-  .health .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
-  .health.empty { color: var(--t2); font-size: 15px; }
+  .health-evidence li { color: var(--t2); font-size: 14.5px; line-height: 1.45; }
+  .health-evidence .waitlist { margin-top: 14px; color: var(--t3); font-size: 13.5px; line-height: 1.5; }
+  .health-evidence .trend { width: 150px; height: 28px; margin-top: 14px; display: block; }
+  .health-evidence .trend polyline { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .healthrow.empty { display: block; color: var(--t2); font-size: 15px; }
 
-  /* ---- Primary answers: latest episode + audience trend ---- */
-  .overview { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(250px, .75fr);
-    border-bottom: 1px solid var(--border-strong); margin-bottom: 14px; }
+  /* ---- Primary answers: latest episode + growth trend cards ---- */
+  .overview { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
+    gap: 14px; margin-bottom: 14px; }
   .overview.single { grid-template-columns: 1fr; }
-  .hero { display: flex; gap: 24px; min-width: 0; padding: 20px 30px 20px 0; }
-  .overview:not(.single) .hero { border-right: 1px solid var(--border); }
+  .hero { display: flex; gap: 24px; }
   .hero .main { flex: 1; min-width: 0; }
-  .hero h2 { font-size: 18px; text-wrap: balance; }
-  .hero .metricline { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
-  .hero .big { font-size: 32px; line-height: 1; font-weight: 700; letter-spacing: -.02em;
+  .hero h2 { margin: 0; font-size: 19px; line-height: 1.3; font-weight: 700; text-wrap: balance; }
+  .hero .metricline { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .hero .big { font-size: 34px; line-height: 1; font-weight: 700; letter-spacing: -.02em;
     font-variant-numeric: tabular-nums; }
   .hero .big small { font-size: 14px; font-weight: 500; color: var(--t3); letter-spacing: 0; }
   .hero .mk { font-size: 14px; font-weight: 600; color: var(--amber); }
   .hero .platform-bar { display: flex; width: min(100%, 520px); height: 8px; overflow: hidden;
-    border-radius: 4px; background: var(--s2); margin-top: 14px; }
+    border-radius: 4px; background: var(--s2); margin-top: 16px; }
   .hero .platform-bar .yt { background: #ff795b; }
   .hero .platform-bar .x { background: var(--accent); }
   .hero .splitlabels { display: flex; justify-content: space-between; width: min(100%, 520px);
-    margin-top: 7px; color: var(--t3); font-size: 14px; }
-  .hero .state { color: var(--t3); font-size: 14px; margin-top: 10px; }
+    margin-top: 8px; color: var(--t3); font-size: 13.5px; }
+  .hero .splitlabels i { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    margin-right: 6px; vertical-align: 1px; }
+  .hero .state { color: var(--t3); font-size: 13.5px; margin-top: 14px; }
   .hero .unavailable { color: var(--t3); font-size: 15px; margin-top: 12px; }
-  .chiprow { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-  .chip { border: 1px solid var(--border-strong); background: var(--s2); color: var(--t2);
-    border-radius: 999px; padding: 4px 10px; font-size: 13px; cursor: pointer; display: inline-flex;
-    align-items: center; gap: 6px; }
-  .chip:hover { border-color: var(--accent); color: var(--t1); }
-  .chip.pace.up { color: var(--good); } .chip.pace.down { color: var(--bad); }
-  .chip.alert { color: var(--amber); }
-  .chip.static { cursor: default; }
-  .chip.static:hover { border-color: var(--border-strong); color: var(--t2); }
   .hero .spark { width: min(34%, 320px); flex: none; display: flex; flex-direction: column; gap: 5px; justify-content: flex-end; }
   .hero .spark .cv { position: relative; height: 86px; width: 100%; }
-  .hero .spark .cap { font-size: 14px; color: var(--t3); text-align: right; }
+  .hero .spark .cap { font-size: 13.5px; color: var(--t3); text-align: right; }
 
-  .compound { display: flex; flex-direction: column; justify-content: center; padding: 20px 0 20px 30px; }
-  .compound .readiness { display: flex; gap: 7px; margin-bottom: 10px; }
-  .compound .readiness i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--border-strong); }
-  .compound .readiness i.on { border-color: var(--accent); background: var(--accent); }
-  .compound .cv2 { color: var(--t2); font-size: 16px; font-weight: 600; line-height: 1.4; margin: 0; }
-  .compound .bars { display: flex; gap: 10px; align-items: flex-end; }
+  .compound .cv2 { color: var(--t2); font-size: 15px; font-weight: 600; line-height: 1.4; margin: 0; }
+  .compound .bars { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
   .compound .cbar { flex: 1; text-align: center; min-width: 0; }
   .compound .cbar .bwrap { height: 56px; display: flex; align-items: flex-end; justify-content: center; }
   .compound .cbar .b { width: 70%; max-width: 46px; border-radius: 4px 4px 0 0; min-height: 3px; }
-  .compound .cbar .b.none { border: 1px dashed var(--border-strong); background: none; height: 100%; border-bottom: none; }
-  .compound .cbar .bl { font-size: 12px; font-weight: 700; margin-top: 4px; }
-  .compound .cbar .bv { font-size: 12px; color: var(--t3); }
-  .compound .note { max-width: 34ch; font-size: 14px; color: var(--t3); margin-top: 7px; }
+  .compound .waitbox { border: 0; padding: 22px 0 12px; display: flex; flex-direction: column;
+    align-items: center; gap: 12px; background:
+      repeating-linear-gradient(to bottom, var(--border) 0 1px, transparent 1px 26px); }
+  .compound .waitbox svg { width: 40px; height: 40px; color: var(--t3); background: var(--s1);
+    border: 1px solid var(--border-strong); border-radius: 50%; padding: 9px; box-sizing: border-box; }
+  .compound .waitbox .cv2 { background: var(--s1); padding: 2px 10px; }
 
-  /* ---- Layer 1: episode strip (selector + legend; oldest → newest, latest far right) ---- */
-  .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px;
-    scrollbar-width: thin; }
-  .sitem { flex: 1 0 132px; min-width: 132px; background: var(--s1); border: 1px solid var(--border);
-    border-radius: 8px; padding: 6px 10px 7px; cursor: pointer; position: relative;
-    transition: border-color .15s, box-shadow .15s; color: inherit; text-align: left; }
+  /* ---- Episode carousel: selector + legend + finished health reads,
+     oldest → newest, latest always far right (locked rule) ---- */
+  .carousel { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 6px; margin-bottom: 14px;
+    scrollbar-width: thin; scroll-snap-type: x proximity; }
+  .sitem { flex: 1 0 168px; min-width: 168px; scroll-snap-align: end; background: var(--s1);
+    border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; cursor: pointer;
+    position: relative; transition: border-color .15s, box-shadow .15s; color: inherit; text-align: left; }
   .sitem:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
-  .sitem::after { content: "▾"; position: absolute; right: 9px; bottom: 5px; font-size: 12px;
-    color: var(--t3); opacity: 0; transition: opacity .15s; }
-  .sitem:hover::after { opacity: .8; }
-  .sitem.solo::after { content: "▴"; opacity: 1; color: var(--accent); }
+  .sitem.newest { box-shadow: inset 0 0 0 1px rgba(89,176,255,.35); }
   .sitem.solo { border-color: var(--accent); background: var(--s2); }
   .sitem.dim { opacity: .38; }
   .sitem .r1 { display: flex; align-items: baseline; gap: 6px; font-size: 12px; font-weight: 700;
     color: var(--t3); letter-spacing: .04em; }
-  .sitem .r1 .num { font-size: 16px; font-weight: 700; letter-spacing: -.01em; color: var(--t1); }
-  .sitem .r1 .mk { font-size: 12px; font-weight: 600; color: var(--amber); }
-  .sitem .r1 .flag { margin-left: auto; font-size: 12px; color: var(--amber); font-weight: 600; }
-  /* W9 rating badge — "#2 of 6" like YouTube Studio; ◐ = partial basis, ~ = provisional */
-  .rb { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--t2);
-    border: 1px solid var(--border-strong); border-radius: 9px; padding: 1px 7px;
-    white-space: nowrap; flex: none; }
-  .rb.top { color: var(--good); border-color: rgba(74,222,128,.4); }
-  .rb .pm { color: var(--amber); font-weight: 600; }
-  .rb.hero { display: inline-block; width: auto; font-size: 14px; padding: 3px 11px; margin-left: 10px; vertical-align: 6px; white-space: nowrap; }
-  .rb { cursor: help; }
-  /* rating tooltip — instant, works on tap; native title is neither */
+  .sitem .r1 .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; align-self: center; }
+  .sitem .r1 .num { font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: var(--t1); }
+  .sitem .r1 .mk { font-size: 12px; font-weight: 600; color: var(--amber); margin-left: auto; }
+  .sitem .t { font-size: 12.5px; color: var(--t2); white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; margin: 3px 0 0; display: block; }
+  /* three-week health read: number + track, present ONLY once the read is done */
+  .hs { display: flex; align-items: center; gap: 8px; min-height: 18px;
+    font-size: 12px; color: var(--t3); cursor: help; }
+  .sitem .hs { margin-top: 10px; }
+  .hero .hs { max-width: 300px; }
+  .hs b { font-size: 14px; color: var(--t1); font-variant-numeric: tabular-nums; }
+  .hs .mk { color: var(--amber); font-weight: 600; }
+  .hs .htrack { flex: 1; height: 4px; border-radius: 2px; background: var(--s2);
+    position: relative; overflow: hidden; }
+  .hs .htrack span { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: var(--accent); }
+  .sitem .hs.quiet { font-size: 12px; color: var(--t3); cursor: default; }
+  /* health tooltip — instant, works on tap; native title is neither */
   #rtt { position: fixed; z-index: 60; max-width: 300px; background: #0d1017; border: 1px solid var(--border-strong);
     border-radius: 10px; padding: 10px 12px; font-size: 14px; line-height: 1.45; color: var(--t2);
     box-shadow: 0 8px 24px rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: opacity .12s ease-out; }
   #rtt .h { font-weight: 700; color: var(--t1); margin-bottom: 4px; }
   #rtt .warn { color: var(--amber); margin-top: 4px; }
   #rtt .mut { color: var(--t3); margin-top: 4px; }
-  .sitem .t { font-size: 12px; color: var(--t2); white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis; margin: 1px 0 2px; display: block; }
-
-  .episode-browser { margin: 8px 0 12px; }
-  .episode-browser > summary { list-style: none; width: max-content; padding: 8px 2px;
-    color: var(--t2); font-size: 15px; font-weight: 600; cursor: pointer; }
-  .episode-browser > summary::-webkit-details-marker { display: none; }
-  .episode-browser > summary::after { content: "  ›"; color: var(--t3); font-weight: 500; }
-  .episode-browser[open] > summary::after { content: " ⌄"; }
-  .episode-browser[open] > summary { margin-bottom: 8px; }
-  .episode-browser .strip { margin-bottom: 0; }
   /* ---- Layer 2: pinned episode detail panel ---- */
   @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   .panel { background: var(--s2); border: 1px solid var(--border-strong); border-radius: 12px;
@@ -300,19 +310,22 @@
   details.about b { color: var(--t2); }
   footer { color: var(--t3); font-size: 13px; margin-top: 18px; }
 
+  @media (max-width: 1020px) {
+    .healthrow { grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr); }
+    .healthrow .hc-meta { grid-column: 1 / -1; }
+  }
   @media (max-width: 720px) {
     .wrap { padding: 14px 14px 20px; }
-    .health-main { grid-template-columns: 54px minmax(0, 1fr); gap: 14px; }
-    .health .score { font-size: 38px; }
-    .health .headline { font-size: 16px; }
+    .healthrow, .overview { grid-template-columns: 1fr; }
+    .gauge { width: 140px; height: 140px; }
+    .gauge .num b { font-size: 38px; }
+    .healthrow .headline { font-size: 16px; }
     .health-evidence .evidence { grid-template-columns: 1fr; gap: 16px; }
-    .overview { grid-template-columns: 1fr; }
-    .overview:not(.single) .hero { border-right: 0; }
-    .hero { flex-direction: column; gap: 10px; padding: 18px 0; }
+    .hero { flex-direction: column; gap: 10px; }
     .hero .spark { width: 100%; }
-    .compound { border-top: 1px solid var(--border); padding: 16px 0; }
     .controls { width: 100%; margin-left: 0; }
-    .sitem { flex: 0 0 150px; }
+    .card { padding: 15px 16px; }
+    .sitem { flex: 0 0 168px; }
     #chartbox { height: 340px; }
     .stamp { margin-left: 0; width: 100%; }
     .panel .themegrid { grid-template-columns: 1fr; }
@@ -331,13 +344,16 @@
     <button type="button" role="tab" data-v="live">Live</button>
   </div>
 
-  <section class="health" id="health" aria-label="Show health"></section>
+  <section class="healthrow" id="health" aria-label="Show health"></section>
   <div class="overview" id="overview">
-    <div class="hero" id="hero"></div>
-    <div class="compound" id="compound" style="display:none"></div>
+    <div class="card hero" id="hero"></div>
+    <div class="card compound" id="compound" style="display:none"></div>
   </div>
 
-  <div id="chartcard">
+  <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
+  <div class="panel" id="panel" style="display:none"></div>
+
+  <div id="chartcard" class="card">
     <div class="chead">
       <div class="chart-copy"><span class="ct" id="ctitle"></span><span class="cs" id="cscope"></span></div>
       <div class="controls">
@@ -354,12 +370,6 @@
     <div id="tablebox"></div>
     <div class="emptynote" id="emptynote" style="display:none"></div>
   </div>
-
-  <details class="episode-browser" id="episodebrowser">
-    <summary>Episodes</summary>
-    <div class="strip" id="strip"></div>
-  </details>
-  <div class="panel" id="panel" style="display:none"></div>
 
   <h2>What matters</h2>
   <div class="insights" id="insights"></div>
@@ -432,7 +442,7 @@ function catKeyFor(ins) {
   return "data";
 }
 
-const state = { view: "growth", mode: "standings", byDate: false, solo: null, panel: null, table: false, allInsights: false };
+const state = { view: "growth", mode: "standings", byDate: false, solo: null, panel: null, table: false, allInsights: false, evidenceOpen: false };
 
 function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
@@ -475,47 +485,35 @@ function heroMarker(e) {
   return "";
 }
 
-/* W9 rating: read-only render of the frozen/provisional store entry attached by
-   build-data (definition-lock — no rank math at render time, ever). */
-function ratingOf(e) { return e.rating && e.rating.rank != null ? e.rating : null; }
-function freezeDateOf(e) {
-  const d = new Date(premiereMs(e.premiere) + 7 * DAY - PHX);
-  return `${String(d.getUTCMonth() + 1).padStart(2, "0")}/${String(d.getUTCDate()).padStart(2, "0")}`;
+/* W12 episode health: read-only render of the frozen store entry attached by
+   build-data (definition-lock — no score math at render time, ever). An episode
+   younger than three weeks carries only the date its read completes; nothing
+   score-like renders for it anywhere. */
+const CHECK_WORDS = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout", conversion: "new subscribers", sentiment: "feedback" };
+function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }
+function healthWaitDate(e) {
+  const on = e.health?.readCompleteOn;
+  return on ? `${on.slice(5, 7)}/${on.slice(8, 10)}` : "";
 }
-function ratingBadge(e, cls) {
-  const r = ratingOf(e);
-  if (!r) return "";
-  const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
-  const isHero = cls?.split(/\s+/).includes("hero");
-  // marks: * = partial basis, ~ = provisional. ◐ is reserved for X-plays
-  // coverage on totals — one glyph, one meaning (taste audit F2).
-  const marks = `${partial ? ` <span class="pm">*</span>` : ""}${r.provisional ? ` <span class="pm">~</span>` : ""}`;
-  const spoken = [`Episode rating ${r.rank} of ${r.n}.`];
-  if (partial) spoken.push("Some checks are not in yet.");
-  if (r.provisional) spoken.push("The rating is still settling.");
-  return `<span class="rb${r.rank === 1 && r.n > 1 ? " top" : ""}${cls ? " " + cls : ""}" data-rslug="${esc(e.slug)}" tabindex="${isHero ? "0" : "-1"}" aria-label="${esc(spoken.join(" "))}">#${r.rank} of ${r.n}${isHero ? "" : marks}</span>`;
+function healthChip(e) {
+  const h = healthOf(e);
+  if (!h) return "";
+  const missing = (h.missingChecks || []).length > 0;
+  const spoken = [`Episode health ${h.score} out of 100; 50 is typical.`];
+  if (missing) spoken.push("Some checks are not in.");
+  return `<span class="hs" data-hslug="${esc(e.slug)}" aria-label="${esc(spoken.join(" "))}">health <b data-fold-number>${h.score}</b>${missing ? `<span class="mk">*</span>` : ""}<span class="htrack" aria-hidden="true"><span style="width:${h.score}%"></span></span></span>`;
 }
 
-/* rating tooltip (owner request 2026-08-22): every badge explains itself on
-   hover or tap — what the rank is, what * and ~ mean for THIS episode. One
-   shared fixed-position box; reads the same store entry as every surface. */
-function ratingTipHTML(e, r) {
-  const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
-  const PLAIN = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout" };
-  let h = `<div class="h">#${r.rank} of ${r.n} — ${esc(short(e.title))}</div>`;
-  h += `<div>Ranked only against the episodes that came before it — newer ones never change it.</div>`;
-  if (r.n === 1) {
-    h += `<div class="mut">First episode — nothing to compare it against.</div>`;
-  } else if (r.score != null) {
-    const pct = Math.round(Math.abs(r.score - 1) * 100);
-    h += `<div>${pct <= 5 ? "Performing right at the show's typical level." : r.score > 1 ? `Performing about ${pct}% above a typical episode.` : `Performing about ${pct}% below a typical episode.`}</div>`;
+/* health tooltip (owner request 2026-08-22): every chip explains itself on
+   hover or tap. One shared fixed-position box; reads the same store entry as
+   every surface. */
+function healthTipHTML(e, h) {
+  let out = `<div class="h">Health ${h.score} — ${esc(short(e.title))}</div>`;
+  out += `<div>Its first three weeks, measured against the show as it stood when it aired. 50 means a typical episode; newer episodes never change it.</div>`;
+  if ((h.missingChecks || []).length) {
+    out += `<div class="warn">* Not every check had honest numbers — missing ${h.missingChecks.map((c) => CHECK_WORDS[c] || c).join(" and ")}.</div>`;
   }
-  if (partial) {
-    const have = Object.entries(r.pillarScores || {}).filter(([, ps]) => ps.ratio != null).map(([p]) => PLAIN[p]);
-    h += `<div class="warn">* Not all its numbers are in yet — this rating uses ${have.join(" and ")} only.</div>`;
-  }
-  if (r.provisional) h += `<div class="warn">~ Not final — settles ${freezeDateOf(e)} once its first week is complete.</div>`;
-  return h;
+  return out;
 }
 
 function sameAgeSub(e) {
@@ -562,42 +560,85 @@ function healthTrend(points) {
   return `<svg class="trend" viewBox="0 0 150 28" role="img" aria-label="Saved health scores over time"><polyline points="${coords}"></polyline></svg>`;
 }
 
+/* Six-check diagnosis labels and states. The words stay plain; the exact saved
+   numbers live one click away in the evidence card, never at glance layer. */
+const CHECK_LABELS = {
+  growth: ["Growth", "How new episodes start"],
+  audienceQuality: ["Engagement", "Watching and reacting"],
+  reachEfficiency: ["Reach", "X posts becoming plays"],
+  livePull: ["Turnout", "Live audience"],
+  conversion: ["Subscribers", "Subscriber pull"],
+  sentiment: ["Goodwill", "How feedback reads"],
+};
+function checkState(score) {
+  if (score == null) return ["waiting", "Not in yet"];
+  if (score >= 55) return ["healthy", "Healthy"];
+  if (score >= 45) return ["steady", "Steady"];
+  return ["fragile", "Fragile"];
+}
+
 function buildHealth() {
   const el = document.getElementById("health");
-  const evidenceWasOpen = el.querySelector(".health-evidence")?.open === true;
   const h = DATA.health;
   if (!h || !Number.isFinite(h.score) || !h.headline || !Array.isArray(h.pros) || !Array.isArray(h.cons)) {
-    el.className = "health empty";
-    el.innerHTML = "Health update is not available yet.";
+    el.className = "healthrow empty";
+    el.innerHTML = `<div class="card">Health update is not available yet.</div>`;
     return;
   }
   const saved = relativeDayWords(h.date);
-  const bullets = (rows) => rows.map(item => `<li>${esc(typeof item === "string" ? item : item.text)}</li>`).join("");
-  const trend = healthTrend(h.trend?.points);
   const readState = h.readState === "early" ? " · Early read" : "";
-  el.className = "health";
-  el.innerHTML = `<div class="health-main">
-    <div class="score" data-fold-number aria-label="Show health ${h.score} out of 100">${h.score}</div>
-    <div><h2>Show health</h2><p class="headline">${esc(h.headline)}</p>
-      <div class="scoretrack" aria-hidden="true"><span style="width:${h.score}%"></span></div>
-      <div class="saved">Updated ${esc(saved)}${readState}</div>
-      <details class="health-evidence"${evidenceWasOpen ? " open" : ""}>
-        <summary>Why this score</summary>
-        <div class="evidence"><div><h3>Helping</h3><ul>${bullets(h.pros)}</ul></div>
-        <div><h3>Needs work</h3><ul>${bullets(h.cons)}</ul></div></div>
-        ${trend}
-      </details>
-    </div></div>`;
+  const R = 76, C = Math.round(2 * Math.PI * R * 10) / 10;
+  const rows = (h.checks || []).map((c) => {
+    const [label, sub] = CHECK_LABELS[c.key] || [c.key, ""];
+    const [cls, word] = checkState(c.score);
+    return `<div class="checkrow"><span class="cl">${label}</span><span class="cs">${sub}</span>
+      <span class="st ${cls}"><i aria-hidden="true"></i>${word}</span></div>`;
+  }).join("");
+  const bullets = (items) => items.map(item => `<li>${esc(typeof item === "string" ? item : item.text)}</li>`).join("");
+  const waiting = (h.checks || []).filter((c) => c.score == null && c.reason);
+  const evidence = !state.evidenceOpen ? "" : `<div class="card health-evidence" id="evidence">
+      <div class="kicker">Why this score</div>
+      <div class="evidence"><div><h3>Helping</h3><ul>${bullets(h.pros)}</ul></div>
+      <div><h3>Needs work</h3><ul>${bullets(h.cons)}</ul></div></div>
+      ${waiting.length ? `<div class="waitlist">${waiting.map((c) => `${(CHECK_LABELS[c.key] || [c.key])[0]} isn’t in yet — ${esc(c.reason)}`).join("<br>")}</div>` : ""}
+      ${healthTrend(h.trend?.points)}
+    </div>`;
+  el.className = "healthrow";
+  el.innerHTML = `<div class="card hc-score">
+      <div class="kicker">Show health</div>
+      <div class="gaugewrap">
+        <div class="gauge" role="img" aria-label="Show health ${h.score} out of 100. 50 is the show’s usual level.">
+          <svg viewBox="0 0 168 168" aria-hidden="true">
+            <circle class="track" cx="84" cy="84" r="${R}"></circle>
+            <circle class="fill" cx="84" cy="84" r="${R}" stroke-dasharray="${Math.round(C * h.score / 100 * 10) / 10} ${C}"></circle>
+          </svg>
+          <div class="num"><b data-fold-number>${h.score}</b><small>of 100</small></div>
+        </div>
+        <div class="scale">50 is this show’s usual level</div>
+      </div>
+    </div>
+    <div class="card hc-diag">
+      <div class="kicker">Health diagnosis</div>
+      <p class="headline">${esc(h.headline)}</p>
+      <div class="checkrows">${rows}</div>
+    </div>
+    <div class="card hc-meta">
+      <div class="kicker">Today’s read</div>
+      <div class="updated"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Updated ${esc(saved)}${readState}</div>
+      <p class="scope">Saved once a day: six checks that compare the newest episodes with this show’s usual levels. It reads today, not a running total — each episode’s own three-week score lives on its card below.</p>
+      <button type="button" class="why" id="whyscore" aria-expanded="${state.evidenceOpen ? "true" : "false"}" aria-controls="evidence">Why this score ${state.evidenceOpen ? "−" : "+"}</button>
+    </div>${evidence}`;
+  document.getElementById("whyscore").addEventListener("click", () => { state.evidenceOpen = !state.evidenceOpen; render(); });
 }
 
-/* ================= hero ================= */
+/* ================= hero: latest episode card ================= */
 let sparkChart = null;
 function buildHero() {
   const el = document.getElementById("hero");
   const e = NEWEST;
   const isLive = state.view === "live";
   const c = color(e);
-  let html = `<div class="main"><h2>${esc(short(e.title))}</h2>`;
+  let html = `<div class="main"><div class="kicker">${isLive ? "Latest live session" : "Latest episode"}</div><h2>${esc(short(e.title))}</h2>`;
 
   if (isLive) {
     if (e.live) {
@@ -609,20 +650,21 @@ function buildHero() {
     const mk = heroMarker(e);
     const tv = e.latest.totalViews ?? e.latest.ytTotal;
     const totalText = tv == null ? `<span class="unavailable">Total views are not available.</span>` : `<span class="big"><span data-fold-number>${nfmt(tv)}</span> <small>total views</small></span>`;
-    html += `<div class="metricline">${totalText}${ratingBadge(e, "hero")}${mk ? `<span class="mk">${mk}</span>` : ""}</div>`;
+    html += `<div class="metricline">${totalText}${mk ? `<span class="mk">${mk}</span>` : ""}</div>`;
     const yt = e.latest.ytTotal;
     const x = e.latest.xPlays;
     const splitReady = Number.isFinite(tv) && Number.isFinite(yt) && Number.isFinite(x) && tv > 0 && yt + x === tv;
     if (splitReady) {
       html += `<div class="platform-bar" role="img" aria-label="YouTube ${nfmt(yt)} views. X ${nfmt(x)} plays.">
         <span class="yt" style="flex:${yt}"></span><span class="x" style="flex:${x}"></span></div>
-        <div class="splitlabels" aria-hidden="true"><span>YouTube</span><span>X</span></div>`;
+        <div class="splitlabels" aria-hidden="true"><span><i style="background:#ff795b"></i>YouTube</span><span><i style="background:var(--accent)"></i>X</span></div>`;
     } else {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
-    const r = ratingOf(e);
-    const missing = r && (r.coverage?.missingPillars || []).length > 0;
-    if (r?.provisional || missing) html += `<div class="state">Rating is still settling${missing ? "; one check is not in yet" : ""}.</div>`;
+    // Episode health never shows early: a finished read gets its chip; a young
+    // episode states when its three-week read completes, nothing more.
+    if (healthOf(e)) html += `<div class="state">${healthChip(e)}</div>`;
+    else if (e.health?.pending) html += `<div class="state">Health score lands after ${healthWaitDate(e)}, once its first three weeks are in.</div>`;
   }
 
   html += `</div>`;
@@ -651,16 +693,19 @@ function buildHero() {
   }
 }
 
-/* ================= strip ================= */
+/* ================= episode carousel (above the chart) ================= */
 function buildStrip() {
   const isLive = state.view === "live";
   const strip = document.getElementById("strip");
   strip.innerHTML = "";
-  // oldest → newest, left → right: the latest episode is always far right (locked rule)
+  // oldest → newest, left → right: the latest episode is always far right
+  // (locked rule) — read in order, the finished health scores ARE the
+  // trajectory of the show.
   for (const e of EPS) {
     const it = document.createElement("button");
     it.type = "button";
-    it.className = "sitem";
+    it.className = "sitem" + (e.slug === NEWEST.slug ? " newest" : "");
+    it.setAttribute("role", "listitem");
     it.dataset.slug = e.slug;
     let num = "";
     let spokenValue = "Data not available.";
@@ -675,14 +720,20 @@ function buildStrip() {
       const mk = heroMarker(e);
       // number rides the identity row; the unit is stated once in the hero
       const total = e.latest.totalViews ?? e.latest.ytTotal;
-      num = total == null ? `<span class="num">not available</span>${ratingBadge(e)}` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}${ratingBadge(e)}`;
-      if (total != null) spokenValue = `${nfmt(total)} total views.${ratingOf(e) ? ` Rating ${ratingOf(e).rank} of ${ratingOf(e).n}.` : ""}`;
+      num = total == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
+      if (total != null) spokenValue = `${nfmt(total)} total views.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
     }
-    // "late reg" flag removed from cards (owner call 2026-08-22) — the
-    // partial-history caveat lives in the detail panel and About, where it
-    // has room to mean something.
+    // Episode health, growth tab only: a finished three-week read shows its
+    // score; the first episode says it set the baseline; younger episodes show
+    // nothing score-like at all (their wait date lives in the click panel).
+    let hs = "";
+    if (!isLive) {
+      if (healthOf(e)) hs = healthChip(e);
+      else if (e.health && !e.health.pending && e.health.score == null) hs = `<span class="hs quiet">sets the baseline</span>`;
+      else hs = `<span class="hs quiet" aria-hidden="true"></span>`;
+    }
     it.innerHTML = `<span class="r1"><span class="dot" style="background:${color(e)}"></span>E${e.ep} ${num}</span>
-      <span class="t">${esc(short(e.title))}</span>`;
+      <span class="t">${esc(short(e.title))}</span>${hs}`;
     it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
     it.addEventListener("click", () => {
       if (state.panel === e.slug) { state.panel = null; state.solo = null; }
@@ -691,9 +742,9 @@ function buildStrip() {
     });
     strip.appendChild(it);
   }
-  // on phones the strip scrolls; land it on the NEWEST episode (far right),
-  // not E1 — the locked order rule keeps its value on small screens
-  if (window.innerWidth <= 720) strip.scrollLeft = strip.scrollWidth;
+  // the strip scrolls when episodes outgrow the row; land it on the NEWEST
+  // episode (far right) — the locked order rule keeps its value on any width
+  strip.scrollLeft = strip.scrollWidth;
 }
 
 /* ================= detail panel (Layer 2) ================= */
@@ -754,39 +805,41 @@ function buildPanel() {
     html += `<div class="sect"><div class="row head">YouTube views at the same age<span class="val big">${paceText}</span></div></div>`;
   }
 
-  // W9 rating: one row per pillar — underlying number + percentile, plain words.
-  // Missing pillars say so; they are never rendered as zeros.
-  const r = ratingOf(e);
-  if (r) {
-    const partial = (r.coverage?.missingPillars || []).length > 0 && r.n > 1;
+  // W12 episode health: one row per check — the stored number + a plain
+  // comparison. Missing checks say so; they are never rendered as zeros. A
+  // young episode states when its read completes; no score renders early.
+  const h = e.health;
+  if (h?.pending) {
+    html += `<div class="sect"><div class="row head">Episode health<span class="val hint">arrives after ${healthWaitDate(e)}</span></div>
+      <div class="mut">Every episode is scored on its first three weeks against the show before it — nothing shows until that read is complete.</div></div>`;
+  } else if (h && h.score == null) {
+    html += `<div class="sect"><div class="row head">Episode health<span class="val hint">sets the baseline</span></div>
+      <div class="mut">${esc(h.reason || "not enough honest numbers to score this episode")}.</div></div>`;
+  } else if (h) {
+    const CLABEL = {
+      watch: "views at three weeks",
+      engagement: "likes + comments per 1,000 views",
+      retention: "how much people watch",
+      live: "live turnout",
+      conversion: "subscribers per 1,000 views",
+      sentiment: "feedback leaning positive",
+    };
+    const plainRatio = (ratio) => {
+      const pct = Math.round(Math.abs(ratio - 1) * 100);
+      return pct <= 5 ? "typical" : ratio > 1 ? `${pct}% above typical` : `${pct}% below typical`;
+    };
     html += `<div class="sect">`;
-    html += `<div class="row head">Rating<span class="val big">#${r.rank} of ${r.n}${partial ? ` <span class="hint">*</span>` : ""}</span></div>`;
-    if (r.n === 1) {
-      html += `<div class="mut">first episode — nothing to compare against yet</div>`;
-    } else {
-      const PLABEL = { watch: "views", engagement: "engagement", retention: "how long people watch", live: "live turnout" };
-      const plainRatio = (ratio) => {
-        const pct = Math.round(Math.abs(ratio - 1) * 100);
-        return pct <= 3 ? "typical" : ratio > 1 ? `${pct}% above typical` : `${pct}% below typical`;
-      };
-      for (const [p, lab] of Object.entries(PLABEL)) {
-        const ps = r.pillarScores?.[p];
-        const fmtV = (v) => p === "live" ? `${v.peak} live · ${nfmt(v.chat)} chat` : p === "retention" ? `${v}%` : nfmt(v);
-        let val = `<span class="hint">not in yet</span>`;
-        if (ps && ps.ratio != null) {
-          val = `${fmtV(ps.value)} <span class="hint">· ${plainRatio(ps.ratio)}</span>`;
-        } else if (ps && ps.value != null) {
-          val = `${fmtV(ps.value)} <span class="hint">· nothing to compare yet</span>`;
-        }
-        html += `<div class="row">${lab}<span class="val">${val}</span></div>`;
-      }
-      if (partial) {
-        const have = Object.entries(r.pillarScores || {}).filter(([, ps]) => ps.ratio != null).map(([p]) => PLABEL[p]);
-        html += `<div class="note">* Not all its numbers are in yet — rated on ${have.join(" and ")} only</div>`;
-      }
-      if (r.provisional) html += `<div class="note">~ Not final — settles ${freezeDateOf(e)} once its first week is complete</div>`;
+    html += `<div class="row head">Episode health<span class="val big">${h.score} <span class="hint">of 100 · 50 is typical</span></span></div>`;
+    for (const [k, lab] of Object.entries(CLABEL)) {
+      const c = h.checks?.[k];
+      const fmtV = (v) => k === "live" ? `${v.peak} live · ${nfmt(v.chat)} chat` : (k === "retention" || k === "sentiment") ? `${v}%` : nfmt(v);
+      let val = `<span class="hint">not in</span>`;
+      if (c && c.ratio != null) val = `${fmtV(c.value)} <span class="hint">· ${plainRatio(c.ratio)}</span>`;
+      html += `<div class="row">${lab}<span class="val">${val}</span></div>`;
     }
-    html += `</div>`;
+    const peers = Math.max(0, (h.windowIds || []).length - 1);
+    html += `<div class="mut">Its first three weeks against the ${peers === 1 ? "episode" : `${peers} episodes`} before it — newer episodes never change this score.</div>`;
+    if ((h.missingChecks || []).length) html += `<div class="note">* ${h.missingChecks.map((c) => CHECK_WORDS[c] || c).join(" and ")} had too little honest data and sat out</div>`;
   }
 
   const comments = e.comments;
@@ -829,7 +882,7 @@ function openDrill(slug, filter) {
   document.getElementById("drill").classList.add("on");
 }
 function closeDrill() { document.getElementById("drill").classList.remove("on"); }
-/* ================= compounding strip: is the show growing? (PRD v2 W2) ================= */
+/* ================= growth-trend card: is the show growing? (PRD v2 W2) ================= */
 function buildCompound() {
   const el = document.getElementById("compound");
   const rows = DATA.showTrend?.week1VelocityByEpisode || [];
@@ -842,8 +895,9 @@ function buildCompound() {
   // labels without adding another row of glance-layer numbers.
   let verdict, cls = "";
   if (vals.length < 3) {
-    const dots = Array.from({ length: 3 }, (_, index) => `<i class="${index < vals.length ? "on" : ""}"></i>`).join("");
-    el.innerHTML = `<div class="readiness" aria-hidden="true">${dots}</div><div class="cv2">Growth trend isn’t ready yet.</div>`;
+    el.innerHTML = `<div class="kicker">Growth trend</div>
+      <div class="waitbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+      <div class="cv2">Growth trend isn’t ready yet.</div></div>`;
     el.style.display = "";
     return;
   } else {
@@ -858,7 +912,7 @@ function buildCompound() {
     bars += `<div class="cbar" role="img" aria-label="${esc(short(r.e.title))}: ${nfmt(r.value)} YouTube views in its first week">
       <div class="bwrap"><div class="b" style="height:${Math.max(6, Math.round((r.value / max) * 100))}%;background:${color(r.e)}"></div></div></div>`;
   }
-  el.innerHTML = `<h2>First-week growth</h2><div class="bars">${bars}</div>
+  el.innerHTML = `<div class="kicker">Growth trend — first weeks</div><div class="bars">${bars}</div>
     <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>`;
   el.style.display = "";
 }
@@ -901,15 +955,15 @@ function renderDrill() {
 // tooltip events; a fast pointer exit could strand one over the chart
 document.getElementById("chartbox").addEventListener("mouseleave", () => { document.getElementById("tt").style.opacity = 0; });
 
-// rating-badge tooltip: delegated so it survives every re-render
+// health-chip tooltip: delegated so it survives every re-render
 const rtt = document.createElement("div");
 rtt.id = "rtt";
 document.body.appendChild(rtt);
 function showRtt(badge) {
-  const e = EPS.find(x => x.slug === badge.dataset.rslug);
-  const r = e && ratingOf(e);
+  const e = EPS.find(x => x.slug === badge.dataset.hslug);
+  const r = e && healthOf(e);
   if (!r) return;
-  rtt.innerHTML = ratingTipHTML(e, r);
+  rtt.innerHTML = healthTipHTML(e, r);
   const b = badge.getBoundingClientRect();
   rtt.style.opacity = 1;
   // measure after content is set; clamp inside the viewport, flip above if low
@@ -921,11 +975,11 @@ function showRtt(badge) {
   rtt.style.top = y + "px";
 }
 function hideRtt() { rtt.style.opacity = 0; }
-document.addEventListener("mouseover", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); });
-document.addEventListener("mouseout", (ev) => { if (ev.target.closest?.(".rb")) hideRtt(); });
-document.addEventListener("focusin", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); });
-document.addEventListener("focusout", (ev) => { if (ev.target.closest?.(".rb")) hideRtt(); });
-document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".rb"); if (b) showRtt(b); else hideRtt(); });
+document.addEventListener("mouseover", (ev) => { const b = ev.target.closest?.(".hs[data-hslug]"); if (b) showRtt(b); });
+document.addEventListener("mouseout", (ev) => { if (ev.target.closest?.(".hs[data-hslug]")) hideRtt(); });
+document.addEventListener("focusin", (ev) => { const b = ev.target.closest?.(".hs[data-hslug]"); if (b) showRtt(b); });
+document.addEventListener("focusout", (ev) => { if (ev.target.closest?.(".hs[data-hslug]")) hideRtt(); });
+document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".hs[data-hslug]"); if (b) showRtt(b); else hideRtt(); });
 document.getElementById("dclose").addEventListener("click", closeDrill);
 document.getElementById("drill").addEventListener("click", (ev) => { if (ev.target.id === "drill") closeDrill(); });
 document.addEventListener("keydown", (ev) => {
@@ -1366,14 +1420,18 @@ function buildTable() {
       html += "</tr>";
     }
   } else {
-    html += "<th>Episode</th><th>Rating</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>X reach</th><th>Pace (YT)</th></tr>";
+    html += "<th>Episode</th><th>Health</th><th>Total views</th><th>YT Dive Club</th><th>YT DesignerTom</th><th>X ridd plays</th><th>X tom plays</th><th>X reach</th><th>Pace (YT)</th></tr>";
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
       const mk = heroMarker(e);
       const pace = sameAgeSub(e);
-      const rr = ratingOf(e);
+      const hh = e.health;
+      const healthCell = healthOf(e)
+        ? `${healthOf(e).score}${(healthOf(e).missingChecks || []).length ? " <span class=\"mk\">*</span>" : ""}`
+        : hh?.pending ? `<span style="color:var(--t3)">after ${healthWaitDate(e)}</span>`
+        : hh ? `<span style="color:var(--t3)">baseline</span>` : "–";
       html += `<tr><td class="t">${esc(label(e))}</td>`;
-      html += `<td class="t">${rr ? `#${rr.rank} of ${rr.n}${(rr.coverage?.missingPillars || []).length && rr.n > 1 ? " <span class=\"mk\">*</span>" : ""}${rr.provisional ? " <span class=\"mk\">~</span>" : ""}` : "–"}</td>`;
+      html += `<td class="t">${healthCell}</td>`;
       html += `<td class="t">${metricText(e.latest.totalViews)}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
       html += `<td>${metricText(bd["yt:joindiveclub"]?.views)}</td><td>${metricText(bd["yt:designertom"]?.views)}</td>`;
       html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
@@ -1493,9 +1551,9 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
-  <p><b>Rating</b> (“#2 of 6”) ranks an episode against itself and up to nine episodes that aired before it. Later episodes never enter that comparison. The rating weighs YouTube views at the same age (50%), likes and comments per 1,000 views (20%), how much of the video people watched (15%), and live turnout (15%). Each check asks whether the episode is above or below what recent episodes usually did. If an honest number is not in yet, that check drops out and the remaining checks share its weight; <b>*</b> marks that state, and nothing is guessed or filled with zero. <b>~</b> means the rating is not final until day 7, when it freezes. Views use YouTube only because older X play history does not exist. Watch-time data currently comes from the DesignerTom channel.</p>
+  <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero; <b>*</b> marks a score that shipped without every check. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> combines the checks that are honestly available on the saved date. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>
+  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }
 
@@ -1540,14 +1598,6 @@ document.getElementById("reset").addEventListener("click", () => {
   state.mode = "standings"; state.byDate = false; state.solo = null; state.panel = null; state.table = false;
   render();
 });
-document.getElementById("episodebrowser").addEventListener("toggle", (event) => {
-  if (!event.currentTarget.open || window.innerWidth > 720) return;
-  requestAnimationFrame(() => {
-    const strip = document.getElementById("strip");
-    strip.scrollLeft = strip.scrollWidth;
-  });
-});
-
 const stamp = document.getElementById("stamp");
 stamp.textContent = `Data refreshed ${relativeDayWords(phoenixDateKey(DATA.generatedAt))}`;
 stamp.title = `Exact refresh: ${DATA.generatedAt}`;

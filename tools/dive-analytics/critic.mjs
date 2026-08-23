@@ -59,7 +59,11 @@ function harvest() {
       complaintThemes: e.comments.complaintThemes,
       xReplies: e.comments.xCoverage,
     } : null,
-    rating: e.rating ? { rank: e.rating.rank, n: e.rating.n, score: e.rating.score, provisional: e.rating.provisional, coverage: e.rating.coverage, pillarScores: e.rating.pillarScores } : null,
+    health: e.health?.pending
+      ? { pending: true, readCompleteOn: e.health.readCompleteOn }
+      : e.health
+        ? { score: e.health.score, atDay: e.health.atDay, readCompleteOn: e.health.readCompleteOn, checks: e.health.checks, missingChecks: e.health.missingChecks, reason: e.health.reason }
+        : null,
   }));
 
   return {
@@ -73,7 +77,7 @@ function harvest() {
       count: healthHistory.entries.length,
       latest: healthHistory.entries.at(-1),
     } : null,
-    ratingsStoreMeta: ratings ? { algorithm: ratings.algorithm, updatedAt: ratings.updatedAt, count: ratings.ratings?.length } : null,
+    ratingsStoreMeta: ratings ? { algorithm: ratings.algorithm, updatedAt: ratings.updatedAt, count: (ratings.scores ?? ratings.ratings)?.length } : null,
     indexHtml: html,
   };
 }
@@ -119,7 +123,7 @@ const system = readFileSync(join(HERE, "critic-prompt.md"), "utf8");
 const user = [
   "Audit this shipped dashboard state.",
   "",
-  "## data (what renders; compact export of data.json + ratings)",
+  "## data (what renders; compact export of data.json + episode health)",
   "```json",
   JSON.stringify({ ...bundle, indexHtml: undefined }, null, 1),
   "```",

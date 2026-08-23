@@ -4,15 +4,22 @@ Analytics dashboard for Dive Radio episode performance across four
 destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
 @designertom).
 
-- Newest-episode hero (total views = YouTube views + X broadcast plays;
-  X reach shown separately and never summed into views) with pace,
-  audience-feedback, and outlier chips
-- Saved show-health score with grounded Helping / Needs work bullets; missing
-  checks drop out and history starts only from real saved days
-- Episode strip + three views: Standings (stacked total views),
-  Pacing race (YouTube cumulative since premiere), Weekly gains
+- Card layout: show-health gauge + six-check diagnosis + today's-read cards,
+  then latest-episode and growth-trend cards, then the episode carousel above
+  the chart
+- Saved show-health score (daily; compares the newest episodes with the show's
+  usual levels) with grounded Helping / Needs work bullets; missing checks drop
+  out and history starts only from real saved days
+- Per-episode health score (0–100, 50 = typical): each episode's own
+  three-week read against the episodes before it, frozen at day 21 and shown
+  nowhere until those three weeks are over
+- Latest-episode card keeps unit discipline: total views = YouTube views + X
+  broadcast plays; X reach shown separately and never summed into views
+- Episode carousel + two chart views: Totals (stacked per destination) and
+  Over time (YouTube cumulative since premiere)
 - Click any episode for a detail panel: per-channel breakdown, reach split,
-  featured quotes, recurring audience themes, and praise/concern drilldown
+  episode-health checks, featured quotes, recurring audience themes, and
+  praise/concern drilldown
 - Table view mirrors every charted number; "About this data" defines units
   and missing-data marks
 - Deterministic insights & recommendations computed at build time

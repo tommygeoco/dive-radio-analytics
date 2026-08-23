@@ -1,34 +1,44 @@
 #!/usr/bin/env node
-// ratings.mjs — W9 episode rating: "#x of N", ratio-based, frozen windows.
-// PRD: Dive Media Group/Dive Radio/prd-analytics-v3-comments-and-rating-2026-08-22.md
-// (algorithm ratio-v2, owner directive 2026-08-22 13:20: every episode ranked,
-//  ratio'd so nobody is penalized for lack of historical data)
+// ratings.mjs — W12 episode health: one 0–100 score per episode, measured over
+// its first three weeks and shown nowhere until those three weeks are over.
+// (Owner directive 2026-08-23: replace the "#x of N" rank with a per-episode
+//  three-week health score; nothing renders before the read completes.)
 //
 // Definition (constitutional):
-//   - Window = the episode + up to 9 episodes that aired BEFORE it (the 10 most
-//     recent as of its air date). Windows never include later episodes.
-//   - A rating is provisional from air day and freezes at day 7. A frozen rating
-//     NEVER changes on re-processing within the same algorithm version. An
-//     algorithm version bump re-derives every rating visibly (stamped at the
-//     store root) — never silently.
-//   - Every pillar is a RATIO — "this episode vs the typical episode" — so an
-//     episode is never docked for when tracking started:
-//       watch      50%  YT views at its own age (capped at day 21, the measured
-//                       flatline point) ÷ median of window peers' REAL snapshot
-//                       values at that same age. Same-age, same-unit, no history
-//                       required beyond what peers actually recorded.
-//       engagement 20%  likes+comments per 1k YT views ÷ window median (a ratio
-//                       of a ratio — age-independent).
-//       retention  15%  averageViewPercentage ÷ window median (designertom-only
-//                       coverage until Ridd's grant; marked).
-//       live       15%  peak concurrents ÷ median, chat messages ÷ median,
-//                       averaged. Live data exists from air night for everyone.
-//   - Missing-data rule: a pillar with no honest data (no peer covers that age,
-//     analytics not yet available) drops out and its weight redistributes
-//     proportionally. Never estimate, never interpolate, never zero-fill.
+//   - The read window is the episode's first 21 days — the measured flatline
+//     point where growth stops. An episode gets a stored entry ONLY once it is
+//     at least 21 days old; younger episodes have no entry and no surface.
+//   - Window peers = up to 9 episodes that aired BEFORE it. Peers never include
+//     later episodes, so a finished score NEVER changes when new episodes land.
+//   - Every comparative check is a ratio — "this episode vs the typical earlier
+//     episode" — converted to a 0–100 score where 50 = right at typical
+//     (score = 50 × own ÷ typical, capped 0..100).
+//       watch      35%  YT views at day 21 (or its earliest real snapshot if it
+//                       was registered later) vs peers' REAL snapshot values at
+//                       that same age. No extrapolation, no fabricated history.
+//       engagement 15%  YT likes+comments per 1k YT views at the same read age,
+//                       vs the peers' own three-week values.
+//       retention  15%  averageViewPercentage (view-weighted across channels
+//                       with data; channels stamped) vs peers' values.
+//       live       15%  peak concurrents and chat messages vs peer typicals,
+//                       averaged. Live data exists from air night.
+//       conversion 10%  subscribers gained per 1k YT analytics views, both
+//                       channels required, vs peers' values.
+//       sentiment  10%  share of directional feedback that is positive (mixed
+//                       counts half), needing 3+ directional comments from 3+
+//                       people, vs peers' shares.
+//   - Missing-data rule: a check with no honest number (no peer covers that
+//     age, analytics absent, too little feedback) drops out and its weight is
+//     shared by the rest. Never estimate, never interpolate, never zero-fill.
+//     A score ships only when at least half the planned weight is present.
+//   - The first episode has no earlier peers: it sets the baseline and carries
+//     no score, stated as a reason — never rendered as a zero.
+//   - Entries are frozen at write time and NEVER change on re-processing within
+//     the same algorithm version. A version bump re-derives every entry visibly
+//     (stamped at the store root) — never silently.
 //
-// Store: data/restream/episode-ratings.json — one entry per episode, updated in
-// place only while provisional; frozen entries are copied through byte-stable.
+// Store: data/restream/episode-ratings.json (path kept so the cron chain and
+// its consumers stay valid) — one entry per FINISHED episode, append-only.
 //
 // Deterministic: no model calls, no network. Reads the same files as build-data.
 
@@ -42,12 +52,19 @@ const ROOT = join(HERE, "..", "..");
 const STORE_PATH = join(ROOT, "data", "restream", "episode-ratings.json");
 const YTA_DIR = join(ROOT, "data", "restream", "yt-analytics");
 
-export const ALGORITHM = "ratio-v2";
-export const WEIGHTS = { watch: 0.5, engagement: 0.2, retention: 0.15, live: 0.15 };
-const PILLARS = Object.keys(WEIGHTS);
+export const ALGORITHM = "health21-v1";
+export const WEIGHTS = Object.freeze({
+  watch: 0.35,
+  engagement: 0.15,
+  retention: 0.15,
+  live: 0.15,
+  conversion: 0.10,
+  sentiment: 0.10,
+});
+export const READ_DAYS = 21; // measured flatline point: episodes stop growing ~week 3
+export const MIN_WEIGHT = 0.5; // no score on less than half the planned evidence
+const CHECKS = Object.keys(WEIGHTS);
 const WINDOW_MAX = 10;
-const FREEZE_DAYS = 7;
-const WATCH_CAP_DAYS = 21; // measured flatline point: episodes stop growing ~week 3
 const DAY = 86400000;
 const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const PHX_OFFSET = 7 * 3600000;
@@ -57,6 +74,10 @@ function premiereMs(dateStr) {
   return Date.UTC(y, m - 1, d, 12) + PHX_OFFSET;
 }
 
+export function readCompleteOn(premiere) {
+  return new Date(premiereMs(premiere) + READ_DAYS * DAY - PHX_OFFSET).toISOString().slice(0, 10);
+}
+
 function median(vals) {
   const v = [...vals].sort((a, b) => a - b);
   if (!v.length) return null;
@@ -64,9 +85,50 @@ function median(vals) {
   return v.length % 2 ? v[mid] : (v[mid - 1] + v[mid]) / 2;
 }
 
+const r1 = (x) => Math.round(x * 10) / 10;
 const r3 = (x) => Math.round(x * 1000) / 1000;
+const toScore = (ratio) => Math.round(Math.min(100, Math.max(0, 50 * ratio)));
 
-// --- pillar raw values ---
+// --- raw per-episode values, all measured from stored data only ---
+
+function snapAt(snaps, cutoffMs) {
+  let best = null;
+  for (const s of snaps) {
+    const t = Date.parse(s.ts);
+    if (t <= cutoffMs && (!best || t > best.t)) best = { t, s };
+  }
+  return best ? best.s : null;
+}
+
+const ytViews = (snap) => YT_KEYS.reduce((a, k) => a + (snap.byDest[k]?.views || 0), 0);
+const ytEng = (snap) => YT_KEYS.reduce((a, k) => a + (snap.byDest[k]?.likes || 0) + (snap.byDest[k]?.comments || 0), 0);
+
+// read age: day 21, or the first real snapshot's age when tracking started later
+function readAgeOf(e) {
+  const prem = premiereMs(e.premiere);
+  const firstAge = (Date.parse(e.snapshots[0].ts) - prem) / DAY;
+  return Math.max(READ_DAYS, firstAge);
+}
+
+function watchAt(e, ageDays) {
+  const snap = snapAt(e.snapshots, premiereMs(e.premiere) + ageDays * DAY);
+  return snap ? ytViews(snap) : null;
+}
+
+// a peer only counts when its snapshot coverage genuinely spans that age
+function peerCovers(p, ageDays) {
+  const prem = premiereMs(p.premiere);
+  const first = (Date.parse(p.snapshots[0].ts) - prem) / DAY;
+  const last = (Date.parse(p.snapshots[p.snapshots.length - 1].ts) - prem) / DAY;
+  return first <= ageDays && last >= ageDays;
+}
+
+function engagementAt(e, ageDays) {
+  const snap = snapAt(e.snapshots, premiereMs(e.premiere) + ageDays * DAY);
+  if (!snap) return null;
+  const v = ytViews(snap);
+  return v > 0 ? r1((ytEng(snap) / v) * 1000) : null;
+}
 
 function retentionOf(slug) {
   const p = join(YTA_DIR, `${slug}.json`);
@@ -86,174 +148,185 @@ function retentionOf(slug) {
   return { value: den > 0 ? Math.round((num / den) * 100) / 100 : null, channels };
 }
 
-const ytAt = (snaps, cutoffMs) => {
-  let best = null;
-  for (const s of snaps) {
-    const t = Date.parse(s.ts);
-    if (t <= cutoffMs && (!best || t > best.t)) best = { t, v: YT_KEYS.reduce((a, k) => a + (s.byDest[k]?.views || 0), 0) };
+function conversionOf(slug) {
+  const p = join(YTA_DIR, `${slug}.json`);
+  if (!existsSync(p)) return null;
+  let j;
+  try { j = JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
+  let subs = 0, views = 0;
+  for (const key of YT_KEYS) {
+    const t = j.channels?.[key]?.totals;
+    if (!t || !Number.isFinite(t.subscribersGained) || !Number.isFinite(t.views)) return null;
+    subs += t.subscribersGained;
+    views += t.views;
   }
-  return best ? best.v : null;
-};
-
-// watch: member's YT views at its reference age vs the median of OTHER window
-// members' real snapshot values at that same age.
-//   reference age = min(its age, 21d cap) — unless the episode was registered
-//   late and its earliest real snapshot lands after that, in which case the
-//   first snapshot's age becomes the reference (its earliest honest data point,
-//   still compared same-age against peers). A peer only counts when its
-//   snapshot coverage genuinely spans that age (first snapshot at-or-before it,
-//   last snapshot at-or-after it) — no extrapolation, no fabricated history.
-function watchRatio(m, members) {
-  const prem = premiereMs(m.premiere);
-  const firstAge = (Date.parse(m.snapshots[0].ts) - prem) / DAY;
-  let refAge = Math.min(m.ageDays, WATCH_CAP_DAYS);
-  if (firstAge > refAge) refAge = firstAge; // late reg: earliest real data point
-  const own = ytAt(m.snapshots, prem + refAge * DAY);
-  if (own == null) return null;
-  const peers = [];
-  for (const p of members) {
-    if (p.slug === m.slug) continue;
-    const pPrem = premiereMs(p.premiere);
-    const pFirst = (Date.parse(p.snapshots[0].ts) - pPrem) / DAY;
-    const pLast = (Date.parse(p.snapshots[p.snapshots.length - 1].ts) - pPrem) / DAY;
-    if (pFirst > refAge || pLast < refAge) continue; // no real data spanning that age
-    const v = ytAt(p.snapshots, pPrem + refAge * DAY);
-    if (v != null) peers.push(v);
-  }
-  const typical = median(peers);
-  if (typical == null || typical <= 0) return null;
-  return { value: own, typical: Math.round(typical), ratio: r3(own / typical), atDay: Math.round(refAge * 10) / 10 };
+  return views > 0 ? r1((subs / views) * 1000) : null;
 }
 
-function simpleRatio(value, pool) {
+// directional-feedback share: positive + half of mixed, needing 3+ directional
+// comments from 3+ people — the same thresholds the show checks use
+function sentimentOf(e) {
+  const list = e.comments?.list || [];
+  const directional = list.filter((c) => ["positive", "negative", "mixed"].includes(c.sentiment));
+  const people = new Set(directional.map((c) => `${c.source}:${String(c.author || "viewer").trim().toLowerCase()}`)).size;
+  if (directional.length < 3 || people < 3) return null;
+  const pos = directional.filter((c) => c.sentiment === "positive").length;
+  const mixed = directional.filter((c) => c.sentiment === "mixed").length;
+  return { share: r1(((pos + mixed * 0.5) / directional.length) * 100), directional: directional.length, people };
+}
+
+// --- score ONE finished episode against its window peers ---
+
+function check(value, typical, sample, extra = {}) {
   if (value == null) return null;
-  const typical = median(pool);
   if (typical == null || typical <= 0) return null;
-  return { value, typical: r3(typical), ratio: r3(value / typical) };
+  const ratio = r3(value / typical);
+  return { value, typical: r3(typical), ratio, score: toScore(ratio), sample, ...extra };
 }
 
-// --- rate ONE episode within its window ---
+function scoreEpisode(target, peers) {
+  const checks = {};
+  const age = readAgeOf(target); // full precision — rounding only for display
+  const atDay = r1(age);
 
-function rateEpisode(target, members) {
-  // per-member pillar ratios (each member judged vs typical at ITS OWN age)
-  const engPool = members.map((m) => m.eng).filter((v) => v != null);
-  const retPool = members.map((m) => m.ret).filter((v) => v != null);
-  const peakPool = members.map((m) => m.live?.peak).filter((v) => v != null);
-  const chatPool = members.map((m) => m.live?.chat).filter((v) => v != null);
+  // watch: same-age views — the one check that must be strictly age-matched
+  const ownWatch = watchAt(target, age);
+  const watchPeers = peers.filter((p) => peerCovers(p, age)).map((p) => watchAt(p, age)).filter((v) => v != null);
+  checks.watch = ownWatch != null && watchPeers.length
+    ? check(ownWatch, median(watchPeers), watchPeers.length, { atDay })
+    : null;
 
-  const composites = members.map((m) => {
-    const pillars = {};
-    if (members.length > 1) {
-      pillars.watch = watchRatio(m, members);
-      if (engPool.length >= 2) pillars.engagement = simpleRatio(m.eng, engPool);
-      if (retPool.length >= 2) pillars.retention = simpleRatio(m.ret, retPool);
-      if (m.live && peakPool.length >= 2 && chatPool.length >= 2) {
-        const pk = simpleRatio(m.live.peak, peakPool);
-        const ch = simpleRatio(m.live.chat, chatPool);
-        if (pk && ch) pillars.live = { value: { peak: m.live.peak, chat: m.live.chat }, typical: { peak: pk.typical, chat: ch.typical }, ratio: r3((pk.ratio + ch.ratio) / 2) };
-      }
+  // engagement: each episode at its OWN read age (a rate, so ages align honestly)
+  const ownEng = engagementAt(target, age);
+  const engPeers = peers.map((p) => engagementAt(p, readAgeOf(p))).filter((v) => v != null);
+  checks.engagement = ownEng != null && engPeers.length ? check(ownEng, median(engPeers), engPeers.length) : null;
+
+  // retention: view-weighted watch percentage from YouTube analytics
+  const ownRet = retentionOf(target.slug);
+  const retPeers = peers.map((p) => retentionOf(p.slug).value).filter((v) => v != null);
+  checks.retention = ownRet.value != null && retPeers.length
+    ? check(ownRet.value, median(retPeers), retPeers.length, { channels: ownRet.channels })
+    : null;
+
+  // live: peak and chat ratios averaged — air-night numbers, age-free
+  if (target.live) {
+    const peakPeers = peers.map((p) => p.live?.peak).filter((v) => v != null);
+    const chatPeers = peers.map((p) => p.live?.chat).filter((v) => v != null);
+    const pk = peakPeers.length ? check(target.live.peak, median(peakPeers), peakPeers.length) : null;
+    const ch = chatPeers.length ? check(target.live.chat, median(chatPeers), chatPeers.length) : null;
+    checks.live = pk && ch
+      ? {
+          value: { peak: target.live.peak, chat: target.live.chat },
+          typical: { peak: pk.typical, chat: ch.typical },
+          ratio: r3((pk.ratio + ch.ratio) / 2),
+          score: toScore((pk.ratio + ch.ratio) / 2),
+          sample: Math.min(pk.sample, ch.sample),
+        }
+      : null;
+  } else checks.live = null;
+
+  // conversion: subscribers per 1k analytics views, both channels required
+  const ownConv = conversionOf(target.slug);
+  const convPeers = peers.map((p) => conversionOf(p.slug)).filter((v) => v != null);
+  checks.conversion = ownConv != null && convPeers.length ? check(ownConv, median(convPeers), convPeers.length) : null;
+
+  // sentiment: positive share of directional feedback vs peers' shares
+  const ownSent = sentimentOf(target);
+  const sentPeers = peers.map((p) => sentimentOf(p)).filter((v) => v != null).map((v) => v.share);
+  checks.sentiment = ownSent && sentPeers.length
+    ? check(ownSent.share, median(sentPeers), sentPeers.length, { people: ownSent.people })
+    : null;
+
+  const present = CHECKS.filter((c) => checks[c] != null);
+  const availableWeight = present.reduce((a, c) => a + WEIGHTS[c], 0);
+  let score = null;
+  let reason = null;
+  if (!peers.length) {
+    reason = "first episode — it sets the baseline, with nothing earlier to compare against";
+  } else if (present.length < 2 || availableWeight < MIN_WEIGHT) {
+    reason = "too few checks have honest numbers to score this episode";
+  } else {
+    score = 0;
+    for (const c of present) {
+      checks[c].weight = Math.round((WEIGHTS[c] / availableWeight) * 10000) / 10000;
+      score += checks[c].score * checks[c].weight;
     }
-    const present = PILLARS.filter((p) => pillars[p] != null);
-    const wSum = present.reduce((a, p) => a + WEIGHTS[p], 0);
-    let score = null;
-    const weights = {};
-    if (present.length && wSum > 0) {
-      score = 0;
-      for (const p of present) {
-        weights[p] = Math.round((WEIGHTS[p] / wSum) * 10000) / 10000;
-        score += pillars[p].ratio * weights[p];
-      }
-      score = Math.round(score * 10000) / 10000;
-    }
-    return { slug: m.slug, ep: m.ep, pillars, weights, score };
-  });
-
-  const mine = composites.find((c) => c.slug === target.slug);
-  const scored = composites.filter((c) => c.score != null);
-  let rank = null;
-  if (mine.score != null) {
-    rank = 1 + scored.filter((c) => c.score > mine.score || (c.score === mine.score && c.ep < mine.ep)).length;
-  } else if (members.length === 1) {
-    rank = 1; // first episode: nothing to compare, #1 of 1 by definition
+    score = Math.round(score);
   }
-
-  const pillarScores = {};
+  const shaped = {};
   const missing = [];
-  for (const p of PILLARS) {
-    const got = mine.pillars[p];
-    pillarScores[p] = got
-      ? { value: got.value, typical: got.typical, ratio: got.ratio, weight: mine.weights[p] }
-      : { value: p === "live" ? (target.live ?? null) : p === "engagement" ? target.eng : p === "retention" ? target.ret : null, typical: null, ratio: null, weight: 0 };
-    if (!got && members.length > 1) missing.push(p);
+  for (const c of CHECKS) {
+    if (checks[c] && score != null) shaped[c] = checks[c];
+    else if (checks[c]) shaped[c] = { ...checks[c], weight: 0 };
+    else {
+      shaped[c] = { value: null, typical: null, ratio: null, score: null, weight: 0 };
+      if (peers.length) missing.push(c);
+    }
   }
-
-  return { rank, n: members.length, score: mine.score, pillarScores, missing };
+  return { score, checks: shaped, missingChecks: missing, atDay, reason };
 }
 
 // --- store orchestration ---
 
 export function computeRatings({ now = Date.now() } = {}) {
   const data = computeAll({ now });
-  const eps = data.episodes;
   let store = null;
   if (existsSync(STORE_PATH)) {
     try { store = JSON.parse(readFileSync(STORE_PATH, "utf8")); } catch { /* unreadable store — rebuild below */ }
   }
   const sameAlgo = store?.algorithm === ALGORITHM;
-  const bySlug = new Map(sameAlgo ? (store.ratings || []).map((r) => [r.slug, r]) : []);
+  const prior = new Map(sameAlgo ? (store.scores || []).map((r) => [r.slug, r]) : []);
 
-  const all = eps.map((e) => ({
+  const all = data.episodes.map((e) => ({
     slug: e.slug,
     ep: e.ep,
     premiere: e.premiere,
     ageDays: e.ageDays,
     snapshots: e.snapshots,
-    eng: e.metrics.engagementPer1k ?? null,
-    ret: retentionOf(e.slug).value,
     live: e.live ? { peak: e.live.peak, chat: e.live.chatMessages } : null,
+    comments: e.comments || null,
   }));
 
-  const ratings = [];
+  const scores = [];
   let frozenKept = 0, computed = 0;
   for (const e of all) {
-    const prior = bySlug.get(e.slug);
-    if (prior?.frozenAt) {
-      ratings.push(prior); // frozen forever within this algorithm version
+    if (e.ageDays < READ_DAYS) continue; // three weeks not over — nothing exists yet
+    const kept = prior.get(e.slug);
+    if (kept) {
+      scores.push(kept); // frozen forever within this algorithm version
       frozenKept++;
       continue;
     }
-    const members = all.filter((m) => m.ep <= e.ep && m.ep > e.ep - WINDOW_MAX);
-    const r = rateEpisode(e, members);
-    const retention = retentionOf(e.slug);
-    const nowIso = new Date(now).toISOString();
-    ratings.push({
+    const peers = all.filter((m) => m.ep < e.ep && m.ep >= e.ep - (WINDOW_MAX - 1));
+    const r = scoreEpisode(e, peers);
+    scores.push({
       ep: e.ep,
       slug: e.slug,
+      premiere: e.premiere,
       algorithm: ALGORITHM,
-      windowIds: members.map((m) => m.slug),
-      rank: r.rank,
-      n: r.n,
+      windowIds: [...peers.map((p) => p.slug), e.slug],
+      readDays: READ_DAYS,
+      atDay: r.atDay,
+      readCompleteOn: readCompleteOn(e.premiere),
       score: r.score,
-      pillarScores: r.pillarScores,
-      coverage: {
-        missingPillars: r.missing,
-        watchBasis: `yt-views-at-own-age-vs-peer-median (cap ${WATCH_CAP_DAYS}d; X plays excluded — no plays history before 2026-08-21)`,
-        retentionChannels: retention.channels,
-      },
-      provisional: e.ageDays < FREEZE_DAYS,
-      computedAt: nowIso,
-      frozenAt: e.ageDays >= FREEZE_DAYS ? nowIso : null,
+      checks: r.checks,
+      missingChecks: r.missingChecks,
+      reason: r.reason,
+      basis: `yt-views-at-own-read-age-vs-peer-values-at-theirs (read ${READ_DAYS}d; X plays excluded — no plays history before 2026-08-21)`,
+      computedAt: new Date(now).toISOString(),
+      frozenAt: new Date(now).toISOString(),
     });
     computed++;
   }
 
-  ratings.sort((a, b) => a.ep - b.ep);
+  scores.sort((a, b) => a.ep - b.ep);
   const out = {
-    version: 2,
+    version: 3,
     algorithm: ALGORITHM,
     weights: WEIGHTS,
+    readDays: READ_DAYS,
     updatedAt: new Date(now).toISOString(),
-    ratings,
+    scores,
   };
   if (store && !sameAlgo) {
     out.rederivedFrom = store.algorithm ?? "composite-v1";
@@ -272,9 +345,11 @@ if (isMain) {
   const dry = process.argv.includes("--dry");
   const { _frozenKept, _computed, ...store } = computeRatings();
   if (!dry) writeFileSync(STORE_PATH, JSON.stringify(store, null, 1) + "\n");
-  for (const r of store.ratings) {
-    const flags = [r.provisional ? "provisional" : "frozen", r.coverage.missingPillars.length ? `◐ missing: ${r.coverage.missingPillars.join(", ")}` : "full basis"];
-    console.log(`E${r.ep} ${r.slug.slice(0, 34)} — #${r.rank} of ${r.n} (score ${r.score ?? "–"}) [${flags.join(" · ")}]`);
+  for (const r of store.scores) {
+    const flags = r.score == null
+      ? [r.reason]
+      : [`read at day ${r.atDay}`, r.missingChecks.length ? `◐ missing: ${r.missingChecks.join(", ")}` : "full basis"];
+    console.log(`E${r.ep} ${r.slug.slice(0, 34)} — health ${r.score ?? "–"} [${flags.join(" · ")}]`);
   }
-  console.log(`ratings (${ALGORITHM}): ${_computed} computed, ${_frozenKept} frozen kept${store.rederivedFrom ? ` — re-derived from ${store.rederivedFrom}` : ""}${dry ? " (dry run — store not written)" : ` — wrote ${STORE_PATH}`}`);
+  console.log(`episode health (${ALGORITHM}): ${_computed} computed, ${_frozenKept} frozen kept${store.rederivedFrom ? ` — re-derived from ${store.rederivedFrom}` : ""}${dry ? " (dry run — store not written)" : ` — wrote ${STORE_PATH}`}`);
 }

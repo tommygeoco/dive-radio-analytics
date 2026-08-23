@@ -56,7 +56,10 @@ const MAX_TOKENS = 16000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const HEALTH_STORE_VERSION = 1;
-export const FORMULA_VERSION = "health-v1";
+// health-v2 (2026-08-23): context carries per-episode three-week health scores
+// instead of the retired "#x of N" ranks; the check math itself is unchanged.
+// Saved entries keep the formula stamp they were written under.
+export const FORMULA_VERSION = "health-v2";
 export const PROMPT_VERSION = 1;
 export const BASE_WEIGHTS = Object.freeze({
   growth: 0.25,
@@ -449,13 +452,13 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT } = {
 
   const context = {
     trajectories: source.showTrend?.week1VelocityByEpisode || [],
-    ratings: episodes.map((episode) => ({
+    episodeHealth: episodes.map((episode) => ({
       episode: episode.ep,
-      rank: episode.rating?.rank ?? null,
-      comparedWith: episode.rating?.n ?? null,
-      score: episode.rating?.score ?? null,
-      notFinal: episode.rating?.provisional ?? null,
-      missingChecks: episode.rating?.coverage?.missingPillars || [],
+      score: episode.health?.pending ? null : episode.health?.score ?? null,
+      readCompleteOn: episode.health?.readCompleteOn ?? null,
+      stillReading: episode.health?.pending ?? false,
+      missingChecks: episode.health?.missingChecks || [],
+      noScoreReason: episode.health?.reason ?? null,
     })),
     retention: episodes.map((episode) => {
       const analytics = analyticsBySlug.get(episode.slug);
@@ -587,8 +590,9 @@ export function validateSynthesis(value, inputs) {
 }
 
 // Public projection used by build-data.mjs. It contains only saved model copy,
-// its citation IDs, and real history points. No score or trend is recomputed in
-// the browser, and gaps in history remain gaps.
+// its citation IDs, the saved per-check results, and real history points. No
+// score or trend is recomputed in the browser, and gaps in history remain gaps.
+export const CHECK_ORDER = Object.freeze(["growth", "audienceQuality", "reachEfficiency", "livePull", "conversion", "sentiment"]);
 export function projectHealth(store, { now = Date.now() } = {}) {
   if (!store) return null;
   if (store.version !== HEALTH_STORE_VERSION || !Array.isArray(store.entries)) throw new Error("health-history.json has an unsupported schema");
@@ -612,6 +616,14 @@ export function projectHealth(store, { now = Date.now() } = {}) {
     score: latest.score,
     readState: hasUnavailableCheck || hasEarlyFact ? "early" : "settled",
     headline: latest.headline,
+    // The saved per-check results, projected verbatim so the page can show the
+    // whole diagnosis without ever recomputing: a score where one exists, the
+    // saved reason where one does not.
+    checks: CHECK_ORDER.map((key) => ({
+      key,
+      score: Number.isFinite(latest.subScores?.[key]?.score) ? latest.subScores[key].score : null,
+      reason: latest.subScores?.[key]?.reason ?? null,
+    })),
     pros: latest.pros.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     cons: latest.cons.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     trend: entries.length >= 7 ? { points: entries.map((entry) => ({ date: entry.date, score: entry.score })) } : null,
