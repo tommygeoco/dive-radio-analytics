@@ -17,10 +17,22 @@ cd "$REPO"
 
 git add -A
 if git diff --cached --quiet; then
-  echo "publish: no changes — skipping commit and deploy."
+  echo "publish: no new changes to commit."
+else
+  git commit -m "data refresh $(date '+%Y-%m-%d %H:%M %Z')" --quiet
+fi
+
+# Main has more than one writer: working sessions land code on it between
+# chain runs. Replay our commits on top of whatever origin has — the data
+# files have a single writer (this chain), so the rebase is clean; a genuine
+# conflict aborts loudly and changes nothing on the remote. This also pushes
+# a commit a previous run made but failed to push.
+git fetch origin main --quiet
+git rebase origin/main --quiet || { git rebase --abort; echo "publish: local commits conflict with origin/main — resolve by hand" >&2; exit 1; }
+if [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ]; then
+  echo "publish: origin already has everything — skipping deploy."
   exit 0
 fi
-git commit -m "data refresh $(date '+%Y-%m-%d %H:%M %Z')" --quiet
 git push origin main --quiet
 echo "publish: pushed to GitHub."
 
