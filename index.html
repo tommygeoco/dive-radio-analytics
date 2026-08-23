@@ -392,8 +392,6 @@
 
   /* ---- insights: readable claim up front, recommendation one click away ---- */
   .insights { display: grid; gap: var(--gap); }
-  .cat-head { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--t3); margin: 10px 0 2px; }
   .insight { background: var(--s1); border: 0; border-radius: 8px;
     padding: 10px 14px; font-size: 14px; display: flex; align-items: flex-start; gap: 12px;
     cursor: pointer; transition: background .15s; }
@@ -412,9 +410,6 @@
   .insight .rec { display: none; margin-top: 6px; padding: 8px 12px; border-left: 2px solid var(--good);
     background: rgba(62,207,142,.06); border-radius: 0 6px 6px 0; color: var(--t2); font-size: 13.5px; }
   .insight.open .rec, .insight.open .cav { display: block; }
-  .expander { background: none; border: 1px dashed var(--border-strong); border-radius: 8px;
-    color: var(--t3); padding: 8px; cursor: pointer; font-size: 13.5px; }
-  .expander:hover { color: var(--t1); border-color: var(--accent); }
 
   /* ---- drilldown modal ---- */
   #drill { position: fixed; inset: 0; background: rgba(4,6,10,.62); z-index: 50; display: none;
@@ -601,7 +596,7 @@ function catKeyFor(ins) {
   return "data";
 }
 
-const state = { mode: "standings", metric: "views", byDate: false, solo: null, panel: null, table: false, allInsights: false, evidenceOpen: false };
+const state = { mode: "standings", metric: "views", byDate: false, solo: null, panel: null, table: false, evidenceOpen: false };
 
 function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
@@ -1500,7 +1495,7 @@ document.addEventListener("click", (ev) => {
   // expanders) is detached by the time this bubble arrives — closest() can't
   // see its old ancestors, so a detached target is always an INSIDE click
   if (!(ev.target instanceof Element) || !ev.target.isConnected) return;
-  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .expander, .dcard")) return;
+  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .dcard")) return;
   state.panel = null; state.solo = null; render();
 });
 
@@ -2263,23 +2258,17 @@ function buildInsightsPanel() {
     .map(i => ({ ...i, cat: catKeyFor(i) }))
     .sort((a, b) => (CAT_RANK[a.cat] ?? 9) - (CAT_RANK[b.cat] ?? 9));
 
-  // top 3: the first insight of each category in priority order — one decision
-  // per lane, not three variations of the same lane
-  const top = [];
-  for (const key of Object.keys(CATS)) {
-    const first = all.find(i => i.cat === key && !top.includes(i));
-    if (first) top.push(first);
-    if (top.length === 3) break;
-  }
-  const rest = all.filter(i => !top.includes(i));
-
-  const add = (ins, container, underHeader = false) => {
+  // Every insight shows, always (owner directive 2026-08-23): no top-3 fold,
+  // no expander, no outer group headers. Like categories sit together (the
+  // sort above), the FIRST card of each group carries the category label
+  // inside its container, and the shared grid gap is the only rhythm.
+  const add = (ins, firstOfGroup) => {
     const cat = CATS[ins.cat];
     const div = document.createElement("div");
     div.className = "insight";
     const hasMore = !!(ins.recommendation || ins.caveat);
     div.innerHTML = `<span class="ic" style="background:${cat.color}22;color:${cat.color}">${cat.svg}</span>
-      <span class="body">${underHeader ? "" : `<div class="cat" style="color:${cat.color}">${cat.name}</div>`}
+      <span class="body">${firstOfGroup ? `<div class="cat" style="color:${cat.color}">${cat.name}</div>` : ""}
       <span class="txt">${esc(ins.text)}</span>
       ${ins.recommendation ? `<br><span class="reveal">Recommendation ▾</span>` : ""}
       ${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}
@@ -2289,30 +2278,13 @@ function buildInsightsPanel() {
       const r = div.querySelector(".reveal");
       if (r) r.textContent = div.classList.contains("open") ? "Recommendation ▴" : "Recommendation ▾";
     });
-    container.appendChild(div);
+    panel.appendChild(div);
   };
 
-  for (const ins of top) add(ins, panel);
-
-  if (rest.length) {
-    const btn = document.createElement("button");
-    btn.className = "expander";
-    btn.textContent = state.allInsights ? "Show top 3 only" : `All ${all.length} insights ▾`;
-    btn.addEventListener("click", () => { state.allInsights = !state.allInsights; buildInsightsPanel(); });
-    if (state.allInsights) {
-      let lastCat = null;
-      for (const ins of rest) {
-        if (ins.cat !== lastCat) {
-          lastCat = ins.cat;
-          const h = document.createElement("div");
-          h.className = "cat-head";
-          h.textContent = CATS[ins.cat].name;
-          panel.appendChild(h);
-        }
-        add(ins, panel, true);
-      }
-    }
-    panel.appendChild(btn);
+  let lastCat = null;
+  for (const ins of all) {
+    add(ins, ins.cat !== lastCat);
+    lastCat = ins.cat;
   }
 }
 
