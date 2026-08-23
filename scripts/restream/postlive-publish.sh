@@ -15,6 +15,25 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 cd "$REPO"
 [ -d .git ] || { echo "publish: $REPO is not a git repo" >&2; exit 1; }
 
+# PRD v7 F26: a remote that moved (a merge from another machine) must fail
+# loudly here, never as a rejected push after the build already ran. Local
+# data changes are stashed around the pull; a conflict aborts the publish
+# instead of committing conflict markers.
+STASHED=0
+if [ -n "$(git status --porcelain)" ]; then
+  git stash push --quiet --include-untracked -m "publish-pre-pull"
+  STASHED=1
+fi
+if ! git pull --rebase --quiet origin main; then
+  [ "$STASHED" = 1 ] && git stash pop --quiet || true
+  echo "publish: remote moved and could not be rebased — not publishing (pull manually)" >&2
+  exit 1
+fi
+if [ "$STASHED" = 1 ] && ! git stash pop --quiet; then
+  echo "publish: today's data conflicts with what was pulled — not publishing (resolve, then rerun the chain)" >&2
+  exit 1
+fi
+
 git add -A
 if git diff --cached --quiet; then
   echo "publish: no changes — skipping commit and deploy."

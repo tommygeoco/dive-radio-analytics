@@ -9,6 +9,7 @@
 import assert from "node:assert/strict";
 import * as B from "../baselines.mjs";
 import { scoreEpisode, readAgeOf, WEIGHTS, MIN_WEIGHT } from "../ratings.mjs";
+import { deterministicMean, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
 
 const DAY = 86400000;
 const PHX = 7 * 3600000;
@@ -224,6 +225,52 @@ assert.equal(B.trueMedian([]), null);
   assert.ok(Object.values(r3.checks).every((c) => c.ratio == null && c.weight === 0));
   assert.equal(r3.missingChecks.length, Object.keys(WEIGHTS).length);
   assert.ok(MIN_WEIGHT === 0.5);
+}
+
+// --- show health (health-v3): weighting and projection rules ---
+{
+  // absent checks share weight among RELATIVE checks only; an absolute-scale check keeps its base weight
+  const sub = {
+    growth: { score: null, baseWeight: 0.25, absoluteScale: false },
+    audienceQuality: { score: null, baseWeight: 0.20, absoluteScale: false },
+    reachEfficiency: { score: 51, baseWeight: 0.15, absoluteScale: false },
+    livePull: { score: 40, baseWeight: 0.15, absoluteScale: false },
+    conversion: { score: null, baseWeight: 0.10, absoluteScale: false },
+    sentiment: { score: 83, baseWeight: 0.15, absoluteScale: true },
+  };
+  const { weightedMean, effectiveWeightOf } = deterministicMean(sub);
+  assert.equal(effectiveWeightOf(sub.sentiment), 0.15, "absolute check keeps its base weight");
+  assert.ok(Math.abs(effectiveWeightOf(sub.reachEfficiency) - 0.425) < 1e-9, "relative checks share the rest");
+  const total = Object.values(sub).reduce((a, p) => a + effectiveWeightOf(p), 0);
+  assert.ok(Math.abs(total - 1) < 1e-9, "weights sum to 1");
+  assert.equal(weightedMean, 51.1);
+  // with every check present the effective weights are the base weights
+  const full = Object.fromEntries(Object.entries(sub).map(([k, v]) => [k, { ...v, score: 50 }]));
+  for (const [k, v] of Object.entries(full)) assert.ok(Math.abs(deterministicMean(full).effectiveWeightOf(v) - v.baseWeight) < 1e-9, `${k} base weight when all present`);
+
+  // projection: age, withhold after STALE_WITHHOLD_DAYS, trend only under the running formula
+  const entry = (date, formulaVersion, score = 50) => ({ date, score, headline: "h", pros: [], cons: [], subScores: {}, facts: [], formulaVersion });
+  const store = { version: 2, entries: [
+    ...Array.from({ length: 7 }, (_, i) => entry(`2026-08-${String(10 + i).padStart(2, "0")}`, "health-v2")),
+    entry("2026-08-20", FORMULA_VERSION), entry("2026-08-21", FORMULA_VERSION),
+  ] };
+  const fresh = projectHealth(store, { now: Date.parse("2026-08-21T20:00:00Z") });
+  assert.equal(fresh.ageDays, 0);
+  assert.equal(fresh.withheld, false);
+  assert.equal(fresh.score, 50);
+  assert.equal(fresh.trend, null, "seven v2 days do not make a trend under the running formula");
+  const stale = projectHealth(store, { now: Date.parse("2026-08-21T20:00:00Z") + (STALE_WITHHOLD_DAYS + 1) * DAY });
+  assert.equal(stale.withheld, true);
+  assert.equal(stale.score, null, "withheld read carries no score");
+  assert.equal(stale.date, "2026-08-21", "but still says which day it was saved");
+  assert.deepEqual(projectHealth({ version: 1, entries: [entry("2026-08-21", "health-v1")] }, { now: Date.parse("2026-08-21T20:00:00Z") }).checks.map((c) => c.measures), Array(6).fill([]), "a v1 store projects with empty measures");
+
+  // check-set guard in validateSynthesis
+  const inputs = { allowedScore: { min: 40, max: 60 }, facts: [{ id: "f1", display: "71" }], checkSetChange: { joined: [], left: ["audienceQuality"], previousScore: 40 } };
+  const ok = { score: 50, headline: "Steadier than it looks.", pros: [{ text: "Peak hit 71.", factId: "f1" }, { text: "Peak hit 71.", factId: "f1" }], cons: [{ text: "Peak hit 71.", factId: "f1" }, { text: "Peak hit 71.", factId: "f1" }], drivers: ["The move comes from the audience quality check leaving, not the show changing."] };
+  assert.doesNotThrow(() => validateSynthesis(ok, inputs));
+  assert.throws(() => validateSynthesis({ ...ok, drivers: ["Live turnout carried it."] }, inputs), /must name the check/);
+  assert.doesNotThrow(() => validateSynthesis({ ...ok, score: 44, drivers: ["Live turnout carried it."] }, inputs), "a move of 4 needs no naming");
 }
 
 console.log("baselines.test: ok");

@@ -931,9 +931,10 @@ function premiereMs(dateStr) {
     if (data.health !== null) { bad++; fail("health: data.json exposes health without a health-history store"); }
     warn("health: no saved entry yet — page must show that the update is unavailable");
   } else {
-    if (store.version !== health.HEALTH_STORE_VERSION || !Array.isArray(store.entries)) {
+    if (![1, health.HEALTH_STORE_VERSION].includes(store.version) || !Array.isArray(store.entries)) {
       bad++; fail("health: store schema/version is unsupported");
     } else {
+      const BL = await import(join(TOOL, "baselines.mjs"));
       const currentDate = phxDate(data.generatedAt);
       const seenDates = new Set();
       let previousDate = null;
@@ -977,10 +978,15 @@ function premiereMs(dateStr) {
           bad++; fail(`health: ${entry.date} does not carry exactly the six required checks`);
           continue;
         }
+        // weights are judged by the formula the entry was written under (PRD v7 F5)
+        const plannedWeights = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] || null;
+        if (!plannedWeights) { bad++; fail(`health: ${entry.date} formula ${entry.formulaVersion} has no known weight table`); }
+        const v3 = entry.formulaVersion === "health-v3" || (health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 3);
+        const { effectiveWeightOf } = health.deterministicMean(entry.subScores);
         const availableWeight = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
         for (const key of expectedParts) {
           const part = entry.subScores[key];
-          if (part.baseWeight !== health.BASE_WEIGHTS[key]) { bad++; fail(`health: ${entry.date} ${key} has the wrong planned weight`); }
+          if (plannedWeights && part.baseWeight !== plannedWeights[key]) { bad++; fail(`health: ${entry.date} ${key} has the wrong planned weight for ${entry.formulaVersion}`); }
           if (!part.measures || !Object.keys(part.measures).length) { bad++; fail(`health: ${entry.date} ${key} has no recorded measures`); continue; }
           const measureScores = [];
           for (const [measureKey, measure] of Object.entries(part.measures)) {
@@ -990,24 +996,46 @@ function premiereMs(dateStr) {
               if (!Number.isFinite(measure.score) || measure.score < 0 || measure.score > 100 || !Number.isFinite(measure.value)) {
                 bad++; fail(`health: ${entry.date} ${key}.${measureKey} has an invalid score/value`);
               } else measureScores.push(measure.score);
+              if (v3) {
+                // like-for-like (1s) and windowed typical (1u) on every v3 measure
+                if (!["sameAge", "mature", "ageFree"].includes(measure.ageBasis)) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} scored without a known basis`); }
+                if (measure.typical != null && (!Array.isArray(measure.window) || measure.window.length < BL.MIN_PEERS || measure.sample < BL.MIN_PEERS)) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} has a typical from fewer than ${BL.MIN_PEERS} peers`); }
+                if (measure.typical != null && measure.window.includes(measure.episodeRead)) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} window includes the episode it reads`); }
+                if (measure.typical != null && measure.window.length > BL.WINDOW_N) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} window exceeds WINDOW_N`); }
+                const expectedNote = measure.ageBasis === "sameAge" ? BL.NOTES.sameAge : measure.ageBasis === "mature" ? BL.NOTES.mature : null;
+                if ((measure.note ?? null) !== expectedNote) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} note does not match its basis`); }
+                if (measure.absoluteScale && measure.typical != null) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} is absolute-scale yet carries a typical`); }
+              }
             }
           }
           const expectedScore = measureScores.length ? Math.round(measureScores.reduce((sum, value) => sum + value, 0) / measureScores.length) : null;
           if (part.score !== expectedScore) { bad++; fail(`health: ${entry.date} ${key} score does not equal its available measures`); }
           if (part.score == null && (!part.reason || part.effectiveWeight !== 0)) { bad++; fail(`health: ${entry.date} ${key} absence lacks a reason or carries weight`); }
           if (part.score != null) {
-            const expectedWeight = Math.round(part.baseWeight / availableWeight * 10000) / 10000;
+            const expectedWeight = v3
+              ? Math.round(effectiveWeightOf(part) * 10000) / 10000
+              : Math.round(part.baseWeight / availableWeight * 10000) / 10000;
             if (part.effectiveWeight !== expectedWeight) { bad++; fail(`health: ${entry.date} ${key} shared weight is wrong`); }
+            if (v3 && part.absoluteScale && part.effectiveWeight > part.baseWeight + 1e-9) { bad++; fail(`health: ${entry.date} ${key} is absolute-scale but absorbed redistributed weight`); }
           }
         }
-        const recomputed = health.deterministicMean(entry.subScores);
+        const recomputed = v3 ? health.deterministicMean(entry.subScores) : (() => {
+          // pre-v3 entries shared weight among all available checks
+          const avail = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
+          const wm = avail > 0 ? Math.round(Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.score * part.baseWeight / avail : 0), 0) * 10) / 10 : null;
+          return { weightedMean: wm };
+        })();
         if (entry.weightedMean !== recomputed.weightedMean) { bad++; fail(`health: ${entry.date} stored mean ${entry.weightedMean} != recomputed ${recomputed.weightedMean}`); }
+        if (v3) {
+          const expectedSet = expectedParts.filter((key) => Number.isFinite(entry.subScores[key]?.score)).sort();
+          if (JSON.stringify([...(entry.checkSet || [])].sort()) !== JSON.stringify(expectedSet)) { bad++; fail(`health: ${entry.date} checkSet does not list exactly the scored checks`); }
+        }
         if (Math.abs(entry.score - entry.weightedMean) > 8) { bad++; fail(`health: ${entry.date} model score moves more than eight points from the deterministic mean`); }
         if (entry.deviation !== Math.round((entry.score - entry.weightedMean) * 10) / 10) { bad++; fail(`health: ${entry.date} stored score move is wrong`); }
         try {
           health.validateSynthesis(
             { score: entry.score, headline: entry.headline, pros: entry.pros, cons: entry.cons, drivers: entry.drivers },
-            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [] },
+            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [], checkSetChange: entry.checkSetChange ?? null },
           );
         } catch (error) {
           bad++; fail(`health: ${entry.date} model copy/grounding is invalid — ${error.message}`);
@@ -1026,10 +1054,22 @@ function premiereMs(dateStr) {
       if (data.health?.readState !== expectedReadState) {
         bad++; fail("health: the public early/settled state does not match the saved checks");
       }
-      if (store.entries.length < 7 && data.health?.trend != null) { bad++; fail("health: trend surfaced before seven real saved days exist"); }
-      if (store.entries.length >= 7) {
-        const expectedPoints = store.entries.filter((entry) => entry.date <= currentDate).map((entry) => ({ date: entry.date, score: entry.score }));
-        if (JSON.stringify(data.health?.trend?.points) !== JSON.stringify(expectedPoints)) { bad++; fail("health: trend points do not exactly match saved days"); }
+      // the trend plots only entries written under the running formula (F5)
+      const runningEntries = store.entries.filter((entry) => entry.date <= currentDate && entry.formulaVersion === health.FORMULA_VERSION);
+      if (runningEntries.length < 7 && data.health?.trend != null) { bad++; fail("health: trend surfaced before seven real saved days under the running formula exist"); }
+      if (runningEntries.length >= 7) {
+        const expectedPoints = runningEntries.map((entry) => ({ date: entry.date, score: entry.score }));
+        if (JSON.stringify(data.health?.trend?.points) !== JSON.stringify(expectedPoints)) { bad++; fail("health: trend points do not exactly match saved days under the running formula"); }
+      }
+      // freshness (1v, PRD v7 rule 15): the served read's age is stated; past
+      // STALE_WITHHOLD_DAYS the score is withheld; a stale formula only warns
+      if (latestEntry) {
+        const age = Math.round((Date.parse(`${currentDate}T12:00:00Z`) - Date.parse(`${latestEntry.date}T12:00:00Z`)) / DAY);
+        if (data.health?.ageDays !== age) { bad++; fail(`health: projected ageDays ${data.health?.ageDays} != ${age}`); }
+        if (age > health.STALE_WITHHOLD_DAYS && (data.health?.withheld !== true || data.health?.score != null)) { bad++; fail(`health: the served read is ${age} days old and must be withheld`); }
+        if (age <= health.STALE_WITHHOLD_DAYS && data.health?.withheld) { bad++; fail("health: a fresh read is wrongly withheld"); }
+        if (age > 1) warn(`health: the served read is ${age} day(s) behind the data (saved ${latestEntry.date})`);
+        if (latestEntry.formulaVersion !== health.FORMULA_VERSION) warn(`health: the served read was written under ${latestEntry.formulaVersion}; the running formula is ${health.FORMULA_VERSION} — the next successful run replaces it`);
       }
 
       const latest = store.entries.at(-1);
@@ -1511,6 +1551,66 @@ function premiereMs(dateStr) {
     }
   }
   if (!bad) ok(`baselines: fixture test green; data.baselines re-derives — ${Object.values(data.baselines?.anomaly || {}).filter((a) => a.flagged).length} outlier(s), windows exclude self and outliers, nothing below ${data.baselines?.constants?.MIN_PEERS} peers`);
+}
+
+// --- 1v. chain freshness (PRD v7 W21): every required input store is fresh against the chain definition ---
+{
+  let bad = 0;
+  let chain = null;
+  try { chain = JSON.parse(readFileSync(join(TOOL, "chain.json"), "utf8")); } catch (err) { bad++; fail(`chain: tools/dive-analytics/chain.json unreadable — ${err.message}`); }
+  if (chain) {
+    const builtAt = Date.parse(data.generatedAt);
+    const publishIdx = chain.steps.findIndex((s) => s.step === "publish");
+    const order = chain.steps.map((s) => s.step);
+    for (const must of ["snapshot", "ratings", "build-data", "validate", "publish"]) if (!order.includes(must)) { bad++; fail(`chain: step ${must} missing from chain.json`); }
+    if (order.lastIndexOf("validate") > publishIdx || order.indexOf("health") > order.lastIndexOf("build-data")) { bad++; fail("chain: validate must run before publish and health before the final build-data"); }
+    const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return e && e.ageDays <= 60; };
+    const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e; };
+    const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
+    for (const step of chain.steps) {
+      if (!step.freshnessKey) continue;
+      for (const pattern of step.writes) {
+        if (!pattern.includes("*")) {
+          const path = join(ROOT, pattern);
+          if (!existsSync(path)) { if (step.required) { bad++; fail(`chain: required store ${pattern} is missing`); } continue; }
+          let stamp = null;
+          try {
+            const j = JSON.parse(readFileSync(path, "utf8"));
+            stamp = step.freshnessKey === "updatedAt" ? j.updatedAt : step.freshnessKey === "generatedAt" ? j.generatedAt : step.freshnessKey === "entries[-1].date" ? `${j.entries?.at(-1)?.date}T12:00:00Z` : null;
+          } catch { /* non-JSON */ }
+          if (!stamp) continue;
+          const lag = builtAt - Date.parse(stamp);
+          if (lag > FRESH_MS) {
+            const msg = `chain: ${pattern} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
+            if (step.required) { bad++; fail(msg); } else warn(msg);
+          }
+          continue;
+        }
+        const dir = join(ROOT, pattern.slice(0, pattern.lastIndexOf("/")));
+        const ext = pattern.slice(pattern.lastIndexOf("."));
+        if (!existsSync(dir)) { if (step.required && step.freshnessKey !== "updatedAt") { bad++; fail(`chain: required store directory ${dir} is missing`); } continue; }
+        for (const file of readdirSync(dir).filter((f) => f.endsWith(ext))) {
+          const slug = file.slice(0, -ext.length);
+          if (!inScope(step.scope, slug)) continue;
+          const path = join(dir, file);
+          let stamp = null;
+          try {
+            if (ext === ".jsonl") { const lines = readFileSync(path, "utf8").split("\n").filter(Boolean); stamp = lines.length ? JSON.parse(lines.at(-1)).pulledAt : null; }
+            else { const j = JSON.parse(readFileSync(path, "utf8")); stamp = step.freshnessKey === "snapshots[-1].ts" ? j.snapshots?.at(-1)?.ts : j.updatedAt; }
+          } catch { /* unreadable */ }
+          if (!stamp) continue;
+          const lag = builtAt - Date.parse(stamp);
+          if (lag > FRESH_MS) {
+            const msg = `chain: ${pattern.replace("*", slug)} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
+            if (step.required && ext !== ".jsonl") { bad++; fail(msg); } else warn(msg);
+          }
+        }
+      }
+    }
+    const publish = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
+    if (!/git pull --rebase/.test(publish) || publish.indexOf("git pull --rebase") > publish.indexOf("git push origin main")) { bad++; fail("chain: publish must pull --rebase before it pushes main (F26)"); }
+  }
+  if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
 }
 
 // --- warnings: broadcast-resolution latches and plays coverage ---

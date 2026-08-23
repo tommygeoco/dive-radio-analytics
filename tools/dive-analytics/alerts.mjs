@@ -85,6 +85,14 @@ export function detect(prev, cur, data) {
     out.push(`E${e?.ep} (${short(e?.title ?? cur.newestSlug)}) moved ${dir} to #${cur.paceRank.rank} of ${cur.paceRank.of} on same-age YouTube pace (was #${prev.paceRank.rank}).`);
   }
 
+  // 2b. the served show-health read is behind the data (PRD v7 rule 15):
+  // one line a day from two days behind; withheld after seven
+  if (data.health && Number.isFinite(data.health.ageDays) && data.health.ageDays >= 2) {
+    out.push(data.health.withheld
+      ? `Show health is withheld: the last saved read is ${data.health.ageDays} days old (saved ${data.health.date}). Data still publishes; run tools/dive-analytics/health.mjs.`
+      : `Show health read is ${data.health.ageDays} days behind the data (saved ${data.health.date}).`);
+  }
+
   // 3. new people raising concerns
   for (const [slug, n] of Object.entries(cur.complaints)) {
     const before = prev.complaints?.[slug] ?? n;

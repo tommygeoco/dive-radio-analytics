@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T09:22:08.607Z",
+ "generatedAt": "2026-08-23T09:31:31.313Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -15683,6 +15683,9 @@
  },
  "health": {
   "date": "2026-08-22",
+  "ageDays": 1,
+  "withheld": false,
+  "formulaVersion": "health-v1",
   "dataThrough": "2026-08-22T23:35:58.103Z",
   "score": 52,
   "readState": "early",
@@ -15698,14 +15701,20 @@
       "value": null,
       "typical": null,
       "sample": 2,
-      "reason": "Only 2 clean first weeks exist; at least three are required."
+      "reason": "Only 2 clean first weeks exist; at least three are required.",
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      },
      {
       "key": "sameAge",
       "value": null,
       "typical": null,
       "sample": 1,
-      "reason": "Only 0 prior episodes were tracked this early; at least three are required."
+      "reason": "Only 0 prior episodes were tracked this early; at least three are required.",
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      }
     ]
    },
@@ -15719,14 +15728,20 @@
       "value": 28.5,
       "typical": 38.1,
       "sample": 5,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      },
      {
       "key": "watching",
       "value": 12.9,
       "typical": 10.8,
       "sample": 5,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      }
     ]
    },
@@ -15740,14 +15755,20 @@
       "value": 23,
       "typical": 34.5,
       "sample": 4,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      },
      {
       "key": "xShare",
       "value": 64.2,
       "typical": 46.6,
       "sample": 4,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      }
     ]
    },
@@ -15761,14 +15782,20 @@
       "value": 71,
       "typical": 64,
       "sample": 6,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      },
      {
       "key": "chat",
       "value": 127,
       "typical": 169,
       "sample": 6,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      }
     ]
    },
@@ -15782,7 +15809,10 @@
       "value": 1.6,
       "typical": 3,
       "sample": 5,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      }
     ]
    },
@@ -15796,14 +15826,20 @@
       "value": 85.7,
       "typical": null,
       "sample": 7,
-      "reason": null
+      "reason": null,
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      },
      {
       "key": "commentRate",
       "value": null,
       "typical": null,
       "sample": 1,
-      "reason": "Only 1 episode has complete replies and watch counts; at least four are required."
+      "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
+      "ageBasis": null,
+      "note": null,
+      "episodeRead": null
      }
     ]
    }
