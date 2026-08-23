@@ -1059,24 +1059,25 @@ export function minutesInWords(sec) {
   return `${h} hour${h === 1 ? "" : "s"}${m % 60 ? ` ${m % 60} minutes` : ""} in`;
 }
 
-export function trendsText(data) {
+// Structured Slack lines (PRD v7 1x): each carries its sample and direction
+// so the validator checks the small-n rule on data, not by reading prose.
+export function trendsLines(data) {
   const CAT_LABEL = { content: "Content", distribution: "Distribution", promotion: "Promotion", audience: "Audience health", data: "Data note" };
-  const lines = ["", "Trends"];
+  const lines = [];
+  const push = (text, meta = {}) => lines.push({ text, sample: meta.sample ?? null, direction: meta.direction ?? null, kind: meta.kind ?? "line" });
   for (const i of data.insights) {
-    lines.push(`• [${CAT_LABEL[i.category] ?? "Note"}] ${i.text}`);
-    if (i.recommendation) lines.push(`   ↳ ${i.recommendation}`);
+    push(`• [${CAT_LABEL[i.category] ?? "Note"}] ${i.text}`, { kind: "insight" });
+    if (i.recommendation) push(`   ↳ ${i.recommendation}`, { kind: "insight" });
   }
-  if (data.insights.length === 0) lines.push("• Not enough data for trend calls yet.");
+  if (data.insights.length === 0) push("• Not enough data for trend calls yet.");
   const vels = data.showTrend.week1VelocityByEpisode.filter((v) => v.value !== null);
   // first-week line only from three clean weeks (rule 7; PRD v7 F14) — below
   // that the numbers are listed without a direction word
   if (vels.length >= 3) {
     const dir = vels[vels.length - 1].value >= vels[0].value ? "up" : "down";
-    lines.push(
-      `• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`
-    );
+    push(`• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`, { sample: vels.length, direction: dir });
   } else if (vels.length) {
-    lines.push(`• First-week YouTube views so far: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" · ")} — a direction needs three clean first weeks.`);
+    push(`• First-week YouTube views so far: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" · ")} — a direction needs three clean first weeks.`, { sample: vels.length });
   }
   // W12/PRD v7: episode health, read from the same store as every dashboard
   // surface. Only finished reads WITH a score appear; an episode with too few
@@ -1087,10 +1088,10 @@ export function trendsText(data) {
   const scored = data.episodes.filter((e) => e.health && !e.health.pending && e.health.score != null);
   if (scored.length) {
     const seq = scored.map((e) => `${e.premiere.slice(5)} ${e.health.score}`).join(" · ");
-    lines.push(`• Episode health, each against the episodes before it (50 is a typical episode): ${seq}.`);
+    push(`• Episode health, each against the episodes before it (50 is a typical episode): ${seq}.`, { sample: scored.length, kind: "episode-health" });
   }
   if (newest?.health?.pending) {
-    lines.push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
+    push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
   }
   // v6 W16/W17: the newest episode's sharpest exit moment, read from the same
   // stored moments the panel pins render. Context is the model-written summary
@@ -1099,7 +1100,7 @@ export function trendsText(data) {
   const momentEp = [...data.episodes].reverse().find((e) => e.watch?.moments?.some((m) => m.kind === "drop"));
   if (momentEp) {
     const drop = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
-    lines.push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${drop.summary ? ` — ${drop.summary}` : ""}.`);
+    push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${drop.summary ? ` — ${drop.summary}` : ""}.`);
   }
   // W8: newest-episode feedback, read from the same exported rollup as the page.
   const c = newest?.comments;
@@ -1108,9 +1109,13 @@ export function trendsText(data) {
     const concerns = c.complaintCount ? `${c.complaintCount} ${c.complaintCount === 1 ? "person raised" : "people raised"} a concern` : "no complaints";
     const rate = c.commentersPer1k != null ? `; ${c.commentersPer1k} people per 1,000 watches` : "";
     const top = c.enjoyThemes?.[0] ? `; top bright spot: ${c.enjoyThemes[0].theme} — ${c.enjoyThemes[0].count} people` : "";
-    lines.push(`• Audience feedback: ${c.uniqueCommenters} ${c.uniqueCommenters === 1 ? "person" : "people"} commented; ${enjoyed}; ${concerns}${rate}${top}.`);
+    push(`• Audience feedback: ${c.uniqueCommenters} ${c.uniqueCommenters === 1 ? "person" : "people"} commented; ${enjoyed}; ${concerns}${rate}${top}.`);
   }
-  return lines.join("\n");
+  return lines;
+}
+
+export function trendsText(data) {
+  return ["", "Trends", ...trendsLines(data).map((l) => l.text)].join("\n");
 }
 
 // --- main ---

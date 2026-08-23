@@ -1630,6 +1630,71 @@ function premiereMs(dateStr) {
   if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
 }
 
+// --- 1x/1y/1z (PRD v7 W23): small-n on data, no trend words over episode health, stored notes only ---
+{
+  let bad = 0;
+  const BL = await import(join(TOOL, "baselines.mjs"));
+  const build = await import(join(TOOL, "build-data.mjs"));
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const TREND_WORDS = /\b(trending|improving|declining|climbing|slipping|best|worst|getting|trajectory)\b/i;
+  // 1x: every Slack or alert line with a direction rests on MIN_PEERS or more
+  const slackLines = build.trendsLines(data);
+  for (const line of slackLines) {
+    if (line.direction && !(line.sample >= BL.MIN_PEERS)) { bad++; fail(`small-n: Slack line carries a direction on ${line.sample} samples — ${line.text.slice(0, 80)}`); }
+    if (line.kind !== "insight" && line.direction == null && /\btrending (up|down)\b/i.test(line.text)) { bad++; fail(`small-n: Slack line says trending without a stamped direction — ${line.text.slice(0, 80)}`); }
+  }
+  if (build.trendsText(data) !== ["", "Trends", ...slackLines.map((l) => l.text)].join("\n")) { bad++; fail("small-n: trendsText does not join trendsLines — two definitions of the Slack block"); }
+  try {
+    const alerts = await import(join(TOOL, "alerts.mjs"));
+    let prev = null;
+    try { prev = JSON.parse(readFileSync(join(ROOT, "data", "restream", "alerts-state.json"), "utf8")); } catch { /* first run */ }
+    if (prev) {
+      for (const line of alerts.alertLines(prev, alerts.snapshotState(data), data)) {
+        if (line.direction && !(line.sample >= BL.MIN_PEERS)) { bad++; fail(`small-n: alert carries a direction on ${line.sample} samples — ${line.text.slice(0, 80)}`); }
+      }
+    }
+  } catch (err) { bad++; fail(`small-n: alerts.mjs failed to load — ${err.message}`); }
+  // 1y: the episode-health sequence is never read as a trend
+  for (const line of slackLines.filter((l) => l.kind === "episode-health")) {
+    if (TREND_WORDS.test(line.text)) { bad++; fail(`episode health: Slack sequence uses a trend word — ${line.text.slice(0, 80)}`); }
+  }
+  const aboutHealth = html.match(/<p><b>Episode health<\/b>[\s\S]*?<\/p>/)?.[0] || "";
+  if (!aboutHealth || TREND_WORDS.test(aboutHealth.replace(/<[^>]+>/g, ""))) { bad++; fail("episode health: About paragraph missing or uses a trend word over the sequence"); }
+  if (!/measured against different earlier episodes/.test(aboutHealth)) { bad++; fail("episode health: About must say two scores were measured against different earlier episodes"); }
+  for (const fn of ["healthChip", "healthTipHTML", "healthCell"]) {
+    const src = html.match(new RegExp(`(?:function ${fn}\\(|const ${fn} = )[\\s\\S]*?\\n(?:\\}|      html \\+=)`))?.[0] || "";
+    if (TREND_WORDS.test(src)) { bad++; fail(`episode health: ${fn} carries a trend word`); }
+  }
+  // 1z: notes are the fixed strings from baselines.mjs; reasons and notes pass the plain-words ban
+  const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b/i;
+  const allowedNotes = new Set([BL.NOTES.sameAge, BL.NOTES.mature]);
+  let healthStore = null;
+  try { healthStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "health-history.json"), "utf8")); } catch { /* absent */ }
+  const newestEntry = healthStore?.entries?.at(-1);
+  if (newestEntry) {
+    for (const [key, part] of Object.entries(newestEntry.subScores || {})) {
+      if (part.reason && BANNED.test(part.reason)) { bad++; fail(`notes: health ${key} reason uses banned words — ${part.reason}`); }
+      for (const [mk, m] of Object.entries(part.measures || {})) {
+        if (m.note != null && !allowedNotes.has(m.note)) { bad++; fail(`notes: health ${key}.${mk} note is not one of the fixed strings`); }
+        if (m.reason && BANNED.test(m.reason)) { bad++; fail(`notes: health ${key}.${mk} reason uses banned words — ${m.reason}`); }
+      }
+    }
+  }
+  let ratings = null;
+  try { ratings = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
+  for (const r of ratings?.scores || []) {
+    if (r.reason && BANNED.test(r.reason)) { bad++; fail(`notes: episode health ${r.slug} reason uses banned words`); }
+    for (const [c, cs] of Object.entries(r.checks || {})) {
+      if (cs.note != null && !allowedNotes.has(cs.note)) { bad++; fail(`notes: episode health ${r.slug} ${c} note is not one of the fixed strings`); }
+      if (cs.reason && BANNED.test(cs.reason)) { bad++; fail(`notes: episode health ${r.slug} ${c} reason uses banned words`); }
+    }
+  }
+  if (!/\$\{m\.note \? ` · \$\{m\.note\}` : ""\}/.test(html) || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
+    bad++; fail("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
+  }
+  if (!bad) ok(`honesty on data: ${slackLines.length} Slack lines and the alert lines carry directions only on ${BL.MIN_PEERS}+ samples; episode-health surfaces carry no trend word; every stored note is one of the fixed strings`);
+}
+
 // --- warnings: broadcast-resolution latches and plays coverage ---
 {
   for (const show of registry.shows) {

@@ -62,15 +62,18 @@ export function snapshotState(data) {
   };
 }
 
-export function detect(prev, cur, data) {
+// Structured lines (PRD v7 1x): every line carries its sample and direction
+// so the validator can check small-n rules on data, not on prose.
+export function alertLines(prev, cur, data) {
   const out = [];
+  const push = (text, meta = {}) => out.push({ text, sample: meta.sample ?? null, direction: meta.direction ?? null });
   const eps = data.episodes;
   const byslug = (s) => eps.find((e) => e.slug === s);
 
   // 1. new episode registered
   if (cur.episodeCount > prev.episodeCount) {
     const fresh = eps.slice(prev.episodeCount);
-    for (const e of fresh) out.push(`New episode registered automatically: E${e.ep} — ${short(e.title)} (premiered ${e.premiere}).`);
+    for (const e of fresh) push(`New episode registered automatically: E${e.ep} — ${short(e.title)} (premiered ${e.premiere}).`);
   }
 
   // 2. same-age pace rank change for the newest episode (same episode only —
@@ -82,13 +85,13 @@ export function detect(prev, cur, data) {
       cur.paceRank.of === prev.paceRank.of) {
     const e = byslug(cur.newestSlug);
     const dir = cur.paceRank.rank < prev.paceRank.rank ? "up" : "down";
-    out.push(`E${e?.ep} (${short(e?.title ?? cur.newestSlug)}) moved ${dir} to #${cur.paceRank.rank} of ${cur.paceRank.of} on same-age YouTube pace (was #${prev.paceRank.rank}).`);
+    push(`E${e?.ep} (${short(e?.title ?? cur.newestSlug)}) moved ${dir} to #${cur.paceRank.rank} of ${cur.paceRank.of} on same-age YouTube pace (was #${prev.paceRank.rank}).`, { sample: cur.paceRank.of - 1, direction: dir });
   }
 
   // 2b. the served show-health read is behind the data (PRD v7 rule 15):
   // one line a day from two days behind; withheld after seven
   if (data.health && Number.isFinite(data.health.ageDays) && data.health.ageDays >= 2) {
-    out.push(data.health.withheld
+    push(data.health.withheld
       ? `Show health is withheld: the last saved read is ${data.health.ageDays} days old (saved ${data.health.date}). Data still publishes; run tools/dive-analytics/health.mjs.`
       : `Show health read is ${data.health.ageDays} days behind the data (saved ${data.health.date}).`);
   }
@@ -98,14 +101,14 @@ export function detect(prev, cur, data) {
     const before = prev.complaints?.[slug] ?? n;
     if (n - before >= NEG_SPIKE) {
       const e = byslug(slug);
-      out.push(`E${e?.ep} (${short(e?.title ?? slug)}) had ${n - before} more people raise concerns since yesterday — worth a read (dashboard → episode → audience feedback).`);
+      push(`E${e?.ep} (${short(e?.title ?? slug)}) had ${n - before} more people raise concerns since yesterday — worth a read (dashboard → episode → audience feedback).`);
     }
   }
 
   // 3b. classifier disagreements need human review and never reach the page.
   if (cur.reviewCount > (prev.reviewCount ?? 0)) {
     const added = cur.reviewCount - (prev.reviewCount ?? 0);
-    out.push(`${added} audience comment${added === 1 ? " needs" : "s need"} label review — held off the dashboard until a person resolves it.`);
+    push(`${added} audience comment${added === 1 ? " needs" : "s need"} label review — held off the dashboard until a person resolves it.`);
   }
 
   // 4. a first week just completed (week-1 number newly available)
@@ -114,16 +117,22 @@ export function detect(prev, cur, data) {
       const e = byslug(slug);
       const clean = Object.values(cur.w1v).filter((x) => x != null).sort((a, b) => b - a);
       const rank = clean.indexOf(v) + 1;
-      out.push(`E${e?.ep} (${short(e?.title ?? slug)}) finished its first week: ${v.toLocaleString("en-US")} YouTube views — #${rank} of ${clean.length} clean first weeks.`);
+      // a rank among fewer than three clean weeks is not a standing (F31)
+      if (clean.length >= 3) push(`E${e?.ep} (${short(e?.title ?? slug)}) finished its first week: ${v.toLocaleString("en-US")} YouTube views — #${rank} of ${clean.length} clean first weeks.`, { sample: clean.length - 1, direction: rank === 1 ? "up" : rank === clean.length ? "down" : null });
+      else push(`E${e?.ep} (${short(e?.title ?? slug)}) finished its first week: ${v.toLocaleString("en-US")} YouTube views.`);
     }
   }
 
   // 5. plays went stale (a broadcast stopped answering; high-water shown)
   if (cur.staleCount > (prev.staleCount ?? 0)) {
-    out.push(`X plays went stale for ${cur.staleCount - prev.staleCount} episode(s) — dashboard is showing the last confirmed number, marked with →date.`);
+    push(`X plays went stale for ${cur.staleCount - prev.staleCount} episode(s) — dashboard is showing the last confirmed number, marked with →date.`);
   }
 
   return out;
+}
+
+export function detect(prev, cur, data) {
+  return alertLines(prev, cur, data).map((line) => line.text);
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
