@@ -88,7 +88,6 @@
   .hc-meta .dnnum { flex: none; width: 19px; height: 19px; margin-top: 1px; border-radius: 50%;
     border: 1px solid var(--border-strong); color: var(--t3); font-size: 11px; font-weight: 700;
     display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
-  .checkrow[data-stat] { cursor: help; }
   .checkrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   .health-evidence { grid-column: 1 / -1; }
   .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; }
@@ -125,7 +124,7 @@
   .hero .big small { font-size: 14px; font-weight: 500; color: var(--t3); letter-spacing: 0; }
   .hero .mk { font-size: 14px; font-weight: 600; color: var(--amber); }
   .hero .platform-bar .pseg { min-width: 2px; }
-  .hero .splitlabels .sl { display: inline-flex; align-items: center; gap: 6px; cursor: help; border-radius: 4px; }
+  .hero .splitlabels .sl { display: inline-flex; align-items: center; gap: 6px; border-radius: 4px; }
   .hero .splitlabels .sl:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .hero .platform-bar { display: flex; width: min(100%, 520px); height: 8px; overflow: hidden;
     border-radius: 4px; background: var(--s2); margin-top: 16px; }
@@ -178,7 +177,7 @@
     text-overflow: ellipsis; margin: 3px 0 0; display: block; }
   /* three-week health read: number + track, present ONLY once the read is done */
   .hs { display: flex; align-items: center; gap: 8px; min-height: 18px;
-    font-size: 12px; color: var(--t3); cursor: help; }
+    font-size: 12px; color: var(--t3); }
   .sitem .hs { margin-top: 10px; }
   .hero .hs { max-width: 300px; }
   .hs b { font-size: 14px; color: var(--t1); font-variant-numeric: tabular-nums; }
@@ -222,19 +221,19 @@
   .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .panel .fline { color: var(--t2); font-size: 14px; margin-bottom: 4px; }
   .panel .trow { display: flex; align-items: center; gap: 9px; padding: 4.5px 0; color: var(--t2); font-size: 13.5px; }
-  .panel .trow .tl { width: 118px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: help; }
+  .panel .trow .tl { width: 118px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .panel .trow .tb { flex: 1; height: 4px; border-radius: 2px; background: var(--s2); overflow: hidden; }
   .panel .trow .tb span { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
   .panel .trow .tv { width: 52px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t1); flex: none; }
   .panel .trow .tn { width: 48px; text-align: right; font-variant-numeric: tabular-nums; color: var(--t3); font-size: 12px; flex: none; }
   /* W14 glyph grammar: icons carry identity, badges carry direction */
   .ic { width: 14px; height: 14px; flex: none; color: var(--t3); }
-  .ki { width: 13px; height: 13px; color: var(--t3); vertical-align: -2px; margin-left: 6px; cursor: help; }
+  .ki { width: 13px; height: 13px; color: var(--t3); vertical-align: -2px; margin-left: 6px; }
   /* four fixed columns so every row's icon, label, value, and badge share
      left edges — flex push-right left the value column ragged */
   .panel .irow { display: grid; grid-template-columns: 14px minmax(0, 1fr) 76px 48px; align-items: center;
     column-gap: 9px; padding: 4.5px 0; color: var(--t2); font-size: 13.5px; }
-  .panel .irow .lb { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: help; }
+  .panel .irow .lb { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .panel .irow b { color: var(--t1); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap;
     justify-self: start; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
   .panel .irow .db { grid-column: 4; justify-self: start; margin-left: 0; }
@@ -242,13 +241,13 @@
     padding: 1.5px 6px; margin-left: 4px; font-variant-numeric: tabular-nums; flex: none; }
   .db.up { color: var(--good); background: rgba(62,207,142,.1); }
   .db.down { color: var(--bad); background: rgba(255,122,89,.1); }
-  .db.mid { color: var(--t3); background: var(--s2); cursor: help; }
-  .db.none { color: var(--t3); background: none; border: 1px dashed var(--border-strong); cursor: help; }
+  .db.mid { color: var(--t3); background: var(--s2); }
+  .db.none { color: var(--t3); background: none; border: 1px dashed var(--border-strong); }
   .gline { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; color: var(--t2);
     font-size: 13.5px; padding: 3px 0 0; }
-  .gline .g { display: inline-flex; align-items: center; gap: 6px; cursor: help; }
+  .gline .g { display: inline-flex; align-items: center; gap: 6px; }
   .gline .g b { color: var(--t1); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .panel .pnum .mk { color: var(--amber); font-weight: 700; margin-left: 5px; cursor: help; }
+  .panel .pnum .mk { color: var(--amber); font-weight: 700; margin-left: 5px; }
   .hs .ic { width: 12px; height: 12px; }
   .panel .row.head { font-weight: 700; color: var(--t1); }
   .panel .val.big { font-size: 17px; }
@@ -285,7 +284,7 @@
      above = extra people watching. Buttons, so keyboards reach the tooltip;
      the ::after pad keeps a ~32px touch target on a 12px visual. */
   .wmark { position: absolute; width: 12px; height: 12px; border-radius: 50%; transform: translate(-50%, -50%);
-    display: flex; align-items: center; justify-content: center; padding: 0; cursor: help;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer;
     background: var(--s1); border: 1px solid var(--border-strong); }
   .wmark .ic { width: 9px; height: 9px; color: inherit; }
   .wmark::before { content: ""; position: absolute; left: 50%; width: 1px; background: var(--border-strong); }
@@ -322,7 +321,7 @@
   .chead .ct { font-size: 15px; font-weight: 700; }
   .chead .cs { font-size: 14px; color: var(--t3); }
   .chead .cs .scopepill { display: inline-flex; align-items: center; background: var(--s2);
-    border: 1px solid var(--border-strong); border-radius: 6px; padding: 3px 7px; cursor: help;
+    border: 1px solid var(--border-strong); border-radius: 6px; padding: 3px 7px;
     vertical-align: -3px; }
   .chead .cs .scopepill .plogo { width: 14px; height: 14px; }
   /* ---- the chart heading IS the view picker ---- */
@@ -1151,11 +1150,11 @@ function buildPanel() {
       const c = h.checks?.[k];
       if (!c || c.ratio == null) continue;
       const fmtV = (v) => k === "live" ? `${v.peak} · ${nfmt(v.chat)}` : (k === "retention" || k === "sentiment") ? `${v}%` : nfmt(v);
-      html += `<div class="irow">${ICONS[icon]}<span class="lb" data-tip="${esc(tip)}" tabindex="0">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
+      html += `<div class="irow" data-tip="${esc(tip)}" tabindex="0">${ICONS[icon]}<span class="lb">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
     }
     if (pace) {
       const paceTip = "YouTube views at the same age as earlier episodes — appears after three of them have real data at that age.";
-      html += `<div class="irow">${ICONS.gauge}<span class="lb" data-tip="${esc(paceTip)}" tabindex="0">Same-age pace</span>${
+      html += `<div class="irow" data-tip="${esc(paceTip)}" tabindex="0">${ICONS.gauge}<span class="lb">Same-age pace</span>${
         Math.abs(pace.pct) <= 5
           ? `<span class="db mid" data-tip="right at the typical level" tabindex="0">≈</span>`
           : pace.pct > 0 ? `<span class="db up">▲${Math.abs(pace.pct)}%</span>` : `<span class="db down">▼${Math.abs(pace.pct)}%</span>`}</div>`;
@@ -1256,7 +1255,7 @@ function buildPanel() {
       const topShare = Math.max(...w.traffic.map((t) => t.share));
       html += `<div class="psec"><div class="kicker">Where views came from <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
       for (const t of w.traffic) {
-        html += `<div class="trow">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl" data-tip="${esc(nfmt(t.views))} views" tabindex="0">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}</span>
+        html += `<div class="trow" data-tip="${esc(nfmt(t.views))} views" tabindex="0">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl">${TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "))}</span>
           <span class="tb" aria-hidden="true"><span style="width:${topShare > 0 ? Math.max(2, Math.round((t.share / topShare) * 100)) : 0}%"></span></span>
           <span class="tv">${t.share}%</span></div>`;
       }
