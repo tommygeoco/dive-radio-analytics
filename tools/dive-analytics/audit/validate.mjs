@@ -915,7 +915,8 @@ function premiereMs(dateStr) {
       bad++; fail("card layout: the carousel does not land on the newest episode (far right, locked rule)");
     }
     if (!/const saved = relativeDayWords\(h\.date\)/.test(healthSource)
-      || !/stamp\.textContent = `Data refreshed \$\{relativeDayWords/.test(html)) {
+      || !/relativeDayWords\(phoenixDateKey\(DATA\.generatedAt\)\)/.test(html)
+      || !/Data refreshed \$\{esc\(when\)\}/.test(html)) {
       bad++; fail("card layout: saved dates must render as relative words, not numeric tokens");
     }
     if (/addSentimentChip|chip\.senti/.test(html) || !/Audience feedback/.test(panelSource)) {

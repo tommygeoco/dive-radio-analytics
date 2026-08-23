@@ -24,6 +24,9 @@
   header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
   h1 { font-size: 21px; margin: 0; letter-spacing: -.01em; font-weight: 700; }
   .stamp { color: var(--t3); font-size: 14px; margin-left: auto; }
+  .stamp i { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    margin-right: 7px; vertical-align: 1px; background: var(--good); }
+  .stamp i.old { background: var(--amber); }
 
   .tabs { display: flex; gap: 2px; margin: 8px 0 16px; border-bottom: 1px solid var(--border-strong); }
   .tabs button { background: none; border: 0; color: var(--t3); font-size: 15px;
@@ -1599,8 +1602,12 @@ document.getElementById("reset").addEventListener("click", () => {
   render();
 });
 const stamp = document.getElementById("stamp");
-stamp.textContent = `Data refreshed ${relativeDayWords(phoenixDateKey(DATA.generatedAt))}`;
-stamp.title = `Exact refresh: ${DATA.generatedAt}`;
+{
+  const when = relativeDayWords(phoenixDateKey(DATA.generatedAt));
+  // dot state is honest: green only when the data really is from today
+  stamp.innerHTML = `<i class="${when === "today" ? "" : "old"}" aria-hidden="true"></i>Data refreshed ${esc(when)}`;
+  stamp.title = `Exact refresh: ${DATA.generatedAt}`;
+}
 
 buildAbout();
 buildInsightsPanel();
