@@ -31,6 +31,14 @@
 // entry is appended per Phoenix calendar day. Model failure is non-fatal: the
 // previous entry remains the public truth and its saved date stays visible.
 //
+// v7 W18 staleness audit (2026-08-23): this store CANNOT go stale the way
+// recommendations.json did. Entries are dated append-only history — the
+// validator judges each against its own stamped formula/prompt versions and
+// against the committed bytes at HEAD, never against the current fact
+// sheet, and the page shows every entry under its saved date. Keep-previous
+// is correct here BY DESIGN; do not port the prune-or-regenerate pattern to
+// this store.
+//
 // Run:
 //   node tools/dive-analytics/health.mjs --dry          # math only, no model/write
 //   node tools/dive-analytics/health.mjs --probe-model  # live model test, no write
