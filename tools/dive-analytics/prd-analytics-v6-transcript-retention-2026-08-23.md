@@ -136,6 +136,28 @@ guess sat inside the noise band. Frozen parameters
 3. The next engine run can cite a mid-video exit with its excerpt context.
 4. Panel screenshot shows markers + tooltip at 1440 and 390 widths.
 
+## Post-ship addenda (2026-08-23, owner directives)
+
+- **Moment context is a summary, not a quote.** The pins and the Slack
+  sharpest-exit line show a model-written one-line note on what was being
+  discussed or shown at the moment (and by whom, role-level — speaker labels
+  are unverified). Notes live in `data/restream/moment-summaries.json`,
+  written by `tools/dive-analytics/moment-summaries.mjs` (chain step after
+  `recommendations`; seeded from the owner session 2026-08-23) and attached
+  verbatim by build-data. Rules: one line, 20–220 chars, plain words, NO
+  digits (position/time render separately), no markup. A moment without a
+  stored note renders no context line — a raw transcript quote is never the
+  fallback. The verbatim `excerpt` stays in the data as provenance and as
+  the engine's quotable context; the validator still enforces it.
+- **Marker presentation** (design-critic pass, same day): pins on ticks
+  below/above the line instead of on-line discs; stroked chevrons carry the
+  only color; near same-kind neighbors alternate pin depth; ~32px touch
+  targets; payoff-first structured tooltips; a tap pins its tooltip open.
+- Also shipped alongside (show-health surfaces, outside this PRD's scope):
+  diagnosis-row drill tooltips reading the projection's saved measures, and
+  the Today's read card recomposed as headline + store-backed do-next
+  actions with the Why-this-score disclosure moved under the gauge.
+
 ## Out of scope / later
 
 - X-side retention (X reports no equivalent data).

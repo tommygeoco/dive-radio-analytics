@@ -11,8 +11,8 @@ import { join, dirname } from "node:path";
 // same deterministic wordlist the sentiment labels come from
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { projectHealth } from "./health.mjs";
-import { watchMoments, excerptWords } from "./watch-moments.mjs";
-import { BANNED as BANNED_JARGON } from "./recommendations.mjs";
+import { watchMoments } from "./watch-moments.mjs";
+import { momentKey } from "./moment-summaries.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -375,6 +375,13 @@ function attachEpisodeHealth(dive) {
 // carries no watch block.
 const WATCH_DIR = join(ROOT, "data", "restream", "yt-analytics");
 function attachWatch(dive) {
+  // W17 moment summaries: model-written context notes (owner directive
+  // 2026-08-23 — the pins summarize what was happening, never raw quotes).
+  // Attached verbatim from the store; a moment without an entry carries no
+  // summary and renders no context line (absence is silent, quotes are
+  // never the fallback).
+  let summaryStore = null;
+  try { summaryStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "moment-summaries.json"), "utf8")); } catch { /* no store yet */ }
   for (const e of dive) {
     let j = null;
     try { j = JSON.parse(readFileSync(join(WATCH_DIR, `${e.slug}.json`), "utf8")); } catch { continue; }
@@ -459,7 +466,12 @@ function attachWatch(dive) {
         transcriptText: readFileSync(transcriptPath, "utf8"),
       });
       if (wm?.shape) e.watch.shape = wm.shape;
-      if (wm?.moments?.length) e.watch.moments = wm.moments;
+      if (wm?.moments?.length) {
+        e.watch.moments = wm.moments.map((m) => {
+          const entry = summaryStore?.entries?.[momentKey(e.slug, m)];
+          return entry ? { ...m, summary: entry.summary } : m;
+        });
+      }
     }
   }
 }
@@ -1050,15 +1062,14 @@ export function trendsText(data) {
   if (newest?.health?.pending) {
     lines.push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
   }
-  // v6 W16: the newest episode's sharpest exit moment, read from the same
-  // stored moments the panel pins render. The transcript words ride along only
-  // when they pass the plain-words gate — spoken quotes can contain words the
-  // report bans, and then the numbers stand alone.
+  // v6 W16/W17: the newest episode's sharpest exit moment, read from the same
+  // stored moments the panel pins render. Context is the model-written summary
+  // from the moment-summaries store — never a raw transcript quote; without a
+  // stored summary the numbers stand alone.
   const momentEp = [...data.episodes].reverse().find((e) => e.watch?.moments?.some((m) => m.kind === "drop"));
   if (momentEp) {
     const drop = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
-    const quote = excerptWords(drop.excerpt);
-    lines.push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${quote && !BANNED_JARGON.test(quote) ? ` — “${quote}”` : ""}.`);
+    lines.push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${drop.summary ? ` — ${drop.summary}` : ""}.`);
   }
   // W8: newest-episode feedback, read from the same exported rollup as the page.
   const c = newest?.comments;

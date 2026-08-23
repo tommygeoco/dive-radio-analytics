@@ -639,6 +639,15 @@ export function projectHealth(store, { now = Date.now() } = {}) {
       key,
       score: Number.isFinite(latest.subScores?.[key]?.score) ? latest.subScores[key].score : null,
       reason: latest.subScores?.[key]?.reason ?? null,
+      // the saved measures behind the check, projected so the diagnosis rows
+      // can offer hover drill-in (value vs typical) without ever recomputing
+      measures: Object.entries(latest.subScores?.[key]?.measures || {}).map(([measureKey, measure]) => ({
+        key: measureKey,
+        value: measure?.value ?? null,
+        typical: measure?.typical ?? null,
+        sample: measure?.sample ?? null,
+        reason: measure?.reason ?? null,
+      })),
     })),
     pros: latest.pros.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     cons: latest.cons.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),

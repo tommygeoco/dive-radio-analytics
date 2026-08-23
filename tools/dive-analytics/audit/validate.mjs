@@ -704,7 +704,9 @@ function premiereMs(dateStr) {
     const expected = wm.watchMoments({ curve: w.curve, channelTotals: chans.map(([, c]) => c.totals), transcriptText: raw });
     if (JSON.stringify(w.shape ?? null) !== JSON.stringify(expected?.shape ?? null)) { bad++; fail(`moments: ${e.slug} shape disagrees with the deterministic recompute`); }
     const expectedMoments = expected?.moments?.length ? expected.moments : null;
-    if (JSON.stringify(w.moments ?? null) !== JSON.stringify(expectedMoments)) { bad++; fail(`moments: ${e.slug} moments disagree with the deterministic recompute`); }
+    // summaries are store-attached prose; strip them before the deterministic compare
+    const strippedMoments = w.moments ? w.moments.map(({ summary, ...rest }) => rest) : null;
+    if (JSON.stringify(strippedMoments) !== JSON.stringify(expectedMoments)) { bad++; fail(`moments: ${e.slug} moments disagree with the deterministic recompute`); }
     const duration = wm.deriveDuration(chans.map(([, c]) => c.totals));
     const text = raw.replace(/^\uFEFF/, "").replace(/\r/g, "");
     const ms = w.moments || [];
@@ -726,16 +728,47 @@ function premiereMs(dateStr) {
       }
     }
   }
+  // W17 moment summaries: model-written context in a validated store; the page
+  // and the Slack line attach it verbatim, and NOTHING ever falls back to a
+  // raw transcript quote (owner directive 2026-08-23)
+  try {
+    const ms = await import(join(TOOL, "moment-summaries.mjs"));
+    let sumStore = null;
+    try { sumStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "moment-summaries.json"), "utf8")); } catch { /* absent */ }
+    if (!sumStore) {
+      warn("moments: no summaries store — pins render without context lines (run tools/dive-analytics/moment-summaries.mjs)");
+      for (const e of eps) for (const m of e.watch?.moments || []) {
+        if ("summary" in m) { bad++; fail(`moments: ${e.slug} carries a summary with no store — fabricated context`); }
+      }
+    } else {
+      ms.validateStore(sumStore);
+      const liveKeys = new Set();
+      for (const e of eps) {
+        for (const m of e.watch?.moments || []) {
+          const key = ms.momentKey(e.slug, m);
+          liveKeys.add(key);
+          const entry = sumStore.entries[key];
+          if (entry && m.summary !== entry.summary) { bad++; fail(`moments: ${e.slug} ${m.kind}@${m.at} summary drifted from the store`); }
+          if (!entry && "summary" in m) { bad++; fail(`moments: ${e.slug} ${m.kind}@${m.at} carries a summary the store does not hold`); }
+        }
+      }
+      const orphans = Object.keys(sumStore.entries).filter((k) => !liveKeys.has(k));
+      if (orphans.length) warn(`moments: ${orphans.length} stored summar${orphans.length === 1 ? "y" : "ies"} no longer match a current moment — kept as history, unused`);
+    }
+  } catch (err) { bad++; fail(`moments: summaries store validation threw — ${err.message}`); }
   // panel pins: rendered ONLY from stored moments, as keyboard-reachable tooltip buttons on the positioned plot,
-  // with the structured tooltip (payoff, position, quote) wired through the shared box and a short accessible name
+  // with the structured tooltip (payoff, position, stored summary) wired through the shared box
   if (!/\(w\.moments \|\| \[\]\)\.forEach/.test(html)
     || !/class="wmark \$\{mo\.kind\}"/.test(html)
     || !/<button type="button" class="wmark/.test(html)
-    || !html.includes('data-stat="${esc(stat)}" data-meta="${esc(meta)}" data-quote="${esc(quote)}"')
+    || !html.includes('data-stat="${esc(stat)}" data-meta="${esc(meta)}"')
+    || !html.includes('data-note="${esc(mo.summary)}"')
     || !html.includes("aria-describedby=")
     || !html.includes("badge.dataset.stat")
+    || !html.includes("badge.dataset.note")
+    || html.includes("momentQuote")
     || !html.includes(".hs[data-hslug], [data-tip], [data-stat]")) {
-    bad++; fail("moments: panel pins must render only from episode.watch.moments as keyboard-reachable structured-tooltip buttons");
+    bad++; fail("moments: panel pins must render only from episode.watch.moments with store-attached summaries — never raw transcript quotes");
   }
   if (!/<div class="wcurve"><div class="wplot">/.test(html)) { bad++; fail("moments: curve markers lack the positioned plot wrapper — marker positions would drift off the curve"); }
   // engine parity: the excerpts handed to the engine ARE the stored moments' excerpts, and moment facts equal their points
@@ -757,11 +790,10 @@ function premiereMs(dateStr) {
     }
   } catch (err) { bad++; fail(`moments: engine parity check threw — ${err.message}`); }
   // Slack definition-lock: the Monday report's sharpest-exit line is rebuilt
-  // verbatim from the stored moments (quote included only when it passes the
-  // plain-words gate — 1i re-checks the whole report separately)
+  // verbatim from the stored moment and its store-attached summary — never a
+  // transcript quote (1i re-checks the whole report for plain words)
   try {
     const build = await import(join(TOOL, "build-data.mjs"));
-    const recs = await import(join(TOOL, "recommendations.mjs"));
     const slack = build.trendsText(data);
     const exitLines = slack.split("\n").filter((l) => l.startsWith("• Sharpest exit in "));
     const momentEp = [...eps].reverse().find((x) => x.watch?.moments?.some((m) => m.kind === "drop"));
@@ -769,9 +801,8 @@ function premiereMs(dateStr) {
       if (exitLines.length) { bad++; fail("moments: Slack reports an exit moment no episode carries"); }
     } else {
       const d = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
-      const quote = wm.excerptWords(d.excerpt);
-      const expected = `• Sharpest exit in ${momentEp.title.replace(/^Dive Radio:\s*/i, "")}: ${d.points} of every 100 viewers leave ${d.approx ? "roughly" : "about"} ${build.minutesInWords(d.estSec)}${quote && !recs.BANNED.test(quote) ? ` — “${quote}”` : ""}.`;
-      if (exitLines.length !== 1 || exitLines[0] !== expected) { bad++; fail("moments: Slack sharpest-exit line does not exactly rebuild from the stored moment"); }
+      const expected = `• Sharpest exit in ${momentEp.title.replace(/^Dive Radio:\s*/i, "")}: ${d.points} of every 100 viewers leave ${d.approx ? "roughly" : "about"} ${build.minutesInWords(d.estSec)}${d.summary ? ` — ${d.summary}` : ""}.`;
+      if (exitLines.length !== 1 || exitLines[0] !== expected) { bad++; fail("moments: Slack sharpest-exit line does not exactly rebuild from the stored moment and its summary"); }
     }
   } catch (err) { bad++; fail(`moments: Slack line check threw — ${err.message}`); }
   if (!bad) ok(`moments: ${eps.filter((x) => x.watch?.moments).length} episode(s) carry transcript-anchored moments — recompute-locked, floors/spacing/caps hold, excerpts verbatim, absence silent, Slack line locked`);
@@ -1077,6 +1108,24 @@ function premiereMs(dateStr) {
     // projection only — never from scoring inputs, never as numbers
     if (!/h\.checks/.test(healthSource) || !/checkState/.test(healthSource) || !/Not in yet/.test(html)) {
       bad++; fail("card layout: the diagnosis card does not render every saved check as a plain-word state");
+    }
+    // diagnosis drill (owner directive 2026-08-23): every row is a keyboard-
+    // reachable tooltip target whose numbers come from the projection's saved
+    // measures — value against typical, stored reason when absent
+    if (!/c\.measures/.test(healthSource) || !/MEASURE_WORDS/.test(healthSource)
+      || !healthSource.includes('<div class="checkrow" tabindex="0" data-stat=')) {
+      bad++; fail("card layout: diagnosis rows must offer saved-measure drill tooltips (value vs typical), keyboard-reachable");
+    }
+    // Today's read (owner directive 2026-08-23): the grounded headline plus
+    // the top do-next actions read verbatim from the saved recommendation
+    // store — no methodology copy on the card (About carries it)
+    if (!/DATA\.insights/.test(healthSource) || !/esc\(r\.recommendation\)/.test(healthSource)
+      || !/esc\(h\.headline\)/.test(healthSource) || /Saved once a day:/.test(healthSource)) {
+      bad++; fail("card layout: Today's read must lead with the saved headline and store-backed do-next actions, without methodology copy");
+    }
+    // "Why this score" lives under the gauge, before the diagnosis card
+    if (!(healthSource.indexOf('id="whyscore"') > -1 && healthSource.indexOf('id="whyscore"') < healthSource.indexOf('hc-diag'))) {
+      bad++; fail("card layout: the Why-this-score disclosure must sit under the gauge, ahead of the diagnosis card");
     }
     // evidence: starts closed, is a real disclosure, and carries every saved fact
     if (!/evidenceOpen: false/.test(html) || !/state\.evidenceOpen/.test(healthSource)

@@ -23,11 +23,14 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   watched, total watch time, the drop-off curve, and where views came from
   (traffic sources) — view-weighted across both channels, absent when a
   report has not arrived
-- The panel's drop-off curve carries transcript-anchored moment markers
-  (tools/dive-analytics/watch-moments.mjs, deterministic): ▾ where the most
-  viewers left, ▴ where extra viewers were watching, each a keyboard-reachable
-  tooltip quoting the verbatim transcript from that stretch; the same shape
-  and moment facts (plus excerpts) feed the recommendation engine
+- The panel's drop-off curve carries transcript-anchored moment pins
+  (tools/dive-analytics/watch-moments.mjs, deterministic): below the line
+  where the most viewers left, above it where extra viewers were watching,
+  each a keyboard-reachable tooltip whose context line is a model-written
+  summary of what was happening (data/restream/moment-summaries.json,
+  written by tools/dive-analytics/moment-summaries.mjs — never a raw
+  transcript quote); the verbatim excerpts stay in the data as provenance
+  and feed the recommendation engine alongside the shape and moment facts
 - Click any episode for a detail panel: per-channel breakdown, reach split,
   episode-health checks, featured quotes, recurring audience themes, and
   praise/concern drilldown
@@ -50,12 +53,14 @@ The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:
 
 ```text
-ratings → build-data → validate → health → recommendations → build-data → validate → publish
+ratings → build-data → validate → health → recommendations → moment-summaries → build-data → validate → publish
 ```
 
-(`recommendations` needs ANTHROPIC_API_KEY like `health`; on failure the
-previous store stays the public truth, so the step is safe to skip.)
+(`recommendations` and `moment-summaries` need ANTHROPIC_API_KEY like
+`health`; on failure the previous store stays the public truth, so the
+steps are safe to skip.)
 
-The classifier, health writer, recommendation engine, and standing critic
-are the only model-backed scripts. `build-data.mjs` (including the
-watch-moments extraction it imports) stays deterministic and never calls a model.
+The classifier, health writer, recommendation engine, moment summarizer,
+and standing critic are the only model-backed scripts. `build-data.mjs`
+(including the watch-moments extraction it imports) stays deterministic and
+never calls a model.

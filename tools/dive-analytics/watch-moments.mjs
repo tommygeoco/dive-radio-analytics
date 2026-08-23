@@ -183,19 +183,6 @@ export function extractMoments(curve, { durationSec, approx, transcript }) {
   return picked.sort((a, b) => a.at - b.at);
 }
 
-// Spoken words from a stored excerpt, for prose surfaces (the Slack report):
-// interior timestamp/header lines stripped, ">>" speaker marks dropped,
-// whitespace collapsed, trimmed on a word boundary. The stored excerpt stays
-// the verbatim file slice; this is presentation only.
-export function excerptWords(excerpt, max = 160) {
-  let q = String(excerpt).replace(/^\d{2}:\d{2}:\d{2}(?: \[[^\]]*\])?\s*/gm, "").replace(/\s*>>\s*/g, " ").replace(/\s+/g, " ").trim();
-  if (q.length > max) {
-    const cut = q.slice(0, max - 1);
-    q = cut.slice(0, Math.max(cut.lastIndexOf(" "), Math.floor(max * 0.6))).trimEnd() + "…";
-  }
-  return q;
-}
-
 // Convenience for build-data: everything or nothing for one episode.
 export function watchMoments({ curve, channelTotals, transcriptText }) {
   if (!Array.isArray(curve) || !curve.length || !transcriptText) return null;

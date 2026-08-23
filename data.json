@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-23T05:37:35.551Z",
+ "generatedAt": "2026-08-23T06:45:08.888Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -3618,7 +3618,8 @@
       "estSec": 443,
       "approx": false,
       "excerpt": "like we have a bunch figured out. We're\n00:07:20  going to try some stuff, but also so\n00:07:24  much is is like in progress and we're\n00:07:25  actually having a blast working on it\n00:07:27  and thinking about it. And so we're kind\n00:07:28  of just going to pull back the curtain",
-      "speaker": null
+      "speaker": null,
+      "summary": "The hosts own up to first-show jank — a botched AI intro video, a rushed brand refresh — and welcome viewers to the first, admittedly bumpy, Dive Radio livestream."
      },
      {
       "kind": "drop",
@@ -3627,7 +3628,8 @@
       "estSec": 1992,
       "approx": false,
       "excerpt": "Crazy crazy comeback art.\n00:33:08  >> Now, you're not a cursor user, right?\n00:33:10  >> I'm not. I'm I'm I'm still team\n00:33:12  conductor.\n00:33:13  conductor.\n00:33:13  >> Cursor is a big uh tool in our\n00:33:15  household. My teens love cursor. It's\n00:33:18  really like it's a really accessible",
-      "speaker": null
+      "speaker": null,
+      "summary": "Industry-news riffing: the hosts react to designer moves — big names leaving for Cursor — and debate whether running design at a fast-scaling company is a job anyone should want."
      },
      {
       "kind": "drop",
@@ -3636,7 +3638,8 @@
       "estSec": 7304,
       "approx": false,
       "excerpt": "like, \"Oh, I went and built a whole\n02:01:38  bunch of stuff that, you know, was\n02:01:40  questionable.\" Um so yeah, guys, thank\n02:01:45  you for joining us on our uh rough\n02:01:47  start. Uh I promise pretty much most of\n02:01:50  the same next week with uh one or two%",
-      "speaker": null
+      "speaker": null,
+      "summary": "Wind-down talk at the very end: the hosts trade late-night work-habit confessions — chasing an idea until early morning — and joke that none of it should be taken as advice."
      }
     ]
    }
@@ -6840,7 +6843,8 @@
       "estSec": 646,
       "approx": false,
       "excerpt": "And he just went into monk mode for like six months and just built and explored and leveled up.\n\n00:10:53 [Speaker 1]\nAnd he called his shot too.\n00:10:55 [Speaker 1]\nHe he we chatted for twenty minutes one day, and he's like, I'm going to just go heads down and build and learn and level up.",
-      "speaker": "Speaker 1"
+      "speaker": "Speaker 1",
+      "summary": "A portfolio showcase: one host screen-shares designer Sid's playful, personal portfolio and tells how he found him through the talent network, while the audience vote gets set up."
      },
      {
       "kind": "drop",
@@ -6849,7 +6853,8 @@
       "estSec": 1005,
       "approx": false,
       "excerpt": "Yeah.\n00:16:42 [Speaker 1]\nSo that's that's, you know, that's where we're at.\n00:16:44 [Speaker 1]\nThese scenes, don't know how\n\n00:16:46 [Speaker 3]\nto use them.\n00:16:46 [Speaker 3]\nWe're out here just switching around, making things happen.\n00:16:49 [Speaker 3]\nGo vote for us.\n00:16:52 [Speaker 3]\nYeah, man.",
-      "speaker": "Speaker 1"
+      "speaker": "Speaker 1",
+      "summary": "Recorded community nominations play back to back: a nominee signs off by nominating another designer, and the hosts riff on the videos' one-liners and self-edited craft between clips."
      },
      {
       "kind": "drop",
@@ -6858,7 +6863,8 @@
       "estSec": 2799,
       "approx": false,
       "excerpt": "So I feel, like, I feel the internal dissonance that I think is kind of just a microcosm of the entire state of the job market right now.\n\n00:46:41 [Speaker 3]\nWhat I what I used to bother me about applying for jobs is is I get real I'm really bad about permission based, environments and structures.",
-      "speaker": "Speaker 1"
+      "speaker": "Speaker 1",
+      "summary": "The hosts read through a community write-up on what design engineering actually is, recommend it on screen, then turn it into a debate about where designers should position themselves."
      }
     ]
    }
@@ -9063,7 +9069,8 @@
       "estSec": 541,
       "approx": false,
       "excerpt": ">> Totally.\n00:08:55  >> Hi, my name is Eniola. I am honored to\n00:08:57  be the inaugural designer of the week on\n00:08:59  Dive Radio. And now I would love to pay\n00:09:01  this forward. My nominee is Melissa\n00:09:03  Seay. She spent 5 years at YouTube and\n00:09:06  Google and really understood what it",
-      "speaker": null
+      "speaker": null,
+      "summary": "The nomination chain continues — a recorded video hands the torch to an engineer at Resend — and the hosts talk about how the pay-it-forward format started and why it is becoming their favorite segment."
      },
      {
       "kind": "drop",
@@ -9072,7 +9079,8 @@
       "estSec": 2775,
       "approx": false,
       "excerpt": "Higgs Field mixed with Claude. That's a\n00:46:11  workflow I'm going to show you guys in a\n00:46:12  second. Or Open AI's image two with\n00:46:15  paper with Claude. Like there's so many\n00:46:18  tool chain workflows happening. I'd be\n00:46:20  very curious to hear what tools were",
-      "speaker": null
+      "speaker": null,
+      "summary": "A talk stretch on AI demo overload: the hosts argue the viral demos are really experiments in chaining tools together — mixed-media workflows — not finished products, and that people judge them wrong."
      },
      {
       "kind": "drop",
@@ -9081,7 +9089,8 @@
       "estSec": 3384,
       "approx": false,
       "excerpt": "like uh-oh.\n00:56:18  No, end of\n00:56:20  No, end of\n00:56:20  Oh, we got it.\n00:56:23  And then anything else\n00:56:25  >> She's smiling.\n00:56:25  >> So good. You know, and it's so it's got\n00:56:28  a marketplace. It has this There's a lot\n00:56:30  of stuff happening here and it's great.",
-      "speaker": null
+      "speaker": null,
+      "summary": "A live gameplay demo, music and all: one host plays an AI-built game on screen — running out of missiles, fumbling a landing — while framing it as a playable experiment, not a market-ready game."
      },
      {
       "kind": "hold",
@@ -9090,7 +9099,8 @@
       "estSec": 5211,
       "approx": false,
       "excerpt": "And so the way that I did that and\n01:26:44  someone talked about it here by the way.\n01:26:46  They called it this adversarial agent\n01:26:48  and he said uh Anshu is his name. He\n01:26:51  created the one-shot Opus 5 game\n01:26:55  which is\n01:26:57  which is\n01:26:57  just wild from a that looks crazy.",
-      "speaker": null
+      "speaker": null,
+      "summary": "The maker explains an AI catching its own broken model — the mesh was unworkable vector soup — and re-meshing it, then walks through the wiki-fed critic agent they use to gate what counts as good."
      }
     ]
    }
@@ -11321,7 +11331,8 @@
       "estSec": 667,
       "approx": false,
       "excerpt": "We're doing a piece on Zuck.\n00:11:04 [Speaker 2]\nWe need something that just, like, encapsulates these these eras that Zuck has been through.\n00:11:10 [Speaker 2]\nDude, this this is the kind of thing, like, when I was pirating Photoshop as a a wee lad, this is the kind of work that I would just, like, geek out.",
-      "speaker": "Speaker 2"
+      "speaker": "Speaker 2",
+      "summary": "A recorded nomination praising a jaw-dropping WebGL demo wraps up, and the hosts riff on the double nomination and how comforting it is to hear a master admit he didn't know how he pulled it off."
      },
      {
       "kind": "hold",
@@ -11330,7 +11341,8 @@
       "estSec": 2297,
       "approx": false,
       "excerpt": "What is, you know, what are you looking at here?\n\n00:38:14 [Speaker 3]\nFor me, it was I can't remember how I found it, but the the time on-site was wild.\n00:38:21 [Speaker 3]\nPeople have, like it's super common for people to have an engaged hour long session, which, again, not the intent at all.",
-      "speaker": "Speaker 2"
+      "speaker": "Speaker 2",
+      "summary": "The backyard-project team gets candid about the launch: feedback lists and voice notes pouring in unprompted, the game becoming something they never set out to make, and asking designers what would help."
      },
      {
       "kind": "drop",
@@ -11339,7 +11351,8 @@
       "estSec": 2890,
       "approx": false,
       "excerpt": "Can I make Flora as a backyard baseball character?\n00:48:13 [Speaker 3]\nAnd my new thing that I think I actually stole from you is whenever I'm having GPT create stuff, I want six variations in one image rather than six separate images just because it's faster.\n00:48:22 [Speaker 3]\nIt's kinda genius in retrospect.",
-      "speaker": "Speaker 3"
+      "speaker": "Speaker 3",
+      "summary": "One of the makers screen-shares a story deck generated by voice with an AI design tool reading the game's own codebase — built in the final hours before the show — and tests whether its images stay consistent."
      }
     ]
    }
@@ -13461,7 +13474,8 @@
       "estSec": 684,
       "approx": false,
       "excerpt": "recreate his accent and we all just\n00:11:19  walked around talking to each other with\n00:11:21  it. [laughter]\n00:11:23  So, James has a special a special place\n00:11:25  in the Rittering household.\n00:11:26  >> I'll have to I'll have to work on that.\n00:11:28  >> I am uh I am going to go and then I want",
-      "speaker": null
+      "speaker": null,
+      "summary": "A recorded nomination from designer James McDonald plays, and one host detours into a family story about everyone imitating James's accent for a week while editing his podcast episode."
      },
      {
       "kind": "drop",
@@ -13470,7 +13484,8 @@
       "estSec": 1140,
       "approx": false,
       "excerpt": "sarcastic. This is some kind of a weird\n00:18:53  corporate comms thing.\" A genius.\n00:18:58  And then I just closed Twitter. And then\n00:19:00  I came back a few hours later and I'm\n00:19:02  like, wait, actually this is this is\n00:19:05  serious. This is really serious.\n00:19:06  [laughter]",
-      "speaker": null
+      "speaker": null,
+      "summary": "The hosts scroll a community pile-on: replies roasting an AI-generated design post, delete-this jokes included, while they debate how seriously to take the backlash."
      },
      {
       "kind": "drop",
@@ -13479,7 +13494,8 @@
       "estSec": 2850,
       "approx": false,
       "excerpt": "Thank god because I would have that was\n00:47:26  a flashbang equivalent. But, uh, yeah,\n00:47:28  everyone's in there. Go craft deck.gg.\n00:47:30  Gabe,\n00:47:31  Gabe,\n00:47:31  >> let's put it in the chat.\n00:47:32  >> And and you can face off, by the way.\n00:47:34  You can actually face off against",
-      "speaker": null
+      "speaker": null,
+      "summary": "Show-and-tell of a community-made card game site: the hosts admire its productized admin flow — drag a card and it deploys — until the site's autoplaying music derails the segment and they close the tab."
      },
      {
       "kind": "hold",
@@ -13488,7 +13504,8 @@
       "estSec": 3192,
       "approx": false,
       "excerpt": "pull out the HTML quick mockup\n00:53:08  prototypes that I had made this week.\n00:53:11  It's a lot, man.\n00:53:14  Like,\n00:53:16  Like,\n00:53:16  >> right? Like, this is this is a m look at\n00:53:19  look at Tuesday. Like, this was a big\n00:53:20  build day for me. I didn't have a lot of",
-      "speaker": null
+      "speaker": null,
+      "summary": "A guest walks through how their prototyping workflow changed — from making messes on top of the production codebase to isolated quick mockups — and shares a screen of the new setup."
      }
     ]
    }
@@ -15411,32 +15428,121 @@
    {
     "key": "growth",
     "score": null,
-    "reason": "Only 2 clean first weeks exist; at least three are required. Only 0 prior episodes were tracked this early; at least three are required."
+    "reason": "Only 2 clean first weeks exist; at least three are required. Only 0 prior episodes were tracked this early; at least three are required.",
+    "measures": [
+     {
+      "key": "firstWeek",
+      "value": null,
+      "typical": null,
+      "sample": 2,
+      "reason": "Only 2 clean first weeks exist; at least three are required."
+     },
+     {
+      "key": "sameAge",
+      "value": null,
+      "typical": null,
+      "sample": 1,
+      "reason": "Only 0 prior episodes were tracked this early; at least three are required."
+     }
+    ]
    },
    {
     "key": "audienceQuality",
     "score": 49,
-    "reason": "The latest episode is still under a week old, so these checks may move."
+    "reason": "The latest episode is still under a week old, so these checks may move.",
+    "measures": [
+     {
+      "key": "engagement",
+      "value": 28.5,
+      "typical": 38.1,
+      "sample": 5,
+      "reason": null
+     },
+     {
+      "key": "watching",
+      "value": 12.9,
+      "typical": 10.8,
+      "sample": 5,
+      "reason": null
+     }
+    ]
    },
    {
     "key": "reachEfficiency",
     "score": 51,
-    "reason": "The newest episode is under a week old, so this check uses the latest finished episode."
+    "reason": "The newest episode is under a week old, so this check uses the latest finished episode.",
+    "measures": [
+     {
+      "key": "announceToPlay",
+      "value": 23,
+      "typical": 34.5,
+      "sample": 4,
+      "reason": null
+     },
+     {
+      "key": "xShare",
+      "value": 64.2,
+      "typical": 46.6,
+      "sample": 4,
+      "reason": null
+     }
+    ]
    },
    {
     "key": "livePull",
     "score": 47,
-    "reason": null
+    "reason": null,
+    "measures": [
+     {
+      "key": "peak",
+      "value": 71,
+      "typical": 64,
+      "sample": 6,
+      "reason": null
+     },
+     {
+      "key": "chat",
+      "value": 127,
+      "typical": 169,
+      "sample": 6,
+      "reason": null
+     }
+    ]
    },
    {
     "key": "conversion",
     "score": 26,
-    "reason": "The latest episode is still under a week old, so this check may move."
+    "reason": "The latest episode is still under a week old, so this check may move.",
+    "measures": [
+     {
+      "key": "subscribers",
+      "value": 1.6,
+      "typical": 3,
+      "sample": 5,
+      "reason": null
+     }
+    ]
    },
    {
     "key": "sentiment",
     "score": 86,
-    "reason": "Only 1 episode has complete replies and watch counts; at least four are required."
+    "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
+    "measures": [
+     {
+      "key": "balance",
+      "value": 85.7,
+      "typical": null,
+      "sample": 7,
+      "reason": null
+     },
+     {
+      "key": "commentRate",
+      "value": null,
+      "typical": null,
+      "sample": 1,
+      "reason": "Only 1 episode has complete replies and watch counts; at least four are required."
+     }
+    ]
    }
   ],
   "pros": [

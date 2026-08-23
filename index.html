@@ -79,9 +79,18 @@
     font-weight: 600; }
   .hc-meta .updated svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
   .hc-meta .scope { color: var(--t3); font-size: 13.5px; line-height: 1.5; margin: 10px 0 0; }
-  .hc-meta .why { display: inline-block; margin-top: 12px; background: none; border: 0; padding: 0;
+  .healthrow .why { display: inline-block; margin-top: 2px; background: none; border: 0; padding: 0;
     color: var(--accent); font-size: 14px; cursor: pointer; text-decoration: underline;
     text-underline-offset: 3px; }
+  /* Today's read: the grounded headline + the top do-next actions from the
+     saved store; hovering a row shows the finding behind the action */
+  .hc-meta .dnhead { color: var(--t3); font-size: 12px; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; margin: 12px 0 6px; }
+  .hc-meta .donext { display: grid; gap: 8px; }
+  .hc-meta .dnrow { display: flex; gap: 9px; color: var(--t2); font-size: 13.5px; line-height: 1.45; cursor: help; }
+  .hc-meta .dnrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; margin-top: 6px; }
+  .checkrow[data-stat] { cursor: help; }
+  .checkrow:focus-visible, .dnrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   .health-evidence { grid-column: 1 / -1; }
   .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; }
   .health-evidence h3 { margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
@@ -745,10 +754,36 @@ function buildHealth() {
   const saved = relativeDayWords(h.date);
   const readState = h.readState === "early" ? " · Early read" : "";
   const R = 76, C = Math.round(2 * Math.PI * R * 10) / 10;
+  // drill data behind each row: the SAVED measures from the public projection
+  // (never scoring inputs) — this value against the show's typical, or the
+  // stored reason when a measure has no honest number yet
+  const MEASURE_WORDS = {
+    firstWeek: "How each launch week compares with the one before",
+    sameAge: "YouTube views at the newest episode’s age",
+    engagement: "Likes and comments per 1,000 views",
+    watching: "Share of the video people watch",
+    announceToPlay: "Watches per 100 announce views on X",
+    xShare: "Share of watching happening on X",
+    peak: "Peak live viewers",
+    chat: "Live chat messages",
+    subscribers: "Subscribers gained per 1,000 views",
+    balance: "Share of feedback leaning positive",
+    commentRate: "People commenting per 1,000 watches",
+  };
+  const PCT_MEASURES = new Set(["watching", "xShare", "balance"]);
   const rows = (h.checks || []).map((c) => {
     const [label, sub] = CHECK_LABELS[c.key] || [c.key, ""];
     const [cls, word] = checkState(c.score);
-    return `<div class="checkrow"><span class="cl">${label}</span>
+    const fmtM = (k, v) => `${nfmt(v)}${PCT_MEASURES.has(k) ? "%" : ""}`;
+    const drill = (c.measures || []).map((m) => {
+      const name = MEASURE_WORDS[m.key] || m.key;
+      if (m.value == null) return m.reason ? `${name}: ${m.reason}` : null;
+      return `${name}: ${fmtM(m.key, m.value)}${m.typical != null ? ` · typically ${fmtM(m.key, m.typical)}` : ""}${m.sample ? ` · from ${m.sample} episodes` : ""}`;
+    }).filter(Boolean);
+    const note = c.score != null
+      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.`
+      : (c.reason || "");
+    return `<div class="checkrow" tabindex="0" data-stat="${esc(`${label} — ${word}`)}"${drill.length ? ` data-rows="${esc(drill.join("||"))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}><span class="cl">${label}</span>
       <span class="st ${cls}"><i aria-hidden="true"></i>${word}</span></div>`;
   }).join("");
   // each bullet carries exactly one validated number — bolding it gives the
@@ -764,6 +799,19 @@ function buildHealth() {
       ${healthTrend(h.trend?.points)}
     </div>`;
   el.className = "healthrow";
+  // Today's read (owner directive 2026-08-23): no methodology copy — the
+  // grounded headline plus the top do-next actions, straight from the saved
+  // recommendation store (first item of each of the two leading categories).
+  // Methodology lives in About; the deterministic pick keeps build-out honest.
+  const topRecs = (() => {
+    const seen = new Set(); const out = [];
+    for (const ins of DATA.insights || []) {
+      if (!ins.recommendation || seen.has(ins.category)) continue;
+      seen.add(ins.category); out.push(ins);
+      if (out.length === 2) break;
+    }
+    return out;
+  })();
   el.innerHTML = `<div class="card hc-score">
       <div class="kicker">Show health</div>
       <div class="gaugewrap">
@@ -775,18 +823,18 @@ function buildHealth() {
           <div class="num"><b data-fold-number>${h.score}</b><small>of 100</small></div>
         </div>
         <div class="scale">50 is this show’s usual level</div>
+        <button type="button" class="why" id="whyscore" aria-expanded="${state.evidenceOpen ? "true" : "false"}" aria-controls="evidence">Why this score ${state.evidenceOpen ? "−" : "+"}</button>
       </div>
     </div>
     <div class="card hc-diag">
       <div class="kicker">Health diagnosis</div>
-      <p class="headline">${esc(h.headline)}</p>
       <div class="checkrows">${rows}</div>
     </div>
     <div class="card hc-meta">
       <div class="kicker">Today’s read</div>
       <div class="updated"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Updated ${esc(saved)}${readState}</div>
-      <p class="scope">Saved once a day: six checks that compare the newest episodes with this show’s usual levels. It reads today, not a running total — each episode’s own three-week score lives on its card below.</p>
-      <button type="button" class="why" id="whyscore" aria-expanded="${state.evidenceOpen ? "true" : "false"}" aria-controls="evidence">Why this score ${state.evidenceOpen ? "−" : "+"}</button>
+      <p class="headline">${esc(h.headline)}</p>
+      ${topRecs.length ? `<div class="dnhead">Do next</div><div class="donext">${topRecs.map((r) => `<div class="dnrow" data-tip="${esc(r.text)}" tabindex="0"><i aria-hidden="true"></i><span>${esc(r.recommendation)}</span></div>`).join("")}</div>` : ""}
     </div>${evidence}`;
   document.getElementById("whyscore").addEventListener("click", () => { state.evidenceOpen = !state.evidenceOpen; render(); });
 }
@@ -1043,11 +1091,6 @@ function buildPanel() {
         const t = m < 60 ? `${m} minute${m === 1 ? "" : "s"} in` : `${h} hour${h === 1 ? "" : "s"}${m % 60 ? ` ${m % 60} minutes` : ""} in`;
         return `${approx ? "roughly" : "about"} ${t}`;
       };
-      const momentQuote = (x) => {
-        let q = String(x).replace(/^\d{2}:\d{2}:\d{2}(?: \[[^\]]*\])?\s*/gm, "").replace(/\s*>>\s*/g, " ").replace(/\s+/g, " ").trim();
-        if (q.length > 180) { const cut = q.slice(0, 178); q = cut.slice(0, Math.max(cut.lastIndexOf(" "), 120)).trimEnd() + "…"; }
-        return q;
-      };
       let marks = "";
       const lastAt = { drop: -1, hold: -1 };
       const deepPin = { drop: false, hold: false };
@@ -1062,8 +1105,9 @@ function buildPanel() {
           ? `${mo.points} of every 100 viewers left here`
           : `${mo.points} of every 100 jumped in here — a spot people skip to`;
         const meta = `${Math.round(mo.at * 100)}% through · ${timeWords(mo.estSec, mo.approx)}`;
-        const quote = momentQuote(mo.excerpt);
-        marks += `<button type="button" class="wmark ${mo.kind}" style="left:clamp(7px, ${(mo.at * 100).toFixed(1)}%, calc(100% - 7px));top:${top.toFixed(1)}px;--tick:${hang - 6}px" data-stat="${esc(stat)}" data-meta="${esc(meta)}" data-quote="${esc(quote)}" aria-label="${esc(`${stat}, ${meta}`)}" aria-describedby="wmq${i}">${mo.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</button><span class="sr" id="wmq${i}">“${esc(quote)}”</span>`;
+        // context is the stored model-written summary of what was happening —
+        // never the raw transcript; no summary in the store, no context line
+        marks += `<button type="button" class="wmark ${mo.kind}" style="left:clamp(7px, ${(mo.at * 100).toFixed(1)}%, calc(100% - 7px));top:${top.toFixed(1)}px;--tick:${hang - 6}px" data-stat="${esc(stat)}" data-meta="${esc(meta)}"${mo.summary ? ` data-note="${esc(mo.summary)}" aria-describedby="wmq${i}"` : ""} aria-label="${esc(`${stat}, ${meta}`)}">${mo.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</button>${mo.summary ? `<span class="sr" id="wmq${i}">${esc(mo.summary)}</span>` : ""}`;
       });
       html += `<div class="wcurve"><div class="wplot"><svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Share of the audience still watching across the video: ${Math.round(w.curve[0].watching * 100)}% near the start, ${Math.round(w.curve[w.curve.length - 1].watching * 100)}% at the end.">
         <line x1="25" y1="0" x2="25" y2="40"></line><line x1="50" y1="0" x2="50" y2="40"></line><line x1="75" y1="0" x2="75" y2="40"></line>
@@ -1237,8 +1281,12 @@ function showRtt(badge) {
     const r = e && healthOf(e);
     if (r) html = healthTipHTML(e, r);
   } else if (badge.dataset.stat) {
-    // moment pins lead with the payoff; the transcript quote is the small print
-    html = `<div class="h">${esc(badge.dataset.stat)}</div><div>${esc(badge.dataset.meta)}</div><div class="mut">“${esc(badge.dataset.quote)}”</div>`;
+    // structured tooltip grammar: bold payoff, plain data rows, muted note
+    const rows = badge.dataset.rows ? badge.dataset.rows.split("||") : [];
+    html = `<div class="h">${esc(badge.dataset.stat)}</div>`
+      + (badge.dataset.meta ? `<div>${esc(badge.dataset.meta)}</div>` : "")
+      + rows.map((r) => `<div>${esc(r)}</div>`).join("")
+      + (badge.dataset.note ? `<div class="mut">${esc(badge.dataset.note)}</div>` : "");
   } else if (badge.dataset.tip) {
     html = `<div>${esc(badge.dataset.tip)}</div>`;
   }
@@ -1959,9 +2007,9 @@ function buildAbout() {
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
-  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for the transcript words from that stretch of the show; transcript timing comes from the live recording, so read it as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
+  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover or tab to any diagnosis row for the saved numbers behind it — the newest result against the show’s typical level, or the reason a check isn’t in yet. The Today’s read card leads with the day’s saved headline and the top do-next actions from What matters; hover an action for the finding behind it. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;
 }
 
