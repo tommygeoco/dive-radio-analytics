@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-08-23T04:52:29.663Z",
+ "generatedAt": "2026-08-23T05:37:35.551Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -3601,7 +3601,44 @@ window.DIVE_DATA = {
       "share": 13.6
      }
     ],
-    "updatedAt": "2026-08-22T22:00:46.078Z"
+    "updatedAt": "2026-08-22T22:00:46.078Z",
+    "shape": {
+     "openStart": 67.3,
+     "openFloor": 11.7,
+     "recoveryPeak": 28.5,
+     "recoveryAt": 0.05,
+     "midHold": 14.4,
+     "endHold": 10.1
+    },
+    "moments": [
+     {
+      "kind": "drop",
+      "at": 0.06,
+      "points": 8,
+      "estSec": 443,
+      "approx": false,
+      "excerpt": "like we have a bunch figured out. We're\n00:07:20  going to try some stuff, but also so\n00:07:24  much is is like in progress and we're\n00:07:25  actually having a blast working on it\n00:07:27  and thinking about it. And so we're kind\n00:07:28  of just going to pull back the curtain",
+      "speaker": null
+     },
+     {
+      "kind": "drop",
+      "at": 0.27,
+      "points": 2.6,
+      "estSec": 1992,
+      "approx": false,
+      "excerpt": "Crazy crazy comeback art.\n00:33:08  >> Now, you're not a cursor user, right?\n00:33:10  >> I'm not. I'm I'm I'm still team\n00:33:12  conductor.\n00:33:13  conductor.\n00:33:13  >> Cursor is a big uh tool in our\n00:33:15  household. My teens love cursor. It's\n00:33:18  really like it's a really accessible",
+      "speaker": null
+     },
+     {
+      "kind": "drop",
+      "at": 0.99,
+      "points": 3.6,
+      "estSec": 7304,
+      "approx": false,
+      "excerpt": "like, \"Oh, I went and built a whole\n02:01:38  bunch of stuff that, you know, was\n02:01:40  questionable.\" Um so yeah, guys, thank\n02:01:45  you for joining us on our uh rough\n02:01:47  start. Uh I promise pretty much most of\n02:01:50  the same next week with uh one or two%",
+      "speaker": null
+     }
+    ]
    }
   },
   {
@@ -6786,7 +6823,44 @@ window.DIVE_DATA = {
       "share": 11.3
      }
     ],
-    "updatedAt": "2026-08-22T22:00:46.078Z"
+    "updatedAt": "2026-08-22T22:00:46.078Z",
+    "shape": {
+     "openStart": 66.2,
+     "openFloor": 13.9,
+     "recoveryPeak": 29.7,
+     "recoveryAt": 0.06,
+     "midHold": 13.1,
+     "endHold": 6.9
+    },
+    "moments": [
+     {
+      "kind": "drop",
+      "at": 0.09,
+      "points": 3.6,
+      "estSec": 646,
+      "approx": false,
+      "excerpt": "And he just went into monk mode for like six months and just built and explored and leveled up.\n\n00:10:53 [Speaker 1]\nAnd he called his shot too.\n00:10:55 [Speaker 1]\nHe he we chatted for twenty minutes one day, and he's like, I'm going to just go heads down and build and learn and level up.",
+      "speaker": "Speaker 1"
+     },
+     {
+      "kind": "drop",
+      "at": 0.14,
+      "points": 2.7,
+      "estSec": 1005,
+      "approx": false,
+      "excerpt": "Yeah.\n00:16:42 [Speaker 1]\nSo that's that's, you know, that's where we're at.\n00:16:44 [Speaker 1]\nThese scenes, don't know how\n\n00:16:46 [Speaker 3]\nto use them.\n00:16:46 [Speaker 3]\nWe're out here just switching around, making things happen.\n00:16:49 [Speaker 3]\nGo vote for us.\n00:16:52 [Speaker 3]\nYeah, man.",
+      "speaker": "Speaker 1"
+     },
+     {
+      "kind": "drop",
+      "at": 0.39,
+      "points": 2.3,
+      "estSec": 2799,
+      "approx": false,
+      "excerpt": "So I feel, like, I feel the internal dissonance that I think is kind of just a microcosm of the entire state of the job market right now.\n\n00:46:41 [Speaker 3]\nWhat I what I used to bother me about applying for jobs is is I get real I'm really bad about permission based, environments and structures.",
+      "speaker": "Speaker 1"
+     }
+    ]
    }
   },
   {
@@ -8972,7 +9046,53 @@ window.DIVE_DATA = {
       "share": 11.9
      }
     ],
-    "updatedAt": "2026-08-22T22:00:46.078Z"
+    "updatedAt": "2026-08-22T22:00:46.078Z",
+    "shape": {
+     "openStart": 73,
+     "openFloor": 10.5,
+     "recoveryPeak": 26,
+     "recoveryAt": 0.07,
+     "midHold": 13.2,
+     "endHold": 8.6
+    },
+    "moments": [
+     {
+      "kind": "drop",
+      "at": 0.08,
+      "points": 3.9,
+      "estSec": 541,
+      "approx": false,
+      "excerpt": ">> Totally.\n00:08:55  >> Hi, my name is Eniola. I am honored to\n00:08:57  be the inaugural designer of the week on\n00:08:59  Dive Radio. And now I would love to pay\n00:09:01  this forward. My nominee is Melissa\n00:09:03  Seay. She spent 5 years at YouTube and\n00:09:06  Google and really understood what it",
+      "speaker": null
+     },
+     {
+      "kind": "drop",
+      "at": 0.41,
+      "points": 2.6,
+      "estSec": 2775,
+      "approx": false,
+      "excerpt": "Higgs Field mixed with Claude. That's a\n00:46:11  workflow I'm going to show you guys in a\n00:46:12  second. Or Open AI's image two with\n00:46:15  paper with Claude. Like there's so many\n00:46:18  tool chain workflows happening. I'd be\n00:46:20  very curious to hear what tools were",
+      "speaker": null
+     },
+     {
+      "kind": "drop",
+      "at": 0.5,
+      "points": 2.7,
+      "estSec": 3384,
+      "approx": false,
+      "excerpt": "like uh-oh.\n00:56:18  No, end of\n00:56:20  No, end of\n00:56:20  Oh, we got it.\n00:56:23  And then anything else\n00:56:25  >> She's smiling.\n00:56:25  >> So good. You know, and it's so it's got\n00:56:28  a marketplace. It has this There's a lot\n00:56:30  of stuff happening here and it's great.",
+      "speaker": null
+     },
+     {
+      "kind": "hold",
+      "at": 0.77,
+      "points": 2.3,
+      "estSec": 5211,
+      "approx": false,
+      "excerpt": "And so the way that I did that and\n01:26:44  someone talked about it here by the way.\n01:26:46  They called it this adversarial agent\n01:26:48  and he said uh Anshu is his name. He\n01:26:51  created the one-shot Opus 5 game\n01:26:55  which is\n01:26:57  which is\n01:26:57  just wild from a that looks crazy.",
+      "speaker": null
+     }
+    ]
    }
   },
   {
@@ -11184,7 +11304,44 @@ window.DIVE_DATA = {
       "share": 10.8
      }
     ],
-    "updatedAt": "2026-08-22T22:00:46.078Z"
+    "updatedAt": "2026-08-22T22:00:46.078Z",
+    "shape": {
+     "openStart": 70.4,
+     "openFloor": 10.7,
+     "recoveryPeak": 21.7,
+     "recoveryAt": 0.05,
+     "midHold": 11.7,
+     "endHold": 6.3
+    },
+    "moments": [
+     {
+      "kind": "drop",
+      "at": 0.09,
+      "points": 4.6,
+      "estSec": 667,
+      "approx": false,
+      "excerpt": "We're doing a piece on Zuck.\n00:11:04 [Speaker 2]\nWe need something that just, like, encapsulates these these eras that Zuck has been through.\n00:11:10 [Speaker 2]\nDude, this this is the kind of thing, like, when I was pirating Photoshop as a a wee lad, this is the kind of work that I would just, like, geek out.",
+      "speaker": "Speaker 2"
+     },
+     {
+      "kind": "hold",
+      "at": 0.31,
+      "points": 2.1,
+      "estSec": 2297,
+      "approx": false,
+      "excerpt": "What is, you know, what are you looking at here?\n\n00:38:14 [Speaker 3]\nFor me, it was I can't remember how I found it, but the the time on-site was wild.\n00:38:21 [Speaker 3]\nPeople have, like it's super common for people to have an engaged hour long session, which, again, not the intent at all.",
+      "speaker": "Speaker 2"
+     },
+     {
+      "kind": "drop",
+      "at": 0.39,
+      "points": 6.2,
+      "estSec": 2890,
+      "approx": false,
+      "excerpt": "Can I make Flora as a backyard baseball character?\n00:48:13 [Speaker 3]\nAnd my new thing that I think I actually stole from you is whenever I'm having GPT create stuff, I want six variations in one image rather than six separate images just because it's faster.\n00:48:22 [Speaker 3]\nIt's kinda genius in retrospect.",
+      "speaker": "Speaker 3"
+     }
+    ]
    }
   },
   {
@@ -13287,7 +13444,53 @@ window.DIVE_DATA = {
       "share": 12
      }
     ],
-    "updatedAt": "2026-08-22T22:00:46.078Z"
+    "updatedAt": "2026-08-22T22:00:46.078Z",
+    "shape": {
+     "openStart": 69.4,
+     "openFloor": 10.2,
+     "recoveryPeak": 27.3,
+     "recoveryAt": 0.11,
+     "midHold": 17.6,
+     "endHold": 11.7
+    },
+    "moments": [
+     {
+      "kind": "drop",
+      "at": 0.12,
+      "points": 6.2,
+      "estSec": 684,
+      "approx": false,
+      "excerpt": "recreate his accent and we all just\n00:11:19  walked around talking to each other with\n00:11:21  it. [laughter]\n00:11:23  So, James has a special a special place\n00:11:25  in the Rittering household.\n00:11:26  >> I'll have to I'll have to work on that.\n00:11:28  >> I am uh I am going to go and then I want",
+      "speaker": null
+     },
+     {
+      "kind": "drop",
+      "at": 0.2,
+      "points": 3.2,
+      "estSec": 1140,
+      "approx": false,
+      "excerpt": "sarcastic. This is some kind of a weird\n00:18:53  corporate comms thing.\" A genius.\n00:18:58  And then I just closed Twitter. And then\n00:19:00  I came back a few hours later and I'm\n00:19:02  like, wait, actually this is this is\n00:19:05  serious. This is really serious.\n00:19:06  [laughter]",
+      "speaker": null
+     },
+     {
+      "kind": "drop",
+      "at": 0.5,
+      "points": 4,
+      "estSec": 2850,
+      "approx": false,
+      "excerpt": "Thank god because I would have that was\n00:47:26  a flashbang equivalent. But, uh, yeah,\n00:47:28  everyone's in there. Go craft deck.gg.\n00:47:30  Gabe,\n00:47:31  Gabe,\n00:47:31  >> let's put it in the chat.\n00:47:32  >> And and you can face off, by the way.\n00:47:34  You can actually face off against",
+      "speaker": null
+     },
+     {
+      "kind": "hold",
+      "at": 0.56,
+      "points": 2.8,
+      "estSec": 3192,
+      "approx": false,
+      "excerpt": "pull out the HTML quick mockup\n00:53:08  prototypes that I had made this week.\n00:53:11  It's a lot, man.\n00:53:14  Like,\n00:53:16  Like,\n00:53:16  >> right? Like, this is this is a m look at\n00:53:19  look at Tuesday. Like, this was a big\n00:53:20  build day for me. I didn't have a lot of",
+      "speaker": null
+     }
+    ]
    }
   },
   {
@@ -15073,6 +15276,13 @@ window.DIVE_DATA = {
    "id": "best-open-template",
    "text": "Goodbye, Blank Canvas is the watch-time winner at 13.2% of the video seen on average; every other episode sits between 8.9 and 12.9%.",
    "recommendation": "Break down what its first 5 minutes do differently and reuse that structure for the next two openings; compare their finished health reads against 33 and 44.",
+   "category": "content"
+  },
+  {
+   "id": "mid-show-exit",
+   "text": "The sharpest mid-show exit measured is E4 about 48 minutes in: 6.2 of every 100 viewers leave during the backyard-baseball-character bit, even though the stretch around minute 38 was pulling extra viewers in.",
+   "recommendation": "Rewatch E4 around minute 48, mark the segment seam there, and test a tighter handoff next show — trim the tail, re-order, or tease what comes next before the lull.",
+   "caveat": "Moment timing is approximate — transcript timestamps come from the live recording, not the edited video.",
    "category": "content"
   },
   {

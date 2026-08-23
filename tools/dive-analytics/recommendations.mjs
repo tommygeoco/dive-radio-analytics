@@ -34,7 +34,7 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 1;
+export const PROMPT_VERSION = 2; // v6: watch-moment facts + excerpt context
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
 const MARKUP = /<\/?[a-z]|```|https?:\/\/|\[[^\]]+\]\(/i;
@@ -86,6 +86,28 @@ export function collectFacts() {
     if (e.live) { add(`peak-E${e.ep}`, e.live.peak, `E${e.ep} peak live viewers`); add(`chat-E${e.ep}`, e.live.chatMessages, `E${e.ep} chat messages`); }
   }
 
+  // v6 W16: curve shape + transcript-anchored moments. The numbers become
+  // facts; the excerpts ride ALONGSIDE as quotable context (never numbers).
+  const excerpts = [];
+  for (const e of eps) {
+    const s = e.watch?.shape;
+    if (s) {
+      add(`open-floor-E${e.ep}`, s.openFloor, `E${e.ep} lowest share watching inside the first 5% of the video`);
+      add(`recovery-peak-E${e.ep}`, s.recoveryPeak, `E${e.ep} share watching at the early rebound peak`);
+      add(`mid-hold-E${e.ep}`, s.midHold, `E${e.ep} average share watching through the middle half`);
+      add(`end-hold-E${e.ep}`, s.endHold, `E${e.ep} share still watching near the end`);
+    }
+    for (const mo of e.watch?.moments || []) {
+      const pos = Math.round(mo.at * 100);
+      const id = `${mo.kind}-E${e.ep}-${pos}`;
+      add(id, mo.points, mo.kind === "drop"
+        ? `E${e.ep} viewers of every 100 who left around ${pos}% of the way in`
+        : `E${e.ep} extra viewers of every 100 watching around ${pos}% of the way in`);
+      add(`${mo.kind}-min-E${e.ep}-${pos}`, Math.round(mo.estSec / 60), `E${e.ep} minutes into the video at that moment`);
+      excerpts.push({ id, text: mo.excerpt });
+    }
+  }
+
   // whole-show traffic mix + per-channel totals from the analytics stores
   const traffic = {}; let trafficTotal = 0;
   const byChannel = {};
@@ -120,7 +142,7 @@ export function collectFacts() {
   if (ytAll + xAll > 0) add("share-x-all", (xAll / (ytAll + xAll)) * 100, "share of all watching on X");
   add("views-total-all", ytAll + xAll, "all-show total views");
 
-  return { generatedAt: data.generatedAt, facts };
+  return { generatedAt: data.generatedAt, facts, excerpts };
 }
 
 // --- validation: every number in an item must exist in the fact sheet ---
@@ -168,7 +190,8 @@ Rules:
 2. Prefer the findings with the largest lever: where viewers are lost, which channel converts, which surfaces bring nothing, what the best episode did differently.
 3. Call out per-channel differences (Dive Club vs DesignerTom) whenever the gap matters, alongside the blended number.
 4. Plain words. Never write: composite, percentile, pillar, ratio, multiple-times comparisons, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.
-5. Association is not cause — recommend tests and changes, never certainties.`;
+5. Association is not cause — recommend tests and changes, never certainties.
+6. Watch-moment facts (drop-*/hold-*) arrive with transcript excerpts in the payload. Excerpts are quotable context, not numbers. Name a moment's position in plain words ("about a third of the way in") and treat its timing as approximate — it comes from the live recording. Never claim the words caused the exit; recommend a test instead (trim, tighten, re-order).`;
 
 async function callModel(payload) {
   const key = process.env.ANTHROPIC_API_KEY;
@@ -194,7 +217,7 @@ async function main() {
   }
   let result;
   try {
-    result = await callModel({ task: "Write this week's tactical recommendations.", facts: sheet.facts });
+    result = await callModel({ task: "Write this week's tactical recommendations.", facts: sheet.facts, excerpts: sheet.excerpts });
   } catch (error) {
     console.log(`WARN recommendations: ${error.message}; previous store kept`);
     return;

@@ -11,6 +11,7 @@ import { join, dirname } from "node:path";
 // same deterministic wordlist the sentiment labels come from
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { projectHealth } from "./health.mjs";
+import { watchMoments } from "./watch-moments.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -444,6 +445,21 @@ function attachWatch(dive) {
       traffic,
       updatedAt: j.updatedAt ?? null,
     };
+
+    // W16 (v6): transcript × retention moments — deterministic shape facts and
+    // annotated exit/jump-in moments, only when BOTH a blended curve and the
+    // episode's transcript exist. An episode missing either carries neither
+    // block, and nothing anywhere says so (absence is silent).
+    const transcriptPath = join(TRANSCRIPTS_DIR, `${e.slug}.txt`);
+    if (curve && existsSync(transcriptPath)) {
+      const wm = watchMoments({
+        curve,
+        channelTotals: chans.map(([, c]) => c.totals),
+        transcriptText: readFileSync(transcriptPath, "utf8"),
+      });
+      if (wm?.shape) e.watch.shape = wm.shape;
+      if (wm?.moments?.length) e.watch.moments = wm.moments;
+    }
   }
 }
 

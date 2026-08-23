@@ -1,8 +1,9 @@
 # PRD — Dive Radio analytics v6: transcript × retention moments (2026-08-23)
 
-Owner: Tommy. Status: PLANNED (not yet built). Builds on v4 (watching data)
-and v5 (recommendation engine). Goal: turn "people leave" into "people leave
-HERE, during THIS" — and let the recommendation engine cite it.
+Owner: Tommy. Status: SHIPPED 2026-08-23 (same day; calibration record and
+frozen parameters below). Builds on v4 (watching data) and v5 (recommendation
+engine). Goal: turn "people leave" into "people leave HERE, during THIS" —
+and let the recommendation engine cite it.
 
 ## Problem
 
@@ -16,9 +17,13 @@ speaker transcripts. Nobody has joined them.
 
 - Curves: `episode.watch.curve` = `{at, watching}` on an aligned grid,
   `at` ∈ 0.01…1.00 step 0.01, view-weighted blend of both channels.
-- Transcripts: `transcripts/<slug>.txt` — 3 header lines, then blocks of
-  `HH:MM:SS [Speaker N]` + one text line, ~9-second cadence. Header warns
-  speaker labels are automatic.
+- Transcripts: `transcripts/<slug>.txt` — 3 header lines, then one of TWO
+  body formats (discovered at build time; the plan's "one format" claim was
+  wrong): Restream speaker transcripts (E2, E4, E6) use `HH:MM:SS [Speaker N]`
+  header lines each followed by text line(s); YouTube auto-captions (E1, E3,
+  E5) put `HH:MM:SS␣␣text` on one line with `>>` marking a speaker change and
+  no speaker labels (a moment from these carries `speaker: null`).
+  ~3–10-second cadence in both.
 - Video duration is NOT stored directly. Derive per channel:
   `durationSec ≈ averageViewDuration / (averageViewPercentage / 100)`
   (E2: DesignerTom ≈ 8113s, Dive Club ≈ 7176s — the two VODs differ, likely
@@ -79,13 +84,44 @@ Per episode with BOTH a curve and a transcript:
   claim the words caused the exit — recommend a test (trim, tighten,
   re-order) instead. Number-grounding validation unchanged.
 
+## Calibration record (2026-08-23, frozen)
+
+Measured on the five real blended curves (E1–E5) before freezing anything:
+the mid-video (25–75%) noise floor for a 2-step change is 0.5–1.0 points
+typical and 1.6–2.1 points at the 90th percentile, so the plan's 1.5-point
+guess sat inside the noise band. Frozen parameters
+(`tools/dive-analytics/watch-moments.mjs` exports them as constants):
+
+- **Moment floor: 2.0 points** over the 2-step window, drops AND holds
+  (1.5 rejected as noise-band; 2.5 rejected because it kills real mid-video
+  bumps like E3 +2.4 at 44% and E5 +2.8 at 57%). Yields 3–4 moments per
+  episode on E1–E5.
+- A moment's `at` is the **midpoint grid position** of its 2-step window
+  (the excerpt should cover what was playing while people were leaving).
+- **Holds scan `at` ≥ 0.15** (drops keep ≥ 0.05): every curve's 0.05–0.11
+  stretch is the post-cliff rebound (+11 to +16 points) already told by the
+  shape facts, and it would otherwise occupy both hold slots on every
+  episode. Verdict on the open question: holds DO earn panel markers — the
+  floor keeps them honest (E4's +7.3 jump-in at 37% is real).
+- **Spacing is global across kinds** (a spike-then-settle pair like E4's
+  +7.3 at 0.37 / −6.2 at 0.39 is one story; the stronger picked kind wins
+  the marker).
+- `excerpt` is a verbatim contiguous slice of the transcript file, grown
+  block-by-block outward from the block nearest `estSec`; interior
+  timestamp/header lines ride along in the stored string and every renderer
+  strips them for display. A candidate with no transcript words in its
+  window is skipped silently.
+- Derived durations agreed within 0.1% on E1–E5 at freeze time (`approx`
+  false everywhere); E6 disagreed 10.7% but has no curve yet.
+
 ## Validation contract (extend validate.mjs)
 
-- Moments: `at` ∈ [0.05, 1], `points` ≥ 1.5 for drops, spacing ≥ 0.05,
-  ≤ 5 per episode; `excerpt` must be a verbatim substring of the episode's
-  transcript file; `estSec` within the derived duration; `approx` matches
-  the >5% channel-duration disagreement; episodes without transcript or
-  curve carry neither `shape` nor `moments`.
+- Moments: `at` ∈ [0.05, 1] (holds ≥ 0.15), `points` ≥ 2.0 (frozen above)
+  for both kinds, spacing ≥ 0.05 across all of an episode's moments,
+  ≤ 3 drops + ≤ 2 holds (≤ 5 total) per episode; `excerpt` must be a
+  verbatim substring of the episode's transcript file; `estSec` within the
+  derived duration; `approx` matches the >5% channel-duration disagreement;
+  episodes without transcript or curve carry neither `shape` nor `moments`.
 - Absence stays silent on every surface (existing 1j regex extends to any
   new copy).
 - Panel markers: rendered only from `episode.watch.moments`, count parity,
@@ -109,7 +145,10 @@ Per episode with BOTH a curve and a transcript:
 
 ## Open questions
 
-- Drop threshold (1.5 points over 2 steps) is a first guess — calibrate on
-  the five real curves before freezing, and record the chosen value here.
-- Whether holds (positive bumps) earn panel markers or engine facts only —
-  decide from how noisy the real bumps look.
+- ~~Drop threshold (1.5 points over 2 steps) is a first guess — calibrate on
+  the five real curves before freezing, and record the chosen value here.~~
+  RESOLVED 2026-08-23: frozen at 2.0 points — see the calibration record.
+- ~~Whether holds (positive bumps) earn panel markers or engine facts only —
+  decide from how noisy the real bumps look.~~ RESOLVED 2026-08-23: holds
+  earn markers at the same 2.0-point floor, scanned from 0.15 — see the
+  calibration record.

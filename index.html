@@ -243,10 +243,20 @@
   .panel .q .by { color: var(--t3); }
   .panel .senti-link { color: var(--accent); cursor: pointer; text-decoration: underline; }
   .panel .wcurve { margin: 10px 0 2px; }
+  .panel .wcurve .wplot { position: relative; }
   .panel .wcurve svg { display: block; width: 100%; height: 64px; }
   .panel .wcurve line { stroke: var(--border); stroke-width: 0.4; }
   .panel .wcurve polyline { fill: none; stroke: var(--accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
   .panel .wcap { display: flex; justify-content: space-between; color: var(--t3); font-size: 12px; margin-top: 3px; }
+  /* W16 moment markers: ▾ where the most people left, ▴ where extra people
+     were watching — words live in the shared tooltip, direction echoes the
+     ▲▼ badge grammar. Buttons, so keyboards reach the same tooltip. */
+  .wmark { position: absolute; width: 15px; height: 15px; border-radius: 50%; transform: translate(-50%, -50%);
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: default;
+    background: var(--s1); border: 1px solid; font-size: 9px; line-height: 1; }
+  .wmark.drop { color: var(--bad); border-color: rgba(255,122,89,.55); }
+  .wmark.hold { color: var(--good); border-color: rgba(62,207,142,.55); }
+  .wmark:hover, .wmark:focus-visible { background: var(--s2); }
   .panel .themegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
   .panel .themehead { color: var(--t2); font-size: 12px; font-weight: 700; margin-bottom: 3px; }
   .panel .themeitem { color: var(--t2); font-size: 13px; padding: 2px 0; }
@@ -1005,12 +1015,32 @@ function buildPanel() {
     if (wparts.length) html += `<div class="gline">${wparts.join("")}</div>`;
     if (w.curve) {
       const pts = w.curve.map(p => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching) * 40).toFixed(1)}`).join(" ");
-      html += `<div class="wcurve"><svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Share of the audience still watching across the video: ${Math.round(w.curve[0].watching * 100)}% near the start, ${Math.round(w.curve[w.curve.length - 1].watching * 100)}% at the end.">
+      // W16 moment markers — rendered ONLY from the stored episode.watch.moments
+      // (no marker math at render time); each is a keyboard-reachable tooltip
+      // target quoting the transcript from that stretch of the show.
+      const timeWords = (sec, approx) => {
+        const m = Math.round(sec / 60);
+        const h = Math.floor(m / 60);
+        const t = m < 60 ? `${m} minute${m === 1 ? "" : "s"} in` : `${h} hour${h === 1 ? "" : "s"}${m % 60 ? ` ${m % 60} minutes` : ""} in`;
+        return `${approx ? "roughly" : "about"} ${t}`;
+      };
+      const momentQuote = (x) => {
+        let q = String(x).replace(/^\d{2}:\d{2}:\d{2}(?: \[[^\]]*\])?\s*/gm, "").replace(/\s*>>\s*/g, " ").replace(/\s+/g, " ").trim();
+        if (q.length > 180) { const cut = q.slice(0, 178); q = cut.slice(0, Math.max(cut.lastIndexOf(" "), 120)).trimEnd() + "…"; }
+        return q;
+      };
+      let marks = "";
+      for (const mo of w.moments || []) {
+        const pt = w.curve.find(p => p.at === mo.at) || [...w.curve].sort((a, b) => Math.abs(a.at - mo.at) - Math.abs(b.at - mo.at))[0];
+        const tip = mo.kind === "drop"
+          ? `${Math.round(mo.at * 100)}% through · ${timeWords(mo.estSec, mo.approx)} — “${momentQuote(mo.excerpt)}” — ${mo.points} of every 100 viewers left here`
+          : `${Math.round(mo.at * 100)}% through · ${timeWords(mo.estSec, mo.approx)} — “${momentQuote(mo.excerpt)}” — ${mo.points} more of every 100 were watching than just before: a spot people jump to`;
+        marks += `<button type="button" class="wmark ${mo.kind}" style="left:${(mo.at * 100).toFixed(1)}%;top:${((40 - Math.min(1, pt.watching) * 40) / 40 * 100).toFixed(1)}%" data-tip="${esc(tip)}" aria-label="${esc(tip)}"><span aria-hidden="true">${mo.kind === "drop" ? "▾" : "▴"}</span></button>`;
+      }
+      html += `<div class="wcurve"><div class="wplot"><svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Share of the audience still watching across the video: ${Math.round(w.curve[0].watching * 100)}% near the start, ${Math.round(w.curve[w.curve.length - 1].watching * 100)}% at the end.">
         <line x1="25" y1="0" x2="25" y2="40"></line><line x1="50" y1="0" x2="50" y2="40"></line><line x1="75" y1="0" x2="75" y2="40"></line>
-        <polyline points="${pts}"></polyline></svg>
+        <polyline points="${pts}"></polyline></svg>${marks}</div>
       <div class="wcap" aria-hidden="true"><span>start</span><span>still watching, through the video</span><span>end</span></div></div>`;
-    } else {
-      html += `<div class="mut">watch curve is not in yet</div>`;
     }
     html += `</div>`;
 
@@ -1222,8 +1252,8 @@ function chartTitle() {
     return ["Episode views", "YouTube + X playback" + (anyPartial ? " · some X plays missing" : "")];
   }
   if (state.mode === "watch") {
-    const missing = EPS.filter(e => !(e.watch?.curve?.length));
-    return ["How much people watch", `<b class="scopepill">YouTube only</b> · share still watching through the video${missing.length ? ` · ${missing.map(e => "E" + e.ep).join(", ")} not in yet` : ""}`];
+    // absence is silent (v5 rule): episodes without curves simply aren't drawn
+    return ["How much people watch", `<b class="scopepill">YouTube only</b> · share still watching through the video`];
   }
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
@@ -1889,7 +1919,7 @@ function buildAbout() {
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes. It appears only after three earlier episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against up to nine episodes that aired before it, so later episodes never rewrite an old score. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
-  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says so instead of showing zero.</p>
+  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small marks on the panel’s curve are the moments the audience moved most — <b>▾</b> where the most people left, <b>▴</b> where extra people were watching (a spot people jump to). Hover, tap, or tab to one for the transcript words from that stretch of the show; transcript timing comes from the live recording, so read it as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); the diagnosis rows name each check’s state, and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically.</p>`;

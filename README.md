@@ -23,6 +23,11 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   watched, total watch time, the drop-off curve, and where views came from
   (traffic sources) — view-weighted across both channels, absent when a
   report has not arrived
+- The panel's drop-off curve carries transcript-anchored moment markers
+  (tools/dive-analytics/watch-moments.mjs, deterministic): ▾ where the most
+  viewers left, ▴ where extra viewers were watching, each a keyboard-reachable
+  tooltip quoting the verbatim transcript from that stretch; the same shape
+  and moment facts (plus excerpts) feed the recommendation engine
 - Click any episode for a detail panel: per-channel breakdown, reach split,
   episode-health checks, featured quotes, recurring audience themes, and
   praise/concern drilldown
@@ -52,4 +57,5 @@ ratings → build-data → validate → health → recommendations → build-dat
 previous store stays the public truth, so the step is safe to skip.)
 
 The classifier, health writer, recommendation engine, and standing critic
-are the only model-backed scripts. `build-data.mjs` stays deterministic and never calls a model.
+are the only model-backed scripts. `build-data.mjs` (including the
+watch-moments extraction it imports) stays deterministic and never calls a model.

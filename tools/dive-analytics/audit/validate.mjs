@@ -679,6 +679,82 @@ function premiereMs(dateStr) {
   if (!bad) ok(`watching: ${eps.filter((e) => e.watch).length} episode(s) export verified watch data — blends in range, curves ordered, absence never zero`);
 }
 
+// --- 1m2. W16 transcript × retention moments: recompute lock, ranges, verbatim excerpts, silent absence ---
+// Contract (PRD v6, calibration frozen 2026-08-23): moments exist only for
+// episodes with BOTH a blended curve and a transcript; each is at least the
+// frozen point floor over a 2-step window, globally spaced, capped at
+// 3 drops + 2 holds; excerpts are verbatim substrings of the transcript file;
+// timing sits inside the duration derived from the analytics totals; episodes
+// missing either input carry neither block and no surface says so.
+{
+  let bad = 0;
+  const wm = await import(join(TOOL, "watch-moments.mjs"));
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  for (const e of eps) {
+    const w = e.watch;
+    const transcriptPath = join(TRANSCRIPTS, `${e.slug}.txt`);
+    const hasBoth = !!(w?.curve?.length && existsSync(transcriptPath));
+    if (!hasBoth) {
+      if (w && ("shape" in w || "moments" in w)) { bad++; fail(`moments: ${e.slug} carries shape/moments without both a curve and a transcript`); }
+      continue;
+    }
+    const raw = readFileSync(transcriptPath, "utf8");
+    const store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "yt-analytics", `${e.slug}.json`), "utf8"));
+    const chans = Object.entries(store.channels || {}).filter(([, c]) => c?.totals && Number.isFinite(c.totals.views) && c.totals.views > 0);
+    const expected = wm.watchMoments({ curve: w.curve, channelTotals: chans.map(([, c]) => c.totals), transcriptText: raw });
+    if (JSON.stringify(w.shape ?? null) !== JSON.stringify(expected?.shape ?? null)) { bad++; fail(`moments: ${e.slug} shape disagrees with the deterministic recompute`); }
+    const expectedMoments = expected?.moments?.length ? expected.moments : null;
+    if (JSON.stringify(w.moments ?? null) !== JSON.stringify(expectedMoments)) { bad++; fail(`moments: ${e.slug} moments disagree with the deterministic recompute`); }
+    const duration = wm.deriveDuration(chans.map(([, c]) => c.totals));
+    const text = raw.replace(/^\uFEFF/, "").replace(/\r/g, "");
+    const ms = w.moments || [];
+    if (ms.length > 5 || ms.filter((m) => m.kind === "drop").length > 3 || ms.filter((m) => m.kind === "hold").length > 2) { bad++; fail(`moments: ${e.slug} exceeds the 3-drop/2-hold cap`); }
+    for (const m of ms) {
+      if (m.kind !== "drop" && m.kind !== "hold") { bad++; fail(`moments: ${e.slug} illegal kind "${m.kind}"`); continue; }
+      if (!(m.at >= 0.05 && m.at <= 1) || (m.kind === "hold" && m.at < wm.HOLD_SCAN_FROM)) { bad++; fail(`moments: ${e.slug} ${m.kind} at ${m.at} outside its scan range`); }
+      if (!w.curve.some((p) => p.at === m.at)) { bad++; fail(`moments: ${e.slug} moment at ${m.at} is not a curve grid point — its marker could not sit on the line`); }
+      if (!(m.points >= wm.MOMENT_POINTS_MIN)) { bad++; fail(`moments: ${e.slug} ${m.kind} of ${m.points} points is under the frozen ${wm.MOMENT_POINTS_MIN}-point floor`); }
+      if (!duration || !(m.estSec >= 0 && m.estSec <= duration.durationSec)) { bad++; fail(`moments: ${e.slug} estSec ${m.estSec} outside the derived video length`); }
+      if (duration && m.approx !== duration.approx) { bad++; fail(`moments: ${e.slug} approx flag disagrees with the channel-duration disagreement`); }
+      if (typeof m.excerpt !== "string" || !m.excerpt.trim() || m.excerpt.length > wm.EXCERPT_MAX) { bad++; fail(`moments: ${e.slug} excerpt missing, empty, or over ${wm.EXCERPT_MAX} chars`); }
+      else if (!text.includes(m.excerpt)) { bad++; fail(`moments: ${e.slug} excerpt is NOT a verbatim substring of its transcript file`); }
+      if (m.speaker !== null && (typeof m.speaker !== "string" || !m.speaker.trim())) { bad++; fail(`moments: ${e.slug} speaker must be a transcript label or null`); }
+    }
+    for (let i = 0; i < ms.length; i++) {
+      for (let j = i + 1; j < ms.length; j++) {
+        if (Math.abs(ms[i].at - ms[j].at) < wm.MOMENT_SPACING) { bad++; fail(`moments: ${e.slug} moments at ${ms[i].at} and ${ms[j].at} sit closer than ${wm.MOMENT_SPACING}`); }
+      }
+    }
+  }
+  // panel markers: rendered ONLY from stored moments, as keyboard-reachable tooltip buttons on the positioned plot
+  if (!/for \(const mo of w\.moments \|\| \[\]\)/.test(html)
+    || !/class="wmark \$\{mo\.kind\}"/.test(html)
+    || !/<button type="button" class="wmark/.test(html)
+    || !html.includes('data-tip="${esc(tip)}" aria-label="${esc(tip)}"')) {
+    bad++; fail("moments: panel markers must render only from episode.watch.moments as keyboard-reachable data-tip buttons");
+  }
+  if (!/<div class="wcurve"><div class="wplot">/.test(html)) { bad++; fail("moments: curve markers lack the positioned plot wrapper — marker positions would drift off the curve"); }
+  // engine parity: the excerpts handed to the engine ARE the stored moments' excerpts, and moment facts equal their points
+  try {
+    const recs = await import(join(TOOL, "recommendations.mjs"));
+    const sheet = recs.collectFacts();
+    const byId = new Map();
+    for (const e of eps) for (const m of e.watch?.moments || []) byId.set(`${m.kind}-E${e.ep}-${Math.round(m.at * 100)}`, m);
+    const ids = [...byId.keys()].sort();
+    const sheetIds = (sheet.excerpts || []).map((x) => x.id).sort();
+    if (JSON.stringify(ids) !== JSON.stringify(sheetIds)) { bad++; fail("moments: engine excerpt ids do not match the stored moments"); }
+    for (const x of sheet.excerpts || []) {
+      const m = byId.get(x.id);
+      if (!m || x.text !== m.excerpt) { bad++; fail(`moments: engine excerpt ${x.id} drifted from the stored moment`); }
+    }
+    for (const f of sheet.facts) {
+      const hit = /^(?:drop|hold)-E\d+-\d+$/.test(f.id);
+      if (hit && (!byId.get(f.id) || f.value !== byId.get(f.id).points)) { bad++; fail(`moments: engine fact ${f.id} does not equal the stored moment's points`); }
+    }
+  } catch (err) { bad++; fail(`moments: engine parity check threw — ${err.message}`); }
+  if (!bad) ok(`moments: ${eps.filter((x) => x.watch?.moments).length} episode(s) carry transcript-anchored moments — recompute-locked, floors/spacing/caps hold, excerpts verbatim, absence silent`);
+}
+
 // --- 1n. W15 recommendation engine: grounded store, definition-locked into insights ---
 {
   let bad = 0;
@@ -906,8 +982,8 @@ function premiereMs(dateStr) {
   // W15 (owner directive 2026-08-23): absence renders as absence — no wait
   // dates, no sat-out notes, no baseline chips. The gate itself still holds:
   // nothing score-like may render before healthOf() passes.
-  if (/healthWaitDate|sat out|sets the baseline<\/span>/.test(html)) {
-    bad++; fail("dashboard: retired absence copy (wait dates, sat-out notes, baseline chips) is back on a surface");
+  if (/healthWaitDate|sat out|sets the baseline<\/span>|not in yet/.test(html)) {
+    bad++; fail("dashboard: retired absence copy (wait dates, sat-out notes, baseline chips, not-in-yet suffixes) is back on a surface");
   }
   // W13: the typical watch line is a claim about the show — it waits for three
   // real curves
