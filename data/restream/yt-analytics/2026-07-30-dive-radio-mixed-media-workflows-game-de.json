@@ -5,7 +5,7 @@
   "channels": {
     "yt:designertom": {
       "videoId": "szvTFybWfK4",
-      "pulledAt": "2026-08-23T20:20:35.795Z",
+      "pulledAt": "2026-08-24T17:44:14.289Z",
       "totals": {
         "views": 664,
         "estimatedMinutesWatched": 6496,
@@ -467,7 +467,7 @@
     },
     "yt:joindiveclub": {
       "videoId": "9HYGZgaHdlw",
-      "pulledAt": "2026-08-23T20:20:35.795Z",
+      "pulledAt": "2026-08-24T17:44:14.289Z",
       "totals": {
         "views": 937,
         "estimatedMinutesWatched": 9670,
@@ -933,5 +933,5 @@
       ]
     }
   },
-  "updatedAt": "2026-08-23T20:20:35.795Z"
+  "updatedAt": "2026-08-24T17:44:14.289Z"
 }

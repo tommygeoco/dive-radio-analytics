@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 3,
- "updatedAt": "2026-08-23T20:22:18.913Z",
+ "updatedAt": "2026-08-24T17:46:01.864Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-08-23T20:20:50.636Z",
+ "factsGeneratedAt": "2026-08-24T17:44:25.239Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -204,7 +204,7 @@
   },
   {
    "id": "open-at2-E5",
-   "value": 12.4
+   "value": 12.2
   },
   {
    "id": "watched-E5",
@@ -464,15 +464,15 @@
   },
   {
    "id": "open-floor-E5",
-   "value": 10.3
+   "value": 10.2
   },
   {
    "id": "recovery-peak-E5",
-   "value": 27.8
+   "value": 27.7
   },
   {
    "id": "mid-hold-E5",
-   "value": 18.2
+   "value": 18
   },
   {
    "id": "end-hold-E5",
@@ -488,7 +488,7 @@
   },
   {
    "id": "drop-E5-20",
-   "value": 3.3
+   "value": 3.4
   },
   {
    "id": "drop-min-E5-20",
@@ -504,7 +504,7 @@
   },
   {
    "id": "hold-E5-56",
-   "value": 2.4
+   "value": 2.5
   },
   {
    "id": "hold-min-E5-56",
@@ -568,7 +568,7 @@
   },
   {
    "id": "traffic-SUBSCRIBER",
-   "value": 4858
+   "value": 4855
   },
   {
    "id": "traffic-share-SUBSCRIBER",
@@ -696,58 +696,58 @@
   },
   {
    "id": "views-yt-all",
-   "value": 9816
+   "value": 9875
   },
   {
    "id": "views-x-all",
-   "value": 12755
+   "value": 12791
   },
   {
    "id": "share-x-all",
-   "value": 56.5
+   "value": 56.4
   },
   {
    "id": "views-total-all",
-   "value": 22571
+   "value": 22666
   }
  ],
- "attempts": 2,
+ "attempts": 3,
  "items": [
   {
-   "id": "opening-cliff",
+   "id": "fix-opening-cliff",
    "category": "content",
-   "text": "Viewers vanish in the first minutes: E1 had 67.4 of every 100 watching near the start but only 11.8 left at the 2% mark; E2 kept 14.9. The biggest exit came roughly 7 minutes into E1, when 8 of every 100 left during the 'still figuring it out' preamble.",
-   "recommendation": "Test a cold open this week: lead with the strongest demo or guest moment in the first minute, and push show setup, housekeeping, and 'what we're working on' talk to later in the episode. Compare the 2% mark hold against E2's 14.9 next report."
+   "text": "The opening loses almost everyone: E1 goes from 67.4 of every 100 watching near the start to 11.8 at the 2% mark, and E6 falls from 74.5 to 15.9. Every episode shows the same early cliff.",
+   "recommendation": "Script a tight one-minute cold open this week that states the episode's payoff up front, then jump straight to the first demo. Push the warm-up chatter until after the hook and check whether the 2% mark hold improves next episode."
   },
   {
-   "id": "show-work-earlier",
-   "category": "content",
-   "text": "Extra viewers arrive when work is shown on screen. In E6, still in its first weeks, 2.9 extra viewers of every 100 tuned in about halfway through, near 47 minutes, during the live logo review; E5 gained 2.4 extra around 53 minutes showing HTML mockups.",
-   "recommendation": "Schedule one hands-on show-and-tell segment in the first third of this week's episode and tease it in the opening line. Test whether moving the screen-share moment earlier lifts the early hold instead of rewarding only the viewers who stay an hour."
-  },
-  {
-   "id": "subscriber-conversion-slide",
+   "id": "replicate-e1-subscribe-ask",
    "category": "audience",
-   "text": "Among finished episodes, conversion is sliding: E1 earned 8.9 subscribers per 1,000 views across both channels, E2 fell to 2.9, and E3 landed at 0 on both channels.",
-   "recommendation": "Script one direct on-air subscribe ask tied to a concrete payoff — next week's guest or segment — and deliver it right after the strongest demo, not in the outro. Repeat it once mid-show and check whether the E3-style zero repeats."
+   "text": "Among finished episodes, E1 converted 8.9 subscribers per 1,000 views while E2 got 2.9 and E3 got 0. On DesignerTom, E1 hit 13.3 per 1,000 vs 5.7 on Dive Club — the only episode where DesignerTom converted better.",
+   "recommendation": "Rewatch E1 this week and copy whatever it did differently — the on-air subscribe ask, pinned comment, or title framing — into the next episode as a test, then check subscribers per 1,000 views once the episode has matured."
   },
   {
-   "id": "channel-gap-e1-clue",
+   "id": "lead-with-dive-club",
    "category": "distribution",
-   "text": "Dive Club leads overall: 5144 views, 17 subscribers, 3.3 per 1,000, 11.3 average share watched, against DesignerTom's 3707 views, 8 subscribers, 2.2 per 1,000, 9.6 watched. Yet on finished E1, DesignerTom converted at 13.3 per 1,000 to Dive Club's 5.7.",
-   "recommendation": "Pull up E1's DesignerTom title, thumbnail, and description this week and reuse that framing on both channels for the next upload. DesignerTom has gained 0 subscribers on the last three episodes, so treat E1 as the working template until a test says otherwise."
+   "text": "Dive Club beats DesignerTom across the whole show: 5,144 views vs 3,707, 17 subscribers gained vs 8, 3.3 vs 2.2 subscribers per 1,000 views, and 11.3 vs 9.6 average share watched.",
+   "recommendation": "Make Dive Club the primary home this week: premiere the full episode there with a title and thumbnail tailored to that audience, and test whether DesignerTom performs better with a shorter edited cut instead of the full stream."
   },
   {
-   "id": "dead-discovery-surfaces",
-   "category": "distribution",
-   "text": "Existing subscribers supply 54.8 of every 100 YouTube views (4858 views). Discovery surfaces bring almost nothing: search 433 views, playlists 61, end screens 7, Shorts just 2.",
-   "recommendation": "This week, cut two short vertical clips from the best episode moments and publish them as Shorts linking the full video, add an end screen to every upload pointing at the latest episode, and put all episodes into one playlist on each channel."
-  },
-  {
-   "id": "x-audience-untapped",
+   "id": "convert-x-viewers",
    "category": "promotion",
-   "text": "More of the show is watched on X than on YouTube: 12,755 X broadcast plays against 9,816 YouTube views, 56.5 of every 100 total plays — but only the YouTube side builds a subscriber base the hosts own.",
-   "recommendation": "Pin the YouTube link as the first reply on every X broadcast this week and tell X viewers on air, by name, where the full archive and subscribe button live. Test whether YouTube views from outside links climb above the current 511."
+   "text": "X carries more watching than YouTube — 12,791 broadcast plays vs 9,875 YouTube views, with 56.4 of every 100 views happening on X — yet all subscriber growth lives on YouTube.",
+   "recommendation": "Pin the YouTube replay link in every X broadcast and say it out loud mid-show this week. Post a follow-up X thread the next morning pointing to the YouTube replay so X viewers have a clear path to become YouTube subscribers."
+  },
+  {
+   "id": "unlock-discovery-surfaces",
+   "category": "distribution",
+   "text": "54.8 of every 100 YouTube views come from existing subscribers. Discovery surfaces bring almost nothing: search is 4.9, playlists 0.7, end screens 0.1, and Shorts delivered just 2 views across the whole show.",
+   "recommendation": "Cut three Shorts this week from the strongest demo moments, add an end screen on every upload pointing to the newest episode, and build one public playlist of all episodes on both channels — then watch which surface moves first."
+  },
+  {
+   "id": "front-load-demos",
+   "category": "content",
+   "text": "In finished episode E3, the one-shot game showcase about three quarters of the way in, around minute 87, gained 2.3 extra viewers of every 100 — while about 3.9 of every 100 left near minute 9 during the designer-of-the-week intro early on.",
+   "recommendation": "Test re-ordering the next episode: put a screen-share showcase like the one-shot game segment within the first ten minutes and move intros later. These timings are approximate from the live recording, so judge the change by the middle-half hold afterward."
   }
  ]
 }
