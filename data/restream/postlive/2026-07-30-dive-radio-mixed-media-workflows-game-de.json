@@ -1248,6 +1248,59 @@
           "plays": 2777
         }
       }
+    },
+    {
+      "ts": "2026-08-24T19:00:21.983Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 939,
+          "detail": {
+            "views": 939,
+            "likes": 21,
+            "comments": 3,
+            "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 666,
+          "detail": {
+            "views": 666,
+            "likes": 24,
+            "comments": 0,
+            "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 562,
+          "views": 3089,
+          "detail": {
+            "views": 3089,
+            "plays": null,
+            "likes": 10,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 1429
+        },
+        "x:designertom": {
+          "peakConcurrent": 399,
+          "views": 16564,
+          "detail": {
+            "views": 16564,
+            "plays": null,
+            "likes": 12,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 2777
+        }
+      }
     }
   ]
 }
