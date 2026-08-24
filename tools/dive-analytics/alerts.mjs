@@ -21,6 +21,7 @@
 import { readFileSync, writeFileSync, existsSync, renameSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { CHECK_LABELS } from "./health.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -59,6 +60,13 @@ export function snapshotState(data) {
     newestSlug: newest?.slug ?? null,
     paceRank: data.showTrend?.paceRank ?? null,
     complaints, reviewCount, w1v, staleCount,
+    // W27: which checks fed the served health read, and under which rules —
+    // so a change in either is push-worthy news, not a dashboard surprise
+    healthDate: data.health?.date ?? null,
+    healthFormula: data.health?.formulaVersion ?? null,
+    healthCheckSet: data.health?.checks
+      ? data.health.checks.filter((c) => c.score != null).map((c) => c.key)
+      : null,
   };
 }
 
@@ -94,6 +102,34 @@ export function alertLines(prev, cur, data) {
     push(data.health.withheld
       ? `Show health is withheld: the last saved read is ${data.health.ageDays} days old (saved ${data.health.date}). Data still publishes; run tools/dive-analytics/health.mjs.`
       : `Show health read is ${data.health.ageDays} days behind the data (saved ${data.health.date}).`);
+  }
+
+  // 2c. the served health read rests on a different check set than the last
+  // run's (a scoring rule shipped, or a check gained/lost the history it
+  // needs) — push it, never leave the owners to deduce it from a "Not in yet"
+  // row (W27, 2026-08-24 incident: two checks left, the score held still,
+  // and the morning digest was silent). An EMPTY saved set means the read was
+  // withheld, not that zero checks scored — recovery from a withheld stretch
+  // must not read as every check "joining", so both sides must be non-empty
+  // (a real change across a withhold still reaches the reader through the
+  // entry-to-entry checkSetChange on the page and in Slack).
+  if (prev.healthCheckSet?.length && cur.healthCheckSet?.length && prev.healthDate !== cur.healthDate &&
+      JSON.stringify(prev.healthCheckSet) !== JSON.stringify(cur.healthCheckSet)) {
+    const words = (keys) => keys.map((k) => CHECK_LABELS[k] ?? k).map((w, i, all) =>
+      (i === 0 ? "" : i === all.length - 1 ? " and " : ", ") + w).join("");
+    const left = prev.healthCheckSet.filter((k) => !cur.healthCheckSet.includes(k));
+    const joined = cur.healthCheckSet.filter((k) => !prev.healthCheckSet.includes(k));
+    const parts = [];
+    if (left.length) parts.push(`${words(left)} left`);
+    if (joined.length) parts.push(`${words(joined)} joined`);
+    push(`Show health now rests on a different set of checks (${parts.join("; ")}) — the diagnosis card says why each is in or out. The score no longer compares one-to-one with the last read's.`);
+  }
+
+  // 2d. the scoring rules themselves changed — saved reads keep their old
+  // rules and the trend restarts under the new ones; the owners hear it from
+  // Slack, not from a puzzling dashboard
+  if (prev.healthFormula && cur.healthFormula && prev.healthFormula !== cur.healthFormula) {
+    push(`Show health scoring rules changed (${prev.healthFormula} → ${cur.healthFormula}). Saved reads keep the rules they were written under; the score trend restarts under the new rules.`);
   }
 
   // 3. new people raising concerns

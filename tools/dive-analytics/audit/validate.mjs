@@ -1033,9 +1033,12 @@ function premiereMs(dateStr) {
         if (Math.abs(entry.score - entry.weightedMean) > 8) { bad++; fail(`health: ${entry.date} model score moves more than eight points from the deterministic mean`); }
         if (entry.deviation !== Math.round((entry.score - entry.weightedMean) * 10) / 10) { bad++; fail(`health: ${entry.date} stored score move is wrong`); }
         try {
+          // each entry is judged under the prompt version it was written with
+          // (W27: v4 requires naming every changed check and digit-free
+          // drivers; v3 entries keep the looser rule they were saved under)
           health.validateSynthesis(
             { score: entry.score, headline: entry.headline, pros: entry.pros, cons: entry.cons, drivers: entry.drivers },
-            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [], checkSetChange: entry.checkSetChange ?? null },
+            { allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) }, facts: entry.facts || [], checkSetChange: entry.checkSetChange ?? null, promptVersion: entry.promptVersion ?? 0 },
           );
         } catch (error) {
           bad++; fail(`health: ${entry.date} model copy/grounding is invalid — ${error.message}`);
@@ -1668,6 +1671,61 @@ function premiereMs(dateStr) {
       for (const line of alerts.alertLines(prev, alerts.snapshotState(data), data)) {
         if (line.direction && !(line.sample >= BL.MIN_PEERS)) { bad++; fail(`small-n: alert carries a direction on ${line.sample} samples — ${line.text.slice(0, 80)}`); }
       }
+    }
+    // W27: a served check-set or scoring-rule change must produce an alert
+    // line naming the change — proven behaviorally with a synthetic previous
+    // state, so the wiring cannot rot while the real state happens to agree
+    const healthMod = await import(join(TOOL, "health.mjs"));
+    const curState = alerts.snapshotState(data);
+    if (curState.healthCheckSet?.length) {
+      const dropped = curState.healthCheckSet[0];
+      const synthetic = { ...curState, healthDate: "1970-01-01", healthCheckSet: curState.healthCheckSet.slice(1) };
+      const lines = alerts.alertLines(synthetic, curState, data);
+      const name = healthMod.CHECK_LABELS[dropped] ?? dropped;
+      if (!lines.some((l) => /different set of checks/.test(l.text) && l.text.includes(name))) {
+        bad++; fail(`alerts: a check-set change does not queue a plain line naming the check (${name})`);
+      }
+      const syntheticFormula = { ...curState, healthFormula: "health-v0" };
+      if (!alerts.alertLines(syntheticFormula, curState, data).some((l) => /scoring rules changed/.test(l.text))) {
+        bad++; fail("alerts: a scoring-rule change does not queue a plain line");
+      }
+      // an empty saved set means the read was withheld — recovery must NOT
+      // read as every check joining (review finding, 2026-08-24)
+      const syntheticWithheld = { ...curState, healthDate: "1970-01-01", healthCheckSet: [] };
+      if (alerts.alertLines(syntheticWithheld, curState, data).some((l) => /different set of checks/.test(l.text))) {
+        bad++; fail("alerts: recovery from a withheld read wrongly queues a check-set change line");
+      }
+      // the transition copy is reader-facing but dynamic, so the 1i scan
+      // never sees it — scan the generated lines here with the same ban
+      const READER_BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
+      for (const l of [...lines, ...alerts.alertLines(syntheticFormula, curState, data)].filter((x) => /set of checks|scoring rules/.test(x.text))) {
+        if (READER_BANNED.test(l.text)) { bad++; fail(`plain words: transition alert copy contains banned jargon — ${l.text.slice(0, 100)}`); }
+      }
+    }
+    // W27: the same change must reach the Slack digest the day it is served —
+    // exactly one line, naming every check that joined or left; and never a
+    // ghost line when the set held
+    const servedChange = data.health?.checkSetChange;
+    const changeLines = slackLines.filter((l) => l.kind === "health-checkset");
+    if (servedChange && ((servedChange.left?.length ?? 0) + (servedChange.joined?.length ?? 0) > 0)) {
+      const names = [...(servedChange.left ?? []), ...(servedChange.joined ?? [])].map((k) => healthMod.CHECK_LABELS[k] ?? k);
+      if (changeLines.length !== 1 || !names.every((n) => changeLines[0].text.includes(n))) {
+        bad++; fail(`small-n: Slack must carry one line naming the changed health checks (${names.join(", ")})`);
+      }
+      if (/\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b/i.test(changeLines[0]?.text ?? "")) {
+        bad++; fail("plain words: the Slack check-set line contains banned jargon");
+      }
+    } else if (changeLines.length) {
+      bad++; fail("small-n: Slack carries a health check-set line although the served set did not change");
+    }
+    // W27: the page renders the stored change and the saved judgment
+    // sentences — the projection carries them (locked by the projection
+    // byte-compare in 1h); this proves the page actually reads them
+    if (!/h\.checkSetChange/.test(html) || !/class="setchange"/.test(html) || !/rests on different checks/.test(html)) {
+      bad++; fail("dashboard: the diagnosis card must render the saved check-set change in plain words");
+    }
+    if (!/h\.drivers/.test(html) || !/class="drivers"/.test(html)) {
+      bad++; fail("dashboard: the evidence card must render the saved judgment sentences (drivers)");
     }
   } catch (err) { bad++; fail(`small-n: alerts.mjs failed to load — ${err.message}`); }
   // 1y: the episode-health sequence is never read as a trend

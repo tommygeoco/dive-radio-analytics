@@ -10,7 +10,7 @@ import { join, dirname } from "node:path";
 // negative-signal veto for featured quotes (comments critic 2026-08-22 C1):
 // same deterministic wordlist the sentiment labels come from
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
-import { projectHealth } from "./health.mjs";
+import { CHECK_LABELS as HEALTH_CHECK_LABELS, projectHealth } from "./health.mjs";
 import { watchMoments } from "./watch-moments.mjs";
 import { momentKey } from "./moment-summaries.mjs";
 // PRD v9 W22a: the one definition of "typical" — projected as data.baselines
@@ -1092,6 +1092,18 @@ export function trendsLines(data) {
   }
   if (newest?.health?.pending) {
     push(`• ${shortTitle(newest.title)} gets its health score after ${newest.health.readCompleteOn.slice(5).replace("-", "/")}, when its first three weeks are complete.`);
+  }
+  // W27: a change in which checks scored is a change in what the number means,
+  // and Slack says so the same day (2026-08-24: two checks left, the score held
+  // still, and the digest was silent). One name definition: health.mjs.
+  const setChange = data.health?.checkSetChange;
+  if (setChange && (setChange.left?.length || setChange.joined?.length)) {
+    const words = (keys) => keys.map((k) => HEALTH_CHECK_LABELS[k] ?? k).map((w, i, all) =>
+      (i === 0 ? "" : i === all.length - 1 ? " and " : ", ") + w).join("");
+    const parts = [];
+    if (setChange.left?.length) parts.push(`${words(setChange.left)} left`);
+    if (setChange.joined?.length) parts.push(`${words(setChange.joined)} joined`);
+    push(`• Show health now rests on a different set of checks than the last saved read: ${parts.join("; ")}. Same show, different checks — the diagnosis card says why each is in or out.`, { kind: "health-checkset" });
   }
   // v6 W16/W17: the newest episode's sharpest exit moment, read from the same
   // stored moments the panel pins render. Context is the model-written summary

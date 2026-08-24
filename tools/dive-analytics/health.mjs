@@ -38,8 +38,9 @@
 // (an absolute-scale check keeps its base weight). The model may move the final
 // score at most 8 points from that weighted mean. An entry is written whenever
 // three or more checks are available; it records which (checkSet), and when
-// that set changed and the score moved by more than 5, the drivers must name
-// the check that joined or left. One immutable entry per Phoenix calendar day.
+// that set changed since the last saved read the drivers must name the check
+// that joined or left (prompt v4 — unconditional; under v3 only when the
+// score also moved by more than 5). One immutable entry per Phoenix calendar day.
 // Model failure is non-fatal: the previous entry remains the public truth;
 // after seven days without a fresh entry the projection withholds the score.
 //
@@ -88,9 +89,13 @@ export const HEALTH_STORE_VERSION = 2;
 // three-peer minimum per measure, episode-read selection, absolute-scale
 // sentiment never inflated by absences. Saved entries keep their own stamp.
 export const FORMULA_VERSION = "health-v3";
-// prompt v3 (2026-08-23): drivers must name a check that joined or left when
-// the check set changed and the score moved; headline stays number-free.
-export const PROMPT_VERSION = 3;
+// prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
+// drivers — v3 only required it when the score also moved by more than 5, so
+// the 2026-08-24 transition (two checks left, score held at 51) shipped with
+// no reader-facing explanation anywhere. Drivers are now digit-free so the
+// page can render them without carrying ungrounded numbers. Entries keep
+// their stamp; pre-v4 entries are judged by the v3 rule.
+export const PROMPT_VERSION = 4;
 export const BASE_WEIGHTS = Object.freeze({
   growth: 0.25,
   audienceQuality: 0.20,
@@ -688,16 +693,36 @@ export function validateSynthesis(value, inputs) {
   if (!Array.isArray(value.drivers) || value.drivers.length < 1 || value.drivers.length > 3 || value.drivers.some((driver) => typeof driver !== "string" || !driver.trim() || driver.length > 180 || BANNED.test(driver) || MARKUP.test(driver))) {
     throw new Error("drivers must contain one to three short plain strings");
   }
-  // check-set guard (PRD v9 §3.1): when the set of scored checks changed since
-  // the previous entry and the score moved by more than 5, a driver must name
-  // a check that joined or left — a score that moves because honest checks
-  // came or went must say so
+  // entries are judged under the prompt version they were written with; the
+  // synthesis path judges under the current one
+  const promptVersion = Number.isFinite(inputs.promptVersion) ? inputs.promptVersion : PROMPT_VERSION;
+  // drivers render on the page from prompt v4 on, so they carry no digits —
+  // every shipped number must trace to a cited fact, and drivers cite none
+  if (promptVersion >= 4 && value.drivers.some((driver) => numberTokens(driver).length)) {
+    throw new Error("drivers must contain no numbers — the judgment in words, the numbers in cited bullets");
+  }
+  // check-set guard (PRD v9 §3.1, W27): when the set of scored checks changed
+  // since the previous entry, a driver must name a check that joined or left —
+  // a number resting on different checks than the last read is a different
+  // read even when it lands in the same place. Under prompt v3 the naming was
+  // only required when the score also moved by more than 5; the 2026-08-24
+  // transition showed that exemption hides exactly the worst case.
   const change = inputs.checkSetChange;
-  if (change && Number.isFinite(change.previousScore) && Math.abs(value.score - change.previousScore) > 5) {
-    const names = [...change.joined, ...change.left].map((key) => CHECK_LABELS[key]).filter(Boolean);
-    const text = value.drivers.join(" ").toLowerCase();
-    if (names.length && !names.some((name) => text.includes(name))) {
-      throw new Error(`drivers must name the check that joined or left (${names.join(", ")}) because the score moved with the check set`);
+  if (change) {
+    // an unlabeled future check key falls back to its raw key rather than
+    // silently escaping the naming rule
+    const names = [...change.joined, ...change.left].map((key) => CHECK_LABELS[key] ?? key);
+    const scoreMoved = Number.isFinite(change.previousScore) && Math.abs(value.score - change.previousScore) > 5;
+    if (names.length && (promptVersion >= 4 || scoreMoved)) {
+      const text = value.drivers.join(" ").toLowerCase();
+      // whole-word match: "reached" must not satisfy "reach", "regrowth" must
+      // not satisfy "growth" — the prompt lists the exact names to use
+      const named = (name) => new RegExp(`\\b${name.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(text);
+      // v4: every changed check is named; v3 only required one of them
+      const missing = promptVersion >= 4 ? names.filter((name) => !named(name)) : (names.some(named) ? [] : names);
+      if (missing.length) {
+        throw new Error(`drivers must name the checks that joined or left (missing: ${missing.join(", ")}) because the check set changed`);
+      }
     }
   }
   return value;
@@ -759,6 +784,15 @@ export function projectHealth(store, { now = Date.now() } = {}) {
     })),
     pros: withheld ? [] : latest.pros.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     cons: withheld ? [] : latest.cons.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
+    // the saved judgment sentences, verbatim — from prompt v4 they are
+    // digit-free, so the click layer can show the model's reasoning without
+    // shipping a number no fact grounds
+    drivers: withheld ? [] : (latest.drivers || []),
+    // the saved change in which checks scored (W27): when a check joined or
+    // left since the previous saved read, the reader is told — a score
+    // resting on different checks must never pass as continuity. null when
+    // the set held.
+    checkSetChange: withheld ? null : (latest.checkSetChange ?? null),
     // the trend plots only entries written under the running formula (F5)
     trend: running.length >= 7 ? { points: running.map((entry) => ({ date: entry.date, score: entry.score })) } : null,
   };

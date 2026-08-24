@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-24T19:00:45.541Z",
+ "generatedAt": "2026-08-24T22:18:15.379Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -18784,6 +18784,25 @@
     "factId": "latest-finished-announce-play"
    }
   ],
+  "drivers": [
+   "Strong goodwill and steady reach are offset by weak live turnout, especially the quiet chat, so the score sits close to the weighted read of the evidence.",
+   "Growth, audience quality, and subscriber checks lack enough history to score yet, so today's read rests on reach, live turnout, and goodwill alone."
+  ],
+  "checkSetChange": {
+   "previous": [
+    "audienceQuality",
+    "reachEfficiency",
+    "livePull",
+    "conversion",
+    "sentiment"
+   ],
+   "joined": [],
+   "left": [
+    "audienceQuality",
+    "conversion"
+   ],
+   "previousScore": 51
+  },
   "trend": null
  },
  "baselines": {

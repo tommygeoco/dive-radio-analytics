@@ -265,12 +265,23 @@ assert.equal(B.trueMedian([]), null);
   assert.equal(stale.date, "2026-08-21", "but still says which day it was saved");
   assert.deepEqual(projectHealth({ version: 1, entries: [entry("2026-08-21", "health-v1")] }, { now: Date.parse("2026-08-21T20:00:00Z") }).checks.map((c) => c.measures), Array(6).fill([]), "a v1 store projects with empty measures");
 
-  // check-set guard in validateSynthesis
+  // check-set guard in validateSynthesis — W27/prompt v4: a changed set must
+  // always be named, every changed check by name, and drivers carry no digits;
+  // stored pre-v4 entries keep the looser rule they were written under
   const inputs = { allowedScore: { min: 40, max: 60 }, facts: [{ id: "f1", display: "71" }], checkSetChange: { joined: [], left: ["audienceQuality"], previousScore: 40 } };
   const ok = { score: 50, headline: "Steadier than it looks.", pros: [{ text: "Peak hit 71.", factId: "f1" }, { text: "Peak hit 71.", factId: "f1" }], cons: [{ text: "Peak hit 71.", factId: "f1" }, { text: "Peak hit 71.", factId: "f1" }], drivers: ["The move comes from the audience quality check leaving, not the show changing."] };
   assert.doesNotThrow(() => validateSynthesis(ok, inputs));
   assert.throws(() => validateSynthesis({ ...ok, drivers: ["Live turnout carried it."] }, inputs), /must name the check/);
-  assert.doesNotThrow(() => validateSynthesis({ ...ok, score: 44, drivers: ["Live turnout carried it."] }, inputs), "a move of 4 needs no naming");
+  assert.throws(() => validateSynthesis({ ...ok, score: 44, drivers: ["Live turnout carried it."] }, inputs), /must name the check/, "v4: even a move of 4 must name the changed check");
+  const twoLeft = { ...inputs, checkSetChange: { joined: [], left: ["audienceQuality", "conversion"], previousScore: 50 } };
+  assert.throws(() => validateSynthesis(ok, twoLeft), /missing: subscribers/, "v4: every changed check is named, not just one");
+  assert.throws(() => validateSynthesis({ ...ok, drivers: ["The audience quality check left after 2 quiet days."] }, inputs), /no numbers/, "v4: drivers carry no digits");
+  const reachLeft = { ...inputs, checkSetChange: { joined: [], left: ["reachEfficiency"], previousScore: 50 } };
+  assert.throws(() => validateSynthesis({ ...ok, drivers: ["The show reached fewer people this week."] }, reachLeft), /missing: reach/, "v4: 'reached' does not satisfy naming 'reach' — whole words only");
+  assert.doesNotThrow(() => validateSynthesis({ ...ok, drivers: ["The reach check left the score, not the show changing."] }, reachLeft), "v4: the exact name satisfies the rule");
+  assert.throws(() => validateSynthesis(ok, { ...inputs, checkSetChange: { joined: ["futureCheck"], left: [], previousScore: 50 } }), /missing: futureCheck/, "v4: an unlabeled check key still must be named (raw key)");
+  assert.doesNotThrow(() => validateSynthesis({ ...ok, score: 44, drivers: ["Live turnout carried it."] }, { ...inputs, promptVersion: 3 }), "v3 entries keep the old rule: a move of 4 needs no naming");
+  assert.doesNotThrow(() => validateSynthesis(ok, { ...twoLeft, promptVersion: 3, checkSetChange: { ...twoLeft.checkSetChange, previousScore: 40 } }), "v3 entries need only one changed check named");
 }
 
 console.log("baselines.test: ok");
