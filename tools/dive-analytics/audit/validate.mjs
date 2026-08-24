@@ -1076,10 +1076,17 @@ function premiereMs(dateStr) {
       // Same-day recompute only proves pipeline ordering when the entry was
       // written by the CURRENT formula version — an entry saved under an older
       // version legitimately cannot be reproduced by newer code.
+      // Compare the deterministic scoring inputs (weightedMean, subScores,
+      // facts) — NOT bundleHash. The bundle hashes context.dataAge, whose
+      // freshness timestamps legitimately move when later chain steps or
+      // same-day retries refresh stores. Since the store is append-only, a
+      // hash comparison deadlocks the whole chain for the rest of the day
+      // (2026-08-24 incident: four 7 AM runs failed here with identical
+      // scores and facts; only the timestamp-bearing hash drifted).
       if (latest?.date === currentDate && latest.formulaVersion === health.FORMULA_VERSION) {
         try {
           const recomputed = health.computeHealthInputs({ data, now: Date.parse(latest.dataGeneratedAt), root: ROOT });
-          if (recomputed.bundleHash !== latest.bundleHash || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
+          if (recomputed.weightedMean !== latest.weightedMean || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
             bad++; fail("health: today's entry does not recompute from the current source stores");
           }
         } catch (error) {
