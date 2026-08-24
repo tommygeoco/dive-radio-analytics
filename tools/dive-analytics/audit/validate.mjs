@@ -1079,14 +1079,23 @@ function premiereMs(dateStr) {
       // Compare the deterministic scoring inputs (weightedMean, subScores,
       // facts) — NOT bundleHash. The bundle hashes context.dataAge, whose
       // freshness timestamps legitimately move when later chain steps or
-      // same-day retries refresh stores. Since the store is append-only, a
-      // hash comparison deadlocks the whole chain for the rest of the day
+      // same-day retries refresh stores. And the comparison itself only
+      // holds while the entry is newer than the stores it was computed
+      // from: the store is append-only, so once a later run ingests fresh
+      // views or comments, today's saved entry legitimately cannot match
+      // and the gate must step aside instead of deadlocking the day
       // (2026-08-24 incident: four 7 AM runs failed here with identical
-      // scores and facts; only the timestamp-bearing hash drifted).
+      // scores and facts, then intraday re-ingest made the mismatch real).
       if (latest?.date === currentDate && latest.formulaVersion === health.FORMULA_VERSION) {
         try {
           const recomputed = health.computeHealthInputs({ data, now: Date.parse(latest.dataGeneratedAt), root: ROOT });
-          if (recomputed.weightedMean !== latest.weightedMean || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
+          const dataAge = recomputed.context?.dataAge || {};
+          const freshestStore = [dataAge.latestSnapshot, dataAge.analyticsUpdatedAt, dataAge.commentsClassifiedAt]
+            .filter(Boolean).map((ts) => Date.parse(ts)).filter(Number.isFinite).sort((a, b) => a - b).at(-1) ?? null;
+          const storesRefreshedSinceSave = freshestStore != null && Number.isFinite(Date.parse(latest.createdAt)) && freshestStore > Date.parse(latest.createdAt);
+          if (storesRefreshedSinceSave) {
+            warn("health: source stores were refreshed after today's entry was saved — same-day recompute proof skipped; the next daily run re-proves it");
+          } else if (recomputed.weightedMean !== latest.weightedMean || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
             bad++; fail("health: today's entry does not recompute from the current source stores");
           }
         } catch (error) {
