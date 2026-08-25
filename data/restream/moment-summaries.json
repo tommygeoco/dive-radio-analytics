@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-23T20:22:38.792Z",
+ "updatedAt": "2026-08-25T14:02:59.302Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -93,6 +93,18 @@
   "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.67": {
    "summary": "Host demos a homemade SVG story animator named for his daughter, guiding a character uphill with a stamina bar, while the co-host talks about making stories with his own kid.",
    "writtenAt": "2026-08-23T20:22:38.792Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.27": {
+   "summary": "Hosts debate going all in on one AI tool ecosystem, react to Microsoft's flatter Copilot logo, and compare agentic coding interfaces from Cursor, Hermes, and Grokbot.",
+   "writtenAt": "2026-08-25T14:02:59.301Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.52": {
+   "summary": "A host screen-shares open source mascot tools, tweaking blob eyes and motion for a dive character, plugs sponsor Lovable, and riffs on cute animal logos and children's books.",
+   "writtenAt": "2026-08-25T14:02:59.302Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.7": {
+   "summary": "Hosts chat about making stories with their kids, plug the designer of the week vote, then bring caller DJ on air and troubleshoot his missing audio while asking the chat to confirm sound.",
+   "writtenAt": "2026-08-25T14:02:59.302Z"
   }
  }
 }
