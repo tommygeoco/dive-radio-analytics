@@ -19,5 +19,12 @@
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": null,
     "2026-08-20-dive-radio-the-mascot-industrial-complex": null
   },
-  "staleCount": 0
+  "staleCount": 0,
+  "healthDate": "2026-08-25",
+  "healthFormula": "health-v3",
+  "healthCheckSet": [
+    "reachEfficiency",
+    "livePull",
+    "sentiment"
+  ]
 }

@@ -1358,6 +1358,59 @@
           "plays": 328
         }
       }
+    },
+    {
+      "ts": "2026-08-26T14:01:32.438Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 685,
+          "detail": {
+            "views": 685,
+            "likes": 15,
+            "comments": 4,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 468,
+          "detail": {
+            "views": 468,
+            "likes": 13,
+            "comments": 1,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 201,
+          "views": 7485,
+          "detail": {
+            "views": 7485,
+            "plays": null,
+            "likes": 11,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 773
+        },
+        "x:designertom": {
+          "peakConcurrent": 125,
+          "views": 1223,
+          "detail": {
+            "views": 300,
+            "plays": null,
+            "likes": 1,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 0,
+            "quotes": 0
+          },
+          "plays": 329
+        }
+      }
     }
   ]
 }

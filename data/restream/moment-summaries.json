@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-25T14:02:59.302Z",
+ "updatedAt": "2026-08-26T14:03:44.561Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -105,6 +105,18 @@
   "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.7": {
    "summary": "Hosts chat about making stories with their kids, plug the designer of the week vote, then bring caller DJ on air and troubleshoot his missing audio while asking the chat to confirm sound.",
    "writtenAt": "2026-08-25T14:02:59.302Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.26": {
+   "summary": "Hosts react to a flatter Copilot logo redesign and rebrand workload, then compare agentic coding tools and UIs, recalling an interview where a Cursor hire predicted the shift to chat-style task management.",
+   "writtenAt": "2026-08-26T14:03:44.559Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.4": {
+   "summary": "Host walks through tech mascots like Mico, Nosey, Kit and a Vercel triangle character, then plays a clip of hardware creator Daniel Kuntz advising teams to hire real character animators over coding animations.",
+   "writtenAt": "2026-08-26T14:03:44.561Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.47": {
+   "summary": "Hosts discuss mascots as attachment strategy, read a viewer comment on logos losing meaning, plug sponsor Lovable, then demo open-source blob character tools live, tweaking eyes, rotation and expressions.",
+   "writtenAt": "2026-08-26T14:03:44.561Z"
   }
  }
 }
