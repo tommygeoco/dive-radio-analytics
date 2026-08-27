@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-26T14:03:44.561Z",
+ "updatedAt": "2026-08-27T14:03:41.450Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -117,6 +117,18 @@
   "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.47": {
    "summary": "Hosts discuss mascots as attachment strategy, read a viewer comment on logos losing meaning, plug sponsor Lovable, then demo open-source blob character tools live, tweaking eyes, rotation and expressions.",
    "writtenAt": "2026-08-26T14:03:44.561Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.38": {
+   "summary": "Hosts tour brand mascots like Duo, Mico, Nosey, and Kit, praise a playful onboarding, then play a clip of Daniel Kuntz describing the tools built for his character.",
+   "writtenAt": "2026-08-27T14:03:41.449Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.48": {
+   "summary": "A host live-demos open-source blob and mascot tools, resizing eyes and rotation on the show character, mentions sponsor Lovable, and shows expressiveness prototypes.",
+   "writtenAt": "2026-08-27T14:03:41.450Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.77": {
+   "summary": "Hosts tease upcoming show notes, debate a group declaring war on UI animations, discuss a scroll-jacking crab experiment, then try again to connect caller DJ.",
+   "writtenAt": "2026-08-27T14:03:41.450Z"
   }
  }
 }
