@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-08-27T14:01:05.698Z",
+  "updatedAt": "2026-08-28T15:39:49.686Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -584,6 +584,98 @@
         ],
         "confidence": 0.95
       }
+    },
+    "yt:Ugy9s6caFPsgOixTcPJ4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.65,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-08-28T14:11:00.355Z",
+      "audit": {
+        "at": "2026-08-28T14:11:00.355Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.6
+      }
+    },
+    "x:2092974258003517718": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.95,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-08-28T14:11:00.355Z"
+    },
+    "x:2092656593691201863": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.6,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-08-28T14:11:00.355Z",
+      "audit": {
+        "at": "2026-08-28T14:11:00.355Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.6
+      }
+    },
+    "x:2093106831954448821": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-08-28T14:11:00.355Z",
+      "audit": {
+        "at": "2026-08-28T14:11:00.355Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.9
+      }
+    },
+    "x:2093100873429688573": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-08-28T14:11:00.355Z"
+    },
+    "x:2093095692277370929": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-08-28T14:11:00.355Z"
     }
   },
   "golden": {
@@ -604,7 +696,7 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-08-27T14:01:05.698Z",
+    "at": "2026-08-28T15:39:49.686Z",
     "status": "complete",
     "added": 0,
     "reviewed": 0,

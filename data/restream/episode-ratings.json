@@ -12,7 +12,7 @@
   "readDays": 21,
   "windowN": 8,
   "minPeers": 3,
-  "updatedAt": "2026-08-27T14:01:07.807Z",
+  "updatedAt": "2026-08-28T15:40:22.215Z",
   "scores": [
     {
       "ep": 1,
@@ -465,6 +465,215 @@
       "reproducible": true,
       "computedAt": "2026-08-23T18:45:20.684Z",
       "frozenAt": "2026-08-23T18:45:20.684Z"
+    },
+    {
+      "ep": 4,
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "premiere": "2026-08-06",
+      "algorithm": "health21-v2",
+      "windowIds": [
+        "2026-07-17-dive-radio-bumpy-takeoff",
+        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "2026-08-06-dive-radio-backyard-designers-behind-the"
+      ],
+      "excluded": [
+        {
+          "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+          "why": "promo outlier"
+        }
+      ],
+      "readDays": 21,
+      "atDay": 21,
+      "frozenAtDay": 21.8,
+      "readCompleteOn": "2026-08-27",
+      "score": null,
+      "checks": {
+        "watch": {
+          "value": 1923,
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "sample": 2,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 2015,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-07"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 2034,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-13"
+            }
+          ],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "atDay": 21,
+          "ageBasis": "sameAge",
+          "note": "compared at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0
+        },
+        "engagement": {
+          "value": 33.8,
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "sample": 2,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 50.1,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-07"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 40.3,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-13"
+            }
+          ],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "atDay": 21,
+          "ageBasis": "sameAge",
+          "note": "compared at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0
+        },
+        "retention": {
+          "value": 8.92,
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "sample": 2,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 10.7,
+              "atDay": 41.8,
+              "source": "analytics-file",
+              "readDate": "2026-08-28"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 11.04,
+              "atDay": 35.8,
+              "source": "analytics-file",
+              "readDate": "2026-08-28"
+            }
+          ],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "ageBasis": "mature",
+          "note": "compared with earlier episodes as they stand now, not at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            }
+          ],
+          "channels": [
+            "yt:designertom",
+            "yt:joindiveclub"
+          ],
+          "weight": 0
+        },
+        "live": {
+          "value": {
+            "peak": 63,
+            "chat": 167
+          },
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "sample": 2,
+          "peers": [],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "ageBasis": "ageFree",
+          "note": null,
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0
+        },
+        "conversion": {
+          "value": 3.1,
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "sample": 2,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 8.9,
+              "atDay": 41.8,
+              "source": "analytics-file",
+              "readDate": "2026-08-28"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 2.9,
+              "atDay": 35.8,
+              "source": "analytics-file",
+              "readDate": "2026-08-28"
+            }
+          ],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "ageBasis": "mature",
+          "note": "compared with earlier episodes as they stand now, not at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0
+        },
+        "sentiment": {
+          "value": null,
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "weight": 0,
+          "sample": 0,
+          "peers": [],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "ageBasis": null,
+          "note": null,
+          "excluded": []
+        }
+      },
+      "missingChecks": [
+        "watch",
+        "engagement",
+        "retention",
+        "live",
+        "conversion",
+        "sentiment"
+      ],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "reproducible": true,
+      "computedAt": "2026-08-28T14:03:21.105Z",
+      "frozenAt": "2026-08-28T14:03:21.105Z"
     }
   ],
   "rederivedFrom": "health21-v1",

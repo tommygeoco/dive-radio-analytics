@@ -22,6 +22,7 @@ import { readFileSync, writeFileSync, existsSync, renameSync, mkdirSync } from "
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CHECK_LABELS } from "./health.mjs";
+import { MIN_PEERS } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -154,7 +155,8 @@ export function alertLines(prev, cur, data) {
       const clean = Object.values(cur.w1v).filter((x) => x != null).sort((a, b) => b - a);
       const rank = clean.indexOf(v) + 1;
       // a rank among fewer than three clean weeks is not a standing (F31)
-      if (clean.length >= 3) push(`E${e?.ep} (${short(e?.title ?? slug)}) finished its first week: ${v.toLocaleString("en-US")} YouTube views — #${rank} of ${clean.length} clean first weeks.`, { sample: clean.length - 1, direction: rank === 1 ? "up" : rank === clean.length ? "down" : null });
+      // direction needs MIN_PEERS or more *peers* (clean weeks besides this one) — rule 13 / small-n gate
+      if (clean.length >= 3) push(`E${e?.ep} (${short(e?.title ?? slug)}) finished its first week: ${v.toLocaleString("en-US")} YouTube views — #${rank} of ${clean.length} clean first weeks.`, { sample: clean.length - 1, direction: clean.length - 1 >= MIN_PEERS ? (rank === 1 ? "up" : rank === clean.length ? "down" : null) : null });
       else push(`E${e?.ep} (${short(e?.title ?? slug)}) finished its first week: ${v.toLocaleString("en-US")} YouTube views.`);
     }
   }

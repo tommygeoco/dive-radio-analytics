@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-27T14:03:41.450Z",
+ "updatedAt": "2026-08-28T15:42:20.044Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -129,6 +129,10 @@
   "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.77": {
    "summary": "Hosts tease upcoming show notes, debate a group declaring war on UI animations, discuss a scroll-jacking crab experiment, then try again to connect caller DJ.",
    "writtenAt": "2026-08-27T14:03:41.450Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.94": {
+   "summary": "Hosts wrap up the show, praising point-and-click design tools, thanking community submissions, plugging the weekly livestream, teasing next week's prototypes, and naming a winner.",
+   "writtenAt": "2026-08-28T15:42:20.042Z"
   }
  }
 }
