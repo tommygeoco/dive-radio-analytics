@@ -12,8 +12,15 @@
 // orchestration and never calls a model itself.
 //
 // Run:
-//   node tools/dive-analytics/run-chain.mjs --dry   # print the plan, run nothing
-//   node tools/dive-analytics/run-chain.mjs         # run the chain
+//   node tools/dive-analytics/run-chain.mjs --dry      # print the plan, run nothing
+//   node tools/dive-analytics/run-chain.mjs --rehearse # full chain, no publish-side steps
+//   node tools/dive-analytics/run-chain.mjs            # run the chain
+//
+// --rehearse exists for the pre-flight cron: it runs every data step and both
+// validate gates exactly as the real run will, but skips the steps that touch
+// the outside world (publish, alerts, freshness) so a 6:00 rehearsal can fail
+// loudly without shipping or queueing anything. The 7:00 run stays the only
+// writer of public state.
 
 import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -25,11 +32,17 @@ const ROOT = join(HERE, "..", "..");
 const chain = JSON.parse(readFileSync(join(HERE, "chain.json"), "utf8"));
 const PHX_DAY = new Date(Date.now() - 7 * 3600000).toUTCString().slice(0, 3);
 const dry = process.argv.includes("--dry");
+const rehearse = process.argv.includes("--rehearse");
+const REHEARSE_SKIP = new Set(["publish", "alerts", "freshness", "critic"]);
 
 let failedOptional = 0;
 for (const step of chain.steps) {
   if (step.when === "Mondays" && PHX_DAY !== "Mon") {
     console.log(`chain: ${step.step} — waits for Monday, skipped`);
+    continue;
+  }
+  if (rehearse && REHEARSE_SKIP.has(step.step)) {
+    console.log(`chain: ${step.step} — rehearsal, skipped (no publish-side effects)`);
     continue;
   }
   const parts = step.script.split(" ");

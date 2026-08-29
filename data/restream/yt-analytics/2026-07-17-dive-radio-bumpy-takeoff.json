@@ -5,7 +5,7 @@
   "channels": {
     "yt:designertom": {
       "videoId": "FqsXWbfKmGw",
-      "pulledAt": "2026-08-28T15:39:18.407Z",
+      "pulledAt": "2026-08-29T14:00:46.763Z",
       "totals": {
         "views": 529,
         "estimatedMinutesWatched": 6214,
@@ -467,7 +467,7 @@
     },
     "yt:joindiveclub": {
       "videoId": "VcLm0kAGCck",
-      "pulledAt": "2026-08-28T15:39:18.407Z",
+      "pulledAt": "2026-08-29T14:00:46.763Z",
       "totals": {
         "views": 709,
         "estimatedMinutesWatched": 10085,
@@ -485,8 +485,8 @@
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
-          "views": 124,
-          "estimatedMinutesWatched": 1990
+          "views": 123,
+          "estimatedMinutesWatched": 1901
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -500,8 +500,8 @@
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
-          "views": 57,
-          "estimatedMinutesWatched": 1296
+          "views": 58,
+          "estimatedMinutesWatched": 1386
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
@@ -933,5 +933,5 @@
       ]
     }
   },
-  "updatedAt": "2026-08-28T15:39:18.407Z"
+  "updatedAt": "2026-08-29T14:00:46.763Z"
 }

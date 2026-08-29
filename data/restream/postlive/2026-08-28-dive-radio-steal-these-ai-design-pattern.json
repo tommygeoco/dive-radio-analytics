@@ -267,6 +267,324 @@
           "plays": 728
         }
       }
+    },
+    {
+      "ts": "2026-08-28T17:25:21.428Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1429,
+          "detail": {
+            "views": 1429,
+            "likes": 19,
+            "comments": 0,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1482,
+          "detail": {
+            "views": 1482,
+            "likes": 12,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 408,
+          "views": 4950,
+          "detail": {
+            "views": 2686,
+            "plays": null,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 915
+        },
+        "x:designertom": {
+          "views": 5130,
+          "detail": {
+            "views": 3442,
+            "plays": null,
+            "likes": 5,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "peakConcurrent": 320,
+          "plays": 795
+        }
+      }
+    },
+    {
+      "ts": "2026-08-29T13:06:21.355Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1896,
+          "detail": {
+            "views": 1896,
+            "likes": 22,
+            "comments": 0,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1992,
+          "detail": {
+            "views": 1992,
+            "likes": 13,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 408,
+          "views": 5213,
+          "detail": {
+            "views": 2747,
+            "plays": null,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 992
+        },
+        "x:designertom": {
+          "views": 6699,
+          "detail": {
+            "views": 4746,
+            "plays": null,
+            "likes": 5,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "peakConcurrent": 320,
+          "plays": 1033
+        }
+      }
+    },
+    {
+      "ts": "2026-08-29T13:08:26.343Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1896,
+          "detail": {
+            "views": 1896,
+            "likes": 22,
+            "comments": 0,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1992,
+          "detail": {
+            "views": 1992,
+            "likes": 13,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 408,
+          "views": 5215,
+          "detail": {
+            "views": 2748,
+            "plays": null,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 992
+        },
+        "x:designertom": {
+          "views": 6701,
+          "detail": {
+            "views": 4748,
+            "plays": null,
+            "likes": 5,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "peakConcurrent": 320,
+          "plays": 1033
+        }
+      }
+    },
+    {
+      "ts": "2026-08-29T13:19:30.602Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1896,
+          "detail": {
+            "views": 1896,
+            "likes": 22,
+            "comments": 0,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1989,
+          "detail": {
+            "views": 1989,
+            "likes": 13,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 408,
+          "views": 5219,
+          "detail": {
+            "views": 2748,
+            "plays": null,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 994
+        },
+        "x:designertom": {
+          "views": 6711,
+          "detail": {
+            "views": 4758,
+            "plays": null,
+            "likes": 5,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "peakConcurrent": 320,
+          "plays": 1033
+        }
+      }
+    },
+    {
+      "ts": "2026-08-29T13:39:28.912Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1896,
+          "detail": {
+            "views": 1896,
+            "likes": 22,
+            "comments": 0,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1992,
+          "detail": {
+            "views": 1992,
+            "likes": 13,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 408,
+          "views": 5226,
+          "detail": {
+            "views": 2750,
+            "plays": null,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 994
+        },
+        "x:designertom": {
+          "views": 6727,
+          "detail": {
+            "views": 4771,
+            "plays": null,
+            "likes": 5,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "peakConcurrent": 320,
+          "plays": 1036
+        }
+      }
+    },
+    {
+      "ts": "2026-08-29T14:00:31.629Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1896,
+          "detail": {
+            "views": 1896,
+            "likes": 22,
+            "comments": 0,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1992,
+          "detail": {
+            "views": 1992,
+            "likes": 13,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 408,
+          "views": 5234,
+          "detail": {
+            "views": 2752,
+            "plays": null,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 995
+        },
+        "x:designertom": {
+          "views": 6740,
+          "detail": {
+            "views": 4781,
+            "plays": null,
+            "likes": 5,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "peakConcurrent": 320,
+          "plays": 1037
+        }
+      }
     }
   ]
 }
