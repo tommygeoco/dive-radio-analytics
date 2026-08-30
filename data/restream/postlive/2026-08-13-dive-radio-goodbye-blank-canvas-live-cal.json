@@ -2149,6 +2149,112 @@
           "plays": 970
         }
       }
+    },
+    {
+      "ts": "2026-08-30T13:07:41.466Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 678,
+          "detail": {
+            "views": 678,
+            "likes": 20,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 532,
+          "detail": {
+            "views": 532,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 415,
+          "views": 2972,
+          "detail": {
+            "views": 2972,
+            "plays": null,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1149
+        },
+        "x:designertom": {
+          "peakConcurrent": 131,
+          "views": 6177,
+          "detail": {
+            "views": 6177,
+            "plays": null,
+            "likes": 8,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 970
+        }
+      }
+    },
+    {
+      "ts": "2026-08-30T14:00:58.041Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 678,
+          "detail": {
+            "views": 678,
+            "likes": 20,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 532,
+          "detail": {
+            "views": 532,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 415,
+          "views": 2972,
+          "detail": {
+            "views": 2972,
+            "plays": null,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1149
+        },
+        "x:designertom": {
+          "peakConcurrent": 131,
+          "views": 6177,
+          "detail": {
+            "views": 6177,
+            "plays": null,
+            "likes": 8,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 970
+        }
+      }
     }
   ]
 }

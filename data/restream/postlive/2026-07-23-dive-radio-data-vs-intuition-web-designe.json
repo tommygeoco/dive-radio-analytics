@@ -3657,6 +3657,112 @@
           "plays": 1176
         }
       }
+    },
+    {
+      "ts": "2026-08-30T13:07:41.466Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1176,
+          "detail": {
+            "views": 1176,
+            "likes": 39,
+            "comments": 2,
+            "title": "Dive Radio: Linear on Data vs. Intuition, the Web Designer Is Back, Dialkit + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 923,
+          "detail": {
+            "views": 923,
+            "likes": 39,
+            "comments": 3,
+            "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:designertom": {
+          "peakConcurrent": 246,
+          "views": 2235,
+          "detail": {
+            "views": 2235,
+            "plays": null,
+            "likes": 1,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 635
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 599,
+          "views": 3898,
+          "detail": {
+            "views": 3898,
+            "plays": null,
+            "likes": 3,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 1176
+        }
+      }
+    },
+    {
+      "ts": "2026-08-30T14:00:58.041Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1176,
+          "detail": {
+            "views": 1176,
+            "likes": 39,
+            "comments": 2,
+            "title": "Dive Radio: Linear on Data vs. Intuition, the Web Designer Is Back, Dialkit + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 923,
+          "detail": {
+            "views": 923,
+            "likes": 39,
+            "comments": 3,
+            "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:designertom": {
+          "peakConcurrent": 246,
+          "views": 2235,
+          "detail": {
+            "views": 2235,
+            "plays": null,
+            "likes": 1,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 635
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 599,
+          "views": 3898,
+          "detail": {
+            "views": 3898,
+            "plays": null,
+            "likes": 3,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 1176
+        }
+      }
     }
   ]
 }
