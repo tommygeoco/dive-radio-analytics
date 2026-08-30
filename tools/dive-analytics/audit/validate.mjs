@@ -1558,8 +1558,20 @@ function premiereMs(dateStr) {
     const shipped = data.baselines;
     if (!shipped) { bad++; fail("baselines: data.json carries no baselines projection"); }
     else {
-      const again = B.computeBaselines(eps);
-      if (JSON.stringify(again) !== JSON.stringify(shipped)) { bad++; fail("baselines: data.baselines does not re-derive from the shipped episodes"); }
+      // Re-derive through the SAME path build-data uses (computeAll → baselines
+      // with the flags + analytics-history options). A naked computeBaselines(eps)
+      // call lacks those options and diverges the first day a newestVsPrevious
+      // reading comes from history lines instead of embedded episode data —
+      // which is exactly what happened 2026-08-30 (E7 day-2 watched reading):
+      // the gate failed on healthy data. Block 1c already proves computeAll
+      // reproduces data.json byte-for-byte; this keeps 1u's structural checks
+      // anchored to that same reproduction instead of a weaker second path.
+      let again = null;
+      try {
+        const bd = await import(join(TOOL, "build-data.mjs"));
+        again = bd.computeAll({ now: Date.parse(data.generatedAt) }).baselines;
+      } catch (err) { bad++; fail(`baselines: re-derive via computeAll threw — ${err.message}`); }
+      if (again && JSON.stringify(again) !== JSON.stringify(shipped)) { bad++; fail("baselines: data.baselines does not re-derive from the shipped episodes"); }
       if (JSON.stringify(shipped.constants) !== JSON.stringify(B.CONSTANTS)) { bad++; fail("baselines: shipped constants differ from baselines.mjs"); }
       if (shipped.constants.MIN_PEERS < 3) { bad++; fail("baselines: MIN_PEERS below the constitution's small-n rule"); }
       for (const [slug, a] of Object.entries(shipped.anomaly)) {
