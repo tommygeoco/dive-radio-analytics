@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 3,
- "updatedAt": "2026-08-29T14:02:05.611Z",
+ "updatedAt": "2026-08-30T08:17:04.185Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-08-29T14:01:05.293Z",
+ "factsGeneratedAt": "2026-08-30T08:15:13.251Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -36,7 +36,7 @@
   },
   {
    "id": "watched-E1-joindiveclub",
-   "value": 11.6
+   "value": 11.5
   },
   {
    "id": "subs1k-E1-joindiveclub",
@@ -56,7 +56,7 @@
   },
   {
    "id": "open-start-E2",
-   "value": 66.3
+   "value": 66.4
   },
   {
    "id": "open-at2-E2",
@@ -108,7 +108,7 @@
   },
   {
    "id": "open-at2-E3",
-   "value": 12.1
+   "value": 12.2
   },
   {
    "id": "watched-E3",
@@ -132,7 +132,7 @@
   },
   {
    "id": "watched-E3-joindiveclub",
-   "value": 9.2
+   "value": 9.3
   },
   {
    "id": "subs1k-E3-joindiveclub",
@@ -152,7 +152,7 @@
   },
   {
    "id": "open-start-E4",
-   "value": 70.4
+   "value": 70.3
   },
   {
    "id": "open-at2-E4",
@@ -164,11 +164,11 @@
   },
   {
    "id": "subs1k-E4",
-   "value": 3.1
+   "value": 3.6
   },
   {
    "id": "watched-E4-designertom",
-   "value": 8.7
+   "value": 8.8
   },
   {
    "id": "subs1k-E4-designertom",
@@ -184,11 +184,11 @@
   },
   {
    "id": "subs1k-E4-joindiveclub",
-   "value": 5
+   "value": 5.8
   },
   {
    "id": "subs-E4-joindiveclub",
-   "value": 6
+   "value": 7
   },
   {
    "id": "peak-E4",
@@ -200,11 +200,11 @@
   },
   {
    "id": "open-start-E5",
-   "value": 69.5
+   "value": 65.1
   },
   {
    "id": "open-at2-E5",
-   "value": 12.5
+   "value": 12.8
   },
   {
    "id": "watched-E5",
@@ -212,7 +212,7 @@
   },
   {
    "id": "subs1k-E5",
-   "value": 0.9
+   "value": 0.8
   },
   {
    "id": "watched-E5-designertom",
@@ -228,7 +228,7 @@
   },
   {
    "id": "watched-E5-joindiveclub",
-   "value": 14.2
+   "value": 14.1
   },
   {
    "id": "subs1k-E5-joindiveclub",
@@ -248,11 +248,11 @@
   },
   {
    "id": "open-start-E6",
-   "value": 66.1
+   "value": 65.5
   },
   {
    "id": "open-at2-E6",
-   "value": 13.8
+   "value": 13.6
   },
   {
    "id": "watched-E6",
@@ -264,7 +264,7 @@
   },
   {
    "id": "watched-E6-designertom",
-   "value": 9.1
+   "value": 9
   },
   {
    "id": "subs1k-E6-designertom",
@@ -280,7 +280,7 @@
   },
   {
    "id": "subs1k-E6-joindiveclub",
-   "value": 1.4
+   "value": 1.3
   },
   {
    "id": "subs-E6-joindiveclub",
@@ -293,6 +293,38 @@
   {
    "id": "chat-E6",
    "value": 127
+  },
+  {
+   "id": "watched-E7",
+   "value": 14.1
+  },
+  {
+   "id": "subs1k-E7",
+   "value": 0.5
+  },
+  {
+   "id": "watched-E7-joindiveclub",
+   "value": 18.9
+  },
+  {
+   "id": "subs1k-E7-joindiveclub",
+   "value": 1
+  },
+  {
+   "id": "subs-E7-joindiveclub",
+   "value": 1
+  },
+  {
+   "id": "watched-E7-designertom",
+   "value": 9.5
+  },
+  {
+   "id": "subs1k-E7-designertom",
+   "value": 0
+  },
+  {
+   "id": "subs-E7-designertom",
+   "value": 0
   },
   {
    "id": "peak-E7",
@@ -308,11 +340,11 @@
   },
   {
    "id": "recovery-peak-E1",
-   "value": 28.5
+   "value": 28.4
   },
   {
    "id": "mid-hold-E1",
-   "value": 14.6
+   "value": 14.5
   },
   {
    "id": "end-hold-E1",
@@ -320,7 +352,7 @@
   },
   {
    "id": "drop-E1-6",
-   "value": 8
+   "value": 7.9
   },
   {
    "id": "drop-min-E1-6",
@@ -368,7 +400,7 @@
   },
   {
    "id": "drop-E2-14",
-   "value": 2.7
+   "value": 2.8
   },
   {
    "id": "drop-min-E2-14",
@@ -376,7 +408,7 @@
   },
   {
    "id": "drop-E2-39",
-   "value": 2.5
+   "value": 2.4
   },
   {
    "id": "drop-min-E2-39",
@@ -384,11 +416,11 @@
   },
   {
    "id": "open-floor-E3",
-   "value": 10.6
+   "value": 10.7
   },
   {
    "id": "recovery-peak-E3",
-   "value": 26
+   "value": 26.1
   },
   {
    "id": "mid-hold-E3",
@@ -432,7 +464,7 @@
   },
   {
    "id": "open-floor-E4",
-   "value": 10.6
+   "value": 10.7
   },
   {
    "id": "recovery-peak-E4",
@@ -448,7 +480,7 @@
   },
   {
    "id": "drop-E4-9",
-   "value": 4.7
+   "value": 4.6
   },
   {
    "id": "drop-min-E4-9",
@@ -472,23 +504,23 @@
   },
   {
    "id": "open-floor-E5",
-   "value": 10.1
+   "value": 11.2
   },
   {
    "id": "recovery-peak-E5",
-   "value": 27.2
+   "value": 24
   },
   {
    "id": "mid-hold-E5",
-   "value": 17.9
+   "value": 16.7
   },
   {
    "id": "end-hold-E5",
-   "value": 11.9
+   "value": 8.5
   },
   {
    "id": "drop-E5-12",
-   "value": 5.8
+   "value": 5
   },
   {
    "id": "drop-min-E5-12",
@@ -496,23 +528,31 @@
   },
   {
    "id": "drop-E5-20",
-   "value": 3.4
+   "value": 7.4
   },
   {
    "id": "drop-min-E5-20",
    "value": 19
   },
   {
-   "id": "drop-E5-50",
-   "value": 4.2
+   "id": "drop-E5-28",
+   "value": 3.5
   },
   {
-   "id": "drop-min-E5-50",
-   "value": 48
+   "id": "drop-min-E5-28",
+   "value": 27
+  },
+  {
+   "id": "hold-E5-34",
+   "value": 3.5
+  },
+  {
+   "id": "hold-min-E5-34",
+   "value": 32
   },
   {
    "id": "hold-E5-56",
-   "value": 2.2
+   "value": 2.8
   },
   {
    "id": "hold-min-E5-56",
@@ -520,15 +560,15 @@
   },
   {
    "id": "open-floor-E6",
-   "value": 11.9
+   "value": 11.6
   },
   {
    "id": "recovery-peak-E6",
-   "value": 25.9
+   "value": 25.4
   },
   {
    "id": "mid-hold-E6",
-   "value": 15.8
+   "value": 15.9
   },
   {
    "id": "end-hold-E6",
@@ -543,100 +583,100 @@
    "value": 15
   },
   {
-   "id": "hold-E6-38",
-   "value": 2.2
-  },
-  {
-   "id": "hold-min-E6-38",
-   "value": 36
-  },
-  {
    "id": "drop-E6-48",
-   "value": 2.5
+   "value": 2.4
   },
   {
    "id": "drop-min-E6-48",
    "value": 46
   },
   {
-   "id": "drop-E6-94",
-   "value": 2.1
+   "id": "hold-E6-70",
+   "value": 2.4
   },
   {
-   "id": "drop-min-E6-94",
-   "value": 89
-  },
-  {
-   "id": "traffic-SUBSCRIBER",
-   "value": 4972
-  },
-  {
-   "id": "traffic-share-SUBSCRIBER",
-   "value": 54
-  },
-  {
-   "id": "traffic-NO_LINK_OTHER",
-   "value": 1128
-  },
-  {
-   "id": "traffic-share-NO_LINK_OTHER",
-   "value": 12.2
-  },
-  {
-   "id": "traffic-RELATED_VIDEO",
-   "value": 829
-  },
-  {
-   "id": "traffic-share-RELATED_VIDEO",
-   "value": 9
-  },
-  {
-   "id": "traffic-YT_OTHER_PAGE",
-   "value": 416
-  },
-  {
-   "id": "traffic-share-YT_OTHER_PAGE",
-   "value": 4.5
-  },
-  {
-   "id": "traffic-EXT_URL",
-   "value": 528
-  },
-  {
-   "id": "traffic-share-EXT_URL",
-   "value": 5.7
-  },
-  {
-   "id": "traffic-YT_CHANNEL",
-   "value": 502
-  },
-  {
-   "id": "traffic-share-YT_CHANNEL",
-   "value": 5.5
-  },
-  {
-   "id": "traffic-YT_SEARCH",
-   "value": 483
-  },
-  {
-   "id": "traffic-share-YT_SEARCH",
-   "value": 5.2
-  },
-  {
-   "id": "traffic-NOTIFICATION",
-   "value": 267
-  },
-  {
-   "id": "traffic-share-NOTIFICATION",
-   "value": 2.9
-  },
-  {
-   "id": "traffic-PLAYLIST",
+   "id": "hold-min-E6-70",
    "value": 67
   },
   {
+   "id": "drop-E6-77",
+   "value": 2.4
+  },
+  {
+   "id": "drop-min-E6-77",
+   "value": 73
+  },
+  {
+   "id": "traffic-SUBSCRIBER",
+   "value": 6789
+  },
+  {
+   "id": "traffic-share-SUBSCRIBER",
+   "value": 60.2
+  },
+  {
+   "id": "traffic-NO_LINK_OTHER",
+   "value": 1181
+  },
+  {
+   "id": "traffic-share-NO_LINK_OTHER",
+   "value": 10.5
+  },
+  {
+   "id": "traffic-RELATED_VIDEO",
+   "value": 862
+  },
+  {
+   "id": "traffic-share-RELATED_VIDEO",
+   "value": 7.6
+  },
+  {
+   "id": "traffic-YT_OTHER_PAGE",
+   "value": 439
+  },
+  {
+   "id": "traffic-share-YT_OTHER_PAGE",
+   "value": 3.9
+  },
+  {
+   "id": "traffic-EXT_URL",
+   "value": 555
+  },
+  {
+   "id": "traffic-share-EXT_URL",
+   "value": 4.9
+  },
+  {
+   "id": "traffic-YT_CHANNEL",
+   "value": 525
+  },
+  {
+   "id": "traffic-share-YT_CHANNEL",
+   "value": 4.7
+  },
+  {
+   "id": "traffic-YT_SEARCH",
+   "value": 524
+  },
+  {
+   "id": "traffic-share-YT_SEARCH",
+   "value": 4.6
+  },
+  {
+   "id": "traffic-NOTIFICATION",
+   "value": 304
+  },
+  {
+   "id": "traffic-share-NOTIFICATION",
+   "value": 2.7
+  },
+  {
+   "id": "traffic-PLAYLIST",
+   "value": 73
+  },
+  {
    "id": "traffic-share-PLAYLIST",
-   "value": 0.7
+   "value": 0.6
   },
   {
    "id": "traffic-END_SCREEN",
@@ -663,8 +703,16 @@
    "value": 0.1
   },
   {
+   "id": "traffic-IMMERSIVE_LIVE",
+   "value": 1
+  },
+  {
+   "id": "traffic-share-IMMERSIVE_LIVE",
+   "value": 0
+  },
+  {
    "id": "channel-views-designertom",
-   "value": 3810
+   "value": 4852
   },
   {
    "id": "channel-subs-designertom",
@@ -672,7 +720,7 @@
   },
   {
    "id": "channel-subs1k-designertom",
-   "value": 2.1
+   "value": 1.6
   },
   {
    "id": "channel-watched-designertom",
@@ -680,74 +728,74 @@
   },
   {
    "id": "channel-views-joindiveclub",
-   "value": 5393
+   "value": 6410
   },
   {
    "id": "channel-subs-joindiveclub",
-   "value": 17
+   "value": 19
   },
   {
    "id": "channel-subs1k-joindiveclub",
-   "value": 3.2
+   "value": 3
   },
   {
    "id": "channel-watched-joindiveclub",
-   "value": 11.2
+   "value": 12.4
   },
   {
    "id": "views-yt-all",
-   "value": 14107
+   "value": 14423
   },
   {
    "id": "views-x-all",
-   "value": 14992
+   "value": 15105
   },
   {
    "id": "share-x-all",
-   "value": 51.5
+   "value": 51.2
   },
   {
    "id": "views-total-all",
-   "value": 29099
+   "value": 29528
   }
  ],
  "attempts": 1,
  "items": [
   {
-   "id": "tighten-the-open",
+   "id": "tighten-cold-open",
    "category": "content",
-   "text": "E1 opened with 67.1 of every 100 watching but only 11.9 remained at the 2% mark. Another 8 of every 100 left early on, roughly 7 minutes in, around a stretch where the hosts said much of the plan was still in progress.",
-   "recommendation": "Test a cold open this week: lead with the single strongest demo clip in the first minutes and push housekeeping and roadmap talk later. Compare next week's hold at the 2% mark against E1's 11.9."
+   "text": "Openings leak hard: E1 held 67.1 of every 100 viewers near the start but only 11.9 at the 2% mark, and about 7.9 of every 100 left roughly 7 minutes in — timing approximate — around a loose 'pull back the curtain' stretch of setup talk.",
+   "recommendation": "Test a tighter cold open this week: name the episode's topics in the first minute, cut the meandering setup, and move the strongest segment up before the 7-minute point — then check whether more viewers survive past the 2% mark."
   },
   {
-   "id": "bring-back-the-e1-ask",
-   "category": "promotion",
-   "text": "On finished episodes, subscribers per 1,000 views fell from 8.9 on E1 to 0 on E3 and 3.1 on E4. On E1, DesignerTom converted at 13.2 while Dive Club sat at 5.6; by E4, DesignerTom was at 0 while Dive Club got 5.",
-   "recommendation": "Rewatch E1 and note exactly how and when you asked people to subscribe, then script that same ask into this week's show on both channels, plus an on-screen subscribe prompt timed near the early audience rebound."
-  },
-  {
-   "id": "convert-the-x-crowd",
-   "category": "distribution",
-   "text": "X carries 51.5 of every 100 plays across the show — 14,992 plays against 14,107 YouTube views — but subscriber gains only happen on YouTube, where Dive Club has gained 17 and DesignerTom 8 in total.",
-   "recommendation": "Pin the YouTube link in every X broadcast this week and call it out on air once, early. Then watch whether YouTube views from outside links climb above the current 528."
-  },
-  {
-   "id": "activate-dead-surfaces",
-   "category": "distribution",
-   "text": "54 of every 100 YouTube views come from existing subscribers. Playlists bring 0.7 of every 100, end screens 0.1, and Shorts 0, while related videos bring 9 and search brings 5.2.",
-   "recommendation": "Add an end screen to every past episode pointing at the newest one, build a single show playlist, and publish a few Shorts cut from the strongest clips this week to test whether any of these surfaces starts pulling new viewers."
-  },
-  {
-   "id": "trim-the-middle",
+   "id": "trim-mid-show-demos",
    "category": "content",
-   "text": "E4 lost 6.1 of every 100 viewers about two fifths of the way in — roughly 48 minutes into the show, near a long rambling demo story — and closed with only 6.3 still watching near the end, the weakest finish among completed episodes.",
-   "recommendation": "Time-box every demo segment before going live and cut to the payoff faster. Test whether a tighter middle half lifts the share still watching near the end above E2's 7."
+   "text": "E4 shed 6.1 of every 100 viewers about two-fifths of the way in, roughly 48 minutes into a long back-and-forth demo story, and only 6.3 of every 100 were still watching near the end — the weakest finish among the finished episodes.",
+   "recommendation": "Tighten long show-and-tell segments: cap each demo, add a spoken reset telling viewers what's coming next, and test placing a strong reveal near the middle of the next show to see if mid-show exits shrink."
   },
   {
-   "id": "rebuild-chat-energy",
+   "id": "redirect-x-audience",
+   "category": "distribution",
+   "text": "X carries more watching than YouTube: 15,105 plays on X, 51.2 of every 100 of all watching, against 14,423 YouTube views — but subscriber growth only happens on YouTube.",
+   "recommendation": "Each show, tell X viewers by name where the full replay and clips live on YouTube, pin that pointer at the top of the X thread, and repeat the redirect once mid-show — then watch whether YouTube views rise next episode."
+  },
+  {
+   "id": "activate-empty-surfaces",
+   "category": "distribution",
+   "text": "60.2 of every 100 YouTube views come from existing subscribers. Discovery surfaces bring little: Shorts drove 2 views, end screens 8, playlists 73 — while related videos brought 862 and search 524.",
+   "recommendation": "Cut a few Shorts from each episode's best moment, add an end screen to every upload, and build a show playlist this week — these surfaces are nearly empty now, so test whether they start pulling in non-subscriber views."
+  },
+  {
+   "id": "lean-on-dive-club",
    "category": "audience",
-   "text": "Peak live viewers went from 90 on E1 down to 53 on E3, then back up to 72 by E7 — but chat messages kept falling, from 383 on E1 to 92 on E7, even as viewers came back.",
-   "recommendation": "Plan two fixed chat moments per show this week — a named shout-out segment and one direct question with a poll — and check whether chat climbs back above E5's 100 messages."
+   "text": "Dive Club outperforms DesignerTom across the run: 3 subscribers per 1,000 views vs 1.6, average share watched 12.4 vs 9.6, and 19 subscribers gained vs 8, on 6,410 vs 4,852 views.",
+   "recommendation": "Make Dive Club the primary home: put the on-air subscribe ask there, and test giving DesignerTom a distinct job — short design breakdown clips instead of the same full replay — then compare each channel's numbers after the next episode."
+  },
+  {
+   "id": "repeat-e1-subscribe-move",
+   "category": "promotion",
+   "text": "Among finished episodes, E1 converted best: 8.9 subscribers per 1,000 views blended, and 13.2 on DesignerTom. E3 converted 0 on both channels, and E4 got 5.8 on Dive Club but 0 on DesignerTom.",
+   "recommendation": "Rewatch E1 to spot what nudged people to subscribe — the ask, the guest, the format — and repeat that exact move this week; add a spoken subscribe prompt early in the show, when the rebound crowd is back, and see if conversions recover."
   }
  ]
 }

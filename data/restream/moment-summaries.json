@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-28T15:42:20.044Z",
+ "updatedAt": "2026-08-30T08:17:16.189Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -133,6 +133,14 @@
   "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.94": {
    "summary": "Hosts wrap up the show, praising point-and-click design tools, thanking community submissions, plugging the weekly livestream, teasing next week's prototypes, and naming a winner.",
    "writtenAt": "2026-08-28T15:42:20.042Z"
+  },
+  "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|drop|0.28": {
+   "summary": "Hosts weigh Figma and Lovable valuations as prototyping signals, then Nad's recorded message announces a funding round and asks why so few designers found startups.",
+   "writtenAt": "2026-08-30T08:17:16.188Z"
+  },
+  "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|hold|0.34": {
+   "summary": "Hosts discuss designers building lookalike tools and leaning into distribution, then turn to Benji's Grockbot release, its mascot animation, and one host's preferred OpenClaw setup.",
+   "writtenAt": "2026-08-30T08:17:16.189Z"
   }
  }
 }

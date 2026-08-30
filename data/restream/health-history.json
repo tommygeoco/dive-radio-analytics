@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-29T13:09:23.712Z",
+  "updatedAt": "2026-08-30T08:15:50.152Z",
   "entries": [
     {
       "date": "2026-08-22",
@@ -3150,6 +3150,499 @@
       "dataGeneratedAt": "2026-08-29T13:08:56.455Z",
       "dataThrough": "2026-08-29T13:08:54.310Z",
       "createdAt": "2026-08-29T13:09:23.712Z"
+    },
+    {
+      "date": "2026-08-30",
+      "score": 45,
+      "weightedMean": 47.8,
+      "deviation": -2.8,
+      "subScores": {
+        "growth": {
+          "score": 40,
+          "baseWeight": 0.25,
+          "effectiveWeight": 0.3864,
+          "absoluteScale": false,
+          "measures": {
+            "firstWeek": {
+              "id": "firstWeek",
+              "value": 0.8,
+              "typical": 1,
+              "sample": 3,
+              "score": 40,
+              "reason": null,
+              "ageBasis": "ageFree",
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "2026-08-20-dive-radio-the-mascot-industrial-complex"
+              ],
+              "excluded": [],
+              "episodeRead": null,
+              "readDate": null,
+              "note": null
+            },
+            "sameAge": {
+              "id": "sameAge",
+              "value": null,
+              "typical": null,
+              "sample": 2,
+              "score": null,
+              "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
+              "ageBasis": null,
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-08-20-dive-radio-the-mascot-industrial-complex"
+              ],
+              "excluded": [
+                {
+                  "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                  "why": "no reading at this age"
+                },
+                {
+                  "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                  "why": "promo outlier"
+                },
+                {
+                  "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                  "why": "no reading at this age"
+                },
+                {
+                  "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                  "why": "no reading at this age"
+                }
+              ],
+              "episodeRead": null,
+              "readDate": null,
+              "note": null
+            }
+          },
+          "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+        },
+        "audienceQuality": {
+          "score": null,
+          "baseWeight": 0.2,
+          "effectiveWeight": 0,
+          "absoluteScale": false,
+          "measures": {
+            "engagement": {
+              "id": "engagement",
+              "value": null,
+              "typical": null,
+              "sample": 2,
+              "score": null,
+              "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
+              "ageBasis": null,
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-08-20-dive-radio-the-mascot-industrial-complex"
+              ],
+              "excluded": [
+                {
+                  "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                  "why": "no reading at this age"
+                },
+                {
+                  "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                  "why": "promo outlier"
+                },
+                {
+                  "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                  "why": "no reading at this age"
+                },
+                {
+                  "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                  "why": "no reading at this age"
+                }
+              ],
+              "episodeRead": null,
+              "readDate": null,
+              "note": null
+            },
+            "watching": {
+              "id": "watching",
+              "value": null,
+              "typical": null,
+              "sample": 2,
+              "score": null,
+              "reason": "Fewer than three earlier episodes to compare with.",
+              "ageBasis": null,
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+              ],
+              "excluded": [
+                {
+                  "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                  "why": "promo outlier"
+                }
+              ],
+              "episodeRead": null,
+              "readDate": null,
+              "note": null
+            }
+          },
+          "reason": "Only 2 earlier episodes were tracked this early; at least three are needed. Fewer than three earlier episodes to compare with."
+        },
+        "reachEfficiency": {
+          "score": 35,
+          "baseWeight": 0.15,
+          "effectiveWeight": 0.2318,
+          "absoluteScale": false,
+          "measures": {
+            "announceToPlay": {
+              "id": "announceToPlay",
+              "value": 13,
+              "typical": 31.8,
+              "sample": 4,
+              "score": 20,
+              "reason": null,
+              "ageBasis": "mature",
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+              ],
+              "excluded": [],
+              "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "readDate": "2026-08-30",
+              "note": "compared with earlier episodes as they stand now, not at the same age"
+            },
+            "xShare": {
+              "id": "xShare",
+              "value": 46.7,
+              "typical": 47.8,
+              "sample": 4,
+              "score": 49,
+              "reason": null,
+              "ageBasis": "mature",
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+              ],
+              "excluded": [],
+              "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "readDate": "2026-08-30",
+              "note": "compared with earlier episodes as they stand now, not at the same age"
+            }
+          },
+          "reason": "read from The Mascot Industrial Complex + Live Cal, the latest finished episode"
+        },
+        "livePull": {
+          "score": 40,
+          "baseWeight": 0.15,
+          "effectiveWeight": 0.2318,
+          "absoluteScale": false,
+          "measures": {
+            "peak": {
+              "id": "peak",
+              "value": 72,
+              "typical": 71,
+              "sample": 5,
+              "score": 51,
+              "reason": null,
+              "ageBasis": "ageFree",
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "2026-08-20-dive-radio-the-mascot-industrial-complex"
+              ],
+              "excluded": [
+                {
+                  "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                  "why": "promo outlier"
+                }
+              ],
+              "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "readDate": null,
+              "note": null
+            },
+            "chat": {
+              "id": "chat",
+              "value": 92,
+              "typical": 167,
+              "sample": 5,
+              "score": 28,
+              "reason": null,
+              "ageBasis": "ageFree",
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "2026-08-20-dive-radio-the-mascot-industrial-complex"
+              ],
+              "excluded": [
+                {
+                  "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                  "why": "promo outlier"
+                }
+              ],
+              "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "readDate": null,
+              "note": null
+            }
+          },
+          "reason": null
+        },
+        "conversion": {
+          "score": null,
+          "baseWeight": 0.1,
+          "effectiveWeight": 0,
+          "absoluteScale": false,
+          "measures": {
+            "subscribers": {
+              "id": "subscribers",
+              "value": null,
+              "typical": null,
+              "sample": 2,
+              "score": null,
+              "reason": "Fewer than three earlier episodes to compare with.",
+              "ageBasis": null,
+              "absoluteScale": false,
+              "window": [
+                "2026-07-17-dive-radio-bumpy-takeoff",
+                "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+              ],
+              "excluded": [
+                {
+                  "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                  "why": "promo outlier"
+                }
+              ],
+              "episodeRead": null,
+              "readDate": null,
+              "note": null
+            }
+          },
+          "reason": "Fewer than three earlier episodes to compare with."
+        },
+        "sentiment": {
+          "score": 100,
+          "baseWeight": 0.15,
+          "effectiveWeight": 0.15,
+          "absoluteScale": true,
+          "measures": {
+            "balance": {
+              "id": "balance",
+              "value": 100,
+              "typical": null,
+              "sample": 0,
+              "score": 100,
+              "reason": null,
+              "ageBasis": "ageFree",
+              "absoluteScale": true,
+              "window": [],
+              "excluded": [],
+              "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "readDate": null,
+              "note": null
+            },
+            "commentRate": {
+              "id": "commentRate",
+              "value": 0.2,
+              "typical": null,
+              "sample": 0,
+              "score": null,
+              "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
+              "ageBasis": null,
+              "absoluteScale": false,
+              "window": [],
+              "excluded": [],
+              "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "readDate": null,
+              "note": null
+            }
+          },
+          "reason": "Only 1 episode has complete replies and watch counts; at least four are required."
+        }
+      },
+      "headline": "Reach, growth, and live pull look fragile; goodwill reads well but rests on very little data.",
+      "pros": [
+        {
+          "text": "The latest show peaked at 72 live viewers, holding about level with earlier shows.",
+          "factId": "latest-live-peak"
+        },
+        {
+          "text": "6 recent comments were clearly positive, though X replies are missing, so this goodwill read is thin.",
+          "factId": "recent-positive-feedback"
+        }
+      ],
+      "cons": [
+        {
+          "text": "13% of X announce impressions became plays for the latest finished episode, well under earlier episodes as they stand now.",
+          "factId": "latest-finished-announce-play"
+        },
+        {
+          "text": "The latest show drew 92 chat messages, well below what earlier shows typically drew.",
+          "factId": "latest-live-chat"
+        }
+      ],
+      "drivers": [
+        "Growth, reach, and live turnout all scored on the weak side, and together they carry most of the weight in today's read.",
+        "Goodwill scored perfectly but rests on a handful of comments with X replies missing, so I trusted it less and settled slightly below the weighted mean.",
+        "Audience quality and subscribers could not be checked because too few earlier episodes exist to compare with; their absence is not a weakness."
+      ],
+      "facts": [
+        {
+          "id": "clean-first-weeks",
+          "value": 3,
+          "display": "3",
+          "text": "Only 3 episodes have clean first-week records.",
+          "sources": [
+            "data.json#showTrend.week1VelocityByEpisode"
+          ]
+        },
+        {
+          "id": "latest-clean-first-week",
+          "value": 1189,
+          "display": "1,189",
+          "text": "The latest clean first week reached 1,189 YouTube views.",
+          "sources": [
+            "data.json#showTrend.week1VelocityByEpisode"
+          ]
+        },
+        {
+          "id": "latest-finished-announce-play",
+          "value": 13,
+          "display": "13%",
+          "text": "13% of the latest finished episode's X announce impressions became plays.",
+          "sources": [
+            "data.json#episodes.2026-08-20-dive-radio-the-mascot-industrial-complex.latest"
+          ]
+        },
+        {
+          "id": "typical-announce-play",
+          "value": 31.8,
+          "display": "31.8%",
+          "text": "Earlier clean episodes typically turned 31.8% of X announce impressions into plays.",
+          "sources": [
+            "data.json#episodes.latest"
+          ]
+        },
+        {
+          "id": "latest-finished-x-share",
+          "value": 46.7,
+          "display": "46.7%",
+          "text": "X supplied 46.7% of watching for the latest finished episode.",
+          "sources": [
+            "data.json#episodes.2026-08-20-dive-radio-the-mascot-industrial-complex.latest"
+          ]
+        },
+        {
+          "id": "latest-live-peak",
+          "value": 72,
+          "display": "72",
+          "text": "The latest show peaked at 72 live viewers.",
+          "sources": [
+            "data.json#episodes.2026-08-28-dive-radio-steal-these-ai-design-pattern.live.peak"
+          ]
+        },
+        {
+          "id": "typical-live-peak",
+          "value": 71,
+          "display": "71",
+          "text": "Earlier shows typically peaked at 71 live viewers.",
+          "sources": [
+            "data.json#episodes.live.peak"
+          ]
+        },
+        {
+          "id": "latest-live-chat",
+          "value": 92,
+          "display": "92",
+          "text": "The latest show drew 92 chat messages.",
+          "sources": [
+            "data.json#episodes.2026-08-28-dive-radio-steal-these-ai-design-pattern.live.chatMessages"
+          ]
+        },
+        {
+          "id": "typical-live-chat",
+          "value": 167,
+          "display": "167",
+          "text": "Earlier shows typically drew 167 chat messages.",
+          "sources": [
+            "data.json#episodes.live.chatMessages"
+          ]
+        },
+        {
+          "id": "recent-positive-feedback",
+          "value": 6,
+          "display": "6",
+          "text": "6 recent comments were clearly positive.",
+          "sources": [
+            "data.json#episodes[-3:].comments.list"
+          ],
+          "requiredPhrase": "X replies are missing"
+        },
+        {
+          "id": "recent-mixed-feedback",
+          "value": 0,
+          "display": "0",
+          "text": "0 recent comments mixed praise with a concern.",
+          "sources": [
+            "data.json#episodes[-3:].comments.list"
+          ],
+          "requiredPhrase": "X replies are missing"
+        },
+        {
+          "id": "recent-feedback-people",
+          "value": 6,
+          "display": "6",
+          "text": "6 people left recent directional feedback.",
+          "sources": [
+            "data.json#episodes[-3:].comments.list"
+          ],
+          "requiredPhrase": "X replies are missing"
+        },
+        {
+          "id": "latest-comment-rate",
+          "value": 0.2,
+          "display": "0.2",
+          "text": "The latest comparable episode drew 0.2 commenters for each thousand watches.",
+          "sources": [
+            "data.json#episodes.2026-08-28-dive-radio-steal-these-ai-design-pattern.comments.commentersPer1k"
+          ],
+          "requiredPhrase": "only one episode"
+        },
+        {
+          "id": "data-age-hours",
+          "value": 0,
+          "display": "0",
+          "text": "The newest audience numbers were refreshed 0 hours ago.",
+          "sources": [
+            "data.json#episodes.latest.ts"
+          ]
+        }
+      ],
+      "checkSet": [
+        "growth",
+        "reachEfficiency",
+        "livePull",
+        "sentiment"
+      ],
+      "checkSetChange": null,
+      "provider": "anthropic",
+      "model": "claude-fable-5",
+      "promptVersion": 4,
+      "promptHash": "be61702427aa4ad5cc2475207bd441d62c674fc0d5aa7c8654d237ba4e87a8dc",
+      "formulaVersion": "health-v3",
+      "bundleHash": "522e4a5b8fe130639f3a396c6a517031f74fd2559f412186d9e209c8163117c5",
+      "dataGeneratedAt": "2026-08-30T08:15:13.251Z",
+      "dataThrough": "2026-08-30T08:15:11.081Z",
+      "createdAt": "2026-08-30T08:15:50.152Z"
     }
   ]
 }
