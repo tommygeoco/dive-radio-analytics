@@ -325,6 +325,26 @@ export function computeAll({ now = Date.now() } = {}) {
     // Strategy-impact categories (owner directive 2026-08-22): each insight is
     // tagged by the DECISION it informs, not the data type it reads.
     for (const i of insights) i.category = categoryFor(i.id);
+  } else {
+    // Required deterministic insights (2026-08-31): recommendations replace the
+    // deterministic set wholesale, but insights the validator LOCKS to a
+    // baselines gate are non-negotiable. When paceReady is true (data.baselines
+    // has a same-age pace with rank), the deterministic pace-rank insight MUST
+    // be present — the model does not have the authority to skip a gated
+    // honesty claim. Fixes chain W10: 2026-08-31 publish halted with
+    //   FAIL insight pace-rank: expected one grounded insight, found 0
+    // when recommendations shipped seven items, none of them the required
+    // pace-rank. Only the injected pace-rank gets a category assigned here —
+    // recommendation items already carry model-authored categories and must
+    // not be overwritten.
+    if (!insights.some((i) => i.id === "pace-rank")) {
+      const deterministic = buildInsights(dive, { flags });
+      const paceReq = deterministic.find((i) => i.id === "pace-rank");
+      if (paceReq) {
+        paceReq.category = categoryFor(paceReq.id);
+        insights.push(paceReq);
+      }
+    }
   }
   const catRank = { content: 0, distribution: 1, promotion: 2, audience: 3, data: 4 };
   insights.sort((a, b) => (catRank[a.category] ?? 9) - (catRank[b.category] ?? 9));

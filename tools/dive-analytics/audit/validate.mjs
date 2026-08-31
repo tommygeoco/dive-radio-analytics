@@ -896,7 +896,18 @@ function premiereMs(dateStr) {
     }
     const storeIds = (store.items || []).map((r) => r.id).filter((id) => !(data.insightsStale || []).some((x) => x.id === id)).sort();
     const dataIds = (data.insights || []).map((i) => i.id).sort();
-    if (storeIds.length && JSON.stringify(storeIds) !== JSON.stringify(dataIds)) {
+    // Definition-lock: every store item ships (minus stale) and nothing else
+    // ships EXCEPT required deterministic insights that the page must render
+    // regardless of the model store. Currently: `pace-rank` (locked in the
+    // insight pace-rank check below to the baselines gate — when paceReady is
+    // true it MUST be present on the page, and the model store is not the
+    // authority for it). Preserves store-vs-page match for model-authored
+    // items while acknowledging the deterministic honesty gate. (2026-08-31.)
+    const REQUIRED_DETERMINISTIC_INSIGHTS = new Set(["pace-rank"]);
+    const missingFromData = storeIds.filter((id) => !dataIds.includes(id));
+    const extraInData = dataIds.filter((id) => !storeIds.includes(id));
+    const unauthorizedExtras = extraInData.filter((id) => !REQUIRED_DETERMINISTIC_INSIGHTS.has(id));
+    if (storeIds.length && (missingFromData.length || unauthorizedExtras.length)) {
       bad++; fail("recommendations: data.json insights do not match the saved store minus stale items — definition-lock broken");
     }
     for (const item of store.items || []) {
