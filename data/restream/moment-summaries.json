@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-30T08:17:16.189Z",
+ "updatedAt": "2026-08-31T22:16:08.394Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -141,6 +141,22 @@
   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|hold|0.34": {
    "summary": "Hosts discuss designers building lookalike tools and leaning into distribution, then turn to Benji's Grockbot release, its mascot animation, and one host's preferred OpenClaw setup.",
    "writtenAt": "2026-08-30T08:17:16.189Z"
+  },
+  "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.07": {
+   "summary": "Hosts open the show joking about early beta access to a Figma feature and working from home, then set up the main topic: interface patterns in agentic AI design tools.",
+   "writtenAt": "2026-08-31T22:16:08.393Z"
+  },
+  "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.18": {
+   "summary": "A host nominates designer Alex for designer of the week, praising his work on Honk and other apps, while the other host screen-shares a live voting page with competing progress bars.",
+   "writtenAt": "2026-08-31T22:16:08.394Z"
+  },
+  "2026-08-28-dive-radio-steal-these-ai-design-pattern|hold|0.37": {
+   "summary": "Hosts tour a new design community site by Charles, signing up live on stream, praising its design, debating how to label experiments versus work, and offering viewers an invite.",
+   "writtenAt": "2026-08-31T22:16:08.394Z"
+  },
+  "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.58": {
+   "summary": "A host walks through AI patterns: progressive disclosure in chatbots, Paper's corner working animation, and prompting an agent inside Framer to add a pulse to a hero pill.",
+   "writtenAt": "2026-08-31T22:16:08.394Z"
   }
  }
 }
