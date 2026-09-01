@@ -67,7 +67,7 @@ L2 synthesis   tools/dive-analytics/baselines.mjs   (pure: windows, reading rule
                tools/dive-analytics/watch-moments.mjs (pure functions, imported by build-data)
      │
 L3 model       scripts/restream/comments-classify.mjs → comments-classified.json
- (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v4: three lenses, PRD v10)
+ (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v4: three lenses, PRD v10; swing-fitted bands and the whole live session, §11)
   facts)        tools/dive-analytics/health-verify.mjs → health-verify.json + audit/HEALTH-VERIFY.md (deterministic critic loop; never blocks)
                tools/dive-analytics/recommendations.mjs → recommendations.json
                tools/dive-analytics/moment-summaries.mjs → moment-summaries.json
@@ -153,3 +153,5 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - **basis / note** — `ageBasis` (sameAge / mature / ageFree) is the field; the reader sees its fixed `note` at the click layer. The word "basis" itself is banned on the page.
 - **window-relative** — each episode-health score compares the episode only with episodes that aired *before* it. Two scores are not on one baseline; a row of them answers "did each beat the show's own bar at the time", not "which episode was best".
 - **glance / click / About** — the three layers: a sentence the owners read in seconds; the detail behind it on click/hover; the methodology in "About this data".
+- **swing / bands / state** (PRD v10 §11, rule 23) — a measure's swing is how much it normally moves between the peers that formed its typical (median absolute deviation as a % of the typical); a check's bands are half its measures' median swing either side of 50, clamped to ±5…±15 points; its state word (healthy / steady / fragile / waiting) follows its bands. The writer stamps all three; nothing on the page applies a fixed cut-off to a check that carries bands.
+- **superseded / rederivedFrom** — on the day a formula ships, the day's older-formula read is moved byte-identical under `store.superseded[]` and the new read names it; the validator accepts exactly that shape. `chain-heal.mjs` merges the store by day when a stash pop left it conflicted.

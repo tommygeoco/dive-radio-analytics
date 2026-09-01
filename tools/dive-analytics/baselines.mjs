@@ -38,10 +38,18 @@ export const TREND_MIN_WORD = 4;    // a direction WORD needs four episodes; thr
 export const CARRIED_WEIGHT = 0.5;  // a measure read from an older episode than the newest counts half
 export const LAUNCH_AGE = 7;        // launch read: YouTube views at the end of the first week
 export const COOL_SPAN_DAYS = 2;    // cool-off: the newest episode's growth over its last two days
+// PRD v10 addendum (2026-09-01 evening, rule 23): bands adapt to the show's
+// own swing on each check, live turnout and participation read the whole
+// live session, reach reads YouTube discovery
+export const SWING_MIN_PCT = 10;    // a check's band is never narrower than ±10 % (the fixed bands: 45 / 55)
+export const SWING_MAX_PCT = 30;    // and never wider than ±30 %, so a noisy measure can still read fragile or healthy
+export const HOLD_MINUTES = 10;     // hold rate: the live audience over the last ten minutes against the peak
+export const DISCOVERY_SOURCES = Object.freeze(["YT_SEARCH", "RELATED_VIDEO", "SHORTS", "BROWSE"]); // YouTube found it for the viewer
 
 export const CONSTANTS = Object.freeze({
   WINDOW_N, MIN_PEERS, SLOPE_N, QUIET_ZONE_PCT, BANDS, MATURITY_DAYS, READ_DAYS,
   OUTLIER_MULTIPLE, SNAPSHOT_TOL, HISTORY_TOL, TREND_N, TREND_MIN_WORD, CARRIED_WEIGHT, LAUNCH_AGE, COOL_SPAN_DAYS,
+  SWING_MIN_PCT, SWING_MAX_PCT, HOLD_MINUTES, DISCOVERY_SOURCES,
 });
 
 export const NOTES = Object.freeze({
@@ -59,7 +67,12 @@ export const NOTES = Object.freeze({
   noLaunchReading: "No reading at the launch age.",
   fewForWord: "Three episodes show the slope; a direction word needs four.",
   readFromPromo: (title) => `read from ${title}, the latest finished episode — the newest episode's own read is promo-driven`,
+  // rule 23: the show's usual swing on a measure, worded once for the click layer
+  swing: (pct) => `the show’s usual swing on this is about ±${pct}%`,
 });
+// check states (rule 23): one place, the writer stamps them, the page and the
+// verifier copy them
+export const STATE_WORDS = Object.freeze({ healthy: "healthy", steady: "steady", fragile: "fragile", waiting: "waiting" });
 
 // direction words (PRD v10): one place, the page and Slack copy them verbatim
 export const DIRECTION_WORDS = Object.freeze({ building: "building", holding: "holding", softening: "softening", mixed: "mixed" });
@@ -385,16 +398,22 @@ export const TREND_MEASURES = Object.freeze([
   { key: "watching", check: "audienceQuality", basis: "mature", family: "views" },
   { key: "exposureWeekOne", check: "reachEfficiency", basis: "sameAge", family: "reach" },
   { key: "announceToPlay", check: "reachEfficiency", basis: "mature", family: "reach" },
+  { key: "discoveryShare", check: "reachEfficiency", basis: "mature", family: "views" },
   { key: "liveAverage", check: "livePull", basis: "ageFree", family: "live" },
   { key: "livePeak", check: "livePull", basis: "ageFree", family: "live" },
+  { key: "liveViewers", check: "livePull", basis: "ageFree", family: "live" },
+  { key: "minutesWatched", check: "livePull", basis: "ageFree", family: "live" },
   { key: "chattersPer100", check: "participation", basis: "ageFree", family: "live" },
   { key: "messagesPerHour", check: "participation", basis: "ageFree", family: "live" },
+  { key: "minutesPerViewer", check: "participation", basis: "ageFree", family: "live" },
+  { key: "holdRate", check: "participation", basis: "ageFree", family: "live" },
   { key: "subscribers", check: "conversion", basis: "mature", family: "views" },
 ]);
 export function computeDirection(episodes, flags, {
   weekValueOf = (e) => (Number.isFinite(e.metrics?.week1Velocity) ? e.metrics.week1Velocity : null),
   watchOf = (e) => (Number.isFinite(e.watch?.avgPercent) ? e.watch.avgPercent : null),
   subsOf = (e) => (Number.isFinite(e.subsPer1k) ? e.subsPer1k : null),
+  discoveryOf = (e) => (Number.isFinite(e.discoveryShare) ? e.discoveryShare : null),
 } = {}) {
   const cleanFor = (family) => (e) => !flaggedOn(flags, e.slug, UNIT_FAMILIES[family]);
   const views = cleanFor("views"), reach = cleanFor("reach"), live = cleanFor("live");
@@ -408,10 +427,15 @@ export function computeDirection(episodes, flags, {
     watching: (e) => (views(e) && mature(e) ? watchOf(e) : null),
     exposureWeekOne: (e) => (reach(e) && !e.partialHistory ? dayValue(e, MATURITY_DAYS.xAnnounce, xImpressionsOf) : null),
     announceToPlay: (e) => (reach(e) && finished(e) ? (e.latest.xPlays / e.latest.xImpressions) * 100 : null),
+    discoveryShare: (e) => (views(e) && mature(e) ? discoveryOf(e) : null),
     liveAverage: (e) => (live(e) && Number.isFinite(e.live?.avg) ? e.live.avg : null),
     livePeak: (e) => (live(e) && Number.isFinite(e.live?.peak) ? e.live.peak : null),
+    liveViewers: (e) => (live(e) && Number.isFinite(e.live?.liveViews) && e.live.liveViews > 0 ? e.live.liveViews : null),
+    minutesWatched: (e) => (live(e) && Number.isFinite(e.live?.watchedMin) && e.live.watchedMin > 0 ? e.live.watchedMin : null),
     chattersPer100: (e) => (live(e) ? liveRatesOf(e)?.chattersPer100 ?? null : null),
     messagesPerHour: (e) => (live(e) ? liveRatesOf(e)?.messagesPerHour ?? null : null),
+    minutesPerViewer: (e) => (live(e) ? liveDepthOf(e)?.minutesPerViewer ?? null : null),
+    holdRate: (e) => (live(e) ? liveDepthOf(e)?.holdRate ?? null : null),
     subscribers: (e) => (views(e) && mature(e) ? subsOf(e) : null),
   };
   const measures = TREND_MEASURES.map((m) => trendFor(m.key, episodes, valueOf[m.key], { basis: m.basis, check: m.check }));
@@ -443,6 +467,58 @@ export function computeOutlook(episodes, flags, direction) {
 //
 // Participation normalized so a 95-minute show and a 124-minute show compare:
 // chatters per 100 peak viewers, and chat messages per hour.
+// --- rule 23: bands that follow the show's own swing -------------------------
+//
+// swingOf: the median absolute deviation of the peers from their typical, as a
+// whole-percent share of the typical — how much this measure normally moves
+// from episode to episode. bandsFor: half that swing in score points (a score
+// is 50 × own / typical), never narrower than the fixed bands (±5 points =
+// ±10 %) and never wider than ±15 points (±30 %). stateOf: the check's word.
+export function swingOf(values, typical) {
+  if (!Number.isFinite(typical) || typical <= 0 || !Array.isArray(values)) return null;
+  const dev = values.filter(Number.isFinite).map((v) => Math.abs(v - typical));
+  if (dev.length < MIN_PEERS) return null;
+  return Math.round((trueMedian(dev) / typical) * 100);
+}
+export function bandsFor(swing) {
+  const pct = Math.min(SWING_MAX_PCT, Math.max(SWING_MIN_PCT, Number.isFinite(swing) ? swing : SWING_MIN_PCT));
+  return { healthy: 50 + pct / 2, steady: 50 - pct / 2 };
+}
+export function stateOf(score, bands = BANDS) {
+  if (!Number.isFinite(score)) return STATE_WORDS.waiting;
+  if (score >= bands.healthy) return STATE_WORDS.healthy;
+  if (score >= bands.steady) return STATE_WORDS.steady;
+  return STATE_WORDS.fragile;
+}
+
+// --- live depth (rule 23): how long each live viewer stayed, and how much of
+// the peak was still watching over the last HOLD_MINUTES minutes ---
+export function liveDepthOf(episode) {
+  const l = episode?.live;
+  if (!l || !Number.isFinite(l.peak) || l.peak <= 0) return null;
+  const minutesPerViewer = Number.isFinite(l.watchedMin) && l.watchedMin > 0 && Number.isFinite(l.liveViews) && l.liveViews > 0
+    ? round1(l.watchedMin / l.liveViews) : null;
+  const series = Array.isArray(l.series) ? l.series.filter((p) => Number.isFinite(p?.v)) : [];
+  const tail = series.slice(-HOLD_MINUTES);
+  const holdRate = tail.length >= HOLD_MINUTES ? round1((tail.reduce((sum, p) => sum + p.v, 0) / tail.length) / l.peak * 100) : null;
+  return { minutesPerViewer, holdRate };
+}
+
+// --- discovery share (rule 23): the share of an episode's YouTube views that
+// YouTube itself brought — search, suggested videos, Shorts, browse — blended
+// across channels by views. Null when a channel record carries no traffic
+// sources (the daily history lines do not), so the measure reads mature.
+export function discoveryShareOf(channels) {
+  let discovered = 0, views = 0;
+  for (const ch of Object.values(channels || {})) {
+    const t = ch?.totals ?? ch;
+    if (!t || !Number.isFinite(t.views) || t.views <= 0 || !Array.isArray(ch?.trafficSources)) continue;
+    views += t.views;
+    discovered += ch.trafficSources.filter((s) => DISCOVERY_SOURCES.includes(s.insightTrafficSourceType)).reduce((sum, s) => sum + (Number.isFinite(s.views) ? s.views : 0), 0);
+  }
+  return views > 0 ? round1((discovered / views) * 100) : null;
+}
+
 export function liveRatesOf(episode) {
   const l = episode?.live;
   if (!l || !Number.isFinite(l.peak) || l.peak <= 0) return null;

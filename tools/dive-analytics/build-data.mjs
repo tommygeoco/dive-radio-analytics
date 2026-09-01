@@ -16,7 +16,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // PRD v9 W22a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
-import { computeBaselines, anomalyFlags, paceFor, snapshotAt, subsPer1kOf, LAUNCH_AGE, ytViewsOf } from "./baselines.mjs";
+import { computeBaselines, anomalyFlags, paceFor, snapshotAt, subsPer1kOf, LAUNCH_AGE, ytViewsOf, discoveryShareOf } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -502,6 +502,8 @@ function attachWatch(dive) {
     // PRD v10: subscribers per thousand analytics views for the direction
     // lens (the same definition health.mjs and ratings.mjs read)
     e.subsPer1k = (() => { const v = subsPer1kOf(j.channels); return Number.isFinite(v) ? Math.round(v * 10) / 10 : null; })();
+    // rule 23: the share of YouTube views that YouTube found for the viewer (search, suggested, Shorts, browse) — one definition, baselines.discoveryShareOf
+    e.discoveryShare = discoveryShareOf(j.channels);
     e.watch = {
       channels: chans.map(([k]) => k),
       // per-channel split (owner directive 2026-08-23): the blend never hides

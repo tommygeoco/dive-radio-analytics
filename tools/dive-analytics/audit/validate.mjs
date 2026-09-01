@@ -955,16 +955,31 @@ function premiereMs(dateStr) {
       const promptHash = createHash("sha256").update(prompt).digest("hex");
 
       // Strong local append-only guard: every entry already committed at HEAD
-      // must remain byte-identical; a working run may add at most today's row.
+      // must remain byte-identical. Two honest exceptions (PRD v10 §11): a
+      // committed day may be re-derived by a NEWER formula the same day,
+      // provided the older read is kept byte-identical under `superseded` and
+      // the new one names what it replaced (rule 9); and a run may carry more
+      // than one new day when earlier runs saved reads that never got
+      // published (catch-up days, strictly later than the last committed one).
       try {
         const committed = JSON.parse(execFileSync("git", ["show", "HEAD:data/restream/health-history.json"], { cwd: ROOT, encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "pipe"] }));
-        if (store.entries.length < committed.entries.length || store.entries.length > committed.entries.length + 1) {
-          bad++; fail("health: working store removed history or added more than one daily entry");
-        }
+        const formulaNumber = (v) => Number(String(v || "").replace(/\D/g, "")) || 0;
+        const supersededSet = new Set((store.superseded || []).map((row) => JSON.stringify(row.entry)));
+        if (store.entries.length < committed.entries.length) { bad++; fail("health: working store removed history"); }
         for (let index = 0; index < committed.entries.length; index++) {
-          if (JSON.stringify(store.entries[index]) !== JSON.stringify(committed.entries[index])) {
-            bad++; fail(`health: committed entry ${committed.entries[index].date} changed — history is append-only`);
-          }
+          const was = committed.entries[index];
+          const now = store.entries[index];
+          if (JSON.stringify(now) === JSON.stringify(was)) continue;
+          const rederived = now && now.date === was.date && formulaNumber(now.formulaVersion) > formulaNumber(was.formulaVersion)
+            && now.rederivedFrom?.formulaVersion === was.formulaVersion && supersededSet.has(JSON.stringify(was));
+          if (!rederived) { bad++; fail(`health: committed entry ${was.date} changed — history is append-only (a same-day re-derivation must keep the old read under superseded)`); }
+        }
+        for (let index = 0; index < (committed.superseded || []).length; index++) {
+          if (JSON.stringify((store.superseded || [])[index]) !== JSON.stringify(committed.superseded[index])) { bad++; fail("health: a superseded read changed or vanished — superseded reads are append-only too"); }
+        }
+        const lastCommitted = committed.entries.at(-1)?.date ?? null;
+        for (const extra of store.entries.slice(committed.entries.length)) {
+          if (lastCommitted && extra.date <= lastCommitted) { bad++; fail(`health: new entry ${extra.date} is not later than the last committed day`); }
         }
       } catch { /* initial W10 commit has no HEAD store */ }
 
@@ -1023,6 +1038,11 @@ function premiereMs(dateStr) {
             if (v4 && measure.carried && (measure.score == null || !measure.episodeRead || !measure.carriedNote || !/counted at half weight/.test(measure.carriedNote))) {
               bad++; fail(`health: ${entry.date} ${key}.${measureKey} is carried without a scored value, a read episode, and the half-weight note`);
             }
+            // rule 23: a measure's swing is a whole percent from at least
+            // MIN_PEERS peers, absent on absolute-scale measures
+            if (v4 && measure.swing != null && (!Number.isInteger(measure.swing) || measure.swing < 0 || measure.absoluteScale || measure.sample < BL.MIN_PEERS)) {
+              bad++; fail(`health: ${entry.date} ${key}.${measureKey} carries an invalid swing`);
+            }
             if (measure.score == null) {
               if (!measure.reason) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} is missing without a reason`); }
             } else {
@@ -1046,6 +1066,15 @@ function premiereMs(dateStr) {
             : (measureScores.length ? Math.round(measureScores.reduce((sum, value) => sum + value, 0) / measureScores.length) : null);
           if (part.score !== expectedScore) { bad++; fail(`health: ${entry.date} ${key} score does not equal its available measures`); }
           if (v4 && (part.carried === true) !== health.checkScoreOf(part.measures).carried) { bad++; fail(`health: ${entry.date} ${key} carried stamp does not match its measures`); }
+          // rule 23: the check's bands follow its measures' swings and its
+          // state word follows its bands — re-derived from the entry alone
+          if (v4 && "state" in part) {
+            const { swing, bands } = health.checkBandsOf(part.measures);
+            if ((part.swing ?? null) !== (swing ?? null) || JSON.stringify(part.bands) !== JSON.stringify(bands) || part.state !== BL.stateOf(part.score, bands)) {
+              bad++; fail(`health: ${entry.date} ${key} state/bands do not re-derive from its measures' swings`);
+            }
+            if (bands.healthy > 50 + BL.SWING_MAX_PCT / 2 + 1e-9 || bands.healthy < 50 + BL.SWING_MIN_PCT / 2 - 1e-9) { bad++; fail(`health: ${entry.date} ${key} bands fall outside the allowed swing`); }
+          } else if (v4) { bad++; fail(`health: ${entry.date} ${key} carries no state word (rule 23)`); }
           if (part.score == null && (!part.reason || part.effectiveWeight !== 0)) { bad++; fail(`health: ${entry.date} ${key} absence lacks a reason or carries weight`); }
           if (part.score != null) {
             const expectedWeight = v3
@@ -1342,7 +1371,7 @@ function premiereMs(dateStr) {
     }
     // diagnosis: the six saved checks render as plain-word states from the
     // projection only — never from scoring inputs, never as numbers
-    if (!/h\.checks/.test(healthSource) || !/checkState/.test(healthSource) || !/Not in yet/.test(html)) {
+    if (!/h\.checks/.test(healthSource) || !/checkState\(c\.score, c\.bands\)/.test(healthSource) || !/Not in yet/.test(html)) {
       bad++; fail("card layout: the diagnosis card does not render every saved check as a plain-word state");
     }
     // diagnosis drill (owner directive 2026-08-23; names since 2026-09-01):
@@ -1889,7 +1918,7 @@ function premiereMs(dateStr) {
   // directive 2026-08-23): the builder must carry each measure's stored note
   // into the block payload, and the renderer must draw it as its own line
   if (!/note: m\.note \|\| null/.test(html)
-    || !/\[m\.note, m\.q, m\.cn\]\.filter\(Boolean\)\.map\(\(t\) => `<div class="mnote">\$\{esc\(t\)\}<\/div>`\)/.test(html)
+    || !/\[m\.note, m\.q, m\.cn, m\.sw\]\.filter\(Boolean\)\.map\(\(t\) => `<div class="mnote">\$\{esc\(t\)\}<\/div>`\)/.test(html)
     || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
     bad++; fail("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
   }

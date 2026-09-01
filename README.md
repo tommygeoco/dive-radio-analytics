@@ -13,8 +13,11 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   missing checks drop out, the header says when the read is behind the data,
   and a read older than a week is withheld
 - Show health in three lenses (PRD v10): one score from the newest episode at
-  its age (seven checks; promo-driven lifts shown, not scored; stale reads
-  carried at half weight), a direction word from the last five clean
+  its age (seven checks reading the whole live session — peak, average,
+  people who watched live, minutes watched, minutes each stayed, hold to the
+  end, chat — plus YouTube discovery; promo-driven lifts shown, not scored;
+  stale reads carried at half weight; each check's state word from bands
+  fitted to its own swing, PRD v10 §11), a direction word from the last five clean
   episodes, and an outlook for the next first week — with a standing
   verification loop (`tools/dive-analytics/health-verify.mjs`) that ledgers
   every claim and scores it against reality, plus owner feel notes

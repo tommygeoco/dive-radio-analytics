@@ -428,9 +428,132 @@ working tree on 2026-09-01 before merge.
    wrong: the crontab runs `run-chain.mjs`, which reads `chain.json`, so the
    step is live on the first morning after merge.
 
+## 11. Addendum (2026-09-01, evening) — rule 23, the whole live session, and the day the formula changed
+
+Owner reaction to the first shipped v4 page, verbatim in spirit: *the data
+didn't change; live turnout looks only at peak viewers and chat; where are
+average viewers and watch time; build something that stays useful and
+evolves.* Three findings, all confirmed against the stores:
+
+1. **The served read was still v3.** `health.mjs` is append-only per day; the
+   chain had saved the day's v3 read at 07:25 and the new code would not
+   write until the next morning. Shipping the machinery without a v4 read
+   was a real gap between "live" and what the owners saw.
+2. **The live checks ignored most of the live record.** Restream reports, per
+   event, unique live viewers (`viewsTotal`), minutes watched live
+   (`watchedTime`), and the minute-by-minute audience; the YouTube analytics
+   file carries traffic sources. None of it fed show health.
+3. **Fixed ±10 % bands overclaim on noisy measures.** Chat messages an hour
+   swing about ±16 % between ordinary episodes and subscribers per thousand
+   views about ±100 % on three peers; a dip inside a measure's ordinary swing
+   was reading "fragile".
+
+### Rule 23 — bands follow the show's own swing
+
+Each scored measure stores `swing`: the median absolute deviation of its
+peers from their typical, as a whole-percent share of the typical, from the
+same peers the typical used (`baselines.swingOf`). A check's `swing` is the
+median of its scored measures' swings; its `bands` are half that swing in
+score points either side of 50, never narrower than the fixed bands (±5
+points = ±10 %) and never wider than ±15 points (±30 %) (`bandsFor`); its
+`state` word — healthy / steady / fragile / waiting — follows those bands
+(`stateOf`). The writer stamps all three; the page reads `c.state` and
+`c.bands` (fixed bands only for reads written before the rule); the model
+prompt (v7) reads `state`, never a cut-off; the verifier judges headlines by
+`state`; the validator re-derives swing, bands, and state from the entry
+alone (block 1h) and rejects bands outside the allowed range. The overall
+score's band words (above / near / below usual) stay fixed at ±5: the mean
+of seven checks is already smoother than any one of them.
+
+Consequence on the real stores, first run: subscribers per thousand views
+scored 62 and read *steady* (swing 100 % → bands 35 / 65); participation
+scored 47 and read *steady* (swing 22 % → 39 / 61) with chat down and staying
+power up inside it; audience quality (35, swing 17 %) and reach (35, swing
+13 %) still read *fragile* — those dips are outside any ordinary swing.
+
+### The measure set (final for health-v4; no entry existed under the narrower set)
+
+| Check | Measures (basis) | New this addendum |
+|---|---|---|
+| growth | first-week slope (ageFree) · same-age launch (sameAge, qualified when promo) | — |
+| audience quality | likes + comments at the newest's age (sameAge) · share watched (sameAge → mature, carried) | — |
+| reach | X exposure at age (sameAge, qualified when promo) · announce-to-play (sameAge → mature, carried) · **discovery share** — YouTube views from search, suggested, Shorts, browse (mature, carried; `DISCOVERY_SOURCES`) | discovery share |
+| live turnout | peak · average · **unique live viewers** (`live.liveViews`) · **minutes watched live** (`live.watchedMin`) — all ageFree, live family | two |
+| participation | chatters / 100 at peak · messages / hour · **minutes each live viewer stayed** (`watchedMin / liveViews`) · **hold rate** — audience over the last `HOLD_MINUTES` (10) against the peak — all ageFree | two |
+| subscribers | subscribers / 1k views (sameAge → mature, carried) | — |
+| goodwill | balance (absolute or mature) · commenters / 1k (mature) | — |
+
+The direction lens carries the five new series (`TREND_MEASURES`), each in
+its check's vote. Live measures stay in the live unit family (a promo spike
+on X or YouTube never silences a live night). Weights are unchanged (§3).
+
+What this changed in the first read: fewer unique people watched the newest
+show live (727 against a typical 1,125) but each stayed longer (8.3 minutes
+against 6.6) and more of the peak held to the end (75 % against 63 %) — a
+"smaller room, better room" reading that peak and chat alone could not
+express. Discovery share read 13.4 % against 14.1 %: YouTube is not yet
+surfacing the show to strangers, and the newest episode's own 87 %
+subscriber traffic (when it matures) will say so louder.
+
+### Rule 9 on the day a formula ships — same-day re-derivation
+
+A day's read written under an older formula is re-derived by the new one
+the same day: the older read is moved, byte-identical, to
+`store.superseded[]` (`{supersededOn, by, entry}`) and the new read carries
+`rederivedFrom: {formulaVersion, score}`. The validator's append-only guard
+accepts exactly that shape and nothing else; the projection, the trend, and
+the verifier see one read per day. Today: the v3 read of 46 is superseded
+by the v4 read of 49 (deterministic mean 50.1, model move −1.1, prompt v7).
+
+### The morning after (W34, continued) — `chain-heal.mjs`
+
+The chain machine ran old code the next morning: it appended its v3 read
+locally, then the publish script's stash pop collided with the pushed
+re-derived store and exited, leaving unmerged paths and a stash. The new
+`run-chain.mjs` calls `healLeftovers()` before it pulls: generated files
+take HEAD's copy (the build regenerates them), `health-history.json` is
+unioned by day (both sides' days kept; the same day under two formulas keeps
+the newer read and files the older under `superseded`), anything else stops
+the chain with the file named. `audit/chain-heal.test.mjs` rehearses the
+exact sequence in throwaway repos. The validator allows catch-up days (more
+than one new entry, each later than the last committed day) so a read saved
+on a morning that never published still lands.
+
+### What "evolves on its own" now means, in one list
+
+- Typical = the last eight comparable episodes; it rolls forward every
+  episode (windowFor), so a step change (the unique-live-viewer halving from
+  E5) leaves the baseline within eight shows.
+- Bands follow each check's own swing (rule 23) and re-fit every read.
+- Direction reads the last five clean episodes; a word needs four.
+- Same-age readings take over from mature ones the day three peers have a
+  history line at the needed age (PRD v9 §3.1), never the other way.
+- A launch word settles at day seven; a promo verdict settles at day 21.
+- Carried reads fall away the day the newest episode reaches the measure's
+  age; provisional reads say so until then.
+- The verification loop ledgers every claim and scores it when reality
+  arrives; the owners' feel notes are compared with what the read said.
+- Every re-derivation is visible (`rederivedFrom`, `superseded`), never silent.
+
+### Validator contracts added
+
+- 1h: per-measure `swing` (integer ≥ 0, ≥ MIN_PEERS peers, absent on
+  absolute-scale); per-check `swing` / `bands` / `state` re-derived from the
+  entry's measures; bands inside [SWING_MIN_PCT, SWING_MAX_PCT] / 2.
+- 1h: append-only guard accepts a same-day re-derivation (older formula,
+  byte-identical under `superseded`, `rederivedFrom` names it) and catch-up
+  days; superseded reads are append-only too.
+- card-layout: the page calls `checkState(c.score, c.bands)` and renders the
+  swing note with the other measure notes.
+
 ## Status log
 
 - 2026-09-01 — audit written; health-v4, surfaces, validator, fixtures, and
   the verification loop built and validated on the real stores (dry run);
   three adversarial passes (fact-check, gaps, implementability) run and
   folded in (§10); branch `health-v4-three-lenses`.
+- 2026-09-01 (evening) — owner: "the data didn't change; live turnout reads
+  only peak and chat". Addendum §11: rule 23 (swing-fitted bands), five live /
+  reach measures, same-day re-derivation (v3 46 → v4 49), `chain-heal.mjs`
+  with a rehearsal test, prompt v7. Merged to main and deployed the same
+  evening.

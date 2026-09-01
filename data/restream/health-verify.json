@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-01T21:30:50.267Z",
+  "updatedAt": "2026-09-01T22:16:04.302Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -78,6 +78,61 @@
       "pctPerEpisode": -12.2,
       "lastEp": 7,
       "lastValue": 50.2,
+      "resolution": null
+    },
+    {
+      "id": "direction:discoveryShare:E4:holding",
+      "kind": "direction",
+      "key": "discoveryShare",
+      "madeOn": "2026-09-01",
+      "word": "holding",
+      "pctPerEpisode": -3.4,
+      "lastEp": 4,
+      "lastValue": 13.4,
+      "resolution": null
+    },
+    {
+      "id": "direction:liveViewers:E7:softening",
+      "kind": "direction",
+      "key": "liveViewers",
+      "madeOn": "2026-09-01",
+      "word": "softening",
+      "pctPerEpisode": -13.8,
+      "lastEp": 7,
+      "lastValue": 727,
+      "resolution": null
+    },
+    {
+      "id": "direction:minutesWatched:E7:holding",
+      "kind": "direction",
+      "key": "minutesWatched",
+      "madeOn": "2026-09-01",
+      "word": "holding",
+      "pctPerEpisode": 3.4,
+      "lastEp": 7,
+      "lastValue": 6050,
+      "resolution": null
+    },
+    {
+      "id": "direction:minutesPerViewer:E7:building",
+      "kind": "direction",
+      "key": "minutesPerViewer",
+      "madeOn": "2026-09-01",
+      "word": "building",
+      "pctPerEpisode": 24.4,
+      "lastEp": 7,
+      "lastValue": 8.3,
+      "resolution": null
+    },
+    {
+      "id": "direction:holdRate:E7:softening",
+      "kind": "direction",
+      "key": "holdRate",
+      "madeOn": "2026-09-01",
+      "word": "softening",
+      "pctPerEpisode": -8,
+      "lastEp": 7,
+      "lastValue": 74.9,
       "resolution": null
     }
   ]

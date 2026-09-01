@@ -111,8 +111,12 @@ export function checkAccuracy(entry, data) {
   // words against numbers: the headline's strength words need a check to back them
   const scores = Object.values(entry.subScores || {}).map((p) => p.score).filter(Number.isFinite);
   const head = String(entry.headline || "").toLowerCase();
-  if (/\b(fragile|weak|slipping|falling)\b/.test(head) && !scores.some((s) => s < BL.BANDS.steady)) note("warn", `Headline says fragile/weak but no check scores under ${BL.BANDS.steady}: "${entry.headline}"`);
-  if (/\b(healthy|strong|thriving)\b/.test(head) && !scores.some((s) => s >= BL.BANDS.healthy)) note("warn", `Headline says healthy/strong but no check scores ${BL.BANDS.healthy} or more: "${entry.headline}"`);
+  // rule 23: judged by each check's stamped state (bands that follow its
+  // swing); entries written before the rule fall back to the fixed bands
+  const parts = Object.values(entry.subScores || {}).filter((p) => Number.isFinite(p?.score));
+  const stateOfPart = (p) => p.state ?? BL.stateOf(p.score);
+  if (/\b(fragile|weak|slipping|falling)\b/.test(head) && !parts.some((p) => stateOfPart(p) === "fragile")) note("warn", `Headline says fragile/weak but no check's state is fragile: "${entry.headline}"`);
+  if (/\b(healthy|strong|thriving)\b/.test(head) && !parts.some((p) => stateOfPart(p) === "healthy")) note("warn", `Headline says healthy/strong but no check's state is healthy: "${entry.headline}"`);
   const overall = entry.direction?.overall;
   for (const word of ["building", "softening"]) {
     if (head.includes(word) && overall && overall !== word && !(entry.direction?.measures || []).some((m) => m.direction === word)) {

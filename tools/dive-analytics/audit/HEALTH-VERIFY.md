@@ -4,7 +4,7 @@ Standing critic loop (PRD v10 W33): today's read re-derived from what it stored,
 
 ## Accuracy — the 2026-09-01 read
 
-Score 46 (weighted mean 49.8, health-v3, prompt v5) (a pre-v4 entry: no as-of block).
+Score 49 (weighted mean 50.1, health-v4, prompt v7); reads Steal These AI Design Patterns + Live Ca at 4.9 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -13,12 +13,16 @@ Score 46 (weighted mean 49.8, health-v3, prompt v5) (a pre-v4 entry: no as-of bl
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
 | Next first week inside the expected range | 0 | 0 | 0 | 0 | 1 |
-| Direction word confirmed by the next episode | 0 | 0 | 0 | 0 | 6 |
+| Direction word confirmed by the next episode | 0 | 0 | 0 | 0 | 11 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 ### Owner feel against the read
 
-No feel notes yet. Record one with `node tools/dive-analytics/health-feedback.mjs better|same|worse "a few words"` on any day; the loop compares each note with what the read said that day.
+0 of 1 notes agree with the read's direction or score move.
+
+| Day | Felt | By direction | By score move | Score | Note |
+|---|---|---|---|---|---|
+| 2026-09-01 | better | same | same | 49 ✗ | a few words |
 
 ## Longevity — how the formula is ageing
 
@@ -28,13 +32,14 @@ No feel notes yet. Record one with `node tools/dive-analytics/health-feedback.mj
 | audience quality | 0 |
 | reach | 0 |
 | live turnout | 0 |
-| subscribers | 9 |
+| participation | 0 |
+| subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 0% · promo-qualified measures: none · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 2.
+Carried share of scored checks: 29% (at full weight the mean would move +0.2) · promo-qualified measures: growth.sameAge, reachEfficiency.exposure · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 3.
 
 - WARN — The check set changed 3 times in 30 days — the number keeps changing what it measures.
-- INFO — The scoring rules changed 2 time(s) in the last 30 days; the daily trend restarts each time.
+- INFO — The scoring rules changed 3 time(s) in the last 30 days; the daily trend restarts each time.
 
 ## Open claims
 
@@ -45,4 +50,9 @@ Carried share of scored checks: 0% · promo-qualified measures: none · steady-s
 - 2026-09-01 · livePeak building (+7.1% per episode) — waits for the episode after E7.
 - 2026-09-01 · chattersPer100 softening (-16.1% per episode) — waits for the episode after E7.
 - 2026-09-01 · messagesPerHour softening (-12.2% per episode) — waits for the episode after E7.
+- 2026-09-01 · discoveryShare holding (-3.4% per episode) — waits for the episode after E4.
+- 2026-09-01 · liveViewers softening (-13.8% per episode) — waits for the episode after E7.
+- 2026-09-01 · minutesWatched holding (+3.4% per episode) — waits for the episode after E7.
+- 2026-09-01 · minutesPerViewer building (+24.4% per episode) — waits for the episode after E7.
+- 2026-09-01 · holdRate softening (-8% per episode) — waits for the episode after E7.
 

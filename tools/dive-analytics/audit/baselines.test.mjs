@@ -9,7 +9,8 @@
 import assert from "node:assert/strict";
 import * as B from "../baselines.mjs";
 import { scoreEpisode, readAgeOf, WEIGHTS, MIN_WEIGHT } from "../ratings.mjs";
-import { deterministicMean, checkScoreOf, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
+import { deterministicMean, checkScoreOf, checkBandsOf, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
+import { mergeHealthStores } from "../chain-heal.mjs";
 
 const DAY = 86400000;
 const PHX = 7 * 3600000;
@@ -430,4 +431,61 @@ console.log("baselines.test: ok");
   const withAbs = { ...parts, z: { score: 100, baseWeight: 0.2, absoluteScale: true, carried: false } };
   assert.equal(deterministicMean(withAbs).effectiveWeightOf(withAbs.z), 0.2);
 }
-console.log("baselines.test: PRD v10 direction, launch, live rates, cool-off, and carried weights pass");
+// --- PRD v10 addendum, rule 23: swing-fitted bands, live depth, discovery share ---
+{
+  // swing: median absolute deviation of the peers from their typical, as a whole percent
+  assert.equal(B.swingOf([80, 100, 120, 90], 100), 15);      // deviations 20, 0, 20, 10 → median 15
+  assert.equal(B.swingOf([50, 100, 150], 100), 50);          // a wild measure
+  assert.equal(B.swingOf([100, 100], 100), null);            // fewer than MIN_PEERS
+  assert.equal(B.swingOf([100, 100, 100], 0), null);         // no typical
+  // bands: half the swing in score points, clamped to the fixed bands and ±15
+  assert.deepEqual(B.bandsFor(null), { healthy: 55, steady: 45 });   // no swing → the fixed bands
+  assert.deepEqual(B.bandsFor(4), { healthy: 55, steady: 45 });      // never narrower than ±10 %
+  assert.deepEqual(B.bandsFor(20), { healthy: 60, steady: 40 });
+  assert.deepEqual(B.bandsFor(80), { healthy: 65, steady: 35 });     // never wider than ±30 %
+  // state follows the bands: a 40 is fragile on a quiet measure, steady on a noisy one
+  assert.equal(B.stateOf(40), "fragile");
+  assert.equal(B.stateOf(40, B.bandsFor(30)), "steady");
+  assert.equal(B.stateOf(64, B.bandsFor(30)), "steady");
+  assert.equal(B.stateOf(65, B.bandsFor(30)), "healthy");
+  assert.equal(B.stateOf(null), "waiting");
+  // a check's swing is the median of its scored measures' swings; unscored and absolute ones are out
+  const chk = checkBandsOf({
+    a: { score: 60, swing: 10 }, b: { score: 40, swing: 30 }, c: { score: 55, swing: 20 },
+    d: { score: null, swing: 90 }, e: { score: 70, swing: null, absoluteScale: true },
+  });
+  assert.deepEqual(chk, { swing: 20, bands: { healthy: 60, steady: 40 } });
+  // live depth: minutes per viewer and the hold rate over the last ten minutes
+  const series = Array.from({ length: 30 }, (_, i) => ({ v: i < 20 ? 60 : 30 }));
+  const ep = { live: { peak: 60, avg: 50, liveViews: 500, watchedMin: 4000, series } };
+  assert.deepEqual(B.liveDepthOf(ep), { minutesPerViewer: 8, holdRate: 50 });
+  assert.deepEqual(B.liveDepthOf({ live: { peak: 60, avg: 50, series: series.slice(0, 5) } }), { minutesPerViewer: null, holdRate: null });
+  assert.equal(B.liveDepthOf({ live: { peak: 0 } }), null);
+  // discovery share: search + suggested (+ Shorts, browse) over all views, blended across channels
+  const channels = {
+    a: { totals: { views: 1000 }, trafficSources: [{ insightTrafficSourceType: "SUBSCRIBER", views: 800 }, { insightTrafficSourceType: "YT_SEARCH", views: 100 }, { insightTrafficSourceType: "RELATED_VIDEO", views: 100 }] },
+    b: { totals: { views: 500 }, trafficSources: [{ insightTrafficSourceType: "EXT_URL", views: 450 }, { insightTrafficSourceType: "SHORTS", views: 50 }] },
+  };
+  assert.equal(B.discoveryShareOf(channels), Math.round((250 / 1500) * 1000) / 10);
+  assert.equal(B.discoveryShareOf({ a: { totals: { views: 1000 } } }), null);   // no traffic sources → no reading (history lines)
+  // the direction lens carries the five new series, in check order
+  assert.deepEqual(B.TREND_MEASURES.filter((m) => ["liveViewers", "minutesWatched", "minutesPerViewer", "holdRate", "discoveryShare"].includes(m.key)).map((m) => m.check),
+    ["reachEfficiency", "livePull", "livePull", "participation", "participation"]);
+}
+
+// --- chain heal: the health store merges by day; a same-day re-derivation keeps the older read under superseded ---
+{
+  const v3 = (date, score) => ({ date, score, formulaVersion: "health-v3", createdAt: `${date}T14:00:00Z` });
+  const v4 = (date, score) => ({ date, score, formulaVersion: "health-v4", createdAt: `${date}T21:00:00Z` });
+  const ours = { version: 3, updatedAt: "2026-09-01T21:00:00Z", entries: [v3("2026-08-31", 46), { ...v4("2026-09-01", 48), rederivedFrom: { formulaVersion: "health-v3", score: 46 } }], superseded: [{ supersededOn: "2026-09-01", by: "health-v4", entry: v3("2026-09-01", 46) }] };
+  const theirs = { version: 3, updatedAt: "2026-09-02T14:00:00Z", entries: [v3("2026-08-31", 46), v3("2026-09-01", 46), v3("2026-09-02", 47)] };
+  const merged = mergeHealthStores(ours, theirs);
+  assert.deepEqual(merged.entries.map((e) => `${e.date}:${e.formulaVersion}:${e.score}`), ["2026-08-31:health-v3:46", "2026-09-01:health-v4:48", "2026-09-02:health-v3:47"]);
+  assert.equal(merged.superseded.length, 1);
+  assert.equal(merged.updatedAt, "2026-09-02T14:00:00Z");
+  // the other way round (theirs newer) lands in the same place, and the union is idempotent
+  const back = mergeHealthStores(theirs, ours);
+  assert.deepEqual(back.entries.map((e) => `${e.date}:${e.formulaVersion}`), merged.entries.map((e) => `${e.date}:${e.formulaVersion}`));
+  assert.deepEqual(mergeHealthStores(merged, merged).entries, merged.entries);
+}
+console.log("baselines.test: PRD v10 direction, launch, live rates, cool-off, carried weights, swing bands, live depth, discovery, and store merge pass");

@@ -1018,7 +1018,7 @@ const CHECK_LABELS = {
   growth: ["Growth", "How new episodes start", "Growth"],
   audienceQuality: ["Audience quality", "Watch time and reactions", "Audience"],
   reachEfficiency: ["Reach", "X announces being seen and played", "Reach"],
-  livePull: ["Live turnout", "Peak and average viewers", "Live turnout"],
+  livePull: ["Live turnout", "Peak, average, people, and minutes watched live", "Live turnout"],
   participation: ["Participation", "Chatters and chat pace", "Participation"],
   conversion: ["Subscribers", "Subscriber pull", "Subscribers"],
   sentiment: ["Goodwill", "How feedback reads", "Goodwill"],
@@ -1030,6 +1030,8 @@ const DIRECTION_LABELS = {
   chattersPer100: "Chatters per hundred at the peak", messagesPerHour: "Chat messages an hour",
   engagementWeekOne: "First-week likes and comments", exposureWeekOne: "First-week X reach",
   announceToPlay: "Announce-to-play on X", watching: "Share of the video watched", subscribers: "Subscribers per thousand views",
+  liveViewers: "People who watched live", minutesWatched: "Minutes watched live", minutesPerViewer: "Minutes each live viewer stayed",
+  holdRate: "Share of the peak still watching at the end", discoveryShare: "YouTube views from search and suggestions",
 };
 const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : "");
 function launchNote(l) {
@@ -1039,10 +1041,14 @@ function launchNote(l) {
     : (l.reason || "");
   return `${body}${l.promoDriven ? " — promo-driven: shown here, not scored in show health" : ""}${l.provisional ? " — an early read that settles at day seven" : ""}.`;
 }
-function checkState(score) {
+/* A check's state comes from the bands the saved read stamped for it — bands
+   that follow how much that check normally swings between episodes (rule 23);
+   a read written before the rule carries none and gets the fixed bands */
+function checkState(score, bands) {
+  const b = bands && Number.isFinite(bands.healthy) && Number.isFinite(bands.steady) ? bands : BANDS;
   if (score == null) return ["waiting", "Not in yet"];
-  if (score >= BANDS.healthy) return ["healthy", "Healthy"];
-  if (score >= BANDS.steady) return ["steady", "Steady"];
+  if (score >= b.healthy) return ["healthy", "Healthy"];
+  if (score >= b.steady) return ["steady", "Steady"];
   return ["fragile", "Fragile"];
 }
 
@@ -1087,16 +1093,21 @@ function buildHealth() {
     chat: "Live chat messages",
     chattersPer100: "Chatters per hundred people at the peak",
     messagesPerHour: "Chat messages an hour",
+    liveViewers: "People who watched live",
+    minutesWatched: "Minutes watched live, all together",
+    minutesPerViewer: "Minutes each live viewer stayed",
+    holdRate: "Share of the peak still watching in the last ten minutes",
+    discoveryShare: "Share of YouTube views from search and suggested videos",
     subscribers: "Subscribers gained per 1,000 views",
     balance: "Share of feedback leaning positive",
     commentRate: "People commenting per 1,000 watches",
   };
-  const PCT_MEASURES = new Set(["watching", "xShare", "balance"]);
+  const PCT_MEASURES = new Set(["watching", "xShare", "balance", "holdRate", "discoveryShare"]);
   // one drill payload per check: the name in the strip and its tooltip can
   // never tell two stories
   const checks = (h.checks || []).map((c) => {
     const [label, , shortName] = CHECK_LABELS[c.key] || [c.key, "", c.key];
-    const [cls, word] = checkState(c.score);
+    const [cls, word] = checkState(c.score, c.bands);
     const fmtM = (k, v) => `${nfmt(v)}${PCT_MEASURES.has(k) ? "%" : ""}`;
     // structured drill rows for the tooltip: label, strong value, comparison
     // direction (the shared quiet-zone gate from data.baselines), the sample,
@@ -1120,12 +1131,16 @@ function buildHealth() {
       // read says which episode it came from and that it counts half
       if (m.qualified && m.reason) row.q = m.reason;
       if (m.carriedNote) row.cn = m.carriedNote;
+      // rule 23: how much this measure normally swings, so a reader can see
+      // why a dip reads steady on a noisy measure and fragile on a quiet one
+      if (Number.isFinite(m.swing)) row.sw = `the show’s usual swing on this is about ±${m.swing}%`;
       return row;
     }).filter(Boolean);
     // an unscored check's stored reason is the measure reasons joined — when
     // the measure rows already say it, a footer repeating them is noise
+    const bandNote = c.bands && Number.isFinite(c.bands.healthy) ? ` Healthy from ${c.bands.healthy}, fragile under ${c.bands.steady}${Number.isFinite(c.swing) ? `, because this check usually swings about ±${c.swing}%` : ""}.` : "";
     const note = c.score != null
-      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${c.reason ? ` ${c.reason.charAt(0).toUpperCase() + c.reason.slice(1)}` : ""}`
+      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${bandNote}${c.reason ? ` ${c.reason.charAt(0).toUpperCase() + c.reason.slice(1)}` : ""}`
       : (drill.length ? "" : (c.reason || ""));
     const rest = `data-state="${esc(word)}" data-stcls="${cls}"${drill.length ? ` data-mrows="${esc(JSON.stringify(drill))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}`;
     return { label, shortName, cls, word, rest };
@@ -1976,7 +1991,7 @@ function showRtt(badge) {
         const head = `<div class="ml"><span>${esc(m.n)}</span>${m.s ? `<span class="ms">${esc(String(m.s))} episodes</span>` : ""}</div>`;
         if (m.r) return `<div class="mrow">${head}<div class="mv mr">${esc(m.r)}</div></div>`;
         const dir = m.d ? `<span class="db ${m.d}">${m.d === "mid" ? "≈" : (m.d === "up" ? "▲" : "▼") + m.p + "%"}</span>` : "";
-        const mnote = [m.note, m.q, m.cn].filter(Boolean).map((t) => `<div class="mnote">${esc(t)}</div>`).join("");
+        const mnote = [m.note, m.q, m.cn, m.sw].filter(Boolean).map((t) => `<div class="mnote">${esc(t)}</div>`).join("");
         return `<div class="mrow">${head}<div class="mv"><b>${esc(m.v)}</b>${dir}${m.t ? `<span class="mt">typically ${esc(m.t)}</span>` : ""}</div>${mnote}</div>`;
       }).join("");
       html += badge.dataset.note ? `<div class="mut fnote">${esc(badge.dataset.note)}</div>` : "";
@@ -2874,7 +2889,7 @@ function buildAbout() {
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The words are written by a model over the day’s checked facts; when the model fails, a plain deterministic read is written instead so no day goes without one. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — orange fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout counts peak and average viewers; participation counts chatters per hundred people at the peak and chat messages an hour, so a short show and a long one compare. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The words are written by a model over the day’s checked facts; when the model fails, a plain deterministic read is written instead so no day goes without one. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — orange fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos. Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically. Snapshots stop 60 days after an episode’s premiere, long after its totals have settled. YouTube’s analytics arrive two to three days late for every episode alike, so “three weeks in” means the numbers as they stood about then.</p>`;
 }
 

@@ -88,10 +88,7 @@ import {
 import { createHash } from "node:crypto";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import {
-  CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn,
-  historyAt, liveRatesOf, peersFor, snapshotAt, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf,
-} from "./baselines.mjs";
+import { CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn, historyAt, liveRatesOf, peersFor, snapshotAt, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf, swingOf, bandsFor, stateOf, liveDepthOf, discoveryShareOf, STATE_WORDS } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -118,7 +115,12 @@ export const HEALTH_STORE_VERSION = 3;
 // sentiment never inflated by absences. Saved entries keep their own stamp.
 // health-v4 (2026-09-01, PRD v10): seven checks (live split into turnout and
 // participation), counted engagement, same-age exposure, qualified promo
-// lifts, carried reads at half weight, direction and outlook lenses.
+// lifts, carried reads at half weight, direction and outlook lenses. Widened
+// the same evening, before any v4 entry existed (PRD v10 addendum, rule 23):
+// live turnout also reads unique live viewers and minutes watched live,
+// participation also reads minutes per live viewer and the hold rate, reach
+// also reads YouTube discovery share; each check's state word comes from
+// bands that follow the show's own swing on that check.
 export const FORMULA_VERSION = "health-v4";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
@@ -133,7 +135,10 @@ export const FORMULA_VERSION = "health-v4";
 // plain strings" twice per run and the store kept the previous day's entry.
 // prompt v6 (2026-09-01, PRD v10): seven check names, the promo-qualified and
 // carried rules, and the direction / outlook facts the drivers may draw on.
-export const PROMPT_VERSION = 6;
+// prompt v7 (2026-09-01 evening, rule 23): check states come from bands that
+// follow the show's own swing, so the model reads each check's `state` word
+// instead of fixed 45 / 55 cut-offs; the live and reach checks gained measures.
+export const PROMPT_VERSION = 7;
 const V3_WEIGHTS = Object.freeze({
   growth: 0.25,
   audienceQuality: 0.20,
@@ -308,6 +313,9 @@ function measurement(id, value, ps, { ageBasis = null, reason = null, episodeRea
     qualified: Boolean(qualified && rawScore != null),
     carried: Boolean(carried && score != null),
     carriedNote: carried && score != null && carriedFrom ? NOTES.carried(carriedFrom) : null,
+    // rule 23: how much this measure normally swings between episodes (a
+    // whole-percent share of the typical), from the same peers the typical used
+    swing: !absoluteScale && ps && Number.isFinite(typical) ? swingOf(ps.peers.map((p) => p.value), typical) : null,
     window: ps ? ps.peers.map((p) => p.slug) : [],
     excluded: ps ? ps.excluded : [],
     episodeRead,
@@ -334,9 +342,19 @@ export function checkScoreOf(measures) {
   return { score, carried: present.every((m) => m.carried) };
 }
 
+// A check's swing is the median of its scored measures' swings; its bands
+// follow that swing (baselines.bandsFor) and its state word follows the bands
+// (rule 23) — stamped here once, copied by the page and the verifier.
+export function checkBandsOf(measures) {
+  const swings = Object.values(measures).filter((m) => Number.isFinite(m.score) && Number.isFinite(m.swing)).map((m) => m.swing);
+  const swing = swings.length ? Math.round(trueMedian(swings)) : null;
+  return { swing, bands: bandsFor(swing) };
+}
+
 function finishSubScore(key, measures, reason) {
   const { score, carried } = checkScoreOf(measures);
   const present = Object.values(measures).filter((measure) => Number.isFinite(measure.score));
+  const { swing, bands } = checkBandsOf(measures);
   return {
     score,
     baseWeight: BASE_WEIGHTS[key],
@@ -345,6 +363,9 @@ function finishSubScore(key, measures, reason) {
     // of absent checks (PRD v9 rule 13) — an honest absence must not lift it
     absoluteScale: present.length > 0 && present.every((m) => m.absoluteScale),
     carried,
+    swing,
+    bands,
+    state: stateOf(score, bands),
     measures,
     reason,
   };
@@ -549,17 +570,46 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     addFact("typical-announce-play", announceMeasure.typical, "%", (display) => `Earlier clean episodes typically turned ${display} of X announce impressions into plays.`, ["data.json#episodes.latest"]);
   }
   if (reachOwn && reachOk(reachOwn)) addFact("latest-finished-x-share", reachOwn.latest.xPlays / reachOwn.latest.totalViews * 100, "%", (display) => `X supplied ${display} of watching for ${reachOwn.slug === newest.slug ? "the latest episode" : "the latest finished episode"}.`, [`data.json#episodes.${reachOwn.slug}.latest`]);
-  subScores.reachEfficiency = finishSubScore("reachEfficiency", { exposure: exposureMeasure, announceToPlay: announceMeasure }, checkReason({ exposure: exposureMeasure, announceToPlay: announceMeasure }, reachReason));
+  // rule 23: the share of YouTube views YouTube itself brought (search,
+  // suggested, Shorts, browse) — same rule as share watched: sameAge when the
+  // history carries it (it does not yet), else mature and carried
+  const discoveryMeasure = analyticsMeasure("discoveryShare", "reachEfficiency", (ch) => discoveryShareOf(ch));
+  let discoveryReason = null;
+  if (discoveryMeasure.score != null) {
+    const read = episodes.find((e) => e.slug === discoveryMeasure.episodeRead);
+    addFact("latest-discovery-share", discoveryMeasure.value, "%", (display) => `${display} of ${read.slug === newest.slug ? "the latest" : "the latest finished"} episode's YouTube views came from search and suggested videos.`, [`data/restream/yt-analytics/${read.slug}.json`]);
+    addFact("typical-discovery-share", discoveryMeasure.typical, "%", (display) => `Earlier episodes typically drew ${display} of their YouTube views from search and suggested videos.`, ["data/restream/yt-analytics/*.json"]);
+    discoveryReason = read.slug === (reachOwn?.slug ?? null) ? null : readNote(read);
+  }
+  subScores.reachEfficiency = finishSubScore("reachEfficiency", { exposure: exposureMeasure, announceToPlay: announceMeasure, discoveryShare: discoveryMeasure }, checkReason({ exposure: exposureMeasure, announceToPlay: announceMeasure, discoveryShare: discoveryMeasure }, reachReason, discoveryReason));
 
-  // --- Live turnout: newest peak and average concurrent vs peers (ageFree) ---
+  // --- Live turnout: newest peak, average concurrent, unique live viewers, and minutes watched live vs peers (ageFree; rule 23 added the last two) ---
   const liveOk = (e) => Number.isFinite(e.live?.peak) && Number.isFinite(e.live?.avg);
-  let livePeakMeasure, liveAvgMeasure;
+  const liveViewersOf = (e) => (liveOk(e) && Number.isFinite(e.live.liveViews) && e.live.liveViews > 0 ? e.live.liveViews : null);
+  const liveMinutesOf = (e) => (liveOk(e) && Number.isFinite(e.live.watchedMin) && e.live.watchedMin > 0 ? e.live.watchedMin : null);
+  let livePeakMeasure, liveAvgMeasure, liveViewersMeasure, liveMinutesMeasure;
   if (liveOk(newest)) {
     const window = windowFor(newest, episodes);
     const pk = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.peak : null) });
     const av = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.avg : null) });
+    const lv = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: liveViewersOf });
+    const lm = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: liveMinutesOf });
     livePeakMeasure = measurement("peak", newest.live.peak, pk, { ageBasis: "ageFree", episodeRead: newest.slug });
     liveAvgMeasure = measurement("average", newest.live.avg, av, { ageBasis: "ageFree", episodeRead: newest.slug });
+    liveViewersMeasure = liveViewersOf(newest) != null
+      ? measurement("liveViewers", liveViewersOf(newest), lv, { ageBasis: "ageFree", episodeRead: newest.slug })
+      : measurement("liveViewers", null, null, { reason: "The latest episode's live session has no viewer count." });
+    liveMinutesMeasure = liveMinutesOf(newest) != null
+      ? measurement("minutesWatched", liveMinutesOf(newest), lm, { ageBasis: "ageFree", episodeRead: newest.slug })
+      : measurement("minutesWatched", null, null, { reason: "The latest episode's live session has no watch-time total." });
+    if (liveViewersMeasure.score != null) {
+      addFact("latest-live-viewers", liveViewersMeasure.value, "", (display) => `${display} people watched the latest show live.`, [`data.json#episodes.${newest.slug}.live.liveViews`]);
+      addFact("typical-live-viewers", liveViewersMeasure.typical, "", (display) => `Earlier shows were typically watched live by ${display} people.`, ["data.json#episodes.live.liveViews"]);
+    }
+    if (liveMinutesMeasure.score != null) {
+      addFact("latest-live-minutes", liveMinutesMeasure.value, "", (display) => `People watched ${display} minutes of the latest show live, all together.`, [`data.json#episodes.${newest.slug}.live.watchedMin`]);
+      addFact("typical-live-minutes", liveMinutesMeasure.typical, "", (display) => `Earlier shows were typically watched for ${display} live minutes all together.`, ["data.json#episodes.live.watchedMin"]);
+    }
     if (livePeakMeasure.score != null) {
       addFact("latest-live-peak", newest.live.peak, "", (display) => `The latest show peaked at ${display} live viewers.`, [`data.json#episodes.${newest.slug}.live.peak`]);
       addFact("typical-live-peak", livePeakMeasure.typical, "", (display) => `Earlier shows typically peaked at ${display} live viewers.`, ["data.json#episodes.live.peak"]);
@@ -572,18 +622,38 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     const reason = newest.live ? "The latest episode's live session record is incomplete." : "The latest episode has no live session record.";
     livePeakMeasure = measurement("peak", null, null, { reason });
     liveAvgMeasure = measurement("average", null, null, { reason });
+    liveViewersMeasure = measurement("liveViewers", null, null, { reason });
+    liveMinutesMeasure = measurement("minutesWatched", null, null, { reason });
   }
-  subScores.livePull = finishSubScore("livePull", { peak: livePeakMeasure, average: liveAvgMeasure }, checkReason({ peak: livePeakMeasure, average: liveAvgMeasure }));
+  const liveMeasures = { peak: livePeakMeasure, average: liveAvgMeasure, liveViewers: liveViewersMeasure, minutesWatched: liveMinutesMeasure };
+  subScores.livePull = finishSubScore("livePull", liveMeasures, checkReason(liveMeasures));
 
-  // --- Participation: chatters per 100 peak viewers and chat messages per hour vs peers (ageFree, normalized for show length) ---
+  // --- Participation: chatters per 100 peak viewers, chat messages per hour, minutes each live viewer stayed, and the share of the peak still watching at the end, vs peers (ageFree; rule 23 added the last two) ---
   const newestRates = liveRatesOf(newest);
-  let chattersMeasure, chatRateMeasure;
+  const newestDepth = liveDepthOf(newest);
+  let chattersMeasure, chatRateMeasure, stayMeasure, holdMeasure;
   if (newestRates && Number.isFinite(newestRates.chattersPer100) && Number.isFinite(newestRates.messagesPerHour)) {
     const window = windowFor(newest, episodes);
     const ch = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.chattersPer100 ?? null });
     const mr = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.messagesPerHour ?? null });
+    const st = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.minutesPerViewer ?? null });
+    const hd = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.holdRate ?? null });
     chattersMeasure = measurement("chattersPer100", newestRates.chattersPer100, ch, { ageBasis: "ageFree", episodeRead: newest.slug });
     chatRateMeasure = measurement("messagesPerHour", newestRates.messagesPerHour, mr, { ageBasis: "ageFree", episodeRead: newest.slug });
+    stayMeasure = Number.isFinite(newestDepth?.minutesPerViewer)
+      ? measurement("minutesPerViewer", newestDepth.minutesPerViewer, st, { ageBasis: "ageFree", episodeRead: newest.slug })
+      : measurement("minutesPerViewer", null, null, { reason: "The latest episode's live session has no watch-time or viewer total." });
+    holdMeasure = Number.isFinite(newestDepth?.holdRate)
+      ? measurement("holdRate", newestDepth.holdRate, hd, { ageBasis: "ageFree", episodeRead: newest.slug })
+      : measurement("holdRate", null, null, { reason: "The latest episode's live session has no minute-by-minute audience record." });
+    if (stayMeasure.score != null) {
+      addFact("latest-minutes-per-viewer", stayMeasure.value, "", (display) => `Each person who watched the latest show live stayed ${display} minutes on average.`, [`data.json#episodes.${newest.slug}.live`]);
+      addFact("typical-minutes-per-viewer", stayMeasure.typical, "", (display) => `Earlier shows typically kept each live viewer for ${display} minutes.`, ["data.json#episodes.live"]);
+    }
+    if (holdMeasure.score != null) {
+      addFact("latest-hold-rate", holdMeasure.value, "%", (display) => `${display} of the latest show's peak audience was still watching in its last ten minutes.`, [`data.json#episodes.${newest.slug}.live.series`]);
+      addFact("typical-hold-rate", holdMeasure.typical, "%", (display) => `Earlier shows typically kept ${display} of their peak audience to the end.`, ["data.json#episodes.live.series"]);
+    }
     if (chattersMeasure.score != null) {
       addFact("latest-chatters-per-100", newestRates.chattersPer100, "", (display) => `The latest show drew ${display} chatters for every hundred people at its peak.`, [`data.json#episodes.${newest.slug}.live.chatters`]);
       addFact("typical-chatters-per-100", chattersMeasure.typical, "", (display) => `Earlier shows typically drew ${display} chatters for every hundred people at their peak.`, ["data.json#episodes.live.chatters"]);
@@ -596,8 +666,11 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     const reason = newest.live ? "The latest episode's live session record is incomplete." : "The latest episode has no live session record.";
     chattersMeasure = measurement("chattersPer100", null, null, { reason });
     chatRateMeasure = measurement("messagesPerHour", null, null, { reason });
+    stayMeasure = measurement("minutesPerViewer", null, null, { reason });
+    holdMeasure = measurement("holdRate", null, null, { reason });
   }
-  subScores.participation = finishSubScore("participation", { chattersPer100: chattersMeasure, messagesPerHour: chatRateMeasure }, checkReason({ chattersPer100: chattersMeasure, messagesPerHour: chatRateMeasure }));
+  const participationMeasures = { chattersPer100: chattersMeasure, messagesPerHour: chatRateMeasure, minutesPerViewer: stayMeasure, holdRate: holdMeasure };
+  subScores.participation = finishSubScore("participation", participationMeasures, checkReason(participationMeasures));
 
   // --- Subscriber conversion: same rule as share watched (carried when not the newest) ---
   const conversionMeasure = analyticsMeasure("subscribers", "conversion", (ch) => subsPer1k(ch));
@@ -668,6 +741,8 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
       liveAverage: "average live viewers", livePeak: "peak live viewers", chattersPer100: "chatters per hundred at the peak",
       messagesPerHour: "chat messages an hour", engagementWeekOne: "first-week likes and comments", exposureWeekOne: "first-week X reach",
       announceToPlay: "announce-to-play on X", watching: "share of the video watched", subscribers: "subscribers per thousand views",
+      liveViewers: "unique live viewers", minutesWatched: "minutes watched live", minutesPerViewer: "minutes each live viewer stayed",
+      holdRate: "the share of the peak still watching at the end", discoveryShare: "the share of YouTube views from search and suggested videos",
     }[t.key] || t.key;
     const count = t.n === 3 ? "three" : t.n === 4 ? "four" : "five";
     const basis = t.ageBasis === "mature" ? ", as those episodes stand now" : "";
@@ -800,8 +875,10 @@ function fallbackSynthesis(inputs) {
     "growth.firstWeek": "first-week-change-each-episode", "growth.sameAge": "latest-same-age-youtube",
     "audienceQuality.engagement": "latest-engagement-count", "audienceQuality.watching": "latest-watch-percent",
     "reachEfficiency.exposure": "latest-same-age-reach", "reachEfficiency.announceToPlay": ["latest-announce-play", "latest-finished-announce-play"],
-    "livePull.peak": "latest-live-peak", "livePull.average": "latest-live-average",
+    "reachEfficiency.discoveryShare": "latest-discovery-share",
+    "livePull.peak": "latest-live-peak", "livePull.average": "latest-live-average", "livePull.liveViewers": "latest-live-viewers", "livePull.minutesWatched": "latest-live-minutes",
     "participation.chattersPer100": "latest-chatters-per-100", "participation.messagesPerHour": "latest-chat-per-hour",
+    "participation.minutesPerViewer": "latest-minutes-per-viewer", "participation.holdRate": "latest-hold-rate",
     "conversion.subscribers": "latest-subscriber-rate", "sentiment.balance": "recent-positive-feedback", "sentiment.commentRate": "latest-comment-rate",
   };
   const scored = [];
@@ -814,7 +891,9 @@ function fallbackSynthesis(inputs) {
     }
   }
   scored.sort((a, b) => b.measure.score - a.measure.score);
-  const wordFor = (score) => (score >= 55 ? "healthy" : score >= 45 ? "steady" : "fragile");
+  // rule 23: a check's word is its stamped state (bands that follow the
+  // show's own swing), never a fixed cut-off
+  const wordFor = (score, part) => part?.state ?? stateOf(score);
   const bullet = (row, side) => {
     const phrase = row.fact.requiredPhrase ? ` — ${row.fact.requiredPhrase}` : "";
     const tail = side === "up" ? "ahead of the show’s usual level" : "under the show’s usual level";
@@ -828,7 +907,7 @@ function fallbackSynthesis(inputs) {
   const used = new Set([...pros, ...cons].map((b) => b.factId));
   for (const r of scored) { if (pros.length >= 2) break; if (!used.has(r.fact.id)) { pros.push(bullet(r, "up")); used.add(r.fact.id); } }
   for (const r of [...scored].reverse()) { if (cons.length >= 2) break; if (!used.has(r.fact.id)) { cons.push(bullet(r, "down")); used.add(r.fact.id); } }
-  const checkWord = (key) => wordFor(inputs.subScores?.[key]?.score);
+  const checkWord = (key) => wordFor(inputs.subScores?.[key]?.score, inputs.subScores?.[key]);
   const names = (keys) => keys.map((k) => CHECK_LABELS[k] ?? k);
   const list = (keys) => names(keys).map((w, i, all) => (i === 0 ? "" : i === all.length - 1 ? " and " : ", ") + w).join("");
   const healthy = Object.keys(inputs.subScores || {}).filter((k) => Number.isFinite(inputs.subScores[k].score) && checkWord(k) === "healthy");
@@ -1010,6 +1089,11 @@ export function projectHealth(store, { now = Date.now() } = {}) {
       score: Number.isFinite(latest.subScores?.[key]?.score) ? latest.subScores[key].score : null,
       reason: latest.subScores?.[key]?.reason ?? null,
       carried: latest.subScores?.[key]?.carried === true,
+      // rule 23: the stamped state word and the bands it came from (fixed
+      // bands for entries written before the rule), plus the check's swing
+      state: latest.subScores?.[key]?.state ?? stateOf(latest.subScores?.[key]?.score),
+      bands: latest.subScores?.[key]?.bands ?? null,
+      swing: latest.subScores?.[key]?.swing ?? null,
       measures: Object.entries(latest.subScores?.[key]?.measures || {}).map(([measureKey, measure]) => ({
         key: measureKey,
         value: measure?.value ?? null,
@@ -1022,6 +1106,7 @@ export function projectHealth(store, { now = Date.now() } = {}) {
         qualified: measure?.qualified === true,
         carried: measure?.carried === true,
         carriedNote: measure?.carriedNote ?? null,
+        swing: measure?.swing ?? null,
       })),
     })),
     // PRD v10: what the read is on, which way each durable measure is moving,
@@ -1096,6 +1181,9 @@ function loadStore() {
   const store = readJson(STORE_PATH, { version: HEALTH_STORE_VERSION, updatedAt: null, entries: [] });
   if (![1, 2, HEALTH_STORE_VERSION].includes(store.version) || !Array.isArray(store.entries)) throw new Error("health-history.json has an unsupported schema");
   store.version = HEALTH_STORE_VERSION; // v1/v2 files upgrade in place; entries stay byte-identical
+  // rule 9 (formula bump day): a day's read written under an older formula is
+  // re-derived by the new one and the old read is kept byte-identical here
+  if (!Array.isArray(store.superseded)) store.superseded = [];
   const dates = store.entries.map((entry) => entry.date);
   if (new Set(dates).size !== dates.length) throw new Error("health-history.json contains more than one entry for a day");
   return store;
@@ -1106,7 +1194,10 @@ async function main() {
   if (!data) throw new Error("data.json is missing");
   const sourceNow = Date.parse(data.generatedAt);
   const store = loadStore();
-  const previous = store.entries.at(-1) ?? null;
+  const date = phoenixDate(sourceNow);
+  // the previous read is the last one BEFORE today — on a formula-bump day
+  // today's older-formula read is being replaced, not continued
+  const previous = store.entries.filter((entry) => entry.date < date).at(-1) ?? null;
   const inputs = computeHealthInputs({ data, now: sourceNow, previous });
   if (process.argv.includes("--dry")) {
     console.log(JSON.stringify({ weightedMean: inputs.weightedMean, allowedScore: inputs.allowedScore, availableChecks: inputs.availableChecks, checkSet: inputs.checkSet, checkSetChange: inputs.checkSetChange, asOf: inputs.asOf, direction: inputs.direction, outlook: inputs.outlook, subScores: inputs.subScores, facts: inputs.facts }, null, 2));
@@ -1131,8 +1222,8 @@ async function main() {
     return;
   }
 
-  const date = phoenixDate(sourceNow);
-  if (store.entries.some((entry) => entry.date === date)) {
+  const existing = store.entries.find((entry) => entry.date === date) ?? null;
+  if (existing && existing.formulaVersion === FORMULA_VERSION) {
     console.log(`health: ${date} already saved — append-only store unchanged`);
     return;
   }
@@ -1175,10 +1266,18 @@ async function main() {
     dataThrough: inputs.dataThrough,
     createdAt: new Date().toISOString(),
   };
+  if (existing) {
+    // rule 9: a formula bump re-derives the day visibly — the older read is
+    // kept byte-identical under `superseded`, and the new read says what it replaced
+    entry.rederivedFrom = { formulaVersion: existing.formulaVersion, score: existing.score };
+    store.entries = store.entries.filter((e) => e !== existing);
+    store.superseded.push({ supersededOn: date, by: FORMULA_VERSION, entry: existing });
+  }
   store.entries.push(entry);
+  store.entries.sort((a, b) => a.date.localeCompare(b.date));
   store.updatedAt = entry.createdAt;
   saveAtomic(STORE_PATH, store);
-  console.log(`health: saved ${date} score ${entry.score} (deterministic mean ${entry.weightedMean}, move ${entry.deviation >= 0 ? "+" : ""}${entry.deviation})`);
+  console.log(`health: saved ${date} score ${entry.score} (deterministic mean ${entry.weightedMean}, move ${entry.deviation >= 0 ? "+" : ""}${entry.deviation})${existing ? ` — re-derived under ${FORMULA_VERSION}; the ${existing.formulaVersion} read (${existing.score}) is kept under superseded` : ""}`);
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

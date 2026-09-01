@@ -26,6 +26,7 @@ import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { healLeftovers } from "./chain-heal.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -43,6 +44,10 @@ const REHEARSE_SKIP = new Set(["publish", "alerts", "freshness", "critic"]);
 // stops the chain loudly (the old behavior, one step earlier).
 function pullFirst() {
   const git = (args) => spawnSync("git", args, { cwd: ROOT, encoding: "utf8", env: { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` } });
+  // an earlier run's failed publish may have left unmerged paths and a stash
+  // behind (a same-day formula re-derivation collides with the local day's
+  // read); repair that first or the pull below refuses to run
+  try { healLeftovers(ROOT); } catch (error) { console.error(`chain: ${error.message}`); process.exit(1); }
   const status = git(["status", "--porcelain"]).stdout.trim();
   const dirty = status.split("\n").filter(Boolean).map((l) => l.slice(3));
   const generated = dirty.filter((f) => /^(data\.json|data\.js|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
