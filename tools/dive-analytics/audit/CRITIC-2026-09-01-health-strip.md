@@ -296,7 +296,7 @@ and no remembered open state.
 
 | Finding | Round-2 status |
 |---|---|
-| 1 color-only state | **Fixed.** The checks are words grouped by state, fragile first: `Fragile  Audience · Reach · Live turnout` over `Healthy  Growth · Goodwill    Not in yet  Subscribers`. Each name is a real button wearing the page's dotted drill mark; no dots, no pills. Strip hues at a glance 3 → 1 (coral on the word Fragile only). |
+| 1 color-only state | **Fixed, then decided by the owner.** Round 2 made the checks words grouped by state. Later the same day the owner asked for the pills back and then for the state labels removed: the pills run fragile-first and the dot beside each name carries the state at a glance (orange fragile, gray steady, green healthy, hollow when no reading); the word stays in each pill's accessible name, the group's `data-state`, and the tooltip. This is an owner decision against the critic's PRODUCT.md reading, recorded as such. |
 | 2 headline cut | **Fixed.** Read zone 335 → 546 px at 1440; headline 16 px / 600 and whole in two lines (measured not truncated at 1101, 1180, 1280, 1440); the clamp holds three lines for a longer day. The score zone and the read zone both toggle on click. |
 | 3 kickers | Unchanged by decision (all three kept; one baseline since round 1). |
 | 4 trigger moves | Fixed in round 1; the bring-into-view scroll now starts with the motion, and only when the region's bottom would fall below the viewport (at a 520 px window it scrolled 96 px and the region ends 25 px above the fold). |

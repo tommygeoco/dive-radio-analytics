@@ -1370,10 +1370,12 @@ function premiereMs(dateStr) {
     if (/healthChip\(/.test(heroSource)) {
       bad++; fail("card layout: the hero must not carry the episode-health chip");
     }
-    // One strip, one disclosure (2026-09-01, round 2 the same day): the
-    // glance row carries the gauge with its band in words (the shared BANDS
-    // thresholds), the checks as WORDS grouped by state (a state word, then
-    // the names in that state — never a color-only dot), and the headline
+    // One strip, one disclosure (2026-09-01, round 2 the same day; owner
+    // directive later that day): the glance row carries the gauge with its
+    // band in words (the shared BANDS thresholds), the checks as pills grouped
+    // fragile-first whose dot carries the state at a glance — the state WORD
+    // rides the group's data-state, every pill's accessible name, and the
+    // tooltip (the owner chose dots over labels at the glance layer) — and the headline
     // held to three lines; the Expand button opens the details region —
     // evidence and do-next — which is always rendered, inert while closed,
     // and toggled in place so it can move (no re-render on toggle)
@@ -1381,7 +1383,8 @@ function premiereMs(dateStr) {
     const detailsAt = healthSource.indexOf('id="hdetails"');
     if (whyAt < 0 || detailsAt < 0 || whyAt > detailsAt
       || !/aria-controls="hdetails"/.test(healthSource)
-      || !/class="hgroups"/.test(healthSource) || !/class="hgword"/.test(healthSource)
+      || !/class="hgroups"/.test(healthSource) || !/data-state="\$\{esc\(members\[0\]\.word\)\}"/.test(healthSource)
+      || !/aria-label="\$\{esc\(`\$\{c\.label\}: \$\{c\.word\}`\)\}"/.test(healthSource)
       || !/const GROUP_ORDER = \["fragile", "steady", "healthy", "waiting"\]/.test(healthSource)
       || /class="hchip"|class="checkrow"/.test(healthSource)
       || !/scoreBandWords\(h\.score\)/.test(healthSource)
