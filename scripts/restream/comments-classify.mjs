@@ -142,16 +142,23 @@ async function callOnce(system, payload) {
   return { text, ...cfg };
 }
 
+const RETRY_DELAYS_MS = [2000, 8000, 20000, 45000];
+
 async function callModel(system, payload) {
-  try {
-    return await callOnce(system, payload);
-  } catch (first) {
+  let lastErr;
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
+    if (attempt > 0) {
+      const delay = RETRY_DELAYS_MS[attempt - 1];
+      console.error(`classifier: attempt ${attempt} failed (${lastErr.message}) — retrying in ${delay / 1000}s`);
+      await new Promise((r) => setTimeout(r, delay));
+    }
     try {
       return await callOnce(system, payload);
-    } catch (second) {
-      throw new Error(`model call failed twice: ${second.message}`);
+    } catch (err) {
+      lastErr = err;
     }
   }
+  throw new Error(`model call failed after ${RETRY_DELAYS_MS.length + 1} attempts: ${lastErr.message}`);
 }
 
 export function parseClassifications(text, expectedIds) {
