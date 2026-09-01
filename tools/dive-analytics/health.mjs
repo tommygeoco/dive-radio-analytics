@@ -95,7 +95,12 @@ export const FORMULA_VERSION = "health-v3";
 // no reader-facing explanation anywhere. Drivers are now digit-free so the
 // page can render them without carrying ungrounded numbers. Entries keep
 // their stamp; pre-v4 entries are judged by the v3 rule.
-export const PROMPT_VERSION = 4;
+// prompt v5 (2026-08-31, remediation W11.1): the prompt now states the
+// validator's per-driver length cap (told 170, enforced 180). v4 never
+// mentioned it, and the rule-10 check-set explanation reliably ran to ~200
+// characters, so the model failed "drivers must contain one to three short
+// plain strings" twice per run and the store kept the previous day's entry.
+export const PROMPT_VERSION = 5;
 export const BASE_WEIGHTS = Object.freeze({
   growth: 0.25,
   audienceQuality: 0.20,
