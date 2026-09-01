@@ -1285,12 +1285,13 @@ function premiereMs(dateStr) {
     if (!/h\.checks/.test(healthSource) || !/checkState/.test(healthSource) || !/Not in yet/.test(html)) {
       bad++; fail("card layout: the diagnosis card does not render every saved check as a plain-word state");
     }
-    // diagnosis drill (owner directive 2026-08-23): every row is a keyboard-
-    // reachable tooltip target whose numbers come from the projection's saved
-    // measures — value against typical, stored reason when absent
+    // diagnosis drill (owner directive 2026-08-23; names since 2026-09-01):
+    // every check name is a keyboard-reachable tooltip target whose numbers
+    // come from the projection's saved measures — value against typical,
+    // stored reason when absent
     if (!/c\.measures/.test(healthSource) || !/MEASURE_WORDS/.test(healthSource)
-      || !healthSource.includes('<div class="checkrow" tabindex="0" data-stat=')) {
-      bad++; fail("card layout: diagnosis rows must offer saved-measure drill tooltips (value vs typical), keyboard-reachable");
+      || !healthSource.includes('<button type="button" class="hname" data-stat=')) {
+      bad++; fail("card layout: check names must offer saved-measure drill tooltips (value vs typical), keyboard-reachable");
     }
     // Today's read (owner directive 2026-08-23): the grounded headline plus
     // the top do-next actions read verbatim from the saved recommendation
@@ -1309,9 +1310,33 @@ function premiereMs(dateStr) {
     if (/healthChip\(/.test(heroSource)) {
       bad++; fail("card layout: the hero must not carry the episode-health chip");
     }
-    // "Why this score" lives under the gauge, before the diagnosis card
-    if (!(healthSource.indexOf('id="whyscore"') > -1 && healthSource.indexOf('id="whyscore"') < healthSource.indexOf('hc-diag'))) {
-      bad++; fail("card layout: the Why-this-score disclosure must sit under the gauge, ahead of the diagnosis card");
+    // One strip, one disclosure (2026-09-01, round 2 the same day): the
+    // glance row carries the gauge with its band in words (the shared BANDS
+    // thresholds), the checks as WORDS grouped by state (a state word, then
+    // the names in that state — never a color-only dot), and the headline
+    // held to three lines; the Expand button opens the details region —
+    // evidence and do-next — which is always rendered, inert while closed,
+    // and toggled in place so it can move (no re-render on toggle)
+    const whyAt = healthSource.indexOf('id="whyscore"');
+    const detailsAt = healthSource.indexOf('id="hdetails"');
+    if (whyAt < 0 || detailsAt < 0 || whyAt > detailsAt
+      || !/aria-controls="hdetails"/.test(healthSource)
+      || !/class="hgroups"/.test(healthSource) || !/class="hgword"/.test(healthSource)
+      || !/const GROUP_ORDER = \["fragile", "steady", "healthy", "waiting"\]/.test(healthSource)
+      || /class="hchip"|class="checkrow"/.test(healthSource)
+      || !/scoreBandWords\(h\.score\)/.test(healthSource)
+      || !/function scoreBandWords\(score\) \{[\s\S]{0,240}BANDS\.healthy[\s\S]{0,240}BANDS\.steady/.test(html)
+      || !/" inert"/.test(healthSource) || !/-webkit-line-clamp: 3/.test(html)
+      || /state\.evidenceOpen = !state\.evidenceOpen;\s*render\(\)/.test(healthSource)) {
+      bad++; fail("card layout: the health strip must carry the gauge with band words, the checks as state-grouped words (each name a drill target), the clamped headline, and one Expand disclosure ahead of an inert-while-closed details region toggled in place");
+    }
+    // the saved-score trend draws on a fixed scale with the usual level
+    // marked (critic 2026-09-01 F6): a small drift must never be stretched to
+    // the data's own range, and the first and newest scores are labeled
+    const trendSource = html.match(/function healthTrend\(points\) \{[\s\S]*?\n\}/)?.[0] || "";
+    if (!/const LO = 25, HI = 75/.test(trendSource) || /Math\.max\(1, hi - lo\)/.test(trendSource)
+      || !/class="mid"/.test(trendSource) || !/class="tv now"/.test(trendSource) || !/points\.length < 7/.test(trendSource)) {
+      bad++; fail("card layout: the saved-score trend must use the fixed 25–75 scale with the usual level marked and labeled endpoints, and still wait for seven saved days");
     }
     // evidence: starts closed, is a real disclosure, and carries every saved fact
     if (!/evidenceOpen: false/.test(html) || !/state\.evidenceOpen/.test(healthSource)
@@ -1497,7 +1522,9 @@ function premiereMs(dateStr) {
     bad++; fail("page gutter: the spacing token must be defined once for desktop and once for the phone cut");
   }
   const GUTTERED = [
-    [".healthrow", /\.healthrow \{[^}]*gap: var\(--gap\); margin-bottom: var\(--gap\);/],
+    // the health row is one card since 2026-09-01 (no inner grid to gap);
+    // its bottom margin still rides the token
+    [".healthrow", /\.healthrow \{[^}]*margin-bottom: var\(--gap\);/],
     [".overview", /\.overview \{[^}]*gap: var\(--gap\); margin-bottom: var\(--gap\);/],
     [".carousel", /\.carousel \{ display: flex; gap: var\(--gap\);/],
     ["#chartcard", /#chartcard \{[^}]*margin-bottom: var\(--gap\);/],
