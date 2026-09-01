@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 3,
- "updatedAt": "2026-08-31T22:15:55.471Z",
+ "updatedAt": "2026-09-01T00:00:44.668Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-08-31T22:13:56.122Z",
+ "factsGeneratedAt": "2026-08-31T23:57:53.307Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -800,58 +800,64 @@
   },
   {
    "id": "views-yt-all",
-   "value": 15043
+   "value": 15092
   },
   {
    "id": "views-x-all",
-   "value": 15282
+   "value": 15283
   },
   {
    "id": "share-x-all",
-   "value": 50.4
+   "value": 50.3
   },
   {
    "id": "views-total-all",
-   "value": 30325
+   "value": 30375
   }
  ],
- "attempts": 1,
+ "attempts": 2,
  "items": [
   {
    "id": "opening-cliff",
    "category": "content",
-   "text": "The show loses most starters almost immediately: on episode 1, 67.1 of every 100 were watching near the start but only 12 remained at the 2% mark. Every episode shows the same early cliff before viewership rebounds later.",
-   "recommendation": "This week, open with the single strongest demo or clip in the first minute and push all housekeeping and setup talk until after it. Compare next episode's early hold against this week's to see if the cliff shrinks."
+   "text": "Every episode loses most of its audience almost immediately: E1 opened with 67.1 of every 100 watching but only 12 remained at the 2% mark; E2 went from 66.4 to 15.1, and E7 from 73.7 to 13.6.",
+   "recommendation": "Cut the warm-up chatter: open with the single strongest demo or guest moment in the first minute, then do intros. Test this on the next live show and check whether the early hold improves."
   },
   {
-   "id": "trim-loose-banter",
+   "id": "early-exit-moments",
    "category": "content",
-   "text": "Episode 1's biggest single exit came about 7 minutes in, when 7.9 of every 100 viewers left during loose setup talk (\"we're going to try some stuff... pull back the curtain\"). We can't say the words caused it, but the timing lines up with unstructured chat.",
-   "recommendation": "Test a tighter run of show: write one-line intros for each segment, cap freeform banter between segments, and move a concrete showcase into that early slot next episode. Watch whether the early exit spike softens."
+   "text": "E1's steepest exit came about 6% of the way in, around minute 7, when 7.9 of every 100 viewers left during the 'pull back the curtain' setup talk. E5 lost 5.7 of every 100 around 12% in, near minute 11.",
+   "recommendation": "Trim or re-order the setup and roadmap talk in the opening stretch — move it after the first demo — and watch whether early exits shrink on the next episode. Timings are approximate, so review the recording before cutting."
   },
   {
-   "id": "subscribe-ask-collapsed",
+   "id": "dive-club-converts",
    "category": "audience",
-   "text": "Episode 1 converted 8.8 subscribers per 1,000 views (13.2 on DesignerTom, 5.6 on Dive Club). Episode 3 converted 0 on both channels. Episode 4 got 5.7 on Dive Club but 0 on DesignerTom. Something episode 1 did stopped happening, especially on DesignerTom.",
-   "recommendation": "Rewatch episode 1 and note when and how you asked people to subscribe, then script that ask back into this week's show on both channels. Add a pinned comment and description line with the subscribe ask on every DesignerTom upload."
+   "text": "On finished episodes, Dive Club converts better than DesignerTom: E2 gained 4.3 subscribers per 1,000 views on Dive Club vs 1.1 on DesignerTom, and E4 gained 5.7 on Dive Club while DesignerTom gained 0.",
+   "recommendation": "Make Dive Club the main home this week: point all links, pins, and on-air asks there, and test whether DesignerTom works better as a clips-and-highlights feed than a second full simulcast."
   },
   {
-   "id": "discovery-surfaces-idle",
+   "id": "e1-subscribe-playbook",
+   "category": "content",
+   "text": "Among finished episodes, E1 gained 8.8 subscribers per 1,000 views — 13.2 on DesignerTom — while E3 gained 0 on both channels and DesignerTom also gained 0 on E4.",
+   "recommendation": "Rewatch E1, list what it did differently, and copy it: add one direct, specific subscribe ask right after the strongest segment of this week's show and see whether the next finished episode converts again."
+  },
+  {
+   "id": "discovery-surfaces-empty",
    "category": "distribution",
-   "text": "64.3 of every 100 YouTube views come from existing subscribers. Discovery surfaces are barely working: search brings 4.3, related videos 7, playlists 0.6, and end screens 0.1 of the share. The show is mostly preaching to people it already has.",
-   "recommendation": "This week, add an end screen to every past episode pointing to the next one, build a single series playlist and link it in every description, and rewrite titles and descriptions around search terms designers actually type."
+   "text": "Of YouTube views, 64.3% come from existing subscribers (8,774 views). Discovery surfaces bring almost nothing: playlists 85 views, end screens 9, Shorts 2. Related videos are the biggest outside source at 961 views.",
+   "recommendation": "Add end screens to every past episode, build one series playlist, and post three Shorts cut from the best moments this week — these surfaces cost nothing and currently deliver almost no views."
   },
   {
-   "id": "x-audience-untapped",
-   "category": "promotion",
-   "text": "Half the audience watches on X: 50.4 of all watching, 15,282 plays versus 15,043 YouTube views. But subscribers, end screens, and playlists only accrue on YouTube, so half the audience never enters the funnel that grows the show.",
-   "recommendation": "During this week's X simulcast, pin the YouTube link in the first reply, say the YouTube handle out loud twice, and offer one YouTube-only reason to click over, like a bonus segment or chat shoutouts. Track whether YouTube live viewers rise."
+   "id": "x-half-the-audience",
+   "category": "distribution",
+   "text": "Half of all watching happens on X: 15,283 plays there vs 15,092 on YouTube, 50.3 of every 100 total views. But subscriber gains only show up on YouTube, so X viewers have no clear path to subscribe.",
+   "recommendation": "During each X stream, pin the YouTube link and give one on-air prompt sending X viewers to YouTube to subscribe; check whether the next episode's YouTube subscriber count moves."
   },
   {
-   "id": "live-audience-slide",
+   "id": "live-chat-fading",
    "category": "promotion",
-   "text": "Peak live viewers fell from 90 on episode 1 to 53 on episode 3, and chat fell from 383 messages to 169. The latest show recovered to 72 peak viewers but only 92 chat messages, so fewer people are talking even when they show up.",
-   "recommendation": "Post a day-before announcement with the topic and guest on both channels and on X, schedule the live event so notifications fire, and run one named chat prompt every segment, like a poll or question, to pull lurkers into the conversation."
+   "text": "Live energy is fading: E1 peaked at 90 live viewers with 383 chat messages; E3 fell to 53 and 169. Recent shows hold around 71 to 72 live viewers, but chat keeps sliding — E7 drew just 92 messages.",
+   "recommendation": "Run one structured chat moment per show this week — a live vote, a nominate-a-designer prompt, or a build-along question — and track whether messages climb back toward early-episode levels."
   }
  ]
 }
