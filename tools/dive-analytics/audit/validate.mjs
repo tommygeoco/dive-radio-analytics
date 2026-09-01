@@ -566,7 +566,26 @@ function premiereMs(dateStr) {
       }
     }
   }
-  if (!bad) ok(`insight categories: ${data.insights.length} insights all carry a legal strategy category + recommendation`);
+  // W35: a ranked store ships in rank order — ranks 1..n contiguous, first on
+  // the page, matching the store's own item order; unranked claims follow
+  const ranked = data.insights.filter((i) => i.rank != null);
+  if (ranked.length) {
+    const ranks = ranked.map((i) => i.rank);
+    if (ranks.some((r, i) => r !== i + 1)) { bad++; fail(`insight ranks are not 1..${ranked.length} in page order (${ranks.join(",")})`); }
+    if (data.insights.findIndex((i) => i.rank != null) !== 0 || data.insights.slice(0, ranked.length).some((i) => i.rank == null)) { bad++; fail("insight ranks: ranked items must come first on the page"); }
+    try {
+      const recStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "recommendations.json"), "utf8"));
+      const storeOrder = (recStore.items || []).map((i) => i.id).filter((id) => ranked.some((i) => i.id === id));
+      if (JSON.stringify(storeOrder) !== JSON.stringify(ranked.map((i) => i.id))) { bad++; fail("insight ranks do not follow the recommendation store's own order"); }
+      if (recStore.ranked && !("prunedAt" in recStore) && (recStore.items || []).length !== 5) { bad++; fail(`recommendations: a fresh ranked store must hold exactly five items, found ${(recStore.items || []).length}`); }
+      for (const item of recStore.items || []) if (item.serves != null && !["growth", "audienceQuality", "reachEfficiency", "livePull", "participation", "conversion", "sentiment"].includes(item.serves)) { bad++; fail(`recommendations: ${item.id} serves an unknown check`); }
+    } catch (error) { bad++; fail(`insight ranks: store check threw — ${error.message}`); }
+    const pageSource = readFileSync(join(ROOT, "index.html"), "utf8");
+    const panel = pageSource.match(/function buildInsightsPanel\(\) \{[\s\S]*?\n\}/)?.[0] || "";
+    if (!/\(a\.rank \?\? 99\) - \(b\.rank \?\? 99\)/.test(panel) || !/ins\.rank/.test(panel)) { bad++; fail("insight ranks: the page does not render ranked items in rank order with their rank"); }
+    if (!/ranked\.slice\(0, 2\)/.test(pageSource)) { bad++; fail("insight ranks: the health card's Do next does not take the top two by rank"); }
+  }
+  if (!bad) ok(`insight categories: ${data.insights.length} insights all carry a legal strategy category + recommendation${ranked.length ? `; ${ranked.length} ranked in store order` : ""}`);
 }
 
 // --- 1g. episode health (W12): 21-day gate, frozen immutability, window sanity, weight math, definition-lock ---

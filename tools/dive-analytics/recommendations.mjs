@@ -37,6 +37,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync, unlinkSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { liveDepthOf } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -46,7 +47,9 @@ const MAX_TOKENS = 8000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
-export const PROMPT_VERSION = 3; // allowed-number list in the payload + grounding-error retries (v8 publish-integrity) + like-for-like rate facts (v9 baselines)
+export const PROMPT_VERSION = 4; // v3: allowed-number list + grounding-error retries (v8) + like-for-like rate facts (v9); v4 (PRD v10 §11, W35): exactly five items ranked by lever, anchored in the day's show-health read (states, direction, outlook, launch words, live depth, discovery) — `serves` names the check each action helps
+export const TOP_N = 5;           // What matters = the five things to do this week, in order
+export const CHECK_KEYS = new Set(["growth", "audienceQuality", "reachEfficiency", "livePull", "participation", "conversion", "sentiment"]);
 const CATEGORIES = new Set(["content", "distribution", "promotion", "audience", "data"]);
 // exported so other prose surfaces (the Slack trends line) can gate spoken
 // quotes with the same plain-words contract the validator enforces
@@ -103,7 +106,64 @@ export function collectFacts(data = readJson(DATA_PATH)) {
       add(`subs-E${e.ep}-${c.key.slice(3)}`, c.subs, `E${e.ep} ${c.key} subscribers gained`);
     }
     if (e.health?.score != null) add(`health-E${e.ep}`, e.health.score, `E${e.ep} episode health`);
-    if (e.live) { add(`peak-E${e.ep}`, e.live.peak, `E${e.ep} peak live viewers`); add(`chat-E${e.ep}`, e.live.chatMessages, `E${e.ep} chat messages`); }
+    if (e.live) {
+      add(`peak-E${e.ep}`, e.live.peak, `E${e.ep} peak live viewers`);
+      add(`avg-E${e.ep}`, e.live.avg, `E${e.ep} average live viewers`);
+      add(`chat-E${e.ep}`, e.live.chatMessages, `E${e.ep} chat messages`);
+      add(`chatters-E${e.ep}`, e.live.chatters, `E${e.ep} people who chatted`);
+      // PRD v10 §11: the whole live session — one definition (baselines.liveDepthOf)
+      if (e.live.liveViews > 0) add(`live-viewers-E${e.ep}`, e.live.liveViews, `E${e.ep} people who watched live`);
+      if (e.live.watchedMin > 0) add(`live-minutes-E${e.ep}`, e.live.watchedMin, `E${e.ep} minutes watched live, all together`);
+      const depth = liveDepthOf(e);
+      if (depth?.minutesPerViewer != null) add(`stay-min-E${e.ep}`, depth.minutesPerViewer, `E${e.ep} minutes each live viewer stayed`);
+      if (depth?.holdRate != null) add(`hold-E${e.ep}`, depth.holdRate, `E${e.ep} share of the peak still watching in the last ten minutes`);
+    }
+    if (Number.isFinite(e.discoveryShare)) add(`discovery-E${e.ep}`, e.discoveryShare, `E${e.ep} share of YouTube views from search and suggested videos${basisOf(e) === "young" ? ` (only ${e.ageDays} days in — not comparable with finished episodes)` : ""}`, rate(e));
+  }
+
+  // --- the day's show-health read (PRD v10 §11, W35): the checks, their
+  // states, each measure's own value and typical, the direction of every
+  // durable measure, the outlook, and each episode's launch word. Words ride
+  // in `context` (never numbers); every number is a fact here. ---
+  const context = { showHealth: null, direction: null, outlook: null, launch: {} };
+  const h = data.health;
+  if (h && Number.isFinite(h.score)) {
+    add("show-health-score", h.score, "today's show-health score (50 is the show's usual level)");
+    const states = {};
+    for (const c of h.checks || []) {
+      states[c.key] = c.state || (c.score == null ? "waiting" : null);
+      if (Number.isFinite(c.score)) add(`check-${c.key}`, c.score, `show-health check ${c.key}: ${c.state || "scored"} (50 is usual)`);
+      for (const mm of c.measures || []) {
+        if (mm.value == null) continue;
+        const tag = `${mm.qualified ? " — promo-driven lift, shown not scored" : ""}${mm.carried ? " — carried from an older finished episode" : ""}${mm.note ? ` (${mm.note})` : ""}`;
+        add(`hm-${c.key}-${mm.key}`, mm.value, `show-health ${c.key} / ${mm.key}: the newest reading${tag}`);
+        if (mm.typical != null) add(`hm-typical-${c.key}-${mm.key}`, mm.typical, `show-health ${c.key} / ${mm.key}: the show's typical level`);
+      }
+    }
+    context.showHealth = {
+      score: h.score, readState: h.readState, headline: h.headline, states,
+      readsOn: h.asOf ? { newest: h.asOf.newestTitle || h.asOf.newest, provisional: !!h.asOf.provisional, carried: h.asOf.carried || [], promoQualified: h.asOf.qualified || [] } : null,
+      drivers: h.drivers || [],
+    };
+  }
+  const dir = data.baselines?.direction;
+  if (dir?.measures) {
+    context.direction = { overall: dir.overall ?? null, words: Object.fromEntries(dir.measures.map((t) => [t.key, t.direction || (t.n >= 3 ? "too few episodes for a word" : "too few episodes")])) };
+    for (const t of dir.measures) if (t.pctPerEpisode != null) add(`dir-${t.key}`, Math.abs(t.pctPerEpisode), `${t.key}: change each episode over the last ${t.n} clean episodes, ${t.pctPerEpisode >= 0 ? "up" : "down"}${t.direction ? ` (${t.direction})` : " (too few for a direction word)"}`);
+  }
+  const nfw = data.baselines?.outlook?.nextFirstWeek;
+  if (nfw?.low != null) {
+    add("outlook-first-week-low", nfw.low, "lowest of the last three clean first weeks, YouTube views");
+    add("outlook-first-week-high", nfw.high, "highest of the last three clean first weeks, YouTube views");
+    add("outlook-first-week-typical", nfw.typical, "typical of the last three clean first weeks, YouTube views");
+    context.outlook = { firstWeek: nfw.direction || "no direction word yet", coolOff: data.baselines?.outlook?.coolOff?.word || null, coolOffPromo: !!(data.baselines?.outlook?.coolOff?.reason && /promo/.test(data.baselines.outlook.coolOff.reason)) };
+  }
+  for (const e of eps) {
+    const l = data.baselines?.launch?.[e.slug];
+    if (!l?.word) continue;
+    context.launch[`E${e.ep}`] = `${l.promoDriven ? "promo-driven" : l.word}${l.provisional ? " so far" : ""}`;
+    add(`launch-E${e.ep}`, l.value, `E${e.ep} YouTube views at its launch read${l.provisional ? " (still under a week old)" : ""}${l.promoDriven ? " — promo-driven" : ""}`);
+    if (l.typical != null) add(`launch-typical-E${e.ep}`, l.typical, `typical YouTube views at that age for the episodes around E${e.ep}`);
   }
 
   // v6 W16: curve shape + transcript-anchored moments. The numbers become
@@ -162,7 +222,7 @@ export function collectFacts(data = readJson(DATA_PATH)) {
   if (ytAll + xAll > 0) add("share-x-all", (xAll / (ytAll + xAll)) * 100, "share of all watching on X");
   add("views-total-all", ytAll + xAll, "all-show total views");
 
-  return { generatedAt: data.generatedAt, facts, excerpts };
+  return { generatedAt: data.generatedAt, facts, excerpts, context };
 }
 
 // --- validation: every number in an item must exist in the fact sheet ---
@@ -194,6 +254,7 @@ function checkItem(item, allowed, seen, facts = []) {
   if (typeof item.id !== "string" || !/^[a-z0-9-]{3,40}$/.test(item.id) || seen.has(item.id)) throw new Error(`bad or duplicate id ${JSON.stringify(item.id)}`);
   seen.add(item.id);
   if (!CATEGORIES.has(item.category)) throw new Error(`${item.id}: illegal category`);
+  if (item.serves != null && !CHECK_KEYS.has(item.serves)) throw new Error(`${item.id}: serves names an unknown check`);
   const basesCited = new Set();
   for (const key of ["text", "recommendation"]) {
     const value = item[key];
@@ -281,17 +342,18 @@ export function pruneStore(sheet) {
 
 // --- model call (same provider plumbing as health.mjs) ---
 
-const SYSTEM = `You are the tactical recommendation engine for the two Dive Radio owners. You receive a deterministic fact sheet of everything the pipeline measured. Return raw JSON only: {"items":[{"id":"kebab-id","category":"content|distribution|promotion|audience","text":"...","recommendation":"..."}]} with four to seven items.
+const SYSTEM = `You are the tactical recommendation engine for the two Dive Radio owners. You receive a deterministic fact sheet of everything the pipeline measured, plus context: today's show-health read (each check's state — healthy, steady, fragile, or waiting — its headline and reasoning), which way every durable measure is heading over the last clean episodes, the outlook for the next first week, and each episode's launch word. Return raw JSON only: {"items":[{"id":"kebab-id","category":"content|distribution|promotion|audience","serves":"growth|audienceQuality|reachEfficiency|livePull|participation|conversion|sentiment|null","text":"...","recommendation":"..."}]} with EXACTLY FIVE items, in order: item one is the single most valuable thing to do this week, item five the least.
 
 Rules:
-1. text states ONE finding in at most 260 characters using only numbers copied exactly from the fact sheet. recommendation is ONE concrete action the hosts can take this week — imperative, specific, no hedging, at most 260 characters.
-2. Prefer the findings with the largest lever: where viewers are lost, which channel converts, which surfaces bring nothing, what the best episode did differently.
+1. text states ONE finding in at most 260 characters using only numbers copied exactly from the fact sheet. recommendation is ONE concrete action the hosts can take this week — imperative, specific, no hedging, at most 260 characters. serves names the show-health check the action helps most, or null.
+2. Anchor the five in today's read: lead with the checks whose state is fragile and the measures heading down that the hosts can act on (a chat that thinned, a launch that ran soft, an announce that few played, viewers who left early); a healthy check earns an action only to protect or extend it. Never recommend against a promo-driven lift as if it were organic. Then the largest remaining levers: where viewers are lost, which channel converts, which surfaces bring nothing, what the best finished episode did differently. Cover at least three different checks across the five.
 3. Call out per-channel differences (Dive Club vs DesignerTom) whenever the gap matters, alongside the blended number.
 4. Plain words. Never write: composite, percentile, pillar, ratio, multiple-times comparisons, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.
 5. Association is not cause — recommend tests and changes, never certainties.
 6. Watch-moment facts (drop-*/hold-*) arrive with transcript excerpts in the payload. Excerpts are quotable context, not numbers. Name a moment's position in plain words ("about a third of the way in") and treat its timing as approximate — it comes from the live recording. Never claim the words caused the exit; recommend a test instead (trim, tighten, re-order).
 7. The payload's allowedNumbers list is the complete set of number spellings you may write. Every digit sequence in your output must appear verbatim in that list. Never compute, round, combine, or convert numbers — if the number you want is not in the list, make the point without a number.
-8. Facts marked basis "young" belong to episodes under three weeks old; their rates are not comparable with finished episodes. Never rank, compare, or call "best" across a young and a mature episode's rates; compare finished episodes with finished ones, and say when a number is from an episode still in its first weeks.`;
+8. Facts marked basis "young" belong to episodes under three weeks old; their rates are not comparable with finished episodes. Never rank, compare, or call "best" across a young and a mature episode's rates; compare finished episodes with finished ones, and say when a number is from an episode still in its first weeks.
+9. context carries words, not numbers: a state word, a direction word, a launch word may be quoted; every digit you write still comes from allowedNumbers. A measure marked "carried from an older finished episode" describes that episode, not the newest; a "promo-driven lift" is shown, never scored, and never a reason to celebrate or to worry.`;
 
 async function callModel(messages) {
   const key = process.env.ANTHROPIC_API_KEY;
@@ -315,7 +377,8 @@ async function callModel(messages) {
 // window and the prune floor handles the day.
 async function regenerate(sheet) {
   const messages = [{ role: "user", content: JSON.stringify({
-    task: "Write this week's tactical recommendations.",
+    task: `Write this week's five tactical recommendations, ranked, anchored in today's show-health read.`,
+    context: sheet.context,
     facts: sheet.facts,
     excerpts: sheet.excerpts,
     allowedNumbers: [...allowedTokens(sheet.facts)].sort((a, b) =>
@@ -327,6 +390,7 @@ async function regenerate(sheet) {
     try {
       parsed = JSON.parse(result.text);
       validateItems(parsed.items, sheet.facts);
+      if (parsed.items.length !== TOP_N) throw new Error(`exactly ${TOP_N} ranked items required, got ${parsed.items.length}`);
       return { items: parsed.items, model: result.model, attempts: attempt };
     } catch (error) {
       console.log(`recommendations: attempt ${attempt}/3 failed grounding — ${error.message}`);
@@ -366,9 +430,11 @@ async function main() {
     // the facts the items were grounded on (baselines PRD v9 §4.6)
     facts: sheet.facts.map((f) => ({ id: f.id, value: f.value })),
       attempts: gen.attempts,
+      // W35: the items are in rank order — the first is this week's biggest lever
+      ranked: true,
       items: gen.items,
     });
-    console.log(`recommendations: saved ${gen.items.length} item(s) after ${gen.attempts} attempt(s) — rebuild data to publish`);
+    console.log(`recommendations: saved ${gen.items.length} ranked item(s) after ${gen.attempts} attempt(s) — rebuild data to publish`);
   } catch (error) {
     console.log(`WARN recommendations: ${error.message}; falling back to the deterministic prune`);
     pruneStore(sheet);

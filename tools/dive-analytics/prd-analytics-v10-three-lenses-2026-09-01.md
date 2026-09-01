@@ -535,6 +535,37 @@ on a morning that never published still lands.
   arrives; the owners' feel notes are compared with what the read said.
 - Every re-derivation is visible (`rederivedFrom`, `superseded`), never silent.
 
+### W35 — What matters, ranked from the day's read (owner directive, same evening)
+
+"Wire up our insights in the bottom (no new categories) to more intelligently
+surface the top five things we should do based on the latest intelligence."
+
+- `recommendations.mjs` prompt v4: the payload carries `context` — today's
+  show-health read (score, each check's `state`, headline, drivers, what the
+  read is on, carried and promo-qualified notes), the direction word of every
+  durable measure, the outlook (first-week direction, cool-off word), and each
+  episode's launch word — as words only; every number stays a fact. New facts:
+  the show-health score, each check's score, each measure's own value and
+  typical (`hm-*`), each direction slope (`dir-*`), the outlook range, each
+  launch read and its typical, and per episode the average live viewers,
+  chatters, people who watched live, minutes watched live, minutes each
+  viewer stayed, hold rate (`baselines.liveDepthOf`, one definition) and
+  discovery share.
+- Exactly five items, in order of lever (`TOP_N`), each with `serves` (the
+  check it helps, or null); the prompt leads with fragile checks and
+  softening measures the hosts can act on, never against a promo-driven lift,
+  and must cover at least three checks. Categories unchanged (content,
+  distribution, promotion, audience).
+- The store stamps `ranked: true`; build-data ships `rank` and `serves` on
+  each item and keeps store order (unranked claims — the validator-locked
+  pace-rank — follow by category). The page renders the rank where the
+  category icon sat and "helps <check>" after the category; the health card's
+  Do next is the top two by rank. Validator: ranks 1..n contiguous and first,
+  store order = page order, a fresh ranked store holds exactly five, `serves`
+  names a known check, and the page's sort/Do-next contracts.
+- The prune floor is unchanged (three); a pruned ranked store keeps its
+  surviving order.
+
 ### Validator contracts added
 
 - 1h: per-measure `swing` (integer ≥ 0, ≥ MIN_PEERS peers, absent on
@@ -557,3 +588,4 @@ on a morning that never published still lands.
   reach measures, same-day re-derivation (v3 46 → v4 49), `chain-heal.mjs`
   with a rehearsal test, prompt v7. Merged to main and deployed the same
   evening.
+- 2026-09-01 (late) — W35 shipped: What matters = five ranked actions from the day's read; the carousel lost its second colored dot and the question-mark cursor (owner directives).

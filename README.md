@@ -24,6 +24,10 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   (`tools/dive-analytics/health-feedback.mjs better|same|worse "…"`).
 - Launch word per episode (strong / typical / soft, promo-qualified, "so far"
   under a week) on every card from its first reading.
+- What matters: the five things to do this week, ranked by lever and
+  anchored in the day's show-health read (which checks are fragile, which
+  measures are softening, the outlook, each launch word); every number in an
+  item is a stored fact, and each item names the health check it helps.
 - Per-episode health score (0–100, 50 = typical): each episode's own
   three-week read against the eight episodes before it (promo outliers left
   out, at least three to compare), frozen at day 21 with the inputs it used

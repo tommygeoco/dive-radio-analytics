@@ -309,6 +309,14 @@ export function computeAll({ now = Date.now() } = {}) {
   attachWatch(dive);
   const baselines = computeBaselines(dive, { flags, history: readHistoryLines });
 
+  // the saved show-health read is projected first: the recommendation fact
+  // sheet (W35) cites its numbers, so it must exist before the insights build
+  const health = (() => {
+    if (!existsSync(HEALTH_PATH)) return null;
+    const store = JSON.parse(readFileSync(HEALTH_PATH, "utf8"));
+    return projectHealth(store, { now });
+  })();
+
   // W15 recommendation engine: when the saved store exists, its model-written,
   // number-grounded items ARE "What matters" — the deterministic rule-based
   // insights remain only as the fallback when no store has ever been written.
@@ -322,14 +330,16 @@ export function computeAll({ now = Date.now() } = {}) {
     // or was retired (a re-derived score, a changed rate) makes the item stale:
     // dropped here with its reason, never shown against numbers it no longer
     // matches; the next model run rewrites the store.
-    const sheet = collectFacts({ episodes: dive, baselines, generatedAt: new Date(now).toISOString() });
+    const sheet = collectFacts({ episodes: dive, baselines, health, generatedAt: new Date(now).toISOString() });
     const allowed = allowedNumbers(sheet.facts);
     const current = [];
     for (const r of recStore.items) {
       try { validateItem(r, sheet.facts, allowed); current.push(r); }
       catch (err) { insightsStale.push({ id: r.id, why: String(err.message).replace(/^[a-z0-9-]+: /, "") }); }
     }
-    insights = current.map((r) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category }));
+    // W35: a ranked store ships in its own order — item one is this week's
+    // biggest lever — and each item carries its rank and the check it serves
+    insights = current.map((r, i) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category, ...(recStore.ranked ? { rank: i + 1 } : {}), ...(r.serves ? { serves: r.serves } : {}) }));
   }
   if (!insights || !insights.length) {
     insightsStale = insights ? insightsStale : [];
@@ -360,7 +370,9 @@ export function computeAll({ now = Date.now() } = {}) {
     }
   }
   const catRank = { content: 0, distribution: 1, promotion: 2, audience: 3, data: 4 };
-  insights.sort((a, b) => (catRank[a.category] ?? 9) - (catRank[b.category] ?? 9));
+  // ranked items keep their order (W35); anything unranked (the deterministic
+  // fallback, or the validator-locked pace-rank claim) follows by category
+  insights.sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99) || (catRank[a.category] ?? 9) - (catRank[b.category] ?? 9));
   const showTrend = {
     week1VelocityByEpisode: dive.map((e) => ({
       slug: e.slug,
@@ -377,11 +389,6 @@ export function computeAll({ now = Date.now() } = {}) {
       return p && p.rank ? { slug: p.newest.slug, rank: p.rank, of: p.of } : null;
     })(),
   };
-  const health = (() => {
-    if (!existsSync(HEALTH_PATH)) return null;
-    const store = JSON.parse(readFileSync(HEALTH_PATH, "utf8"));
-    return projectHealth(store, { now });
-  })();
 
   return {
     generatedAt: new Date(now).toISOString(),
@@ -898,12 +905,18 @@ function buildInsights(dive, { flags }) {
     const days = Math.round((pace.ageMs / DAY) * 10) / 10;
     const ahead = pace.newestVal >= pace.median;
     const pct = Math.abs(pace.pct ?? 0);
+    // rule 18 (PRD v10): a promo-driven lift is shown, never presented as the
+    // format landing — the newest episode's own flag (settled or provisional)
+    // turns the claim into a caution
+    const promo = !!flags?.get?.(pace.newest.slug)?.flagged;
     insights.push({
       id: "pace-rank",
-      text: `${shortTitle(pace.newest.title)} has ${num(pace.newest.latest.totalViews)} total views ${days} days in — on YouTube it's pacing #${pace.rank} of ${pace.of} at this age, ${pct}% ${ahead ? "ahead of" : "behind"} the typical episode.`,
-      recommendation: ahead
-        ? `This topic/format is landing. Note what's different about it and repeat that on the next episode.`
-        : `If this episode deserves a push, push now — gains concentrate in the first weeks and the gap won't close on its own.`,
+      text: `${shortTitle(pace.newest.title)} has ${num(pace.newest.latest.totalViews)} total views ${days} days in — on YouTube it's pacing #${pace.rank} of ${pace.of} at this age, ${pct}% ${ahead ? "ahead of" : "behind"} the typical episode${promo ? " — a promo-driven lift so far, shown here and not scored in show health" : ""}.`,
+      recommendation: promo
+        ? `Its first days ran on promotion. Watch whether it keeps pace after the push fades before repeating the format.`
+        : ahead
+          ? `This topic/format is landing. Note what's different about it and repeat that on the next episode.`
+          : `If this episode deserves a push, push now — gains concentrate in the first weeks and the gap won't close on its own.`,
       caveat: `Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from ${pace.peers.length} other episode${pace.peers.length === 1 ? "" : "s"} at the same age, promo outliers left out.`,
       chartState: state({ chart: "standings", solo: pace.newest.slug }),
     });
