@@ -18,11 +18,7 @@ Score 49 (weighted mean 50.1, health-v4, prompt v7); reads Steal These AI Design
 
 ### Owner feel against the read
 
-0 of 1 notes agree with the read's direction or score move.
-
-| Day | Felt | By direction | By score move | Score | Note |
-|---|---|---|---|---|---|
-| 2026-09-01 | better | same | same | 49 ✗ | a few words |
+No feel notes yet. Record one with `node tools/dive-analytics/health-feedback.mjs better|same|worse "a few words"` on any day; the loop compares each note with what the read said that day.
 
 ## Longevity — how the formula is ageing
 
