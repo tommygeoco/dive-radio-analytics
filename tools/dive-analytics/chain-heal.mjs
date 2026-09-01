@@ -11,6 +11,7 @@
 //     (mergeHealthStores): every day from either side is kept; when both
 //     sides carry the same day, the newer formula's read wins and the older
 //     one is kept byte-identical under `superseded`
+//   • any other store under data/restream (one writer: this machine) — keep the local run's version
 //   • anything else — stop and say so (a human resolves it)
 // then drops the leftover stash. Idempotent: a clean tree is a no-op.
 import { spawnSync } from "node:child_process";
@@ -64,6 +65,15 @@ export function healLeftovers(root, { log = console.log } = {}) {
       writeFileSync(join(root, file), JSON.stringify(merged, null, 2) + "\n");
       git(["add", file]);
       healed.push(`${file} (union by day: ${merged.entries.length} reads, ${merged.superseded.length} superseded)`);
+      continue;
+    }
+    // PRD v11 W38 / rule 26: every other store under data/restream has one
+    // writer — this machine's chain — so the local run's version (the stash
+    // side of a failed pop) is the truth; the pulled side can only be older
+    if (/^data\/restream\//.test(file) || /^transcripts\//.test(file) || file === "tools/dive-analytics/audit/HEALTH-VERIFY.md") {
+      git(["checkout", "--theirs", "--", file]);
+      git(["add", file]);
+      healed.push(`${file} (kept this machine's version — the stores have one writer)`);
       continue;
     }
     throw new Error(`${file} is left conflicted from an earlier run and has no automatic merge — resolve it by hand, then rerun the chain`);

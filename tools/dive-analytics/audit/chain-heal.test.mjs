@@ -21,6 +21,7 @@ const origin = join(base, "origin.git"); git(base, "init", "--bare", "-q", "-b",
 const mini = join(base, "mini"); git(base, "clone", "-q", origin, mini);
 const S0 = { version: 3, updatedAt: "2026-09-01T14:00:00Z", entries: [v3("2026-08-31", 46), v3("2026-09-01", 46)] };
 write(mini, "data/restream/health-history.json", S0); write(mini, "data.json", { generatedAt: "2026-09-01T14:00:00Z" });
+write(mini, "data/restream/alerts-state.json", { seen: "base" });   // a tracked store both sides will change later
 git(mini, "add", "-A"); git(mini, "commit", "-q", "-m", "base"); git(mini, "push", "-q", "origin", "main");
 
 // the laptop re-derives today under the new formula and pushes
@@ -42,6 +43,20 @@ assert.match(git(mini, "diff", "--name-only", "--diff-filter=U"), /health-histor
 // the new chain heals before pulling
 const { healed } = healLeftovers(mini, { log: () => {} });
 assert.equal(healed.length, 1, "only the store needed healing (data.json did not conflict)");
+
+// PRD v11 W38: any OTHER store both sides changed keeps this machine's version
+write(mac, "data/restream/alerts-state.json", { seen: "laptop-edit" }); git(mac, "add", "-A"); git(mac, "commit", "-q", "-m", "laptop touched a store"); git(mac, "push", "-q", "origin", "main");
+write(mini, "data/restream/alerts-state.json", { seen: "chain-run" });
+git(mini, "stash", "push", "--quiet", "--include-untracked", "-m", "publish-pre-pull");
+git(mini, "pull", "--rebase", "--quiet", "origin", "main");
+let popFailed2 = false;
+try { git(mini, "stash", "pop", "--quiet"); } catch { popFailed2 = true; }
+assert.equal(popFailed2, true, "the second rehearsal must reproduce a plain store conflict");
+const healed2 = healLeftovers(mini, { log: () => {} }).healed;
+assert.equal(healed2.length, 1);
+assert.match(healed2[0], /kept this machine's version/);
+assert.equal(JSON.parse(readFileSync(join(mini, "data/restream/alerts-state.json"), "utf8")).seen, "chain-run");
+assert.equal(git(mini, "diff", "--name-only", "--diff-filter=U").trim(), "");
 assert.equal(git(mini, "diff", "--name-only", "--diff-filter=U").trim(), "", "no unmerged paths remain");
 assert.equal(git(mini, "stash", "list").trim(), "", "the leftover stash is dropped");
 const merged = JSON.parse(readFileSync(join(mini, "data/restream/health-history.json"), "utf8"));
@@ -54,4 +69,4 @@ git(mini, "stash", "push", "--quiet", "--include-untracked", "-m", "chain-pre-pu
 git(mini, "pull", "--rebase", "--quiet", "origin", "main");
 git(mini, "stash", "pop", "--quiet");
 assert.equal(git(mini, "diff", "--name-only", "--diff-filter=U").trim(), "");
-console.log("chain-heal.test: the morning after a formula bump heals into one merged store with no stash left");
+console.log("chain-heal.test: the morning after a formula bump heals into one merged store, a plain store conflict keeps this machine's version, no stash left");

@@ -15,7 +15,7 @@ contract map · §7 known gaps (pointers to PRD v9)
 
 ## 1. Chain and cadence
 
-Owner machine, 07:00 America/Phoenix daily (OpenClaw automation `restream-postlive-snapshot` → `run-chain.mjs`; a 06:00 rehearsal runs the same chain without publishing). The publish half is documented in
+Owner machine, 07:00 America/Phoenix daily (OpenClaw automation `restream-postlive-snapshot` → `run-chain.mjs`). Beside it: `dive-alerts` every 30 min (`alerts.mjs --emit` → Tommy's Slack, silent when the queue is empty), `restream-postlive-freshness` at 08:15 and 12:00, `restream-analytics-ingest` 06:50, a Monday-noon Slack trends report; the 06:00 rehearsal was retired (PRD v11 W41). The daily job carries an OpenClaw failure alert after one error. PRD v11 rules 24–26: a publish stops only when a number would be wrong (`validate.mjs --publish` reports source-contract drift instead of blocking; strict mode and the pre-push hook still refuse it), every failure reaches Slack within ten minutes (`run-chain.mjs` queues the line), and the stores have one writer (this machine; `chain-heal.mjs` keeps its version on a conflict). The publish half is documented in
 `README.md`; the whole chain, with what each step writes and which stores must
 be fresh, is versioned in `tools/dive-analytics/chain.json` (the automation itself
 lives on the owner machine).

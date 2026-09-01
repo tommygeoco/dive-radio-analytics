@@ -1,6 +1,6 @@
 # PRD — Analytics v11: publishes that do not fail (2026-09-01)
 
-**Status:** proposed, evening of 2026-09-01. **Owner ask:** "make this
+**Status:** implemented 2026-09-01 (evening) — see the status log at the end. **Owner ask:** "make this
 bulletproof and I want it to stop failing for publishes. Don't
 over-engineer." **Scope:** the daily chain on the owner machine, the
 validator's blocking rules, the publish script, and how a failure reaches
@@ -194,3 +194,19 @@ documented. Everything else ships as one branch, merged code-only (rule
   live site, not the machine.
 - **Retiring the rehearsal** removes the only pre-07:00 signal. Accepted:
   the hook moves that signal to push time, where it belongs.
+
+## Status log
+
+- 2026-09-01 (late evening) — executed in the PRD's order. Ops on the Mini:
+  `dive-alerts` created (every 30 min, announce to Tommy's Slack, silent when
+  the queue is empty), failure alert on `restream-postlive-snapshot` after one
+  error, freshness moved to 08:15 and 12:00, the 06:00 rehearsal disabled.
+  Code: `validate.mjs` two tiers (`drift`, `--publish`; 76 source-contract
+  checks reclassified, none removed), `validate-tiers.test.mjs`,
+  `scripts/dev/install-hooks.sh` (pre-push: fixtures + strict validator +
+  one-writer warning), `run-chain.mjs` (heal + pull first, one retry for the
+  platform steps, alert lines, publish exit-2 handling, teed run log with
+  `--last`), `chain-heal.mjs` keeps this machine's version of a plain store
+  conflict, `postlive-publish.sh` heals instead of aborting, retries the push
+  and the deploy, exits 2 on an unconfirmed parity. Proven by a real
+  OpenClaw run of the daily job after the pull.

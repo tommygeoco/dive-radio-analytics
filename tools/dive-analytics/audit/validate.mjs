@@ -44,6 +44,16 @@ const PARTIAL_DAYS = 5; // must match PARTIAL_THRESHOLD_DAYS in build-data.mjs
 let failures = 0;
 let warnings = 0;
 const fail = (m) => { failures++; console.log(`FAIL  ${m}`); };
+// PRD v11 rule 24 / W36 — two tiers. `fail` re-derives a shipped number,
+// definition, grounding, absence, freshness, or store integrity from the
+// stores: it always blocks. `drift` inspects source (index.html, a script,
+// a prompt, chain.json) or copy: in strict mode (a person, the pre-push
+// hook) it blocks like fail; in publish mode (`--publish`, the chain's two
+// validate steps) it is reported, counted, and never withholds the day's
+// data — the chain queues one Slack line naming it.
+const publishMode = process.argv.includes("--publish");
+let drifts = 0;
+const drift = (m) => { drifts++; if (!publishMode) failures++; console.log(`DRIFT ${m}`); };
 const warn = (m) => { warnings++; console.log(`WARN  ${m}`); };
 const ok = (m) => console.log(`ok    ${m}`);
 
@@ -195,7 +205,7 @@ function premiereMs(dateStr) {
   catch (error) { bad++; fail(`transcripts: pull script could not load — ${error.message}`); }
 
   if (!/if\s*\(e\.transcript\)\s*\{[\s\S]{0,400}href="transcripts\/\$\{esc\(e\.slug\)\}\.txt"/.test(html)) {
-    bad++; fail("transcripts: episode download is not gated by the stored transcript flag and slug");
+    bad++; drift("transcripts: episode download is not gated by the stored transcript flag and slug");
   }
 
   const registeredDiveShows = registry.shows.filter(
@@ -363,7 +373,7 @@ function premiereMs(dateStr) {
         vocabulary,
       })).digest("hex");
       if (store.version !== classifier.CLASSIFIER_VERSION) { bad++; fail(`comments: store version ${store.version} != classifier version ${classifier.CLASSIFIER_VERSION}`); }
-      if (store.promptVersion !== classifier.PROMPT_VERSION || store.promptHash !== promptHash) { bad++; fail("comments: prompt stamp does not match the versioned classifier prompt"); }
+      if (store.promptVersion !== classifier.PROMPT_VERSION || store.promptHash !== promptHash) { bad++; drift("comments: prompt stamp does not match the versioned classifier prompt"); }
       if (JSON.stringify(store.vocabulary) !== JSON.stringify(vocabulary)) { bad++; fail("comments: stored theme vocabulary does not match the classifier"); }
       if (store.configHash !== configHash) { bad++; fail("comments: classifier config hash does not match model, prompt, version, and vocabulary"); }
       if (!store.golden?.passed || store.golden.configHash !== configHash || store.golden.relevance?.pct !== 100 || store.golden.sentiment?.pct < 95) {
@@ -470,7 +480,7 @@ function premiereMs(dateStr) {
 
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   if (!html.includes('c.sentiment === "positive" || c.sentiment === "mixed"') || !html.includes('c.sentiment === "negative" || c.sentiment === "mixed"')) {
-    bad++; fail("comments: mixed feedback is not wired into both dashboard reading lists");
+    bad++; drift("comments: mixed feedback is not wired into both dashboard reading lists");
   }
   try {
     const build = await import(join(TOOL, "build-data.mjs"));
@@ -582,8 +592,8 @@ function premiereMs(dateStr) {
     } catch (error) { bad++; fail(`insight ranks: store check threw — ${error.message}`); }
     const pageSource = readFileSync(join(ROOT, "index.html"), "utf8");
     const panel = pageSource.match(/function buildInsightsPanel\(\) \{[\s\S]*?\n\}/)?.[0] || "";
-    if (!/\(a\.rank \?\? 99\) - \(b\.rank \?\? 99\)/.test(panel) || !/ins\.rank/.test(panel)) { bad++; fail("insight ranks: the page does not render ranked items in rank order with their rank"); }
-    if (!/ranked\.slice\(0, 2\)/.test(pageSource)) { bad++; fail("insight ranks: the health card's Do next does not take the top two by rank"); }
+    if (!/\(a\.rank \?\? 99\) - \(b\.rank \?\? 99\)/.test(panel) || !/ins\.rank/.test(panel)) { bad++; drift("insight ranks: the page does not render ranked items in rank order with their rank"); }
+    if (!/ranked\.slice\(0, 2\)/.test(pageSource)) { bad++; drift("insight ranks: the health card's Do next does not take the top two by rank"); }
   }
   if (!bad) ok(`insight categories: ${data.insights.length} insights all carry a legal strategy category + recommendation${ranked.length ? `; ${ranked.length} ranked in store order` : ""}`);
 }
@@ -701,7 +711,7 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
-  if (!/mode: "watch"/.test(html)) { bad++; fail("watching: the chart has no Watching view"); }
+  if (!/mode: "watch"/.test(html)) { bad++; drift("watching: the chart has no Watching view"); }
   for (const e of eps) {
     const w = e.watch;
     const storePath = join(ROOT, "data", "restream", "yt-analytics", `${e.slug}.json`);
@@ -826,9 +836,9 @@ function premiereMs(dateStr) {
     || !html.includes("badge.dataset.note")
     || html.includes("momentQuote")
     || !html.includes(".hs[data-hslug], [data-tip], [data-stat]")) {
-    bad++; fail("moments: panel pins must render only from episode.watch.moments with store-attached summaries — never raw transcript quotes");
+    bad++; drift("moments: panel pins must render only from episode.watch.moments with store-attached summaries — never raw transcript quotes");
   }
-  if (!/<div class="wcurve"><div class="wplot">/.test(html)) { bad++; fail("moments: curve markers lack the positioned plot wrapper — marker positions would drift off the curve"); }
+  if (!/<div class="wcurve"><div class="wplot">/.test(html)) { bad++; drift("moments: curve markers lack the positioned plot wrapper — marker positions would drift off the curve"); }
   // engine parity: the excerpts handed to the engine ARE the stored moments' excerpts, and moment facts equal their points
   try {
     const recs = await import(join(TOOL, "recommendations.mjs"));
@@ -956,7 +966,7 @@ function premiereMs(dateStr) {
   }
   const renderer = html.match(/function buildHealth\(\) \{[\s\S]*?\n\}/)?.[0] || "";
   if (/subScores|weightedMean|BASE_WEIGHTS/.test(renderer)) {
-    bad++; fail("health: browser renderer reaches into scoring inputs instead of reading the saved public projection");
+    bad++; drift("health: browser renderer reaches into scoring inputs instead of reading the saved public projection");
   }
 
   if (!store) {
@@ -1016,7 +1026,7 @@ function premiereMs(dateStr) {
         if (typeof entry.formulaVersion !== "string" || !entry.formulaVersion) { bad++; fail(`health: ${entry.date} has no formula stamp`); }
         if (!Number.isInteger(entry.promptVersion)) { bad++; fail(`health: ${entry.date} has no prompt stamp`); }
         else if (entry.promptVersion > health.PROMPT_VERSION) { bad++; fail(`health: ${entry.date} claims prompt version ${entry.promptVersion}, newer than the current ${health.PROMPT_VERSION}`); }
-        else if (entry.promptVersion === health.PROMPT_VERSION && entry.promptHash !== promptHash) { bad++; fail(`health: ${entry.date} prompt stamp is stale — prompt changed without a version bump`); }
+        else if (entry.promptVersion === health.PROMPT_VERSION && entry.promptHash !== promptHash) { bad++; drift(`health: ${entry.date} prompt stamp is stale — prompt changed without a version bump`); }
         if (!entry.model || !entry.provider || !entry.bundleHash || !entry.dataGeneratedAt || !entry.dataThrough) { bad++; fail(`health: ${entry.date} is missing provenance stamps`); }
         if (!Number.isInteger(entry.score) || entry.score < 0 || entry.score > 100) { bad++; fail(`health: ${entry.date} score is outside 0..100`); }
 
@@ -1262,7 +1272,7 @@ function premiereMs(dateStr) {
   }
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   const about = html.match(/function buildAbout\(\) \{[\s\S]*?innerHTML = `([\s\S]*?)`;\n\}/)?.[1];
-  if (!about) { bad++; fail("plain words: About copy could not be found in index.html"); }
+  if (!about) { bad++; drift("plain words: About copy could not be found in index.html"); }
   else readerStrings.push(`About: ${about.replace(/<[^>]+>/g, " ")}`);
   for (const line of readerStrings) {
     const hit = line.match(BANNED);
@@ -1276,7 +1286,7 @@ function premiereMs(dateStr) {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
-    bad++; fail("dashboard: first-week trend verdict is not gated until three clean weeks exist");
+    bad++; drift("dashboard: first-week trend verdict is not gated until three clean weeks exist");
   }
   if (!/const p = DATA\.baselines\?\.pace\?\.\[e\.slug\];/.test(html)
     || /peers\.length < 3/.test(html)
@@ -1289,18 +1299,18 @@ function premiereMs(dateStr) {
   // the page carries no second definition of either
   if (!/const QUIET_ZONE = BASE_CONST\.QUIET_ZONE_PCT \?\? 5;/.test(html) || !/pct <= QUIET_ZONE/.test(html) || !/Math\.abs\(pct\) <= QUIET_ZONE/.test(html)
     || /pct\s*<=\s*5\b/.test(html) || /Math\.abs\(pct\)\s*<=\s*5\b/.test(html) || /> 0\.05\)/.test(html)) {
-    bad++; fail("dashboard: comparison conclusions must read the quiet zone from data.baselines.constants and nowhere else");
+    bad++; drift("dashboard: comparison conclusions must read the quiet zone from data.baselines.constants and nowhere else");
   }
   if (!/score >= BANDS\.healthy/.test(html) || !/score >= BANDS\.steady/.test(html) || /score >= 55\b/.test(html)) {
-    bad++; fail("dashboard: health bands must read data.baselines.constants.BANDS");
+    bad++; drift("dashboard: health bands must read data.baselines.constants.BANDS");
   }
   if (/provisional\s+—\s+settles/i.test(html)) {
-    bad++; fail('dashboard: strip uses "provisional" instead of the plain "Not final" label');
+    bad++; drift('dashboard: strip uses "provisional" instead of the plain "Not final" label');
   }
   // 21-day gate (W12): every score render goes through the finished-read gate,
   // and young episodes get wait-date words, never a number
   if (!html.includes("function healthOf(e) { return e.health && !e.health.pending && e.health.score != null ? e.health : null; }")) {
-    bad++; fail("dashboard: episode health is not locked behind the finished-three-week gate (healthOf)");
+    bad++; drift("dashboard: episode health is not locked behind the finished-three-week gate (healthOf)");
   }
   // W15 (owner directive 2026-08-23): absence renders as absence — no wait
   // dates, no sat-out notes, no baseline chips. The gate itself still holds:
@@ -1311,19 +1321,19 @@ function premiereMs(dateStr) {
   // W13/PRD v9 F29: the typical watch line is read from data.baselines.typicalCurve
   // (mature, unflagged curves, three or nothing) — never computed in the browser
   if (!/const typical = DATA\.baselines\?\.typicalCurve;/.test(html) || /curves\.length >= 3/.test(html) || /const mid = \(vals\)/.test(html)) {
-    bad++; fail("dashboard: the typical watch line must be read from data.baselines.typicalCurve, never computed in the page");
+    bad++; drift("dashboard: the typical watch line must be read from data.baselines.typicalCurve, never computed in the page");
   }
   // F16/F15: watched-vs-typical and the trend verdict read data.baselines too
   if (!/DATA\.baselines\?\.watchPctBySlug\?\.\[e\.slug\]\?\.typical/.test(html) || /const watchedVals = EPS\.map/.test(html)) {
-    bad++; fail("dashboard: the table's watched typical must come from data.baselines.watchPctBySlug");
+    bad++; drift("dashboard: the table's watched typical must come from data.baselines.watchPctBySlug");
   }
   if (!/DATA\.baselines\?\.newestVsPrevious\?\.\[metric\]/.test(html) || /Climbing on the newest episode/.test(html)) {
-    bad++; fail("dashboard: the trend-card verdict must compare like for like from data.baselines.newestVsPrevious");
+    bad++; drift("dashboard: the trend-card verdict must compare like for like from data.baselines.newestVsPrevious");
   }
   if (!/health read is \$\{h\.withheld \? "withheld" : "behind"\}/.test(html)) {
-    bad++; fail("dashboard: the header stamp must say when the saved health read is behind the data (D5)");
+    bad++; drift("dashboard: the header stamp must say when the saved health read is behind the data (D5)");
   }
-  if (/"<th>Episode<\/th>[^\n]*\$\{PLOGO/.test(html)) { bad++; fail("dashboard: the table header is not a template literal (F25)"); }
+  if (/"<th>Episode<\/th>[^\n]*\$\{PLOGO/.test(html)) { bad++; drift("dashboard: the table header is not a template literal (F25)"); }
   if (!bad) ok("dashboard honesty: trend waits for three clean weeks, scores wait for finished three-week reads, plain words throughout");
 }
 
@@ -1364,47 +1374,47 @@ function premiereMs(dateStr) {
   const chipSource = between("function healthChip(", "function healthTipHTML");
 
   if (!healthSource || !heroSource || !stripSource || !panelSource || !compoundSource || !chipSource) {
-    bad++; fail("card layout: could not locate every dashboard surface in index.html");
+    bad++; drift("card layout: could not locate every dashboard surface in index.html");
   } else {
     // reading order: health cards → latest/trend cards → carousel → panel → chart
     const order = ['id="health"', 'id="hero"', 'id="strip"', 'id="chartcard"', 'id="panel"'].map((m) => html.indexOf(m));
     if (order.some((at) => at < 0) || order.some((at, i) => i > 0 && at < order[i - 1])) {
-      bad++; fail("card layout: locked order broken — health, latest episode, episode carousel, the chart, then the panel (the chart must never be displaced by an open panel)");
+      bad++; drift("card layout: locked order broken — health, latest episode, episode carousel, the chart, then the panel (the chart must never be displaced by an open panel)");
     }
     // glance-number discipline: gauge 1; hero one primary number per tab;
     // cards one primary number per tab; the health chip exactly one score
     if ((healthSource.match(/data-fold-number/g) || []).length !== 1) {
-      bad++; fail("card layout: the gauge must contribute exactly its saved score to the glance-number budget");
+      bad++; drift("card layout: the gauge must contribute exactly its saved score to the glance-number budget");
     }
     // one tagged number per measure branch (views/watched/live/reach); exactly
     // one branch ever renders, so the glance budget stays at one number
     if ((heroSource.match(/data-fold-number/g) || []).length !== 4) {
-      bad++; fail("card layout: the hero must expose exactly one primary number per measure branch");
+      bad++; drift("card layout: the hero must expose exactly one primary number per measure branch");
     }
     if ((stripSource.match(/data-fold-number/g) || []).length !== 2) {
-      bad++; fail("card layout: each episode card must expose exactly one tagged glance number per measure branch");
+      bad++; drift("card layout: each episode card must expose exactly one tagged glance number per measure branch");
     }
     // the hero and the cards follow the chart: same measure, same selection
     if (!/const sel = state\.solo \|\| state\.panel/.test(heroSource)
       || !/heroMetricKey\(\)/.test(heroSource) || !/heroMetricKey\(\)/.test(stripSource)
       || !/function heroMetricKey\(\) \{ return state\.mode === "live" \? "live" : state\.metric; \}/.test(html)) {
-      bad++; fail("card layout: the hero and episode cards must read the chart's measure and its selected episode (latest when none)");
+      bad++; drift("card layout: the hero and episode cards must read the chart's measure and its selected episode (latest when none)");
     }
     // the Growth/Live page tabs are retired: the chart's own views are the
     // only view switch, and they carry the tablist semantics
     if (/id="view"/.test(html) || /class="tabs"/.test(html)) {
-      bad++; fail("card layout: the retired Growth/Live page tabs are back");
+      bad++; drift("card layout: the retired Growth/Live page tabs are back");
     }
     if (!/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html) || !/mode: "live"/.test(html)) {
-      bad++; fail("card layout: the chart view switch must be the one dropdown and must carry the live per-minute view");
+      bad++; drift("card layout: the chart view switch must be the one dropdown and must carry the live per-minute view");
     }
     if ((chipSource.match(/data-fold-number/g) || []).length !== 1) {
-      bad++; fail("card layout: the health chip must carry exactly one tagged score");
+      bad++; drift("card layout: the health chip must carry exactly one tagged score");
     }
     // diagnosis: the six saved checks render as plain-word states from the
     // projection only — never from scoring inputs, never as numbers
     if (!/h\.checks/.test(healthSource) || !/checkState\(c\.score, c\.bands\)/.test(healthSource) || !/Not in yet/.test(html)) {
-      bad++; fail("card layout: the diagnosis card does not render every saved check as a plain-word state");
+      bad++; drift("card layout: the diagnosis card does not render every saved check as a plain-word state");
     }
     // diagnosis drill (owner directive 2026-08-23; names since 2026-09-01):
     // every check name is a keyboard-reachable tooltip target whose numbers
@@ -1412,24 +1422,24 @@ function premiereMs(dateStr) {
     // stored reason when absent
     if (!/c\.measures/.test(healthSource) || !/MEASURE_WORDS/.test(healthSource)
       || !healthSource.includes('<button type="button" class="hname" data-stat=')) {
-      bad++; fail("card layout: check names must offer saved-measure drill tooltips (value vs typical), keyboard-reachable");
+      bad++; drift("card layout: check names must offer saved-measure drill tooltips (value vs typical), keyboard-reachable");
     }
     // Today's read (owner directive 2026-08-23): the grounded headline plus
     // the top do-next actions read verbatim from the saved recommendation
     // store — no methodology copy on the card (About carries it)
     if (!/DATA\.insights/.test(healthSource) || !/esc\(r\.recommendation\)/.test(healthSource)
       || !/esc\(h\.headline\)/.test(healthSource) || /Saved once a day:/.test(healthSource)) {
-      bad++; fail("card layout: Today's read must lead with the saved headline and store-backed do-next actions, without methodology copy");
+      bad++; drift("card layout: Today's read must lead with the saved headline and store-backed do-next actions, without methodology copy");
     }
     // the do-next actions are plain ranked rows: no tooltips, no rules, and
     // the leading ordinal is decorative only (owner directive 2026-08-23)
     if (/class="dnrow"[^`]*data-tip/.test(healthSource) || /\.dnrow \+ \.dnrow \{ border-top/.test(html)
       || !/<span class="dnnum" aria-hidden="true">\$\{i \+ 1\}<\/span>/.test(healthSource)) {
-      bad++; fail("card layout: Today's read actions must be plain ranked rows — decorative ordinal, no tooltip, no dividing rule");
+      bad++; drift("card layout: Today's read actions must be plain ranked rows — decorative ordinal, no tooltip, no dividing rule");
     }
     // the hero states one measure: episode health rides the cards and panel
     if (/healthChip\(/.test(heroSource)) {
-      bad++; fail("card layout: the hero must not carry the episode-health chip");
+      bad++; drift("card layout: the hero must not carry the episode-health chip");
     }
     // One strip, one disclosure (2026-09-01, round 2 the same day; owner
     // directive later that day): the glance row carries the gauge with its
@@ -1469,66 +1479,66 @@ function premiereMs(dateStr) {
     const trendSource = html.match(/function healthTrend\(points\) \{[\s\S]*?\n\}/)?.[0] || "";
     if (!/const LO = 25, HI = 75/.test(trendSource) || /Math\.max\(1, hi - lo\)/.test(trendSource)
       || !/class="mid"/.test(trendSource) || !/class="tv now"/.test(trendSource) || !/points\.length < 7/.test(trendSource)) {
-      bad++; fail("card layout: the saved-score trend must use the fixed 25–75 scale with the usual level marked and labeled endpoints, and still wait for seven saved days");
+      bad++; drift("card layout: the saved-score trend must use the fixed 25–75 scale with the usual level marked and labeled endpoints, and still wait for seven saved days");
     }
     // evidence: starts closed, is a real disclosure, and carries every saved fact
     if (!/evidenceOpen: false/.test(html) || !/state\.evidenceOpen/.test(healthSource)
       || !/aria-expanded/.test(healthSource)
       || !healthSource.includes("bullets(h.pros") || !healthSource.includes("bullets(h.cons")) {
-      bad++; fail("card layout: health evidence must start closed behind a real button and contain every exact saved fact");
+      bad++; drift("card layout: health evidence must start closed behind a real button and contain every exact saved fact");
     }
     // Retired 2026-08-23 (owner directive): the saved-age and early-read line
     // is off the card. Freshness lives in the header stamp, and an early read
     // shows itself as a diagnosis check that isn't in yet — so the gate still
     // holds without a status line announcing it.
     if (/Updated \$\{esc\(saved\)\}/.test(healthSource) || /Early read/.test(healthSource)) {
-      bad++; fail("card layout: the retired saved-age / early-read line is back on the health surface");
+      bad++; drift("card layout: the retired saved-age / early-read line is back on the health surface");
     }
     if (!/document\.createElement\("button"\)/.test(stripSource) || !/it\.type = "button"/.test(stripSource)) {
-      bad++; fail("card layout: episode cards are not real keyboard-operable buttons");
+      bad++; drift("card layout: episode cards are not real keyboard-operable buttons");
     }
     // locked carousel order: oldest → newest with the newest landed in view
     if (!/strip\.scrollLeft = strip\.scrollWidth/.test(stripSource)) {
-      bad++; fail("card layout: the carousel does not land on the newest episode (far right, locked rule)");
+      bad++; drift("card layout: the carousel does not land on the newest episode (far right, locked rule)");
     }
     // the one freshness statement left on the page still reads as words
     if (!/relativeDayWords\(phoenixDateKey\(DATA\.generatedAt\)\)/.test(html)
       || !/Data refreshed \$\{esc\(when\)\}/.test(html)) {
-      bad++; fail("card layout: the header freshness stamp must render as relative words, not numeric tokens");
+      bad++; drift("card layout: the header freshness stamp must render as relative words, not numeric tokens");
     }
     if (/addSentimentChip|chip\.senti/.test(html) || !/Audience feedback/.test(panelSource)) {
-      bad++; fail("card layout: audience feedback counts must live only in the click-open episode panel");
+      bad++; drift("card layout: audience feedback counts must live only in the click-open episode panel");
     }
     if (/sameAgeSub\s*\(/.test(stripSource) || /class=["']r3["']/.test(stripSource)) {
-      bad++; fail("card layout: pace and status lines still render on the episode cards");
+      bad++; drift("card layout: pace and status lines still render on the episode cards");
     }
     if (!/const pace = sameAgeSub\(e\)/.test(panelSource) || !/YouTube views at the same age/.test(panelSource)) {
-      bad++; fail("card layout: the same-age pace comparison is not present in the click-open episode panel");
+      bad++; drift("card layout: the same-age pace comparison is not present in the click-open episode panel");
     }
     // trend card (re-ruled 2026-08-23): bars name value and episode in small
     // print with ONE emphasized bar — still no tagged glance numbers and no
     // clean-week bookkeeping copy
     if (/data-fold-number|clean weeks:/.test(compoundSource)) {
-      bad++; fail("card layout: the trend card must not tag glance numbers or carry clean-week counts");
+      bad++; drift("card layout: the trend card must not tag glance numbers or carry clean-week counts");
     }
     if (!/class="bnum"/.test(compoundSource) || !/class="bep"/.test(compoundSource)
       || (compoundSource.match(/cbar\$\{hot \? " hot" : ""\}/g) || []).length !== 2) {
-      bad++; fail("card layout: trend bars must label value and episode with one emphasized bar, in both trend branches");
+      bad++; drift("card layout: trend bars must label value and episode with one emphasized bar, in both trend branches");
     }
     if (!/splitReady = Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
       || /e\.latest\.(?:ytTotal|xPlays) \?\? 0/.test(heroSource)) {
-      bad++; fail("card layout: the platform bar is not locked to complete stored YouTube and X values");
+      bad++; drift("card layout: the platform bar is not locked to complete stored YouTube and X values");
     }
     // the panel must explain the score's basis and its missing checks
     if (!/Episode health/.test(panelSource) || !/healthOf\(e\)/.test(panelSource) || !/newer episodes never change this score/.test(panelSource)) {
-      bad++; fail("card layout: the episode panel does not gate and explain the finished score");
+      bad++; drift("card layout: the episode panel does not gate and explain the finished score");
     }
     if (!/How people watch/.test(panelSource) || !/Where views came from/.test(panelSource)) {
-      bad++; fail("card layout: the episode panel is missing its watching and view-source sections");
+      bad++; drift("card layout: the episode panel is missing its watching and view-source sections");
     }
     if (!html.includes('role="listbox"') || !/setAttribute\("aria-selected"/.test(html)
       || !/addEventListener\("focusin"[\s\S]*showRtt/.test(html)) {
-      bad++; fail("card layout: the view switch or health-chip help is not keyboard-readable");
+      bad++; drift("card layout: the view switch or health-chip help is not keyboard-readable");
     }
   }
   if (!bad) {
@@ -1553,7 +1563,7 @@ function premiereMs(dateStr) {
   // renders as literal ${...} text on the page (the table header shipped
   // that way 2026-08-23). Quoted strings must not carry placeholders.
   for (const m of html.matchAll(/[+=]=? ("[^"\n]*\$\{[^"\n]*"|'[^'\n]*\$\{[^'\n]*')/g)) {
-    bad++; fail(`template hygiene: a quoted string carries an uninterpolated placeholder — ${m[1].slice(0, 60)}`);
+    bad++; drift(`template hygiene: a quoted string carries an uninterpolated placeholder — ${m[1].slice(0, 60)}`);
   }
   // ONE control for one decision (owner directive 2026-08-23): every chart the
   // dashboard draws lives in a single dropdown whose current item IS the
@@ -1572,18 +1582,18 @@ function premiereMs(dateStr) {
     }
   }
   if (/id="mode"/.test(html) || /data-v="standings"/.test(html) || /<select id="metric"/.test(html)) {
-    bad++; fail("chart metrics: the retired tab strip or native measure select is back — one dropdown owns this decision");
+    bad++; drift("chart metrics: the retired tab strip or native measure select is back — one dropdown owns this decision");
   }
   if (!/<button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox"/.test(html)
     || !/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html)
     || !/o\.setAttribute\("role", "option"\)/.test(html)
     || !/o\.setAttribute\("aria-selected", String\(selected\)\)/.test(html)
     || !/ev\.key === "Escape"/.test(html) || !/ev\.key === "ArrowDown"/.test(html)) {
-    bad++; fail("chart metrics: the view dropdown must be a keyboard-operable listbox whose button reports its expanded state");
+    bad++; drift("chart metrics: the view dropdown must be a keyboard-operable listbox whose button reports its expanded state");
   }
   // a scope tag never repeats the heading, and never rides on gray text alone
   if (!/function scopeTag\(mark, name\)/.test(html) || !/<span class="sr">\$\{esc\(name\)\}<\/span>/.test(html)) {
-    bad++; fail("chart metrics: platform scope tags must carry a spoken name beside the mark");
+    bad++; drift("chart metrics: platform scope tags must carry a spoken name beside the mark");
   }
   for (const d of defs) {
     const scopes = [...html.matchAll(new RegExp(`METRIC_TITLES\\.${d.metric}, \`([^\`]*)\``, "g"))].map((m) => m[1]);
@@ -1597,12 +1607,12 @@ function premiereMs(dateStr) {
     || !/<span class="pseg"[^`]*\$\{tip\}/.test(html)
     || !/<span class="sl" \$\{tip\} tabindex="0" aria-label=/.test(html)
     || (html.match(/html \+= splitBar\(/g) || []).length !== 2) {
-    bad++; fail("chart metrics: the hero split bar's segments and labels must share one tooltip definition and stay keyboard-reachable");
+    bad++; drift("chart metrics: the hero split bar's segments and labels must share one tooltip definition and stay keyboard-reachable");
   }
   // one text edge inside the chart tooltip: chips hang in a fixed gutter
   if (!/\.tt \{ --chip: 15px; \}/.test(html)
     || !/\.tt \.meta, \.tt \.big, \.tt \.chg, \.tt \.note \{ padding-left: var\(--chip\); \}/.test(html)) {
-    bad++; fail("chart metrics: the chart tooltip's title, number, and rows must share one left text edge");
+    bad++; drift("chart metrics: the chart tooltip's title, number, and rows must share one left text edge");
   }
   // bar totals anchor to the rightmost VISIBLE segment and count only what is
   // drawn — hiding a destination from the legend must never strand the label
@@ -1615,30 +1625,30 @@ function premiereMs(dateStr) {
     || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)
     || !/const segVis = chart\.data\.datasets\.map\(\(_, di\) => chart\.isDatasetVisible\(di\)\);/.test(html)
     || !/across shown destinations/.test(html)) {
-    bad++; fail("chart metrics: bar totals AND the tooltip must follow legend visibility — one rule for both numbers");
+    bad++; drift("chart metrics: bar totals AND the tooltip must follow legend visibility — one rule for both numbers");
   }
   // reader-facing prose rows fill their card: no arbitrary character caps
   if (/\.insight \.body \{[^}]*max-width/.test(html) || /\.health-evidence li span \{[^}]*max-width/.test(html)) {
-    bad++; fail("chart metrics: insight and evidence rows must fill the card, not a fixed character measure");
+    bad++; drift("chart metrics: insight and evidence rows must fill the card, not a fixed character measure");
   }
   if (!/state\.metric = "views"; state\.byDate = false/.test(html) && !/state\.metric = "views";/.test(html)) {
-    bad++; fail("chart metrics: reset does not restore the views measure");
+    bad++; drift("chart metrics: reset does not restore the views measure");
   }
   if (!html.includes("watched: { get: (e) => e.watch?.avgPercent ?? null")
     || !html.includes("live: { get: (e) => e.live?.avg ?? null")
     || !html.includes("reach: { get: (e) => e.latest?.xImpressions ?? null")) {
-    bad++; fail("chart metrics: each measure must read exactly its stored per-episode number, null when absent (never zero)");
+    bad++; drift("chart metrics: each measure must read exactly its stored per-episode number, null when absent (never zero)");
   }
   if (!/state\.metric === "live" && ep\.live/.test(html)
     || !html.includes(">Lowest<") || !html.includes(">Highest<")) {
-    bad++; fail("chart metrics: the live tooltip must show the episode's lowest and highest concurrents");
+    bad++; drift("chart metrics: the live tooltip must show the episode's lowest and highest concurrents");
   }
   if (!/Exposure, not watching — never added into views/.test(html)) {
     bad++; fail("chart metrics: the reach view must state its unit is exposure, outside every views total");
   }
   const logoCount = (html.match(/role="img" aria-label="(?:YouTube|X)"/g) || []).length;
   if (logoCount !== 2 || !/const PLOGO = \{/.test(html) || !/TT_HTML/.test(html)) {
-    bad++; fail("platform marks: the YouTube and X logos must exist exactly once each, with accessible names, and label the destination rows");
+    bad++; drift("platform marks: the YouTube and X logos must exist exactly once each, with accessible names, and label the destination rows");
   }
   if (!bad) ok("chart metrics: measure picker unit-scoped with silent absence, live lowest/highest on the tooltip, platform marks accessibly named");
 }
@@ -1652,7 +1662,7 @@ function premiereMs(dateStr) {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   if (!/--gap: 14px;/.test(html) || !/:root \{ --gap: 10px; \}/.test(html)) {
-    bad++; fail("page gutter: the spacing token must be defined once for desktop and once for the phone cut");
+    bad++; drift("page gutter: the spacing token must be defined once for desktop and once for the phone cut");
   }
   const GUTTERED = [
     // the health row is one card since 2026-09-01 (no inner grid to gap);
@@ -1667,7 +1677,7 @@ function premiereMs(dateStr) {
     ["header", /header \{[^}]*margin-bottom: var\(--gap\);/],
   ];
   for (const [name, re] of GUTTERED) {
-    if (!re.test(html)) { bad++; fail(`page gutter: ${name} does not use the shared spacing token`); }
+    if (!re.test(html)) { bad++; drift(`page gutter: ${name} does not use the shared spacing token`); }
   }
   // page cards carry no border: the fill is the whole edge, so nothing eats
   // into the gutter (the panel's inset is the token exactly)
@@ -1675,12 +1685,12 @@ function premiereMs(dateStr) {
     ["#chartcard", /#chartcard \{ background: var\(--s1\); border: 0;/],
     [".sitem", /\.sitem \{[^}]*border: 0;/], [".insight", /\.insight \{ background: var\(--s1\); border: 0;/],
     [".panel", /\.panel \{ background: var\(--s2\); border: 0;/]]) {
-    if (!re.test(html)) { bad++; fail(`page gutter: ${name} still draws a border — cards are fill only`); }
+    if (!re.test(html)) { bad++; drift(`page gutter: ${name} still draws a border — cards are fill only`); }
   }
   // the carousel's focus-ring inset must be pulled back out, or its cards sit
   // off the grid every other row lands on
   if (!/\.carousel \{[^}]*padding: 2px;\s*\n\s*margin: -2px -2px calc\(var\(--gap\) - 2px\);/.test(html)) {
-    bad++; fail("page gutter: the carousel's scroll inset is not compensated — its painted card edges would sit inside the page grid");
+    bad++; drift("page gutter: the carousel's scroll inset is not compensated — its painted card edges would sit inside the page grid");
   }
   if (!bad) ok("page gutter: one spacing token drives every card, column, and row; container insets compensated so painted edges align");
 }
@@ -1709,7 +1719,7 @@ function premiereMs(dateStr) {
   }
   if (!html.includes('const url = e.links?.[d.key];')
     || !/class="plink" href="\$\{esc\(url\)\}" target="_blank" rel="noopener">/.test(html)) {
-    bad++; fail("links: the panel must render destination links only from stored e.links, opened in a new tab with noopener");
+    bad++; drift("links: the panel must render destination links only from stored e.links, opened in a new tab with noopener");
   }
   if (!bad) ok(`links: ${eps.filter((e) => e.links).length} episode(s) store destination links — registry-locked, safe URL shapes, panel renders only what is stored`);
 }
@@ -1776,13 +1786,13 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   let chain = null;
-  try { chain = JSON.parse(readFileSync(join(TOOL, "chain.json"), "utf8")); } catch (err) { bad++; fail(`chain: tools/dive-analytics/chain.json unreadable — ${err.message}`); }
+  try { chain = JSON.parse(readFileSync(join(TOOL, "chain.json"), "utf8")); } catch (err) { bad++; drift(`chain: tools/dive-analytics/chain.json unreadable — ${err.message}`); }
   if (chain) {
     const builtAt = Date.parse(data.generatedAt);
     const publishIdx = chain.steps.findIndex((s) => s.step === "publish");
     const order = chain.steps.map((s) => s.step);
-    for (const must of ["snapshot", "ratings", "build-data", "validate", "publish"]) if (!order.includes(must)) { bad++; fail(`chain: step ${must} missing from chain.json`); }
-    if (order.lastIndexOf("validate") > publishIdx || order.indexOf("health") > order.lastIndexOf("build-data")) { bad++; fail("chain: validate must run before publish and health before the final build-data"); }
+    for (const must of ["snapshot", "ratings", "build-data", "validate", "publish"]) if (!order.includes(must)) { bad++; drift(`chain: step ${must} missing from chain.json`); }
+    if (order.lastIndexOf("validate") > publishIdx || order.indexOf("health") > order.lastIndexOf("build-data")) { bad++; drift("chain: validate must run before publish and health before the final build-data"); }
     const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return e && e.ageDays <= 60; };
     const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e; };
     const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
@@ -1827,7 +1837,7 @@ function premiereMs(dateStr) {
       }
     }
     const publish = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
-    if (!/git pull --rebase/.test(publish) || publish.indexOf("git pull --rebase") > publish.indexOf("git push origin main")) { bad++; fail("chain: publish must pull --rebase before it pushes main (F26)"); }
+    if (!/git pull --rebase/.test(publish) || publish.indexOf("git pull --rebase") > publish.indexOf("git push origin main")) { bad++; drift("chain: publish must pull --rebase before it pushes main (F26)"); }
   }
   if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
 }
@@ -1905,19 +1915,19 @@ function premiereMs(dateStr) {
     // sentences — the projection carries them (locked by the projection
     // byte-compare in 1h); this proves the page actually reads them
     if (!/h\.checkSetChange/.test(html) || !/class="setchange"/.test(html) || !/rests on different checks/.test(html)) {
-      bad++; fail("dashboard: the diagnosis card must render the saved check-set change in plain words");
+      bad++; drift("dashboard: the diagnosis card must render the saved check-set change in plain words");
     }
     if (!/h\.drivers/.test(html) || !/class="drivers"/.test(html)) {
-      bad++; fail("dashboard: the evidence card must render the saved judgment sentences (drivers)");
+      bad++; drift("dashboard: the evidence card must render the saved judgment sentences (drivers)");
     }
-  } catch (err) { bad++; fail(`small-n: alerts.mjs failed to load — ${err.message}`); }
+  } catch (err) { bad++; drift(`small-n: alerts.mjs failed to load — ${err.message}`); }
   // 1y: the episode-health sequence is never read as a trend
   for (const line of slackLines.filter((l) => l.kind === "episode-health")) {
     if (TREND_WORDS.test(line.text)) { bad++; fail(`episode health: Slack sequence uses a trend word — ${line.text.slice(0, 80)}`); }
   }
   const aboutHealth = html.match(/<p><b>Episode health<\/b>[\s\S]*?<\/p>/)?.[0] || "";
-  if (!aboutHealth || TREND_WORDS.test(aboutHealth.replace(/<[^>]+>/g, ""))) { bad++; fail("episode health: About paragraph missing or uses a trend word over the sequence"); }
-  if (!/measured against different earlier episodes/.test(aboutHealth)) { bad++; fail("episode health: About must say two scores were measured against different earlier episodes"); }
+  if (!aboutHealth || TREND_WORDS.test(aboutHealth.replace(/<[^>]+>/g, ""))) { bad++; drift("episode health: About paragraph missing or uses a trend word over the sequence"); }
+  if (!/measured against different earlier episodes/.test(aboutHealth)) { bad++; drift("episode health: About must say two scores were measured against different earlier episodes"); }
   for (const fn of ["healthChip", "healthTipHTML", "healthCell"]) {
     const src = html.match(new RegExp(`(?:function ${fn}\\(|const ${fn} = )[\\s\\S]*?\\n(?:\\}|      html \\+=)`))?.[0] || "";
     if (TREND_WORDS.test(src)) { bad++; fail(`episode health: ${fn} carries a trend word`); }
@@ -1952,7 +1962,7 @@ function premiereMs(dateStr) {
   if (!/note: m\.note \|\| null/.test(html)
     || !/\[m\.note, m\.q, m\.cn, m\.sw\]\.filter\(Boolean\)\.map\(\(t\) => `<div class="mnote">\$\{esc\(t\)\}<\/div>`\)/.test(html)
     || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
-    bad++; fail("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
+    bad++; drift("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
   }
   if (!bad) ok(`honesty on data: ${slackLines.length} Slack lines and the alert lines carry directions only on ${BL.MIN_PEERS}+ samples; episode-health surfaces carry no trend word; every stored note is one of the fixed strings`);
 }
@@ -1990,5 +2000,6 @@ function premiereMs(dateStr) {
   }
 }
 
-console.log(`\n${failures} failure(s), ${warnings} warning(s).`);
+console.log(`\n${failures} failure(s), ${warnings} warning(s), ${drifts} drift(s)${publishMode ? " — publish mode: drift is reported, not blocking" : ""}.`);
+if (publishMode && drifts) console.log(`DRIFT-SUMMARY ${drifts} contract drift(s) — fix at code time; the pre-push hook refuses them`);
 process.exit(failures ? 1 : 0);

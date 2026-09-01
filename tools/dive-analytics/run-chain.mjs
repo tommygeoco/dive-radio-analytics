@@ -1,30 +1,36 @@
 #!/usr/bin/env node
 // run-chain.mjs — execute the daily chain exactly as chain.json orders it.
 //
-// The crontab shrinks to one line (node tools/dive-analytics/run-chain.mjs)
-// and chain.json stays the single versioned definition of the chain (PRD v9
-// §4.5) — the order the cron runs can no longer drift from the order the
-// validator checks. A required step that fails stops the chain (validate and
-// publish are the gates); an optional step that fails is reported and
-// skipped — a wobbly comment pull must not cost the day's publish. Steps
-// marked "when": "Mondays" run only on Phoenix Mondays. Model steps read
-// their keys from the cron environment as today; this runner is plain
-// orchestration and never calls a model itself.
+// chain.json is the single versioned definition of the chain (PRD v9 §4.5);
+// the order the scheduler runs can never drift from the order the validator
+// checks. A required step that fails stops the chain; an optional step that
+// fails is reported and skipped — a wobbly comment pull must not cost the
+// day's publish. Steps marked "when": "Mondays" run only on Phoenix Mondays.
+// Model steps read their keys from the scheduler's environment; this runner
+// is plain orchestration and never calls a model itself.
+//
+// PRD v11 (2026-09-01), rules 24–26:
+//   • pull-first (W34) and heal-first (§11): the run starts on current code
+//     with no conflict left behind by an earlier run
+//   • W39: a required capture step (snapshot, yt-analytics) gets ONE retry
+//     after RETRY_PAUSE_MS — platforms hiccup; a second failure stops the chain
+//   • W37: a required-step failure, or a publish that could not confirm live
+//     parity (exit 2, W38), queues one plain line into the alert queue that
+//     the dive-alerts automation delivers to Slack — silence means success
+//   • W40: every run's whole output is teed to
+//     ~/Library/Logs/dive-radio-analytics/chain-<date>.log (30 days kept);
+//     `--last` prints the last run's failing step with its surrounding lines
 //
 // Run:
 //   node tools/dive-analytics/run-chain.mjs --dry      # print the plan, run nothing
 //   node tools/dive-analytics/run-chain.mjs --rehearse # full chain, no publish-side steps
+//   node tools/dive-analytics/run-chain.mjs --last     # show the last run's failure
 //   node tools/dive-analytics/run-chain.mjs            # run the chain
-//
-// --rehearse exists for the pre-flight cron: it runs every data step and both
-// validate gates exactly as the real run will, but skips the steps that touch
-// the outside world (publish, alerts, freshness) so a 6:00 rehearsal can fail
-// loudly without shipping or queueing anything. The 7:00 run stays the only
-// writer of public state.
 
-import { readFileSync } from "node:fs";
-import { spawnSync } from "node:child_process";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync, unlinkSync, appendFileSync, renameSync } from "node:fs";
+import { spawn, spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
+import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { healLeftovers } from "./chain-heal.mjs";
 
@@ -32,34 +38,84 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const chain = JSON.parse(readFileSync(join(HERE, "chain.json"), "utf8"));
 const PHX_DAY = new Date(Date.now() - 7 * 3600000).toUTCString().slice(0, 3);
+const PHX_DATE = new Date(Date.now() - 7 * 3600000).toISOString().slice(0, 10);
 const dry = process.argv.includes("--dry");
 const rehearse = process.argv.includes("--rehearse");
 const REHEARSE_SKIP = new Set(["publish", "alerts", "freshness", "critic"]);
+const RETRY_ONCE = new Set(["snapshot", "yt-analytics"]);   // W39: the required steps that talk to a platform
+const RETRY_PAUSE_MS = 60_000;
+const LOG_DIR = process.env.DIVE_CHAIN_LOG_DIR || join(homedir(), "Library", "Logs", "dive-radio-analytics");
+const LOG_KEEP_DAYS = 30;
+const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
+const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
 
-// PRD v10 W34: the chain pulls main BEFORE it builds, so code merged from
-// another machine runs the same morning and the publish-time pull is a no-op.
-// Data files are the chain's own output: any local change to them is set
-// aside, the pull applies, and they are rebuilt by the build-data step —
-// never stashed back over the pulled code. A pull that cannot fast-forward
-// stops the chain loudly (the old behavior, one step earlier).
+// --- W40: the run log --------------------------------------------------------
+let logPath = null;
+function openLog() {
+  try {
+    mkdirSync(LOG_DIR, { recursive: true });
+    logPath = join(LOG_DIR, `chain-${PHX_DATE}.log`);
+    appendFileSync(logPath, `\n===== chain run ${new Date().toISOString()}${rehearse ? " (rehearsal)" : ""} =====\n`);
+    for (const f of readdirSync(LOG_DIR)) {
+      const m = /^chain-(\d{4}-\d{2}-\d{2})\.log$/.exec(f);
+      if (m && Date.now() - Date.parse(`${m[1]}T12:00:00Z`) > LOG_KEEP_DAYS * 86400000) unlinkSync(join(LOG_DIR, f));
+    }
+  } catch (error) { console.log(`chain: run log unavailable (${error.message}) — continuing without it`); logPath = null; }
+}
+function log(line, stream = process.stdout) {
+  stream.write(`${line}\n`);
+  if (logPath) { try { appendFileSync(logPath, `${line}\n`); } catch { /* the log is a convenience, never a gate */ } }
+}
+function tee(chunk, stream) {
+  stream.write(chunk);
+  if (logPath) { try { appendFileSync(logPath, chunk); } catch { /* ditto */ } }
+}
+function showLast() {
+  if (!existsSync(LOG_DIR)) { console.log(`chain: no run logs under ${LOG_DIR}`); return; }
+  const files = readdirSync(LOG_DIR).filter((f) => /^chain-\d{4}-\d{2}-\d{2}\.log$/.test(f)).sort();
+  if (!files.length) { console.log(`chain: no run logs under ${LOG_DIR}`); return; }
+  const text = readFileSync(join(LOG_DIR, files.at(-1)), "utf8");
+  const runs = text.split(/\n(?======= chain run )/);
+  const last = runs.at(-1).split("\n");
+  const failAt = last.findIndex((l) => /^chain: .* failed \(exit|^chain: .*required, stopping|^chain: .*could not/.test(l));
+  console.log(`chain: last run in ${files.at(-1)} — ${failAt >= 0 ? "FAILED" : "no required-step failure recorded"}`);
+  const from = failAt >= 0 ? Math.max(0, failAt - 10) : Math.max(0, last.length - 12);
+  console.log(last.slice(from, failAt >= 0 ? failAt + 3 : last.length).join("\n"));
+}
+
+// --- W37: one line into the queue the dive-alerts automation delivers ----------
+function queueAlert(text) {
+  try {
+    const queue = existsSync(QUEUE_PATH) ? JSON.parse(readFileSync(QUEUE_PATH, "utf8")) : [];
+    const lines = Array.isArray(queue) ? queue : [];
+    if (!lines.includes(text)) lines.push(text);
+    const tmp = `${QUEUE_PATH}.tmp`;
+    writeFileSync(tmp, JSON.stringify(lines, null, 2) + "\n");
+    renameSync(tmp, QUEUE_PATH);
+    log(`chain: queued an alert — ${text}`);
+  } catch (error) { log(`chain: could not queue the alert (${error.message}) — ${text}`, process.stderr); }
+}
+const phxClock = () => new Date().toLocaleTimeString("en-US", { timeZone: "America/Phoenix", hour12: false, hour: "2-digit", minute: "2-digit" });
+
+// --- W34/§11: current code, clean tree ------------------------------------------
 function pullFirst() {
-  const git = (args) => spawnSync("git", args, { cwd: ROOT, encoding: "utf8", env: { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` } });
+  const git = (args) => spawnSync("git", args, { cwd: ROOT, encoding: "utf8", env: ENV });
   // an earlier run's failed publish may have left unmerged paths and a stash
-  // behind (a same-day formula re-derivation collides with the local day's
-  // read); repair that first or the pull below refuses to run
-  try { healLeftovers(ROOT); } catch (error) { console.error(`chain: ${error.message}`); process.exit(1); }
+  // behind; repair that first or the pull below refuses to run
+  try { healLeftovers(ROOT, { log }); } catch (error) { log(`chain: ${error.message}`, process.stderr); queueAlert(`chain: could not start at ${phxClock()} — ${error.message}`); process.exit(1); }
   // no trim(): the first porcelain line starts with the two-column status
-  // (" M path"), and trimming it ate the first letter of the path
   const status = git(["status", "--porcelain"]).stdout;
   const dirty = status.split("\n").filter((l) => l.trim()).map((l) => l.slice(3));
   const generated = dirty.filter((f) => /^(data\.json|data\.js|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
   const other = dirty.filter((f) => !generated.includes(f));
-  if (other.length) console.log(`chain: local changes outside the data stores (${other.slice(0, 5).join(", ")}) — pulling with a stash`);
+  if (other.length) log(`chain: local changes outside the data stores (${other.slice(0, 5).join(", ")}) — pulling with a stash`);
   const stashed = dirty.length ? git(["stash", "push", "--include-untracked", "-m", "chain-pre-pull"]).status === 0 : false;
   const pull = git(["pull", "--rebase", "--quiet", "origin", "main"]);
   if (pull.status !== 0) {
     if (stashed) git(["stash", "pop"]);
-    console.error(`chain: git pull --rebase failed — ${(pull.stderr || pull.stdout).trim().slice(0, 300)}`);
+    const why = (pull.stderr || pull.stdout).trim().slice(0, 300);
+    log(`chain: git pull --rebase failed — ${why}`, process.stderr);
+    queueAlert(`chain: could not pull main at ${phxClock()} — ${why.split("\n")[0]}`);
     process.exit(1);
   }
   if (stashed) {
@@ -69,43 +125,58 @@ function pullFirst() {
       // keep the pulled versions (build-data rewrites them minutes from now)
       git(["checkout", "--", "."]);
       git(["stash", "drop"]);
-      console.log("chain: pulled code changed generated files too — kept the pulled versions; the build step regenerates them");
+      log("chain: pulled code changed generated files too — kept the pulled versions; the build step regenerates them");
     }
   }
-  console.log(`chain: at ${git(["rev-parse", "--short", "HEAD"]).stdout.trim()} after pulling main`);
+  log(`chain: at ${git(["rev-parse", "--short", "HEAD"]).stdout.trim()} after pulling main`);
 }
-if (!dry) pullFirst();
 
-let failedOptional = 0;
-for (const step of chain.steps) {
-  if (step.when === "Mondays" && PHX_DAY !== "Mon") {
-    console.log(`chain: ${step.step} — waits for Monday, skipped`);
-    continue;
-  }
-  if (rehearse && REHEARSE_SKIP.has(step.step)) {
-    console.log(`chain: ${step.step} — rehearsal, skipped (no publish-side effects)`);
-    continue;
-  }
-  const parts = step.script.split(" ");
-  const cmd = parts[0].endsWith(".sh") ? ["sh", ...parts] : ["node", ...parts];
-  if (dry) {
-    console.log(`chain: would run ${step.step}${step.required ? "" : " (optional)"} — ${cmd.join(" ")}`);
-    continue;
-  }
-  console.log(`chain: ${step.step} …`);
-  const res = spawnSync(cmd[0], cmd.slice(1), {
-    cwd: ROOT,
-    stdio: "inherit",
-    env: { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` },
+// --- one step, output streamed to the console and the log --------------------------
+function runStep(cmd) {
+  return new Promise((resolve) => {
+    const child = spawn(cmd[0], cmd.slice(1), { cwd: ROOT, env: ENV, stdio: ["ignore", "pipe", "pipe"] });
+    let lastErr = "";
+    child.stdout.on("data", (chunk) => tee(chunk, process.stdout));
+    child.stderr.on("data", (chunk) => { const t = String(chunk); lastErr = (lastErr + t).split("\n").filter(Boolean).slice(-3).join("\n"); tee(chunk, process.stderr); });
+    child.on("error", (error) => resolve({ code: 1, lastErr: error.message }));
+    child.on("close", (code) => resolve({ code: code ?? 1, lastErr }));
   });
-  const code = res.status ?? 1;
-  if (code !== 0) {
+}
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function main() {
+  if (process.argv.includes("--last")) { showLast(); return; }
+  if (!dry) { openLog(); pullFirst(); }
+  let failedOptional = 0;
+  for (const step of chain.steps) {
+    if (step.when === "Mondays" && PHX_DAY !== "Mon") { log(`chain: ${step.step} — waits for Monday, skipped`); continue; }
+    if (rehearse && REHEARSE_SKIP.has(step.step)) { log(`chain: ${step.step} — rehearsal, skipped (no publish-side effects)`); continue; }
+    const parts = step.script.split(" ");
+    const cmd = parts[0].endsWith(".sh") ? ["sh", ...parts] : ["node", ...parts];
+    if (dry) { console.log(`chain: would run ${step.step}${step.required ? "" : " (optional)"} — ${cmd.join(" ")}`); continue; }
+    log(`chain: ${step.step} …`);
+    let { code, lastErr } = await runStep(cmd);
+    if (code !== 0 && step.required && RETRY_ONCE.has(step.step)) {
+      log(`chain: ${step.step} failed (exit ${code}) — required, retrying once in ${RETRY_PAUSE_MS / 1000}s`);
+      await sleep(RETRY_PAUSE_MS);
+      ({ code, lastErr } = await runStep(cmd));
+    }
+    if (code === 0) continue;
+    // W38: publish exit 2 = pushed and deployed, live parity unconfirmed — the
+    // day is published; say so, never re-capture and re-publish
+    if (step.step === "publish" && code === 2) {
+      log("chain: publish pushed and deployed but could not confirm live parity — continuing; the 08:15 freshness check re-reads the site");
+      queueAlert(`chain: published at ${phxClock()} but could not confirm the live site serves today's data — the freshness check will say if it stays behind`);
+      continue;
+    }
     if (step.required) {
-      console.error(`chain: ${step.step} failed (exit ${code}) — required, stopping here`);
+      log(`chain: ${step.step} failed (exit ${code}) — required, stopping here`, process.stderr);
+      queueAlert(`chain: ${step.step} failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""} — no publish this run; \`node tools/dive-analytics/run-chain.mjs --last\` on the chain machine shows the log`);
       process.exit(1);
     }
     failedOptional++;
-    console.log(`chain: ${step.step} failed (exit ${code}) — not required, continuing`);
+    log(`chain: ${step.step} failed (exit ${code}) — not required, continuing`);
   }
+  log(`chain: done${failedOptional ? ` — ${failedOptional} optional step(s) failed` : ""}`);
 }
-console.log(`chain: done${failedOptional ? ` — ${failedOptional} optional step(s) failed` : ""}`);
+main().catch((error) => { log(`chain: ${error.message}`, process.stderr); process.exit(1); });

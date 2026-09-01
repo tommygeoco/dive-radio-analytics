@@ -108,7 +108,7 @@
   },
   {
    "step": "validate",
-   "script": "tools/dive-analytics/audit/validate.mjs",
+   "script": "tools/dive-analytics/audit/validate.mjs --publish",
    "writes": [],
    "freshnessKey": null,
    "required": true,
@@ -171,7 +171,7 @@
   },
   {
    "step": "validate",
-   "script": "tools/dive-analytics/audit/validate.mjs",
+   "script": "tools/dive-analytics/audit/validate.mjs --publish",
    "writes": [],
    "freshnessKey": null,
    "required": true,

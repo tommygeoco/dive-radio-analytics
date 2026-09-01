@@ -72,6 +72,7 @@ eight-episode windows, three-peer minimum, rebuildable freezes, freshness)
 are specified in `tools/dive-analytics/prd-analytics-v7-*.md`.
 
 Data is exported daily (07:00 America/Phoenix, an OpenClaw automation on the owner machine running `tools/dive-analytics/run-chain.mjs`) by an automated pipeline that
+(PRD v11: the chain pulls and heals first, retries the two platform steps once, runs the validator in publish mode — honesty checks block, source-contract drift is reported — publishes with a self-fixing script, and queues one Slack line on any failure; `dive-alerts` delivers the queue every 30 minutes and a freshness check re-reads the live site at 08:15 and noon)
 also discovers newly published episodes and collects audience comments. A
 separate model step removes noise, labels reactions, audits a sample, and keeps
 unclear items off every surface. Built with vanilla JS + Chart.js (MIT, vendored).

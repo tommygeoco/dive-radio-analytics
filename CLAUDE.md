@@ -31,7 +31,7 @@ the audit ledgers (`tools/dive-analytics/audit/*.md`).
 2. **Absence ≠ zero.** Missing data says so in plain words; it never renders as 0 and is never estimated or interpolated.
 3. **Never fabricate history.** No backfill, no extrapolation, no blended series where one unit lacks history.
 4. **Definition-lock.** A metric definition change moves every surface (cards, hero, panel, table, Slack, validator) in one commit. Every surface reads the same store — no surface recomputes its own version of a number.
-5. **`node tools/dive-analytics/audit/validate.mjs` exits 0 before every publish.** Publish verifies live parity afterwards.
+5. **`node tools/dive-analytics/audit/validate.mjs` exits 0 before every publish.** Publish verifies live parity afterwards. Two tiers (PRD v11 rule 24): `fail` re-derives a shipped number, definition, grounding, absence, freshness, or store integrity and always blocks; `drift` inspects page or script source or copy — strict mode (a person, the pre-push hook) blocks on it, the chain's `--publish` mode reports it and queues a Slack line. Never move a check from `fail` to `drift` because it is inconvenient; only because it inspects source.
 6. **Plain words everywhere a human reads.** Banned in glance/click layers: composite, percentile, pillar, ratio / ×-multiples, velocity, coverage, basis, median (say "typical"), delta, cumulative (say "total so far"). Test: "it doesn't need the PRD to parse."
 7. **Small-n honesty.** Claims from fewer than 3 clean samples are suppressed, not caveated.
 8. **Simplicity contract.** ≤12 numbers above the fold; one question per surface; three layers (glance → click → About); every glance number passes "what would Tommy/Ridd DO differently if this changed?"
@@ -102,6 +102,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The scheduler is an OpenClaw automation on the owner machine (`openclaw cron list`), not a crontab; do not add one here.
+- **Publishes do not fail for reasons readers would not care about** (PRD v11): the chain heals leftovers and pulls first, retries `snapshot` / `yt-analytics` once, runs the validator in publish mode, publishes with a script that merges store conflicts, retries the push and the deploy, and exits 2 (published, parity unconfirmed) rather than re-capturing; every required-step failure queues one Slack line (`dive-alerts` delivers every 30 min; `run-chain.mjs --last` on the chain machine shows the log). Install the pre-push hook once per clone: `sh scripts/dev/install-hooks.sh`.
 - **`run-chain.mjs` pulls main before the first step** (PRD v10 W34) and `postlive-publish.sh` pulls `--rebase` again before it pushes; a stash conflict on the generated files (`data.json`, `data.js`) is resolved by taking the pulled tree and rebuilding, never by aborting. Work from another machine may land on main directly when it changes no store files; commit `data.json`/`data.js` only when the chain machine has already pulled the code that produces them (the chain rebuilds them every morning).
 
 ## How to change a number (the procedure)
@@ -123,7 +124,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - Don't add a second implementation of median / window / outlier / quiet zone / bands. `baselines.mjs` is the one; validator 1j/1u/1z and the fixture test fail on a second.
 - Don't add glance-layer numbers without removing others (≤12 above the fold, counted on a screenshot).
 - Don't commit secrets. API keys come from the login-shell environment (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, YouTube/X credentials via the owner's tooling); `restream-token.mjs` reads 1Password.
-- Don't run the chain or `postlive-publish.sh` from a machine that is not the owner's; the publish script is hard-wired to `/Users/bones/...` and to production Vercel.
+- Don't run the chain or `postlive-publish.sh` from a machine that is not the owner's, and don't commit `data/restream/**`, `data.json`, or `data.js` from another machine (rule 26: one writer — the pre-push hook warns). Reach the chain machine with `ssh -4 bones@192.168.0.135` on the LAN; its jobs are OpenClaw automations (`openclaw cron list`).
 - Don't "fix" a validator failure by relaxing the regex; find out which surface drifted.
 - Don't trust the critic's findings without re-deriving: it has produced false positives from a flattened bundle (see CRITIC-2026-08-22-W10 "Builder triage").
 
