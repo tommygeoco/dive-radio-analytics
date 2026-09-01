@@ -120,7 +120,7 @@ async function callOnce(system, payload) {
     if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
     const body = await res.json();
     const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
-    if (!text.trim()) throw new Error("empty Anthropic response");
+    if (!text.trim()) throw new Error(`empty Anthropic response (stop_reason ${body.stop_reason}, blocks ${JSON.stringify((body.content || []).map((b) => b.type))}, output_tokens ${body.usage?.output_tokens})`);
     return { text, ...cfg };
   }
 
@@ -342,8 +342,8 @@ async function classify({ reclassify = false } = {}) {
         confidence: r.confidence,
       },
     }));
-    const auditPrompt = `${cfg.prompt}\n\n## Adversarial audit\nFor this task, argue the strongest reasonable case that each original label is wrong, then return your own best label in the same classifications JSON shape. Do not agree automatically.`;
-    const auditResult = await callModel(auditPrompt, { task: "adversarial audit", comments: auditInput });
+    const auditPrompt = `${cfg.prompt}\n\n## Independent second read\nRe-classify each comment from scratch using only the rules above. Each comment carries the first pass's label under "original" for reference only. Form your own judgment; where your best label differs from the original, return yours. Return the same classifications JSON shape.`;
+    const auditResult = await callModel(auditPrompt, { task: "second read", comments: auditInput });
     audits = parseClassifications(auditResult.text, auditInput.map((c) => c.id));
   } catch (err) {
     stampStore(store, cfg, now);
