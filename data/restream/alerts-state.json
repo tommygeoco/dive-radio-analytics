@@ -1,7 +1,11 @@
 {
   "episodeCount": 7,
   "newestSlug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-  "paceRank": null,
+  "paceRank": {
+    "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+    "rank": 1,
+    "of": 4
+  },
   "complaints": {
     "2026-07-17-dive-radio-bumpy-takeoff": 0,
     "2026-07-23-dive-radio-data-vs-intuition-web-designe": 0,
