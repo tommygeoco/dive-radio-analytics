@@ -77,8 +77,10 @@ function showLast() {
   const text = readFileSync(join(LOG_DIR, files.at(-1)), "utf8");
   const runs = text.split(/\n(?======= chain run )/);
   const last = runs.at(-1).split("\n");
-  const failAt = last.findIndex((l) => /^chain: .* failed \(exit|^chain: .*required, stopping|^chain: .*could not/.test(l));
-  console.log(`chain: last run in ${files.at(-1)} — ${failAt >= 0 ? "FAILED" : "no required-step failure recorded"}`);
+  // only a REQUIRED failure ends a run; an optional step's failure is noted inline and the run goes on
+  const failAt = last.findIndex((l) => /^chain: .*— required, stopping here|^chain: could not|^chain: git pull --rebase failed/.test(l));
+  const optional = last.filter((l) => /^chain: .* failed \(exit \d+\) — not required/.test(l)).length;
+  console.log(`chain: last run in ${files.at(-1)} — ${failAt >= 0 ? "FAILED on a required step" : `no required-step failure recorded${optional ? ` (${optional} optional step(s) failed)` : ""}`}`);
   const from = failAt >= 0 ? Math.max(0, failAt - 10) : Math.max(0, last.length - 12);
   console.log(last.slice(from, failAt >= 0 ? failAt + 3 : last.length).join("\n"));
 }
