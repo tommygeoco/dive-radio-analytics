@@ -60,11 +60,17 @@ echo "publish: Vercel production deploy done."
 
 # post-deploy parity: the live site must serve the data we just built.
 LOCAL_STAMP=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data.json','utf8')).generatedAt)")
-for i in 1 2 3; do
+# W11.3 (2026-08-31): the CDN can serve the previous build for a while after a
+# successful deploy — the 2026-08-31 weekly run deployed fine but failed parity
+# inside a ~15s window (three checks 5s apart). Check immediately, then wait
+# 30/60/90s between retries (~3 minutes total) before calling it a failure.
+for i in 1 2 3 4; do
   LIVE_STAMP=$(curl -fsS --max-time 20 "$SITE/data.json?cb=$(date +%s)" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).generatedAt))" || echo "fetch-failed")
   [ "$LIVE_STAMP" = "$LOCAL_STAMP" ] && { echo "publish: live site serves $LIVE_STAMP — parity confirmed."; exit 0; }
-  echo "publish: live stamp $LIVE_STAMP != local $LOCAL_STAMP (attempt $i/3) — waiting for CDN…"
-  sleep 15
+  [ "$i" = 4 ] && break
+  WAIT=$((30 * i))
+  echo "publish: live stamp $LIVE_STAMP != local $LOCAL_STAMP (attempt $i/4) — waiting ${WAIT}s for CDN…"
+  sleep "$WAIT"
 done
-echo "publish: FAILED live-site parity — deployed data.json does not match local after 3 checks." >&2
+echo "publish: FAILED live-site parity — deployed data.json does not match local after 4 checks over ~3 minutes." >&2
 exit 1

@@ -4982,6 +4982,59 @@
           "plays": 1178
         }
       }
+    },
+    {
+      "ts": "2026-09-01T01:02:45.798Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1177,
+          "detail": {
+            "views": 1177,
+            "likes": 39,
+            "comments": 2,
+            "title": "Dive Radio: Linear on Data vs. Intuition, the Web Designer Is Back, Dialkit + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 926,
+          "detail": {
+            "views": 926,
+            "likes": 39,
+            "comments": 3,
+            "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:designertom": {
+          "peakConcurrent": 246,
+          "views": 2235,
+          "detail": {
+            "views": 2235,
+            "plays": null,
+            "likes": 1,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 635
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 599,
+          "views": 3899,
+          "detail": {
+            "views": 3899,
+            "plays": null,
+            "likes": 3,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 1178
+        }
+      }
     }
   ]
 }
