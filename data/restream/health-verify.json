@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-01T21:30:50.267Z",
+  "claims": [
+    {
+      "id": "range:after-E7:1189-1830",
+      "kind": "first-week-range",
+      "madeOn": "2026-09-01",
+      "afterEp": 7,
+      "low": 1189,
+      "high": 1830,
+      "typical": 1751,
+      "direction": null,
+      "pctPerEpisode": -8.3,
+      "resolution": null
+    },
+    {
+      "id": "direction:watching:E4:softening",
+      "kind": "direction",
+      "key": "watching",
+      "madeOn": "2026-09-01",
+      "word": "softening",
+      "pctPerEpisode": -6.9,
+      "lastEp": 4,
+      "lastValue": 8.9,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E6:softening",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-09-01",
+      "word": "softening",
+      "pctPerEpisode": -14.2,
+      "lastEp": 6,
+      "lastValue": 13,
+      "resolution": null
+    },
+    {
+      "id": "direction:liveAverage:E7:building",
+      "kind": "direction",
+      "key": "liveAverage",
+      "madeOn": "2026-09-01",
+      "word": "building",
+      "pctPerEpisode": 6.7,
+      "lastEp": 7,
+      "lastValue": 56,
+      "resolution": null
+    },
+    {
+      "id": "direction:livePeak:E7:building",
+      "kind": "direction",
+      "key": "livePeak",
+      "madeOn": "2026-09-01",
+      "word": "building",
+      "pctPerEpisode": 7.1,
+      "lastEp": 7,
+      "lastValue": 72,
+      "resolution": null
+    },
+    {
+      "id": "direction:chattersPer100:E7:softening",
+      "kind": "direction",
+      "key": "chattersPer100",
+      "madeOn": "2026-09-01",
+      "word": "softening",
+      "pctPerEpisode": -16.1,
+      "lastEp": 7,
+      "lastValue": 55.6,
+      "resolution": null
+    },
+    {
+      "id": "direction:messagesPerHour:E7:softening",
+      "kind": "direction",
+      "key": "messagesPerHour",
+      "madeOn": "2026-09-01",
+      "word": "softening",
+      "pctPerEpisode": -12.2,
+      "lastEp": 7,
+      "lastValue": 50.2,
+      "resolution": null
+    }
+  ]
+}

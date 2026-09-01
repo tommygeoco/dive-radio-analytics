@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-01T17:24:39.461Z",
+ "generatedAt": "2026-09-01T21:30:49.753Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -5199,6 +5199,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-23T18:45:20.684Z",
     "frozenAt": "2026-08-23T18:45:20.684Z"
    },
+   "subsPer1k": 8.8,
    "watch": {
     "channels": [
      "yt:designertom",
@@ -10513,6 +10514,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-23T18:45:20.684Z",
     "frozenAt": "2026-08-23T18:45:20.684Z"
    },
+   "subsPer1k": 2.9,
    "watch": {
     "channels": [
      "yt:designertom",
@@ -14845,6 +14847,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-23T18:45:20.684Z",
     "frozenAt": "2026-08-23T18:45:20.684Z"
    },
+   "subsPer1k": 0,
    "watch": {
     "channels": [
      "yt:designertom",
@@ -19322,6 +19325,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-28T14:03:21.105Z",
     "frozenAt": "2026-08-28T14:03:21.105Z"
    },
+   "subsPer1k": 3.6,
    "watch": {
     "channels": [
      "yt:designertom",
@@ -23475,6 +23479,7 @@ window.DIVE_DATA = {
     "pending": true,
     "readCompleteOn": "2026-09-03"
    },
+   "subsPer1k": 0.8,
    "watch": {
     "channels": [
      "yt:designertom",
@@ -27736,6 +27741,7 @@ window.DIVE_DATA = {
     "pending": true,
     "readCompleteOn": "2026-09-10"
    },
+   "subsPer1k": 0.8,
    "watch": {
     "channels": [
      "yt:designertom",
@@ -31289,6 +31295,7 @@ window.DIVE_DATA = {
     "pending": true,
     "readCompleteOn": "2026-09-17"
    },
+   "subsPer1k": 0.5,
    "watch": {
     "channels": [
      "yt:joindiveclub",
@@ -31981,6 +31988,7 @@ window.DIVE_DATA = {
     "key": "growth",
     "score": 70,
     "reason": null,
+    "carried": false,
     "measures": [
      {
       "key": "firstWeek",
@@ -31990,7 +31998,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": null
+      "episodeRead": null,
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      },
      {
       "key": "sameAge",
@@ -32000,7 +32011,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      }
     ]
    },
@@ -32008,6 +32022,7 @@ window.DIVE_DATA = {
     "key": "audienceQuality",
     "score": 10,
     "reason": "Fewer than three earlier episodes to compare with.",
+    "carried": false,
     "measures": [
      {
       "key": "engagement",
@@ -32017,7 +32032,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      },
      {
       "key": "watching",
@@ -32027,7 +32045,10 @@ window.DIVE_DATA = {
       "reason": "Fewer than three earlier episodes to compare with.",
       "ageBasis": null,
       "note": null,
-      "episodeRead": null
+      "episodeRead": null,
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      }
     ]
    },
@@ -32035,6 +32056,7 @@ window.DIVE_DATA = {
     "key": "reachEfficiency",
     "score": 35,
     "reason": "read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
+    "carried": false,
     "measures": [
      {
       "key": "announceToPlay",
@@ -32044,7 +32066,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "mature",
       "note": "compared with earlier episodes as they stand now, not at the same age",
-      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex"
+      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      },
      {
       "key": "xShare",
@@ -32054,7 +32079,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "mature",
       "note": "compared with earlier episodes as they stand now, not at the same age",
-      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex"
+      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      }
     ]
    },
@@ -32062,6 +32090,7 @@ window.DIVE_DATA = {
     "key": "livePull",
     "score": 40,
     "reason": null,
+    "carried": false,
     "measures": [
      {
       "key": "peak",
@@ -32071,7 +32100,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      },
      {
       "key": "chat",
@@ -32081,7 +32113,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      }
     ]
    },
@@ -32089,6 +32124,7 @@ window.DIVE_DATA = {
     "key": "conversion",
     "score": null,
     "reason": "Fewer than three earlier episodes to compare with.",
+    "carried": false,
     "measures": [
      {
       "key": "subscribers",
@@ -32098,7 +32134,10 @@ window.DIVE_DATA = {
       "reason": "Fewer than three earlier episodes to compare with.",
       "ageBasis": null,
       "note": null,
-      "episodeRead": null
+      "episodeRead": null,
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      }
     ]
    },
@@ -32106,6 +32145,7 @@ window.DIVE_DATA = {
     "key": "sentiment",
     "score": 100,
     "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
+    "carried": false,
     "measures": [
      {
       "key": "balance",
@@ -32115,7 +32155,10 @@ window.DIVE_DATA = {
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      },
      {
       "key": "commentRate",
@@ -32125,11 +32168,17 @@ window.DIVE_DATA = {
       "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
       "ageBasis": null,
       "note": null,
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null
      }
     ]
    }
   ],
+  "asOf": null,
+  "direction": null,
+  "outlook": null,
   "pros": [
    {
     "text": "The latest episode has 4,860 YouTube views at this age, well ahead of earlier episodes at the same age.",
@@ -32156,42 +32205,7 @@ window.DIVE_DATA = {
    "Announcement reach and live chat both came in under their usual marks; the subscribers check lacks enough history to score and counts as absent, not weak."
   ],
   "checkSetChange": null,
-  "trend": {
-   "points": [
-    {
-     "date": "2026-08-24",
-     "score": 51
-    },
-    {
-     "date": "2026-08-25",
-     "score": 51
-    },
-    {
-     "date": "2026-08-26",
-     "score": 50
-    },
-    {
-     "date": "2026-08-28",
-     "score": 46
-    },
-    {
-     "date": "2026-08-29",
-     "score": 45
-    },
-    {
-     "date": "2026-08-30",
-     "score": 45
-    },
-    {
-     "date": "2026-08-31",
-     "score": 48
-    },
-    {
-     "date": "2026-09-01",
-     "score": 46
-    }
-   ]
-  }
+  "trend": null
  },
  "baselines": {
   "constants": {
@@ -32210,7 +32224,12 @@ window.DIVE_DATA = {
    "READ_DAYS": 21,
    "OUTLIER_MULTIPLE": 2,
    "SNAPSHOT_TOL": 0.5,
-   "HISTORY_TOL": 1.5
+   "HISTORY_TOL": 1.5,
+   "TREND_N": 5,
+   "TREND_MIN_WORD": 4,
+   "CARRIED_WEIGHT": 0.5,
+   "LAUNCH_AGE": 7,
+   "COOL_SPAN_DAYS": 2
   },
   "anomaly": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
@@ -33243,6 +33262,225 @@ window.DIVE_DATA = {
     "reason": null
    }
   },
+  "launch": {
+   "2026-07-17-dive-radio-bumpy-takeoff": {
+    "ageDays": 7,
+    "value": 1830,
+    "typical": 1189,
+    "n": 3,
+    "pct": 54,
+    "word": "strong",
+    "promoDriven": false,
+    "provisional": false,
+    "late": false,
+    "peers": [
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "reason": null
+   },
+   "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
+    "ageDays": 7,
+    "value": 1751,
+    "typical": 1189,
+    "n": 3,
+    "pct": 47,
+    "word": "strong",
+    "promoDriven": false,
+    "provisional": false,
+    "late": false,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "reason": null
+   },
+   "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
+    "ageDays": 21,
+    "value": 1601,
+    "typical": 2015,
+    "n": 3,
+    "pct": -21,
+    "word": "soft",
+    "promoDriven": false,
+    "provisional": false,
+    "late": true,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-06-dive-radio-backyard-designers-behind-the"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "reason": null
+   },
+   "2026-08-06-dive-radio-backyard-designers-behind-the": {
+    "ageDays": 14.4,
+    "value": 1892,
+    "typical": 1942,
+    "n": 3,
+    "pct": -3,
+    "word": "typical",
+    "promoDriven": false,
+    "provisional": false,
+    "late": true,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "reason": null
+   },
+   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+    "ageDays": 7,
+    "value": 1127,
+    "typical": 1751,
+    "n": 3,
+    "pct": -36,
+    "word": "soft",
+    "promoDriven": false,
+    "provisional": false,
+    "late": false,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "reason": null
+   },
+   "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+    "ageDays": 7,
+    "value": 1189,
+    "typical": 1751,
+    "n": 3,
+    "pct": -32,
+    "word": "soft",
+    "promoDriven": false,
+    "provisional": false,
+    "late": false,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "reason": null
+   },
+   "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
+    "ageDays": 4.9,
+    "value": 4860,
+    "typical": 1600,
+    "n": 3,
+    "pct": 204,
+    "word": "strong",
+    "promoDriven": true,
+    "provisional": true,
+    "late": false,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "why": "no reading at this age"
+     }
+    ],
+    "reason": null
+   }
+  },
   "newestVsPrevious": {
    "newest": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
    "previous": "2026-08-20-dive-radio-the-mascot-industrial-complex",
@@ -33258,6 +33496,406 @@ window.DIVE_DATA = {
    "live": {
     "pct": 1,
     "ageBasis": "ageFree"
+   }
+  },
+  "direction": {
+   "measures": [
+    {
+     "key": "firstWeek",
+     "check": "growth",
+     "n": 3,
+     "pctPerEpisode": -8.3,
+     "direction": null,
+     "ageBasis": "ageFree",
+     "note": null,
+     "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 1830
+      },
+      {
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "ep": 2,
+       "value": 1751
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 1189
+      }
+     ],
+     "reason": "Three episodes show the slope; a direction word needs four."
+    },
+    {
+     "key": "engagementWeekOne",
+     "check": "audienceQuality",
+     "n": 3,
+     "pctPerEpisode": -17.6,
+     "direction": null,
+     "ageBasis": "sameAge",
+     "note": "compared at the same age",
+     "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 95
+      },
+      {
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "ep": 2,
+       "value": 76
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 36
+      }
+     ],
+     "reason": "Three episodes show the slope; a direction word needs four."
+    },
+    {
+     "key": "watching",
+     "check": "audienceQuality",
+     "n": 4,
+     "pctPerEpisode": -6.9,
+     "direction": "softening",
+     "ageBasis": "mature",
+     "note": "compared with earlier episodes as they stand now, not at the same age",
+     "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 10.7
+      },
+      {
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "ep": 2,
+       "value": 11
+      },
+      {
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "ep": 3,
+       "value": 9.1
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 8.9
+      }
+     ],
+     "reason": null
+    },
+    {
+     "key": "exposureWeekOne",
+     "check": "reachEfficiency",
+     "n": 3,
+     "pctPerEpisode": 13.5,
+     "direction": null,
+     "ageBasis": "sameAge",
+     "note": "compared at the same age",
+     "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 4641
+      },
+      {
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "ep": 2,
+       "value": 5640
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 8746
+      }
+     ],
+     "reason": "Three episodes show the slope; a direction word needs four."
+    },
+    {
+     "key": "announceToPlay",
+     "check": "reachEfficiency",
+     "n": 5,
+     "pctPerEpisode": -14.2,
+     "direction": "softening",
+     "ageBasis": "mature",
+     "note": "compared with earlier episodes as they stand now, not at the same age",
+     "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 33.3
+      },
+      {
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "ep": 2,
+       "value": 29.6
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 40.8
+      },
+      {
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "ep": 5,
+       "value": 23.3
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 13
+      }
+     ],
+     "reason": null
+    },
+    {
+     "key": "liveAverage",
+     "check": "livePull",
+     "n": 5,
+     "pctPerEpisode": 6.7,
+     "direction": "building",
+     "ageBasis": "ageFree",
+     "note": null,
+     "points": [
+      {
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "ep": 3,
+       "value": 42
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 48
+      },
+      {
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "ep": 5,
+       "value": 46
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 50
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 56
+      }
+     ],
+     "reason": null
+    },
+    {
+     "key": "livePeak",
+     "check": "livePull",
+     "n": 5,
+     "pctPerEpisode": 7.1,
+     "direction": "building",
+     "ageBasis": "ageFree",
+     "note": null,
+     "points": [
+      {
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "ep": 3,
+       "value": 53
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 63
+      },
+      {
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "ep": 5,
+       "value": 64
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 71
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 72
+      }
+     ],
+     "reason": null
+    },
+    {
+     "key": "chattersPer100",
+     "check": "participation",
+     "n": 5,
+     "pctPerEpisode": -16.1,
+     "direction": "softening",
+     "ageBasis": "ageFree",
+     "note": null,
+     "points": [
+      {
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "ep": 3,
+       "value": 105.7
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 87.3
+      },
+      {
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "ep": 5,
+       "value": 60.9
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 57.7
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 55.6
+      }
+     ],
+     "reason": null
+    },
+    {
+     "key": "messagesPerHour",
+     "check": "participation",
+     "n": 5,
+     "pctPerEpisode": -12.2,
+     "direction": "softening",
+     "ageBasis": "ageFree",
+     "note": null,
+     "points": [
+      {
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "ep": 3,
+       "value": 89.7
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 80.8
+      },
+      {
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "ep": 5,
+       "value": 63.2
+      },
+      {
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "ep": 6,
+       "value": 80.2
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 50.2
+      }
+     ],
+     "reason": null
+    },
+    {
+     "key": "subscribers",
+     "check": "conversion",
+     "n": 3,
+     "pctPerEpisode": -25.8,
+     "direction": null,
+     "ageBasis": "mature",
+     "note": "compared with earlier episodes as they stand now, not at the same age",
+     "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 8.8
+      },
+      {
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "ep": 2,
+       "value": 2.9
+      },
+      {
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "ep": 4,
+       "value": 3.6
+      }
+     ],
+     "reason": "Three episodes show the slope; a direction word needs four."
+    }
+   ],
+   "votes": [
+    {
+     "check": "audienceQuality",
+     "direction": "softening",
+     "measures": 1
+    },
+    {
+     "check": "reachEfficiency",
+     "direction": "softening",
+     "measures": 1
+    },
+    {
+     "check": "livePull",
+     "direction": "building",
+     "measures": 2
+    },
+    {
+     "check": "participation",
+     "direction": "softening",
+     "measures": 2
+    }
+   ],
+   "overall": "mixed"
+  },
+  "outlook": {
+   "nextFirstWeek": {
+    "low": 1189,
+    "high": 1830,
+    "typical": 1751,
+    "n": 3,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "pctPerEpisode": -8.3,
+    "direction": null,
+    "reason": "Three episodes show the slope; a direction word needs four."
+   },
+   "coolOff": {
+    "ageDays": 4.9,
+    "span": 2,
+    "value": 1.15,
+    "typical": null,
+    "n": 2,
+    "word": null,
+    "promoDriven": true,
+    "peers": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "why": "no reading at this age"
+     }
+    ],
+    "reason": "promo-driven lift — shown, not scored"
    }
   }
  }

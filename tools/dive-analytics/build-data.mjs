@@ -16,7 +16,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // PRD v9 W22a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
-import { computeBaselines, anomalyFlags, paceFor } from "./baselines.mjs";
+import { computeBaselines, anomalyFlags, paceFor, snapshotAt, subsPer1kOf, LAUNCH_AGE, ytViewsOf } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -205,8 +205,11 @@ export function computeAll({ now = Date.now() } = {}) {
     } else if (ageDays < 7) {
       week1Note = "pending: episode under 7 days old";
     } else {
-      const s7 = lastAtOrBefore(snaps, prem + 7 * DAY);
-      week1Velocity = s7 ? total(s7.byDest, YT_KEYS) : null;
+      // ONE reading rule for "first-week views" (PRD v10 rule 16): the day-7
+      // reading via the shared reading rule, the last snapshot inside the
+      // week only when no reading sits within tolerance of day 7
+      const s7 = snapshotAt({ snapshots: snaps, premiere: show.date }, LAUNCH_AGE) || lastAtOrBefore(snaps, prem + 7 * DAY);
+      week1Velocity = s7 ? ytViewsOf(s7) : null;
       if (!week1Velocity) week1Note = "no snapshot inside first week";
     }
 
@@ -289,6 +292,16 @@ export function computeAll({ now = Date.now() } = {}) {
   // A flagged episode is left out of host, announce, topic, and every typical.
   const flags = anomalyFlags(dive);
   for (const e of dive) e.metrics.anomaly = flags.get(e.slug)?.text ?? null;
+  // PRD v10 F3: a first week whose YouTube views are promo-flagged is not a
+  // clean first week — the same rule that keeps the episode out of every
+  // typical keeps its week out of the first-week series (growth slope, trend
+  // card, Slack line). The number stays visible on the episode itself.
+  for (const e of dive) {
+    if (e.metrics.week1Velocity != null && flags.get(e.slug)?.units?.ytViews?.flag === true) {
+      e.metrics.week1Velocity = null;
+      e.metrics.week1Note = "excluded: promo-driven outlier";
+    }
+  }
 
   attachLiveSessions(dive, registry);
   const commentSummary = attachComments(dive);
@@ -486,6 +499,9 @@ function attachWatch(dive) {
       if (rest > 0) traffic.push({ source: "OTHER_COMBINED", views: rest, share: Math.round((rest / trafficTotal) * 1000) / 10 });
     }
 
+    // PRD v10: subscribers per thousand analytics views for the direction
+    // lens (the same definition health.mjs and ratings.mjs read)
+    e.subsPer1k = (() => { const v = subsPer1kOf(j.channels); return Number.isFinite(v) ? Math.round(v * 10) / 10 : null; })();
     e.watch = {
       channels: chans.map(([k]) => k),
       // per-channel split (owner directive 2026-08-23): the blend never hides
@@ -1094,8 +1110,15 @@ export function trendsLines(data) {
   // first-week line only from three clean weeks (rule 7; PRD v9 F14) — below
   // that the numbers are listed without a direction word
   if (vels.length >= 3) {
-    const dir = vels[vels.length - 1].value >= vels[0].value ? "up" : "down";
-    push(`• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — trending ${dir} (sample of ${vels.length}).`, { sample: vels.length, direction: dir });
+    // PRD v10 rule 20: the ONE first-week direction — the stored lens
+    // (baselines.direction, Theil–Sen over the last clean weeks by episode
+    // number); a word only with four clean weeks, the slope alone with three
+    const fwTrend = (data.baselines?.direction?.measures || []).find((m) => m.key === "firstWeek") || null;
+    const dir = fwTrend?.direction || null;
+    const tail = dir
+      ? `${dir}${dir !== "holding" ? ` about ${Math.abs(fwTrend.pctPerEpisode)}% each episode` : ""} over the last ${fwTrend.n} clean weeks`
+      : `the slope over the last ${fwTrend?.n ?? vels.length} clean weeks is ${fwTrend?.pctPerEpisode != null ? `${fwTrend.pctPerEpisode > 0 ? "+" : ""}${fwTrend.pctPerEpisode}% each episode` : "not yet readable"}; a direction word needs four`;
+    push(`• First-week YouTube views in air order: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" → ")} — ${tail}.`, { sample: fwTrend?.n ?? vels.length, direction: dir });
   } else if (vels.length) {
     push(`• First-week YouTube views so far: ${vels.map((v) => `${v.premiere.slice(5)} ${num(v.value)}`).join(" · ")} — a direction needs three clean first weeks.`, { sample: vels.length });
   }
@@ -1123,7 +1146,27 @@ export function trendsLines(data) {
     const parts = [];
     if (setChange.left?.length) parts.push(`${words(setChange.left)} left`);
     if (setChange.joined?.length) parts.push(`${words(setChange.joined)} joined`);
-    push(`• Show health now rests on a different set of checks than the last saved read: ${parts.join("; ")}. Same show, different checks — the diagnosis card says why each is in or out.`, { kind: "health-checkset" });
+    const expected = data.health?.asOf?.provisional ? " Expected while the newest episode is under a week old: its same-age checks join as earlier episodes reach its age." : "";
+    push(`• Show health now rests on a different set of checks than the last saved read: ${parts.join("; ")}. Same show, different checks — the diagnosis card says why each is in or out.${expected}`, { kind: "health-checkset" });
+  }
+  // PRD v10: which way the durable measures are moving and where the next
+  // first week is expected to land — read verbatim from the saved entry's
+  // direction and outlook blocks (one definition: health.mjs over
+  // baselines.mjs); a direction word rides only on three or more episodes
+  const dir = data.baselines?.direction;
+  if (dir?.overall && Array.isArray(dir.measures)) {
+    const named = { firstWeek: "clean first weeks", liveAverage: "average live viewers", livePeak: "peak live viewers", chattersPer100: "chatters per hundred at the peak", messagesPerHour: "chat messages an hour", engagementWeekOne: "first-week likes and comments", exposureWeekOne: "first-week X reach", announceToPlay: "announce-to-play on X", watching: "share watched", subscribers: "subscribers per thousand views" };
+    const words = (w) => dir.measures.filter((m) => m.direction === w).map((m) => named[m.key] || m.key);
+    const parts = [];
+    if (words("building").length) parts.push(`building: ${words("building").join(", ")}`);
+    if (words("softening").length) parts.push(`softening: ${words("softening").join(", ")}`);
+    const sample = Math.max(0, ...dir.measures.map((m) => m.n || 0));
+    const votes = (dir.votes || []).map((v) => `${HEALTH_CHECK_LABELS[v.check] ?? v.check} ${v.direction}`).join(", ");
+    push(`• Show health direction over the last few clean episodes: ${dir.overall}${votes ? ` (${votes})` : ""}${parts.length ? ` — ${parts.join("; ")}` : ""}.`, { sample, direction: dir.overall === "mixed" || dir.overall === "holding" ? null : dir.overall, kind: "health-direction" });
+  }
+  const nfw = data.baselines?.outlook?.nextFirstWeek;
+  if (nfw && nfw.low != null && nfw.high != null) {
+    push(`• The last three clean launches' first weeks ran ${num(nfw.low)}–${num(nfw.high)} YouTube views (typical ${num(nfw.typical)})${nfw.direction ? `, ${nfw.direction}` : nfw.pctPerEpisode != null ? `, slope ${nfw.pctPerEpisode > 0 ? "+" : ""}${nfw.pctPerEpisode}% each episode` : ""} — where the next one lands if it follows them.`, { sample: nfw.n, direction: nfw.direction, kind: "health-outlook" });
   }
   // v6 W16/W17: the newest episode's sharpest exit moment, read from the same
   // stored moments the panel pins render. Context is the model-written summary

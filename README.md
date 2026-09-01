@@ -12,6 +12,15 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   rate against a month-old one) with grounded Helping / Needs work bullets;
   missing checks drop out, the header says when the read is behind the data,
   and a read older than a week is withheld
+- Show health in three lenses (PRD v10): one score from the newest episode at
+  its age (seven checks; promo-driven lifts shown, not scored; stale reads
+  carried at half weight), a direction word from the last five clean
+  episodes, and an outlook for the next first week — with a standing
+  verification loop (`tools/dive-analytics/health-verify.mjs`) that ledgers
+  every claim and scores it against reality, plus owner feel notes
+  (`tools/dive-analytics/health-feedback.mjs better|same|worse "…"`).
+- Launch word per episode (strong / typical / soft, promo-qualified, "so far"
+  under a week) on every card from its first reading.
 - Per-episode health score (0–100, 50 = typical): each episode's own
   three-week read against the eight episodes before it (promo outliers left
   out, at least three to compare), frozen at day 21 with the inputs it used
@@ -64,7 +73,7 @@ The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:
 
 ```text
-ratings → build-data → validate → health → recommendations → moment-summaries → build-data → validate → publish → freshness
+ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → build-data → validate → publish → freshness
 ```
 
 (`recommendations` and `moment-summaries` need ANTHROPIC_API_KEY like

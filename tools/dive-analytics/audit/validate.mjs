@@ -928,7 +928,9 @@ function premiereMs(dateStr) {
   const health = await import(join(TOOL, "health.mjs"));
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   const phxDate = (value) => new Date(Date.parse(value) - 7 * 3600000).toISOString().slice(0, 10);
-  const expectedParts = Object.keys(health.BASE_WEIGHTS).sort();
+  // each entry carries exactly the checks its own formula defines (PRD v10:
+  // health-v4 has seven; earlier formulas six)
+  const partsOf = (formulaVersion) => Object.keys(health.WEIGHTS_BY_FORMULA[formulaVersion] || health.BASE_WEIGHTS).sort();
 
   if (!html.includes('id="health"') || !html.includes("function buildHealth()") || !html.includes("Number.isFinite(h.score)")) {
     bad++; fail("health: dashboard surface is missing or could turn a real zero score into absence");
@@ -942,7 +944,7 @@ function premiereMs(dateStr) {
     if (data.health !== null) { bad++; fail("health: data.json exposes health without a health-history store"); }
     warn("health: no saved entry yet — page must show that the update is unavailable");
   } else {
-    if (![1, health.HEALTH_STORE_VERSION].includes(store.version) || !Array.isArray(store.entries)) {
+    if (![1, 2, health.HEALTH_STORE_VERSION].includes(store.version) || !Array.isArray(store.entries)) {
       bad++; fail("health: store schema/version is unsupported");
     } else {
       const BL = await import(join(TOOL, "baselines.mjs"));
@@ -985,14 +987,19 @@ function premiereMs(dateStr) {
         if (!Number.isInteger(entry.score) || entry.score < 0 || entry.score > 100) { bad++; fail(`health: ${entry.date} score is outside 0..100`); }
 
         const partKeys = Object.keys(entry.subScores || {}).sort();
+        const expectedParts = partsOf(entry.formulaVersion);
         if (JSON.stringify(partKeys) !== JSON.stringify(expectedParts)) {
-          bad++; fail(`health: ${entry.date} does not carry exactly the six required checks`);
+          bad++; fail(`health: ${entry.date} does not carry exactly the checks its formula (${entry.formulaVersion}) requires`);
           continue;
         }
         // weights are judged by the formula the entry was written under (PRD v9 F5)
         const plannedWeights = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] || null;
         if (!plannedWeights) { bad++; fail(`health: ${entry.date} formula ${entry.formulaVersion} has no known weight table`); }
         const v3 = entry.formulaVersion === "health-v3" || (health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 3);
+        // PRD v10 (health-v4): qualified promo lifts score null with their
+        // reason; carried reads count half inside the check and, when every
+        // scored measure is carried, half in the mean
+        const v4 = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 4;
         const { effectiveWeightOf } = health.deterministicMean(entry.subScores);
         const availableWeight = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
         for (const key of expectedParts) {
@@ -1001,6 +1008,21 @@ function premiereMs(dateStr) {
           if (!part.measures || !Object.keys(part.measures).length) { bad++; fail(`health: ${entry.date} ${key} has no recorded measures`); continue; }
           const measureScores = [];
           for (const [measureKey, measure] of Object.entries(part.measures)) {
+            if (v4 && measure.qualified) {
+              // a qualified measure keeps value and typical, scores nothing,
+              // and says why in the one fixed string
+              if (measure.score != null || measure.reason !== BL.NOTES.promoQualified || !Number.isFinite(measure.value) || !Number.isFinite(measure.typical)) {
+                bad++; fail(`health: ${entry.date} ${key}.${measureKey} is qualified but not shown-not-scored with the fixed reason`);
+              }
+            }
+            // a relative measure's score re-derives exactly from its stored
+            // three-decimal comparison (the rounded value alone can land a point off)
+            if (v4 && !measure.absoluteScale && measure.score != null && (!Number.isFinite(measure.ratio) || Math.round(Math.min(100, Math.max(0, 50 * measure.ratio))) !== measure.score)) {
+              bad++; fail(`health: ${entry.date} ${key}.${measureKey} score does not re-derive from its stored comparison`);
+            }
+            if (v4 && measure.carried && (measure.score == null || !measure.episodeRead || !measure.carriedNote || !/counted at half weight/.test(measure.carriedNote))) {
+              bad++; fail(`health: ${entry.date} ${key}.${measureKey} is carried without a scored value, a read episode, and the half-weight note`);
+            }
             if (measure.score == null) {
               if (!measure.reason) { bad++; fail(`health: ${entry.date} ${key}.${measureKey} is missing without a reason`); }
             } else {
@@ -1019,8 +1041,11 @@ function premiereMs(dateStr) {
               }
             }
           }
-          const expectedScore = measureScores.length ? Math.round(measureScores.reduce((sum, value) => sum + value, 0) / measureScores.length) : null;
+          const expectedScore = v4
+            ? health.checkScoreOf(part.measures).score
+            : (measureScores.length ? Math.round(measureScores.reduce((sum, value) => sum + value, 0) / measureScores.length) : null);
           if (part.score !== expectedScore) { bad++; fail(`health: ${entry.date} ${key} score does not equal its available measures`); }
+          if (v4 && (part.carried === true) !== health.checkScoreOf(part.measures).carried) { bad++; fail(`health: ${entry.date} ${key} carried stamp does not match its measures`); }
           if (part.score == null && (!part.reason || part.effectiveWeight !== 0)) { bad++; fail(`health: ${entry.date} ${key} absence lacks a reason or carries weight`); }
           if (part.score != null) {
             const expectedWeight = v3
@@ -1040,6 +1065,38 @@ function premiereMs(dateStr) {
         if (v3) {
           const expectedSet = expectedParts.filter((key) => Number.isFinite(entry.subScores[key]?.score)).sort();
           if (JSON.stringify([...(entry.checkSet || [])].sort()) !== JSON.stringify(expectedSet)) { bad++; fail(`health: ${entry.date} checkSet does not list exactly the scored checks`); }
+        }
+        if (v4) {
+          const dir = entry.direction;
+          if (!dir || !Array.isArray(dir.measures) || !dir.measures.length) { bad++; fail(`health: ${entry.date} carries no direction block`); }
+          else {
+            for (const t of dir.measures) {
+              const expectedPct = BL.theilSenPctPerEpisode(t.points || []);
+              const expectedWord = (t.points || []).length >= BL.TREND_MIN_WORD ? BL.directionOf(expectedPct) : null;
+              if ((t.pctPerEpisode ?? null) !== (expectedPct ?? null) || (t.direction ?? null) !== (expectedWord ?? null)) { bad++; fail(`health: ${entry.date} direction ${t.key} does not re-derive from its stored points (word needs ${BL.TREND_MIN_WORD})`); }
+              if (t.pctPerEpisode != null && (t.points || []).length < BL.MIN_PEERS) { bad++; fail(`health: ${entry.date} direction ${t.key} rests on fewer than ${BL.MIN_PEERS} episodes`); }
+              if ((t.points || []).length > BL.TREND_N) { bad++; fail(`health: ${entry.date} direction ${t.key} spans more than ${BL.TREND_N} episodes`); }
+              // every series carries its basis and note (rules 11, 17)
+              const def = BL.TREND_MEASURES.find((m) => m.key === t.key);
+              if (!def || (t.check ?? null) !== def.check) { bad++; fail(`health: ${entry.date} direction ${t.key} is not a known series or names the wrong check`); }
+              if (t.pctPerEpisode != null && (t.ageBasis !== def?.basis || (t.note ?? null) !== (BL.NOTES[def?.basis] ?? null))) { bad++; fail(`health: ${entry.date} direction ${t.key} lacks its basis or note`); }
+            }
+            if ((dir.overall ?? null) !== (BL.overallDirection(dir.measures) ?? null)) { bad++; fail(`health: ${entry.date} overall direction does not follow its check votes`); }
+            if (JSON.stringify(dir.votes || []) !== JSON.stringify(BL.checkVotes(dir.measures))) { bad++; fail(`health: ${entry.date} direction votes do not re-derive`); }
+            // the entry copies the lens the page served that day (rule 4: one definition, build-data's)
+            if (entry.date === currentDate && JSON.stringify(dir) !== JSON.stringify(data.baselines?.direction ?? null)) { bad++; fail(`health: ${entry.date} direction block differs from data.baselines.direction`); }
+            if (entry.date === currentDate && JSON.stringify(entry.outlook ?? null) !== JSON.stringify(data.baselines?.outlook ?? null)) { bad++; fail(`health: ${entry.date} outlook block differs from data.baselines.outlook`); }
+          }
+          const nfw = entry.outlook?.nextFirstWeek;
+          if (!nfw) { bad++; fail(`health: ${entry.date} carries no outlook`); }
+          else if (nfw.low != null && (nfw.n < BL.MIN_PEERS || nfw.low > nfw.high || nfw.typical < nfw.low || nfw.typical > nfw.high)) { bad++; fail(`health: ${entry.date} outlook range is malformed or rests on fewer than ${BL.MIN_PEERS} clean first weeks`); }
+          if (!entry.asOf?.newest || !Number.isFinite(entry.asOf?.ageDays)) { bad++; fail(`health: ${entry.date} does not say which episode the read is on`); }
+          else {
+            const carriedChecks = Object.entries(entry.subScores).filter(([, part]) => part.carried).map(([key]) => key);
+            if (JSON.stringify(carriedChecks) !== JSON.stringify(entry.asOf.carried || [])) { bad++; fail(`health: ${entry.date} asOf.carried does not list the carried checks`); }
+            const qualifiedMeasures = Object.entries(entry.subScores).flatMap(([key, part]) => Object.values(part.measures || {}).filter((m) => m.qualified).map((m) => `${key}.${m.id}`));
+            if (JSON.stringify(qualifiedMeasures) !== JSON.stringify(entry.asOf.qualified || [])) { bad++; fail(`health: ${entry.date} asOf.qualified does not list the promo-qualified measures`); }
+          }
         }
         if (Math.abs(entry.score - entry.weightedMean) > 8) { bad++; fail(`health: ${entry.date} model score moves more than eight points from the deterministic mean`); }
         if (entry.deviation !== Math.round((entry.score - entry.weightedMean) * 10) / 10) { bad++; fail(`health: ${entry.date} stored score move is wrong`); }
@@ -1062,7 +1119,7 @@ function premiereMs(dateStr) {
       }
       const latestEntry = store.entries.filter((entry) => entry.date <= currentDate).at(-1);
       const expectedReadState = Object.values(latestEntry?.subScores || {}).some((section) =>
-        section?.score == null || Object.values(section?.measures || {}).some((measure) => measure?.score == null))
+        section?.score == null || Object.values(section?.measures || {}).some((measure) => measure?.score == null && !measure?.qualified))
         || (latestEntry?.facts || []).some((fact) => fact?.requiredPhrase === "still early")
         ? "early" : "settled";
       if (data.health?.readState !== expectedReadState) {
@@ -1102,15 +1159,18 @@ function premiereMs(dateStr) {
       // scores and facts, then intraday re-ingest made the mismatch real).
       if (latest?.date === currentDate && latest.formulaVersion === health.FORMULA_VERSION) {
         try {
-          const recomputed = health.computeHealthInputs({ data, now: Date.parse(latest.dataGeneratedAt), root: ROOT });
+          // the writer saw the previous entry (the sameAge-never-falls-back rule reads it); so must the proof
+          const previousEntry = store.entries.filter((entry) => entry.date < latest.date).at(-1) ?? null;
+          const recomputed = health.computeHealthInputs({ data, now: Date.parse(latest.dataGeneratedAt), root: ROOT, previous: previousEntry });
           const dataAge = recomputed.context?.dataAge || {};
           const freshestStore = [dataAge.latestSnapshot, dataAge.analyticsUpdatedAt, dataAge.commentsClassifiedAt]
             .filter(Boolean).map((ts) => Date.parse(ts)).filter(Number.isFinite).sort((a, b) => a - b).at(-1) ?? null;
           const storesRefreshedSinceSave = freshestStore != null && Number.isFinite(Date.parse(latest.createdAt)) && freshestStore > Date.parse(latest.createdAt);
           if (storesRefreshedSinceSave) {
             warn("health: source stores were refreshed after today's entry was saved — same-day recompute proof skipped; the next daily run re-proves it");
-          } else if (recomputed.weightedMean !== latest.weightedMean || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)) {
-            bad++; fail("health: today's entry does not recompute from the current source stores");
+          } else if (recomputed.weightedMean !== latest.weightedMean || JSON.stringify(recomputed.subScores) !== JSON.stringify(latest.subScores) || JSON.stringify(recomputed.facts) !== JSON.stringify(latest.facts)
+            || JSON.stringify(recomputed.direction) !== JSON.stringify(latest.direction ?? null) || JSON.stringify(recomputed.outlook) !== JSON.stringify(latest.outlook ?? null) || JSON.stringify(recomputed.asOf) !== JSON.stringify(latest.asOf ?? null)) {
+            bad++; fail("health: today's entry does not recompute from the current source stores (checks, facts, direction, outlook, or as-of differ)");
           }
         } catch (error) {
           bad++; fail(`health: today's source recompute threw — ${error.message}`);
@@ -1329,6 +1389,15 @@ function premiereMs(dateStr) {
       || !/" inert"/.test(healthSource) || !/-webkit-line-clamp: 3/.test(html)
       || /state\.evidenceOpen = !state\.evidenceOpen;\s*render\(\)/.test(healthSource)) {
       bad++; fail("card layout: the health strip must carry the gauge with band words, the checks as state-grouped words (each name a drill target), the clamped headline, and one Expand disclosure ahead of an inert-while-closed details region toggled in place");
+    }
+    // PRD v10: the page reads the stored direction, outlook, and as-of blocks
+    // and the launch words from data.baselines — never recomputing a slope,
+    // a range, or a standing; the launch word on a card carries no number
+    if (!/DATA\.baselines\?\.direction/.test(healthSource) || !/DATA\.baselines\?\.outlook/.test(healthSource) || !/h\.asOf\?\.newestTitle/.test(healthSource)
+      || !/DATA\.baselines\?\.direction/.test(compoundSource) || /h\.direction|h\.outlook/.test(healthSource)
+      || !/DATA\.baselines\?\.launch\?\.\[e\.slug\]/.test(stripSource) || !/DATA\.baselines\?\.launch\?\.\[e\.slug\]/.test(panelSource)
+      || /theilSen|pctPerEpisode\s*=|Math\.log\(/.test(healthSource) || /class="hs launch[^`]*data-fold-number/.test(stripSource)) {
+      bad++; fail("card layout: the page must render the stored direction, outlook, and as-of blocks and the launch words from data.baselines, with no slope or standing recomputed and no number on a launch word");
     }
     // the saved-score trend draws on a fixed scale with the usual level
     // marked (critic 2026-09-01 F6): a small drift must never be stretched to
@@ -1817,7 +1886,7 @@ function premiereMs(dateStr) {
   // directive 2026-08-23): the builder must carry each measure's stored note
   // into the block payload, and the renderer must draw it as its own line
   if (!/note: m\.note \|\| null/.test(html)
-    || !/m\.note \? `<div class="mnote">\$\{esc\(m\.note\)\}<\/div>` : ""/.test(html)
+    || !/\[m\.note, m\.q, m\.cn\]\.filter\(Boolean\)\.map\(\(t\) => `<div class="mnote">\$\{esc\(t\)\}<\/div>`\)/.test(html)
     || !/const rowTip = c\.note \? `\$\{tip\} — \$\{c\.note\}` : tip;/.test(html)) {
     bad++; fail("notes: the page must render each measure's stored note in the health drill-in and the panel tile");
   }
