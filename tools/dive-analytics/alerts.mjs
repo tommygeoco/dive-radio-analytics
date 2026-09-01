@@ -65,6 +65,12 @@ export function snapshotState(data) {
     // so a change in either is push-worthy news, not a dashboard surprise
     healthDate: data.health?.date ?? null,
     healthFormula: data.health?.formulaVersion ?? null,
+    // PRD v10: the overall direction word and the outlook range the served
+    // read carries — a change in either is push-worthy news
+    healthDirection: data.baselines?.direction?.overall ?? null,
+    // which episodes the promo-outlier test flags today — a flip changes
+    // every typical and every clean series at once
+    promoFlagged: Object.entries(data.baselines?.anomaly || {}).filter(([, a]) => a?.flagged).map(([slug]) => slug).sort(),
     healthCheckSet: data.health?.checks
       ? data.health.checks.filter((c) => c.score != null).map((c) => c.key)
       : null,
@@ -131,6 +137,20 @@ export function alertLines(prev, cur, data) {
   // Slack, not from a puzzling dashboard
   if (prev.healthFormula && cur.healthFormula && prev.healthFormula !== cur.healthFormula) {
     push(`Show health scoring rules changed (${prev.healthFormula} → ${cur.healthFormula}). Saved reads keep the rules they were written under; the score trend restarts under the new rules.`);
+  }
+  // 2e. PRD v10: the direction word turned, or the expected first-week range
+  // moved — each read from the saved entry, never recomputed here
+  if (prev.healthDirection && cur.healthDirection && prev.healthDirection !== cur.healthDirection) {
+    push(`Show health direction turned from ${prev.healthDirection} to ${cur.healthDirection} over the last few clean episodes — the Where it's heading rows say which checks moved.`);
+  }
+  // 2f. the promo-outlier test flagged or cleared an episode: every typical
+  // and every clean series changed with it, so the read is not comparable
+  // with yesterday's
+  if (prev.promoFlagged && cur.promoFlagged && JSON.stringify(prev.promoFlagged) !== JSON.stringify(cur.promoFlagged)) {
+    const name = (slug) => { const e = byslug(slug); return e ? `E${e.ep} (${shortTitle(e.title)})` : slug; };
+    const flagged = cur.promoFlagged.filter((s) => !prev.promoFlagged.includes(s)).map(name);
+    const cleared = prev.promoFlagged.filter((s) => !cur.promoFlagged.includes(s)).map(name);
+    push(`Promo-outlier flags changed${flagged.length ? ` — now flagged: ${flagged.join(", ")}` : ""}${cleared.length ? ` — no longer flagged: ${cleared.join(", ")}` : ""}. Every typical and every clean series moved with it; today's health read is not one-to-one with yesterday's.`);
   }
 
   // 3. new people raising concerns

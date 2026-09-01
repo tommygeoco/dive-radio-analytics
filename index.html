@@ -70,6 +70,12 @@
   .hz-score { display: flex; align-items: start; gap: 14px; cursor: pointer; }
   .hz-score .kicker { margin-bottom: 3px; }
   .hz-score .hband { color: var(--t2); font-size: 14.5px; font-weight: 500; line-height: 1.3; }
+  /* PRD v10: the band carries the direction word — level and movement in one
+     breath ("Near usual · softening"); the word is the signal, color only helps */
+  .hz-score .hband.hdir { font-size: 13.5px; margin-top: 1px; }
+  .hz-score .hband.hdir.building { color: var(--good); }
+  .hz-score .hband.hdir.softening { color: var(--bad); }
+  .hz-score .hband.hdir.holding, .hz-score .hband.hdir.mixed { color: var(--t2); }
   .gauge { width: 64px; height: 64px; position: relative; flex: none; }
   .gauge svg { width: 100%; height: 100%; display: block; transform: rotate(-90deg); }
   .gauge .track { fill: none; stroke: var(--s2); stroke-width: 6; }
@@ -84,17 +90,27 @@
      real button wearing the page's dotted drill mark: hover, focus, or tap
      opens the shared tooltip with the saved numbers. No dots, no pills: the
      word IS the state, so nothing rides on color alone (critic 2026-09-01) */
-  .hgroups { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; }
-  .hgroup { display: inline-flex; align-items: baseline; gap: 9px; white-space: nowrap; }
-  .hgword { font-size: 12.5px; font-weight: 600; color: var(--t2); }
+  /* the pills the owner liked (the mock's), kept inside state groups so the
+     state is a word (the group label) and the pill carries the name and a
+     dot: hover, focus, or tap opens the drill; a pill reads as a control */
+  .hgroups { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+  .hgroup { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .hgword { font-size: 12px; font-weight: 700; color: var(--t2); letter-spacing: .01em; }
   .hgroup.fragile .hgword { color: var(--bad); }
-  .hgroup.waiting .hgword { color: var(--t3); font-weight: 500; }
-  .hnames { display: inline-flex; align-items: baseline; gap: 7px; }
-  .hnames .sep { font-style: normal; color: var(--t3); }
-  .hname { border: 0; background: none; padding: 0 1px; margin: 0; color: var(--t1); font-size: 13.5px;
-    font-weight: 500; line-height: 1.35; cursor: help; border-radius: 3px;
-    text-decoration: underline dotted rgba(148,163,184,.45); text-underline-offset: 3px; }
-  .hname:hover, .hname:focus-visible { text-decoration-color: var(--t1); }
+  .hgroup.healthy .hgword { color: var(--good); }
+  .hgroup.waiting .hgword { color: var(--t3); font-weight: 600; }
+  .hnames { display: inline-flex; align-items: center; gap: 6px; }
+  .hnames .sep { display: none; }
+  .hname { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 999px;
+    padding: 5px 11px 5px 9px; margin: 0; background: var(--s2); box-shadow: inset 0 0 0 1px var(--border);
+    color: var(--t1); font-size: 13px; font-weight: 500; line-height: 1.25; white-space: nowrap;
+    cursor: help; transition: background .15s, box-shadow .15s; }
+  .hname:hover, .hname:focus-visible { background: #212a3a; box-shadow: inset 0 0 0 1px var(--border-strong); }
+  .hname .hcd { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+  .hgroup.healthy .hname .hcd { color: var(--good); }
+  .hgroup.steady .hname .hcd { color: var(--t2); }
+  .hgroup.fragile .hname .hcd { color: var(--bad); }
+  .hgroup.waiting .hname .hcd { background: none; box-shadow: inset 0 0 0 1.5px var(--border-strong); }
   /* drillable labels elsewhere say so the same way */
   .panel .irow[data-tip] .lb, .panel .trow[tabindex] .tl, .hero .splitlabels .sl[data-stat] {
     text-decoration: underline dotted rgba(148,163,184,.45); text-underline-offset: 3px; }
@@ -125,10 +141,44 @@
   .hdetails { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.22,1,.36,1); }
   .hcard[data-open="true"] .hdetails { grid-template-rows: 1fr; }
   .hdinner { min-height: 0; overflow: hidden; }
-  .hdbody { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px 32px;
+  .hdbody { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); gap: 20px 32px;
     margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
     opacity: 0; transform: translateY(-4px); transition: opacity .16s ease-out, transform .28s cubic-bezier(.22,1,.36,1); }
-  .hdbody.one { grid-template-columns: minmax(0, 1fr); }
+  /* the grid follows the columns actually rendered — never an empty track */
+  .hdbody.cols-2 { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  .hdbody.cols-1 { grid-template-columns: minmax(0, 1fr); }
+  .hc-dir .dirrow .dw.thin { color: var(--t3); font-weight: 500; }
+  .hc-dir .dirrow .dl[data-tip] { text-decoration: underline dotted rgba(148,163,184,.45); text-underline-offset: 3px; cursor: help; }
+  .hc-dir .votes { margin: 0 0 10px; color: var(--t3); font-size: 12.5px; line-height: 1.5; }
+  /* what the read is on, and the lifts shown but not scored — one quiet line each */
+  .health-evidence .readson { margin: -4px 0 12px; color: var(--t3); font-size: 12.5px; line-height: 1.5; }
+  .health-evidence .readson b { color: var(--t2); font-weight: 600; }
+  /* PRD v10: where it's heading — one word per durable measure over the last
+     few clean episodes, then the outlook sentence; words carry the state */
+  .hc-dir .dirlede { margin: 0 0 10px; color: var(--t2); font-size: 13.5px; line-height: 1.5; }
+  .hc-dir .dirlede b { font-weight: 700; }
+  .hc-dir .dirlede b.building { color: var(--good); }
+  .hc-dir .dirlede b.softening { color: var(--bad); }
+  .hc-dir .dirlede b.holding, .hc-dir .dirlede b.mixed { color: var(--t1); }
+  .hc-dir .dirrows { display: grid; }
+  .hc-dir .dirrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 13.5px; }
+  .hc-dir .dirrow + .dirrow { border-top: 1px solid var(--border); }
+  .hc-dir .dirrow .dl { color: var(--t2); min-width: 0; }
+  .hc-dir .dirrow .dw { font-weight: 600; white-space: nowrap; }
+  .hc-dir .dirrow .dw.building { color: var(--good); }
+  .hc-dir .dirrow .dw.softening { color: var(--bad); }
+  .hc-dir .dirrow .dw.holding { color: var(--t3); }
+  .hc-dir .outlook { margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--border); color: var(--t2); font-size: 13.5px; line-height: 1.5; }
+  .hc-dir .outlook b { color: var(--t1); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hc-dir .outlook + .outlook { border-top: 0; padding-top: 0; margin-top: 6px; }
+  /* the launch word on an episode card: a word, never a number; the dot only
+     helps the eye scan a row of cards */
+  .hs.launch { color: var(--t2); font-size: 12px; cursor: help; }
+  .hs.launch .ldot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--t3); }
+  .hs.launch.strong .ldot { background: var(--good); }
+  .hs.launch.soft .ldot { background: var(--bad); }
+  .hs.launch.promo .ldot { background: var(--t3); }
+  .hs.launch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   .hcard[data-open="true"] .hdbody { opacity: 1; transform: none; transition-delay: .06s; }
   .hdcol { min-width: 0; }
   .hdcol .kicker { margin-bottom: 10px; }
@@ -611,6 +661,9 @@
     .hz-read { grid-row: 1; grid-column: 2; }
     .hz-checks { grid-row: 2; grid-column: 1 / -1; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
     .health-evidence .evidence { grid-template-columns: 1fr; gap: 14px; }
+    .hdbody, .hdbody.cols-2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .hdbody.cols-1 { grid-template-columns: minmax(0, 1fr); }
+    .hdbody .health-evidence { grid-column: 1 / -1; }
   }
   @media (max-width: 1020px) {
     .panel .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -639,8 +692,9 @@
     .hz-read { display: contents; }
     .hz-readbody { grid-area: read; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
     .hxbtn { grid-area: btn; align-self: center; margin-top: 0; }
-    .hdbody, .hdbody.one { grid-template-columns: 1fr; gap: 18px; }
-    .hdbody .hc-meta { order: -1; }
+    .hdbody, .hdbody.cols-2, .hdbody.cols-1 { grid-template-columns: 1fr; gap: 18px; }
+    .hdbody .hc-meta { order: -2; }
+    .hdbody .hc-dir { order: -1; }
     /* a card whose only content is a one-line wait note keeps its words but
        not a tall frame — a sketched empty chart keeps the full frame */
     .card:has(.waitline):not(:has(.skelplot)) { padding: 11px 14px; }
@@ -963,11 +1017,28 @@ function healthTrend(points) {
 const CHECK_LABELS = {
   growth: ["Growth", "How new episodes start", "Growth"],
   audienceQuality: ["Audience quality", "Watch time and reactions", "Audience"],
-  reachEfficiency: ["Reach", "X posts becoming plays", "Reach"],
-  livePull: ["Live turnout", "Peak viewers and chat", "Live turnout"],
+  reachEfficiency: ["Reach", "X announces being seen and played", "Reach"],
+  livePull: ["Live turnout", "Peak and average viewers", "Live turnout"],
+  participation: ["Participation", "Chatters and chat pace", "Participation"],
   conversion: ["Subscribers", "Subscriber pull", "Subscribers"],
   sentiment: ["Goodwill", "How feedback reads", "Goodwill"],
 };
+// PRD v10: the direction lens's measure names, and the launch-word tooltip —
+// words only; every number they show comes from the stored read
+const DIRECTION_LABELS = {
+  firstWeek: "Clean first weeks", liveAverage: "Average live viewers", livePeak: "Peak live viewers",
+  chattersPer100: "Chatters per hundred at the peak", messagesPerHour: "Chat messages an hour",
+  engagementWeekOne: "First-week likes and comments", exposureWeekOne: "First-week X reach",
+  announceToPlay: "Announce-to-play on X", watching: "Share of the video watched", subscribers: "Subscribers per thousand views",
+};
+const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : "");
+function launchNote(l) {
+  const when = l.provisional ? `${Math.round(l.ageDays)} days in` : l.late ? `at its earliest reading, day ${Math.round(l.ageDays)}` : "at the end of its first week";
+  const body = l.pct != null
+    ? `${nfmt(l.value)} YouTube views ${when}, typically ${nfmt(l.typical)} at that age across ${l.n} other episodes (${l.pct >= 0 ? "+" : ""}${l.pct}%)`
+    : (l.reason || "");
+  return `${body}${l.promoDriven ? " — promo-driven: shown here, not scored in show health" : ""}${l.provisional ? " — an early read that settles at day seven" : ""}.`;
+}
 function checkState(score) {
   if (score == null) return ["waiting", "Not in yet"];
   if (score >= BANDS.healthy) return ["healthy", "Healthy"];
@@ -999,15 +1070,23 @@ function buildHealth() {
   // drill data behind each check: the SAVED measures from the public projection
   // (never scoring inputs) — this value against the show's typical, or the
   // stored reason when a measure has no honest number yet
+  // measure words follow the formula the served read was written under:
+  // health-v4 counts likes and comments at the same age, earlier formulas
+  // read them per thousand views
+  const v4 = Number(String(h.formulaVersion || "").replace(/\D/g, "")) >= 4;
   const MEASURE_WORDS = {
-    firstWeek: "How each launch week compares with the one before",
+    firstWeek: "How each clean launch week compares with the one before",
     sameAge: "YouTube views at the newest episode’s age",
-    engagement: "Likes and comments per 1,000 views",
+    engagement: v4 ? "Likes and comments at the newest episode’s age" : "Likes and comments per 1,000 views",
     watching: "Share of the video people watch",
+    exposure: "Times the X announces were seen at the newest episode’s age",
     announceToPlay: "Watches per 100 announce views on X",
     xShare: "Share of watching happening on X",
     peak: "Peak live viewers",
+    average: "Average live viewers",
     chat: "Live chat messages",
+    chattersPer100: "Chatters per hundred people at the peak",
+    messagesPerHour: "Chat messages an hour",
     subscribers: "Subscribers gained per 1,000 views",
     balance: "Share of feedback leaning positive",
     commentRate: "People commenting per 1,000 watches",
@@ -1037,6 +1116,10 @@ function buildHealth() {
         }
       }
       if (m.sample) row.s = m.sample;
+      // PRD v10: a promo-qualified lift says so under its numbers; a carried
+      // read says which episode it came from and that it counts half
+      if (m.qualified && m.reason) row.q = m.reason;
+      if (m.carriedNote) row.cn = m.carriedNote;
       return row;
     }).filter(Boolean);
     // an unscored check's stored reason is the measure reasons joined — when
@@ -1055,8 +1138,8 @@ function buildHealth() {
   const groups = GROUP_ORDER.map((cls) => {
     const members = checks.filter((c) => c.cls === cls);
     if (!members.length) return "";
-    const names = members.map((c) => `<button type="button" class="hname" data-stat="${esc(c.label)}" ${c.rest} aria-label="${esc(`${c.label}: ${c.word}`)}">${esc(c.shortName)}</button>`)
-      .join(`<i class="sep" aria-hidden="true">·</i>`);
+    const names = members.map((c) => `<button type="button" class="hname" data-stat="${esc(c.label)}" ${c.rest} aria-label="${esc(`${c.label}: ${c.word}`)}"><i class="hcd" aria-hidden="true"></i>${esc(c.shortName)}</button>`)
+      .join("");
     return `<div class="hgroup ${cls}"><span class="hgword">${members[0].word}</span><span class="hnames">${names}</span></div>`;
   }).join("");
   // W27: between saved reads the set of scored checks can change — a scoring
@@ -1093,6 +1176,44 @@ function buildHealth() {
     }
     return out;
   })();
+  // PRD v10: what the read is on (the newest episode and its age, the checks
+  // carried from an older one, the lifts shown but not scored) — words built
+  // from the stored asOf block, numbers only where the store has them
+  const QUALIFIED_WORDS = { "growth.sameAge": "the latest launch", "reachEfficiency.exposure": "the latest X reach", "reachEfficiency.announceToPlay": "announce-to-play on X", "audienceQuality.engagement": "engagement" };
+  const readsOn = (() => {
+    if (!h.asOf?.newestTitle) return "";
+    const parts = [`Reads <b>${esc(h.asOf.newestTitle)}</b>, ${nfmt(Math.round(h.asOf.ageDays))} days in${h.asOf.provisional ? " (an early read)" : ""}`];
+    if (h.asOf.carried?.length) parts.push(`${h.asOf.carried.map((k) => (CHECK_LABELS[k] || [k])[0].toLowerCase()).join(" and ")} carried from the latest finished episode at half weight`);
+    if (h.asOf.qualified?.length) parts.push(`shown but not scored: ${h.asOf.qualified.map((k) => QUALIFIED_WORDS[k] || k).join(" and ")} — promo-driven`);
+    return `<p class="readson">${parts.join(" · ")}.</p>`;
+  })();
+  // PRD v10: the direction and outlook lenses are read from data.baselines —
+  // computed once by build-data, served every build, never gated on the
+  // model; the entry keeps a copy for the ledger. Words carry the state; a
+  // series with a slope but too few episodes for a word says so.
+  const lens = DATA.baselines?.direction || null;
+  const out = DATA.baselines?.outlook || null;
+  const headingColumn = (() => {
+    if (!lens?.measures?.length) return "";
+    const rows = lens.measures.filter((t) => t.pctPerEpisode != null).map((t) => {
+      const tip = [t.note, t.reason].filter(Boolean).join(" — ");
+      const word = t.direction ? `<span class="dw ${esc(t.direction)}">${esc(t.direction)}</span>` : `<span class="dw thin">too few to call</span>`;
+      return `<div class="dirrow"><span class="dl"${tip ? ` data-tip="${esc(tip)}" tabindex="0"` : ""}>${esc(DIRECTION_LABELS[t.key] || t.key)}</span>${word}</div>`;
+    }).join("");
+    const votes = (lens.votes || []).map((v) => `${(CHECK_LABELS[v.check] || [v.check])[0].toLowerCase()} ${v.direction}`).join(" · ");
+    const nfw = out?.nextFirstWeek;
+    const slope = nfw && nfw.pctPerEpisode != null ? ` The slope over them runs ${nfw.pctPerEpisode >= 0 ? "up" : "down"} about ${nfmt(Math.abs(nfw.pctPerEpisode))}% each episode${nfw.direction ? "" : " — too few weeks for a direction word"}.` : "";
+    const outlook = nfw && nfw.low != null
+      ? `<p class="outlook">The last three clean launches’ first weeks ran <b>${nfmt(nfw.low)}</b>–<b>${nfmt(nfw.high)}</b> YouTube views (typical <b>${nfmt(nfw.typical)}</b>) — where the next one lands if it follows them.${esc(slope)}</p>`
+      : (nfw?.reason ? `<p class="outlook">${esc(nfw.reason)}</p>` : "");
+    const co = out?.coolOff;
+    const cool = co?.word ? `<p class="outlook">The newest episode is ${esc(co.word)} at day ${nfmt(Math.round(co.ageDays))}.</p>`
+      : (co?.promoDriven ? `<p class="outlook">The newest episode’s cool-off is promo-driven — shown on the chart, not judged.</p>` : "");
+    return `<div class="hdcol hc-dir"><div class="kicker">Where it’s heading</div>
+      <p class="dirlede">Over the last few clean episodes: <b class="${esc(lens.overall || "holding")}">${esc(lens.overall || "too few to call")}</b></p>
+      ${votes ? `<p class="votes">${esc(votes)}</p>` : ""}
+      <div class="dirrows">${rows}</div>${outlook}${cool}</div>`;
+  })();
   const open = !!state.evidenceOpen;
   el.className = "healthrow";
   el.innerHTML = `<div class="card hcard" data-open="${open ? "true" : "false"}">
@@ -1106,7 +1227,7 @@ function buildHealth() {
           </svg>
           <div class="num"><b data-fold-number>${h.score}</b></div>
         </div>
-        <div class="hz-words"><div class="kicker">Show health</div><div class="hband">${scoreBandWords(h.score)}</div></div>
+        <div class="hz-words"><div class="kicker">Show health</div><div class="hband">${scoreBandWords(h.score)}</div>${lens?.overall ? `<div class="hband hdir ${esc(lens.overall)}">${esc(lens.overall)}</div>` : ""}</div>
       </div>
       <div class="hz hz-checks"><div class="kicker">Health diagnosis</div><div class="hgroups" role="group" aria-label="Health checks">${groups}</div></div>
       <div class="hz hz-read">
@@ -1116,15 +1237,17 @@ function buildHealth() {
     </div>
     <div class="hdetails" id="hdetails">
       <div class="hdinner"${open ? "" : " inert"}>
-        <div class="hdbody${topRecs.length ? "" : " one"}">
+        <div class="hdbody cols-${1 + (headingColumn ? 1 : 0) + (topRecs.length ? 1 : 0)}">
           <div class="hdcol health-evidence">
             <div class="kicker">Why this score</div>
+            ${readsOn}
             <div class="evidence"><div><h3 class="up">Helping</h3><ul>${bullets(h.pros, "up")}</ul></div>
             <div><h3 class="down">Needs work</h3><ul>${bullets(h.cons, "down")}</ul></div></div>
             ${changeNote}
             ${h.drivers?.length ? `<div class="drivers">${h.drivers.map((d) => `<p>${esc(d)}</p>`).join("")}</div>` : ""}
             ${trend}
           </div>
+          ${headingColumn}
           ${topRecs.length ? `<div class="hdcol hc-meta"><div class="kicker">Do next</div><div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div></div>` : ""}
         </div>
       </div>
@@ -1374,14 +1497,23 @@ function buildStrip() {
     // Episode health: a finished three-week read shows its score; younger
     // episodes show nothing score-like at all (their wait date lives in the
     // click panel).
-    const hs = healthOf(e) ? healthChip(e) : `<span class="hs quiet" aria-hidden="true"></span>`;
+    // PRD v10: every episode's launch standing as a WORD from
+    // data.baselines.launch — never a number; the frozen three-week score,
+    // once it exists, takes the slot
+    const launch = DATA.baselines?.launch?.[e.slug];
+    // a promo-driven launch never wears a strength word (rule 18): the card
+    // says what it is, the panel carries the numbers
+    const launchWord = launch?.word ? (launch.promoDriven ? "Promo-driven launch" : `${cap(launch.word)} launch`) + (launch.provisional ? " · so far" : "") : "";
+    const hs = healthOf(e) ? healthChip(e) : (launch?.word
+      ? `<span class="hs launch ${launch.promoDriven ? "promo" : esc(launch.word)}" data-stat="${esc(launchWord)}" data-note="${esc(launchNote(launch))}" tabindex="0" aria-label="${esc(`${launchWord}. ${launchNote(launch)}`)}"><i class="ldot" aria-hidden="true"></i>${esc(launchWord)}</span>`
+      : `<span class="hs quiet" aria-hidden="true"></span>`);
     it.innerHTML = `<span class="r1"><span class="epk"><span class="dot" style="background:${color(e)}"></span>E${e.ep}</span>${num}</span>
       <span class="t">${esc(short(e.title))}</span>${hs}`;
     it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
     it.addEventListener("click", (ev) => {
       // a tap on the health chip is the tooltip's, not the panel's — one tap,
       // one disclosure (critic 2026-08-23 F9)
-      if (ev.target.closest(".hs[data-hslug]")) return;
+      if (ev.target.closest(".hs[data-hslug], .hs.launch")) return;
       const opening = state.panel !== e.slug;
       if (opening) { state.panel = e.slug; state.solo = e.slug; }
       else { state.panel = null; state.solo = null; }
@@ -1446,6 +1578,13 @@ function buildPanel() {
     : pace.pct === 0
       ? "typical"
       : `${pace.pct > 0 ? "▲" : "▼"}${Math.abs(pace.pct)}% vs typical`;
+  // PRD v10: the launch read behind the card word, same store
+  const launch = DATA.baselines?.launch?.[e.slug];
+  if (launch?.word) {
+    html += `<div class="psec"><div class="kicker">Launch<span data-tip="YouTube views at the end of the first week — or at the earliest reading for episodes tracked late, or at the current age while under a week old — against the other episodes at that same age, promo outliers left out, three or nothing" tabindex="0">${ICONS.info}</span></div>
+      <div class="pnum">${launch.promoDriven ? "Promo-driven" : cap(launch.word)}${launch.provisional ? " · so far" : ""}</div>
+      <div class="hint">${esc(launchNote(launch))}</div></div>`;
+  }
   if (healthOf(e)) {
     const excludedN = (h.excluded || []).length;
     const peers = Math.max(0, (h.windowIds || []).length - 1 - excludedN);
@@ -1705,10 +1844,13 @@ function buildCompound() {
     const prevPct = Math.round(((prev.value - before.value) / before.value) * 100);
     // a trend word needs a three-point run in one direction; two points only
     // say how the newest first week compares with the one before it
-    const run = Math.abs(pct) > QUIET_ZONE && Math.abs(prevPct) > QUIET_ZONE && Math.sign(pct) === Math.sign(prevPct);
+    // the direction WORD is the stored lens's (PRD v10 rule 16: one first-week
+    // direction — data.baselines.direction, four clean weeks for a word); the
+    // two-point comparison stays a comparison
+    const fw = (DATA.baselines?.direction?.measures || []).find((m) => m.key === "firstWeek") || null;
     if (Math.abs(pct) <= QUIET_ZONE) { verdict = "First-week audience is holding steady."; }
-    else if (pct > 0) { verdict = run ? "Each launch is starting stronger." : `The newest first week beat the one before by ${pct}%.`; cls = "up"; }
-    else { verdict = run ? "New launches are starting softer." : `The newest first week came in ${Math.abs(pct)}% under the one before.`; cls = "down"; }
+    else if (pct > 0) { verdict = fw?.direction === "building" ? "Each launch is starting stronger." : `The newest first week beat the one before by ${pct}%.`; cls = "up"; }
+    else { verdict = fw?.direction === "softening" ? "New launches are starting softer." : `The newest first week came in ${Math.abs(pct)}% under the one before.`; cls = "down"; }
   }
   const hotSlug = state.solo && vals.some((r) => r.e.slug === state.solo) ? state.solo : vals.at(-1).e.slug;
   let bars = "";
@@ -1834,7 +1976,7 @@ function showRtt(badge) {
         const head = `<div class="ml"><span>${esc(m.n)}</span>${m.s ? `<span class="ms">${esc(String(m.s))} episodes</span>` : ""}</div>`;
         if (m.r) return `<div class="mrow">${head}<div class="mv mr">${esc(m.r)}</div></div>`;
         const dir = m.d ? `<span class="db ${m.d}">${m.d === "mid" ? "≈" : (m.d === "up" ? "▲" : "▼") + m.p + "%"}</span>` : "";
-        const mnote = m.note ? `<div class="mnote">${esc(m.note)}</div>` : "";
+        const mnote = [m.note, m.q, m.cn].filter(Boolean).map((t) => `<div class="mnote">${esc(t)}</div>`).join("");
         return `<div class="mrow">${head}<div class="mv"><b>${esc(m.v)}</b>${dir}${m.t ? `<span class="mt">typically ${esc(m.t)}</span>` : ""}</div>${mnote}</div>`;
       }).join("");
       html += badge.dataset.note ? `<div class="mut fnote">${esc(badge.dataset.note)}</div>` : "";
@@ -2728,10 +2870,11 @@ function buildAbout() {
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
+  <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episodes against this show’s usual levels — a today read, not a running total over any fixed stretch of days. Six checks feed it (growth, engagement, reach, live turnout, subscribers, goodwill); each check’s name sits after its state word — Fragile first, then Steady, Healthy, and Not in yet — and only the checks that are honestly available on the saved date count. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The words are written by a model over the day’s checked facts; when the model fails, a plain deterministic read is written instead so no day goes without one. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check’s name sits after its state word — Fragile first, then Steady, Healthy, and Not in yet — and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout counts peak and average viewers; participation counts chatters per hundred people at the peak and chat messages an hour, so a short show and a long one compare. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically. Snapshots stop 60 days after an episode’s premiere, long after its totals have settled. YouTube’s analytics arrive two to three days late for every episode alike, so “three weeks in” means the numbers as they stood about then.</p>`;
 }
 

@@ -1,6 +1,6 @@
 {
  "cron": "25 7 * * * America/Phoenix",
- "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's crontab runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
+ "note": "Ordered chain definition (PRD v9 \u00a74.5). The scheduler line above is documentation; the owner machine's crontab runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
  "steps": [
   {
    "step": "discover",
@@ -124,6 +124,17 @@
    "required": false,
    "scope": "all",
    "model": true
+  },
+  {
+   "step": "health-verify",
+   "script": "tools/dive-analytics/health-verify.mjs",
+   "writes": [
+    "data/restream/health-verify.json",
+    "tools/dive-analytics/audit/HEALTH-VERIFY.md"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
   },
   {
    "step": "recommendations",

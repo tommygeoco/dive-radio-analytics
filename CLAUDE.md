@@ -67,8 +67,9 @@ L2 synthesis   tools/dive-analytics/baselines.mjs   (pure: windows, reading rule
                tools/dive-analytics/watch-moments.mjs (pure functions, imported by build-data)
      │
 L3 model       scripts/restream/comments-classify.mjs → comments-classified.json
- (prose over    tools/dive-analytics/health.mjs        → health-history.json
-  facts)        tools/dive-analytics/recommendations.mjs → recommendations.json
+ (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v4: three lenses, PRD v10)
+  facts)        tools/dive-analytics/health-verify.mjs → health-verify.json + audit/HEALTH-VERIFY.md (deterministic critic loop; never blocks)
+               tools/dive-analytics/recommendations.mjs → recommendations.json
                tools/dive-analytics/moment-summaries.mjs → moment-summaries.json
                tools/dive-analytics/critic.mjs         → audit/CRITIC-<date>.md  (never blocks publish)
      │
@@ -94,14 +95,14 @@ Runs on the owner machine (`/Users/bones/Dev/2026/dive-radio-analytics`, 07:25 A
 ```
 postlive-discover → transcripts-pull → postlive-track snapshot → yt-analytics-pull
 → comments-pull → comments-classify → channel-stats-pull → ingest-restream
-→ ratings → build-data → validate → health → recommendations → moment-summaries
+→ ratings → build-data → validate → health → health-verify → recommendations → moment-summaries
 → build-data → validate → publish → alerts          (Mondays: + critic)
 ```
 
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The crontab itself lives on the owner machine; do not add one here.
-- **`postlive-publish.sh` pulls `--rebase` before it pushes** (since W24) and aborts loudly on a moved remote or a data conflict. Work from another machine still lands on a branch + PR; after a merge, pull on the chain machine before the next 07:25 run so the rebase is trivial (regenerating `data.json` with `build-data.mjs` resolves any data conflict).
+- **`run-chain.mjs` pulls main before the first step** (PRD v10 W34) and `postlive-publish.sh` pulls `--rebase` again before it pushes; a stash conflict on the generated files (`data.json`, `data.js`) is resolved by taking the pulled tree and rebuilding, never by aborting. Work from another machine may land on main directly when it changes no store files; commit `data.json`/`data.js` only when the chain machine has already pulled the code that produces them (the chain rebuilds them every morning).
 
 ## How to change a number (the procedure)
 
@@ -145,6 +146,9 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - **anomaly / promo outlier** — an episode whose YouTube views, X plays, or X reach exceed 2× the same-age typical of the nearby episodes (settled at day 21; provisional before; the window-limited lifetime test only while history is too thin). Excluded from host, announce, topic, and every typical (but included in the all-show platform split, which is descriptive). Frozen episode-health entries store the verdicts they used.
 - **partial / stale (X plays)** — `partial`: some X targets have no plays count; `stale`: this run's plays were missing and the high-water mark was substituted. Both exclude the episode from reach comparisons.
 - **tracked late (`partialHistory`)** — first snapshot more than 5 days after premiere; first-week velocity and flatline are undefined for it.
+- **launch word** — an episode's first-week standing in one word (strong / typical / soft; promo-qualified; "so far" while under a week): YouTube views at day 7 — or the earliest reading, or the current age — against the other episodes at that age, outliers out, three or nothing (`baselines.launchReadFor`). A standing, never frozen, never a number at a glance.
+- **qualified / carried** — a show-health measure whose own unit is promo-flagged is *qualified*: value and typical shown, score null ("promo-driven lift — shown, not scored"); a measure read from an older episode than the newest is *carried* at half weight and names the episode it read. `entry.asOf` lists both.
+- **direction / outlook** — the show-health lenses beside the score: each durable measure's Theil–Sen change per episode over the last five clean episodes (building / holding / softening / mixed), and the next first week's expected range from the last three clean first weeks plus the newest episode's cool-off. Stored with the entry, projected verbatim, ledgered and scored by `health-verify.mjs`.
 - **read complete / frozen** — an episode-health score is written once, on the first run whose last snapshot is ≥21 days old, and never changes within `health21-v<n>`; its inputs are stored so it can be rebuilt.
 - **basis / note** — `ageBasis` (sameAge / mature / ageFree) is the field; the reader sees its fixed `note` at the click layer. The word "basis" itself is banned on the page.
 - **window-relative** — each episode-health score compares the episode only with episodes that aired *before* it. Two scores are not on one baseline; a row of them answers "did each beat the show's own bar at the time", not "which episode was best".

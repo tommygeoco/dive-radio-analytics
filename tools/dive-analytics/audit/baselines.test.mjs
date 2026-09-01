@@ -9,7 +9,7 @@
 import assert from "node:assert/strict";
 import * as B from "../baselines.mjs";
 import { scoreEpisode, readAgeOf, WEIGHTS, MIN_WEIGHT } from "../ratings.mjs";
-import { deterministicMean, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
+import { deterministicMean, checkScoreOf, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
 
 const DAY = 86400000;
 const PHX = 7 * 3600000;
@@ -263,7 +263,11 @@ assert.equal(B.trueMedian([]), null);
   assert.equal(stale.withheld, true);
   assert.equal(stale.score, null, "withheld read carries no score");
   assert.equal(stale.date, "2026-08-21", "but still says which day it was saved");
-  assert.deepEqual(projectHealth({ version: 1, entries: [entry("2026-08-21", "health-v1")] }, { now: Date.parse("2026-08-21T20:00:00Z") }).checks.map((c) => c.measures), Array(6).fill([]), "a v1 store projects with empty measures");
+  // PRD v10: an entry projects exactly the checks it carries — a six-check v1
+  // entry projects six (with empty measures), never an invented seventh
+  const v1 = { ...entry("2026-08-21", "health-v1"), subScores: Object.fromEntries(["growth", "audienceQuality", "reachEfficiency", "livePull", "conversion", "sentiment"].map((k) => [k, { score: 50 }])) };
+  assert.deepEqual(projectHealth({ version: 1, entries: [v1] }, { now: Date.parse("2026-08-21T20:00:00Z") }).checks.map((c) => c.measures), Array(6).fill([]), "a v1 store projects its six checks with empty measures");
+  assert.deepEqual(projectHealth({ version: 1, entries: [entry("2026-08-21", "health-v1")] }, { now: Date.parse("2026-08-21T20:00:00Z") }).checks, [], "an entry without checks projects none");
 
   // check-set guard in validateSynthesis — W27/prompt v4: a changed set must
   // always be named, every changed check by name, and drivers carry no digits;
@@ -285,3 +289,145 @@ assert.equal(B.trueMedian([]), null);
 }
 
 console.log("baselines.test: ok");
+
+// --- PRD v10: direction, launch read, live rates, cool-off, carried weights ---
+{
+  // Theil–Sen on episode number: a clean 10%/episode series reads 10 (rounded), gap-aware
+  const series = [1, 2, 3, 5, 6].map((ep) => ({ ep, value: 1000 * 1.1 ** (ep - 1) }));
+  assert.equal(B.theilSenPctPerEpisode(series), 10);
+  // one odd episode does not move the median slope
+  assert.equal(B.theilSenPctPerEpisode([...series, { ep: 4, value: 9000 }]), 10);
+  // fewer than MIN_PEERS points → null; zero or negative values are ignored
+  assert.equal(B.theilSenPctPerEpisode(series.slice(0, 2)), null);
+  assert.equal(B.theilSenPctPerEpisode([{ ep: 1, value: 0 }, { ep: 2, value: 5 }, { ep: 3, value: 6 }]), null);
+  // the quiet zone is the only gate between words
+  assert.equal(B.directionOf(B.QUIET_ZONE_PCT + 0.1), B.DIRECTION_WORDS.building);
+  assert.equal(B.directionOf(-B.QUIET_ZONE_PCT - 0.1), B.DIRECTION_WORDS.softening);
+  assert.equal(B.directionOf(B.QUIET_ZONE_PCT), B.DIRECTION_WORDS.holding);
+  assert.equal(B.directionOf(null), null);
+  // trendFor keeps the last TREND_N valued episodes, in air order, gap-aware,
+  // stamps its basis and note, and withholds the word under TREND_MIN_WORD
+  const growthTrend = B.trendFor("watch", eps, (e) => (e.partialHistory ? null : B.ytViewsOf(B.snapshotAt(e, 7))), { basis: "sameAge", check: "growth" });
+  assert.equal(growthTrend.n, B.TREND_N);
+  assert.equal(growthTrend.direction, B.DIRECTION_WORDS.building);
+  assert.equal(growthTrend.ageBasis, "sameAge");
+  assert.equal(growthTrend.note, B.NOTES.sameAge);
+  assert.ok(growthTrend.points.every((p, i, all) => i === 0 || p.ep > all[i - 1].ep));
+  const three = B.trendFor("t", eps.slice(0, 3), (e) => B.ytViewsOf(B.snapshotAt(e, 7)), { basis: "ageFree" });
+  assert.equal(three.n, 3);
+  assert.ok(three.pctPerEpisode != null, "three points show a slope");
+  assert.equal(three.direction, null, "but no word");
+  assert.equal(three.reason, B.NOTES.fewForWord);
+  // one episode can be the slope at three points: a doubled first week flips the sign
+  const flipped = B.theilSenPctPerEpisode([{ ep: 1, value: 2000 }, { ep: 2, value: 1100 }, { ep: 3, value: 1210 }]);
+  assert.ok(flipped < 0 && B.theilSenPctPerEpisode([{ ep: 1, value: 1000 }, { ep: 2, value: 1100 }, { ep: 3, value: 1210 }]) > 0);
+  // one vote per check; a single word only when every vote agrees
+  const mk = (check, direction) => ({ check, direction });
+  assert.deepEqual(B.checkVotes([mk("livePull", "building"), mk("livePull", "building"), mk("participation", "softening")]).map((v) => v.direction), ["building", "softening"]);
+  assert.equal(B.overallDirection([mk("livePull", "building"), mk("livePull", "building"), mk("participation", "softening")]), "mixed", "two chat votes cannot outvote a check");
+  assert.equal(B.overallDirection([mk("livePull", "building"), mk("growth", "building")]), "building");
+  assert.equal(B.overallDirection([mk("livePull", "holding"), mk("growth", "holding")]), "holding");
+  assert.equal(B.overallDirection([mk("a", "building"), mk("b", "softening")]), "mixed");
+  assert.equal(B.overallDirection([mk("a", null)]), null);
+  // the served lenses: every known series present, votes and overall re-derive
+  const flagsAll = B.anomalyFlags(eps);
+  const weekOf = (e) => (e.slug === "e09" ? null : B.ytViewsOf(B.snapshotAt(e, B.LAUNCH_AGE)));
+  const lens = B.computeDirection(eps, flagsAll, { weekValueOf: weekOf });
+  assert.deepEqual(lens.measures.map((m) => m.key), B.TREND_MEASURES.map((m) => m.key));
+  assert.equal(lens.overall, B.overallDirection(lens.measures));
+  assert.deepEqual(lens.votes, B.checkVotes(lens.measures));
+  // the promo episode is flagged on X units: out of the reach family, still in the views family
+  assert.ok(!lens.measures.filter((m) => ["exposureWeekOne", "announceToPlay"].includes(m.key)).some((m) => m.points.some((p) => p.slug === "e05")), "an X-flagged episode is in no reach series");
+  assert.ok(lens.measures.find((m) => m.key === "firstWeek").points.some((p) => p.slug === "e05") || eps.indexOf(eps.find((e) => e.slug === "e05")) < eps.length - B.TREND_N, "an X-flagged episode keeps its place in a views series");
+  // peersFor: the episode-level rule by default, a unit family when asked
+  const e12 = eps.find((e) => e.slug === "e12");
+  const e12peers = B.peersFor({ own: e12, window: B.windowFor(e12, eps), flags: flagsAll, valueOf: (p) => B.ytViewsOf(B.snapshotAt(p, 7)) });
+  const e12viewPeers = B.peersFor({ own: e12, window: B.windowFor(e12, eps), flags: flagsAll, units: B.UNIT_FAMILIES.views, valueOf: (p) => B.ytViewsOf(B.snapshotAt(p, 7)) });
+  assert.ok(e12peers.excluded.some((x) => x.slug === "e05" && x.why === "promo outlier"), "episode-level: the promo episode is excluded");
+  assert.ok(e12viewPeers.peers.some((p) => p.slug === "e05"), "views family: an X-only flag does not exclude");
+  assert.equal(B.flaggedOn(flagsAll, "e05", B.UNIT_FAMILIES.live), false);
+  const outlook = B.computeOutlook(eps, flagsAll, lens);
+  assert.equal(lens.measures.find((m) => m.key === "firstWeek").direction, B.DIRECTION_WORDS.building);
+  assert.equal(outlook.nextFirstWeek.n, 3);
+  assert.ok(outlook.nextFirstWeek.low <= outlook.nextFirstWeek.typical && outlook.nextFirstWeek.typical <= outlook.nextFirstWeek.high);
+}
+{
+  // launch read: a fixed age, either-side peers, outliers out, MIN_PEERS or nothing
+  const flags = B.anomalyFlags(eps);
+  const e12 = eps.find((e) => e.slug === "e12");
+  const launch12 = B.launchReadFor(e12, eps, flags);
+  assert.equal(launch12.ageDays, B.LAUNCH_AGE);
+  assert.equal(launch12.word, B.LAUNCH_WORDS.strong); // the largest episode of a growing run
+  assert.equal(launch12.promoDriven, false);
+  // the launch read is a views-family comparison: the fixture's promo episode
+  // is flagged on X units only, so it stays a peer (a view-flagged one would not)
+  assert.ok(launch12.peers.includes("e05"), "an X-only flag does not exclude a views peer");
+  const viewFlagged = new Map(flags);
+  viewFlagged.set("e05", { ...flags.get("e05"), units: { ...flags.get("e05").units, ytViews: { ...flags.get("e05").units.ytViews, flag: true } } });
+  const launch12v = B.launchReadFor(e12, eps, viewFlagged);
+  assert.ok(!launch12v.peers.includes("e05") && launch12v.excluded.some((x) => x.slug === "e05" && x.why === "promo outlier"), "a view-flagged episode is excluded");
+  const launch01 = B.launchReadFor(eps.find((e) => e.slug === "e01"), eps, flags);
+  assert.equal(launch01.word, B.LAUNCH_WORDS.soft); // the smallest episode of a growing run
+  // a late-tracked episode reads at its earliest reading's age, capped at READ_DAYS
+  const late = eps.find((e) => e.slug === "e09"); // first tracked on day 12
+  const launchLate = B.launchReadFor(late, eps, flags);
+  assert.ok(launchLate.late && launchLate.ageDays > B.LAUNCH_AGE && launchLate.ageDays <= B.READ_DAYS);
+  // the promo episode's own launch word carries the qualifier
+  const launchPromo = B.launchReadFor(eps.find((e) => e.slug === "e05"), eps, flags);
+  assert.equal(launchPromo.promoDriven, flags.get("e05").units.ytViews.flag === true);
+  // a lone episode has no peers → no word, a reason
+  assert.equal(B.launchReadFor(e12, [e12], new Map()).word, null);
+}
+{
+  // live rates normalize for show length and peak
+  assert.deepEqual(B.liveRatesOf({ live: { peak: 80, chatters: 40, chatMessages: 120, durationMin: 90 } }), { chattersPer100: 50, messagesPerHour: 80 });
+  assert.equal(B.liveRatesOf({ live: { peak: 0 } }), null);
+  assert.equal(B.liveRatesOf({}), null);
+}
+{
+  // cool-off: the newest's two-day growth against peers at the same age
+  const flags = B.anomalyFlags(eps);
+  const newest = eps.find((e) => e.slug === "e12");
+  const cool = B.coolOffFor(newest, eps, flags);
+  assert.equal(cool.span, B.COOL_SPAN_DAYS);
+  assert.ok(cool.value > 1 && cool.typical > 1);
+  assert.equal(cool.word, B.COOL_WORDS.usual); // every synthetic curve shares one shape
+  assert.ok(cool.peers.includes("e05"), "cool-off is a views comparison: an X-only flag keeps the peer");
+  const coolViewFlagged = B.coolOffFor(newest, eps, (() => { const m = new Map(flags); m.set("e05", { ...flags.get("e05"), units: { ...flags.get("e05").units, ytViews: { ...flags.get("e05").units.ytViews, flag: true } } }); return m; })());
+  assert.ok(!coolViewFlagged.peers.includes("e05") && coolViewFlagged.excluded.some((x) => x.slug === "e05" && x.why === "promo outlier"));
+  // a promo tail (a flagged YouTube unit) gets no cool-off word, only the
+  // qualifier; the fixture's promo episode is flagged on X units, so its
+  // YouTube cool-off still reads — the stamp follows the unit flag exactly
+  const e05 = eps.find((e) => e.slug === "e05");
+  const promoCool = B.coolOffFor(e05, eps, flags);
+  assert.equal(promoCool.promoDriven, flags.get("e05").units.ytViews.flag === true);
+  if (promoCool.promoDriven) { assert.equal(promoCool.word, null); assert.equal(promoCool.reason, B.NOTES.promoQualified); }
+  else assert.ok(promoCool.word);
+  const forced = new Map(flags);
+  forced.set("e05", { ...flags.get("e05"), units: { ...flags.get("e05").units, ytViews: { ...flags.get("e05").units.ytViews, flag: true } } });
+  const promoForced = B.coolOffFor(e05, eps, forced);
+  assert.equal(promoForced.promoDriven, true);
+  assert.equal(promoForced.word, null);
+  assert.equal(promoForced.reason, B.NOTES.promoQualified);
+}
+{
+  // carried measures count half inside a check; an all-carried check counts half in the mean
+  const fresh = { score: 60, carried: false };
+  const carried = { score: 20, carried: true };
+  assert.deepEqual(checkScoreOf({ a: fresh, b: carried }), { score: Math.round((60 + 20 * B.CARRIED_WEIGHT) / (1 + B.CARRIED_WEIGHT)), carried: false });
+  assert.deepEqual(checkScoreOf({ a: carried }), { score: 20, carried: true });
+  assert.deepEqual(checkScoreOf({ a: { score: null } }), { score: null, carried: false });
+  const parts = {
+    x: { score: 80, baseWeight: 0.5, absoluteScale: false, carried: false },
+    y: { score: 20, baseWeight: 0.5, absoluteScale: false, carried: true },
+  };
+  const { weightedMean, effectiveWeightOf } = deterministicMean(parts);
+  // x carries 0.5, y carries 0.25 → x gets two thirds of the weight
+  assert.equal(Math.round(effectiveWeightOf(parts.x) * 1000) / 1000, 0.667);
+  assert.equal(Math.round(effectiveWeightOf(parts.y) * 1000) / 1000, 0.333);
+  assert.equal(weightedMean, 60);
+  // an absolute-scale check keeps its base weight even beside a carried one
+  const withAbs = { ...parts, z: { score: 100, baseWeight: 0.2, absoluteScale: true, carried: false } };
+  assert.equal(deterministicMean(withAbs).effectiveWeightOf(withAbs.z), 0.2);
+}
+console.log("baselines.test: PRD v10 direction, launch, live rates, cool-off, and carried weights pass");

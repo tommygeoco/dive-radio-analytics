@@ -32,10 +32,16 @@ export const READ_DAYS = 21;        // episode-health read window (measured flat
 export const OUTLIER_MULTIPLE = 2;
 export const SNAPSHOT_TOL = 0.5;
 export const HISTORY_TOL = 1.5;
+// PRD v10 (2026-09-01): direction, carried reads, launch reads, cool-off
+export const TREND_N = 5;           // direction: the last five clean episodes, in air order
+export const TREND_MIN_WORD = 4;    // a direction WORD needs four episodes; three show the slope only (one episode can be the slope)
+export const CARRIED_WEIGHT = 0.5;  // a measure read from an older episode than the newest counts half
+export const LAUNCH_AGE = 7;        // launch read: YouTube views at the end of the first week
+export const COOL_SPAN_DAYS = 2;    // cool-off: the newest episode's growth over its last two days
 
 export const CONSTANTS = Object.freeze({
   WINDOW_N, MIN_PEERS, SLOPE_N, QUIET_ZONE_PCT, BANDS, MATURITY_DAYS, READ_DAYS,
-  OUTLIER_MULTIPLE, SNAPSHOT_TOL, HISTORY_TOL,
+  OUTLIER_MULTIPLE, SNAPSHOT_TOL, HISTORY_TOL, TREND_N, TREND_MIN_WORD, CARRIED_WEIGHT, LAUNCH_AGE, COOL_SPAN_DAYS,
 });
 
 export const NOTES = Object.freeze({
@@ -45,7 +51,20 @@ export const NOTES = Object.freeze({
   youngAge: (n) => `Only ${n} earlier episode${n === 1 ? "" : "s"} ${n === 1 ? "was" : "were"} tracked this early; at least three are needed.`,
   noReadingAtAge: "Fewer than three earlier episodes have a reading at this age.",
   readFrom: (title) => `read from ${title}, the latest finished episode`,
+  // PRD v10: a flagged unit's own lift is shown but never scored; a measure
+  // read from an older episode than the newest is carried at half weight
+  promoQualified: "promo-driven lift — shown, not scored",
+  carried: (title) => `carried from ${title}, the latest finished episode — counted at half weight`,
+  provisional: "an early read — the episode is under a week old",
+  noLaunchReading: "No reading at the launch age.",
+  fewForWord: "Three episodes show the slope; a direction word needs four.",
+  readFromPromo: (title) => `read from ${title}, the latest finished episode — the newest episode's own read is promo-driven`,
 });
+
+// direction words (PRD v10): one place, the page and Slack copy them verbatim
+export const DIRECTION_WORDS = Object.freeze({ building: "building", holding: "holding", softening: "softening", mixed: "mixed" });
+export const LAUNCH_WORDS = Object.freeze({ strong: "strong", typical: "typical", soft: "soft" });
+export const COOL_WORDS = Object.freeze({ building: "still building", usual: "cooling as usual", faster: "cooling faster" });
 
 const DAY = 86400000;
 const PHX_OFFSET = 7 * 3600000;
@@ -145,16 +164,35 @@ export function windowFor(own, episodes, { side = "before", n = WINDOW_N } = {})
   return others.slice(0, n).map((o) => o.e).sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
 }
 
+// Which promo flag contaminates which family of measures (PRD v10, rule 12
+// as amended): a lift on YouTube views spoils every view-based comparison,
+// a lift on X reach or plays every reach-based one; the live room carries
+// no flagged unit, so a live night is never excluded for a promo elsewhere.
+// `units` undefined = the episode-level rule (any flag), kept for the frozen
+// episode-health algorithm and the page's pace.
+export const UNIT_FAMILIES = Object.freeze({
+  views: ["ytViews"],
+  reach: ["xImpressions", "xPlays"],
+  live: [],
+});
+export function flaggedOn(flags, slug, units) {
+  const f = flags?.get?.(slug);
+  if (!f) return false;
+  if (units === undefined) return f.flagged === true;
+  return units.some((u) => f.units?.[u]?.flag === true);
+}
+
 // Filter a window down to usable peers. `valueOf(peer)` returns the peer's
 // value under the measure's basis or null; `coverageOf` (optional) returns a
-// coverage key that must match `ownCoverage`. Returns the peers with values,
-// the excluded list with reasons, and the typical (null below MIN_PEERS).
-export function peersFor({ own, window, flags, valueOf, coverageOf = null, ownCoverage = null, minPeers = MIN_PEERS }) {
+// coverage key that must match `ownCoverage`; `units` (optional) names the
+// promo units that exclude a peer (see UNIT_FAMILIES). Returns the peers with
+// values, the excluded list with reasons, and the typical (null below MIN_PEERS).
+export function peersFor({ own, window, flags, valueOf, coverageOf = null, ownCoverage = null, minPeers = MIN_PEERS, units = undefined }) {
   const peers = [];
   const excluded = [];
   for (const p of window) {
     if (p.slug === own.slug) continue;
-    if (flags?.get?.(p.slug)?.flagged) { excluded.push({ slug: p.slug, why: "promo outlier" }); continue; }
+    if (flaggedOn(flags, p.slug, units)) { excluded.push({ slug: p.slug, why: "promo outlier" }); continue; }
     if (coverageOf && coverageOf(p) !== ownCoverage) { excluded.push({ slug: p.slug, why: "different comment coverage" }); continue; }
     const v = valueOf(p);
     if (!Number.isFinite(v)) { excluded.push({ slug: p.slug, why: "no reading at this age" }); continue; }
@@ -231,6 +269,285 @@ export function anomalyFlags(episodes, { minPeers = MIN_PEERS } = {}) {
     });
   }
   return flags;
+}
+
+// --- direction (PRD v10) ---------------------------------------------------
+//
+// The median of the pairwise slopes of ln(value) over episode number — the
+// Theil–Sen estimate — as percent change per episode. Gap-aware (episode
+// numbers are the x axis, so E3–E5 missing means a five-episode span, not a
+// two-step one) and robust to one odd episode. MIN_PEERS points or nothing.
+export function theilSenPctPerEpisode(points) {
+  const pts = (points || []).filter((p) => Number.isFinite(p.value) && p.value > 0 && Number.isFinite(p.ep)).sort((a, b) => a.ep - b.ep);
+  if (pts.length < MIN_PEERS) return null;
+  const slopes = [];
+  for (let i = 0; i < pts.length; i++) {
+    for (let j = i + 1; j < pts.length; j++) {
+      if (pts[j].ep === pts[i].ep) continue;
+      slopes.push((Math.log(pts[j].value) - Math.log(pts[i].value)) / (pts[j].ep - pts[i].ep));
+    }
+  }
+  const slope = trueMedian(slopes);
+  return Number.isFinite(slope) ? round1((Math.exp(slope) - 1) * 100) : null;
+}
+
+// the quiet zone is the one gate between a direction word and "holding"
+export function directionOf(pctPerEpisode) {
+  if (!Number.isFinite(pctPerEpisode)) return null;
+  if (pctPerEpisode > QUIET_ZONE_PCT) return DIRECTION_WORDS.building;
+  if (pctPerEpisode < -QUIET_ZONE_PCT) return DIRECTION_WORDS.softening;
+  return DIRECTION_WORDS.holding;
+}
+
+// One measure's direction over the last TREND_N episodes (air order) that
+// carry a value. `valueOf(episode)` returns the like-for-like value or null —
+// the caller decides which episodes qualify (a flagged episode never does).
+// Every series carries ONE basis (rule 11) and its fixed note (rule 17): a
+// day-7 or air-night reading is sameAge/ageFree; a lifetime-to-date value
+// read past its maturity age is mature — "as they stand now". A direction
+// WORD needs TREND_MIN_WORD points; with three, one episode can be the slope,
+// so the slope is shown and the word withheld.
+export function trendFor(key, episodes, valueOf, { n = TREND_N, basis = "ageFree", check = null, minWord = TREND_MIN_WORD } = {}) {
+  const sorted = [...episodes].sort((a, b) => (a.premiere < b.premiere ? -1 : a.premiere > b.premiere ? 1 : 0));
+  const all = sorted.map((e, i) => ({ slug: e.slug, ep: Number.isFinite(e.ep) ? e.ep : i + 1, value: valueOf(e) }))
+    .filter((p) => Number.isFinite(p.value) && p.value > 0);
+  const points = all.slice(-n).map((p) => ({ slug: p.slug, ep: p.ep, value: round1(p.value) }));
+  const pctPerEpisode = theilSenPctPerEpisode(points);
+  const enough = points.length >= minWord;
+  return {
+    key,
+    check,
+    n: points.length,
+    pctPerEpisode,
+    direction: enough ? directionOf(pctPerEpisode) : null,
+    ageBasis: pctPerEpisode == null ? null : basis,
+    note: pctPerEpisode == null ? null : (NOTES[basis] ?? null),
+    points,
+    reason: pctPerEpisode == null ? NOTES.fewPeers : (enough ? null : NOTES.fewForWord),
+  };
+}
+
+// One vote per check (a check's series agree by majority; a series without a
+// word does not vote). The overall word is a single word only when one side
+// carries every vote; "mixed" whenever both sides carry one; "holding" when
+// every vote is holding; null with no votes at all. Correlated series (two
+// chat measures, two turnout measures) therefore never outvote a check.
+export function checkVotes(trends) {
+  const byCheck = new Map();
+  for (const t of trends || []) {
+    if (!t?.direction) continue;
+    const check = t.check || t.key;
+    if (!byCheck.has(check)) byCheck.set(check, []);
+    byCheck.get(check).push(t.direction);
+  }
+  return [...byCheck.entries()].map(([check, words]) => {
+    const up = words.filter((w) => w === DIRECTION_WORDS.building).length;
+    const down = words.filter((w) => w === DIRECTION_WORDS.softening).length;
+    const direction = up > down ? DIRECTION_WORDS.building : down > up ? DIRECTION_WORDS.softening : (up > 0 ? DIRECTION_WORDS.mixed : DIRECTION_WORDS.holding);
+    return { check, direction, measures: words.length };
+  });
+}
+export function overallDirection(trends) {
+  const votes = checkVotes(trends).map((v) => v.direction);
+  if (!votes.length) return null;
+  const up = votes.filter((w) => w === DIRECTION_WORDS.building).length;
+  const down = votes.filter((w) => w === DIRECTION_WORDS.softening).length;
+  const mixed = votes.filter((w) => w === DIRECTION_WORDS.mixed).length;
+  if (up > 0 && down === 0 && mixed === 0) return DIRECTION_WORDS.building;
+  if (down > 0 && up === 0 && mixed === 0) return DIRECTION_WORDS.softening;
+  if (up === 0 && down === 0 && mixed === 0) return DIRECTION_WORDS.holding;
+  return DIRECTION_WORDS.mixed;
+}
+
+// subscribers gained per thousand analytics views, both channels required
+// (the ONE definition; ratings.mjs and health.mjs read it)
+export function subsPer1kOf(channels) {
+  let subs = 0, views = 0;
+  for (const key of YT_KEYS) {
+    const t = channels?.[key]?.totals ?? channels?.[key];
+    if (!t || !Number.isFinite(t.subscribersGained) || !Number.isFinite(t.views)) return null;
+    subs += t.subscribersGained; views += t.views;
+  }
+  return views > 0 ? (subs / views) * 1000 : null;
+}
+
+// --- the DIRECTION lens (PRD v10 rule 20) — computed here, once, by build-data;
+// health.mjs copies the served block into its entry ---
+//
+// An episode flagged on a unit is out of every series in that unit's family
+// (UNIT_FAMILIES) — the same rule the NOW lens applies to its typicals — so
+// the two lenses never disagree about who counts, and a promo spike on X
+// never silences a live night. Accessors default to the fields build-data
+// attaches.
+export const TREND_MEASURES = Object.freeze([
+  { key: "firstWeek", check: "growth", basis: "ageFree", family: "views" },
+  { key: "engagementWeekOne", check: "audienceQuality", basis: "sameAge", family: "views" },
+  { key: "watching", check: "audienceQuality", basis: "mature", family: "views" },
+  { key: "exposureWeekOne", check: "reachEfficiency", basis: "sameAge", family: "reach" },
+  { key: "announceToPlay", check: "reachEfficiency", basis: "mature", family: "reach" },
+  { key: "liveAverage", check: "livePull", basis: "ageFree", family: "live" },
+  { key: "livePeak", check: "livePull", basis: "ageFree", family: "live" },
+  { key: "chattersPer100", check: "participation", basis: "ageFree", family: "live" },
+  { key: "messagesPerHour", check: "participation", basis: "ageFree", family: "live" },
+  { key: "subscribers", check: "conversion", basis: "mature", family: "views" },
+]);
+export function computeDirection(episodes, flags, {
+  weekValueOf = (e) => (Number.isFinite(e.metrics?.week1Velocity) ? e.metrics.week1Velocity : null),
+  watchOf = (e) => (Number.isFinite(e.watch?.avgPercent) ? e.watch.avgPercent : null),
+  subsOf = (e) => (Number.isFinite(e.subsPer1k) ? e.subsPer1k : null),
+} = {}) {
+  const cleanFor = (family) => (e) => !flaggedOn(flags, e.slug, UNIT_FAMILIES[family]);
+  const views = cleanFor("views"), reach = cleanFor("reach"), live = cleanFor("live");
+  const dayValue = (e, A, pick) => { const s = snapshotAt(e, A); return s ? pick(s) : null; };
+  const finished = (e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.xAnnounce && Number.isFinite(e.latest?.xPlays)
+    && e.latest?.xPlaysInfo?.partial === false && e.latest?.xPlaysInfo?.stale === false && e.latest?.xImpressions > 0;
+  const mature = (e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics;
+  const valueOf = {
+    firstWeek: (e) => (views(e) ? weekValueOf(e) : null),
+    engagementWeekOne: (e) => (views(e) && !e.partialHistory ? dayValue(e, MATURITY_DAYS.xAnnounce, ytEngagementOf) : null),
+    watching: (e) => (views(e) && mature(e) ? watchOf(e) : null),
+    exposureWeekOne: (e) => (reach(e) && !e.partialHistory ? dayValue(e, MATURITY_DAYS.xAnnounce, xImpressionsOf) : null),
+    announceToPlay: (e) => (reach(e) && finished(e) ? (e.latest.xPlays / e.latest.xImpressions) * 100 : null),
+    liveAverage: (e) => (live(e) && Number.isFinite(e.live?.avg) ? e.live.avg : null),
+    livePeak: (e) => (live(e) && Number.isFinite(e.live?.peak) ? e.live.peak : null),
+    chattersPer100: (e) => (live(e) ? liveRatesOf(e)?.chattersPer100 ?? null : null),
+    messagesPerHour: (e) => (live(e) ? liveRatesOf(e)?.messagesPerHour ?? null : null),
+    subscribers: (e) => (views(e) && mature(e) ? subsOf(e) : null),
+  };
+  const measures = TREND_MEASURES.map((m) => trendFor(m.key, episodes, valueOf[m.key], { basis: m.basis, check: m.check }));
+  return { measures, votes: checkVotes(measures), overall: overallDirection(measures) };
+}
+
+// --- the OUTLOOK (PRD v10 rule 21): where the last three clean first weeks
+// landed, with the first-week direction, and the newest episode's cool-off.
+// A description of what happened, never a bound on what will.
+export function computeOutlook(episodes, flags, direction) {
+  const fw = (direction?.measures || []).find((m) => m.key === "firstWeek");
+  const recent = (fw?.points || []).slice(-3);
+  const nextFirstWeek = recent.length >= MIN_PEERS ? {
+    low: Math.min(...recent.map((p) => p.value)),
+    high: Math.max(...recent.map((p) => p.value)),
+    typical: trueMedian(recent.map((p) => p.value)),
+    n: recent.length,
+    window: recent.map((p) => p.slug),
+    pctPerEpisode: fw.pctPerEpisode ?? null,
+    direction: fw.direction ?? null,
+    reason: fw.direction ? null : (fw.reason ?? null),
+  } : { low: null, high: null, typical: null, n: recent.length, window: recent.map((p) => p.slug), pctPerEpisode: null, direction: null, reason: `Only ${recent.length} clean first weeks exist; at least three are required.` };
+  const sorted = [...episodes].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
+  const newest = sorted.at(-1) || null;
+  return { nextFirstWeek, coolOff: newest ? coolOffFor(newest, sorted, flags) : null };
+}
+
+// --- live rates (PRD v10) ---------------------------------------------------
+//
+// Participation normalized so a 95-minute show and a 124-minute show compare:
+// chatters per 100 peak viewers, and chat messages per hour.
+export function liveRatesOf(episode) {
+  const l = episode?.live;
+  if (!l || !Number.isFinite(l.peak) || l.peak <= 0) return null;
+  return {
+    chattersPer100: Number.isFinite(l.chatters) ? round1((l.chatters / l.peak) * 100) : null,
+    messagesPerHour: Number.isFinite(l.chatMessages) && Number.isFinite(l.durationMin) && l.durationMin > 0
+      ? round1((l.chatMessages / l.durationMin) * 60) : null,
+  };
+}
+
+// --- launch read (PRD v10) --------------------------------------------------
+//
+// One word per episode, from the first day it has a reading: YouTube views
+// at LAUNCH_AGE (day 7) — or at the earliest real reading when tracking
+// started later (capped at READ_DAYS), or at the current age when the episode
+// is under a week old (provisional) — against the other episodes' readings at
+// that same age, either side in air order, promo outliers out, MIN_PEERS or
+// nothing. Descriptive standing, never frozen; the 21-day episode-health read
+// stays the permanent "beat its own bar" score. A flagged YouTube unit makes
+// the read promoDriven: the word is kept, the qualifier rides with it.
+export function launchReadFor(own, episodes, flags, { minPeers = MIN_PEERS } = {}) {
+  const age = currentAge(own);
+  if (!Number.isFinite(age) || !own.snapshots?.length) return null;
+  const firstAge = ageDaysOf(own.snapshots[0].ts, own.premiere);
+  let readAge = LAUNCH_AGE;
+  let provisional = false;
+  if (age < LAUNCH_AGE) { readAge = age; provisional = true; }
+  else if (firstAge > LAUNCH_AGE + SNAPSHOT_TOL) readAge = Math.min(firstAge, READ_DAYS);
+  else if (!snapshotAt(own, LAUNCH_AGE)) {
+    // a missed day-7 snapshot: read at the first reading after the first
+    // week rather than leaving the episode wordless forever
+    const later = own.snapshots.map((s) => ageDaysOf(s.ts, own.premiere)).find((a) => a > LAUNCH_AGE + SNAPSHOT_TOL);
+    if (Number.isFinite(later)) readAge = Math.min(later, READ_DAYS);
+  }
+  const late = readAge > LAUNCH_AGE + SNAPSHOT_TOL;
+  const ownSnap = snapshotAt(own, readAge);
+  const value = ownSnap ? ytViewsOf(ownSnap) : null;
+  const window = windowFor(own, episodes, { side: "either" });
+  const ps = peersFor({ own, window, flags, valueOf: (p) => { const s = snapshotAt(p, readAge); return s ? ytViewsOf(s) : null; }, minPeers, units: UNIT_FAMILIES.views });
+  const score = scoreOf(value, ps.typical);
+  const word = score == null ? null : score >= BANDS.healthy ? LAUNCH_WORDS.strong : score >= BANDS.steady ? LAUNCH_WORDS.typical : LAUNCH_WORDS.soft;
+  return {
+    ageDays: round1(readAge),
+    value,
+    typical: ps.typical,
+    n: ps.n,
+    pct: value != null && ps.typical > 0 ? Math.round(((value - ps.typical) / ps.typical) * 100) : null,
+    word,
+    promoDriven: flags?.get?.(own.slug)?.units?.ytViews?.flag === true,
+    provisional,
+    late,
+    peers: ps.peers.map((p) => p.slug),
+    excluded: ps.excluded,
+    reason: word ? null : (value == null ? NOTES.noLaunchReading : ps.reason),
+  };
+}
+
+// --- cool-off (PRD v10) -----------------------------------------------------
+//
+// The newest episode's growth over its last COOL_SPAN_DAYS days (views at age
+// A over views at A − span) against the other episodes' growth over the same
+// two days at the same age. "still building" above the typical by the quiet
+// zone, "cooling faster" below it, "cooling as usual" between. Absent until
+// MIN_PEERS peers carry readings at both ages — daily tracking only began
+// with E6, so expect this from E8/E9 on.
+export function coolOffFor(own, episodes, flags, { span = COOL_SPAN_DAYS, minPeers = MIN_PEERS } = {}) {
+  const age = currentAge(own);
+  if (!Number.isFinite(age) || age - span < SNAPSHOT_TOL) return null;
+  // a promo tail is not a cool-off read: the lift is shown, never judged
+  const promoDriven = flags?.get?.(own.slug)?.units?.ytViews?.flag === true;
+  const ratioAt = (e) => {
+    const a = snapshotAt(e, age);
+    const b = snapshotAt(e, age - span);
+    const va = a ? ytViewsOf(a) : null;
+    const vb = b ? ytViewsOf(b) : null;
+    return Number.isFinite(va) && Number.isFinite(vb) && vb > 0 ? va / vb : null;
+  };
+  const value = ratioAt(own);
+  const window = windowFor(own, episodes, { side: "either" });
+  const peers = [];
+  const excluded = [];
+  for (const p of window) {
+    if (flaggedOn(flags, p.slug, UNIT_FAMILIES.views)) { excluded.push({ slug: p.slug, why: "promo outlier" }); continue; }
+    const v = ratioAt(p);
+    if (!Number.isFinite(v)) { excluded.push({ slug: p.slug, why: "no reading at this age" }); continue; }
+    peers.push({ slug: p.slug, value: round3(v) });
+  }
+  const typical = peers.length >= minPeers ? trueMedian(peers.map((p) => p.value)) : null;
+  let word = null;
+  if (!promoDriven && Number.isFinite(value) && Number.isFinite(typical) && typical > 0) {
+    const rel = (value / typical - 1) * 100;
+    word = rel > QUIET_ZONE_PCT ? COOL_WORDS.building : rel < -QUIET_ZONE_PCT ? COOL_WORDS.faster : COOL_WORDS.usual;
+  }
+  return {
+    ageDays: round1(age),
+    span,
+    value: Number.isFinite(value) ? round3(value) : null,
+    typical: Number.isFinite(typical) ? round3(typical) : null,
+    n: peers.length,
+    word,
+    promoDriven,
+    peers: peers.map((p) => p.slug),
+    excluded,
+    reason: word ? null : (promoDriven ? NOTES.promoQualified : value == null ? "No reading two days apart at this age." : NOTES.fewPeers),
+  };
 }
 
 // --- same-age pace ---------------------------------------------------------
@@ -314,7 +631,13 @@ export function computeBaselines(episodes, { flags = anomalyFlags(episodes), his
     watchPctBySlug,
     typicalCurve: typicalCurve(episodes, flags),
     pace: Object.fromEntries(episodes.map((e) => [e.slug, paceFor(e, episodes, flags)])),
+    // PRD v10: one launch word per episode, from its first reading on
+    launch: Object.fromEntries(episodes.map((e) => [e.slug, launchReadFor(e, episodes, flags)])),
     newestVsPrevious: newestVsPrevious(episodes, flags, { history }),
+    // PRD v10: the direction and outlook lenses — deterministic, served every
+    // build, copied into the day's health entry (never gated on the model)
+    direction: computeDirection(episodes, flags),
+    outlook: computeOutlook(episodes, flags, computeDirection(episodes, flags)),
   };
 }
 
