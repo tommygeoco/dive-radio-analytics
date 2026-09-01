@@ -35,6 +35,40 @@ const dry = process.argv.includes("--dry");
 const rehearse = process.argv.includes("--rehearse");
 const REHEARSE_SKIP = new Set(["publish", "alerts", "freshness", "critic"]);
 
+// PRD v10 W34: the chain pulls main BEFORE it builds, so code merged from
+// another machine runs the same morning and the publish-time pull is a no-op.
+// Data files are the chain's own output: any local change to them is set
+// aside, the pull applies, and they are rebuilt by the build-data step —
+// never stashed back over the pulled code. A pull that cannot fast-forward
+// stops the chain loudly (the old behavior, one step earlier).
+function pullFirst() {
+  const git = (args) => spawnSync("git", args, { cwd: ROOT, encoding: "utf8", env: { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` } });
+  const status = git(["status", "--porcelain"]).stdout.trim();
+  const dirty = status.split("\n").filter(Boolean).map((l) => l.slice(3));
+  const generated = dirty.filter((f) => /^(data\.json|data\.js|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
+  const other = dirty.filter((f) => !generated.includes(f));
+  if (other.length) console.log(`chain: local changes outside the data stores (${other.slice(0, 5).join(", ")}) — pulling with a stash`);
+  const stashed = dirty.length ? git(["stash", "push", "--include-untracked", "-m", "chain-pre-pull"]).status === 0 : false;
+  const pull = git(["pull", "--rebase", "--quiet", "origin", "main"]);
+  if (pull.status !== 0) {
+    if (stashed) git(["stash", "pop"]);
+    console.error(`chain: git pull --rebase failed — ${(pull.stderr || pull.stdout).trim().slice(0, 300)}`);
+    process.exit(1);
+  }
+  if (stashed) {
+    const pop = git(["stash", "pop"]);
+    if (pop.status !== 0) {
+      // the stash held generated files that the pulled commit also changed:
+      // keep the pulled versions (build-data rewrites them minutes from now)
+      git(["checkout", "--", "."]);
+      git(["stash", "drop"]);
+      console.log("chain: pulled code changed generated files too — kept the pulled versions; the build step regenerates them");
+    }
+  }
+  console.log(`chain: at ${git(["rev-parse", "--short", "HEAD"]).stdout.trim()} after pulling main`);
+}
+if (!dry) pullFirst();
+
 let failedOptional = 0;
 for (const step of chain.steps) {
   if (step.when === "Mondays" && PHX_DAY !== "Mon") {

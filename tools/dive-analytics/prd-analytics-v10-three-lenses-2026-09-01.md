@@ -255,6 +255,15 @@ panel (numbers); never frozen.
   `CLAUDE.md` (L3/L4 lists).
 - **W33 verification loop** — `health-verify.mjs`, `health-feedback.mjs`,
   the ledger, the report, the chain step (§7).
+- **W34 never a day without a read** — `fallbackSynthesis` in `health.mjs`:
+  after two failed model attempts, or with no key, a deterministic entry
+  (score = the weighted mean; bullets = the strongest and weakest scored
+  facts verbatim; headline and drivers from fixed plain-word templates over
+  the check words and the direction) that passes `validateSynthesis`, stamped
+  `provider: "deterministic"`; `run-chain.mjs` pulls main before the first
+  step (generated files set aside, never stashed over pulled code);
+  `postlive-publish.sh` rebuilds `data.json` on a stash conflict instead of
+  aborting.
 - **Queued:** F11 (episode-health entries stamp the target's own promo
   verdict; needs a frozen-store schema bump and a validator block); a
   deterministic v4 back-fill of past days' weighted means for the daily trend
@@ -341,9 +350,14 @@ implementability) ran on this PRD and the code before merge — §10.
 - E7's launch and X reach are shown, not scored, for as long as the flag
   holds (tier 1 settles at the 09-18 run); its first week will not enter the
   clean series on 09-04.
-- The first live prompt-v6 synthesis happens on the chain machine (no key
-  here); a failed synthesis keeps the previous entry and the alert fires from
-  day 2.
+- Prompt v6 was exercised live from the build machine with the vault key
+  (`--probe-model`: valid grounded JSON, score 47). If the model still fails
+  twice on a chain day, the deterministic fallback (W34) writes the entry —
+  the day never goes without a read.
+- The chain runs from `chain.json` through `run-chain.mjs` (one crontab
+  line), so the `health-verify` step runs on the next morning without a
+  crontab edit; `run-chain` now pulls main before it builds, and the publish
+  script regenerates `data.json` rather than failing on a stash conflict.
 
 ## 9. Decisions taken (owner asked to build; recommended options adopted)
 
@@ -410,9 +424,9 @@ working tree on 2026-09-01 before merge.
    second attempt is told the first attempt's error; the validator's same-day
    recompute passes the previous entry (the never-fall-back rule reads it);
    `readState` no longer calls a promo-qualified measure "early"; the ledger
-   was regenerated before the first commit. Noted: the chain step is inert
-   until the owner machine's crontab adds `health-verify.mjs` after
-   `health.mjs`.
+   was regenerated before the first commit. The reviewer's crontab note was
+   wrong: the crontab runs `run-chain.mjs`, which reads `chain.json`, so the
+   step is live on the first morning after merge.
 
 ## Status log
 

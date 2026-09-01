@@ -60,8 +60,14 @@
 // that set changed since the last saved read the drivers must name the check
 // that joined or left (prompt v4 — unconditional; under v3 only when the
 // score also moved by more than 5). One immutable entry per Phoenix calendar day.
-// Model failure is non-fatal: the previous entry remains the public truth;
-// after seven days without a fresh entry the projection withholds the score.
+// Model failure is non-fatal and never leaves the day without a read (PRD
+// v10 W34): after two failed model attempts — or with no model key at all —
+// a DETERMINISTIC fallback writes the entry: score = the weighted mean,
+// bullets = the strongest and weakest scored facts verbatim, headline and
+// drivers from fixed plain-word templates over the check words and the
+// direction. It passes the same grounding rules the model must, and is
+// stamped provider "deterministic" so the store and the page can say so.
+// After seven days without any fresh entry the projection withholds the score.
 //
 // v8 W20 staleness audit (2026-08-23): this store CANNOT go stale the way
 // recommendations.json did. Entries are dated append-only history — the
@@ -777,6 +783,72 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   };
 }
 
+// --- the deterministic fallback (PRD v10 W34) --------------------------------
+//
+// Same contract as the model: score inside the allowed range (here the mean
+// itself), two pros and two cons that each copy one cited fact's display
+// value, a digit-free headline under 101 characters, one to three digit-free
+// drivers, and — when the check set changed — the names of the checks that
+// joined or left. Everything comes from the fact sheet and the check words.
+const BAND_WORDS = (score) => (score >= 55 ? "above its usual level" : score >= 45 ? "near its usual level" : "below its usual level");
+function fallbackSynthesis(inputs) {
+  const facts = inputs.facts || [];
+  const byId = new Map(facts.map((f) => [f.id, f]));
+  // a scored measure's own "latest-*" fact, ranked by the measure's score;
+  // promo-qualified lifts never lead a pro (rule 18)
+  const FACT_FOR = {
+    "growth.firstWeek": "first-week-change-each-episode", "growth.sameAge": "latest-same-age-youtube",
+    "audienceQuality.engagement": "latest-engagement-count", "audienceQuality.watching": "latest-watch-percent",
+    "reachEfficiency.exposure": "latest-same-age-reach", "reachEfficiency.announceToPlay": ["latest-announce-play", "latest-finished-announce-play"],
+    "livePull.peak": "latest-live-peak", "livePull.average": "latest-live-average",
+    "participation.chattersPer100": "latest-chatters-per-100", "participation.messagesPerHour": "latest-chat-per-hour",
+    "conversion.subscribers": "latest-subscriber-rate", "sentiment.balance": "recent-positive-feedback", "sentiment.commentRate": "latest-comment-rate",
+  };
+  const scored = [];
+  for (const [check, part] of Object.entries(inputs.subScores || {})) {
+    for (const m of Object.values(part.measures || {})) {
+      if (m.score == null || m.qualified) continue;
+      const ids = [].concat(FACT_FOR[`${check}.${m.id}`] || []);
+      const fact = ids.map((id) => byId.get(id)).find(Boolean);
+      if (fact && fact.requiredPhrase !== "promo") scored.push({ check, measure: m, fact });
+    }
+  }
+  scored.sort((a, b) => b.measure.score - a.measure.score);
+  const wordFor = (score) => (score >= 55 ? "healthy" : score >= 45 ? "steady" : "fragile");
+  const bullet = (row, side) => {
+    const phrase = row.fact.requiredPhrase ? ` — ${row.fact.requiredPhrase}` : "";
+    const tail = side === "up" ? "ahead of the show’s usual level" : "under the show’s usual level";
+    // the fact sentence already carries its one number; keep it verbatim and add the standing
+    const text = `${row.fact.text.replace(/\.$/, "")}, ${tail}${phrase}.`;
+    return { text: text.length > 140 ? `${row.fact.text.replace(/\.$/, "")}${phrase}.`.slice(0, 140) : text, factId: row.fact.id };
+  };
+  const pros = scored.filter((r) => r.measure.score >= 50).slice(0, 2).map((r) => bullet(r, "up"));
+  const cons = [...scored].reverse().filter((r) => r.measure.score < 50).slice(0, 2).map((r) => bullet(r, "down"));
+  // fill to exactly two each from the remaining ranked facts, weakest side last
+  const used = new Set([...pros, ...cons].map((b) => b.factId));
+  for (const r of scored) { if (pros.length >= 2) break; if (!used.has(r.fact.id)) { pros.push(bullet(r, "up")); used.add(r.fact.id); } }
+  for (const r of [...scored].reverse()) { if (cons.length >= 2) break; if (!used.has(r.fact.id)) { cons.push(bullet(r, "down")); used.add(r.fact.id); } }
+  const checkWord = (key) => wordFor(inputs.subScores?.[key]?.score);
+  const names = (keys) => keys.map((k) => CHECK_LABELS[k] ?? k);
+  const list = (keys) => names(keys).map((w, i, all) => (i === 0 ? "" : i === all.length - 1 ? " and " : ", ") + w).join("");
+  const healthy = Object.keys(inputs.subScores || {}).filter((k) => Number.isFinite(inputs.subScores[k].score) && checkWord(k) === "healthy");
+  const fragile = Object.keys(inputs.subScores || {}).filter((k) => Number.isFinite(inputs.subScores[k].score) && checkWord(k) === "fragile");
+  const dir = inputs.direction?.overall || null;
+  const dirWords = dir === "building" ? "building over the last clean episodes" : dir === "softening" ? "softening over the last clean episodes" : dir === "mixed" ? "moving in mixed directions" : "holding";
+  let headline = `The show is ${BAND_WORDS(Math.round(inputs.weightedMean))} and ${dirWords}${fragile.length ? `; ${names(fragile).join(" and ")} ${fragile.length > 1 ? "look" : "looks"} fragile` : ""}${healthy.length ? `; ${names(healthy).join(" and ")} ${healthy.length > 1 ? "are" : "is"} healthy` : ""}.`;
+  if (headline.length > 100) headline = `The show is ${BAND_WORDS(Math.round(inputs.weightedMean))} and ${dirWords}.`;
+  const drivers = [`A deterministic read: the score is the weighted middle of the checks that could be measured today, with promo-driven lifts shown but not scored.`];
+  const change = inputs.checkSetChange;
+  if (change && (change.joined?.length || change.left?.length)) {
+    const parts = [];
+    if (change.joined?.length) parts.push(`${list(change.joined)} joined`);
+    if (change.left?.length) parts.push(`${list(change.left)} left`);
+    drivers.push(`Since the last saved read ${parts.join(" and ")}: the difference comes from which checks are available, not from the show changing.`);
+  }
+  if (inputs.asOf?.carried?.length) drivers.push(`${list(inputs.asOf.carried)} read the latest finished episode at half weight because the newest is too young for ${inputs.asOf.carried.length > 1 ? "them" : "it"}.`);
+  return { score: Math.round(inputs.weightedMean), headline, pros, cons, drivers: drivers.slice(0, 3).map((d) => d.slice(0, 170)) };
+}
+
 function providerConfig() {
   if (process.env.ANTHROPIC_API_KEY) {
     return { provider: "anthropic", key: process.env.ANTHROPIC_API_KEY, model: process.env.HEALTH_MODEL || DEFAULT_ANTHROPIC_MODEL };
@@ -981,6 +1053,12 @@ export function projectHealth(store, { now = Date.now() } = {}) {
 }
 
 async function synthesize(inputs) {
+  // no key at all: the deterministic read, said plainly
+  if (!process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) {
+    const synthesis = validateSynthesis(fallbackSynthesis(inputs), inputs);
+    console.log("WARN health: no model key in the environment — deterministic fallback read");
+    return { synthesis, provider: "deterministic", model: "fallback-v1" };
+  }
   const system = readFileSync(PROMPT_PATH, "utf8");
   const payload = {
     task: "Write today's Dive Radio show-health summary.",
@@ -1008,7 +1086,10 @@ async function synthesize(inputs) {
       lastError = error;
     }
   }
-  throw new Error(`model synthesis failed twice: ${lastError.message}`);
+  // two failed model attempts: the deterministic read rather than a stale day
+  console.log(`WARN health: model synthesis failed twice (${lastError.message}) — deterministic fallback read`);
+  const synthesis = validateSynthesis(fallbackSynthesis(inputs), inputs);
+  return { synthesis, provider: "deterministic", model: "fallback-v1" };
 }
 
 function loadStore() {
@@ -1041,6 +1122,12 @@ async function main() {
   if (process.argv.includes("--probe-model")) {
     const result = await synthesize(inputs);
     console.log(`health probe: ${result.provider}/${result.model} returned valid grounded JSON with score ${result.synthesis.score}`);
+    return;
+  }
+  if (process.argv.includes("--probe-fallback")) {
+    const synthesis = validateSynthesis(fallbackSynthesis(inputs), inputs);
+    console.log(JSON.stringify(synthesis, null, 2));
+    console.log("health probe: the deterministic fallback passes the grounding rules");
     return;
   }
 

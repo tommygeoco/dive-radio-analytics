@@ -102,7 +102,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The crontab itself lives on the owner machine; do not add one here.
-- **`postlive-publish.sh` pulls `--rebase` before it pushes** (since W24) and aborts loudly on a moved remote or a data conflict. Work from another machine still lands on a branch + PR; after a merge, pull on the chain machine before the next 07:25 run so the rebase is trivial (regenerating `data.json` with `build-data.mjs` resolves any data conflict).
+- **`run-chain.mjs` pulls main before the first step** (PRD v10 W34) and `postlive-publish.sh` pulls `--rebase` again before it pushes; a stash conflict on the generated files (`data.json`, `data.js`) is resolved by taking the pulled tree and rebuilding, never by aborting. Work from another machine may land on main directly when it changes no store files; commit `data.json`/`data.js` only when the chain machine has already pulled the code that produces them (the chain rebuilds them every morning).
 
 ## How to change a number (the procedure)
 

@@ -30,8 +30,20 @@ if ! git pull --rebase --quiet origin main; then
   exit 1
 fi
 if [ "$STASHED" = 1 ] && ! git stash pop --quiet; then
-  echo "publish: today's data conflicts with what was pulled — not publishing (resolve, then rerun the chain)" >&2
-  exit 1
+  # PRD v10 W34: the only files the chain changes are generated from the
+  # stores, so a conflict with pulled code is never a data conflict — take the
+  # pulled tree, rebuild data.json/data.js from the stores, and carry on. The
+  # stores themselves (data/restream/*) are append-only and never conflict
+  # with code; a genuine store conflict still stops the publish below.
+  echo "publish: today's generated files conflict with pulled code — taking the pulled tree and rebuilding data.json"
+  git checkout -- data.json data.js 2>/dev/null || true
+  if ! git diff --name-only --diff-filter=U | grep -q .; then
+    git stash drop --quiet || true
+    node tools/dive-analytics/build-data.mjs || { echo "publish: rebuild after pull failed — not publishing" >&2; exit 1; }
+  else
+    echo "publish: a store file conflicts with what was pulled — not publishing (resolve, then rerun the chain)" >&2
+    exit 1
+  fi
 fi
 
 git add -A
