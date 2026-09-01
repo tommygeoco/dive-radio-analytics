@@ -71,7 +71,7 @@ semantics. The comparison rules (one `baselines.mjs`, like-for-like bases,
 eight-episode windows, three-peer minimum, rebuildable freezes, freshness)
 are specified in `tools/dive-analytics/prd-analytics-v7-*.md`.
 
-Data is exported daily (07:25 America/Phoenix) by an automated pipeline that
+Data is exported daily (07:00 America/Phoenix, an OpenClaw automation on the owner machine running `tools/dive-analytics/run-chain.mjs`) by an automated pipeline that
 also discovers newly published episodes and collects audience comments. A
 separate model step removes noise, labels reactions, audits a sample, and keeps
 unclear items off every surface. Built with vanilla JS + Chart.js (MIT, vendored).
@@ -90,7 +90,7 @@ three survivors the store is removed and the page falls back to the
 deterministic insights — so a stale store can never block a publish. For
 `health` and `moment-summaries` the previous store stays the public truth.
 `freshness` checks the LIVE site at the end of the chain and again from a
-midday cron, raising one plain line when prod serves data older than 26
+midday OpenClaw automation, raising one plain line when prod serves data older than 26
 hours.)
 
 The classifier, health writer, recommendation engine, moment summarizer,

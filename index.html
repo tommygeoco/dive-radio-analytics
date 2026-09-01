@@ -175,7 +175,10 @@
      helps the eye scan a row of cards */
   /* owner directive 2026-09-01: one colored dot per card (the episode's);
      the launch word carries its meaning in the word alone */
-  .hs.launch { color: var(--t2); font-size: 12px; cursor: pointer; }
+  .hs.launch { color: var(--t2); font-size: 12px; cursor: pointer;
+    /* owner directive 2026-09-01: the dotted underline says "there is a tooltip here",
+       the same mark the direction rows wear */
+    text-decoration: underline dotted rgba(148,163,184,.55); text-underline-offset: 3px; }
   .hs.launch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   .hcard[data-open="true"] .hdbody { opacity: 1; transform: none; transition-delay: .06s; }
   .hdcol { min-width: 0; }

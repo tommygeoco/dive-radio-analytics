@@ -15,9 +15,9 @@ contract map · §7 known gaps (pointers to PRD v9)
 
 ## 1. Chain and cadence
 
-Owner machine, 07:25 America/Phoenix daily. The publish half is documented in
+Owner machine, 07:00 America/Phoenix daily (OpenClaw automation `restream-postlive-snapshot` → `run-chain.mjs`; a 06:00 rehearsal runs the same chain without publishing). The publish half is documented in
 `README.md`; the whole chain, with what each step writes and which stores must
-be fresh, is versioned in `tools/dive-analytics/chain.json` (the crontab itself
+be fresh, is versioned in `tools/dive-analytics/chain.json` (the automation itself
 lives on the owner machine).
 
 | Step | Script | Writes | Model? | On failure |

@@ -1,6 +1,6 @@
 {
- "cron": "25 7 * * * America/Phoenix",
- "note": "Ordered chain definition (PRD v9 \u00a74.5). The scheduler line above is documentation; the owner machine's crontab runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
+ "cron": "0 7 * * * America/Phoenix",
+ "note": "Ordered chain definition (PRD v9 \u00a74.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` (not a crontab) runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
  "steps": [
   {
    "step": "discover",

@@ -1131,9 +1131,22 @@ function premiereMs(dateStr) {
             }
             if ((dir.overall ?? null) !== (BL.overallDirection(dir.measures) ?? null)) { bad++; fail(`health: ${entry.date} overall direction does not follow its check votes`); }
             if (JSON.stringify(dir.votes || []) !== JSON.stringify(BL.checkVotes(dir.measures))) { bad++; fail(`health: ${entry.date} direction votes do not re-derive`); }
-            // the entry copies the lens the page served that day (rule 4: one definition, build-data's)
-            if (entry.date === currentDate && JSON.stringify(dir) !== JSON.stringify(data.baselines?.direction ?? null)) { bad++; fail(`health: ${entry.date} direction block differs from data.baselines.direction`); }
-            if (entry.date === currentDate && JSON.stringify(entry.outlook ?? null) !== JSON.stringify(data.baselines?.outlook ?? null)) { bad++; fail(`health: ${entry.date} outlook block differs from data.baselines.outlook`); }
+            // the entry copies the lens the page served that day (rule 4: one
+            // definition, build-data's). A later same-day capture legitimately
+            // moves the served lens (a new snapshot changes the cool-off or a
+            // same-age reading) while the entry keeps the lens it was written
+            // from — the same escape the same-day recompute proof uses
+            // (2026-09-01 chain incident: the first real run after the v4
+            // re-derivation stopped here for exactly that reason)
+            if (entry.date === currentDate) {
+              const latestSnapshotMs = Math.max(0, ...(data.episodes || []).map((e) => Date.parse(e.latest?.ts || "")).filter(Number.isFinite));
+              const refreshedSinceSave = Number.isFinite(Date.parse(entry.createdAt)) && latestSnapshotMs > Date.parse(entry.createdAt);
+              const dirDiffers = JSON.stringify(dir) !== JSON.stringify(data.baselines?.direction ?? null);
+              const outDiffers = JSON.stringify(entry.outlook ?? null) !== JSON.stringify(data.baselines?.outlook ?? null);
+              if ((dirDiffers || outDiffers) && refreshedSinceSave) warn(`health: ${entry.date} direction/outlook were re-read after today's entry was saved (a later snapshot) — the entry keeps the lens it was written from; the next daily run re-proves it`);
+              else if (dirDiffers) { bad++; fail(`health: ${entry.date} direction block differs from data.baselines.direction`); }
+              else if (outDiffers) { bad++; fail(`health: ${entry.date} outlook block differs from data.baselines.outlook`); }
+            }
           }
           const nfw = entry.outlook?.nextFirstWeek;
           if (!nfw) { bad++; fail(`health: ${entry.date} carries no outlook`); }

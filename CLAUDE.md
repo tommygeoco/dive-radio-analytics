@@ -90,7 +90,7 @@ Rules that follow from the shape:
 
 ## The daily chain
 
-Runs on the owner machine (`/Users/bones/Dev/2026/dive-radio-analytics`, 07:25 America/Phoenix). The repo is both source and served site; publish = commit + push + `vercel deploy --prod` + live parity check. Only the `ratings → … → publish` half is documented (README); the capture order below is reconstructed from the scripts' header comments.
+Runs on the owner machine (`/Users/bones/Dev/2026/dive-radio-analytics`) as the OpenClaw automation `restream-postlive-snapshot` at 07:00 America/Phoenix (`node tools/dive-analytics/run-chain.mjs`); a 06:00 `--rehearse` job runs the same chain without publishing, a 06:50 job ingests Restream, a 12:00 job checks freshness, and a Monday-noon job posts the Slack trends report. The repo is both source and served site; publish = commit + push + `vercel deploy --prod` + live parity check. Only the `ratings → … → publish` half is documented (README); the capture order below is reconstructed from the scripts' header comments.
 
 ```
 postlive-discover → transcripts-pull → postlive-track snapshot → yt-analytics-pull
@@ -101,7 +101,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
-- `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The crontab itself lives on the owner machine; do not add one here.
+- `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The scheduler is an OpenClaw automation on the owner machine (`openclaw cron list`), not a crontab; do not add one here.
 - **`run-chain.mjs` pulls main before the first step** (PRD v10 W34) and `postlive-publish.sh` pulls `--rebase` again before it pushes; a stash conflict on the generated files (`data.json`, `data.js`) is resolved by taking the pulled tree and rebuilding, never by aborting. Work from another machine may land on main directly when it changes no store files; commit `data.json`/`data.js` only when the chain machine has already pulled the code that produces them (the chain rebuilds them every morning).
 
 ## How to change a number (the procedure)

@@ -48,8 +48,10 @@ function pullFirst() {
   // behind (a same-day formula re-derivation collides with the local day's
   // read); repair that first or the pull below refuses to run
   try { healLeftovers(ROOT); } catch (error) { console.error(`chain: ${error.message}`); process.exit(1); }
-  const status = git(["status", "--porcelain"]).stdout.trim();
-  const dirty = status.split("\n").filter(Boolean).map((l) => l.slice(3));
+  // no trim(): the first porcelain line starts with the two-column status
+  // (" M path"), and trimming it ate the first letter of the path
+  const status = git(["status", "--porcelain"]).stdout;
+  const dirty = status.split("\n").filter((l) => l.trim()).map((l) => l.slice(3));
   const generated = dirty.filter((f) => /^(data\.json|data\.js|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
   const other = dirty.filter((f) => !generated.includes(f));
   if (other.length) console.log(`chain: local changes outside the data stores (${other.slice(0, 5).join(", ")}) — pulling with a stash`);
