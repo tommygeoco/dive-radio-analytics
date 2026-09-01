@@ -27,12 +27,19 @@
   },
   "staleCount": 0,
   "healthDate": "2026-09-01",
-  "healthFormula": "health-v3",
+  "healthFormula": "health-v4",
+  "healthDirection": "mixed",
+  "promoFlagged": [
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+  ],
   "healthCheckSet": [
     "growth",
     "audienceQuality",
     "reachEfficiency",
     "livePull",
+    "participation",
+    "conversion",
     "sentiment"
   ]
 }

@@ -4269,6 +4269,165 @@
           "plays": 997
         }
       }
+    },
+    {
+      "ts": "2026-09-01T22:51:09.767Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 700,
+          "detail": {
+            "views": 700,
+            "likes": 20,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 543,
+          "detail": {
+            "views": 543,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 415,
+          "views": 2977,
+          "detail": {
+            "views": 2977,
+            "plays": null,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1152
+        },
+        "x:designertom": {
+          "peakConcurrent": 131,
+          "views": 6232,
+          "detail": {
+            "views": 6232,
+            "plays": null,
+            "likes": 8,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 997
+        }
+      }
+    },
+    {
+      "ts": "2026-09-01T22:59:20.056Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 700,
+          "detail": {
+            "views": 700,
+            "likes": 20,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 544,
+          "detail": {
+            "views": 544,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 415,
+          "views": 2977,
+          "detail": {
+            "views": 2977,
+            "plays": null,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1152
+        },
+        "x:designertom": {
+          "peakConcurrent": 131,
+          "views": 6232,
+          "detail": {
+            "views": 6232,
+            "plays": null,
+            "likes": 8,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 997
+        }
+      }
+    },
+    {
+      "ts": "2026-09-01T23:50:59.242Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 700,
+          "detail": {
+            "views": 700,
+            "likes": 20,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 544,
+          "detail": {
+            "views": 544,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 415,
+          "views": 2977,
+          "detail": {
+            "views": 2977,
+            "plays": null,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1152
+        },
+        "x:designertom": {
+          "peakConcurrent": 131,
+          "views": 6235,
+          "detail": {
+            "views": 6235,
+            "plays": null,
+            "likes": 8,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 999
+        }
+      }
     }
   ]
 }

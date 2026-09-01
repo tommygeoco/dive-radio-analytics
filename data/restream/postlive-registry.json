@@ -45,7 +45,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1024,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -59,7 +59,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 760,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         }
@@ -100,7 +100,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 635,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -113,7 +113,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 1178,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         }
@@ -155,7 +155,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1429,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -169,7 +169,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 2803,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         }
@@ -210,8 +210,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1345,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "value": 1346,
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -224,7 +224,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 546,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         }
@@ -266,7 +266,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1152,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -279,8 +279,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 997,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "value": 999,
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         }
@@ -321,7 +321,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 822,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -334,7 +334,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 340,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -385,7 +385,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1064,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         },
@@ -418,8 +418,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1350,
-            "asOf": "2026-09-01T22:48:30.222Z"
+            "value": 1351,
+            "asOf": "2026-09-01T23:50:59.242Z"
           },
           "playsStatus": "ok"
         }

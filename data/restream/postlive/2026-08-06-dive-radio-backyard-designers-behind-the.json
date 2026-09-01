@@ -4271,6 +4271,165 @@
           "plays": 546
         }
       }
+    },
+    {
+      "ts": "2026-09-01T22:51:09.767Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1238,
+          "detail": {
+            "views": 1238,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 719,
+          "detail": {
+            "views": 719,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3500,
+          "detail": {
+            "views": 3500,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1345
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
+    },
+    {
+      "ts": "2026-09-01T22:59:20.056Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1238,
+          "detail": {
+            "views": 1238,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 719,
+          "detail": {
+            "views": 719,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3500,
+          "detail": {
+            "views": 3500,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1345
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
+    },
+    {
+      "ts": "2026-09-01T23:50:59.242Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1238,
+          "detail": {
+            "views": 1238,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 721,
+          "detail": {
+            "views": 721,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3500,
+          "detail": {
+            "views": 3500,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1346
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
     }
   ]
 }
