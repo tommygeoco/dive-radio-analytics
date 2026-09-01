@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-01T01:03:11.717Z",
+  "updatedAt": "2026-09-01T17:22:55.752Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -676,6 +676,36 @@
       "promptVersion": 1,
       "model": "claude-fable-5",
       "classifiedAt": "2026-08-28T14:11:00.355Z"
+    },
+    "yt:Ugycpd2h87OpPl0kAz14AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-01T17:21:09.018Z",
+      "audit": {
+        "at": "2026-09-01T17:21:09.018Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.92
+      }
+    },
+    "yt:UgxZ05HGxuJ19cC7HN94AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-01T17:21:09.018Z"
     }
   },
   "golden": {
@@ -696,7 +726,7 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-01T01:03:11.717Z",
+    "at": "2026-09-01T17:22:55.752Z",
     "status": "complete",
     "added": 0,
     "reviewed": 0,

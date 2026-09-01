@@ -32,7 +32,7 @@
       "author": "ohnaursadface",
       "authorId": "UCBZyWcJieLlvVobFpGwKLGw",
       "text": "I love this new format!",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-08-21T00:31:56Z",
       "firstSeenAt": "2026-08-22T06:19:29.033Z"
     },
@@ -43,7 +43,7 @@
       "author": "tylerhuntdesign",
       "authorId": "UCu-M9WRs4IBa6E-KRmYPpzA",
       "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
-      "likes": 1,
+      "likes": 2,
       "publishedAt": "2026-08-20T23:27:56Z",
       "firstSeenAt": "2026-08-22T06:19:29.033Z"
     },
@@ -68,8 +68,19 @@
       "likes": 0,
       "publishedAt": "2026-08-24T10:20:17Z",
       "firstSeenAt": "2026-08-24T14:02:45.852Z"
+    },
+    {
+      "id": "yt:Ugycpd2h87OpPl0kAz14AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "author": "choongching",
+      "authorId": "UCvhPCDkKc8cT4jMzeTDboGw",
+      "text": "Are these available on Spotify?",
+      "likes": 0,
+      "publishedAt": "2026-09-01T05:07:02Z",
+      "firstSeenAt": "2026-09-01T13:00:31.460Z"
     }
   ],
-  "updatedAt": "2026-09-01T01:03:08.511Z",
+  "updatedAt": "2026-09-01T17:22:52.752Z",
   "xCoverage": "covered"
 }

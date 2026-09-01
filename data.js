@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-01T01:04:33.888Z",
+ "generatedAt": "2026-09-01T17:24:39.461Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -3088,6 +3088,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 286
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3824,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1244,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 847,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1523,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3834,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "peakConcurrent": 286
+      }
+     }
     }
    ],
    "weekly": [
@@ -3257,7 +3605,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1244,
@@ -3277,7 +3625,7 @@ window.DIVE_DATA = {
       "peakConcurrent": 466
      },
      "x:designertom": {
-      "views": 3822,
+      "views": 3834,
       "likes": 26,
       "comments": 3,
       "plays": 760,
@@ -3285,7 +3633,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 2091,
-    "xImpressions": 5345,
+    "xImpressions": 5357,
     "xPlays": 1784,
     "xPlaysInfo": {
      "value": 1784,
@@ -3312,7 +3660,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1pKdRRwpkaQJW"
    },
    "transcript": true,
-   "ageDays": 45.3,
+   "ageDays": 45.9,
    "metrics": {
     "week1Velocity": 1830,
     "week1Note": null,
@@ -5311,7 +5659,7 @@ window.DIVE_DATA = {
       "share": 13.5
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
      "openStart": 67.1,
      "openFloor": 12,
@@ -8100,6 +8448,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 599
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1177,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1186,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1186,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1184,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2235,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3899,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1178,
+       "peakConcurrent": 599
+      }
+     }
     }
    ],
    "weekly": [
@@ -8269,10 +8965,10 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1177,
+      "views": 1184,
       "likes": 39,
       "comments": 2
      },
@@ -8296,7 +8992,7 @@ window.DIVE_DATA = {
       "peakConcurrent": 599
      }
     },
-    "ytTotal": 2103,
+    "ytTotal": 2110,
     "xImpressions": 6134,
     "xPlays": 1813,
     "xPlaysInfo": {
@@ -8307,7 +9003,7 @@ window.DIVE_DATA = {
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3916,
+    "totalViews": 3923,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -8324,12 +9020,12 @@ window.DIVE_DATA = {
     "x:ridd_design": "https://x.com/i/broadcasts/1yxBeeoanDOJN"
    },
    "transcript": true,
-   "ageDays": 39.3,
+   "ageDays": 39.9,
    "metrics": {
     "week1Velocity": 1751,
     "week1Note": null,
     "flatlineWeek": 3,
-    "engagementPer1k": 39.5,
+    "engagementPer1k": 39.3,
     "anomaly": null
    },
    "ep": 2,
@@ -10277,7 +10973,7 @@ window.DIVE_DATA = {
       "share": 11.2
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
      "openStart": 66.4,
      "openFloor": 13.9,
@@ -12262,6 +12958,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 399
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3159,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16623,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 948,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16630,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 949,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16634,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 949,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16634,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 949,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 672,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3160,
+       "likes": 10,
+       "comments": 1,
+       "plays": 1429,
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16634,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "peakConcurrent": 399
+      }
+     }
     }
    ],
    "weekly": [
@@ -12327,10 +13371,10 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 948,
+      "views": 949,
       "likes": 21,
       "comments": 3
      },
@@ -12340,22 +13384,22 @@ window.DIVE_DATA = {
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 3159,
+      "views": 3160,
       "likes": 10,
       "comments": 1,
       "plays": 1429,
       "peakConcurrent": 562
      },
      "x:designertom": {
-      "views": 16623,
+      "views": 16634,
       "likes": 12,
       "comments": 2,
       "plays": 2803,
       "peakConcurrent": 399
      }
     },
-    "ytTotal": 1620,
-    "xImpressions": 19782,
+    "ytTotal": 1621,
+    "xImpressions": 19794,
     "xPlays": 4232,
     "xPlaysInfo": {
      "value": 4232,
@@ -12365,7 +13409,7 @@ window.DIVE_DATA = {
      "stale": false,
      "asOf": null
     },
-    "totalViews": 5852,
+    "totalViews": 5853,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -12382,7 +13426,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1nGeLLpzNAQKX"
    },
    "transcript": true,
-   "ageDays": 32.3,
+   "ageDays": 32.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -14261,7 +15305,7 @@ window.DIVE_DATA = {
       "share": 12
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
      "openStart": 73.1,
      "openFloor": 10.8,
@@ -16258,6 +17302,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 216
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1231,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3498,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1232,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1234,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1234,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1234,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 719,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3500,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1345,
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "peakConcurrent": 216
+      }
+     }
     }
    ],
    "weekly": [
@@ -16323,10 +17715,10 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1231,
+      "views": 1234,
       "likes": 36,
       "comments": 5
      },
@@ -16336,7 +17728,7 @@ window.DIVE_DATA = {
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 3498,
+      "views": 3500,
       "likes": 20,
       "comments": 0,
       "plays": 1345,
@@ -16350,8 +17742,8 @@ window.DIVE_DATA = {
       "peakConcurrent": 216
      }
     },
-    "ytTotal": 1950,
-    "xImpressions": 4638,
+    "ytTotal": 1953,
+    "xImpressions": 4640,
     "xPlays": 1891,
     "xPlaysInfo": {
      "value": 1891,
@@ -16361,7 +17753,7 @@ window.DIVE_DATA = {
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3841,
+    "totalViews": 3844,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -16378,7 +17770,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1rGmqqBdNVkGy"
    },
    "transcript": true,
-   "ageDays": 25.3,
+   "ageDays": 25.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -17946,7 +19338,7 @@ window.DIVE_DATA = {
      },
      {
       "key": "yt:joindiveclub",
-      "views": 1221,
+      "views": 1220,
       "avgPercent": 9.02,
       "avgDurationSec": 668,
       "subs": 7,
@@ -18167,7 +19559,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.53,
-      "watching": 0.112
+      "watching": 0.111
      },
      {
       "at": 0.54,
@@ -18390,7 +19782,7 @@ window.DIVE_DATA = {
       "share": 11.1
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
      "openStart": 70.2,
      "openFloor": 10.8,
@@ -20375,6 +21767,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 131
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 691,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 540,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6202,
+       "likes": 8,
+       "comments": 0,
+       "plays": 983,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6217,
+       "likes": 8,
+       "comments": 0,
+       "plays": 993,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6217,
+       "likes": 8,
+       "comments": 0,
+       "plays": 993,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6217,
+       "likes": 8,
+       "comments": 0,
+       "plays": 993,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6218,
+       "likes": 8,
+       "comments": 0,
+       "plays": 993,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6223,
+       "likes": 8,
+       "comments": 0,
+       "plays": 994,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6223,
+       "likes": 8,
+       "comments": 0,
+       "plays": 994,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6223,
+       "likes": 8,
+       "comments": 0,
+       "plays": 994,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 695,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6225,
+       "likes": 8,
+       "comments": 0,
+       "plays": 994,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 696,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6226,
+       "likes": 8,
+       "comments": 0,
+       "plays": 996,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 696,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6226,
+       "likes": 8,
+       "comments": 0,
+       "plays": 996,
+       "peakConcurrent": 131
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 698,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 543,
+       "likes": 17,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2977,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1152,
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6226,
+       "likes": 8,
+       "comments": 0,
+       "plays": 996,
+       "peakConcurrent": 131
+      }
+     }
     }
    ],
    "weekly": [
@@ -20440,15 +22180,15 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 691,
+      "views": 698,
       "likes": 20,
       "comments": 3
      },
      "yt:designertom": {
-      "views": 540,
+      "views": 543,
       "likes": 17,
       "comments": 2
      },
@@ -20460,25 +22200,25 @@ window.DIVE_DATA = {
       "peakConcurrent": 415
      },
      "x:designertom": {
-      "views": 6202,
+      "views": 6226,
       "likes": 8,
       "comments": 0,
-      "plays": 983,
+      "plays": 996,
       "peakConcurrent": 131
      }
     },
-    "ytTotal": 1231,
-    "xImpressions": 9179,
-    "xPlays": 2135,
+    "ytTotal": 1241,
+    "xImpressions": 9203,
+    "xPlays": 2148,
     "xPlaysInfo": {
-     "value": 2135,
+     "value": 2148,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3366,
+    "totalViews": 3389,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -20495,12 +22235,12 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1AxRnZZeVNzxl"
    },
    "transcript": true,
-   "ageDays": 18.3,
+   "ageDays": 18.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
-    "engagementPer1k": 34.1,
+    "engagementPer1k": 33.8,
     "anomaly": null
    },
    "ep": 5,
@@ -22195,7 +23935,7 @@ window.DIVE_DATA = {
       "share": 12.4
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
      "openStart": 69.6,
      "openFloor": 9.9,
@@ -24199,6 +25939,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 125
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 814,
+       "likes": 19,
+       "comments": 4
+      },
+      "yt:designertom": {
+       "views": 556,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7662,
+       "likes": 11,
+       "comments": 0,
+       "plays": 821,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7665,
+       "likes": 11,
+       "comments": 0,
+       "plays": 821,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7665,
+       "likes": 11,
+       "comments": 0,
+       "plays": 821,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7665,
+       "likes": 11,
+       "comments": 0,
+       "plays": 821,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7665,
+       "likes": 11,
+       "comments": 0,
+       "plays": 821,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7666,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7666,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 559,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7666,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 820,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 560,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7667,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1262,
+       "likes": 1,
+       "comments": 0,
+       "plays": 337,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 822,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 560,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7669,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1264,
+       "likes": 1,
+       "comments": 0,
+       "plays": 339,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 822,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 560,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7669,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1264,
+       "likes": 1,
+       "comments": 0,
+       "plays": 339,
+       "peakConcurrent": 125
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 822,
+       "likes": 21,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 561,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7669,
+       "likes": 11,
+       "comments": 0,
+       "plays": 822,
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1264,
+       "likes": 1,
+       "comments": 0,
+       "plays": 339,
+       "peakConcurrent": 125
+      }
+     }
     }
    ],
    "weekly": [
@@ -24264,45 +26352,45 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 811,
-      "likes": 19,
-      "comments": 4
+      "views": 822,
+      "likes": 21,
+      "comments": 5
      },
      "yt:designertom": {
-      "views": 556,
+      "views": 561,
       "likes": 14,
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 7654,
+      "views": 7669,
       "likes": 11,
       "comments": 0,
-      "plays": 820,
+      "plays": 822,
       "peakConcurrent": 201
      },
      "x:designertom": {
-      "views": 1262,
+      "views": 1264,
       "likes": 1,
       "comments": 0,
-      "plays": 337,
+      "plays": 339,
       "peakConcurrent": 125
      }
     },
-    "ytTotal": 1367,
-    "xImpressions": 8916,
-    "xPlays": 1157,
+    "ytTotal": 1383,
+    "xImpressions": 8933,
+    "xPlays": 1161,
     "xPlaysInfo": {
-     "value": 1157,
+     "value": 1161,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 2524,
+    "totalViews": 2544,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -24319,12 +26407,12 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1aKbdEoAoEBJX"
    },
    "transcript": true,
-   "ageDays": 11.3,
+   "ageDays": 11.9,
    "metrics": {
     "week1Velocity": 1189,
     "week1Note": null,
     "flatlineWeek": null,
-    "engagementPer1k": 27.8,
+    "engagementPer1k": 29.6,
     "anomaly": null
    },
    "ep": 6,
@@ -25534,7 +27622,7 @@ window.DIVE_DATA = {
     ]
    },
    "comments": {
-    "captured": 6,
+    "captured": 7,
     "feedbackCount": 6,
     "uniqueCommenters": 6,
     "enjoyCount": 6,
@@ -25559,16 +27647,28 @@ window.DIVE_DATA = {
       "source": "yt",
       "author": "tylerhuntdesign",
       "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
-      "likes": 1
+      "likes": 2
      },
      {
       "source": "yt",
-      "author": "Sukhbat_builds",
-      "text": "Peak intro, i love it🔥👀",
-      "likes": 0
+      "author": "ohnaursadface",
+      "text": "I love this new format!",
+      "likes": 1
      }
     ],
     "list": [
+     {
+      "id": "yt:UgycC2EjwPzptqmQnox4AaABAg",
+      "author": "tylerhuntdesign",
+      "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-08-20T23:27:56Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
      {
       "id": "x:2090735871938970092",
       "author": "@robhope",
@@ -25582,23 +27682,11 @@ window.DIVE_DATA = {
       ]
      },
      {
-      "id": "yt:UgycC2EjwPzptqmQnox4AaABAg",
-      "author": "tylerhuntdesign",
-      "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
-      "source": "yt",
-      "likes": 1,
-      "at": "2026-08-20T23:27:56Z",
-      "sentiment": "positive",
-      "themes": [
-       "other"
-      ]
-     },
-     {
       "id": "yt:UgykYeq0fuXgPS6uzzt4AaABAg",
       "author": "ohnaursadface",
       "text": "I love this new format!",
       "source": "yt",
-      "likes": 0,
+      "likes": 1,
       "at": "2026-08-21T00:31:56Z",
       "sentiment": "positive",
       "themes": [
@@ -25656,7 +27744,7 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:designertom",
-      "views": 543,
+      "views": 542,
       "avgPercent": 8.85,
       "avgDurationSec": 505,
       "subs": 0,
@@ -25677,7 +27765,7 @@ window.DIVE_DATA = {
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.654
+      "watching": 0.653
      },
      {
       "at": 0.02,
@@ -26041,7 +28129,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.92,
-      "watching": 0.111
+      "watching": 0.112
      },
      {
       "at": 0.93,
@@ -26108,9 +28196,9 @@ window.DIVE_DATA = {
       "share": 12.1
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
-     "openStart": 65.4,
+     "openStart": 65.3,
      "openFloor": 11.8,
      "recoveryPeak": 25.4,
      "recoveryAt": 0.13,
@@ -27331,6 +29419,354 @@ window.DIVE_DATA = {
        "peakConcurrent": 320
       }
      }
+    },
+    {
+     "ts": "2026-09-01T03:03:46.561Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2363,
+       "likes": 24,
+       "comments": 0
+      },
+      "yt:designertom": {
+       "views": 2386,
+       "likes": 15,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5477,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1059,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7675,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1223,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:00:02.211Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5495,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7736,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1254,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:04:03.236Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5495,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7736,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1254,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:14:02.596Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5495,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7737,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1254,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T13:34:02.745Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5497,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7739,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1255,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:00:01.974Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5499,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7740,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1255,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:04:03.318Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5499,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7740,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1255,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:14:06.770Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5499,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1060,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7740,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1255,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T14:34:06.331Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2428,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2405,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5501,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1062,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7741,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1255,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:12:28.173Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2448,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2412,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5510,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1063,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7773,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1265,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:21:32.608Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2448,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2412,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5510,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1063,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7774,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1265,
+       "peakConcurrent": 320
+      }
+     }
+    },
+    {
+     "ts": "2026-09-01T17:22:31.326Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2448,
+       "likes": 25,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2412,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5510,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1063,
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7775,
+       "likes": 5,
+       "comments": 1,
+       "plays": 1265,
+       "peakConcurrent": 320
+      }
+     }
     }
    ],
    "weekly": [
@@ -27366,45 +29802,45 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-01T01:02:45.798Z",
+    "ts": "2026-09-01T17:22:31.326Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 2352,
-      "likes": 24,
-      "comments": 0
+      "views": 2448,
+      "likes": 25,
+      "comments": 1
      },
      "yt:designertom": {
-      "views": 2379,
-      "likes": 15,
+      "views": 2412,
+      "likes": 16,
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 5470,
+      "views": 5510,
       "likes": 21,
       "comments": 2,
-      "plays": 1057,
+      "plays": 1063,
       "peakConcurrent": 408
      },
      "x:designertom": {
-      "views": 7659,
+      "views": 7775,
       "likes": 5,
       "comments": 1,
-      "plays": 1220,
+      "plays": 1265,
       "peakConcurrent": 320
      }
     },
-    "ytTotal": 4731,
-    "xImpressions": 13129,
-    "xPlays": 2277,
+    "ytTotal": 4860,
+    "xImpressions": 13285,
+    "xPlays": 2328,
     "xPlaysInfo": {
-     "value": 2277,
+     "value": 2328,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 7008,
+    "totalViews": 7188,
     "totalViewsInfo": {
      "includesPlays": true,
      "partial": false,
@@ -27421,13 +29857,13 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1RJZzBDprpwJB"
    },
    "transcript": true,
-   "ageDays": 4.3,
+   "ageDays": 4.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "pending: episode under 7 days old",
     "flatlineWeek": null,
-    "engagementPer1k": 8.5,
-    "anomaly": "more than double what a typical episode gets (4,731 YT views vs a typical 1,514; 13,129 X reach vs a typical 5,391) — treat as promo-driven outlier, not topic signal"
+    "engagementPer1k": 8.8,
+    "anomaly": "more than double what a typical episode gets (4,860 YT views vs a typical 1,600; 13,285 X reach vs a typical 5,496) — treat as promo-driven outlier, not topic signal"
    },
    "ep": 7,
    "live": {
@@ -28816,7 +31252,7 @@ window.DIVE_DATA = {
     ]
    },
    "comments": {
-    "captured": 6,
+    "captured": 7,
     "feedbackCount": 1,
     "uniqueCommenters": 1,
     "enjoyCount": 1,
@@ -28861,7 +31297,7 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 2074,
+      "views": 2062,
       "avgPercent": 13.96,
       "avgDurationSec": 821,
       "subs": 1,
@@ -28869,16 +31305,16 @@ window.DIVE_DATA = {
      },
      {
       "key": "yt:designertom",
-      "views": 2152,
+      "views": 2147,
       "avgPercent": 10.22,
       "avgDurationSec": 644,
       "subs": 1,
       "subsPer1k": 0.5
      }
     ],
-    "avgPercent": 12.06,
+    "avgPercent": 12.05,
     "avgDurationSec": 731,
-    "minutesWatched": 16964,
+    "minutesWatched": 17133,
     "curve": [
      {
       "at": 0.01,
@@ -28922,7 +31358,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.11,
-      "watching": 0.23
+      "watching": 0.229
      },
      {
       "at": 0.12,
@@ -28930,7 +31366,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.13,
-      "watching": 0.224
+      "watching": 0.223
      },
      {
       "at": 0.14,
@@ -28962,7 +31398,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.21,
-      "watching": 0.183
+      "watching": 0.182
      },
      {
       "at": 0.22,
@@ -29313,7 +31749,7 @@ window.DIVE_DATA = {
       "share": 3.3
      }
     ],
-    "updatedAt": "2026-09-01T01:03:00.410Z",
+    "updatedAt": "2026-09-01T17:22:44.767Z",
     "shape": {
      "openStart": 73.7,
      "openFloor": 10.1,
@@ -29369,20 +31805,20 @@ window.DIVE_DATA = {
  ],
  "insights": [
   {
-   "id": "fix-the-early-cliff",
-   "text": "The biggest loss is right after the open: E1 has 67.1 of every 100 viewers watching near the start but only 12 left at the 2% mark; E2 falls from 66.4 to 15.1. Most of the audience is gone within minutes on every finished episode.",
-   "recommendation": "Cut the warm-up this week: open the next show with the single strongest demo or guest moment inside the first minute, push housekeeping later, and check whether the 2% mark hold improves on the replay.",
+   "id": "tighten-the-open",
+   "text": "Every episode loses most of its audience right away: E1 held 67.1 of every 100 viewers near the start but only 12 at the 2% mark, and E4 fell from 70.2 to 11.9. The show never gets those people back.",
+   "recommendation": "Test a cold open this week: start with the single best demo or clip of the episode in the first minute, and push intros, housekeeping, and voting reminders until after it. Compare the 2% mark hold against past episodes.",
    "category": "content"
   },
   {
-   "id": "trim-e1-style-setup",
-   "text": "In E1, 7.9 of every 100 viewers left around 7 minutes in — very early in the show — near a stretch where the hosts were still framing things ('we're kind of just going to pull back the curtain'). The timing is approximate from the live recording.",
-   "recommendation": "Script a tight two-line intro for the next episode and trim that setup stretch out of the E1 replay, then compare early exits on the edited version against the original.",
+   "id": "trim-early-setup-talk",
+   "text": "E1 had the sharpest single exit of any finished episode: 7.9 of every 100 viewers left early on, about 7 minutes in, near a stretch of we're-still-figuring-it-out setup talk. The timing is approximate.",
+   "recommendation": "Re-order this week's rundown so a concrete segment lands before the ten-minute point, and cut behind-the-scenes framing to a sentence or two. Watch whether the early exit spike shrinks.",
    "category": "content"
   },
   {
    "id": "pace-rank",
-   "text": "Steal These AI Design Patterns + Live Call-Ins has 7,008 total views 4.3 days in — on YouTube it's pacing #1 of 4 at this age, 212% ahead of the typical episode.",
+   "text": "Steal These AI Design Patterns + Live Call-Ins has 7,188 total views 4.9 days in — on YouTube it's pacing #1 of 4 at this age, 204% ahead of the typical episode.",
    "recommendation": "This topic/format is landing. Note what's different about it and repeat that on the next episode.",
    "caveat": "Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from 3 other episodes at the same age, promo outliers left out.",
    "chartState": {
@@ -29400,33 +31836,27 @@ window.DIVE_DATA = {
    "category": "content"
   },
   {
-   "id": "lean-into-dive-club",
-   "text": "On finished episodes Dive Club out-converts DesignerTom: 4.3 subscribers per 1,000 views on E2 against 1.1, and 5.7 on E4 against 0. Dive Club also held viewers longer on E2, with 12 share watched against DesignerTom's 9.8.",
-   "recommendation": "Point every description, pinned comment, and X post at the Dive Club stream this week, and test repositioning DesignerTom as the clips-and-highlights channel rather than a mirror.",
-   "category": "distribution"
-  },
-  {
    "id": "activate-discovery-surfaces",
-   "text": "The show mostly recycles its own audience: subscribers drove 8,774 YouTube views, 64.3 of every 100. Discovery surfaces bring almost nothing — Shorts delivered 2 views, end screens 9, and playlists 85.",
-   "recommendation": "Ship three Shorts from this week's best moments, add end screens on every replay pointing to the newest episode, and build one playlist holding all episodes — then check next week's traffic breakdown.",
+   "text": "64.3 of every 100 YouTube views come from existing subscribers. Discovery surfaces bring almost nothing: shorts drove 2 views, end screens 9, playlists 85. The show is mostly invisible to new viewers on YouTube.",
+   "recommendation": "This week, cut 3 short clips from the strongest moments of the latest episode, post them on both channels, add an end screen pointing to the newest episode on every upload, and put all episodes into one playlist linked in each description.",
    "category": "distribution"
   },
   {
-   "id": "convert-the-x-audience",
-   "text": "X carries as much of the show as YouTube: 15,289 broadcast plays against 15,093 YouTube views, 50.3 of every 100 of all watching — yet all subscriber growth is measured on YouTube.",
-   "recommendation": "On the next X broadcast, verbally send viewers to the Dive Club YouTube channel to subscribe and pin the YouTube link in a reply within the first minutes of going live, then watch whether YouTube sign-ups move.",
+   "id": "lean-on-dive-club",
+   "text": "On finished episodes, Dive Club converts better than DesignerTom: E4 gained 5.7 subscribers per 1,000 views there vs 0 on DesignerTom, and E2 gained 4.3 vs 1.1. Dive Club viewers also watched more of E2: 12 of every 100 minutes vs 9.8.",
+   "recommendation": "Make Dive Club the primary home this week: point promotion and links there first. On DesignerTom, test a different title and thumbnail for the same episode to see whether packaging, not content, explains the gap.",
    "category": "distribution"
   },
   {
-   "id": "rebuild-live-momentum",
-   "text": "The live room shrank fast: peak live viewers fell from 90 on E1 to 53 on E3, and chat fell from 383 messages on E1 to 169 on E3 and 92 on E7.",
-   "recommendation": "Announce the next show a day ahead on both channels and X with the exact start time, and open with a chat prompt — a question or poll — in the first minutes to test whether peak viewers and chat rebound.",
+   "id": "convert-x-viewers",
+   "text": "Half the audience is on X — 50.2 of every 100 plays, 15,357 there vs 15,259 on YouTube — but subscriber growth only happens on YouTube, where the whole show has small totals.",
+   "recommendation": "On this week's X broadcast, pin a comment with the YouTube link, say the YouTube channel name out loud twice during the show, and offer one YouTube-only reason to follow there, like early access to the vote or a bonus segment.",
    "category": "promotion"
   },
   {
-   "id": "restore-e1-subscribe-pattern",
-   "text": "Subscriber pickup on finished episodes collapsed after the debut: E1 earned 8.8 subscribers per 1,000 views (DesignerTom 13.2, Dive Club 5.6), but E3 earned 0 on both channels and E4 earned 0 on DesignerTom against 5.7 on Dive Club.",
-   "recommendation": "Rewatch E1 and copy whatever it did around subscribing: make one direct on-air ask early and one at a highlight on both channels this week, then compare the next episode's sign-ups.",
+   "id": "copy-e1-subscribe-pitch",
+   "text": "Among finished episodes, E1 turned viewers into subscribers far better: 8.8 per 1,000 views blended, vs 2.9 for E2, 0 for E3, and 3.6 for E4. On DesignerTom, E1 hit 13.2 per 1,000 while E3 and E4 both got 0.",
+   "recommendation": "Rewatch E1 and note exactly when and how you asked people to subscribe and what segment surrounded it. Recreate that ask style and placement in this week's episode as a test, on both channels.",
    "category": "audience"
   }
  ],
@@ -29522,7 +31952,7 @@ window.DIVE_DATA = {
   }
  },
  "commentSummary": {
-  "captured": 39,
+  "captured": 41,
   "feedbackCount": 25,
   "uniqueCommenters": 23,
   "enjoyCount": 20,
@@ -29538,14 +31968,14 @@ window.DIVE_DATA = {
   "complaintThemes": []
  },
  "health": {
-  "date": "2026-08-31",
+  "date": "2026-09-01",
   "ageDays": 0,
   "withheld": false,
   "formulaVersion": "health-v3",
-  "dataThrough": "2026-08-31T23:57:48.110Z",
-  "score": 48,
+  "dataThrough": "2026-09-01T17:22:55.752Z",
+  "score": 46,
   "readState": "early",
-  "headline": "Views are growing well, but engagement on the newest episode is weak and the show feels uneven.",
+  "headline": "Views are climbing, but engagement per viewer and reach off X both look fragile right now.",
   "checks": [
    {
     "key": "growth",
@@ -29564,8 +31994,8 @@ window.DIVE_DATA = {
      },
      {
       "key": "sameAge",
-      "value": 4731,
-      "typical": 1514,
+      "value": 4860,
+      "typical": 1600,
       "sample": 3,
       "reason": null,
       "ageBasis": "sameAge",
@@ -29581,8 +32011,8 @@ window.DIVE_DATA = {
     "measures": [
      {
       "key": "engagement",
-      "value": 8.5,
-      "typical": 43.6,
+      "value": 8.8,
+      "typical": 43.8,
       "sample": 3,
       "reason": null,
       "ageBasis": "sameAge",
@@ -29609,7 +32039,7 @@ window.DIVE_DATA = {
      {
       "key": "announceToPlay",
       "value": 13,
-      "typical": 31.5,
+      "typical": 31.4,
       "sample": 4,
       "reason": null,
       "ageBasis": "mature",
@@ -29618,8 +32048,8 @@ window.DIVE_DATA = {
      },
      {
       "key": "xShare",
-      "value": 45.8,
-      "typical": 47.8,
+      "value": 45.6,
+      "typical": 47.7,
       "sample": 4,
       "reason": null,
       "ageBasis": "mature",
@@ -29702,42 +32132,30 @@ window.DIVE_DATA = {
   ],
   "pros": [
    {
-    "text": "The newest episode already has 4,731 YouTube views at this age, well ahead of what earlier episodes had reached at the same age.",
+    "text": "The latest episode has 4,860 YouTube views at this age, well ahead of earlier episodes at the same age.",
     "factId": "latest-same-age-youtube"
    },
    {
-    "text": "6 recent comments were clearly positive, though X replies are missing, so this read of goodwill is incomplete.",
+    "text": "6 recent comments were clearly positive, though X replies are missing from this read.",
     "factId": "recent-positive-feedback"
    }
   ],
   "cons": [
    {
-    "text": "The newest episode drew only 8.5 engagements per thousand YouTube views at this age, far below earlier episodes at the same age.",
+    "text": "The latest episode drew 8.8 engagements per thousand YouTube views at this age, far below earlier episodes at the same age.",
     "factId": "latest-engagement"
    },
    {
-    "text": "13% of the latest finished episode's X announce impressions became plays, measured against earlier episodes as they stand now.",
+    "text": "13% of X announce impressions became plays for The Mascot Industrial Complex, under earlier episodes as they stand now.",
     "factId": "latest-finished-announce-play"
    }
   ],
   "drivers": [
-   "The audience quality check joined since the last saved read, so today's score rests on a different set of checks, not on a change in the show itself.",
-   "Strong same-age views pull upward while very weak engagement pulls hard the other way, so the score lands just under the middle of that balance.",
-   "Goodwill scored well but rests on few comments with X replies missing, so it earned only limited weight in the judgment."
+   "Same-age views on the newest episode are far ahead of earlier ones, but engagement per viewer has fallen sharply, so the read lands a little under the weighted middle.",
+   "The goodwill check scored high, yet it rests on very few complete readings and missing X replies, so it earned less pull on the final number.",
+   "Announcement reach and live chat both came in under their usual marks; the subscribers check lacks enough history to score and counts as absent, not weak."
   ],
-  "checkSetChange": {
-   "previous": [
-    "growth",
-    "reachEfficiency",
-    "livePull",
-    "sentiment"
-   ],
-   "joined": [
-    "audienceQuality"
-   ],
-   "left": [],
-   "previousScore": 45
-  },
+  "checkSetChange": null,
   "trend": {
    "points": [
     {
@@ -29767,6 +32185,10 @@ window.DIVE_DATA = {
     {
      "date": "2026-08-31",
      "score": 48
+    },
+    {
+     "date": "2026-09-01",
+     "score": 46
     }
    ]
   }
@@ -29810,7 +32232,7 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1784,
-      "typical": 2013,
+      "typical": 2019.5,
       "n": 6,
       "window": [
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -29855,7 +32277,7 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1813,
-      "typical": 2013,
+      "typical": 2019.5,
       "n": 6,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -29932,7 +32354,7 @@ window.DIVE_DATA = {
     "units": {
      "ytViews": {
       "tier": 3,
-      "value": 1950,
+      "value": 1953,
       "typical": 2091,
       "n": 5,
       "window": [
@@ -29960,8 +32382,8 @@ window.DIVE_DATA = {
      },
      "xImpressions": {
       "tier": 3,
-      "value": 4638,
-      "typical": 8916,
+      "value": 4640,
+      "typical": 8933,
       "n": 5,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -29980,8 +32402,8 @@ window.DIVE_DATA = {
     "units": {
      "ytViews": {
       "tier": 2,
-      "value": 1231,
-      "typical": 1950,
+      "value": 1241,
+      "typical": 1956,
       "n": 3,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -29992,7 +32414,7 @@ window.DIVE_DATA = {
      },
      "xPlays": {
       "tier": 3,
-      "value": 2135,
+      "value": 2148,
       "typical": 1813,
       "n": 5,
       "window": [
@@ -30006,8 +32428,8 @@ window.DIVE_DATA = {
      },
      "xImpressions": {
       "tier": 2,
-      "value": 9179,
-      "typical": 4997,
+      "value": 9203,
+      "typical": 5006,
       "n": 3,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -30024,8 +32446,8 @@ window.DIVE_DATA = {
     "units": {
      "ytViews": {
       "tier": 2,
-      "value": 1367,
-      "typical": 1880,
+      "value": 1383,
+      "typical": 1901,
       "n": 3,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -30036,7 +32458,7 @@ window.DIVE_DATA = {
      },
      "xPlays": {
       "tier": 3,
-      "value": 1157,
+      "value": 1161,
       "typical": 1891,
       "n": 5,
       "window": [
@@ -30050,8 +32472,8 @@ window.DIVE_DATA = {
      },
      "xImpressions": {
       "tier": 2,
-      "value": 8916,
-      "typical": 5879,
+      "value": 8933,
+      "typical": 5905,
       "n": 3,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -30068,8 +32490,8 @@ window.DIVE_DATA = {
     "units": {
      "ytViews": {
       "tier": 2,
-      "value": 4731,
-      "typical": 1514,
+      "value": 4860,
+      "typical": 1600,
       "n": 3,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -30080,7 +32502,7 @@ window.DIVE_DATA = {
      },
      "xPlays": {
       "tier": 3,
-      "value": 2277,
+      "value": 2328,
       "typical": 1813,
       "n": 5,
       "window": [
@@ -30094,8 +32516,8 @@ window.DIVE_DATA = {
      },
      "xImpressions": {
       "tier": 2,
-      "value": 13129,
-      "typical": 5391,
+      "value": 13285,
+      "typical": 5496,
       "n": 3,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -30598,7 +33020,7 @@ window.DIVE_DATA = {
   },
   "pace": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
-    "ageDays": 45.3,
+    "ageDays": 45.9,
     "value": 2091,
     "typical": null,
     "n": 0,
@@ -30635,8 +33057,8 @@ window.DIVE_DATA = {
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "ageDays": 39.3,
-    "value": 2103,
+    "ageDays": 39.9,
+    "value": 2110,
     "typical": null,
     "n": 1,
     "rank": null,
@@ -30670,8 +33092,8 @@ window.DIVE_DATA = {
     "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
    },
    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
-    "ageDays": 32.3,
-    "value": 1620,
+    "ageDays": 32.9,
+    "value": 1621,
     "typical": null,
     "n": 2,
     "rank": null,
@@ -30702,8 +33124,8 @@ window.DIVE_DATA = {
     "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-    "ageDays": 25.3,
-    "value": 1950,
+    "ageDays": 25.9,
+    "value": 1953,
     "typical": null,
     "n": 2,
     "rank": null,
@@ -30734,9 +33156,9 @@ window.DIVE_DATA = {
     "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "ageDays": 18.3,
-    "value": 1231,
-    "typical": 1950,
+    "ageDays": 18.9,
+    "value": 1241,
+    "typical": 1956,
     "n": 3,
     "rank": 4,
     "of": 4,
@@ -30763,9 +33185,9 @@ window.DIVE_DATA = {
     "reason": null
    },
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-    "ageDays": 11.3,
-    "value": 1367,
-    "typical": 1880,
+    "ageDays": 11.9,
+    "value": 1383,
+    "typical": 1901,
     "n": 3,
     "rank": 3,
     "of": 4,
@@ -30792,13 +33214,13 @@ window.DIVE_DATA = {
     "reason": null
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
-    "ageDays": 4.3,
-    "value": 4731,
-    "typical": 1514,
+    "ageDays": 4.9,
+    "value": 4860,
+    "typical": 1600,
     "n": 3,
     "rank": 1,
     "of": 4,
-    "pct": 212,
+    "pct": 204,
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -30824,13 +33246,13 @@ window.DIVE_DATA = {
   "newestVsPrevious": {
    "newest": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
    "previous": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-   "ageDays": 4.3,
+   "ageDays": 4.9,
    "reach": {
-    "pct": 53,
+    "pct": 54,
     "ageBasis": "sameAge"
    },
    "watched": {
-    "pct": -2,
+    "pct": -1,
     "ageBasis": "sameAge"
    },
    "live": {
