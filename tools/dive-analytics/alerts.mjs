@@ -197,8 +197,12 @@ const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.arg
 if (isMain) {
   const emitMode = process.argv.includes("--emit");
   if (emitMode) {
-    const queue = loadJson(QUEUE_PATH, []);
-    if (!queue.length) { console.log("dive-alerts: queue empty — nothing to say."); process.exit(0); }
+    const queue = loadJson(QUEUE_PATH, null);
+    if (!Array.isArray(queue) || queue.some((line) => typeof line !== "string" || !line.trim())) {
+      console.error("dive-alerts: alert queue is missing or is not a list of non-blank text lines; nothing was sent or cleared.");
+      process.exit(1);
+    }
+    if (!queue.length) process.exit(0);
     console.log("Dive Radio — what changed:");
     for (const line of queue) console.log(`• ${line}`);
     saveAtomic(QUEUE_PATH, []);

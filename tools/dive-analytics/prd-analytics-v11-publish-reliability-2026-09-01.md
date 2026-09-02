@@ -86,8 +86,9 @@ most of this PRD.
   line>` — before exiting. The queue is append-only JSON and needs no model.
 - **Restore delivery.** Recreate the `dive-alerts` automation: every 30
   minutes, `node tools/dive-analytics/alerts.mjs --emit`, delivered to the
-  owner's Slack DM, silent when the queue is empty (the script already
-  prints nothing then). The seven waiting lines go out on its first run.
+  owner's Slack DM. When the queue is empty, the command must exit 0 with
+  exactly zero stdout and zero stderr so OpenClaw suppresses delivery. The
+  seven waiting lines go out on its first run.
 - Turn on OpenClaw failure notifications for `restream-postlive-snapshot`
   (`openclaw cron edit … --announce` to the same DM), so a run killed by a
   gateway restart is announced even though the chain never got to queue.
@@ -172,7 +173,7 @@ run's failing step and its ten surrounding lines.
 
 | Step | Work | Size |
 |---|---|---|
-| 1 | W37 delivery job + failure notifications + freshness at 08:15 (ops on the Mini, no code) | 20 min |
+| 1 | W37 delivery job + failure notifications + freshness at 08:15; W37A corrects the empty-output code path | 20 min |
 | 2 | W36 tiers + hook + tier fixture | half a day |
 | 3 | W38 publish script + rehearsal test | 2 hours |
 | 4 | W39, W40 | 1 hour |
@@ -194,6 +195,79 @@ documented. Everything else ships as one branch, merged code-only (rule
   live site, not the machine.
 - **Retiring the rehearsal** removes the only pre-07:00 signal. Accepted:
   the hook moves that signal to push time, where it belongs.
+
+## W37A corrective addendum — empty queue means no Slack message (2026-09-02)
+
+**Problem.** When `data/restream/alerts-pending.json` is `[]`,
+`alerts.mjs --emit` prints `dive-alerts: queue empty — nothing to say.`;
+OpenClaw announces that non-empty output to Tommy as if it were an alert.
+
+**Owner and consumer.** The repo worker applies the correction. Tommy is the
+sole Slack consumer.
+
+**Write scope.** Only these files may change:
+
+- `tools/dive-analytics/prd-analytics-v11-publish-reliability-2026-09-01.md`
+- `tools/dive-analytics/alerts.mjs`
+- `tools/dive-analytics/audit/alerts-emit.test.mjs`
+
+The production queue `data/restream/alerts-pending.json`, automation
+`dive-alerts` (`a8c0d4a8-22e2-4583-9c07-ce5715e85ceb`), its cadence, command,
+working directory, and Slack route are read-only during the correction. The
+forced proof may read the empty production queue through the existing command;
+it must leave the queue byte-identical.
+
+**Requirements.** A valid queue file exists and contains a JSON array whose
+members are strings with at least one non-whitespace character. With an empty
+valid queue, `alerts.mjs --emit` exits 0 with exactly zero stdout and zero
+stderr and leaves the queue byte-identical. With a non-empty valid fixture
+queue, it keeps the existing `Dive Radio — what changed:` header and bullet
+lines, exits 0, and clears that fixture queue. A missing or unreadable queue,
+malformed JSON, a non-array value, an array containing any non-string, or an
+array containing a blank-only string remains a non-zero error and is never
+created, replaced, or cleared.
+
+**Non-goals.** Do not change detection mode, non-empty output, queue-clearing
+behavior, cadence, command, working directory, Slack destination, automation
+configuration, or any production data. Do not refactor nearby code or change
+other documentation.
+
+**Smallest change.** Change only the emit-mode queue guard and empty-queue
+branch, and add one fixture-based CLI regression test. The test uses temporary
+queues and never production data.
+
+**Verification.** Run these literal checks in order:
+
+1. `node tools/dive-analytics/audit/alerts-emit.test.mjs`
+2. `jq -e 'type == "array" and length == 0' data/restream/alerts-pending.json`
+3. Record `shasum -a 256 data/restream/alerts-pending.json`, then run
+   `openclaw cron run a8c0d4a8-22e2-4583-9c07-ce5715e85ceb --wait --wait-timeout 10m --json`,
+   capture its returned run ID, and only after it completes run the same
+   `shasum` again. The two hashes must match.
+4. `openclaw cron runs --id a8c0d4a8-22e2-4583-9c07-ce5715e85ceb --run-id "$forced_run_id" --limit 1 --json`,
+   where `$forced_run_id` is the exact ID returned by step 3.
+
+The final run record must show `status=ok`, `completionStatus=succeeded`,
+`deliveryStatus=not-delivered`, and `deliverySuppressionReason=empty`; no Slack
+DM is sent. The regression test must also prove exact empty stdout and stderr,
+byte-identical empty fixture preservation, unchanged non-empty output and
+clearing, and that malformed JSON, non-array JSON, an array with any non-string,
+an array with a blank-only string, and an unreadable fixture queue each exit
+non-zero and remain byte-identical. A missing fixture queue must exit non-zero
+and remain absent.
+
+**Failure policy.** Treat every command and assertion under Verification as a
+check. On the first failure, stop all later checks. A fixture-only failure may
+be inspected, corrected once, and rerun. If the production queue is not empty,
+stop before the forced cron run. Do not retry a failed live cron run or
+run-record check. On the second failure of any retried fixture-only check,
+stop, leave the production queue and automation untouched, and report the
+failed command or assertion. Do not improvise a third path. A malformed or
+unreadable queue must never be cleared.
+
+**Rollback.** Revert only the correction commit containing the three scoped
+files and let the owner machine pull it. No cron rollback is needed because
+cron configuration is out of scope.
 
 ## Status log
 
