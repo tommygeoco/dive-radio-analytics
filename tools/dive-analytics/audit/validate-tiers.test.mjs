@@ -22,7 +22,7 @@ assert.match(src, /const drift = \(m\) => \{ drifts\+\+; if \(!publishMode\) fai
 assert.match(src, /process\.exit\(failures \? 1 : 0\)/);
 
 // 1. static: every failure whose governing condition reads source is a drift
-const SOURCE_VARS = ["html", "healthSource", "panelSource", "stripSource", "trendSource", "totalsPlugin", "heroSource", "compoundSource", "chipSource", "renderer", "pageSource", "panel", "tooltipSource", "tableSource", "about", "defsBlock", "between(", "promptHash", "chain.steps", "step.script", "step.writes", "publishIdx", "wrapperSource", "publishSource", "runnerSource", "checkoutSource", "scopeSource", "freshnessSource", "dailySource", "recoverySource", "paritySource", "alertsSource", "queueSource"];
+const SOURCE_VARS = ["html", "healthSource", "panelSource", "stripSource", "trendSource", "totalsPlugin", "heroSource", "compoundSource", "chipSource", "renderer", "pageSource", "panel", "tooltipSource", "tableSource", "about", "defsBlock", "between(", "promptHash", "chain.steps", "step.script", "step.writes", "publishIdx", "wrapperSource", "publishSource", "runnerSource", "checkoutSource", "scopeSource", "freshnessSource", "dailySource", "recoverySource", "paritySource", "alertsSource", "queueSource", "mirrorSource"];
 const HARD = /freshness:|rebuild:|append-only|grounded|re-derive|recompute|reproduce|withheld|does not equal|does not re-derive|unit |plays schema|totalViews|absence|Slack does not read|slack\b|trendsText|parity/;
 const offenders = [];
 let drifts = 0;

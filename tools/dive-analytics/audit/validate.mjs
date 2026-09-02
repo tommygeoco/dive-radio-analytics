@@ -1871,6 +1871,7 @@ function premiereMs(dateStr) {
     const paritySource = readFileSync(join(TOOL, "live-parity.mjs"), "utf8");
     const alertsSource = readFileSync(join(TOOL, "alerts.mjs"), "utf8");
     const queueSource = readFileSync(join(TOOL, "alert-queue.mjs"), "utf8");
+    const mirrorSource = readFileSync(join(ROOT, "scripts", "restream", "mirror-transcripts.mjs"), "utf8");
     if (!/set -eu/.test(wrapperSource) || !/exec node tools\/dive-analytics\/publish-flow\.mjs/.test(wrapperSource)) { bad++; drift("chain: publish wrapper must hand off to the checked release flow"); }
     if (!/branch !== "main"/.test(checkoutSource) || !/assertPublishScope\(root\)/.test(checkoutSource) || !/assertCommittedPublishScope\(root\)/.test(checkoutSource)) { bad++; drift("chain: the publisher checkout must require main and reject undeclared changes in files or local commits"); }
     if (!/assertPublisherCheckout\(ROOT\)/.test(runnerSource) && !/assertPublisherCheckout\(root\)/.test(runnerSource)) { bad++; drift("chain: runner must check the dedicated publisher checkout before capture"); }
@@ -1890,6 +1891,7 @@ function premiereMs(dateStr) {
     if (!alertsStep?.required || !freshnessStep?.required || !freshnessStep.script.includes("--strict")) { bad++; drift("chain: alert detection and the final production check must be required"); }
     if (!/acknowledgeQueueLines\(batch/.test(alertsSource) || !/message", "send"/.test(alertsSource) || !/\.delivery\.lock/.test(alertsSource)) { bad++; drift("chain: Slack alerts must stay queued until a locked delivery returns a receipt"); }
     if (!/openSync\(path, "wx"/.test(queueSource) || !/renameSync\(tmp, path\)/.test(queueSource)) { bad++; drift("chain: alert queue updates must be locked and atomic"); }
+    if (!/DEFAULT_SOURCE = join\(ROOT, "transcripts"\)/.test(mirrorSource) || /Dev["', ]+2026["', ]+dive-radio-analytics["', ]+transcripts/.test(mirrorSource)) { bad++; drift("chain: transcript mirroring must read this dedicated checkout, not an active development tree"); }
   }
   if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required stores are current; daily runs are isolated, bounded, delivered, and proved on production`);
 }

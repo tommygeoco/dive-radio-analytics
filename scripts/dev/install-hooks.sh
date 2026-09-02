@@ -21,6 +21,7 @@ node tools/dive-analytics/audit/live-parity.test.mjs >/dev/null || { echo "pre-p
 node tools/dive-analytics/audit/publish-flow.test.mjs >/dev/null || { echo "pre-push: publish flow test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/publish-git.test.mjs >/dev/null || { echo "pre-push: publish Git rehearsal failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/freshness.test.mjs >/dev/null || { echo "pre-push: production freshness test failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/mirror-transcripts.test.mjs >/dev/null || { echo "pre-push: transcript mirror test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/run-daily.test.mjs >/dev/null || { echo "pre-push: daily attempt limit test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/recover-publish.test.mjs >/dev/null || { echo "pre-push: recovery test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/alert-queue.test.mjs >/dev/null || { echo "pre-push: alert queue test failed — push refused" >&2; exit 1; }
