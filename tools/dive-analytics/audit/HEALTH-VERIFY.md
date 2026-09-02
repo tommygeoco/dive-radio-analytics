@@ -4,7 +4,7 @@ Standing critic loop (PRD v10 W33): today's read re-derived from what it stored,
 
 ## Accuracy — the 2026-09-01 read
 
-Score 49 (weighted mean 50.1, health-v4, prompt v7); reads Steal These AI Design Patterns + Live Ca at 4.9 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
+Score 50 (weighted mean 50.3, health-v5, prompt v7); reads Steal These AI Design Patterns + Live Ca at 5.2 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -32,7 +32,7 @@ No feel notes yet. Record one with `node tools/dive-analytics/health-feedback.mj
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 29% (at full weight the mean would move +0.2) · promo-qualified measures: growth.sameAge, reachEfficiency.exposure · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 3.
+Carried share of scored checks: 29% (at full weight the mean would move +0.1) · promo-qualified measures: growth.sameAge, reachEfficiency.exposure · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 3.
 
 - WARN — The check set changed 3 times in 30 days — the number keeps changing what it measures.
 - INFO — The scoring rules changed 3 time(s) in the last 30 days; the daily trend restarts each time.

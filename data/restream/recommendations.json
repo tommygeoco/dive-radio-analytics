@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 4,
- "updatedAt": "2026-09-02T01:01:38.636Z",
+ "updatedAt": "2026-09-02T01:06:07.290Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-09-02T01:00:15.914Z",
+ "factsGeneratedAt": "2026-09-02T01:05:19.047Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -820,7 +820,7 @@
   },
   {
    "id": "launch-E7",
-   "value": 4923
+   "value": 4935
   },
   {
    "id": "launch-typical-E7",
@@ -1284,11 +1284,11 @@
   },
   {
    "id": "views-yt-all",
-   "value": 15340
+   "value": 15359
   },
   {
    "id": "views-x-all",
-   "value": 15449
+   "value": 15456
   },
   {
    "id": "share-x-all",
@@ -1296,43 +1296,46 @@
   },
   {
    "id": "views-total-all",
-   "value": 30789
+   "value": 30815
   }
  ],
  "attempts": 1,
  "ranked": true,
  "items": [
   {
-   "id": "rebuild-announce-to-play",
-   "category": "promotion",
-   "serves": "reachEfficiency",
-   "text": "Reach is fragile: the share of announce viewers who go on to play the episode reads 13 on the older finished episode against a typical 31.4, and announce-to-play is softening across the last episodes.",
-   "recommendation": "Rework the announce this week: post it the moment you go live on Dive Club, DesignerTom and X, lead with the episode's single strongest hook, and put the play link first — then check whether next episode's announce-to-play moves off 13."
-  },
-  {
-   "id": "tighten-early-episode",
-   "category": "content",
-   "serves": "audienceQuality",
-   "text": "Audience quality is fragile: the newest engagement reading is 43 against a typical 70, and share watched carried from an older finished episode reads 8.9 against a usual 10.7, softening. On E7, 4.1 of every 100 viewers left around 18 minutes in.",
-   "recommendation": "Test trimming or re-ordering the early stretch — on E7 the exit came near the nominations segment about a fifth of the way in — move the headline topic up front and keep intro segments tighter, then watch whether share watched climbs next episode."
-  },
-  {
-   "id": "reignite-chat",
+   "id": "revive-live-chat",
    "category": "audience",
    "serves": "participation",
-   "text": "Chat is thinning: 55.6 chatters per 100 against a usual 82.4, and 50.2 messages per hour against 85.3, both softening. E7 drew 92 messages from 40 chatters while E1, a finished episode, drew 383 messages from 104 chatters.",
-   "recommendation": "Script one chat prompt per segment this week — a direct question on screen, name-check chatters out loud, and run the vote earlier in the show — and see whether chatters per 100 recover toward 82.4."
+   "text": "Participation is fragile: chatters per 100 sit at 55.6 against a usual 82.4, messages per hour at 50.2 against 85.3, and both are softening. E7 drew 40 chatters and 92 messages while E1 drew 104 chatters and 383 messages.",
+   "recommendation": "Build chat moments into this week's rundown: open with a poll, read viewer questions aloud mid-show, and have one host greet every first-time chatter by name. Track whether chatters per 100 move back toward 82.4."
   },
   {
-   "id": "close-subscriber-gap",
+   "id": "fix-announce-to-play",
+   "category": "promotion",
+   "serves": "reachEfficiency",
+   "text": "Reach is fragile: the announce-to-play reading carried from the latest finished episode is 13 against a usual 31.4, and announce-to-play is softening across the last 5 clean episodes.",
+   "recommendation": "Rework the announce this week: post it twice — the day before and again just before going live — with a short highlight clip and a one-line hook naming the episode's payoff, then check whether plays per announce recover toward 31.4."
+  },
+  {
+   "id": "tighten-episode-opening",
+   "category": "content",
+   "serves": "audienceQuality",
+   "text": "Audience quality is fragile: share watched carried from the latest finished episode reads 8.9 against a usual 10.7, and watching is softening. On E7, still in its first weeks, 4.1 of every 100 viewers left around 18 minutes in, near the nominations segment.",
+   "recommendation": "Test a tighter opening next episode: lead with the strongest demo, move the nominations block later, and trim crosstalk in the first stretch. Compare the early exit on the replay to see if the change holds more viewers."
+  },
+  {
+   "id": "close-designertom-conversion-gap",
    "category": "audience",
    "serves": "conversion",
-   "text": "Dive Club converts at 2.6 subscribers per 1,000 views across the show while DesignerTom sits at 1.4. The best finished episode, E1, converted at 8.8 blended — and DesignerTom hit 13.2 on that one.",
-   "recommendation": "Re-run what E1 did: one direct on-air subscribe ask early in the show on both channels plus a pinned subscribe comment, and test whether DesignerTom's rate lifts back toward its E1 mark of 13.2."
+   "text": "Across the whole show, Dive Club converts at 2.6 subscribers per 1,000 views with 20 gained, while DesignerTom converts at 1.4 with 9 gained; Dive Club viewers also watch 12 of each video on average against 9.8 on DesignerTom.",
+   "recommendation": "Add a spoken subscribe ask plus an on-screen card to DesignerTom uploads this week, mirroring whatever runs on Dive Club, and watch whether DesignerTom's per-view sign-ups close the gap."
+  },
+  {
+   "id": "activate-shorts-and-end-screens",
+   "category": "distribution",
+   "serves": "growth",
+   "text": "Subscribers supply 64.6 of all YouTube views (9,040), while some surfaces bring almost nothing across the whole show: 2 views from Shorts, 13 from Shorts content links, 10 from end screens, and 86 from playlists.",
+   "recommendation": "Clip two Shorts from the newest episode's best live moments, add an end screen pointing to the latest upload, and put every episode in a playlist. Recheck these surfaces in a few weeks to see which one starts pulling new viewers."
   }
- ],
- "prunedAt": "2026-09-02T01:01:38.636Z",
- "prunedIds": [
-  "rebuild-live-turnout"
  ]
 }
