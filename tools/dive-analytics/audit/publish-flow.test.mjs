@@ -32,7 +32,7 @@ assert.equal(MAX_ATTEMPTS, 2);
     waitMs: 0,
     log: () => {},
     deploy: async () => { deploys++; return { ok: true }; },
-    parity: async () => { proofs++; return proofs === 2 ? { ok: true, checked: 7 } : { ok: false, message: "old bytes" }; },
+    parity: async () => { proofs++; return proofs === 2 ? { ok: true, checked: 8 } : { ok: false, message: "old bytes" }; },
   });
   assert.equal(result.ok, true);
   assert.equal(result.attempt, 2);

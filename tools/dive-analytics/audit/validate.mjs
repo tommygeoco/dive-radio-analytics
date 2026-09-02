@@ -281,7 +281,7 @@ function premiereMs(dateStr) {
 // artifact. The release flow verifies exact production bytes after deployment.
 {
   let bad = 0;
-  const expectedPublic = ["index.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"];
+  const expectedPublic = ["index.html", "agents.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"];
   for (const f of [...expectedPublic, "chart.umd.js"]) {
     if (!existsSync(join(ROOT, f))) { bad++; fail(`publish: ${join(ROOT, f)} missing from repo root`); }
   }
@@ -1962,13 +1962,18 @@ function premiereMs(dateStr) {
       const bytes = Buffer.byteLength(md, "utf8");
       if (bytes > AB.BUDGET.failBytes) { bad++; fail(`agent: agent.md is ${bytes} bytes — over the ${AB.BUDGET.failBytes} budget`); }
       else if (bytes > AB.BUDGET.warnBytes) warn(`agent: agent.md is ${bytes} bytes — over the ${AB.BUDGET.warnBytes} soft budget; older episodes collapse to their row at the next threshold`);
-      // page: the header link, the hidden view, the prompt with the live address (drift)
+      // pages: the dashboard links out; agent instructions live only on their own route (drift)
       const html = readFileSync(join(ROOT, "index.html"), "utf8");
-      if (!/<a class="agentslink" id="agentslink" href="#agents">Agents<\/a>/.test(html)) { bad++; drift("agent: the header does not carry the Agents link"); }
-      if (!/<section class="agents" id="agents" hidden/.test(html)) { bad++; drift("agent: the Agents view is missing or not hidden by default"); }
-      if (!html.includes(`Read ${AB.SITE}/agent.md in full`)) { bad++; drift("agent: the page's prompt does not name the live brief address"); }
+      const agentsHtml = readFileSync(join(ROOT, "agents.html"), "utf8");
+      if (!/<a class="agentslink" href="agents\.html">Agents<\/a>/.test(html)) { bad++; drift("agent: the dashboard header does not link to the separate Agents page"); }
+      if (/#agents|id="agents"|function buildAgents|function syncAgentsView|AGENT_PROMPT/.test(html)) { bad++; drift("agent: agent details still live inside the dashboard page"); }
+      if (!agentsHtml.includes(`Read ${AB.SITE}/agent.md in full`)) { bad++; drift("agent: the Agents page prompt does not name the live brief address"); }
+      if (!/<a class="back" href="\.\/">Dashboard<\/a>/.test(agentsHtml)) { bad++; drift("agent: the Agents page does not link back to the dashboard"); }
+      for (const file of ["data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md", "data.json"]) {
+        if (!agentsHtml.includes(file)) { bad++; drift(`agent: the Agents page does not name ${file}`); }
+      }
       if (/id="view"|class="tabs"/.test(html)) { bad++; drift("agent: retired page-tab markers reappeared"); }
-      if (/data-fold-number/.test(html.match(/function buildAgents\(\) \{[\s\S]*?\n\}/)?.[0] || "")) { bad++; drift("agent: the Agents view must carry no glance number"); }
+      if (/data-fold-number/.test(agentsHtml)) { bad++; drift("agent: the Agents page must carry no glance number"); }
       if (!bad) ok(`agent: brief reproduces, ${(data.episodes || []).length} episodes, ${ranked.length} actions, ${(data.episodes || []).filter((e) => e.chapters?.list?.length).length} episode(s) with grounded chapters, ${bytes} bytes, every data.json path covered or left out with a reason`);
     }
   } catch (err) { bad++; fail(`agent: block threw — ${err.message}`); }

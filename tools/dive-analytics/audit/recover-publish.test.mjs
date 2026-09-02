@@ -24,7 +24,7 @@ assert.equal(recoveryAction(stale, noon), "fail");
       checks++;
       return checks === 1
         ? { ok: false, freshness: { ok: false, message: "yesterday" }, parity: { ok: false, mismatches: [{ file: "data.json" }] } }
-        : { ok: true, freshness: { ok: true }, parity: { ok: true, checked: 7 } };
+        : { ok: true, freshness: { ok: true }, parity: { ok: true, checked: 8 } };
     },
     run: () => { runs++; return { status: 0 }; },
   });
@@ -37,7 +37,7 @@ assert.equal(recoveryAction(stale, noon), "fail");
   let runs = 0;
   const status = await recoverPublish({
     now: morning,
-    verify: async () => ({ ok: true, freshness: { ok: true }, parity: { ok: true, checked: 7 } }),
+    verify: async () => ({ ok: true, freshness: { ok: true }, parity: { ok: true, checked: 8 } }),
     run: () => { runs++; return { status: 0 }; },
   });
   assert.equal(status, 0);

@@ -22,7 +22,8 @@ try {
   git(repo, "config", "user.name", "Fixture");
   writeFileSync(join(repo, "data.json"), "old\n");
   writeFileSync(join(repo, "index.html"), "old\n");
-  git(repo, "add", "--", "data.json", "index.html");
+  writeFileSync(join(repo, "agents.html"), "old\n");
+  git(repo, "add", "--", "data.json", "index.html", "agents.html");
   git(repo, "commit", "-qm", "fixture");
   git(base, "init", "--bare", "-q", "-b", "main", origin);
   git(repo, "remote", "add", "origin", origin);
@@ -37,6 +38,9 @@ try {
   writeFileSync(join(repo, "index.html"), "new\n");
   assert.throws(() => assertPublisherCheckout(repo), /index\.html/);
   git(repo, "checkout", "--", "index.html");
+  writeFileSync(join(repo, "agents.html"), "new\n");
+  assert.throws(() => assertPublisherCheckout(repo), /agents\.html/);
+  git(repo, "checkout", "--", "agents.html");
   git(repo, "switch", "-qc", "agent/in-progress");
   assert.throws(() => assertPublisherCheckout(repo), /must be on main/);
 } finally {

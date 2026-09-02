@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%2359b0ff'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%230b0e13'/%3E%3C/svg%3E" />
+<title>Dive Radio — Agents</title>
+<style>
+  :root {
+    --bg: #0b0e13; --s1: #12161f; --s2: #1a212e;
+    --border: rgba(148,163,184,.10); --border-strong: rgba(148,163,184,.18);
+    --t1: #eef1f6; --t2: #b7c1d1; --t3: #8a94a8;
+    --accent: #59b0ff; --good: #3ecf8e;
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: dark; }
+  body {
+    margin: 0; background: var(--bg); color: var(--t1);
+    font: 15px/1.55 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  ::selection { background: rgba(89,176,255,.28); color: var(--t1); }
+  .wrap { width: min(900px, 100%); margin: 0 auto; padding: 20px 24px 40px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  h1 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
+  .back {
+    display: inline-flex; align-items: center; min-height: 44px; margin-left: auto;
+    padding: 0 14px; border-radius: 999px; background: var(--s2);
+    box-shadow: inset 0 0 0 1px var(--border); color: var(--t2);
+    font-weight: 600; text-decoration: none; white-space: nowrap;
+  }
+  .back:hover, .back:focus-visible { color: var(--t1); box-shadow: inset 0 0 0 1px var(--border-strong); }
+  main { display: grid; gap: 14px; }
+  .card { padding: 22px 24px; border-radius: 14px; background: var(--s1); }
+  h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.25; letter-spacing: -.015em; }
+  h3 { margin: 0 0 10px; color: var(--t3); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; }
+  p { max-width: 72ch; margin: 0; color: var(--t2); }
+  .prompt { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; margin-top: 18px; align-items: stretch; }
+  .prompt code {
+    display: block; min-width: 0; padding: 13px 14px; border-radius: 10px;
+    background: var(--s2); box-shadow: inset 0 0 0 1px var(--border);
+    color: var(--t1); font: 13.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    white-space: pre-wrap; overflow-wrap: anywhere;
+  }
+  button {
+    min-height: 44px; border: 0; border-radius: 999px; padding: 0 17px;
+    background: var(--accent); color: #0b0f17; font: 700 14px/1 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+  }
+  button:hover { background: #83c4ff; }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .urls { display: grid; gap: 9px; }
+  .urls div { color: var(--t3); }
+  .urls a { color: var(--t1); text-decoration: underline dotted rgba(148,163,184,.55); text-underline-offset: 3px; overflow-wrap: anywhere; }
+  ul { margin: 0; padding-left: 20px; color: var(--t2); }
+  li + li { margin-top: 7px; }
+  .runtimes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+  .runtime { padding: 12px 0; color: var(--t2); }
+  .runtime:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .runtime b { display: block; margin-bottom: 2px; color: var(--t1); }
+  .runtime a { color: var(--t1); }
+  .fresh { display: flex; align-items: center; gap: 9px; }
+  .fresh i { width: 7px; height: 7px; border-radius: 50%; background: var(--good); flex: none; }
+  @media (max-width: 640px) {
+    .wrap { padding: 16px 14px 28px; }
+    header { margin-bottom: 18px; }
+    .card { padding: 18px; }
+    .prompt, .runtimes { grid-template-columns: 1fr; }
+    .runtime:nth-child(n+2) { border-top: 1px solid var(--border); }
+    .prompt button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Dive Radio agents</h1>
+    <a class="back" href="./">Dashboard</a>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Point any agent at the show</h2>
+      <p>One address carries the current read, the five actions for the week, every episode, chapters, audience feedback, definitions, and a reason wherever data is missing.</p>
+      <div class="prompt">
+        <code id="agentprompt">Read https://dive-radio-analytics.vercel.app/agent.md in full, then answer as the show's analyst; treat its definitions as binding and cite its fact ids.</code>
+        <button type="button" id="agentcopy" aria-live="polite">Copy</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Addresses</h3>
+      <div class="urls">
+        <div><a href="agent.md">https://dive-radio-analytics.vercel.app/agent.md</a> — the brief, for reading</div>
+        <div><a href="agent.json">https://dive-radio-analytics.vercel.app/agent.json</a> — the same brief, as data</div>
+        <div><a href="llms.txt">https://dive-radio-analytics.vercel.app/llms.txt</a> — the file index</div>
+        <div><a href="agent-skill.md">https://dive-radio-analytics.vercel.app/agent-skill.md</a> — a ready-made agent skill</div>
+        <div><a href="data.json">https://dive-radio-analytics.vercel.app/data.json</a> — the dashboard data</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>What it gets</h3>
+      <ul>
+        <li>The show health read and the checked facts behind it</li>
+        <li>The five ranked actions for the week</li>
+        <li>Every episode’s views, launch, live turnout, watching, subscribers, discovery, and feedback</li>
+        <li>Chapters, timestamps, watch moments, and transcript excerpts</li>
+        <li>Definitions, source paths, freshness, and every known gap</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>Works with</h3>
+      <div class="runtimes">
+        <div class="runtime"><b>Claude Code</b>Paste the prompt, or add <a href="agent-skill.md">agent-skill.md</a> to your skills folder.</div>
+        <div class="runtime"><b>ChatGPT, Claude, or Gemini</b>Paste the prompt into any chat that can open a link.</div>
+        <div class="runtime"><b>OpenClaw or custom agents</b>Fetch <code>agent.md</code> as text or <code>agent.json</code> as data.</div>
+        <div class="runtime"><b>Cursor, Codex, or any HTTP client</b>Use a plain GET. No key or account is needed.</div>
+      </div>
+    </section>
+
+    <section class="card fresh">
+      <i aria-hidden="true"></i>
+      <p id="freshness">Reading freshness dates…</p>
+    </section>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script>
+const AGENT_PROMPT = document.getElementById("agentprompt").textContent;
+const copy = document.getElementById("agentcopy");
+copy.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(AGENT_PROMPT);
+    copy.textContent = "Copied";
+  } catch {
+    copy.textContent = "Select and copy";
+  }
+  setTimeout(() => { copy.textContent = "Copy"; }, 1800);
+});
+
+const data = window.DIVE_DATA;
+const freshness = document.getElementById("freshness");
+if (!data || !data.generatedAt) {
+  freshness.textContent = "Freshness dates are unavailable.";
+} else {
+  const dates = [`Data refreshed ${data.generatedAt.slice(0, 10)}`];
+  if (data.health?.date) dates.push(`health read ${data.health.date}`);
+  if (data.chaptersUpdatedAt) dates.push(`chapters ${data.chaptersUpdatedAt.slice(0, 10)}`);
+  freshness.textContent = dates.join(" · ");
+}
+</script>
+</body>
+</html>

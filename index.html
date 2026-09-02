@@ -26,11 +26,8 @@
   header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: var(--gap); }
   h1 { font-size: 21px; margin: 0; letter-spacing: -.01em; font-weight: 700; }
   .stamp { color: var(--t3); font-size: 14px; margin-left: auto; }
-  .agentslink { color: var(--t2); font-size: 14px; font-weight: 600; text-decoration: none; padding: 6px 12px; border-radius: 999px; background: var(--s2); box-shadow: inset 0 0 0 1px var(--border); }
+  .agentslink { display: inline-flex; align-items: center; min-height: 44px; color: var(--t2); font-size: 14px; font-weight: 600; text-decoration: none; padding: 0 14px; border-radius: 999px; background: var(--s2); box-shadow: inset 0 0 0 1px var(--border); white-space: nowrap; }
   .agentslink:hover, .agentslink:focus-visible { color: var(--t1); box-shadow: inset 0 0 0 1px var(--border-strong); }
-  /* PRD v12 W44: the Agents view replaces the dashboard body while #agents is in the URL */
-  body.agents-open > .wrap > :not(header):not(#agents):not(.agents) { display: none; }
-  .agents { display: grid; gap: var(--gap); }
   /* PRD v12 W43: chapters in the episode panel */
   .chapters .chrow { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 7px 0; border-top: 1px solid var(--border); font-size: 13.5px; line-height: 1.45; }
   .chapters .chrow:first-of-type { border-top: 0; }
@@ -39,18 +36,6 @@
   .chapters .chb b { display: block; color: var(--t1); font-weight: 600; }
   .chapters .chg { color: var(--t2); }
   .chapters .chnote { margin-top: 8px; font-size: 12.5px; }
-  .agents .card h2 { margin: 0 0 8px; font-size: 18px; }
-  .agents .card p { margin: 6px 0; color: var(--t2); line-height: 1.55; }
-  .agents .prompt { display: flex; gap: 10px; align-items: flex-start; }
-  .agents .prompt code { flex: 1; display: block; padding: 12px 14px; border-radius: 10px; background: var(--s2); box-shadow: inset 0 0 0 1px var(--border); color: var(--t1); font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
-  .agents .copy { flex: none; border: 0; border-radius: 999px; padding: 8px 14px; background: var(--accent); color: #0b0f17; font-weight: 700; cursor: pointer; }
-  .agents .urls { display: grid; gap: 6px; }
-  .agents .urls a { color: var(--t1); text-decoration: underline dotted rgba(148,163,184,.55); text-underline-offset: 3px; word-break: break-all; }
-  .agents .urls span { color: var(--t3); }
-  .agents ul { margin: 6px 0 0 18px; padding: 0; color: var(--t2); line-height: 1.55; }
-  .agents .runtimes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-  .agents .runtimes div { padding: 10px 12px; border-radius: 10px; background: var(--s2); box-shadow: inset 0 0 0 1px var(--border); color: var(--t2); font-size: 13.5px; line-height: 1.5; }
-  .agents .runtimes b { color: var(--t1); display: block; margin-bottom: 2px; }
   .stamp i { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
     margin-right: 7px; vertical-align: 1px; background: var(--good); }
   .stamp i.old { background: var(--amber); }
@@ -749,7 +734,7 @@
   <header>
     <h1>Dive Radio</h1>
     <div class="stamp" id="stamp"></div>
-    <a class="agentslink" id="agentslink" href="#agents">Agents</a>
+    <a class="agentslink" href="agents.html">Agents</a>
   </header>
 
   <section class="healthrow" id="health" aria-label="Show health"></section>
@@ -784,11 +769,6 @@
   <div class="panel" id="panel" style="display:none"></div>
 
   <div class="insights" id="insights" aria-label="What matters"></div>
-
-  <!-- PRD v12 W44: the Agents view — one link, one prompt, any agent. Hidden
-       until the URL carries #agents; toggled without a reload. No number on
-       it but the two dates (the glance-number budget is untouched). -->
-  <section class="agents" id="agents" hidden aria-label="Agents"></section>
 
   <details class="about">
     <summary>About this data</summary>
@@ -2933,81 +2913,6 @@ function buildInsightsPanel() {
   for (const ins of all) add(ins);
 }
 
-/* ================= agents (PRD v12 W44) ================= */
-// One link, one prompt, any agent. The view is built from words and the two
-// dates in the served data — never a number — and toggles on the URL hash
-// without a reload; the chart is re-sized when the dashboard comes back.
-const SITE = "https://dive-radio-analytics.vercel.app";
-const AGENT_PROMPT = "Read https://dive-radio-analytics.vercel.app/agent.md in full, then answer as the show's analyst; treat its definitions as binding and cite its fact ids.";
-function buildAgents() {
-  const el = document.getElementById("agents");
-  if (!el) return;
-  const dataDate = DATA.generatedAt ? DATA.generatedAt.slice(0, 10) : "";
-  const healthDate = DATA.health?.date || "";
-  const chaptersDate = DATA.chaptersUpdatedAt ? DATA.chaptersUpdatedAt.slice(0, 10) : "";
-  const runtimes = [
-    ["Claude Code", "Paste the prompt. It fetches the brief itself. Or drop <a href=\"agent-skill.md\">agent-skill.md</a> into your skills folder."],
-    ["Claude.ai / ChatGPT / Gemini", "Paste the prompt into a new chat. Any assistant that can open a link reads it."],
-    ["OpenClaw / Hermes / custom agents", `Fetch <code>${SITE}/agent.md</code> as text, or <code>agent.json</code> for the same digest as data.`],
-    ["Cursor, Codex, anything with HTTP", "A plain GET. No key, no MCP server, no account."],
-  ];
-  el.innerHTML = `
-    <div class="card">
-      <div class="kicker">Agents</div>
-      <h2>Point any agent at the show</h2>
-      <p>One address carries the whole read: performance, comparisons like for like, show and episode health, the direction of every measure, the five actions for the week, every episode’s chapters with timestamps, the audience’s words, and the definitions behind each number. It is rebuilt on every data refresh from the same stores this page reads, and it says what it leaves out.</p>
-      <div class="prompt"><code id="agentprompt">${esc(AGENT_PROMPT)}</code><button type="button" class="copy" id="agentcopy">Copy</button></div>
-    </div>
-    <div class="card">
-      <div class="kicker">Addresses</div>
-      <div class="urls">
-        <div><a href="agent.md">${SITE}/agent.md</a> <span>— the brief, for reading</span></div>
-        <div><a href="agent.json">${SITE}/agent.json</a> <span>— the same digest, for parsing</span></div>
-        <div><a href="llms.txt">${SITE}/llms.txt</a> <span>— the index of everything here</span></div>
-        <div><a href="agent-skill.md">${SITE}/agent-skill.md</a> <span>— a drop-in skill for Claude Code and OpenClaw</span></div>
-        <div><a href="data.json">${SITE}/data.json</a> <span>— the raw data the page renders</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="kicker">What it gets</div>
-      <ul>
-        <li>The show at a glance and the honesty rules every number follows</li>
-        <li>Today’s show health: score, headline, the seven checks with their states, the helping and needs-work facts, the direction of every measure, the outlook</li>
-        <li>The five ranked actions for the week and the check each one serves</li>
-        <li>Every episode in one table: views by platform, first week, launch word, pace, episode health, live turnout, watching, subscribers, discovery, feedback</li>
-        <li>Episode by episode: links, chapters with timestamps and YouTube deep links, watch moments with transcript excerpts, featured feedback, the live session, the first-week story, every absence with its reason</li>
-        <li>The trajectory: first weeks in order, direction series, newest against previous at the same age</li>
-        <li>Definitions, lineage, freshness, and where the raw data and transcripts live</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="kicker">Works with</div>
-      <div class="runtimes">${runtimes.map(([name, how]) => `<div><b>${esc(name)}</b>${how}</div>`).join("")}</div>
-    </div>
-    <div class="card">
-      <div class="kicker">Freshness</div>
-      <p>Built from data refreshed ${esc(dataDate)}${healthDate ? `; the health read is from ${esc(healthDate)}` : ""}${chaptersDate ? `; chapters last written ${esc(chaptersDate)}` : ""}. The brief carries the same dates in its first section.</p>
-      <p><a href="#" id="agentsback">Back to the dashboard</a></p>
-    </div>`;
-  document.getElementById("agentcopy").addEventListener("click", async () => {
-    const btn = document.getElementById("agentcopy");
-    try { await navigator.clipboard.writeText(AGENT_PROMPT); btn.textContent = "Copied"; } catch { btn.textContent = "Select and copy"; }
-    setTimeout(() => { btn.textContent = "Copy"; }, 1800);
-  });
-  document.getElementById("agentsback").addEventListener("click", (ev) => { ev.preventDefault(); history.pushState(null, "", location.pathname + location.search); syncAgentsView(); });
-}
-function syncAgentsView() {
-  const open = location.hash === "#agents";
-  document.body.classList.toggle("agents-open", open);
-  const el = document.getElementById("agents");
-  if (el) el.hidden = !open;
-  const link = document.getElementById("agentslink");
-  if (link) { link.textContent = open ? "Dashboard" : "Agents"; link.href = open ? location.pathname + location.search : "#agents"; }
-  if (!open && typeof chart !== "undefined" && chart) { try { chart.resize(); } catch { /* the chart re-draws on the next interaction */ } }
-  if (open) window.scrollTo(0, 0);
-}
-window.addEventListener("hashchange", syncAgentsView);
-
 /* ================= about ================= */
 function buildAbout() {
   document.getElementById("about").innerHTML = `
@@ -3020,9 +2925,9 @@ function buildAbout() {
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
+  <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
   <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The words are written by a model over the day’s checked facts; when the model fails, a plain deterministic read is written instead so no day goes without one. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — orange fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos. Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>What matters</b> is the five things to do this week, in order — written by a model over the day’s show-health read (each check’s state, which way every measure is heading, the outlook, each launch word) and the full fact sheet, with the biggest lever first. Every number in an item is copied from a stored fact; an item whose numbers move out from under it is held back rather than shown. The category on each item is the decision it informs. Only these five appear — the same-age pace of the newest episode stays on its card and in the chart standings. The two at the top of the health card’s Do next are the same first two.</p>
-  <p><b>Agents</b> (the link in the header) is the same show for an AI agent: one address, <a href="agent.md">agent.md</a>, rebuilt on every refresh from the stores this page reads, carrying the read, the five actions, every episode with its chapters and moments, the trajectory, and the definitions — with a dash and a reason wherever a number is missing. A companion file as data, an index, and a drop-in skill sit beside it. <b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it; a timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically. Snapshots stop 60 days after an episode’s premiere, long after its totals have settled. YouTube’s analytics arrive two to three days late for every episode alike, so “three weeks in” means the numbers as they stood about then.</p>`;
 }
 
@@ -3141,8 +3046,6 @@ const stamp = document.getElementById("stamp");
 
 buildAbout();
 buildInsightsPanel();
-buildAgents();
-syncAgentsView();
 render();
 </script>
 </body>

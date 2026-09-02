@@ -11,8 +11,8 @@ import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
 
-assert.deepEqual(PARITY_ARTIFACTS, ["index.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"]);
-assert.equal(PARITY_ARTIFACTS, PUBLIC_ARTIFACTS, "local assembly and live parity share one seven-file manifest");
+assert.deepEqual(PARITY_ARTIFACTS, ["index.html", "agents.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"]);
+assert.equal(PARITY_ARTIFACTS, PUBLIC_ARTIFACTS, "local assembly and live parity share one eight-file manifest");
 
 const fixture = Object.fromEntries(PARITY_ARTIFACTS.map((file) => [file, Buffer.from(`${file}\n`)]));
 assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
@@ -23,6 +23,13 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
   assert.equal(result.ok, false);
   assert.equal(result.mismatches[0].file, "index.html");
   assert.match(result.mismatches[0].localSha256, /^[a-f0-9]{64}$/);
+}
+
+{
+  const live = { ...fixture, "agents.html": Buffer.from("agents.html changed\n") };
+  const result = compareArtifactMaps(fixture, live);
+  assert.equal(result.ok, false);
+  assert.equal(result.mismatches[0].file, "agents.html");
 }
 
 // Negative control: the old generatedAt-only proof would accept this pair.
@@ -39,6 +46,8 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
 {
   const missing = { ...fixture }; delete missing["agent.md"];
   assert.deepEqual(compareArtifactMaps(fixture, missing).mismatches[0], { file: "agent.md", reason: "live artifact missing" });
+  const missingPage = { ...fixture }; delete missingPage["agents.html"];
+  assert.deepEqual(compareArtifactMaps(fixture, missingPage).mismatches[0], { file: "agents.html", reason: "live artifact missing" });
   const newline = { ...fixture, "llms.txt": Buffer.from("llms.txt") };
   assert.equal(compareArtifactMaps(fixture, newline).ok, false, "a final-newline mismatch is a byte mismatch");
 }
@@ -68,4 +77,4 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
   }
 }
 
-console.log("live-parity.test: seven artifacts exact, bounded fetches, release proof, same-stamp mutation, missing file, newline mismatch, and single fetch findings pass");
+console.log("live-parity.test: eight artifacts exact, bounded fetches, release proof, same-stamp mutation, missing files, newline mismatch, and single fetch findings pass");

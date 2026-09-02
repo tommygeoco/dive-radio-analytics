@@ -91,7 +91,7 @@ Rules that follow from the shape:
 
 ## The daily chain
 
-Runs on the owner machine from the dedicated checkout `/Users/bones/Documents/Codex/2026-08-22/you-are-working-on-the-dive/work/dive-radio-analytics-publisher`. The OpenClaw automation `restream-postlive-snapshot` enters at 07:00 America/Phoenix through `node tools/dive-analytics/run-daily.mjs --primary`; it never runs from an active development tree. A 06:50 job ingests Restream into the same checkout. The disabled 06:00 rehearsal stays disabled. `recover-publish.mjs` checks production at 08:15 and noon, but only the morning check may invoke `run-daily.mjs --recovery`. A Monday-noon job reads reports from the same checkout. The repo is both source and served site; publish means exact scoped commit + `HEAD:main` push + Vercel production deploy + exact seven-file proof.
+Runs on the owner machine from the dedicated checkout `/Users/bones/Documents/Codex/2026-08-22/you-are-working-on-the-dive/work/dive-radio-analytics-publisher`. The OpenClaw automation `restream-postlive-snapshot` enters at 07:00 America/Phoenix through `node tools/dive-analytics/run-daily.mjs --primary`; it never runs from an active development tree. A 06:50 job ingests Restream into the same checkout. The disabled 06:00 rehearsal stays disabled. `recover-publish.mjs` checks production at 08:15 and noon, but only the morning check may invoke `run-daily.mjs --recovery`. A Monday-noon job reads reports from the same checkout. The repo is both source and served site; publish means exact scoped commit + `HEAD:main` push + Vercel production deploy + exact eight-file proof.
 
 ```
 postlive-discover → transcripts-pull → postlive-track snapshot → yt-analytics-pull

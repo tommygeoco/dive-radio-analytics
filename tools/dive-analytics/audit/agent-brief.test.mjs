@@ -12,6 +12,16 @@ import { parseTranscript } from "../transcripts.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
 
+// The agent instructions are a separate destination, never dashboard content.
+{
+  const dashboard = readFileSync(join(ROOT, "index.html"), "utf8");
+  const agentsPage = readFileSync(join(ROOT, "agents.html"), "utf8");
+  assert.match(dashboard, /<a class="agentslink" href="agents\.html">Agents<\/a>/);
+  assert.doesNotMatch(dashboard, /#agents|id="agents"|function buildAgents|function syncAgentsView|AGENT_PROMPT/);
+  assert.match(agentsPage, /Read https:\/\/dive-radio-analytics\.vercel\.app\/agent\.md in full/);
+  assert.match(agentsPage, /<a class="back" href="\.\/">Dashboard<\/a>/);
+}
+
 // 1. the census grammar: arrays as [], slug maps as {slug}, dest maps as {dest}, depth ≤ 4
 {
   const paths = AB.censusPaths({

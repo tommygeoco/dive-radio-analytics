@@ -11,7 +11,7 @@ assert.ok(specs.includes("data.json") && specs.includes("data/restream/alerts-st
 assert.equal(pathMatchesSpec("transcripts/episode one.txt", "transcripts/*.txt"), true);
 assert.equal(pathMatchesSpec("transcripts/nested/episode.txt", "transcripts/*.txt"), false);
 assert.equal(pathMatchesSpec("tools/dive-analytics/audit/CRITIC-2026-09-01.md", "tools/dive-analytics/audit/CRITIC-*.md"), true);
-assert.deepEqual(classifyPaths(["index.html"], specs)[0].matches, []);
+assert.deepEqual(classifyPaths(["index.html", "agents.html"], specs).map((entry) => entry.matches), [[], []]);
 
 const repo = mkdtempSync(join(tmpdir(), "dive-publish-scope."));
 try {

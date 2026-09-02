@@ -24,7 +24,7 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   (`tools/dive-analytics/health-feedback.mjs better|same|worse "…"`).
 - Launch word per episode (strong / typical / soft, promo-qualified, "so far"
   under a week) on every card from its first reading.
-- Agents (header link): one address any AI agent can read —
+- [Agents](https://dive-radio-analytics.vercel.app/agents.html) (a separate page linked from the header): one address any AI agent can read —
   [`agent.md`](https://dive-radio-analytics.vercel.app/agent.md) — the whole
   show in one pull: the health read with its facts, the five actions, every
   episode with chapters (timestamps grounded in the transcript), moments,
@@ -86,7 +86,7 @@ checkout. The OpenClaw job enters through `run-daily.mjs`, which prevents
 overlap and allows the scheduled run plus one morning recovery. The chain
 pulls main before capture, retries each required platform pull once, validates
 the final files, pushes the exact checked commit, deploys production, and
-compares all seven public data files byte-for-byte. An 08:15 check starts the
+compares all eight public files byte-for-byte. An 08:15 check starts the
 one recovery only when production is not current; noon verifies without
 starting another chain. Alerts stay queued until Slack returns a message
 receipt, and the delivery worker runs every five minutes. The pipeline also

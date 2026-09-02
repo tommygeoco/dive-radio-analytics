@@ -37,7 +37,7 @@ lives on the owner machine).
 | recommendations | `tools/dive-analytics/recommendations.mjs` | `data/restream/recommendations.json` | **yes** | previous store stays |
 | moment-summaries | `tools/dive-analytics/moment-summaries.mjs` | `data/restream/moment-summaries.json` | **yes** | moments render without context |
 | build-data → validate | (again, so today's health entry is in the artifact) | | | |
-| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact seven-file live check | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
+| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact eight-file live check | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
 | alerts | `tools/dive-analytics/alerts.mjs` | `alerts-state.json`, locked `alerts-pending.json` | no | required after publish; delivery keeps each line until Slack returns a receipt |
 | freshness | `tools/dive-analytics/freshness.mjs --strict` | locked `alerts-pending.json` only on failure | no | requires today's Phoenix build and a readable production response |
 | critic (Mon) | `tools/dive-analytics/critic.mjs` | `tools/dive-analytics/audit/CRITIC-<date>.md` | **yes** | writes "did not run", exit 0 |
