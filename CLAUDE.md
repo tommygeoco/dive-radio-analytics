@@ -67,7 +67,7 @@ L2 synthesis   tools/dive-analytics/baselines.mjs   (pure: windows, reading rule
                tools/dive-analytics/watch-moments.mjs (pure functions, imported by build-data)
      │
 L3 model       scripts/restream/comments-classify.mjs → comments-classified.json
- (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v4: three lenses, PRD v10; swing-fitted bands and the whole live session, §11)
+ (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v5: three lenses, PRD v10; swing-fitted bands and the whole live session, §11; peers split at known reporting breaks, PRD v12 §3.1)
   facts)        tools/dive-analytics/health-verify.mjs → health-verify.json + audit/HEALTH-VERIFY.md (deterministic critic loop; never blocks)
                tools/dive-analytics/recommendations.mjs → recommendations.json
                tools/dive-analytics/moment-summaries.mjs → moment-summaries.json

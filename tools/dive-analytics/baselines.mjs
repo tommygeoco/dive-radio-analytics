@@ -430,11 +430,11 @@ export function computeDirection(episodes, flags, {
     discoveryShare: (e) => (views(e) && mature(e) ? discoveryOf(e) : null),
     liveAverage: (e) => (live(e) && Number.isFinite(e.live?.avg) ? e.live.avg : null),
     livePeak: (e) => (live(e) && Number.isFinite(e.live?.peak) ? e.live.peak : null),
-    liveViewers: (e) => (live(e) && Number.isFinite(e.live?.liveViews) && e.live.liveViews > 0 ? e.live.liveViews : null),
+    liveViewers: (e) => (live(e) && comparableAcrossBreaks("liveViewers", e) && Number.isFinite(e.live?.liveViews) && e.live.liveViews > 0 ? e.live.liveViews : null),
     minutesWatched: (e) => (live(e) && Number.isFinite(e.live?.watchedMin) && e.live.watchedMin > 0 ? e.live.watchedMin : null),
     chattersPer100: (e) => (live(e) ? liveRatesOf(e)?.chattersPer100 ?? null : null),
     messagesPerHour: (e) => (live(e) ? liveRatesOf(e)?.messagesPerHour ?? null : null),
-    minutesPerViewer: (e) => (live(e) ? liveDepthOf(e)?.minutesPerViewer ?? null : null),
+    minutesPerViewer: (e) => (live(e) && comparableAcrossBreaks("minutesPerViewer", e) ? liveDepthOf(e)?.minutesPerViewer ?? null : null),
     holdRate: (e) => (live(e) ? liveDepthOf(e)?.holdRate ?? null : null),
     subscribers: (e) => (views(e) && mature(e) ? subsOf(e) : null),
   };
@@ -760,3 +760,9 @@ export const KNOWN_BREAKS = Object.freeze([
     note: "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
   },
 ]);
+// A break splits the episodes into two populations for the measures it
+// touches: only episodes on the newest side are comparable with the newest
+// episode (health peers, direction points). Nothing is estimated across it.
+export function breaksFor(measureKey) { return KNOWN_BREAKS.filter((b) => b.measures.includes(measureKey)); }
+export function comparableAcrossBreaks(measureKey, episode) { return breaksFor(measureKey).every((b) => (episode?.ep ?? 0) >= b.fromEp); }
+export const NOTE_BREAK = (measureKey) => { const b = breaksFor(measureKey)[0]; return b ? `Fewer than three episodes since the live-reporting change (from E${b.fromEp}) to compare with.` : null; };

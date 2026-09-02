@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-02T00:47:34.043Z",
+ "generatedAt": "2026-09-02T01:01:38.669Z",
  "chaptersUpdatedAt": "2026-09-02T00:47:33.992Z",
  "dests": [
   {
@@ -33442,14 +33442,6 @@ window.DIVE_DATA = {
    "category": "audience",
    "rank": 4,
    "serves": "conversion"
-  },
-  {
-   "id": "rebuild-live-turnout",
-   "text": "Live turnout is slipping: E7 drew 727 live viewers against a typical 1125, and live viewers are softening — even though people who do show up stay longer, 8.3 minutes each against a usual 6.6.",
-   "recommendation": "Lock a fixed weekly slot and post a same-day reminder on both channels and X; notifications supply only a 2.3 share of YouTube views, so test a community post and a short teaser clip the morning of the stream to pull lapsed live viewers back.",
-   "category": "distribution",
-   "rank": 5,
-   "serves": "livePull"
   }
  ],
  "insightsStale": [],
@@ -33563,11 +33555,11 @@ window.DIVE_DATA = {
   "date": "2026-09-01",
   "ageDays": 0,
   "withheld": false,
-  "formulaVersion": "health-v4",
-  "dataThrough": "2026-09-01T17:22:55.752Z",
-  "score": 49,
+  "formulaVersion": "health-v5",
+  "dataThrough": "2026-09-01T23:51:25.300Z",
+  "score": 50,
   "readState": "early",
-  "headline": "Reach and engagement are fragile; live turnout holds and goodwill is healthy, a mixed picture.",
+  "headline": "The show is near its usual level and moving in mixed directions.",
   "checks": [
    {
     "key": "growth",
@@ -33597,7 +33589,7 @@ window.DIVE_DATA = {
      },
      {
       "key": "sameAge",
-      "value": 4860,
+      "value": 4923,
       "typical": 1600,
       "sample": 3,
       "reason": "promo-driven lift — shown, not scored",
@@ -33655,19 +33647,19 @@ window.DIVE_DATA = {
    },
    {
     "key": "reachEfficiency",
-    "score": 35,
+    "score": 34,
     "reason": "read from The Mascot Industrial Complex + Live Cal, the latest finished episode read from Backyard Designers behind, the latest finished episode",
     "carried": true,
     "state": "fragile",
     "bands": {
-     "healthy": 56.5,
-     "steady": 43.5
+     "healthy": 57,
+     "steady": 43
     },
-    "swing": 13,
+    "swing": 14,
     "measures": [
      {
       "key": "exposure",
-      "value": 13285,
+      "value": 13342,
       "typical": 5496,
       "sample": 3,
       "reason": "promo-driven lift — shown, not scored",
@@ -33696,7 +33688,7 @@ window.DIVE_DATA = {
      {
       "key": "discoveryShare",
       "value": 13.4,
-      "typical": 14.1,
+      "typical": 14.2,
       "sample": 3,
       "reason": null,
       "ageBasis": "mature",
@@ -33705,21 +33697,21 @@ window.DIVE_DATA = {
       "qualified": false,
       "carried": true,
       "carriedNote": "carried from Backyard Designers behind, the latest finished episode — counted at half weight",
-      "swing": 10
+      "swing": 11
      }
     ]
    },
    {
     "key": "livePull",
-    "score": 50,
-    "reason": null,
+    "score": 56,
+    "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
     "carried": false,
-    "state": "steady",
+    "state": "healthy",
     "bands": {
      "healthy": 55,
      "steady": 45
     },
-    "swing": 9,
+    "swing": 10,
     "measures": [
      {
       "key": "peak",
@@ -33752,16 +33744,16 @@ window.DIVE_DATA = {
      {
       "key": "liveViewers",
       "value": 727,
-      "typical": 1125,
-      "sample": 6,
-      "reason": null,
-      "ageBasis": "ageFree",
+      "typical": null,
+      "sample": 2,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
+      "ageBasis": null,
       "note": null,
       "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 8
+      "swing": null
      },
      {
       "key": "minutesWatched",
@@ -33781,15 +33773,15 @@ window.DIVE_DATA = {
    },
    {
     "key": "participation",
-    "score": 47,
-    "reason": null,
+    "score": 41,
+    "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
     "carried": false,
-    "state": "steady",
+    "state": "fragile",
     "bands": {
-     "healthy": 61,
-     "steady": 39
+     "healthy": 58,
+     "steady": 42
     },
-    "swing": 22,
+    "swing": 16,
     "measures": [
      {
       "key": "chattersPer100",
@@ -33822,16 +33814,16 @@ window.DIVE_DATA = {
      {
       "key": "minutesPerViewer",
       "value": 8.3,
-      "typical": 6.6,
-      "sample": 6,
-      "reason": null,
-      "ageBasis": "ageFree",
+      "typical": null,
+      "sample": 2,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
+      "ageBasis": null,
       "note": null,
       "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 29
+      "swing": null
      },
      {
       "key": "holdRate",
@@ -33923,7 +33915,7 @@ window.DIVE_DATA = {
   "asOf": {
    "newest": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
    "newestTitle": "Steal These AI Design Patterns + Live Ca",
-   "ageDays": 4.9,
+   "ageDays": 5.2,
    "provisional": true,
    "carried": [
     "reachEfficiency",
@@ -33954,7 +33946,7 @@ window.DIVE_DATA = {
     {
      "key": "watching",
      "n": 4,
-     "pctPerEpisode": -6.9,
+     "pctPerEpisode": -6.7,
      "direction": "softening",
      "reason": null
     },
@@ -33975,7 +33967,7 @@ window.DIVE_DATA = {
     {
      "key": "discoveryShare",
      "n": 4,
-     "pctPerEpisode": -3.4,
+     "pctPerEpisode": -3.7,
      "direction": "holding",
      "reason": null
     },
@@ -33995,10 +33987,10 @@ window.DIVE_DATA = {
     },
     {
      "key": "liveViewers",
-     "n": 5,
-     "pctPerEpisode": -13.8,
-     "direction": "softening",
-     "reason": null
+     "n": 3,
+     "pctPerEpisode": 21.2,
+     "direction": null,
+     "reason": "Three episodes show the slope; a direction word needs four."
     },
     {
      "key": "minutesWatched",
@@ -34023,10 +34015,10 @@ window.DIVE_DATA = {
     },
     {
      "key": "minutesPerViewer",
-     "n": 5,
-     "pctPerEpisode": 24.4,
-     "direction": "building",
-     "reason": null
+     "n": 3,
+     "pctPerEpisode": -2.9,
+     "direction": null,
+     "reason": "Three episodes show the slope; a direction word needs four."
     },
     {
      "key": "holdRate",
@@ -34054,7 +34046,7 @@ window.DIVE_DATA = {
     "reason": "Three episodes show the slope; a direction word needs four."
    },
    "coolOff": {
-    "ageDays": 4.9,
+    "ageDays": 5.2,
     "word": null,
     "n": 2,
     "reason": "promo-driven lift — shown, not scored"
@@ -34078,8 +34070,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "latest-same-age-youtube",
-    "display": "4,860",
-    "text": "The latest episode has 4,860 YouTube views at this age."
+    "display": "4,923",
+    "text": "The latest episode has 4,923 YouTube views at this age."
    },
    {
     "id": "typical-same-age-youtube",
@@ -34118,8 +34110,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "latest-same-age-reach",
-    "display": "13,285",
-    "text": "The latest episode's X announces have been seen 13,285 times at this age."
+    "display": "13,342",
+    "text": "The latest episode's X announces have been seen 13,342 times at this age."
    },
    {
     "id": "typical-same-age-reach",
@@ -34148,18 +34140,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "typical-discovery-share",
-    "display": "14.1%",
-    "text": "Earlier episodes typically drew 14.1% of their YouTube views from search and suggested videos."
-   },
-   {
-    "id": "latest-live-viewers",
-    "display": "727",
-    "text": "727 people watched the latest show live."
-   },
-   {
-    "id": "typical-live-viewers",
-    "display": "1,125",
-    "text": "Earlier shows were typically watched live by 1,125 people."
+    "display": "14.2%",
+    "text": "Earlier episodes typically drew 14.2% of their YouTube views from search and suggested videos."
    },
    {
     "id": "latest-live-minutes",
@@ -34190,16 +34172,6 @@ window.DIVE_DATA = {
     "id": "typical-live-average",
     "display": "49",
     "text": "Earlier shows typically averaged 49 live viewers."
-   },
-   {
-    "id": "latest-minutes-per-viewer",
-    "display": "8.3",
-    "text": "Each person who watched the latest show live stayed 8.3 minutes on average."
-   },
-   {
-    "id": "typical-minutes-per-viewer",
-    "display": "6.6",
-    "text": "Earlier shows typically kept each live viewer for 6.6 minutes."
    },
    {
     "id": "latest-hold-rate",
@@ -34278,8 +34250,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "direction-watching",
-    "display": "6.9%",
-    "text": "Over the last four clean readings, as those episodes stand now, share of the video watched fell about 6.9% each episode."
+    "display": "6.7%",
+    "text": "Over the last four clean readings, as those episodes stand now, share of the video watched fell about 6.7% each episode."
    },
    {
     "id": "direction-exposureWeekOne",
@@ -34293,8 +34265,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "direction-discoveryShare",
-    "display": "3.4%",
-    "text": "Over the last four clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 3.4% each episode."
+    "display": "3.7%",
+    "text": "Over the last four clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 3.7% each episode."
    },
    {
     "id": "direction-liveAverage",
@@ -34308,8 +34280,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "direction-liveViewers",
-    "display": "13.8%",
-    "text": "Over the last five clean readings, unique live viewers fell about 13.8% each episode."
+    "display": "21.2%",
+    "text": "Over the last three clean readings, unique live viewers rose about 21.2% each episode — too few readings for a direction word."
    },
    {
     "id": "direction-minutesWatched",
@@ -34328,8 +34300,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "direction-minutesPerViewer",
-    "display": "24.4%",
-    "text": "Over the last five clean readings, minutes each live viewer stayed rose about 24.4% each episode."
+    "display": "2.9%",
+    "text": "Over the last three clean readings, minutes each live viewer stayed fell about 2.9% each episode — too few readings for a direction word."
    },
    {
     "id": "direction-holdRate",
@@ -34353,34 +34325,34 @@ window.DIVE_DATA = {
    },
    {
     "id": "data-age-hours",
-    "display": "5",
-    "text": "The newest audience numbers were refreshed 5 hours ago."
+    "display": "1",
+    "text": "The newest audience numbers were refreshed 1 hours ago."
    }
   ],
   "pros": [
    {
-    "text": "74.9% of the latest show's peak audience was still watching in its last ten minutes.",
-    "factId": "latest-hold-rate"
+    "text": "6 recent comments were clearly positive, ahead of the show’s usual level — X replies are missing.",
+    "factId": "recent-positive-feedback"
    },
    {
-    "text": "The latest finished episode added 3.6 subscribers for each thousand YouTube views.",
+    "text": "The latest finished episode added 3.6 subscribers for each thousand YouTube views, ahead of the show’s usual level.",
     "factId": "latest-subscriber-rate"
    }
   ],
   "cons": [
    {
-    "text": "13% of the latest finished episode's X announce impressions became plays.",
+    "text": "13% of the latest finished episode's X announce impressions became plays, under the show’s usual level.",
     "factId": "latest-finished-announce-play"
    },
    {
-    "text": "The latest episode has drawn 43 likes and comments on YouTube at this age.",
-    "factId": "latest-engagement-count"
+    "text": "The latest show drew 50.2 chat messages an hour, under the show’s usual level.",
+    "factId": "latest-chat-per-hour"
    }
   ],
   "drivers": [
-   "Participation and subscribers joined the check set since the last saved read, so this read rests on different checks — the shift reflects availability, not the show changing.",
-   "The score sits near the weighted mean: fragile audience quality and reach are offset by healthy goodwill, steady live turnout, and a subscriber rate above typical.",
-   "Reach and subscriber readings are carried from older finished episodes at half weight, and the newest episode's early lift is promo-driven, so it scored nothing."
+   "A deterministic read: the score is the weighted middle of the checks that could be measured today, with promo-driven lifts shown but not scored.",
+   "Since the last saved read participation and subscribers joined: the difference comes from which checks are available, not from the show changing.",
+   "reach and subscribers read the latest finished episode at half weight because the newest is too young for them."
   ],
   "checkSetChange": {
    "previous": [
@@ -35960,22 +35932,12 @@ window.DIVE_DATA = {
     {
      "key": "liveViewers",
      "check": "livePull",
-     "n": 5,
-     "pctPerEpisode": -13.8,
-     "direction": "softening",
+     "n": 3,
+     "pctPerEpisode": 21.2,
+     "direction": null,
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 1226
-      },
-      {
-       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-       "ep": 4,
-       "value": 1199
-      },
       {
        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "ep": 5,
@@ -35992,7 +35954,7 @@ window.DIVE_DATA = {
        "value": 727
       }
      ],
-     "reason": null
+     "reason": "Three episodes show the slope; a direction word needs four."
     },
     {
      "key": "minutesWatched",
@@ -36108,22 +36070,12 @@ window.DIVE_DATA = {
     {
      "key": "minutesPerViewer",
      "check": "participation",
-     "n": 5,
-     "pctPerEpisode": 24.4,
-     "direction": "building",
+     "n": 3,
+     "pctPerEpisode": -2.9,
+     "direction": null,
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 3.9
-      },
-      {
-       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-       "ep": 4,
-       "value": 5
-      },
       {
        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "ep": 5,
@@ -36140,7 +36092,7 @@ window.DIVE_DATA = {
        "value": 8.3
       }
      ],
-     "reason": null
+     "reason": "Three episodes show the slope; a direction word needs four."
     },
     {
      "key": "holdRate",
@@ -36221,12 +36173,12 @@ window.DIVE_DATA = {
     {
      "check": "livePull",
      "direction": "building",
-     "measures": 4
+     "measures": 3
     },
     {
      "check": "participation",
      "direction": "softening",
-     "measures": 4
+     "measures": 3
     }
    ],
    "overall": "mixed"

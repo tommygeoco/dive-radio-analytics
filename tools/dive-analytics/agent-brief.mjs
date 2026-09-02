@@ -42,6 +42,7 @@ const short = (title) => String(title || "").replace(/^Dive Radio:?\s*/i, "");
 const esc = (s) => String(s ?? "").replace(/\|/g, "\\|").replace(/\r?\n+/g, " ").trim();
 const cut = (s, n) => { const t = esc(s).replace(/https?:\/\/\S+/g, "[link]"); return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t; };
 const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : "");
+const themeWords = (list) => (list || []).map((t) => (t && typeof t === "object" ? `${esc(t.theme)}${t.count != null ? ` (${t.count})` : ""}` : esc(t)));
 const absent = (reason) => ({ value: null, reason: reason || "not available" });
 
 export const CHECK_WORDS = Object.freeze({
@@ -70,7 +71,7 @@ export const COVERS = Object.freeze([
   "episodes[].metrics*", "episodes[].live.byChannel[]*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
   "episodes[].health*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*",
   "insights[]*", "insightsStale[]*", "showTrend.week1VelocityByEpisode[]*", "showTrend.paceRank*", "commentSummary.enjoyThemes[]*", "commentSummary.complaintThemes[]*",
-  "health.checks[]*", "health.asOf*", "health.pros[]*", "health.cons[]*", "health.drivers[]*", "health.checkSetChange*", "health.facts[]*", "health.trend*",
+  "health.checks[]*", "health.asOf*", "health.direction*", "health.outlook*", "health.pros[]*", "health.cons[]*", "health.drivers[]*", "health.checkSetChange*", "health.facts[]*", "health.trend*",
   "baselines.constants*", "baselines.pace.{slug}*", "baselines.launch.{slug}*", "baselines.newestVsPrevious*", "baselines.direction.votes[]*", "baselines.direction.measures[]*", "baselines.outlook.nextFirstWeek*", "baselines.outlook.coolOff*", "baselines.anomaly.{slug}*", "baselines.knownBreaks[]*",
   "generatedAt", "dests", "dests[]", "dests[].key", "dests[].label", "dests[].platform",
   "episodes", "episodes[]", "episodes[].slug", "episodes[].title", "episodes[].premiere", "episodes[].show", "episodes[].active", "episodes[].partialHistory", "episodes[].ep", "episodes[].ageDays", "episodes[].transcript", "episodes[].subsPer1k", "episodes[].discoveryShare",
@@ -99,8 +100,6 @@ export const LEAVES_OUT = Object.freeze([
   { path: "episodes[].comments.list", reason: "every classified comment — counts, themes, and featured quotes stand in; the list is in data.json" },
   { path: "episodes[].watch.moments[].excerpt", reason: "cut to a short excerpt in the brief; the full verbatim excerpt is in data.json" },
   { path: "episodes[].chapters.list[].quote", reason: "the grounding quote behind each chapter — the timestamp and title are what an agent needs; the quote is in agent.json" },
-  { path: "health.direction", reason: "a copy of baselines.direction kept with the read for history" },
-  { path: "health.outlook", reason: "a copy of baselines.outlook kept with the read for history" },
   { path: "baselines.watchPct", reason: "the typical share watched — printed inside the health measures" },
   { path: "baselines.watchPctBySlug", reason: "per-episode share watched — printed in the episode table" },
   { path: "baselines.typicalCurve", reason: "the typical watch curve, a chart aid" },
@@ -161,7 +160,7 @@ function episodeDigest(e, data) {
     links: { youtube: Object.fromEntries(yt), xReplays: Object.fromEntries(x), announces: (e.announces || []).map((a) => ({ account: a.account, at: a.ts, url: a.url || null })), transcript: e.transcript ? `${SITE}/transcripts/${e.slug}.txt` : null },
     views: { youtube: e.latest?.ytTotal ?? null, xPlays: e.latest?.xPlays ?? null, xPlaysMarker: plays.partial ? "partial" : plays.stale ? "stale" : null, total: e.latest?.totalViews ?? null, xReach: e.latest?.xImpressions ?? null, asOf: e.latest?.ts ?? null, byDest: e.latest?.byDest || {} },
     firstWeek: e.metrics?.week1Velocity != null ? { value: e.metrics.week1Velocity } : absent(e.metrics?.week1Note || "no clean first week"),
-    launch: launch?.word ? { word: launch.word, promoDriven: !!launch.promoDriven, provisional: !!launch.provisional, late: !!launch.late, value: launch.value, typical: launch.typical, pct: launch.pct, peers: launch.n } : absent(launch?.reason || "no reading at the launch age"),
+    launch: launch?.word ? { word: launch.word, label: `${launch.promoDriven ? "promo-driven" : launch.word}${launch.provisional ? " (so far)" : ""}`, promoDriven: !!launch.promoDriven, provisional: !!launch.provisional, late: !!launch.late, value: launch.value, typical: launch.typical, pct: launch.pct, peers: launch.n } : absent(launch?.reason || "no reading at the launch age"),
     pace: pace?.rank != null ? { rank: pace.rank, of: pace.of, pct: pace.pct, value: pace.value, typical: pace.typical, ageDays: pace.ageDays } : absent(pace?.reason || "pace needs three other episodes at this age"),
     promo: flag?.flagged ? { provisional: !!flag.provisional, note: e.metrics?.anomaly || "promo-driven outlier" } : null,
     engagementPer1k: e.metrics?.engagementPer1k ?? null, subsPer1k: e.subsPer1k ?? null, discoveryShare: e.discoveryShare ?? null,
@@ -179,14 +178,21 @@ function healthDigest(data) {
   return {
     date: h.date, dataThrough: h.dataThrough, ageDays: h.ageDays, readState: h.readState, formulaVersion: h.formulaVersion,
     score: h.score, band: bandWords(h.score), headline: h.headline, drivers: h.drivers || [],
-    readsOn: h.asOf ? { episode: h.asOf.newestTitle || h.asOf.newest, ageDays: h.asOf.ageDays, provisional: !!h.asOf.provisional, carried: h.asOf.carried || [], promoQualified: h.asOf.qualified || [] } : null,
+    readsOn: h.asOf ? { episode: short((data.episodes || []).find((e) => e.slug === h.asOf.newest)?.title) || h.asOf.newestTitle || h.asOf.newest, ageDays: h.asOf.ageDays, provisional: !!h.asOf.provisional, carried: h.asOf.carried || [], promoQualified: h.asOf.qualified || [] } : null,
     checks: (h.checks || []).map((c) => ({
       key: c.key, name: CHECK_WORDS[c.key] || c.key, state: c.state, score: c.score, bands: c.bands || null, swing: c.swing ?? null, carried: !!c.carried, reason: c.reason || null,
-      measures: (c.measures || []).map((m) => ({ key: m.key, name: MEASURE_WORDS[m.key] || m.key, value: m.value, typical: m.typical, comparedHow: m.ageBasis ? COMPARED[m.ageBasis] : null, sample: m.sample ?? null, qualified: !!m.qualified, carried: !!m.carried, carriedNote: m.carriedNote || null, swing: m.swing ?? null, reason: m.value == null ? (m.reason || null) : null })),
+      measures: (c.measures || []).map((m) => {
+        const absolute = m.value != null && m.typical == null && m.ageBasis === "ageFree";
+        const people = absolute ? (h.facts || []).find((f) => f.id === "recent-feedback-people")?.display : null;
+        return { key: m.key, name: MEASURE_WORDS[m.key] || m.key, value: m.value, typical: m.typical, comparedHow: m.ageBasis ? COMPARED[m.ageBasis] : null, sample: m.sample ?? null, qualified: !!m.qualified, carried: !!m.carried, carriedNote: m.carriedNote || null, swing: m.swing ?? null, reason: m.value == null ? (m.reason || null) : null, absoluteScale: absolute, absoluteNote: absolute ? `on an absolute scale — no typical until enough earlier episodes carry the same feedback sources${people ? `; from ${people} people` : ""}` : null };
+      }),
     })),
     helping: (h.pros || []).map((b) => ({ text: b.text, factId: b.factId })), needsWork: (h.cons || []).map((b) => ({ text: b.text, factId: b.factId })),
     facts: (h.facts || []).map((f) => ({ id: f.id, display: f.display, text: f.text })),
     checkSetChange: h.checkSetChange || null,
+    // the lens AS OF THE READ (the entry's own copy) — today's lens is in the trajectory
+    direction: h.direction ? { overall: h.direction.overall || null, measures: (h.direction.measures || []).map((t) => ({ key: t.key, name: DIRECTION_WORDS[t.key] || t.key, word: t.direction || null, pctPerEpisode: t.pctPerEpisode ?? null, readings: t.n ?? null, reason: t.direction ? null : (t.reason || null) })) } : null,
+    outlook: h.outlook ? { nextFirstWeek: h.outlook.nextFirstWeek?.low != null ? { low: h.outlook.nextFirstWeek.low, high: h.outlook.nextFirstWeek.high, typical: h.outlook.nextFirstWeek.typical, cleanWeeks: h.outlook.nextFirstWeek.n, direction: h.outlook.nextFirstWeek.direction || null, reason: h.outlook.nextFirstWeek.reason || null } : absent(h.outlook.nextFirstWeek?.reason || "fewer than three clean first weeks"), coolOff: h.outlook.coolOff ? { ageDays: h.outlook.coolOff.ageDays, word: h.outlook.coolOff.word || null, reason: h.outlook.coolOff.reason || null } : null } : null,
   };
 }
 
@@ -307,7 +313,7 @@ export function renderMarkdown(digest) {
   p(`- Episodes: ${s.episodes} (E${s.first?.ep} on ${s.first?.premiere} → E${s.latest?.ep} on ${s.latest?.premiere}, "${esc(s.latest?.title)}"), a weekly live show with call-ins.`);
   p(`- Channels: ${s.channels.map((ch) => `${ch.label} (${ch.key})`).join("; ")}.`);
   p(`- Views so far: ${fmtNum(s.totals.views)} total = ${fmtNum(s.totals.youtube)} YouTube + ${fmtNum(s.totals.xPlays)} X plays${s.totals.xPlaysMarkers.length ? ` (X plays ${s.totals.xPlaysMarkers.join(", ")} carry a partial or stale marker)` : ""}. X reach so far: ${fmtNum(s.totals.xReach)} (exposure, kept apart).`);
-  p(abs(s.feedback) ? `- Audience feedback: — (${s.feedback.reason}).` : `- Audience feedback captured: ${fmtNum(s.feedback.captured)} comments, ${fmtNum(s.feedback.directional)} with a clear lean from ${fmtNum(s.feedback.people)} people (${fmtNum(s.feedback.enjoyed)} enjoyed, ${fmtNum(s.feedback.concerns)} raised a concern).${s.feedback.enjoyThemes.length ? ` Enjoyed: ${s.feedback.enjoyThemes.map(esc).join(", ")}.` : ""}${s.feedback.concernThemes.length ? ` Concerns: ${s.feedback.concernThemes.map(esc).join(", ")}.` : ""}`);
+  p(abs(s.feedback) ? `- Audience feedback: — (${s.feedback.reason}).` : `- Audience feedback captured: ${fmtNum(s.feedback.captured)} comments, ${fmtNum(s.feedback.directional)} with a clear lean from ${fmtNum(s.feedback.people)} people (${fmtNum(s.feedback.enjoyed)} enjoyed, ${fmtNum(s.feedback.concerns)} raised a concern).${s.feedback.enjoyThemes.length ? ` Enjoyed: ${themeWords(s.feedback.enjoyThemes).join(", ")}.` : ""}${s.feedback.concernThemes.length ? ` Concerns: ${themeWords(s.feedback.concernThemes).join(", ")}.` : ""}`);
   p(`- Dashboard: ${SITE}`);
   p();
   // 3
@@ -319,7 +325,9 @@ export function renderMarkdown(digest) {
   else {
     p(`Read saved ${h.date} over data through ${day(h.dataThrough)} (${h.ageDays === 0 ? "today" : `${h.ageDays} day(s) behind the data`}); state: ${h.readState}${h.readsOn?.provisional ? " — the newest episode is under a week old" : ""}. Formula ${h.formulaVersion}.`);
     p();
-    p(`**Score ${h.score} of 100 — ${h.band}** (fifty is the show's usual level). Direction over the last clean episodes: **${digest.direction.overall || "—"}**.`);
+    p(`**Score ${h.score} of 100 — ${h.band}** (fifty is the show's usual level). Direction over the last clean episodes, as of the read: **${h.direction?.overall || digest.direction.overall || "—"}**.`);
+    p();
+    p(`Every number in this section is as the read saw it (data through ${day(h.dataThrough)}); the episode tables in sections 5 and 6 are as of this build and can be newer.`);
     p();
     p(`Headline (model-written): ${esc(h.headline)}`);
     if (h.readsOn) p(`Reads ${esc(h.readsOn.episode)}, ${fmtNum(h.readsOn.ageDays, 1)} days in${h.readsOn.carried.length ? `; ${h.readsOn.carried.map((k) => CHECK_WORDS[k] || k).join(", ")} carried from the latest finished episode at half weight` : ""}${h.readsOn.promoQualified.length ? `; shown but not scored (promo-driven): ${h.readsOn.promoQualified.map((q) => MEASURE_WORDS[q.split(".")[1]] || q).join(", ")}` : ""}.`);
@@ -336,6 +344,7 @@ export function renderMarkdown(digest) {
         if (m.comparedHow) bits.push(m.comparedHow);
         if (m.sample) bits.push(`${m.sample} peers`);
         if (m.swing != null) bits.push(`usual swing ±${m.swing}%`);
+        if (m.absoluteNote) bits.push(m.absoluteNote);
         if (m.qualified) bits.push("promo-driven lift — shown, not scored");
         if (m.carriedNote) bits.push(m.carriedNote);
         const brk = (digest.knownBreaks || []).find((b) => b.measures.includes(m.key));
@@ -355,17 +364,17 @@ export function renderMarkdown(digest) {
       for (const f of h.facts) p(`| ${f.id} | ${esc(f.display)} | ${esc(f.text)} |`);
       p();
     }
-    const d = digest.direction;
-    if (!abs(d)) {
-      p(`Direction of each durable measure (last five clean episodes; a word needs four):`);
-      p(`| Measure | Word | Change each episode | Readings | Compared how |`); p(`|---|---|---|---|---|`);
-      for (const t of d.measures) p(`| ${t.name} | ${t.word || (t.reason ? `— (${esc(t.reason)})` : "—")} | ${t.pctPerEpisode == null ? "—" : `${t.pctPerEpisode >= 0 ? "+" : ""}${fmtNum(t.pctPerEpisode, 1)}%`} | ${t.readings} | ${t.comparedHow || "—"} |`);
+    const d = h.direction;
+    if (d) {
+      p(`Direction of each durable measure as of the read (last five clean episodes; a word needs four; the facts above carry the same slopes):`);
+      p(`| Measure | Word | Change each episode | Readings |`); p(`|---|---|---|---|`);
+      for (const t of d.measures) p(`| ${t.name} | ${t.word || (t.reason ? `— (${esc(t.reason)})` : "—")} | ${t.pctPerEpisode == null ? "—" : `${t.pctPerEpisode >= 0 ? "+" : ""}${fmtNum(t.pctPerEpisode, 1)}%`} | ${t.readings ?? "—"} |`);
       p();
     }
-    const o = digest.outlook;
-    if (!abs(o)) {
+    const o = h.outlook;
+    if (o) {
       const n = o.nextFirstWeek;
-      p(abs(n) ? `Outlook: — (${n.reason}).` : `Outlook: the last three clean first weeks ran ${fmtNum(n.low)}–${fmtNum(n.high)} YouTube views (typical ${fmtNum(n.typical)}); where the next lands if it follows them, never a bound. First-week direction: ${n.direction || `too few for a word${n.reason ? ` (${esc(n.reason)})` : ""}`}.${o.coolOff ? ` Cool-off of the newest episode at ${fmtNum(o.coolOff.ageDays, 1)} days: ${o.coolOff.word || `— (${esc(o.coolOff.reason || "no reading")})`}.` : ""}`);
+      p(abs(n) ? `Outlook as of the read: — (${n.reason}).` : `Outlook as of the read: the last three clean first weeks ran ${fmtNum(n.low)}–${fmtNum(n.high)} YouTube views (typical ${fmtNum(n.typical)}); where the next lands if it follows them, never a bound. First-week direction: ${n.direction || `too few for a word${n.reason ? ` (${esc(n.reason)})` : ""}`}.${o.coolOff ? ` Cool-off of the newest episode at ${fmtNum(o.coolOff.ageDays, 1)} days: ${o.coolOff.word || `— (${esc(o.coolOff.reason || "no reading")})`}.` : ""}`);
       p();
     }
   }
@@ -428,7 +437,7 @@ export function renderMarkdown(digest) {
     }
     if (abs(e.feedback)) p(`Feedback: — (${e.feedback.reason}).`);
     else {
-      p(`Feedback: ${fmtNum(e.feedback.captured)} comments captured, ${fmtNum(e.feedback.directional)} with a clear lean from ${fmtNum(e.feedback.people)} people (${fmtNum(e.feedback.enjoyed)} enjoyed, ${fmtNum(e.feedback.concerns)} concerns)${e.feedback.xReplies === "covered" ? "; X replies included" : "; X replies not covered"}.${e.feedback.enjoyThemes.length ? ` Enjoyed: ${e.feedback.enjoyThemes.map(esc).join(", ")}.` : ""}${e.feedback.concernThemes.length ? ` Concerns: ${e.feedback.concernThemes.map(esc).join(", ")}.` : ""}`);
+      p(`Feedback: ${fmtNum(e.feedback.captured)} comments captured, ${fmtNum(e.feedback.directional)} with a clear lean from ${fmtNum(e.feedback.people)} people (${fmtNum(e.feedback.enjoyed)} enjoyed, ${fmtNum(e.feedback.concerns)} concerns)${e.feedback.xReplies === "covered" ? "; X replies included" : "; X replies not covered"}.${e.feedback.enjoyThemes.length ? ` Enjoyed: ${themeWords(e.feedback.enjoyThemes).join(", ")}.` : ""}${e.feedback.concernThemes.length ? ` Concerns: ${themeWords(e.feedback.concernThemes).join(", ")}.` : ""}`);
       for (const q of e.feedback.featured) p(`- "${q.text}" — ${esc(q.author)} on ${q.source === "x" ? "X" : "YouTube"}`);
     }
     p(abs(e.health) ? `Episode health: — (${esc(e.health.reason)}).` : `Episode health: ${e.health.score} of 100, read on ${day(e.health.readOn)}${e.health.checks ? ` — ${Object.entries(e.health.checks).map(([k, v]) => `${k} ${v.score ?? `— (${esc(v.reason || "no reading")})`}`).join("; ")}` : ""}.`);
@@ -444,7 +453,18 @@ export function renderMarkdown(digest) {
   p();
   p(abs(t.newestPace) ? `Newest episode's pace: — (${t.newestPace.reason}).` : `Newest episode's pace: E${t.newestPace.ep} is #${t.newestPace.rank} of ${t.newestPace.of} at ${fmtNum(t.newestPace.ageDays, 1)} days (${t.newestPace.pct >= 0 ? "+" : ""}${t.newestPace.pct}% against the typical), promo-driven lifts shown as such above.`);
   if (t.newestVsPrevious) p(`Newest against the previous episode at the same age (${fmtNum(t.newestVsPrevious.ageDays, 1)} days): X reach ${t.newestVsPrevious.reach?.pct == null ? "—" : `${t.newestVsPrevious.reach.pct >= 0 ? "+" : ""}${t.newestVsPrevious.reach.pct}%`}, share watched ${t.newestVsPrevious.watched?.pct == null ? "—" : `${t.newestVsPrevious.watched.pct >= 0 ? "+" : ""}${t.newestVsPrevious.watched.pct}%`}, live ${t.newestVsPrevious.live?.pct == null ? "—" : `${t.newestVsPrevious.live.pct >= 0 ? "+" : ""}${t.newestVsPrevious.live.pct}%`}.`);
-  p(`The direction of every durable measure and the outlook are in section 3.`);
+  const d7 = digest.direction;
+  if (!abs(d7)) {
+    p();
+    p(`Direction as of this build (the read in section 3 may be a day behind): overall **${d7.overall || "—"}**.`);
+    p(`| Measure | Word | Change each episode | Readings | Compared how |`); p(`|---|---|---|---|---|`);
+    for (const t of d7.measures) p(`| ${t.name} | ${t.word || (t.reason ? `— (${esc(t.reason)})` : "—")} | ${t.pctPerEpisode == null ? "—" : `${t.pctPerEpisode >= 0 ? "+" : ""}${fmtNum(t.pctPerEpisode, 1)}%`} | ${t.readings} | ${t.comparedHow || "—"} |`);
+  }
+  const o7 = digest.outlook;
+  if (!abs(o7)) {
+    const n = o7.nextFirstWeek;
+    p(abs(n) ? `Outlook as of this build: — (${n.reason}).` : `Outlook as of this build: ${fmtNum(n.low)}–${fmtNum(n.high)} YouTube views (typical ${fmtNum(n.typical)}), first-week direction ${n.direction || "too few for a word"}${o7.coolOff ? `; cool-off of the newest episode at ${fmtNum(o7.coolOff.ageDays, 1)} days: ${o7.coolOff.word || `— (${esc(o7.coolOff.reason || "no reading")})`}` : ""}.`);
+  }
   p();
   // 8
   p(HEADINGS[7]);

@@ -1,6 +1,6 @@
 # PRD — Analytics v12: Agents — the whole show, readable by any agent in one pull (2026-09-01)
 
-**Status:** reviewed (three adversarial passes, §10) and being built the same evening. **Owner ask:** analyze
+**Status:** built and live 2026-09-02 (early); the agent exam passed 12/12 on the first live run — status log at the end. **Owner ask:** analyze
 everything the site lists — the content, outputs, intelligence,
 recommendations, comparisons, transcripts, links, episode and show health —
 and give any AI agent (Claude Code, Claude.ai, ChatGPT, OpenClaw, Cursor,
@@ -337,3 +337,37 @@ byte-compared with the pinned `now`; no `Date.now`/locale in the writer;
 sorted iteration; one commit for W42–W45; chapters seeded from the laptop
 (the chain machine pulls first, keeps its own copy on any conflict); budget
 raised to 100 KB fail.
+
+## Status log
+
+- 2026-09-02 00:47Z — shipped: `agent-brief.mjs` (pure; census with `COVERS`
+  bundles and `LEAVES_OUT`), `chapters.mjs` (ten grounded chapters for all
+  seven episodes; ~2 min per transcript; output budget 24,000 tokens because
+  the model reasons before it writes), `transcripts.mjs` over the shared
+  two-format parser with the clock detected from the header, the Agents view
+  and header link, panel chapters, live depth per episode, announce URLs,
+  `KNOWN_BREAKS`, projected health facts, validator block 1w (87 drift-tier
+  checks after the split), fixtures, docs. `agent.md` 70 KB, `agent.json`
+  108 KB, served with `text/markdown` / `application/json`.
+- **Agent exam (acceptance 1), first live run:** a fresh-context agent given
+  only the one-line prompt answered all twelve questions correctly against
+  `data.json` (score 49 near usual; audience quality and reach fragile;
+  `rebuild-announce-to-play`; E7 promo-driven with the doubling reason; E5
+  soft at 1,127 with "partial history"; E6 at 10.2 minutes per viewer; the
+  third chapter at 00:20:39; typical 1,751; E7's read pending until
+  2026-09-17; the curve in `data.json`; 1,189–1,830; 2026-09-01). It also
+  reported six defects, all fixed the same hour: enjoyed themes printed as
+  "[object Object]"; the read's episode title truncated; the direction table
+  and cool-off in section 3 came from the build, not the read (section 3 now
+  carries the read's own lens and says so; the build-time lens moved to
+  section 7); goodwill's absolute-scale score had no explanation (now says
+  so, with the people behind it); `agent.json` launch words needed a label;
+  and the honesty gap below.
+- **health-v5** (same hour): the exam noted "people who watched live" was
+  scored against six peers although E1–E4 sit before the Restream reporting
+  break. `comparableAcrossBreaks()` now restricts peers and direction points
+  for the two touched measures to the newest side of every known break;
+  with two comparable episodes they read "fewer than three episodes since
+  the live-reporting change" — absent, not caveated. Live turnout moved to
+  healthy (56) and participation to fragile (41) as a result; the day's v4
+  read (49) is kept under `superseded`.

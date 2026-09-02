@@ -88,7 +88,7 @@ import {
 import { createHash } from "node:crypto";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn, historyAt, liveRatesOf, peersFor, snapshotAt, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf, swingOf, bandsFor, stateOf, liveDepthOf, discoveryShareOf, STATE_WORDS } from "./baselines.mjs";
+import { CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn, historyAt, liveRatesOf, peersFor, snapshotAt, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf, swingOf, bandsFor, stateOf, liveDepthOf, discoveryShareOf, STATE_WORDS, comparableAcrossBreaks, NOTE_BREAK } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -121,7 +121,12 @@ export const HEALTH_STORE_VERSION = 3;
 // participation also reads minutes per live viewer and the hold rate, reach
 // also reads YouTube discovery share; each check's state word comes from
 // bands that follow the show's own swing on that check.
-export const FORMULA_VERSION = "health-v4";
+// health-v5 (2026-09-02, PRD v12 §3.1): the two live measures a known
+// reporting break touches (people who watched live, minutes per viewer) take
+// peers only from the newest episode's side of the break — three or nothing.
+// Same checks, same weights, same measures otherwise. The day's v4 read is
+// re-derived and kept under superseded (rule 9).
+export const FORMULA_VERSION = "health-v5";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
 // the 2026-08-24 transition (two checks left, score held at 51) shipped with
@@ -162,6 +167,7 @@ export const WEIGHTS_BY_FORMULA = Object.freeze({
   "health-v2": V3_WEIGHTS,
   "health-v3": V3_WEIGHTS,
   "health-v4": BASE_WEIGHTS,
+  "health-v5": BASE_WEIGHTS,
 });
 export const CHECK_LABELS = Object.freeze({
   growth: "growth", audienceQuality: "audience quality", reachEfficiency: "reach", livePull: "live turnout", participation: "participation", conversion: "subscribers", sentiment: "goodwill",
@@ -592,12 +598,14 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     const window = windowFor(newest, episodes);
     const pk = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.peak : null) });
     const av = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.avg : null) });
-    const lv = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: liveViewersOf });
+    // PRD v12 §3.1 / health-v5: a known reporting break splits the peers —
+    // only episodes on the newest's side of it are like for like
+    const lv = peersFor({ own: newest, window: window.filter((p) => comparableAcrossBreaks("liveViewers", p)), flags, units: UNIT_FAMILIES.live, valueOf: liveViewersOf });
     const lm = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: liveMinutesOf });
     livePeakMeasure = measurement("peak", newest.live.peak, pk, { ageBasis: "ageFree", episodeRead: newest.slug });
     liveAvgMeasure = measurement("average", newest.live.avg, av, { ageBasis: "ageFree", episodeRead: newest.slug });
     liveViewersMeasure = liveViewersOf(newest) != null
-      ? measurement("liveViewers", liveViewersOf(newest), lv, { ageBasis: "ageFree", episodeRead: newest.slug })
+      ? measurement("liveViewers", liveViewersOf(newest), lv, { ageBasis: "ageFree", episodeRead: newest.slug, reason: lv.typical == null ? NOTE_BREAK("liveViewers") : null })
       : measurement("liveViewers", null, null, { reason: "The latest episode's live session has no viewer count." });
     liveMinutesMeasure = liveMinutesOf(newest) != null
       ? measurement("minutesWatched", liveMinutesOf(newest), lm, { ageBasis: "ageFree", episodeRead: newest.slug })
@@ -636,12 +644,12 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     const window = windowFor(newest, episodes);
     const ch = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.chattersPer100 ?? null });
     const mr = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.messagesPerHour ?? null });
-    const st = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.minutesPerViewer ?? null });
+    const st = peersFor({ own: newest, window: window.filter((p) => comparableAcrossBreaks("minutesPerViewer", p)), flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.minutesPerViewer ?? null });
     const hd = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.holdRate ?? null });
     chattersMeasure = measurement("chattersPer100", newestRates.chattersPer100, ch, { ageBasis: "ageFree", episodeRead: newest.slug });
     chatRateMeasure = measurement("messagesPerHour", newestRates.messagesPerHour, mr, { ageBasis: "ageFree", episodeRead: newest.slug });
     stayMeasure = Number.isFinite(newestDepth?.minutesPerViewer)
-      ? measurement("minutesPerViewer", newestDepth.minutesPerViewer, st, { ageBasis: "ageFree", episodeRead: newest.slug })
+      ? measurement("minutesPerViewer", newestDepth.minutesPerViewer, st, { ageBasis: "ageFree", episodeRead: newest.slug, reason: st.typical == null ? NOTE_BREAK("minutesPerViewer") : null })
       : measurement("minutesPerViewer", null, null, { reason: "The latest episode's live session has no watch-time or viewer total." });
     holdMeasure = Number.isFinite(newestDepth?.holdRate)
       ? measurement("holdRate", newestDepth.holdRate, hd, { ageBasis: "ageFree", episodeRead: newest.slug })
