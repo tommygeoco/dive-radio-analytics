@@ -72,7 +72,8 @@ say "pushed to GitHub."
 
 LOCAL_STAMP="$(node -e "console.log(JSON.parse(require('fs').readFileSync('data.json','utf8')).generatedAt)")"
 live_stamp() { curl -fsS --max-time 20 "https://dive-radio-analytics.vercel.app/data.json?cb=$(date +%s)" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).generatedAt)}catch{console.log('unparsable')}})" 2>/dev/null || echo fetch-failed; }
-confirm_parity() { i=1; while [ $i -le 4 ]; do LIVE="$(live_stamp)"; [ "$LIVE" = "$LOCAL_STAMP" ] && return 0; sleep $((15 * i)); i=$((i + 1)); done; return 1; }
+agent_stamp() { curl -fsS --max-time 20 "https://dive-radio-analytics.vercel.app/agent.json?cb=$(date +%s)" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).generatedAt)}catch{console.log('unparsable')}})" 2>/dev/null || echo fetch-failed; }
+confirm_parity() { i=1; while [ $i -le 4 ]; do LIVE="$(live_stamp)"; [ "$LIVE" = "$LOCAL_STAMP" ] && [ "$(agent_stamp)" = "$LOCAL_STAMP" ] && return 0; sleep $((15 * i)); i=$((i + 1)); done; return 1; }
 
 attempt=1
 while [ $attempt -le 2 ]; do

@@ -282,7 +282,7 @@ function premiereMs(dateStr) {
 // (it curls the production data.json and compares generatedAt).
 {
   let bad = 0;
-  for (const f of ["data.json", "data.js", "index.html", "chart.umd.js"]) {
+  for (const f of ["data.json", "data.js", "index.html", "chart.umd.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"]) {
     if (!existsSync(join(ROOT, f))) { bad++; fail(`publish: ${join(ROOT, f)} missing from repo root`); }
   }
   const js = readFileSync(join(ROOT, "data.js"), "utf8");
@@ -296,6 +296,16 @@ function premiereMs(dateStr) {
   try {
     const mod = await import(join(TOOL, "build-data.mjs"));
     const rebuilt = mod.computeAll({ now: Date.parse(data.generatedAt) });
+    // PRD v12: the agent brief, its digest, and the index reproduce byte for
+    // byte from the same object (the writer is pure and locale-free)
+    try {
+      const AB = await import(join(TOOL, "agent-brief.mjs"));
+      const brief = AB.buildBrief(rebuilt);
+      for (const [file, text] of [["agent.md", brief.md], ["agent.json", brief.json], ["llms.txt", brief.llms]]) {
+        const onDisk = existsSync(join(ROOT, file)) ? readFileSync(join(ROOT, file), "utf8") : null;
+        if (onDisk !== text) fail(`rebuild: ${file} does not reproduce from the stores — rerun build-data.mjs`);
+      }
+    } catch (err) { fail(`rebuild: agent brief could not be rebuilt — ${err.message}`); }
     const strip = (o) => { const c = JSON.parse(JSON.stringify(o)); delete c.generatedAt; return JSON.stringify(c); };
     if (strip(rebuilt) !== strip(data)) fail("rebuild: computeAll() over current history does NOT reproduce data.json — snapshots advanced without a rebuild, or build is non-deterministic");
     else ok("rebuild: computeAll() reproduces committed data.json exactly");
@@ -1848,6 +1858,84 @@ function premiereMs(dateStr) {
     if (!/git pull --rebase/.test(publish) || publish.indexOf("git pull --rebase") > publish.indexOf("git push origin main")) { bad++; drift("chain: publish must pull --rebase before it pushes main (F26)"); }
   }
   if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
+}
+
+// --- 1w. agent brief (PRD v12): complete by construction, honest, grounded ---
+{
+  let bad = 0;
+  try {
+    const AB = await import(join(TOOL, "agent-brief.mjs"));
+    const CH = await import(join(TOOL, "chapters.mjs"));
+    const md = existsSync(join(ROOT, "agent.md")) ? readFileSync(join(ROOT, "agent.md"), "utf8") : "";
+    const digest = existsSync(join(ROOT, "agent.json")) ? JSON.parse(readFileSync(join(ROOT, "agent.json"), "utf8")) : null;
+    if (!md || !digest) { bad++; fail("agent: agent.md / agent.json missing — the brief does not reproduce"); }
+    else {
+      // census (rule 27): every data.json path is covered or left out with a reason — drift, fixed at push time
+      const missing = AB.uncovered(data);
+      if (missing.length) { bad++; drift(`agent: ${missing.length} data.json path(s) reach neither the brief nor its leaves-out list — ${missing.slice(0, 6).join(", ")}${missing.length > 6 ? ", …" : ""}`); }
+      // fixed headings, in order
+      let at = -1;
+      for (const hd of AB.HEADINGS) { const i = md.indexOf(`\n${hd}\n`); if (i < 0 || i < at) { bad++; drift(`agent: heading "${hd}" missing or out of order in agent.md`); } at = Math.max(at, i); }
+      // numbers: the brief re-derives from data.json (fail)
+      if (data.health && !data.health.withheld) {
+        if (digest.health?.score !== data.health.score) { bad++; fail(`agent: health score in the brief (${digest.health?.score}) does not re-derive from data.json (${data.health.score})`); }
+        for (const c of data.health.checks || []) { const d = (digest.health?.checks || []).find((x) => x.key === c.key); if (!d || d.score !== c.score || d.state !== c.state) { bad++; fail(`agent: check ${c.key} in the brief does not re-derive from data.json`); } }
+        if (!md.includes(`**Score ${data.health.score} of 100`)) { bad++; fail("agent: agent.md does not print the health score it re-derives"); }
+        for (const f of data.health.facts || []) if (!md.includes(`| ${f.id} |`)) { bad++; fail(`agent: fact ${f.id} is not citable from agent.md`); }
+      }
+      const ranked = (data.insights || []).filter((i) => i.rank != null);
+      for (const i of ranked) { const d = (digest.recommendations || []).find((r) => r.id === i.id); if (!d || d.finding !== i.text || d.action !== i.recommendation || d.rank !== i.rank) { bad++; fail(`agent: recommendation ${i.id} in the brief does not re-derive from data.json`); } if (!md.includes(i.recommendation)) { bad++; fail(`agent: recommendation ${i.id} action text is not in agent.md verbatim`); } }
+      for (const e of data.episodes) {
+        const d = (digest.episodes || []).find((x) => x.slug === e.slug);
+        if (!d) { bad++; fail(`agent: episode ${e.slug} missing from the brief`); continue; }
+        if (d.views.total !== (e.latest?.totalViews ?? null) || d.views.youtube !== (e.latest?.ytTotal ?? null)) { bad++; fail(`agent: E${e.ep} views in the brief do not re-derive from data.json`); }
+        const launch = data.baselines?.launch?.[e.slug];
+        if (launch?.word && (d.launch?.word !== launch.word || !!d.launch?.promoDriven !== !!launch.promoDriven)) { bad++; fail(`agent: E${e.ep} launch word in the brief does not re-derive`); }
+        if (e.health?.score != null && d.health?.score !== e.health.score) { bad++; fail(`agent: E${e.ep} episode health in the brief does not re-derive`); }
+        // absences carry reasons, never empty stand-ins (rule 2)
+        for (const k of ["firstWeek", "launch", "pace", "watching", "live", "feedback", "chapters", "health"]) { const v = d[k]; if (v && typeof v === "object" && "value" in v && v.value === null && !v.reason) { bad++; fail(`agent: E${e.ep} ${k} is absent without a reason`); } }
+        // links resolve: every link in the section is one data.json carries, a transcript on disk, or the site
+        for (const [k, u] of Object.entries(e.links || {})) if (!md.includes(u)) { bad++; fail(`agent: E${e.ep} link ${k} is not in agent.md`); }
+        if (e.transcript && !existsSync(join(ROOT, "transcripts", `${e.slug}.txt`))) { bad++; fail(`agent: E${e.ep} transcript link would not resolve`); }
+        // chapters: the brief lists exactly what the store holds; each grounds
+        if (e.chapters?.list?.length) {
+          if ((d.chapters?.list || []).length !== e.chapters.list.length) { bad++; fail(`agent: E${e.ep} chapters in the brief (${(d.chapters?.list || []).length}) differ from the store (${e.chapters.list.length})`); }
+          for (const c of e.chapters.list) if (!md.includes(`- ${c.start} — ${c.title}`)) { bad++; fail(`agent: E${e.ep} chapter at ${c.start} is not in agent.md`); }
+          if (e.chapters.clock !== "upload" && /&t=\d+s/.test((md.split(`### E${e.ep} —`)[1] || "").split("\n### ")[0])) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link on the live recording's clock`); }
+        }
+      }
+      // chapters store grounds against the transcripts (fail)
+      try { const store = existsSync(CH.STORE_PATH) ? JSON.parse(readFileSync(CH.STORE_PATH, "utf8")) : null; if (store) CH.validateStore(store, ROOT); }
+      catch (err) { bad++; fail(`agent: chapters store does not re-derive against the transcripts — ${err.message}`); }
+      // known breaks reach every affected row (fail)
+      for (const b of data.baselines?.knownBreaks || []) { for (const c of data.health?.checks || []) for (const m of c.measures || []) if (b.measures.includes(m.key) && m.value != null && !md.includes(`known reporting break: ${b.note}`)) { bad++; fail(`agent: the known break is not noted on the ${m.key} row`); } }
+      // links: every http(s) link in the brief is the site, a data link, or a transcript (fail)
+      const known = new Set([...data.episodes.flatMap((e) => [...Object.values(e.links || {}), ...(e.announces || []).map((a) => a.url).filter(Boolean)])]);
+      for (const url of md.match(/https?:\/\/[^\s)\]|"]+/g) || []) {
+        const bare = url.replace(/[.,;:]+$/, "").replace(/&t=\d+s$/, "");
+        if (bare.startsWith(AB.SITE) || known.has(bare)) continue;
+        bad++; fail(`agent: unknown link in agent.md — ${bare}`);
+      }
+      // words: plain outside Definitions (drift)
+      const BANNED_AGENT = /\b(composite|percentile|pillar|velocity|coverage|basis|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
+      const defsAt = md.indexOf("\n## 8. Definitions\n"), lineageAt = md.indexOf("\n## 9. Lineage and freshness\n");
+      const outsideDefs = defsAt > 0 && lineageAt > defsAt ? md.slice(0, defsAt) + md.slice(lineageAt) : md;
+      const hit = outsideDefs.match(BANNED_AGENT);
+      if (hit) { bad++; drift(`agent: banned word "${hit[0]}" outside the Definitions section of agent.md`); }
+      // size
+      const bytes = Buffer.byteLength(md, "utf8");
+      if (bytes > AB.BUDGET.failBytes) { bad++; fail(`agent: agent.md is ${bytes} bytes — over the ${AB.BUDGET.failBytes} budget`); }
+      else if (bytes > AB.BUDGET.warnBytes) warn(`agent: agent.md is ${bytes} bytes — over the ${AB.BUDGET.warnBytes} soft budget; older episodes collapse to their row at the next threshold`);
+      // page: the header link, the hidden view, the prompt with the live address (drift)
+      const html = readFileSync(join(ROOT, "index.html"), "utf8");
+      if (!/<a class="agentslink" id="agentslink" href="#agents">Agents<\/a>/.test(html)) { bad++; drift("agent: the header does not carry the Agents link"); }
+      if (!/<section class="agents" id="agents" hidden/.test(html)) { bad++; drift("agent: the Agents view is missing or not hidden by default"); }
+      if (!html.includes(`Read ${AB.SITE}/agent.md in full`)) { bad++; drift("agent: the page's prompt does not name the live brief address"); }
+      if (/id="view"|class="tabs"/.test(html)) { bad++; drift("agent: retired page-tab markers reappeared"); }
+      if (/data-fold-number/.test(html.match(/function buildAgents\(\) \{[\s\S]*?\n\}/)?.[0] || "")) { bad++; drift("agent: the Agents view must carry no glance number"); }
+      if (!bad) ok(`agent: brief reproduces, ${(data.episodes || []).length} episodes, ${ranked.length} actions, ${(data.episodes || []).filter((e) => e.chapters?.list?.length).length} episode(s) with grounded chapters, ${bytes} bytes, every data.json path covered or left out with a reason`);
+    }
+  } catch (err) { bad++; fail(`agent: block threw — ${err.message}`); }
 }
 
 // --- 1x/1y/1z (PRD v9 W26): small-n on data, no trend words over episode health, stored notes only ---

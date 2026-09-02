@@ -1,0 +1,23 @@
+# Dive Radio analytics
+
+> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, five ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-09-02T00:47:34.043Z).
+
+## Read first
+- [Agent brief](https://dive-radio-analytics.vercel.app/agent.md): everything, for reading — start with its first section
+- [Agent digest](https://dive-radio-analytics.vercel.app/agent.json): the same content as data
+- [Skill](https://dive-radio-analytics.vercel.app/agent-skill.md): a drop-in skill file for Claude Code and OpenClaw
+
+## Raw data
+- [data.json](https://dive-radio-analytics.vercel.app/data.json): every number the dashboard renders, including the daily series and watch curves
+
+## Transcripts
+- [E1 — Bumpy Takeoff](https://dive-radio-analytics.vercel.app/transcripts/2026-07-17-dive-radio-bumpy-takeoff.txt)
+- [E2 — Data vs. Intuition, Web Designers Are Back + Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-07-23-dive-radio-data-vs-intuition-web-designe.txt)
+- [E3 — Mixed Media Workflows, Game Design, + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt)
+- [E4 — Backyard Designers behind-the-scenes](https://dive-radio-analytics.vercel.app/transcripts/2026-08-06-dive-radio-backyard-designers-behind-the.txt)
+- [E5 — Goodbye, Blank Canvas + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.txt)
+- [E6 — The Mascot Industrial Complex + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-08-20-dive-radio-the-mascot-industrial-complex.txt)
+- [E7 — Steal These AI Design Patterns + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-08-28-dive-radio-steal-these-ai-design-pattern.txt)
+
+## The dashboard
+- [Dive Radio dashboard](https://dive-radio-analytics.vercel.app): the human view; "About this data" holds the methodology

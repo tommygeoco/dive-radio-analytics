@@ -1,6 +1,6 @@
 {
  "cron": "0 7 * * * America/Phoenix",
- "note": "Ordered chain definition (PRD v9 \u00a74.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` (not a crontab) runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
+ "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` (not a crontab) runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
  "steps": [
   {
    "step": "discover",
@@ -100,7 +100,10 @@
    "script": "tools/dive-analytics/build-data.mjs",
    "writes": [
     "data.json",
-    "data.js"
+    "data.js",
+    "agent.md",
+    "agent.json",
+    "llms.txt"
    ],
    "freshnessKey": "generatedAt",
    "required": true,
@@ -159,11 +162,25 @@
    "model": true
   },
   {
+   "step": "chapters",
+   "script": "tools/dive-analytics/chapters.mjs",
+   "writes": [
+    "data/restream/chapters.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all",
+   "model": true
+  },
+  {
    "step": "build-data",
    "script": "tools/dive-analytics/build-data.mjs",
    "writes": [
     "data.json",
-    "data.js"
+    "data.js",
+    "agent.md",
+    "agent.json",
+    "llms.txt"
    ],
    "freshnessKey": "generatedAt",
    "required": true,

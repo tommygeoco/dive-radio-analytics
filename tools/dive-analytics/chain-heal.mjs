@@ -19,7 +19,7 @@ import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const HEALTH_STORE = "data/restream/health-history.json";
-const GENERATED = /^(data\.json|data\.js)$/;
+const GENERATED = /^(data\.json|data\.js|agent\.md|agent\.json|llms\.txt)$/;   // PRD v12: the brief artifacts are generated too
 
 export function formulaNumber(v) { return Number(String(v || "").replace(/\D/g, "")) || 0; }
 

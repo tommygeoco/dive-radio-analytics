@@ -1,5 +1,6 @@
 {
- "generatedAt": "2026-09-01T23:52:24.268Z",
+ "generatedAt": "2026-09-02T00:47:34.043Z",
+ "chaptersUpdatedAt": "2026-09-02T00:47:33.992Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -34,12 +35,14 @@
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-07-16T21:04:47.527Z"
+     "ts": "2026-07-16T21:04:47.527Z",
+     "url": "https://x.com/ridd_design/status/2077862030455800172"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-07-16T21:04:47.831Z"
+     "ts": "2026-07-16T21:04:47.831Z",
+     "url": "https://x.com/designertom/status/2077862031730815011"
     }
    ],
    "snapshots": [
@@ -5105,7 +5108,9 @@
       "messages": 43,
       "chatters": 9
      }
-    ]
+    ],
+    "minutesPerViewer": 7.1,
+    "holdRate": 47.7
    },
    "comments": {
     "captured": 8,
@@ -5847,6 +5852,84 @@
       "summary": "Wind-down talk at the very end: the hosts trade late-night work-habit confessions — chasing an idea until early morning — and joke that none of it should be taken as advice."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "upload",
+    "format": "captions",
+    "writtenAt": "2026-09-02T00:34:09.377Z",
+    "list": [
+     {
+      "start": "00:03:15",
+      "seconds": 195,
+      "title": "Cold open montage and a bumpy first launch",
+      "gist": "A montage of designers on AI experimentation leads into the hosts greeting viewers after a chaotic setup.",
+      "quote": "Show up, try things, be curious"
+     },
+     {
+      "start": "00:07:34",
+      "seconds": 454,
+      "title": "Why launch a live design show",
+      "gist": "The hosts explain what a live stream offers over the polished podcast and what they hope it becomes.",
+      "quote": "I really follow what brings me life"
+     },
+     {
+      "start": "00:14:08",
+      "seconds": 848,
+      "title": "Daily driver models and going local",
+      "gist": "The hosts compare their daily driver models and weigh deleted projects and running local models.",
+      "quote": "What's your daily driver, man?"
+     },
+     {
+      "start": "00:20:10",
+      "seconds": 1210,
+      "title": "Voice interfaces take over daily life",
+      "gist": "The hosts trade stories of voice mode helping in the kitchen, in parking lots, and coaching a game.",
+      "quote": "GPT Live came out and so I've been messing around with that"
+     },
+     {
+      "start": "00:31:15",
+      "seconds": 1875,
+      "title": "Cursor's comeback and the great bundling",
+      "gist": "The hosts discuss Cursor's rise, big designer hires, and how every tool now builds everything.",
+      "quote": "Can we call cursor a startup anymore"
+     },
+     {
+      "start": "00:39:56",
+      "seconds": 2396,
+      "title": "The Gal retirement debate and an AI style test",
+      "gist": "The hosts defend a famous designer's retirement post and test an AI recreation of his motion style.",
+      "quote": "I want to hear your take"
+     },
+     {
+      "start": "00:57:36",
+      "seconds": 3456,
+      "title": "Burnout, token FOMO, and panic attacks",
+      "gist": "The hosts open up about panic attacks, token limit pressure, and the exhaustion of constant multitasking.",
+      "quote": "This past weekend, I had a panic attack"
+     },
+     {
+      "start": "01:04:21",
+      "seconds": 3861,
+      "title": "Rebranding Dive with mood boards and a playable radio",
+      "gist": "The hosts walk through mood boarding with image tools and the interactive radio site with sound design.",
+      "quote": "we've been working on some fun stuff"
+     },
+     {
+      "start": "01:25:18",
+      "seconds": 5118,
+      "title": "A whirlwind brand sprint and audience voting",
+      "gist": "The hosts tour FS's rapid brand explorations and ask viewers to vote between sticker and paper styles.",
+      "quote": "we had a kickoff call with FS on Monday"
+     },
+     {
+      "start": "01:53:27",
+      "seconds": 6807,
+      "title": "One-up finds, listener questions, and signing off",
+      "gist": "The hosts share a community-built interactive television, a mixed media tool, answer questions, and wrap up.",
+      "quote": "We didn't even get to our oneup"
+     }
+    ]
    }
   },
   {
@@ -5860,12 +5943,14 @@
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-07-23T20:00:40.919Z"
+     "ts": "2026-07-23T20:00:40.919Z",
+     "url": "https://x.com/ridd_design/status/2080382611671626194"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-07-23T20:00:41.212Z"
+     "ts": "2026-07-23T20:00:41.212Z",
+     "url": "https://x.com/designertom/status/2080382612900606273"
     }
    ],
    "snapshots": [
@@ -10572,7 +10657,9 @@
       "messages": 6,
       "chatters": 5
      }
-    ]
+    ],
+    "minutesPerViewer": 6,
+    "holdRate": 61.1
    },
    "comments": {
     "captured": 5,
@@ -11308,6 +11395,84 @@
       "summary": "The hosts read through a community write-up on what design engineering actually is, recommend it on screen, then turn it into a debate about where designers should position themselves."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "stream",
+    "format": "speaker",
+    "writtenAt": "2026-09-02T00:36:39.748Z",
+    "list": [
+     {
+      "start": "00:03:22",
+      "seconds": 202,
+      "title": "Cold open on AI tooling before the show kicks off",
+      "gist": "A montage about AI tooling, agents, and curiosity plays before the hosts open the live show.",
+      "quote": "I think the future is bright, but it has to be built"
+     },
+     {
+      "start": "00:06:33",
+      "seconds": 393,
+      "title": "Designer of the week nominations and community picks",
+      "gist": "Hosts and community members nominate favorite designers and open a public vote for the weekly crown.",
+      "quote": "Working at AirOps now came from Intercom"
+     },
+     {
+      "start": "00:16:53",
+      "seconds": 1013,
+      "title": "A basketball training robot and smart home devices",
+      "gist": "Hosts watch a demo of a robotic basketball trainer and swap stories about smart home gadgets.",
+      "quote": "Three cameras track your movement"
+     },
+     {
+      "start": "00:20:22",
+      "seconds": 1222,
+      "title": "AI news: a sandbox escape, a math proof, and holdouts",
+      "gist": "Hosts discuss a model breaking out of a test sandbox, a disproved conjecture, and famous coders embracing AI.",
+      "quote": "did you hear about GPT six breaking containment"
+     },
+     {
+      "start": "00:30:42",
+      "seconds": 1842,
+      "title": "Reactions to the Coca Cola rebrand",
+      "gist": "Hosts critique the subtle Coca Cola refresh, its sound design, and what such a change is really for.",
+      "quote": "what do you think about Coca Cola's rebrand"
+     },
+     {
+      "start": "00:35:41",
+      "seconds": 2141,
+      "title": "Web designers are back: new roles and titles",
+      "gist": "Hosts examine a visual design job posting and a write up mapping the range between designer and engineer.",
+      "quote": "That's most of the Versace design team"
+     },
+     {
+      "start": "00:49:26",
+      "seconds": 2966,
+      "title": "Bold predictions and a teenage agent builder",
+      "gist": "Hosts react to a clip predicting humanoid robots, then a host's son demos his own coding agent setup.",
+      "quote": "digital intelligence will exceed the sum of all human intelligence"
+     },
+     {
+      "start": "01:00:57",
+      "seconds": 3657,
+      "title": "Data versus intuition in design decisions",
+      "gist": "Hosts debate shipping by feel versus metrics, with a former Airbnb lead sharing his view in a clip.",
+      "quote": "they don't do AB testing or use analytics"
+     },
+     {
+      "start": "01:15:39",
+      "seconds": 4539,
+      "title": "DialKit demos and one up weekly picks",
+      "gist": "Hosts tweak live parameters with DialKit, trade favorite finds, and crown the first weekly winner.",
+      "quote": "DialKit is a library made by Josh Puckett"
+     },
+     {
+      "start": "01:36:13",
+      "seconds": 5773,
+      "title": "The live call in line debuts and the show closes",
+      "gist": "Callers ask about job titles, anti AI sentiment, and developing taste before the hosts sign off.",
+      "quote": "Everybody, we have a phone number"
+     }
+    ]
    }
   },
   {
@@ -11321,12 +11486,14 @@
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-07-30T20:00:16.340Z"
+     "ts": "2026-07-30T20:00:16.340Z",
+     "url": "https://x.com/designertom/status/2082919223639052481"
     },
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-07-30T20:00:16.490Z"
+     "ts": "2026-07-30T20:00:16.490Z",
+     "url": "https://x.com/ridd_design/status/2082919224268169560"
     }
    ],
    "snapshots": [
@@ -15057,7 +15224,9 @@
       "messages": 88,
       "chatters": 16
      }
-    ]
+    ],
+    "minutesPerViewer": 3.9,
+    "holdRate": 96
    },
    "comments": {
     "captured": 2,
@@ -15797,6 +15966,84 @@
       "summary": "The maker explains an AI catching its own broken model — the mesh was unworkable vector soup — and re-meshing it, then walks through the wiki-fed critic agent they use to gate what counts as good."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "upload",
+    "format": "captions",
+    "writtenAt": "2026-09-02T00:38:45.713Z",
+    "list": [
+     {
+      "start": "00:03:18",
+      "seconds": 198,
+      "title": "Opening montage and welcome to the show",
+      "gist": "A montage on AI workflows and curiosity plays before the hosts greet listeners and thank new partners.",
+      "quote": "the different experiments that people are running"
+     },
+     {
+      "start": "00:06:27",
+      "seconds": 387,
+      "title": "Designer of the week nominations and voting",
+      "gist": "Community members and the hosts nominate designers of the week and listeners are invited to vote.",
+      "quote": "our designer of the week voting"
+     },
+     {
+      "start": "00:21:01",
+      "seconds": 1261,
+      "title": "Live demo of the Backyard Designers draft game",
+      "gist": "Cohost Rid demos a game where players draft real designers under a follower-based salary cap.",
+      "quote": "I'm calling this Backyard Designers"
+     },
+     {
+      "start": "00:39:59",
+      "seconds": 2399,
+      "title": "The wave of one-shot AI games",
+      "gist": "The hosts scroll through one-shot AI-built games and discuss what the demos reveal about tool workflows.",
+      "quote": "look at the game I just one-shotted"
+     },
+     {
+      "start": "00:52:49",
+      "seconds": 3169,
+      "title": "A roguelike demo grown from a one-shot prompt",
+      "gist": "Host Tommy shows a roguelike he grew from a one-shot prompt and compares working with AI to shaping clay.",
+      "quote": "It's called Forward Deployed Engineers"
+     },
+     {
+      "start": "01:01:11",
+      "seconds": 3671,
+      "title": "Mixed media landing pages and the draw zero site",
+      "gist": "The hosts click through playful landing pages, including a community-shared scroll story they both admire.",
+      "quote": "telling stories through mixed media in these landing pages"
+     },
+     {
+      "start": "01:09:14",
+      "seconds": 4154,
+      "title": "Shaping clay: an image and asset workflow",
+      "gist": "Tommy walks through mood boarding, image generation, and pruning AI outputs into usable game assets.",
+      "quote": "I talked about mood boarding"
+     },
+     {
+      "start": "01:26:09",
+      "seconds": 5169,
+      "title": "A wiki-fed critic agent that gates the work",
+      "gist": "Tommy explains building a research wiki and a cranky critic agent that judges each loop of work.",
+      "quote": "They called it this adversarial agent"
+     },
+     {
+      "start": "01:32:13",
+      "seconds": 5533,
+      "title": "Call-in line opens and a live portfolio critique",
+      "gist": "The hosts open the phone line, debate mixed media's future, and critique caller James's portfolio site live.",
+      "quote": "to the call-in line that we have available"
+     },
+     {
+      "start": "01:51:06",
+      "seconds": 6666,
+      "title": "Designer of the week winner and sign-off",
+      "gist": "The hosts announce the winning nominee, reflect on planning week to week, and close the episode.",
+      "quote": "I want to announce the designer of the week"
+     }
+    ]
    }
   },
   {
@@ -15810,12 +16057,14 @@
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-08-06T20:00:42.767Z"
+     "ts": "2026-08-06T20:00:42.767Z",
+     "url": "https://x.com/ridd_design/status/2085456049541427675"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-08-06T20:00:43.264Z"
+     "ts": "2026-08-06T20:00:43.264Z",
+     "url": "https://x.com/designertom/status/2085456051626029562"
     }
    ],
    "snapshots": [
@@ -19656,7 +19905,9 @@
       "messages": 4,
       "chatters": 4
      }
-    ]
+    ],
+    "minutesPerViewer": 5,
+    "holdRate": 76.7
    },
    "comments": {
     "captured": 7,
@@ -20411,6 +20662,84 @@
       "summary": "One of the makers screen-shares a story deck generated by voice with an AI design tool reading the game's own codebase — built in the final hours before the show — and tests whether its images stay consistent."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "stream",
+    "format": "speaker",
+    "writtenAt": "2026-09-02T00:42:51.728Z",
+    "list": [
+     {
+      "start": "00:03:23",
+      "seconds": 203,
+      "title": "Cold open, hellos, and the first designer nomination",
+      "gist": "A montage on AI tooling leads into the hosts' greetings, sponsor shout outs, and Daniela's nomination.",
+      "quote": "the different experiments that people are running"
+     },
+     {
+      "start": "00:08:51",
+      "seconds": 531,
+      "title": "Nominations continue with George Hastings and more picks",
+      "gist": "George Hastings nominates Dimitri Koresh, then the hosts pick Harris and Jem Gold and open voting.",
+      "quote": "present George Hastings and his nomination"
+     },
+     {
+      "start": "00:16:10",
+      "seconds": 970,
+      "title": "Figma earnings, a leadership change, and a DM gone wrong",
+      "gist": "The hosts react to Figma's results, a new design chief, Nikita's move, and the ASAP Rocky DM spat.",
+      "quote": "they just blew things out of the water"
+     },
+     {
+      "start": "00:25:56",
+      "seconds": 1556,
+      "title": "How the backyard designers game was born and went viral",
+      "gist": "Ridd recounts building the game in a day and the hosts marvel at the response from designers they admire.",
+      "quote": "I got an idea for a segment"
+     },
+     {
+      "start": "00:35:50",
+      "seconds": 2150,
+      "title": "What the traffic data showed about how people use the site",
+      "gist": "The hosts review Vercel numbers, long sessions, mobile visits, and debate whether to keep evolving it.",
+      "quote": "less than ten percent of people are even finishing a team"
+     },
+     {
+      "start": "00:44:08",
+      "seconds": 2648,
+      "title": "Inside the build: sprites, quirks, and Easter eggs",
+      "gist": "Ridd walks through his image pipeline, character sprites, automated checks, and quirk driven Easter eggs.",
+      "quote": "the main reason this was created"
+     },
+     {
+      "start": "01:00:02",
+      "seconds": 3602,
+      "title": "Touring the new backyard world with music and times of day",
+      "gist": "Tommy demos the redesigned map, generated songs, and scenes that shift from dawn to night.",
+      "quote": "This is what backyard designers looked like"
+     },
+     {
+      "start": "01:06:54",
+      "seconds": 4014,
+      "title": "Generating and slicing UI assets with image models",
+      "gist": "Tommy shows how he prompts image two to mock ideas, extract repeatable textures, and keep pages fast.",
+      "quote": "there's a lot of reasons to use image two"
+     },
+     {
+      "start": "01:23:50",
+      "seconds": 5030,
+      "title": "A parody site and a talk on community and inclusion",
+      "gist": "The hosts laugh at Hang's parody, then hear Josh and Lex on openness and address the backlash.",
+      "quote": "I wanna give some love to Hangzhou"
+     },
+     {
+      "start": "01:42:51",
+      "seconds": 6171,
+      "title": "One up picks, a caller's portfolio question, and the winner",
+      "gist": "The hosts trade favorite finds, advise caller Kyle on sharing work, name Dimitri winner, and sign off.",
+      "quote": "Let's get into the one up weeklies"
+     }
+    ]
    }
   },
   {
@@ -20424,12 +20753,14 @@
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-08-13T20:00:42.951Z"
+     "ts": "2026-08-13T20:00:42.951Z",
+     "url": "https://x.com/ridd_design/status/2087992765372375435"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-08-13T20:00:43.087Z"
+     "ts": "2026-08-13T20:00:43.087Z",
+     "url": "https://x.com/designertom/status/2087992765942837550"
     }
    ],
    "snapshots": [
@@ -24168,7 +24499,9 @@
       "messages": 2,
       "chatters": 2
      }
-    ]
+    ],
+    "minutesPerViewer": 8.8,
+    "holdRate": 63
    },
    "comments": {
     "captured": 5,
@@ -24721,6 +25054,84 @@
       "summary": "A guest walks through how their prototyping workflow changed — from making messes on top of the production codebase to isolated quick mockups — and shares a screen of the new setup."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "upload",
+    "format": "captions",
+    "writtenAt": "2026-09-02T00:44:20.166Z",
+    "list": [
+     {
+      "start": "00:04:41",
+      "seconds": 281,
+      "title": "Show open and the fiber internet saga",
+      "gist": "The hosts greet listeners and Rid tells the story of contractors cutting his brand new fiber line.",
+      "quote": "Top of the afternoon, my friend"
+     },
+     {
+      "start": "00:08:38",
+      "seconds": 518,
+      "title": "Designer of the week nominations begin",
+      "gist": "Last week's winner Dimmitri nominates Fay, and guest James McDonald nominates Anna for the weekly award.",
+      "quote": "super excited to be here on the Dive Radio podcast"
+     },
+     {
+      "start": "00:16:32",
+      "seconds": 992,
+      "title": "Reacting to Google's design post and Instagram's rebrand",
+      "gist": "Hosts react to a widely mocked Google concept post, then compare notes on Instagram's new logo mark.",
+      "quote": "I don't think he's confessing"
+     },
+     {
+      "start": "00:26:25",
+      "seconds": 1585,
+      "title": "Why more designers are not becoming founders",
+      "gist": "A clip of Lovable's founder asks why so few designers start companies, and the hosts debate the reasons.",
+      "quote": "we announced our series C yesterday"
+     },
+     {
+      "start": "00:32:09",
+      "seconds": 1929,
+      "title": "Grockbot and the little guyification of software",
+      "gist": "Hosts look at a new bot ecosystem and the trend of cute mascot little guys across AI products.",
+      "quote": "the entire Grockbot ecosystem"
+     },
+     {
+      "start": "00:40:54",
+      "seconds": 2454,
+      "title": "Notion as code and agent friendly backends",
+      "gist": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
+      "quote": "They recently announced notion as code"
+     },
+     {
+      "start": "00:48:33",
+      "seconds": 2913,
+      "title": "How prototyping workflows are changing",
+      "gist": "Rid shows his shift to throwaway HTML mockups and a playground with dummy data running parallel to production.",
+      "quote": "want to talk about prototyping for a second"
+     },
+     {
+      "start": "01:10:30",
+      "seconds": 4230,
+      "title": "Community clips on new prototyping setups",
+      "gist": "Guest videos from Seb and Cl Marin show how their prototyping workflows have evolved with new tools.",
+      "quote": "prototyping has completely changed for me"
+     },
+     {
+      "start": "01:20:21",
+      "seconds": 4821,
+      "title": "Call-in line opens and the OneUp Weekly finds",
+      "gist": "The hosts invite live calls and trade finds including a shader lab, a bro skill, and a watercolor drawing toy.",
+      "quote": "try to oneup each other with cool finds"
+     },
+     {
+      "start": "01:29:58",
+      "seconds": 5398,
+      "title": "Winner announcement and closing",
+      "gist": "Fay is announced as designer of the week and the hosts wrap up with plans and thanks for next week.",
+      "quote": "congratulations Dive Club's designer of the week"
+     }
+    ]
    }
   },
   {
@@ -24734,17 +25145,20 @@
     {
      "account": "designertom",
      "role": "promo",
-     "ts": "2026-08-20T19:21:54.714Z"
+     "ts": "2026-08-20T19:21:54.714Z",
+     "url": "https://x.com/designertom/status/2090529387162878297"
     },
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-08-20T20:00:20.048Z"
+     "ts": "2026-08-20T20:00:20.048Z",
+     "url": "https://x.com/ridd_design/status/2090529384369381505"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-08-20T20:00:20.714Z"
+     "ts": "2026-08-20T20:00:20.714Z",
+     "url": "https://x.com/designertom/status/2090529387162878297"
     }
    ],
    "snapshots": [
@@ -28499,7 +28913,9 @@
       "messages": 8,
       "chatters": 3
      }
-    ]
+    ],
+    "minutesPerViewer": 10.2,
+    "holdRate": 62.3
    },
    "comments": {
     "captured": 7,
@@ -29139,6 +29555,84 @@
       "summary": "Hosts tease upcoming show notes, debate a group declaring war on UI animations, discuss a scroll-jacking crab experiment, then try again to connect caller DJ."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "stream",
+    "format": "speaker",
+    "writtenAt": "2026-09-02T00:46:37.166Z",
+    "list": [
+     {
+      "start": "00:04:36",
+      "seconds": 276,
+      "title": "Show opens with hosts checking in from New York",
+      "gist": "Hosts open the live show, catch up on a busy week away from home, and thank the sponsors.",
+      "quote": "so a little change of scenery"
+     },
+     {
+      "start": "00:07:45",
+      "seconds": 465,
+      "title": "Designer of the week nominations from the community",
+      "gist": "Guest videos nominate designers with Pixar, Blizzard, music tool, and shader work for the weekly vote.",
+      "quote": "I would like to nominate Ruchita for designer of the week"
+     },
+     {
+      "start": "00:18:36",
+      "seconds": 1116,
+      "title": "Origin launches during a GitHub outage",
+      "gist": "Hosts discuss the new Origin launch, the GitHub outage, and whether teams will migrate their code.",
+      "quote": "Origin just came out"
+     },
+     {
+      "start": "00:26:12",
+      "seconds": 1572,
+      "title": "Grokbot sparks a second wave of agent adoption",
+      "gist": "Ridd tells how Grokbot converted him to agents, from QA bots to fantasy football helpers.",
+      "quote": "Grokbot is kind of pushing the second coming"
+     },
+     {
+      "start": "00:31:38",
+      "seconds": 1898,
+      "title": "The rise of mascots and brand personification",
+      "gist": "Hosts survey mascots like Duolingo, Nosey, and baby Grok, with clips from designers on character craft.",
+      "quote": "the rise of this, like, mascot and these personification things"
+     },
+     {
+      "start": "00:43:48",
+      "seconds": 2628,
+      "title": "Mascot experiments with blobs, expressions, and absurd characters",
+      "gist": "Tommy demos blob mascots, expression tools, and absurd whale versions of Ridd built for fun.",
+      "quote": "a little stab at a few experiments here"
+     },
+     {
+      "start": "00:56:40",
+      "seconds": 3400,
+      "title": "A hand built SVG story animator demo",
+      "gist": "Tommy shows a story animator named for his daughter that pushes SVG characters to convey feeling.",
+      "quote": "the narrative on rails animator"
+     },
+     {
+      "start": "01:05:01",
+      "seconds": 3901,
+      "title": "A mixed media animation workflow and sound libraries",
+      "gist": "A community member explains an AI plus hand refined animation workflow, followed by sound libraries.",
+      "quote": "how did you animate the story"
+     },
+     {
+      "start": "01:14:43",
+      "seconds": 4483,
+      "title": "A caller on why mascots build trust",
+      "gist": "Caller DJ compares software mascots to service business mascots that build trust with customers.",
+      "quote": "back before there was this massive influx"
+     },
+     {
+      "start": "01:20:44",
+      "seconds": 4844,
+      "title": "One up picks, winner announcement, and closing",
+      "gist": "Hosts share finds like Block's bird agents, announce Bartek as winner, and preview next week.",
+      "quote": "time for the one Up weekly segment"
+     }
+    ]
    }
   },
   {
@@ -29152,22 +29646,26 @@
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-08-26T16:11:38.140Z"
+     "ts": "2026-08-26T16:11:38.140Z",
+     "url": "https://x.com/ridd_design/status/2093066121649991990"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-08-27T20:00:25.091Z"
+     "ts": "2026-08-27T20:00:25.091Z",
+     "url": "https://x.com/designertom/status/2093094217283506661"
     },
     {
      "account": "ridd_design",
      "role": "announce",
-     "ts": "2026-08-27T20:00:25.346Z"
+     "ts": "2026-08-27T20:00:25.346Z",
+     "url": "https://x.com/ridd_design/status/2093066121649991990"
     },
     {
      "account": "designertom",
      "role": "announce",
-     "ts": "2026-08-27T21:52:03.867Z"
+     "ts": "2026-08-27T21:52:03.867Z",
+     "url": "https://x.com/designertom/status/2093094217283506661"
     }
    ],
    "snapshots": [
@@ -32276,7 +32774,9 @@
       "messages": 3,
       "chatters": 1
      }
-    ]
+    ],
+    "minutesPerViewer": 8.3,
+    "holdRate": 74.9
    },
    "comments": {
     "captured": 7,
@@ -32829,6 +33329,84 @@
       "summary": "A host walks through AI patterns: progressive disclosure in chatbots, Paper's corner working animation, and prompting an agent inside Framer to add a pulse to a hero pill."
      }
     ]
+   },
+   "chapters": {
+    "status": "complete",
+    "clock": "stream",
+    "format": "speaker",
+    "writtenAt": "2026-09-02T00:30:47.808Z",
+    "list": [
+     {
+      "start": "00:03:19",
+      "seconds": 199,
+      "title": "Cold open on designing with AI and staying curious",
+      "gist": "A montage of voices reflects on how AI tooling expands daily exploration before the hosts greet listeners.",
+      "quote": "Show up, try things, be curious"
+     },
+     {
+      "start": "00:09:46",
+      "seconds": 586,
+      "title": "Designer of the week nominations from the community",
+      "gist": "Hosts play video nominations from Bartek and Andy spotlighting quieter designers and their work.",
+      "quote": "kick off the show with the designer of the week"
+     },
+     {
+      "start": "00:20:39",
+      "seconds": 1239,
+      "title": "News roundup on acquisitions, vibe coding takes, and startup moves",
+      "gist": "Hosts react to an acquisition, a clip about designers vibe coding, and Linear's employee investment round.",
+      "quote": "the big news of the day here is KD"
+     },
+     {
+      "start": "00:27:48",
+      "seconds": 1668,
+      "title": "Lucas walks through his interactive portfolio",
+      "gist": "Guest Lucas demos the parallax depth trick, hidden touches, and sticky note wall on his portfolio site.",
+      "quote": "So this is my portfolio"
+     },
+     {
+      "start": "00:39:46",
+      "seconds": 2386,
+      "title": "Ramp's creative director on a brand that behaves like jazz",
+      "gist": "A guest video from Ramp's creative director explains chasing coherence over consistency in a fast rebrand.",
+      "quote": "a brand system that behaves like jazz"
+     },
+     {
+      "start": "00:46:01",
+      "seconds": 2761,
+      "title": "A tour of in flight, a tool for prototype feedback",
+      "gist": "Tommy tours Ridd's product for giving feedback on prototypes, from preview links to its playful details.",
+      "quote": "I had early eyes on in flight"
+     },
+     {
+      "start": "00:57:35",
+      "seconds": 3455,
+      "title": "Agent working states and prompting inside design canvases",
+      "gist": "Hosts compare how Paper, Framer, and Flora signal agent activity and handle prompts on the canvas.",
+      "quote": "my favorite agent is working animation"
+     },
+     {
+      "start": "01:06:28",
+      "seconds": 3988,
+      "title": "How new AI products teach people to use them",
+      "gist": "Hosts review onboarding flows from Perplexity, Grokbot, and Instinct, from spa day polish to plugins.",
+      "quote": "how do I use this product"
+     },
+     {
+      "start": "01:19:53",
+      "seconds": 4793,
+      "title": "Inside Ridd's saved library of AI interface patterns",
+      "gist": "Ridd flips through saved examples of prompt aids, composers, loading states, and agent memory designs.",
+      "quote": "saving stuff to my Notion inspiration library"
+     },
+     {
+      "start": "01:34:49",
+      "seconds": 5689,
+      "title": "Mobbin workflows, one up picks, and the winner reveal",
+      "gist": "Hosts demo pattern research through Mobbin's MCP, trade weekly picks, and crown the designer of the week.",
+      "quote": "we really should start documenting the patterns"
+     }
+    ]
    }
   }
  ],
@@ -32872,25 +33450,6 @@
    "category": "distribution",
    "rank": 5,
    "serves": "livePull"
-  },
-  {
-   "id": "pace-rank",
-   "text": "Steal These AI Design Patterns + Live Call-Ins has 7,338 total views 5.2 days in — on YouTube it's pacing #1 of 4 at this age, 208% ahead of the typical episode — a promo-driven lift so far, shown here and not scored in show health.",
-   "recommendation": "Its first days ran on promotion. Watch whether it keeps pace after the push fades before repeating the format.",
-   "caveat": "Pace compares YouTube views only at matching ages (X plays have no history to compare); typical result from 3 other episodes at the same age, promo outliers left out.",
-   "chartState": {
-    "xMode": "weeks",
-    "yMode": "cumulative",
-    "dests": [
-     "yt:joindiveclub",
-     "yt:designertom",
-     "x:ridd_design",
-     "x:designertom"
-    ],
-    "solo": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-    "chart": "standings"
-   },
-   "category": "content"
   }
  ],
  "insightsStale": [],
@@ -33501,6 +34060,303 @@
     "reason": "promo-driven lift — shown, not scored"
    }
   },
+  "facts": [
+   {
+    "id": "clean-first-weeks",
+    "display": "3",
+    "text": "Only 3 episodes have clean first-week records."
+   },
+   {
+    "id": "latest-clean-first-week",
+    "display": "1,189",
+    "text": "The latest clean first week reached 1,189 YouTube views."
+   },
+   {
+    "id": "first-week-change-each-episode",
+    "display": "8.3%",
+    "text": "Across the last three clean first weeks the slope runs down about 8.3% each episode — too few weeks for a direction word."
+   },
+   {
+    "id": "latest-same-age-youtube",
+    "display": "4,860",
+    "text": "The latest episode has 4,860 YouTube views at this age."
+   },
+   {
+    "id": "typical-same-age-youtube",
+    "display": "1,600",
+    "text": "Earlier episodes typically had 1,600 YouTube views at the same age."
+   },
+   {
+    "id": "latest-engagement-count",
+    "display": "43",
+    "text": "The latest episode has drawn 43 likes and comments on YouTube at this age."
+   },
+   {
+    "id": "typical-engagement-count",
+    "display": "70",
+    "text": "Earlier episodes typically had 70 likes and comments at the same age."
+   },
+   {
+    "id": "latest-watch-percent",
+    "display": "8.9%",
+    "text": "Viewers watched 8.9% of the latest finished YouTube episode on average."
+   },
+   {
+    "id": "typical-watch-percent",
+    "display": "10.7%",
+    "text": "Earlier episodes typically held viewers for 10.7% of their YouTube run time."
+   },
+   {
+    "id": "latest-watch-percent-joindiveclub",
+    "display": "9%",
+    "text": "Viewers watched 9% of that episode on Dive Club on average."
+   },
+   {
+    "id": "latest-watch-percent-designertom",
+    "display": "8.8%",
+    "text": "Viewers watched 8.8% of that episode on DesignerTom on average."
+   },
+   {
+    "id": "latest-same-age-reach",
+    "display": "13,285",
+    "text": "The latest episode's X announces have been seen 13,285 times at this age."
+   },
+   {
+    "id": "typical-same-age-reach",
+    "display": "5,496",
+    "text": "Earlier episodes' announces had typically been seen 5,496 times at the same age."
+   },
+   {
+    "id": "latest-finished-announce-play",
+    "display": "13%",
+    "text": "13% of the latest finished episode's X announce impressions became plays."
+   },
+   {
+    "id": "typical-announce-play",
+    "display": "31.4%",
+    "text": "Earlier clean episodes typically turned 31.4% of X announce impressions into plays."
+   },
+   {
+    "id": "latest-finished-x-share",
+    "display": "45.6%",
+    "text": "X supplied 45.6% of watching for the latest finished episode."
+   },
+   {
+    "id": "latest-discovery-share",
+    "display": "13.4%",
+    "text": "13.4% of the latest finished episode's YouTube views came from search and suggested videos."
+   },
+   {
+    "id": "typical-discovery-share",
+    "display": "14.1%",
+    "text": "Earlier episodes typically drew 14.1% of their YouTube views from search and suggested videos."
+   },
+   {
+    "id": "latest-live-viewers",
+    "display": "727",
+    "text": "727 people watched the latest show live."
+   },
+   {
+    "id": "typical-live-viewers",
+    "display": "1,125",
+    "text": "Earlier shows were typically watched live by 1,125 people."
+   },
+   {
+    "id": "latest-live-minutes",
+    "display": "6,050",
+    "text": "People watched 6,050 minutes of the latest show live, all together."
+   },
+   {
+    "id": "typical-live-minutes",
+    "display": "5,351",
+    "text": "Earlier shows were typically watched for 5,351 live minutes all together."
+   },
+   {
+    "id": "latest-live-peak",
+    "display": "72",
+    "text": "The latest show peaked at 72 live viewers."
+   },
+   {
+    "id": "typical-live-peak",
+    "display": "67.5",
+    "text": "Earlier shows typically peaked at 67.5 live viewers."
+   },
+   {
+    "id": "latest-live-average",
+    "display": "56",
+    "text": "The latest show averaged 56 live viewers."
+   },
+   {
+    "id": "typical-live-average",
+    "display": "49",
+    "text": "Earlier shows typically averaged 49 live viewers."
+   },
+   {
+    "id": "latest-minutes-per-viewer",
+    "display": "8.3",
+    "text": "Each person who watched the latest show live stayed 8.3 minutes on average."
+   },
+   {
+    "id": "typical-minutes-per-viewer",
+    "display": "6.6",
+    "text": "Earlier shows typically kept each live viewer for 6.6 minutes."
+   },
+   {
+    "id": "latest-hold-rate",
+    "display": "74.9%",
+    "text": "74.9% of the latest show's peak audience was still watching in its last ten minutes."
+   },
+   {
+    "id": "typical-hold-rate",
+    "display": "62.7%",
+    "text": "Earlier shows typically kept 62.7% of their peak audience to the end."
+   },
+   {
+    "id": "latest-chatters-per-100",
+    "display": "55.6",
+    "text": "The latest show drew 55.6 chatters for every hundred people at its peak."
+   },
+   {
+    "id": "typical-chatters-per-100",
+    "display": "82.4",
+    "text": "Earlier shows typically drew 82.4 chatters for every hundred people at their peak."
+   },
+   {
+    "id": "latest-chat-per-hour",
+    "display": "50.2",
+    "text": "The latest show drew 50.2 chat messages an hour."
+   },
+   {
+    "id": "typical-chat-per-hour",
+    "display": "85.3",
+    "text": "Earlier shows typically drew 85.3 chat messages an hour."
+   },
+   {
+    "id": "latest-subscriber-rate",
+    "display": "3.6",
+    "text": "The latest finished episode added 3.6 subscribers for each thousand YouTube views."
+   },
+   {
+    "id": "typical-subscriber-rate",
+    "display": "2.9",
+    "text": "Earlier clean episodes typically added 2.9 subscribers for each thousand YouTube views."
+   },
+   {
+    "id": "latest-subscriber-rate-joindiveclub",
+    "display": "5.7",
+    "text": "Dive Club added 5.7 subscribers for each thousand of its YouTube views on that episode."
+   },
+   {
+    "id": "latest-subscriber-rate-designertom",
+    "display": "0",
+    "text": "DesignerTom added 0 subscribers for each thousand of its YouTube views on that episode."
+   },
+   {
+    "id": "recent-positive-feedback",
+    "display": "6",
+    "text": "6 recent comments were clearly positive."
+   },
+   {
+    "id": "recent-mixed-feedback",
+    "display": "0",
+    "text": "0 recent comments mixed praise with a concern."
+   },
+   {
+    "id": "recent-feedback-people",
+    "display": "6",
+    "text": "6 people left recent directional feedback."
+   },
+   {
+    "id": "latest-comment-rate",
+    "display": "0.1",
+    "text": "The latest comparable episode drew 0.1 commenters for each thousand watches."
+   },
+   {
+    "id": "direction-engagementWeekOne",
+    "display": "17.6%",
+    "text": "Over the last three clean readings, first-week likes and comments fell about 17.6% each episode — too few readings for a direction word."
+   },
+   {
+    "id": "direction-watching",
+    "display": "6.9%",
+    "text": "Over the last four clean readings, as those episodes stand now, share of the video watched fell about 6.9% each episode."
+   },
+   {
+    "id": "direction-exposureWeekOne",
+    "display": "13.5%",
+    "text": "Over the last three clean readings, first-week X reach rose about 13.5% each episode — too few readings for a direction word."
+   },
+   {
+    "id": "direction-announceToPlay",
+    "display": "14.2%",
+    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 14.2% each episode."
+   },
+   {
+    "id": "direction-discoveryShare",
+    "display": "3.4%",
+    "text": "Over the last four clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 3.4% each episode."
+   },
+   {
+    "id": "direction-liveAverage",
+    "display": "6.7%",
+    "text": "Over the last five clean readings, average live viewers rose about 6.7% each episode."
+   },
+   {
+    "id": "direction-livePeak",
+    "display": "7.1%",
+    "text": "Over the last five clean readings, peak live viewers rose about 7.1% each episode."
+   },
+   {
+    "id": "direction-liveViewers",
+    "display": "13.8%",
+    "text": "Over the last five clean readings, unique live viewers fell about 13.8% each episode."
+   },
+   {
+    "id": "direction-minutesWatched",
+    "display": "3.4%",
+    "text": "Over the last five clean readings, minutes watched live rose about 3.4% each episode."
+   },
+   {
+    "id": "direction-chattersPer100",
+    "display": "16.1%",
+    "text": "Over the last five clean readings, chatters per hundred at the peak fell about 16.1% each episode."
+   },
+   {
+    "id": "direction-messagesPerHour",
+    "display": "12.2%",
+    "text": "Over the last five clean readings, chat messages an hour fell about 12.2% each episode."
+   },
+   {
+    "id": "direction-minutesPerViewer",
+    "display": "24.4%",
+    "text": "Over the last five clean readings, minutes each live viewer stayed rose about 24.4% each episode."
+   },
+   {
+    "id": "direction-holdRate",
+    "display": "8%",
+    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 8% each episode."
+   },
+   {
+    "id": "direction-subscribers",
+    "display": "25.8%",
+    "text": "Over the last three clean readings, as those episodes stand now, subscribers per thousand views fell about 25.8% each episode — too few readings for a direction word."
+   },
+   {
+    "id": "outlook-first-week-low",
+    "display": "1,189",
+    "text": "The lowest of the last three clean first weeks was 1,189 YouTube views."
+   },
+   {
+    "id": "outlook-first-week-high",
+    "display": "1,830",
+    "text": "The highest of the last three clean first weeks was 1,830 YouTube views."
+   },
+   {
+    "id": "data-age-hours",
+    "display": "5",
+    "text": "The newest audience numbers were refreshed 5 hours ago."
+   }
+  ],
   "pros": [
    {
     "text": "74.9% of the latest show's peak audience was still watching in its last ten minutes.",
@@ -35422,6 +36278,18 @@
     ],
     "reason": "promo-driven lift — shown, not scored"
    }
-  }
+  },
+  "knownBreaks": [
+   {
+    "id": "restream-live-per-channel-2026-08-13",
+    "from": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "fromEp": 5,
+    "measures": [
+     "liveViewers",
+     "minutesPerViewer"
+    ],
+    "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only)."
+   }
+  ]
  }
 }

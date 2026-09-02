@@ -1121,6 +1121,9 @@ export function projectHealth(store, { now = Date.now() } = {}) {
       nextFirstWeek: latest.outlook.nextFirstWeek ? { low: latest.outlook.nextFirstWeek.low ?? null, high: latest.outlook.nextFirstWeek.high ?? null, typical: latest.outlook.nextFirstWeek.typical ?? null, n: latest.outlook.nextFirstWeek.n ?? 0, direction: latest.outlook.nextFirstWeek.direction ?? null, reason: latest.outlook.nextFirstWeek.reason ?? null } : null,
       coolOff: latest.outlook.coolOff ? { ageDays: latest.outlook.coolOff.ageDays ?? null, word: latest.outlook.coolOff.word ?? null, n: latest.outlook.coolOff.n ?? 0, reason: latest.outlook.coolOff.reason ?? null } : null,
     } : null),
+    // PRD v12: the facts the bullets cite, projected so an agent can cite
+    // the same ids (id, the display string, the sentence) — never recomputed
+    facts: withheld ? [] : (latest.facts || []).map((f) => ({ id: f.id, display: f.display, text: f.text })),
     pros: withheld ? [] : latest.pros.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     cons: withheld ? [] : latest.cons.map((bullet) => ({ text: bullet.text, factId: bullet.factId })),
     // the saved judgment sentences, verbatim — from prompt v4 they are

@@ -16,10 +16,11 @@ echo "pre-push: fixtures + strict validator on a fresh build …"
 node tools/dive-analytics/audit/baselines.test.mjs >/dev/null || { echo "pre-push: baselines fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/chain-heal.test.mjs >/dev/null || { echo "pre-push: chain-heal rehearsal failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/validate-tiers.test.mjs >/dev/null || { echo "pre-push: validator tier test failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/agent-brief.test.mjs >/dev/null || { echo "pre-push: agent brief fixtures failed — push refused" >&2; exit 1; }
 DIRTY_DATA=0; git diff --quiet -- data.json data.js || DIRTY_DATA=1
 node tools/dive-analytics/build-data.mjs >/dev/null || { echo "pre-push: build-data failed — push refused" >&2; exit 1; }
 OUT="$(node tools/dive-analytics/audit/validate.mjs 2>&1)"; CODE=$?
-[ "$DIRTY_DATA" = 0 ] && git checkout -- data.json data.js 2>/dev/null
+[ "$DIRTY_DATA" = 0 ] && git checkout -- data.json data.js agent.md agent.json llms.txt 2>/dev/null
 if [ $CODE -ne 0 ]; then
   echo "$OUT" | grep -E "^(FAIL|DRIFT)" | head -20 >&2
   echo "pre-push: the strict validator refused this tree (fail or drift above) — fix before pushing" >&2

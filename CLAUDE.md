@@ -79,6 +79,7 @@ L4 gate        tools/dive-analytics/audit/validate.mjs  (exit 0 or no publish)
      │
 L5 page        index.html reads data.js only. It never fetches, never recomputes a score,
                and never decides what is missing — it renders what the store says.
+               Agents read agent.md / agent.json / llms.txt (PRD v12) — the same object, digested by build-data.
 ```
 
 Rules that follow from the shape:
@@ -95,8 +96,8 @@ Runs on the owner machine (`/Users/bones/Dev/2026/dive-radio-analytics`) as the 
 ```
 postlive-discover → transcripts-pull → postlive-track snapshot → yt-analytics-pull
 → comments-pull → comments-classify → channel-stats-pull → ingest-restream
-→ ratings → build-data → validate → health → health-verify → recommendations → moment-summaries
-→ build-data → validate → publish → alerts          (Mondays: + critic)
+→ ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → chapters
+→ build-data → validate → publish → alerts → freshness          (Mondays: + critic)
 ```
 
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
@@ -155,4 +156,6 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - **window-relative** — each episode-health score compares the episode only with episodes that aired *before* it. Two scores are not on one baseline; a row of them answers "did each beat the show's own bar at the time", not "which episode was best".
 - **glance / click / About** — the three layers: a sentence the owners read in seconds; the detail behind it on click/hover; the methodology in "About this data".
 - **swing / bands / state** (PRD v10 §11, rule 23) — a measure's swing is how much it normally moves between the peers that formed its typical (median absolute deviation as a % of the typical); a check's bands are half its measures' median swing either side of 50, clamped to ±5…±15 points; its state word (healthy / steady / fragile / waiting) follows its bands. The writer stamps all three; nothing on the page applies a fixed cut-off to a check that carries bands.
+- **agent brief / census** (PRD v12, rules 27–29) — `agent.md` / `agent.json` / `llms.txt` are written by build-data from the same object as `data.json` (pure, locale-free, `agent-brief.mjs`); `COVERS` and `LEAVES_OUT` list every data path, `censusPaths()` is the one path grammar (`[]`, `{slug}`, `{dest}`, depth ≤ 4), and a path in neither list is drift. A new surface or piece of intelligence must reach the brief in the same commit. Absences are `{value: null, reason}`; the brief states its three clocks (data, health read, chapters).
+- **chapters** — topics with timestamps per episode, model-written once per transcript (`chapters.mjs`, store keyed by slug with the transcript sha, superseded on change) and grounded: the timestamp exists, the quote is found within 90 seconds, chapters are three minutes apart. Deep links only when the transcript runs on the YouTube upload's clock (captions); Restream transcripts run on the live-stream clock.
 - **superseded / rederivedFrom** — on the day a formula ships, the day's older-formula read is moved byte-identical under `store.superseded[]` and the new read names it; the validator accepts exactly that shape. `chain-heal.mjs` merges the store by day when a stash pop left it conflicted.

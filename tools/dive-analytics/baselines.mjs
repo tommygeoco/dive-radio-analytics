@@ -746,3 +746,17 @@ export function newestVsPrevious(episodes, flags, { history = null } = {}) {
     : { pct: null, reason: "No live session to compare." };
   return out;
 }
+
+// --- known reporting breaks (PRD v12 §3.1) — versioned, one place ----------
+// Where a platform changed what it reports, the numbers on either side are
+// not like for like. The brief prints the note on every affected row; the
+// validator checks it is there.
+export const KNOWN_BREAKS = Object.freeze([
+  {
+    id: "restream-live-per-channel-2026-08-13",
+    from: "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    fromEp: 5,
+    measures: ["liveViewers", "minutesPerViewer"],
+    note: "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+  },
+]);

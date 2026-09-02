@@ -16,7 +16,8 @@ import { momentKey } from "./moment-summaries.mjs";
 // PRD v9 W22a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
-import { computeBaselines, anomalyFlags, paceFor, snapshotAt, subsPer1kOf, LAUNCH_AGE, ytViewsOf, discoveryShareOf } from "./baselines.mjs";
+import { buildBrief } from "./agent-brief.mjs";
+import { computeBaselines, anomalyFlags, paceFor, snapshotAt, subsPer1kOf, LAUNCH_AGE, ytViewsOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -377,8 +378,25 @@ export function computeAll({ now = Date.now() } = {}) {
     })(),
   };
 
+  // PRD v12: chapters (model-written, grounded; store keyed by slug) ride on
+  // each episode for the panel and the brief; the announce-post URLs come
+  // from the registry targets; known reporting breaks from baselines
+  let chapterStore = null;
+  try { chapterStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "chapters.json"), "utf8")); } catch { /* not written yet */ }
+  let registryShows = [];
+  try { registryShows = JSON.parse(readFileSync(join(ROOT, "data", "restream", "postlive-registry.json"), "utf8")).shows || []; } catch { /* no registry */ }
+  for (const e of episodes) {
+    const entry = chapterStore?.entries?.[e.slug] || null;
+    e.chapters = entry
+      ? { status: entry.status, clock: entry.clock, format: entry.format, writtenAt: entry.writtenAt, list: entry.chapters.map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote })) }
+      : (e.transcript ? { status: "none", clock: null, format: null, writtenAt: null, list: [], reason: "chapters not written yet" } : { status: "none", clock: null, format: null, writtenAt: null, list: [], reason: "no transcript" });
+    const targets = (registryShows.find((sh) => sh.slug === e.slug)?.targets || []).filter((t) => t.kind === "x" && t.url);
+    for (const a of e.announces || []) { const t = targets.find((x) => x.account === a.account); a.url = t?.url || null; }
+  }
+  baselines.knownBreaks = KNOWN_BREAKS.map((b) => ({ ...b }));
   return {
     generatedAt: new Date(now).toISOString(),
+    chaptersUpdatedAt: chapterStore?.updatedAt || null,
     dests: DESTS,
     episodes,
     insights,
@@ -764,6 +782,10 @@ function attachLiveSessions(dive, registry) {
       series,
       byChannel,
     };
+    // PRD v12: the two live-depth readings per episode, from the one definition
+    const depth = liveDepthOf(e);
+    e.live.minutesPerViewer = depth?.minutesPerViewer ?? null;
+    e.live.holdRate = depth?.holdRate ?? null;
   }
 }
 
@@ -1208,8 +1230,13 @@ if (isMain) {
   // artifacts live at the repo root — the same directory Vercel serves
   writeFileSync(join(ROOT, "data.json"), json);
   writeFileSync(join(ROOT, "data.js"), `window.DIVE_DATA = ${json};\n`);
+  // PRD v12: the agent brief, its digest, and the index — pure over the same object
+  const brief = buildBrief(data);
+  writeFileSync(join(ROOT, "agent.md"), brief.md);
+  writeFileSync(join(ROOT, "agent.json"), brief.json);
+  writeFileSync(join(ROOT, "llms.txt"), brief.llms);
   const dive = data.episodes.filter((e) => e.show === "dive-radio");
   console.log(
-    `dive-analytics: wrote data.json + data.js — ${data.episodes.length} episodes (${dive.length} dive-radio), ${data.insights.length} insights, generated ${data.generatedAt}`
+    `dive-analytics: wrote data.json + data.js + agent.md/agent.json/llms.txt — ${data.episodes.length} episodes (${dive.length} dive-radio), ${data.insights.length} insights, generated ${data.generatedAt}`
   );
 }

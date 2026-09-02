@@ -24,6 +24,16 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   (`tools/dive-analytics/health-feedback.mjs better|same|worse "…"`).
 - Launch word per episode (strong / typical / soft, promo-qualified, "so far"
   under a week) on every card from its first reading.
+- Agents (header link): one address any AI agent can read —
+  [`agent.md`](https://dive-radio-analytics.vercel.app/agent.md) — the whole
+  show in one pull: the health read with its facts, the five actions, every
+  episode with chapters (timestamps grounded in the transcript), moments,
+  feedback, the trajectory, definitions, lineage; `agent.json` as data,
+  `llms.txt` as the index, `agent-skill.md` as a drop-in skill. Rebuilt on
+  every refresh; a census fails the build when a data path reaches neither
+  the brief nor its leaves-out list (PRD v12).
+- Chapters per episode (model-written from the transcript; every timestamp
+  and quote checked against it) in the episode panel and the brief.
 - What matters: the five things to do this week, ranked by lever and
   anchored in the day's show-health read (which checks are fragile, which
   measures are softening, the outlook, each launch word); every number in an

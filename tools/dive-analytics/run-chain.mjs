@@ -108,7 +108,7 @@ function pullFirst() {
   // no trim(): the first porcelain line starts with the two-column status
   const status = git(["status", "--porcelain"]).stdout;
   const dirty = status.split("\n").filter((l) => l.trim()).map((l) => l.slice(3));
-  const generated = dirty.filter((f) => /^(data\.json|data\.js|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
+  const generated = dirty.filter((f) => /^(data\.json|data\.js|agent\.md|agent\.json|llms\.txt|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
   const other = dirty.filter((f) => !generated.includes(f));
   if (other.length) log(`chain: local changes outside the data stores (${other.slice(0, 5).join(", ")}) — pulling with a stash`);
   const stashed = dirty.length ? git(["stash", "push", "--include-untracked", "-m", "chain-pre-pull"]).status === 0 : false;
