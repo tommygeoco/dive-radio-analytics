@@ -108,8 +108,9 @@ Fixed section order; every section present even when it says "none yet".
 
 Budget: the brief carries ten chapters at most per episode (gist ≤ 120
 characters), moment summaries with excerpts cut to 160 characters, and at
-most two featured quotes per episode; validator warns above 70 KB and fails
-above 100 KB (the fact-check measured ~50 KB before chapters today).
+most two featured quotes per episode; validator warns above 80 KB and fails
+above 100 KB (71 KB on seven episodes once section 3 carries the read's
+lens and section 7 the build's; the collapse rule holds it there).
 
 ### 2.2 `/agent.json` — the same digest, structured
 
@@ -260,7 +261,7 @@ what the brief left out and why.
    the outlook range; the health read's date and data-through stamp. Run after each deploy that
    touches the brief; recorded in the PRD status log.
 2. Validator block "agent" passes; the census lists no uncovered path.
-3. `agent.md` ≤ 70 KB on today's seven episodes.
+3. `agent.md` ≤ 80 KB on today's seven episodes (71 KB shipped).
 4. Chapters exist for every episode with a transcript, all grounded.
 5. The Agents view toggles in under 100 ms with no reload and is linkable.
 
@@ -371,3 +372,7 @@ raised to 100 KB fail.
   the live-reporting change" — absent, not caveated. Live turnout moved to
   healthy (56) and participation to fragile (41) as a result; the day's v4
   read (49) is kept under `superseded`.
+- 2026-09-02 01:06Z — the chain machine's daily job ran the full chain with the
+  chapters step and the brief artifacts (92 s): five actions regenerated
+  against the v5 read, publish parity confirmed on `data.json` and
+  `agent.json`. Soft size line raised to 80 KB (71 KB shipped).

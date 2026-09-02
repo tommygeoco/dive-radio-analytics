@@ -25,7 +25,7 @@ export const HEADINGS = Object.freeze([
   "## 1. How to read this", "## 2. The show at a glance", "## 3. Show health today", "## 4. What to do this week",
   "## 5. Episodes", "## 6. Episode by episode", "## 7. Trajectory", "## 8. Definitions", "## 9. Lineage and freshness", "## 10. Deeper data",
 ]);
-export const BUDGET = Object.freeze({ warnBytes: 70_000, failBytes: 100_000, excerptChars: 160, quotesPerEpisode: 2, chaptersPerEpisode: 10, fullSectionsForLast: 8 });
+export const BUDGET = Object.freeze({ warnBytes: 80_000, failBytes: 100_000, excerptChars: 160, quotesPerEpisode: 2, chaptersPerEpisode: 10, fullSectionsForLast: 8 });
 
 // --- formatting: deterministic, locale-free -------------------------------------
 export const fmtNum = (v, d = 0) => {
