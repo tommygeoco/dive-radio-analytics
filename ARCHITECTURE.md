@@ -15,7 +15,7 @@ contract map · §7 known gaps (pointers to PRD v9)
 
 ## 1. Chain and cadence
 
-Owner machine, 07:00 America/Phoenix daily (OpenClaw automation `restream-postlive-snapshot` → `run-chain.mjs`). Beside it: `dive-alerts` every 30 min (`alerts.mjs --emit` → Tommy's Slack, silent when the queue is empty), `restream-postlive-freshness` at 08:15 and 12:00, `restream-analytics-ingest` 06:50, a Monday-noon Slack trends report; the 06:00 rehearsal was retired (PRD v11 W41). The daily job carries an OpenClaw failure alert after one error. PRD v11 rules 24–26: a publish stops only when a number would be wrong (`validate.mjs --publish` reports source-contract drift instead of blocking; strict mode and the pre-push hook still refuse it), every failure reaches Slack within ten minutes (`run-chain.mjs` queues the line), and the stores have one writer (this machine; `chain-heal.mjs` keeps its version on a conflict). The publish half is documented in
+Owner machine, 07:00 America/Phoenix daily (OpenClaw automation `restream-postlive-snapshot` → `run-daily.mjs --primary`) from the dedicated checkout `/Users/bones/Documents/Codex/2026-08-22/you-are-working-on-the-dive/work/dive-radio-analytics-publisher`. `run-daily.mjs` holds a run lock and records at most two whole-chain attempts per Phoenix day outside Git: the scheduled run and one recovery. Beside it: `dive-alerts` every five minutes (`alerts.mjs --deliver` → Tommy's Slack, removing lines only after a provider receipt), `restream-postlive-freshness` at 08:15 and 12:00 (`recover-publish.mjs`; recovery is allowed only in the morning), `restream-analytics-ingest` at 06:50, and a read-only Monday-noon Slack trends report. The 06:00 rehearsal remains disabled. Every direct analytics job uses the same checkout. The daily, recovery, and alert jobs carry failure alerts after one error. Source-contract drift is reported in publish mode and refused by the strict pre-push gate. The publish half is documented in
 `README.md`; the whole chain, with what each step writes and which stores must
 be fresh, is versioned in `tools/dive-analytics/chain.json` (the automation itself
 lives on the owner machine).
@@ -37,8 +37,9 @@ lives on the owner machine).
 | recommendations | `tools/dive-analytics/recommendations.mjs` | `data/restream/recommendations.json` | **yes** | previous store stays |
 | moment-summaries | `tools/dive-analytics/moment-summaries.mjs` | `data/restream/moment-summaries.json` | **yes** | moments render without context |
 | build-data → validate | (again, so today's health entry is in the artifact) | | | |
-| publish | `scripts/restream/postlive-publish.sh` | stash → `git pull --rebase` → commit + push `main`, `vercel deploy --prod`, live `generatedAt` parity | no | exits non-zero on a moved remote or a data conflict — nothing half-published |
-| alerts | `tools/dive-analytics/alerts.mjs` | `alerts-state.json`, `alerts-pending.json` (Slack queue) | no | — |
+| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact seven-file live check | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
+| alerts | `tools/dive-analytics/alerts.mjs` | `alerts-state.json`, locked `alerts-pending.json` | no | required after publish; delivery keeps each line until Slack returns a receipt |
+| freshness | `tools/dive-analytics/freshness.mjs --strict` | locked `alerts-pending.json` only on failure | no | requires today's Phoenix build and a readable production response |
 | critic (Mon) | `tools/dive-analytics/critic.mjs` | `tools/dive-analytics/audit/CRITIC-<date>.md` | **yes** | writes "did not run", exit 0 |
 
 Secrets: `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` from the login shell; YouTube
@@ -67,7 +68,7 @@ days since the episode's premiere (noon Phoenix).
 | `health-history.json` | `entries[]` one per Phoenix day: score, headline, pros/cons (fact-cited), drivers (digit-free from prompt v4; projected and rendered in the evidence card), subScores with measures `{value, typical, sample, score, reason, ageBasis, note, window, excluded, episodeRead, readDate, absoluteScale}`, `checkSet`, `checkSetChange` (projected as `data.health.checkSetChange`; the page, Slack, and alerts announce a changed set — W27), facts, stamps | health (`health-v3`, store v2) | **append-only, immutable**; newest entry ≤ today is served; **withheld after 7 days** | typicals from the eight episodes before the read episode; entries written under older formulas keep their own stamps and are judged by their own weights |
 | `recommendations.json` | 4–7 items `{id, category, text, recommendation}`, every number grounded in the fact sheet; `facts[]` the sheet it was grounded on | recommendations | overwrite on success | projected into `data.insights` **minus stale items** — an item whose numbers have left today's sheet, or that compares a young episode's rate with a finished one's, is held back and named in `data.insightsStale` |
 | `moment-summaries.json` | per episode/moment: one model-written sentence | moment-summaries | overwrite on success | never a raw transcript quote |
-| `alerts-state.json` / `alerts-pending.json` | last-seen values / queued lines | alerts | overwrite | day-over-day diff; lines carry `sample`/`direction` (validator 1x); pace-rank alert only when the peer set is unchanged |
+| `alerts-state.json` / `alerts-pending.json` | last-seen values / queued lines awaiting a confirmed send | alerts, chain, freshness, recovery | locked atomic update | day-over-day diff; delivery removes only the snapshotted lines after Slack returns a message receipt |
 | `transcripts/<slug>.txt` | 3 header lines + timestamped body (two formats: Restream speaker transcript or YouTube auto-captions) | transcripts-pull or owner | never overwritten once present | timestamps are live-recording time; VOD trims shift them (moments are windows, not instants) |
 | `data.json` / `data.js` | the artifact (below) | build-data | rebuilt every run; byte-reproducible from stores (validator 7) | `data.js` is `data.json` wrapped; the page reads only `data.js` |
 
@@ -174,7 +175,7 @@ Blocks in file order, with what each locks (line refs at `96a4f2f`):
 | 1j / 1j2 | honesty gates present in page source (3-peer, 3-curve, quiet zones, retired absence copy absent, no `?? 0`) |
 | 1k / 1p / 1q / 1r | card layout order and budgets, chart picker, page gutter, destination links |
 | 1u | baselines: fixture test (`audit/baselines.test.mjs`) green; `data.baselines` re-derives; outlier windows exclude self; nothing below `MIN_PEERS`; `metrics.anomaly` matches the outlier test |
-| 1v | chain: `chain.json` order sane; required input stores within 26 h of the build; publish pulls before it pushes |
+| 1v | chain: required stores current; dedicated-main preflight, exact staging/push, final validation, two-attempt guard, recovery, exact production proof, and acknowledged alert delivery remain wired |
 | 1x / 1y / 1z | Slack/alert lines carry directions only on ≥`MIN_PEERS` samples (on data); no trend word over the episode-health sequence; every stored note is one of the fixed strings and reasons pass the plain-words ban; the page renders notes |
 | warnings | unresolved broadcast latches, snapshot cadence gaps, a served health read behind the data or under an older formula |
 

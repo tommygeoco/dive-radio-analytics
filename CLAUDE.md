@@ -91,7 +91,7 @@ Rules that follow from the shape:
 
 ## The daily chain
 
-Runs on the owner machine (`/Users/bones/Dev/2026/dive-radio-analytics`) as the OpenClaw automation `restream-postlive-snapshot` at 07:00 America/Phoenix (`node tools/dive-analytics/run-chain.mjs`); a 06:00 `--rehearse` job runs the same chain without publishing, a 06:50 job ingests Restream, a 12:00 job checks freshness, and a Monday-noon job posts the Slack trends report. The repo is both source and served site; publish = commit + push + `vercel deploy --prod` + live parity check. Only the `ratings → … → publish` half is documented (README); the capture order below is reconstructed from the scripts' header comments.
+Runs on the owner machine from the dedicated checkout `/Users/bones/Documents/Codex/2026-08-22/you-are-working-on-the-dive/work/dive-radio-analytics-publisher`. The OpenClaw automation `restream-postlive-snapshot` enters at 07:00 America/Phoenix through `node tools/dive-analytics/run-daily.mjs --primary`; it never runs from an active development tree. A 06:50 job ingests Restream into the same checkout. The disabled 06:00 rehearsal stays disabled. `recover-publish.mjs` checks production at 08:15 and noon, but only the morning check may invoke `run-daily.mjs --recovery`. A Monday-noon job reads reports from the same checkout. The repo is both source and served site; publish means exact scoped commit + `HEAD:main` push + Vercel production deploy + exact seven-file proof.
 
 ```
 postlive-discover → transcripts-pull → postlive-track snapshot → yt-analytics-pull
@@ -103,7 +103,8 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The scheduler is an OpenClaw automation on the owner machine (`openclaw cron list`), not a crontab; do not add one here.
-- **Publishes do not fail for reasons readers would not care about** (PRD v11): the chain heals leftovers and pulls first, retries `snapshot` / `yt-analytics` once, runs the validator in publish mode, publishes with a script that merges store conflicts, retries the push and the deploy, and exits 2 (published, parity unconfirmed) rather than re-capturing; every required-step failure queues one Slack line (`dive-alerts` delivers every 30 min; `run-chain.mjs --last` on the chain machine shows the log). Install the pre-push hook once per clone: `sh scripts/dev/install-hooks.sh`.
+- **Daily work is bounded and recoverable:** `run-daily.mjs` holds an exclusive run lock and records no more than two whole-chain attempts on one Phoenix day. The publisher checks every Git and Vercel result, retries at most once, and treats an unconfirmed live site as failure. `recover-publish.mjs` starts the reserved second attempt only before 10:00, then proves freshness and exact bytes again.
+- **Alerts are acknowledged:** every producer uses `alert-queue.mjs`; corrupt or missing queue data fails loudly. `dive-alerts` runs every five minutes through `alerts.mjs --deliver`; sent lines remain pending until OpenClaw returns Slack's message receipt. Install the pre-push hook once per clone: `sh scripts/dev/install-hooks.sh`.
 - **`run-chain.mjs` pulls main before the first step** (PRD v10 W34) and `postlive-publish.sh` pulls `--rebase` again before it pushes; a stash conflict on the generated files (`data.json`, `data.js`) is resolved by taking the pulled tree and rebuilding, never by aborting. Work from another machine may land on main directly when it changes no store files; commit `data.json`/`data.js` only when the chain machine has already pulled the code that produces them (the chain rebuilds them every morning).
 
 ## How to change a number (the procedure)
@@ -125,7 +126,7 @@ postlive-discover → transcripts-pull → postlive-track snapshot → yt-analyt
 - Don't add a second implementation of median / window / outlier / quiet zone / bands. `baselines.mjs` is the one; validator 1j/1u/1z and the fixture test fail on a second.
 - Don't add glance-layer numbers without removing others (≤12 above the fold, counted on a screenshot).
 - Don't commit secrets. API keys come from the login-shell environment (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, YouTube/X credentials via the owner's tooling); `restream-token.mjs` reads 1Password.
-- Don't run the chain or `postlive-publish.sh` from a machine that is not the owner's, and don't commit `data/restream/**`, `data.json`, or `data.js` from another machine (rule 26: one writer — the pre-push hook warns). Reach the chain machine with `ssh -4 bones@192.168.0.135` on the LAN; its jobs are OpenClaw automations (`openclaw cron list`).
+- Don't run `run-chain.mjs` or `postlive-publish.sh` directly from an active checkout. Scheduled work enters through `run-daily.mjs` in the dedicated publisher checkout. Do not commit `data/restream/**`, `data.json`, or `data.js` from another machine (rule 26: one writer — the pre-push hook warns).
 - Don't "fix" a validator failure by relaxing the regex; find out which surface drifted.
 - Don't trust the critic's findings without re-deriving: it has produced false positives from a flattened bundle (see CRITIC-2026-08-22-W10 "Builder triage").
 

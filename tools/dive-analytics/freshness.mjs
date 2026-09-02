@@ -1,91 +1,110 @@
 #!/usr/bin/env node
-// freshness.mjs — v8 W21 prod freshness watchdog.
-//
-// The publish gate can only block; nothing watched the OUTPUT for staleness,
-// so a blocked morning publish served yesterday's numbers silently
-// (2026-08-23). This fetches the LIVE data.json from prod and raises one
-// plain sentence when its generatedAt is older than 26 hours. It runs at the
-// END of the daily chain and again under a small midday cron — the midday
-// run catches the chain-died-before-alerts case.
-//
-// The alert line is queued into alerts-pending.json, the same queue the
-// trigger-gated dive-alerts cron already delivers to Slack, and printed to
-// stdout for the midday cron's own payload. Always exits 0 — a watchdog
-// that blocks the chain would recreate the problem it watches for.
-//
-//   node tools/dive-analytics/freshness.mjs           # check prod, queue if stale (always exit 0)
-//   node tools/dive-analytics/freshness.mjs --strict  # midday watchdog mode: silent when
-//                                                     # fresh, exit 1 stale / 2 unreachable —
-//                                                     # a non-zero exit makes the cron job
-//                                                     # itself page through its failure alert
-//
-// DIVE_PROD_URL overrides the prod URL (acceptance tests only).
+// freshness.mjs — production must carry a readable build from today in
+// Phoenix. The age check remains as a second guard, but yesterday is stale
+// even when it is less than 26 hours old.
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { replaceQueueLines } from "./alert-queue.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
-const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
-const PROD_URL = "https://dive-radio-analytics.vercel.app/data.json";
-const MAX_AGE_HOURS = 26;
-const LINE_PREFIX = "Prod dashboard is serving data from";
+export const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
+export const PROD_URL = "https://dive-radio-analytics.vercel.app/data.json";
+export const MAX_AGE_HOURS = 26;
+export const LINE_PREFIX = "Prod dashboard";
+const FUTURE_SLOP_MS = 5 * 60 * 1000;
 
-function saveAtomic(path, obj) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(obj, null, 2) + "\n");
-  renameSync(tmp, path);
+function phoenixParts(value) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (!Number.isFinite(date.getTime())) return null;
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Phoenix",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(date);
+  const get = (type) => parts.find((part) => part.type === type)?.value;
+  return { day: `${get("year")}-${get("month")}-${get("day")}`, hour: Number(get("hour")) };
+}
+
+export function phoenixDay(value) {
+  return phoenixParts(value)?.day ?? null;
+}
+
+export function phoenixHour(value) {
+  return phoenixParts(value)?.hour ?? null;
+}
+
+export function freshnessVerdict(generatedAt, now = Date.now(), { requireToday = true } = {}) {
+  const generated = Date.parse(generatedAt);
+  const nowMs = now instanceof Date ? now.getTime() : Number(now);
+  if (!Number.isFinite(generated)) return { ok: false, kind: "unreadable", message: "production data has no readable build time" };
+  if (!Number.isFinite(nowMs)) throw new Error("freshness clock is invalid");
+  if (generated > nowMs + FUTURE_SLOP_MS) return { ok: false, kind: "future", generatedAt, message: `production build time ${generatedAt} is in the future` };
+  const ageHours = (nowMs - generated) / 3600000;
+  if (requireToday && phoenixDay(generated) !== phoenixDay(nowMs)) {
+    return { ok: false, kind: "prior-day", generatedAt, ageHours, message: `production still serves the ${phoenixDay(generated)} build; Phoenix is on ${phoenixDay(nowMs)}` };
+  }
+  if (ageHours > MAX_AGE_HOURS) {
+    return { ok: false, kind: "old", generatedAt, ageHours, message: `production build ${generatedAt} is ${Math.round(ageHours)} hours old` };
+  }
+  return { ok: true, kind: "fresh", generatedAt, ageHours };
 }
 
 export function staleLine(generatedAt, now = Date.now()) {
-  const t = Date.parse(generatedAt);
-  if (!Number.isFinite(t)) return null;
-  const hours = (now - t) / 3600000;
-  if (hours <= MAX_AGE_HOURS) return null;
-  return `${LINE_PREFIX} ${generatedAt}, ${Math.round(hours)} hours old — the morning publish likely failed.`;
+  const verdict = freshnessVerdict(generatedAt, now);
+  if (verdict.ok) return null;
+  if (verdict.kind === "prior-day") return `${LINE_PREFIX} is still serving the ${phoenixDay(generatedAt)} build (${generatedAt}); today's publish is missing.`;
+  return `${LINE_PREFIX} cannot confirm today's publish — ${verdict.message}.`;
 }
 
-const strict = process.argv.includes("--strict");
+function verdictLine(verdict) {
+  if (verdict.kind === "prior-day") return `${LINE_PREFIX} is still serving the ${phoenixDay(verdict.generatedAt)} build (${verdict.generatedAt}); today's publish is missing.`;
+  return `${LINE_PREFIX} cannot confirm today's publish — ${verdict.message}.`;
+}
+
+export async function checkProductionFreshness({
+  url = process.env.DIVE_PROD_URL || PROD_URL,
+  now = Date.now(),
+  fetchImpl = globalThis.fetch,
+} = {}) {
+  try {
+    const response = await fetchImpl(url, {
+      headers: { "cache-control": "no-cache" },
+      signal: AbortSignal.timeout(30_000),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const body = await response.json();
+    return { ...freshnessVerdict(body?.generatedAt, now), body };
+  } catch (error) {
+    return { ok: false, kind: "unreachable", message: `production data could not be read (${error.message})` };
+  }
+}
+
+export function queueFreshnessProblem(verdict, path = QUEUE_PATH) {
+  const line = verdictLine(verdict);
+  replaceQueueLines((item) => item.startsWith(LINE_PREFIX), [line], path);
+  return line;
+}
 
 async function main() {
-  let body;
-  try {
-    const res = await fetch(process.env.DIVE_PROD_URL || PROD_URL, { signal: AbortSignal.timeout(30000) });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    body = await res.json();
-  } catch (error) {
-    console.log(`freshness: prod fetch failed (${error.message}) — cannot judge staleness this run`);
-    if (strict) process.exit(2);
+  const strict = process.argv.includes("--strict");
+  const verdict = await checkProductionFreshness();
+  if (verdict.ok) {
+    if (!strict) console.log(`freshness: production serves today's build from ${verdict.generatedAt}.`);
     return;
   }
-  if (!Number.isFinite(Date.parse(body?.generatedAt))) {
-    console.log("freshness: prod data.json has no readable generatedAt — cannot judge staleness this run");
-    if (strict) process.exit(2);
-    return;
-  }
-  const line = staleLine(body.generatedAt);
-  if (!line) {
-    // strict mode stays silent when all is well — its cron job only speaks
-    // (through its own failure alert) when something is wrong
-    if (!strict) console.log(`freshness: prod is serving data from ${body.generatedAt} — fresh.`);
-    return;
-  }
-  console.log(line);
-  // one staleness line in the queue at a time: replace any earlier one so
-  // the delivered alert always names the timestamp prod is serving NOW
-  let queue = [];
-  if (existsSync(QUEUE_PATH)) { try { queue = JSON.parse(readFileSync(QUEUE_PATH, "utf8")); } catch { queue = []; } }
-  queue = queue.filter((l) => typeof l === "string" && !l.startsWith(LINE_PREFIX));
-  queue.push(line);
-  saveAtomic(QUEUE_PATH, queue);
-  console.log("freshness: alert queued for the next dive-alerts delivery.");
-  if (strict) process.exit(1);
+  const line = queueFreshnessProblem(verdict);
+  console.error(line);
+  console.error("freshness: the alert remains queued until Slack confirms delivery.");
+  if (strict) process.exit(verdict.kind === "prior-day" || verdict.kind === "old" ? 1 : 2);
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) main().catch((error) => {
-  // even an unexpected crash must not fail the chain — report and exit 0
-  console.log(`freshness: check crashed (${error.message}) — no verdict this run`);
+  console.error(`freshness: check failed — ${error.message}`);
+  process.exit(2);
 });

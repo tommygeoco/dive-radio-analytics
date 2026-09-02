@@ -278,13 +278,19 @@ function premiereMs(dateStr) {
 // Single-repo layout (2026-08-22 migration): source of truth and served site
 // are the same directory, so there is no second copy to drift. What can still
 // go wrong locally: data.js not rebuilt alongside data.json, or a missing
-// artifact. Live-site parity is verified post-deploy by postlive-publish.sh
-// (it curls the production data.json and compares generatedAt).
+// artifact. The release flow verifies exact production bytes after deployment.
 {
   let bad = 0;
-  for (const f of ["data.json", "data.js", "index.html", "chart.umd.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"]) {
+  const expectedPublic = ["index.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"];
+  for (const f of [...expectedPublic, "chart.umd.js"]) {
     if (!existsSync(join(ROOT, f))) { bad++; fail(`publish: ${join(ROOT, f)} missing from repo root`); }
   }
+  try {
+    const manifest = await import(join(TOOL, "public-artifacts.mjs"));
+    if (JSON.stringify(manifest.PUBLIC_ARTIFACTS) !== JSON.stringify(expectedPublic)) {
+      bad++; drift(`publish: public byte-check list changed (expected ${expectedPublic.join(", ")})`);
+    }
+  } catch (err) { bad++; drift(`publish: public artifact list is unreadable — ${err.message}`); }
   const js = readFileSync(join(ROOT, "data.js"), "utf8");
   const expected = `window.DIVE_DATA = ${readFileSync(join(ROOT, "data.json"), "utf8").trimEnd()};\n`;
   if (js !== expected) { bad++; fail("publish: data.js does not wrap data.json byte-for-byte — artifacts out of sync (rerun build-data.mjs)"); }
@@ -1854,10 +1860,38 @@ function premiereMs(dateStr) {
         }
       }
     }
-    const publish = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
-    if (!/git pull --rebase/.test(publish) || publish.indexOf("git pull --rebase") > publish.indexOf("git push origin main")) { bad++; drift("chain: publish must pull --rebase before it pushes main (F26)"); }
+    const wrapperSource = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
+    const publishSource = readFileSync(join(TOOL, "publish-flow.mjs"), "utf8");
+    const runnerSource = readFileSync(join(TOOL, "run-chain.mjs"), "utf8");
+    const checkoutSource = readFileSync(join(TOOL, "publisher-checkout.mjs"), "utf8");
+    const scopeSource = readFileSync(join(TOOL, "publish-scope.mjs"), "utf8");
+    const freshnessSource = readFileSync(join(TOOL, "freshness.mjs"), "utf8");
+    const dailySource = readFileSync(join(TOOL, "run-daily.mjs"), "utf8");
+    const recoverySource = readFileSync(join(TOOL, "recover-publish.mjs"), "utf8");
+    const paritySource = readFileSync(join(TOOL, "live-parity.mjs"), "utf8");
+    const alertsSource = readFileSync(join(TOOL, "alerts.mjs"), "utf8");
+    const queueSource = readFileSync(join(TOOL, "alert-queue.mjs"), "utf8");
+    if (!/set -eu/.test(wrapperSource) || !/exec node tools\/dive-analytics\/publish-flow\.mjs/.test(wrapperSource)) { bad++; drift("chain: publish wrapper must hand off to the checked release flow"); }
+    if (!/branch !== "main"/.test(checkoutSource) || !/assertPublishScope\(root\)/.test(checkoutSource) || !/assertCommittedPublishScope\(root\)/.test(checkoutSource)) { bad++; drift("chain: the publisher checkout must require main and reject undeclared changes in files or local commits"); }
+    if (!/assertPublisherCheckout\(ROOT\)/.test(runnerSource) && !/assertPublisherCheckout\(root\)/.test(runnerSource)) { bad++; drift("chain: runner must check the dedicated publisher checkout before capture"); }
+    if (runnerSource.indexOf("pullFirst();") < 0 || runnerSource.indexOf("pullFirst();") > runnerSource.indexOf("for (const step of chain.steps)")) { bad++; drift("chain: runner must pull and check main before the first step"); }
+    if (!/pullCurrentMain\(root/.test(publishSource) || publishSource.indexOf("pullCurrentMain(root") > publishSource.indexOf("commitFinalOutputs(root")) { bad++; drift("chain: release must pull main before committing data"); }
+    if (!/\["push", "--quiet", "origin", "HEAD:main"\]/.test(publishSource) || /\["push"[^\n]+"origin", "main"\]/.test(publishSource)) { bad++; drift("chain: every release push must send the checked commit to GitHub main"); }
+    if (!/stagePublishScope\(root\)/.test(publishSource) || !/\["add", "--all", "--", \.\.\.paths\]/.test(scopeSource)) { bad++; drift("chain: release staging must use only exact declared output paths"); }
+    if (/git add -A|git add --all/.test(publishSource) || /vercel[^\n]*\|/.test(publishSource)) { bad++; drift("chain: release must not stage broadly or hide a Vercel failure in a pipe"); }
+    if (!/MAX_ATTEMPTS = 2/.test(publishSource) || !/checkLiveParity/.test(publishSource) || !/validate\.mjs", "--publish"/.test(publishSource)) { bad++; drift("chain: release must stop after two tries, recheck final files, and prove production bytes"); }
+    if (!/PUBLIC_ARTIFACTS/.test(paritySource) || !/AbortSignal\.timeout\(20_000\)/.test(paritySource)) { bad++; drift("chain: production byte checks must use the public file list and a bounded request"); }
+    if (/step\.step === "publish"\s*&&\s*code === 2/.test(runnerSource)) { bad++; drift("chain: an unconfirmed release exit must never be treated as published"); }
+    if (!/America\/Phoenix/.test(freshnessSource) || !/kind: "prior-day"/.test(freshnessSource)) { bad++; drift("chain: freshness must reject a previous Phoenix day even when it is only a few hours old"); }
+    if (!/MAX_DAILY_ATTEMPTS = 2/.test(dailySource) || !/acquireLock/.test(dailySource) || !/run-chain\.mjs/.test(dailySource)) { bad++; drift("chain: the scheduled entry point must lock and cap whole-chain work at two attempts a day"); }
+    if (!/run-daily\.mjs", "--recovery"/.test(recoverySource) || /run-chain\.mjs/.test(recoverySource) || !/const after = await verify/.test(recoverySource)) { bad++; drift("chain: recovery must use the guarded second attempt and prove production again"); }
+    const alertsStep = chain.steps.find((step) => step.step === "alerts");
+    const freshnessStep = chain.steps.find((step) => step.step === "freshness");
+    if (!alertsStep?.required || !freshnessStep?.required || !freshnessStep.script.includes("--strict")) { bad++; drift("chain: alert detection and the final production check must be required"); }
+    if (!/acknowledgeQueueLines\(batch/.test(alertsSource) || !/message", "send"/.test(alertsSource) || !/\.delivery\.lock/.test(alertsSource)) { bad++; drift("chain: Slack alerts must stay queued until a locked delivery returns a receipt"); }
+    if (!/openSync\(path, "wx"/.test(queueSource) || !/renameSync\(tmp, path\)/.test(queueSource)) { bad++; drift("chain: alert queue updates must be locked and atomic"); }
   }
-  if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required input stores are within ${FRESH_MS / 3600000} h of the build; publish pulls before it pushes`);
+  if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required stores are current; daily runs are isolated, bounded, delivered, and proved on production`);
 }
 
 // --- 1w. agent brief (PRD v12): complete by construction, honest, grounded ---

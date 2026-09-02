@@ -14,15 +14,18 @@
 //
 // Modes:
 //   node tools/dive-analytics/alerts.mjs          # detect + queue (chain step)
-//   node tools/dive-analytics/alerts.mjs --emit   # print queue + clear it
-//                                                 # (dive-alerts cron payload)
+//   node tools/dive-analytics/alerts.mjs --emit   # print queue without clearing
+//   node tools/dive-analytics/alerts.mjs --deliver --channel slack
+//       --account default --target user:ID        # clear only after provider receipt
 // First run bootstraps state and queues nothing — history is not news.
 
 import { readFileSync, writeFileSync, existsSync, renameSync, mkdirSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CHECK_LABELS } from "./health.mjs";
 import { MIN_PEERS } from "./baselines.mjs";
+import { acknowledgeQueueLines, acquireLock, appendQueueLines, readQueue } from "./alert-queue.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -147,7 +150,7 @@ export function alertLines(prev, cur, data) {
   // and every clean series changed with it, so the read is not comparable
   // with yesterday's
   if (prev.promoFlagged && cur.promoFlagged && JSON.stringify(prev.promoFlagged) !== JSON.stringify(cur.promoFlagged)) {
-    const name = (slug) => { const e = byslug(slug); return e ? `E${e.ep} (${shortTitle(e.title)})` : slug; };
+    const name = (slug) => { const e = byslug(slug); return e ? `E${e.ep} (${short(e.title)})` : slug; };
     const flagged = cur.promoFlagged.filter((s) => !prev.promoFlagged.includes(s)).map(name);
     const cleared = prev.promoFlagged.filter((s) => !cur.promoFlagged.includes(s)).map(name);
     push(`Promo-outlier flags changed${flagged.length ? ` — now flagged: ${flagged.join(", ")}` : ""}${cleared.length ? ` — no longer flagged: ${cleared.join(", ")}` : ""}. Every typical and every clean series moved with it; today's health read is not one-to-one with yesterday's.`);
@@ -194,14 +197,101 @@ export function detect(prev, cur, data) {
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+function arg(name, fallback = null) {
+  const index = process.argv.indexOf(name);
+  return index >= 0 ? process.argv[index + 1] : fallback;
+}
+
+export function deliveryId(value) {
+  if (!value || typeof value !== "object") return null;
+  for (const key of ["messageId", "message_id", "ts"]) {
+    if (typeof value[key] === "string" && value[key].trim()) return value[key].trim();
+  }
+  for (const child of Object.values(value)) {
+    const found = deliveryId(child);
+    if (found) return found;
+  }
+  return null;
+}
+
+function parseCommandJson(text) {
+  const source = String(text || "").trim();
+  const start = source.indexOf("{");
+  const end = source.lastIndexOf("}");
+  if (start < 0 || end < start) throw new Error("OpenClaw returned no JSON receipt");
+  return JSON.parse(source.slice(start, end + 1));
+}
+
+export function alertBatches(lines, maxChars = 12_000) {
+  const batches = [];
+  let current = [];
+  for (const line of lines) {
+    const candidate = `Dive Radio — what changed:\n${[...current, line].map((item) => `• ${item}`).join("\n")}`;
+    if (current.length && candidate.length > maxChars) { batches.push(current); current = [line]; }
+    else current.push(line);
+  }
+  if (current.length) batches.push(current);
+  return batches;
+}
+
+export function deliverPending({
+  queuePath = QUEUE_PATH,
+  channel = "slack",
+  account = "default",
+  target,
+  send = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024 }),
+  log = console.log,
+} = {}) {
+  if (!target) throw new Error("alert delivery target is required");
+  const release = acquireLock(`${queuePath}.delivery.lock`, { label: "alert delivery", maxAgeMs: 5 * 60 * 1000 });
+  try {
+    const pending = readQueue(queuePath);
+    if (!pending.length) { log("dive-alerts: queue empty — nothing to send."); return { sent: 0, receipts: [] }; }
+    const receipts = [];
+    let sent = 0;
+    for (const batch of alertBatches(pending)) {
+      const message = `Dive Radio — what changed:\n${batch.map((line) => `• ${line}`).join("\n")}`;
+      const result = send(["message", "send", "--channel", channel, "--account", account, "--target", target, "--message", message, "--json"]);
+      const status = Number.isInteger(result.status) ? result.status : 1;
+      if (status !== 0) throw new Error(`Slack send failed (exit ${status}) — ${String(result.stderr || result.stdout || "no details").trim().split("\n").at(-1)}`);
+      const receipt = deliveryId(parseCommandJson(result.stdout));
+      if (!receipt) throw new Error("Slack send returned no message receipt");
+      acknowledgeQueueLines(batch, queuePath);
+      receipts.push(receipt);
+      sent += batch.length;
+    }
+    log(`dive-alerts: Slack confirmed ${sent} line${sent === 1 ? "" : "s"} (${receipts.join(", ")}).`);
+    return { sent, receipts };
+  } finally {
+    release();
+  }
+}
+
 if (isMain) {
   const emitMode = process.argv.includes("--emit");
-  if (emitMode) {
-    const queue = loadJson(QUEUE_PATH, []);
-    if (!queue.length) { console.log("dive-alerts: queue empty — nothing to say."); process.exit(0); }
-    console.log("Dive Radio — what changed:");
-    for (const line of queue) console.log(`• ${line}`);
-    saveAtomic(QUEUE_PATH, []);
+  const deliverMode = process.argv.includes("--deliver");
+  if (emitMode && deliverMode) {
+    console.error("dive-alerts: choose --emit or --deliver, not both");
+    process.exit(1);
+  } else if (emitMode) {
+    try {
+      const queue = readQueue(QUEUE_PATH);
+      if (!queue.length) console.log("dive-alerts: queue empty — nothing to say.");
+      else {
+        console.log("Dive Radio — what changed:");
+        for (const line of queue) console.log(`• ${line}`);
+      }
+    } catch (error) {
+      console.error(`dive-alerts: ${error.message}`);
+      process.exit(1);
+    }
+  } else if (deliverMode) {
+    try {
+      deliverPending({ channel: arg("--channel", "slack"), account: arg("--account", "default"), target: arg("--target") });
+    } catch (error) {
+      console.error(`dive-alerts: ${error.message}; pending lines were kept.`);
+      process.exit(1);
+    }
   } else {
     const data = JSON.parse(readFileSync(DATA_PATH, "utf8"));
     const cur = snapshotState(data);
@@ -212,9 +302,7 @@ if (isMain) {
     } else {
       const found = detect(prev, cur, data);
       if (found.length) {
-        const queue = loadJson(QUEUE_PATH, []);
-        for (const line of found) if (!queue.includes(line)) queue.push(line);
-        saveAtomic(QUEUE_PATH, queue);
+        appendQueueLines(found, QUEUE_PATH);
       }
       saveAtomic(STATE_PATH, cur);
       console.log(`alerts: ${found.length} material change(s)${found.length ? " queued" : ""}.`);

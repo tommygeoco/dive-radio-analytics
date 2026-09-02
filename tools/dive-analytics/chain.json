@@ -1,6 +1,6 @@
 {
  "cron": "0 7 * * * America/Phoenix",
- "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` (not a crontab) runs these in this order. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
+ "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` enters through run-daily.mjs in its dedicated checkout. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
  "steps": [
   {
    "step": "discover",
@@ -210,17 +210,17 @@
     "data/restream/alerts-pending.json"
    ],
    "freshnessKey": null,
-   "required": false,
+   "required": true,
    "scope": "all"
   },
   {
    "step": "freshness",
-   "script": "tools/dive-analytics/freshness.mjs",
+   "script": "tools/dive-analytics/freshness.mjs --strict",
    "writes": [
     "data/restream/alerts-pending.json"
    ],
    "freshnessKey": null,
-   "required": false,
+   "required": true,
    "scope": "all"
   },
   {

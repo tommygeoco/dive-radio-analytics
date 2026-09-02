@@ -81,9 +81,16 @@ semantics. The comparison rules (one `baselines.mjs`, like-for-like bases,
 eight-episode windows, three-peer minimum, rebuildable freezes, freshness)
 are specified in `tools/dive-analytics/prd-analytics-v7-*.md`.
 
-Data is exported daily (07:00 America/Phoenix, an OpenClaw automation on the owner machine running `tools/dive-analytics/run-chain.mjs`) by an automated pipeline that
-(PRD v11: the chain pulls and heals first, retries the two platform steps once, runs the validator in publish mode — honesty checks block, source-contract drift is reported — publishes with a self-fixing script, and queues one Slack line on any failure; `dive-alerts` delivers the queue every 30 minutes and a freshness check re-reads the live site at 08:15 and noon)
-also discovers newly published episodes and collects audience comments. A
+Data is exported daily at 07:00 America/Phoenix from a dedicated clean
+checkout. The OpenClaw job enters through `run-daily.mjs`, which prevents
+overlap and allows the scheduled run plus one morning recovery. The chain
+pulls main before capture, retries each required platform pull once, validates
+the final files, pushes the exact checked commit, deploys production, and
+compares all seven public data files byte-for-byte. An 08:15 check starts the
+one recovery only when production is not current; noon verifies without
+starting another chain. Alerts stay queued until Slack returns a message
+receipt, and the delivery worker runs every five minutes. The pipeline also
+discovers newly published episodes and collects audience comments. A
 separate model step removes noise, labels reactions, audits a sample, and keeps
 unclear items off every surface. Built with vanilla JS + Chart.js (MIT, vendored).
 
@@ -91,7 +98,7 @@ The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:
 
 ```text
-ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → build-data → validate → publish → freshness
+ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → build-data → validate → publish → alerts → freshness
 ```
 
 (`recommendations` and `moment-summaries` need ANTHROPIC_API_KEY like
@@ -100,9 +107,8 @@ saved store to the items that still ground in the current facts — below
 three survivors the store is removed and the page falls back to the
 deterministic insights — so a stale store can never block a publish. For
 `health` and `moment-summaries` the previous store stays the public truth.
-`freshness` checks the LIVE site at the end of the chain and again from a
-midday OpenClaw automation, raising one plain line when prod serves data older than 26
-hours.)
+`freshness` requires a production build from today in Phoenix and keeps the
+26-hour age check as a second guard.)
 
 The classifier, health writer, recommendation engine, moment summarizer,
 and standing critic are the only model-backed scripts. `build-data.mjs`

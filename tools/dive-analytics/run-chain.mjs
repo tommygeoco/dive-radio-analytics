@@ -27,12 +27,14 @@
 //   node tools/dive-analytics/run-chain.mjs --last     # show the last run's failure
 //   node tools/dive-analytics/run-chain.mjs            # run the chain
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync, unlinkSync, appendFileSync, renameSync } from "node:fs";
+import { readFileSync, mkdirSync, existsSync, readdirSync, unlinkSync, appendFileSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { healLeftovers } from "./chain-heal.mjs";
+import { assertPublisherCheckout } from "./publisher-checkout.mjs";
+import { appendQueueLines } from "./alert-queue.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -88,12 +90,7 @@ function showLast() {
 // --- W37: one line into the queue the dive-alerts automation delivers ----------
 function queueAlert(text) {
   try {
-    const queue = existsSync(QUEUE_PATH) ? JSON.parse(readFileSync(QUEUE_PATH, "utf8")) : [];
-    const lines = Array.isArray(queue) ? queue : [];
-    if (!lines.includes(text)) lines.push(text);
-    const tmp = `${QUEUE_PATH}.tmp`;
-    writeFileSync(tmp, JSON.stringify(lines, null, 2) + "\n");
-    renameSync(tmp, QUEUE_PATH);
+    appendQueueLines([text], QUEUE_PATH);
     log(`chain: queued an alert — ${text}`);
   } catch (error) { log(`chain: could not queue the alert (${error.message}) — ${text}`, process.stderr); }
 }
@@ -102,15 +99,22 @@ const phxClock = () => new Date().toLocaleTimeString("en-US", { timeZone: "Ameri
 // --- W34/§11: current code, clean tree ------------------------------------------
 function pullFirst() {
   const git = (args) => spawnSync("git", args, { cwd: ROOT, encoding: "utf8", env: ENV });
-  // an earlier run's failed publish may have left unmerged paths and a stash
-  // behind; repair that first or the pull below refuses to run
-  try { healLeftovers(ROOT, { log }); } catch (error) { log(`chain: ${error.message}`, process.stderr); queueAlert(`chain: could not start at ${phxClock()} — ${error.message}`); process.exit(1); }
-  // no trim(): the first porcelain line starts with the two-column status
-  const status = git(["status", "--porcelain"]).stdout;
-  const dirty = status.split("\n").filter((l) => l.trim()).map((l) => l.slice(3));
-  const generated = dirty.filter((f) => /^(data\.json|data\.js|agent\.md|agent\.json|llms\.txt|data\/restream\/|transcripts\/|tools\/dive-analytics\/audit\/HEALTH-VERIFY\.md)/.test(f));
-  const other = dirty.filter((f) => !generated.includes(f));
-  if (other.length) log(`chain: local changes outside the data stores (${other.slice(0, 5).join(", ")}) — pulling with a stash`);
+  let checkout;
+  try { checkout = assertPublisherCheckout(ROOT); }
+  catch (error) {
+    log(`chain: ${error.message} — refusing before capture`, process.stderr);
+    // Do not write an alert into an unsafe development checkout. The OpenClaw
+    // job failure route reports this before any file here is changed.
+    process.exit(1);
+  }
+  // A failed publish in the dedicated checkout may have left allowed store
+  // conflicts. Only after checkout identity and scope are proved may healing
+  // change those files.
+  try { healLeftovers(ROOT, { log }); }
+  catch (error) { log(`chain: ${error.message}`, process.stderr); queueAlert(`chain: could not start at ${phxClock()} — ${error.message}`); process.exit(1); }
+  try { checkout = assertPublisherCheckout(ROOT); }
+  catch (error) { log(`chain: ${error.message} after healing`, process.stderr); queueAlert(`chain: could not start at ${phxClock()} — ${error.message}`); process.exit(1); }
+  const dirty = checkout.dirtyPaths;
   const stashed = dirty.length ? git(["stash", "push", "--include-untracked", "-m", "chain-pre-pull"]).status === 0 : false;
   const pull = git(["pull", "--rebase", "--quiet", "origin", "main"]);
   if (pull.status !== 0) {
@@ -123,14 +127,21 @@ function pullFirst() {
   if (stashed) {
     const pop = git(["stash", "pop"]);
     if (pop.status !== 0) {
-      // the stash held generated files that the pulled commit also changed:
-      // keep the pulled versions (build-data rewrites them minutes from now)
-      git(["checkout", "--", "."]);
-      git(["stash", "drop"]);
-      log("chain: pulled code changed generated files too — kept the pulled versions; the build step regenerates them");
+      try { healLeftovers(ROOT, { log }); }
+      catch (error) {
+        log(`chain: ${error.message}`, process.stderr);
+        queueAlert(`chain: could not restore today's stores at ${phxClock()} — ${error.message}`);
+        process.exit(1);
+      }
     }
   }
-  log(`chain: at ${git(["rev-parse", "--short", "HEAD"]).stdout.trim()} after pulling main`);
+  try { assertPublisherCheckout(ROOT); }
+  catch (error) {
+    log(`chain: ${error.message} after pull — refusing before capture`, process.stderr);
+    queueAlert(`chain: unsafe checkout after pull at ${phxClock()} — ${error.message}`);
+    process.exit(1);
+  }
+  log(`chain: at main@${git(["rev-parse", "--short", "HEAD"]).stdout.trim()} after pulling origin/main`);
 }
 
 // --- one step, output streamed to the console and the log --------------------------
@@ -164,13 +175,6 @@ async function main() {
       ({ code, lastErr } = await runStep(cmd));
     }
     if (code === 0) continue;
-    // W38: publish exit 2 = pushed and deployed, live parity unconfirmed — the
-    // day is published; say so, never re-capture and re-publish
-    if (step.step === "publish" && code === 2) {
-      log("chain: publish pushed and deployed but could not confirm live parity — continuing; the 08:15 freshness check re-reads the site");
-      queueAlert(`chain: published at ${phxClock()} but could not confirm the live site serves today's data — the freshness check will say if it stays behind`);
-      continue;
-    }
     if (step.required) {
       log(`chain: ${step.step} failed (exit ${code}) — required, stopping here`, process.stderr);
       queueAlert(`chain: ${step.step} failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""} — no publish this run; \`node tools/dive-analytics/run-chain.mjs --last\` on the chain machine shows the log`);
