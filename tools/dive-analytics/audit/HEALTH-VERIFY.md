@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-01
+# Show-health verification — 2026-09-02
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; never blocks publish.
 
-## Accuracy — the 2026-09-01 read
+## Accuracy — the 2026-09-02 read
 
-Score 50 (weighted mean 50.3, health-v5, prompt v7); reads Steal These AI Design Patterns + Live Ca at 5.2 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
+Score 48 (weighted mean 49.9, health-v5, prompt v7); reads Steal These AI Design Patterns + Live Ca at 5.8 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 

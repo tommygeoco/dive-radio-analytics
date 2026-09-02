@@ -5,12 +5,12 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "sC3Wvi1Whm4",
-      "pulledAt": "2026-09-02T01:05:02.880Z",
+      "pulledAt": "2026-09-02T14:37:15.258Z",
       "totals": {
-        "views": 2240,
-        "estimatedMinutesWatched": 11516,
-        "averageViewDuration": 816,
-        "averageViewPercentage": 13.76,
+        "views": 2228,
+        "estimatedMinutesWatched": 11650,
+        "averageViewDuration": 830,
+        "averageViewPercentage": 12.629999999999999,
         "subscribersGained": 2,
         "likes": 24,
         "comments": 0
@@ -472,12 +472,12 @@
     },
     "yt:designertom": {
       "videoId": "qPAPUmg_qZE",
-      "pulledAt": "2026-09-02T01:05:02.880Z",
+      "pulledAt": "2026-09-02T14:37:15.258Z",
       "totals": {
-        "views": 2293,
-        "estimatedMinutesWatched": 6514,
-        "averageViewDuration": 639,
-        "averageViewPercentage": 10.11,
+        "views": 2288,
+        "estimatedMinutesWatched": 6550,
+        "averageViewDuration": 642,
+        "averageViewPercentage": 9.78,
         "subscribersGained": 1,
         "likes": 14,
         "comments": 1
@@ -938,5 +938,5 @@
       ]
     }
   },
-  "updatedAt": "2026-09-02T01:05:02.880Z"
+  "updatedAt": "2026-09-02T14:37:15.258Z"
 }

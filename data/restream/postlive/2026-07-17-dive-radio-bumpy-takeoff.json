@@ -6647,6 +6647,218 @@
           "plays": 760
         }
       }
+    },
+    {
+      "ts": "2026-09-02T14:00:03.336Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1245,
+          "detail": {
+            "views": 1245,
+            "likes": 49,
+            "comments": 7,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 849,
+          "detail": {
+            "views": 849,
+            "likes": 45,
+            "comments": 4,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 466,
+          "views": 1523,
+          "detail": {
+            "views": 1523,
+            "plays": null,
+            "likes": 10,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1024
+        },
+        "x:designertom": {
+          "peakConcurrent": 286,
+          "views": 3842,
+          "detail": {
+            "views": 3842,
+            "plays": null,
+            "likes": 26,
+            "replies": 3,
+            "reposts": 0,
+            "bookmarks": 8,
+            "quotes": 2
+          },
+          "plays": 760
+        }
+      }
+    },
+    {
+      "ts": "2026-09-02T14:07:00.938Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1245,
+          "detail": {
+            "views": 1245,
+            "likes": 49,
+            "comments": 7,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 849,
+          "detail": {
+            "views": 849,
+            "likes": 45,
+            "comments": 4,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 466,
+          "views": 1523,
+          "detail": {
+            "views": 1523,
+            "plays": null,
+            "likes": 10,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1024
+        },
+        "x:designertom": {
+          "peakConcurrent": 286,
+          "views": 3842,
+          "detail": {
+            "views": 3842,
+            "plays": null,
+            "likes": 26,
+            "replies": 3,
+            "reposts": 0,
+            "bookmarks": 8,
+            "quotes": 2
+          },
+          "plays": 760
+        }
+      }
+    },
+    {
+      "ts": "2026-09-02T14:17:02.013Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1245,
+          "detail": {
+            "views": 1245,
+            "likes": 49,
+            "comments": 7,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 849,
+          "detail": {
+            "views": 849,
+            "likes": 45,
+            "comments": 4,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 466,
+          "views": 1523,
+          "detail": {
+            "views": 1523,
+            "plays": null,
+            "likes": 10,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1024
+        },
+        "x:designertom": {
+          "peakConcurrent": 286,
+          "views": 3842,
+          "detail": {
+            "views": 3842,
+            "plays": null,
+            "likes": 26,
+            "replies": 3,
+            "reposts": 0,
+            "bookmarks": 8,
+            "quotes": 2
+          },
+          "plays": 760
+        }
+      }
+    },
+    {
+      "ts": "2026-09-02T14:37:00.682Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1245,
+          "detail": {
+            "views": 1245,
+            "likes": 49,
+            "comments": 7,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 849,
+          "detail": {
+            "views": 849,
+            "likes": 45,
+            "comments": 4,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 466,
+          "views": 1523,
+          "detail": {
+            "views": 1523,
+            "plays": null,
+            "likes": 10,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1024
+        },
+        "x:designertom": {
+          "peakConcurrent": 286,
+          "views": 3842,
+          "detail": {
+            "views": 3842,
+            "plays": null,
+            "likes": 26,
+            "replies": 3,
+            "reposts": 0,
+            "bookmarks": 8,
+            "quotes": 2
+          },
+          "plays": 760
+        }
+      }
     }
   ]
 }

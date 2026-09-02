@@ -4536,6 +4536,218 @@
           "plays": 546
         }
       }
+    },
+    {
+      "ts": "2026-09-02T14:00:03.336Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1240,
+          "detail": {
+            "views": 1240,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 722,
+          "detail": {
+            "views": 722,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3502,
+          "detail": {
+            "views": 3502,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1346
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
+    },
+    {
+      "ts": "2026-09-02T14:07:00.938Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1240,
+          "detail": {
+            "views": 1240,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 722,
+          "detail": {
+            "views": 722,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3502,
+          "detail": {
+            "views": 3502,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1346
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
+    },
+    {
+      "ts": "2026-09-02T14:17:02.013Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1240,
+          "detail": {
+            "views": 1240,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 722,
+          "detail": {
+            "views": 722,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3502,
+          "detail": {
+            "views": 3502,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1346
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
+    },
+    {
+      "ts": "2026-09-02T14:37:00.682Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1240,
+          "detail": {
+            "views": 1240,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 722,
+          "detail": {
+            "views": 722,
+            "likes": 22,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "peakConcurrent": 680,
+          "views": 3502,
+          "detail": {
+            "views": 3502,
+            "plays": null,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1346
+        },
+        "x:designertom": {
+          "peakConcurrent": 216,
+          "views": 1140,
+          "detail": {
+            "views": 1140,
+            "plays": null,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546
+        }
+      }
     }
   ]
 }

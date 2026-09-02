@@ -5,9 +5,9 @@
   "channels": {
     "yt:designertom": {
       "videoId": "eLA79C1jq1g",
-      "pulledAt": "2026-09-02T01:05:02.880Z",
+      "pulledAt": "2026-09-02T14:37:15.258Z",
       "totals": {
-        "views": 549,
+        "views": 548,
         "estimatedMinutesWatched": 4126,
         "averageViewDuration": 505,
         "averageViewPercentage": 8.85,
@@ -467,10 +467,10 @@
     },
     "yt:joindiveclub": {
       "videoId": "RhemcDEc_-A",
-      "pulledAt": "2026-09-02T01:05:02.880Z",
+      "pulledAt": "2026-09-02T14:37:15.258Z",
       "totals": {
         "views": 788,
-        "estimatedMinutesWatched": 9402,
+        "estimatedMinutesWatched": 9403,
         "averageViewDuration": 761,
         "averageViewPercentage": 13.33,
         "subscribersGained": 1,
@@ -933,5 +933,5 @@
       ]
     }
   },
-  "updatedAt": "2026-09-02T01:05:02.880Z"
+  "updatedAt": "2026-09-02T14:37:15.258Z"
 }

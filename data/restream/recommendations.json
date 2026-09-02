@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 4,
- "updatedAt": "2026-09-02T01:06:07.290Z",
+ "updatedAt": "2026-09-02T17:26:03.533Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-09-02T01:05:19.047Z",
+ "factsGeneratedAt": "2026-09-02T17:23:17.170Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -472,7 +472,7 @@
   },
   {
    "id": "watched-E7",
-   "value": 11.9
+   "value": 11.2
   },
   {
    "id": "subs1k-E7",
@@ -480,7 +480,7 @@
   },
   {
    "id": "watched-E7-joindiveclub",
-   "value": 13.8
+   "value": 12.6
   },
   {
    "id": "subs1k-E7-joindiveclub",
@@ -492,7 +492,7 @@
   },
   {
    "id": "watched-E7-designertom",
-   "value": 10.1
+   "value": 9.8
   },
   {
    "id": "subs1k-E7-designertom",
@@ -536,7 +536,7 @@
   },
   {
    "id": "discovery-E7",
-   "value": 5.5
+   "value": 5.6
   },
   {
    "id": "show-health-score",
@@ -820,11 +820,11 @@
   },
   {
    "id": "launch-E7",
-   "value": 4935
+   "value": 5042
   },
   {
    "id": "launch-typical-E7",
-   "value": 1600
+   "value": 1685
   },
   {
    "id": "open-floor-E1",
@@ -1120,7 +1120,7 @@
   },
   {
    "id": "drop-min-E7-7",
-   "value": 7
+   "value": 8
   },
   {
    "id": "drop-E7-18",
@@ -1128,7 +1128,7 @@
   },
   {
    "id": "drop-min-E7-18",
-   "value": 18
+   "value": 20
   },
   {
    "id": "hold-E7-37",
@@ -1136,7 +1136,7 @@
   },
   {
    "id": "hold-min-E7-37",
-   "value": 38
+   "value": 41
   },
   {
    "id": "drop-E7-58",
@@ -1144,7 +1144,7 @@
   },
   {
    "id": "drop-min-E7-58",
-   "value": 59
+   "value": 63
   },
   {
    "id": "traffic-SUBSCRIBER",
@@ -1252,7 +1252,7 @@
   },
   {
    "id": "channel-views-designertom",
-   "value": 6218
+   "value": 6212
   },
   {
    "id": "channel-subs-designertom",
@@ -1264,11 +1264,11 @@
   },
   {
    "id": "channel-watched-designertom",
-   "value": 9.8
+   "value": 9.7
   },
   {
    "id": "channel-views-joindiveclub",
-   "value": 7784
+   "value": 7771
   },
   {
    "id": "channel-subs-joindiveclub",
@@ -1280,62 +1280,62 @@
   },
   {
    "id": "channel-watched-joindiveclub",
-   "value": 12
+   "value": 11.7
   },
   {
    "id": "views-yt-all",
-   "value": 15359
+   "value": 15494
   },
   {
    "id": "views-x-all",
-   "value": 15456
+   "value": 15485
   },
   {
    "id": "share-x-all",
-   "value": 50.2
+   "value": 50
   },
   {
    "id": "views-total-all",
-   "value": 30815
+   "value": 30979
   }
  ],
- "attempts": 1,
+ "attempts": 2,
  "ranked": true,
  "items": [
   {
    "id": "revive-live-chat",
-   "category": "audience",
+   "category": "content",
    "serves": "participation",
-   "text": "Participation is fragile: chatters per 100 sit at 55.6 against a usual 82.4, messages per hour at 50.2 against 85.3, and both are softening. E7 drew 40 chatters and 92 messages while E1 drew 104 chatters and 383 messages.",
-   "recommendation": "Build chat moments into this week's rundown: open with a poll, read viewer questions aloud mid-show, and have one host greet every first-time chatter by name. Track whether chatters per 100 move back toward 82.4."
+   "text": "Participation is fragile: chatters per 100 read 55.6 against a typical 82.4, and messages per hour are softening. E1 drew 104 chatters and 383 messages live; the newest show drew 40 chatters and 92 messages.",
+   "recommendation": "Run two named chat moments this week — a poll inside the first 15 minutes and an on-air segment reading chatter questions — and greet chatters by name, to test whether direct prompts pull the room back into the conversation."
   },
   {
    "id": "fix-announce-to-play",
    "category": "promotion",
    "serves": "reachEfficiency",
-   "text": "Reach is fragile: the announce-to-play reading carried from the latest finished episode is 13 against a usual 31.4, and announce-to-play is softening across the last 5 clean episodes.",
-   "recommendation": "Rework the announce this week: post it twice — the day before and again just before going live — with a short highlight clip and a one-line hook naming the episode's payoff, then check whether plays per announce recover toward 31.4."
+   "text": "Reach efficiency is fragile: the share of announced followers who play an episode reads 13 against a typical 31.4 (carried from an older finished episode), and announce-to-play has been softening across the last 5 clean episodes.",
+   "recommendation": "Rewrite this week's announce posts around one concrete takeaway plus a timestamped moment, publish at two different times on X and on both YouTube channels, and compare which version actually gets played."
   },
   {
-   "id": "tighten-episode-opening",
+   "id": "test-mid-show-trim",
    "category": "content",
    "serves": "audienceQuality",
-   "text": "Audience quality is fragile: share watched carried from the latest finished episode reads 8.9 against a usual 10.7, and watching is softening. On E7, still in its first weeks, 4.1 of every 100 viewers left around 18 minutes in, near the nominations segment.",
-   "recommendation": "Test a tighter opening next episode: lead with the strongest demo, move the nominations block later, and trim crosstalk in the first stretch. Compare the early exit on the replay to see if the change holds more viewers."
+   "text": "Audience quality is fragile: average share watched reads 8.9 against a typical 10.7 (carried from an older finished episode) and watching is softening. In E4, 5.9 of every 100 viewers left about two-fifths of the way in, around 48 minutes into the video.",
+   "recommendation": "Tighten the middle of this week's show: pre-plan segment order, cap free-form tool chat near the midpoint to one demo, and place a strong guest moment in that stretch — then check whether the mid-show exits shrink."
   },
   {
-   "id": "close-designertom-conversion-gap",
+   "id": "close-designertom-sub-gap",
    "category": "audience",
    "serves": "conversion",
-   "text": "Across the whole show, Dive Club converts at 2.6 subscribers per 1,000 views with 20 gained, while DesignerTom converts at 1.4 with 9 gained; Dive Club viewers also watch 12 of each video on average against 9.8 on DesignerTom.",
-   "recommendation": "Add a spoken subscribe ask plus an on-screen card to DesignerTom uploads this week, mirroring whatever runs on Dive Club, and watch whether DesignerTom's per-view sign-ups close the gap."
+   "text": "Dive Club converts at 2.6 subscribers per 1,000 views (20 gained on 7,771 views) while DesignerTom sits at 1.4 (9 gained on 6,212 views). On E4, Dive Club added 7 subscribers; DesignerTom added 0.",
+   "recommendation": "Add a direct on-air subscribe ask aimed at DesignerTom viewers this week, pin a subscribe comment on that channel's upload, and test whether its next finished episode moves above 1.4 per 1,000."
   },
   {
-   "id": "activate-shorts-and-end-screens",
+   "id": "activate-dead-surfaces",
    "category": "distribution",
-   "serves": "growth",
-   "text": "Subscribers supply 64.6 of all YouTube views (9,040), while some surfaces bring almost nothing across the whole show: 2 views from Shorts, 13 from Shorts content links, 10 from end screens, and 86 from playlists.",
-   "recommendation": "Clip two Shorts from the newest episode's best live moments, add an end screen pointing to the latest upload, and put every episode in a playlist. Recheck these surfaces in a few weeks to see which one starts pulling new viewers."
+   "serves": "reachEfficiency",
+   "text": "Subscribers supply 64.6 of every 100 YouTube views. Across the whole show, end screens brought 10 views, playlists 86, and Shorts 2; search and suggested sit at a 13.4 share on the latest finished read against a typical 14.2.",
+   "recommendation": "Add end screens on every past episode pointing to the newest upload, build one series playlist on both channels, and cut two Shorts from the best live moments this week to test whether views from outside subscribers rise."
   }
  ]
 }
