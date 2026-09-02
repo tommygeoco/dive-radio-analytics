@@ -349,25 +349,12 @@ export function computeAll({ now = Date.now() } = {}) {
     // tagged by the DECISION it informs, not the data type it reads.
     for (const i of insights) i.category = categoryFor(i.id);
   } else {
-    // Required deterministic insights (2026-08-31): recommendations replace the
-    // deterministic set wholesale, but insights the validator LOCKS to a
-    // baselines gate are non-negotiable. When paceReady is true (data.baselines
-    // has a same-age pace with rank), the deterministic pace-rank insight MUST
-    // be present — the model does not have the authority to skip a gated
-    // honesty claim. Fixes chain W10: 2026-08-31 publish halted with
-    //   FAIL insight pace-rank: expected one grounded insight, found 0
-    // when recommendations shipped seven items, none of them the required
-    // pace-rank. Only the injected pace-rank gets a category assigned here —
-    // recommendation items already carry model-authored categories and must
-    // not be overwritten.
-    if (!insights.some((i) => i.id === "pace-rank")) {
-      const deterministic = buildInsights(dive, { flags });
-      const paceReq = deterministic.find((i) => i.id === "pace-rank");
-      if (paceReq) {
-        paceReq.category = categoryFor(paceReq.id);
-        insights.push(paceReq);
-      }
-    }
+    // Owner directive 2026-09-01 (W35 final): What matters is EXACTLY the
+    // five ranked actions — nothing is appended to them. The newest episode's
+    // same-age pace claim (once required here, 2026-08-31) lives on its card
+    // and in the chart standings, locked to data.baselines.pace by the
+    // validator; the model's five may cite it from the launch facts when it
+    // matters. The deterministic list remains the fallback when no store exists.
   }
   const catRank = { content: 0, distribution: 1, promotion: 2, audience: 3, data: 4 };
   // ranked items keep their order (W35); anything unranked (the deterministic

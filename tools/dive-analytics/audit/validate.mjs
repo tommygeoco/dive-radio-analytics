@@ -557,9 +557,16 @@ function premiereMs(dateStr) {
   if (paceReady && (data.showTrend.paceRank.rank !== pacePublic.rank || data.showTrend.paceRank.of !== pacePublic.of)) {
     bad++; fail("insight pace-rank: showTrend.paceRank disagrees with data.baselines.pace");
   }
-  if (paceInsights.length !== (paceReady ? 1 : 0)) {
-    bad++; fail(`insight pace-rank: expected ${paceReady ? "one grounded insight" : "no small-sample insight"}, found ${paceInsights.length}`);
-  } else if (paceReady && paceInsights[0].chartState?.solo !== newest.slug) {
+  // W35 final (owner directive 2026-09-01): when the ranked recommendation
+  // store drives What matters it is exactly the five ranked items and the
+  // pace claim is not an insight (it stays on the newest episode's card and
+  // in the chart standings, locked above); the deterministic fallback list
+  // still carries pace-rank exactly when the three-peer gate is met
+  const rankedStoreDrives = data.insights.some((i) => i.rank != null);
+  const expectedPace = rankedStoreDrives ? 0 : (paceReady ? 1 : 0);
+  if (paceInsights.length !== expectedPace) {
+    bad++; fail(`insight pace-rank: expected ${expectedPace ? "one grounded insight" : rankedStoreDrives ? "none beside the five ranked items" : "no small-sample insight"}, found ${paceInsights.length}`);
+  } else if (paceInsights.length && paceInsights[0].chartState?.solo !== newest.slug) {
     bad++; fail("insight pace-rank: actionable pace insight does not open the newest episode");
   }
   const anomalyEpisodes = eps.filter((e) => e.metrics?.anomaly);
@@ -580,6 +587,7 @@ function premiereMs(dateStr) {
   // the page, matching the store's own item order; unranked claims follow
   const ranked = data.insights.filter((i) => i.rank != null);
   if (ranked.length) {
+    if (data.insights.length !== ranked.length) { bad++; fail(`insight ranks: What matters must be exactly the ranked items, found ${data.insights.length - ranked.length} unranked card(s) beside them`); }
     const ranks = ranked.map((i) => i.rank);
     if (ranks.some((r, i) => r !== i + 1)) { bad++; fail(`insight ranks are not 1..${ranked.length} in page order (${ranks.join(",")})`); }
     if (data.insights.findIndex((i) => i.rank != null) !== 0 || data.insights.slice(0, ranked.length).some((i) => i.rank == null)) { bad++; fail("insight ranks: ranked items must come first on the page"); }
