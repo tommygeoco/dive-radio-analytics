@@ -175,7 +175,7 @@
      helps the eye scan a row of cards */
   /* owner directive 2026-09-01: one colored dot per card (the episode's);
      the launch word carries its meaning in the word alone */
-  .hs.launch { color: var(--t2); font-size: 12px; cursor: pointer;
+  .hs.launch { color: var(--t2); font-size: 12px; cursor: pointer; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis;
     /* owner directive 2026-09-01: the dotted underline says "there is a tooltip here",
        the same mark the direction rows wear */
     text-decoration: underline dotted rgba(148,163,184,.55); text-underline-offset: 3px; }
@@ -1525,7 +1525,9 @@ function buildStrip() {
     const launch = DATA.baselines?.launch?.[e.slug];
     // a promo-driven launch never wears a strength word (rule 18): the card
     // says what it is, the panel carries the numbers
-    const launchWord = launch?.word ? (launch.promoDriven ? "Promo-driven launch" : `${cap(launch.word)} launch`) + (launch.provisional ? " · so far" : "") : "";
+    // one line, always (owner directive 2026-09-01): the card word stays short
+    // ("Promo launch · so far"); the tooltip carries the full promo-driven sentence
+    const launchWord = launch?.word ? (launch.promoDriven ? "Promo launch" : `${cap(launch.word)} launch`) + (launch.provisional ? " · so far" : "") : "";
     const hs = healthOf(e) ? healthChip(e) : (launch?.word
       ? `<span class="hs launch ${launch.promoDriven ? "promo" : esc(launch.word)}" data-stat="${esc(launchWord)}" data-note="${esc(launchNote(launch))}" tabindex="0" aria-label="${esc(`${launchWord}. ${launchNote(launch)}`)}">${esc(launchWord)}</span>`
       : `<span class="hs quiet" aria-hidden="true"></span>`);
