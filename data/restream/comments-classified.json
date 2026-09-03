@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-02T14:37:27.021Z",
+  "updatedAt": "2026-09-03T14:00:37.945Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -706,6 +706,65 @@
       "promptVersion": 1,
       "model": "claude-fable-5",
       "classifiedAt": "2026-09-01T17:21:09.018Z"
+    },
+    "yt:Ugycpd2h87OpPl0kAz14AaABAg.AaCNjtBRDTdAaHIDFqXsUP": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-03T14:00:37.945Z"
+    },
+    "x:2095504471216239012": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "guest",
+        "other"
+      ],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-03T14:00:37.945Z",
+      "audit": {
+        "at": "2026-09-03T14:00:37.945Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "guest",
+          "other"
+        ],
+        "confidence": 0.85
+      }
+    },
+    "x:2095497435187433484": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.7,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-03T14:00:37.945Z",
+      "audit": {
+        "at": "2026-09-03T14:00:37.945Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.7
+      }
     }
   },
   "golden": {
@@ -726,9 +785,9 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-02T14:37:27.021Z",
+    "at": "2026-09-03T14:00:37.945Z",
     "status": "complete",
-    "added": 0,
+    "added": 3,
     "reviewed": 0,
     "pendingIds": []
   },

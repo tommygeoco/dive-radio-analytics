@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T17:24:48.048Z",
+  "updatedAt": "2026-09-03T14:01:19.650Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -133,6 +133,18 @@
       "pctPerEpisode": -8,
       "lastEp": 7,
       "lastValue": 74.9,
+      "resolution": null
+    },
+    {
+      "id": "range:after-E8:1189-1830",
+      "kind": "first-week-range",
+      "madeOn": "2026-09-03",
+      "afterEp": 8,
+      "low": 1189,
+      "high": 1830,
+      "typical": 1751,
+      "direction": null,
+      "pctPerEpisode": -8.3,
       "resolution": null
     }
   ]

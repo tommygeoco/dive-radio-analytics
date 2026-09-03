@@ -45,7 +45,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1024,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -59,7 +59,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 760,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         }
@@ -100,7 +100,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 635,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -113,7 +113,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 1179,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         }
@@ -154,8 +154,8 @@
           "broadcastId": "1nGnRRMEPDkGO",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1430,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 1435,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -169,7 +169,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 2803,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         }
@@ -210,8 +210,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1346,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 1348,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -224,7 +224,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 546,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         }
@@ -265,8 +265,8 @@
           "broadcastId": "1pKdRDDymlnJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1154,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 1157,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -279,8 +279,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1006,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 1015,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         }
@@ -320,8 +320,8 @@
           "broadcastId": "1DGleVBNBVjJL",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 824,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 827,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -334,7 +334,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 340,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -384,8 +384,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1068,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 1073,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
         },
@@ -418,10 +418,59 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1370,
-            "asOf": "2026-09-02T14:37:00.682Z"
+            "value": 1405,
+            "asOf": "2026-09-03T14:00:03.312Z"
           },
           "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "title": "Dive Radio: How to Engineer a Brand Universe",
+      "date": "2026-09-02",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "Vh8ogFIE8CA",
+          "url": "https://www.youtube.com/watch?v=Vh8ogFIE8CA",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: How to Engineer a Brand Universe"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "lnAecYrKYos",
+          "url": "https://www.youtube.com/watch?v=lnAecYrKYos",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: How to Engineer a Brand Universe"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2095496568589988011",
+          "url": "https://x.com/ridd_design/status/2095496568589988011",
+          "broadcastResolveAttempts": 1,
+          "broadcastResolveFailedAt": "2026-09-03T14:00:03.312Z",
+          "playsStatus": "unresolved"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2095508360510709794",
+          "url": "https://x.com/designertom/status/2095508360510709794",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2095276446386434056",
+          "url": "https://x.com/designertom/status/2095276446386434056",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
         }
       ]
     }

@@ -1,7 +1,7 @@
 {
  "version": 1,
  "promptVersion": 1,
- "updatedAt": "2026-08-31T22:16:08.394Z",
+ "updatedAt": "2026-09-03T14:02:35.372Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
  "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -157,6 +157,14 @@
   "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.58": {
    "summary": "A host walks through AI patterns: progressive disclosure in chatbots, Paper's corner working animation, and prompting an agent inside Framer to add a pulse to a hero pill.",
    "writtenAt": "2026-08-31T22:16:08.394Z"
+  },
+  "2026-08-20-dive-radio-the-mascot-industrial-complex|drop|0.36": {
+   "summary": "Hosts play a teaser clip on the notch concept giving agents a character, then discuss Cursor's internal Grokbot debate and mascots like Duolingo's Duo, Claude, and Microsoft's Mico.",
+   "writtenAt": "2026-09-03T14:02:35.371Z"
+  },
+  "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.4": {
+   "summary": "A guest closes a talk on Ramp's brand refresh favoring coherence over consistency; hosts praise the work, plug audience voting, then one host begins defending his cohost's design credentials.",
+   "writtenAt": "2026-09-03T14:02:35.372Z"
   }
  }
 }

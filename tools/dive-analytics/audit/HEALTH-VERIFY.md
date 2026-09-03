@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-02
+# Show-health verification — 2026-09-03
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; never blocks publish.
 
-## Accuracy — the 2026-09-02 read
+## Accuracy — the 2026-09-03 read
 
-Score 48 (weighted mean 49.9, health-v5, prompt v7); reads Steal These AI Design Patterns + Live Ca at 5.8 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
+Score 49 (weighted mean 50.7, health-v5, prompt v7); reads How to Engineer a Brand Universe at 0.8 days; carried: audience quality, reach, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -12,7 +12,7 @@ Score 48 (weighted mean 49.9, health-v5, prompt v7); reads Steal These AI Design
 
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
-| Next first week inside the expected range | 0 | 0 | 0 | 0 | 1 |
+| Next first week inside the expected range | 0 | 0 | 0 | 0 | 2 |
 | Direction word confirmed by the next episode | 0 | 0 | 0 | 0 | 11 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
@@ -27,15 +27,17 @@ No feel notes yet. Record one with `node tools/dive-analytics/health-feedback.mj
 | growth | 0 |
 | audience quality | 0 |
 | reach | 0 |
-| live turnout | 0 |
-| participation | 0 |
+| live turnout | 1 |
+| participation | 1 |
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 29% (at full weight the mean would move +0.1) · promo-qualified measures: growth.sameAge, reachEfficiency.exposure · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 3.
+Carried share of scored checks: 60% (at full weight the mean would move -0.3) · promo-qualified measures: none · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 3.
 
+- WARN — 3 of 5 scored checks are carried from an older episode — today's number is mostly last episode's.
 - WARN — The check set changed 3 times in 30 days — the number keeps changing what it measures.
 - INFO — The scoring rules changed 3 time(s) in the last 30 days; the daily trend restarts each time.
+- INFO — Direction measures still thin: firstWeek (3 episodes); engagementWeekOne (3 episodes); exposureWeekOne (3 episodes); liveViewers (3 episodes); minutesPerViewer (3 episodes); subscribers (3 episodes).
 
 ## Open claims
 
@@ -51,4 +53,5 @@ Carried share of scored checks: 29% (at full weight the mean would move +0.1) ·
 - 2026-09-01 · minutesWatched holding (+3.4% per episode) — waits for the episode after E7.
 - 2026-09-01 · minutesPerViewer building (+24.4% per episode) — waits for the episode after E7.
 - 2026-09-01 · holdRate softening (-8% per episode) — waits for the episode after E7.
+- 2026-09-03 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E8.
 

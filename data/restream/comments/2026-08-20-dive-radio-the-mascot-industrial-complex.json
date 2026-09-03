@@ -79,8 +79,19 @@
       "likes": 0,
       "publishedAt": "2026-09-01T05:07:02Z",
       "firstSeenAt": "2026-09-01T13:00:31.460Z"
+    },
+    {
+      "id": "yt:Ugycpd2h87OpPl0kAz14AaABAg.AaCNjtBRDTdAaHIDFqXsUP",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "author": "choongching",
+      "authorId": "UCvhPCDkKc8cT4jMzeTDboGw",
+      "text": "@joindiveclub yeah! 100% let's ask the rest :)",
+      "likes": 0,
+      "publishedAt": "2026-09-03T02:54:57Z",
+      "firstSeenAt": "2026-09-03T14:00:31.693Z"
     }
   ],
-  "updatedAt": "2026-09-02T14:37:23.979Z",
+  "updatedAt": "2026-09-03T14:00:31.693Z",
   "xCoverage": "covered"
 }
