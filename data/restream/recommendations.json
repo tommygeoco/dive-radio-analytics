@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 4,
- "updatedAt": "2026-09-03T14:02:12.763Z",
+ "updatedAt": "2026-09-03T17:39:44.860Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-09-03T14:00:55.470Z",
+ "factsGeneratedAt": "2026-09-03T17:39:40.643Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -540,7 +540,7 @@
   },
   {
    "id": "show-health-score",
-   "value": 48
+   "value": 51
   },
   {
    "id": "check-growth",
@@ -555,24 +555,8 @@
    "value": 1
   },
   {
-   "id": "hm-growth-sameAge",
-   "value": 5042
-  },
-  {
-   "id": "hm-typical-growth-sameAge",
-   "value": 1685
-  },
-  {
    "id": "check-audienceQuality",
-   "value": 33
-  },
-  {
-   "id": "hm-audienceQuality-engagement",
-   "value": 43
-  },
-  {
-   "id": "hm-typical-audienceQuality-engagement",
-   "value": 75
+   "value": 42
   },
   {
    "id": "hm-audienceQuality-watching",
@@ -580,19 +564,11 @@
   },
   {
    "id": "hm-typical-audienceQuality-watching",
-   "value": 10.7
+   "value": 10.6
   },
   {
    "id": "check-reachEfficiency",
    "value": 34
-  },
-  {
-   "id": "hm-reachEfficiency-exposure",
-   "value": 13428
-  },
-  {
-   "id": "hm-typical-reachEfficiency-exposure",
-   "value": 5562
   },
   {
    "id": "hm-reachEfficiency-announceToPlay",
@@ -611,72 +587,8 @@
    "value": 14.2
   },
   {
-   "id": "check-livePull",
-   "value": 56
-  },
-  {
-   "id": "hm-livePull-peak",
-   "value": 72
-  },
-  {
-   "id": "hm-typical-livePull-peak",
-   "value": 67.5
-  },
-  {
-   "id": "hm-livePull-average",
-   "value": 56
-  },
-  {
-   "id": "hm-typical-livePull-average",
-   "value": 49
-  },
-  {
-   "id": "hm-livePull-liveViewers",
-   "value": 727
-  },
-  {
-   "id": "hm-livePull-minutesWatched",
-   "value": 6050
-  },
-  {
-   "id": "hm-typical-livePull-minutesWatched",
-   "value": 5351
-  },
-  {
-   "id": "check-participation",
-   "value": 41
-  },
-  {
-   "id": "hm-participation-chattersPer100",
-   "value": 55.6
-  },
-  {
-   "id": "hm-typical-participation-chattersPer100",
-   "value": 82.4
-  },
-  {
-   "id": "hm-participation-messagesPerHour",
-   "value": 50.2
-  },
-  {
-   "id": "hm-typical-participation-messagesPerHour",
-   "value": 85.3
-  },
-  {
-   "id": "hm-participation-minutesPerViewer",
-   "value": 8.3
-  },
-  {
-   "id": "hm-participation-holdRate",
-   "value": 74.9
-  },
-  {
-   "id": "hm-typical-participation-holdRate",
-   "value": 62.7
-  },
-  {
    "id": "check-conversion",
-   "value": 62
+   "value": 64
   },
   {
    "id": "hm-conversion-subscribers",
@@ -684,7 +596,7 @@
   },
   {
    "id": "hm-typical-conversion-subscribers",
-   "value": 2.9
+   "value": 2.8
   },
   {
    "id": "check-sentiment",
@@ -693,10 +605,6 @@
   {
    "id": "hm-sentiment-balance",
    "value": 100
-  },
-  {
-   "id": "hm-sentiment-commentRate",
-   "value": 0.1
   },
   {
    "id": "dir-firstWeek",
@@ -1280,27 +1188,20 @@
   },
   {
    "id": "views-x-all",
-   "value": 15870
+   "value": 15547
   },
   {
    "id": "share-x-all",
-   "value": 50.3
+   "value": 49.8
   },
   {
    "id": "views-total-all",
-   "value": 31552
+   "value": 31229
   }
  ],
  "attempts": 1,
  "ranked": true,
  "items": [
-  {
-   "id": "revive-live-chat",
-   "category": "content",
-   "serves": "participation",
-   "text": "Chat is thinning: E7 drew 92 messages from 40 chatters, down from 383 messages and 104 chatters at E1. Chatters per 100 now read 55.6 against a usual 82.4, and messages per hour 50.2 against a usual 85.3.",
-   "recommendation": "Script three direct chat asks into this week's show — a question at the open, a live vote mid-show, and a shout-out block — and have one host read chat replies aloud every ten minutes so lurkers see their messages land."
-  },
   {
    "id": "fix-announce-follow-through",
    "category": "promotion",
@@ -1321,13 +1222,11 @@
    "serves": "conversion",
    "text": "Dive Club converts and holds better than DesignerTom on the same shows: 2.5 subscribers per 1,000 views and 11.6 share watched versus 1.4 and 9.7, with 20 subscribers gained against 9 across the run.",
    "recommendation": "Point every subscribe call this week at Dive Club — announces, end-of-show ask, and description links — and test DesignerTom as a clips-and-repost surface rather than a full mirror, then compare subscriber gains next episode."
-  },
-  {
-   "id": "protect-live-momentum",
-   "category": "promotion",
-   "serves": "livePull",
-   "text": "Live turnout is the bright spot and building: E7 peaked at 72 live viewers against a usual 67.5, averaged 56 against a usual 49, and logged 6,050 live minutes against a usual 5,351.",
-   "recommendation": "Protect the streak: lock the same day and start time, tease next week's segment on air before signing off, and send a reminder post an hour before going live so the regulars who show up keep showing up."
   }
+ ],
+ "prunedAt": "2026-09-03T17:39:44.860Z",
+ "prunedIds": [
+  "revive-live-chat",
+  "protect-live-momentum"
  ]
 }

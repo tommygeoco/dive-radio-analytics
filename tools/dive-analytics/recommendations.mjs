@@ -323,8 +323,24 @@ export function pruneStore(sheet) {
     return { kept: 0, prunedIds, existed: true, removed: true };
   }
   if (!prunedIds.length) {
+    // The prose may still ground while an unused stamped fact changed. Keep
+    // the fact inventory current so corrected source data cannot remain in a
+    // supposedly current recommendation store.
+    const facts = sheet.facts.map((f) => ({ id: f.id, value: f.value }));
+    const factsChanged = JSON.stringify(store.facts || null) !== JSON.stringify(facts);
+    if (factsChanged || store.factsGeneratedAt !== sheet.generatedAt) {
+      saveAtomic(STORE_PATH, {
+        ...store,
+        updatedAt: new Date().toISOString(),
+        factsGeneratedAt: sheet.generatedAt,
+        facts,
+        regroundedAt: new Date().toISOString(),
+      });
+      console.log(`recommendations: prune — all ${kept.length} item(s) still ground; stamped facts refreshed`);
+      return { kept: kept.length, prunedIds, existed: true, refreshed: true };
+    }
     console.log(`recommendations: prune — all ${kept.length} item(s) still ground against the current facts; store untouched`);
-    return { kept: kept.length, prunedIds, existed: true };
+    return { kept: kept.length, prunedIds, existed: true, refreshed: false };
   }
   saveAtomic(STORE_PATH, {
     ...store,

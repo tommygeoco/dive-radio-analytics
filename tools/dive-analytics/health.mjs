@@ -126,7 +126,10 @@ export const HEALTH_STORE_VERSION = 3;
 // peers only from the newest episode's side of the break — three or nothing.
 // Same checks, same weights, same measures otherwise. The day's v4 read is
 // re-derived and kept under superseded (rule 9).
-export const FORMULA_VERSION = "health-v5";
+// health-v6 (2026-09-03, broadcast-only correction): commenters per thousand
+// can read only a finished episode. A young episode's rate previously entered
+// the fact sheet even though the peer window correctly required maturity.
+export const FORMULA_VERSION = "health-v6";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
 // the 2026-08-24 transition (two checks left, score held at 51) shipped with
@@ -168,6 +171,7 @@ export const WEIGHTS_BY_FORMULA = Object.freeze({
   "health-v3": V3_WEIGHTS,
   "health-v4": BASE_WEIGHTS,
   "health-v5": BASE_WEIGHTS,
+  "health-v6": BASE_WEIGHTS,
 });
 export const CHECK_LABELS = Object.freeze({
   growth: "growth", audienceQuality: "audience quality", reachEfficiency: "reach", livePull: "live turnout", participation: "participation", conversion: "subscribers", sentiment: "goodwill",
@@ -729,7 +733,7 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     addFact("recent-feedback-people", recentPeople, "", (display) => `${display} people left recent directional feedback.`, ["data.json#episodes[-3:].comments.list"], phrase);
   }
   const rateOk = (e) => Number.isFinite(e.comments?.commentersPer1k) && ageOf(e) >= MATURITY_DAYS.analytics;
-  const rateOwn = [...episodes].reverse().find((e) => Number.isFinite(e.comments?.commentersPer1k)) || null;
+  const rateOwn = [...episodes].reverse().find(rateOk) || null;
   let commentRateMeasure;
   if (rateOwn) {
     const window = windowFor(rateOwn, episodes).filter(rateOk);

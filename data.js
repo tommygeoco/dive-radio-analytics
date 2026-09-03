@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-03T14:02:36.675Z",
+ "generatedAt": "2026-09-03T17:39:48.007Z",
  "chaptersUpdatedAt": "2026-09-02T00:47:33.992Z",
  "dests": [
   {
@@ -1314,6 +1314,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1321,6 +1322,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1343,6 +1345,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1350,6 +1353,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1372,6 +1376,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1379,6 +1384,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1401,6 +1407,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1408,6 +1415,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1430,6 +1438,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1437,6 +1446,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1459,6 +1469,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1466,6 +1477,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1488,6 +1500,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1495,6 +1508,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1517,6 +1531,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1524,6 +1539,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1546,6 +1562,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1553,6 +1570,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1575,6 +1593,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1582,6 +1601,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1604,6 +1624,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1611,6 +1632,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1633,6 +1655,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1640,6 +1663,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1662,6 +1686,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1669,6 +1694,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1691,6 +1717,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1698,6 +1725,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1720,6 +1748,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1727,6 +1756,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1749,6 +1779,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1756,6 +1787,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1778,6 +1810,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1785,6 +1818,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1807,6 +1841,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1814,6 +1849,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1836,6 +1872,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1843,6 +1880,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1865,6 +1903,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1872,6 +1911,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1894,6 +1934,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1023,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1901,6 +1942,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1923,6 +1965,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1023,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1930,6 +1973,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1952,6 +1996,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1959,6 +2004,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -1981,6 +2027,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -1988,6 +2035,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2010,6 +2058,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2017,6 +2066,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2039,6 +2089,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2046,6 +2097,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2068,6 +2120,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2075,6 +2128,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2097,6 +2151,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2104,6 +2159,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2126,6 +2182,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2133,6 +2190,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2155,6 +2213,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2162,6 +2221,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2184,6 +2244,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2191,6 +2252,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2213,6 +2275,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2220,6 +2283,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2242,6 +2306,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2249,6 +2314,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2271,6 +2337,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2278,6 +2345,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2300,6 +2368,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2307,6 +2376,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2329,6 +2399,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2336,6 +2407,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2358,6 +2430,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2365,6 +2438,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2387,6 +2461,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2394,6 +2469,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2416,6 +2492,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2423,6 +2500,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2445,6 +2523,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2452,6 +2531,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2474,6 +2554,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2501,6 +2582,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2508,6 +2590,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2530,6 +2613,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2537,6 +2621,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2559,6 +2644,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2566,6 +2652,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2588,6 +2675,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2595,6 +2683,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2617,6 +2706,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2624,6 +2714,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2646,6 +2737,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2653,6 +2745,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2675,6 +2768,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2682,6 +2776,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2704,6 +2799,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2711,6 +2807,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2733,6 +2830,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2740,6 +2838,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2762,6 +2861,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2769,6 +2869,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2791,6 +2892,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2798,6 +2900,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2820,6 +2923,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2827,6 +2931,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2849,6 +2954,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2856,6 +2962,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2878,6 +2985,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2885,6 +2993,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2907,6 +3016,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2914,6 +3024,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2936,6 +3047,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2943,6 +3055,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2965,6 +3078,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -2972,6 +3086,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -2994,6 +3109,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3001,6 +3117,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3023,6 +3140,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3030,6 +3148,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3052,6 +3171,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3059,6 +3179,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3081,6 +3202,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3088,6 +3210,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3110,6 +3233,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3117,6 +3241,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3139,6 +3264,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3146,6 +3272,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3168,6 +3295,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3175,6 +3303,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3197,6 +3326,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3204,6 +3334,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3226,6 +3357,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3233,6 +3365,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3255,6 +3388,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3262,6 +3396,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3284,6 +3419,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3291,6 +3427,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3313,6 +3450,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3320,6 +3458,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3342,6 +3481,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3349,6 +3489,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3371,6 +3512,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3378,6 +3520,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3400,6 +3543,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3407,6 +3551,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3429,6 +3574,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3436,6 +3582,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3458,6 +3605,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3465,6 +3613,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3487,6 +3636,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3494,6 +3644,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3516,6 +3667,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3523,6 +3675,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3545,6 +3698,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3552,6 +3706,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3574,6 +3729,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3581,6 +3737,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3603,6 +3760,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3610,6 +3768,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3632,6 +3791,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3639,6 +3799,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3661,6 +3822,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3668,6 +3830,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3690,6 +3853,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3697,6 +3861,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3719,6 +3884,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3726,6 +3892,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3748,6 +3915,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3755,6 +3923,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3777,6 +3946,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3784,6 +3954,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3913,6 +4084,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1022,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3920,6 +4092,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3943,6 +4116,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 466
       },
       "x:designertom": {
@@ -3950,6 +4124,7 @@ window.DIVE_DATA = {
        "likes": 26,
        "comments": 3,
        "plays": 760,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 286
       }
      }
@@ -3973,6 +4148,7 @@ window.DIVE_DATA = {
       "likes": 10,
       "comments": 0,
       "plays": 1024,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 466
      },
      "x:designertom": {
@@ -3980,6 +4156,7 @@ window.DIVE_DATA = {
       "likes": 26,
       "comments": 3,
       "plays": 760,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 286
      }
     },
@@ -7075,6 +7252,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7082,6 +7260,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7104,6 +7283,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7111,6 +7291,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7133,6 +7314,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7140,6 +7322,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7162,6 +7345,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7169,6 +7353,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7191,6 +7376,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7198,6 +7384,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7220,6 +7407,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7227,6 +7415,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7249,6 +7438,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7256,6 +7446,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7278,6 +7469,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7285,6 +7477,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7307,6 +7500,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7314,6 +7508,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7336,6 +7531,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7343,6 +7539,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7365,6 +7562,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7372,6 +7570,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7394,6 +7593,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7401,6 +7601,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7423,6 +7624,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7430,6 +7632,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7452,6 +7655,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7459,6 +7663,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7481,6 +7686,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7488,6 +7694,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7510,6 +7717,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7517,6 +7725,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7539,6 +7748,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7546,6 +7756,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7568,6 +7779,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7575,6 +7787,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7597,6 +7810,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7604,6 +7818,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7626,6 +7841,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7633,6 +7849,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7655,6 +7872,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7662,6 +7880,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7684,6 +7903,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7691,6 +7911,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1168,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7713,6 +7934,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7720,6 +7942,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1169,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7742,6 +7965,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7749,6 +7973,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1170,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7771,6 +7996,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7778,6 +8004,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1171,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7800,6 +8027,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7807,6 +8035,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1171,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7829,6 +8058,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7836,6 +8066,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1171,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7858,6 +8089,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7865,6 +8097,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1171,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7887,6 +8120,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7894,6 +8128,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1171,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7916,6 +8151,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7923,6 +8159,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1172,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7945,6 +8182,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7952,6 +8190,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1175,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -7974,6 +8213,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -7981,6 +8221,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1175,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8003,6 +8244,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8010,6 +8252,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1175,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8032,6 +8275,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8039,6 +8283,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1175,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8061,6 +8306,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8068,6 +8314,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1175,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8090,6 +8337,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8097,6 +8345,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1176,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8119,6 +8368,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8126,6 +8376,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1176,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8148,6 +8399,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8155,6 +8407,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1176,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8177,6 +8430,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8184,6 +8438,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1176,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8206,6 +8461,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8213,6 +8469,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8235,6 +8492,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8242,6 +8500,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8264,6 +8523,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8271,6 +8531,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8293,6 +8554,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8300,6 +8562,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8322,6 +8585,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8329,6 +8593,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8351,6 +8616,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8358,6 +8624,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8380,6 +8647,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8387,6 +8655,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8409,6 +8678,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8416,6 +8686,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8438,6 +8709,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8445,6 +8717,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8467,6 +8740,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8474,6 +8748,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8496,6 +8771,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8503,6 +8779,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8525,6 +8802,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8532,6 +8810,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8554,6 +8833,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8561,6 +8841,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8583,6 +8864,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8590,6 +8872,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8612,6 +8895,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8619,6 +8903,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8641,6 +8926,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8648,6 +8934,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8670,6 +8957,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8677,6 +8965,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8699,6 +8988,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8706,6 +8996,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8728,6 +9019,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8735,6 +9027,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8757,6 +9050,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8764,6 +9058,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8786,6 +9081,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8793,6 +9089,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8815,6 +9112,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8822,6 +9120,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8844,6 +9143,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8851,6 +9151,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8873,6 +9174,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8880,6 +9182,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8902,6 +9205,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8909,6 +9213,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8931,6 +9236,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8938,6 +9244,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8960,6 +9267,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8967,6 +9275,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -8989,6 +9298,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -8996,6 +9306,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9018,6 +9329,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9025,6 +9337,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9047,6 +9360,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9054,6 +9368,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9076,6 +9391,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9083,6 +9399,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9105,6 +9422,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9112,6 +9430,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9134,6 +9453,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9141,6 +9461,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9163,6 +9484,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9170,6 +9492,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9192,6 +9515,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9199,6 +9523,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9221,6 +9546,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9228,6 +9554,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9250,6 +9577,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9257,6 +9585,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9279,6 +9608,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9286,6 +9616,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9308,6 +9639,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9315,6 +9647,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9337,6 +9670,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9344,6 +9678,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9366,6 +9701,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9373,6 +9709,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9395,6 +9732,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9402,6 +9740,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9424,6 +9763,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9431,6 +9771,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9453,6 +9794,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9460,6 +9802,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1179,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9482,6 +9825,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9489,6 +9833,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1179,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9511,6 +9856,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9518,6 +9864,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1179,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9540,6 +9887,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9547,6 +9895,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1179,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9569,6 +9918,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9576,6 +9926,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1179,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9705,6 +10056,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9712,6 +10064,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1166,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9735,6 +10088,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 1,
        "plays": 635,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 246
       },
       "x:ridd_design": {
@@ -9742,6 +10096,7 @@ window.DIVE_DATA = {
        "likes": 3,
        "comments": 1,
        "plays": 1178,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 599
       }
      }
@@ -9765,6 +10120,7 @@ window.DIVE_DATA = {
       "likes": 1,
       "comments": 1,
       "plays": 635,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 246
      },
      "x:ridd_design": {
@@ -9772,6 +10128,7 @@ window.DIVE_DATA = {
       "likes": 3,
       "comments": 1,
       "plays": 1179,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 599
      }
     },
@@ -12046,6 +12403,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12053,6 +12411,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12075,6 +12434,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12082,6 +12442,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12104,6 +12465,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12111,6 +12473,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12133,6 +12496,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12140,6 +12504,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12162,6 +12527,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12169,6 +12535,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12191,6 +12558,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12198,6 +12566,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12220,6 +12589,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12227,6 +12597,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12249,6 +12620,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12256,6 +12628,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12278,6 +12651,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12285,6 +12659,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12307,6 +12682,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12314,6 +12690,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12336,6 +12713,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12343,6 +12721,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12365,6 +12744,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12372,6 +12752,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12394,6 +12775,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12401,6 +12783,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12423,6 +12806,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12430,6 +12814,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12452,6 +12837,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12459,6 +12845,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12481,6 +12868,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12488,6 +12876,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12510,6 +12899,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12517,6 +12907,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12539,6 +12930,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12546,6 +12938,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12568,6 +12961,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12575,6 +12969,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12597,6 +12992,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12604,6 +13000,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12626,6 +13023,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12633,6 +13031,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2794,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12655,6 +13054,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12662,6 +13062,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2794,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12684,6 +13085,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12691,6 +13093,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2795,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12713,6 +13116,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12720,6 +13124,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2796,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12742,6 +13147,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12749,6 +13155,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2796,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12771,6 +13178,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12778,6 +13186,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2796,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12800,6 +13209,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12807,6 +13217,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2796,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12829,6 +13240,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12836,6 +13248,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2796,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12858,6 +13271,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12865,6 +13279,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2796,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12887,6 +13302,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12894,6 +13310,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2798,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12916,6 +13333,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12923,6 +13341,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2798,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12945,6 +13364,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12952,6 +13372,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2798,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -12974,6 +13395,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -12981,6 +13403,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2798,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13003,6 +13426,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13010,6 +13434,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2798,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13032,6 +13457,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13039,6 +13465,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13061,6 +13488,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13068,6 +13496,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13090,6 +13519,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13097,6 +13527,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13119,6 +13550,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13126,6 +13558,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13148,6 +13581,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13155,6 +13589,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13177,6 +13612,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13184,6 +13620,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13206,6 +13643,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13213,6 +13651,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13235,6 +13674,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13242,6 +13682,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13264,6 +13705,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13271,6 +13713,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13293,6 +13736,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13300,6 +13744,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13322,6 +13767,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13329,6 +13775,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13351,6 +13798,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13358,6 +13806,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13380,6 +13829,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13387,6 +13837,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13409,6 +13860,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13416,6 +13868,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13438,6 +13891,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13445,6 +13899,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13467,6 +13922,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13474,6 +13930,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13496,6 +13953,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13503,6 +13961,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13525,6 +13984,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13532,6 +13992,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13554,6 +14015,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13561,6 +14023,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13583,6 +14046,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13590,6 +14054,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13612,6 +14077,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13619,6 +14085,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13641,6 +14108,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13648,6 +14116,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13670,6 +14139,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13677,6 +14147,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13699,6 +14170,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13706,6 +14178,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13728,6 +14201,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13735,6 +14209,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13757,6 +14232,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13764,6 +14240,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13786,6 +14263,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13793,6 +14271,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13815,6 +14294,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13822,6 +14302,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13844,6 +14325,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13851,6 +14333,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13873,6 +14356,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13880,6 +14364,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13902,6 +14387,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13909,6 +14395,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13931,6 +14418,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13938,6 +14426,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13960,6 +14449,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13967,6 +14457,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -13989,6 +14480,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -13996,6 +14488,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14018,6 +14511,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14025,6 +14519,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14047,6 +14542,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14054,6 +14550,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14076,6 +14573,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14083,6 +14581,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14105,6 +14604,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14112,6 +14612,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14134,6 +14635,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14141,6 +14643,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14163,6 +14666,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14170,6 +14674,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14192,6 +14697,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14199,6 +14705,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14221,6 +14728,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14228,6 +14736,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14250,6 +14759,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14257,6 +14767,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14279,6 +14790,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14286,6 +14798,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14308,6 +14821,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14315,6 +14829,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14337,6 +14852,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14344,6 +14860,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14366,6 +14883,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14373,6 +14891,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14395,6 +14914,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1430,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14402,6 +14922,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14424,6 +14945,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1430,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14431,6 +14953,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14453,6 +14976,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1430,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14460,6 +14984,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14482,6 +15007,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1430,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14489,6 +15015,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14511,6 +15038,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1435,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14518,6 +15046,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14543,6 +15072,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14550,6 +15080,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14573,6 +15104,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 1,
        "plays": 1429,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 562
       },
       "x:designertom": {
@@ -14580,6 +15112,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 2,
        "plays": 2803,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 399
       }
      }
@@ -14603,6 +15136,7 @@ window.DIVE_DATA = {
       "likes": 10,
       "comments": 1,
       "plays": 1435,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 562
      },
      "x:designertom": {
@@ -14610,6 +15144,7 @@ window.DIVE_DATA = {
       "likes": 12,
       "comments": 2,
       "plays": 2803,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 399
      }
     },
@@ -14647,7 +15182,7 @@ window.DIVE_DATA = {
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 29.6,
-    "anomaly": "more than double what a typical episode gets (4,238 X plays vs a typical 1,814; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,238 X plays vs a typical 1,854; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -16800,6 +17335,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16822,6 +17358,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -16829,6 +17366,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16851,6 +17389,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -16858,6 +17397,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16880,6 +17420,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -16887,6 +17428,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16909,6 +17451,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -16916,6 +17459,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16938,6 +17482,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -16945,6 +17490,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16967,6 +17513,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -16974,6 +17521,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -16996,6 +17544,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17003,6 +17552,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17025,6 +17575,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17032,6 +17583,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17054,6 +17606,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17061,6 +17614,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17083,6 +17637,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17090,6 +17645,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17112,6 +17668,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17119,6 +17676,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17141,6 +17699,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17148,6 +17707,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17170,6 +17730,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17177,6 +17738,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 541,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17199,6 +17761,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17206,6 +17769,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17228,6 +17792,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17235,6 +17800,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17257,6 +17823,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17264,6 +17831,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17286,6 +17854,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17293,6 +17862,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17315,6 +17885,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17322,6 +17893,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17344,6 +17916,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17351,6 +17924,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17373,6 +17947,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17380,6 +17955,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17402,6 +17978,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17409,6 +17986,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17431,6 +18009,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17438,6 +18017,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17460,6 +18040,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1331,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17467,6 +18048,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17489,6 +18071,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1338,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17496,6 +18079,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17518,6 +18102,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1338,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17525,6 +18110,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17547,6 +18133,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1338,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17554,6 +18141,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17576,6 +18164,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1338,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17583,6 +18172,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17605,6 +18195,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1338,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17612,6 +18203,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17634,6 +18226,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17641,6 +18234,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17663,6 +18257,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17670,6 +18265,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17692,6 +18288,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17699,6 +18296,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17721,6 +18319,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17728,6 +18327,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17750,6 +18350,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17757,6 +18358,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17779,6 +18381,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17786,6 +18389,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17808,6 +18412,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17815,6 +18420,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17837,6 +18443,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1344,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17844,6 +18451,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 543,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17866,6 +18474,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17873,6 +18482,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 545,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17895,6 +18505,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17902,6 +18513,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 545,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17924,6 +18536,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17931,6 +18544,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17953,6 +18567,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17960,6 +18575,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -17982,6 +18598,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -17989,6 +18606,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18011,6 +18629,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18018,6 +18637,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18040,6 +18660,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18047,6 +18668,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18069,6 +18691,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18076,6 +18699,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18098,6 +18722,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18105,6 +18730,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18127,6 +18753,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18134,6 +18761,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18156,6 +18784,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18163,6 +18792,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18185,6 +18815,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18192,6 +18823,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18214,6 +18846,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18221,6 +18854,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18243,6 +18877,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18250,6 +18885,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18272,6 +18908,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18279,6 +18916,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18301,6 +18939,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18308,6 +18947,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18330,6 +18970,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18337,6 +18978,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18359,6 +19001,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18366,6 +19009,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18388,6 +19032,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18395,6 +19040,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18417,6 +19063,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18424,6 +19071,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18446,6 +19094,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18453,6 +19102,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18475,6 +19125,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18482,6 +19133,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18504,6 +19156,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18511,6 +19164,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18533,6 +19187,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18540,6 +19195,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18562,6 +19218,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18569,6 +19226,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18591,6 +19249,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18598,6 +19257,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18620,6 +19280,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18627,6 +19288,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18649,6 +19311,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18656,6 +19319,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18678,6 +19342,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18685,6 +19350,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18707,6 +19373,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18714,6 +19381,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18736,6 +19404,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18743,6 +19412,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18765,6 +19435,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18772,6 +19443,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18794,6 +19466,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18801,6 +19474,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18823,6 +19497,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18830,6 +19505,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18852,6 +19528,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18859,6 +19536,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18881,6 +19559,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18888,6 +19567,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18910,6 +19590,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18917,6 +19598,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18939,6 +19621,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18946,6 +19629,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18968,6 +19652,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -18975,6 +19660,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -18997,6 +19683,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19004,6 +19691,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19026,6 +19714,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19033,6 +19722,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19055,6 +19745,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19062,6 +19753,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19084,6 +19776,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19091,6 +19784,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19113,6 +19807,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19120,6 +19815,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19142,6 +19838,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19149,6 +19846,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19171,6 +19869,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19178,6 +19877,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19200,6 +19900,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19207,6 +19908,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19229,6 +19931,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19236,6 +19939,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19258,6 +19962,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1346,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19265,6 +19970,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19287,6 +19993,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1348,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19294,6 +20001,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19319,6 +20027,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19326,6 +20035,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 542,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19349,6 +20059,7 @@ window.DIVE_DATA = {
        "likes": 20,
        "comments": 0,
        "plays": 1345,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 680
       },
       "x:designertom": {
@@ -19356,6 +20067,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 1,
        "plays": 546,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 216
       }
      }
@@ -19379,6 +20091,7 @@ window.DIVE_DATA = {
       "likes": 20,
       "comments": 0,
       "plays": 1348,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 680
      },
      "x:designertom": {
@@ -19386,6 +20099,7 @@ window.DIVE_DATA = {
       "likes": 11,
       "comments": 1,
       "plays": 546,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 216
      }
     },
@@ -21719,6 +22433,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1088,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21726,6 +22441,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 958,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21748,6 +22464,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1088,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21755,6 +22472,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 958,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21777,6 +22495,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1089,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21784,6 +22503,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21806,6 +22526,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1089,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21813,6 +22534,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21835,6 +22557,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1089,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21842,6 +22565,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21864,6 +22588,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1089,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21871,6 +22596,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21893,6 +22619,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1089,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21900,6 +22627,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21922,6 +22650,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1091,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21929,6 +22658,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21951,6 +22681,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1091,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21958,6 +22689,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -21980,6 +22712,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1091,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -21987,6 +22720,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22009,6 +22743,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1091,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22016,6 +22751,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22038,6 +22774,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1091,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22045,6 +22782,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22067,6 +22805,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1091,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22074,6 +22813,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22096,6 +22836,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1102,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22103,6 +22844,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22125,6 +22867,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1102,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22132,6 +22875,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22154,6 +22898,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1102,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22161,6 +22906,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22183,6 +22929,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1103,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22190,6 +22937,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22212,6 +22960,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1105,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22219,6 +22968,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22241,6 +22991,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1105,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22248,6 +22999,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22270,6 +23022,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1105,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22277,6 +23030,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22299,6 +23053,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1107,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22306,6 +23061,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22328,6 +23084,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1112,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22335,6 +23092,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22357,6 +23115,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1117,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22364,6 +23123,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 961,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22386,6 +23146,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1125,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22393,6 +23154,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 962,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22415,6 +23177,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1125,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22422,6 +23185,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 962,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22444,6 +23208,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1125,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22451,6 +23216,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 962,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22473,6 +23239,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1125,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22480,6 +23247,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 962,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22502,6 +23270,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1125,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22509,6 +23278,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 962,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22531,6 +23301,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1125,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22538,6 +23309,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 962,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22560,6 +23332,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1138,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22567,6 +23340,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 968,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22589,6 +23363,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1138,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22596,6 +23371,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 968,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22618,6 +23394,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1138,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22625,6 +23402,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 968,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22647,6 +23425,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1138,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22654,6 +23433,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 968,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22676,6 +23456,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1138,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22683,6 +23464,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 968,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22705,6 +23487,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1140,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22712,6 +23495,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 970,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22734,6 +23518,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1140,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22741,6 +23526,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 970,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22763,6 +23549,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1149,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22770,6 +23557,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 970,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22792,6 +23580,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1149,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22799,6 +23588,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 970,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22821,6 +23611,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1151,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22828,6 +23619,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 981,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22850,6 +23642,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1151,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22857,6 +23650,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 981,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22879,6 +23673,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1151,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22886,6 +23681,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22908,6 +23704,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1151,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22915,6 +23712,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22937,6 +23735,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22944,6 +23743,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22966,6 +23766,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -22973,6 +23774,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -22995,6 +23797,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23002,6 +23805,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23024,6 +23828,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23031,6 +23836,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23053,6 +23859,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23060,6 +23867,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23082,6 +23890,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23089,6 +23898,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23111,6 +23921,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23118,6 +23929,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23140,6 +23952,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23147,6 +23960,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23169,6 +23983,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23176,6 +23991,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23198,6 +24014,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23205,6 +24022,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23227,6 +24045,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23234,6 +24053,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23256,6 +24076,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23263,6 +24084,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23285,6 +24107,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23292,6 +24115,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23314,6 +24138,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23321,6 +24146,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23343,6 +24169,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23350,6 +24177,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 982,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23372,6 +24200,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23379,6 +24208,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 983,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23401,6 +24231,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23408,6 +24239,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 983,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23430,6 +24262,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23437,6 +24270,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 983,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23459,6 +24293,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23466,6 +24301,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 983,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23488,6 +24324,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23495,6 +24332,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 983,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23517,6 +24355,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23524,6 +24363,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 983,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23546,6 +24386,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23553,6 +24394,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 993,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23575,6 +24417,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23582,6 +24425,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 993,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23604,6 +24448,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23611,6 +24456,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 993,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23633,6 +24479,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23640,6 +24487,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 993,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23662,6 +24510,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23669,6 +24518,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 994,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23691,6 +24541,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23698,6 +24549,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 994,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23720,6 +24572,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23727,6 +24580,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 994,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23749,6 +24603,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23756,6 +24611,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 994,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23778,6 +24634,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23785,6 +24642,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 996,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23807,6 +24665,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23814,6 +24673,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 996,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23836,6 +24696,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23843,6 +24704,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 996,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23865,6 +24727,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23872,6 +24735,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 997,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23894,6 +24758,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23901,6 +24766,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 997,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23923,6 +24789,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23930,6 +24797,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 997,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23952,6 +24820,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23959,6 +24828,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 997,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -23981,6 +24851,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -23988,6 +24859,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 999,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24010,6 +24882,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24017,6 +24890,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1000,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24039,6 +24913,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1152,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24046,6 +24921,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1001,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24068,6 +24944,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1154,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24075,6 +24952,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1006,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24097,6 +24975,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1154,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24104,6 +24983,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1006,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24126,6 +25006,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1154,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24133,6 +25014,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1006,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24155,6 +25037,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1154,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24162,6 +25045,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1006,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24184,6 +25068,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1157,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24191,6 +25076,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 1015,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24216,6 +25102,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1105,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24223,6 +25110,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 959,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24246,6 +25134,7 @@ window.DIVE_DATA = {
        "likes": 12,
        "comments": 0,
        "plays": 1151,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 415
       },
       "x:designertom": {
@@ -24253,6 +25142,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 981,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 131
       }
      }
@@ -24276,6 +25166,7 @@ window.DIVE_DATA = {
       "likes": 12,
       "comments": 0,
       "plays": 1157,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 415
      },
      "x:designertom": {
@@ -24283,6 +25174,7 @@ window.DIVE_DATA = {
       "likes": 8,
       "comments": 0,
       "plays": 1015,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 131
      }
     },
@@ -26295,6 +27187,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 651,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26302,6 +27195,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 287,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26324,6 +27218,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 663,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26331,6 +27226,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 288,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26353,6 +27249,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 664,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26360,6 +27257,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 289,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26382,6 +27280,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 692,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26389,6 +27288,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 305,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26411,6 +27311,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 692,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26418,6 +27319,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 305,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26440,6 +27342,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 693,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26447,6 +27350,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 305,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26469,6 +27373,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 693,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26476,6 +27381,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 305,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26498,6 +27404,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 697,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26505,6 +27412,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 306,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26527,6 +27435,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 722,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26534,6 +27443,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 322,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26556,6 +27466,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 722,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26563,6 +27474,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 322,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26585,6 +27497,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 722,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26592,6 +27505,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 322,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26614,6 +27528,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 722,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26621,6 +27536,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 322,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26643,6 +27559,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 723,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26650,6 +27567,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 323,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26672,6 +27590,7 @@ window.DIVE_DATA = {
        "likes": 8,
        "comments": 0,
        "plays": 723,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26679,6 +27598,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 323,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26701,6 +27621,7 @@ window.DIVE_DATA = {
        "likes": 9,
        "comments": 0,
        "plays": 734,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26708,6 +27629,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26730,6 +27652,7 @@ window.DIVE_DATA = {
        "likes": 9,
        "comments": 0,
        "plays": 734,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26737,6 +27660,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26759,6 +27683,7 @@ window.DIVE_DATA = {
        "likes": 9,
        "comments": 0,
        "plays": 734,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26766,6 +27691,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26788,6 +27714,7 @@ window.DIVE_DATA = {
        "likes": 9,
        "comments": 0,
        "plays": 736,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26795,6 +27722,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26817,6 +27745,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 740,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26824,6 +27753,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26846,6 +27776,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 740,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26853,6 +27784,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26875,6 +27807,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 740,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26882,6 +27815,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26904,6 +27838,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 752,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26911,6 +27846,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 328,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26933,6 +27869,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 773,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26940,6 +27877,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 329,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26962,6 +27900,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 777,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26969,6 +27908,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 332,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -26991,6 +27931,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -26998,6 +27939,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 334,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27020,6 +27962,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27027,6 +27970,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 334,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27049,6 +27993,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27056,6 +28001,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 334,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27078,6 +28024,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 799,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27085,6 +28032,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 334,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27107,6 +28055,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 800,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27114,6 +28063,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 334,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27136,6 +28086,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 801,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27143,6 +28094,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 334,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27165,6 +28117,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 810,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27172,6 +28125,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27194,6 +28148,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 810,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27201,6 +28156,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27223,6 +28179,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 810,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27230,6 +28187,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27252,6 +28210,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 810,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27259,6 +28218,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27281,6 +28241,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 810,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27288,6 +28249,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27310,6 +28272,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 813,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27317,6 +28280,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27339,6 +28303,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 813,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27346,6 +28311,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27368,6 +28334,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 814,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27375,6 +28342,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27397,6 +28365,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 814,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27404,6 +28373,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 336,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27426,6 +28396,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 819,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27433,6 +28404,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27455,6 +28427,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 819,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27462,6 +28435,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27484,6 +28458,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 819,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27491,6 +28466,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27513,6 +28489,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 819,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27520,6 +28497,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27542,6 +28520,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27549,6 +28528,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27571,6 +28551,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27578,6 +28559,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27600,6 +28582,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27607,6 +28590,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27629,6 +28613,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27636,6 +28621,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27658,6 +28644,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27665,6 +28652,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27687,6 +28675,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27694,6 +28683,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27716,6 +28706,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27723,6 +28714,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27745,6 +28737,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27752,6 +28745,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27774,6 +28768,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27781,6 +28776,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27803,6 +28799,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27810,6 +28807,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27832,6 +28830,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27839,6 +28838,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27861,6 +28861,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27868,6 +28869,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27890,6 +28892,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27897,6 +28900,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27919,6 +28923,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27926,6 +28931,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27948,6 +28954,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27955,6 +28962,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -27977,6 +28985,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -27984,6 +28993,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28006,6 +29016,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28013,6 +29024,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28035,6 +29047,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28042,6 +29055,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28064,6 +29078,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28071,6 +29086,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28093,6 +29109,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 820,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28100,6 +29117,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28122,6 +29140,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 821,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28129,6 +29148,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28151,6 +29171,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 821,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28158,6 +29179,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28180,6 +29202,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 821,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28187,6 +29210,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28209,6 +29233,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 821,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28216,6 +29241,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28238,6 +29264,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 821,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28245,6 +29272,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28267,6 +29295,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28274,6 +29303,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28296,6 +29326,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28303,6 +29334,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28325,6 +29357,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28332,6 +29365,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28354,6 +29388,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28361,6 +29396,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28383,6 +29419,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28390,6 +29427,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 339,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28412,6 +29450,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28419,6 +29458,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 339,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28441,6 +29481,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28448,6 +29489,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 339,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28470,6 +29512,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28477,6 +29520,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28499,6 +29543,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28506,6 +29551,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28528,6 +29574,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28535,6 +29582,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28557,6 +29605,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28564,6 +29613,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28586,6 +29636,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28593,6 +29644,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28615,6 +29667,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28622,6 +29675,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28644,6 +29698,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 822,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28651,6 +29706,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28673,6 +29729,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 824,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28680,6 +29737,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28702,6 +29760,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 824,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28709,6 +29768,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28731,6 +29791,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 824,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28738,6 +29799,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28760,6 +29822,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 824,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28767,6 +29830,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28789,6 +29853,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 827,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28796,6 +29861,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 340,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28821,6 +29887,7 @@ window.DIVE_DATA = {
        "likes": 10,
        "comments": 0,
        "plays": 740,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28828,6 +29895,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 327,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28851,6 +29919,7 @@ window.DIVE_DATA = {
        "likes": 11,
        "comments": 0,
        "plays": 819,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 201
       },
       "x:designertom": {
@@ -28858,6 +29927,7 @@ window.DIVE_DATA = {
        "likes": 1,
        "comments": 0,
        "plays": 337,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 125
       }
      }
@@ -28881,6 +29951,7 @@ window.DIVE_DATA = {
       "likes": 11,
       "comments": 0,
       "plays": 827,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 201
      },
      "x:designertom": {
@@ -28888,6 +29959,7 @@ window.DIVE_DATA = {
       "likes": 1,
       "comments": 0,
       "plays": 340,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 125
      }
     },
@@ -30905,6 +31977,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 881,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -30912,6 +31985,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 694,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -30934,6 +32008,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 881,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -30941,6 +32016,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 696,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -30963,6 +32039,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 885,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -30970,6 +32047,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 699,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -30992,6 +32070,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 886,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -30999,6 +32078,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 709,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31021,6 +32101,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 893,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31028,6 +32109,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 728,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31050,6 +32132,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 915,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31057,6 +32140,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 795,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31079,6 +32163,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 992,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31086,6 +32171,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1033,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31108,6 +32194,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 992,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31115,6 +32202,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1033,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31137,6 +32225,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 994,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31144,6 +32233,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1033,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31166,6 +32256,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 994,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31173,6 +32264,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1036,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31195,6 +32287,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 995,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31202,6 +32295,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1037,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31224,6 +32318,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31231,6 +32326,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1112,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31253,6 +32349,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1024,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31260,6 +32357,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1112,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31282,6 +32380,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1029,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31289,6 +32388,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1130,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31311,6 +32411,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1029,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31318,6 +32419,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1135,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31340,6 +32442,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1055,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31347,6 +32450,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1190,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31369,6 +32473,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1055,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31376,6 +32481,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1190,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31398,6 +32504,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1055,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31405,6 +32512,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1193,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31427,6 +32535,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1055,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31434,6 +32543,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1193,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31456,6 +32566,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31463,6 +32574,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1195,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31485,6 +32597,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31492,6 +32605,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1195,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31514,6 +32628,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31521,6 +32636,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1195,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31543,6 +32659,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31550,6 +32667,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1195,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31572,6 +32690,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31579,6 +32698,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1195,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31601,6 +32721,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31608,6 +32729,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1195,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31630,6 +32752,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1056,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31637,6 +32760,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1207,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31659,6 +32783,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31666,6 +32791,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1210,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31688,6 +32814,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31695,6 +32822,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1210,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31717,6 +32845,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31724,6 +32853,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1210,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31746,6 +32876,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31753,6 +32884,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1212,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31775,6 +32907,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31782,6 +32915,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1212,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31804,6 +32938,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31811,6 +32946,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1212,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31833,6 +32969,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31840,6 +32977,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1212,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31862,6 +33000,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31869,6 +33008,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1212,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31891,6 +33031,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31898,6 +33039,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1212,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31920,6 +33062,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31927,6 +33070,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1213,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31949,6 +33093,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31956,6 +33101,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1214,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -31978,6 +33124,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -31985,6 +33132,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1220,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32007,6 +33155,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1057,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32014,6 +33163,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1220,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32036,6 +33186,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1059,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32043,6 +33194,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1223,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32065,6 +33217,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32072,6 +33225,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1254,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32094,6 +33248,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32101,6 +33256,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1254,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32123,6 +33279,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32130,6 +33287,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1254,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32152,6 +33310,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32159,6 +33318,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1255,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32181,6 +33341,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32188,6 +33349,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1255,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32210,6 +33372,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32217,6 +33380,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1255,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32239,6 +33403,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1060,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32246,6 +33411,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1255,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32268,6 +33434,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1062,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32275,6 +33442,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1255,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32297,6 +33465,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1063,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32304,6 +33473,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1265,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32326,6 +33496,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1063,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32333,6 +33504,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1265,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32355,6 +33527,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1063,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32362,6 +33535,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1265,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32384,6 +33558,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32391,6 +33566,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1350,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32413,6 +33589,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32420,6 +33597,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1350,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32442,6 +33620,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32449,6 +33628,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1350,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32471,6 +33651,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32478,6 +33659,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1351,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32500,6 +33682,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32507,6 +33690,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1351,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32529,6 +33713,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32536,6 +33721,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1352,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32558,6 +33744,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1064,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32565,6 +33752,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1356,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32587,6 +33775,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1068,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32594,6 +33783,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1370,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32616,6 +33806,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1068,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32623,6 +33814,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1370,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32645,6 +33837,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1068,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32652,6 +33845,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1370,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32674,6 +33868,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1068,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32681,6 +33876,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1370,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32703,6 +33899,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1073,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32710,6 +33907,7 @@ window.DIVE_DATA = {
        "likes": 6,
        "comments": 1,
        "plays": 1405,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32735,6 +33933,7 @@ window.DIVE_DATA = {
        "likes": 21,
        "comments": 2,
        "plays": 1055,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 408
       },
       "x:designertom": {
@@ -32742,6 +33941,7 @@ window.DIVE_DATA = {
        "likes": 5,
        "comments": 1,
        "plays": 1190,
+       "playsSource": "x-broadcast",
        "peakConcurrent": 320
       }
      }
@@ -32765,6 +33965,7 @@ window.DIVE_DATA = {
       "likes": 21,
       "comments": 2,
       "plays": 1073,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 408
      },
      "x:designertom": {
@@ -32772,6 +33973,7 @@ window.DIVE_DATA = {
       "likes": 6,
       "comments": 1,
       "plays": 1405,
+      "playsSource": "x-broadcast",
       "peakConcurrent": 320
      }
     },
@@ -34836,7 +36038,7 @@ window.DIVE_DATA = {
     },
     {
      "account": "ridd_design",
-     "role": "announce",
+     "role": "promo",
      "ts": "2026-09-03T12:58:09.052Z",
      "url": "https://x.com/ridd_design/status/2095496568589988011"
     },
@@ -34864,8 +36066,7 @@ window.DIVE_DATA = {
       "x:ridd_design": {
        "views": 1154,
        "likes": 24,
-       "comments": 2,
-       "plays": 323
+       "comments": 2
       },
       "x:designertom": {
        "views": 505,
@@ -34892,8 +36093,7 @@ window.DIVE_DATA = {
      "x:ridd_design": {
       "views": 1154,
       "likes": 24,
-      "comments": 2,
-      "plays": 323
+      "comments": 2
      },
      "x:designertom": {
       "views": 505,
@@ -34903,29 +36103,28 @@ window.DIVE_DATA = {
     },
     "ytTotal": 0,
     "xImpressions": 1659,
-    "xPlays": 323,
+    "xPlays": null,
     "xPlaysInfo": {
-     "value": 323,
-     "have": 1,
-     "total": 1,
+     "value": null,
+     "have": 0,
+     "total": 0,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 323,
+    "totalViews": 0,
     "totalViewsInfo": {
-     "includesPlays": true,
+     "includesPlays": false,
      "partial": false,
      "stale": false,
      "asOf": null,
-     "have": 1,
-     "total": 1
+     "have": 0,
+     "total": 0
     }
    },
    "links": {
     "yt:joindiveclub": "https://youtube.com/watch?v=Vh8ogFIE8CA",
-    "yt:designertom": "https://youtube.com/watch?v=lnAecYrKYos",
-    "x:ridd_design": "https://x.com/ridd_design/status/2095496568589988011"
+    "yt:designertom": "https://youtube.com/watch?v=lnAecYrKYos"
    },
    "transcript": false,
    "ageDays": 0.8,
@@ -34943,8 +36142,8 @@ window.DIVE_DATA = {
     "uniqueCommenters": 2,
     "enjoyCount": 2,
     "complaintCount": 0,
-    "commentersPer1k": 6.2,
-    "commentersPer1kNote": null,
+    "commentersPer1k": null,
+    "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "enjoyThemes": [],
     "complaintThemes": [],
     "featured": [
@@ -35024,16 +36223,7 @@ window.DIVE_DATA = {
    "serves": "conversion"
   }
  ],
- "insightsStale": [
-  {
-   "id": "revive-live-chat",
-   "why": "number 55.6 is not in the fact sheet"
-  },
-  {
-   "id": "protect-live-momentum",
-   "why": "number 67.5 is not in the fact sheet"
-  }
- ],
+ "insightsStale": [],
  "showTrend": {
   "week1VelocityByEpisode": [
    {
@@ -35147,11 +36337,11 @@ window.DIVE_DATA = {
   "date": "2026-09-03",
   "ageDays": 0,
   "withheld": false,
-  "formulaVersion": "health-v5",
+  "formulaVersion": "health-v6",
   "dataThrough": "2026-09-03T14:00:37.945Z",
-  "score": 49,
+  "score": 51,
   "readState": "early",
-  "headline": "Reach and watch depth look fragile while goodwill stays healthy; the overall picture is mixed.",
+  "headline": "The show is near its usual level and moving in mixed directions.",
   "checks": [
    {
     "key": "growth",
@@ -35464,7 +36654,7 @@ window.DIVE_DATA = {
    {
     "key": "sentiment",
     "score": 100,
-    "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
+    "reason": "No episode has complete replies and watch counts yet.",
     "carried": false,
     "state": "healthy",
     "bands": {
@@ -35489,13 +36679,13 @@ window.DIVE_DATA = {
      },
      {
       "key": "commentRate",
-      "value": 6.2,
+      "value": null,
       "typical": null,
       "sample": 0,
-      "reason": "Only 1 episode has complete replies and watch counts; at least four are required.",
+      "reason": "No episode has complete replies and watch counts yet.",
       "ageBasis": null,
       "note": null,
-      "episodeRead": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "episodeRead": null,
       "qualified": false,
       "carried": false,
       "carriedNote": null,
@@ -35734,11 +36924,6 @@ window.DIVE_DATA = {
     "text": "9 people left recent directional feedback."
    },
    {
-    "id": "latest-comment-rate",
-    "display": "6.2",
-    "text": "The latest comparable episode drew 6.2 commenters for each thousand watches."
-   },
-   {
     "id": "direction-engagementWeekOne",
     "display": "17.6%",
     "text": "Over the last three clean readings, first-week likes and comments fell about 17.6% each episode — too few readings for a direction word."
@@ -35820,34 +37005,34 @@ window.DIVE_DATA = {
    },
    {
     "id": "data-age-hours",
-    "display": "0",
-    "text": "The newest audience numbers were refreshed 0 hours ago."
+    "display": "4",
+    "text": "The newest audience numbers were refreshed 4 hours ago."
    }
   ],
   "pros": [
    {
-    "text": "The latest finished episode added 3.6 subscribers for each thousand YouTube views, above its usual pace.",
-    "factId": "latest-subscriber-rate"
+    "text": "9 recent comments were clearly positive, ahead of the show’s usual level.",
+    "factId": "recent-positive-feedback"
    },
    {
-    "text": "9 recent comments were clearly positive, with none raising a concern.",
-    "factId": "recent-positive-feedback"
+    "text": "The latest finished episode added 3.6 subscribers for each thousand YouTube views, ahead of the show’s usual level.",
+    "factId": "latest-subscriber-rate"
    }
   ],
   "cons": [
    {
-    "text": "13% of the latest finished episode's X announce impressions became plays, well under the usual share.",
+    "text": "13% of the latest finished episode's X announce impressions became plays, under the show’s usual level.",
     "factId": "latest-finished-announce-play"
    },
    {
-    "text": "Viewers watched 8.9% of the latest finished YouTube episode on average, below what earlier episodes held.",
+    "text": "Viewers watched 8.9% of the latest finished YouTube episode on average, under the show’s usual level.",
     "factId": "latest-watch-percent"
    }
   ],
   "drivers": [
-   "Live turnout and participation left this read: the newest episode has no live session record, so the change from the last read reflects which checks scored, not the show.",
-   "Fragile reach and softening watch depth weigh down, while above-typical subscriber gains and warm goodwill offset them, keeping the score near the weighted mean.",
-   "Several reads are carried from older finished episodes at half weight, so this read leans on thinner and older evidence than usual."
+   "A deterministic read: the score is the weighted middle of the checks that could be measured today, with promo-driven lifts shown but not scored.",
+   "Since the last saved read live turnout and participation left: the difference comes from which checks are available, not from the show changing.",
+   "audience quality, reach and subscribers read the latest finished episode at half weight because the newest is too young for them."
   ],
   "checkSetChange": {
    "previous": [
@@ -35922,16 +37107,15 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1784,
-      "typical": 1894,
-      "n": 7,
+      "typical": 2033,
+      "n": 6,
       "window": [
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
       ],
       "flag": false
      },
@@ -35970,16 +37154,15 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1814,
-      "typical": 1894,
-      "n": 7,
+      "typical": 2033,
+      "n": 6,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
       ],
       "flag": false
      },
@@ -36018,16 +37201,15 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 4238,
-      "typical": 1814,
-      "n": 7,
+      "typical": 1854,
+      "n": 6,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
       ],
       "flag": true
      },
@@ -36065,15 +37247,14 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1894,
-      "typical": 1799,
-      "n": 6,
+      "typical": 1814,
+      "n": 5,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
       ],
       "flag": false
      },
@@ -36110,15 +37291,14 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 2172,
-      "typical": 1799,
-      "n": 6,
+      "typical": 1814,
+      "n": 5,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
       ],
       "flag": false
      },
@@ -36155,15 +37335,14 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1167,
-      "typical": 1854,
-      "n": 6,
+      "typical": 1894,
+      "n": 5,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
       ],
       "flag": false
      },
@@ -36200,15 +37379,14 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 2478,
-      "typical": 1799,
-      "n": 6,
+      "typical": 1814,
+      "n": 5,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-       "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+       "2026-08-20-dive-radio-the-mascot-industrial-complex"
       ],
       "flag": false
      },
@@ -36245,17 +37423,11 @@ window.DIVE_DATA = {
       "flag": false
      },
      "xPlays": {
-      "tier": 3,
-      "value": 323,
-      "typical": 1814,
-      "n": 5,
-      "window": [
-       "2026-07-17-dive-radio-bumpy-takeoff",
-       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-       "2026-08-06-dive-radio-backyard-designers-behind-the",
-       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-       "2026-08-20-dive-radio-the-mascot-industrial-complex"
-      ],
+      "tier": null,
+      "value": null,
+      "typical": null,
+      "n": 0,
+      "window": [],
       "flag": false
      },
      "xImpressions": {

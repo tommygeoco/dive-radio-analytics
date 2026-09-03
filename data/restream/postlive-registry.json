@@ -450,9 +450,9 @@
           "account": "ridd_design",
           "postId": "2095496568589988011",
           "url": "https://x.com/ridd_design/status/2095496568589988011",
-          "broadcastResolveAttempts": 1,
-          "broadcastResolveFailedAt": "2026-09-03T14:00:03.312Z",
-          "playsStatus": "unresolved"
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
         },
         {
           "kind": "x",

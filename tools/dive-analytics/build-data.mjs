@@ -68,7 +68,7 @@ function fmtDate(ms) {
 
 // --- snapshot access ---
 
-function compactSnap(s) {
+export function compactSnap(s) {
   const byDest = {};
   for (const [k, m] of Object.entries(s.metrics || {})) {
     const d = m.detail || {};
@@ -77,9 +77,15 @@ function compactSnap(s) {
       likes: d.likes || 0,
       comments: d.comments ?? d.replies ?? 0,
     };
-    // real plays: broadcast views (m.plays, from yt-dlp) or native-video views (detail)
-    const plays = m.plays ?? d.plays;
-    if (plays != null) byDest[k].plays = plays;
+    // X plays are accepted only with broadcast provenance. Historical
+    // snapshots predate playsSource but carry peakConcurrent exclusively from
+    // the broadcast extractor; native tweet-media detail is never a fallback.
+    const broadcastProvenance = m.playsSource === "x-broadcast" || Object.hasOwn(m, "peakConcurrent");
+    const plays = broadcastProvenance ? m.plays : null;
+    if (plays != null) {
+      byDest[k].plays = plays;
+      byDest[k].playsSource = "x-broadcast";
+    }
     if (m.peakConcurrent != null) byDest[k].peakConcurrent = m.peakConcurrent;
   }
   return { ts: s.ts, byDest };
@@ -104,14 +110,14 @@ function lastAtOrBefore(snaps, cutoffMs) {
 // lacks plays (stale), and reports coverage so a partial sum is never shown
 // as a whole. Targets latched "none"/promo don't count toward coverage.
 // Absence is never rendered as 0.
-function xPlaysSummary(show, byDest) {
+export function xPlaysSummary(show, byDest) {
   const targets = (show.targets || []).filter(
-    (t) => t.kind === "x" && t.role !== "promo" && t.playsStatus !== "none"
+    (t) => t.kind === "x" && t.role !== "promo" && t.playsStatus !== "none" && t.broadcastId
   );
   const keys = [...new Set(targets.map((t) => `x:${t.account}`))];
   const out = { value: null, have: 0, total: keys.length, partial: false, stale: false, asOf: null };
   for (const k of keys) {
-    const p = byDest[k]?.plays;
+    const p = byDest[k]?.playsSource === "x-broadcast" ? byDest[k].plays : null;
     if (p != null) {
       out.value = (out.value ?? 0) + p;
       out.have += 1;
@@ -136,7 +142,7 @@ function num(n) {
 
 // Per-episode latest block. totalViewsInfo mirrors xPlaysInfo so partial/
 // stale coverage markers survive from build to render (audit F-2 guard).
-function buildLatest(show, latest) {
+export function buildLatest(show, latest) {
   const playsInfo = xPlaysSummary(show, latest.byDest);
   const ytTotal = total(latest.byDest, YT_KEYS);
   return {

@@ -27,7 +27,7 @@ the audit ledgers (`tools/dive-analytics/audit/*.md`).
 
 ## The constitution (v5 §1 — every change must pass these)
 
-1. **Total views = YouTube views + X broadcast plays.** X impressions (reach) are exposure and are NEVER summed into views.
+1. **Total views = YouTube views + X broadcast plays.** An X play is eligible only from a resolved `x.com/i/broadcasts/...` counter after the broadcast is live or finished. Native tweet videos and teaser clips are NEVER episode plays. X impressions (reach) are exposure and are NEVER summed into views.
 2. **Absence ≠ zero.** Missing data says so in plain words; it never renders as 0 and is never estimated or interpolated.
 3. **Never fabricate history.** No backfill, no extrapolation, no blended series where one unit lacks history.
 4. **Definition-lock.** A metric definition change moves every surface (cards, hero, panel, table, Slack, validator) in one commit. Every surface reads the same store — no surface recomputes its own version of a number.
@@ -67,7 +67,7 @@ L2 synthesis   tools/dive-analytics/baselines.mjs   (pure: windows, reading rule
                tools/dive-analytics/watch-moments.mjs (pure functions, imported by build-data)
      │
 L3 model       scripts/restream/comments-classify.mjs → comments-classified.json
- (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v5: three lenses, PRD v10; swing-fitted bands and the whole live session, §11; peers split at known reporting breaks, PRD v12 §3.1)
+ (prose over    tools/dive-analytics/health.mjs        → health-history.json   (health-v6: three lenses, PRD v10; swing-fitted bands, mature comment-rate reads, and the whole live session, §11; peers split at known reporting breaks, PRD v12 §3.1)
   facts)        tools/dive-analytics/health-verify.mjs → health-verify.json + audit/HEALTH-VERIFY.md (deterministic critic loop; never blocks)
                tools/dive-analytics/recommendations.mjs → recommendations.json
                tools/dive-analytics/moment-summaries.mjs → moment-summaries.json

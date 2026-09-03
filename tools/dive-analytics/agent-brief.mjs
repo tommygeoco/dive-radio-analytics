@@ -258,7 +258,7 @@ export const DEFINITIONS = Object.freeze([
   ["outlook", "where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days."],
   ["hold rate", "the live audience over the last ten minutes of the session as a share of the peak."],
   ["discovery share", "the share of an episode's YouTube views that YouTube itself brought — search, suggested videos, Shorts, browse."],
-  ["total views", "YouTube views plus X broadcast plays; X reach (impressions on the announce posts) is exposure and is never added in."],
+  ["total views", "YouTube views plus resolved X broadcast plays; native tweet and teaser-video plays are excluded. X reach (impressions on the announce posts) is exposure and is never added in."],
 ]);
 
 function lineageDigest(data) {
@@ -297,7 +297,7 @@ export function renderMarkdown(digest) {
   p(`Three clocks: the data build (${c.data}); the show-health read (${c.healthRead || "none"}, over data through ${c.healthDataThrough ? day(c.healthDataThrough) : "—"} — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (${c.chaptersWritten ? day(c.chaptersWritten) : "none yet"}).`);
   p();
   p(`Rules every number here follows:`);
-  p(`- Total views = YouTube views + X broadcast plays. X reach is exposure and is never added in.`);
+  p(`- Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.`);
   p(`- An absent value is a dash with its reason; it is never zero and never estimated.`);
   p(`- Every comparison names how it was made: at the same age, or as the earlier episodes stand now.`);
   p(`- A promo-driven lift is shown and marked; it scores nothing and is left out of every typical.`);

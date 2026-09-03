@@ -43,7 +43,7 @@ destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
   out, at least three to compare), frozen at day 21 with the inputs it used
   stored, and shown nowhere until those three weeks are over
 - Latest-episode card keeps unit discipline: total views = YouTube views + X
-  broadcast plays; X reach shown separately and never summed into views
+  resolved X broadcast plays only (native tweet/teaser videos are excluded); X reach shown separately and never summed into views
 - Episode carousel + three chart views: Totals (stacked per destination),
   Over time (YouTube cumulative since premiere), and Watching (every episode's
   drop-off curve from verified YouTube analytics, with a dashed typical line

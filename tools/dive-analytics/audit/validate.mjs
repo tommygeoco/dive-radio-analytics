@@ -9,9 +9,9 @@
 //                 numbers that fail unit/freshness/consistency checks.
 //
 // Checks:
-//   1. unit sanity        — no X impressions stored in plays fields (plays===views
-//                           heuristic), no plays on YT destinations, plays never 0
-//                           (absence is the only legal "unavailable" marker)
+//   1. unit sanity        — X plays require resolved-broadcast provenance;
+//                           native tweet media and impressions can never enter plays,
+//                           no plays on YT, and absence is never stored as zero
 //   2. monotonic views    — cumulative views never decrease per destination
 //   3. late-reg flags     — partialHistory matches first-snapshot age (>5d) and
 //                           gates week1Velocity to null
@@ -70,11 +70,16 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   for (const e of eps) {
+    const show = registry.shows.find((s) => s.slug === e.slug);
     for (const s of e.snapshots) {
       for (const [k, m] of Object.entries(s.byDest)) {
         if (k.startsWith("yt:") && m.plays != null) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays field on a YouTube destination`); }
         if (k.startsWith("x:") && m.plays != null) {
           if (m.plays === 0) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays recorded as 0 — unavailable must be absent, never zero`); }
+          if (m.playsSource !== "x-broadcast") { bad++; fail(`${e.slug} ${s.ts} ${k}: plays lack x-broadcast provenance`); }
+          const account = k.slice(2);
+          const resolved = (show?.targets || []).some((t) => t.kind === "x" && t.account === account && t.role !== "promo" && t.broadcastId);
+          if (!resolved) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays exist without a resolved X broadcast for that account`); }
           // conflation heuristic: broadcast plays exactly equal to post impressions
           if (m.plays > 100 && m.plays === m.views) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays === impressions (${m.plays}) — unit conflation`); }
         }
@@ -82,7 +87,32 @@ function premiereMs(dateStr) {
     }
     if (e.latest.xPlays === 0) { bad++; fail(`${e.slug}: latest.xPlays is 0 — must be null when unavailable`); }
   }
-  if (!bad) ok("unit sanity: no plays-on-YT, no zero plays, no plays==impressions conflation");
+  // Raw capture provenance: historical broadcast rows predate playsSource but
+  // carry peakConcurrent only because the broadcast extractor wrote them.
+  // Native tweet media lived only in detail.plays and is always forbidden.
+  for (const show of registry.shows) {
+    const path = join(HISTORY, `${show.slug}.json`);
+    if (!existsSync(path)) continue;
+    const history = JSON.parse(readFileSync(path, "utf8"));
+    for (const snapshot of history.snapshots || []) {
+      for (const [key, metric] of Object.entries(snapshot.metrics || {})) {
+        if (!key.startsWith("x:")) continue;
+        if (metric.detail?.plays != null) {
+          bad++; fail(`${show.slug} ${snapshot.ts} ${key}: native tweet-media plays are present in detail`);
+        }
+        if (metric.playsSource != null && metric.playsSource !== "x-broadcast") {
+          bad++; fail(`${show.slug} ${snapshot.ts} ${key}: illegal playsSource "${metric.playsSource}"`);
+        }
+        if (metric.plays == null) continue;
+        const account = key.slice(2);
+        const resolved = (show.targets || []).some((t) => t.kind === "x" && t.account === account && t.role !== "promo" && t.broadcastId);
+        const proven = metric.playsSource === "x-broadcast" || Object.hasOwn(metric, "peakConcurrent");
+        if (!resolved) { bad++; fail(`${show.slug} ${snapshot.ts} ${key}: raw plays exist without a resolved X broadcast`); }
+        if (!proven) { bad++; fail(`${show.slug} ${snapshot.ts} ${key}: raw plays have no broadcast-extractor provenance`); }
+      }
+    }
+  }
+  if (!bad) ok("unit sanity: every X play is broadcast-sourced; native tweet media, impressions, YT plays, and zero placeholders are excluded");
 }
 
 // --- 1b. unit separation + Total views definition (F-3/F-7 + CARD-RULING) ---
@@ -120,6 +150,11 @@ function premiereMs(dateStr) {
 // --- 1c. playsStatus/high-water schema (F-4) ---
 {
   let bad = 0;
+  try {
+    execFileSync(process.execPath, [join(HERE, "x-broadcast-plays.test.mjs")], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
+  } catch (err) {
+    bad++; fail(`plays fixture failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
+  }
   const LEGAL = new Set(["ok", "stale-high-water", "none", "unresolved"]);
   for (const show of registry.shows) {
     if (show.active === false) continue;
@@ -129,11 +164,14 @@ function premiereMs(dateStr) {
       if (t.kind !== "x") continue;
       if (t.playsStatus != null && !LEGAL.has(t.playsStatus)) { bad++; fail(`${show.slug} x:${t.account}: illegal playsStatus "${t.playsStatus}"`); }
       if (t.playsHighWater && (typeof t.playsHighWater.value !== "number" || !t.playsHighWater.asOf)) { bad++; fail(`${show.slug} x:${t.account}: malformed playsHighWater`); }
+      if (["ok", "stale-high-water"].includes(t.playsStatus) && !t.broadcastId) { bad++; fail(`${show.slug} x:${t.account}: ${t.playsStatus} requires a resolved broadcastId`); }
+      if (t.playsHighWater && !t.broadcastId) { bad++; fail(`${show.slug} x:${t.account}: broadcast high-water exists without a broadcastId`); }
+      if (t.role === "promo" && (t.broadcastId || t.playsHighWater || t.playsStatus !== "none")) { bad++; fail(`${show.slug} x:${t.account}: promo target carries broadcast state`); }
       if (t.playsStatus === "ok" && latest && latest.byDest[`x:${t.account}`]?.plays == null) { bad++; fail(`${show.slug} x:${t.account}: playsStatus "ok" but latest snapshot has NO plays — silent absence`); }
       if (t.playsStatus === "stale-high-water" && !t.playsHighWater) { bad++; fail(`${show.slug} x:${t.account}: stale-high-water without a persisted high-water mark`); }
     }
   }
-  if (!bad) ok("plays schema: playsStatus values legal, ok-status targets have plays, high-water marks well-formed");
+  if (!bad) ok("plays schema: broadcast-only fixture green; statuses, resolved IDs, provenance, and high-water marks agree");
 }
 
 // --- 2. monotonic cumulative views ---
@@ -1068,6 +1106,7 @@ function premiereMs(dateStr) {
         // reason; carried reads count half inside the check and, when every
         // scored measure is carried, half in the mean
         const v4 = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 4;
+        const v6 = health.WEIGHTS_BY_FORMULA[entry.formulaVersion] && Number(entry.formulaVersion.replace(/\D/g, "")) >= 6;
         const { effectiveWeightOf } = health.deterministicMean(entry.subScores);
         const availableWeight = Object.values(entry.subScores).reduce((sum, part) => sum + (Number.isFinite(part.score) ? part.baseWeight : 0), 0);
         for (const key of expectedParts) {
@@ -1076,6 +1115,15 @@ function premiereMs(dateStr) {
           if (!part.measures || !Object.keys(part.measures).length) { bad++; fail(`health: ${entry.date} ${key} has no recorded measures`); continue; }
           const measureScores = [];
           for (const [measureKey, measure] of Object.entries(part.measures)) {
+            if (v6 && key === "sentiment" && measureKey === "commentRate" && Number.isFinite(measure.value)) {
+              const readEpisode = eps.find((episode) => episode.slug === measure.episodeRead);
+              const ageAtRead = readEpisode
+                ? (premiereMs(entry.date) - premiereMs(readEpisode.premiere)) / DAY
+                : null;
+              if (!readEpisode || ageAtRead < BL.MATURITY_DAYS.analytics) {
+                bad++; fail(`health: ${entry.date} sentiment.commentRate reads an episode younger than ${BL.MATURITY_DAYS.analytics} days`);
+              }
+            }
             if (v4 && measure.qualified) {
               // a qualified measure keeps value and typical, scores nothing,
               // and says why in the one fixed string

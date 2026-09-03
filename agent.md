@@ -1,15 +1,15 @@
 # Dive Radio — agent brief
 
-Built 2026-09-03T14:02:36.675Z · data through 2026-09-03 · health read 2026-09-03 (data through 2026-09-03) · chapters written 2026-09-02 · brief v1
+Built 2026-09-03T17:39:48.007Z · data through 2026-09-03 · health read 2026-09-03 (data through 2026-09-03) · chapters written 2026-09-02 · brief v1
 
 ## 1. How to read this
 
 This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the five actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Three clocks: the data build (2026-09-03T14:02:36.675Z); the show-health read (2026-09-03, over data through 2026-09-03 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-02).
+Three clocks: the data build (2026-09-03T17:39:48.007Z); the show-health read (2026-09-03, over data through 2026-09-03 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-02).
 
 Rules every number here follows:
-- Total views = YouTube views + X broadcast plays. X reach is exposure and is never added in.
+- Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
 - An absent value is a dash with its reason; it is never zero and never estimated.
 - Every comparison names how it was made: at the same age, or as the earlier episodes stand now.
 - A promo-driven lift is shown and marked; it scores nothing and is left out of every typical.
@@ -22,19 +22,19 @@ Not here: the raw daily series, the per-minute live audience, the hundred-point 
 
 - Episodes: 8 (E1 on 2026-07-17 → E8 on 2026-09-02, "How to Engineer a Brand Universe"), a weekly live show with call-ins.
 - Channels: YT Dive Club (yt:joindiveclub); YT DesignerTom (yt:designertom); X @ridd_design (x:ridd_design); X @designertom (x:designertom).
-- Views so far: 31,552 total = 15,682 YouTube + 15,870 X plays. X reach so far: 69,469 (exposure, kept apart).
+- Views so far: 31,229 total = 15,682 YouTube + 15,547 X plays. X reach so far: 69,469 (exposure, kept apart).
 - Audience feedback captured: 44 comments, 27 with a clear lean from 25 people (22 enjoyed, 3 raised a concern). Enjoyed: other (15).
 - Dashboard: https://dive-radio-analytics.vercel.app
 
 ## 3. Show health today
 
-Read saved 2026-09-03 over data through 2026-09-03 (today); state: early — the newest episode is under a week old. Formula health-v5.
+Read saved 2026-09-03 over data through 2026-09-03 (today); state: early — the newest episode is under a week old. Formula health-v6.
 
-**Score 49 of 100 — near usual** (fifty is the show's usual level). Direction over the last clean episodes, as of the read: **mixed**.
+**Score 51 of 100 — near usual** (fifty is the show's usual level). Direction over the last clean episodes, as of the read: **mixed**.
 
 Every number in this section is as the read saw it (data through 2026-09-03); the episode tables in sections 5 and 6 are as of this build and can be newer.
 
-Headline (model-written): Reach and watch depth look fragile while goodwill stays healthy; the overall picture is mixed.
+Headline (model-written): The show is near its usual level and moving in mixed directions.
 Reads How to Engineer a Brand Universe, 0.8 days in; Audience quality, Reach, Subscribers carried from the latest finished episode at half weight.
 
 | Check | State | Score | Bands (fragile under / healthy from) | Usual swing |
@@ -71,19 +71,19 @@ Reads How to Engineer a Brand Universe, 0.8 days in; Audience quality, Reach, Su
   - subscribers per thousand views: 3.6 vs typical 2.8; as the earlier episodes stand now; 3 peers; usual swing ±100%; carried from Backyard Designers behind, the latest finished episode — counted at half weight
 - **Goodwill** — healthy
   - share of feedback leaning positive: 100; as they stand (no age); on an absolute scale — no typical until enough earlier episodes carry the same feedback sources; from 9 people
-  - people commenting per thousand watches: 6.2
+  - people commenting per thousand watches: — (No episode has complete replies and watch counts yet.)
 
 Helping:
-- The latest finished episode added 3.6 subscribers for each thousand YouTube views, above its usual pace. [latest-subscriber-rate]
-- 9 recent comments were clearly positive, with none raising a concern. [recent-positive-feedback]
+- 9 recent comments were clearly positive, ahead of the show’s usual level. [recent-positive-feedback]
+- The latest finished episode added 3.6 subscribers for each thousand YouTube views, ahead of the show’s usual level. [latest-subscriber-rate]
 Needs work:
-- 13% of the latest finished episode's X announce impressions became plays, well under the usual share. [latest-finished-announce-play]
-- Viewers watched 8.9% of the latest finished YouTube episode on average, below what earlier episodes held. [latest-watch-percent]
+- 13% of the latest finished episode's X announce impressions became plays, under the show’s usual level. [latest-finished-announce-play]
+- Viewers watched 8.9% of the latest finished YouTube episode on average, under the show’s usual level. [latest-watch-percent]
 
 Reasoning (model-written):
-- Live turnout and participation left this read: the newest episode has no live session record, so the change from the last read reflects which checks scored, not the show.
-- Fragile reach and softening watch depth weigh down, while above-typical subscriber gains and warm goodwill offset them, keeping the score near the weighted mean.
-- Several reads are carried from older finished episodes at half weight, so this read leans on thinner and older evidence than usual.
+- A deterministic read: the score is the weighted middle of the checks that could be measured today, with promo-driven lifts shown but not scored.
+- Since the last saved read live turnout and participation left: the difference comes from which checks are available, not from the show changing.
+- audience quality, reach and subscribers read the latest finished episode at half weight because the newest is too young for them.
 
 Check set changed since the previous read: joined none; left Live turnout, Participation (previous score 48).
 
@@ -109,7 +109,6 @@ Facts behind the read (cite by id):
 | recent-positive-feedback | 9 | 9 recent comments were clearly positive. |
 | recent-mixed-feedback | 0 | 0 recent comments mixed praise with a concern. |
 | recent-feedback-people | 9 | 9 people left recent directional feedback. |
-| latest-comment-rate | 6.2 | The latest comparable episode drew 6.2 commenters for each thousand watches. |
 | direction-engagementWeekOne | 17.6% | Over the last three clean readings, first-week likes and comments fell about 17.6% each episode — too few readings for a direction word. |
 | direction-watching | 6.9% | Over the last four clean readings, as those episodes stand now, share of the video watched fell about 6.9% each episode. |
 | direction-exposureWeekOne | 13.5% | Over the last three clean readings, first-week X reach rose about 13.5% each episode — too few readings for a direction word. |
@@ -126,7 +125,7 @@ Facts behind the read (cite by id):
 | direction-subscribers | 25.8% | Over the last three clean readings, as those episodes stand now, subscribers per thousand views fell about 25.8% each episode — too few readings for a direction word. |
 | outlook-first-week-low | 1,189 | The lowest of the last three clean first weeks was 1,189 YouTube views. |
 | outlook-first-week-high | 1,830 | The highest of the last three clean first weeks was 1,830 YouTube views. |
-| data-age-hours | 0 | The newest audience numbers were refreshed 0 hours ago. |
+| data-age-hours | 4 | The newest audience numbers were refreshed 4 hours ago. |
 
 Direction of each durable measure as of the read (last five clean episodes; a word needs four; the facts above carry the same slopes):
 | Measure | Word | Change each episode | Readings |
@@ -174,7 +173,7 @@ Views as of 2026-09-03; first week, launch, and pace at the same age; episode he
 | E5 | 2026-08-13 | Goodbye, Blank Canvas + Live Call-Ins | 1,257 | 2,172 | 9,240 | 3,429 | —¹ | soft | #4 of 4 (-38%) | —² | 64 / 46 / 495 / 4,370 | 8.8 | 63% | 13.3% | 0.8 | 11.7% | 1 / 0 | no |
 | E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,435 | 1,167 | 8,965 | 2,602 | 1,189 | soft | #3 of 4 (-26%) | —² | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.5% | 0.7 | 12.9% | 6 / 0 | no |
 | E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 5,188 | 2,478 | 13,603 | 7,666 | —¹ | promo-driven (so far) | #1 of 4 (+196%) | —² | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.1% | 0.6 | 5.8% | 1 / 0 | yes (provisional) |
-| E8 | 2026-09-02 | How to Engineer a Brand Universe | 0 | 323 | 1,659 | 323 | —¹ | — | — | —² | — | — | — | — | — | — | 2 / 0 | no |
+| E8 | 2026-09-02 | How to Engineer a Brand Universe | 0 | — | 1,659 | 0 | —¹ | — | — | —² | — | — | — | — | — | — | 2 / 0 | no |
 
 ¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.
 
@@ -237,7 +236,7 @@ Episode health: — (Fewer than three earlier episodes to compare with.).
 ### E3 — Mixed Media Workflows, Game Design, + Live Call-Ins (2026-07-30)
 
 Links: YouTube joindiveclub https://youtube.com/watch?v=9HYGZgaHdlw · YouTube designertom https://youtube.com/watch?v=szvTFybWfK4 · X replay @ridd_design https://x.com/i/broadcasts/1nGnRRMEPDkGO · X replay @designertom https://x.com/i/broadcasts/1nGeLLpzNAQKX · announce @designertom https://x.com/designertom/status/2082919223639052481 · announce @ridd_design https://x.com/ridd_design/status/2082919224268169560 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-07-30-dive-radio-mixed-media-workflows-game-de
-Standing: launch soft: 1,601 YouTube views against a typical 1,969 at that age (-19%, 4 peers); pace — (Only 2 earlier episodes were tracked this early; at least three are needed.); first week — (excluded: partial history); promo outlier (provisional until day twenty-one): more than double what a typical episode gets (4,238 X plays vs a typical 1,814; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal; tracked late: first snapshot more than five days after premiere, so its first week is undefined.
+Standing: launch soft: 1,601 YouTube views against a typical 1,969 at that age (-19%, 4 peers); pace — (Only 2 earlier episodes were tracked this early; at least three are needed.); first week — (excluded: partial history); promo outlier (provisional until day twenty-one): more than double what a typical episode gets (4,238 X plays vs a typical 1,854; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal; tracked late: first snapshot more than five days after premiere, so its first week is undefined.
 Views: 1,623 YouTube + 4,238 X plays = 5,861; X reach 19,838; likes and comments per thousand YouTube views 29.6.
 Watching (YouTube analytics, 2026-09-03): 9.1% of the video watched on average, 10 min per view, 16,585 minutes watched in all; views came from SUBSCRIBER 53.4%, EXT_URL 11.5%, NO_LINK_OTHER 9.1%, RELATED_VIDEO 8.5%; subscribers per thousand views 0.0; discovery share 12.7%.
 Live session: peak 53, average 42, 1,226 people watched live for 4,746 minutes in all (3.9 minutes each; 96% of the peak still watching at the end); 169 chat messages from 56 people over 113 minutes.
@@ -370,9 +369,9 @@ Episode health: — (read completes on 2026-09-17 (day twenty-one)).
 
 ### E8 — How to Engineer a Brand Universe (2026-09-02)
 
-Links: YouTube joindiveclub https://youtube.com/watch?v=Vh8ogFIE8CA · YouTube designertom https://youtube.com/watch?v=lnAecYrKYos · X replay @ridd_design https://x.com/ridd_design/status/2095496568589988011 · announce @designertom https://x.com/designertom/status/2095508360510709794 · announce @ridd_design https://x.com/ridd_design/status/2095496568589988011 · announce @designertom https://x.com/designertom/status/2095508360510709794 · no transcript · dashboard https://dive-radio-analytics.vercel.app/#2026-09-02-dive-radio-how-to-engineer-a-brand-unive
+Links: YouTube joindiveclub https://youtube.com/watch?v=Vh8ogFIE8CA · YouTube designertom https://youtube.com/watch?v=lnAecYrKYos · announce @designertom https://x.com/designertom/status/2095508360510709794 · announce @ridd_design https://x.com/ridd_design/status/2095496568589988011 · announce @designertom https://x.com/designertom/status/2095508360510709794 · no transcript · dashboard https://dive-radio-analytics.vercel.app/#2026-09-02-dive-radio-how-to-engineer-a-brand-unive
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 1 earlier episode was tracked this early; at least three are needed.); first week — (pending: episode under 7 days old).
-Views: 0 YouTube + 323 X plays = 323; X reach 1,659; likes and comments per thousand YouTube views —.
+Views: 0 YouTube + — X plays = 0; X reach 1,659; likes and comments per thousand YouTube views —.
 Watching: — (no YouTube analytics report yet).
 Live session: — (no live session record).
 Chapters: — (no transcript).
@@ -434,7 +433,7 @@ Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-wee
 - **outlook** — where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days.
 - **hold rate** — the live audience over the last ten minutes of the session as a share of the peak.
 - **discovery share** — the share of an episode's YouTube views that YouTube itself brought — search, suggested videos, Shorts, browse.
-- **total views** — YouTube views plus X broadcast plays; X reach (impressions on the announce posts) is exposure and is never added in.
+- **total views** — YouTube views plus resolved X broadcast plays; native tweet and teaser-video plays are excluded. X reach (impressions on the announce posts) is exposure and is never added in.
 
 ## 9. Lineage and freshness
 
@@ -444,7 +443,7 @@ Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-wee
 | YouTube analytics (owner OAuth) | 2026-09-03 | share watched, average duration, minutes watched, traffic sources, subscribers gained; a daily history line per episode since 2026-08-23 |
 | Restream live events | 2026-08-27 | peak, average, unique viewers, minutes watched, chat; frozen at first ingest |
 | audience comments + classifier | 2026-09-03 | YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off |
-| show-health read | 2026-09-03 | health-v5; model prose over deterministic checks; deterministic fallback when the model fails |
+| show-health read | 2026-09-03 | health-v6; model prose over deterministic checks; deterministic fallback when the model fails |
 | recommendations | 2026-09-03 | five ranked actions, model-written over the day's fact sheet and health read; every number grounded |
 | chapters | 2026-09-02 | model-written per transcript, every timestamp and quote grounded in the transcript |
 

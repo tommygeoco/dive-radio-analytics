@@ -150,25 +150,21 @@ async function fetchXStats(postIds) {
   const bearer = xBearer();
   const stats = {};
   for (const batch of chunk(postIds, 100)) {
-    // media.fields=public_metrics yields view_count (real video plays) for
-    // posts with NATIVE video attached. Broadcast-link posts have no media
-    // object — X's public API does not expose broadcast play counts.
-    // entities gives us the expanded/unwound URLs of the post, which carry
-    // the broadcast link directly (first-class broadcast-id resolution, F-1b).
+    // Tweet metrics are reach/engagement only. Episode plays MUST come from
+    // the resolved X broadcast below; native tweet-video view_count is never
+    // requested or accepted as an episode view. Attachments are requested
+    // only to identify native-video promos, without media public_metrics.
     const data = await getJson(
-      `https://api.x.com/2/tweets?ids=${batch.join(",")}&tweet.fields=public_metrics,attachments,entities&expansions=attachments.media_keys&media.fields=public_metrics,type`,
+      `https://api.x.com/2/tweets?ids=${batch.join(",")}&tweet.fields=public_metrics,attachments,entities&expansions=attachments.media_keys&media.fields=type`,
       { Authorization: `Bearer ${bearer}` }
     );
-    const mediaViews = {};
+    const mediaTypes = {};
     for (const m of data.includes?.media || []) {
-      if (m.type === "video" && m.public_metrics?.view_count != null) {
-        mediaViews[m.media_key] = Number(m.public_metrics.view_count);
-      }
+      mediaTypes[m.media_key] = m.type;
     }
     for (const t of data.data || []) {
       const pm = t.public_metrics || {};
       const mediaKeys = t.attachments?.media_keys || [];
-      const playCounts = mediaKeys.map((k) => mediaViews[k]).filter((v) => v !== undefined);
       const urls = [];
       for (const u of t.entities?.urls || []) {
         const cand = u.unwound_url || u.expanded_url || u.url;
@@ -179,7 +175,6 @@ async function fetchXStats(postIds) {
       ];
       stats[t.id] = {
         views: Number(pm.impression_count ?? 0),
-        plays: playCounts.length ? playCounts.reduce((a, b) => a + b, 0) : null,
         likes: Number(pm.like_count ?? 0),
         replies: Number(pm.reply_count ?? 0),
         reposts: Number(pm.retweet_count ?? 0),
@@ -187,6 +182,7 @@ async function fetchXStats(postIds) {
         quotes: Number(pm.quote_count ?? 0),
         urls,
         broadcastIds,
+        hasNativeVideo: mediaKeys.some((k) => mediaTypes[k] === "video"),
       };
     }
   }
@@ -195,7 +191,9 @@ async function fetchXStats(postIds) {
 
 // Strip resolution-only fields before persisting a stats object into history.
 function detailOf(s) {
-  const { urls, broadcastIds, ...detail } = s;
+  // `plays` is stripped defensively so an old/mocked tweet payload can never
+  // persist native-media plays into the episode history.
+  const { urls, broadcastIds, hasNativeVideo, plays, ...detail } = s;
   return detail;
 }
 
@@ -212,6 +210,20 @@ async function resolveBroadcastId(postId) {
   return j?.card?.binding_values?.broadcast_id?.string_value || null;
 }
 
+const FINISHED_OR_LIVE = new Set(["is_live", "post_live", "was_live"]);
+
+export function parseBroadcastStatsLine(line) {
+  const [liveStatus, vc, cvc] = String(line || "").trim().split("|");
+  const views = Number(vc);
+  if (!FINISHED_OR_LIVE.has(liveStatus) || !Number.isFinite(views) || views <= 0) return null;
+  const concurrent = Number(cvc);
+  return {
+    views,
+    peakConcurrent: Number.isFinite(concurrent) && concurrent > 0 ? concurrent : null,
+    liveStatus,
+  };
+}
+
 function fetchBroadcastStats(broadcastIds) {
   const stats = {};
   const failed = new Set();
@@ -219,11 +231,12 @@ function fetchBroadcastStats(broadcastIds) {
     try {
       const r = execFileSync(
         YTDLP_BIN,
-        ["--no-download", "--print", "%(view_count)s|%(concurrent_view_count)s", `https://x.com/i/broadcasts/${id}`],
+        ["--no-download", "--print", "%(live_status)s|%(view_count)s|%(concurrent_view_count)s", `https://x.com/i/broadcasts/${id}`],
         { encoding: "utf8", timeout: 90000 }
       );
-      const [vc, cvc] = r.trim().split("\n").pop().split("|");
-      stats[id] = { views: Number(vc) || 0, peakConcurrent: Number(cvc) || null };
+      const parsed = parseBroadcastStatsLine(r.trim().split("\n").pop());
+      // Upcoming containers and zero/unknown counters are absence, not plays.
+      if (parsed) stats[id] = parsed;
     } catch (err) {
       failed.add(id);
       process.stderr.write(`postlive: broadcast ${id} stats failed: ${String(err.message).slice(0, 120)}\n`);
@@ -310,28 +323,66 @@ function fmtShort(iso) {
 // targets. Falls back to a target's persisted high-water mark when the
 // current pull failed (stale), and counts coverage so partial aggregates are
 // never presented as complete. Absence is never rendered as 0.
-function playsSummary(show, metrics) {
+export function playsSummary(show, metrics) {
   const targets = (show.targets || []).filter(
-    (t) => t.kind === "x" && t.role !== "promo" && t.playsStatus !== "none"
+    (t) => t.kind === "x" && t.role !== "promo" && t.playsStatus !== "none" && t.broadcastId
   );
-  const out = { value: null, have: 0, total: targets.length, partial: false, stale: false, asOf: null };
-  const counted = new Set();
-  for (const t of targets) {
-    const key = `x:${t.account}`;
-    const p = metrics[key]?.plays;
-    if (p != null && !counted.has(key)) {
-      counted.add(key);
+  const keys = [...new Set(targets.map((t) => `x:${t.account}`))];
+  const out = { value: null, have: 0, total: keys.length, partial: false, stale: false, asOf: null };
+  for (const key of keys) {
+    const metric = metrics[key];
+    const p = metric?.playsSource === "x-broadcast" || Object.hasOwn(metric || {}, "peakConcurrent")
+      ? metric?.plays
+      : null;
+    if (p != null) {
       out.value = (out.value ?? 0) + p;
       out.have += 1;
-    } else if (t.playsHighWater?.value != null) {
-      out.value = (out.value ?? 0) + t.playsHighWater.value;
+      continue;
+    }
+    const highWater = targets
+      .filter((t) => `x:${t.account}` === key && t.playsHighWater?.value != null)
+      .reduce((sum, t) => sum + t.playsHighWater.value, 0);
+    if (highWater > 0) {
+      out.value = (out.value ?? 0) + highWater;
       out.have += 1;
       out.stale = true;
-      if (!out.asOf || t.playsHighWater.asOf < out.asOf) out.asOf = t.playsHighWater.asOf;
+      const asOf = targets
+        .filter((t) => `x:${t.account}` === key && t.playsHighWater?.asOf)
+        .map((t) => t.playsHighWater.asOf)
+        .sort()[0];
+      if (asOf && (!out.asOf || asOf < out.asOf)) out.asOf = asOf;
     }
   }
   out.partial = out.have < out.total;
   return out;
+}
+
+// Assemble one show's source snapshot. X post metrics contribute reach and
+// engagement only. The sole path that can create `plays` is a successfully
+// resolved X broadcast whose extractor confirms it is live or was live.
+export function buildShowMetrics(show, ytStats, xStats, broadcastStats) {
+  const metrics = {};
+  const seenBroadcasts = new Set();
+  for (const t of show.targets || []) {
+    const s = t.kind === "youtube" ? ytStats[t.videoId] : xStats[t.postId];
+    if (!s) continue;
+    const key = targetKey(t);
+    const current = metrics[key] || {};
+    metrics[key] = {
+      ...current,
+      views: (current.views || 0) + s.views,
+      detail: detailOf(s),
+    };
+
+    if (t.kind !== "x" || !t.broadcastId || seenBroadcasts.has(t.broadcastId)) continue;
+    const broadcast = broadcastStats[t.broadcastId];
+    if (!broadcast || !Number.isFinite(broadcast.views) || broadcast.views <= 0) continue;
+    seenBroadcasts.add(t.broadcastId);
+    metrics[key].plays = (metrics[key].plays || 0) + broadcast.views;
+    metrics[key].playsSource = "x-broadcast";
+    metrics[key].peakConcurrent = broadcast.peakConcurrent;
+  }
+  return metrics;
 }
 
 async function snapshot(args) {
@@ -411,8 +462,8 @@ async function snapshot(args) {
         delete t.broadcastResolveFailedAt;
         registryDirty = true;
       } else if (definitive) {
-        if (xs?.urls?.length && !xs.broadcastIds?.length && xs.urls.some((u) => /youtube\.com|youtu\.be/.test(u))) {
-          // known link, clearly not a broadcast: promo post, nothing to track
+        if (xs?.hasNativeVideo || (xs?.urls?.length && !xs.broadcastIds?.length && xs.urls.some((u) => /youtube\.com|youtu\.be/.test(u)))) {
+          // Native-video and YouTube-link posts are promos, not X broadcasts.
           t.broadcastResolved = true;
           t.playsStatus = "none";
           if (!t.role) t.role = "promo";
@@ -436,24 +487,7 @@ async function snapshot(args) {
   const rows = [];
   const playsWarnings = [];
   for (const show of shows) {
-    const metrics = {};
-    const seenBroadcasts = new Set();
-    for (const t of show.targets) {
-      const s = t.kind === "youtube" ? ytStats[t.videoId] : xStats[t.postId];
-      if (!s) continue;
-      const key = targetKey(t);
-      // real plays: broadcast views (per-account broadcast, deduped) + native-video views
-      let plays = s.plays ?? null;
-      if (t.kind === "x" && t.broadcastId && broadcastStats[t.broadcastId] && !seenBroadcasts.has(t.broadcastId)) {
-        seenBroadcasts.add(t.broadcastId);
-        plays = (plays || 0) + broadcastStats[t.broadcastId].views;
-        metrics[key] = { ...(metrics[key] || {}), peakConcurrent: broadcastStats[t.broadcastId].peakConcurrent };
-      }
-      const prevPlays = metrics[key]?.plays ?? null;
-      metrics[key] = { ...(metrics[key] || {}), views: (metrics[key]?.views || 0) + s.views, detail: detailOf(s) };
-      const combined = prevPlays === null && plays === null ? null : (prevPlays || 0) + (plays || 0);
-      if (combined !== null) metrics[key].plays = combined;
-    }
+    const metrics = buildShowMetrics(show, ytStats, xStats, broadcastStats);
 
     // Per-target plays bookkeeping (F-4): status enum + high-water mark.
     //   ok               — broadcast pull succeeded this run
@@ -691,13 +725,16 @@ function list() {
   }
 }
 
-const [cmd, ...rest] = process.argv.slice(2);
-const run = { register, snapshot, list, report }[cmd || "snapshot"];
-if (!run) {
-  process.stderr.write("usage: postlive-track.mjs [register|snapshot|list] ...\n");
-  process.exit(2);
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  const [cmd, ...rest] = process.argv.slice(2);
+  const run = { register, snapshot, list, report }[cmd || "snapshot"];
+  if (!run) {
+    process.stderr.write("usage: postlive-track.mjs [register|snapshot|list] ...\n");
+    process.exit(2);
+  }
+  Promise.resolve(run(rest)).catch((err) => {
+    process.stderr.write(`postlive: ${err.message}\n`);
+    process.exit(1);
+  });
 }
-Promise.resolve(run(rest)).catch((err) => {
-  process.stderr.write(`postlive: ${err.message}\n`);
-  process.exit(1);
-});
