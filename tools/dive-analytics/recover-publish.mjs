@@ -6,14 +6,17 @@
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { appendQueueLines } from "./alert-queue.mjs";
-import { checkProductionFreshness, phoenixHour } from "./freshness.mjs";
+import { acquireLock, appendQueueLines, resolveOperationalAlerts } from "./alert-queue.mjs";
+import { checkProductionFreshness, phoenixDay, phoenixHour } from "./freshness.mjs";
 import { checkLiveParity, SITE } from "./live-parity.mjs";
+import { ensureIsolatedCheckout, PUBLISHER_ROOT, readAttemptState, RUN_LOCK_MAX_AGE_MS, STATE_PATH } from "./run-daily.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
 const MORNING_START = 7;
 const MORNING_END = 10;
+const LOCK_CHECKS = 4;
+const LOCK_WAIT_MS = 15_000;
 
 export function recoveryAction(proof, now = Date.now()) {
   if (proof.ok) return "done";
@@ -22,11 +25,30 @@ export function recoveryAction(proof, now = Date.now()) {
   return "fail";
 }
 
+export function checklistVerdict(statePath = STATE_PATH, now = Date.now()) {
+  try {
+    const state = readAttemptState(statePath);
+    const day = phoenixDay(now);
+    const attempt = state.days?.[day]?.at(-1);
+    const invocation = state.invocations?.[day]?.at(-1);
+    const ok = attempt?.status === "passed" && invocation?.status === "passed";
+    return ok
+      ? { ok: true, message: "today's complete publishing checklist passed" }
+      : { ok: false, message: attempt || invocation
+        ? `today's publishing checklist last ended ${attempt?.status || invocation?.status || "without a result"}`
+        : "today's publishing checklist has no recorded run" };
+  } catch (error) {
+    return { ok: false, message: `today's publishing checklist could not be read (${error.message})` };
+  }
+}
+
 export async function verifyProduction({
   root = ROOT,
   site = process.env.DIVE_PROD_SITE || SITE,
   now = Date.now(),
   fetchImpl = globalThis.fetch,
+  statePath = STATE_PATH,
+  checklist = (path, at) => checklistVerdict(path, at),
 } = {}) {
   const freshness = await checkProductionFreshness({
     url: `${site}/data.json?cb=${encodeURIComponent(String(now))}`,
@@ -39,10 +61,12 @@ export async function verifyProduction({
   } catch (error) {
     parity = { ok: false, mismatches: [{ file: "production", reason: error.message }] };
   }
+  const checklistResult = checklist(statePath, now);
   return {
-    ok: freshness.ok && parity.ok,
+    ok: freshness.ok && parity.ok && checklistResult.ok,
     freshness,
     parity,
+    checklist: checklistResult,
   };
 }
 
@@ -50,24 +74,68 @@ function proofMessage(proof) {
   const parts = [];
   if (!proof.freshness.ok) parts.push(proof.freshness.message);
   if (!proof.parity.ok) parts.push(`public files differ (${proof.parity.mismatches.map((item) => item.file).join(", ") || "unknown file"})`);
+  if (proof.checklist && !proof.checklist.ok) parts.push(proof.checklist.message);
   return parts.join("; ") || "production did not pass its checks";
 }
 
 export async function recoverPublish({
   root = ROOT,
+  publisherRoot = PUBLISHER_ROOT,
+  statePath = STATE_PATH,
   now = Date.now(),
+  guard = (path) => acquireLock(path, { label: "daily publishing chain", maxAgeMs: RUN_LOCK_MAX_AGE_MS }),
+  wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+  queue = (lines) => appendQueueLines(lines),
+  resolve = () => resolveOperationalAlerts(),
+  prepare = (source, target) => ensureIsolatedCheckout(source, target),
   verify = (options) => verifyProduction(options),
   run = () => spawnSync(process.execPath, ["tools/dive-analytics/run-daily.mjs", "--recovery"], { cwd: root, env: process.env, stdio: "inherit" }),
 } = {}) {
-  const before = await verify({ root, now });
+  let release;
+  for (let check = 1; check <= LOCK_CHECKS; check++) {
+    try {
+      release = guard(`${statePath}.run.lock`);
+      break;
+    } catch (error) {
+      if (!/already in use/.test(error.message)) throw error;
+      if (check < LOCK_CHECKS) {
+        console.log(`recovery: the daily publishing chain is still running; checking again in ${LOCK_WAIT_MS / 1000} seconds.`);
+        await wait(LOCK_WAIT_MS);
+        continue;
+      }
+      const line = "Daily production check could not run because the publishing chain was still active; production was not confirmed.";
+      queue([line]);
+      console.error(`recovery: ${line}`);
+      return 1;
+    }
+  }
+  let canonicalRoot;
+  let before;
+  let beforeResolved = false;
+  try {
+    canonicalRoot = prepare(root, publisherRoot);
+    before = await verify({ root: canonicalRoot, now, statePath });
+    if (before.ok) {
+      resolve();
+      beforeResolved = true;
+    }
+  } catch (error) {
+    const line = `Daily production check could not prepare its isolated checkout — ${error.message}.`;
+    queue([line]);
+    console.error(`recovery: ${line}`);
+    return 1;
+  } finally {
+    release();
+  }
   const action = recoveryAction(before, now);
   if (action === "done") {
+    if (!beforeResolved) throw new Error("production proof completed without reconciling its alert state");
     console.log(`recovery: production serves today's build and all ${before.parity.checked} public files match.`);
     return 0;
   }
   if (action === "fail") {
     const line = `Daily production check failed outside the morning recovery window — ${proofMessage(before)}.`;
-    appendQueueLines([line]);
+    queue([line]);
     console.error(`recovery: ${line}`);
     return 1;
   }
@@ -77,19 +145,33 @@ export async function recoverPublish({
   const status = Number.isInteger(child.status) ? child.status : 1;
   if (status !== 0) {
     const line = `Daily publish recovery failed (exit ${status}); production still needs attention.`;
-    appendQueueLines([line]);
+    queue([line]);
     console.error(`recovery: ${line}`);
     return status;
   }
-  const after = await verify({ root, now: Date.now() });
-  if (!after.ok) {
-    const line = `Daily publish recovery finished, but production still failed its checks — ${proofMessage(after)}.`;
-    appendQueueLines([line]);
+  let afterRelease;
+  try {
+    afterRelease = guard(`${statePath}.run.lock`);
+  } catch (error) {
+    const line = `Daily publish recovery finished, but its final production proof could not take the publishing lock — ${error.message}.`;
+    queue([line]);
     console.error(`recovery: ${line}`);
     return 1;
   }
-  console.log(`recovery: production now serves today's build and all ${after.parity.checked} public files match.`);
-  return 0;
+  try {
+    const after = await verify({ root: canonicalRoot, now: Date.now(), statePath });
+    if (!after.ok) {
+      const line = `Daily publish recovery finished, but production still failed its checks — ${proofMessage(after)}.`;
+      queue([line]);
+      console.error(`recovery: ${line}`);
+      return 1;
+    }
+    resolve();
+    console.log(`recovery: production now serves today's build and all ${after.parity.checked} public files match.`);
+    return 0;
+  } finally {
+    afterRelease();
+  }
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

@@ -21,6 +21,12 @@ import { readFileSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  appendSourceReceipt,
+  sourceAccountSummary,
+  sourceStatus,
+  X_ACCOUNTS as SOURCE_X_ACCOUNTS,
+} from "./source-receipts.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -32,7 +38,6 @@ const YT_CHANNELS = [
   { account: "joindiveclub", uploads: "UUkCnraWwlnBw1_i7C9-3p0w" },
   { account: "designertom", uploads: "UU4_qP33t3TGpEM0-96WfC6Q" },
 ];
-const X_ACCOUNTS = ["ridd_design", "designertom"];
 const TITLE_RE = /dive\s*radio/i; // anywhere in title — channels are curated, prefix requirement was brittle
 
 const args = process.argv.slice(2);
@@ -135,80 +140,116 @@ for (const s of registry.shows) {
 }
 
 // --- 1. YouTube: new Dive Radio uploads ---
-async function discoverYouTube() {
-  const key = ytApiKey();
+function errorText(err) {
+  return String(err?.message || err || "unknown error").replace(/\s+/g, " ").slice(0, 240);
+}
+
+export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
   const found = []; // { videoId, title, publishedAt, date, account }
+  const accounts = [];
+  let key;
+  try {
+    key = apiKey || ytApiKey();
+  } catch (err) {
+    const error = errorText(err);
+    return {
+      found,
+      accounts: YT_CHANNELS.map(({ account }) => ({ account, attempted: false, success: false, found: 0, error })),
+    };
+  }
   for (const ch of YT_CHANNELS) {
-    const playlist = await getJson(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ch.uploads}&maxResults=15&key=${key}`
-    );
-    const candidates = [];
-    for (const item of playlist.items || []) {
-      const sn = item.snippet || {};
-      const vid = sn.resourceId?.videoId;
-      if (!vid || knownVideoIds.has(vid)) continue;
-      if (!TITLE_RE.test(sn.title || "")) continue;
-      if (Date.parse(sn.publishedAt) < since) continue;
-      candidates.push({ videoId: vid, playlistSnippet: sn });
-    }
-    if (!candidates.length) continue;
-    const details = await getJson(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${candidates.map((v) => v.videoId).join(",")}&key=${key}`
-    );
-    const byId = new Map((details.items || []).map((video) => [video.id, video]));
-    for (const candidate of candidates) {
-      const video = byId.get(candidate.videoId);
-      if (!video) {
-        console.log(`WARN discover: YouTube video ${candidate.videoId} returned no details — skipping`);
-        continue;
+    const accountFound = [];
+    try {
+      const playlist = await get(
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ch.uploads}&maxResults=15&key=${key}`
+      );
+      const candidates = [];
+      for (const item of playlist.items || []) {
+        const sn = item.snippet || {};
+        const vid = sn.resourceId?.videoId;
+        if (!vid || knownVideoIds.has(vid)) continue;
+        if (!TITLE_RE.test(sn.title || "")) continue;
+        if (Date.parse(sn.publishedAt) < since) continue;
+        candidates.push({ videoId: vid, playlistSnippet: sn });
       }
-      const date = episodeDateForVideo(video);
-      if (!date) {
-        console.log(`WARN discover: live YouTube video ${candidate.videoId} has no start time — skipping`);
-        continue;
+      if (candidates.length) {
+        const details = await get(
+          `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${candidates.map((v) => v.videoId).join(",")}&key=${key}`
+        );
+        const byId = new Map((details.items || []).map((video) => [video.id, video]));
+        for (const candidate of candidates) {
+          const video = byId.get(candidate.videoId);
+          if (!video) throw new Error(`video ${candidate.videoId} returned no details`);
+          const date = episodeDateForVideo(video);
+          if (!date) throw new Error(`live video ${candidate.videoId} has no start time`);
+          const sn = video.snippet || candidate.playlistSnippet;
+          accountFound.push({
+            videoId: candidate.videoId,
+            title: sn.title,
+            publishedAt: sn.publishedAt,
+            date,
+            account: ch.account,
+            url: `https://www.youtube.com/watch?v=${candidate.videoId}`,
+          });
+        }
       }
-      const sn = video.snippet || candidate.playlistSnippet;
-      found.push({
-        videoId: candidate.videoId,
-        title: sn.title,
-        publishedAt: sn.publishedAt,
-        date,
-        account: ch.account,
-        url: `https://www.youtube.com/watch?v=${candidate.videoId}`,
-      });
+      found.push(...accountFound);
+      accounts.push({ account: ch.account, attempted: true, success: true, found: accountFound.length, error: null });
+    } catch (err) {
+      accounts.push({ account: ch.account, attempted: true, success: false, found: 0, error: errorText(err) });
     }
   }
-  return found;
+  return { found, accounts };
 }
 
 // --- 2. X: recent announce posts from both hosts ---
-async function discoverX(episodeVideoIds) {
-  const bearer = xBearer();
+export async function discoverX(episodeVideoIds, { get = getJson, bearerToken = null } = {}) {
+  let bearer;
+  try {
+    bearer = bearerToken || xBearer();
+  } catch (err) {
+    const error = errorText(err);
+    return {
+      found: [],
+      accounts: SOURCE_X_ACCOUNTS.map((account) => ({ account, attempted: false, success: false, found: 0, error })),
+    };
+  }
   const headers = { Authorization: `Bearer ${bearer}` };
   const found = []; // { postId, account, createdAt, date, text, linkedVideoId, broadcastId }
+  const accounts = [];
   const allEpisodeIds = new Set([...episodeVideoIds, ...knownVideoIds]);
-  for (const account of X_ACCOUNTS) {
+  for (const account of SOURCE_X_ACCOUNTS) {
     let user;
     try {
-      user = await getJson(`https://api.x.com/2/users/by/username/${account}`, headers);
+      user = await get(`https://api.x.com/2/users/by/username/${account}`, headers);
     } catch (err) {
       console.error(`discover: X user lookup failed for ${account}: ${err.message}`);
+      accounts.push({ account, attempted: true, success: false, found: 0, error: `user lookup: ${errorText(err)}` });
       continue;
     }
     const uid = user.data?.id;
-    if (!uid) continue;
+    if (!uid) {
+      accounts.push({ account, attempted: true, success: false, found: 0, error: "user lookup returned no id" });
+      continue;
+    }
     let tl;
     try {
       // include replies: hosts sometimes announce inside threads. Chatter is
       // filtered downstream (must mention dive radio or link a known episode).
-      tl = await getJson(
+      tl = await get(
         `https://api.x.com/2/users/${uid}/tweets?max_results=50&exclude=retweets&tweet.fields=created_at,entities,text`,
         headers
       );
     } catch (err) {
       console.error(`discover: X timeline failed for ${account}: ${err.message}`);
+      accounts.push({ account, attempted: true, success: false, found: 0, error: `timeline: ${errorText(err)}` });
       continue;
     }
+    if (!Array.isArray(tl.data) && Number(tl.meta?.result_count || 0) !== 0) {
+      accounts.push({ account, attempted: true, success: false, found: 0, error: "timeline returned no post list" });
+      continue;
+    }
+    const before = found.length;
     for (const t of tl.data || []) {
       if (knownPostIds.has(t.id)) continue;
       if (Date.parse(t.created_at) < since) continue;
@@ -232,8 +273,9 @@ async function discoverX(episodeVideoIds) {
         url: `https://x.com/${account}/status/${t.id}`,
       });
     }
+    accounts.push({ account, attempted: true, success: true, found: found.length - before, error: null });
   }
-  return found;
+  return { found, accounts };
 }
 
 // --- 3. group into episodes and register ---
@@ -242,8 +284,15 @@ function daysBetween(a, b) {
 }
 
 async function main() {
-  const ytFound = await discoverYouTube();
-  const xFound = await discoverX(new Set(ytFound.map((v) => v.videoId)));
+  const startedAt = new Date().toISOString();
+  const ytResult = await discoverYouTube();
+  const ytFound = ytResult.found;
+  const xResult = await discoverX(new Set(ytFound.map((v) => v.videoId)));
+  const xFound = xResult.found;
+  const sources = {
+    youtube: sourceAccountSummary(ytResult.accounts),
+    x: sourceAccountSummary(xResult.accounts),
+  };
 
   // staleness tripwire: the show is weekly — if nothing new was found AND the
   // newest registered episode is older than 9 days, say so loudly so the
@@ -262,11 +311,6 @@ async function main() {
     }
   }
 
-  if (!ytFound.length && !xFound.length) {
-    console.log(`discover: no new Dive Radio destinations in the last ${LOOKBACK_DAYS} days.`);
-    return;
-  }
-
   // group new YT videos by Phoenix publish date => episode
   const byDate = new Map();
   for (const v of ytFound) {
@@ -280,14 +324,30 @@ async function main() {
     // prefer the joindiveclub title as canonical
     const canon = vids.find((v) => v.account === "joindiveclub") || vids[0];
     const urls = vids.map((v) => v.url);
+    const destinationAccounts = {
+      youtube: [...new Set(vids.map((v) => v.account))],
+      x: [],
+    };
     // attach X posts that link one of these videos, or mention dive radio within 3 days
     for (const p of xFound) {
       if (p.claimed) continue;
       const links = p.linkedVideoId && vids.some((v) => v.videoId === p.linkedVideoId);
       const near = !p.linkedVideoId && daysBetween(p.date, date) <= 3;
-      if (links || near) { p.claimed = true; urls.push(p.url); }
+      if (links || near) {
+        p.claimed = true;
+        urls.push(p.url);
+        destinationAccounts.x.push(p.account);
+      }
     }
-    registrations.push({ title: canon.title, date, urls, why: `new episode (${vids.length} YT, ${urls.length - vids.length} X)` });
+    destinationAccounts.x = [...new Set(destinationAccounts.x)];
+    registrations.push({
+      title: canon.title,
+      date,
+      urls,
+      why: `new episode (${vids.length} YT, ${urls.length - vids.length} X)`,
+      newEpisode: true,
+      destinationAccounts,
+    });
   }
 
   // Leftover X posts may link an already-registered YouTube episode or carry
@@ -301,21 +361,78 @@ async function main() {
       console.log(`discover: skipping X post ${p.url} — mentions Dive Radio but matches no episode within 3 days`);
       continue;
     }
-    registrations.push({ title: show.title, date: show.date, urls: [p.url], why: `late X ${p.broadcastId ? "broadcast" : "announce"} for ${show.slug}` });
+    registrations.push({ title: show.title, date: show.date, urls: [p.url], why: `late X ${p.broadcastId ? "broadcast" : "announce"} for ${show.slug}`, newEpisode: false });
     p.claimed = true;
   }
 
+  const coverageErrors = [];
+  const episodeCoverage = registrations
+    .filter((r) => r.newEpisode)
+    .map((r) => {
+      const missingYouTube = YT_CHANNELS.map((ch) => ch.account).filter(
+        (account) => !r.destinationAccounts.youtube.includes(account)
+      );
+      const missingX = SOURCE_X_ACCOUNTS.filter((account) => !r.destinationAccounts.x.includes(account));
+      if (missingYouTube.length) coverageErrors.push(`${r.date}: YouTube missing ${missingYouTube.join(", ")}`);
+      if (missingX.length) coverageErrors.push(`${r.date}: X missing ${missingX.join(", ")}`);
+      return {
+        date: r.date,
+        youtube: r.destinationAccounts.youtube,
+        x: r.destinationAccounts.x,
+        complete: missingYouTube.length === 0 && missingX.length === 0,
+      };
+    });
+
+  const registrationErrors = [];
+  let registered = 0;
   for (const r of registrations) {
     console.log(`discover: registering "${r.title}" (${r.date}) — ${r.why}`);
     for (const u of r.urls) console.log(`  + ${u}`);
     if (dryRun) continue;
-    execFileSync(process.execPath, [TRACK, "register", "--title", r.title, "--date", r.date, ...r.urls], {
-      stdio: "inherit",
-      cwd: ROOT,
-      timeout: 120000,
-    });
+    try {
+      execFileSync(process.execPath, [TRACK, "register", "--title", r.title, "--date", r.date, ...r.urls], {
+        stdio: "inherit",
+        cwd: ROOT,
+        timeout: 120000,
+      });
+      registered += 1;
+    } catch (err) {
+      registrationErrors.push(`${r.date}: ${errorText(err)}`);
+    }
   }
+
+  const errors = [
+    ...Object.entries(sources).flatMap(([name, source]) =>
+      source.success ? [] : [`${name}: ${source.accounts.filter((row) => !row.success).map((row) => `${row.account} ${row.error}`).join("; ")}`]
+    ),
+    ...coverageErrors,
+    ...registrationErrors.map((error) => `register: ${error}`),
+  ];
+  const baseStatus = sourceStatus(sources);
+  const status = baseStatus === "ok" && errors.length === 0 ? "ok" : "partial";
+  const receipt = {
+    startedAt,
+    status,
+    lookbackDays: LOOKBACK_DAYS,
+    sources,
+    found: { youtube: ytFound.length, x: xFound.length },
+    registrations: {
+      attempted: !dryRun,
+      success: !dryRun && registrationErrors.length === 0,
+      planned: registrations.length,
+      completed: registered,
+    },
+    episodeCoverage,
+    errors,
+  };
+  if (!dryRun) appendSourceReceipt("discovery", receipt);
   if (dryRun) console.log("discover: dry run — nothing written.");
+  if (status !== "ok") {
+    throw new Error(`source discovery incomplete — ${errors.join("; ")}`);
+  }
+  if (!ytFound.length && !xFound.length) {
+    console.log(`discover: no new Dive Radio destinations in the last ${LOOKBACK_DAYS} days.`);
+  }
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

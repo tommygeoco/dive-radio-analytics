@@ -77,10 +77,15 @@ export function compactSnap(s) {
   const byDest = {};
   for (const [k, m] of Object.entries(s.metrics || {})) {
     const d = m.detail || {};
+    const comments = Number.isFinite(d.comments)
+      ? d.comments
+      : Number.isFinite(d.replies)
+        ? d.replies
+        : null;
     byDest[k] = {
       views: Number.isFinite(m.views) ? m.views : null,
-      likes: d.likes || 0,
-      comments: d.comments ?? d.replies ?? 0,
+      likes: Number.isFinite(d.likes) ? d.likes : null,
+      comments,
     };
     // X plays are accepted only with broadcast provenance. Historical
     // snapshots predate playsSource but carry peakConcurrent exclusively from
@@ -99,6 +104,13 @@ export function compactSnap(s) {
 function total(byDest, keys) {
   const use = keys || DESTS.map((d) => d.key);
   return use.reduce((a, k) => a + (byDest[k]?.views || 0), 0);
+}
+
+function totalOrNull(byDest, keys) {
+  const values = keys.map((key) => byDest[key]?.views);
+  return values.length && values.every(Number.isFinite)
+    ? values.reduce((sum, value) => sum + value, 0)
+    : null;
 }
 
 function lastAtOrBefore(snaps, cutoffMs) {
@@ -187,7 +199,7 @@ export function buildLatest(show, latest, selectedYt) {
     ytTotal,
     youtubeAsOf,
     youtubeStale,
-    xImpressions: total(latest.byDest, X_KEYS),
+    xImpressions: totalOrNull(latest.byDest, X_KEYS),
     xPlays: playsInfo.value,
     xPlaysInfo: playsInfo,
     totalViews,
@@ -894,7 +906,12 @@ export function projectLiveSession(ev, registry) {
       const c = hasChatSeries ? (chatByMin.get(m) ?? 0) : null;
       if (c != null) chatCum += c;
       const byChan = {};
-      for (const [label, minuteMap] of Object.entries(chanMinutes)) byChan[label] = minuteMap.get(m) ?? 0;
+      // A sparse per-destination series is not proof of zero viewers between
+      // its saved points. Keep the destination present but mark an unsampled
+      // minute as missing; an explicit saved zero still passes through as zero.
+      for (const [label, minuteMap] of Object.entries(chanMinutes)) {
+        byChan[label] = minuteMap.has(m) ? minuteMap.get(m) : null;
+      }
       series.push({ m, v: sourceNumber(point?.viewers), c, ct: chatCum, byChan });
     }
   }

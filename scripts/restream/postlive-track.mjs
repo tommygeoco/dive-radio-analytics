@@ -24,6 +24,13 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  appendSourceReceipt,
+  sourceAccountSummary,
+  sourceStatus,
+  X_ACCOUNTS,
+  YOUTUBE_ACCOUNTS,
+} from "./source-receipts.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
@@ -142,6 +149,33 @@ export function youtubeStatsOf(item) {
   };
 }
 
+// X sometimes returns the post while omitting public_metrics. That is an
+// absent reading, not six measured zeroes. Explicit zeroes remain zero.
+export function xStatsOf(tweet, mediaTypes = {}) {
+  const pm = tweet?.public_metrics;
+  const mediaKeys = tweet?.attachments?.media_keys || [];
+  const urls = [];
+  for (const value of tweet?.entities?.urls || []) {
+    const candidate = value.unwound_url || value.expanded_url || value.url;
+    if (candidate) urls.push(candidate);
+  }
+  const broadcastIds = [
+    ...new Set(urls.map((url) => (url.match(/x\.com\/i\/broadcasts\/(\w+)/) || [])[1]).filter(Boolean)),
+  ];
+  return {
+    views: countOrNull(pm?.impression_count),
+    likes: countOrNull(pm?.like_count),
+    replies: countOrNull(pm?.reply_count),
+    reposts: countOrNull(pm?.retweet_count),
+    bookmarks: countOrNull(pm?.bookmark_count),
+    quotes: countOrNull(pm?.quote_count),
+    urls,
+    broadcastIds,
+    hasNativeVideo: mediaKeys.some((key) => mediaTypes[key] === "video"),
+    publicMetricsAvailable: pm != null && typeof pm === "object",
+  };
+}
+
 export function mergedViewCount(previous, current) {
   if (!Number.isFinite(current)) return Number.isFinite(previous) ? previous : null;
   return (Number.isFinite(previous) ? previous : 0) + current;
@@ -208,29 +242,7 @@ async function fetchXStats(postIds) {
     for (const m of data.includes?.media || []) {
       mediaTypes[m.media_key] = m.type;
     }
-    for (const t of data.data || []) {
-      const pm = t.public_metrics || {};
-      const mediaKeys = t.attachments?.media_keys || [];
-      const urls = [];
-      for (const u of t.entities?.urls || []) {
-        const cand = u.unwound_url || u.expanded_url || u.url;
-        if (cand) urls.push(cand);
-      }
-      const broadcastIds = [
-        ...new Set(urls.map((u) => (u.match(/x\.com\/i\/broadcasts\/(\w+)/) || [])[1]).filter(Boolean)),
-      ];
-      stats[t.id] = {
-        views: Number(pm.impression_count ?? 0),
-        likes: Number(pm.like_count ?? 0),
-        replies: Number(pm.reply_count ?? 0),
-        reposts: Number(pm.retweet_count ?? 0),
-        bookmarks: Number(pm.bookmark_count ?? 0),
-        quotes: Number(pm.quote_count ?? 0),
-        urls,
-        broadcastIds,
-        hasNativeVideo: mediaKeys.some((k) => mediaTypes[k] === "video"),
-      };
-    }
+    for (const t of data.data || []) stats[t.id] = xStatsOf(t, mediaTypes);
   }
   return stats;
 }
@@ -239,7 +251,7 @@ async function fetchXStats(postIds) {
 function detailOf(s) {
   // `plays` is stripped defensively so an old/mocked tweet payload can never
   // persist native-media plays into the episode history.
-  const { urls, broadcastIds, hasNativeVideo, plays, ...detail } = s;
+  const { urls, broadcastIds, hasNativeVideo, publicMetricsAvailable, plays, ...detail } = s;
   return detail;
 }
 
@@ -458,7 +470,108 @@ export function buildShowMetrics(show, ytStats, xStats, broadcastStats) {
   return metrics;
 }
 
+function currentEpisodeShows(shows) {
+  const newestDate = (shows || []).map((show) => show.date).filter(Boolean).sort().pop();
+  return newestDate ? shows.filter((show) => show.date === newestDate) : [];
+}
+
+function coverageRow(account, targets, attempt, valueForTarget) {
+  const attempted = attempt?.attempted === true && targets.length > 0;
+  const found = targets.filter(valueForTarget).length;
+  let error = null;
+  if (attempt?.error) error = attempt.error;
+  else if (!targets.length) error = "no current episode target";
+  else if (found !== targets.length) error = `read ${found} of ${targets.length} current target(s)`;
+  return {
+    account,
+    attempted,
+    success: attempted && attempt?.success === true && found === targets.length,
+    expected: targets.length,
+    found,
+    error,
+  };
+}
+
+// Required source coverage is evaluated against the newest registered episode,
+// not against whichever platform happened to answer. Older broadcast failures
+// remain eligible for the existing stale-high-water behavior.
+export function snapshotSourceCoverage({
+  shows,
+  ytStats = {},
+  xStats = {},
+  broadcastStats = {},
+  attempts = {},
+}) {
+  const current = currentEpisodeShows(shows);
+  const ytAccounts = YOUTUBE_ACCOUNTS.map((account) => {
+    const targets = current.flatMap((show) => (show.targets || []).filter(
+      (target) => target.kind === "youtube" && target.account === account
+    ));
+    return coverageRow(account, targets, attempts.youtube, (target) =>
+      Number.isFinite(ytStats[target.videoId]?.views)
+    );
+  });
+  const xAccounts = X_ACCOUNTS.map((account) => {
+    const targets = current.flatMap((show) => (show.targets || []).filter(
+      (target) => target.kind === "x" && target.account === account
+    ));
+    return coverageRow(account, targets, attempts.x, (target) => {
+      const stats = xStats[target.postId];
+      return stats?.publicMetricsAvailable === true && [
+        stats.views,
+        stats.likes,
+        stats.replies,
+        stats.reposts,
+        stats.bookmarks,
+        stats.quotes,
+      ].every(Number.isFinite);
+    });
+  });
+  const broadcastAccounts = X_ACCOUNTS.map((account) => {
+    const targets = current.flatMap((show) => (show.targets || []).filter(
+      (target) => target.kind === "x" &&
+        target.account === account &&
+        target.role !== "promo" &&
+        target.playsStatus !== "none" &&
+        target.broadcastId
+    ));
+    return coverageRow(account, targets, attempts.xBroadcast, (target) =>
+      Number.isFinite(broadcastStats[target.broadcastId]?.views) &&
+        broadcastStats[target.broadcastId].views > 0
+    );
+  });
+  const sources = {
+    youtube: sourceAccountSummary(ytAccounts),
+    x: sourceAccountSummary(xAccounts),
+    xBroadcast: sourceAccountSummary(broadcastAccounts),
+  };
+  const errors = Object.entries(sources).flatMap(([sourceName, source]) =>
+    source.accounts
+      .filter((row) => !row.success)
+      .map((row) => `${sourceName}:${row.account}: ${row.error || "failed"}`)
+  );
+  return {
+    currentEpisodeDates: [...new Set(current.map((show) => show.date))],
+    sources,
+    errors,
+    status: sourceStatus(sources),
+  };
+}
+
+// Sum only observed readings. No observed values returns null; explicit zeroes
+// still sum to zero.
+export function metricViewsTotal(metrics, prefix) {
+  const keys = prefix === "x:"
+    ? X_ACCOUNTS.map((account) => `x:${account}`)
+    : Object.keys(metrics || {}).filter((key) => key.startsWith(prefix));
+  const values = keys.map((key) => metrics?.[key]?.views);
+  return values.length && values.every(Number.isFinite)
+    ? values.reduce((sum, value) => sum + value, 0)
+    : null;
+}
+
 async function snapshot(args) {
+  const startedAt = new Date().toISOString();
   const registry = loadJson(REGISTRY_PATH, { shows: [] });
   const includeAll = args.includes("--all");
   const cutoff = Date.now() - TRACK_WINDOW_DAYS * 86400000;
@@ -466,8 +579,17 @@ async function snapshot(args) {
     (s) => s.active !== false && (includeAll || Date.parse(s.date) >= cutoff)
   );
   if (!shows.length) {
-    console.log("postlive: no active shows registered — nothing to snapshot");
-    return;
+    const error = "no active shows registered";
+    appendSourceReceipt("snapshot", {
+      startedAt,
+      status: "partial",
+      currentEpisodeDates: [],
+      sources: {},
+      requested: { youtube: 0, x: 0, xBroadcast: 0 },
+      found: { youtube: 0, x: 0, xBroadcast: 0 },
+      errors: [error],
+    });
+    throw new Error(error);
   }
 
   const now = new Date().toISOString();
@@ -475,21 +597,29 @@ async function snapshot(args) {
   const xIds = [...new Set(shows.flatMap((s) => s.targets.filter((t) => t.kind === "x").map((t) => t.postId)))];
 
   const errors = [];
+  const attempts = {
+    youtube: { attempted: ytIds.length > 0, success: false, error: null },
+    x: { attempted: xIds.length > 0, success: false, error: null },
+    xBroadcast: { attempted: false, success: false, error: null },
+  };
   let ytStats = {},
     xStats = {};
   let xFetchOk = false;
   try {
     ytStats = await fetchYouTubeStats(ytIds);
+    attempts.youtube.success = true;
   } catch (err) {
-    errors.push(`youtube: ${err.message}`);
+    attempts.youtube.error = String(err.message).slice(0, 240);
+    errors.push(`youtube: ${attempts.youtube.error}`);
   }
   try {
     xStats = await fetchXStats(xIds);
     xFetchOk = true;
+    attempts.x.success = true;
   } catch (err) {
-    errors.push(`x: ${err.message}`);
+    attempts.x.error = String(err.message).slice(0, 240);
+    errors.push(`x: ${attempts.x.error}`);
   }
-  if (errors.length === 2) throw new Error(`both sources failed — ${errors.join("; ")}`);
 
   // Resolve broadcast ids for X announce posts (F-1b latch semantics):
   //   1. entities.urls from the v2 tweet payload (first-class source)
@@ -554,7 +684,36 @@ async function snapshot(args) {
   }
 
   const broadcastIds = [...new Set(shows.flatMap((s) => s.targets.filter((t) => t.kind === "x" && t.broadcastId).map((t) => t.broadcastId)))];
-  const { stats: broadcastStats } = fetchBroadcastStats(broadcastIds);
+  attempts.xBroadcast.attempted = broadcastIds.length > 0;
+  let broadcastStats = {};
+  try {
+    ({ stats: broadcastStats } = fetchBroadcastStats(broadcastIds));
+    attempts.xBroadcast.success = true;
+  } catch (err) {
+    attempts.xBroadcast.error = String(err.message).slice(0, 240);
+    errors.push(`x broadcast: ${attempts.xBroadcast.error}`);
+  }
+
+  if (registryDirty) saveJson(REGISTRY_PATH, registry);
+
+  const coverage = snapshotSourceCoverage({ shows, ytStats, xStats, broadcastStats, attempts });
+  const receiptErrors = [...new Set([...errors, ...coverage.errors])];
+  appendSourceReceipt("snapshot", {
+    startedAt,
+    status: coverage.status === "ok" && receiptErrors.length === 0 ? "ok" : "partial",
+    currentEpisodeDates: coverage.currentEpisodeDates,
+    sources: coverage.sources,
+    requested: { youtube: ytIds.length, x: xIds.length, xBroadcast: broadcastIds.length },
+    found: {
+      youtube: Object.keys(ytStats).length,
+      x: Object.keys(xStats).length,
+      xBroadcast: Object.keys(broadcastStats).length,
+    },
+    errors: receiptErrors,
+  });
+  if (coverage.status !== "ok" || receiptErrors.length) {
+    throw new Error(`source snapshot incomplete — ${receiptErrors.join("; ")}`);
+  }
 
   mkdirSync(HISTORY_DIR, { recursive: true });
   const rows = [];
@@ -601,10 +760,7 @@ async function snapshot(args) {
     }
 
     const ytViews = youtubeViewsForDisplay(metrics);
-    let xReach = 0;
-    for (const [k, m] of Object.entries(metrics)) {
-      if (k.startsWith("x:")) xReach += m.views || 0;
-    }
+    const xReach = metricViewsTotal(metrics, "x:");
     const histPath = join(HISTORY_DIR, `${show.slug}.json`);
     const hist = loadJson(histPath, { slug: show.slug, title: show.title, date: show.date, snapshots: [] });
     syncPostliveMetadata(hist, show);
@@ -682,7 +838,8 @@ function renderVault(rows, now, errors) {
   for (const r of rows) {
     const cols = COLUMNS.map((c) => num(destinationViewsForDisplay(r.metrics, c.key)));
     const otherKeys = Object.keys(r.metrics).filter((k) => !COLUMNS.some((c) => c.key === k));
-    const other = otherKeys.length ? num(otherKeys.reduce((a, k) => a + r.metrics[k].views, 0)) : "–";
+    const otherValues = otherKeys.map((key) => r.metrics[key]?.views).filter(Number.isFinite);
+    const other = otherValues.length ? num(otherValues.reduce((sum, value) => sum + value, 0)) : "–";
     lines.push(
       `| ${r.show.date} | ${r.show.title.replace(/\|/g, "/").slice(0, 50)} | ${totalViewsCell(r.ytViews, r.plays)} | ${cols.join(" | ")} | ${other} | ${num(r.ytViews)} | ${num(r.xReach)} | ${playsCell(r.plays)} | ${signedNum(r.deltaYt)} |`
     );
@@ -698,10 +855,7 @@ function renderVault(rows, now, errors) {
 // three different units. Reported side by side, never summed together.
 
 function snapshotUnit(snap, prefix) {
-  return Object.entries(snap.metrics).reduce(
-    (a, [k, m]) => a + (k.startsWith(prefix) ? m.views || 0 : 0),
-    0
-  );
+  return metricViewsTotal(snap.metrics, prefix);
 }
 
 function snapshotPlays(snap) {
@@ -737,7 +891,7 @@ async function report(args) {
   const lines = [`Post-live watch report — week of ${new Date(reportNow).toLocaleDateString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", year: "numeric" })}`];
   lines.push("Units: Total views = YT views + X broadcast plays (both video playback). X reach = post impressions (exposure), never included in views.");
   const sorted = [...shows].sort((a, b) => (a.date < b.date ? 1 : -1));
-  const grand = { yt: 0, ytComplete: true, dYt: 0, reach: 0, dReach: 0, plays: null, playsPartial: false };
+  const grand = { yt: 0, ytComplete: true, dYt: 0, reach: 0, reachComplete: true, dReach: 0, plays: null, playsPartial: false };
   let anyBaseline = false;
   for (const show of sorted) {
     const hist = loadJson(join(HISTORY_DIR, `${show.slug}.json`), null);
@@ -752,17 +906,19 @@ async function report(args) {
     const plays = playsSummary(show, latest.metrics);
     if (Number.isFinite(yt)) grand.yt += yt;
     else grand.ytComplete = false;
-    grand.reach += reach;
+    if (Number.isFinite(reach)) grand.reach += reach;
+    else grand.reachComplete = false;
     if (plays.value != null) {
       grand.plays = (grand.plays ?? 0) + plays.value;
       if (plays.partial || plays.stale) grand.playsPartial = true;
     }
     if (plays.value == null) grand.playsPartial = true; // grand total is missing this episode's plays
     const dYt = baseline ? youtubeDeltaForDisplay(latest.metrics, baseline.metrics) : null;
-    const dReach = baseline ? reach - snapshotUnit(baseline, "x:") : null;
+    const baselineReach = baseline ? snapshotUnit(baseline, "x:") : null;
+    const dReach = Number.isFinite(reach) && Number.isFinite(baselineReach) ? reach - baselineReach : null;
     if (dYt !== null) {
       grand.dYt += dYt;
-      grand.dReach += dReach;
+      if (dReach !== null) grand.dReach += dReach;
       anyBaseline = true;
     }
     const wk = (d) => (d === null ? "no seven-day comparison yet" : `${signedNum(d)} this week`);
@@ -788,7 +944,7 @@ async function report(args) {
     : "– (some YouTube views missing)";
   const allYt = grand.ytComplete ? num(grand.yt) : "– (some episodes missing)";
   lines.push(
-    `\nAll tracked shows — Total views: ${allViews} · YT: ${allYt}${grand.ytComplete && anyBaseline ? ` (${signedNum(grand.dYt)} this week)` : ""} · X plays: ${grand.plays == null ? "–" : num(grand.plays)} · X reach: ${num(grand.reach)}${anyBaseline ? ` (${signedNum(grand.dReach)} this week)` : ""}.`
+    `\nAll tracked shows — Total views: ${allViews} · YT: ${allYt}${grand.ytComplete && anyBaseline ? ` (${signedNum(grand.dYt)} this week)` : ""} · X plays: ${grand.plays == null ? "–" : num(grand.plays)} · X reach: ${grand.reachComplete ? num(grand.reach) : "– (some episodes missing)"}${grand.reachComplete && anyBaseline ? ` (${signedNum(grand.dReach)} this week)` : ""}.`
   );
   if (args.includes("--trends")) {
     try {

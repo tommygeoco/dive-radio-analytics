@@ -5,11 +5,10 @@
 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { replaceQueueLines } from "./alert-queue.mjs";
+import { QUEUE_PATH, replaceQueueLines } from "./alert-queue.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
-export const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
 export const PROD_URL = "https://dive-radio-analytics.vercel.app/data.json";
 export const MAX_AGE_HOURS = 26;
 export const LINE_PREFIX = "Prod dashboard";

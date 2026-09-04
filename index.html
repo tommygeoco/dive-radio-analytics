@@ -569,7 +569,10 @@
   .viewmenu .vopt:hover, .viewmenu .vopt:focus-visible { background: var(--s2); color: var(--t1); outline: none; }
   .chart-copy { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   #chartbox { height: 440px; position: relative; transition: height .25s ease; }
-  #chartbox.mini { height: 168px; }
+  /* A selected episode still leaves enough plot height for the eight-row
+     comparison popup. Shrinking below this clips the very comparison the
+     reader asked for and lets the popup spill into the detail card. */
+  #chartbox.mini { height: 340px; }
   #tablebox { overflow-x: auto; display: none; }
   /* visible scroll affordance (taste audit F1): macOS hides scrollbars, so a
      clipped column looked cut off instead of scrollable */
@@ -588,9 +591,11 @@
   .st-good { color: var(--good); } .st-bad { color: var(--bad); } .st-mid { color: var(--t2); }
   .emptynote { color: var(--t3); font-size: 13px; margin: 6px 4px 0; }
 
-  .tt { position: absolute; pointer-events: none; background: var(--s2); border: 1px solid var(--border-strong);
-    border-radius: 8px; padding: 10px 12px; font-size: 13.5px; min-width: 216px; opacity: 0;
+  .tt { position: absolute; box-sizing: border-box; pointer-events: none; background: var(--s2); border: 1px solid var(--border-strong);
+    border-radius: 8px; padding: 10px 12px; font-size: 13.5px; min-width: 216px;
+    max-width: min(300px, calc(100% - 16px)); opacity: 0;
     transition: opacity .08s; z-index: 5; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  .tt.summary { min-width: min(236px, calc(100% - 16px)); }
   /* one text edge for the whole tooltip: the color chips hang in a fixed
      gutter so the title, the number, and every row name start at the same x */
   .tt { --chip: 15px; }
@@ -602,7 +607,11 @@
   .tt .div { border-top: 1px solid var(--border); margin: 7px 0 5px; }
   .tt .row { display: flex; align-items: center; gap: 7px; padding: 2.5px 0; font-size: 13px; color: var(--t2); }
   .tt .row .sq { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .tt .row .ep { color: var(--t1); font-weight: 700; }
+  .tt .row .when { color: var(--t3); font-size: 11px; }
   .tt .row .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--t1); }
+  .tt .sub { color: var(--t3); font-size: 11px; font-weight: 700; letter-spacing: .04em;
+    margin: 7px 0 2px; padding-left: var(--chip); text-transform: uppercase; }
   .tt .note { color: var(--amber); font-size: 12px; margin-top: 5px; }
 
   /* ---- insights: readable claim up front, recommendation one click away ---- */
@@ -762,7 +771,7 @@
         <button type="button" class="reset" id="reset">Reset</button>
       </div>
     </div>
-    <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt"></div></div>
+    <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt" aria-hidden="true"></div></div>
     <div id="tablebox"></div>
     <div class="emptynote" id="emptynote" style="display:none"></div>
   </div>
@@ -951,7 +960,12 @@ function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*L
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 function heroMarker(e) {
   const tvi = e.latest.totalViewsInfo || {};
-  if (!hasYoutubeReading(e)) return tvi.includesPlays ? `${PLOGO.x} only` : "";
+  if (!hasYoutubeReading(e)) {
+    if (!tvi.includesPlays) return "";
+    if (tvi.partial) return `${PLOGO.x} only · some X plays missing`;
+    if (tvi.stale && tvi.asOf) return `${PLOGO.x} only · X plays are old`;
+    return `${PLOGO.x} only`;
+  }
   if (tvi.youtubeStale) return "YouTube views are old";
   if (!tvi.includesPlays) return `${PLOGO.yt} only`;
   if (tvi.partial) return "some X plays missing";
@@ -1623,23 +1637,15 @@ function buildStrip() {
     it.className = "sitem" + (e.slug === NEWEST.slug ? " newest" : "");
     it.setAttribute("role", "listitem");
     it.dataset.slug = e.slug;
-    // the card's number IS the chart's measure (owner directive 2026-08-23):
-    // one definition (CHART_METRICS) feeds chart, hero, and card alike
-    let num = "";
+    // This row is the chart's stable episode legend. Its number never changes
+    // meaning as the view changes: it is always stored YouTube views plus
+    // resolved X broadcast plays. The selected chart measure stays in the
+    // hero, plot, popup, and table.
     let spokenValue = "Data not available.";
-    const metric = heroMetricKey();
-    if (metric === "views") {
-      const mk = heroMarker(e);
-      // number rides the identity row; the unit is stated once in the hero
-      const total = displayedTotal(e);
-      num = total == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
-      if (total != null) spokenValue = `${nfmt(total)} ${hasYoutubeReading(e) ? "total views" : "X plays"}.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
-    } else {
-      const M = CHART_METRICS[metric];
-      const v = M.get(e);
-      num = v == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${M.card(v)}</span>`;
-      if (v != null) spokenValue = `${M.spoken(v)}.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
-    }
+    const mk = heroMarker(e);
+    const total = displayedTotal(e);
+    const num = total == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
+    if (total != null) spokenValue = `${currentTotalSummary(e, true)}.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
     // Episode health: a finished three-week read shows its score; younger
     // episodes show nothing score-like at all (their wait date lives in the
     // click panel).
@@ -1979,10 +1985,11 @@ function closeDrill() { document.getElementById("drill").classList.remove("on");
 /* ================= growth-trend card: is the show growing? (PRD v2 W2) ================= */
 function buildCompound() {
   const el = document.getElementById("compound");
-  // Alternate measures chart their own across-episodes trend beside the hero,
-  // in air order, from the same stored numbers the chart uses (owner directive
-  // 2026-08-23). Episodes without the measure simply don't draw a bar.
-  const metric = heroMetricKey();
+  // The old first-week card could sit unchanged for weeks because it excluded
+  // late-tracked and promoted episodes. The overview now leads with the much
+  // more useful saved share-watched reading; other selected measures keep
+  // showing their own across-episode comparison here.
+  const metric = heroMetricKey() === "views" ? "watched" : heroMetricKey();
   // an honest skeleton for the wait states: a sketched empty chart — dashed
   // gridlines, a tick axis, a circled trend mark — around the plain sentence.
   // Chrome is aria-hidden; the sentence stays the accessible content.
@@ -1994,72 +2001,34 @@ function buildCompound() {
       </div>
       <div class="skelaxis" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     </div>`;
-  if (metric !== "views") {
-    const M = CHART_METRICS[metric];
-    const have = EPS.map((e) => ({ e, v: M.get(e) })).filter((r) => r.v != null);
-    if (have.length < 3) {
-      el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>${skelChart("Not enough episodes to call a direction yet.")}`;
-      el.style.display = "";
-      return;
-    }
-    const maxV = Math.max(...have.map((r) => r.v));
-    const hotSlug = state.solo && have.some((r) => r.e.slug === state.solo) ? state.solo : have.at(-1).e.slug;
-    // the verdict compares the newest episode with the one before it LIKE FOR
-    // LIKE (reach and share watched at the same age, live turnout age-free),
-    // read from data.baselines — never from the lifetime bars above (PRD v9 F15)
-    const cmp = DATA.baselines?.newestVsPrevious?.[metric] || null;
-    const pct = cmp && Number.isFinite(cmp.pct) ? cmp.pct : null;
-    const cls2 = pct == null || Math.abs(pct) <= QUIET_ZONE ? "" : pct > 0 ? "up" : "down";
-    const verdict2 = pct == null ? (cmp?.reason || "Too young to compare with the episode before it at the same age.")
-      : Math.abs(pct) <= QUIET_ZONE ? "Holding steady episode to episode."
-      : pct > 0 ? `The newest episode is up ${pct}% on the one before it.` : `The newest episode is down ${Math.abs(pct)}% on the one before it.`;
-    el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>
-      <div class="bars">${have.map((r) => { const hot = r.e.slug === hotSlug; return `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
-        <span class="bnum" aria-hidden="true">${M.card(r.v)}</span>
-        <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.v / maxV) * 100))}%${hot ? `;background:${color(r.e)}` : ""}"></div></div>
-        <span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`; }).join("")}</div>
-      <div class="cv2 ${cls2}" style="${cls2 === "up" ? "color:var(--good)" : cls2 === "down" ? "color:var(--bad)" : ""}">${verdict2}</div>`;
+  const M = CHART_METRICS[metric];
+  const rows = EPS.map((e) => ({ e, v: M.get(e) }));
+  const have = rows.filter((r) => r.v != null);
+  if (have.length < 3) {
+    el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>${skelChart("Not enough episodes to call a direction yet.")}`;
     el.style.display = "";
     return;
   }
-  const rows = DATA.showTrend?.week1VelocityByEpisode || [];
-  if (!rows.length) { el.style.display = "none"; el.innerHTML = ""; return; }
-  const enriched = rows.map(r => ({ ...r, e: EPS.find(x => x.slug === r.slug) }))
-    .filter(r => r.e && hasYoutubeReading(r.e));
-  const vals = enriched.filter(r => Number.isFinite(r.value) && r.value > 0);
-  const max = Math.max(1, ...vals.map(r => r.value));
-  // Direction stays hidden until three real first weeks exist. When it does
-  // appear, the visual carries the exact stored values through accessible
-  // labels without adding another row of glance-layer numbers.
-  let verdict, cls = "";
-  if (vals.length < 3) {
-    el.innerHTML = `<div class="kicker">Growth trend</div>${skelChart("Growth trend isn’t ready yet.", "Appears once three episodes have clean first weeks.")}`;
-    el.style.display = "";
-    return;
-  } else {
-    const last = vals[vals.length - 1], prev = vals[vals.length - 2], before = vals[vals.length - 3];
-    const pct = Math.round(((last.value - prev.value) / prev.value) * 100);
-    const prevPct = Math.round(((prev.value - before.value) / before.value) * 100);
-    // a trend word needs a three-point run in one direction; two points only
-    // say how the newest first week compares with the one before it
-    // the direction WORD is the stored lens's (PRD v10 rule 16: one first-week
-    // direction — data.baselines.direction, four clean weeks for a word); the
-    // two-point comparison stays a comparison
-    const fw = (DATA.baselines?.direction?.measures || []).find((m) => m.key === "firstWeek") || null;
-    if (Math.abs(pct) <= QUIET_ZONE) { verdict = "First-week audience is holding steady."; }
-    else if (pct > 0) { verdict = fw?.direction === "building" ? "Each launch is starting stronger." : `The newest first week beat the one before by ${pct}%.`; cls = "up"; }
-    else { verdict = fw?.direction === "softening" ? "New launches are starting softer." : `The newest first week came in ${Math.abs(pct)}% under the one before.`; cls = "down"; }
-  }
-  const hotSlug = state.solo && vals.some((r) => r.e.slug === state.solo) ? state.solo : vals.at(-1).e.slug;
-  let bars = "";
-  for (const r of vals) {
+  const maxV = Math.max(...have.map((r) => r.v));
+  const hotSlug = trendHighlightSlug(rows, state.solo);
+  // The verdict is the saved like-for-like comparison, never a calculation
+  // over the lifetime bars drawn above it.
+  const cmp = DATA.baselines?.newestVsPrevious?.[metric] || null;
+  const pct = cmp && Number.isFinite(cmp.pct) ? cmp.pct : null;
+  const cls = pct == null || Math.abs(pct) <= QUIET_ZONE ? "" : pct > 0 ? "up" : "down";
+  const verdict = pct == null ? (cmp?.reason || "Too young to compare with the episode before it at the same age.")
+    : Math.abs(pct) <= QUIET_ZONE ? "Holding steady episode to episode."
+    : pct > 0 ? `The newest episode is up ${pct}% on the one before it.` : `The newest episode is down ${Math.abs(pct)}% on the one before it.`;
+  const bars = rows.map((r) => {
     const hot = r.e.slug === hotSlug;
-    bars += `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(short(r.e.title))}: ${nfmt(r.value)} YouTube views in its first week">
-      <span class="bnum" aria-hidden="true">${kfmt(r.value)}</span>
-      <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.value / max) * 100))}%${hot ? `;background:${color(r.e)}` : ""}"></div></div>
+    if (r.v == null) return `<div class="cbar missing" role="img" aria-label="${esc(`${short(r.e.title)}: ${METRIC_TREND_TITLE[metric].toLowerCase()} not available`)}">
+      <span class="bnum" aria-hidden="true">—</span><div class="bwrap"></div><span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
+    return `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
+      <span class="bnum" aria-hidden="true">${M.card(r.v)}</span>
+      <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.v / maxV) * 100))}%${hot ? `;background:${color(r.e)}` : ""}"></div></div>
       <span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
-  }
-  el.innerHTML = `<div class="kicker">Growth trend — first weeks</div><div class="bars">${bars}</div>
+  }).join("");
+  el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div><div class="bars">${bars}</div>
     <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>`;
   el.style.display = "";
 }
@@ -2121,29 +2090,286 @@ function lineHoverHandler(evt, els, ch) {
   ch.canvas.style.cursor = slug ? "pointer" : "";
 }
 
-// stale-tooltip kill (taste audit F5): Chart.js external tooltips only hide on
-// tooltip events; a fast pointer exit could strand one over the chart
-// chart tooltips follow the pointer, not the bar's caret — the reader's eye
-// is at the cursor (owner feedback 2026-08-23). Falls back to the caret when
-// no pointer has moved yet (keyboard, touch synthesis).
-let chartCursor = null;
-document.getElementById("chartbox").addEventListener("pointermove", (ev) => {
-  const r = ev.currentTarget.getBoundingClientRect();
-  chartCursor = { x: ev.clientX - r.left, y: ev.clientY - r.top };
-  // the tooltip TRACKS the pointer, not just its opening spot — Chart.js only
-  // re-fires the handler when the hovered element changes, so gliding within
-  // one bar would otherwise leave the tip behind
-  const el = document.getElementById("tt");
-  if (el && el.style.opacity === "1") {
-    const x = Math.min(Math.max(chartCursor.x, 120), r.width - 130);
-    const above = chartCursor.y > 190;
-    el.style.left = x + "px";
-    el.style.top = (chartCursor.y + (above ? -14 : 14)) + "px";
-    el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
+// Pure geometry for the comparison hover. The popup may follow a drawn line,
+// but every number it prints comes from one saved point — never an interpolated
+// value manufactured between two readings.
+/* chart-hover-model:start */
+function storedPointNear(points, xValue, { atOrBefore = false } = {}) {
+  const epsilon = 1e-6;
+  const real = (points || []).map((point, index) => ({ point, index }))
+    .filter(({ point }) => Number.isFinite(point?.x) && Number.isFinite(point?.y))
+    .filter(({ point }) => !atOrBefore || point.x <= xValue + epsilon);
+  if (!real.length) return null;
+  return real.reduce((best, item) => {
+    const gap = Math.abs(item.point.x - xValue);
+    const bestGap = Math.abs(best.point.x - xValue);
+    const tied = Math.abs(gap - bestGap) <= epsilon;
+    return gap < bestGap - epsilon
+      || (tied && (item.point.x > best.point.x || (item.point.x === best.point.x && item.index > best.index)))
+      ? item : best;
+  });
+}
+function describeTotalViews(value, info = {}, includeUnit = false, format = (number) => number.toLocaleString("en-US")) {
+  if (value == null) return "not available";
+  const words = format(value);
+  if (info.includesYoutube !== true && info.includesPlays === true) {
+    return `${words} ${info.partial || info.stale ? "known X plays" : "X plays"}`;
   }
-});
+  if (info.includesYoutube === true && info.includesPlays !== true) {
+    return `${words} ${info.youtubeStale ? "known YouTube views" : "YouTube views"}`;
+  }
+  if (info.partial || info.stale || info.youtubeStale || info.incomplete) return `${words} known views`;
+  return `${words}${includeUnit ? " total views" : ""}`;
+}
+function pointToSegmentDistance(point, start, end) {
+  const dx = end.x - start.x, dy = end.y - start.y;
+  if (!dx && !dy) return Math.hypot(point.x - start.x, point.y - start.y);
+  const along = Math.max(0, Math.min(1,
+    ((point.x - start.x) * dx + (point.y - start.y) * dy) / (dx * dx + dy * dy)));
+  return Math.hypot(point.x - (start.x + along * dx), point.y - (start.y + along * dy));
+}
+function pointToCurveDistance(point, start, end) {
+  const curved = [start.cp2x, start.cp2y, end.cp1x, end.cp1y].every(Number.isFinite);
+  if (!curved) return pointToSegmentDistance(point, start, end);
+  let nearest = Infinity;
+  let before = { x: start.x, y: start.y };
+  for (let step = 1; step <= 10; step++) {
+    const t = step / 10, back = 1 - t;
+    const next = {
+      x: back ** 3 * start.x + 3 * back ** 2 * t * start.cp2x + 3 * back * t ** 2 * end.cp1x + t ** 3 * end.x,
+      y: back ** 3 * start.y + 3 * back ** 2 * t * start.cp2y + 3 * back * t ** 2 * end.cp1y + t ** 3 * end.y,
+    };
+    nearest = Math.min(nearest, pointToSegmentDistance(point, before, next));
+    before = next;
+  }
+  return nearest;
+}
+function closestEpisodeLine(ch, point, maxDistance = 10) {
+  let closest = null;
+  ch.data.datasets.forEach((dataset, datasetIndex) => {
+    if (dataset.isAnnounce || (!dataset.slug && !dataset.isTypical) || !ch.isDatasetVisible(datasetIndex)) return;
+    const meta = ch.getDatasetMeta(datasetIndex);
+    const rendered = meta?.data || [];
+    const real = rendered.map((item, index) => ({
+      x: item.x, y: item.y, cp1x: item.cp1x, cp1y: item.cp1y,
+      cp2x: item.cp2x, cp2y: item.cp2y, skip: item.skip, index,
+    }))
+      .filter((item) => !item.skip && Number.isFinite(item.x) && Number.isFinite(item.y));
+    if (!real.length) return;
+    const interpolated = meta?.dataset?.interpolate?.({ x: point.x }, "x");
+    const hits = (Array.isArray(interpolated) ? interpolated : [interpolated])
+      .filter((item) => Number.isFinite(item?.x) && Number.isFinite(item?.y));
+    let distance = hits.length
+      ? Math.min(...hits.map((item) => Math.hypot(point.x - item.x, point.y - item.y)))
+      : Math.hypot(point.x - real[0].x, point.y - real[0].y);
+    for (let i = 1; i < real.length; i++) {
+      if (real[i].index !== real[i - 1].index + 1) continue;
+      distance = Math.min(distance, pointToCurveDistance(point, real[i - 1], real[i]));
+    }
+    const order = dataset.order ?? 0;
+    const aboveClosest = !closest || order < closest.order || (order === closest.order && datasetIndex < closest.datasetIndex);
+    if (distance > maxDistance || (closest && (distance > closest.distance || (distance === closest.distance && !aboveClosest)))) return;
+    // Browser input arrives on whole CSS pixels. If the pointer is visibly on
+    // a saved dot, use that exact dot instead of converting the rounded pixel
+    // back to a slightly earlier day and showing the prior reading.
+    const snapped = real
+      .filter((item) => Math.abs(item.x - point.x) <= 0.75)
+      .sort((a, b) => Math.abs(a.x - point.x) - Math.abs(b.x - point.x) || b.index - a.index)[0];
+    const snappedPoint = snapped && dataset.data?.[snapped.index];
+    const saved = snappedPoint && Number.isFinite(snappedPoint.x) && Number.isFinite(snappedPoint.y)
+      ? { point: snappedPoint, index: snapped.index }
+      : storedPointNear(dataset.data, ch.scales.x.getValueForPixel(point.x), { atOrBefore: !!dataset.pastOnly });
+    if (saved) closest = { datasetIndex, index: saved.index, distance, order };
+  });
+  return closest;
+}
+function tooltipBoxPosition(point, tipSize, boxSize, gap = 14, pad = 8) {
+  let left = point.x + gap;
+  if (left + tipSize.width > boxSize.width - pad) left = point.x - tipSize.width - gap;
+  left = Math.max(pad, Math.min(left, boxSize.width - tipSize.width - pad));
+  let top = point.y + gap;
+  if (top + tipSize.height > boxSize.height - pad) top = point.y - tipSize.height - gap;
+  top = Math.max(pad, Math.min(top, boxSize.height - tipSize.height - pad));
+  return { left, top };
+}
+function pointInsideChartArea(point, area, tolerance = 0.75) {
+  return !!area && point.x >= area.left - tolerance && point.x <= area.right + tolerance
+    && point.y >= area.top - tolerance && point.y <= area.bottom + tolerance;
+}
+function storedCategoryReading(dataset, index) {
+  const value = dataset?.data?.[index];
+  if (!Number.isFinite(value)) return null;
+  return { value, index, meta: dataset.metas?.[index] ?? null };
+}
+function trendHighlightSlug(rows, solo = null) {
+  if (solo && rows.some((row) => row.e.slug === solo && row.v != null)) return solo;
+  const newest = rows.at(-1);
+  return newest?.v != null ? newest.e.slug : null;
+}
+function tooltipItemForHit(ch, hit) {
+  const dataset = ch.data.datasets[hit.datasetIndex];
+  return {
+    dataset,
+    datasetIndex: hit.datasetIndex,
+    dataIndex: hit.index,
+    index: hit.index,
+    raw: dataset?.data?.[hit.index],
+  };
+}
+/* chart-hover-model:end */
+
+function placeChartTooltip(el, point) {
+  const box = document.getElementById("chartbox");
+  el.style.opacity = 1;
+  el.style.transform = "none";
+  const pos = tooltipBoxPosition(point, { width: el.offsetWidth, height: el.offsetHeight },
+    { width: box.clientWidth, height: box.clientHeight });
+  el.style.left = pos.left + "px";
+  el.style.top = pos.top + "px";
+}
+function currentTotalSummary(e, includeUnit = false) {
+  const info = e.latest?.totalViewsInfo || {};
+  return describeTotalViews(displayedTotal(e), info, includeUnit, nfmt);
+}
+function chartSummaryHTML(ch, point) {
+  let context = "";
+  let rows = [];
+  const episodes = [...EPS].reverse();
+  if (state.mode === "standings") {
+    if (state.metric === "views") {
+      const visible = ch.data.datasets.map((_, index) => ch.isDatasetVisible(index));
+      const allShown = visible.every(Boolean);
+      context = allShown ? "Current total views" : "Current views from shown destinations";
+      const shownKeys = ch.data.datasets.filter((_, datasetIndex) => visible[datasetIndex]).map((dataset) => dataset.key);
+      rows = episodes.map((e) => {
+        if (allShown) return [e, currentTotalSummary(e), ""];
+        const values = shownKeys.map((key) => key?.startsWith("yt:")
+          ? youtubeValue(e, e.latest.byDest?.[key]?.views)
+          : e.latest.byDest?.[key]?.plays ?? null).filter(Number.isFinite);
+        return [e, values.length ? nfmt(values.reduce((sum, value) => sum + value, 0)) : "not available", ""];
+      });
+    } else {
+      const M = CHART_METRICS[state.metric];
+      context = state.metric === "watched" ? "Video watched on average · YouTube"
+        : state.metric === "live" ? "Average live viewers"
+        : "Times the X announcements were seen";
+      rows = episodes.map((e) => {
+        const value = M.get(e);
+        return [e, value == null ? "not available" : M.text(value), ""];
+      });
+    }
+  } else {
+    const xValue = ch.scales.x.getValueForPixel(point.x);
+    const bySlug = new Map(ch.data.datasets.filter((dataset) => dataset.episode?.slug)
+      .map((dataset) => [dataset.episode.slug, dataset]));
+    if (state.mode === "delta" && !state.byDate) {
+      const categoryIndex = Math.max(0, Math.min(ch.data.labels.length - 1, Math.round(xValue)));
+      context = `Total views gained · ${ch.data.labels[categoryIndex] || `week ${categoryIndex + 1}`}`;
+      rows = episodes.map((e) => {
+        const found = storedCategoryReading(bySlug.get(e.slug), categoryIndex);
+        return [e, found ? nfmt(found.value) : "not available", found?.meta?.ts ? fmtDate(Date.parse(found.meta.ts)) : ""];
+      });
+    } else {
+      if (state.mode === "watch") context = `Share still watching near ${Math.round(xValue)}% through · YouTube`;
+      else if (state.mode === "live") context = `Concurrent viewers near minute ${Math.max(0, Math.round(xValue))}`;
+      else context = state.byDate ? `Saved total views by ${fmtDate(xValue)}` : `Saved total views by day ${Math.max(1, Math.round(xValue))}`;
+      rows = episodes.map((e) => {
+        const dataset = bySlug.get(e.slug);
+        const found = dataset ? storedPointNear(dataset.data, xValue, { atOrBefore: state.mode === "race" }) : null;
+        const missing = state.mode === "race" && !e.historyReady ? "after air day" : "not available";
+        if (!found) return [e, missing, ""];
+        const value = state.mode === "watch" ? `${found.point.y}%` : nfmt(found.point.y);
+        const when = state.mode !== "race" ? ""
+          : state.byDate ? fmtDate(found.point.x) : `day ${Math.round(found.point.x)}`;
+        return [e, value, when];
+      });
+    }
+  }
+  return `<div class="h">All episodes</div><div class="meta">${esc(context)}</div>`
+    + rows.map(([e, value, when]) => `<div class="row"><span class="sq" style="background:${color(e)}"></span><span class="ep">E${e.ep}</span>${when ? `<span class="when">${esc(when)}</span>` : ""}<span class="val">${esc(value)}</span></div>`).join("");
+}
+function closestBar(ch, point) {
+  for (let datasetIndex = 0; datasetIndex < ch.data.datasets.length; datasetIndex++) {
+    if (!ch.isDatasetVisible(datasetIndex)) continue;
+    const elements = ch.getDatasetMeta(datasetIndex)?.data || [];
+    for (let index = 0; index < elements.length; index++) {
+      if (!Number.isFinite(ch.data.datasets[datasetIndex]?.data?.[index])) continue;
+      if (elements[index]?.inRange?.(point.x, point.y, true)) return { datasetIndex, index };
+    }
+  }
+  return null;
+}
+function renderChartHover(ch, point, boxPoint = point) {
+  if (!ch || state.table) return;
+  const el = document.getElementById("tt");
+  const area = ch.chartArea;
+  if (!pointInsideChartArea(point, area)) {
+    el.style.opacity = 0;
+    if (ch.config.type === "line") lineHoverHandler(null, [], ch);
+    return;
+  }
+  const lineChart = ch.config.type === "line";
+  const hit = lineChart ? closestEpisodeLine(ch, point) : closestBar(ch, point);
+  if (lineChart) lineHoverHandler(null, hit ? [hit] : [], ch);
+  if (hit) {
+    el.classList.remove("summary");
+    ch.tooltip?.setActiveElements([hit], point);
+    externalTooltip({
+      chart: ch,
+      tooltip: { opacity: 1, dataPoints: [tooltipItemForHit(ch, hit)], caretX: point.x, caretY: point.y },
+    });
+    placeChartTooltip(el, boxPoint);
+    return;
+  }
+  ch.tooltip?.setActiveElements([], point);
+  el.classList.add("summary");
+  el.innerHTML = chartSummaryHTML(ch, point);
+  placeChartTooltip(el, boxPoint);
+}
+
+// This local plugin runs after Chart.js's own tooltip handler in the same
+// animation-frame event. That ordering matters: a separate DOM mouse handler
+// would be overwritten a frame later by Chart.js's nearest-line tooltip.
+let chartCursor = null;
+const comparisonHover = {
+  id: "comparisonHover",
+  afterEvent(ch, { event }) {
+    if (!event) return;
+    // onClick may already have replaced this chart. Guard before even the
+    // touch-clearing path so no destroyed chart object is read afterward.
+    if (!ch.canvas || ch !== chart) return;
+    const native = event.native;
+    const nativeType = native?.type;
+    const fromTouch = [event.type, nativeType].some((type) =>
+      ["touchstart", "touchmove", "touchend", "touchcancel"].includes(type))
+      || native?.touches || native?.changedTouches || native?.pointerType === "touch"
+      || native?.sourceCapabilities?.firesTouchEvents;
+    if (fromTouch) {
+      ch.tooltip?.setActiveElements([], { x: event.x ?? 0, y: event.y ?? 0 });
+      document.getElementById("tt").style.opacity = 0;
+      if (ch.config.type === "line") lineHoverHandler(null, [], ch);
+      chartCursor = null;
+      return;
+    }
+    if (!["mousemove", "click", "mouseout"].includes(event.type)) return;
+    if (event.type === "mouseout") {
+      document.getElementById("tt").style.opacity = 0;
+      if (ch.config.type === "line") lineHoverHandler(null, [], ch);
+      chartCursor = null;
+      return;
+    }
+    const boxRect = ch.canvas.parentNode.getBoundingClientRect();
+    const canvasRect = ch.canvas.getBoundingClientRect();
+    chartCursor = Number.isFinite(native?.clientX) && Number.isFinite(native?.clientY)
+      ? { x: native.clientX - boxRect.left, y: native.clientY - boxRect.top }
+      : { x: event.x + canvasRect.left - boxRect.left, y: event.y + canvasRect.top - boxRect.top };
+    renderChartHover(ch, { x: event.x, y: event.y }, chartCursor);
+  },
+};
 document.getElementById("chartbox").addEventListener("mouseleave", () => {
-  document.getElementById("tt").style.opacity = 0;
+  const el = document.getElementById("tt");
+  el.style.opacity = 0;
+  el.classList.remove("summary");
   if (chart) lineHoverHandler(null, [], chart);
 });
 
@@ -2373,8 +2599,9 @@ const barTotals = {
       // the ◐ coverage mark is about X plays — it only means anything while
       // every destination is on screen
       const info = e.latest.totalViewsInfo || {};
-      const mark = whole && !hasYoutubeReading(e) && total != null ? " · X plays only"
-        : whole && info.partial ? " ◐" : "";
+      const mark = whole && !hasYoutubeReading(e) && total != null
+        ? info.partial ? " ◐ · X only" : info.stale ? " · old X only" : " · X only"
+        : whole && info.partial ? " ◐" : whole && info.stale ? " · old X" : "";
       ctx.fillText(total == null ? "not available" : nfmt(total) + mark, endX + 8, y);
     });
     ctx.restore();
@@ -2385,6 +2612,7 @@ function externalTooltip(context) {
   const { chart, tooltip } = context;
   const el = document.getElementById("tt");
   if (!tooltip.opacity || !tooltip.dataPoints?.length) { el.style.opacity = 0; return; }
+  el.classList.remove("summary");
   const isLive = state.mode === "live";
   const isStandings = !isLive && state.mode === "standings";
   const isDelta = !isLive && state.mode === "delta";
@@ -2402,10 +2630,13 @@ function externalTooltip(context) {
       html = `<div class="h"><span class="sq dot" style="background:${color(ep)}"></span>${esc(label(ep))}</div>`;
       if (state.metric === "watched" && hasYoutubeReading(ep) && ep.watch?.avgPercent != null) {
         html += `<div class="big">${ep.watch.avgPercent}% <small style="font-weight:500;color:var(--t3)">of the video on average</small></div>`;
-        const chans = (ep.watch.byChannel || []).filter(c => c.avgPercent != null);
+        const chans = YT_KEYS.filter((key) => ep.links?.[key]).map((key) => ({
+          key,
+          avgPercent: ep.watch.byChannel?.find((channel) => channel.key === key)?.avgPercent ?? null,
+        }));
         if (chans.length) {
           html += `<div class="div"></div>`;
-          for (const c of chans) html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></span>${TT_HTML[c.key] || c.key}<span class="val">${c.avgPercent}%</span></div>`;
+          for (const c of chans) html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></span>${TT_HTML[c.key] || c.key}<span class="val">${c.avgPercent == null ? "not available" : `${c.avgPercent}%`}</span></div>`;
         }
       } else if (state.metric === "live" && ep.live) {
         html += `<div class="big">${nfmt(ep.live.avg)} <small style="font-weight:500;color:var(--t3)">average live viewers</small></div>`;
@@ -2415,24 +2646,24 @@ function externalTooltip(context) {
           html += `<div class="row">Lowest<span class="val">${nfmt(Math.min(...concurrents))}</span></div>`;
           html += `<div class="row">Highest<span class="val">${nfmt(Math.max(...concurrents))}</span></div>`;
         }
+        const channels = ep.live.byChannel || [];
+        if (channels.length) {
+          html += `<div class="sub">Average by destination</div>`;
+          for (const channel of channels) html += `<div class="row">${esc(channel.label)}<span class="val">${channel.avg == null ? "not available" : nfmt(channel.avg)}</span></div>`;
+        }
       } else if (state.metric === "reach" && ep.latest.xImpressions != null) {
         html += `<div class="big">${nfmt(ep.latest.xImpressions)} <small style="font-weight:500;color:var(--t3)">times the announces were seen</small></div>`;
         const bd2 = ep.latest.byDest || {};
         html += `<div class="div"></div>`;
         for (const k of ["x:ridd_design", "x:designertom"]) {
           const v = bd2[k]?.views;
-          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k]}<span class="val">${v == null ? "not available" : nfmt(v)}</span></div>`;
         }
         html += `<div class="note">Exposure, not watching — never added into views</div>`;
       }
       el.innerHTML = html;
-      el.style.opacity = 1;
-      const boxM = chart.canvas.parentNode;
       const pM = chartCursor || { x: tooltip.caretX, y: tooltip.caretY };
-      el.style.left = Math.min(Math.max(pM.x, 120), boxM.clientWidth - 130) + "px";
-      const aboveM = pM.y > 190;
-      el.style.top = (pM.y + (aboveM ? -14 : 14)) + "px";
-      el.style.transform = `translate(-50%, ${aboveM ? "-100%" : "0"})`;
+      placeChartTooltip(el, pM);
       return;
     }
     const bd = ep.latest.byDest || {};
@@ -2451,7 +2682,9 @@ function externalTooltip(context) {
     ].filter((_, ri) => segVis[ri] !== false);
     if (allShown) {
       const total = displayedTotal(ep);
-      const totalName = hasYoutubeReading(ep) ? "total views" : tvi.includesPlays ? "X plays" : "views";
+      const formatted = metricText(total, "not available");
+      const totalWords = describeTotalViews(total, tvi, true, nfmt);
+      const totalName = total == null ? "views" : totalWords.slice(formatted.length).trim();
       html += `<div class="big">${metricText(total, "not available")} <small style="font-weight:500;color:var(--t3)">${totalName}</small></div>`;
     } else {
       const shown = rows.map(([, value]) => value).filter(Number.isFinite);
@@ -2460,14 +2693,16 @@ function externalTooltip(context) {
     }
     html += `<div class="div"></div>`;
     for (const [k, v, unit] of rows) {
-      html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)} <span style="color:var(--t3);font-size: 12px">${unit}</span></span></div>`;
+      html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "not available" : nfmt(v)}${v == null ? "" : ` <span style="color:var(--t3);font-size: 12px">${unit}</span>`}</span></div>`;
     }
-    if (allShown && !hasYoutubeReading(ep)) {
+    if (allShown && tvi.partial) {
+      html += `<div class="note">Some X broadcasts are missing — plays from ${tvi.have} of ${tvi.total}.${!hasYoutubeReading(ep) ? " YouTube views are not available yet." : ""}</div>`;
+    } else if (allShown && tvi.stale) {
+      html += `<div class="note">X plays are from an older reading.${!hasYoutubeReading(ep) ? " YouTube views are not available yet." : ""}</div>`;
+    } else if (allShown && !hasYoutubeReading(ep)) {
       html += `<div class="note">${tvi.includesPlays ? "YouTube views are not available yet; this is X plays only." : "YouTube views and X plays are not available yet."}</div>`;
     } else if (allShown && tvi.youtubeStale) {
       html += `<div class="note">YouTube views are from an older reading.</div>`;
-    } else if (allShown && tvi.partial) {
-      html += `<div class="note">◐ plays from ${tvi.have} of ${tvi.total} broadcasts</div>`;
     }
   } else {
     const item = tooltip.dataPoints[0];
@@ -2479,16 +2714,20 @@ function externalTooltip(context) {
         html = `<div class="h">Typical episode</div><div class="meta">At ${at}</div><div class="big">${p.y}% still watching</div><div class="chg">The middle value across episodes with watch curves</div>`;
       } else {
         html = `<div class="h"><span class="sq dot" style="background:${color(e)}"></span>${esc(label(e))}</div><div class="meta">At ${at}</div><div class="big">${p.y}% still watching</div>`;
+        if (e.watch?.avgPercent != null) html += `<div class="chg">${e.watch.avgPercent}% of the video watched on average</div>`;
+        const channels = YT_KEYS.filter((key) => e.links?.[key]);
+        if (channels.length) {
+          html += `<div class="sub">Full-video average by channel</div>`;
+          for (const key of channels) {
+            const channel = e.watch?.byChannel?.find((item) => item.key === key);
+            html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[key]}"></span>${TT_HTML[key] || TT_NAME[key]}<span class="val">${channel?.avgPercent == null ? "not available" : `${channel.avgPercent}%`}</span></div>`;
+          }
+          html += `<div class="chg">YouTube provides one combined curve; channel rows are full-video averages.</div>`;
+        }
       }
       el.innerHTML = html;
-      el.style.opacity = 1;
-      const box0 = chart.canvas.parentNode;
       const p0 = chartCursor || { x: tooltip.caretX, y: tooltip.caretY };
-      const x0 = Math.min(Math.max(p0.x, 120), box0.clientWidth - 130);
-      const above0 = p0.y > 190;
-      el.style.left = x0 + "px";
-      el.style.top = (p0.y + (above0 ? -14 : 14)) + "px";
-      el.style.transform = `translate(-50%, ${above0 ? "-100%" : "0"})`;
+      placeChartTooltip(el, p0);
       return;
     }
     html = `<div class="h"><span class="sq dot" style="background:${color(e)}"></span>${esc(label(e))}</div>`;
@@ -2500,10 +2739,14 @@ function externalTooltip(context) {
       const LIVE_CHAN_COLORS = { "YT Dive Club": "#ff4f5e", "YT DesignerTom": "#ffa14f", "X": "#b7c2d4", "X #2": "#59b0ff" };
       // stored channel labels keep their "YT"/"X" prefix; the mark replaces it on screen
       const chanHTML = (l) => esc(l).replace(/^YT /, `${PLOGO.yt} `).replace(/^X\b/, PLOGO.x);
-      const chans = Object.entries(p.meta.byChan || {});
-      if (chans.length) {
+      const byChan = p.meta.byChan || {};
+      const liveLabels = [...new Set([...(e.live?.byChannel || []).map((channel) => channel.label), ...Object.keys(byChan)])];
+      if (liveLabels.length) {
         html += `<div class="div"></div>`;
-        for (const [l, v] of chans) html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${chanHTML(l)}<span class="val">${v}</span></div>`;
+        for (const l of liveLabels) {
+          const v = byChan[l];
+          html += `<div class="row"><span class="sq" style="background:${LIVE_CHAN_COLORS[l] || "#94a0b4"}"></span>${chanHTML(l)}<span class="val">${v == null ? "not available" : nfmt(v)}</span></div>`;
+        }
         html += `<div class="chg" style="margin-top:5px">Restream total across all simulcast destinations</div>`;
       }
     } else {
@@ -2523,11 +2766,10 @@ function externalTooltip(context) {
       }
       if (meta.split) {
         html += `<div class="div"></div>`;
-        for (const k of VIEW_KEYS) {
+        for (const k of VIEW_KEYS.filter((key) => e.links?.[key])) {
           const v = meta.split[k];
-          if (v == null) continue;
           const unit = X_KEYS.includes(k) ? " plays" : " views";
-          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v)}${unit}</span></div>`;
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v, "not available")}${v == null ? "" : unit}</span></div>`;
         }
       }
       if (meta.note) html += `<div class="note">${meta.note}</div>`;
@@ -2535,14 +2777,8 @@ function externalTooltip(context) {
   }
 
   el.innerHTML = html;
-  el.style.opacity = 1;
-  const box = chart.canvas.parentNode;
   const p = chartCursor || { x: tooltip.caretX, y: tooltip.caretY };
-  const x = Math.min(Math.max(p.x, 120), box.clientWidth - 130);
-  const above = p.y > 190;
-  el.style.left = x + "px";
-  el.style.top = (p.y + (above ? -14 : 14)) + "px";
-  el.style.transform = `translate(-50%, ${above ? "-100%" : "0"})`;
+  placeChartTooltip(el, p);
 }
 
 let chart;
@@ -2586,16 +2822,17 @@ function renderMetricBars(all, ordered, soloed) {
         legend: { display: false },
         tooltip: { enabled: false, external: externalTooltip },
       },
-      onClick: (_, els) => {
-        if (!els.length) return;
-        const e = ordered[els[0].index];
+      onClick: (event, _, ch) => {
+        const hit = closestBar(ch, event);
+        if (!hit) return;
+        const e = ordered[hit.index];
         const same = state.solo === e.slug;
         state.solo = same ? null : e.slug;
         state.panel = same ? null : e.slug;
         render();
       },
     },
-    plugins: [barTotals],
+    plugins: [barTotals, comparisonHover],
   };
   cfg._ordered = ordered;
   cfg._valueText = (e) => { const v = M.get(e); return v == null ? null : M.text(v); };
@@ -2649,16 +2886,17 @@ function renderStandings() {
         legend: { display: true, position: "bottom", labels: { color: "#8a94a8", boxWidth: 10, boxHeight: 10, padding: 14 } },
         tooltip: { enabled: false, external: externalTooltip },
       },
-      onClick: (_, els) => {
-        if (!els.length) return;
-        const e = ordered[els[0].index];
+      onClick: (event, _, ch) => {
+        const hit = closestBar(ch, event);
+        if (!hit) return;
+        const e = ordered[hit.index];
         const same = state.solo === e.slug;
         state.solo = same ? null : e.slug;
         state.panel = same ? null : e.slug;
         render();
       },
     },
-    plugins: [barTotals],
+    plugins: [barTotals, comparisonHover],
   };
   cfg._ordered = ordered;
   return cfg;
@@ -2697,9 +2935,10 @@ function render() {
   const isCal = !isLive && state.byDate;
   const isRace = !isLive && state.mode === "race" && !isCal;
   const source = isLive ? EPS.filter(e => e.live) : EPS;
-  const clickSolo = (_, els, ch) => {
-    if (!els.length) return;
-    const ds = ch.data.datasets[els[0].datasetIndex];
+  const clickSolo = (event, _, ch) => {
+    const hit = ch.config.type === "line" ? closestEpisodeLine(ch, event) : closestBar(ch, event);
+    if (!hit) return;
+    const ds = ch.data.datasets[hit.datasetIndex];
     if (!ds.slug) return; // the typical line is a reference, not a selectable episode
     const same = state.solo === ds.slug;
     state.solo = same ? null : ds.slug;
@@ -2757,9 +2996,8 @@ function render() {
         },
         plugins: { legend: { display: false }, tooltip: { enabled: false, external: externalTooltip } },
         onClick: clickSolo,
-        onHover: lineHoverHandler,
       },
-      plugins: [endLabels],
+      plugins: [endLabels, comparisonHover],
     };
     if (chart) chart.destroy();
     chart = new Chart(document.getElementById("chart"), cfg);
@@ -2809,6 +3047,7 @@ function render() {
         onClick: clickSolo,
       },
     };
+    cfg.plugins = [comparisonHover];
     if (chart) chart.destroy();
     chart = new Chart(document.getElementById("chart"), cfg);
     document.getElementById("tt").style.opacity = 0;
@@ -2842,6 +3081,7 @@ function render() {
       baseBorderColor: base.border, baseLabelColor: base.lab, baseWidth: base.width,
       baseOrder: base.ord, hoverColor: color(e),
       episode: e,
+      pastOnly: state.mode === "race",
       order: base.ord, // newest drawn on top
       barThickness: isDelta ? 14 : undefined,
     };
@@ -2906,9 +3146,8 @@ function render() {
         tooltip: { enabled: false, external: externalTooltip },
       },
       onClick: clickSolo,
-      onHover: lineHoverHandler,
     },
-    plugins: [endLabels],
+    plugins: [endLabels, comparisonHover],
   };
 
   if (chart) chart.destroy();
@@ -3103,7 +3342,7 @@ function buildAbout() {
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>UX Tools email clicks</b> count clicks on an exact episode link in the newsletter. Beehiiv’s verified count leaves out clicks it could not confirm. These clicks show promotion and are never added to views.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
-  <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. Views after release adds YouTube views and X broadcast plays only when every watch destination has a stored count; history begins the morning after air day. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
+  <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. Views after release adds YouTube views and X broadcast plays only when every watch destination has a stored count; history begins the morning after air day. Move anywhere over a chart to compare every episode at a saved reading near that point; views after release uses the latest reading already reached. Move onto a line or bar for that episode’s channel detail. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
   <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
@@ -3179,8 +3418,12 @@ function pickView(key) {
   const v = VIEW_DEFS.find((x) => x.key === key);
   if (!v) return;
   // the picker only decides WHAT is on screen; the Table toggle decides how
-  // it renders, and survives a view switch
+  // it renders, and survives a view switch. A prior episode drill does not
+  // carry into a new comparison and hide every other episode — especially
+  // when the selected episode's delayed watch report has not arrived yet.
+  const changed = currentView().key !== v.key;
   state.mode = v.mode; state.metric = v.metric;
+  if (changed) { state.solo = null; state.panel = null; }
   closeViewMenu({ focus: true });
   render();
 }

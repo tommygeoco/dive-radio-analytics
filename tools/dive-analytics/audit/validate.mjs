@@ -133,7 +133,14 @@ function premiereMs(dateStr) {
     if (e.latest.youtubeAsOf !== (latestYtSnap?.ts ?? null) || e.latest.youtubeStale !== !!(latestYtSnap && latestYtSnap.ts !== latestSnap.ts)) {
       bad++; fail(`${e.slug}: latest YouTube reading time or old-reading marker does not match history`);
     }
-    if (e.latest.xImpressions == null) { bad++; fail(`${e.slug}: latest.xImpressions missing`); }
+    const expectedXImpressions = ["x:ridd_design", "x:designertom"]
+      .map((key) => latestSnap?.byDest?.[key]?.views)
+      .every(Number.isFinite)
+      ? ["x:ridd_design", "x:designertom"].reduce((sum, key) => sum + latestSnap.byDest[key].views, 0)
+      : null;
+    if (e.latest.xImpressions !== expectedXImpressions) {
+      bad++; fail(`${e.slug}: latest.xImpressions (${e.latest.xImpressions}) does not match the saved X reach readings (${expectedXImpressions})`);
+    }
     const info = e.latest.xPlaysInfo;
     if (info && info.value !== e.latest.xPlays) { bad++; fail(`${e.slug}: xPlays (${e.latest.xPlays}) != xPlaysInfo.value (${info.value})`); }
     // Total views: canonical definition, coverage-marker parity, no smuggled reach
@@ -415,7 +422,9 @@ function premiereMs(dateStr) {
       const chat = hasChatSeries ? (chatByMinute.get(minute) ?? 0) : null;
       if (chat != null) chatTotal += chat;
       const byChannel = {};
-      for (const [label, points] of viewersByChannelMinute) byChannel[label] = points.get(minute) ?? 0;
+      for (const [label, points] of viewersByChannelMinute) {
+        byChannel[label] = points.has(minute) ? points.get(minute) : null;
+      }
       expectedSeries.push({ m: minute, v: valueOf(point, "viewers"), c: chat, ct: chatTotal, byChan: byChannel });
     }
     const gotSeries = Array.isArray(episode.live.series) ? episode.live.series : [];
@@ -431,7 +440,11 @@ function premiereMs(dateStr) {
       }
       const labels = new Set([...Object.keys(got?.byChan || {}), ...Object.keys(expected.byChan)]);
       for (const label of labels) {
-        if ((got?.byChan?.[label] ?? null) !== (expected.byChan[label] ?? null) && !seriesProblem) seriesProblem = `point ${index} channel ${label}`;
+        const gotHas = Object.hasOwn(got?.byChan || {}, label);
+        const expectedHas = Object.hasOwn(expected.byChan, label);
+        if ((gotHas !== expectedHas || (gotHas && got.byChan[label] !== expected.byChan[label])) && !seriesProblem) {
+          seriesProblem = `point ${index} channel ${label}`;
+        }
       }
     }
     if (seriesProblem) { bad++; fail(`${episode.slug}: live series does not match Restream at ${seriesProblem}`); }
@@ -523,7 +536,7 @@ function premiereMs(dateStr) {
         destinations: [{ channelId: 1, externalUrl: "https://youtube.com/watch?v=fixtureVideo" }],
       },
       viewers: {
-        total: { max: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }] },
+        total: { max: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }, { timestamp: 1800000060000, viewers: 4 }] },
         byChannel: { 1: { max: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }] } },
       },
       messages: { total: { messagesTotal: 0 }, byChannel: { 1: { messagesTotal: 0 } } },
@@ -543,6 +556,13 @@ function premiereMs(dateStr) {
     if (fixtureChannel?.peak !== 0 || fixtureChannel?.messages !== 0) {
       bad++; fail("live sessions: explicit channel zeros did not remain zero in the fixture");
     }
+    const fixtureLabel = fixtureChannel?.label;
+    if (!fixtureLabel || projected.series?.[0]?.byChan?.[fixtureLabel] !== 0) {
+      bad++; fail("live sessions: an explicit per-minute channel zero did not remain zero");
+    }
+    if (!Object.hasOwn(projected.series?.[1]?.byChan || {}, fixtureLabel) || projected.series[1].byChan[fixtureLabel] !== null) {
+      bad++; fail("live sessions: a missing per-minute channel reading did not remain explicitly unavailable");
+    }
   } catch (error) {
     bad++; fail(`live sessions: missing-field fixture threw — ${error.message}`);
   }
@@ -551,7 +571,9 @@ function premiereMs(dateStr) {
   const liveSourceStart = buildSource.indexOf("function sourceNumber");
   const liveSourceEnd = buildSource.indexOf("export function liveChatText", liveSourceStart);
   const liveSource = liveSourceStart >= 0 && liveSourceEnd > liveSourceStart ? buildSource.slice(liveSourceStart, liveSourceEnd) : "";
-  if (!liveSource || /(?:max|mean|viewsTotal|watchedTime|messagesTotal|chattersTotal)\s*\|\|\s*0/.test(liveSource) || /\.get\(m\)\s*\|\|\s*0/.test(liveSource)) {
+  if (!liveSource || /(?:max|mean|viewsTotal|watchedTime|messagesTotal|chattersTotal)\s*\|\|\s*0/.test(liveSource)
+    || !/byChan\[label\] = minuteMap\.has\(m\) \? minuteMap\.get\(m\) : null;/.test(liveSource)
+    || /\.get\(m\)\s*\|\|\s*0/.test(liveSource)) {
     bad++; drift("live sessions: builder can turn a missing Restream reading into zero");
   }
   const pageSource = readFileSync(join(ROOT, "index.html"), "utf8");
@@ -1918,8 +1940,8 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
-  if (!/if\s*\(vals\.length\s*<\s*3\)/.test(html)) {
-    bad++; drift("dashboard: first-week trend verdict is not gated until three clean weeks exist");
+  if (!/if\s*\(have\.length\s*<\s*3\)/.test(html)) {
+    bad++; drift("dashboard: the overview comparison verdict is not gated until three real episode readings exist");
   }
   if (!/const p = DATA\.baselines\?\.pace\?\.\[e\.slug\];/.test(html)
     || /peers\.length < 3/.test(html)
@@ -2035,14 +2057,18 @@ function premiereMs(dateStr) {
     if ((heroSource.match(/data-fold-number/g) || []).length !== 4) {
       bad++; drift("card layout: the hero must expose exactly one primary number per measure branch");
     }
-    if ((stripSource.match(/data-fold-number/g) || []).length !== 2) {
-      bad++; drift("card layout: each episode card must expose exactly one tagged glance number per measure branch");
+    if ((stripSource.match(/data-fold-number/g) || []).length !== 1) {
+      bad++; drift("card layout: each episode card must expose exactly one tagged total-views number");
     }
-    // the hero and the cards follow the chart: same measure, same selection
+    // The hero follows the chart's measure and selection. The episode row is
+    // the chart's stable legend, so its number always means total views even
+    // while the plot changes to watching, live viewers, or reach.
     if (!/const sel = state\.solo \|\| state\.panel/.test(heroSource)
-      || !/heroMetricKey\(\)/.test(heroSource) || !/heroMetricKey\(\)/.test(stripSource)
+      || !/heroMetricKey\(\)/.test(heroSource)
+      || !/displayedTotal\(e\)/.test(stripSource) || !/currentTotalSummary\(e, true\)/.test(stripSource)
+      || /heroMetricKey\(\)/.test(stripSource)
       || !/function heroMetricKey\(\) \{ return state\.mode === "live" \? "live" : state\.metric; \}/.test(html)) {
-      bad++; drift("card layout: the hero and episode cards must read the chart's measure and its selected episode (latest when none)");
+      bad++; drift("card layout: the hero must follow the chart while the episode legend keeps one stable total-views meaning");
     }
     // the Growth/Live page tabs are retired: the chart's own views are the
     // only view switch, and they carry the tablist semantics
@@ -2112,7 +2138,10 @@ function premiereMs(dateStr) {
     // and the launch words from data.baselines — never recomputing a slope,
     // a range, or a standing; the launch word on a card carries no number
     if (!/DATA\.baselines\?\.direction/.test(healthSource) || !/DATA\.baselines\?\.outlook/.test(healthSource) || !/h\.asOf\?\.newestTitle/.test(healthSource)
-      || !/DATA\.baselines\?\.direction/.test(compoundSource) || /h\.direction|h\.outlook/.test(healthSource)
+      || !/const metric = heroMetricKey\(\) === "views" \? "watched" : heroMetricKey\(\);/.test(compoundSource)
+      || !/DATA\.baselines\?\.newestVsPrevious\?\.\[metric\]/.test(compoundSource)
+      || !/class="cbar missing"/.test(compoundSource)
+      || /Growth trend — first weeks/.test(compoundSource) || /h\.direction|h\.outlook/.test(healthSource)
       || !/function launchOf\(e\) \{[\s\S]{0,180}hasYoutubeReading\(e\)[\s\S]{0,180}DATA\.baselines\?\.launch\?\.\[e\.slug\][\s\S]{0,180}launch\?\.value > 0/.test(html)
       || !/const launch = launchOf\(e\)/.test(stripSource) || !/const launch = launchOf\(e\)/.test(panelSource)
       || /theilSen|pctPerEpisode\s*=|Math\.log\(/.test(healthSource) || /class="hs launch[^`]*data-fold-number/.test(stripSource)) {
@@ -2167,8 +2196,9 @@ function premiereMs(dateStr) {
       bad++; drift("card layout: the trend card must not tag glance numbers or carry clean-week counts");
     }
     if (!/class="bnum"/.test(compoundSource) || !/class="bep"/.test(compoundSource)
-      || (compoundSource.match(/cbar\$\{hot \? " hot" : ""\}/g) || []).length !== 2) {
-      bad++; drift("card layout: trend bars must label value and episode with one emphasized bar, in both trend branches");
+      || (compoundSource.match(/cbar\$\{hot \? " hot" : ""\}/g) || []).length !== 1
+      || !/class="cbar missing"/.test(compoundSource)) {
+      bad++; drift("card layout: overview bars must label every episode, emphasize one real reading, and show missing without drawing a zero bar");
     }
     if (!/splitReady = hasYoutube && Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
       || /e\.latest\.(?:ytTotal|xPlays) \?\? 0/.test(heroSource)) {
@@ -2268,9 +2298,13 @@ function premiereMs(dateStr) {
     || !/const whole = visible\.length === chart\.data\.datasets\.length;/.test(totalsPlugin)
     || !/const available = showing\.filter\(Number\.isFinite\);/.test(totalsPlugin)
     || !/const total = whole \? displayedTotal\(e\) : drawn;/.test(totalsPlugin)
+    || !/info\.partial \? " ◐ · X only" : info\.stale \? " · old X only"/.test(totalsPlugin)
     || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)
     || !/const segVis = chart\.data\.datasets\.map\(\(_, di\) => chart\.isDatasetVisible\(di\)\);/.test(html)
-    || !/across shown destinations/.test(html)) {
+    || !/across shown destinations/.test(html)
+    || !/const totalWords = describeTotalViews\(total, tvi, true, nfmt\);/.test(html)
+    || !/Some X broadcasts are missing/.test(html)
+    || !/X plays are from an older reading/.test(html)) {
     bad++; drift("chart metrics: bar totals AND the tooltip must follow legend visibility — one rule for both numbers");
   }
   // reader-facing prose rows fill their card: no arbitrary character caps
@@ -2291,6 +2325,90 @@ function premiereMs(dateStr) {
   }
   if (!/Exposure, not watching — never added into views/.test(html)) {
     bad++; fail("chart metrics: the reach view must state its unit is exposure, outside every views total");
+  }
+  const hoverModel = html.match(/\/\* chart-hover-model:start \*\/[\s\S]*?\/\* chart-hover-model:end \*\//)?.[0] || "";
+  const hoverRenderStart = html.indexOf("function renderChartHover(ch, point, boxPoint = point)");
+  const hoverRenderEnd = html.indexOf("// This local plugin", hoverRenderStart);
+  const hoverRender = hoverRenderStart >= 0 && hoverRenderEnd > hoverRenderStart ? html.slice(hoverRenderStart, hoverRenderEnd) : "";
+  const hoverPluginStart = html.indexOf("const comparisonHover = {");
+  const hoverPluginEnd = html.indexOf('document.getElementById("chartbox").addEventListener("mouseleave"', hoverPluginStart);
+  const hoverPlugin = hoverPluginStart >= 0 && hoverPluginEnd > hoverPluginStart ? html.slice(hoverPluginStart, hoverPluginEnd) : "";
+  if (!/function storedPointNear\(/.test(hoverModel)
+    || !/function describeTotalViews\(/.test(hoverModel)
+    || !/function closestEpisodeLine\(/.test(hoverModel)
+    || !/function tooltipBoxPosition\(/.test(hoverModel)
+    || !/meta\?\.dataset\?\.interpolate/.test(hoverModel)
+    || !/atOrBefore: !!dataset\.pastOnly/.test(hoverModel)
+    || !/Math\.abs\(item\.x - point\.x\) <= 0\.75/.test(hoverModel)
+    || !/\{ point: snappedPoint, index: snapped\.index \}/.test(hoverModel)
+    || !/aboveClosest/.test(hoverModel)
+    || !/function pointInsideChartArea/.test(hoverModel)
+    || !/function storedCategoryReading/.test(hoverModel)
+    || !/function trendHighlightSlug/.test(hoverModel)
+    || !/function tooltipItemForHit/.test(hoverModel)) {
+    bad++; drift("chart hover: direct line hits must use drawn geometry while every displayed value comes from a saved point");
+  }
+  if (!/chartSummaryHTML\(ch, point\)/.test(hoverRender)
+    || !/closestEpisodeLine\(ch, point\)/.test(hoverRender)
+    || !/closestBar\(ch, point\)/.test(hoverRender)
+    || !/setActiveElements\(\[\], point\)/.test(hoverRender)
+    || !/pointInsideChartArea\(point, area\)/.test(hoverRender)
+    || !/tooltipItemForHit\(ch, hit\)/.test(hoverRender)
+    || !/afterEvent\(ch, \{ event \}\)/.test(hoverPlugin)
+    || !/\["mousemove", "click", "mouseout"\]\.includes\(event\.type\)/.test(hoverPlugin)
+    || !/renderChartHover\(ch, \{ x: event\.x, y: event\.y \}, chartCursor\)/.test(hoverPlugin)
+    || !/const nativeType = native\?\.type;/.test(hoverPlugin)
+    || !/\["touchstart", "touchmove", "touchend", "touchcancel"\]\.includes\(type\)/.test(hoverPlugin)
+    || !/native\?\.touches \|\| native\?\.changedTouches \|\| native\?\.pointerType === "touch"/.test(hoverPlugin)
+    || !/ch\.tooltip\?\.setActiveElements\(\[\], \{ x: event\.x \?\? 0, y: event\.y \?\? 0 \}\)/.test(hoverPlugin)
+    || !/if \(!ch\.canvas \|\| ch !== chart\) return;/.test(hoverPlugin)
+    || hoverPlugin.indexOf("if (!ch.canvas || ch !== chart) return;") > hoverPlugin.indexOf("const fromTouch")
+    || /addEventListener\("mousemove"/.test(html)) {
+    bad++; drift("chart hover: moving anywhere in the plot must show all episodes, with direct line or bar detail taking over near a mark");
+  }
+  if ((html.match(/\[barTotals, comparisonHover\]/g) || []).length !== 2
+    || (html.match(/\[endLabels, comparisonHover\]/g) || []).length !== 2
+    || (html.match(/cfg\.plugins = \[comparisonHover\]/g) || []).length !== 1) {
+    bad++; drift("chart hover: the after-event owner must be installed on every comparison-chart configuration");
+  }
+  if (!/found\.point\.y/.test(html)
+    || !/atOrBefore: state\.mode === "race"/.test(html)
+    || !/pastOnly: state\.mode === "race"/.test(html)
+    || !/state\.mode === "delta" && !state\.byDate/.test(html)
+    || !/storedCategoryReading\(bySlug\.get\(e\.slug\), categoryIndex\)/.test(html)
+    || !/trendHighlightSlug\(rows, state\.solo\)/.test(html)
+    || !/const episodes = \[\.\.\.EPS\]\.reverse\(\);/.test(html)
+    || !/return `<div class="h">All episodes<\/div>/.test(html)) {
+    bad++; drift("chart hover: summaries must use real saved readings, never future points or zero-filled absence");
+  }
+  if (!/<div class="tt" id="tt" aria-hidden="true"><\/div>/.test(html)
+    || !/\.tt \{ position: absolute; box-sizing: border-box; pointer-events: none;/.test(html)
+    || !/#chartbox\.mini \{ height: 340px; \}/.test(html)) {
+    bad++; drift("chart hover: the cursor-following popup must stay visual-only and must not block pointer movement");
+  }
+  if (!/Full-video average by channel/.test(html)
+    || !/e\.watch\?\.byChannel\?\.find/.test(html)
+    || !/channel\?\.avgPercent == null \? "not available"/.test(html)
+    || !/ep\.watch\.byChannel\?\.find/.test(html)
+    || !/const channels = ep\.live\.byChannel \|\| \[\];/.test(html)
+    || !/channel\.avg == null \? "not available"/.test(html)
+    || !/const byChan = p\.meta\.byChan \|\| \{\};/.test(html)
+    || !/v == null \? "not available" : nfmt\(v\)/.test(html)
+    || !/VIEW_KEYS\.filter\(\(key\) => e\.links\?\.\[key\]\)/.test(html)
+    || !/metricText\(v, "not available"\)/.test(html)) {
+    bad++; drift("chart hover: direct watch, live, and views detail must show every saved channel and say when a reading is absent");
+  }
+  const clickSoloStart = html.indexOf("const clickSolo = (event, _, ch) => {");
+  const clickSoloEnd = html.indexOf("// W13 Watching", clickSoloStart);
+  const clickSoloSource = clickSoloStart >= 0 && clickSoloEnd > clickSoloStart ? html.slice(clickSoloStart, clickSoloEnd) : "";
+  if (!/closestEpisodeLine\(ch, event\)/.test(clickSoloSource)
+    || !/closestBar\(ch, event\)/.test(clickSoloSource)
+    || (html.match(/onClick: \(event, _, ch\) => \{\n\s+const hit = closestBar\(ch, event\);/g) || []).length !== 2) {
+    bad++; drift("chart clicks: blank plot space must remain a comparison instead of selecting the nearest unseen mark");
+  }
+  if (!/const changed = currentView\(\)\.key !== v\.key;/.test(html)
+    || !/if \(changed\) \{ state\.solo = null; state\.panel = null; \}/.test(html)) {
+    bad++; drift("chart picker: a previous episode selection must clear when the view changes so an episode without that report cannot blank the chart");
   }
   const logoCount = (html.match(/role="img" aria-label="(?:YouTube|X)"/g) || []).length;
   if (logoCount !== 2 || !/const PLOGO = \{/.test(html) || !/TT_HTML/.test(html)) {
@@ -2387,6 +2505,15 @@ function premiereMs(dateStr) {
     ["transcripts-pull.test.mjs", "transcript source and no-overwrite"],
     ["beehiiv-promotions.test.mjs", "newsletter link attribution"],
     ["live-parity.test.mjs", "production transcript byte proof"],
+    ["chart-tooltip.test.mjs", "comparison chart hover"],
+    ["alert-queue.test.mjs", "runtime alert queue"],
+    ["alerts-delivery.test.mjs", "confirmed alert delivery"],
+    ["chain-heal.test.mjs", "protected store recovery"],
+    ["run-daily.test.mjs", "isolated daily publisher"],
+    ["recover-publish.test.mjs", "isolated recovery proof"],
+    ["mirror-transcripts.test.mjs", "isolated transcript mirror"],
+    ["source-receipts.test.mjs", "source receipt and missing-X"],
+    ["ingest-restream.test.mjs", "Restream ingest state and delayed analytics"],
   ]) {
     try {
       execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
@@ -2492,7 +2619,7 @@ function premiereMs(dateStr) {
     const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
     for (const step of chain.steps) {
       if (!step.freshnessKey) continue;
-      for (const pattern of step.writes) {
+      for (const pattern of step.freshnessWrites || step.writes) {
         if (!pattern.includes("*")) {
           const path = join(ROOT, pattern);
           if (!existsSync(path)) { if (step.required) { bad++; fail(`chain: required store ${pattern} is missing`); } continue; }
@@ -2506,6 +2633,8 @@ function premiereMs(dateStr) {
             stamp = step.freshnessKey === "updatedAt" ? j.updatedAt
               : step.freshnessKey === "generatedAt" ? j.generatedAt
               : step.freshnessKey === "lastSuccessfulAt" ? j.lastSuccessfulAt
+              : step.freshnessKey === "lastSuccessfulDiscoveryAt" ? j.lastSuccessfulDiscoveryAt
+              : step.freshnessKey === "snapshots[-1].ts" ? j.snapshots?.at(-1)?.ts
               : step.freshnessKey === "entries[-1].date" ? `${j.entries?.at(-1)?.date}T12:00:00Z`
               : null;
           } catch { /* checked as a missing stamp below */ }
@@ -2553,7 +2682,12 @@ function premiereMs(dateStr) {
     const paritySource = readFileSync(join(TOOL, "live-parity.mjs"), "utf8");
     const alertsSource = readFileSync(join(TOOL, "alerts.mjs"), "utf8");
     const queueSource = readFileSync(join(TOOL, "alert-queue.mjs"), "utf8");
+    const healSource = readFileSync(join(TOOL, "chain-heal.mjs"), "utf8");
+    const runtimeSource = readFileSync(join(TOOL, "runtime-paths.mjs"), "utf8");
     const mirrorSource = readFileSync(join(ROOT, "scripts", "restream", "mirror-transcripts.mjs"), "utf8");
+    const discoverSource = readFileSync(join(ROOT, "scripts", "restream", "postlive-discover.mjs"), "utf8");
+    const snapshotSource = readFileSync(join(ROOT, "scripts", "restream", "postlive-track.mjs"), "utf8");
+    const sourceReceiptModule = await import(join(ROOT, "scripts", "restream", "source-receipts.mjs"));
     if (!/set -eu/.test(wrapperSource) || !/exec node tools\/dive-analytics\/publish-flow\.mjs/.test(wrapperSource)) { bad++; drift("chain: publish wrapper must hand off to the checked release flow"); }
     if (!/branch !== "main"/.test(checkoutSource) || !/assertPublishScope\(root\)/.test(checkoutSource) || !/assertCommittedPublishScope\(root\)/.test(checkoutSource)) { bad++; drift("chain: the publisher checkout must require main and reject undeclared changes in files or local commits"); }
     if (!/assertPublisherCheckout\(ROOT\)/.test(runnerSource) && !/assertPublisherCheckout\(root\)/.test(runnerSource)) { bad++; drift("chain: runner must check the dedicated publisher checkout before capture"); }
@@ -2564,17 +2698,119 @@ function premiereMs(dateStr) {
     if (/git add -A|git add --all/.test(publishSource) || /vercel[^\n]*\|/.test(publishSource)) { bad++; drift("chain: release must not stage broadly or hide a Vercel failure in a pipe"); }
     if (!/MAX_ATTEMPTS = 2/.test(publishSource) || !/checkLiveParity/.test(publishSource) || !/validate\.mjs", "--publish"/.test(publishSource)) { bad++; drift("chain: release must stop after two tries, recheck final files, and prove production bytes"); }
     if (!/PUBLIC_ARTIFACTS/.test(paritySource) || !/parityArtifactsForRoot/.test(paritySource) || !/transcripts\/\$\{episode\.slug\}\.txt/.test(paritySource) || !/AbortSignal\.timeout\(20_000\)/.test(paritySource)) { bad++; drift("chain: production byte checks must include every served transcript and use a bounded request"); }
-    if (!/newsletter-promotion/.test(runnerSource) || !/RETRY_ONCE/.test(runnerSource)) { bad++; drift("chain: the newsletter platform pull must stop after its one retry"); }
+    if (!/newsletter-promotion/.test(runnerSource) || !/RETRY_ONCE/.test(runnerSource)
+      || !/new Set\(\["discover", "snapshot", "yt-analytics", "newsletter-promotion"\]\)/.test(runnerSource)) {
+      bad++; drift("chain: every required platform pull must stop after its one retry");
+    }
     if (/step\.step === "publish"\s*&&\s*code === 2/.test(runnerSource)) { bad++; drift("chain: an unconfirmed release exit must never be treated as published"); }
     if (!/America\/Phoenix/.test(freshnessSource) || !/kind: "prior-day"/.test(freshnessSource)) { bad++; drift("chain: freshness must reject a previous Phoenix day even when it is only a few hours old"); }
     if (!/MAX_DAILY_ATTEMPTS = 2/.test(dailySource) || !/acquireLock/.test(dailySource) || !/run-chain\.mjs/.test(dailySource)) { bad++; drift("chain: the scheduled entry point must lock and cap whole-chain work at two attempts a day"); }
-    if (!/run-daily\.mjs", "--recovery"/.test(recoverySource) || /run-chain\.mjs/.test(recoverySource) || !/const after = await verify/.test(recoverySource)) { bad++; drift("chain: recovery must use the guarded second attempt and prove production again"); }
+    const invocationAt = dailySource.indexOf("const invocation = startInvocation");
+    const prepareAt = dailySource.indexOf("publisherRoot = prepare(root, isolatedRoot)");
+    if (!/git", \["clone", "--quiet", "--branch", "main", "--single-branch"/.test(dailySource)
+      || !/run\(\["tools\/dive-analytics\/run-chain\.mjs"\], publisherRoot\)/.test(dailySource)
+      || !/\["rebase", "--abort"\]/.test(dailySource) || !/healLeftovers\(isolatedRoot/.test(dailySource)
+      || !/reconcileDataRebase\(isolatedRoot/.test(dailySource)
+      || !/quarantineIncompleteCheckout\(isolatedRoot/.test(dailySource)
+      || !/retireLegacyQueueChange\(isolatedRoot/.test(dailySource)
+      || invocationAt < 0 || prepareAt < 0 || invocationAt > prepareAt) {
+      bad++; drift("chain: every invocation must be recorded before a clean isolated main clone is prepared and run");
+    }
+    if (!/run-daily\.mjs", "--recovery"/.test(recoverySource) || /run-chain\.mjs/.test(recoverySource) || !/const after = await verify/.test(recoverySource)
+      || !/canonicalRoot = prepare\(root, publisherRoot\)/.test(recoverySource) || !/verify\(\{ root: canonicalRoot/.test(recoverySource)) {
+      bad++; drift("chain: recovery must prove the isolated publisher, use the guarded second attempt, and prove production again");
+    }
+    if (!/guard\(`\$\{statePath\}\.run\.lock`\)/.test(recoverySource) || !/daily publishing chain is still running/.test(recoverySource)) {
+      bad++; drift("chain: recovery must not read or update the isolated publisher while the daily chain owns it");
+    }
+    if (!/isolated publisher failed its safety check/.test(runnerSource) || !/let published = false/.test(runnerSource)
+      || !/production was updated, but the morning checklist did not finish/.test(runnerSource)
+      || !/status !== 0/.test(dailySource) || !/production needs verification/.test(dailySource)
+      || !/optional \$\{step\.step\} check failed/.test(runnerSource) || !/process\.exit\(10\)/.test(runnerSource)) {
+      bad++; drift("chain: pre-capture and nonzero whole-chain failures must reach the alert queue");
+    }
     const alertsStep = chain.steps.find((step) => step.step === "alerts");
     const freshnessStep = chain.steps.find((step) => step.step === "freshness");
+    const discoverStep = chain.steps.find((step) => step.step === "discover");
+    const snapshotStep = chain.steps.find((step) => step.step === "snapshot");
     if (!alertsStep?.required || !freshnessStep?.required || !freshnessStep.script.includes("--strict")) { bad++; drift("chain: alert detection and the final production check must be required"); }
-    if (!/acknowledgeQueueLines\(batch/.test(alertsSource) || !/message", "send"/.test(alertsSource) || !/\.delivery\.lock/.test(alertsSource)) { bad++; drift("chain: Slack alerts must stay queued until a locked delivery returns a receipt"); }
-    if (!/openSync\(path, "wx"/.test(queueSource) || !/renameSync\(tmp, path\)/.test(queueSource)) { bad++; drift("chain: alert queue updates must be locked and atomic"); }
-    if (!/DEFAULT_SOURCE = join\(ROOT, "transcripts"\)/.test(mirrorSource) || /Dev["', ]+2026["', ]+dive-radio-analytics["', ]+transcripts/.test(mirrorSource)) { bad++; drift("chain: transcript mirroring must read this dedicated checkout, not an active development tree"); }
+    if (!discoverStep?.required
+      || !discoverStep.writes?.includes("data/restream/source-receipts.json")
+      || JSON.stringify(discoverStep.freshnessWrites) !== JSON.stringify(["data/restream/source-receipts.json"])
+      || discoverStep.freshnessKey !== "lastSuccessfulDiscoveryAt"
+      || !snapshotStep?.writes?.includes("data/restream/source-receipts.json")) {
+      bad++; drift("chain: discovery and snapshot must leave current proof that YouTube and X were reached");
+    }
+    const runtimeQueue = "~/Library/Application Support/Dive Radio Analytics/alerts-pending.json";
+    if (alertsStep.writes?.includes("data/restream/alerts-pending.json") || freshnessStep.writes?.includes("data/restream/alerts-pending.json")
+      || !alertsStep.runtimeWrites?.includes(runtimeQueue) || !freshnessStep.runtimeWrites?.includes(runtimeQueue)
+      || !/ALERT_QUEUE_PATH[\s\S]*join\(RUNTIME_DIR, "alerts-pending\.json"\)/.test(runtimeSource)
+      || !/ISOLATED_PUBLISHER_ROOT[\s\S]*join\(RUNTIME_DIR, "publisher-main"\)/.test(runtimeSource)) {
+      bad++; drift("chain: the isolated publisher and alert queue must live in the shared runtime folder outside Git");
+    }
+    if (!/acknowledgeQueueLines\(batch/.test(alertsSource) || !/message", "send"/.test(alertsSource) || !/\.delivery\.lock/.test(alertsSource)
+      || !/timeout: 60_000/.test(alertsSource) || !/chainGuard/.test(alertsSource)
+      || !/runBoundedChain/.test(dailySource) || !/detached: process\.platform !== "win32"/.test(dailySource)
+      || !/process\.kill\(-child\.pid, signal\)/.test(dailySource) || !/stop\("SIGKILL"\)/.test(dailySource)
+      || !/process\.once\("SIGTERM"/.test(dailySource) || !/process\.once\("SIGINT"/.test(dailySource)) {
+      bad++; drift("chain: Slack delivery must wait for publishing, and bounded daily work must stop its complete process group before releasing the lock");
+    }
+    if (!/openSync\(path, "wx"/.test(queueSource) || !/renameSync\(tmp, path\)/.test(queueSource)
+      || !/ensureDefaultQueue\(path\)/.test(queueSource) || !/LEGACY_QUEUE_PATH/.test(queueSource)
+      || !/if \(processIsAlive\(saved\.pid\)\) return true/.test(queueSource)
+      || !/importLegacyQueueFile/.test(queueSource) || !/resolveOperationalAlerts/.test(queueSource)
+      || !/path\}\.delivery\.lock/.test(queueSource)) {
+      bad++; drift("chain: alert queue migration and updates must be locked and atomic");
+    }
+    if (!/mergeEpisodeRatingsStores/.test(healSource) || !/frozen episode rating differs/.test(healSource)
+      || !/file === RATINGS_STORE/.test(healSource) || !/mergePostliveStores/.test(healSource)
+      || !/POSTLIVE_STORE\.test\(file\)/.test(healSource) || !/isolated\|chain\|publish/.test(healSource)) {
+      bad++; drift("chain: recovery must restore interrupted pre-pull stores, preserve both post-live histories, and merge episode ratings without changing frozen entries");
+    }
+    if (!/resolveOperationalAlerts\(QUEUE_PATH/.test(runnerSource) || !/includeChecklist: true/.test(runnerSource)
+      || !/resolve\(\)/.test(recoverySource) || !/checklistVerdict/.test(recoverySource)
+      || !/checklistResult\.ok/.test(recoverySource)) {
+      bad++; drift("chain: production proof may clear stale-production warnings, while only a completed checklist clears checklist failures");
+    }
+    if (!/DEFAULT_SOURCE = join\(ISOLATED_PUBLISHER_ROOT, "transcripts"\)/.test(mirrorSource)
+      || !/--quiet-current/.test(mirrorSource) || /Dev["', ]+2026["', ]+dive-radio-analytics["', ]+transcripts/.test(mirrorSource)
+      || !/TRANSCRIPT_REFRESH_STATE_PATH/.test(runtimeSource) || !/saveRefreshState/.test(mirrorSource)
+      || !/pendingRefresh/.test(mirrorSource) || !/unlinkSync\(refreshState\)/.test(mirrorSource)) {
+      bad++; drift("chain: transcript mirroring must read the isolated publisher, not an active development tree");
+    }
+    if (!/appendSourceReceipt/.test(discoverSource) || !/appendSourceReceipt/.test(snapshotSource)
+      || !/countOrNull\(pm\?\.impression_count\)/.test(snapshotSource) || /impression_count \?\? 0/.test(snapshotSource)) {
+      bad++; drift("chain: source collectors must save receipts and keep missing X reach distinct from zero");
+    }
+    try {
+      const receipts = sourceReceiptModule.readSourceReceipts();
+      const latestDiscovery = receipts.discoveries?.at(-1);
+      const latestSnapshot = receipts.snapshots?.at(-1);
+      const sourceChecks = [
+        [latestDiscovery, "youtube", sourceReceiptModule.YOUTUBE_ACCOUNTS],
+        [latestDiscovery, "x", sourceReceiptModule.X_ACCOUNTS],
+        [latestSnapshot, "youtube", sourceReceiptModule.YOUTUBE_ACCOUNTS],
+        [latestSnapshot, "x", sourceReceiptModule.X_ACCOUNTS],
+        [latestSnapshot, "xBroadcast", sourceReceiptModule.X_ACCOUNTS],
+      ];
+      if (receipts.schemaVersion !== 1 || !latestDiscovery || !latestSnapshot
+        || latestDiscovery.status !== "ok" || latestSnapshot.status !== "ok"
+        || (latestDiscovery.errors?.length ?? 0) > 0 || (latestSnapshot.errors?.length ?? 0) > 0
+        || receipts.lastSuccessfulDiscoveryAt !== latestDiscovery.finishedAt
+        || receipts.lastSuccessfulSnapshotAt !== latestSnapshot.finishedAt
+        || latestSnapshot.ts !== latestSnapshot.finishedAt) {
+        bad++; fail("chain: latest source receipts do not prove a complete YouTube, X, and X live-video pull");
+      }
+      for (const [receipt, source, expectedAccounts] of sourceChecks) {
+        const row = receipt?.sources?.[source];
+        if (row?.attempted !== true || row?.success !== true
+          || sourceReceiptModule.accountCoverageErrors(row, expectedAccounts).length) {
+          bad++; fail(`chain: latest ${source} receipt does not prove every configured account was reached`);
+        }
+      }
+    } catch (error) {
+      bad++; fail(`chain: source receipt store is missing or unreadable — ${error.message}`);
+    }
   }
   if (!bad) ok(`chain: ${chain?.steps.length ?? 0} steps defined; required stores are current; daily runs are isolated, bounded, delivered, and proved on production`);
 }

@@ -186,6 +186,7 @@ async function deployProduction(root, log) {
 }
 
 export async function publishRelease({ root = ROOT, log = console.log } = {}) {
+  healLeftovers(root, { log });
   assertPublisherCheckout(root);
   pullCurrentMain(root, log);
   runBuildAndValidation(root, log);

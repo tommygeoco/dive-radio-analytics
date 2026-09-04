@@ -1,12 +1,12 @@
 # Dive Radio — agent brief
 
-Built 2026-09-04T15:50:12.684Z · data through 2026-09-04 · health read 2026-09-04 (data through 2026-09-04) · chapters written 2026-09-04 · brief v1
+Built 2026-09-04T16:22:34.780Z · data through 2026-09-04 · health read 2026-09-04 (data through 2026-09-04) · chapters written 2026-09-04 · brief v1
 
 ## 1. How to read this
 
 This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Three clocks: the data build (2026-09-04T15:50:12.684Z); the show-health read (2026-09-04, over data through 2026-09-04 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-04).
+Three clocks: the data build (2026-09-04T16:22:34.780Z); the show-health read (2026-09-04, over data through 2026-09-04 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-04).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -22,7 +22,7 @@ Not here: the raw daily series, the per-minute live audience, the hundred-point 
 
 - Episodes: 8 (E1 on 2026-07-17 → E8 on 2026-09-03, "How to Engineer a Brand Universe"), a weekly live show with call-ins.
 - Channels: YT Dive Club (yt:joindiveclub); YT DesignerTom (yt:designertom); X @ridd_design (x:ridd_design); X @designertom (x:designertom).
-- Views so far: 37,292 total = 18,652 YouTube + 18,640 X plays. X reach so far: 96,841 (exposure, kept apart).
+- Views so far: 37,468 total = 18,792 YouTube + 18,676 X plays. X reach so far: 97,112 (exposure, kept apart).
 - Audience feedback captured: 52 comments, 32 with a clear lean from 30 people (27 enjoyed, 3 raised a concern). Enjoyed: other (18), format (3), topic choice (3).
 - Dashboard: https://dive-radio-analytics.vercel.app
 
@@ -171,8 +171,6 @@ Known reporting breaks:
    → Bring back E1's direct subscribe ask this week — say on air why to subscribe, pin a comment, add an end card on both channels — and test a DesignerTom-specific ask, since that channel went from 13.2 per 1,000 on E1 to 0 on E4 and E5.
 2. [content · helps audience quality] On the newest episode, still in its first weeks, 4.7 of every 100 replay viewers left about a fifth of the way in — roughly 20 minutes into the live recording, during the leaderboard rundown — with another 2.7 leaving near the 8-minute mark.
    → Review the recording around 20 minutes in — the timing is approximate — then test opening next week's rundown with the strongest entry first and trimming that stretch in the replay edit to see if fewer viewers exit there.
-3. [distribution · helps subscribers] Half of all watching happens on X: 18,640 broadcast plays there nearly match the 18,652 YouTube views, yet the subscribe prompts and gains live on the two YouTube channels.
-   → After each broadcast, pin a post on X linking the YouTube upload and make one on-air ask per show pointing X viewers to subscribe on YouTube; track whether subscribers per 1,000 views moves off 0.8 over the next episodes.
 
 ## 5. Episodes
 
@@ -185,9 +183,9 @@ Views as of 2026-09-04; first week, launch, and pace at the same age; episode he
 | E3 | 2026-07-30 | Mixed Media Workflows, Game Design, + Live Call-Ins | 1,627 | 4,243 | 19,856 | 5,870 | —¹ | soft | — | —² | 53 / 42 / 1,226 / 4,746 | 3.9 | 96% | 9.1% | 0.0 | 12.7% | 1 / 1 | outlier (provisional) |
 | E4 | 2026-08-06 | Backyard Designers behind-the-scenes | 1,971 | 1,895 | 4,652 | 3,866 | —¹ | strong | #3 of 4 (-4%) | —² | 63 / 48 / 1,199 / 5,952 | 5.0 | 77% | 8.9% | 3.6 | 13.5% | 2 / 2 | — |
 | E5 | 2026-08-13 | Goodbye, Blank Canvas + Live Call-Ins | 1,265 | 2,186 | 9,260 | 3,451 | —¹ | soft | #5 of 5 (-36%) | 36 | 64 / 46 / 495 / 4,370 | 8.8 | 63% | 13.2% | 0.8 | 11.8% | 1 / 0 | — |
-| E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,463 | 1,168 | 8,997 | 2,631 | 1,189 | soft | #4 of 5 (-24%) | —² | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.6% | 0.7 | 12.9% | 6 / 0 | — |
-| E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 5,348 | 2,490 | 13,645 | 7,838 | —¹ | promo-driven | #1 of 5 (+250%) | —² | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.2% | 0.8 | 6.3% | 1 / 0 | outlier (provisional) |
-| E8 | 2026-09-03 | How to Engineer a Brand Universe | 2,750 | 3,060 | 28,909 | 5,810 | —¹ | — | — | —² | 98 / 68 / 872 / 7,820 | 9.0 | 57% | — | — | — | 7 / 0 | UX Tools |
+| E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,463 | 1,168 | 8,998 | 2,631 | 1,189 | soft | #4 of 5 (-24%) | —² | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.6% | 0.7 | 12.9% | 6 / 0 | — |
+| E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 5,348 | 2,490 | 13,646 | 7,838 | —¹ | promo-driven | #1 of 5 (+250%) | —² | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.2% | 0.8 | 6.3% | 1 / 0 | outlier (provisional) |
+| E8 | 2026-09-03 | How to Engineer a Brand Universe | 2,890 | 3,096 | 29,178 | 5,986 | —¹ | — | — | —² | 98 / 68 / 872 / 7,820 | 9.0 | 57% | — | — | — | 7 / 0 | UX Tools |
 
 ¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.
 
@@ -329,8 +327,8 @@ Episode health: 36 of 100, read on 2026-09-03 — watch 31; engagement 42; reten
 ### E6 — The Mascot Industrial Complex + Live Call-Ins (2026-08-20)
 
 Links: YouTube joindiveclub https://youtube.com/watch?v=RhemcDEc_-A · YouTube designertom https://youtube.com/watch?v=eLA79C1jq1g · X replay @ridd_design https://x.com/i/broadcasts/1DGleVBNBVjJL · X replay @designertom https://x.com/i/broadcasts/1aKbdEoAoEBJX · announce @designertom https://x.com/designertom/status/2090519715097747965 · announce @ridd_design https://x.com/ridd_design/status/2090529384369381505 · announce @designertom https://x.com/designertom/status/2090529387162878297 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-08-20-dive-radio-the-mascot-industrial-complex.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-08-20-dive-radio-the-mascot-industrial-complex
-Standing: launch soft: 1,189 YouTube views against a typical 1,751 at that age (-32%, 3 peers); pace #4 of 5 at 14.9 days (-24% against the typical 1,918); first week 1,189 YouTube views.
-Views: 1,463 YouTube + 1,168 X plays = 2,631; X reach 8,997; likes and comments per thousand YouTube views 29.4.
+Standing: launch soft: 1,189 YouTube views against a typical 1,751 at that age (-32%, 3 peers); pace #4 of 5 at 14.9 days (-24% against the typical 1,919); first week 1,189 YouTube views.
+Views: 1,463 YouTube + 1,168 X plays = 2,631; X reach 8,998; likes and comments per thousand YouTube views 29.4.
 Watching (YouTube analytics, 2026-09-04): 11.6% of the video watched on average, 11 min per view, 13,893 minutes watched in all; views came from SUBSCRIBER 59.4%, NO_LINK_OTHER 11.1%, RELATED_VIDEO 6.7%, YT_SEARCH 6.2%; subscribers per thousand views 0.7; discovery share 12.9%.
 Live session: peak 71, average 50, 467 people watched live for 4,750 minutes in all (10.2 minutes each; 62% of the peak still watching at the end); 127 chat messages from 41 people over 95 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
@@ -359,7 +357,7 @@ Episode health: — (read completes on 2026-09-10 (day twenty-one)).
 
 Links: YouTube joindiveclub https://youtube.com/watch?v=sC3Wvi1Whm4 · YouTube designertom https://youtube.com/watch?v=qPAPUmg_qZE · X replay @ridd_design https://x.com/ridd_design/status/2092646157709185177 · X replay @designertom https://x.com/i/broadcasts/1RJZzBDprpwJB · announce @ridd_design https://x.com/ridd_design/status/2092646157709185177 · announce @designertom https://x.com/designertom/status/2093066120580468925 · announce @ridd_design https://x.com/ridd_design/status/2093066121649991990 · announce @designertom https://x.com/designertom/status/2093094217283506661 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-08-28-dive-radio-steal-these-ai-design-pattern.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-08-28-dive-radio-steal-these-ai-design-pattern
 Standing: launch promo-driven: 5,188 YouTube views against a typical 1,470 at that age (+253%, 4 peers); pace #1 of 5 at 7.9 days (+250% against the typical 1,526); first week — (excluded: promo-driven outlier); promo outlier (provisional until day twenty-one): more than double what a typical episode gets (5,348 YT views vs a typical 1,526) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 5,348 YouTube + 2,490 X plays = 7,838; X reach 13,645; likes and comments per thousand YouTube views 8.6.
+Views: 5,348 YouTube + 2,490 X plays = 7,838; X reach 13,646; likes and comments per thousand YouTube views 8.6.
 Watching (YouTube analytics, 2026-09-04): 11.2% of the video watched on average, 12 min per view, 20,976 minutes watched in all; views came from SUBSCRIBER 84.4%, NO_LINK_OTHER 3.9%, YT_SEARCH 3.6%, RELATED_VIDEO 2.7%; subscribers per thousand views 0.8; discovery share 6.3%.
 Live session: peak 72, average 56, 727 people watched live for 6,050 minutes in all (8.3 minutes each; 75% of the peak still watching at the end); 92 chat messages from 40 people over 110 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
@@ -384,8 +382,8 @@ Episode health: — (read completes on 2026-09-17 (day twenty-one)).
 ### E8 — How to Engineer a Brand Universe (2026-09-03)
 
 Links: YouTube joindiveclub https://youtube.com/watch?v=Vh8ogFIE8CA · YouTube designertom https://youtube.com/watch?v=lnAecYrKYos · X replay @ridd_design https://x.com/i/broadcasts/1AKEmvbREYaKL · X replay @designertom https://x.com/i/broadcasts/1AxRnZzVQkDxl · announce @designertom https://x.com/designertom/status/2095276446386434056 · announce @ridd_design https://x.com/ridd_design/status/2095496568589988011 · announce @designertom https://x.com/designertom/status/2095508360510709794 · announce @ridd_design https://x.com/ridd_design/status/2095602694337839446 · announce @designertom https://x.com/designertom/status/2095602695512195280 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-09-02-dive-radio-how-to-engineer-a-brand-unive.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-09-02-dive-radio-how-to-engineer-a-brand-unive
-Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 1 earlier episode was tracked this early; at least three are needed.); first week — (pending: episode under 7 days old); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (28,909 X reach vs a typical 7,569) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 2,750 YouTube + 3,060 X plays = 5,810; X reach 28,909; likes and comments per thousand YouTube views 17.8.
+Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 1 earlier episode was tracked this early; at least three are needed.); first week — (pending: episode under 7 days old); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (29,178 X reach vs a typical 7,570) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
+Views: 2,890 YouTube + 3,096 X plays = 5,986; X reach 29,178; likes and comments per thousand YouTube views 17.0.
 Promotion: UX Tools email linked this episode — 118 tracked email clicks; 46 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building (7 changes in brand world-building). These clicks are not part of views.
 Watching: — (no YouTube analytics report yet).
 Live session: peak 98, average 68, 872 people watched live for 7,820 minutes in all (9.0 minutes each; 57% of the peak still watching at the end); 137 chat messages from 37 people over 115 minutes. Note the live-reporting break in section 3.
@@ -420,7 +418,7 @@ First weeks in air order (YouTube views at day seven; a launch reading stands in
 | E8 | 2026-09-03 | — (pending: episode under 7 days old) | — |
 
 Newest episode's pace: — (Only 1 earlier episode was tracked this early; at least three are needed.).
-Newest against the previous episode at the same age (0.9 days): X reach +202%, share watched —, live +36%.
+Newest against the previous episode at the same age (0.9 days): X reach +205%, share watched —, live +36%.
 
 Direction as of this build (the read in section 3 may be a day behind): overall **mixed**.
 | Measure | Word | Change each episode | Readings | Compared how |
@@ -471,7 +469,7 @@ Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-wee
 | audience comments + classifier | 2026-09-04 | YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off |
 | UX Tools newsletter | 2026-09-04 | exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views |
 | show-health read | 2026-09-04 | health-v9; model wording over checked facts |
-| recommendations | 2026-09-04 | 3 current actions; saved model actions whose numbers changed are held back |
+| recommendations | 2026-09-04 | 2 current actions; saved model actions whose numbers changed are held back |
 | chapters | 2026-09-04 | model-written per transcript, every timestamp and quote grounded in the transcript |
 
 Cadence: one chain run at 07:00 America/Phoenix (pull, capture, score, write, validate, publish); a freshness check at 08:15 and noon. The build is deterministic and reproducible byte for byte from the stores; the validator refuses to publish when any surface disagrees with its store.

@@ -8,13 +8,51 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, writeFileSync, readFileSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { healLeftovers } from "../chain-heal.mjs";
+import { healLeftovers, mergeEpisodeRatingsStores, mergePostliveStores } from "../chain-heal.mjs";
 
 const base = mkdtempSync(join(process.env.CLAUDE_SCRATCH || tmpdir(), "chain-heal-"));
 const git = (cwd, ...args) => execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], env: { ...process.env, GIT_AUTHOR_NAME: "t", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "t", GIT_COMMITTER_EMAIL: "t@t" } });
 const write = (root, rel, value) => { mkdirSync(join(root, rel, ".."), { recursive: true }); writeFileSync(join(root, rel), JSON.stringify(value, null, 2) + "\n"); };
 const v3 = (date, score) => ({ date, score, formulaVersion: "health-v3", createdAt: `${date}T14:00:00Z` });
 const v4 = (date, score) => ({ date, score, formulaVersion: "health-v4", createdAt: `${date}T21:00:00Z` });
+
+const ratingBase = {
+  version: 4,
+  algorithm: "health21-v2",
+  weights: { watch: 1 },
+  readDays: 21,
+  windowN: 8,
+  minPeers: 3,
+};
+const frozenOne = { ep: 1, slug: "one", score: 44, computedAt: "2026-08-20T14:00:00Z", frozenAt: "2026-08-20T14:00:00Z" };
+const frozenTwo = { ep: 2, slug: "two", score: 51, computedAt: "2026-09-02T14:00:00Z", frozenAt: "2026-09-02T14:00:00Z" };
+const mergedRatings = mergeEpisodeRatingsStores(
+  { ...ratingBase, updatedAt: "2026-09-02T14:00:00Z", scores: [frozenOne, frozenTwo] },
+  { ...ratingBase, updatedAt: "2026-09-01T14:00:00Z", scores: [frozenOne, { ep: 2, slug: "two", score: 48, computedAt: "2026-09-01T14:00:00Z" }] },
+);
+assert.deepEqual(mergedRatings.scores, [frozenOne, frozenTwo], "a newer frozen main entry replaces an older unfrozen local reading");
+assert.throws(() => mergeEpisodeRatingsStores(
+  { ...ratingBase, updatedAt: "2026-09-02T14:00:00Z", scores: [frozenOne] },
+  { ...ratingBase, updatedAt: "2026-09-02T14:00:00Z", scores: [{ ...frozenOne, score: 45 }] },
+), /frozen episode rating differs/, "two different frozen records can never be auto-resolved");
+
+const mergedPostlive = mergePostliveStores(
+  { slug: "one", title: "One", date: "2026-09-03", snapshots: [
+    { ts: "2026-09-04T15:45:00.000Z", metrics: { youtube: { views: 12 } } },
+  ] },
+  { slug: "one", title: "One", date: "2026-09-03", snapshots: [
+    { ts: "2026-09-04T16:19:00.000Z", metrics: { youtube: { views: 14 } } },
+  ] },
+);
+assert.deepEqual(
+  mergedPostlive.snapshots.map((snapshot) => snapshot.ts),
+  ["2026-09-04T15:45:00.000Z", "2026-09-04T16:19:00.000Z"],
+  "a moving main cannot erase either append-only post-live reading",
+);
+assert.throws(() => mergePostliveStores(
+  { slug: "one", title: "One", date: "2026-09-03", snapshots: [{ ts: "2026-09-04T16:19:00.000Z", metrics: { youtube: { views: 14 } } }] },
+  { slug: "one", title: "One", date: "2026-09-03", snapshots: [{ ts: "2026-09-04T16:19:00.000Z", metrics: { youtube: { views: 15 } } }] },
+), /differs at/, "two different readings at one timestamp must fail closed");
 
 // origin + the chain machine's clone at the base commit
 const origin = join(base, "origin.git"); git(base, "init", "--bare", "-q", "-b", "main", origin);
@@ -69,4 +107,19 @@ git(mini, "stash", "push", "--quiet", "--include-untracked", "-m", "chain-pre-pu
 git(mini, "pull", "--rebase", "--quiet", "origin", "main");
 git(mini, "stash", "pop", "--quiet");
 assert.equal(git(mini, "diff", "--name-only", "--diff-filter=U").trim(), "");
-console.log("chain-heal.test: the morning after a formula bump heals into one merged store, a plain store conflict keeps this machine's version, no stash left");
+
+for (const [name, file, value] of [
+  ["publish-pre-pull", "data/restream/orphan-publish.json", { source: "publish" }],
+  ["chain-pre-pull", "data/restream/orphan-chain.json", { source: "chain" }],
+  ["isolated-pre-pull", "data/restream/orphan-isolated.json", { source: "isolated" }],
+]) {
+  write(mini, file, value);
+  git(mini, "stash", "push", "--quiet", "--include-untracked", "-m", name);
+}
+const orphanRecovery = healLeftovers(mini, { log: () => {} });
+assert.equal(orphanRecovery.healed.length, 3, "every recognized interrupted pre-pull stash is recovered");
+assert.equal(JSON.parse(readFileSync(join(mini, "data/restream/orphan-publish.json"), "utf8")).source, "publish");
+assert.equal(JSON.parse(readFileSync(join(mini, "data/restream/orphan-chain.json"), "utf8")).source, "chain");
+assert.equal(JSON.parse(readFileSync(join(mini, "data/restream/orphan-isolated.json"), "utf8")).source, "isolated");
+assert.equal(git(mini, "stash", "list").trim(), "", "restored orphan stashes are removed only after their files return");
+console.log("chain-heal.test: formula and post-live histories merge, frozen ratings stay immutable, interrupted pre-pull stores return, plain one-writer stores keep the chain copy, and no stash remains");

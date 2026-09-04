@@ -1,15 +1,19 @@
 {
  "cron": "0 7 * * * America/Phoenix",
- "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` enters through run-daily.mjs in its dedicated checkout. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish.",
+ "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` enters through run-daily.mjs, which runs this chain from an isolated main clone outside active development. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish. `runtimeWrites` names operational state outside Git.",
  "steps": [
   {
    "step": "discover",
    "script": "scripts/restream/postlive-discover.mjs",
    "writes": [
-    "data/restream/postlive-registry.json"
+    "data/restream/postlive-registry.json",
+    "data/restream/source-receipts.json"
    ],
-   "freshnessKey": null,
-   "required": false,
+   "freshnessWrites": [
+    "data/restream/source-receipts.json"
+   ],
+   "freshnessKey": "lastSuccessfulDiscoveryAt",
+   "required": true,
    "scope": "all"
   },
   {
@@ -36,7 +40,8 @@
    "step": "snapshot",
    "script": "scripts/restream/postlive-track.mjs snapshot",
    "writes": [
-    "data/restream/postlive/*.json"
+    "data/restream/postlive/*.json",
+    "data/restream/source-receipts.json"
    ],
    "freshnessKey": "snapshots[-1].ts",
    "required": true,
@@ -216,8 +221,10 @@
    "step": "alerts",
    "script": "tools/dive-analytics/alerts.mjs",
    "writes": [
-    "data/restream/alerts-state.json",
-    "data/restream/alerts-pending.json"
+    "data/restream/alerts-state.json"
+   ],
+   "runtimeWrites": [
+    "~/Library/Application Support/Dive Radio Analytics/alerts-pending.json"
    ],
    "freshnessKey": null,
    "required": true,
@@ -226,8 +233,9 @@
   {
    "step": "freshness",
    "script": "tools/dive-analytics/freshness.mjs --strict",
-   "writes": [
-    "data/restream/alerts-pending.json"
+   "writes": [],
+   "runtimeWrites": [
+    "~/Library/Application Support/Dive Radio Analytics/alerts-pending.json"
    ],
    "freshnessKey": null,
    "required": true,

@@ -7,10 +7,11 @@
 // cron (dive-alerts) delivers the queue to Slack and stays silent when it is
 // empty.
 //
-// Deterministic: no model calls, no network. State and queue live next to the
-// data they describe:
+// Deterministic detection: no model calls. State lives next to the data it
+// describes; the delivery queue lives outside Git so a lock can never block a
+// publish:
 //   state:  data/restream/alerts-state.json    (last-seen values)
-//   queue:  data/restream/alerts-pending.json  (lines awaiting delivery)
+//   queue:  ~/Library/Application Support/Dive Radio Analytics/alerts-pending.json
 //
 // Modes:
 //   node tools/dive-analytics/alerts.mjs          # detect + queue (chain step)
@@ -25,13 +26,13 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CHECK_LABELS } from "./health.mjs";
 import { MIN_PEERS } from "./baselines.mjs";
-import { acknowledgeQueueLines, acquireLock, appendQueueLines, readQueue } from "./alert-queue.mjs";
+import { acknowledgeQueueLines, acquireLock, appendQueueLines, QUEUE_PATH, readQueue } from "./alert-queue.mjs";
+import { DAILY_STATE_PATH } from "./runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const DATA_PATH = join(ROOT, "data.json");
 const STATE_PATH = join(ROOT, "data", "restream", "alerts-state.json");
-const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
 const CLASSIFIED_PATH = join(ROOT, "data", "restream", "comments-classified.json");
 const NEG_SPIKE = 3; // new negative comments in one day that count as a spike
 
@@ -239,12 +240,22 @@ export function deliverPending({
   channel = "slack",
   account = "default",
   target,
-  send = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024 }),
+  send = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 60_000 }),
+  chainGuard = () => acquireLock(`${DAILY_STATE_PATH}.run.lock`, { label: "daily publishing chain", maxAgeMs: 2 * 60 * 60 * 1000 }),
   log = console.log,
 } = {}) {
   if (!target) throw new Error("alert delivery target is required");
-  const release = acquireLock(`${queuePath}.delivery.lock`, { label: "alert delivery", maxAgeMs: 5 * 60 * 1000 });
+  let releaseChain;
   try {
+    releaseChain = chainGuard();
+  } catch (error) {
+    if (!/already in use/.test(error.message)) throw error;
+    log("dive-alerts: publishing checks are active — delivery will retry on its next run.");
+    return { sent: 0, receipts: [], deferred: true };
+  }
+  let release = null;
+  try {
+    release = acquireLock(`${queuePath}.delivery.lock`, { label: "alert delivery", maxAgeMs: 5 * 60 * 1000 });
     const pending = readQueue(queuePath);
     if (!pending.length) { log("dive-alerts: queue empty — nothing to send."); return { sent: 0, receipts: [] }; }
     const receipts = [];
@@ -263,7 +274,8 @@ export function deliverPending({
     log(`dive-alerts: Slack confirmed ${sent} line${sent === 1 ? "" : "s"} (${receipts.join(", ")}).`);
     return { sent, receipts };
   } finally {
-    release();
+    release?.();
+    releaseChain();
   }
 }
 

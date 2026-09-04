@@ -34,7 +34,7 @@ import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { healLeftovers } from "./chain-heal.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
-import { appendQueueLines } from "./alert-queue.mjs";
+import { appendQueueLines, QUEUE_PATH, resolveOperationalAlerts } from "./alert-queue.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -44,11 +44,10 @@ const PHX_DATE = new Date(Date.now() - 7 * 3600000).toISOString().slice(0, 10);
 const dry = process.argv.includes("--dry");
 const rehearse = process.argv.includes("--rehearse");
 const REHEARSE_SKIP = new Set(["publish", "alerts", "freshness", "critic"]);
-const RETRY_ONCE = new Set(["snapshot", "yt-analytics", "newsletter-promotion"]);   // W39: the required steps that talk to a platform
+const RETRY_ONCE = new Set(["discover", "snapshot", "yt-analytics", "newsletter-promotion"]);   // W39: the required steps that talk to a platform
 const RETRY_PAUSE_MS = 60_000;
 const LOG_DIR = process.env.DIVE_CHAIN_LOG_DIR || join(homedir(), "Library", "Logs", "dive-radio-analytics");
 const LOG_KEEP_DAYS = 30;
-const QUEUE_PATH = join(ROOT, "data", "restream", "alerts-pending.json");
 const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
 
 // --- W40: the run log --------------------------------------------------------
@@ -103,8 +102,7 @@ function pullFirst() {
   try { checkout = assertPublisherCheckout(ROOT); }
   catch (error) {
     log(`chain: ${error.message} — refusing before capture`, process.stderr);
-    // Do not write an alert into an unsafe development checkout. The OpenClaw
-    // job failure route reports this before any file here is changed.
+    queueAlert(`chain: isolated publisher failed its safety check at ${phxClock()} — ${error.message}`);
     process.exit(1);
   }
   // A failed publish in the dedicated checkout may have left allowed store
@@ -161,6 +159,7 @@ async function main() {
   if (process.argv.includes("--last")) { showLast(); return; }
   if (!dry) { openLog(); pullFirst(); }
   let failedOptional = 0;
+  let published = false;
   for (const step of chain.steps) {
     if (step.when === "Mondays" && PHX_DAY !== "Mon") { log(`chain: ${step.step} — waits for Monday, skipped`); continue; }
     if (rehearse && REHEARSE_SKIP.has(step.step)) { log(`chain: ${step.step} — rehearsal, skipped (no publish-side effects)`); continue; }
@@ -174,14 +173,40 @@ async function main() {
       await sleep(RETRY_PAUSE_MS);
       ({ code, lastErr } = await runStep(cmd));
     }
-    if (code === 0) continue;
+    if (code === 0) {
+      if (step.step === "publish") {
+        published = true;
+        try {
+          resolveOperationalAlerts(QUEUE_PATH);
+          log("chain: cleared resolved production warnings after parity passed");
+        } catch (error) {
+          code = 1;
+          lastErr = `could not reconcile the alert queue after production proof — ${error.message}`;
+        }
+      }
+      if (code === 0) continue;
+    }
     if (step.required) {
       log(`chain: ${step.step} failed (exit ${code}) — required, stopping here`, process.stderr);
-      queueAlert(`chain: ${step.step} failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""} — no publish this run; \`node tools/dive-analytics/run-chain.mjs --last\` on the chain machine shows the log`);
+      const outcome = published
+        ? "production was updated, but the morning checklist did not finish"
+        : "production was not updated by this run";
+      queueAlert(`chain: ${step.step} failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""} — ${outcome}; \`node tools/dive-analytics/run-chain.mjs --last\` on the chain machine shows the log`);
       process.exit(1);
     }
     failedOptional++;
+    queueAlert(`chain: optional ${step.step} check failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""}; production can update, but this part of the morning data is not current`);
     log(`chain: ${step.step} failed (exit ${code}) — not required, continuing`);
+  }
+  if (failedOptional) {
+    log(`chain: production finished with ${failedOptional} data check${failedOptional === 1 ? "" : "s"} not current`, process.stderr);
+    process.exit(10);
+  }
+  try {
+    resolveOperationalAlerts(QUEUE_PATH, { includeChecklist: true });
+  } catch (error) {
+    queueAlert(`chain: the checklist finished but its resolved warnings could not be reconciled at ${phxClock()} — ${error.message}`);
+    process.exit(1);
   }
   log(`chain: done${failedOptional ? ` — ${failedOptional} optional step(s) failed` : ""}`);
 }
