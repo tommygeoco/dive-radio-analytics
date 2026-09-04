@@ -25,6 +25,7 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { atomicWriteJson, readJsonFile, withSourceLock } from "../../tools/dive-analytics/source-io.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const COMMENTS_DIR = join(ROOT, "data", "restream", "comments");
@@ -120,7 +121,7 @@ export function classifyText(text) {
 }
 
 function loadJson(path, fallback) {
-  try { return JSON.parse(readFileSync(path, "utf8")); } catch { return fallback; }
+  return readJsonFile(path, { fallback });
 }
 
 export function loadStore() {
@@ -133,8 +134,7 @@ export function loadStore() {
 }
 
 function saveStore(store) {
-  mkdirSync(dirname(STORE_PATH), { recursive: true });
-  writeFileSync(STORE_PATH, JSON.stringify(store, null, 2) + "\n");
+  atomicWriteJson(STORE_PATH, store);
 }
 
 function allComments() {
@@ -150,7 +150,7 @@ function allComments() {
 
 // Classify comments whose id is not yet in the store. Never touches existing
 // labels. Returns counts; writes the store only when something was added.
-export function classifyNew({ now = new Date().toISOString() } = {}) {
+function classifyNewUnlocked({ now = new Date().toISOString() } = {}) {
   const store = loadStore();
   let added = 0;
   for (const c of allComments()) {
@@ -167,7 +167,7 @@ export function classifyNew({ now = new Date().toISOString() } = {}) {
 
 // Explicit full reclassification under the current version — the ONLY path
 // that may change an existing label, and it stamps itself at the store root.
-export function reclassifyAll({ now = new Date().toISOString() } = {}) {
+function reclassifyAllUnlocked({ now = new Date().toISOString() } = {}) {
   const store = loadStore();
   let changed = 0;
   for (const c of allComments()) {
@@ -182,6 +182,9 @@ export function reclassifyAll({ now = new Date().toISOString() } = {}) {
   saveStore(store);
   return { changed, total: Object.keys(store.classified).length };
 }
+
+export function classifyNew(options) { return withSourceLock(STORE_PATH, () => classifyNewUnlocked(options)); }
+export function reclassifyAll(options) { return withSourceLock(STORE_PATH, () => reclassifyAllUnlocked(options)); }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {

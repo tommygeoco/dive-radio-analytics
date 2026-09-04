@@ -12,6 +12,7 @@ import {
 import { createHash } from "node:crypto";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { atomicWriteJson, withSourceLock, fetchJson } from "../../tools/dive-analytics/source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -37,12 +38,7 @@ function loadJson(path, fallback) {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
-function saveAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(value, null, 2) + "\n");
-  renameSync(tmp, path);
-}
+function saveAtomic(path, value) { atomicWriteJson(path, value); }
 
 function sha(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -102,7 +98,8 @@ export function providerConfig() {
 async function callOnce(system, payload) {
   const cfg = providerConfig();
   if (cfg.provider === "anthropic") {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const body = await fetchJson("https://api.anthropic.com/v1/messages", {
+      label: "comment classifier Anthropic", maxAttempts: 1, timeoutMs: 180000,
       method: "POST",
       headers: {
         "x-api-key": cfg.key,
@@ -117,14 +114,13 @@ async function callOnce(system, payload) {
       }),
       signal: AbortSignal.timeout(180000),
     });
-    if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
-    const body = await res.json();
     const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
     if (!text.trim()) throw new Error(`empty Anthropic response (stop_reason ${body.stop_reason}, blocks ${JSON.stringify((body.content || []).map((b) => b.type))}, output_tokens ${body.usage?.output_tokens})`);
     return { text, ...cfg };
   }
 
-  const res = await fetch("https://api.openai.com/v1/responses", {
+  const body = await fetchJson("https://api.openai.com/v1/responses", {
+    label: "comment classifier OpenAI", maxAttempts: 1, timeoutMs: 180000,
     method: "POST",
     headers: { Authorization: `Bearer ${cfg.key}`, "content-type": "application/json" },
     body: JSON.stringify({
@@ -135,14 +131,12 @@ async function callOnce(system, payload) {
     }),
     signal: AbortSignal.timeout(180000),
   });
-  if (!res.ok) throw new Error(`openai HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  const body = await res.json();
   const text = body.output_text || (body.output || []).flatMap((o) => o.content || []).filter((c) => c.type === "output_text").map((c) => c.text).join("\n");
   if (!text.trim()) throw new Error("empty OpenAI response");
   return { text, ...cfg };
 }
 
-const RETRY_DELAYS_MS = [2000, 8000, 20000, 45000];
+const RETRY_DELAYS_MS = [2000];
 
 async function callModel(system, payload) {
   let lastErr;
@@ -306,7 +300,7 @@ function sameLabel(a, b) {
   return a.relevance === b.relevance && a.sentiment === b.sentiment && JSON.stringify(at) === JSON.stringify(bt);
 }
 
-async function classify({ reclassify = false } = {}) {
+async function classifyUnlocked({ reclassify = false } = {}) {
   const now = new Date().toISOString();
   const cfg = currentConfig();
   const store = loadClassifiedStore();
@@ -390,6 +384,8 @@ async function classify({ reclassify = false } = {}) {
   return store.lastRun;
 }
 
+function classify(options) { return withSourceLock(STORE_PATH, () => classifyUnlocked(options)); }
+
 async function probeModel() {
   const system = promptText();
   const comments = [{ id: "probe:mixed", text: "I love the new call-in format, but the audio keeps cutting out." }];
@@ -410,7 +406,7 @@ if (isMain) {
     const store = loadClassifiedStore();
     const cfg = currentConfig();
     assertVersionDiscipline(store);
-    task = ensureGolden(store, cfg, now, { force: true });
+    task = withSourceLock(STORE_PATH, () => ensureGolden(loadClassifiedStore(), cfg, now, { force: true }));
   } else task = classify({ reclassify: process.argv.includes("--reclassify-all") });
   task.catch((err) => {
     process.stderr.write(`classifier: ${err.message}\n`);
