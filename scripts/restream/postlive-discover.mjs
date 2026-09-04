@@ -16,6 +16,7 @@
 // Usage: node scripts/restream/postlive-discover.mjs [--days 10] [--dry-run]
 // Zero-model, deterministic. Exits 0 with "no new episodes" when idle.
 
+import { fetchJson } from "../../tools/dive-analytics/source-io.mjs";
 import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
@@ -66,18 +67,23 @@ function xBearer() {
   return token;
 }
 
-async function getJson(url, headers = {}) {
-  const res = await fetch(url, { headers, signal: AbortSignal.timeout(30000) });
-  if (res.status === 429) {
-    const wait = Number(res.headers.get("retry-after") || 10) * 1000;
-    await new Promise((r) => setTimeout(r, Math.min(wait, 30000)));
-    return getJson(url, headers);
+const getJson = (url, headers = {}) => fetchJson(url, { headers, label: "episode discovery" });
+
+export async function collectDiscoveryPages(url, { get = getJson, headers = {}, kind, earliest = since } = {}) {
+  const all = []; const seen = new Set(); let nextUrl = url;
+  for (let page = 0; page < 20; page++) {
+    const response = await get(nextUrl, headers);
+    const rows = kind === "youtube" ? response.items : response.data;
+    if (!Array.isArray(rows) && !(kind === "x" && response.meta?.result_count === 0 && rows == null)) throw new Error(`${kind} discovery returned no item list`);
+    all.push(...(rows || []));
+    const cursor = kind === "youtube" ? response.nextPageToken : response.meta?.next_token;
+    const reachedStart = (rows || []).some(row => Date.parse(kind === "youtube" ? row.snippet?.publishedAt : row.created_at) < earliest);
+    if (!cursor || reachedStart) return kind === "youtube" ? { items: all } : { data: all, meta: { result_count: all.length } };
+    if (seen.has(cursor)) throw new Error(`${kind} discovery repeated its pagination cursor`);
+    seen.add(cursor);
+    const u = new URL(url); u.searchParams.set(kind === "youtube" ? "pageToken" : "pagination_token", cursor); nextUrl = u.toString();
   }
-  if (!res.ok) {
-    const text = (await res.text()).slice(0, 200);
-    throw new Error(`GET ${url.split("?")[0]} -> HTTP ${res.status}: ${text}`);
-  }
-  return res.json();
+  throw new Error(`${kind} discovery exceeded its bounded page count`);
 }
 
 export function phxDate(iso) {
@@ -160,11 +166,12 @@ export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
   for (const ch of YT_CHANNELS) {
     const accountFound = [];
     try {
-      const playlist = await get(
-        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ch.uploads}&maxResults=15&key=${key}`
+      const playlist = await collectDiscoveryPages(
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ch.uploads}&maxResults=50&key=${key}`, { get, kind: "youtube" }
       );
+      if (!Array.isArray(playlist.items)) throw new Error("YouTube playlist returned no item list");
       const candidates = [];
-      for (const item of playlist.items || []) {
+      for (const item of playlist.items) {
         const sn = item.snippet || {};
         const vid = sn.resourceId?.videoId;
         if (!vid || knownVideoIds.has(vid)) continue;
@@ -176,13 +183,15 @@ export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
         const details = await get(
           `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${candidates.map((v) => v.videoId).join(",")}&key=${key}`
         );
-        const byId = new Map((details.items || []).map((video) => [video.id, video]));
+        if (!Array.isArray(details.items)) throw new Error("YouTube video details returned no item list");
+        const byId = new Map(details.items.map((video) => [video.id, video]));
         for (const candidate of candidates) {
           const video = byId.get(candidate.videoId);
           if (!video) throw new Error(`video ${candidate.videoId} returned no details`);
           const date = episodeDateForVideo(video);
           if (!date) throw new Error(`live video ${candidate.videoId} has no start time`);
           const sn = video.snippet || candidate.playlistSnippet;
+          if (date > phxDate(new Date().toISOString())) continue;
           accountFound.push({
             videoId: candidate.videoId,
             title: sn.title,
@@ -236,17 +245,21 @@ export async function discoverX(episodeVideoIds, { get = getJson, bearerToken = 
     try {
       // include replies: hosts sometimes announce inside threads. Chatter is
       // filtered downstream (must mention dive radio or link a known episode).
-      tl = await get(
-        `https://api.x.com/2/users/${uid}/tweets?max_results=50&exclude=retweets&tweet.fields=created_at,entities,text`,
-        headers
+      tl = await collectDiscoveryPages(
+        `https://api.x.com/2/users/${uid}/tweets?max_results=100&exclude=retweets&tweet.fields=created_at,entities,text`,
+        { get, headers, kind: "x" }
       );
     } catch (err) {
       console.error(`discover: X timeline failed for ${account}: ${err.message}`);
       accounts.push({ account, attempted: true, success: false, found: 0, error: `timeline: ${errorText(err)}` });
       continue;
     }
-    if (!Array.isArray(tl.data) && Number(tl.meta?.result_count || 0) !== 0) {
+    if (!Array.isArray(tl.data) && tl.meta?.result_count !== 0) {
       accounts.push({ account, attempted: true, success: false, found: 0, error: "timeline returned no post list" });
+      continue;
+    }
+    if (tl.meta?.next_token && !(tl.data || []).some(t => Date.parse(t.created_at) < since)) {
+      accounts.push({ account, attempted: true, success: false, found: 0, error: "timeline was truncated before the discovery window ended" });
       continue;
     }
     const before = found.length;
@@ -332,7 +345,7 @@ async function main() {
     for (const p of xFound) {
       if (p.claimed) continue;
       const links = p.linkedVideoId && vids.some((v) => v.videoId === p.linkedVideoId);
-      const near = !p.linkedVideoId && daysBetween(p.date, date) <= 3;
+      const near = !p.linkedVideoId && p.broadcastId && normalizedEpisodeTitle(p.text) === normalizedEpisodeTitle(canon.title);
       if (links || near) {
         p.claimed = true;
         urls.push(p.url);
@@ -383,6 +396,11 @@ async function main() {
       };
     });
 
+  const sourceErrors = Object.entries(sources).filter(([,v]) => !v.success).map(([k]) => `${k} discovery incomplete`);
+  if (sourceErrors.length || coverageErrors.length) {
+    if (!dryRun) appendSourceReceipt("discovery", { startedAt, status: "partial", sources, episodeCoverage, errors: [...sourceErrors, ...coverageErrors], registrations: { attempted: false, success: false, planned: registrations.length, completed: 0 } });
+    throw new Error("source discovery incomplete; registry unchanged");
+  }
   const registrationErrors = [];
   let registered = 0;
   for (const r of registrations) {

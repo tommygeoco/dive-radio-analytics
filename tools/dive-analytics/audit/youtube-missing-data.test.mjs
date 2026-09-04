@@ -133,17 +133,18 @@ assert.equal(appendHistoryLine(historyPath, postAir, { expectedChannels: ["yt:jo
 assert.equal(existsSync(historyPath), false);
 
 const partialNextDay = historyLine({
+  slug: "2026-09-03-dive-radio-fixture",
   premiere: "2026-09-03",
   pulledAt: "2026-09-04T14:00:00.000Z",
   endDate: "2026-09-04",
   channels: {
-    "yt:joindiveclub": { totals: { views: 20, averageViewPercentage: 12 } },
-    "yt:designertom": { totals: { views: 0, averageViewPercentage: 0 } },
+    "yt:joindiveclub": { videoId: "d", totals: { views: 20, averageViewPercentage: 12 } },
+    "yt:designertom": { videoId: "t", totals: { views: 0, averageViewPercentage: 0 } },
   },
 });
 assert.equal(appendHistoryLine(historyPath, partialNextDay, { expectedChannels: ["yt:joindiveclub", "yt:designertom"], premiere: "2026-09-03" }), false, "one zero channel cannot make a two-channel watched-share history point");
 const nextDay = structuredClone(partialNextDay);
-nextDay.channels["yt:designertom"] = { views: 7, averageViewPercentage: 9 };
+nextDay.channels["yt:designertom"] = { ...nextDay.channels["yt:designertom"], views: 7, averageViewPercentage: 9 };
 assert.equal(appendHistoryLine(historyPath, nextDay, { expectedChannels: ["yt:joindiveclub", "yt:designertom"], premiere: "2026-09-03" }), true, "the first complete positive next-date pull may claim day one");
 assert.deepEqual(readHistory(historyPath), [nextDay]);
 assert.match(readFileSync(historyPath, "utf8"), /"views":20/);

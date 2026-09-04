@@ -258,7 +258,7 @@ assert.match(pullSource, /const today = phoenixDate\(now\)/);
 assert.match(pullSource, /const dueShows = shows\.filter/);
 assert.match(pullSource, /missingAccounts = missingYoutubeAccounts\(dueShows, tokens\)/);
 assert.match(pullSource, /acquireLock\(`\$\{path\}\.lock\.tmp`/);
-assert.match(pullSource, /renameSync\(tmp, path\)/);
+assert.match(pullSource, /atomicWriteText\(path, next\)/);
 assert.match(pullSource, /!usableYoutubeWatchTotals\(totals\)/);
 
 const buildSource = readFileSync(join(HERE, "..", "build-data.mjs"), "utf8");

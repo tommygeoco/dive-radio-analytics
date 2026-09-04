@@ -1,3 +1,4 @@
+import { atomicWriteJson, withSourceLock } from "../../tools/dive-analytics/source-io.mjs";
 // Durable evidence that the daily source pulls actually reached every
 // configured account. A fresh timestamp by itself is not a successful pull:
 // readers must also require the latest run's status to be "ok".
@@ -41,21 +42,7 @@ export function readSourceReceipts(path = SOURCE_RECEIPT_PATH) {
   return parsed;
 }
 
-function atomicWrite(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.${process.pid}.${Date.now()}.tmp`;
-  try {
-    writeFileSync(tmp, JSON.stringify(value, null, 2) + "\n", { flag: "wx" });
-    renameSync(tmp, path);
-  } catch (err) {
-    try {
-      if (existsSync(tmp)) unlinkSync(tmp);
-    } catch {
-      // Keep the original write error.
-    }
-    throw err;
-  }
-}
+const atomicWrite = atomicWriteJson;
 
 export function sourceStatus(sources) {
   const rows = Object.values(sources || {});
@@ -79,8 +66,10 @@ export function appendSourceReceipt(kind, run, { path = SOURCE_RECEIPT_PATH } = 
   if (kind !== "discovery" && kind !== "snapshot") {
     throw new Error(`unknown source receipt kind: ${kind}`);
   }
+  return withSourceLock(path, () => {
   const store = readSourceReceipts(path);
   const finishedAt = run.finishedAt || new Date().toISOString();
+  if (!Number.isFinite(Date.parse(finishedAt))) throw new Error("invalid source receipt timestamp");
   const status = run.status || sourceStatus(run.sources);
   const entry = { ...run, finishedAt, status };
   if (kind === "discovery") {
@@ -95,6 +84,7 @@ export function appendSourceReceipt(kind, run, { path = SOURCE_RECEIPT_PATH } = 
   store.updatedAt = finishedAt;
   atomicWrite(path, store);
   return entry;
+  });
 }
 
 export function accountCoverageErrors(source, expectedAccounts) {

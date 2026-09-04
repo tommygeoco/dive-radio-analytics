@@ -19,6 +19,7 @@
 //       X bearer via short-lived `xurl token --app hinterlands` (same pattern
 //       the xapi proxy uses; short-lived calls re-read the token file fresh).
 
+import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock, fetchJson, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
@@ -60,18 +61,8 @@ const KNOWN_YT_CHANNELS = {
 
 // --- IO helpers ---
 
-function loadJson(path, fallback) {
-  try {
-    return JSON.parse(readFileSync(path, "utf8"));
-  } catch {
-    return fallback;
-  }
-}
-
-function saveJson(path, obj) {
-  mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify(obj, null, 2) + "\n");
-}
+const loadJson = (path, fallback) => readJsonFile(path, { fallback });
+const saveJson = atomicWriteJson;
 
 function ytApiKey() {
   const creds = JSON.parse(
@@ -93,19 +84,7 @@ function xBearer() {
   return token;
 }
 
-async function getJson(url, headers = {}) {
-  const res = await fetch(url, { headers, signal: AbortSignal.timeout(30000) });
-  if (res.status === 429) {
-    const wait = Number(res.headers.get("retry-after") || 10) * 1000;
-    await new Promise((r) => setTimeout(r, Math.min(wait, 30000)));
-    return getJson(url, headers);
-  }
-  if (!res.ok) {
-    const text = (await res.text()).slice(0, 200);
-    throw new Error(`GET ${url.split("?")[0]} -> HTTP ${res.status}: ${text}`);
-  }
-  return res.json();
-}
+const getJson = (url, headers = {}) => fetchJson(url, { headers, label: "postlive source" });
 
 // --- URL parsing ---
 
@@ -134,7 +113,7 @@ function chunk(arr, n) {
 function countOrNull(value) {
   if (value == null || value === "") return null;
   const count = Number(value);
-  return Number.isFinite(count) ? count : null;
+  return Number.isFinite(count) && count >= 0 ? count : null;
 }
 
 // The Data API omits statistics while an upload is still waiting to air.
@@ -194,7 +173,8 @@ export function youtubeViewsForDisplay(metrics) {
   const counts = Object.entries(metrics || {})
     .filter(([key]) => key.startsWith("yt:"))
     .map(([, value]) => value?.views);
-  if (!counts.some((value) => Number.isFinite(value) && value > 0)) return null;
+  if (counts.length !== 2 || !counts.every(value => Number.isFinite(value) && value >= 0)) return null;
+  if (!counts.some(value => value > 0) && !Object.entries(metrics).filter(([k]) => k.startsWith("yt:")).every(([,m]) => m.reading?.state === "ready")) return null;
   return counts.reduce((sum, value) => sum + (Number.isFinite(value) ? value : 0), 0);
 }
 
@@ -218,7 +198,9 @@ async function fetchYouTubeStats(videoIds) {
     const data = await getJson(
       `https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${batch.join(",")}&key=${key}`
     );
-    for (const item of data.items || []) {
+    if (!Array.isArray(data.items)) throw new Error("YouTube video response has no item list");
+    for (const item of data.items) {
+      if (!batch.includes(item.id)) throw new Error("YouTube returned an unrequested video");
       stats[item.id] = youtubeStatsOf(item);
     }
   }
@@ -238,6 +220,8 @@ async function fetchXStats(postIds) {
       `https://api.x.com/2/tweets?ids=${batch.join(",")}&tweet.fields=public_metrics,attachments,entities&expansions=attachments.media_keys&media.fields=type`,
       { Authorization: `Bearer ${bearer}` }
     );
+    if (!Array.isArray(data.data)) throw new Error("X post response has no post list");
+    if (data.data.some(t => !batch.includes(t.id))) throw new Error("X returned an unrequested post");
     const mediaTypes = {};
     for (const m of data.includes?.media || []) {
       mediaTypes[m.media_key] = m.type;
@@ -273,11 +257,11 @@ const FINISHED_OR_LIVE = new Set(["is_live", "post_live", "was_live"]);
 export function parseBroadcastStatsLine(line) {
   const [liveStatus, vc, cvc] = String(line || "").trim().split("|");
   const views = Number(vc);
-  if (!FINISHED_OR_LIVE.has(liveStatus) || !Number.isFinite(views) || views <= 0) return null;
+  if (!FINISHED_OR_LIVE.has(liveStatus) || vc === "" || !Number.isFinite(views) || views < 0) return null;
   const concurrent = Number(cvc);
   return {
     views,
-    peakConcurrent: Number.isFinite(concurrent) && concurrent > 0 ? concurrent : null,
+    peakConcurrent: cvc !== "" && Number.isFinite(concurrent) && concurrent >= 0 ? concurrent : null,
     liveStatus,
   };
 }
@@ -461,13 +445,59 @@ export function buildShowMetrics(show, ytStats, xStats, broadcastStats) {
 
     if (t.kind !== "x" || !t.broadcastId || seenBroadcasts.has(t.broadcastId)) continue;
     const broadcast = broadcastStats[t.broadcastId];
-    if (!broadcast || !Number.isFinite(broadcast.views) || broadcast.views <= 0) continue;
+    if (!broadcast || !Number.isFinite(broadcast.views) || broadcast.views < 0) continue;
     seenBroadcasts.add(t.broadcastId);
     metrics[key].plays = (metrics[key].plays || 0) + broadcast.views;
     metrics[key].playsSource = "x-broadcast";
     metrics[key].peakConcurrent = broadcast.peakConcurrent;
   }
   return metrics;
+}
+
+export function stageShowCapture(show, { ytStats = {}, xStats = {}, broadcastStats = {}, checkedAt, requestFailed = false } = {}) {
+  if (show.date > phoenixDateKey(checkedAt)) return { capture: { checkedAt, state: "future", reason: null,
+    reading: readingEnvelope({ source: "postlive", episode: show.slug, objectId: show.slug, pulledAt: checkedAt, state: "future" }) }, snapshot: null };
+  const missing = [];
+  const targets = show.targets || [];
+  const yts = targets.filter(t => t.kind === "youtube");
+  if (new Set(yts.map(t => t.account)).size !== YOUTUBE_ACCOUNTS.length || yts.length !== YOUTUBE_ACCOUNTS.length) missing.push("registered YouTube channel cohort");
+  for (const t of targets) {
+    const value = t.kind === "youtube" ? ytStats[t.videoId] : xStats[t.postId];
+    if (!value || !Number.isFinite(value.views) || value.views < 0) missing.push(`${targetKey(t)} count`);
+    if (t.kind === "youtube" && value && KNOWN_YT_CHANNELS[value.channelId] !== t.account) missing.push(`${targetKey(t)} video owner`);
+    if (t.kind === "x" && (!value?.publicMetricsAvailable || ["views", "likes", "replies", "reposts", "bookmarks", "quotes"].some(k => !Number.isFinite(value?.[k]) || value[k] < 0))) missing.push(`${targetKey(t)} post metrics`);
+    if (t.kind === "x" && t.role !== "promo" && t.playsStatus !== "none" && (!t.broadcastId || !Number.isFinite(broadcastStats[t.broadcastId]?.views))) missing.push(`${targetKey(t)} broadcast count`);
+  }
+  for (const account of X_ACCOUNTS) if (!targets.some(t => t.kind === "x" && t.account === account)) missing.push(`x:${account} target`);
+  const state = missing.length ? (requestFailed ? "failed" : "pending") : "ready";
+  const capture = { checkedAt, state, reason: missing.length ? `Unavailable: ${[...new Set(missing)].join(", ")}` : null,
+    reading: readingEnvelope({ source: "postlive", episode: show.slug, objectId: show.slug, pulledAt: checkedAt, state }) };
+  if (missing.length) return { capture, snapshot: null };
+  const metrics = buildShowMetrics(show, ytStats, xStats, broadcastStats);
+  for (const [key, metric] of Object.entries(metrics)) {
+    const group = targets.filter(t => targetKey(t) === key);
+    const source = key.startsWith("yt:") ? "youtube-data" : "x-post";
+    metric.sources = group.map(t => {
+      const objectId = t.videoId || t.postId;
+      const value = t.kind === "youtube" ? ytStats[t.videoId] : xStats[t.postId];
+      return { objectId, reading: readingEnvelope({ source, episode: show.slug, objectId, pulledAt: checkedAt }), views: value.views, detail: detailOf(value) };
+    });
+    metric.reading = readingEnvelope({ source, episode: show.slug, objectId: group.map(t => t.videoId || t.postId).sort().join(","), pulledAt: checkedAt });
+    if (metric.plays != null) {
+      const ids = [...new Set(group.map(t => t.broadcastId).filter(id => id && broadcastStats[id]))].sort();
+      metric.playsReading = readingEnvelope({ source: "x-broadcast", episode: show.slug, objectId: ids.join(","), pulledAt: checkedAt });
+      metric.broadcasts = ids.map(objectId => ({ objectId, ...broadcastStats[objectId] }));
+    }
+  }
+  return { capture, snapshot: { ts: checkedAt, reading: capture.reading, metrics } };
+}
+
+export function promoteShowCapture(history, staged) {
+  const next = structuredClone(history);
+  next.capture = staged.capture;
+  next.snapshots ||= [];
+  if (staged.snapshot && !next.snapshots.some(s => s.ts === staged.snapshot.ts)) next.snapshots.push(staged.snapshot);
+  return next;
 }
 
 function currentEpisodeShows(shows) {
@@ -537,7 +567,7 @@ export function snapshotSourceCoverage({
     ));
     return coverageRow(account, targets, attempts.xBroadcast, (target) =>
       Number.isFinite(broadcastStats[target.broadcastId]?.views) &&
-        broadcastStats[target.broadcastId].views > 0
+        broadcastStats[target.broadcastId].views >= 0
     );
   });
   const sources = {
@@ -576,7 +606,7 @@ async function snapshot(args) {
   const includeAll = args.includes("--all");
   const cutoff = Date.now() - TRACK_WINDOW_DAYS * 86400000;
   const shows = registry.shows.filter(
-    (s) => s.active !== false && (includeAll || Date.parse(s.date) >= cutoff)
+    (s) => s.active !== false && typeof s.date === "string" && s.date <= phoenixDateKey() && (includeAll || Date.parse(s.date) >= cutoff)
   );
   if (!shows.length) {
     const error = "no active shows registered";
@@ -687,8 +717,10 @@ async function snapshot(args) {
   attempts.xBroadcast.attempted = broadcastIds.length > 0;
   let broadcastStats = {};
   try {
-    ({ stats: broadcastStats } = fetchBroadcastStats(broadcastIds));
-    attempts.xBroadcast.success = true;
+    const broadcastResult = fetchBroadcastStats(broadcastIds);
+    broadcastStats = broadcastResult.stats;
+    attempts.xBroadcast.success = broadcastResult.failed.size === 0;
+    if (broadcastResult.failed.size) throw new Error(`${broadcastResult.failed.size} broadcast requests failed`);
   } catch (err) {
     attempts.xBroadcast.error = String(err.message).slice(0, 240);
     errors.push(`x broadcast: ${attempts.xBroadcast.error}`);
@@ -698,7 +730,7 @@ async function snapshot(args) {
 
   const coverage = snapshotSourceCoverage({ shows, ytStats, xStats, broadcastStats, attempts });
   const receiptErrors = [...new Set([...errors, ...coverage.errors])];
-  appendSourceReceipt("snapshot", {
+  const receipt = {
     startedAt,
     status: coverage.status === "ok" && receiptErrors.length === 0 ? "ok" : "partial",
     currentEpisodeDates: coverage.currentEpisodeDates,
@@ -710,16 +742,25 @@ async function snapshot(args) {
       xBroadcast: Object.keys(broadcastStats).length,
     },
     errors: receiptErrors,
-  });
-  if (coverage.status !== "ok" || receiptErrors.length) {
-    throw new Error(`source snapshot incomplete — ${receiptErrors.join("; ")}`);
-  }
+  };
 
   mkdirSync(HISTORY_DIR, { recursive: true });
   const rows = [];
   const playsWarnings = [];
+  let pending = 0;
   for (const show of shows) {
-    const metrics = buildShowMetrics(show, ytStats, xStats, broadcastStats);
+    const staged = stageShowCapture(show, { ytStats, xStats, broadcastStats, checkedAt: now, requestFailed: errors.length > 0 });
+    const histPath = join(HISTORY_DIR, `${show.slug}.json`);
+    const previous = loadJson(histPath, { slug: show.slug, title: show.title, date: show.date, snapshots: [] });
+    if (!Array.isArray(previous.snapshots)) throw new Error(`invalid snapshot history for ${show.slug}`);
+    syncPostliveMetadata(previous, show);
+    if (!staged.snapshot) {
+      pending++;
+      saveJson(histPath, promoteShowCapture(previous, staged));
+      receipt.errors.push(`${show.slug}: ${staged.capture.reason}`);
+      continue;
+    }
+    const metrics = staged.snapshot.metrics;
 
     // Per-target plays bookkeeping (F-4): status enum + high-water mark.
     //   ok               — broadcast pull succeeded this run
@@ -761,12 +802,8 @@ async function snapshot(args) {
 
     const ytViews = youtubeViewsForDisplay(metrics);
     const xReach = metricViewsTotal(metrics, "x:");
-    const histPath = join(HISTORY_DIR, `${show.slug}.json`);
-    const hist = loadJson(histPath, { slug: show.slug, title: show.title, date: show.date, snapshots: [] });
-    syncPostliveMetadata(hist, show);
-    const prev = hist.snapshots[hist.snapshots.length - 1];
-    hist.snapshots.push({ ts: now, metrics });
-    saveJson(histPath, hist);
+    const prev = previous.snapshots.at(-1);
+    saveJson(histPath, promoteShowCapture(previous, staged));
     rows.push({
       show,
       metrics,
@@ -778,7 +815,12 @@ async function snapshot(args) {
   }
   if (registryDirty) saveJson(REGISTRY_PATH, registry);
 
-  renderVault(rows, now, errors);
+  if (rows.length === shows.length) renderVault(rows, now, errors);
+  receipt.status = errors.length ? "failed" : pending ? "pending" : "ok";
+  receipt.promoted = rows.map(r => r.show.slug);
+  appendSourceReceipt("snapshot", receipt);
+  if (errors.length) throw new Error("source snapshot request failed; incomplete cohorts were not promoted");
+  if (pending) process.exitCode = 20;
   for (const w of playsWarnings) console.log(w);
   console.log(
     `postlive: snapshotted ${rows.length} show(s), ${ytIds.length} YT videos, ${xIds.length} X posts` +
@@ -847,7 +889,7 @@ function renderVault(rows, now, errors) {
   lines.push("");
 
   const next = content.slice(0, bi + BEGIN.length) + "\n" + lines.join("\n") + content.slice(ei);
-  writeFileSync(LOG_PATH, next);
+  atomicWriteText(LOG_PATH, next);
 }
 
 // --- weekly report (stdout, Slack-friendly plain text) ---
@@ -881,7 +923,7 @@ async function report(args) {
   const reportNow = Date.now();
   const cutoff = reportNow - TRACK_WINDOW_DAYS * 86400000;
   const shows = registry.shows.filter(
-    (s) => s.active !== false && (includeAll || Date.parse(s.date) >= cutoff)
+    (s) => s.active !== false && typeof s.date === "string" && s.date <= phoenixDateKey() && (includeAll || Date.parse(s.date) >= cutoff)
   );
   if (!shows.length) {
     console.log("Post-live weekly: no shows in the tracking window.");
@@ -975,7 +1017,7 @@ if (isMain) {
     process.stderr.write("usage: postlive-track.mjs [register|snapshot|list] ...\n");
     process.exit(2);
   }
-  Promise.resolve(run(rest)).catch((err) => {
+  Promise.resolve().then(() => ["snapshot", "register"].includes(cmd || "snapshot") ? withSourceLock(REGISTRY_PATH, () => run(rest)) : run(rest)).catch((err) => {
     process.stderr.write(`postlive: ${err.message}\n`);
     process.exit(1);
   });

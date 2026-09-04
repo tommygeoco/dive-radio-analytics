@@ -24,10 +24,11 @@ const poison = {
   hasNativeVideo: true,
 };
 
-// Upcoming containers and malformed/zero counters are not episode plays.
+// Upcoming containers and malformed counters are not episode plays.
 assert.equal(parseBroadcastStatsLine("is_upcoming|323|NA"), null);
 assert.equal(parseBroadcastStatsLine("not_live|323|NA"), null);
-assert.equal(parseBroadcastStatsLine("was_live|0|20"), null);
+assert.deepEqual(parseBroadcastStatsLine("was_live|0|20"), { views: 0, peakConcurrent: 20, liveStatus: "was_live" });
+assert.equal(parseBroadcastStatsLine("was_live||20"), null);
 assert.deepEqual(parseBroadcastStatsLine("was_live|700|80"), {
   views: 700,
   peakConcurrent: 80,
