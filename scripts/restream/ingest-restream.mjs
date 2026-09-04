@@ -28,7 +28,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const DATA_DIR = join(ROOT, "data", "restream");
 const EVENTS_DIR = join(DATA_DIR, "events");
 const STATE_PATH = join(DATA_DIR, "state.json");
-const LOG_PATH =
+const LOG_PATH = process.env.DIVE_RESTREAM_LOG_PATH ||
   "/Users/bones/Documents/Obsidian/Hinterlands/Ops/Bones/live-show-analytics.md";
 const API = "https://api.restream.io/v2";
 const LOG_MARKER = "<!-- LOG:BEGIN -->";
