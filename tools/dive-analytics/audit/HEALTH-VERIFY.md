@@ -1,6 +1,6 @@
 # Show-health verification — 2026-09-04
 
-Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; never blocks publish.
+Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
 ## Accuracy — the 2026-09-04 read
 
@@ -13,7 +13,7 @@ Score 55 (weighted mean 56, health-v9, prompt v7); reads How to Engineer a Brand
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
 | Next first week inside the expected range | 0 | 0 | 0 | 1 | 1 |
-| Direction word confirmed by the next episode | 5 | 4 | 2 | 0 | 13 |
+| Direction word confirmed by the next episode | 5 | 4 | 2 | 0 | 14 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
@@ -73,4 +73,5 @@ Carried share of scored checks: 43% (at full weight the mean would move -1) · p
 - 2026-09-03 · minutesPerViewer holding (-1.1% per episode) — waits for the episode after E8.
 - 2026-09-03 · holdRate holding (-3.7% per episode) — waits for the episode after E8.
 - 2026-09-03 · subscribers softening (-39.9% per episode) — waits for the episode after E5.
+- 2026-09-04 · discoveryShare softening (-5.8% per episode) — waits for the episode after E5.
 

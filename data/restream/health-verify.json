@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-04T16:24:17.968Z",
+  "updatedAt": "2026-09-04T21:01:51.760Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -358,6 +358,17 @@
       "pctPerEpisode": -39.9,
       "lastEp": 5,
       "lastValue": 0.8,
+      "resolution": null
+    },
+    {
+      "id": "direction:discoveryShare:E5:softening",
+      "kind": "direction",
+      "key": "discoveryShare",
+      "madeOn": "2026-09-04",
+      "word": "softening",
+      "pctPerEpisode": -5.8,
+      "lastEp": 5,
+      "lastValue": 11.7,
       "resolution": null
     }
   ]
