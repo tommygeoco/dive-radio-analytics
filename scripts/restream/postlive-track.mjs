@@ -114,8 +114,11 @@ function chunk(arr, n) {
 
 function countOrNull(value) {
   if (value == null || value === "") return null;
+  if (typeof value !== "number" && !(typeof value === "string" && /^\d+$/.test(value))) {
+    throw new Error("source returned an invalid count");
+  }
   const count = Number(value);
-  if (!Number.isFinite(count) || count < 0) throw new Error("source returned an invalid count");
+  if (!Number.isSafeInteger(count) || count < 0) throw new Error("source returned an invalid count");
   return count;
 }
 
@@ -259,12 +262,14 @@ const FINISHED_OR_LIVE = new Set(["is_live", "post_live", "was_live"]);
 
 export function parseBroadcastStatsLine(line) {
   const [liveStatus, vc, cvc] = String(line || "").trim().split("|");
-  const views = Number(vc);
-  if (!FINISHED_OR_LIVE.has(liveStatus) || vc === "" || !Number.isFinite(views) || views < 0) return null;
-  const concurrent = Number(cvc);
+  if (!FINISHED_OR_LIVE.has(liveStatus)) return null;
+  const sourceCount = (value) => value === "NA" ? null : countOrNull(value);
+  const views = sourceCount(vc);
+  if (views === null) return null;
+  const concurrent = sourceCount(cvc);
   return {
     views,
-    peakConcurrent: cvc !== "" && Number.isFinite(concurrent) && concurrent >= 0 ? concurrent : null,
+    peakConcurrent: concurrent,
     liveStatus,
   };
 }

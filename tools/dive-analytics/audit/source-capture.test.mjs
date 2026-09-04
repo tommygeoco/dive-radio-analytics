@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { stageShowCapture, promoteShowCapture, youtubeViewsForDisplay, parseBroadcastStatsLine } from '../../../scripts/restream/postlive-track.mjs';
+import { stageShowCapture, promoteShowCapture, youtubeViewsForDisplay, parseBroadcastStatsLine, youtubeStatsOf, xStatsOf } from '../../../scripts/restream/postlive-track.mjs';
 import { rowsToObjects, historyLine, appendHistoryLine } from '../../../scripts/restream/yt-analytics-pull.mjs';
 import { collectDiscoveryPages, discoverYouTube, discoverX } from '../../../scripts/restream/postlive-discover.mjs';
 import { atomicWriteJson } from '../source-io.mjs';
@@ -45,6 +45,23 @@ assert.equal(promoteShowCapture(hist, staged).snapshots.length, 1, 'replayed rea
 assert.equal(youtubeViewsForDisplay({ 'yt:joindiveclub': { views: 50 }, 'yt:designertom': { views: null } }), null);
 assert.equal(parseBroadcastStatsLine('was_live|0|0').views, 0);
 assert.equal(parseBroadcastStatsLine('was_live|NA|NA'), null);
+for (const value of [true, false, 1.5, -1, NaN, Infinity, {}, [], 1n, 'true', '1.5', '-1', '1e3', ' 4', '4 ', '0x10', Number.MAX_SAFE_INTEGER + 1, '9007199254740992']) {
+  assert.throws(() => youtubeStatsOf({ statistics: { viewCount: value } }), /invalid count/, `YouTube must reject ${String(value)}`);
+  assert.throws(() => xStatsOf({ public_metrics: { impression_count: value } }), /invalid count/, `X must reject ${String(value)}`);
+}
+for (const value of [0, '0', 4, '004', Number.MAX_SAFE_INTEGER, String(Number.MAX_SAFE_INTEGER)]) {
+  assert.equal(youtubeStatsOf({ statistics: { viewCount: value } }).views, Number(value));
+  assert.equal(xStatsOf({ public_metrics: { impression_count: value } }).views, Number(value));
+}
+for (const value of [undefined, null, '']) {
+  assert.equal(youtubeStatsOf({ statistics: { viewCount: value } }).views, null);
+  assert.equal(xStatsOf({ public_metrics: { impression_count: value } }).views, null);
+}
+for (const value of ['true', 'false', '1.5', '-1', '1e3', 'Infinity', 'NaN', '0x10', '9007199254740992']) {
+  assert.throws(() => parseBroadcastStatsLine(`was_live|${value}|0`), /invalid count/);
+  assert.throws(() => parseBroadcastStatsLine(`was_live|10|${value}`), /invalid count/);
+}
+assert.deepEqual(parseBroadcastStatsLine('was_live|12|NA'), { views: 12, peakConcurrent: null, liveStatus: 'was_live' });
 const schema = ['views', 'averageViewPercentage'];
 assert.deepEqual(rowsToObjects({ columnHeaders: schema.map(name => ({ name })) }, schema), []);
 assert.throws(() => rowsToObjects({}), /schema/);
