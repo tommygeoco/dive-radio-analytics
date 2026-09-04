@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-04T16:25:23.766Z",
+ "generatedAt": "2026-09-04T16:55:00.266Z",
  "chaptersUpdatedAt": "2026-09-04T15:50:09.711Z",
  "promotionUpdatedAt": "2026-09-04T16:23:36.378Z",
  "dests": [
@@ -6308,18 +6308,10 @@
    "discoveryShare": 14.2,
    "watch": {
     "channels": [
-     "yt:designertom",
-     "yt:joindiveclub"
+     "yt:joindiveclub",
+     "yt:designertom"
     ],
     "byChannel": [
-     {
-      "key": "yt:designertom",
-      "views": 530,
-      "avgPercent": 9.52,
-      "avgDurationSec": 703,
-      "subs": 7,
-      "subsPer1k": 13.2
-     },
      {
       "key": "yt:joindiveclub",
       "views": 721,
@@ -6327,6 +6319,14 @@
       "avgDurationSec": 847,
       "subs": 4,
       "subsPer1k": 5.5
+     },
+     {
+      "key": "yt:designertom",
+      "views": 530,
+      "avgPercent": 9.52,
+      "avgDurationSec": 703,
+      "subs": 7,
+      "subsPer1k": 13.2
      }
     ],
     "avgPercent": 10.65,
@@ -12796,18 +12796,10 @@
    "discoveryShare": 19,
    "watch": {
     "channels": [
-     "yt:designertom",
-     "yt:joindiveclub"
+     "yt:joindiveclub",
+     "yt:designertom"
     ],
     "byChannel": [
-     {
-      "key": "yt:designertom",
-      "views": 926,
-      "avgPercent": 9.78,
-      "avgDurationSec": 702,
-      "subs": 1,
-      "subsPer1k": 1.1
-     },
      {
       "key": "yt:joindiveclub",
       "views": 1187,
@@ -12815,6 +12807,14 @@
       "avgDurationSec": 864,
       "subs": 5,
       "subsPer1k": 4.2
+     },
+     {
+      "key": "yt:designertom",
+      "views": 926,
+      "avgPercent": 9.78,
+      "avgDurationSec": 702,
+      "subs": 1,
+      "subsPer1k": 1.1
      }
     ],
     "avgPercent": 11.05,
@@ -18290,23 +18290,23 @@
    "discoveryShare": 12.7,
    "watch": {
     "channels": [
-     "yt:designertom",
-     "yt:joindiveclub"
+     "yt:joindiveclub",
+     "yt:designertom"
     ],
     "byChannel": [
-     {
-      "key": "yt:designertom",
-      "views": 673,
-      "avgPercent": 8.84,
-      "avgDurationSec": 598,
-      "subs": 0,
-      "subsPer1k": 0
-     },
      {
       "key": "yt:joindiveclub",
       "views": 950,
       "avgPercent": 9.24,
       "avgDurationSec": 626,
+      "subs": 0,
+      "subsPer1k": 0
+     },
+     {
+      "key": "yt:designertom",
+      "views": 673,
+      "avgPercent": 8.84,
+      "avgDurationSec": 598,
       "subs": 0,
       "subsPer1k": 0
      }
@@ -23952,18 +23952,10 @@
    "discoveryShare": 13.5,
    "watch": {
     "channels": [
-     "yt:designertom",
-     "yt:joindiveclub"
+     "yt:joindiveclub",
+     "yt:designertom"
     ],
     "byChannel": [
-     {
-      "key": "yt:designertom",
-      "views": 721,
-      "avgPercent": 8.79,
-      "avgDurationSec": 651,
-      "subs": 0,
-      "subsPer1k": 0
-     },
      {
       "key": "yt:joindiveclub",
       "views": 1239,
@@ -23971,6 +23963,14 @@
       "avgDurationSec": 666,
       "subs": 7,
       "subsPer1k": 5.6
+     },
+     {
+      "key": "yt:designertom",
+      "views": 721,
+      "avgPercent": 8.79,
+      "avgDurationSec": 651,
+      "subs": 0,
+      "subsPer1k": 0
      }
     ],
     "avgPercent": 8.92,
@@ -29272,18 +29272,10 @@
    "discoveryShare": 11.8,
    "watch": {
     "channels": [
-     "yt:designertom",
-     "yt:joindiveclub"
+     "yt:joindiveclub",
+     "yt:designertom"
     ],
     "byChannel": [
-     {
-      "key": "yt:designertom",
-      "views": 548,
-      "avgPercent": 12.04,
-      "avgDurationSec": 686,
-      "subs": 0,
-      "subsPer1k": 0
-     },
      {
       "key": "yt:joindiveclub",
       "views": 703,
@@ -29291,6 +29283,14 @@
       "avgDurationSec": 808,
       "subs": 1,
       "subsPer1k": 1.4
+     },
+     {
+      "key": "yt:designertom",
+      "views": 548,
+      "avgPercent": 12.04,
+      "avgDurationSec": 686,
+      "subs": 0,
+      "subsPer1k": 0
      }
     ],
     "avgPercent": 13.24,
@@ -34444,18 +34444,10 @@
    "discoveryShare": 12.9,
    "watch": {
     "channels": [
-     "yt:designertom",
-     "yt:joindiveclub"
+     "yt:joindiveclub",
+     "yt:designertom"
     ],
     "byChannel": [
-     {
-      "key": "yt:designertom",
-      "views": 568,
-      "avgPercent": 8.95,
-      "avgDurationSec": 510,
-      "subs": 0,
-      "subsPer1k": 0
-     },
      {
       "key": "yt:joindiveclub",
       "views": 830,
@@ -34463,6 +34455,14 @@
       "avgDurationSec": 768,
       "subs": 1,
       "subsPer1k": 1.2
+     },
+     {
+      "key": "yt:designertom",
+      "views": 568,
+      "avgPercent": 8.95,
+      "avgDurationSec": 510,
+      "subs": 0,
+      "subsPer1k": 0
      }
     ],
     "avgPercent": 11.63,
@@ -41500,6 +41500,15 @@
    "health": {
     "pending": true,
     "readCompleteOn": "2026-09-24"
+   },
+   "watchReport": {
+    "state": "pending",
+    "checkedAt": "2026-09-04T16:23:58.207Z",
+    "missingChannels": [
+     "yt:joindiveclub",
+     "yt:designertom"
+    ],
+    "reason": "YouTube Analytics has not returned this episode's watch data yet"
    },
    "chapters": {
     "status": "complete",

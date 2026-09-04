@@ -32,6 +32,8 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { completeYoutubeWatchChannels, summedYoutubeMetric, weightedYoutubeMetric } from "../youtube-readiness.mjs";
+import { discoveryShareOf, subsPer1kOf } from "../baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url)); // tools/dive-analytics/audit
 const TOOL = join(HERE, "..");
@@ -1356,22 +1358,112 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const buildSource = readFileSync(join(TOOL, "build-data.mjs"), "utf8");
   if (!/mode: "watch"/.test(html)) { bad++; drift("watching: the chart has no Watching view"); }
+  if (!/function pendingWatchMessage\(e,[\s\S]{0,260}e\.watchReport\?\.state !== "pending"/.test(html)
+    || !/cfg\._missingText = state\.metric === "watched"/.test(html)
+    || !/chart\.config\._missingText = cfg\._missingText/.test(html)
+    || !/pendingWatchMessage\(e, NEWEST\.slug\) \|\| "Watch data is not available/.test(html)) {
+    bad++; drift("watching: a saved pending report must explain the missing newest value on the card, chart, and hover without drawing a zero");
+  }
+  if (!/completeYoutubeWatchChannels\(expectedChannels, j\.channels \|\| \{\}\)/.test(buildSource)
+    || !/weightedYoutubeMetric\(chans, "averageViewDuration"\)/.test(buildSource)
+    || !/summedYoutubeMetric\(chans, "estimatedMinutesWatched"\)/.test(buildSource)
+    || !/trafficChannels = chans\.every/.test(buildSource)
+    || !/withCurve = chans\.every/.test(buildSource)
+    || !/subsPer1kOf\(currentChannels\)/.test(buildSource)
+    || !/discoveryShareOf\(currentChannels\)/.test(buildSource)) {
+    bad++; drift("watching: only the episode's registered YouTube channels may enter its blended watch numbers");
+  }
   for (const e of eps) {
     const w = e.watch;
     const storePath = join(ROOT, "data", "restream", "yt-analytics", `${e.slug}.json`);
-    if (!w) {
-      if (existsSync(storePath)) {
-        try {
-          const j = JSON.parse(readFileSync(storePath, "utf8"));
-          const usable = Object.values(j.channels || {}).some((c) => c?.totals && c.totals.views > 0);
-          if (usable) { bad++; fail(`watching: ${e.slug} has analytics but no exported watch block`); }
-        } catch { /* unreadable store — pull warns separately */ }
+    let store = null;
+    if (existsSync(storePath)) {
+      try { store = JSON.parse(readFileSync(storePath, "utf8")); }
+      catch (error) { bad++; fail(`watching: ${e.slug} analytics store is unreadable (${error.message})`); }
+    }
+    const expectedChannels = Object.keys(e.links || {}).filter((key) => key.startsWith("yt:"));
+    const completeChannels = completeYoutubeWatchChannels(expectedChannels, store?.channels || {}).length === expectedChannels.length
+      && expectedChannels.length > 0;
+    const report = store?.watchReport;
+    if (report) {
+      const expected = {
+        state: report.state,
+        checkedAt: report.checkedAt ?? null,
+        missingChannels: Array.isArray(report.missingChannels) ? [...report.missingChannels] : [],
+        reason: report.reason ?? null,
+      };
+      if (!["pending", "ready", "failed"].includes(report.state)
+        || !Number.isFinite(Date.parse(report.checkedAt))
+        || !Array.isArray(report.missingChannels)
+        || report.missingChannels.some((key) => typeof key !== "string" || !key.startsWith("yt:"))
+        || new Set(report.missingChannels).size !== report.missingChannels.length) {
+        bad++; fail(`watching: ${e.slug} watch-report state is malformed`);
       }
+      if (report.state === "ready" && (report.missingChannels.length || report.reason != null)) {
+        bad++; fail(`watching: ${e.slug} ready watch report still claims missing data`);
+      }
+      if (report.state !== "ready" && (!report.missingChannels.length || typeof report.reason !== "string" || !report.reason.trim())) {
+        bad++; fail(`watching: ${e.slug} ${report.state} watch report does not name what is missing`);
+      }
+      if (report.state === "pending" && Date.parse(data.generatedAt) - Date.parse(report.checkedAt) > FRESH_MS) {
+        bad++; fail(`watching: ${e.slug} pending watch report was not checked within 26 hours of this build`);
+      }
+      if (report.state === "ready" && !completeChannels) {
+        bad++; fail(`watching: ${e.slug} says its watch report is ready without every registered YouTube channel`);
+      }
+      const show = registry.shows.find((item) => item.slug === e.slug);
+      for (const target of (show?.targets || []).filter((item) => item.kind === "youtube" && item.videoId)) {
+        const key = `yt:${target.account}`;
+        if (store.channels?.[key]?.videoId !== target.videoId) {
+          bad++; fail(`watching: ${e.slug} ${key} analytics belong to a different video than the registry`);
+        }
+      }
+      if (JSON.stringify(e.watchReport) !== JSON.stringify(expected)) {
+        bad++; fail(`watching: ${e.slug} public watch-report state differs from its analytics store`);
+      }
+    } else if (e.watchReport) {
+      bad++; fail(`watching: ${e.slug} exports watch-report state with no stored source — fabricated`);
+    }
+    if (!w) {
+      if (completeChannels) { bad++; fail(`watching: ${e.slug} has complete analytics but no exported watch block`); }
       continue;
     }
-    if (!existsSync(storePath)) { bad++; fail(`watching: ${e.slug} exports watch data with no analytics store — fabricated`); continue; }
+    if (!store) { bad++; fail(`watching: ${e.slug} exports watch data with no analytics store — fabricated`); continue; }
+    if (!completeChannels) { bad++; fail(`watching: ${e.slug} exports a blended watch number without every registered YouTube channel`); }
+    const channelEntries = completeYoutubeWatchChannels(expectedChannels, store.channels || {});
     if (!Array.isArray(w.channels) || !w.channels.length) { bad++; fail(`watching: ${e.slug} watch block names no channels`); }
+    if (w.channels?.length !== expectedChannels.length || expectedChannels.some((key) => !w.channels.includes(key))) {
+      bad++; fail(`watching: ${e.slug} blended watch number does not use exactly its registered YouTube channels`);
+    }
+    const expectedAvgPercent = weightedYoutubeMetric(channelEntries, "averageViewPercentage");
+    const expectedAvgDuration = weightedYoutubeMetric(channelEntries, "averageViewDuration");
+    const expectedMinutes = summedYoutubeMetric(channelEntries, "estimatedMinutesWatched");
+    if (w.avgPercent !== (expectedAvgPercent == null ? null : Math.round(expectedAvgPercent * 100) / 100)) {
+      bad++; fail(`watching: ${e.slug} share watched does not rederive from every registered channel`);
+    }
+    if (w.avgDurationSec !== (expectedAvgDuration == null ? null : Math.round(expectedAvgDuration))) {
+      bad++; fail(`watching: ${e.slug} average watch time is partial or differs from its channel stores`);
+    }
+    if (w.minutesWatched !== (expectedMinutes == null ? null : Math.round(expectedMinutes))) {
+      bad++; fail(`watching: ${e.slug} total watch time treats a missing channel field as zero or differs from its stores`);
+    }
+    if (channelEntries.some(([, channel]) => !Array.isArray(channel.retention) || !channel.retention.length) && w.curve) {
+      bad++; fail(`watching: ${e.slug} exports a watch curve while a registered channel has no curve`);
+    }
+    if (channelEntries.some(([, channel]) => !Array.isArray(channel.trafficSources) || !channel.trafficSources.length) && w.traffic) {
+      bad++; fail(`watching: ${e.slug} exports view sources while a registered channel has no source report`);
+    }
+    const currentChannels = Object.fromEntries(channelEntries);
+    const expectedSubscribers = subsPer1kOf(currentChannels);
+    const expectedDiscovery = discoveryShareOf(currentChannels);
+    if (e.subsPer1k !== (expectedSubscribers == null ? null : Math.round(expectedSubscribers * 10) / 10)) {
+      bad++; fail(`watching: ${e.slug} subscribers per thousand does not rederive from every registered channel`);
+    }
+    if (e.discoveryShare !== expectedDiscovery) {
+      bad++; fail(`watching: ${e.slug} search-and-suggestion share is partial or differs from its channel stores`);
+    }
     if (w.avgPercent != null && !(w.avgPercent >= 0 && w.avgPercent <= 100)) { bad++; fail(`watching: ${e.slug} average share ${w.avgPercent} outside 0..100`); }
     if (w.avgDurationSec != null && !(w.avgDurationSec > 0)) { bad++; fail(`watching: ${e.slug} average duration must be positive when present`); }
     if (w.curve) {
@@ -1389,7 +1481,7 @@ function premiereMs(dateStr) {
       if (w.traffic.some((t) => !(t.views > 0) || !(t.share >= 0 && t.share <= 100))) { bad++; fail(`watching: ${e.slug} view-source row out of range`); }
     }
   }
-  if (!bad) ok(`watching: ${eps.filter((e) => e.watch).length} episode(s) export verified watch data — blends in range, curves ordered, absence never zero`);
+  if (!bad) ok(`watching: ${eps.filter((e) => e.watch).length} episode(s) export verified watch data; saved pending checks match their source, blends stay in range, curves stay ordered, absence never becomes zero`);
 }
 
 // --- 1m2. W16 transcript × retention moments: recompute lock, ranges, verbatim excerpts, silent absence ---
@@ -2140,7 +2232,7 @@ function premiereMs(dateStr) {
     if (!/DATA\.baselines\?\.direction/.test(healthSource) || !/DATA\.baselines\?\.outlook/.test(healthSource) || !/h\.asOf\?\.newestTitle/.test(healthSource)
       || !/const metric = heroMetricKey\(\) === "views" \? "watched" : heroMetricKey\(\);/.test(compoundSource)
       || !/DATA\.baselines\?\.newestVsPrevious\?\.\[metric\]/.test(compoundSource)
-      || !/class="cbar missing"/.test(compoundSource)
+      || !/class="cbar missing/.test(compoundSource)
       || /Growth trend — first weeks/.test(compoundSource) || /h\.direction|h\.outlook/.test(healthSource)
       || !/function launchOf\(e\) \{[\s\S]{0,180}hasYoutubeReading\(e\)[\s\S]{0,180}DATA\.baselines\?\.launch\?\.\[e\.slug\][\s\S]{0,180}launch\?\.value > 0/.test(html)
       || !/const launch = launchOf\(e\)/.test(stripSource) || !/const launch = launchOf\(e\)/.test(panelSource)
@@ -2197,7 +2289,7 @@ function premiereMs(dateStr) {
     }
     if (!/class="bnum"/.test(compoundSource) || !/class="bep"/.test(compoundSource)
       || (compoundSource.match(/cbar\$\{hot \? " hot" : ""\}/g) || []).length !== 1
-      || !/class="cbar missing"/.test(compoundSource)) {
+      || !/class="cbar missing/.test(compoundSource)) {
       bad++; drift("card layout: overview bars must label every episode, emphasize one real reading, and show missing without drawing a zero bar");
     }
     if (!/splitReady = hasYoutube && Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
@@ -2501,6 +2593,7 @@ function premiereMs(dateStr) {
     ["youtube-release-date.test.mjs", "broadcast-day discovery"],
     ["episode-date-sync.test.mjs", "episode-date store sync"],
     ["youtube-zero-downstream.test.mjs", "startup-zero downstream"],
+    ["youtube-readiness.test.mjs", "late YouTube watch report"],
     ["x-broadcast-discovery.test.mjs", "late X broadcast discovery"],
     ["transcripts-pull.test.mjs", "transcript source and no-overwrite"],
     ["beehiiv-promotions.test.mjs", "newsletter link attribution"],
@@ -2687,6 +2780,8 @@ function premiereMs(dateStr) {
     const mirrorSource = readFileSync(join(ROOT, "scripts", "restream", "mirror-transcripts.mjs"), "utf8");
     const discoverSource = readFileSync(join(ROOT, "scripts", "restream", "postlive-discover.mjs"), "utf8");
     const snapshotSource = readFileSync(join(ROOT, "scripts", "restream", "postlive-track.mjs"), "utf8");
+    const youtubeAnalyticsSource = readFileSync(join(ROOT, "scripts", "restream", "yt-analytics-pull.mjs"), "utf8");
+    const youtubeReadinessSource = readFileSync(join(TOOL, "youtube-readiness.mjs"), "utf8");
     const sourceReceiptModule = await import(join(ROOT, "scripts", "restream", "source-receipts.mjs"));
     if (!/set -eu/.test(wrapperSource) || !/exec node tools\/dive-analytics\/publish-flow\.mjs/.test(wrapperSource)) { bad++; drift("chain: publish wrapper must hand off to the checked release flow"); }
     if (!/branch !== "main"/.test(checkoutSource) || !/assertPublishScope\(root\)/.test(checkoutSource) || !/assertCommittedPublishScope\(root\)/.test(checkoutSource)) { bad++; drift("chain: the publisher checkout must require main and reject undeclared changes in files or local commits"); }
@@ -2705,6 +2800,18 @@ function premiereMs(dateStr) {
     if (/step\.step === "publish"\s*&&\s*code === 2/.test(runnerSource)) { bad++; drift("chain: an unconfirmed release exit must never be treated as published"); }
     if (!/America\/Phoenix/.test(freshnessSource) || !/kind: "prior-day"/.test(freshnessSource)) { bad++; drift("chain: freshness must reject a previous Phoenix day even when it is only a few hours old"); }
     if (!/MAX_DAILY_ATTEMPTS = 2/.test(dailySource) || !/acquireLock/.test(dailySource) || !/run-chain\.mjs/.test(dailySource)) { bad++; drift("chain: the scheduled entry point must lock and cap whole-chain work at two attempts a day"); }
+    if (!/YOUTUBE_WATCH_PENDING_EXIT/.test(youtubeReadinessSource)
+      || !/return YOUTUBE_WATCH_PENDING_EXIT/.test(youtubeReadinessSource)
+      || !/store\.watchReport\s*=\s*youtubeWatchReport/.test(youtubeAnalyticsSource)
+      || !/youtubeChannelAfterPull/.test(youtubeAnalyticsSource)
+      || !/missingYoutubeAccounts\(shows, tokens\)/.test(youtubeAnalyticsSource)
+      || !/!usableYoutubeWatchTotals\(totals\)/.test(youtubeAnalyticsSource)
+      || !/step\.step === "yt-analytics" && code === YOUTUBE_WATCH_PENDING_EXIT/.test(runnerSource)
+      || !/status === YOUTUBE_WATCH_PENDING_EXIT/.test(dailySource)
+      || !/return "defer"/.test(recoverySource)
+      || !/NOON_START/.test(recoverySource)) {
+      bad++; drift("chain: an empty newest YouTube watch report must publish as pending, keep its exact saved data, defer the first follow-up, and use the noon whole-chain attempt");
+    }
     const invocationAt = dailySource.indexOf("const invocation = startInvocation");
     const prepareAt = dailySource.indexOf("publisherRoot = prepare(root, isolatedRoot)");
     if (!/git", \["clone", "--quiet", "--branch", "main", "--single-branch"/.test(dailySource)

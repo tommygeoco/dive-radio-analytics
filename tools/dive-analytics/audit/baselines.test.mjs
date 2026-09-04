@@ -594,6 +594,10 @@ console.log("baselines.test: ok");
   };
   assert.equal(B.discoveryShareOf(channels), Math.round((250 / 1500) * 1000) / 10);
   assert.equal(B.discoveryShareOf({ a: { totals: { views: 1000 } } }), null);   // no traffic sources → no reading (history lines)
+  assert.equal(B.discoveryShareOf({
+    a: { totals: { views: 1000 }, trafficSources: [{ insightTrafficSourceType: "YT_SEARCH", views: 100 }] },
+    b: { totals: { views: 500 }, trafficSources: [] },
+  }), null); // one missing channel report cannot become a partial or false-zero reading
   // the direction lens carries the five new series, in check order
   assert.deepEqual(B.TREND_MEASURES.filter((m) => ["liveViewers", "minutesWatched", "minutesPerViewer", "holdRate", "discoveryShare"].includes(m.key)).map((m) => m.check),
     ["reachEfficiency", "livePull", "livePull", "participation", "participation"]);

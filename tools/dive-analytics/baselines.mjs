@@ -606,12 +606,16 @@ export function liveDepthOf(episode) {
 // across channels by views. Null when a channel record carries no traffic
 // sources (the daily history lines do not), so the measure reads mature.
 export function discoveryShareOf(channels) {
+  const channelRows = Object.values(channels || {});
+  if (!channelRows.length) return null;
   let discovered = 0, views = 0;
-  for (const ch of Object.values(channels || {})) {
+  for (const ch of channelRows) {
     const t = ch?.totals ?? ch;
-    if (!t || !Number.isFinite(t.views) || t.views <= 0 || !Array.isArray(ch?.trafficSources)) continue;
+    const traffic = ch?.trafficSources;
+    if (!t || !Number.isFinite(t.views) || t.views <= 0 || !Array.isArray(traffic)
+      || !traffic.some((source) => Number.isFinite(source?.views) && source.views > 0)) return null;
     views += t.views;
-    discovered += ch.trafficSources.filter((s) => DISCOVERY_SOURCES.includes(s.insightTrafficSourceType)).reduce((sum, s) => sum + (Number.isFinite(s.views) ? s.views : 0), 0);
+    discovered += traffic.filter((s) => DISCOVERY_SOURCES.includes(s.insightTrafficSourceType)).reduce((sum, s) => sum + (Number.isFinite(s.views) ? s.views : 0), 0);
   }
   return views > 0 ? round1((discovered / views) * 100) : null;
 }

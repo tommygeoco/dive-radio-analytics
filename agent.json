@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-09-04T16:25:23.766Z",
+ "generatedAt": "2026-09-04T16:55:00.266Z",
  "promotionUpdatedAt": "2026-09-04T16:23:36.378Z",
  "clocks": {
-  "data": "2026-09-04T16:25:23.766Z",
+  "data": "2026-09-04T16:55:00.266Z",
   "dataThrough": "2026-09-04T16:23:40.576Z",
   "healthRead": "2026-09-04",
   "healthDataThrough": "2026-09-04T15:46:16.354Z",
@@ -1224,6 +1224,7 @@
    },
    "promo": null,
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 49.9,
    "subsPer1k": 8.8,
    "discoveryShare": 14.2,
@@ -1514,6 +1515,7 @@
    },
    "promo": null,
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 39.1,
    "subsPer1k": 2.8,
    "discoveryShare": 19,
@@ -1803,6 +1805,7 @@
     "note": "more than double what a typical episode gets (4,243 X plays vs a typical 1,895; 19,596 X reach vs a typical 5,553) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 29.5,
    "subsPer1k": 0,
    "discoveryShare": 12.7,
@@ -2097,6 +2100,7 @@
    },
    "promo": null,
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 32,
    "subsPer1k": 3.6,
    "discoveryShare": 13.5,
@@ -2376,6 +2380,7 @@
    },
    "promo": null,
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 34,
    "subsPer1k": 0.8,
    "discoveryShare": 11.8,
@@ -2700,6 +2705,7 @@
    },
    "promo": null,
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 29.4,
    "subsPer1k": 0.7,
    "discoveryShare": 12.9,
@@ -3026,6 +3032,7 @@
     "note": "more than double what a typical episode gets (5,348 YT views vs a typical 1,526) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "promotion": null,
+   "watchReport": null,
    "engagementPer1k": 8.6,
    "subsPer1k": 0.8,
    "discoveryShare": 6.3,
@@ -3357,12 +3364,21 @@
      }
     ]
    },
+   "watchReport": {
+    "state": "pending",
+    "checkedAt": "2026-09-04T16:23:58.207Z",
+    "missingChannels": [
+     "yt:joindiveclub",
+     "yt:designertom"
+    ],
+    "reason": "YouTube Analytics has not returned this episode's watch data yet"
+   },
    "engagementPer1k": 16.9,
    "subsPer1k": null,
    "discoveryShare": null,
    "watching": {
     "value": null,
-    "reason": "no YouTube analytics report yet"
+    "reason": "YouTube Analytics has not returned this episode's watch data yet"
    },
    "live": {
     "peak": 98,
@@ -3674,7 +3690,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-09-04T16:25:23.766Z",
+    "stamp": "2026-09-04T16:55:00.266Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -3689,7 +3705,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-09-04T16:25:23.766Z",
+    "stamp": "2026-09-04T16:55:00.266Z",
     "note": "5 current actions; saved model actions whose numbers changed are held back"
    },
    {
@@ -3714,6 +3730,7 @@
   "episodes[].comments.enjoyThemes[]*",
   "episodes[].comments.complaintThemes[]*",
   "episodes[].health*",
+  "episodes[].watchReport*",
   "episodes[].watch.traffic[]*",
   "episodes[].watch.shape*",
   "episodes[].watch.moments[]*",

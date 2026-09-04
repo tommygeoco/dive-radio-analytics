@@ -35,6 +35,7 @@ import { fileURLToPath } from "node:url";
 import { healLeftovers } from "./chain-heal.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { appendQueueLines, QUEUE_PATH, resolveOperationalAlerts } from "./alert-queue.mjs";
+import { YOUTUBE_WATCH_PENDING_EXIT } from "./youtube-readiness.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -160,6 +161,7 @@ async function main() {
   if (!dry) { openLog(); pullFirst(); }
   let failedOptional = 0;
   let published = false;
+  let youtubeWatchPending = false;
   for (const step of chain.steps) {
     if (step.when === "Mondays" && PHX_DAY !== "Mon") { log(`chain: ${step.step} — waits for Monday, skipped`); continue; }
     if (rehearse && REHEARSE_SKIP.has(step.step)) { log(`chain: ${step.step} — rehearsal, skipped (no publish-side effects)`); continue; }
@@ -168,6 +170,11 @@ async function main() {
     if (dry) { console.log(`chain: would run ${step.step}${step.required ? "" : " (optional)"} — ${cmd.join(" ")}`); continue; }
     log(`chain: ${step.step} …`);
     let { code, lastErr } = await runStep(cmd);
+    if (step.step === "yt-analytics" && code === YOUTUBE_WATCH_PENDING_EXIT) {
+      youtubeWatchPending = true;
+      log("chain: newest episode YouTube watch data is not ready yet — continuing so the morning production build stays current");
+      continue;
+    }
     if (code !== 0 && step.required && RETRY_ONCE.has(step.step)) {
       log(`chain: ${step.step} failed (exit ${code}) — required, retrying once in ${RETRY_PAUSE_MS / 1000}s`);
       await sleep(RETRY_PAUSE_MS);
@@ -201,6 +208,10 @@ async function main() {
   if (failedOptional) {
     log(`chain: production finished with ${failedOptional} data check${failedOptional === 1 ? "" : "s"} not current`, process.stderr);
     process.exit(10);
+  }
+  if (youtubeWatchPending) {
+    log("chain: production is current except for the newest episode's YouTube watch data; noon will run the whole chain once more");
+    process.exit(YOUTUBE_WATCH_PENDING_EXIT);
   }
   try {
     resolveOperationalAlerts(QUEUE_PATH, { includeChecklist: true });

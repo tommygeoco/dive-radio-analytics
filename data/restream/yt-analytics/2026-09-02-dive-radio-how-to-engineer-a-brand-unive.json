@@ -18,5 +18,13 @@
       "retention": []
     }
   },
-  "updatedAt": "2026-09-04T16:23:58.207Z"
+  "watchReport": {
+    "state": "pending",
+    "checkedAt": "2026-09-04T16:23:58.207Z",
+    "missingChannels": [
+      "yt:joindiveclub",
+      "yt:designertom"
+    ],
+    "reason": "YouTube Analytics has not returned this episode's watch data yet"
+  }
 }

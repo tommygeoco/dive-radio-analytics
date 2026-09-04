@@ -1,12 +1,12 @@
 # Dive Radio — agent brief
 
-Built 2026-09-04T16:25:23.766Z · data through 2026-09-04 · health read 2026-09-04 (data through 2026-09-04) · chapters written 2026-09-04 · brief v1
+Built 2026-09-04T16:55:00.266Z · data through 2026-09-04 · health read 2026-09-04 (data through 2026-09-04) · chapters written 2026-09-04 · brief v1
 
 ## 1. How to read this
 
 This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Three clocks: the data build (2026-09-04T16:25:23.766Z); the show-health read (2026-09-04, over data through 2026-09-04 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-04).
+Three clocks: the data build (2026-09-04T16:55:00.266Z); the show-health read (2026-09-04, over data through 2026-09-04 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-04).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -391,7 +391,7 @@ Links: YouTube joindiveclub https://youtube.com/watch?v=Vh8ogFIE8CA · YouTube d
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 1 earlier episode was tracked this early; at least three are needed.); first week — (pending: episode under 7 days old); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (29,221 X reach vs a typical 7,570) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
 Views: 2,896 YouTube + 3,103 X plays = 5,999; X reach 29,221; likes and comments per thousand YouTube views 16.9.
 Promotion: UX Tools email linked this episode — 118 tracked email clicks; 46 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building (7 changes in brand world-building). These clicks are not part of views.
-Watching: — (no YouTube analytics report yet).
+Watching: — (YouTube Analytics has not returned this episode's watch data yet).
 Live session: peak 98, average 68, 872 people watched live for 7,820 minutes in all (9.0 minutes each; 57% of the peak still watching at the end); 137 chat messages from 37 people over 115 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
 - 00:03:17 — Cold open and show intro: A montage on AI tooling opens the show before the hosts greet the chat and admit brand work isn't their forte.

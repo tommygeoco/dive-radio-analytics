@@ -16,8 +16,8 @@ const source = html.match(/\/\* chart-hover-model:start \*\/([\s\S]*?)\/\* chart
 assert.ok(source, "comparison hover model is extractable from index.html");
 
 const sandbox = {};
-vm.runInNewContext(`${source}\nthis.model = { storedPointNear, describeTotalViews, pointToSegmentDistance, pointToCurveDistance, closestEpisodeLine, tooltipBoxPosition, pointInsideChartArea, storedCategoryReading, trendHighlightSlug, tooltipItemForHit };`, sandbox);
-const { storedPointNear, describeTotalViews, closestEpisodeLine, tooltipBoxPosition, pointInsideChartArea, storedCategoryReading, trendHighlightSlug, tooltipItemForHit } = sandbox.model;
+vm.runInNewContext(`${source}\nthis.model = { storedPointNear, describeTotalViews, pendingWatchMessage, pointToSegmentDistance, pointToCurveDistance, closestEpisodeLine, tooltipBoxPosition, pointInsideChartArea, storedCategoryReading, trendHighlightSlug, tooltipItemForHit };`, sandbox);
+const { storedPointNear, describeTotalViews, pendingWatchMessage, closestEpisodeLine, tooltipBoxPosition, pointInsideChartArea, storedCategoryReading, trendHighlightSlug, tooltipItemForHit } = sandbox.model;
 
 const readings = [{ x: 0, y: 10 }, { x: 40, y: 20 }, { x: 100, y: 30 }];
 assert.equal(storedPointNear(readings, 39).index, 1, "nearest saved reading is selected");
@@ -36,6 +36,14 @@ assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: fal
 assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: true, incomplete: true }, true, plain), "321 known views", "an incomplete blended total is named as known views");
 assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: true, stale: true }, true, plain), "321 known views", "a blended total with an older source stays visibly incomplete");
 assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: true }, true, plain), "321 total views", "a complete blended total is named as total views");
+
+const newestPendingWatch = { slug: "newest", watch: null, watchReport: { state: "pending" } };
+assert.equal(pendingWatchMessage(newestPendingWatch, "newest"), "YouTube is still preparing this number.", "the newest missing watch number explains the source wait");
+assert.equal(pendingWatchMessage(newestPendingWatch, "newest", { compact: true }), "Waiting for YouTube", "compact chart copy still names YouTube's wait");
+assert.equal(pendingWatchMessage({ slug: "older", watch: null, watchReport: { state: "pending" } }, "newest"), null, "an older pending watch report does not take over the newest episode's state");
+assert.equal(pendingWatchMessage({ slug: "newest", watch: null, watchReport: { state: "failed" } }, "newest"), null, "a failed source pull is not mislabeled as YouTube preparing data");
+assert.equal(pendingWatchMessage({ slug: "newest", watch: { avgPercent: 0 }, watchReport: { state: "pending" } }, "newest"), "YouTube is still preparing an update.", "a saved zero remains a reading while its newer source check stays visibly pending");
+assert.equal(pendingWatchMessage({ slug: "newest", watch: { avgPercent: 12 }, watchReport: { state: "pending" } }, "newest", { compact: true }), "Update pending", "a preserved exact reading is not mislabeled as current");
 
 const weeklyDataset = { data: [100, null, 80], metas: [{ ts: "2026-08-01T00:00:00Z", week: 1 }, null, { ts: "2026-08-15T00:00:00Z", week: 3 }] };
 assert.equal(storedCategoryReading(weeklyDataset, 0).value, 100, "weekly grouped bars return their saved number");
@@ -126,4 +134,4 @@ placed = tooltipBoxPosition({ x: 230, y: 130 }, { width: 224, height: 260 }, { w
 assert.ok(placed.left >= 8 && placed.left + 224 <= 232, "phone popup stays inside the chart horizontally");
 assert.ok(placed.top >= 8 && placed.top + 260 <= 332, "an eight-episode phone popup stays inside a selected chart vertically");
 
-console.log("chart tooltip model: saved points, grouped weeks, honest highlighting, line choice, edge tolerance, and placement green");
+console.log("chart tooltip model: saved points, pending watch state, grouped weeks, honest highlighting, line choice, edge tolerance, and placement green");

@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 // run-daily.mjs — the only scheduled entry point for the publishing chain.
 // It prevents overlapping runs and permits at most two whole-chain attempts
-// on one Phoenix day: the 07:00 run and one morning recovery.
+// on one Phoenix day: the 07:00 run and one reserved recovery. The recovery
+// normally runs in the morning; YouTube's expected watch-report
+// delay keeps it available for noon.
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
@@ -12,6 +14,7 @@ import { healLeftovers } from "./chain-heal.mjs";
 import { phoenixDay } from "./freshness.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { DAILY_STATE_PATH, ISOLATED_PUBLISHER_ROOT } from "./runtime-paths.mjs";
+import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "./youtube-readiness.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
@@ -358,9 +361,18 @@ export async function runDaily({
     }
     if (!Number.isInteger(result?.status) && result?.error) runError = result.error;
     const status = Number.isInteger(result?.status) ? result.status : 1;
-    let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, status === 0 ? "passed" : `failed:${status}`);
-    finished = finishInvocation(finished, invocation.day, invocation.id, status === 0 ? "passed" : `failed:${status}`, Date.now(), runError?.message || null);
+    const savedStatus = status === 0
+      ? "passed"
+      : status === YOUTUBE_WATCH_PENDING_EXIT
+        ? YOUTUBE_WATCH_PENDING_STATUS
+        : `failed:${status}`;
+    let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, savedStatus);
+    finished = finishInvocation(finished, invocation.day, invocation.id, savedStatus, Date.now(), runError?.message || null);
     saveAttemptState(statePath, finished);
+    if (status === YOUTUBE_WATCH_PENDING_EXIT) {
+      console.log("daily-run: production was updated with the data available now; newest episode YouTube watch data will be tried again at noon.");
+      return 0;
+    }
     if (status !== 0) {
       const line = runError
         ? `Daily publishing chain stopped — ${runError.message}.`

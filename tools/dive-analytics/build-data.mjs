@@ -17,6 +17,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
 import { buildBrief } from "./agent-brief.mjs";
+import { completeYoutubeWatchChannels, summedYoutubeMetric, weightedYoutubeMetric } from "./youtube-readiness.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
@@ -568,14 +569,16 @@ function attachEpisodeHealth(dive) {
 // view-weighted blend of the two channels so the page never recomputes:
 //   avgPercent      share of the video watched on average (both channels,
 //                   weighted by their views)
-//   avgDurationSec  average time watched, same weighting
-//   minutesWatched  total minutes watched across channels with reports
+//   avgDurationSec  average time watched, same weighting; null if any channel omits it
+//   minutesWatched  total minutes watched; null if any channel omits it
 //   curve           still-watching share at each point of the video (the
 //                   channels' aligned 100-point curves, view-weighted);
 //                   null until YouTube produces the curves — absence ≠ zero
 //   traffic         top view sources summed across channels + the remainder
-// A channel with no report simply drops out; an episode with no report at all
-// carries no watch block.
+// A missing channel withholds the episode blend; an episode without every
+// registered report carries no watch block, but may carry the source's
+// explicit watchReport state so the page can explain the wait without
+// inventing data.
 const WATCH_DIR = join(ROOT, "data", "restream", "yt-analytics");
 function attachWatch(dive) {
   // W17 moment summaries: model-written context notes (owner directive
@@ -588,41 +591,44 @@ function attachWatch(dive) {
   for (const e of dive) {
     let j = null;
     try { j = JSON.parse(readFileSync(join(WATCH_DIR, `${e.slug}.json`), "utf8")); } catch { continue; }
-    const chans = Object.entries(j.channels || {}).filter(([, c]) => c?.totals && Number.isFinite(c.totals.views) && c.totals.views > 0);
+    // Straight-through source state for honest pending UI. The page never
+    // guesses from episode age: it names YouTube's wait only when the latest
+    // pull stored that state, with the checked time and affected channels.
+    if (["pending", "ready", "failed"].includes(j.watchReport?.state)) {
+      e.watchReport = {
+        state: j.watchReport.state,
+        checkedAt: j.watchReport.checkedAt ?? null,
+        missingChannels: Array.isArray(j.watchReport.missingChannels) ? [...j.watchReport.missingChannels] : [],
+        reason: j.watchReport.reason ?? null,
+      };
+    }
+    const expectedChannels = Object.keys(e.links || {}).filter((key) => key.startsWith("yt:"));
+    const chans = completeYoutubeWatchChannels(expectedChannels, j.channels || {});
     if (!chans.length) continue;
-    const weighted = (pick) => {
-      let num = 0, den = 0;
-      for (const [, c] of chans) {
-        const v = pick(c.totals);
-        if (Number.isFinite(v)) { num += v * c.totals.views; den += c.totals.views; }
-      }
-      return den > 0 ? num / den : null;
-    };
-    const avgPercent = weighted((t) => t.averageViewPercentage);
-    const avgDurationSec = weighted((t) => t.averageViewDuration);
-    const minutesWatched = chans.reduce((a, [, c]) => a + (Number.isFinite(c.totals.estimatedMinutesWatched) ? c.totals.estimatedMinutesWatched : 0), 0);
+    const currentChannels = Object.fromEntries(chans);
+    const avgPercent = weightedYoutubeMetric(chans, "averageViewPercentage");
+    const avgDurationSec = weightedYoutubeMetric(chans, "averageViewDuration");
+    const minutesWatched = summedYoutubeMetric(chans, "estimatedMinutesWatched");
 
-    const withCurve = chans.filter(([, c]) => Array.isArray(c.retention) && c.retention.length);
+    const withCurve = chans.every(([, c]) => Array.isArray(c.retention) && c.retention.length) ? chans : [];
     let curve = null;
     if (withCurve.length) {
-      const byAt = new Map();
-      for (const [, c] of withCurve) {
-        for (const p of c.retention) {
-          if (!Number.isFinite(p.elapsedVideoTimeRatio) || !Number.isFinite(p.audienceWatchRatio)) continue;
-          const row = byAt.get(p.elapsedVideoTimeRatio) || { num: 0, den: 0 };
-          row.num += p.audienceWatchRatio * c.totals.views;
-          row.den += c.totals.views;
-          byAt.set(p.elapsedVideoTimeRatio, row);
-        }
-      }
-      curve = [...byAt.entries()].sort((a, b) => a[0] - b[0])
-        .map(([at, r]) => ({ at, watching: Math.round((r.num / r.den) * 1000) / 1000 }));
+      const pointMaps = withCurve.map(([, c]) => new Map(c.retention
+        .filter((p) => Number.isFinite(p.elapsedVideoTimeRatio) && Number.isFinite(p.audienceWatchRatio))
+        .map((p) => [p.elapsedVideoTimeRatio, p.audienceWatchRatio])));
+      const commonPoints = [...pointMaps[0].keys()].filter((at) => pointMaps.every((points) => points.has(at)));
+      const totalViews = withCurve.reduce((sum, [, c]) => sum + c.totals.views, 0);
+      curve = commonPoints.sort((a, b) => a - b).map((at) => ({
+        at,
+        watching: Math.round((withCurve.reduce((sum, [, c], index) => sum + pointMaps[index].get(at) * c.totals.views, 0) / totalViews) * 1000) / 1000,
+      }));
       if (!curve.length) curve = null;
     }
 
     const bySource = new Map();
     let trafficTotal = 0;
-    for (const [, c] of chans) {
+    const trafficChannels = chans.every(([, c]) => Array.isArray(c.trafficSources) && c.trafficSources.length) ? chans : [];
+    for (const [, c] of trafficChannels) {
       for (const t of c.trafficSources || []) {
         if (!Number.isFinite(t.views) || t.views <= 0) continue;
         bySource.set(t.insightTrafficSourceType, (bySource.get(t.insightTrafficSourceType) || 0) + t.views);
@@ -639,9 +645,9 @@ function attachWatch(dive) {
 
     // PRD v10: subscribers per thousand analytics views for the direction
     // lens (the same definition health.mjs and ratings.mjs read)
-    e.subsPer1k = (() => { const v = subsPer1kOf(j.channels); return Number.isFinite(v) ? Math.round(v * 10) / 10 : null; })();
+    e.subsPer1k = (() => { const v = subsPer1kOf(currentChannels); return Number.isFinite(v) ? Math.round(v * 10) / 10 : null; })();
     // rule 23: the share of YouTube views that YouTube found for the viewer (search, suggested, Shorts, browse) — one definition, baselines.discoveryShareOf
-    e.discoveryShare = discoveryShareOf(j.channels);
+    e.discoveryShare = discoveryShareOf(currentChannels);
     e.watch = {
       channels: chans.map(([k]) => k),
       // per-channel split (owner directive 2026-08-23): the blend never hides
@@ -656,7 +662,7 @@ function attachWatch(dive) {
       })),
       avgPercent: avgPercent != null ? Math.round(avgPercent * 100) / 100 : null,
       avgDurationSec: avgDurationSec != null ? Math.round(avgDurationSec) : null,
-      minutesWatched: minutesWatched > 0 ? Math.round(minutesWatched) : null,
+      minutesWatched: minutesWatched != null ? Math.round(minutesWatched) : null,
       curve,
       traffic,
       updatedAt: j.updatedAt ?? null,

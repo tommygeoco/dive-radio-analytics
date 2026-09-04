@@ -274,6 +274,7 @@
   .compound .bars { display: flex; gap: 10px; align-items: stretch; margin-bottom: 12px; }
   .compound .cbar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
   .compound .cbar .bnum { font-size: 11.5px; color: var(--t3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .compound .cbar.pending .bnum { color: var(--t2); font-weight: 600; }
   .compound .cbar.hot .bnum { color: var(--t1); font-weight: 700; }
   .compound .cbar .bwrap { height: 68px; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
   .compound .cbar .b { width: 100%; max-width: 28px; border-radius: 3px 3px 0 0; min-height: 4px;
@@ -1546,8 +1547,10 @@ function buildHero() {
       const chans = (e.watch.byChannel || []).filter(ch => ch.avgPercent != null);
       // multi-number chips get the structured tooltip, never a prose wrap
       if (chans.length) html += `<div class="gline">${chans.map(ch => `<span class="g" data-stat="${esc(TT_NAME[ch.key] || ch.key)}" data-dot="${esc(PLAT_COLORS[ch.key] || "#8a94a8")}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${ch.avgPercent}%` }, { n: "YouTube views", v: nfmt(ch.views) }]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[ch.key] || "#8a94a8"}"></i><b>${ch.avgPercent}%</b></span>`).join("")}</div>`;
+      const pending = pendingWatchMessage(e, NEWEST.slug);
+      if (pending) html += `<div class="unavailable">${esc(pending)}</div>`;
     } else {
-      html += `<div class="unavailable">Watch data is not available for this episode.</div>`;
+      html += `<div class="unavailable">${esc(pendingWatchMessage(e, NEWEST.slug) || "Watch data is not available for this episode.")}</div>`;
     }
   } else if (metric === "reach") {
     if (e.latest.xImpressions != null) {
@@ -1877,6 +1880,8 @@ function buildPanel() {
       wparts.push(`<span class="g" data-stat="${esc(TT_NAME[c.key] || c.key)}" data-dot="${esc(PLAT_COLORS[c.key] || "#8a94a8")}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${c.avgPercent}%` }, { n: "YouTube views", v: nfmt(c.views) }, ...(c.subsPer1k != null ? [{ n: "Subscribers per 1,000 views", v: String(c.subsPer1k) }] : [])]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></i><b>${c.avgPercent}%</b></span>`);
     }
     if (wparts.length) html += `<div class="gline">${wparts.join("")}</div>`;
+    const pending = pendingWatchMessage(e, NEWEST.slug);
+    if (pending) html += `<div class="unavailable">${esc(pending)}</div>`;
     if (w.curve) {
       const pts = w.curve.map(p => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching) * 40).toFixed(1)}`).join(" ");
       // W16 moment pins — rendered ONLY from the stored episode.watch.moments
@@ -1929,6 +1934,12 @@ function buildPanel() {
           <span class="tv">${t.share}%</span></div>`;
       }
       html += `</div>`;
+    }
+  } else {
+    const pending = pendingWatchMessage(e, NEWEST.slug);
+    if (pending) {
+      html += `<div class="psec"><div class="kicker">How people watch <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
+      html += `<div class="pnum hint">${esc(pending)}</div></div>`;
     }
   }
 
@@ -2016,20 +2027,27 @@ function buildCompound() {
   const cmp = DATA.baselines?.newestVsPrevious?.[metric] || null;
   const pct = cmp && Number.isFinite(cmp.pct) ? cmp.pct : null;
   const cls = pct == null || Math.abs(pct) <= QUIET_ZONE ? "" : pct > 0 ? "up" : "down";
-  const verdict = pct == null ? (cmp?.reason || "Too young to compare with the episode before it at the same age.")
+  const pendingNewest = metric === "watched" ? pendingWatchMessage(NEWEST, NEWEST.slug) : null;
+  const verdict = pendingNewest && heroMetricKey() === "watched" ? ""
+    : pendingNewest || (pct == null ? (cmp?.reason || "Too young to compare with the episode before it at the same age.")
     : Math.abs(pct) <= QUIET_ZONE ? "Holding steady episode to episode."
-    : pct > 0 ? `The newest episode is up ${pct}% on the one before it.` : `The newest episode is down ${Math.abs(pct)}% on the one before it.`;
+    : pct > 0 ? `The newest episode is up ${pct}% on the one before it.` : `The newest episode is down ${Math.abs(pct)}% on the one before it.`);
   const bars = rows.map((r) => {
     const hot = r.e.slug === hotSlug;
-    if (r.v == null) return `<div class="cbar missing" role="img" aria-label="${esc(`${short(r.e.title)}: ${METRIC_TREND_TITLE[metric].toLowerCase()} not available`)}">
-      <span class="bnum" aria-hidden="true">—</span><div class="bwrap"></div><span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
+    if (r.v == null) {
+      const pending = metric === "watched" ? pendingWatchMessage(r.e, NEWEST.slug) : null;
+      const missing = pending || `${METRIC_TREND_TITLE[metric].toLowerCase()} not available`;
+      return `<div class="cbar missing${pending ? " pending" : ""}" role="img" aria-label="${esc(`${short(r.e.title)}: ${missing}`)}">
+        <span class="bnum" aria-hidden="true">${pending ? "waiting" : "—"}</span><div class="bwrap"></div><span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
+    }
     return `<div class="cbar${hot ? " hot" : ""}" role="img" aria-label="${esc(`${short(r.e.title)}: ${M.spoken(r.v)}`)}">
       <span class="bnum" aria-hidden="true">${M.card(r.v)}</span>
       <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.v / maxV) * 100))}%${hot ? `;background:${color(r.e)}` : ""}"></div></div>
       <span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
   }).join("");
-  el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div><div class="bars">${bars}</div>
-    <div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>`;
+  el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div><div class="bars">${bars}</div>${verdict
+    ? `<div class="cv2 ${cls}" style="${cls === "up" ? "color:var(--good)" : cls === "down" ? "color:var(--bad)" : ""}">${verdict}</div>`
+    : ""}`;
   el.style.display = "";
 }
 
@@ -2120,6 +2138,12 @@ function describeTotalViews(value, info = {}, includeUnit = false, format = (num
   }
   if (info.partial || info.stale || info.youtubeStale || info.incomplete) return `${words} known views`;
   return `${words}${includeUnit ? " total views" : ""}`;
+}
+function pendingWatchMessage(e, newestSlug, { compact = false } = {}) {
+  if (!e || e.slug !== newestSlug || e.watchReport?.state !== "pending") return null;
+  const hasSavedValue = Number.isFinite(e.watch?.avgPercent);
+  if (compact) return hasSavedValue ? "Update pending" : "Waiting for YouTube";
+  return hasSavedValue ? "YouTube is still preparing an update." : "YouTube is still preparing this number.";
 }
 function pointToSegmentDistance(point, start, end) {
   const dx = end.x - start.x, dy = end.y - start.y;
@@ -2255,7 +2279,10 @@ function chartSummaryHTML(ch, point) {
         : "Times the X announcements were seen";
       rows = episodes.map((e) => {
         const value = M.get(e);
-        return [e, value == null ? "not available" : M.text(value), ""];
+        const missing = state.metric === "watched"
+          ? pendingWatchMessage(e, NEWEST.slug, { compact: true }) || "not available"
+          : "not available";
+        return [e, value == null ? missing : M.text(value), ""];
       });
     }
   } else {
@@ -2276,7 +2303,9 @@ function chartSummaryHTML(ch, point) {
       rows = episodes.map((e) => {
         const dataset = bySlug.get(e.slug);
         const found = dataset ? storedPointNear(dataset.data, xValue, { atOrBefore: state.mode === "race" }) : null;
-        const missing = state.mode === "race" && !e.historyReady ? "after air day" : "not available";
+        const missing = state.mode === "watch"
+          ? pendingWatchMessage(e, NEWEST.slug, { compact: true }) || "not available"
+          : state.mode === "race" && !e.historyReady ? "after air day" : "not available";
         if (!found) return [e, missing, ""];
         const value = state.mode === "watch" ? `${found.point.y}%` : nfmt(found.point.y);
         const when = state.mode !== "race" ? ""
@@ -2480,8 +2509,8 @@ function chartTitle() {
     return [METRIC_TITLES.views, notes.join(" · ")];
   }
   if (state.mode === "watch") {
-    // absence is silent (v5 rule): episodes without curves simply aren't drawn
-    return [currentView().title, `${scopeTag(PLOGO.yt, "YouTube only")} share still watching through the video`];
+    const waiting = pendingWatchMessage(NEWEST, NEWEST.slug, { compact: true });
+    return [currentView().title, `${scopeTag(PLOGO.yt, "YouTube only")} share still watching through the video${waiting ? ` · E${NEWEST.ep}: ${waiting}` : ""}`];
   }
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
@@ -2586,9 +2615,19 @@ const barTotals = {
       const y = bars[0].y;
       ctx.fillStyle = state.solo && state.solo !== e.slug ? DIMLINE : "#e8ecf4";
       if (chart.config._valueText) {
-        // alternate metric: the bar's own value, nothing when absent
+        // Alternate metrics print their saved value. The newest watch row may
+        // instead name YouTube's wait state; it is text, never a made-up bar.
         const text = chart.config._valueText(e);
         if (text != null) ctx.fillText(text, endX + 8, y);
+        else {
+          const missing = chart.config._missingText?.(e);
+          if (missing) {
+            ctx.fillStyle = "#8a94a8";
+            ctx.font = `600 12px ${FONT}`;
+            ctx.fillText(missing, chart.chartArea.left + 8, y);
+            ctx.font = `700 13px ${FONT}`;
+          }
+        }
         return;
       }
       const showing = visible.map((meta) => chart.data.datasets[meta.index].data[i]);
@@ -2638,6 +2677,8 @@ function externalTooltip(context) {
           html += `<div class="div"></div>`;
           for (const c of chans) html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[c.key] || "#8a94a8"}"></span>${TT_HTML[c.key] || c.key}<span class="val">${c.avgPercent == null ? "not available" : `${c.avgPercent}%`}</span></div>`;
         }
+        const pending = pendingWatchMessage(ep, NEWEST.slug);
+        if (pending) html += `<div class="note">${esc(pending)}</div>`;
       } else if (state.metric === "live" && ep.live) {
         html += `<div class="big">${nfmt(ep.live.avg)} <small style="font-weight:500;color:var(--t3)">average live viewers</small></div>`;
         const concurrents = (ep.live.series || []).map(pt => pt.v).filter(Number.isFinite);
@@ -2836,6 +2877,9 @@ function renderMetricBars(all, ordered, soloed) {
   };
   cfg._ordered = ordered;
   cfg._valueText = (e) => { const v = M.get(e); return v == null ? null : M.text(v); };
+  cfg._missingText = state.metric === "watched"
+    ? (e) => pendingWatchMessage(e, NEWEST.slug, { compact: true })
+    : null;
   return cfg;
 }
 function renderStandings() {
@@ -2927,6 +2971,7 @@ function render() {
     chart = new Chart(document.getElementById("chart"), cfg);
     chart.config._ordered = cfg._ordered;
     chart.config._valueText = cfg._valueText;
+    chart.config._missingText = cfg._missingText;
     document.getElementById("tt").style.opacity = 0;
     return;
   }
@@ -3172,7 +3217,9 @@ function buildTable() {
   // other three-week-old episodes, outliers and the row itself left out);
   // nothing is computed here (PRD v9 F16)
   const watchedCellFor = (e) => {
-    if (!hasYoutubeReading(e) || e.watch?.avgPercent == null) return "–";
+    if (!hasYoutubeReading(e) || e.watch?.avgPercent == null) {
+      return pendingWatchMessage(e, NEWEST.slug, { compact: true }) || "–";
+    }
     const v = e.watch.avgPercent;
     const wTypical = DATA.baselines?.watchPctBySlug?.[e.slug]?.typical ?? null;
     if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical * 100 > QUIET_ZONE) {
@@ -3197,7 +3244,7 @@ function buildTable() {
     for (const e of [...EPS].reverse()) {
       html += `<tr><td class="t">${esc(label(e))}</td>`;
       if (!hasYoutubeReading(e) || !e.watch) {
-        html += `<td colspan="5" style="text-align:left;color:var(--t3)">no watch report yet</td></tr>`;
+        html += `<td colspan="5" style="text-align:left;color:var(--t3)">${esc(pendingWatchMessage(e, NEWEST.slug) || "Watch report not available.")}</td></tr>`;
         continue;
       }
       const by = (key) => e.watch.byChannel?.find((c) => c.key === key)?.avgPercent;
@@ -3346,7 +3393,7 @@ function buildAbout() {
   <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
   <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
-  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived shows nothing there instead of a zero.</p>
+  <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says Waiting for YouTube instead of showing a zero.</p>
   <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
   <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The words are written by a model over the day’s checked facts; when the model fails, a plain deterministic read is written instead so no day goes without one. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — orange fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos. Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>

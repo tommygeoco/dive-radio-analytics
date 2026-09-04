@@ -85,7 +85,7 @@ Data is exported daily at 07:00 America/Phoenix. The OpenClaw job enters
 through `run-daily.mjs`, which prepares a clean `main` clone under
 `~/Library/Application Support/Dive Radio Analytics/publisher-main`, prevents
 overlap, records every invocation before checkout checks, and allows the
-scheduled run plus one morning recovery. Active development files never enter
+scheduled run plus one reserved recovery. Active development files never enter
 that clone. The scheduled bootstrap still comes from the launcher checkout
 until the operator points the job at the committed copy in `publisher-main`,
 so changes to the bootstrap files themselves must stay committed. Discovery
@@ -97,8 +97,10 @@ all present. The chain pulls main before capture, retries each required platform
 pull once, validates the final files, pushes the exact checked commit, deploys
 production, and compares all eight public files byte-for-byte. An 08:15 check
 proves production against that same clean clone and starts the one recovery
-only when production is not current; noon verifies without starting another
-chain. Alerts use a locked queue beside the clone, outside Git, and stay there
+when production is not current. If production is current and only the newest
+YouTube watch report is still pending, it keeps that attempt for the 12:15
+check, which reruns the complete chain once. Alerts use a locked queue beside
+the clone, outside Git, and stay there
 until OpenClaw returns a Slack message receipt; the delivery worker runs every
 five minutes. The pipeline also discovers newly published episodes and
 collects audience comments. A

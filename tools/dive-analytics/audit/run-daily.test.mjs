@@ -6,6 +6,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, 
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { ensureIsolatedCheckout, finishAttempt, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily } from "../run-daily.mjs";
+import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "../youtube-readiness.mjs";
 
 const base = { version: 1, timezone: "America/Phoenix", days: {} };
 const dayOneMorning = Date.parse("2026-09-02T14:00:00Z");
@@ -157,6 +158,26 @@ try {
   assert.equal(saved.days["2026-09-02"][0].status, "passed");
   assert.equal(saved.invocations["2026-09-02"].at(-1).status, "passed");
   assert.equal(existsSync(`${statePath}.run.lock`), false);
+
+  const pendingStatePath = join(temp, "state", "youtube-pending-attempts.json");
+  const queueCountBeforePending = queued.length;
+  const pendingStatus = await runDaily({
+    root: source,
+    isolatedRoot: isolated,
+    statePath: pendingStatePath,
+    now: dayOneMorning,
+    mode: "primary",
+    prepare: () => isolated,
+    getOrigin: () => "abc",
+    queue: (lines) => queued.push(...lines),
+    run: () => ({ status: YOUTUBE_WATCH_PENDING_EXIT }),
+  });
+  assert.equal(pendingStatus, 0, "the scheduled wrapper stays green after the morning build publishes honest pending data");
+  const pendingSaved = readAttemptState(pendingStatePath);
+  assert.equal(pendingSaved.days["2026-09-02"].length, 1, "the pending primary still spends the first whole-chain attempt");
+  assert.equal(pendingSaved.days["2026-09-02"][0].status, YOUTUBE_WATCH_PENDING_STATUS);
+  assert.equal(pendingSaved.invocations["2026-09-02"].at(-1).status, YOUTUBE_WATCH_PENDING_STATUS);
+  assert.equal(queued.length, queueCountBeforePending, "expected YouTube report delay does not queue a false production-failure alert");
 
   const failedStatus = await runDaily({
     root: source,
