@@ -39,6 +39,8 @@ for (const bad of [
   assert.equal(stageShowCapture(show, { ...bad, requestFailed: true }).capture.state, 'failed');
 }
 assert.equal(stageShowCapture({ ...show, date: '2026-09-05' }, args).capture.state, 'future');
+const promosOnly = { ...show, targets: show.targets.map(t => t.kind === 'x' ? { ...t, role: 'promo', playsStatus: 'none', broadcastId: null } : t) };
+assert.equal(stageShowCapture(promosOnly, args).capture.state, 'pending', 'X teaser posts cannot establish a complete episode broadcast cohort');
 assert.equal(promoteShowCapture(hist, staged).snapshots.length, 1, 'replayed reading is idempotent');
 assert.equal(youtubeViewsForDisplay({ 'yt:joindiveclub': { views: 50 }, 'yt:designertom': { views: null } }), null);
 assert.equal(parseBroadcastStatsLine('was_live|0|0').views, 0);

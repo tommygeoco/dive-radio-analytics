@@ -471,7 +471,10 @@ export function stageShowCapture(show, { ytStats = {}, xStats = {}, broadcastSta
     if (t.kind === "x" && (!value?.publicMetricsAvailable || ["views", "likes", "replies", "reposts", "bookmarks", "quotes"].some(k => !Number.isFinite(value?.[k]) || value[k] < 0))) missing.push(`${targetKey(t)} post metrics`);
     if (t.kind === "x" && t.role !== "promo" && t.playsStatus !== "none" && (!t.broadcastId || !Number.isFinite(broadcastStats[t.broadcastId]?.views))) missing.push(`${targetKey(t)} broadcast count`);
   }
-  for (const account of X_ACCOUNTS) if (!targets.some(t => t.kind === "x" && t.account === account)) missing.push(`x:${account} target`);
+  for (const account of X_ACCOUNTS) {
+    if (!targets.some(t => t.kind === "x" && t.account === account)) missing.push(`x:${account} target`);
+    if (!targets.some(t => t.kind === "x" && t.account === account && t.role !== "promo" && t.playsStatus !== "none" && t.broadcastId)) missing.push(`x:${account} episode broadcast`);
+  }
   const state = missing.length ? (requestFailed ? "failed" : "pending") : "ready";
   const capture = { checkedAt, state, reason: missing.length ? `Unavailable: ${[...new Set(missing)].join(", ")}` : null,
     reading: readingEnvelope({ source: "postlive", episode: show.slug, objectId: show.slug, pulledAt: checkedAt, state }) };
@@ -823,11 +826,11 @@ async function snapshot(args) {
   if (registryDirty) saveJson(REGISTRY_PATH, registry);
 
   if (rows.length === shows.length) renderVault(rows, now, errors);
-  receipt.status = errors.length ? "failed" : pending ? "pending" : "ok";
+  receipt.status = errors.length ? "failed" : pending || coverage.status !== "ok" ? "pending" : "ok";
   receipt.promoted = rows.map(r => r.show.slug);
   appendSourceReceipt("snapshot", receipt);
   if (errors.length) throw new Error("source snapshot request failed; incomplete cohorts were not promoted");
-  if (pending) process.exitCode = 20;
+  if (pending || coverage.status !== "ok") process.exitCode = 20;
   for (const w of playsWarnings) console.log(w);
   console.log(
     `postlive: snapshotted ${rows.length} show(s), ${ytIds.length} YT videos, ${xIds.length} X posts` +
