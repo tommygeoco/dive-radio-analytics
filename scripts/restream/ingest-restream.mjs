@@ -18,7 +18,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { getAccessToken } from "./restream-token.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -102,8 +102,9 @@ function toMs(t) {
   return Date.parse(t);
 }
 
-function hours(sec) {
-  return sec ? (sec / 3600).toFixed(1) : "0";
+export function formatWatchedHours(minutes) {
+  if (typeof minutes !== "number" || !Number.isFinite(minutes) || minutes < 0) return "–";
+  return `${(minutes / 60).toFixed(1)}h`;
 }
 
 function num(v) {
@@ -126,7 +127,7 @@ function summaryRow(ev, viewers, messages, mins) {
   const title = (ev.title || "Untitled").replace(/\|/g, "/").slice(0, 60);
   return `| ${fmtDate(eventDate(ev))} | ${title} | ${mins ?? "–"}m | ${num(t.max)} | ${num(
     t.mean
-  )} | ${num(t.viewsTotal)} | ${hours(t.watchedTime)}h | ${num(m.messagesTotal)} | ${num(
+  )} | ${num(t.viewsTotal)} | ${formatWatchedHours(t.watchedTime)} | ${num(m.messagesTotal)} | ${num(
     m.chattersTotal
   )} |`;
 }
@@ -140,7 +141,7 @@ function detailBlock(ev, viewers, messages, mins, channelMap) {
   lines.push(`- Event ID: \`${ev.id}\``);
   if (mins) lines.push(`- Duration: ${mins} min`);
   lines.push(
-    `- Viewers: peak ${num(t.max)}, avg ${num(t.mean)}, total views ${num(t.viewsTotal)}, watch time ${hours(t.watchedTime)}h`
+    `- Viewers: peak ${num(t.max)}, avg ${num(t.mean)}, total views ${num(t.viewsTotal)}, watch time ${formatWatchedHours(t.watchedTime)}`
   );
   lines.push(`- Chat: ${num(m.messagesTotal)} messages from ${num(m.chattersTotal)} chatters`);
   const byChannel = viewers?.byChannel || {};
@@ -154,7 +155,7 @@ function detailBlock(ev, viewers, messages, mins, channelMap) {
       lines.push(
         `  - ${channelName(id, channelMap, ev)}: peak ${num(v.max)}, avg ${num(
           v.mean
-        )}, views ${num(v.viewsTotal)}, watch ${hours(v.watchedTime)}h, chat ${num(
+        )}, views ${num(v.viewsTotal)}, watch ${formatWatchedHours(v.watchedTime)}, chat ${num(
           c.messagesTotal
         )}`
       );
@@ -256,7 +257,9 @@ async function main() {
   );
 }
 
-main().catch((err) => {
-  process.stderr.write(`restream-ingest: ${err.message}\n`);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    process.stderr.write(`restream-ingest: ${err.message}\n`);
+    process.exit(1);
+  });
+}

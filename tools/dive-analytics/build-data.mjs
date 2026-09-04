@@ -728,8 +728,164 @@ function attachComments(dive) {
 }
 
 // --- Restream live-session data (archived by restream-analytics-ingest) ---
-// Attaches per-episode `live` block: peak/avg concurrents, live views,
-// watched minutes, chat totals, per-minute series, per-channel splits.
+// A Restream event is joined to an episode only by a destination id already
+// stored in the registry. Time proximity is deliberately not a key: two shows
+// close together must never be allowed to borrow each other's live record.
+function liveSourceMaps(registry) {
+  const youtube = new Map();
+  const xBroadcast = new Map();
+  const add = (map, id, row, kind) => {
+    if (!id) return;
+    const prior = map.get(id);
+    if (prior && prior.slug !== row.slug) {
+      throw new Error(`live source ${kind}:${id} belongs to both ${prior.slug} and ${row.slug}`);
+    }
+    map.set(id, row);
+  };
+  for (const show of registry.shows || []) {
+    for (const target of show.targets || []) {
+      const row = { slug: show.slug, account: target.account };
+      if (target.kind === "youtube") add(youtube, target.videoId, row, "youtube");
+      if (target.kind === "x") add(xBroadcast, target.broadcastId, row, "x-broadcast");
+    }
+  }
+  return { youtube, xBroadcast };
+}
+
+function destinationSource(url, maps) {
+  const value = typeof url === "string" ? url : "";
+  const yt = value.match(/(?:youtube\.com\/(?:watch\?v=|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+  if (yt) return { kind: "youtube", id: yt[1], row: maps.youtube.get(yt[1]) || null };
+  const xb = value.match(/(?:x|twitter)\.com\/i\/broadcasts\/([A-Za-z0-9_-]+)/);
+  if (xb) return { kind: "x", id: xb[1], row: maps.xBroadcast.get(xb[1]) || null };
+  return null;
+}
+
+export function liveEventSlug(ev, registry) {
+  const maps = liveSourceMaps(registry);
+  const slugs = new Set();
+  for (const dest of ev?.event?.destinations || []) {
+    const source = destinationSource(dest.externalUrl, maps);
+    if (source?.row?.slug) slugs.add(source.row.slug);
+  }
+  if (slugs.size > 1) {
+    throw new Error(`Restream event ${ev?.event?.id || "unknown"} points at more than one registered episode`);
+  }
+  return slugs.size === 1 ? [...slugs][0] : null;
+}
+
+function sourceNumber(value) {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function eventMs(value) {
+  if (typeof value === "number") return value > 1e12 ? value : value * 1000;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function liveChannelLabel(dest, maps) {
+  const source = destinationSource(dest?.externalUrl, maps);
+  if (source?.row?.account) {
+    const key = source.kind === "youtube" ? `yt:${source.row.account}` : `x:${source.row.account}`;
+    return DESTS.find((d) => d.key === key)?.label || key;
+  }
+  const url = typeof dest?.externalUrl === "string" ? dest.externalUrl : "";
+  if (/linkedin\.com/.test(url)) return "LinkedIn";
+  try { return new URL(url).hostname.replace(/^www\./, "") || null; }
+  catch { return null; }
+}
+
+// Pure projection used by both the build and validator fixtures. Missing
+// provider fields stay null; an explicit provider zero stays zero.
+export function projectLiveSession(ev, registry) {
+  const maps = liveSourceMaps(registry);
+  const started = eventMs(ev?.event?.startedAt);
+  const finished = eventMs(ev?.event?.finishedAt);
+  const vt = ev?.viewers?.total || {};
+  const mt = ev?.messages?.total || {};
+  const hasChatSeries = Array.isArray(mt.messagesPerMinute);
+  const chatByMin = new Map();
+  if (hasChatSeries && Number.isFinite(started)) {
+    for (const point of mt.messagesPerMinute) {
+      const at = eventMs(point?.timestamp);
+      const messages = sourceNumber(point?.messages);
+      if (Number.isFinite(at) && messages != null) chatByMin.set(Math.round((at - started) / 60000), messages);
+    }
+  }
+
+  const chanLabel = {};
+  for (const dest of ev?.event?.destinations || []) {
+    chanLabel[String(dest.channelId)] = liveChannelLabel(dest, maps) || `channel ${dest.channelId}`;
+  }
+  const chanMinutes = {};
+  if (Number.isFinite(started)) {
+    for (const [cid, cv] of Object.entries(ev?.viewers?.byChannel || {})) {
+      if (!Array.isArray(cv?.viewersPerMinute)) continue;
+      const minuteMap = new Map();
+      for (const point of cv.viewersPerMinute) {
+        const at = eventMs(point?.timestamp);
+        const viewers = sourceNumber(point?.viewers);
+        if (Number.isFinite(at) && viewers != null) minuteMap.set(Math.round((at - started) / 60000), viewers);
+      }
+      chanMinutes[chanLabel[cid] || `channel ${cid}`] = minuteMap;
+    }
+  }
+
+  const series = [];
+  let chatCum = hasChatSeries ? 0 : null;
+  if (Number.isFinite(started) && Array.isArray(vt.viewersPerMinute)) {
+    for (const point of vt.viewersPerMinute) {
+      const at = eventMs(point?.timestamp);
+      if (!Number.isFinite(at)) continue;
+      const m = Math.round((at - started) / 60000);
+      if (m < 0) continue;
+      const c = hasChatSeries ? (chatByMin.get(m) ?? 0) : null;
+      if (c != null) chatCum += c;
+      const byChan = {};
+      for (const [label, minuteMap] of Object.entries(chanMinutes)) byChan[label] = minuteMap.get(m) ?? 0;
+      series.push({ m, v: sourceNumber(point?.viewers), c, ct: chatCum, byChan });
+    }
+  }
+
+  const byChannel = [];
+  const channelIds = new Set([
+    ...Object.keys(ev?.viewers?.byChannel || {}),
+    ...Object.keys(ev?.messages?.byChannel || {}),
+  ]);
+  for (const cid of channelIds) {
+    const cv = ev?.viewers?.byChannel?.[cid] || {};
+    const cm = ev?.messages?.byChannel?.[cid] || {};
+    const row = {
+      label: chanLabel[cid] || `channel ${cid}`,
+      peak: sourceNumber(cv.max),
+      avg: sourceNumber(cv.mean),
+      views: sourceNumber(cv.viewsTotal),
+      watchedMin: sourceNumber(cv.watchedTime),
+      messages: sourceNumber(cm.messagesTotal),
+      chatters: sourceNumber(cm.chattersTotal),
+    };
+    if (Object.values(row).some((value) => typeof value === "number")) byChannel.push(row);
+  }
+  byChannel.sort((a, b) => (b.views ?? -1) - (a.views ?? -1) || a.label.localeCompare(b.label));
+
+  return {
+    peak: sourceNumber(vt.max),
+    avg: sourceNumber(vt.mean),
+    liveViews: sourceNumber(vt.viewsTotal),
+    watchedMin: sourceNumber(vt.watchedTime),
+    chatMessages: sourceNumber(mt.messagesTotal),
+    chatters: sourceNumber(mt.chattersTotal),
+    durationMin: Number.isFinite(started) && Number.isFinite(finished) && finished > started
+      ? Math.round((finished - started) / 60000)
+      : null,
+    series,
+    byChannel,
+  };
+}
+
+// Attaches per-episode `live` block: peak/avg concurrent viewers, people who
+// watched live, watched minutes, chat totals, per-minute series, and channels.
 function attachLiveSessions(dive, registry) {
   if (!existsSync(EVENTS_DIR)) {
     // The Restream event archive lives only on the pipeline machine. A live
@@ -748,103 +904,22 @@ function attachLiveSessions(dive, registry) {
     } catch { /* no previous artifact — live stays absent */ }
     return;
   }
-  const vidAccount = {};
-  for (const s of registry.shows) {
-    for (const t of s.targets || []) if (t.videoId) vidAccount[t.videoId] = t.account;
-  }
-  const events = [];
+  const eventsBySlug = new Map();
   for (const f of readdirSync(EVENTS_DIR)) {
     if (!f.endsWith(".json")) continue;
-    try {
-      const ev = JSON.parse(readFileSync(join(EVENTS_DIR, f), "utf8"));
-      if (ev?.viewers?.total && ev?.event?.startedAt) events.push(ev);
-    } catch { /* skip malformed archive */ }
+    let ev = null;
+    try { ev = JSON.parse(readFileSync(join(EVENTS_DIR, f), "utf8")); }
+    catch { continue; }
+    if (!ev?.event?.startedAt || (!ev?.viewers && !ev?.messages)) continue;
+    const slug = liveEventSlug(ev, registry);
+    if (!slug) continue;
+    if (eventsBySlug.has(slug)) throw new Error(`more than one Restream event matches ${slug}`);
+    eventsBySlug.set(slug, ev);
   }
   for (const e of dive) {
-    const prem = premiereMs(e.premiere);
-    let best = null;
-    for (const ev of events) {
-      const diff = Math.abs(ev.event.startedAt * 1000 - prem);
-      if (diff < 36 * 3600000 && (!best || diff < best.diff)) best = { ev, diff };
-    }
-    if (!best) continue;
-    const ev = best.ev;
-    const started = ev.event.startedAt * 1000;
-    const finished = (ev.event.finishedAt || 0) * 1000;
-    const vt = ev.viewers.total;
-    const mt = ev.messages?.total || {};
-    const chatByMin = new Map(
-      (mt.messagesPerMinute || []).map((p) => [Math.round((p.timestamp - started) / 60000), p.messages])
-    );
-    // channel labels from event destinations (YT videoId -> registry account)
-    const chanLabel = {};
-    let xCount = 0;
-    for (const d of ev.event.destinations || []) {
-      const u = d.externalUrl || "";
-      const ytm = u.match(/(?:youtube\.com\/(?:watch\?v=|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
-      if (ytm) {
-        const acct = vidAccount[ytm[1]];
-        chanLabel[d.channelId] =
-          acct === "joindiveclub" ? "YT Dive Club" : acct === "designertom" ? "YT DesignerTom" : "YouTube";
-      } else if (/(?:x|twitter)\.com/.test(u)) {
-        xCount += 1;
-        chanLabel[d.channelId] = xCount === 1 ? "X" : `X #${xCount}`;
-      } else if (u) {
-        chanLabel[d.channelId] = new URL(u).hostname.replace(/^www\./, "");
-      }
-    }
-
-    // per-channel per-minute concurrents (only channels that report any),
-    // so the tooltip can show what the total is made of.
-    const chanMinutes = {};
-    for (const [cid, cv] of Object.entries(ev.viewers.byChannel || {})) {
-      if (!(cv.max > 0)) continue;
-      chanMinutes[chanLabel[cid] || `channel ${cid}`] = new Map(
-        (cv.viewersPerMinute || []).map((p) => [Math.round((p.timestamp - started) / 60000), p.viewers])
-      );
-    }
-
-    // series carries per-minute chat (c) AND running chat total (ct) so the
-    // tooltip can show "N messages so far" — a lone per-minute 0 reads as broken.
-    const series = [];
-    let chatCum = 0;
-    for (const p of vt.viewersPerMinute || []) {
-      const m = Math.round((p.timestamp - started) / 60000);
-      const c = chatByMin.get(m) || 0;
-      chatCum += c;
-      if (m >= 0) {
-        const byChan = {};
-        for (const [l, map] of Object.entries(chanMinutes)) byChan[l] = map.get(m) || 0;
-        series.push({ m, v: p.viewers, c, ct: chatCum, byChan });
-      }
-    }
-
-    const byChannel = [];
-    for (const [cid, cv] of Object.entries(ev.viewers.byChannel || {})) {
-      const cm = ev.messages?.byChannel?.[cid] || {};
-      if (!(cv.max || cv.viewsTotal || cm.messagesTotal)) continue;
-      byChannel.push({
-        label: chanLabel[cid] || `channel ${cid}`,
-        peak: cv.max || 0,
-        avg: cv.mean || 0,
-        views: cv.viewsTotal || 0,
-        messages: cm.messagesTotal || 0,
-        chatters: cm.chattersTotal || 0,
-      });
-    }
-    byChannel.sort((a, b) => b.views - a.views);
-
-    e.live = {
-      peak: vt.max || 0,
-      avg: vt.mean || 0,
-      liveViews: vt.viewsTotal || 0,
-      watchedMin: vt.watchedTime || 0,
-      chatMessages: mt.messagesTotal || 0,
-      chatters: mt.chattersTotal || 0,
-      durationMin: finished > started ? Math.round((finished - started) / 60000) : null,
-      series,
-      byChannel,
-    };
+    const ev = eventsBySlug.get(e.slug);
+    if (!ev) continue;
+    e.live = projectLiveSession(ev, registry);
     // PRD v12: the two live-depth readings per episode, from the one definition
     const depth = liveDepthOf(e);
     e.live.minutesPerViewer = depth?.minutesPerViewer ?? null;

@@ -78,12 +78,12 @@
    "step": "live",
    "script": "scripts/restream/ingest-restream.mjs",
    "writes": [
-    "data/restream/events/*.json",
-    "data/restream/state.json"
-   ],
-   "freshnessKey": null,
-   "required": false,
-   "scope": "all"
+      "data/restream/events/*.json",
+      "data/restream/state.json"
+    ],
+    "freshnessKey": null,
+    "required": true,
+    "scope": "all"
   },
   {
    "step": "ratings",

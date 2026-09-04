@@ -1515,8 +1515,14 @@ function buildHero() {
 
   if (metric === "live") {
     if (e.live) {
-      html += `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.live.avg)}</span> <small>average live viewers</small></div></div>`;
-      html += `<div class="gline"><span class="g" data-tip="peak live viewers" tabindex="0">${ICONS.users}<b>${nfmt(e.live.peak)}</b></span><span class="g" data-tip="chat messages" tabindex="0">${ICONS.chat}<b>${nfmt(e.live.chatMessages)}</b></span><span class="g" data-tip="live session length" tabindex="0">${ICONS.clock}<b>${e.live.durationMin ?? "–"} min</b></span></div>`;
+      html += e.live.avg == null
+        ? `<div class="unavailable">Average live viewers are not available.</div>`
+        : `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.live.avg)}</span> <small>average live viewers</small></div></div>`;
+      const liveFacts = [];
+      if (e.live.peak != null) liveFacts.push(`<span class="g" data-tip="peak live viewers" tabindex="0">${ICONS.users}<b>${nfmt(e.live.peak)}</b></span>`);
+      if (e.live.liveViews != null) liveFacts.push(`<span class="g" data-tip="people who watched live" tabindex="0">${ICONS.eye}<b>${nfmt(e.live.liveViews)}</b></span>`);
+      if (e.live.watchedMin != null) liveFacts.push(`<span class="g" data-tip="minutes watched live" tabindex="0">${ICONS.clock}<b>${nfmt(e.live.watchedMin)} min</b></span>`);
+      if (liveFacts.length) html += `<div class="gline">${liveFacts.join("")}</div>`;
     } else {
       html += `<div class="unavailable">Live data is not available for this episode.</div>`;
     }
@@ -1564,6 +1570,15 @@ function buildHero() {
       ], "total views");
     } else if (tv != null) {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
+    }
+    if (e.live) {
+      const liveNow = [
+        e.live.peak == null ? null : `${nfmt(e.live.peak)} peak`,
+        e.live.avg == null ? null : `${nfmt(e.live.avg)} average`,
+        e.live.liveViews == null ? null : `${nfmt(e.live.liveViews)} watched live`,
+        e.live.watchedMin == null ? null : `${nfmt(e.live.watchedMin)} minutes watched`,
+      ].filter(Boolean);
+      if (liveNow.length) html += `<div class="state">Live session · ${liveNow.join(" · ")}</div>`;
     }
   }
   // No health chip here (owner directive 2026-08-23): the hero states one
@@ -1792,9 +1807,29 @@ function buildPanel() {
 
   // — live —
   if (e.live) {
-    html += `<div class="psec"><div class="kicker">Live</div>`;
-    html += `<div class="pnum">${e.live.peak} <span class="hint">peak viewers</span></div>`;
-    html += `<div class="gline"><span class="g" data-tip="average live viewers" tabindex="0">${ICONS.users}<b>${e.live.avg}</b></span><span class="g" data-tip="chat messages" tabindex="0">${ICONS.chat}<b>${nfmt(e.live.chatMessages)}</b></span><span class="g" data-tip="duration" tabindex="0">${ICONS.clock}<b>${e.live.durationMin ?? "–"} min</b></span></div>`;
+    html += `<div class="psec wide"><div class="kicker">Live session</div>`;
+    html += `<div class="pnum">${metricText(e.live.peak, "not available")} <span class="hint">peak viewers</span></div>`;
+    const liveRows = [
+      ["Average viewers", e.live.avg],
+      ["People who watched live", e.live.liveViews],
+      ["Minutes watched live", e.live.watchedMin],
+      ["Chat messages", e.live.chatMessages],
+      ["People who chatted", e.live.chatters],
+      ["Show length", e.live.durationMin],
+    ];
+    for (const [name, value] of liveRows) {
+      const suffix = name === "Minutes watched live" || name === "Show length" ? " min" : "";
+      html += `<div class="row">${name}<span class="val">${value == null ? "not available" : nfmt(value) + suffix}</span></div>`;
+    }
+    if (e.live.byChannel?.length) {
+      html += `<div class="sect"><div class="mut">By destination</div>`;
+      for (const channel of e.live.byChannel) {
+        const watched = channel.views == null ? "viewers not available" : `${nfmt(channel.views)} watched`;
+        const minutes = channel.watchedMin == null ? "minutes not available" : `${nfmt(channel.watchedMin)} min`;
+        html += `<div class="row">${esc(channel.label)}<span class="val">${watched} · ${minutes}</span></div>`;
+      }
+      html += `</div>`;
+    }
     html += `</div>`;
   }
 
@@ -2888,12 +2923,12 @@ function buildTable() {
   const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
   let html = "<table><tr>";
   if (kind === "live") {
-    html += "<th>Episode</th><th>Peak live</th><th>Avg</th><th>Chat msgs</th><th>Chatters</th><th>Duration</th></tr>";
+    html += "<th>Episode</th><th>Peak</th><th>Average</th><th>Watched live</th><th>Minutes watched</th><th>Chat messages</th><th>Chatters</th><th>Length</th></tr>";
     for (const e of [...EPS].reverse()) {
       html += `<tr><td class="t">${esc(label(e))}</td>`;
       html += e.live
-        ? `<td class="t">${e.live.peak}</td><td>${e.live.avg}</td><td>${nfmt(e.live.chatMessages)}</td><td>${nfmt(e.live.chatters)}</td><td>${e.live.durationMin ?? "–"} min</td>`
-        : `<td colspan="5" style="text-align:left;color:var(--t3)">no live data</td>`;
+        ? `<td class="t">${metricText(e.live.peak)}</td><td>${metricText(e.live.avg)}</td><td>${metricText(e.live.liveViews)}</td><td>${metricText(e.live.watchedMin)}</td><td>${metricText(e.live.chatMessages)}</td><td>${metricText(e.live.chatters)}</td><td>${e.live.durationMin == null ? "–" : nfmt(e.live.durationMin) + " min"}</td>`
+        : `<td colspan="7" style="text-align:left;color:var(--t3)">live data is not available</td>`;
       html += "</tr>";
     }
   } else if (kind === "watched") {

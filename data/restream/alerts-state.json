@@ -1,11 +1,7 @@
 {
-  "episodeCount": 7,
-  "newestSlug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-  "paceRank": {
-    "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-    "rank": 1,
-    "of": 4
-  },
+  "episodeCount": 8,
+  "newestSlug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+  "paceRank": null,
   "complaints": {
     "2026-07-17-dive-radio-bumpy-takeoff": 0,
     "2026-07-23-dive-radio-data-vs-intuition-web-designe": 0,
@@ -13,7 +9,8 @@
     "2026-08-06-dive-radio-backyard-designers-behind-the": 2,
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": 0,
     "2026-08-20-dive-radio-the-mascot-industrial-complex": 0,
-    "2026-08-28-dive-radio-steal-these-ai-design-pattern": 0
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern": 0,
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": 0
   },
   "reviewCount": 1,
   "w1v": {
@@ -23,11 +20,12 @@
     "2026-08-06-dive-radio-backyard-designers-behind-the": null,
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": null,
     "2026-08-20-dive-radio-the-mascot-industrial-complex": 1189,
-    "2026-08-28-dive-radio-steal-these-ai-design-pattern": null
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern": null,
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": null
   },
-  "staleCount": 0,
-  "healthDate": "2026-09-01",
-  "healthFormula": "health-v4",
+  "staleCount": 1,
+  "healthDate": "2026-09-03",
+  "healthFormula": "health-v8",
   "healthDirection": "mixed",
   "promoFlagged": [
     "2026-07-30-dive-radio-mixed-media-workflows-game-de",

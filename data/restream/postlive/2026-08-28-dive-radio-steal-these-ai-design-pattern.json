@@ -3447,6 +3447,59 @@
           "peakConcurrent": 320
         }
       }
+    },
+    {
+      "ts": "2026-09-04T03:42:25.402Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2699,
+          "detail": {
+            "views": 2699,
+            "likes": 27,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 2574,
+          "detail": {
+            "views": 2574,
+            "likes": 16,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "views": 5593,
+          "detail": {
+            "views": 2902,
+            "likes": 21,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 1074,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 408
+        },
+        "x:designertom": {
+          "views": 8038,
+          "detail": {
+            "views": 5886,
+            "likes": 6,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1414,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 320
+        }
+      }
     }
   ]
 }

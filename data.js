@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-04T03:09:18.791Z",
+ "generatedAt": "2026-09-04T03:51:32.283Z",
  "chaptersUpdatedAt": "2026-09-02T00:47:33.992Z",
  "dests": [
   {
@@ -4022,6 +4022,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 286
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1256,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 849,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1524,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3855,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 286
+      }
+     }
     }
    ],
    "weekly": [
@@ -4195,7 +4226,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1256,
@@ -4216,7 +4247,7 @@ window.DIVE_DATA = {
       "peakConcurrent": 466
      },
      "x:designertom": {
-      "views": 3853,
+      "views": 3855,
       "likes": 26,
       "comments": 3,
       "plays": 760,
@@ -4225,9 +4256,9 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 2105,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
-    "xImpressions": 5377,
+    "xImpressions": 5379,
     "xPlays": 1784,
     "xPlaysInfo": {
      "value": 1784,
@@ -4242,7 +4273,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -4261,7 +4292,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1pKdRRwpkaQJW"
    },
    "transcript": true,
-   "ageDays": 48.3,
+   "ageDays": 48.4,
    "metrics": {
     "week1Velocity": 1830,
     "week1Note": null,
@@ -4285,7 +4316,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 1,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 2,
+       "X @designertom": 0,
        "YT DesignerTom": 1
       }
      },
@@ -4295,7 +4329,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 4,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -4305,7 +4342,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 8,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -4315,7 +4355,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 10,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -4325,7 +4368,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 14,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -4335,7 +4381,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 18,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -4345,7 +4394,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -4355,7 +4407,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 28,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 49,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -4365,7 +4420,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 34,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -4375,7 +4433,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -4385,7 +4446,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 37,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -4395,7 +4459,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 39,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -4405,7 +4472,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 45,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 50,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -4415,7 +4485,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 47,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -4425,7 +4498,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 51,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 55,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4435,7 +4511,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 53,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 62,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -4445,7 +4524,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 57,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 65,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -4455,7 +4537,10 @@ window.DIVE_DATA = {
       "c": 7,
       "ct": 64,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 65,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -4465,7 +4550,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 70,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 60,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -4475,7 +4563,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 72,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 59,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4485,7 +4576,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 74,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 63,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4495,7 +4589,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 76,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 62,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4505,7 +4602,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 77,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 67,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4515,7 +4615,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 80,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 63,
+       "X @designertom": 0,
        "YT DesignerTom": 26
       }
      },
@@ -4525,7 +4628,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 84,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 62,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -4535,7 +4641,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 85,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 56,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -4545,7 +4654,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 90,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 54,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4555,7 +4667,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 93,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4565,7 +4680,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 96,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 56,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4575,7 +4693,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 59,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4585,7 +4706,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 99,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 58,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4595,7 +4719,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 99,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 59,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4605,7 +4732,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 100,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 55,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -4615,7 +4745,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 101,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 52,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -4625,7 +4758,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 105,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -4635,7 +4771,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 108,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 64,
+       "X @designertom": 0,
        "YT DesignerTom": 26
       }
      },
@@ -4645,7 +4784,10 @@ window.DIVE_DATA = {
       "c": 7,
       "ct": 115,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 63,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4655,7 +4797,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 117,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4665,7 +4810,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 58,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4675,7 +4823,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 121,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 61,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4685,7 +4836,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 121,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 60,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4695,7 +4849,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 123,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 58,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4705,7 +4862,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 126,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 55,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4715,7 +4875,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 126,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 56,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4725,7 +4888,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 127,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 54,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4735,7 +4901,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 128,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4745,7 +4914,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 130,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 59,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4755,7 +4927,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 61,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4765,7 +4940,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 134,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 60,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4775,7 +4953,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 136,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 58,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4785,7 +4966,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 140,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 60,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4795,7 +4979,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 145,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 64,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -4805,7 +4992,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 145,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 67,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4815,7 +5005,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 145,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 65,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4825,7 +5018,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 145,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 60,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4835,7 +5031,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 145,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 62,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4845,7 +5044,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 145,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -4855,7 +5057,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 146,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4865,7 +5070,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 148,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 58,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4875,7 +5083,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 151,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 60,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4885,7 +5096,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 152,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 57,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4895,7 +5109,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 156,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 55,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4905,7 +5122,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 156,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 54,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -4915,7 +5135,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 157,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 53,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -4925,7 +5148,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 157,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 52,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -4935,7 +5161,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 157,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -4945,7 +5174,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 160,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -4955,7 +5187,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 162,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -4965,7 +5200,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 164,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -4975,7 +5213,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 166,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -4985,7 +5226,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 168,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -4995,7 +5239,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 172,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -5005,7 +5252,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 173,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 49,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -5015,7 +5265,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 175,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -5025,7 +5278,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 176,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -5035,7 +5291,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 177,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5045,7 +5304,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 180,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5055,7 +5317,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 181,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5065,7 +5330,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 181,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -5075,7 +5343,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 187,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5085,7 +5356,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 189,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -5095,7 +5369,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 191,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5105,7 +5382,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 194,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5115,7 +5395,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 198,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5125,7 +5408,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 200,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -5135,7 +5421,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 202,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5145,7 +5434,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 202,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5155,7 +5447,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 204,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -5165,7 +5460,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 207,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5175,7 +5473,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 208,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5185,7 +5486,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 212,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5195,7 +5499,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 215,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5205,7 +5512,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 221,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5215,7 +5525,10 @@ window.DIVE_DATA = {
       "c": 14,
       "ct": 235,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5225,7 +5538,10 @@ window.DIVE_DATA = {
       "c": 10,
       "ct": 245,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5235,7 +5551,10 @@ window.DIVE_DATA = {
       "c": 17,
       "ct": 262,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -5245,7 +5564,10 @@ window.DIVE_DATA = {
       "c": 9,
       "ct": 271,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -5255,7 +5577,10 @@ window.DIVE_DATA = {
       "c": 10,
       "ct": 281,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5265,7 +5590,10 @@ window.DIVE_DATA = {
       "c": 11,
       "ct": 292,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5275,7 +5603,10 @@ window.DIVE_DATA = {
       "c": 8,
       "ct": 300,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5285,7 +5616,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 300,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -5295,7 +5629,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 303,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -5305,7 +5642,10 @@ window.DIVE_DATA = {
       "c": 8,
       "ct": 311,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -5315,7 +5655,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 317,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5325,7 +5668,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 317,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5335,7 +5681,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 318,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5345,7 +5694,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 321,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -5355,7 +5707,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 326,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5365,7 +5720,10 @@ window.DIVE_DATA = {
       "c": 10,
       "ct": 336,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -5375,7 +5733,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 340,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -5385,7 +5746,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 343,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -5395,7 +5759,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 347,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -5405,7 +5772,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 349,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -5415,7 +5785,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 350,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -5425,7 +5798,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 352,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -5435,7 +5811,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 352,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -5445,7 +5824,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 355,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -5455,7 +5837,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 357,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -5465,7 +5850,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 360,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -5475,7 +5863,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 360,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -5485,7 +5876,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 362,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -5495,7 +5889,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 366,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -5505,7 +5902,10 @@ window.DIVE_DATA = {
       "c": 16,
       "ct": 382,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -5515,25 +5915,30 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 383,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      }
     ],
     "byChannel": [
      {
-      "label": "X #2",
+      "label": "X @ridd_design",
       "peak": 0,
       "avg": 0,
       "views": 463,
+      "watchedMin": 0,
       "messages": 20,
       "chatters": 10
      },
      {
-      "label": "X",
+      "label": "X @designertom",
       "peak": 0,
       "avg": 0,
       "views": 285,
+      "watchedMin": 0,
       "messages": 15,
       "chatters": 8
      },
@@ -5542,6 +5947,7 @@ window.DIVE_DATA = {
       "peak": 67,
       "avg": 47,
       "views": 252,
+      "watchedMin": 5828,
       "messages": 246,
       "chatters": 55
      },
@@ -5550,14 +5956,16 @@ window.DIVE_DATA = {
       "peak": 26,
       "avg": 17,
       "views": 131,
+      "watchedMin": 2108,
       "messages": 59,
       "chatters": 22
      },
      {
-      "label": "linkedin.com",
+      "label": "LinkedIn",
       "peak": 0,
       "avg": 0,
       "views": 0,
+      "watchedMin": 0,
       "messages": 43,
       "chatters": 9
      }
@@ -6264,7 +6672,7 @@ window.DIVE_DATA = {
       "share": 13.4
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 66.9,
      "openFloor": 11.9,
@@ -10067,6 +10475,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 599
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1196,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 926,
+       "likes": 39,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2240,
+       "likes": 1,
+       "comments": 1,
+       "plays": 635,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3901,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1179,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 599
+      }
+     }
     }
    ],
    "weekly": [
@@ -10240,10 +10679,10 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1195,
+      "views": 1196,
       "likes": 39,
       "comments": 2
      },
@@ -10269,8 +10708,8 @@ window.DIVE_DATA = {
       "peakConcurrent": 599
      }
     },
-    "ytTotal": 2121,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "ytTotal": 2122,
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
     "xImpressions": 6141,
     "xPlays": 1814,
@@ -10282,12 +10721,12 @@ window.DIVE_DATA = {
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3935,
+    "totalViews": 3936,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -10306,7 +10745,7 @@ window.DIVE_DATA = {
     "x:ridd_design": "https://x.com/i/broadcasts/1yxBeeoanDOJN"
    },
    "transcript": true,
-   "ageDays": 42.3,
+   "ageDays": 42.4,
    "metrics": {
     "week1Velocity": 1751,
     "week1Note": null,
@@ -10330,7 +10769,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 7,
+       "X @designertom": 0,
        "YT DesignerTom": 2
       }
      },
@@ -10340,7 +10782,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 5,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -10350,7 +10795,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 7,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10360,7 +10808,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 11,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -10370,7 +10821,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 14,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -10380,7 +10834,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 18,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -10390,7 +10847,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10400,7 +10860,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 26,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10410,7 +10873,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -10420,7 +10886,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 28,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10430,7 +10899,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 32,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10440,7 +10912,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 34,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -10450,7 +10925,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -10460,7 +10938,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10470,7 +10951,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10480,7 +10964,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 37,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10490,7 +10977,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 38,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10500,7 +10990,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 38,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10510,7 +11003,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 43,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10520,7 +11016,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 43,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10530,7 +11029,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 46,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10540,7 +11042,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 46,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10550,7 +11055,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 46,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10560,7 +11068,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 49,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10570,7 +11081,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 53,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10580,7 +11094,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 54,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10590,7 +11107,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 54,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10600,7 +11120,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 55,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10610,7 +11133,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 57,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10620,7 +11146,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 57,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10630,7 +11159,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 58,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -10640,7 +11172,10 @@ window.DIVE_DATA = {
       "c": 9,
       "ct": 67,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -10650,7 +11185,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 68,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -10660,7 +11198,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 71,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -10670,7 +11211,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 73,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -10680,7 +11224,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10690,7 +11237,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 75,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10700,7 +11250,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 76,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10710,7 +11263,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 77,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10720,7 +11276,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 80,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -10730,7 +11289,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 84,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -10740,7 +11302,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 86,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 49,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -10750,7 +11315,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 87,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -10760,7 +11328,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 87,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -10770,7 +11341,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 91,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -10780,7 +11354,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 93,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -10790,7 +11367,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10800,7 +11380,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 100,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -10810,7 +11393,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 101,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10820,7 +11406,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 106,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 50,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10830,7 +11419,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 106,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 51,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -10840,7 +11432,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 109,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -10850,7 +11445,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 110,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -10860,7 +11458,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 113,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -10870,7 +11471,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 114,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -10880,7 +11484,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 118,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 49,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -10890,7 +11497,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 121,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -10900,7 +11510,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 127,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 49,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -10910,7 +11523,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 129,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -10920,7 +11536,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -10930,7 +11549,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 50,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -10940,7 +11562,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 133,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 49,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -10950,7 +11575,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 133,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -10960,7 +11588,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 134,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -10970,7 +11601,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 135,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -10980,7 +11614,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 136,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 47,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -10990,7 +11627,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 139,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11000,7 +11640,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 141,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11010,7 +11653,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 143,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11020,7 +11666,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 144,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11030,7 +11679,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 144,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11040,7 +11692,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 146,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11050,7 +11705,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 146,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11060,7 +11718,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 146,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11070,7 +11731,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 150,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11080,7 +11744,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 152,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11090,7 +11757,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 152,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11100,7 +11770,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 152,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11110,7 +11783,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11120,7 +11796,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11130,7 +11809,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11140,7 +11822,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11150,7 +11835,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 48,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11160,7 +11848,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 46,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11170,7 +11861,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 156,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11180,7 +11874,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 158,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11190,7 +11887,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 163,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11200,7 +11900,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 166,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11210,7 +11913,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 168,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11220,7 +11926,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 170,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11230,7 +11939,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 170,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11240,7 +11952,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 170,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11250,7 +11965,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 172,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -11260,7 +11978,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 172,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -11270,7 +11991,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 176,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -11280,7 +12004,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 180,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11290,7 +12017,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 185,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -11300,7 +12030,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 189,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -11310,7 +12043,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 191,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11320,7 +12056,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 192,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11330,7 +12069,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 194,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11340,7 +12082,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 197,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11350,7 +12095,10 @@ window.DIVE_DATA = {
       "c": 9,
       "ct": 206,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11360,7 +12108,10 @@ window.DIVE_DATA = {
       "c": 32,
       "ct": 238,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11370,7 +12121,10 @@ window.DIVE_DATA = {
       "c": 19,
       "ct": 257,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11380,7 +12134,10 @@ window.DIVE_DATA = {
       "c": 13,
       "ct": 270,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -11390,7 +12147,10 @@ window.DIVE_DATA = {
       "c": 14,
       "ct": 284,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -11400,7 +12160,10 @@ window.DIVE_DATA = {
       "c": 12,
       "ct": 296,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -11410,7 +12173,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 298,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -11420,7 +12186,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 298,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -11430,7 +12199,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 298,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -11440,7 +12212,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 299,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -11450,7 +12225,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 302,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -11460,7 +12238,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 302,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -11470,7 +12251,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 302,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -11480,7 +12264,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 303,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -11490,7 +12277,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 303,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -11500,7 +12290,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 305,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -11510,7 +12303,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 307,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -11520,25 +12316,30 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 310,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      }
     ],
     "byChannel": [
      {
-      "label": "X #2",
+      "label": "X @ridd_design",
       "peak": 0,
       "avg": 0,
       "views": 580,
+      "watchedMin": 0,
       "messages": 8,
       "chatters": 3
      },
      {
-      "label": "X",
+      "label": "X @designertom",
       "peak": 0,
       "avg": 0,
       "views": 243,
+      "watchedMin": 0,
       "messages": 7,
       "chatters": 5
      },
@@ -11547,6 +12348,7 @@ window.DIVE_DATA = {
       "peak": 51,
       "avg": 39,
       "views": 180,
+      "watchedMin": 4680,
       "messages": 206,
       "chatters": 29
      },
@@ -11555,14 +12357,16 @@ window.DIVE_DATA = {
       "peak": 24,
       "avg": 16,
       "views": 116,
+      "watchedMin": 1920,
       "messages": 83,
       "chatters": 13
      },
      {
-      "label": "linkedin.com",
+      "label": "LinkedIn",
       "peak": 0,
       "avg": 0,
       "views": 0,
+      "watchedMin": 0,
       "messages": 6,
       "chatters": 5
      }
@@ -12263,7 +13067,7 @@ window.DIVE_DATA = {
       "share": 11.1
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 66.3,
      "openFloor": 13.9,
@@ -15260,6 +16064,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 399
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 951,
+       "likes": 21,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 676,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3198,
+       "likes": 11,
+       "comments": 1,
+       "plays": 1438,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16653,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2803,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 399
+      }
+     }
     }
    ],
    "weekly": [
@@ -15329,7 +16164,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 951,
@@ -15359,7 +16194,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 1627,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
     "xImpressions": 19851,
     "xPlays": 4241,
@@ -15376,7 +16211,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -15395,13 +16230,13 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1nGeLLpzNAQKX"
    },
    "transcript": true,
-   "ageDays": 35.3,
+   "ageDays": 35.4,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 29.5,
-    "anomaly": "more than double what a typical episode gets (4,241 X plays vs a typical 1,823; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,241 X plays vs a typical 1,895; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -15419,7 +16254,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 2,
+       "X @designertom": 0,
        "YT DesignerTom": 3
       }
      },
@@ -15429,7 +16267,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 1,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 5,
+       "X @designertom": 0,
        "YT DesignerTom": 6
       }
      },
@@ -15439,7 +16280,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 3,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 11,
+       "X @designertom": 0,
        "YT DesignerTom": 7
       }
      },
@@ -15449,7 +16293,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 7,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 11,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -15459,7 +16306,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 9,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 14,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15469,7 +16319,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 13,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -15479,7 +16332,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 15,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15489,7 +16345,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 17,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15499,7 +16358,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 18,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -15509,7 +16371,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 18,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -15519,7 +16384,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 19,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 7
       }
      },
@@ -15529,7 +16397,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 20,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -15539,7 +16410,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 21,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15549,7 +16423,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 23,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -15559,7 +16436,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -15569,7 +16449,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15579,7 +16462,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -15589,7 +16475,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 25,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -15599,7 +16488,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 25,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -15609,7 +16501,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15619,7 +16514,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 29,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15629,7 +16527,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 31,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -15639,7 +16540,10 @@ window.DIVE_DATA = {
       "c": 9,
       "ct": 40,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -15649,7 +16553,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 42,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -15659,7 +16566,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 42,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -15669,7 +16579,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 45,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -15679,7 +16592,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 49,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -15689,7 +16605,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 54,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -15699,7 +16618,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 57,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -15709,7 +16631,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 58,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -15719,7 +16644,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 59,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -15729,7 +16657,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 60,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -15739,7 +16670,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 60,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -15749,7 +16683,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 60,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -15759,7 +16696,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 62,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -15769,7 +16709,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 64,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -15779,7 +16722,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 65,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -15789,7 +16735,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 65,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -15799,7 +16748,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 66,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -15809,7 +16761,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 70,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -15819,7 +16774,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 73,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -15829,7 +16787,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -15839,7 +16800,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 75,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -15849,7 +16813,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 76,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -15859,7 +16826,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 76,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -15869,7 +16839,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 77,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -15879,7 +16852,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 79,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -15889,7 +16865,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 79,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -15899,7 +16878,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 79,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -15909,7 +16891,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 81,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -15919,7 +16904,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 81,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -15929,7 +16917,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 82,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -15939,7 +16930,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 84,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -15949,7 +16943,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 84,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -15959,7 +16956,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 87,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -15969,7 +16969,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 88,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -15979,7 +16982,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 92,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -15989,7 +16995,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 93,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -15999,7 +17008,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 94,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -16009,7 +17021,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 96,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -16019,7 +17034,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -16029,7 +17047,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16039,7 +17060,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 98,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16049,7 +17073,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 98,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16059,7 +17086,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 98,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16069,7 +17099,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 100,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16079,7 +17112,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 103,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16089,7 +17125,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 107,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -16099,7 +17138,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 108,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -16109,7 +17151,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 109,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -16119,7 +17164,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 111,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -16129,7 +17177,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 111,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -16139,7 +17190,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 111,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -16149,7 +17203,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 112,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -16159,7 +17216,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 112,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -16169,7 +17229,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 113,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -16179,7 +17242,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 113,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -16189,7 +17255,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 115,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16199,7 +17268,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 115,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16209,7 +17281,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 116,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16219,7 +17294,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 116,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16229,7 +17307,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 117,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16239,7 +17320,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 118,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16249,7 +17333,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 118,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -16259,7 +17346,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16269,7 +17359,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16279,7 +17372,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16289,7 +17385,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16299,7 +17398,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16309,7 +17411,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 119,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16319,7 +17424,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 120,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -16329,7 +17437,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 120,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -16339,7 +17450,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 120,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -16349,7 +17463,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 120,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 26
       }
      },
@@ -16359,7 +17476,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 120,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16369,7 +17489,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 122,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16379,7 +17502,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 123,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16389,7 +17515,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 123,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16399,7 +17528,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 125,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16409,7 +17541,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 129,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16419,7 +17554,10 @@ window.DIVE_DATA = {
       "c": 12,
       "ct": 141,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 28
       }
      },
@@ -16429,7 +17567,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 142,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16439,7 +17580,10 @@ window.DIVE_DATA = {
       "c": 11,
       "ct": 153,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 27
       }
      },
@@ -16449,7 +17593,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 159,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 26
       }
      },
@@ -16459,7 +17606,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 160,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 26
       }
      },
@@ -16469,7 +17619,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 161,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 26
       }
      },
@@ -16479,7 +17632,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 161,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -16489,7 +17645,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 161,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -16499,7 +17658,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 161,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -16509,7 +17671,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 163,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -16519,7 +17684,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 165,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16529,7 +17697,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 166,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16539,7 +17710,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 169,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -16549,25 +17723,30 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 169,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      }
     ],
     "byChannel": [
      {
-      "label": "X #2",
+      "label": "X @ridd_design",
       "peak": 0,
       "avg": 0,
       "views": 557,
+      "watchedMin": 0,
       "messages": 13,
       "chatters": 8
      },
      {
-      "label": "X",
+      "label": "X @designertom",
       "peak": 0,
       "avg": 0,
       "views": 397,
+      "watchedMin": 0,
       "messages": 3,
       "chatters": 3
      },
@@ -16576,6 +17755,7 @@ window.DIVE_DATA = {
       "peak": 29,
       "avg": 23,
       "views": 152,
+      "watchedMin": 2599,
       "messages": 65,
       "chatters": 29
      },
@@ -16584,8 +17764,18 @@ window.DIVE_DATA = {
       "peak": 28,
       "avg": 18,
       "views": 120,
+      "watchedMin": 2034,
       "messages": 88,
       "chatters": 16
+     },
+     {
+      "label": "LinkedIn",
+      "peak": 0,
+      "avg": 0,
+      "views": 0,
+      "watchedMin": 0,
+      "messages": 0,
+      "chatters": 0
      }
     ],
     "minutesPerViewer": 3.9,
@@ -17278,7 +18468,7 @@ window.DIVE_DATA = {
       "share": 12.1
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 73,
      "openFloor": 11,
@@ -20288,6 +21478,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 216
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1245,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 724,
+       "likes": 21,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3512,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1349,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1140,
+       "likes": 11,
+       "comments": 1,
+       "plays": 546,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 216
+      }
+     }
     }
    ],
    "weekly": [
@@ -20357,7 +21578,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1245,
@@ -20387,7 +21608,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 1969,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
     "xImpressions": 4652,
     "xPlays": 1895,
@@ -20404,7 +21625,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -20423,7 +21644,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1rGmqqBdNVkGy"
    },
    "transcript": true,
-   "ageDays": 28.3,
+   "ageDays": 28.4,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -20447,7 +21668,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 2,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 1,
+       "X @designertom": 0,
        "YT DesignerTom": 2
       }
      },
@@ -20457,7 +21681,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 7,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 9,
+       "X @designertom": 0,
        "YT DesignerTom": 5
       }
      },
@@ -20467,7 +21694,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 10,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 12,
+       "X @designertom": 0,
        "YT DesignerTom": 6
       }
      },
@@ -20477,7 +21707,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 14,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 14,
+       "X @designertom": 0,
        "YT DesignerTom": 7
       }
      },
@@ -20487,7 +21720,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 17,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -20497,7 +21733,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 20,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -20507,7 +21746,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 20,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -20517,7 +21759,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 21,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -20527,7 +21772,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20537,7 +21785,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 24,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -20547,7 +21798,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 25,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20557,7 +21811,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 26,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -20567,7 +21824,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 26,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20577,7 +21837,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 26,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20587,7 +21850,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20597,7 +21863,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -20607,7 +21876,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20617,7 +21889,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -20627,7 +21902,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20637,7 +21915,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 28,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -20647,7 +21928,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 28,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20657,7 +21941,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 30,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20667,7 +21954,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 30,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20677,7 +21967,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 31,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20687,7 +21980,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 32,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20697,7 +21993,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 33,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20707,7 +22006,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 33,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20717,7 +22019,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 34,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20727,7 +22032,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 34,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20737,7 +22045,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20747,7 +22058,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20757,7 +22071,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20767,7 +22084,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -20777,7 +22097,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20787,7 +22110,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 36,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -20797,7 +22123,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 41,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -20807,7 +22136,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 42,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -20817,7 +22149,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 43,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -20827,7 +22162,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 44,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20837,7 +22175,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 45,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20847,7 +22188,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 47,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20857,7 +22201,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 48,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20867,7 +22214,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 50,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20877,7 +22227,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 53,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20887,7 +22240,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 57,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20897,7 +22253,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 58,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20907,7 +22266,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 58,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -20917,7 +22279,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 59,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20927,7 +22292,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 60,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20937,7 +22305,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 61,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 44,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20947,7 +22318,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 62,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20957,7 +22331,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 67,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 43,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -20967,7 +22344,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 68,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20977,7 +22357,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 72,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -20987,7 +22370,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 73,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -20997,7 +22383,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 74,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -21007,7 +22396,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 74,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -21017,7 +22409,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 77,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21027,7 +22422,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 80,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -21037,7 +22435,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 83,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -21047,7 +22448,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -21057,7 +22461,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 84,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21067,7 +22474,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 89,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -21077,7 +22487,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 93,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -21087,7 +22500,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -21097,7 +22513,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -21107,7 +22526,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -21117,7 +22539,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -21127,7 +22552,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 97,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -21137,7 +22565,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 99,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -21147,7 +22578,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 99,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -21157,7 +22591,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 99,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -21167,7 +22604,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 101,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -21177,7 +22617,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 101,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -21187,7 +22630,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 101,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21197,7 +22643,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 101,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21207,7 +22656,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 103,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21217,7 +22669,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 104,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -21227,7 +22682,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 107,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21237,7 +22695,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 108,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21247,7 +22708,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 109,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21257,7 +22721,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 109,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21267,7 +22734,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 109,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21277,7 +22747,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 109,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21287,7 +22760,10 @@ window.DIVE_DATA = {
       "c": 9,
       "ct": 118,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21297,7 +22773,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 123,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21307,7 +22786,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 124,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21317,7 +22799,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 125,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21327,7 +22812,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 127,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -21337,7 +22825,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 131,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21347,7 +22838,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21357,7 +22851,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -21367,7 +22864,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -21377,7 +22877,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 132,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 15
       }
      },
@@ -21387,7 +22890,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 133,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 16
       }
      },
@@ -21397,7 +22903,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 134,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 17
       }
      },
@@ -21407,7 +22916,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 135,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21417,7 +22929,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 135,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21427,7 +22942,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 136,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -21437,7 +22955,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 139,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -21447,7 +22968,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 139,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -21457,7 +22981,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 142,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -21467,7 +22994,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 143,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -21477,7 +23007,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 146,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -21487,7 +23020,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 147,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -21497,7 +23033,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 147,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 25
       }
      },
@@ -21507,7 +23046,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 149,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 24
       }
      },
@@ -21517,7 +23059,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 154,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
+       "X @designertom": 0,
        "YT DesignerTom": 23
       }
      },
@@ -21527,7 +23072,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 155,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 22
       }
      },
@@ -21537,7 +23085,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 156,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -21547,7 +23098,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 158,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
+       "X @designertom": 0,
        "YT DesignerTom": 21
       }
      },
@@ -21557,7 +23111,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 160,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -21567,7 +23124,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 163,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 20
       }
      },
@@ -21577,7 +23137,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 163,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21587,7 +23150,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 164,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 19
       }
      },
@@ -21597,7 +23163,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 165,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21607,7 +23176,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 165,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21617,7 +23189,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 165,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21627,7 +23202,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 165,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21637,7 +23215,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 165,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21647,7 +23228,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 167,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21657,7 +23241,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 167,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21667,7 +23254,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 167,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      },
@@ -21677,25 +23267,30 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 167,
       "byChan": {
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
+       "X @designertom": 0,
        "YT DesignerTom": 18
       }
      }
     ],
     "byChannel": [
      {
-      "label": "X",
+      "label": "X @ridd_design",
       "peak": 0,
       "avg": 0,
       "views": 673,
+      "watchedMin": 0,
       "messages": 17,
       "chatters": 8
      },
      {
-      "label": "X #2",
+      "label": "X @designertom",
       "peak": 0,
       "avg": 0,
       "views": 213,
+      "watchedMin": 0,
       "messages": 6,
       "chatters": 2
      },
@@ -21704,6 +23299,7 @@ window.DIVE_DATA = {
       "peak": 45,
       "avg": 32,
       "views": 197,
+      "watchedMin": 3968,
       "messages": 91,
       "chatters": 28
      },
@@ -21712,14 +23308,16 @@ window.DIVE_DATA = {
       "peak": 25,
       "avg": 16,
       "views": 116,
+      "watchedMin": 1984,
       "messages": 49,
       "chatters": 13
      },
      {
-      "label": "linkedin.com",
+      "label": "LinkedIn",
       "peak": 0,
       "avg": 0,
       "views": 0,
+      "watchedMin": 0,
       "messages": 4,
       "chatters": 4
      }
@@ -22439,7 +24037,7 @@ window.DIVE_DATA = {
       "share": 11.3
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 69.9,
      "openFloor": 10.9,
@@ -25433,6 +27031,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 131
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 713,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 550,
+       "likes": 18,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2990,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1157,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6254,
+       "likes": 8,
+       "comments": 0,
+       "plays": 1023,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 131
+      }
+     }
     }
    ],
    "weekly": [
@@ -25502,7 +27131,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 713,
@@ -25517,7 +27146,10 @@ window.DIVE_DATA = {
      "x:ridd_design": {
       "views": 2990,
       "likes": 12,
-      "comments": 0
+      "comments": 0,
+      "plays": 1157,
+      "playsSource": "x-broadcast",
+      "peakConcurrent": 415
      },
      "x:designertom": {
       "views": 6254,
@@ -25529,7 +27161,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 1263,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
     "xImpressions": 9244,
     "xPlays": 2180,
@@ -25538,22 +27170,22 @@ window.DIVE_DATA = {
      "have": 2,
      "total": 2,
      "partial": false,
-     "stale": true,
-     "asOf": "2026-09-04T02:21:08.894Z"
+     "stale": false,
+     "asOf": null
     },
     "totalViews": 3443,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
-     "incomplete": true,
-     "reason": "Some X plays are from an older reading.",
+     "incomplete": false,
+     "reason": null,
      "partial": false,
-     "stale": true,
-     "asOf": "2026-09-04T02:21:08.894Z",
+     "stale": false,
+     "asOf": null,
      "have": 2,
      "total": 2
     }
@@ -25565,7 +27197,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1AxRnZZeVNzxl"
    },
    "transcript": true,
-   "ageDays": 21.3,
+   "ageDays": 21.4,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -25589,9 +27221,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 1,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 3,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 3
       }
      },
@@ -25601,9 +27234,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 4,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 5,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 3
       }
      },
@@ -25613,9 +27247,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 7,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 8,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 8
       }
      },
@@ -25625,9 +27260,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 7,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 9,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -25637,9 +27273,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 8,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 15,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 8
       }
      },
@@ -25649,9 +27286,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 10,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 15,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 10
       }
      },
@@ -25661,9 +27299,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 14,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 12
       }
      },
@@ -25673,9 +27312,10 @@ window.DIVE_DATA = {
       "c": 9,
       "ct": 23,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 12
       }
      },
@@ -25685,9 +27325,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 24,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 12
       }
      },
@@ -25697,9 +27338,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 25,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 12
       }
      },
@@ -25709,9 +27351,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 26,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -25721,9 +27364,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 27,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -25733,9 +27377,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 15,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -25745,9 +27390,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -25757,9 +27403,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 27,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -25769,9 +27416,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 28,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 14
       }
      },
@@ -25781,9 +27429,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 29,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -25793,9 +27442,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 31,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -25805,9 +27455,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 32,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 14
       }
      },
@@ -25817,9 +27468,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 32,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 15
       }
      },
@@ -25829,9 +27481,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 33,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -25841,9 +27494,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 33,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 15
       }
      },
@@ -25853,9 +27507,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 34,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 15
       }
      },
@@ -25865,9 +27520,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 35,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 17
       }
      },
@@ -25877,9 +27533,10 @@ window.DIVE_DATA = {
       "c": 7,
       "ct": 42,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 17
       }
      },
@@ -25889,9 +27546,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 44,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 14
       }
      },
@@ -25901,9 +27559,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 44,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 14
       }
      },
@@ -25913,9 +27572,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 44,
       "byChan": {
-       "X #2": 15,
+       "X @ridd_design": 15,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 18
       }
      },
@@ -25925,9 +27585,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 46,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 17
       }
      },
@@ -25937,9 +27598,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 46,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 17
       }
      },
@@ -25949,9 +27611,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 48,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 18
       }
      },
@@ -25961,9 +27624,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 49,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 16
       }
      },
@@ -25973,9 +27637,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 50,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 16
       }
      },
@@ -25985,9 +27650,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 51,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 16
       }
      },
@@ -25997,9 +27663,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 52,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 17
       }
      },
@@ -26009,9 +27676,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 52,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 16
       }
      },
@@ -26021,9 +27689,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 54,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 16
       }
      },
@@ -26033,9 +27702,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 54,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 19
       }
      },
@@ -26045,9 +27715,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 58,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 15
       }
      },
@@ -26057,9 +27728,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 60,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 16
       }
      },
@@ -26069,9 +27741,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 62,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 16
       }
      },
@@ -26081,9 +27754,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 63,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 19
       }
      },
@@ -26093,9 +27767,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 63,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 18
       }
      },
@@ -26105,9 +27780,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 63,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 16
       }
      },
@@ -26117,9 +27793,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 64,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 14
       }
      },
@@ -26129,9 +27806,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 64,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 16
       }
      },
@@ -26141,9 +27819,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 68,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 14
       }
      },
@@ -26153,9 +27832,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 69,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -26165,9 +27845,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 71,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -26177,9 +27858,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 72,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 15
       }
      },
@@ -26189,9 +27871,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 73,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 15
       }
      },
@@ -26201,9 +27884,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 15
       }
      },
@@ -26213,9 +27897,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 17
       }
      },
@@ -26225,9 +27910,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 19
       }
      },
@@ -26237,9 +27923,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 74,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 17
       }
      },
@@ -26249,9 +27936,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 74,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -26261,9 +27949,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 74,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -26273,9 +27962,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 75,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 14
       }
      },
@@ -26285,9 +27975,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 77,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 15
       }
      },
@@ -26297,9 +27988,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 11
       }
      },
@@ -26309,9 +28001,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 13
       }
      },
@@ -26321,9 +28014,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 13
       }
      },
@@ -26333,9 +28027,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 14
       }
      },
@@ -26345,9 +28040,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 14
       }
      },
@@ -26357,9 +28053,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 15
       }
      },
@@ -26369,9 +28066,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 16
       }
      },
@@ -26381,9 +28079,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 77,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 15
       }
      },
@@ -26393,9 +28092,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 78,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 15
       }
      },
@@ -26405,9 +28105,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 80,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 15
       }
      },
@@ -26417,9 +28118,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 15
       }
      },
@@ -26429,9 +28131,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 15
       }
      },
@@ -26441,9 +28144,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 15
       }
      },
@@ -26453,9 +28157,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 81,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 15
       }
      },
@@ -26465,9 +28170,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 81,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 16
       }
      },
@@ -26477,9 +28183,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 83,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 16
       }
      },
@@ -26489,9 +28196,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26501,9 +28209,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26513,9 +28222,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 18
       }
      },
@@ -26525,9 +28235,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26537,9 +28248,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26549,9 +28261,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26561,9 +28274,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26573,9 +28287,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 83,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -26585,9 +28300,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 84,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 16
       }
      },
@@ -26597,9 +28313,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 84,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 16
       }
      },
@@ -26609,9 +28326,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 85,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 15
       }
      },
@@ -26621,9 +28339,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 89,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 15
       }
      },
@@ -26633,9 +28352,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 93,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 14
       }
      },
@@ -26645,9 +28365,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 93,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 20,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 14
       }
      },
@@ -26657,9 +28378,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 95,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -26669,9 +28391,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 95,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -26681,9 +28404,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 97,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -26693,9 +28417,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 100,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 11
       }
      },
@@ -26705,9 +28430,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 100,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 11
       }
      },
@@ -26717,19 +28443,21 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 100,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 11
       }
      }
     ],
     "byChannel": [
      {
-      "label": "X #2",
+      "label": "X @ridd_design",
       "peak": 15,
       "avg": 7,
       "views": 225,
+      "watchedMin": 665,
       "messages": 15,
       "chatters": 8
      },
@@ -26738,14 +28466,16 @@ window.DIVE_DATA = {
       "peak": 34,
       "avg": 20,
       "views": 107,
+      "watchedMin": 1900,
       "messages": 62,
       "chatters": 19
      },
      {
-      "label": "X",
+      "label": "X @designertom",
       "peak": 10,
       "avg": 3,
       "views": 83,
+      "watchedMin": 285,
       "messages": 4,
       "chatters": 1
      },
@@ -26754,14 +28484,16 @@ window.DIVE_DATA = {
       "peak": 19,
       "avg": 14,
       "views": 80,
+      "watchedMin": 1330,
       "messages": 17,
       "chatters": 9
      },
      {
-      "label": "linkedin.com",
+      "label": "LinkedIn",
       "peak": 0,
       "avg": 0,
       "views": 0,
+      "watchedMin": 0,
       "messages": 2,
       "chatters": 2
      }
@@ -27532,7 +29264,7 @@ window.DIVE_DATA = {
       "share": 12.6
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 69.4,
      "openFloor": 10.1,
@@ -30551,6 +32283,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 125
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 863,
+       "likes": 21,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 584,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7717,
+       "likes": 11,
+       "comments": 0,
+       "plays": 827,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1271,
+       "likes": 1,
+       "comments": 0,
+       "plays": 341,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 125
+      }
+     }
     }
    ],
    "weekly": [
@@ -30620,7 +32383,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 863,
@@ -30650,7 +32413,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 1447,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
     "xImpressions": 8988,
     "xPlays": 1168,
@@ -30667,7 +32430,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -30686,7 +32449,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1aKbdEoAoEBJX"
    },
    "transcript": true,
-   "ageDays": 14.3,
+   "ageDays": 14.4,
    "metrics": {
     "week1Velocity": 1189,
     "week1Note": null,
@@ -30710,9 +32473,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X #2": 0,
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 8,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 2
       }
      },
@@ -30722,9 +32486,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 4,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 12,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 5
       }
      },
@@ -30734,9 +32499,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 6,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 13,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 5
       }
      },
@@ -30746,9 +32512,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 6,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 16,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 7
       }
      },
@@ -30758,9 +32525,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 9,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 17,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 10
       }
      },
@@ -30770,9 +32538,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 10,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -30782,9 +32551,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 10,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -30794,9 +32564,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 11,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 7
       }
      },
@@ -30806,9 +32577,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 11,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -30818,9 +32590,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 12,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 8
       }
      },
@@ -30830,9 +32603,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 16,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 9
       }
      },
@@ -30842,9 +32616,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 19,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 10
       }
      },
@@ -30854,9 +32629,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 20,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 11
       }
      },
@@ -30866,9 +32642,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 20,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 10
       }
      },
@@ -30878,9 +32655,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 20,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -30890,9 +32668,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 21,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 11
       }
      },
@@ -30902,9 +32681,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 25,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 12
       }
      },
@@ -30914,9 +32694,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 29,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -30926,9 +32707,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 30,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 13
       }
      },
@@ -30938,9 +32720,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 30,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -30950,9 +32733,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 30,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -30962,9 +32746,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 30,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 12
       }
      },
@@ -30974,9 +32759,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 31,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -30986,9 +32772,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 32,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 15
       }
      },
@@ -30998,9 +32785,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 34,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 18
       }
      },
@@ -31010,9 +32798,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 34,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 35,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 17
       }
      },
@@ -31022,9 +32811,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 34,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 17
       }
      },
@@ -31034,9 +32824,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 34,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 16
       }
      },
@@ -31046,9 +32837,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 35,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 18
       }
      },
@@ -31058,9 +32850,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 36,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 15
       }
      },
@@ -31070,9 +32863,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 36,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 13
       }
      },
@@ -31082,9 +32876,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 36,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 13
       }
      },
@@ -31094,9 +32889,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 37,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 14
       }
      },
@@ -31106,9 +32902,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 38,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 16
       }
      },
@@ -31118,9 +32915,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 39,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 45,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 15
       }
      },
@@ -31130,9 +32928,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 40,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 16
       }
      },
@@ -31142,9 +32941,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 40,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -31154,9 +32954,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 41,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 16
       }
      },
@@ -31166,9 +32967,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 43,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 41,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 19
       }
      },
@@ -31178,9 +32980,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 43,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 21
       }
      },
@@ -31190,9 +32993,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 44,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 21
       }
      },
@@ -31202,9 +33006,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 46,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 18
       }
      },
@@ -31214,9 +33019,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 49,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 20
       }
      },
@@ -31226,9 +33032,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 49,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 19
       }
      },
@@ -31238,9 +33045,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 50,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 42,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 19
       }
      },
@@ -31250,9 +33058,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 51,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 16
       }
      },
@@ -31262,9 +33071,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 53,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 18
       }
      },
@@ -31274,9 +33084,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 54,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 15
       }
      },
@@ -31286,9 +33097,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 55,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 9
       }
      },
@@ -31298,9 +33110,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 58,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 37,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 10
       }
      },
@@ -31310,9 +33123,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 64,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 34,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 17
       }
      },
@@ -31322,9 +33136,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 65,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 14
       }
      },
@@ -31334,9 +33149,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 65,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -31346,9 +33162,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 66,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 16
       }
      },
@@ -31358,9 +33175,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 67,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 40,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 16
       }
      },
@@ -31370,9 +33188,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 67,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 15
       }
      },
@@ -31382,9 +33201,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 68,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 39,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 15
       }
      },
@@ -31394,9 +33214,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 71,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 36,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -31406,9 +33227,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 73,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 38,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 10
       }
      },
@@ -31418,9 +33240,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 9
       }
      },
@@ -31430,9 +33253,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 9
       }
      },
@@ -31442,9 +33266,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 75,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 9
       }
      },
@@ -31454,9 +33279,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 78,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 10
       }
      },
@@ -31466,9 +33292,10 @@ window.DIVE_DATA = {
       "c": 16,
       "ct": 94,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -31478,9 +33305,10 @@ window.DIVE_DATA = {
       "c": 7,
       "ct": 101,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -31490,9 +33318,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 101,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -31502,9 +33331,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 102,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 14
       }
      },
@@ -31514,9 +33344,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 103,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 13
       }
      },
@@ -31526,9 +33357,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 103,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -31538,9 +33370,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 103,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -31550,9 +33383,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 104,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -31562,9 +33396,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 104,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -31574,9 +33409,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 107,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 12
       }
      },
@@ -31586,9 +33422,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 107,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -31598,9 +33435,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 107,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 12
       }
      },
@@ -31610,9 +33448,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 113,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 12
       }
      },
@@ -31622,9 +33461,10 @@ window.DIVE_DATA = {
       "c": 6,
       "ct": 119,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -31634,9 +33474,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 120,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 12
       }
      },
@@ -31646,9 +33487,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 120,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 11
       }
      },
@@ -31658,9 +33500,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 120,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 11
       }
      },
@@ -31670,9 +33513,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 122,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 11
       }
      },
@@ -31682,9 +33526,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 123,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 10
       }
      },
@@ -31694,9 +33539,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 123,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 10
       }
      },
@@ -31706,9 +33552,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 124,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 10
       }
      },
@@ -31718,9 +33565,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 124,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 11
       }
      },
@@ -31730,9 +33578,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 125,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 12
       }
      },
@@ -31742,9 +33591,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 125,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -31754,9 +33604,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 125,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 15
       }
      },
@@ -31766,9 +33617,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 125,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 17
       }
      },
@@ -31778,9 +33630,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 126,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 16
       }
      },
@@ -31790,9 +33643,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 126,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 15
       }
      },
@@ -31802,9 +33656,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 126,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 15
       }
      },
@@ -31814,9 +33669,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 127,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 14
       }
      },
@@ -31826,9 +33682,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 127,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -31838,9 +33695,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 127,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      },
@@ -31850,9 +33708,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 127,
       "byChan": {
-       "X #2": 2,
+       "X @ridd_design": 2,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 13
       }
      }
@@ -31863,22 +33722,25 @@ window.DIVE_DATA = {
       "peak": 45,
       "avg": 31,
       "views": 149,
+      "watchedMin": 2945,
       "messages": 91,
       "chatters": 25
      },
      {
-      "label": "X #2",
+      "label": "X @ridd_design",
       "peak": 8,
       "avg": 4,
       "views": 144,
+      "watchedMin": 380,
       "messages": 5,
       "chatters": 3
      },
      {
-      "label": "X",
+      "label": "X @designertom",
       "peak": 6,
       "avg": 1,
       "views": 89,
+      "watchedMin": 95,
       "messages": 1,
       "chatters": 1
      },
@@ -31887,14 +33749,16 @@ window.DIVE_DATA = {
       "peak": 22,
       "avg": 12,
       "views": 85,
+      "watchedMin": 1140,
       "messages": 22,
       "chatters": 9
      },
      {
-      "label": "linkedin.com",
+      "label": "LinkedIn",
       "peak": 0,
       "avg": 0,
       "views": 0,
+      "watchedMin": 0,
       "messages": 8,
       "chatters": 3
      }
@@ -32479,7 +34343,7 @@ window.DIVE_DATA = {
       "share": 11.9
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 64.9,
      "openFloor": 11.9,
@@ -34670,6 +36534,37 @@ window.DIVE_DATA = {
        "peakConcurrent": 320
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2699,
+       "likes": 27,
+       "comments": 1
+      },
+      "yt:designertom": {
+       "views": 2574,
+       "likes": 16,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5593,
+       "likes": 21,
+       "comments": 2,
+       "plays": 1074,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 8038,
+       "likes": 6,
+       "comments": 1,
+       "plays": 1414,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 320
+      }
+     }
     }
    ],
    "weekly": [
@@ -34707,7 +36602,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 2699,
@@ -34737,7 +36632,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 5273,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
     "xImpressions": 13631,
     "xPlays": 2488,
@@ -34754,7 +36649,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -34773,7 +36668,7 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1RJZzBDprpwJB"
    },
    "transcript": true,
-   "ageDays": 7.3,
+   "ageDays": 7.4,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
@@ -34797,9 +36692,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X #2": 0,
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 1,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 2
       }
      },
@@ -34809,9 +36705,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X #2": 0,
+       "X @ridd_design": 0,
+       "LinkedIn": 0,
        "YT Dive Club": 3,
-       "X": 0,
+       "X @designertom": 0,
        "YT DesignerTom": 3
       }
      },
@@ -34821,9 +36718,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 7,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 3
       }
      },
@@ -34833,9 +36731,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 9,
-       "X": 1,
+       "X @designertom": 1,
        "YT DesignerTom": 4
       }
      },
@@ -34845,9 +36744,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 9,
-       "X": 3,
+       "X @designertom": 3,
        "YT DesignerTom": 6
       }
      },
@@ -34857,9 +36757,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 1,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 10,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 7
       }
      },
@@ -34869,9 +36770,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 2,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 11,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 7
       }
      },
@@ -34881,9 +36783,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 5,
       "byChan": {
-       "X #2": 13,
+       "X @ridd_design": 13,
+       "LinkedIn": 0,
        "YT Dive Club": 14,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 6
       }
      },
@@ -34893,9 +36796,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 7,
       "byChan": {
-       "X #2": 13,
+       "X @ridd_design": 13,
+       "LinkedIn": 0,
        "YT Dive Club": 15,
-       "X": 2,
+       "X @designertom": 2,
        "YT DesignerTom": 7
       }
      },
@@ -34905,9 +36809,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 7,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 10
       }
      },
@@ -34917,9 +36822,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 7,
       "byChan": {
-       "X #2": 16,
+       "X @ridd_design": 16,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 11
       }
      },
@@ -34929,9 +36835,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 9,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 11
       }
      },
@@ -34941,9 +36848,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 9,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 13
       }
      },
@@ -34953,9 +36861,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 9,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 4,
+       "X @designertom": 4,
        "YT DesignerTom": 12
       }
      },
@@ -34965,9 +36874,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 11,
       "byChan": {
-       "X #2": 14,
+       "X @ridd_design": 14,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 12
       }
      },
@@ -34977,9 +36887,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 12,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 13
       }
      },
@@ -34989,9 +36900,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 13,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 16
       }
      },
@@ -35001,9 +36913,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 13,
       "byChan": {
-       "X #2": 16,
+       "X @ridd_design": 16,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 16
       }
      },
@@ -35013,9 +36926,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 13,
       "byChan": {
-       "X #2": 18,
+       "X @ridd_design": 18,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 15
       }
      },
@@ -35025,9 +36939,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 14,
       "byChan": {
-       "X #2": 13,
+       "X @ridd_design": 13,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 14
       }
      },
@@ -35037,9 +36952,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 16,
       "byChan": {
-       "X #2": 14,
+       "X @ridd_design": 14,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -35049,9 +36965,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 16,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 14
       }
      },
@@ -35061,9 +36978,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 17,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 15
       }
      },
@@ -35073,9 +36991,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 18,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 15
       }
      },
@@ -35085,9 +37004,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 18,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 22,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 15
       }
      },
@@ -35097,9 +37017,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 21,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 19,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 14
       }
      },
@@ -35109,9 +37030,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 21,
       "byChan": {
-       "X #2": 13,
+       "X @ridd_design": 13,
+       "LinkedIn": 0,
        "YT Dive Club": 18,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 16
       }
      },
@@ -35121,9 +37043,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 21,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -35133,9 +37056,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 22,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 14
       }
      },
@@ -35145,9 +37069,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 24,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 14
       }
      },
@@ -35157,9 +37082,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 25,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 21,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 14
       }
      },
@@ -35169,9 +37095,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 25,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 5,
+       "X @designertom": 5,
        "YT DesignerTom": 13
       }
      },
@@ -35181,9 +37108,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 25,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 23,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 16
       }
      },
@@ -35193,9 +37121,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 25,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -35205,9 +37134,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 26,
       "byChan": {
-       "X #2": 9,
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 15
       }
      },
@@ -35217,9 +37147,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 27,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 14
       }
      },
@@ -35229,9 +37160,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 29,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 11
       }
      },
@@ -35241,9 +37173,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 30,
       "byChan": {
-       "X #2": 10,
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 13
       }
      },
@@ -35253,9 +37186,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 30,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 13
       }
      },
@@ -35265,9 +37199,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 33,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 13
       }
      },
@@ -35277,9 +37212,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 35,
       "byChan": {
-       "X #2": 15,
+       "X @ridd_design": 15,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 17
       }
      },
@@ -35289,9 +37225,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
-       "X #2": 16,
+       "X @ridd_design": 16,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 16
       }
      },
@@ -35301,9 +37238,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
-       "X #2": 14,
+       "X @ridd_design": 14,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 16
       }
      },
@@ -35313,9 +37251,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 35,
       "byChan": {
-       "X #2": 13,
+       "X @ridd_design": 13,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 16
       }
      },
@@ -35325,9 +37264,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 36,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 17
       }
      },
@@ -35337,9 +37277,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 38,
       "byChan": {
-       "X #2": 13,
+       "X @ridd_design": 13,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 17
       }
      },
@@ -35349,9 +37290,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 38,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 19
       }
      },
@@ -35361,9 +37303,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 38,
       "byChan": {
-       "X #2": 11,
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 19
       }
      },
@@ -35373,9 +37316,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 38,
       "byChan": {
-       "X #2": 12,
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
        "YT Dive Club": 33,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 15
       }
      },
@@ -35385,9 +37329,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 40,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 18
       }
      },
@@ -35397,9 +37342,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 41,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 17
       }
      },
@@ -35409,9 +37355,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 19
       }
      },
@@ -35421,9 +37368,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 17
       }
      },
@@ -35433,9 +37381,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 19
       }
      },
@@ -35445,9 +37394,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 20
       }
      },
@@ -35457,9 +37407,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 8,
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
        "YT Dive Club": 32,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 18
       }
      },
@@ -35469,9 +37420,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 17
       }
      },
@@ -35481,9 +37433,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 16
       }
      },
@@ -35493,9 +37446,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 41,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 14
       }
      },
@@ -35505,9 +37459,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 43,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 13
       }
      },
@@ -35517,9 +37472,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 44,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 31,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 16
       }
      },
@@ -35529,9 +37485,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 44,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 16
       }
      },
@@ -35541,9 +37498,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 45,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 17
       }
      },
@@ -35553,9 +37511,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 47,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 30,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 18
       }
      },
@@ -35565,9 +37524,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 48,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 18
       }
      },
@@ -35577,9 +37537,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 48,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 19
       }
      },
@@ -35589,9 +37550,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 50,
       "byChan": {
-       "X #2": 3,
+       "X @ridd_design": 3,
+       "LinkedIn": 0,
        "YT Dive Club": 29,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 20
       }
      },
@@ -35601,9 +37563,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 51,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 6,
+       "X @designertom": 6,
        "YT DesignerTom": 20
       }
      },
@@ -35613,9 +37576,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 51,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 7,
+       "X @designertom": 7,
        "YT DesignerTom": 20
       }
      },
@@ -35625,9 +37589,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 51,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 28,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 20
       }
      },
@@ -35637,9 +37602,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 52,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 20
       }
      },
@@ -35649,9 +37615,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 52,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 20
       }
      },
@@ -35661,9 +37628,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 52,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 20
       }
      },
@@ -35673,9 +37641,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 52,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 20
       }
      },
@@ -35685,9 +37654,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 52,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 20
       }
      },
@@ -35697,9 +37667,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 52,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35709,9 +37680,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 53,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35721,9 +37693,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 54,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 22
       }
      },
@@ -35733,9 +37706,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 55,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35745,9 +37719,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 56,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35757,9 +37732,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 58,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35769,9 +37745,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 58,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35781,9 +37758,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 58,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 21
       }
      },
@@ -35793,9 +37771,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 59,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 21
       }
      },
@@ -35805,9 +37784,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 62,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 20
       }
      },
@@ -35817,9 +37797,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 62,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 19
       }
      },
@@ -35829,9 +37810,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 63,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 19
       }
      },
@@ -35841,9 +37823,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 64,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 18
       }
      },
@@ -35853,9 +37836,10 @@ window.DIVE_DATA = {
       "c": 4,
       "ct": 68,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 12,
+       "X @designertom": 12,
        "YT DesignerTom": 18
       }
      },
@@ -35865,9 +37849,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 69,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 17
       }
      },
@@ -35877,9 +37862,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 72,
       "byChan": {
-       "X #2": 7,
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 16
       }
      },
@@ -35889,9 +37875,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 73,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 16
       }
      },
@@ -35901,9 +37888,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 73,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 15
       }
      },
@@ -35913,9 +37901,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 74,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 14
       }
      },
@@ -35925,9 +37914,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 74,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 27,
-       "X": 11,
+       "X @designertom": 11,
        "YT DesignerTom": 14
       }
      },
@@ -35937,9 +37927,10 @@ window.DIVE_DATA = {
       "c": 5,
       "ct": 79,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 14
       }
      },
@@ -35949,9 +37940,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 79,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 26,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 15
       }
      },
@@ -35961,9 +37953,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 80,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 10,
+       "X @designertom": 10,
        "YT DesignerTom": 15
       }
      },
@@ -35973,9 +37966,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 16
       }
      },
@@ -35985,9 +37979,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 16
       }
      },
@@ -35997,9 +37992,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 4,
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 9,
+       "X @designertom": 9,
        "YT DesignerTom": 17
       }
      },
@@ -36009,9 +38005,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 80,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 16
       }
      },
@@ -36021,9 +38018,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 81,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 16
       }
      },
@@ -36033,9 +38031,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 81,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36045,9 +38044,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 81,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 24,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36057,9 +38057,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 84,
       "byChan": {
-       "X #2": 5,
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36069,9 +38070,10 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 84,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36081,9 +38083,10 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 85,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36093,9 +38096,10 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 88,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36105,9 +38109,10 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 90,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      },
@@ -36117,27 +38122,30 @@ window.DIVE_DATA = {
       "c": 2,
       "ct": 92,
       "byChan": {
-       "X #2": 6,
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
        "YT Dive Club": 25,
-       "X": 8,
+       "X @designertom": 8,
        "YT DesignerTom": 15
       }
      }
     ],
     "byChannel": [
      {
-      "label": "X #2",
+      "label": "X @ridd_design",
       "peak": 18,
       "avg": 7,
       "views": 280,
+      "watchedMin": 770,
       "messages": 10,
       "chatters": 7
      },
      {
-      "label": "X",
+      "label": "X @designertom",
       "peak": 12,
       "avg": 7,
       "views": 199,
+      "watchedMin": 770,
       "messages": 12,
       "chatters": 6
      },
@@ -36146,6 +38154,7 @@ window.DIVE_DATA = {
       "peak": 34,
       "avg": 24,
       "views": 130,
+      "watchedMin": 2640,
       "messages": 34,
       "chatters": 16
      },
@@ -36154,14 +38163,16 @@ window.DIVE_DATA = {
       "peak": 22,
       "avg": 15,
       "views": 118,
+      "watchedMin": 1650,
       "messages": 33,
       "chatters": 10
      },
      {
-      "label": "linkedin.com",
+      "label": "LinkedIn",
       "peak": 0,
       "avg": 0,
       "views": 0,
+      "watchedMin": 0,
       "messages": 3,
       "chatters": 1
      }
@@ -36669,7 +38680,7 @@ window.DIVE_DATA = {
       "share": 3.7
      }
     ],
-    "updatedAt": "2026-09-04T02:54:37.825Z",
+    "updatedAt": "2026-09-04T03:42:46.201Z",
     "shape": {
      "openStart": 69.8,
      "openFloor": 10.2,
@@ -36912,58 +38923,89 @@ window.DIVE_DATA = {
        "peakConcurrent": 575
       }
      }
+    },
+    {
+     "ts": "2026-09-04T03:42:25.402Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 791,
+       "likes": 16,
+       "comments": 0
+      },
+      "yt:designertom": {
+       "views": 834,
+       "likes": 20,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 14732,
+       "likes": 17,
+       "comments": 0,
+       "plays": 702,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 359
+      },
+      "x:designertom": {
+       "views": 6115,
+       "likes": 17,
+       "comments": 1,
+       "plays": 1245,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 575
+      }
+     }
     }
    ],
    "weekly": [],
    "latest": {
-    "ts": "2026-09-04T02:53:55.785Z",
+    "ts": "2026-09-04T03:42:25.402Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 607,
-      "likes": 15,
+      "views": 791,
+      "likes": 16,
       "comments": 0
      },
      "yt:designertom": {
-      "views": 636,
-      "likes": 19,
+      "views": 834,
+      "likes": 20,
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 14274,
-      "likes": 16,
+      "views": 14732,
+      "likes": 17,
       "comments": 0,
-      "plays": 656,
+      "plays": 702,
       "playsSource": "x-broadcast",
       "peakConcurrent": 359
      },
      "x:designertom": {
-      "views": 5667,
-      "likes": 15,
+      "views": 6115,
+      "likes": 17,
       "comments": 1,
-      "plays": 1175,
+      "plays": 1245,
       "playsSource": "x-broadcast",
       "peakConcurrent": 575
      }
     },
-    "ytTotal": 1243,
-    "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+    "ytTotal": 1625,
+    "youtubeAsOf": "2026-09-04T03:42:25.402Z",
     "youtubeStale": false,
-    "xImpressions": 19941,
-    "xPlays": 1831,
+    "xImpressions": 20847,
+    "xPlays": 1947,
     "xPlaysInfo": {
-     "value": 1831,
+     "value": 1947,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3074,
+    "totalViews": 3572,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-04T02:53:55.785Z",
+     "youtubeAsOf": "2026-09-04T03:42:25.402Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -36982,22 +39024,1577 @@ window.DIVE_DATA = {
     "x:designertom": "https://x.com/i/broadcasts/1AxRnZzVQkDxl"
    },
    "transcript": false,
-   "ageDays": 0.3,
+   "ageDays": 0.4,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "The first full-day reading arrives after air day.",
     "flatlineWeek": null,
-    "engagementPer1k": 27.4,
+    "engagementPer1k": 22.2,
     "anomaly": null
    },
    "ep": 8,
+   "live": {
+    "peak": 98,
+    "avg": 68,
+    "liveViews": 872,
+    "watchedMin": 7820,
+    "chatMessages": 137,
+    "chatters": 37,
+    "durationMin": 115,
+    "series": [
+     {
+      "m": 0,
+      "v": 13,
+      "c": 3,
+      "ct": 3,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 4,
+       "X @designertom": 1,
+       "YT DesignerTom": 4
+      }
+     },
+     {
+      "m": 1,
+      "v": 23,
+      "c": 1,
+      "ct": 4,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 6,
+       "X @designertom": 6,
+       "YT DesignerTom": 7
+      }
+     },
+     {
+      "m": 2,
+      "v": 33,
+      "c": 0,
+      "ct": 4,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 12,
+       "X @designertom": 6,
+       "YT DesignerTom": 11
+      }
+     },
+     {
+      "m": 3,
+      "v": 41,
+      "c": 2,
+      "ct": 6,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 14,
+       "X @designertom": 8,
+       "YT DesignerTom": 12
+      }
+     },
+     {
+      "m": 4,
+      "v": 46,
+      "c": 1,
+      "ct": 7,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 16,
+       "X @designertom": 8,
+       "YT DesignerTom": 15
+      }
+     },
+     {
+      "m": 5,
+      "v": 55,
+      "c": 1,
+      "ct": 8,
+      "byChan": {
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
+       "YT Dive Club": 19,
+       "X @designertom": 6,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 6,
+      "v": 53,
+      "c": 4,
+      "ct": 12,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 18,
+       "X @designertom": 8,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 7,
+      "v": 56,
+      "c": 2,
+      "ct": 14,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 20,
+       "X @designertom": 6,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 8,
+      "v": 59,
+      "c": 1,
+      "ct": 15,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 19,
+       "X @designertom": 11,
+       "YT DesignerTom": 20
+      }
+     },
+     {
+      "m": 9,
+      "v": 60,
+      "c": 3,
+      "ct": 18,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 20,
+       "X @designertom": 11,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 10,
+      "v": 73,
+      "c": 1,
+      "ct": 19,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 15,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 11,
+      "v": 70,
+      "c": 1,
+      "ct": 20,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 12,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 12,
+      "v": 69,
+      "c": 0,
+      "ct": 20,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 14,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 13,
+      "v": 70,
+      "c": 0,
+      "ct": 20,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 15,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 14,
+      "v": 73,
+      "c": 2,
+      "ct": 22,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 17,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 15,
+      "v": 69,
+      "c": 0,
+      "ct": 22,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 11,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 16,
+      "v": 75,
+      "c": 0,
+      "ct": 22,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 13,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 17,
+      "v": 81,
+      "c": 0,
+      "ct": 22,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 11,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 18,
+      "v": 78,
+      "c": 1,
+      "ct": 23,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 13,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 19,
+      "v": 86,
+      "c": 3,
+      "ct": 26,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 16,
+       "YT DesignerTom": 31
+      }
+     },
+     {
+      "m": 20,
+      "v": 78,
+      "c": 0,
+      "ct": 26,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 10,
+       "YT DesignerTom": 31
+      }
+     },
+     {
+      "m": 21,
+      "v": 81,
+      "c": 0,
+      "ct": 26,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 28,
+       "X @designertom": 12,
+       "YT DesignerTom": 33
+      }
+     },
+     {
+      "m": 22,
+      "v": 88,
+      "c": 1,
+      "ct": 27,
+      "byChan": {
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 15,
+       "YT DesignerTom": 32
+      }
+     },
+     {
+      "m": 23,
+      "v": 94,
+      "c": 2,
+      "ct": 29,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 18,
+       "YT DesignerTom": 34
+      }
+     },
+     {
+      "m": 24,
+      "v": 90,
+      "c": 1,
+      "ct": 30,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 19,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 25,
+      "v": 98,
+      "c": 2,
+      "ct": 32,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 21,
+       "YT DesignerTom": 34
+      }
+     },
+     {
+      "m": 26,
+      "v": 90,
+      "c": 2,
+      "ct": 34,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 28,
+       "X @designertom": 21,
+       "YT DesignerTom": 35
+      }
+     },
+     {
+      "m": 27,
+      "v": 90,
+      "c": 1,
+      "ct": 35,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 15,
+       "YT DesignerTom": 36
+      }
+     },
+     {
+      "m": 28,
+      "v": 82,
+      "c": 1,
+      "ct": 36,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 9,
+       "YT DesignerTom": 31
+      }
+     },
+     {
+      "m": 29,
+      "v": 83,
+      "c": 0,
+      "ct": 36,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 33,
+       "X @designertom": 8,
+       "YT DesignerTom": 32
+      }
+     },
+     {
+      "m": 30,
+      "v": 88,
+      "c": 2,
+      "ct": 38,
+      "byChan": {
+       "X @ridd_design": 11,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 11,
+       "YT DesignerTom": 32
+      }
+     },
+     {
+      "m": 31,
+      "v": 93,
+      "c": 0,
+      "ct": 38,
+      "byChan": {
+       "X @ridd_design": 12,
+       "LinkedIn": 0,
+       "YT Dive Club": 35,
+       "X @designertom": 10,
+       "YT DesignerTom": 36
+      }
+     },
+     {
+      "m": 32,
+      "v": 84,
+      "c": 2,
+      "ct": 40,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 11,
+       "YT DesignerTom": 31
+      }
+     },
+     {
+      "m": 33,
+      "v": 87,
+      "c": 1,
+      "ct": 41,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 36,
+       "X @designertom": 12,
+       "YT DesignerTom": 33
+      }
+     },
+     {
+      "m": 34,
+      "v": 83,
+      "c": 0,
+      "ct": 41,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 12,
+       "YT DesignerTom": 33
+      }
+     },
+     {
+      "m": 35,
+      "v": 85,
+      "c": 0,
+      "ct": 41,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 33,
+       "X @designertom": 10,
+       "YT DesignerTom": 36
+      }
+     },
+     {
+      "m": 36,
+      "v": 86,
+      "c": 0,
+      "ct": 41,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 14,
+       "YT DesignerTom": 37
+      }
+     },
+     {
+      "m": 37,
+      "v": 91,
+      "c": 1,
+      "ct": 42,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 16,
+       "YT DesignerTom": 39
+      }
+     },
+     {
+      "m": 38,
+      "v": 82,
+      "c": 0,
+      "ct": 42,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 10,
+       "YT DesignerTom": 37
+      }
+     },
+     {
+      "m": 39,
+      "v": 82,
+      "c": 0,
+      "ct": 42,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 8,
+       "YT DesignerTom": 35
+      }
+     },
+     {
+      "m": 40,
+      "v": 79,
+      "c": 3,
+      "ct": 45,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 10,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 41,
+      "v": 73,
+      "c": 1,
+      "ct": 46,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 9,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 42,
+      "v": 72,
+      "c": 0,
+      "ct": 46,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 33,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 43,
+      "v": 75,
+      "c": 0,
+      "ct": 46,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 35,
+       "X @designertom": 7,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 44,
+      "v": 74,
+      "c": 0,
+      "ct": 46,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 7,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 45,
+      "v": 74,
+      "c": 0,
+      "ct": 46,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 6,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 46,
+      "v": 74,
+      "c": 0,
+      "ct": 46,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 33,
+       "X @designertom": 6,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 47,
+      "v": 82,
+      "c": 1,
+      "ct": 47,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 33,
+       "X @designertom": 12,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 48,
+      "v": 83,
+      "c": 0,
+      "ct": 47,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 10,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 49,
+      "v": 85,
+      "c": 0,
+      "ct": 47,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 35,
+       "X @designertom": 10,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 50,
+      "v": 84,
+      "c": 0,
+      "ct": 47,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 36,
+       "X @designertom": 8,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 51,
+      "v": 89,
+      "c": 6,
+      "ct": 53,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 10,
+       "YT DesignerTom": 36
+      }
+     },
+     {
+      "m": 52,
+      "v": 77,
+      "c": 3,
+      "ct": 56,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 33,
+       "X @designertom": 8,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 53,
+      "v": 78,
+      "c": 2,
+      "ct": 58,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 34,
+       "X @designertom": 9,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 54,
+      "v": 81,
+      "c": 3,
+      "ct": 61,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 11,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 55,
+      "v": 73,
+      "c": 1,
+      "ct": 62,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 9,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 56,
+      "v": 81,
+      "c": 0,
+      "ct": 62,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 10,
+       "YT DesignerTom": 33
+      }
+     },
+     {
+      "m": 57,
+      "v": 83,
+      "c": 2,
+      "ct": 64,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 13,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 58,
+      "v": 80,
+      "c": 0,
+      "ct": 64,
+      "byChan": {
+       "X @ridd_design": 9,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 10,
+       "YT DesignerTom": 32
+      }
+     },
+     {
+      "m": 59,
+      "v": 82,
+      "c": 3,
+      "ct": 67,
+      "byChan": {
+       "X @ridd_design": 10,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 8,
+       "YT DesignerTom": 33
+      }
+     },
+     {
+      "m": 60,
+      "v": 76,
+      "c": 2,
+      "ct": 69,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 8,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 61,
+      "v": 73,
+      "c": 2,
+      "ct": 71,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 8,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 62,
+      "v": 70,
+      "c": 0,
+      "ct": 71,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 8,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 63,
+      "v": 68,
+      "c": 1,
+      "ct": 72,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 64,
+      "v": 65,
+      "c": 1,
+      "ct": 73,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 8,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 65,
+      "v": 63,
+      "c": 1,
+      "ct": 74,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 9,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 66,
+      "v": 64,
+      "c": 0,
+      "ct": 74,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 8,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 67,
+      "v": 65,
+      "c": 0,
+      "ct": 74,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 68,
+      "v": 66,
+      "c": 0,
+      "ct": 74,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 7,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 69,
+      "v": 67,
+      "c": 2,
+      "ct": 76,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 7,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 70,
+      "v": 68,
+      "c": 4,
+      "ct": 80,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 6,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 71,
+      "v": 70,
+      "c": 0,
+      "ct": 80,
+      "byChan": {
+       "X @ridd_design": 8,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 6,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 72,
+      "v": 69,
+      "c": 5,
+      "ct": 85,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 6,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 73,
+      "v": 68,
+      "c": 3,
+      "ct": 88,
+      "byChan": {
+       "X @ridd_design": 7,
+       "LinkedIn": 0,
+       "YT Dive Club": 28,
+       "X @designertom": 6,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 74,
+      "v": 67,
+      "c": 3,
+      "ct": 91,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 6,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 75,
+      "v": 66,
+      "c": 2,
+      "ct": 93,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 6,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 76,
+      "v": 65,
+      "c": 3,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 6,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 77,
+      "v": 65,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 6,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 78,
+      "v": 64,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 5,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 79,
+      "v": 63,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 5,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 80,
+      "v": 62,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 28,
+       "X @designertom": 5,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 81,
+      "v": 61,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 5,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 82,
+      "v": 60,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 5,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 83,
+      "v": 61,
+      "c": 1,
+      "ct": 97,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 5,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 84,
+      "v": 63,
+      "c": 0,
+      "ct": 97,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 28,
+       "X @designertom": 6,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 85,
+      "v": 65,
+      "c": 1,
+      "ct": 98,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 6,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 86,
+      "v": 66,
+      "c": 1,
+      "ct": 99,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 87,
+      "v": 68,
+      "c": 1,
+      "ct": 100,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 31,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 88,
+      "v": 70,
+      "c": 0,
+      "ct": 100,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 32,
+       "X @designertom": 8,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 89,
+      "v": 68,
+      "c": 2,
+      "ct": 102,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 30,
+       "X @designertom": 7,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 90,
+      "v": 67,
+      "c": 3,
+      "ct": 105,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 29,
+       "X @designertom": 6,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 91,
+      "v": 65,
+      "c": 1,
+      "ct": 106,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 28,
+       "X @designertom": 6,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 92,
+      "v": 64,
+      "c": 1,
+      "ct": 107,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 5,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 93,
+      "v": 63,
+      "c": 0,
+      "ct": 107,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 5,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 94,
+      "v": 62,
+      "c": 0,
+      "ct": 107,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 5,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 95,
+      "v": 61,
+      "c": 1,
+      "ct": 108,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 5,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 96,
+      "v": 61,
+      "c": 0,
+      "ct": 108,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 6,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 97,
+      "v": 60,
+      "c": 1,
+      "ct": 109,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 6,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 98,
+      "v": 59,
+      "c": 0,
+      "ct": 109,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 6,
+       "YT DesignerTom": 20
+      }
+     },
+     {
+      "m": 99,
+      "v": 59,
+      "c": 0,
+      "ct": 109,
+      "byChan": {
+       "X @ridd_design": 6,
+       "LinkedIn": 0,
+       "YT Dive Club": 27,
+       "X @designertom": 7,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 100,
+      "v": 58,
+      "c": 0,
+      "ct": 109,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 6,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 101,
+      "v": 58,
+      "c": 6,
+      "ct": 115,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 6,
+       "YT DesignerTom": 20
+      }
+     },
+     {
+      "m": 102,
+      "v": 58,
+      "c": 3,
+      "ct": 118,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 26,
+       "X @designertom": 5,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 103,
+      "v": 57,
+      "c": 0,
+      "ct": 118,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 5,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 104,
+      "v": 57,
+      "c": 0,
+      "ct": 118,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 4,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 105,
+      "v": 57,
+      "c": 1,
+      "ct": 119,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 25,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 106,
+      "v": 56,
+      "c": 4,
+      "ct": 123,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 24,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 107,
+      "v": 56,
+      "c": 0,
+      "ct": 123,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 24,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 108,
+      "v": 56,
+      "c": 2,
+      "ct": 125,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 109,
+      "v": 56,
+      "c": 0,
+      "ct": 125,
+      "byChan": {
+       "X @ridd_design": 4,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 110,
+      "v": 56,
+      "c": 3,
+      "ct": 128,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 111,
+      "v": 56,
+      "c": 3,
+      "ct": 131,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 112,
+      "v": 56,
+      "c": 2,
+      "ct": 133,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 113,
+      "v": 56,
+      "c": 2,
+      "ct": 135,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 114,
+      "v": 56,
+      "c": 2,
+      "ct": 137,
+      "byChan": {
+       "X @ridd_design": 5,
+       "LinkedIn": 0,
+       "YT Dive Club": 23,
+       "X @designertom": 4,
+       "YT DesignerTom": 24
+      }
+     }
+    ],
+    "byChannel": [
+     {
+      "label": "X @designertom",
+      "peak": 22,
+      "avg": 8,
+      "views": 354,
+      "watchedMin": 920,
+      "messages": 0,
+      "chatters": 0
+     },
+     {
+      "label": "X @ridd_design",
+      "peak": 12,
+      "avg": 6,
+      "views": 215,
+      "watchedMin": 690,
+      "messages": 0,
+      "chatters": 0
+     },
+     {
+      "label": "YT DesignerTom",
+      "peak": 39,
+      "avg": 25,
+      "views": 159,
+      "watchedMin": 2875,
+      "messages": 48,
+      "chatters": 17
+     },
+     {
+      "label": "YT Dive Club",
+      "peak": 36,
+      "avg": 27,
+      "views": 144,
+      "watchedMin": 3105,
+      "messages": 73,
+      "chatters": 17
+     },
+     {
+      "label": "LinkedIn",
+      "peak": 0,
+      "avg": 0,
+      "views": 0,
+      "watchedMin": 0,
+      "messages": 16,
+      "chatters": 3
+     }
+    ],
+    "minutesPerViewer": 9,
+    "holdRate": 57.2
+   },
    "comments": {
     "captured": 5,
     "feedbackCount": 2,
     "uniqueCommenters": 2,
     "enjoyCount": 2,
     "complaintCount": 0,
-    "commentersPer1k": 0.7,
+    "commentersPer1k": 0.6,
     "commentersPer1kNote": null,
     "enjoyThemes": [],
     "complaintThemes": [],
@@ -38041,12 +41638,13 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1784,
-      "typical": 1863,
-      "n": 6,
+      "typical": 1947,
+      "n": 7,
       "window": [
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
@@ -38088,12 +41686,13 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1814,
-      "typical": 1863,
-      "n": 6,
+      "typical": 1947,
+      "n": 7,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
@@ -38135,12 +41734,13 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 4241,
-      "typical": 1822.5,
-      "n": 6,
+      "typical": 1895,
+      "n": 7,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
@@ -38181,11 +41781,12 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1895,
-      "typical": 1814,
-      "n": 5,
+      "typical": 1880.5,
+      "n": 6,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
@@ -38223,11 +41824,18 @@ window.DIVE_DATA = {
       "flag": false
      },
      "xPlays": {
-      "tier": null,
-      "value": null,
-      "typical": null,
-      "n": 0,
-      "window": [],
+      "tier": 3,
+      "value": 2180,
+      "typical": 1854.5,
+      "n": 6,
+      "window": [
+       "2026-07-17-dive-radio-bumpy-takeoff",
+       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+      ],
       "flag": false
      },
      "xImpressions": {
@@ -38264,12 +41872,13 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1168,
-      "typical": 1831,
-      "n": 5,
+      "typical": 1921,
+      "n": 6,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
       ],
@@ -38310,12 +41919,13 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 2488,
-      "typical": 1814,
-      "n": 5,
+      "typical": 1854.5,
+      "n": 6,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
       ],
@@ -38877,7 +42487,7 @@ window.DIVE_DATA = {
   },
   "pace": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
-    "ageDays": 48.3,
+    "ageDays": 48.4,
     "value": 2105,
     "typical": null,
     "n": 0,
@@ -38918,8 +42528,8 @@ window.DIVE_DATA = {
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "ageDays": 42.3,
-    "value": 2121,
+    "ageDays": 42.4,
+    "value": 2122,
     "typical": null,
     "n": 1,
     "rank": null,
@@ -38957,7 +42567,7 @@ window.DIVE_DATA = {
     "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
    },
    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
-    "ageDays": 35.3,
+    "ageDays": 35.4,
     "value": 1627,
     "typical": null,
     "n": 2,
@@ -38993,7 +42603,7 @@ window.DIVE_DATA = {
     "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-    "ageDays": 28.3,
+    "ageDays": 28.4,
     "value": 1969,
     "typical": null,
     "n": 2,
@@ -39029,7 +42639,7 @@ window.DIVE_DATA = {
     "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "ageDays": 21.3,
+    "ageDays": 21.4,
     "value": 1263,
     "typical": 2022,
     "n": 3,
@@ -39062,7 +42672,7 @@ window.DIVE_DATA = {
     "reason": null
    },
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-    "ageDays": 14.3,
+    "ageDays": 14.4,
     "value": 1447,
     "typical": 1917,
     "n": 4,
@@ -39092,7 +42702,7 @@ window.DIVE_DATA = {
     "reason": null
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
-    "ageDays": 7.3,
+    "ageDays": 7.4,
     "value": 5273,
     "typical": 1525,
     "n": 4,
@@ -39375,8 +42985,8 @@ window.DIVE_DATA = {
     "reason": "Too young to compare with the episode before it at the same age."
    },
    "live": {
-    "pct": null,
-    "reason": "No live session to compare."
+    "pct": 36,
+    "ageBasis": "ageFree"
    }
   },
   "direction": {
@@ -39508,16 +43118,11 @@ window.DIVE_DATA = {
      "key": "announceToPlay",
      "check": "reachEfficiency",
      "n": 5,
-     "pctPerEpisode": -10.3,
+     "pctPerEpisode": -15.3,
      "direction": "softening",
      "ageBasis": "mature",
      "note": "compared with earlier episodes as they stand now, not at the same age",
      "points": [
-      {
-       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-       "ep": 1,
-       "value": 33.2
-      },
       {
        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "ep": 2,
@@ -39527,6 +43132,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
        "value": 40.7
+      },
+      {
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "ep": 5,
+       "value": 23.6
       },
       {
        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
@@ -39582,16 +43192,11 @@ window.DIVE_DATA = {
      "key": "liveAverage",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 6.7,
+     "pctPerEpisode": 9.7,
      "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 42
-      },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
@@ -39611,6 +43216,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 56
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 68
       }
      ],
      "reason": null
@@ -39619,16 +43229,11 @@ window.DIVE_DATA = {
      "key": "livePeak",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 7.1,
+     "pctPerEpisode": 8.5,
      "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 53
-      },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
@@ -39648,6 +43253,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 72
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 98
       }
      ],
      "reason": null
@@ -39655,9 +43265,9 @@ window.DIVE_DATA = {
     {
      "key": "liveViewers",
      "check": "livePull",
-     "n": 3,
-     "pctPerEpisode": 21.2,
-     "direction": null,
+     "n": 4,
+     "pctPerEpisode": 21,
+     "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
@@ -39675,24 +43285,24 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 727
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 872
       }
      ],
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "reason": null
     },
     {
      "key": "minutesWatched",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 3.4,
-     "direction": "holding",
+     "pctPerEpisode": 13.1,
+     "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 4746
-      },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
@@ -39712,6 +43322,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 6050
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 7820
       }
      ],
      "reason": null
@@ -39720,16 +43335,11 @@ window.DIVE_DATA = {
      "key": "chattersPer100",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": -16.1,
+     "pctPerEpisode": -16.7,
      "direction": "softening",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 105.7
-      },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
@@ -39749,6 +43359,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 55.6
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 37.8
       }
      ],
      "reason": null
@@ -39757,16 +43372,11 @@ window.DIVE_DATA = {
      "key": "messagesPerHour",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": -12.2,
-     "direction": "softening",
+     "pctPerEpisode": -4.3,
+     "direction": "holding",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 89.7
-      },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
@@ -39786,6 +43396,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 50.2
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 71.5
       }
      ],
      "reason": null
@@ -39793,9 +43408,9 @@ window.DIVE_DATA = {
     {
      "key": "minutesPerViewer",
      "check": "participation",
-     "n": 3,
-     "pctPerEpisode": -2.9,
-     "direction": null,
+     "n": 4,
+     "pctPerEpisode": -1.1,
+     "direction": "holding",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
@@ -39813,24 +43428,24 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 8.3
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 9
       }
      ],
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "reason": null
     },
     {
      "key": "holdRate",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": -8,
-     "direction": "softening",
+     "pctPerEpisode": -3.7,
+     "direction": "holding",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-       "ep": 3,
-       "value": 96
-      },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
@@ -39850,6 +43465,11 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
        "value": 74.9
+      },
+      {
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "ep": 8,
+       "value": 57.2
       }
      ],
      "reason": null
@@ -39901,12 +43521,12 @@ window.DIVE_DATA = {
     {
      "check": "livePull",
      "direction": "building",
-     "measures": 3
+     "measures": 4
     },
     {
      "check": "participation",
      "direction": "softening",
-     "measures": 3
+     "measures": 4
     },
     {
      "check": "conversion",

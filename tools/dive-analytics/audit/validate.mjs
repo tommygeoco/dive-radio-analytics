@@ -38,6 +38,7 @@ const TOOL = join(HERE, "..");
 const ROOT = join(TOOL, "..", "..");
 const REGISTRY = join(ROOT, "data", "restream", "postlive-registry.json");
 const HISTORY = join(ROOT, "data", "restream", "postlive");
+const EVENTS = join(ROOT, "data", "restream", "events");
 const TRANSCRIPTS = join(ROOT, "transcripts");
 const DAY = 86400000;
 const FRESH_MS = 26 * 3600000;
@@ -242,6 +243,335 @@ function premiereMs(dateStr) {
     }
   }
   if (!bad) ok("day-one gate: air-date rows remain current-only; history starts with a positive reading on a later Phoenix date");
+}
+
+// --- 3a. Restream live-session provenance + air-day isolation ---
+// A live event is an age-free, finished-session fact, so it may appear on air
+// day. It must still come straight from one archived Restream event, while the
+// same episode stays out of every historical comparison until a later-date
+// YouTube reading exists.
+{
+  let bad = 0;
+  const BL = await import(join(TOOL, "baselines.mjs"));
+  let liveBuild = null;
+  try { liveBuild = await import(join(TOOL, "build-data.mjs")); }
+  catch (error) { bad++; fail(`live sessions: builder could not load — ${error.message}`); }
+  const archive = [];
+  if (!existsSync(EVENTS)) {
+    if (eps.some((e) => e.live)) { bad++; fail("live sessions: data.json contains live readings but the Restream event archive is missing"); }
+  } else {
+    for (const file of readdirSync(EVENTS).filter((name) => name.endsWith(".json")).sort()) {
+      try {
+        const event = JSON.parse(readFileSync(join(EVENTS, file), "utf8"));
+        if (!event?.event?.id || !event?.event?.startedAt || (!event?.viewers && !event?.messages)) {
+          bad++; fail(`live sessions: ${file} is missing its event id, start time, or analytics`);
+          continue;
+        }
+        if (file !== `${event.event.id}.json`) { bad++; fail(`live sessions: ${file} does not match stored event id ${event.event.id}`); }
+        archive.push({ file, event });
+      } catch (error) {
+        bad++; fail(`live sessions: ${file} is not valid JSON — ${error.message}`);
+      }
+    }
+  }
+
+  const showBySlug = new Map(registry.shows.map((show) => [show.slug, show]));
+  const targetIdentity = (target) => {
+    if (target.kind === "youtube" && target.videoId) return `youtube:${target.videoId}`;
+    if (target.kind === "x" && target.role !== "promo" && target.broadcastId) return `x:${target.broadcastId}`;
+    return null;
+  };
+  const urlIdentity = (url) => {
+    const yt = String(url || "").match(/(?:youtube\.com\/(?:watch\?v=|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+    if (yt) return `youtube:${yt[1]}`;
+    const x = String(url || "").match(/(?:x|twitter)\.com\/i\/broadcasts\/([A-Za-z0-9_-]+)/);
+    if (x) return `x:${x[1]}`;
+    return null;
+  };
+  const candidatesFor = (episode) => archive.filter(({ event }) => {
+    try { return liveBuild?.liveEventSlug(event, registry) === episode.slug; }
+    catch (error) { bad++; fail(`live sessions: ${event.event.id} has an ambiguous registry match — ${error.message}`); return false; }
+  });
+  const matchesByEvent = new Map();
+  const valueOf = (object, key) => Number.isFinite(object?.[key]) ? object[key] : null;
+  const sameValue = (episode, got, key, source, sourceKey, where = "live") => {
+    const expected = valueOf(source, sourceKey);
+    const actual = got?.[key];
+    if (expected == null) {
+      if (actual != null) { bad++; fail(`${episode.slug}: ${where}.${key} is ${actual}, but the Restream source has no reading`); }
+    } else if (actual !== expected) {
+      bad++; fail(`${episode.slug}: ${where}.${key} ${actual} does not match Restream ${expected}`);
+    }
+  };
+  const round1 = (number) => Math.round(number * 10) / 10;
+  const phoenixBuildDate = new Date(Date.parse(data.generatedAt) - 7 * 3600000).toISOString().slice(0, 10);
+
+  for (const episode of eps) {
+    const matches = candidatesFor(episode);
+    if (episode.premiere < phoenixBuildDate && matches.length !== 1) {
+      bad++; fail(`${episode.slug}: finished episode has ${matches.length} Restream event records, expected exactly one`);
+    }
+    if (episode.live && matches.length !== 1) {
+      bad++; fail(`${episode.slug}: exported live session traces to ${matches.length} Restream events, not exactly one`);
+      continue;
+    }
+    if (!episode.live) {
+      if (matches.length) { bad++; fail(`${episode.slug}: ${matches.length} archived Restream event(s) exist but the live session is absent from data.json`); }
+      continue;
+    }
+
+    const { event: raw, file } = matches[0];
+    if (matchesByEvent.has(raw.event.id)) {
+      bad++; fail(`${episode.slug}: Restream event ${raw.event.id} is already attached to ${matchesByEvent.get(raw.event.id)}`);
+    } else {
+      matchesByEvent.set(raw.event.id, episode.slug);
+    }
+    const show = showBySlug.get(episode.slug);
+    const started = raw.event.startedAt * 1000;
+    const finished = Number.isFinite(raw.event.finishedAt) ? raw.event.finishedAt * 1000 : null;
+    const viewers = raw.viewers?.total || {};
+    const messages = raw.messages?.total || null;
+
+    try {
+      const projected = liveBuild.projectLiveSession(raw, registry);
+      const depth = BL.liveDepthOf({ live: projected });
+      const expectedLive = {
+        ...projected,
+        minutesPerViewer: depth?.minutesPerViewer ?? null,
+        holdRate: depth?.holdRate ?? null,
+      };
+      if (JSON.stringify(episode.live) !== JSON.stringify(expectedLive)) {
+        bad++; fail(`${episode.slug}: exported live block does not exactly rebuild from ${file}`);
+      }
+    } catch (error) {
+      bad++; fail(`${episode.slug}: live projection failed — ${error.message}`);
+    }
+
+    sameValue(episode, episode.live, "peak", viewers, "max");
+    sameValue(episode, episode.live, "avg", viewers, "mean");
+    sameValue(episode, episode.live, "liveViews", viewers, "viewsTotal");
+    sameValue(episode, episode.live, "watchedMin", viewers, "watchedTime");
+    sameValue(episode, episode.live, "chatMessages", messages, "messagesTotal");
+    sameValue(episode, episode.live, "chatters", messages, "chattersTotal");
+    const expectedDuration = finished != null && finished > started ? Math.round((finished - started) / 60000) : null;
+    if ((episode.live.durationMin ?? null) !== expectedDuration) {
+      bad++; fail(`${episode.slug}: live.durationMin ${episode.live.durationMin} does not match ${file} (${expectedDuration})`);
+    }
+
+    const descriptorFor = (destination) => {
+      const identity = urlIdentity(destination.externalUrl);
+      const matchingTargets = (show?.targets || []).filter((target) => targetIdentity(target) === identity);
+      if (identity && matchingTargets.length !== 1) {
+        bad++; fail(`${episode.slug}: Restream channel ${destination.channelId} maps to ${matchingTargets.length} registry targets`);
+      }
+      const target = matchingTargets[0];
+      if (identity?.startsWith("youtube:")) {
+        const label = target?.account === "joindiveclub" ? "YT Dive Club" : target?.account === "designertom" ? "YT DesignerTom" : "YouTube";
+        return { key: target ? `yt:${target.account}` : null, label };
+      }
+      if (identity?.startsWith("x:")) {
+        return { key: target ? `x:${target.account}` : null, label: target ? `X @${target.account}` : "X" };
+      }
+      try {
+        const hostname = new URL(destination.externalUrl).hostname.replace(/^www\./, "");
+        const label = hostname === "linkedin.com" ? "LinkedIn" : hostname;
+        return { key: hostname, label };
+      } catch {
+        return { key: null, label: `channel ${destination.channelId}` };
+      }
+    };
+    const descriptors = new Map();
+    for (const destination of raw.event.destinations || []) {
+      descriptors.set(String(destination.channelId), descriptorFor(destination));
+    }
+
+    const hasChatSeries = Array.isArray(messages?.messagesPerMinute);
+    const chatByMinute = new Map();
+    for (const point of messages?.messagesPerMinute || []) {
+      if (!Number.isFinite(point?.timestamp)) continue;
+      chatByMinute.set(Math.round((point.timestamp - started) / 60000), valueOf(point, "messages"));
+    }
+    const viewersByChannelMinute = new Map();
+    for (const [channelId, channel] of Object.entries(raw.viewers?.byChannel || {})) {
+      if (!Array.isArray(channel?.viewersPerMinute)) continue;
+      const descriptor = descriptors.get(String(channelId)) || { key: null, label: `channel ${channelId}` };
+      const points = new Map();
+      for (const point of channel.viewersPerMinute || []) {
+        if (!Number.isFinite(point?.timestamp)) continue;
+        points.set(Math.round((point.timestamp - started) / 60000), valueOf(point, "viewers"));
+      }
+      if (viewersByChannelMinute.has(descriptor.label)) {
+        bad++; fail(`${episode.slug}: two Restream channels collapse into live series label ${descriptor.label}`);
+      }
+      viewersByChannelMinute.set(descriptor.label, points);
+    }
+
+    const expectedSeries = [];
+    let chatTotal = hasChatSeries ? 0 : null;
+    for (const point of viewers.viewersPerMinute || []) {
+      if (!Number.isFinite(point?.timestamp)) continue;
+      const minute = Math.round((point.timestamp - started) / 60000);
+      if (minute < 0) continue;
+      const chat = hasChatSeries ? (chatByMinute.get(minute) ?? 0) : null;
+      if (chat != null) chatTotal += chat;
+      const byChannel = {};
+      for (const [label, points] of viewersByChannelMinute) byChannel[label] = points.get(minute) ?? 0;
+      expectedSeries.push({ m: minute, v: valueOf(point, "viewers"), c: chat, ct: chatTotal, byChan: byChannel });
+    }
+    const gotSeries = Array.isArray(episode.live.series) ? episode.live.series : [];
+    if (gotSeries.length !== expectedSeries.length) {
+      bad++; fail(`${episode.slug}: live series has ${gotSeries.length} points, Restream has ${expectedSeries.length}`);
+    }
+    let seriesProblem = null;
+    for (let index = 0; index < Math.min(gotSeries.length, expectedSeries.length); index++) {
+      const got = gotSeries[index];
+      const expected = expectedSeries[index];
+      for (const key of ["m", "v", "c", "ct"]) {
+        if ((got?.[key] ?? null) !== expected[key] && !seriesProblem) seriesProblem = `point ${index} ${key}`;
+      }
+      const labels = new Set([...Object.keys(got?.byChan || {}), ...Object.keys(expected.byChan)]);
+      for (const label of labels) {
+        if ((got?.byChan?.[label] ?? null) !== (expected.byChan[label] ?? null) && !seriesProblem) seriesProblem = `point ${index} channel ${label}`;
+      }
+    }
+    if (seriesProblem) { bad++; fail(`${episode.slug}: live series does not match Restream at ${seriesProblem}`); }
+
+    const expectedChannels = new Map();
+    const rawChannelIds = new Set([
+      ...Object.keys(raw.viewers?.byChannel || {}),
+      ...Object.keys(raw.messages?.byChannel || {}),
+    ]);
+    for (const channelId of rawChannelIds) {
+      const channel = raw.viewers?.byChannel?.[channelId] || null;
+      const sourceMessages = raw.messages?.byChannel?.[channelId] || null;
+      const values = {
+        peak: valueOf(channel, "max"),
+        avg: valueOf(channel, "mean"),
+        views: valueOf(channel, "viewsTotal"),
+        watchedMin: valueOf(channel, "watchedTime"),
+        messages: valueOf(sourceMessages, "messagesTotal"),
+        chatters: valueOf(sourceMessages, "chattersTotal"),
+      };
+      if (!Object.values(values).some((value) => Number.isFinite(value))) continue;
+      const descriptor = descriptors.get(String(channelId)) || { key: null, label: `channel ${channelId}` };
+      if (expectedChannels.has(descriptor.label)) { bad++; fail(`${episode.slug}: two Restream channels collapse into live row ${descriptor.label}`); }
+      expectedChannels.set(descriptor.label, { ...descriptor, ...values });
+    }
+    const gotChannels = Array.isArray(episode.live.byChannel) ? episode.live.byChannel : [];
+    const gotByLabel = new Map(gotChannels.map((channel) => [channel.label, channel]));
+    if (gotByLabel.size !== gotChannels.length) { bad++; fail(`${episode.slug}: live.byChannel contains a duplicate label`); }
+    if (gotByLabel.size !== expectedChannels.size) {
+      bad++; fail(`${episode.slug}: live.byChannel has ${gotByLabel.size} rows, Restream has ${expectedChannels.size}`);
+    }
+    for (const [label, expected] of expectedChannels) {
+      const got = gotByLabel.get(label);
+      if (!got) { bad++; fail(`${episode.slug}: live.byChannel is missing ${label}`); continue; }
+      if (got.key != null && got.key !== expected.key) { bad++; fail(`${episode.slug}: ${label} carries channel key ${got.key}, expected ${expected.key}`); }
+      for (const key of ["peak", "avg", "views", "watchedMin", "messages", "chatters"]) {
+        if ((got[key] ?? null) !== expected[key]) { bad++; fail(`${episode.slug}: ${label} ${key} does not match Restream`); }
+      }
+    }
+
+    const expectedMinutesPerViewer = valueOf(viewers, "watchedTime") > 0 && valueOf(viewers, "viewsTotal") > 0
+      ? round1(viewers.watchedTime / viewers.viewsTotal) : null;
+    if ((episode.live.minutesPerViewer ?? null) !== expectedMinutesPerViewer) {
+      bad++; fail(`${episode.slug}: live.minutesPerViewer does not rebuild from watched minutes and live viewers`);
+    }
+    const viewerSeries = expectedSeries.filter((point) => Number.isFinite(point.v));
+    const tail = viewerSeries.slice(-10);
+    const expectedHold = valueOf(viewers, "max") > 0 && tail.length >= 10
+      ? round1((tail.reduce((sum, point) => sum + point.v, 0) / tail.length) / viewers.max * 100) : null;
+    if ((episode.live.holdRate ?? null) !== expectedHold) {
+      bad++; fail(`${episode.slug}: live.holdRate does not rebuild from the final ten Restream minutes`);
+    }
+  }
+
+  for (const { event } of archive) {
+    if (!matchesByEvent.has(event.event.id)) { bad++; fail(`live sessions: archived event ${event.event.id} is not attached to exactly one episode`); }
+  }
+
+  const newest = eps.at(-1);
+  if (newest && newest.premiere === phoenixBuildDate) {
+    if (newest.historyReady !== false || newest.partialHistory !== null || (newest.weekly || []).length) {
+      bad++; fail(`${newest.slug}: air-day episode entered weekly history`);
+    }
+    if (newest.metrics?.week1Velocity != null || newest.metrics?.flatlineWeek != null) {
+      bad++; fail(`${newest.slug}: air-day episode received a first-week or cool-off reading`);
+    }
+    const pace = data.baselines?.pace?.[newest.slug] ?? null;
+    const launch = data.baselines?.launch?.[newest.slug] ?? null;
+    const anomaly = data.baselines?.anomaly?.[newest.slug] ?? null;
+    if (pace != null || launch != null || data.showTrend?.paceRank?.slug === newest.slug) {
+      bad++; fail(`${newest.slug}: air-day episode entered pace or launch comparisons`);
+    }
+    if (newest.metrics?.anomaly != null || anomaly?.flagged || Object.values(anomaly?.units || {}).some((unit) => unit?.value != null)) {
+      bad++; fail(`${newest.slug}: air-day episode entered outlier comparisons`);
+    }
+    if (data.health && JSON.stringify(data.health).includes(newest.slug)) {
+      bad++; fail(`${newest.slug}: air-day episode entered the saved show-health read`);
+    }
+  }
+
+  // A tiny pure fixture makes the absence rule executable even when today's
+  // real Restream records happen to contain every field.
+  try {
+    const fixtureRegistry = { shows: [{ slug: "fixture", targets: [{ kind: "youtube", account: "joindiveclub", videoId: "fixtureVideo" }] }] };
+    const fixture = {
+      event: {
+        id: "fixture-event",
+        startedAt: 1800000000,
+        destinations: [{ channelId: 1, externalUrl: "https://youtube.com/watch?v=fixtureVideo" }],
+      },
+      viewers: {
+        total: { max: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }] },
+        byChannel: { 1: { max: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }] } },
+      },
+      messages: { total: { messagesTotal: 0 }, byChannel: { 1: { messagesTotal: 0 } } },
+    };
+    const projected = liveBuild.projectLiveSession(fixture, fixtureRegistry);
+    if (liveBuild.liveEventSlug(fixture, fixtureRegistry) !== "fixture") { bad++; fail("live sessions: exact destination fixture did not resolve its episode"); }
+    for (const key of ["avg", "liveViews", "watchedMin", "chatters", "durationMin"]) {
+      if (projected[key] !== null) { bad++; fail(`live sessions: missing fixture ${key} became ${projected[key]} instead of null`); }
+    }
+    if (projected.peak !== 0 || projected.chatMessages !== 0) {
+      bad++; fail("live sessions: explicit provider zeros did not remain zero in the fixture");
+    }
+    const fixtureChannel = projected.byChannel?.[0];
+    for (const key of ["avg", "views", "watchedMin", "chatters"]) {
+      if (fixtureChannel?.[key] !== null) { bad++; fail(`live sessions: missing channel fixture ${key} became ${fixtureChannel?.[key]} instead of null`); }
+    }
+    if (fixtureChannel?.peak !== 0 || fixtureChannel?.messages !== 0) {
+      bad++; fail("live sessions: explicit channel zeros did not remain zero in the fixture");
+    }
+  } catch (error) {
+    bad++; fail(`live sessions: missing-field fixture threw — ${error.message}`);
+  }
+
+  const buildSource = readFileSync(join(TOOL, "build-data.mjs"), "utf8");
+  const liveSourceStart = buildSource.indexOf("function sourceNumber");
+  const liveSourceEnd = buildSource.indexOf("export function liveChatText", liveSourceStart);
+  const liveSource = liveSourceStart >= 0 && liveSourceEnd > liveSourceStart ? buildSource.slice(liveSourceStart, liveSourceEnd) : "";
+  if (!liveSource || /(?:max|mean|viewsTotal|watchedTime|messagesTotal|chattersTotal)\s*\|\|\s*0/.test(liveSource) || /\.get\(m\)\s*\|\|\s*0/.test(liveSource)) {
+    bad++; drift("live sessions: builder can turn a missing Restream reading into zero");
+  }
+  const pageSource = readFileSync(join(ROOT, "index.html"), "utf8");
+  const heroStart = pageSource.indexOf("function buildHero()");
+  const heroEnd = pageSource.indexOf("function buildStrip", heroStart);
+  const heroSource = heroStart >= 0 && heroEnd > heroStart ? pageSource.slice(heroStart, heroEnd) : "";
+  const panelStart = pageSource.indexOf("function buildPanel()");
+  const tableStart = pageSource.indexOf("function buildTable()");
+  const panelSource = panelStart >= 0 && tableStart > panelStart ? pageSource.slice(panelStart, tableStart) : "";
+  const tableEnd = pageSource.indexOf("function buildEmptyNote", tableStart);
+  const tableSource = tableStart >= 0 && tableEnd > tableStart ? pageSource.slice(tableStart, tableEnd) : "";
+  for (const [surface, source] of [["summary", heroSource], ["episode panel", panelSource], ["live table", tableSource]]) {
+    if (!source.includes("e.live.liveViews") || !/live viewers|watched live|people watched live/i.test(source)) {
+      bad++; drift(`live sessions: ${surface} does not expose the stored live-viewer count in plain words`);
+    }
+    if (!source.includes("e.live.watchedMin") || !/minutes watched|watched minutes|watch time/i.test(source)) {
+      bad++; drift(`live sessions: ${surface} does not expose the stored watched-minute count in plain words`);
+    }
+  }
+  if (!bad) ok(`live sessions: ${matchesByEvent.size} episode(s) trace exactly to Restream; totals, timeline, channels, air-day history, and dashboard surfaces agree`);
 }
 
 // --- 4. freshness ---
