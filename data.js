@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-04T21:16:45.472Z",
+ "generatedAt": "2026-09-04T21:24:44.565Z",
  "chaptersUpdatedAt": "2026-09-04T15:50:09.711Z",
  "promotionUpdatedAt": "2026-09-04T20:50:46.517Z",
  "dests": [
