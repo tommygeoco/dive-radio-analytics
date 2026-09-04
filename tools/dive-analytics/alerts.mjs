@@ -218,6 +218,16 @@ export function deliveryId(value) {
   return null;
 }
 
+export function deliveryChannelId(value) {
+  if (!value || typeof value !== "object" || value.ok === false || value.dryRun || value.error) return null;
+  if (/^[CDG][A-Z0-9]+$/.test(value.channelId || "")) return value.channelId;
+  for (const key of ["result", "payload"]) {
+    const found = deliveryChannelId(value[key]);
+    if (found) return found;
+  }
+  return null;
+}
+
 function parseCommandJson(text) {
   const source = String(text || "").trim();
   const start = source.indexOf("{");
@@ -238,6 +248,52 @@ export function alertBatches(lines, maxChars = 12_000) {
   return batches;
 }
 
+const alertMessage = (lines) => `Dive Radio — what changed:\n${lines.map((line) => `• ${line}`).join("\n")}`;
+const slackPlain = (text) => String(text ?? "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+
+export function reconcileDeliveryAttempt(attempt, {
+  history = { attempts: [] }, now = Date.now(), settleMs = 120_000,
+  read = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 20_000 }),
+} = {}) {
+  const checkedAt = new Date(now).toISOString();
+  const unknown = (reason, extra = {}) => ({ state: "unknown", checkedAt, reason, ...extra });
+  const started = Date.parse(attempt.attemptedAt);
+  const finished = Date.parse(attempt.finishedAt || attempt.attemptedAt);
+  if (attempt.channel !== "slack" || !Number.isFinite(started) || !Number.isFinite(finished)) return unknown("unsupported channel or invalid attempt time");
+  const direct = attempt.target?.match(/^(?:channel:)?([CDG][A-Z0-9]+)$/)?.[1];
+  const saved = history.attempts.findLast((prior) => prior.channel === attempt.channel && prior.account === attempt.account && prior.target === attempt.target && prior.channelId);
+  const channelId = attempt.channelId || direct || saved?.channelId;
+  if (!channelId) return unknown("no confirmed Slack conversation id for this destination");
+  // Wait for a timed-out provider request to settle before treating absence as
+  // evidence that it is safe to send the same event again.
+  if (now - finished < settleMs) return unknown("provider outcome is still settling", { channelId });
+  const after = ((started - 2000) / 1000).toFixed(6);
+  let result;
+  try { result = read(["message", "read", "--channel", "slack", "--account", attempt.account, "--target", `channel:${channelId}`, "--after", after, "--limit", "100", "--json"]); }
+  catch { return unknown("Slack history read failed", { channelId }); }
+  if (result?.status !== 0 || result.error || result.signal) return unknown("Slack history read failed", { channelId });
+  let value;
+  try { value = parseCommandJson(result.stdout); } catch { return unknown("Slack history receipt is unreadable", { channelId }); }
+  const findHistory = (item) => {
+    if (!item || typeof item !== "object" || item.ok === false || item.error || item.dryRun) return null;
+    if (item.ok === true && item.channelId === channelId && Array.isArray(item.messages) && typeof item.hasMore === "boolean") return item;
+    return findHistory(item.payload) || findHistory(item.result);
+  };
+  const page = findHistory(value);
+  if (!page) return unknown("Slack history did not confirm this conversation and coverage", { channelId });
+  if (page.messages.some((message) => !message || !/^\d+\.\d+$/.test(message.ts || ""))) return unknown("Slack history contains an invalid message timestamp", { channelId });
+  const matches = page.messages.filter((message) => /^\d+\.\d+$/.test(message.ts || "") && Number(message.ts) >= Number(after)
+    && (message.bot_id || message.subtype === "bot_message") && slackPlain(message.text) === slackPlain(alertMessage(attempt.lines)));
+  const evidence = { channelId, checkedAt, after, hasMore: page.hasMore, messageCount: page.messages.length };
+  if (matches.length === 1) return { ...evidence, state: "confirmed", receipt: matches[0].ts };
+  if (matches.length > 1) return unknown("multiple matching provider messages need review", evidence);
+  if (page.messages.some((message) => Number(message.ts) >= Number(after) && (message.bot_id || message.subtype === "bot_message") && slackPlain(message.text).includes("Dive Radio"))) {
+    return unknown("related provider message differs from the exact saved text; delivery needs review", evidence);
+  }
+  if (page.hasMore) return unknown("Slack history is partial; absence is not delivery proof", evidence);
+  return { ...evidence, state: "not-sent", reason: "complete Slack history contains no matching message after the settled attempt" };
+}
+
 export function deliverPending({
   queuePath = QUEUE_PATH,
   channel = "slack",
@@ -249,6 +305,7 @@ export function deliverPending({
   receiptPath = `${queuePath}.receipts.json`,
   persist = (value) => saveReceipt(receiptPath, value),
   acknowledge = (lines) => acknowledgeQueueLines(lines, queuePath),
+  reconcile = (attempt, history) => reconcileDeliveryAttempt(attempt, { history }),
 } = {}) {
   if (!target) throw new Error("alert delivery target is required");
   let releaseChain;
@@ -268,6 +325,8 @@ export function deliverPending({
     if (history.version !== 1 || !Array.isArray(history.attempts)) throw new Error("alert delivery receipts are unreadable");
     const receipts = [];
     let sent = 0;
+    let reconciliationReads = 0;
+    const held = new Set();
     // A producer may append a line after the provider answered but before we
     // acknowledged the old batch. Reconcile saved lines before forming new
     // batches, so a changed batch or Phoenix day cannot duplicate that send.
@@ -276,7 +335,16 @@ export function deliverPending({
       if (!Array.isArray(attempt.lines)) throw new Error("alert delivery receipt has no batch lines");
       const retained = attempt.lines.filter((line) => pending.includes(line));
       if (["sending", "unconfirmed"].includes(attempt.state) && retained.length) {
-        throw new Error(`alert delivery ${attempt.id} has an unconfirmed provider outcome; queued lines are retained for reconciliation`);
+        const outcome = reconciliationReads++ === 0 ? reconcile(attempt, history) : { state: "unknown", reason: "bounded history check deferred until the next run" };
+        attempt.reconciliation = outcome;
+        if (outcome.state === "confirmed" && outcome.receipt) {
+          attempt.state = "confirmed"; attempt.receipt = outcome.receipt; attempt.channelId = outcome.channelId;
+        } else if (outcome.state === "not-sent") {
+          attempt.state = "failed";
+        } else {
+          retained.forEach((line) => held.add(line));
+        }
+        persist(history);
       }
       if (attempt.state !== "confirmed") continue;
       if (!attempt.receipt) throw new Error("confirmed alert delivery has no provider receipt");
@@ -289,18 +357,22 @@ export function deliverPending({
       persist(history);
       pending = readQueue(queuePath);
     }
-    for (const batch of alertBatches(pending)) {
+    for (const batch of alertBatches(pending.filter((line) => !held.has(line)))) {
       const key = createHash("sha256").update(JSON.stringify({ day: phoenixDay(Date.now()), channel, account, target, lines: batch })).digest("hex");
       const attempt = { id: randomUUID(), key, channel, account, target, lines: batch, attemptedAt: new Date().toISOString(), state: "sending" };
       history.attempts.push(attempt);
       persist(history);
-      const message = `Dive Radio — what changed:\n${batch.map((line) => `• ${line}`).join("\n")}`;
+      const message = alertMessage(batch);
       let result;
       try { result = send(["message", "send", "--channel", channel, "--account", account, "--target", target, "--message", message, "--json"]); }
       catch (error) { result = { status: null, error }; }
       const status = Number.isInteger(result?.status) && !result?.error && !result?.signal ? result.status : 1;
       let receipt;
-      try { if (status === 0) receipt = deliveryId(parseCommandJson(result.stdout)); } catch { /* Unconfirmed sends keep all evidence and queued lines. */ }
+      try {
+        const response = parseCommandJson(result.stdout);
+        attempt.channelId = deliveryChannelId(response);
+        if (status === 0) receipt = deliveryId(response);
+      } catch { /* Unconfirmed sends keep all evidence and queued lines. */ }
       attempt.finishedAt = new Date().toISOString();
       if (status !== 0 || !receipt) {
         // A known nonzero command is retried; interrupted or zero-without-receipt
@@ -319,6 +391,7 @@ export function deliverPending({
       receipts.push(receipt);
       sent += batch.length;
     }
+    if (held.size) throw new Error(`alert delivery has an unconfirmed provider outcome for ${held.size} queued line(s); unrelated confirmed sends were acknowledged and bounded provider reconciliation will retry`);
     log(`dive-alerts: Slack confirmed ${sent} line${sent === 1 ? "" : "s"} (${receipts.join(", ")}).`);
     return { sent, receipts };
   } finally {

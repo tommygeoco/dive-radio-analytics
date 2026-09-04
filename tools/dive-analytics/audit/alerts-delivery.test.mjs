@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { existsSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { alertLines, deliveryId, detectAndQueue, deliverPending } from "../alerts.mjs";
+import { alertLines, deliveryChannelId, deliveryId, detectAndQueue, deliverPending, reconcileDeliveryAttempt } from "../alerts.mjs";
 import { appendQueueLines, readQueue } from "../alert-queue.mjs";
 
 const dir = mkdtempSync(join(tmpdir(), "dive-alert-delivery."));
@@ -69,6 +69,22 @@ try {
     assert.equal(deliveryId(invalid), null, "non-message timestamps and failed/dry results never acknowledge queued warnings");
   }
   assert.equal(deliveryId({ payload: { result: { channelId: "Ctest", ts: "123.456" } } }), "123.456");
+  assert.equal(deliveryChannelId({ payload: { result: { channelId: "DABC1234" } } }), "DABC1234");
+
+  const reconcileNow = Date.parse("2026-09-04T20:00:00Z");
+  const oldAttempt = { channel: "slack", account: "default", target: "user:UTEST", lines: ["one & two"], attemptedAt: new Date(reconcileNow - 300000).toISOString(), finishedAt: new Date(reconcileNow - 240000).toISOString() };
+  const knownHistory = { attempts: [{ channel: "slack", account: "default", target: "user:UTEST", channelId: "DABC1234" }] };
+  const providerMessage = { ts: String((reconcileNow - 290000) / 1000) + ".000001", bot_id: "BTEST", text: "Dive Radio — what changed:\n• one &amp; two" };
+  const historyRead = (messages, hasMore = false, extra = {}) => () => ({ status: 0, stdout: JSON.stringify({ payload: { ok: true, channelId: "DABC1234", messages, hasMore, ...extra } }) });
+  const confirmedOutcome = reconcileDeliveryAttempt(oldAttempt, { history: knownHistory, now: reconcileNow, read: historyRead([providerMessage]) });
+  assert.equal(confirmedOutcome.state, "confirmed", "exact settled provider message recovers an ambiguous send");
+  assert.equal(confirmedOutcome.receipt, providerMessage.ts);
+  assert.equal(reconcileDeliveryAttempt(oldAttempt, { history: knownHistory, now: reconcileNow, read: historyRead([]) }).state, "not-sent", "complete settled provider history permits a safe retry");
+  assert.equal(reconcileDeliveryAttempt(oldAttempt, { history: knownHistory, now: reconcileNow, read: historyRead([], true) }).state, "unknown", "partial history never proves absence");
+  assert.equal(reconcileDeliveryAttempt(oldAttempt, { history: knownHistory, now: reconcileNow, read: historyRead([providerMessage, providerMessage]) }).state, "unknown", "duplicate matches need review");
+  assert.equal(reconcileDeliveryAttempt(oldAttempt, { history: knownHistory, now: reconcileNow, read: historyRead([], false, { channelId: "DOTHER" }) }).state, "unknown", "another conversation is not authoritative");
+  assert.equal(reconcileDeliveryAttempt(oldAttempt, { now: reconcileNow, read: () => { throw new Error("must not guess a DM channel"); } }).state, "unknown");
+  assert.equal(reconcileDeliveryAttempt(oldAttempt, { history: knownHistory, now: reconcileNow - 230000, read: () => { throw new Error("must allow a timed-out request to settle"); } }).state, "unknown");
 
   reset(["crash after receipt"]);
   let crashSends = 0;
@@ -105,9 +121,24 @@ try {
   const unconfirmedSend = () => { uncertainSends++; return { status: null, error: new Error("timeout") }; };
   assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: unconfirmedSend, log: () => {} }), /Slack send failed/);
   appendQueueLines(["new line after ambiguous result"], queue);
-  assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: unconfirmedSend, log: () => {} }), /unconfirmed provider outcome/);
+  assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, log: () => {}, send: (args) => {
+    assert.doesNotMatch(args[args.indexOf("--message") + 1], /unconfirmed send/);
+    return { status: 0, stdout: JSON.stringify({ result: { messageId: "unrelated-confirmed" } }) };
+  } }), /unconfirmed provider outcome/);
   assert.equal(uncertainSends, 1, "uncertain provider success is not blindly retried");
-  assert.deepEqual(readQueue(queue), ["unconfirmed send", "new line after ambiguous result"]);
+  assert.deepEqual(readQueue(queue), ["unconfirmed send"], "an unknown old event does not permanently block unrelated new alerts");
+  deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, log: () => {}, reconcile: () => ({ state: "confirmed", receipt: "resolved-provider-message", channelId: "DABC1234" }), send: () => { throw new Error("confirmed history must prevent another send"); } });
+  assert.deepEqual(readQueue(queue), []);
+
+  reset(["retry after authoritative absence"]);
+  assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, log: () => {}, send: unconfirmedSend }), /Slack send failed/);
+  let safeRetries = 0;
+  deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, log: () => {}, reconcile: () => ({ state: "not-sent", channelId: "DABC1234", hasMore: false }), send: () => {
+    safeRetries++;
+    return { status: 0, stdout: JSON.stringify({ result: { messageId: "safe-retry-proof", channelId: "DABC1234" } }) };
+  } });
+  assert.equal(safeRetries, 1);
+  assert.deepEqual(readQueue(queue), []);
 
   reset(["Daily publish recovery failed; production still needs attention."]);
   let staleSend = 0;
