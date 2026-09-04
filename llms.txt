@@ -1,6 +1,6 @@
 # Dive Radio analytics
 
-> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, five ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-09-04T03:51:32.283Z).
+> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-09-04T05:30:55.312Z).
 
 ## Read first
 - [Agent brief](https://dive-radio-analytics.vercel.app/agent.md): everything, for reading — start with its first section
@@ -18,6 +18,7 @@
 - [E5 — Goodbye, Blank Canvas + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.txt)
 - [E6 — The Mascot Industrial Complex + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-08-20-dive-radio-the-mascot-industrial-complex.txt)
 - [E7 — Steal These AI Design Patterns + Live Call-Ins](https://dive-radio-analytics.vercel.app/transcripts/2026-08-28-dive-radio-steal-these-ai-design-pattern.txt)
+- [E8 — How to Engineer a Brand Universe](https://dive-radio-analytics.vercel.app/transcripts/2026-09-02-dive-radio-how-to-engineer-a-brand-unive.txt)
 
 ## The dashboard
 - [Dive Radio dashboard](https://dive-radio-analytics.vercel.app): the human view; "About this data" holds the methodology

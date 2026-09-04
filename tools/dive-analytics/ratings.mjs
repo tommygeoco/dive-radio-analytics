@@ -48,7 +48,7 @@ import { join, dirname } from "node:path";
 import { computeAll } from "./build-data.mjs";
 import {
   MIN_PEERS, NOTES, READ_DAYS, WINDOW_N, anomalyFlags, engagementPer1kOf, firstYtSnapshot,
-  peersFor, round1, round3, scoreOf, windowFor, ytCurrentAge, ytHistoryAt,
+  flagReason, peersFor, round1, round3, scoreOf, windowFor, ytCurrentAge, ytHistoryAt,
   ytSnapshotAt, ytViewsOf, ageDaysOf,
 } from "./baselines.mjs";
 
@@ -304,7 +304,7 @@ export function computeRatings({ now = Date.now(), io = DEFAULT_IO } = {}) {
     if (!Number.isFinite(ytAge) || ytAge < READ_DAYS) continue; // no real three-week YouTube reading yet
     const window = windowFor(e, all, { side: "before", n: WINDOW_N });
     const r = scoreEpisode(e, window, flags, io);
-    const excluded = window.filter((p) => flags.get(p.slug)?.flagged).map((p) => ({ slug: p.slug, why: "promo outlier" }));
+    const excluded = window.filter((p) => flags.get(p.slug)?.flagged).map((p) => ({ slug: p.slug, why: flagReason(flags, p.slug) }));
     scores.push({
       ep: e.ep,
       slug: e.slug,

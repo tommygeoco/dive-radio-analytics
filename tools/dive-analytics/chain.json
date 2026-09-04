@@ -19,7 +19,17 @@
     "transcripts/*.txt"
    ],
    "freshnessKey": null,
-   "required": false,
+   "required": true,
+   "scope": "all"
+  },
+  {
+   "step": "newsletter-promotion",
+   "script": "scripts/restream/beehiiv-promotions-pull.mjs",
+   "writes": [
+    "data/restream/beehiiv-promotions.json"
+   ],
+   "freshnessKey": "lastSuccessfulAt",
+   "required": true,
    "scope": "all"
   },
   {

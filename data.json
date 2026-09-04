@@ -1,6 +1,7 @@
 {
- "generatedAt": "2026-09-04T03:51:32.283Z",
+ "generatedAt": "2026-09-04T05:30:55.312Z",
  "chaptersUpdatedAt": "2026-09-02T00:47:33.992Z",
+ "promotionUpdatedAt": "2026-09-04T05:15:52.381Z",
  "dests": [
   {
    "key": "yt:joindiveclub",
@@ -16236,7 +16237,7 @@
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 29.5,
-    "anomaly": "more than double what a typical episode gets (4,241 X plays vs a typical 1,895; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,241 X plays vs a typical 1,895; 19,596 X reach vs a typical 5,553) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -36674,7 +36675,7 @@
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": null,
     "engagementPer1k": 8.5,
-    "anomaly": "more than double what a typical episode gets (5,273 YT views vs a typical 1,525) — treat as promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (5,273 YT views vs a typical 1,525) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 7,
    "live": {
@@ -39023,7 +39024,7 @@
     "x:ridd_design": "https://x.com/i/broadcasts/1AKEmvbREYaKL",
     "x:designertom": "https://x.com/i/broadcasts/1AxRnZzVQkDxl"
    },
-   "transcript": false,
+   "transcript": true,
    "ageDays": 0.4,
    "metrics": {
     "week1Velocity": null,
@@ -39033,6 +39034,40 @@
     "anomaly": null
    },
    "ep": 8,
+   "promotion": {
+    "status": "found",
+    "source": "UX Tools",
+    "updatedAt": "2026-09-04T05:15:52.381Z",
+    "emailClicks": 109,
+    "verifiedEmailClicks": 41,
+    "clicksReason": null,
+    "combinedUniqueReaders": null,
+    "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links.",
+    "matchedTargets": [
+     "youtube:lnAecYrKYos"
+    ],
+    "matchedUnits": [
+     "ytViews"
+    ],
+    "newsletters": [
+     {
+      "postId": "post_179faf55-d19b-4399-b9f2-e2d892de4820",
+      "title": "7 changes in brand world-building",
+      "publishedAt": "2026-09-03T13:00:00.000Z",
+      "url": "https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building",
+      "emailClicks": 109,
+      "verifiedEmailClicks": 41
+     }
+    ],
+    "snapshots": [
+     {
+      "date": "2026-09-03",
+      "pulledAt": "2026-09-04T05:15:52.381Z",
+      "emailClicks": 109,
+      "verifiedEmailClicks": 41
+     }
+    ]
+   },
    "live": {
     "peak": 98,
     "avg": 68,
@@ -40646,29 +40681,25 @@
     "format": null,
     "writtenAt": null,
     "list": [],
-    "reason": "no transcript"
+    "reason": "chapters not written yet"
    }
   }
  ],
  "insights": [
   {
-   "id": "fix-announce-to-play",
-   "text": "Reach reads fragile: announce-to-play sits at 13 against a usual 31.4 and is softening (the newest read is carried from an older finished episode). Fewer of the people who see the announcement are actually pressing play.",
-   "recommendation": "Rework this week's announcement: post a short clip with a concrete hook within an hour of going live on both Dive Club and DesignerTom, pin it, and test one next-morning reminder post to see if plays recover.",
-   "category": "promotion",
-   "rank": 1,
-   "serves": "reachEfficiency"
-  },
-  {
    "id": "restart-chat",
    "text": "Chat is thinning: chatters per 100 and messages per hour are both softening. E7 drew 92 messages from 40 chatters, while E1 drew 383 messages from 104 chatters.",
    "recommendation": "Script two direct chat moments into the first half hour this week — a vote and a named shout-out like the designer-of-the-week feature — and have one host read chat answers on air to test whether prompts bring chatters back.",
    "category": "audience",
-   "rank": 2,
+   "rank": 1,
    "serves": "participation"
   }
  ],
  "insightsStale": [
+  {
+   "id": "fix-announce-to-play",
+   "why": "number 31.4 is not in the fact sheet"
+  },
   {
    "id": "tighten-mid-show",
    "why": "number 10.6 is not in the fact sheet"
@@ -40795,8 +40826,10 @@
   "date": "2026-09-03",
   "ageDays": 0,
   "withheld": false,
-  "formulaVersion": "health-v8",
-  "dataThrough": "2026-09-04T02:54:37.825Z",
+  "formulaVersion": "health-v9",
+  "provider": "deterministic",
+  "model": "fallback-v1",
+  "dataThrough": "2026-09-04T03:42:46.201Z",
   "score": 53,
   "readState": "early",
   "headline": "The show is near its usual level and moving in mixed directions.",
@@ -40892,10 +40925,10 @@
     "carried": false,
     "state": "steady",
     "bands": {
-     "healthy": 59,
-     "steady": 41
+     "healthy": 60,
+     "steady": 40
     },
-    "swing": 18,
+    "swing": 20,
     "measures": [
      {
       "key": "exposure",
@@ -40914,8 +40947,8 @@
      {
       "key": "announceToPlay",
       "value": 18.3,
-      "typical": 31.4,
-      "sample": 4,
+      "typical": 29.5,
+      "sample": 5,
       "reason": null,
       "ageBasis": "mature",
       "note": "compared with earlier episodes as they stand now, not at the same age",
@@ -40923,7 +40956,7 @@
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 18
+      "swing": 20
      },
      {
       "key": "discoveryShare",
@@ -41155,7 +41188,7 @@
   "asOf": {
    "newest": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
    "newestTitle": "Steal These AI Design Patterns + Live Ca",
-   "ageDays": 7.3,
+   "ageDays": 7.4,
    "provisional": false,
    "carried": [
     "conversion"
@@ -41198,7 +41231,7 @@
     {
      "key": "announceToPlay",
      "n": 5,
-     "pctPerEpisode": -10.3,
+     "pctPerEpisode": -15.3,
      "direction": "softening",
      "reason": null
     },
@@ -41212,57 +41245,57 @@
     {
      "key": "liveAverage",
      "n": 5,
-     "pctPerEpisode": 6.7,
+     "pctPerEpisode": 9.7,
      "direction": "building",
      "reason": null
     },
     {
      "key": "livePeak",
      "n": 5,
-     "pctPerEpisode": 7.1,
+     "pctPerEpisode": 8.5,
      "direction": "building",
      "reason": null
     },
     {
      "key": "liveViewers",
-     "n": 3,
-     "pctPerEpisode": 21.2,
-     "direction": null,
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "n": 4,
+     "pctPerEpisode": 21,
+     "direction": "building",
+     "reason": null
     },
     {
      "key": "minutesWatched",
      "n": 5,
-     "pctPerEpisode": 3.4,
-     "direction": "holding",
+     "pctPerEpisode": 13.1,
+     "direction": "building",
      "reason": null
     },
     {
      "key": "chattersPer100",
      "n": 5,
-     "pctPerEpisode": -16.1,
+     "pctPerEpisode": -16.7,
      "direction": "softening",
      "reason": null
     },
     {
      "key": "messagesPerHour",
      "n": 5,
-     "pctPerEpisode": -12.2,
-     "direction": "softening",
+     "pctPerEpisode": -4.3,
+     "direction": "holding",
      "reason": null
     },
     {
      "key": "minutesPerViewer",
-     "n": 3,
-     "pctPerEpisode": -2.9,
-     "direction": null,
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "n": 4,
+     "pctPerEpisode": -1.1,
+     "direction": "holding",
+     "reason": null
     },
     {
      "key": "holdRate",
      "n": 5,
-     "pctPerEpisode": -8,
-     "direction": "softening",
+     "pctPerEpisode": -3.7,
+     "direction": "holding",
      "reason": null
     },
     {
@@ -41358,8 +41391,8 @@
    },
    {
     "id": "typical-announce-play",
-    "display": "31.4%",
-    "text": "Earlier clean episodes typically turned 31.4% of X announce impressions into plays."
+    "display": "29.5%",
+    "text": "Earlier clean episodes typically turned 29.5% of X announce impressions into plays."
    },
    {
     "id": "latest-finished-x-share",
@@ -41488,8 +41521,8 @@
    },
    {
     "id": "direction-announceToPlay",
-    "display": "10.3%",
-    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 10.3% each episode."
+    "display": "15.3%",
+    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 15.3% each episode."
    },
    {
     "id": "direction-discoveryShare",
@@ -41498,43 +41531,43 @@
    },
    {
     "id": "direction-liveAverage",
-    "display": "6.7%",
-    "text": "Over the last five clean readings, average live viewers rose about 6.7% each episode."
+    "display": "9.7%",
+    "text": "Over the last five clean readings, average live viewers rose about 9.7% each episode."
    },
    {
     "id": "direction-livePeak",
-    "display": "7.1%",
-    "text": "Over the last five clean readings, peak live viewers rose about 7.1% each episode."
+    "display": "8.5%",
+    "text": "Over the last five clean readings, peak live viewers rose about 8.5% each episode."
    },
    {
     "id": "direction-liveViewers",
-    "display": "21.2%",
-    "text": "Over the last three clean readings, unique live viewers rose about 21.2% each episode — too few readings for a direction word."
+    "display": "21%",
+    "text": "Over the last four clean readings, unique live viewers rose about 21% each episode."
    },
    {
     "id": "direction-minutesWatched",
-    "display": "3.4%",
-    "text": "Over the last five clean readings, minutes watched live rose about 3.4% each episode."
+    "display": "13.1%",
+    "text": "Over the last five clean readings, minutes watched live rose about 13.1% each episode."
    },
    {
     "id": "direction-chattersPer100",
-    "display": "16.1%",
-    "text": "Over the last five clean readings, chatters per hundred at the peak fell about 16.1% each episode."
+    "display": "16.7%",
+    "text": "Over the last five clean readings, chatters per hundred at the peak fell about 16.7% each episode."
    },
    {
     "id": "direction-messagesPerHour",
-    "display": "12.2%",
-    "text": "Over the last five clean readings, chat messages an hour fell about 12.2% each episode."
+    "display": "4.3%",
+    "text": "Over the last five clean readings, chat messages an hour fell about 4.3% each episode."
    },
    {
     "id": "direction-minutesPerViewer",
-    "display": "2.9%",
-    "text": "Over the last three clean readings, minutes each live viewer stayed fell about 2.9% each episode — too few readings for a direction word."
+    "display": "1.1%",
+    "text": "Over the last four clean readings, minutes each live viewer stayed fell about 1.1% each episode."
    },
    {
     "id": "direction-holdRate",
-    "display": "8%",
-    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 8% each episode."
+    "display": "3.7%",
+    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 3.7% each episode."
    },
    {
     "id": "direction-subscribers",
@@ -41553,8 +41586,8 @@
    },
    {
     "id": "data-age-hours",
-    "display": "0",
-    "text": "The newest audience numbers were refreshed 0 hours ago."
+    "display": "2",
+    "text": "The newest audience numbers were refreshed 2 hours ago."
    }
   ],
   "pros": [
@@ -41769,11 +41802,12 @@
      "ytViews": {
       "tier": 1,
       "value": 1923,
-      "typical": 2015,
-      "n": 3,
+      "typical": 1808,
+      "n": 4,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
       ],
       "flag": false
@@ -41814,11 +41848,12 @@
      "ytViews": {
       "tier": 1,
       "value": 1257,
-      "typical": 2015,
-      "n": 3,
+      "typical": 1969,
+      "n": 4,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the"
       ],
       "flag": false
@@ -41978,11 +42013,12 @@
    }
   },
   "watchPct": {
-   "typical": 10.9,
-   "n": 4,
+   "typical": 10.7,
+   "n": 5,
    "window": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "2026-08-06-dive-radio-backyard-designers-behind-the",
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
    ],
@@ -41990,20 +42026,22 @@
   },
   "watchPctBySlug": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
-    "typical": 11.1,
-    "n": 3,
+    "typical": 10.1,
+    "n": 4,
     "window": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
     "ageBasis": "mature"
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "typical": 10.7,
-    "n": 3,
+    "typical": 9.9,
+    "n": 4,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
@@ -42021,53 +42059,58 @@
     "ageBasis": "mature"
    },
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-    "typical": 11.1,
-    "n": 3,
-    "window": [
-     "2026-07-17-dive-radio-bumpy-takeoff",
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
-    ],
-    "ageBasis": "mature"
-   },
-   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "typical": 10.7,
-    "n": 3,
-    "window": [
-     "2026-07-17-dive-radio-bumpy-takeoff",
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-08-06-dive-radio-backyard-designers-behind-the"
-    ],
-    "ageBasis": "mature"
-   },
-   "2026-08-20-dive-radio-the-mascot-industrial-complex": {
     "typical": 10.9,
     "n": 4,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+    "typical": 9.9,
+    "n": 4,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "2026-08-06-dive-radio-backyard-designers-behind-the"
+    ],
+    "ageBasis": "mature"
+   },
+   "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+    "typical": 10.7,
+    "n": 5,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
     "ageBasis": "mature"
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
-    "typical": 10.9,
-    "n": 4,
+    "typical": 10.7,
+    "n": 5,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
     "ageBasis": "mature"
    },
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
-    "typical": 10.9,
-    "n": 4,
+    "typical": 10.7,
+    "n": 5,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
@@ -42078,7 +42121,7 @@
    "points": [
     {
      "at": 0.01,
-     "watching": 0.68
+     "watching": 0.69
     },
     {
      "at": 0.02,
@@ -42086,15 +42129,15 @@
     },
     {
      "at": 0.03,
-     "watching": 0.12
+     "watching": 0.11
     },
     {
      "at": 0.04,
-     "watching": 0.19
+     "watching": 0.18
     },
     {
      "at": 0.05,
-     "watching": 0.25
+     "watching": 0.24
     },
     {
      "at": 0.06,
@@ -42102,7 +42145,7 @@
     },
     {
      "at": 0.07,
-     "watching": 0.21
+     "watching": 0.22
     },
     {
      "at": 0.08,
@@ -42110,35 +42153,35 @@
     },
     {
      "at": 0.09,
-     "watching": 0.21
-    },
-    {
-     "at": 0.1,
      "watching": 0.22
     },
     {
-     "at": 0.11,
-     "watching": 0.21
-    },
-    {
-     "at": 0.12,
+     "at": 0.1,
      "watching": 0.2
     },
     {
-     "at": 0.13,
+     "at": 0.11,
      "watching": 0.19
     },
     {
+     "at": 0.12,
+     "watching": 0.21
+    },
+    {
+     "at": 0.13,
+     "watching": 0.2
+    },
+    {
      "at": 0.14,
-     "watching": 0.18
+     "watching": 0.19
     },
     {
      "at": 0.15,
-     "watching": 0.17
+     "watching": 0.18
     },
     {
      "at": 0.16,
-     "watching": 0.17
+     "watching": 0.19
     },
     {
      "at": 0.17,
@@ -42146,7 +42189,7 @@
     },
     {
      "at": 0.18,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.19,
@@ -42154,11 +42197,11 @@
     },
     {
      "at": 0.2,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.21,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.22,
@@ -42170,15 +42213,15 @@
     },
     {
      "at": 0.24,
-     "watching": 0.15
+     "watching": 0.16
     },
     {
      "at": 0.25,
-     "watching": 0.15
+     "watching": 0.16
     },
     {
      "at": 0.26,
-     "watching": 0.16
+     "watching": 0.15
     },
     {
      "at": 0.27,
@@ -42186,7 +42229,7 @@
     },
     {
      "at": 0.28,
-     "watching": 0.14
+     "watching": 0.15
     },
     {
      "at": 0.29,
@@ -42194,15 +42237,15 @@
     },
     {
      "at": 0.3,
-     "watching": 0.15
-    },
-    {
-     "at": 0.31,
      "watching": 0.14
     },
     {
-     "at": 0.32,
+     "at": 0.31,
      "watching": 0.15
+    },
+    {
+     "at": 0.32,
+     "watching": 0.14
     },
     {
      "at": 0.33,
@@ -42210,11 +42253,11 @@
     },
     {
      "at": 0.34,
-     "watching": 0.15
+     "watching": 0.14
     },
     {
      "at": 0.35,
-     "watching": 0.14
+     "watching": 0.15
     },
     {
      "at": 0.36,
@@ -42238,11 +42281,11 @@
     },
     {
      "at": 0.41,
-     "watching": 0.15
+     "watching": 0.14
     },
     {
      "at": 0.42,
-     "watching": 0.15
+     "watching": 0.13
     },
     {
      "at": 0.43,
@@ -42250,7 +42293,7 @@
     },
     {
      "at": 0.44,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.45,
@@ -42258,19 +42301,19 @@
     },
     {
      "at": 0.46,
-     "watching": 0.13
-    },
-    {
-     "at": 0.47,
      "watching": 0.14
     },
     {
+     "at": 0.47,
+     "watching": 0.13
+    },
+    {
      "at": 0.48,
-     "watching": 0.15
+     "watching": 0.14
     },
     {
      "at": 0.49,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.5,
@@ -42278,7 +42321,7 @@
     },
     {
      "at": 0.51,
-     "watching": 0.14
+     "watching": 0.13
     },
     {
      "at": 0.52,
@@ -42286,7 +42329,7 @@
     },
     {
      "at": 0.53,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.54,
@@ -42294,15 +42337,15 @@
     },
     {
      "at": 0.55,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.56,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.57,
-     "watching": 0.13
+     "watching": 0.15
     },
     {
      "at": 0.58,
@@ -42314,7 +42357,7 @@
     },
     {
      "at": 0.6,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.61,
@@ -42322,23 +42365,23 @@
     },
     {
      "at": 0.62,
-     "watching": 0.12
+     "watching": 0.13
     },
     {
      "at": 0.63,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.64,
-     "watching": 0.14
+     "watching": 0.12
     },
     {
      "at": 0.65,
-     "watching": 0.14
+     "watching": 0.13
     },
     {
      "at": 0.66,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.67,
@@ -42350,7 +42393,7 @@
     },
     {
      "at": 0.69,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.7,
@@ -42362,19 +42405,19 @@
     },
     {
      "at": 0.72,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.73,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.74,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.75,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.76,
@@ -42382,7 +42425,7 @@
     },
     {
      "at": 0.77,
-     "watching": 0.12
+     "watching": 0.11
     },
     {
      "at": 0.78,
@@ -42390,7 +42433,7 @@
     },
     {
      "at": 0.79,
-     "watching": 0.11
+     "watching": 0.12
     },
     {
      "at": 0.8,
@@ -42398,7 +42441,7 @@
     },
     {
      "at": 0.81,
-     "watching": 0.11
+     "watching": 0.1
     },
     {
      "at": 0.82,
@@ -42410,7 +42453,7 @@
     },
     {
      "at": 0.84,
-     "watching": 0.1
+     "watching": 0.09
     },
     {
      "at": 0.85,
@@ -42418,7 +42461,7 @@
     },
     {
      "at": 0.86,
-     "watching": 0.11
+     "watching": 0.1
     },
     {
      "at": 0.87,
@@ -42438,11 +42481,11 @@
     },
     {
      "at": 0.91,
-     "watching": 0.09
+     "watching": 0.1
     },
     {
      "at": 0.92,
-     "watching": 0.09
+     "watching": 0.1
     },
     {
      "at": 0.93,
@@ -42458,7 +42501,7 @@
     },
     {
      "at": 0.96,
-     "watching": 0.08
+     "watching": 0.09
     },
     {
      "at": 0.97,
@@ -42470,17 +42513,18 @@
     },
     {
      "at": 0.99,
-     "watching": 0.08
+     "watching": 0.07
     },
     {
      "at": 1,
-     "watching": 0.07
+     "watching": 0.06
     }
    ],
-   "n": 4,
+   "n": 5,
    "window": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "2026-08-06-dive-radio-backyard-designers-behind-the",
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
    ]
@@ -42502,7 +42546,7 @@
      },
      {
       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -42541,7 +42585,7 @@
     "excluded": [
      {
       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -42605,20 +42649,17 @@
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
     "ageDays": 28.4,
     "value": 1969,
-    "typical": null,
-    "n": 2,
-    "rank": null,
-    "of": null,
-    "pct": null,
+    "typical": 2053,
+    "n": 3,
+    "rank": 3,
+    "of": 4,
+    "pct": -4,
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de"
     ],
     "excluded": [
-     {
-      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "why": "no reading at this age"
@@ -42636,26 +42677,23 @@
       "why": "no reading at this age"
      }
     ],
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "reason": null
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
     "ageDays": 21.4,
     "value": 1263,
-    "typical": 2022,
-    "n": 3,
-    "rank": 4,
-    "of": 4,
-    "pct": -38,
+    "typical": 1975,
+    "n": 4,
+    "rank": 5,
+    "of": 5,
+    "pct": -36,
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the"
     ],
     "excluded": [
-     {
-      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
       "why": "no reading at this age"
@@ -42688,7 +42726,7 @@
     "excluded": [
      {
       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
@@ -42718,7 +42756,7 @@
     "excluded": [
      {
       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",

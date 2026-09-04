@@ -133,7 +133,10 @@ export const HEALTH_STORE_VERSION = 3;
 // show-health anchor until the Phoenix date after it airs. Current air-date
 // counters remain visible on its card but stay out of the saved daily read.
 // v8 is the first saved read built after all four destination stores landed.
-export const FORMULA_VERSION = "health-v8";
+// health-v9 (2026-09-03): an exact UX Tools newsletter link marks only the
+// linked viewing source as promoted. Its clicks never enter the score; the
+// affected viewing number is shown but left out of clean comparisons.
+export const FORMULA_VERSION = "health-v9";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
 // the 2026-08-24 transition (two checks left, score held at 51) shipped with
@@ -178,6 +181,7 @@ export const WEIGHTS_BY_FORMULA = Object.freeze({
   "health-v6": BASE_WEIGHTS,
   "health-v7": BASE_WEIGHTS,
   "health-v8": BASE_WEIGHTS,
+  "health-v9": BASE_WEIGHTS,
 });
 export const CHECK_LABELS = Object.freeze({
   growth: "growth", audienceQuality: "audience quality", reachEfficiency: "reach", livePull: "live turnout", participation: "participation", conversion: "subscribers", sentiment: "goodwill",
@@ -1100,6 +1104,8 @@ export function projectHealth(store, { now = Date.now() } = {}) {
     ageDays,
     withheld,
     formulaVersion: latest.formulaVersion ?? null,
+    provider: latest.provider ?? null,
+    model: latest.model ?? null,
     dataThrough: latest.dataThrough || null,
     score: withheld ? null : latest.score,
     readState: hasUnavailableCheck || hasEarlyFact ? "early" : "settled",
@@ -1297,7 +1303,7 @@ async function main() {
   if (existing) {
     // rule 9: a formula bump re-derives the day visibly — the older read is
     // kept byte-identical under `superseded`, and the new read says what it replaced
-    entry.rederivedFrom = existing.rederivedFrom || { formulaVersion: existing.formulaVersion, score: existing.score };
+    entry.rederivedFrom = { formulaVersion: existing.formulaVersion, score: existing.score };
     store.entries = store.entries.filter((e) => e !== existing);
     store.superseded.push({ supersededOn: date, by: FORMULA_VERSION, entry: existing });
   }

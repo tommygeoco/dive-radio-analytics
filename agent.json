@@ -1,12 +1,14 @@
 {
  "version": 1,
- "generatedAt": "2026-09-04T03:51:32.283Z",
+ "generatedAt": "2026-09-04T05:30:55.312Z",
+ "promotionUpdatedAt": "2026-09-04T05:15:52.381Z",
  "clocks": {
-  "data": "2026-09-04T03:51:32.283Z",
+  "data": "2026-09-04T05:30:55.312Z",
   "dataThrough": "2026-09-04T03:42:25.402Z",
   "healthRead": "2026-09-03",
-  "healthDataThrough": "2026-09-04T02:54:37.825Z",
-  "chaptersWritten": "2026-09-02T00:47:33.992Z"
+  "healthDataThrough": "2026-09-04T03:42:46.201Z",
+  "chaptersWritten": "2026-09-02T00:47:33.992Z",
+  "promotionChecked": "2026-09-04T05:15:52.381Z"
  },
  "site": "https://dive-radio-analytics.vercel.app",
  "show": {
@@ -70,10 +72,12 @@
  },
  "health": {
   "date": "2026-09-03",
-  "dataThrough": "2026-09-04T02:54:37.825Z",
+  "dataThrough": "2026-09-04T03:42:46.201Z",
   "ageDays": 0,
   "readState": "early",
-  "formulaVersion": "health-v8",
+  "formulaVersion": "health-v9",
+  "provider": "deterministic",
+  "model": "fallback-v1",
   "score": 53,
   "band": "near usual",
   "headline": "The show is near its usual level and moving in mixed directions.",
@@ -83,7 +87,7 @@
   ],
   "readsOn": {
    "episode": "Steal These AI Design Patterns + Live Call-Ins",
-   "ageDays": 7.3,
+   "ageDays": 7.4,
    "provisional": false,
    "carried": [
     "conversion"
@@ -189,10 +193,10 @@
     "state": "steady",
     "score": 58,
     "bands": {
-     "healthy": 59,
-     "steady": 41
+     "healthy": 60,
+     "steady": 40
     },
-    "swing": 18,
+    "swing": 20,
     "carried": false,
     "reason": "read from Goodbye, Blank Canvas + Live Call, the latest finished episode — the newest episode's own read is promo-driven",
     "measures": [
@@ -215,13 +219,13 @@
       "key": "announceToPlay",
       "name": "X announce impressions that became plays",
       "value": 18.3,
-      "typical": 31.4,
+      "typical": 29.5,
       "comparedHow": "as the earlier episodes stand now",
-      "sample": 4,
+      "sample": 5,
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 18,
+      "swing": 20,
       "reason": null,
       "absoluteScale": false,
       "absoluteNote": null
@@ -562,8 +566,8 @@
    },
    {
     "id": "typical-announce-play",
-    "display": "31.4%",
-    "text": "Earlier clean episodes typically turned 31.4% of X announce impressions into plays."
+    "display": "29.5%",
+    "text": "Earlier clean episodes typically turned 29.5% of X announce impressions into plays."
    },
    {
     "id": "latest-finished-x-share",
@@ -692,8 +696,8 @@
    },
    {
     "id": "direction-announceToPlay",
-    "display": "10.3%",
-    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 10.3% each episode."
+    "display": "15.3%",
+    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 15.3% each episode."
    },
    {
     "id": "direction-discoveryShare",
@@ -702,43 +706,43 @@
    },
    {
     "id": "direction-liveAverage",
-    "display": "6.7%",
-    "text": "Over the last five clean readings, average live viewers rose about 6.7% each episode."
+    "display": "9.7%",
+    "text": "Over the last five clean readings, average live viewers rose about 9.7% each episode."
    },
    {
     "id": "direction-livePeak",
-    "display": "7.1%",
-    "text": "Over the last five clean readings, peak live viewers rose about 7.1% each episode."
+    "display": "8.5%",
+    "text": "Over the last five clean readings, peak live viewers rose about 8.5% each episode."
    },
    {
     "id": "direction-liveViewers",
-    "display": "21.2%",
-    "text": "Over the last three clean readings, unique live viewers rose about 21.2% each episode — too few readings for a direction word."
+    "display": "21%",
+    "text": "Over the last four clean readings, unique live viewers rose about 21% each episode."
    },
    {
     "id": "direction-minutesWatched",
-    "display": "3.4%",
-    "text": "Over the last five clean readings, minutes watched live rose about 3.4% each episode."
+    "display": "13.1%",
+    "text": "Over the last five clean readings, minutes watched live rose about 13.1% each episode."
    },
    {
     "id": "direction-chattersPer100",
-    "display": "16.1%",
-    "text": "Over the last five clean readings, chatters per hundred at the peak fell about 16.1% each episode."
+    "display": "16.7%",
+    "text": "Over the last five clean readings, chatters per hundred at the peak fell about 16.7% each episode."
    },
    {
     "id": "direction-messagesPerHour",
-    "display": "12.2%",
-    "text": "Over the last five clean readings, chat messages an hour fell about 12.2% each episode."
+    "display": "4.3%",
+    "text": "Over the last five clean readings, chat messages an hour fell about 4.3% each episode."
    },
    {
     "id": "direction-minutesPerViewer",
-    "display": "2.9%",
-    "text": "Over the last three clean readings, minutes each live viewer stayed fell about 2.9% each episode — too few readings for a direction word."
+    "display": "1.1%",
+    "text": "Over the last four clean readings, minutes each live viewer stayed fell about 1.1% each episode."
    },
    {
     "id": "direction-holdRate",
-    "display": "8%",
-    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 8% each episode."
+    "display": "3.7%",
+    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 3.7% each episode."
    },
    {
     "id": "direction-subscribers",
@@ -757,8 +761,8 @@
    },
    {
     "id": "data-age-hours",
-    "display": "0",
-    "text": "The newest audience numbers were refreshed 0 hours ago."
+    "display": "2",
+    "text": "The newest audience numbers were refreshed 2 hours ago."
    }
   ],
   "checkSetChange": null,
@@ -801,7 +805,7 @@
      "key": "announceToPlay",
      "name": "announce-to-play on X",
      "word": "softening",
-     "pctPerEpisode": -10.3,
+     "pctPerEpisode": -15.3,
      "readings": 5,
      "reason": null
     },
@@ -817,7 +821,7 @@
      "key": "liveAverage",
      "name": "average live viewers",
      "word": "building",
-     "pctPerEpisode": 6.7,
+     "pctPerEpisode": 9.7,
      "readings": 5,
      "reason": null
     },
@@ -825,23 +829,23 @@
      "key": "livePeak",
      "name": "peak live viewers",
      "word": "building",
-     "pctPerEpisode": 7.1,
+     "pctPerEpisode": 8.5,
      "readings": 5,
      "reason": null
     },
     {
      "key": "liveViewers",
      "name": "people who watched live",
-     "word": null,
-     "pctPerEpisode": 21.2,
-     "readings": 3,
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "word": "building",
+     "pctPerEpisode": 21,
+     "readings": 4,
+     "reason": null
     },
     {
      "key": "minutesWatched",
      "name": "minutes watched live",
-     "word": "holding",
-     "pctPerEpisode": 3.4,
+     "word": "building",
+     "pctPerEpisode": 13.1,
      "readings": 5,
      "reason": null
     },
@@ -849,31 +853,31 @@
      "key": "chattersPer100",
      "name": "chatters per hundred at the peak",
      "word": "softening",
-     "pctPerEpisode": -16.1,
+     "pctPerEpisode": -16.7,
      "readings": 5,
      "reason": null
     },
     {
      "key": "messagesPerHour",
      "name": "chat messages an hour",
-     "word": "softening",
-     "pctPerEpisode": -12.2,
+     "word": "holding",
+     "pctPerEpisode": -4.3,
      "readings": 5,
      "reason": null
     },
     {
      "key": "minutesPerViewer",
      "name": "minutes each live viewer stayed",
-     "word": null,
-     "pctPerEpisode": -2.9,
-     "readings": 3,
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "word": "holding",
+     "pctPerEpisode": -1.1,
+     "readings": 4,
+     "reason": null
     },
     {
      "key": "holdRate",
      "name": "share of the peak still watching at the end",
-     "word": "softening",
-     "pctPerEpisode": -8,
+     "word": "holding",
+     "pctPerEpisode": -3.7,
      "readings": 5,
      "reason": null
     },
@@ -1080,15 +1084,6 @@
  "recommendations": [
   {
    "rank": 1,
-   "id": "fix-announce-to-play",
-   "category": "promotion",
-   "serves": "reachEfficiency",
-   "finding": "Reach reads fragile: announce-to-play sits at 13 against a usual 31.4 and is softening (the newest read is carried from an older finished episode). Fewer of the people who see the announcement are actually pressing play.",
-   "action": "Rework this week's announcement: post a short clip with a concrete hook within an hour of going live on both Dive Club and DesignerTom, pin it, and test one next-morning reminder post to see if plays recover.",
-   "caveat": null
-  },
-  {
-   "rank": 2,
    "id": "restart-chat",
    "category": "audience",
    "serves": "participation",
@@ -1193,6 +1188,7 @@
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
    },
    "promo": null,
+   "promotion": null,
    "engagementPer1k": 49.9,
    "subsPer1k": 8.8,
    "discoveryShare": 14.2,
@@ -1482,6 +1478,7 @@
     "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
    },
    "promo": null,
+   "promotion": null,
    "engagementPer1k": 39.1,
    "subsPer1k": 2.8,
    "discoveryShare": 19,
@@ -1768,8 +1765,9 @@
    },
    "promo": {
     "provisional": true,
-    "note": "more than double what a typical episode gets (4,241 X plays vs a typical 1,895; 19,596 X reach vs a typical 5,553) — treat as promo-driven outlier, not topic signal"
+    "note": "more than double what a typical episode gets (4,241 X plays vs a typical 1,895; 19,596 X reach vs a typical 5,553) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
+   "promotion": null,
    "engagementPer1k": 29.5,
    "subsPer1k": 0,
    "discoveryShare": 12.7,
@@ -2055,10 +2053,15 @@
     "peers": 4
    },
    "pace": {
-    "value": null,
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "rank": 3,
+    "of": 4,
+    "pct": -4,
+    "value": 1969,
+    "typical": 2053,
+    "ageDays": 28.4
    },
    "promo": null,
+   "promotion": null,
    "engagementPer1k": 32,
    "subsPer1k": 3.6,
    "discoveryShare": 13.5,
@@ -2329,14 +2332,15 @@
     "peers": 3
    },
    "pace": {
-    "rank": 4,
-    "of": 4,
-    "pct": -38,
+    "rank": 5,
+    "of": 5,
+    "pct": -36,
     "value": 1263,
-    "typical": 2022,
+    "typical": 1975,
     "ageDays": 21.4
    },
    "promo": null,
+   "promotion": null,
    "engagementPer1k": 34,
    "subsPer1k": 0.8,
    "discoveryShare": 11.8,
@@ -2660,6 +2664,7 @@
     "ageDays": 14.4
    },
    "promo": null,
+   "promotion": null,
    "engagementPer1k": 29.7,
    "subsPer1k": 0.7,
    "discoveryShare": 12.9,
@@ -2983,8 +2988,9 @@
    },
    "promo": {
     "provisional": true,
-    "note": "more than double what a typical episode gets (5,273 YT views vs a typical 1,525) — treat as promo-driven outlier, not topic signal"
+    "note": "more than double what a typical episode gets (5,273 YT views vs a typical 1,525) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
+   "promotion": null,
    "engagementPer1k": 8.5,
    "subsPer1k": 0.8,
    "discoveryShare": 6.3,
@@ -3217,7 +3223,7 @@
       "url": "https://x.com/designertom/status/2095602695512195280"
      }
     ],
-    "transcript": null
+    "transcript": "https://dive-radio-analytics.vercel.app/transcripts/2026-09-02-dive-radio-how-to-engineer-a-brand-unive.txt"
    },
    "views": {
     "youtube": 1625,
@@ -3273,6 +3279,40 @@
     "reason": "pace needs three other episodes at this age"
    },
    "promo": null,
+   "promotion": {
+    "status": "found",
+    "source": "UX Tools",
+    "updatedAt": "2026-09-04T05:15:52.381Z",
+    "emailClicks": 109,
+    "verifiedEmailClicks": 41,
+    "clicksReason": null,
+    "combinedUniqueReaders": null,
+    "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links.",
+    "matchedTargets": [
+     "youtube:lnAecYrKYos"
+    ],
+    "matchedUnits": [
+     "ytViews"
+    ],
+    "newsletters": [
+     {
+      "postId": "post_179faf55-d19b-4399-b9f2-e2d892de4820",
+      "title": "7 changes in brand world-building",
+      "publishedAt": "2026-09-03T13:00:00.000Z",
+      "url": "https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building",
+      "emailClicks": 109,
+      "verifiedEmailClicks": 41
+     }
+    ],
+    "snapshots": [
+     {
+      "date": "2026-09-03",
+      "pulledAt": "2026-09-04T05:15:52.381Z",
+      "emailClicks": 109,
+      "verifiedEmailClicks": 41
+     }
+    ]
+   },
    "engagementPer1k": 22.2,
    "subsPer1k": null,
    "discoveryShare": null,
@@ -3310,7 +3350,7 @@
    },
    "chapters": {
     "value": null,
-    "reason": "no transcript"
+    "reason": "chapters not written yet"
    },
    "moments": [],
    "health": {
@@ -3415,7 +3455,7 @@
  "definitions": [
   [
    "typical",
-   "the median of the usable peers among the eight episodes before the one being read: promo outliers out, peers without a reading on the needed basis out, three or nothing."
+   "the middle value from the usable peers among the eight episodes before the one being read: promo outliers out, peers without the needed kind of reading out, three or nothing."
   ],
   [
    "same age",
@@ -3427,7 +3467,7 @@
   ],
   [
    "clean",
-   "not a promo outlier, not tracked late, with the needed snapshot coverage."
+   "not a promo outlier, not tracked late, with the needed daily readings."
   ],
   [
    "promo outlier",
@@ -3439,7 +3479,7 @@
   ],
   [
    "swing and bands",
-   "a measure's swing is the median absolute deviation of its peers from their typical, as a share of the typical; a check's bands are half its measures' median swing either side of fifty, never narrower than five points nor wider than fifteen; the state word (healthy / steady / fragile) follows the bands."
+   "a measure's swing is the middle distance of its peers from their typical, as a share of the typical; a check's bands use half the middle swing of its measures either side of fifty, never narrower than five points nor wider than fifteen; the state word (healthy / steady / fragile) follows the bands."
   ],
   [
    "launch word",
@@ -3455,7 +3495,7 @@
   ],
   [
    "show health",
-   "a daily read of the newest episode at its age against the show's usual levels — seven checks, each a mean of its measures at fifty times own over typical; the words are model-written over these facts and cite them."
+   "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."
   ],
   [
    "direction",
@@ -3497,18 +3537,23 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-09-04T03:51:32.283Z",
+    "stamp": "2026-09-04T05:30:55.312Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
+   },
+   {
+    "store": "UX Tools newsletter",
+    "stamp": "2026-09-04T05:15:52.381Z",
+    "note": "exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views"
    },
    {
     "store": "show-health read",
     "stamp": "2026-09-03",
-    "note": "health-v8; model prose over deterministic checks; deterministic fallback when the model fails"
+    "note": "health-v9; fixed fallback wording over checked facts"
    },
    {
     "store": "recommendations",
-    "stamp": "2026-09-04T03:51:32.283Z",
-    "note": "five ranked actions, model-written over the day's fact sheet and health read; every number grounded"
+    "stamp": "2026-09-04T05:30:55.312Z",
+    "note": "1 current action; saved model actions whose numbers changed are held back"
    },
    {
     "store": "chapters",
@@ -3525,6 +3570,7 @@
   "episodes[].latest.byDest.{dest}*",
   "episodes[].latest.xPlaysInfo*",
   "episodes[].latest.totalViewsInfo*",
+  "episodes[].promotion*",
   "episodes[].metrics*",
   "episodes[].live.byChannel[]*",
   "episodes[].comments.featured[]*",
@@ -3702,6 +3748,8 @@
   "health.ageDays",
   "health.withheld",
   "health.formulaVersion",
+  "health.provider",
+  "health.model",
   "health.dataThrough",
   "health.score",
   "health.readState",
@@ -3737,7 +3785,8 @@
   "baselines.anomaly.{slug}",
   "baselines.knownBreaks",
   "baselines.knownBreaks[]",
-  "chaptersUpdatedAt"
+  "chaptersUpdatedAt",
+  "promotionUpdatedAt"
  ],
  "leavesOut": [
   {

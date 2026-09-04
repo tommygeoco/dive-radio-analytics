@@ -68,6 +68,7 @@ const bandWords = (score) => (score == null ? "—" : score >= 55 ? "above usual
 export const COVERS = Object.freeze([
   // bundles consumed whole (trailing *)
   "episodes[].announces[]*", "episodes[].links.{dest}*", "episodes[].latest.byDest.{dest}*", "episodes[].latest.xPlaysInfo*", "episodes[].latest.totalViewsInfo*",
+  "episodes[].promotion*",
   "episodes[].metrics*", "episodes[].live.byChannel[]*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
   "episodes[].health*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*",
   "insights[]*", "insightsStale[]*", "showTrend.week1VelocityByEpisode[]*", "showTrend.paceRank*", "commentSummary.enjoyThemes[]*", "commentSummary.complaintThemes[]*",
@@ -88,9 +89,9 @@ export const COVERS = Object.freeze([
   "insightsStale",
   "showTrend", "showTrend.week1VelocityByEpisode", "showTrend.week1VelocityByEpisode[]", "showTrend.paceRank",
   "commentSummary", "commentSummary.captured", "commentSummary.feedbackCount", "commentSummary.uniqueCommenters", "commentSummary.enjoyCount", "commentSummary.complaintCount", "commentSummary.commentersPer1k", "commentSummary.commentersPer1kNote", "commentSummary.enjoyThemes", "commentSummary.complaintThemes",
-  "health", "health.date", "health.ageDays", "health.withheld", "health.formulaVersion", "health.dataThrough", "health.score", "health.readState", "health.headline", "health.checks", "health.checks[]", "health.asOf", "health.pros", "health.pros[]", "health.cons", "health.cons[]", "health.drivers", "health.checkSetChange", "health.trend", "health.facts", "health.facts[]",
+  "health", "health.date", "health.ageDays", "health.withheld", "health.formulaVersion", "health.provider", "health.model", "health.dataThrough", "health.score", "health.readState", "health.headline", "health.checks", "health.checks[]", "health.asOf", "health.pros", "health.pros[]", "health.cons", "health.cons[]", "health.drivers", "health.checkSetChange", "health.trend", "health.facts", "health.facts[]",
   "baselines", "baselines.constants", "baselines.pace", "baselines.pace.{slug}", "baselines.launch", "baselines.launch.{slug}", "baselines.newestVsPrevious", "baselines.direction", "baselines.direction.overall", "baselines.direction.votes", "baselines.direction.measures", "baselines.direction.measures[]", "baselines.outlook", "baselines.outlook.nextFirstWeek", "baselines.outlook.coolOff", "baselines.anomaly", "baselines.anomaly.{slug}", "baselines.knownBreaks", "baselines.knownBreaks[]",
-  "chaptersUpdatedAt",
+  "chaptersUpdatedAt", "promotionUpdatedAt",
 ]);
 export const LEAVES_OUT = Object.freeze([
   { path: "episodes[].snapshots", reason: "the raw daily series by destination — summarised as totals, first week, launch, and pace; the full series is in data.json" },
@@ -169,6 +170,7 @@ function episodeDigest(e, data) {
     launch: launch?.word ? { word: launch.word, label: `${launch.promoDriven ? "promo-driven" : launch.word}${launch.provisional ? " (so far)" : ""}`, promoDriven: !!launch.promoDriven, provisional: !!launch.provisional, late: !!launch.late, value: launch.value, typical: launch.typical, pct: launch.pct, peers: launch.n } : absent(launch?.reason || "no reading at the launch age"),
     pace: pace?.rank != null ? { rank: pace.rank, of: pace.of, pct: pace.pct, value: pace.value, typical: pace.typical, ageDays: pace.ageDays } : absent(pace?.reason || "pace needs three other episodes at this age"),
     promo: flag?.flagged ? { provisional: !!flag.provisional, note: e.metrics?.anomaly || "promo-driven outlier" } : null,
+    promotion: e.promotion || null,
     engagementPer1k: e.metrics?.engagementPer1k ?? null, subsPer1k: e.subsPer1k ?? null, discoveryShare: e.discoveryShare ?? null,
     watching: w.avgPercent != null ? { sharePercent: w.avgPercent, avgDurationSec: w.avgDurationSec ?? null, minutesWatched: w.minutesWatched ?? null, traffic: (w.traffic || []).slice(0, 4).map((t) => ({ source: t.source, share: t.share })), shape: w.shape || null, updatedAt: w.updatedAt || null } : absent("no YouTube analytics report yet"),
     live: l.peak != null ? { peak: l.peak, average: l.avg, uniqueViewers: l.liveViews ?? null, minutesWatched: l.watchedMin ?? null, minutesPerViewer: l.minutesPerViewer ?? null, holdRate: l.holdRate ?? null, chatMessages: l.chatMessages, chatters: l.chatters, durationMin: l.durationMin } : absent("no live session record"),
@@ -182,7 +184,7 @@ function healthDigest(data) {
   if (!h) return absent("no health read saved yet");
   if (h.withheld) return { withheld: true, date: h.date, ageDays: h.ageDays, reason: "the saved read is more than a week behind the data — the score is withheld" };
   return {
-    date: h.date, dataThrough: h.dataThrough, ageDays: h.ageDays, readState: h.readState, formulaVersion: h.formulaVersion,
+    date: h.date, dataThrough: h.dataThrough, ageDays: h.ageDays, readState: h.readState, formulaVersion: h.formulaVersion, provider: h.provider, model: h.model,
     score: h.score, band: bandWords(h.score), headline: h.headline, drivers: h.drivers || [],
     readsOn: h.asOf ? { episode: short((data.episodes || []).find((e) => e.slug === h.asOf.newest)?.title) || h.asOf.newestTitle || h.asOf.newest, ageDays: h.asOf.ageDays, provisional: !!h.asOf.provisional, carried: h.asOf.carried || [], promoQualified: h.asOf.qualified || [] } : null,
     checks: (h.checks || []).map((c) => ({
@@ -240,7 +242,8 @@ export function buildDigest(data) {
   return {
     version: BRIEF_VERSION,
     generatedAt: data.generatedAt,
-    clocks: { data: data.generatedAt, dataThrough: latestSnapshot, healthRead: data.health?.date || null, healthDataThrough: data.health?.dataThrough || null, chaptersWritten: data.chaptersUpdatedAt || null },
+    promotionUpdatedAt: data.promotionUpdatedAt || null,
+    clocks: { data: data.generatedAt, dataThrough: latestSnapshot, healthRead: data.health?.date || null, healthDataThrough: data.health?.dataThrough || null, chaptersWritten: data.chaptersUpdatedAt || null, promotionChecked: data.promotionUpdatedAt || null },
     site: SITE,
     show: {
       name: "Dive Radio", episodes: eps.length, first: eps[0] ? { ep: eps[0].ep, premiere: eps[0].premiere } : null, latest: eps.at(-1) ? { ep: eps.at(-1).ep, premiere: eps.at(-1).premiere, title: short(eps.at(-1).title) } : null,
@@ -266,17 +269,17 @@ export function buildDigest(data) {
 }
 
 export const DEFINITIONS = Object.freeze([
-  ["typical", "the median of the usable peers among the eight episodes before the one being read: promo outliers out, peers without a reading on the needed basis out, three or nothing."],
+  ["typical", "the middle value from the usable peers among the eight episodes before the one being read: promo outliers out, peers without the needed kind of reading out, three or nothing."],
   ["same age", "a value taken from the daily snapshot at the same days-since-premiere as the episode under test — the only honest way to compare a young episode with older ones."],
   ["as the earlier episodes stand now", "a comparison made with the earlier episodes' current (matured, at least twenty-one days) values because no same-age history exists yet; the note says so."],
-  ["clean", "not a promo outlier, not tracked late, with the needed snapshot coverage."],
+  ["clean", "not a promo outlier, not tracked late, with the needed daily readings."],
   ["promo outlier", "an episode whose YouTube views, X plays, or X reach exceed twice the same-age typical of the nearby episodes; provisional before day twenty-one, settled after. Its own lift is shown but scores nothing (qualified); it is left out of every typical."],
   ["carried", "a show-health measure read from an older, finished episode because the newest is too young; it counts at half weight and names the episode it read."],
-  ["swing and bands", "a measure's swing is the median absolute deviation of its peers from their typical, as a share of the typical; a check's bands are half its measures' median swing either side of fifty, never narrower than five points nor wider than fifteen; the state word (healthy / steady / fragile) follows the bands."],
+  ["swing and bands", "a measure's swing is the middle distance of its peers from their typical, as a share of the typical; a check's bands use half the middle swing of its measures either side of fifty, never narrower than five points nor wider than fifteen; the state word (healthy / steady / fragile) follows the bands."],
   ["launch word", "an episode's first-week standing in one word — strong, typical, or soft — from YouTube views at day seven (or the earliest reading, or the current age while under a week, marked provisional) against the other episodes at that age, promo outliers out, three or nothing."],
   ["first week vs launch reading", "a first week needs a clean seven-day record and feeds the growth slope; a launch reading is the same-age standing available from the first day and can exist where a first week cannot (an episode tracked late)."],
   ["episode health", "a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline."],
-  ["show health", "a daily read of the newest episode at its age against the show's usual levels — seven checks, each a mean of its measures at fifty times own over typical; the words are model-written over these facts and cite them."],
+  ["show health", "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."],
   ["direction", "each durable measure's change per episode (Theil–Sen slope) over the last five clean episodes; a word needs four; building above plus five percent, softening below minus five; the overall word is single only when every check agrees, otherwise mixed."],
   ["outlook", "where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days."],
   ["hold rate", "the live audience over the last ten minutes of the session as a share of the peak."],
@@ -294,8 +297,9 @@ function lineageDigest(data) {
       { store: "YouTube analytics (owner OAuth)", stamp: analytics, note: "share watched, average duration, minutes watched, traffic sources, subscribers gained; a daily history line per episode since 2026-08-23" },
       { store: "Restream live events", stamp: eps.map((e) => e.live ? e.premiere : null).filter(Boolean).sort().at(-1), note: "peak, average, unique viewers, minutes watched, chat; frozen at first ingest" },
       { store: "audience comments + classifier", stamp: data.commentSummary?.captured != null ? data.generatedAt : null, note: "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off" },
-      { store: "show-health read", stamp: data.health?.date || null, note: `${data.health?.formulaVersion || "—"}; model prose over deterministic checks; deterministic fallback when the model fails` },
-      { store: "recommendations", stamp: data.generatedAt, note: "five ranked actions, model-written over the day's fact sheet and health read; every number grounded" },
+      { store: "UX Tools newsletter", stamp: data.promotionUpdatedAt || null, note: "exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views" },
+      { store: "show-health read", stamp: data.health?.date || null, note: `${data.health?.formulaVersion || "—"}; ${data.health?.provider === "deterministic" ? "fixed fallback wording over checked facts" : "model wording over checked facts"}` },
+      { store: "recommendations", stamp: data.generatedAt, note: `${(data.insights || []).length} current action${(data.insights || []).length === 1 ? "" : "s"}; saved model actions whose numbers changed are held back` },
       { store: "chapters", stamp: data.chaptersUpdatedAt || null, note: "model-written per transcript, every timestamp and quote grounded in the transcript" },
     ],
     cadence: "one chain run at 07:00 America/Phoenix (pull, capture, score, write, validate, publish); a freshness check at 08:15 and noon",
@@ -315,7 +319,7 @@ export function renderMarkdown(digest) {
   p();
   p(HEADINGS[0]);
   p();
-  p(`This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the five actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders ${SITE}, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.`);
+  p(`This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders ${SITE}, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.`);
   p();
   p(`Three clocks: the data build (${c.data}); the show-health read (${c.healthRead || "none"}, over data through ${c.healthDataThrough ? day(c.healthDataThrough) : "—"} — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (${c.chaptersWritten ? day(c.chaptersWritten) : "none yet"}).`);
   p();
@@ -324,7 +328,7 @@ export function renderMarkdown(digest) {
   p(`- An absent value is a dash with its reason; it is never zero and never estimated.`);
   p(`- Every comparison names how it was made: at the same age, or as the earlier episodes stand now.`);
   p(`- A promo-driven lift is shown and marked; it scores nothing and is left out of every typical.`);
-  p(`- Model-written words (the health headline and drivers, the recommendations, the chapters, the moment notes) are labelled and cite the facts they rest on; everything else is arithmetic over the stores.`);
+  p(`- Written summaries say whether they came from a model or the fixed fallback and cite the facts they rest on; everything else is arithmetic over the stores.`);
   p(`- Fewer than three comparable readings means no claim, not a caveated one.`);
   p();
   p(`Not here: the raw daily series, the per-minute live audience, the hundred-point watch curves, and every individual comment — section 10 says where they are.`);
@@ -352,7 +356,8 @@ export function renderMarkdown(digest) {
     p();
     p(`Every number in this section is as the read saw it (data through ${day(h.dataThrough)}); the episode tables in sections 5 and 6 are as of this build and can be newer.`);
     p();
-    p(`Headline (model-written): ${esc(h.headline)}`);
+    const healthWriter = h.provider === "deterministic" ? "fixed fallback" : "model-written";
+    p(`Headline (${healthWriter}): ${esc(h.headline)}`);
     if (h.readsOn) p(`Reads ${esc(h.readsOn.episode)}, ${fmtNum(h.readsOn.ageDays, 1)} days in${h.readsOn.carried.length ? `; ${h.readsOn.carried.map((k) => CHECK_WORDS[k] || k).join(", ")} carried from the latest finished episode at half weight` : ""}${h.readsOn.promoQualified.length ? `; shown but not scored (promo-driven): ${h.readsOn.promoQualified.map((q) => MEASURE_WORDS[q.split(".")[1]] || q).join(", ")}` : ""}.`);
     p();
     p(`| Check | State | Score | Bands (fragile under / healthy from) | Usual swing |`);
@@ -379,7 +384,7 @@ export function renderMarkdown(digest) {
     p(`Helping:`); for (const b of h.helping) p(`- ${esc(b.text)} [${b.factId}]`);
     p(`Needs work:`); for (const b of h.needsWork) p(`- ${esc(b.text)} [${b.factId}]`);
     p();
-    if (h.drivers.length) { p(`Reasoning (model-written):`); for (const d of h.drivers) p(`- ${esc(d)}`); p(); }
+    if (h.drivers.length) { p(`Reasoning (${healthWriter}):`); for (const d of h.drivers) p(`- ${esc(d)}`); p(); }
     if (h.checkSetChange) p(`Check set changed since the previous read: joined ${(h.checkSetChange.joined || []).map((k) => CHECK_WORDS[k] || k).join(", ") || "none"}; left ${(h.checkSetChange.left || []).map((k) => CHECK_WORDS[k] || k).join(", ") || "none"} (previous score ${h.checkSetChange.previousScore ?? "—"}).`), p();
     if (h.facts.length) {
       p(`Facts behind the read (cite by id):`);
@@ -422,7 +427,8 @@ export function renderMarkdown(digest) {
     const eh = abs(e.health) ? "—²" : String(e.health.score);
     const lv = abs(e.live) ? "—" : `${fmtNum(e.live.peak)} / ${fmtNum(e.live.average)} / ${fmtNum(e.live.uniqueViewers)} / ${fmtNum(e.live.minutesWatched)}`;
     const fb = abs(e.feedback) ? "—" : `${fmtNum(e.feedback.enjoyed)} / ${fmtNum(e.feedback.concerns)}`;
-    p(`| E${e.ep} | ${e.premiere} | ${esc(e.title)} | ${fmtNum(e.views.youtube)} | ${fmtNum(e.views.xPlays)}${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} | ${fmtNum(e.views.xReach)} | ${fmtNum(e.views.total)} | ${fw} | ${la} | ${pa} | ${eh} | ${lv} | ${abs(e.live) ? "—" : fmtNum(e.live.minutesPerViewer, 1)} | ${abs(e.live) || e.live.holdRate == null ? "—" : pct(e.live.holdRate, 0)} | ${abs(e.watching) ? "—" : pct(e.watching.sharePercent)} | ${e.subsPer1k == null ? "—" : fmtNum(e.subsPer1k, 1)} | ${e.discoveryShare == null ? "—" : pct(e.discoveryShare)} | ${fb} | ${e.promo ? (e.promo.provisional ? "yes (provisional)" : "yes") : "no"} |`);
+    const promotion = e.promotion?.status === "found" ? esc(e.promotion.source || "UX Tools") : null;
+    p(`| E${e.ep} | ${e.premiere} | ${esc(e.title)} | ${fmtNum(e.views.youtube)} | ${fmtNum(e.views.xPlays)}${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} | ${fmtNum(e.views.xReach)} | ${fmtNum(e.views.total)} | ${fw} | ${la} | ${pa} | ${eh} | ${lv} | ${abs(e.live) ? "—" : fmtNum(e.live.minutesPerViewer, 1)} | ${abs(e.live) || e.live.holdRate == null ? "—" : pct(e.live.holdRate, 0)} | ${abs(e.watching) ? "—" : pct(e.watching.sharePercent)} | ${e.subsPer1k == null ? "—" : fmtNum(e.subsPer1k, 1)} | ${e.discoveryShare == null ? "—" : pct(e.discoveryShare)} | ${fb} | ${promotion || (e.promo ? (e.promo.provisional ? "outlier (provisional)" : "outlier") : "—")} |`);
   }
   p();
   p(`¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.`);
@@ -447,6 +453,16 @@ export function renderMarkdown(digest) {
     if (e.trackedLate) standing.push("tracked late: first snapshot more than five days after premiere, so its first week is undefined");
     p(`Standing: ${standing.join("; ")}.`);
     p(`Views: ${fmtNum(e.views.youtube)} YouTube${e.views.youtubeMarker === "old" ? ` (old reading${e.views.youtubeAsOf ? ` from ${day(e.views.youtubeAsOf)}` : ""})` : e.views.youtubeMarker === "missing" ? " (missing)" : ""} + ${fmtNum(e.views.xPlays)} X plays${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} = ${fmtNum(e.views.total)}${e.views.reason ? ` (${esc(e.views.reason)})` : ""}; X reach ${fmtNum(e.views.xReach)}; likes and comments per thousand YouTube views ${e.engagementPer1k == null ? "—" : fmtNum(e.engagementPer1k, 1)}.`);
+    if (e.promotion?.status === "found") {
+      const tracked = e.promotion.emailClicks == null
+        ? `tracked email clicks not available${e.promotion.clicksReason ? ` (${esc(e.promotion.clicksReason)})` : ""}`
+        : e.promotion.emailClicks === 0 ? "no tracked email clicks yet" : `${fmtNum(e.promotion.emailClicks)} tracked email clicks`;
+      const verified = e.promotion.verifiedEmailClicks == null
+        ? "clicks verified by Beehiiv not available"
+        : e.promotion.verifiedEmailClicks === 0 ? "no clicks verified by Beehiiv yet" : `${fmtNum(e.promotion.verifiedEmailClicks)} verified by Beehiiv`;
+      const issue = e.promotion.newsletters?.at(-1) || null;
+      p(`Promotion: ${esc(e.promotion.source || "UX Tools")} email linked this episode — ${tracked}; ${verified}.${issue?.url ? ` Issue: ${issue.url}${issue.title ? ` (${esc(issue.title)})` : ""}.` : ""} These clicks are not part of views.`);
+    }
     p(abs(e.watching) ? `Watching: — (${e.watching.reason}).` : `Watching (YouTube analytics, ${day(e.watching.updatedAt)}): ${pct(e.watching.sharePercent)} of the video watched on average, ${e.watching.avgDurationSec == null ? "—" : minutes(e.watching.avgDurationSec)} per view, ${fmtNum(e.watching.minutesWatched)} minutes watched in all; views came from ${e.watching.traffic.map((t) => `${t.source} ${pct(t.share)}`).join(", ")}; subscribers per thousand views ${e.subsPer1k == null ? "—" : fmtNum(e.subsPer1k, 1)}; discovery share ${e.discoveryShare == null ? "—" : pct(e.discoveryShare)}.`);
     p(abs(e.live) ? `Live session: — (${e.live.reason}).` : `Live session: peak ${fmtNum(e.live.peak)}, average ${fmtNum(e.live.average)}, ${fmtNum(e.live.uniqueViewers)} people watched live for ${fmtNum(e.live.minutesWatched)} minutes in all (${e.live.minutesPerViewer == null ? "—" : fmtNum(e.live.minutesPerViewer, 1)} minutes each; ${e.live.holdRate == null ? "hold rate —" : `${pct(e.live.holdRate, 0)} of the peak still watching at the end`}); ${fmtNum(e.live.chatMessages)} chat messages from ${fmtNum(e.live.chatters)} people over ${fmtNum(e.live.durationMin)} minutes.${(digest.knownBreaks || []).some((b) => e.ep >= b.fromEp) ? " Note the live-reporting break in section 3." : ""}`);
     if (abs(e.chapters)) p(`Chapters: — (${e.chapters.reason}).`);
@@ -522,7 +538,7 @@ export function renderLlms(digest) {
   const L = [];
   L.push(`# Dive Radio analytics`);
   L.push(``);
-  L.push(`> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, five ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (${digest.generatedAt}).`);
+  L.push(`> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (${digest.generatedAt}).`);
   L.push(``);
   L.push(`## Read first`);
   L.push(`- [Agent brief](${SITE}/agent.md): everything, for reading — start with its first section`);

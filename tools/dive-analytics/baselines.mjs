@@ -250,8 +250,8 @@ export function windowFor(own, episodes, { side = "before", n = WINDOW_N } = {})
 // as amended): a lift on YouTube views spoils every view-based comparison,
 // a lift on X reach or plays every reach-based one; the live room carries
 // no flagged unit, so a live night is never excluded for a promo elsewhere.
-// `units` undefined = the episode-level rule (any flag), kept for the frozen
-// episode-health algorithm and the page's pace.
+// `units` undefined = the episode-level rule (any flag), kept only for the
+// frozen episode-health algorithm.
 export const UNIT_FAMILIES = Object.freeze({
   views: ["ytViews"],
   reach: ["xImpressions", "xPlays"],
@@ -262,6 +262,14 @@ export function flaggedOn(flags, slug, units) {
   if (!f) return false;
   if (units === undefined) return f.flagged === true;
   return units.some((u) => f.units?.[u]?.flag === true);
+}
+export function flagReason(flags, slug, units) {
+  const f = flags?.get?.(slug);
+  if (!f) return "promo outlier";
+  const keys = units === undefined ? Object.keys(f.units || {}) : units;
+  return keys.some((key) => f.units?.[key]?.flag === true && f.units?.[key]?.source === "newsletter")
+    ? "known newsletter promotion"
+    : "promo outlier";
 }
 
 // Filter a window down to usable peers. `valueOf(peer)` returns the peer's
@@ -274,7 +282,7 @@ export function peersFor({ own, window, flags, valueOf, coverageOf = null, ownCo
   const excluded = [];
   for (const p of window) {
     if (p.slug === own.slug) continue;
-    if (flaggedOn(flags, p.slug, units)) { excluded.push({ slug: p.slug, why: "promo outlier" }); continue; }
+    if (flaggedOn(flags, p.slug, units)) { excluded.push({ slug: p.slug, why: flagReason(flags, p.slug, units) }); continue; }
     if (coverageOf && coverageOf(p) !== ownCoverage) { excluded.push({ slug: p.slug, why: "different comment coverage" }); continue; }
     const v = valueOf(p);
     if (!Number.isFinite(v)) { excluded.push({ slug: p.slug, why: "no reading at this age" }); continue; }
@@ -314,11 +322,25 @@ export function anomalyFlags(episodes, { minPeers = MIN_PEERS } = {}) {
     const window = windowFor(e, sorted, { side: "either" });
     const units = {};
     const hits = [];
+    const knownHits = [];
     let provisional = false;
     for (const unit of UNITS) {
+      if (e.promotion?.status === "found" && e.promotion?.matchedUnits?.includes(unit.key) && historicalSnapshotsOf(e).length > 0) {
+        units[unit.key] = {
+          tier: "known-promotion",
+          value: unit.latest(e),
+          typical: null,
+          n: 0,
+          window: [],
+          flag: true,
+          source: "newsletter",
+        };
+        knownHits.push(`${e.promotion.source || "UX Tools"} email linked the ${unit.key === "ytViews" ? "YouTube upload" : "X broadcast"}`);
+        continue;
+      }
       const tryTier = (tier, ownValue, peerValueOf) => {
         if (!Number.isFinite(ownValue)) return null;
-        const usable = window.filter((p) => !(flags.get(p.slug)?.flagged));
+        const usable = window.filter((p) => !flaggedOn(flags, p.slug, [unit.key]));
         const peers = usable.map((p) => ({ slug: p.slug, value: peerValueOf(p) })).filter((p) => Number.isFinite(p.value));
         if (peers.length < minPeers) return null;
         const typical = trueMedian(peers.map((p) => p.value));
@@ -346,11 +368,14 @@ export function anomalyFlags(episodes, { minPeers = MIN_PEERS } = {}) {
       }
     }
     const flagged = hits.length > 0;
+    const knownPromotion = knownHits.length > 0;
+    const anyFlagged = flagged || knownPromotion;
     flags.set(e.slug, {
-      flagged,
+      flagged: anyFlagged,
       provisional: flagged && provisional,
+      knownPromotion,
       units,
-      text: flagged ? `more than double what a typical episode gets (${hits.join("; ")}) — treat as promo-driven outlier, not topic signal` : null,
+      text: anyFlagged ? `${[...knownHits, ...(hits.length ? [`more than double what a typical episode gets (${hits.join("; ")})`] : [])].join("; ")} — treat the affected viewing numbers as a promo-driven outlier, not topic signal` : null,
     });
   }
   return flags;
@@ -674,7 +699,7 @@ export function coolOffFor(own, episodes, flags, { span = COOL_SPAN_DAYS, minPee
   const peers = [];
   const excluded = [];
   for (const p of window) {
-    if (flaggedOn(flags, p.slug, UNIT_FAMILIES.views)) { excluded.push({ slug: p.slug, why: "promo outlier" }); continue; }
+    if (flaggedOn(flags, p.slug, UNIT_FAMILIES.views)) { excluded.push({ slug: p.slug, why: flagReason(flags, p.slug, UNIT_FAMILIES.views) }); continue; }
     const v = ratioAt(p);
     if (!Number.isFinite(v)) { excluded.push({ slug: p.slug, why: "no reading at this age" }); continue; }
     peers.push({ slug: p.slug, value: round3(v) });
@@ -714,6 +739,7 @@ export function paceFor(own, episodes, flags, { minPeers = MIN_PEERS } = {}) {
     own, window, flags,
     valueOf: (p) => { const s = ytSnapshotAt(p, age); return s ? ytViewsOf(s) : null; },
     minPeers,
+    units: UNIT_FAMILIES.views,
   });
   if (!Number.isFinite(ownValue) || typical == null) {
     return { ageDays: round1(age), value: ownValue, typical: null, n, rank: null, of: null, pct: null, peers: peers.map((p) => p.slug), excluded, reason: NOTES.youngAge(n) };
@@ -740,7 +766,7 @@ export function paceFor(own, episodes, flags, { minPeers = MIN_PEERS } = {}) {
 // contributing curve has that grid position (no interpolation).
 export function typicalCurve(episodes, flags, { exclude = null, minPeers = MIN_PEERS } = {}) {
   const curves = episodes
-    .filter((e) => e.slug !== exclude && !(flags?.get?.(e.slug)?.flagged) && (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics && Array.isArray(e.watch?.curve) && e.watch.curve.length)
+    .filter((e) => e.slug !== exclude && !flaggedOn(flags, e.slug, UNIT_FAMILIES.views) && (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics && Array.isArray(e.watch?.curve) && e.watch.curve.length)
     .map((e) => ({ slug: e.slug, curve: e.watch.curve }));
   if (curves.length < minPeers) return { points: null, n: curves.length, window: curves.map((c) => c.slug) };
   const byAt = new Map();
@@ -762,14 +788,14 @@ export function computeBaselines(episodes, { flags = anomalyFlags(episodes), his
   for (const [slug, f] of flags) anomaly[slug] = { flagged: f.flagged, provisional: f.provisional, units: f.units };
   const mature = episodes.filter((e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics);
   const watchPct = (() => {
-    const vals = mature.filter((e) => !flags.get(e.slug)?.flagged && Number.isFinite(e.watch?.avgPercent));
+    const vals = mature.filter((e) => !flaggedOn(flags, e.slug, UNIT_FAMILIES.views) && Number.isFinite(e.watch?.avgPercent));
     const typical = vals.length >= MIN_PEERS ? trueMedian(vals.map((e) => e.watch.avgPercent)) : null;
     return { typical: Number.isFinite(typical) ? round1(typical) : null, n: vals.length, window: vals.map((e) => e.slug), ageBasis: "mature" };
   })();
   // per-episode watched typical for the table's ▲/▼: the other mature,
   // unflagged episodes (the row itself never in its own typical)
   const watchPctBySlug = Object.fromEntries(episodes.map((e) => {
-    const others = mature.filter((o) => o.slug !== e.slug && !flags.get(o.slug)?.flagged && Number.isFinite(o.watch?.avgPercent));
+    const others = mature.filter((o) => o.slug !== e.slug && !flaggedOn(flags, o.slug, UNIT_FAMILIES.views) && Number.isFinite(o.watch?.avgPercent));
     const typical = others.length >= MIN_PEERS ? trueMedian(others.map((o) => o.watch.avgPercent)) : null;
     return [e.slug, { typical: Number.isFinite(typical) ? round1(typical) : null, n: others.length, window: others.map((o) => o.slug), ageBasis: "mature" }];
   }));

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "publication": {
+    "id": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
+    "name": "UX Tools"
+  },
+  "updatedAt": "2026-09-04T05:15:52.381Z",
+  "lastSuccessfulAt": "2026-09-04T05:15:52.381Z",
+  "episodes": {
+    "2026-07-17-dive-radio-bumpy-takeoff": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-08-06-dive-radio-backyard-designers-behind-the": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
+      "status": "no-direct-link",
+      "reason": "No newsletter link could be tied to this episode exactly.",
+      "newsletters": [],
+      "totals": null,
+      "snapshots": []
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
+      "status": "found",
+      "reason": null,
+      "newsletters": [
+        {
+          "postId": "post_179faf55-d19b-4399-b9f2-e2d892de4820",
+          "title": "7 changes in brand world-building",
+          "slug": "7-changes-in-brand-world-building",
+          "publishedAt": "2026-09-03T13:00:00.000Z",
+          "webUrl": "https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building",
+          "matchedTargets": [
+            "youtube:lnAecYrKYos"
+          ],
+          "anchorCount": 5,
+          "trackedLinkCount": 2,
+          "links": [
+            {
+              "url": "https://www.youtube.com/live/lnAecYrKYos?si=21YMVzwcizfMSZsT&utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=7-changes-in-brand-world-building",
+              "baseUrl": "https://www.youtube.com/live/lnAecYrKYos",
+              "target": "youtube:lnAecYrKYos",
+              "emailClicks": 76,
+              "verifiedEmailClicks": 27,
+              "uniqueClicksForThisLink": 33,
+              "uniqueVerifiedClicksForThisLink": 24
+            },
+            {
+              "url": "https://www.youtube.com/live/lnAecYrKYos?utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=7-changes-in-brand-world-building",
+              "baseUrl": "https://www.youtube.com/live/lnAecYrKYos",
+              "target": "youtube:lnAecYrKYos",
+              "emailClicks": 33,
+              "verifiedEmailClicks": 14,
+              "uniqueClicksForThisLink": 20,
+              "uniqueVerifiedClicksForThisLink": 14
+            }
+          ],
+          "emailClicks": 109,
+          "verifiedEmailClicks": 41,
+          "clicksReason": null,
+          "combinedUniqueReaders": null,
+          "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
+        }
+      ],
+      "totals": {
+        "emailClicks": 109,
+        "verifiedEmailClicks": 41,
+        "combinedUniqueReaders": null,
+        "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
+      },
+      "snapshots": [
+        {
+          "date": "2026-09-03",
+          "pulledAt": "2026-09-04T05:15:52.381Z",
+          "emailClicks": 109,
+          "verifiedEmailClicks": 41
+        }
+      ]
+    }
+  }
+}

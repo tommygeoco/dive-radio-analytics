@@ -32,6 +32,7 @@ const EVENTS_DIR = join(ROOT, "data", "restream", "events");
 const COMMENTS_DIR = join(ROOT, "data", "restream", "comments");
 const TRANSCRIPTS_DIR = join(ROOT, "transcripts");
 const HEALTH_PATH = join(ROOT, "data", "restream", "health-history.json");
+const BEEHIIV_PATH = join(ROOT, "data", "restream", "beehiiv-promotions.json");
 
 export const DESTS = [
   { key: "yt:joindiveclub", label: "YT Dive Club", platform: "yt" },
@@ -347,6 +348,11 @@ export function computeAll({ now = Date.now() } = {}) {
   episodes.forEach((e, i) => { e.ep = i + 1; });
   const dive = episodes;
 
+  // Exact newsletter promotion evidence is attached before comparisons are
+  // built. The click counts stay separate from views; matched destination
+  // ids only tell baselines which viewing unit received a known push.
+  const promotionUpdatedAt = attachNewsletterPromotions(dive);
+
   // Promo-outlier flags (PRD v9 W22b): the one definition lives in
   // baselines.mjs — a unit more than double the SAME-AGE typical of the
   // nearby episodes (settled at day 21; provisional before that; the
@@ -454,6 +460,7 @@ export function computeAll({ now = Date.now() } = {}) {
   return {
     generatedAt: new Date(now).toISOString(),
     chaptersUpdatedAt: chapterStore?.updatedAt || null,
+    promotionUpdatedAt,
     dests: DESTS,
     episodes,
     insights,
@@ -463,6 +470,50 @@ export function computeAll({ now = Date.now() } = {}) {
     health,
     baselines,
   };
+}
+
+// --- UX Tools newsletter promotion -----------------------------------------
+// The dedicated pull script owns network access and the raw Beehiiv store.
+// This projection is deliberately small: exact issue links and click facts
+// for the dashboard, agent brief, Slack, and comparison exclusions.
+function attachNewsletterPromotions(dive) {
+  if (!existsSync(BEEHIIV_PATH)) return null;
+  const store = JSON.parse(readFileSync(BEEHIIV_PATH, "utf8"));
+  for (const episode of dive) {
+    const entry = store?.episodes?.[episode.slug];
+    if (entry?.status !== "found" || !Array.isArray(entry.newsletters) || !entry.newsletters.length) continue;
+    const matchedTargets = [...new Set(entry.newsletters.flatMap((newsletter) => newsletter.matchedTargets || []))].sort();
+    const matchedUnits = [...new Set(matchedTargets.map((target) => target.startsWith("youtube:") ? "ytViews" : target.startsWith("x:") ? "xPlays" : null).filter(Boolean))].sort();
+    episode.promotion = {
+      status: "found",
+      source: store.publication?.name || "UX Tools",
+      updatedAt: store.lastSuccessfulAt || store.updatedAt || null,
+      emailClicks: entry.totals?.emailClicks ?? null,
+      verifiedEmailClicks: entry.totals?.verifiedEmailClicks ?? null,
+      clicksReason: entry.totals?.emailClicks == null || entry.totals?.verifiedEmailClicks == null
+        ? (entry.newsletters.find((newsletter) => newsletter.clicksReason)?.clicksReason || "Click count not available.")
+        : null,
+      combinedUniqueReaders: null,
+      uniqueReason: entry.totals?.uniqueReason || "Beehiiv does not dedupe one reader across different tracked links.",
+      matchedTargets,
+      matchedUnits,
+      newsletters: entry.newsletters.map((newsletter) => ({
+        postId: newsletter.postId,
+        title: newsletter.title,
+        publishedAt: newsletter.publishedAt,
+        url: newsletter.webUrl,
+        emailClicks: newsletter.emailClicks ?? null,
+        verifiedEmailClicks: newsletter.verifiedEmailClicks ?? null,
+      })),
+      snapshots: (entry.snapshots || []).map((snapshot) => ({
+        date: snapshot.date,
+        pulledAt: snapshot.pulledAt,
+        emailClicks: snapshot.emailClicks ?? null,
+        verifiedEmailClicks: snapshot.verifiedEmailClicks ?? null,
+      })),
+    };
+  }
+  return store.lastSuccessfulAt || store.updatedAt || null;
 }
 
 // analytics history lines (PRD v9 W22a) for same-age comparisons of analytics measures
@@ -1290,6 +1341,16 @@ export function trendsLines(data) {
   // carries its reason). The wording says what each number is — its own read
   // against the episodes before it — never a trend across them.
   const newest = data.episodes[data.episodes.length - 1];
+  if (newest?.promotion?.status === "found") {
+    const p = newest.promotion;
+    const clicks = p.emailClicks == null
+      ? "tracked email click count is not available"
+      : p.emailClicks === 0 ? "no tracked email clicks yet" : `${num(p.emailClicks)} tracked email clicks`;
+    const verified = p.verifiedEmailClicks == null
+      ? "verified click count is not available"
+      : p.verifiedEmailClicks === 0 ? "no clicks verified by Beehiiv yet" : `${num(p.verifiedEmailClicks)} verified by Beehiiv`;
+    push(`• Promotion: ${p.source || "UX Tools"} linked ${shortTitle(newest.title)} — ${clicks}; ${verified}. These clicks are not part of views.`, { kind: "newsletter-promotion" });
+  }
   const scored = data.episodes.filter((e) => e.health && !e.health.pending && e.health.score != null);
   if (scored.length) {
     const seq = scored.map((e) => `${e.premiere.slice(5)} ${e.health.score}`).join(" · ");

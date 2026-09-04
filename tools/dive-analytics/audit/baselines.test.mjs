@@ -233,21 +233,21 @@ for (let i = 0; i < 12; i++) {
   const p = B.paceFor(young, eps, flags);
   assert.ok(!p.peers.includes("e09"), "e09 has no reading at 3 days");
   assert.ok(p.excluded.some((x) => x.slug === "e09" && x.why === "no reading at this age"));
-  assert.ok(!p.peers.includes("e05"), "outlier excluded from pace peers");
+  assert.ok(p.peers.includes("e05"), "an X-only outlier remains a YouTube pace peer");
   assert.equal(typeof p.rank, "number");
   assert.equal(p.of, p.n + 1);
   const first = B.paceFor(eps[0], eps, flags);
   assert.equal(typeof first.rank, "number", "mature episodes compare at their shared last-snapshot age");
   const alone = B.paceFor(young, [young, eps[8], eps[4]], flags);
-  assert.equal(alone.rank, null, "no three peers with a reading at 3 days (late-registered + outlier)");
+  assert.equal(alone.rank, null, "no three peers with a reading at 3 days");
   assert.match(alone.reason, /tracked this early/);
 }
 
-// --- typical curve: mature, unflagged, with analytics only ---
+// --- typical curve: mature, with analytics, excluding YouTube lifts only ---
 {
   const flags = B.anomalyFlags(eps);
   const t = B.typicalCurve(eps, flags);
-  assert.ok(!t.window.includes("e05"), "outlier curve excluded");
+  assert.ok(t.window.includes("e05"), "an X-only outlier keeps its YouTube watch curve");
   assert.ok(!t.window.includes("e11"), "episode without analytics excluded");
   assert.ok(!t.window.includes("e12"), "young episode excluded");
   assert.ok(t.window.includes("e10"), "a 24-day-old episode is mature");
@@ -268,7 +268,7 @@ for (let i = 0; i < 12; i++) {
   assert.equal(proj.constants.MIN_PEERS, 3);
   assert.equal(proj.anomaly.e05.flagged, true);
   assert.equal(proj.watchPct.ageBasis, "mature");
-  assert.ok(!proj.watchPct.window.includes("e05"));
+  assert.ok(proj.watchPct.window.includes("e05"), "an X-only outlier remains eligible for a YouTube watch comparison");
 }
 
 // --- scoring helpers ---
@@ -462,6 +462,17 @@ console.log("baselines.test: ok");
   assert.ok(e12peers.excluded.some((x) => x.slug === "e05" && x.why === "promo outlier"), "episode-level: the promo episode is excluded");
   assert.ok(e12viewPeers.peers.some((p) => p.slug === "e05"), "views family: an X-only flag does not exclude");
   assert.equal(B.flaggedOn(flagsAll, "e05", B.UNIT_FAMILIES.live), false);
+  const withNewsletter = eps.map((e) => e.slug === "e06"
+    ? { ...e, promotion: { status: "found", source: "UX Tools", matchedUnits: ["ytViews"] } }
+    : e);
+  const newsletterFlags = B.anomalyFlags(withNewsletter);
+  assert.equal(newsletterFlags.get("e06").knownPromotion, true);
+  assert.equal(newsletterFlags.get("e06").units.ytViews.source, "newsletter");
+  assert.equal(B.flaggedOn(newsletterFlags, "e06", B.UNIT_FAMILIES.views), true);
+  assert.equal(B.flaggedOn(newsletterFlags, "e06", B.UNIT_FAMILIES.reach), false, "a YouTube newsletter link must not taint X reach");
+  const newsletterPeers = B.peersFor({ own: withNewsletter.at(-1), window: B.windowFor(withNewsletter.at(-1), withNewsletter), flags: newsletterFlags, units: B.UNIT_FAMILIES.views, valueOf: (p) => B.ytViewsOf(B.snapshotAt(p, 7)) });
+  assert.ok(newsletterPeers.excluded.some((x) => x.slug === "e06" && x.why === "known newsletter promotion"));
+  assert.ok(!B.typicalCurve(withNewsletter, newsletterFlags).window.includes("e06"), "a known YouTube promotion is excluded from the watch curve");
   const outlook = B.computeOutlook(eps, flagsAll, lens);
   assert.equal(lens.measures.find((m) => m.key === "firstWeek").direction, B.DIRECTION_WORDS.building);
   assert.equal(outlook.nextFirstWeek.n, 3);

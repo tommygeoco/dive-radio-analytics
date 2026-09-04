@@ -607,8 +607,12 @@ function premiereMs(dateStr) {
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   const scriptPath = join(ROOT, "scripts", "restream", "transcripts-pull.mjs");
   let pull = null;
+  let transcriptReader = null;
   try { pull = await import(scriptPath); }
   catch (error) { bad++; fail(`transcripts: pull script could not load — ${error.message}`); }
+  try { transcriptReader = await import(join(TOOL, "transcripts.mjs")); }
+  catch (error) { bad++; fail(`transcripts: shared parser could not load — ${error.message}`); }
+  const vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || pull?.DEFAULT_VAULT;
 
   if (!/if\s*\(e\.transcript\)\s*\{[\s\S]{0,400}href="transcripts\/\$\{esc\(e\.slug\)\}\.txt"/.test(html)) {
     bad++; drift("transcripts: episode download is not gated by the stored transcript flag and slug");
@@ -630,33 +634,217 @@ function premiereMs(dateStr) {
     const show = registeredDiveShows.find((candidate) => candidate.slug === episode.slug);
     const path = join(TRANSCRIPTS, `${episode.slug}.txt`);
     const fileExists = existsSync(path);
+    const raw = fileExists ? readFileSync(path, "utf8") : null;
+    const text = raw == null ? "" : raw.replace(/^\uFEFF/, "").replace(/\r/g, "");
+    const lines = text.split("\n");
+    const declaresVaultSource = lines[2]?.startsWith("Source: Restream speaker transcript (vault") || false;
+    let vaultPlan = null;
+    if (show && pull && vaultDir && existsSync(vaultDir) && (!fileExists || declaresVaultSource)) {
+      try { vaultPlan = pull.planVaultTranscript(show, episode.ep, vaultDir); }
+      catch (error) { bad++; fail(`${episode.slug}: ${error.message}`); }
+      if (vaultPlan && !fileExists) {
+        bad++; fail(`${episode.slug}: ${vaultPlan.file} exists in the owner vault but was not imported`);
+      }
+    }
     if (typeof episode.transcript !== "boolean" || episode.transcript !== fileExists) {
       bad++; fail(`${episode.slug}: stored transcript flag does not exactly match file existence`);
     }
     if (!fileExists || !show) continue;
 
-    const text = readFileSync(path, "utf8").replace(/^\uFEFF/, "").replace(/\r/g, "");
-    const lines = text.split("\n");
     if (!lines[0]?.startsWith(`Dive Radio E${episode.ep} — `) || !lines[0].slice(`Dive Radio E${episode.ep} — `.length).trim()) {
       bad++; fail(`${episode.slug}: transcript does not begin with its episode header`);
     }
     if (!lines.slice(1).join("\n").trim()) { bad++; fail(`${episode.slug}: transcript has a header but no transcript body`); }
+    const vaultLine = lines[2] || "";
+    const vaultSource = vaultLine.match(/^Source: Restream speaker transcript \(vault ([^/\\]+\.txt)\)\./)?.[1] || null;
+    if (vaultLine.startsWith("Source: Restream speaker transcript (vault") && !vaultSource) {
+      bad++; fail(`${episode.slug}: vault source header is malformed`);
+    }
+    if (vaultSource && pull && transcriptReader) {
+      const sourcePath = join(vaultDir, vaultSource);
+      if (!vaultPlan || vaultPlan.file !== vaultSource) { bad++; fail(`${episode.slug}: named vault source is not the exact episode-and-air-date source selected by the importer`); }
+      if (lines[0] !== pull.episodeHeader(show, episode.ep)) { bad++; fail(`${episode.slug}: vault transcript title header does not match the registry`); }
+      const primaryYoutube = (show.targets || []).find((target) => target.kind === "youtube" && target.account === "joindiveclub")
+        || (show.targets || []).find((target) => target.kind === "youtube");
+      const expectedAired = `Aired: ${show.date} · YouTube: https://youtube.com/watch?v=${primaryYoutube?.videoId || ""}`;
+      if (lines[1] !== expectedAired) { bad++; fail(`${episode.slug}: vault transcript air date or YouTube source does not match the registry`); }
+      if (!existsSync(sourcePath)) { bad++; fail(`${episode.slug}: named vault source ${vaultSource} is missing`); }
+      else {
+        try {
+          if (pull.speakerBody(raw) !== pull.speakerBody(readFileSync(sourcePath, "utf8"))) {
+            bad++; fail(`${episode.slug}: canonical transcript body differs from ${vaultSource}`);
+          }
+          const parsed = transcriptReader.parseTranscript(raw);
+          if (parsed.format !== "speaker" || parsed.clock !== "stream") {
+            bad++; fail(`${episode.slug}: vault transcript is not parsed as a Restream speaker transcript on the live clock`);
+          }
+        } catch (error) { bad++; fail(`${episode.slug}: vault transcript parity check failed — ${error.message}`); }
+      }
+    }
   }
 
   if (pull) {
-    const saturdayMorningPhoenix = Date.parse("2026-08-22T14:00:00Z");
-    if (!pull.isTranscriptDue("2026-08-20", saturdayMorningPhoenix)
-      || pull.isTranscriptDue("2026-08-21", saturdayMorningPhoenix)) {
+    const fridayMorningPhoenix = Date.parse("2026-08-21T14:00:00Z");
+    if (!pull.isTranscriptDue("2026-08-20", fridayMorningPhoenix)
+      || pull.isTranscriptDue("2026-08-21", fridayMorningPhoenix)) {
       bad++; fail("transcripts: day-two gate is not based on the Phoenix calendar");
     }
     for (const show of registeredDiveShows.filter((candidate) => candidate.active !== false && pull.isTranscriptDue(candidate.date))) {
       if (!existsSync(join(TRANSCRIPTS, `${show.slug}.txt`))) {
-        warn(`transcripts: ${show.slug} reached day two without captions — no link will render; the pull will try again tomorrow`);
+        warn(`transcripts: ${show.slug} reached day two without a vault transcript or captions — no link will render; the pull will try again tomorrow`);
       }
     }
   }
 
   if (!bad) ok(`transcripts: ${files.length} registered file(s), links, episode headers, bodies, and Phoenix day-two gate are valid`);
+}
+
+// --- 5aa. UX Tools newsletter promotion: exact links, safe sums, projection parity ---
+{
+  let bad = 0;
+  const storePath = join(ROOT, "data", "restream", "beehiiv-promotions.json");
+  let pull = null;
+  let store = null;
+  try { pull = await import(join(ROOT, "scripts", "restream", "beehiiv-promotions-pull.mjs")); }
+  catch (error) { bad++; fail(`newsletter promotion: pull script could not load — ${error.message}`); }
+  try { store = JSON.parse(readFileSync(storePath, "utf8")); }
+  catch (error) { bad++; fail(`newsletter promotion: store could not be read — ${error.message}`); }
+
+  const validCount = (value) => value === null || (Number.isInteger(value) && value >= 0);
+  const completeSum = (values) => values.length && values.every((value) => value !== null)
+    ? values.reduce((sum, value) => sum + value, 0)
+    : null;
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const registeredDiveShows = registry.shows.filter(
+    (show) => /dive.?radio/i.test(show.title || "") || /dive-radio/.test(show.slug || ""),
+  );
+
+  if (store && pull) {
+    if (store.schemaVersion !== 1) { bad++; fail("newsletter promotion: unsupported store version"); }
+    if (store.publication?.id !== pull.DEFAULT_PUBLICATION_ID || store.publication?.name !== pull.PUBLICATION_NAME) {
+      bad++; fail("newsletter promotion: store is not tied to the fixed UX Tools publication");
+    }
+    if (store.updatedAt !== store.lastSuccessfulAt || !Number.isFinite(Date.parse(store.lastSuccessfulAt))) {
+      bad++; fail("newsletter promotion: successful pull time is missing or disagrees with the store update time");
+    }
+
+    for (const show of registeredDiveShows) {
+      const entry = store.episodes?.[show.slug];
+      if (!entry) { bad++; fail(`newsletter promotion: ${show.slug} has no checked result`); continue; }
+      if (!new Set(["found", "no-direct-link"]).has(entry.status)) { bad++; fail(`newsletter promotion: ${show.slug} has an unknown status`); continue; }
+      if (entry.status === "no-direct-link") {
+        if (typeof entry.reason !== "string" || !entry.reason.trim() || !same(entry.newsletters, []) || entry.totals !== null) {
+          bad++; fail(`newsletter promotion: ${show.slug} has no exact link but does not preserve that absence plainly`);
+        }
+      } else {
+        if (entry.reason !== null || !Array.isArray(entry.newsletters) || !entry.newsletters.length || !entry.totals) {
+          bad++; fail(`newsletter promotion: ${show.slug} says found without newsletter facts`);
+          continue;
+        }
+        const allowedTargets = pull.registeredTargetKeys(show);
+        const seenPosts = new Set();
+        for (const newsletter of entry.newsletters) {
+          if (!newsletter.postId || seenPosts.has(newsletter.postId)) { bad++; fail(`newsletter promotion: ${show.slug} repeats or omits a newsletter id`); }
+          seenPosts.add(newsletter.postId);
+          if (!newsletter.title || !Number.isFinite(Date.parse(newsletter.publishedAt)) || Date.parse(newsletter.publishedAt) > Date.parse(store.lastSuccessfulAt)) {
+            bad++; fail(`newsletter promotion: ${show.slug} has an untitled, undated, or future newsletter`);
+          }
+          if (!/^https:\/\/uxtools\.beehiiv\.com\/p\//.test(newsletter.webUrl || "")) {
+            bad++; fail(`newsletter promotion: ${show.slug} has an unexpected issue link`);
+          }
+          if (!Array.isArray(newsletter.matchedTargets) || !newsletter.matchedTargets.length || newsletter.matchedTargets.some((target) => !allowedTargets.has(target))) {
+            bad++; fail(`newsletter promotion: ${show.slug} is attributed to an unregistered episode destination`);
+          }
+          if (!Number.isInteger(newsletter.anchorCount) || newsletter.anchorCount < 1 || !Number.isInteger(newsletter.trackedLinkCount) || newsletter.trackedLinkCount < 1 || newsletter.trackedLinkCount > newsletter.anchorCount) {
+            bad++; fail(`newsletter promotion: ${show.slug} has invalid matched-link counts`);
+          }
+          if (!Array.isArray(newsletter.links)) { bad++; fail(`newsletter promotion: ${show.slug} has no tracked-link list`); continue; }
+          const seenLinks = new Set();
+          for (const link of newsletter.links) {
+            if (!link.url || seenLinks.has(link.url) || /[?&]_bhlid=/i.test(link.url)) { bad++; fail(`newsletter promotion: ${show.slug} repeats or retains a private subscriber link id`); }
+            seenLinks.add(link.url);
+            const parsedTarget = pull.targetKeyFromUrl(link.url);
+            if (parsedTarget !== link.target || !newsletter.matchedTargets.includes(link.target) || pull.targetKeyFromUrl(link.baseUrl) !== link.target) {
+              bad++; fail(`newsletter promotion: ${show.slug} tracked-link destination does not match the registered episode`);
+            }
+            for (const [label, value] of Object.entries({ emailClicks: link.emailClicks, verifiedEmailClicks: link.verifiedEmailClicks, uniqueClicksForThisLink: link.uniqueClicksForThisLink, uniqueVerifiedClicksForThisLink: link.uniqueVerifiedClicksForThisLink })) {
+              if (!validCount(value)) { bad++; fail(`newsletter promotion: ${show.slug} ${label} is not a known whole count or missing`); }
+            }
+            if (link.emailClicks !== null && link.verifiedEmailClicks !== null && link.verifiedEmailClicks > link.emailClicks) { bad++; fail(`newsletter promotion: ${show.slug} verified clicks exceed tracked clicks`); }
+            if (link.emailClicks !== null && link.uniqueClicksForThisLink !== null && link.uniqueClicksForThisLink > link.emailClicks) { bad++; fail(`newsletter promotion: ${show.slug} unique link clicks exceed tracked clicks`); }
+            if (link.verifiedEmailClicks !== null && link.uniqueVerifiedClicksForThisLink !== null && link.uniqueVerifiedClicksForThisLink > link.verifiedEmailClicks) { bad++; fail(`newsletter promotion: ${show.slug} unique verified link clicks exceed verified clicks`); }
+          }
+          const allRowsReturned = newsletter.links.length === newsletter.trackedLinkCount;
+          const expectedClicks = allRowsReturned ? completeSum(newsletter.links.map((link) => link.emailClicks)) : null;
+          const expectedVerified = allRowsReturned ? completeSum(newsletter.links.map((link) => link.verifiedEmailClicks)) : null;
+          if (newsletter.emailClicks !== expectedClicks || newsletter.verifiedEmailClicks !== expectedVerified) {
+            bad++; fail(`newsletter promotion: ${show.slug} issue totals do not equal its complete tracked-link rows`);
+          }
+          if ((expectedClicks === null || expectedVerified === null) !== !!newsletter.clicksReason) {
+            bad++; fail(`newsletter promotion: ${show.slug} incomplete click facts are not named`);
+          }
+          if (newsletter.combinedUniqueReaders !== null || typeof newsletter.uniqueReason !== "string" || !newsletter.uniqueReason.trim()) {
+            bad++; fail(`newsletter promotion: ${show.slug} invents a reader total across different links`);
+          }
+        }
+        const expectedClicks = completeSum(entry.newsletters.map((newsletter) => newsletter.emailClicks));
+        const expectedVerified = completeSum(entry.newsletters.map((newsletter) => newsletter.verifiedEmailClicks));
+        if (entry.totals.emailClicks !== expectedClicks || entry.totals.verifiedEmailClicks !== expectedVerified || entry.totals.combinedUniqueReaders !== null || typeof entry.totals.uniqueReason !== "string") {
+          bad++; fail(`newsletter promotion: ${show.slug} episode totals do not equal its complete issue totals`);
+        }
+      }
+
+      const snapshots = Array.isArray(entry.snapshots) ? entry.snapshots : [];
+      const dates = snapshots.map((snapshot) => snapshot.date);
+      if (!same(dates, [...new Set(dates)].sort())) { bad++; fail(`newsletter promotion: ${show.slug} daily click snapshots repeat or are out of order`); }
+      for (const snapshot of snapshots) {
+        if (!Number.isFinite(Date.parse(snapshot.pulledAt)) || snapshot.date !== pull.phoenixDateKey(Date.parse(snapshot.pulledAt)) || !validCount(snapshot.emailClicks) || !validCount(snapshot.verifiedEmailClicks) || (snapshot.emailClicks === null && snapshot.verifiedEmailClicks === null)) {
+          bad++; fail(`newsletter promotion: ${show.slug} has a malformed Phoenix-day snapshot`);
+        }
+      }
+      if (entry.status === "found" && entry.totals?.emailClicks !== null && entry.totals?.verifiedEmailClicks !== null) {
+        const today = pull.phoenixDateKey(Date.parse(store.lastSuccessfulAt));
+        const snapshot = snapshots.find((row) => row.date === today);
+        if (!snapshot || snapshot.emailClicks !== entry.totals.emailClicks || snapshot.verifiedEmailClicks !== entry.totals.verifiedEmailClicks) {
+          bad++; fail(`newsletter promotion: ${show.slug} current daily snapshot does not match current totals`);
+        }
+      }
+    }
+
+    if (data.promotionUpdatedAt !== store.lastSuccessfulAt) { bad++; fail("newsletter promotion: data update time does not match the source store"); }
+    for (const episode of eps) {
+      const entry = store.episodes?.[episode.slug];
+      if (entry?.status !== "found") {
+        if (episode.promotion != null) { bad++; fail(`newsletter promotion: ${episode.slug} exposes promotion facts without an exact link`); }
+        continue;
+      }
+      const matchedTargets = [...new Set(entry.newsletters.flatMap((newsletter) => newsletter.matchedTargets || []))].sort();
+      const matchedUnits = [...new Set(matchedTargets.map((target) => target.startsWith("youtube:") ? "ytViews" : target.startsWith("x:") ? "xPlays" : null).filter(Boolean))].sort();
+      const expectedProjection = {
+        status: "found",
+        source: store.publication.name,
+        updatedAt: store.lastSuccessfulAt,
+        emailClicks: entry.totals?.emailClicks ?? null,
+        verifiedEmailClicks: entry.totals?.verifiedEmailClicks ?? null,
+        clicksReason: entry.totals?.emailClicks == null || entry.totals?.verifiedEmailClicks == null
+          ? (entry.newsletters.find((newsletter) => newsletter.clicksReason)?.clicksReason || "Click count not available.")
+          : null,
+        combinedUniqueReaders: null,
+        uniqueReason: entry.totals?.uniqueReason || "Beehiiv does not dedupe one reader across different tracked links.",
+        matchedTargets,
+        matchedUnits,
+        newsletters: entry.newsletters.map((newsletter) => ({ postId: newsletter.postId, title: newsletter.title, publishedAt: newsletter.publishedAt, url: newsletter.webUrl, emailClicks: newsletter.emailClicks ?? null, verifiedEmailClicks: newsletter.verifiedEmailClicks ?? null })),
+        snapshots: (entry.snapshots || []).map((snapshot) => ({ date: snapshot.date, pulledAt: snapshot.pulledAt, emailClicks: snapshot.emailClicks ?? null, verifiedEmailClicks: snapshot.verifiedEmailClicks ?? null })),
+      };
+      if (!same(episode.promotion, expectedProjection)) { bad++; fail(`newsletter promotion: ${episode.slug} dashboard facts do not match the source store`); }
+    }
+
+    const html = readFileSync(join(ROOT, "index.html"), "utf8");
+    if (!/e\.promotion\?\.status === "found"/.test(html) || !/promotion\.emailClicks/.test(html) || !/promotion\.verifiedEmailClicks/.test(html) || !/not in views/.test(html) || !/never added to views/.test(html)) {
+      bad++; drift("newsletter promotion: dashboard does not show the stored counts separately from views");
+    }
+  }
+  if (!bad) ok(`newsletter promotion: ${Object.values(store?.episodes || {}).filter((entry) => entry.status === "found").length} exact episode match(es); links, click sums, daily snapshots, and dashboard projection agree`);
 }
 
 // --- 5b. episode tags schema (PRD v2 W3) ---
@@ -2196,11 +2384,14 @@ function premiereMs(dateStr) {
     ["episode-date-sync.test.mjs", "episode-date store sync"],
     ["youtube-zero-downstream.test.mjs", "startup-zero downstream"],
     ["x-broadcast-discovery.test.mjs", "late X broadcast discovery"],
+    ["transcripts-pull.test.mjs", "transcript source and no-overwrite"],
+    ["beehiiv-promotions.test.mjs", "newsletter link attribution"],
+    ["live-parity.test.mjs", "production transcript byte proof"],
   ]) {
     try {
       execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
     } catch (err) {
-      bad++; fail(`YouTube ${fixture[1]} regression failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
+      bad++; fail(`${fixture[1]} regression failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
     }
   }
   let B = null;
@@ -2229,10 +2420,17 @@ function premiereMs(dateStr) {
       for (const [slug, a] of Object.entries(shipped.anomaly)) {
         for (const [unit, u] of Object.entries(a.units)) {
           if (u.window.includes(slug)) { bad++; fail(`baselines: ${slug} ${unit} outlier window includes itself`); }
-          if (u.tier != null && u.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} ${unit} outlier test ran on ${u.n} peers`); }
+          if (u.tier === "known-promotion") {
+            if (u.source !== "newsletter" || u.n !== 0 || u.typical !== null || u.window.length !== 0 || u.flag !== true) {
+              bad++; fail(`baselines: ${slug} ${unit} known newsletter promotion is not stored as a source fact outside the peer test`);
+            }
+          } else if (u.tier != null && u.n < shipped.constants.MIN_PEERS) {
+            bad++; fail(`baselines: ${slug} ${unit} outlier test ran on ${u.n} peers`);
+          }
           if (u.flag && a.flagged !== true) { bad++; fail(`baselines: ${slug} ${unit} flags but the episode is not marked flagged`); }
         }
-        if (a.flagged && a.provisional !== Object.values(a.units).some((u) => u.flag && u.tier !== 1)) { bad++; fail(`baselines: ${slug} provisional stamp disagrees with its tiers`); }
+        const expectedProvisional = Object.values(a.units).some((u) => u.flag && typeof u.tier === "number" && u.tier !== 1);
+        if (a.provisional !== expectedProvisional) { bad++; fail(`baselines: ${slug} provisional stamp disagrees with its numbered tiers`); }
       }
       for (const e of eps.filter((episode) => !B.firstYtSnapshot(episode))) {
         const launch = shipped.launch?.[e.slug] ?? null;
@@ -2240,7 +2438,9 @@ function premiereMs(dateStr) {
         const ytAnomaly = shipped.anomaly?.[e.slug]?.units?.ytViews;
         if (launch != null) { bad++; fail(`baselines: ${e.slug} has no YouTube reading but carries a launch result`); }
         if (pace != null) { bad++; fail(`baselines: ${e.slug} has no YouTube reading but carries a pace result`); }
-        if (!ytAnomaly || ytAnomaly.tier != null || ytAnomaly.value != null || ytAnomaly.typical != null || ytAnomaly.n !== 0 || ytAnomaly.window?.length || ytAnomaly.flag) {
+        const emptyMarker = ytAnomaly && ytAnomaly.tier === null && ytAnomaly.value === null && ytAnomaly.typical === null && ytAnomaly.n === 0 && ytAnomaly.window?.length === 0 && ytAnomaly.flag === false;
+        const knownMarker = e.promotion?.matchedUnits?.includes("ytViews") && ytAnomaly?.tier === "known-promotion" && ytAnomaly.value === null && ytAnomaly.typical === null && ytAnomaly.n === 0 && ytAnomaly.window?.length === 0 && ytAnomaly.flag === true && ytAnomaly.source === "newsletter";
+        if (!emptyMarker && !knownMarker) {
           bad++; fail(`baselines: ${e.slug} pre-air or startup-zero row entered the YouTube outlier history`);
         }
         if (data.health?.asOf?.newest === e.slug) {
@@ -2254,7 +2454,7 @@ function premiereMs(dateStr) {
         if (p && p.peers.includes(slug)) { bad++; fail(`baselines: ${slug} pace peers include itself`); }
         if (p && p.rank != null && p.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} pace ranked on ${p.n} peers`); }
         if (p && p.rank == null && !p.reason) { bad++; fail(`baselines: ${slug} pace absent without a reason`); }
-        for (const x of p?.peers || []) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: ${slug} pace peers include outlier ${x}`); }
+        for (const x of p?.peers || []) if (shipped.anomaly[x]?.units?.ytViews?.flag) { bad++; fail(`baselines: ${slug} pace peers include a YouTube outlier ${x}`); }
       }
       const flagsAgain = B.anomalyFlags(eps);
       for (const e of eps) {
@@ -2262,7 +2462,7 @@ function premiereMs(dateStr) {
         if ((e.metrics?.anomaly ?? null) !== want) { bad++; fail(`baselines: ${e.slug} metrics.anomaly does not match the baselines outlier test`); }
       }
       if (shipped.typicalCurve.points && shipped.typicalCurve.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: typical curve drawn from fewer than MIN_PEERS curves"); }
-      for (const x of shipped.typicalCurve.window) if (shipped.anomaly[x]?.flagged) { bad++; fail(`baselines: typical curve includes outlier ${x}`); }
+      for (const x of shipped.typicalCurve.window) if (shipped.anomaly[x]?.units?.ytViews?.flag) { bad++; fail(`baselines: typical curve includes a YouTube outlier ${x}`); }
       if (shipped.watchPct.typical != null && shipped.watchPct.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: watched typical from fewer than MIN_PEERS episodes"); }
     }
   }
@@ -2278,8 +2478,15 @@ function premiereMs(dateStr) {
     const builtAt = Date.parse(data.generatedAt);
     const publishIdx = chain.steps.findIndex((s) => s.step === "publish");
     const order = chain.steps.map((s) => s.step);
-    for (const must of ["snapshot", "ratings", "build-data", "validate", "publish"]) if (!order.includes(must)) { bad++; drift(`chain: step ${must} missing from chain.json`); }
+    for (const must of ["transcripts", "newsletter-promotion", "snapshot", "ratings", "build-data", "validate", "publish"]) if (!order.includes(must)) { bad++; drift(`chain: step ${must} missing from chain.json`); }
     if (order.lastIndexOf("validate") > publishIdx || order.indexOf("health") > order.lastIndexOf("build-data")) { bad++; drift("chain: validate must run before publish and health before the final build-data"); }
+    const firstBuild = order.indexOf("build-data");
+    const transcriptStep = chain.steps.find((step) => step.step === "transcripts");
+    const newsletterStep = chain.steps.find((step) => step.step === "newsletter-promotion");
+    if (!transcriptStep?.required || order.indexOf("transcripts") > firstBuild) { bad++; drift("chain: transcript import must be required and run before build-data"); }
+    if (!newsletterStep?.required || newsletterStep.freshnessKey !== "lastSuccessfulAt" || JSON.stringify(newsletterStep.writes) !== JSON.stringify(["data/restream/beehiiv-promotions.json"]) || order.indexOf("newsletter-promotion") > firstBuild) {
+      bad++; drift("chain: newsletter promotion capture must be required, current, and run before build-data");
+    }
     const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return e && e.ageDays <= 60; };
     const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e; };
     const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
@@ -2289,12 +2496,24 @@ function premiereMs(dateStr) {
         if (!pattern.includes("*")) {
           const path = join(ROOT, pattern);
           if (!existsSync(path)) { if (step.required) { bad++; fail(`chain: required store ${pattern} is missing`); } continue; }
+          // A step-level freshness key applies to the JSON stores that carry
+          // it. Sibling text/JavaScript outputs are checked byte-for-byte by
+          // the rebuild and publish-integrity blocks instead.
+          if (!pattern.endsWith(".json")) continue;
           let stamp = null;
           try {
             const j = JSON.parse(readFileSync(path, "utf8"));
-            stamp = step.freshnessKey === "updatedAt" ? j.updatedAt : step.freshnessKey === "generatedAt" ? j.generatedAt : step.freshnessKey === "entries[-1].date" ? `${j.entries?.at(-1)?.date}T12:00:00Z` : null;
-          } catch { /* non-JSON */ }
-          if (!stamp) continue;
+            stamp = step.freshnessKey === "updatedAt" ? j.updatedAt
+              : step.freshnessKey === "generatedAt" ? j.generatedAt
+              : step.freshnessKey === "lastSuccessfulAt" ? j.lastSuccessfulAt
+              : step.freshnessKey === "entries[-1].date" ? `${j.entries?.at(-1)?.date}T12:00:00Z`
+              : null;
+          } catch { /* checked as a missing stamp below */ }
+          if (!stamp || !Number.isFinite(Date.parse(stamp))) {
+            const msg = `chain: ${pattern} has no valid ${step.freshnessKey} stamp`;
+            if (step.required) { bad++; fail(msg); } else warn(msg);
+            continue;
+          }
           const lag = builtAt - Date.parse(stamp);
           if (lag > FRESH_MS) {
             const msg = `chain: ${pattern} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
@@ -2344,7 +2563,8 @@ function premiereMs(dateStr) {
     if (!/stagePublishScope\(root\)/.test(publishSource) || !/\["add", "--all", "--", \.\.\.paths\]/.test(scopeSource)) { bad++; drift("chain: release staging must use only exact declared output paths"); }
     if (/git add -A|git add --all/.test(publishSource) || /vercel[^\n]*\|/.test(publishSource)) { bad++; drift("chain: release must not stage broadly or hide a Vercel failure in a pipe"); }
     if (!/MAX_ATTEMPTS = 2/.test(publishSource) || !/checkLiveParity/.test(publishSource) || !/validate\.mjs", "--publish"/.test(publishSource)) { bad++; drift("chain: release must stop after two tries, recheck final files, and prove production bytes"); }
-    if (!/PUBLIC_ARTIFACTS/.test(paritySource) || !/AbortSignal\.timeout\(20_000\)/.test(paritySource)) { bad++; drift("chain: production byte checks must use the public file list and a bounded request"); }
+    if (!/PUBLIC_ARTIFACTS/.test(paritySource) || !/parityArtifactsForRoot/.test(paritySource) || !/transcripts\/\$\{episode\.slug\}\.txt/.test(paritySource) || !/AbortSignal\.timeout\(20_000\)/.test(paritySource)) { bad++; drift("chain: production byte checks must include every served transcript and use a bounded request"); }
+    if (!/newsletter-promotion/.test(runnerSource) || !/RETRY_ONCE/.test(runnerSource)) { bad++; drift("chain: the newsletter platform pull must stop after its one retry"); }
     if (/step\.step === "publish"\s*&&\s*code === 2/.test(runnerSource)) { bad++; drift("chain: an unconfirmed release exit must never be treated as published"); }
     if (!/America\/Phoenix/.test(freshnessSource) || !/kind: "prior-day"/.test(freshnessSource)) { bad++; drift("chain: freshness must reject a previous Phoenix day even when it is only a few hours old"); }
     if (!/MAX_DAILY_ATTEMPTS = 2/.test(dailySource) || !/acquireLock/.test(dailySource) || !/run-chain\.mjs/.test(dailySource)) { bad++; drift("chain: the scheduled entry point must lock and cap whole-chain work at two attempts a day"); }
@@ -2378,9 +2598,15 @@ function premiereMs(dateStr) {
       // numbers: the brief re-derives from data.json (fail)
       if (data.health && !data.health.withheld) {
         if (digest.health?.score !== data.health.score) { bad++; fail(`agent: health score in the brief (${digest.health?.score}) does not re-derive from data.json (${data.health.score})`); }
+        if (digest.health?.provider !== data.health.provider || digest.health?.model !== data.health.model) { bad++; fail("agent: health writer source in the brief does not match data.json"); }
+        const writerLabel = data.health.provider === "deterministic" ? "fixed fallback" : "model-written";
+        if (!md.includes(`Headline (${writerLabel}):`)) { bad++; fail("agent: health headline does not name whether a model or the fixed fallback wrote it"); }
         for (const c of data.health.checks || []) { const d = (digest.health?.checks || []).find((x) => x.key === c.key); if (!d || d.score !== c.score || d.state !== c.state) { bad++; fail(`agent: check ${c.key} in the brief does not re-derive from data.json`); } }
         if (!md.includes(`**Score ${data.health.score} of 100`)) { bad++; fail("agent: agent.md does not print the health score it re-derives"); }
         for (const f of data.health.facts || []) if (!md.includes(`| ${f.id} |`)) { bad++; fail(`agent: fact ${f.id} is not citable from agent.md`); }
+      }
+      if (digest.promotionUpdatedAt !== data.promotionUpdatedAt || digest.clocks?.promotionChecked !== data.promotionUpdatedAt) {
+        bad++; fail("agent: newsletter promotion update time does not match data.json");
       }
       const ranked = (data.insights || []).filter((i) => i.rank != null);
       for (const i of ranked) { const d = (digest.recommendations || []).find((r) => r.id === i.id); if (!d || d.finding !== i.text || d.action !== i.recommendation || d.rank !== i.rank) { bad++; fail(`agent: recommendation ${i.id} in the brief does not re-derive from data.json`); } if (!md.includes(i.recommendation)) { bad++; fail(`agent: recommendation ${i.id} action text is not in agent.md verbatim`); } }
@@ -2392,6 +2618,12 @@ function premiereMs(dateStr) {
         if (d.views.total !== agentTotal || d.views.youtube !== agentYoutube) { bad++; fail(`agent: E${e.ep} views in the brief do not re-derive from data.json under the missing-YouTube rule`); }
         if (agentYoutube == null && (d.views.youtubeMarker !== "missing" || !d.views.reason)) { bad++; fail(`agent: E${e.ep} missing YouTube is not named in the brief`); }
         if (d.trackedLate !== (e.partialHistory == null ? null : e.partialHistory === true)) { bad++; fail(`agent: E${e.ep} tracking state does not preserve unknown separately from on-time`); }
+        if (JSON.stringify(d.promotion ?? null) !== JSON.stringify(e.promotion ?? null)) { bad++; fail(`agent: E${e.ep} newsletter promotion facts do not re-derive from data.json`); }
+        if (e.promotion?.status === "found") {
+          if (!md.includes("These clicks are not part of views.")) { bad++; fail(`agent: E${e.ep} newsletter clicks are not kept separate from views in agent.md`); }
+          if (e.promotion.emailClicks != null && e.promotion.emailClicks > 0 && !md.includes(e.promotion.emailClicks.toLocaleString("en-US"))) { bad++; fail(`agent: E${e.ep} tracked email clicks are missing from agent.md`); }
+          if (e.promotion.verifiedEmailClicks != null && e.promotion.verifiedEmailClicks > 0 && !md.includes(e.promotion.verifiedEmailClicks.toLocaleString("en-US"))) { bad++; fail(`agent: E${e.ep} verified email clicks are missing from agent.md`); }
+        }
         if (d.history?.ready !== e.historyReady || d.history?.reason !== e.historyReason) { bad++; fail(`agent: E${e.ep} history state does not match data.json`); }
         const launch = data.baselines?.launch?.[e.slug];
         if (launch?.word && (d.launch?.word !== launch.word || !!d.launch?.promoDriven !== !!launch.promoDriven)) { bad++; fail(`agent: E${e.ep} launch word in the brief does not re-derive`); }
@@ -2414,18 +2646,16 @@ function premiereMs(dateStr) {
       // known breaks reach every affected row (fail)
       for (const b of data.baselines?.knownBreaks || []) { for (const c of data.health?.checks || []) for (const m of c.measures || []) if (b.measures.includes(m.key) && m.value != null && !md.includes(`known reporting break: ${b.note}`)) { bad++; fail(`agent: the known break is not noted on the ${m.key} row`); } }
       // links: every http(s) link in the brief is the site, a data link, or a transcript (fail)
-      const known = new Set([...data.episodes.flatMap((e) => [...Object.values(e.links || {}), ...(e.announces || []).map((a) => a.url).filter(Boolean)])]);
+      const known = new Set([...data.episodes.flatMap((e) => [...Object.values(e.links || {}), ...(e.announces || []).map((a) => a.url).filter(Boolean), ...(e.promotion?.newsletters || []).map((newsletter) => newsletter.url).filter(Boolean)])]);
       for (const url of md.match(/https?:\/\/[^\s)\]|"]+/g) || []) {
         const bare = url.replace(/[.,;:]+$/, "").replace(/&t=\d+s$/, "");
         if (bare.startsWith(AB.SITE) || known.has(bare)) continue;
         bad++; fail(`agent: unknown link in agent.md — ${bare}`);
       }
-      // words: plain outside Definitions (drift)
-      const BANNED_AGENT = /\b(composite|percentile|pillar|velocity|coverage|basis|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
-      const defsAt = md.indexOf("\n## 8. Definitions\n"), lineageAt = md.indexOf("\n## 9. Lineage and freshness\n");
-      const outsideDefs = defsAt > 0 && lineageAt > defsAt ? md.slice(0, defsAt) + md.slice(lineageAt) : md;
-      const hit = outsideDefs.match(BANNED_AGENT);
-      if (hit) { bad++; drift(`agent: banned word "${hit[0]}" outside the Definitions section of agent.md`); }
+      // words: the served brief stays plain everywhere, including Definitions
+      const BANNED_AGENT = /\b(composite|percentile|pillar|ratio|median|velocity|coverage|basis|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
+      const hit = md.match(BANNED_AGENT);
+      if (hit) { bad++; drift(`agent: banned word "${hit[0]}" appears in agent.md`); }
       // size
       const bytes = Buffer.byteLength(md, "utf8");
       if (bytes > AB.BUDGET.failBytes) { bad++; fail(`agent: agent.md is ${bytes} bytes — over the ${AB.BUDGET.failBytes} budget`); }
@@ -2459,6 +2689,23 @@ function premiereMs(dateStr) {
   for (const line of slackLines) {
     if (line.direction && !(line.sample >= BL.MIN_PEERS)) { bad++; fail(`small-n: Slack line carries a direction on ${line.sample} samples — ${line.text.slice(0, 80)}`); }
     if (line.kind !== "insight" && line.direction == null && /\btrending (up|down)\b/i.test(line.text)) { bad++; fail(`small-n: Slack line says trending without a stamped direction — ${line.text.slice(0, 80)}`); }
+  }
+  const newest = data.episodes.at(-1);
+  const promotionLines = slackLines.filter((line) => line.kind === "newsletter-promotion");
+  if (newest?.promotion?.status === "found") {
+    if (promotionLines.length !== 1) { bad++; fail("newsletter promotion: Slack does not carry exactly one newest-episode line"); }
+    else {
+      const text = promotionLines[0].text;
+      if (!text.includes(newest.promotion.source || "UX Tools") || !text.includes("not part of views")) { bad++; fail("newsletter promotion: Slack drops the stored source or mixes clicks into views"); }
+      if (newest.promotion.emailClicks == null && !/click count is not available/.test(text)) { bad++; fail("newsletter promotion: Slack hides a missing tracked-click count"); }
+      if (newest.promotion.emailClicks === 0 && !/no tracked email clicks yet/.test(text)) { bad++; fail("newsletter promotion: Slack renders a source zero instead of plain absence wording"); }
+      if (newest.promotion.emailClicks > 0 && !text.includes(newest.promotion.emailClicks.toLocaleString("en-US"))) { bad++; fail("newsletter promotion: Slack tracked-click count differs from data.json"); }
+      if (newest.promotion.verifiedEmailClicks == null && !/verified click count is not available/.test(text)) { bad++; fail("newsletter promotion: Slack hides a missing verified-click count"); }
+      if (newest.promotion.verifiedEmailClicks === 0 && !/no clicks verified by Beehiiv yet/.test(text)) { bad++; fail("newsletter promotion: Slack renders a verified zero instead of plain absence wording"); }
+      if (newest.promotion.verifiedEmailClicks > 0 && !text.includes(newest.promotion.verifiedEmailClicks.toLocaleString("en-US"))) { bad++; fail("newsletter promotion: Slack verified-click count differs from data.json"); }
+    }
+  } else if (promotionLines.length) {
+    bad++; fail("newsletter promotion: Slack claims a newest-episode promotion that data.json does not carry");
   }
   if (build.trendsText(data) !== ["", "Trends", ...slackLines.map((l) => l.text)].join("\n")) { bad++; fail("small-n: trendsText does not join trendsLines — two definitions of the Slack block"); }
   try {

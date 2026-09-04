@@ -23,7 +23,8 @@ lives on the owner machine).
 | Step | Script | Writes | Model? | On failure |
 |---|---|---|---|---|
 | discover | `scripts/restream/postlive-discover.mjs` | `data/restream/postlive-registry.json` (new episodes, 4 destinations) | no | live episode day comes from its actual or scheduled start; a waiting live upload with no start time is skipped |
-| transcripts | `scripts/restream/transcripts-pull.mjs` | `transcripts/<slug>.txt` (yt-dlp auto-captions, day 2+) | no | absent; retried next day |
+| transcripts | `scripts/restream/transcripts-pull.mjs` | `transcripts/<slug>.txt` (matching Restream speaker transcript from the owner vault first; YouTube captions from the next Phoenix date) | no | no source leaves the file absent for the next run; malformed or conflicting vault sources stop the required step; an existing file is never overwritten |
+| newsletter-promotion | `scripts/restream/beehiiv-promotions-pull.mjs` | `data/restream/beehiiv-promotions.json` | no | required platform pull; one retry, then stop before build |
 | snapshot | `scripts/restream/postlive-track.mjs snapshot` | `data/restream/postlive/<slug>.json` (append) | no | destination absent from that snapshot |
 | yt-analytics | `scripts/restream/yt-analytics-pull.mjs` | `data/restream/yt-analytics/<slug>.json` (overwrite) + `yt-analytics-history/<slug>.jsonl` (append, one line per Phoenix day when every authorized channel pulled) | no | no history line unless the show has begun, every expected channel returned, and at least one has positive views; a pre-air, empty, or all-zero response cannot reserve the day |
 | comments | `scripts/restream/comments-pull.mjs` | `data/restream/comments/<slug>.json` (append by id) | no | store unchanged |
@@ -37,12 +38,13 @@ lives on the owner machine).
 | recommendations | `tools/dive-analytics/recommendations.mjs` | `data/restream/recommendations.json` | **yes** | previous store stays |
 | moment-summaries | `tools/dive-analytics/moment-summaries.mjs` | `data/restream/moment-summaries.json` | **yes** | moments render without context |
 | build-data → validate | (again, so today's health entry is in the artifact) | | | |
-| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact eight-file live check | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
+| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact-byte checks for the eight core files and every transcript declared by `data.json` | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
 | alerts | `tools/dive-analytics/alerts.mjs` | `alerts-state.json`, locked `alerts-pending.json` | no | required after publish; delivery keeps each line until Slack returns a receipt |
 | freshness | `tools/dive-analytics/freshness.mjs --strict` | locked `alerts-pending.json` only on failure | no | requires today's Phoenix build and a readable production response |
 | critic (Mon) | `tools/dive-analytics/critic.mjs` | `tools/dive-analytics/audit/CRITIC-<date>.md` | **yes** | writes "did not run", exit 0 |
 
-Secrets: `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` from the login shell; YouTube
+Secrets: `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` from the login shell; Beehiiv
+through the OpenClaw 1Password environment; YouTube
 API key + owner OAuth (both channels) and X bearer via the owner's tooling
 (`xurl`); Restream via `restream-token.mjs` (1Password). Nothing in the repo.
 
@@ -68,6 +70,7 @@ days since the episode's premiere (noon Phoenix).
 | `health-history.json` | `entries[]` one per Phoenix day: score, headline, pros/cons (fact-cited), drivers (digit-free from prompt v4; projected and rendered in the evidence card), subScores with measures `{value, typical, sample, score, reason, ageBasis, note, window, excluded, episodeRead, readDate, absoluteScale}`, `checkSet`, `checkSetChange` (projected as `data.health.checkSetChange`; the page, Slack, and alerts announce a changed set — W27), facts, stamps | health (`health-v3`, store v2) | **append-only, immutable**; newest entry ≤ today is served; **withheld after 7 days** | typicals from the eight episodes before the read episode; entries written under older formulas keep their own stamps and are judged by their own weights |
 | `recommendations.json` | 4–7 items `{id, category, text, recommendation}`, every number grounded in the fact sheet; `facts[]` the sheet it was grounded on | recommendations | overwrite on success | projected into `data.insights` **minus stale items** — an item whose numbers have left today's sheet, or that compares a young episode's rate with a finished one's, is held back and named in `data.insightsStale` |
 | `moment-summaries.json` | per episode/moment: one model-written sentence | moment-summaries | overwrite on success | never a raw transcript quote |
+| `beehiiv-promotions.json` | every registered Dive Radio slug → exact-link status, matched destination ids, issue link, per-tracked-link email clicks, daily snapshots | beehiiv-promotions-pull | overwrite current facts; one snapshot per Phoenix day | only exact registered YouTube uploads or X broadcasts count; personalized `_bhlid` values are removed; tracked and Beehiiv-verified clicks stay separate; readers across different links are never added together |
 | `alerts-state.json` / `alerts-pending.json` | last-seen values / queued lines awaiting a confirmed send | alerts, chain, freshness, recovery | locked atomic update | day-over-day diff; delivery removes only the snapshotted lines after Slack returns a message receipt |
 | `transcripts/<slug>.txt` | 3 header lines + timestamped body (two formats: Restream speaker transcript or YouTube auto-captions) | transcripts-pull or owner | never overwritten once present | timestamps are live-recording time; VOD trims shift them (moments are windows, not instants) |
 | `data.json` / `data.js` | the artifact (below) | build-data | rebuilt every run; byte-reproducible from stores (validator 7) | `data.js` is `data.json` wrapped; the page reads only `data.js` |
@@ -78,7 +81,7 @@ days since the episode's premiere (noon Phoenix).
 
 `data.json` top level: `generatedAt`, `dests[4]`, `episodes[]`, `insights[]`,
 `showTrend{week1VelocityByEpisode, cumulativeAllEpisodes, paceRank}`,
-`commentSummary`, `health`.
+`commentSummary`, `health`, `promotionUpdatedAt`.
 
 Per episode: `slug, title, premiere, ep, ageDays, partialHistory, announces,
 snapshots[], weekly[], latest{ts, byDest, ytTotal, youtubeAsOf, youtubeStale, xImpressions, xPlays,
@@ -86,12 +89,15 @@ xPlaysInfo, totalViews, totalViewsInfo}, links, transcript, metrics{week1Velocit
 week1Note, flatlineWeek, engagementPer1k, anomaly}, live{peak, avg, liveViews,
 watchedMin, chatMessages, chatters, durationMin, series, byChannel},
 comments{…, list[], featured[], xCoverage}, watch{avgPercent, avgDurationSec,
-minutesWatched, curve[], traffic[], byChannel, shape, moments}, health`.
+minutesWatched, curve[], traffic[], byChannel, shape, moments}, health,
+promotion{source, updatedAt, emailClicks, verifiedEmailClicks, matchedTargets,
+matchedUnits, newsletters[], snapshots[]}`.
 
 | Surface (page) | Field | Derived in | From | Definition / gate |
 |---|---|---|---|---|
 | Total views (hero, table, standings) | `latest.totalViews` | build-data `buildLatest` | snapshots | last positive YT reading + current resolved X broadcast plays; an absent source stays `null` and is named by `totalViewsInfo`; a later empty YT pull keeps the earlier number with `youtubeStale: true` |
 | X reach | `latest.xImpressions` | build-data | snapshots (X `views` = impressions) | exposure; never summed (rule 1) |
+| UX Tools email promotion (episode panel, Slack, agent brief) | `episode.promotion` | build-data `attachNewsletterPromotions` | `beehiiv-promotions.json` | only an exact registered episode link creates the block; tracked and Beehiiv-verified email clicks are shown separately, never added to views; a linked viewing source is left out of clean comparisons while unrelated viewing and live measures remain eligible |
 | Pace ("#n of m at this age", ▲/▼ vs typical) | `data.baselines.pace[slug]`, `showTrend.paceRank` | `baselines.paceFor` via build-data | positive post-air YouTube readings at the same age (`ytSnapshotAt`, ±0.5 d) | no pre-air reading starts the clock; the other episodes at that age, outliers out, ≥3 or absent with a reason |
 | First-week trend card (views) | `showTrend.week1VelocityByEpisode` | build-data | snapshot at ≤ day 7 | null for `partialHistory` or < 7 d; page and Slack give a direction only from 3 clean weeks; trend words need a three-point run |
 | Trend card (watched / reach / live) | bars from `watch.avgPercent`, `latest.xImpressions`, `live.peak`; verdict from `data.baselines.newestVsPrevious[metric]` | `baselines.newestVsPrevious` | reach: snapshots at the same age; watched: history lines at the same age; live: age-free | "Too young to compare…" when no same-age reading exists; quiet zone from `data.baselines.constants` |
@@ -104,7 +110,7 @@ minutesWatched, curve[], traffic[], byChannel, shape, moments}, health`.
 | Drop-off moments + pins | `watch.shape`, `watch.moments` | build-data via `watch-moments.mjs` | curve + transcript | deterministic; floor 2.0 points; ≤3 drops + 2 holds; summary text from `moment-summaries.json` |
 | Feedback counts, themes, featured quotes, commenters per 1k | `comments.*`, `commentSummary` | build-data `summarizeComments` | `comments-classified.json` ∩ `comments/<slug>.json` | only `ready` + `feedback` labels surface; `commentersPer1k` only when X coverage is complete and plays are not partial/stale |
 | Episode health chip / panel / table / Slack | `episode.health` | **ratings.mjs** (`health21-v2`) | snapshots (watch, engagement — same age), analytics history or file (retention, conversion), events (live), classified comments within 21 d on common sources (sentiment) | §4; ≥21 d; frozen with stored inputs; eight episodes before it, outliers out, three peers per check |
-| Show health score, headline, seven checks with swing-fitted states, pros/cons, direction, outlook, as-of | `health` (incl. `ageDays`, `withheld`, per-check `state` / `bands` / `swing`, per-measure `note` / `qualified` / `carried` / `swing`, `direction`, `outlook`, `asOf`) | **health.mjs** (`health-v6`, deterministic checks; PRD v10 §11 and PRD v12 §3.1 — peers for break-touched measures come only from the newest side of a known reporting break: live turnout = peak, average, unique live viewers, minutes watched live; participation = chatters/100, messages/hour, minutes per live viewer, hold rate; reach adds discovery share; comment rate reads only finished episodes) + model synthesis (prompt v7; deterministic fallback after two failures or with no key, stamped `provider: "deterministic"`) | snapshots, live events, analytics history/file, classified comments, `showTrend`, `baselines.launch` | §4; one entry per Phoenix day when ≥3 checks are available; promo-flagged lifts shown not scored; carried reads at half weight; direction = Theil–Sen over the last 5 clean episodes; outlook = last 3 clean first weeks; score within ±8 of the weighted mean; each bullet cites one fact; withheld after 7 days; bands per check = ±max(10, min(30, swing)) / 2 points (rule 23); a formula bump re-derives the day and files the older read under `superseded` (rule 9); the chain heals a leftover stash-pop conflict on this file by a union by day (`chain-heal.mjs`) |
+| Show health score, headline, seven checks with swing-fitted states, pros/cons, direction, outlook, as-of | `health` (incl. `ageDays`, `withheld`, per-check `state` / `bands` / `swing`, per-measure `note` / `qualified` / `carried` / `swing`, `direction`, `outlook`, `asOf`) | **health.mjs** (`health-v9`, deterministic checks; PRD v10 §11 and PRD v12 §3.1 — peers for break-touched measures come only from the newest side of a known reporting break: live turnout = peak, average, unique live viewers, minutes watched live; participation = chatters/100, messages/hour, minutes per live viewer, hold rate; reach adds discovery share; comment rate reads only finished episodes; an exact newsletter link qualifies only its matched viewing source) + model synthesis (prompt v7; deterministic fallback after two failures or with no key, stamped `provider: "deterministic"`) | snapshots, live events, analytics history/file, classified comments, `showTrend`, `baselines.launch`, `beehiiv-promotions.json` | §4; one entry per Phoenix day when ≥3 checks are available; promo-flagged lifts shown not scored; carried reads at half weight; direction = Theil–Sen over the last 5 clean episodes; outlook = last 3 clean first weeks; score within ±8 of the weighted mean; each bullet cites one fact; withheld after 7 days; bands per check = ±max(10, min(30, swing)) / 2 points (rule 23); a formula bump re-derives the day and files the older read under `superseded` (rule 9); the chain heals a leftover stash-pop conflict on this file by a union by day (`chain-heal.mjs`) |
 | "What matters" — five ranked actions | `insights[]` (each with `rank`, `serves`), `insightsStale[]` | recommendations.mjs (prompt v4, `ranked: true`, exactly five in lever order, W35) else build-data rule insights | fact sheet over every store + `context` (the day's health read states, direction words, outlook, launch words — words only); rate facts carry `ageDays`/`basis` | every number token must exist in today's fact sheet or the item is held back; no item compares a young episode's rate with a finished one's |
 | Slack trends text | `slackTrends()` in build-data | build-data | `data.json` itself | must read the same exported numbers the page reads (validator 1e/1f parity) |
 | Agent brief (`agent.md`), digest (`agent.json`), index (`llms.txt`) | the whole `data.json` object, digested | **agent-brief.mjs** (pure; `buildBrief(data)`), written by build-data | `data.json` in memory (episodes with chapters, live depth, announce URLs; health with facts; baselines with known breaks) | reproduces byte for byte (check 7); census: every data path covered or left out with a reason (block 1w, drift); numbers, links, chapter grounding, known-break notes fail; plain words outside Definitions; ≤ 100 KB (PRD v12) |
@@ -117,7 +123,7 @@ minutesWatched, curve[], traffic[], byChannel, shape, moments}, health`.
 
 ## 4. The two scorers side by side
 
-| | Show health (`health.mjs`, formula `health-v6`, prompt v7) | Episode health (`ratings.mjs`, algorithm `health21-v2`) + launch word (`baselines.launchReadFor`) |
+| | Show health (`health.mjs`, formula `health-v9`, prompt v7) | Episode health (`ratings.mjs`, algorithm `health21-v2`) + launch word (`baselines.launchReadFor`) |
 |---|---|---|
 | Question | How healthy is the show *today*? | Did *this episode* beat the show's own bar at the time? |
 | Cadence | one entry per Phoenix day (when ≥3 checks are available), recomputed from fresh stores | one entry per episode, written once its last snapshot is ≥21 d, frozen |
@@ -163,7 +169,7 @@ Blocks in file order, with what each locks (line refs at `96a4f2f`):
 | 2 | cumulative views never drop (>2 % fails, less warns) |
 | 3 | `partialHistory` starts at the first positive post-air YouTube reading; pre-air and all-zero startup rows are not day one; late start ⇒ no first-week value |
 | 4 | newest snapshot and `generatedAt` < 26 h; generatedAt ≥ newest snapshot |
-| 5 / 5a / 5b | registry ⇔ episodes; transcripts ⇔ files ⇔ links; tags schema |
+| 5 / 5a / 5aa / 5b | registry ⇔ episodes; transcripts ⇔ vault source ⇔ files ⇔ live bytes; newsletter exact links ⇔ click rows ⇔ projection; tags schema |
 | 6 / 7 | artifact files present; `data.js` wraps `data.json`; **`data.json` byte-reproduces from stores** |
 | 1d / 1e | featured quotes safe and verbatim; W8 store stamps, golden gate, every rollup recomputed, Slack/alerts parity |
 | 1f | insight schema, live-chat sentence contract, pace three-peer gate, anomaly caveat wording |

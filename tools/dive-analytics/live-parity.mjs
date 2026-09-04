@@ -37,12 +37,22 @@ export function compareArtifactMaps(local, live, artifacts = PARITY_ARTIFACTS) {
   return { ok: mismatches.length === 0, checked: artifacts.length, mismatches };
 }
 
+export async function parityArtifactsForRoot(root = ROOT) {
+  const data = JSON.parse(await readFile(join(root, "data.json"), "utf8"));
+  const transcripts = (data.episodes || [])
+    .filter((episode) => episode?.transcript === true && typeof episode.slug === "string")
+    .map((episode) => `transcripts/${episode.slug}.txt`)
+    .sort();
+  return [...PARITY_ARTIFACTS, ...transcripts];
+}
+
 export async function checkLiveParity({ root = ROOT, site = SITE, cacheBust = String(Date.now()), fetchImpl = globalThis.fetch } = {}) {
   if (typeof fetchImpl !== "function") throw new Error("fetch is unavailable");
+  const artifacts = await parityArtifactsForRoot(root);
   const local = {};
   const live = {};
   const fetchErrors = [];
-  await Promise.all(PARITY_ARTIFACTS.map(async (file) => {
+  await Promise.all(artifacts.map(async (file) => {
     local[file] = await readFile(join(root, file));
     try {
       const response = await fetchImpl(`${site}/${file}?cb=${encodeURIComponent(cacheBust)}`, {
@@ -56,7 +66,7 @@ export async function checkLiveParity({ root = ROOT, site = SITE, cacheBust = St
     }
   }));
   const failedFiles = new Set(fetchErrors.map((item) => item.file));
-  const result = compareArtifactMaps(local, live);
+  const result = compareArtifactMaps(local, live, artifacts);
   const mismatches = [...fetchErrors, ...result.mismatches.filter((item) => !failedFiles.has(item.file))];
   return { ...result, mismatches, ok: mismatches.length === 0 };
 }

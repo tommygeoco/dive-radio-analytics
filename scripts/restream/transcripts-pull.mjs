@@ -1,12 +1,15 @@
 #!/usr/bin/env node
-// transcripts-pull.mjs — add a timestamped YouTube auto-caption transcript
+// transcripts-pull.mjs — import a timestamped Restream speaker transcript
+// from the owner vault when one exists, otherwise try YouTube auto-captions
 // once a Dive Radio episode reaches its second Phoenix calendar day.
 //
 // Deterministic outside the yt-dlp fetch: no model calls and no runtime
 // dependencies. Existing transcript files are never opened for writing, so a
-// manually supplied Restream speaker transcript always wins. Caption delays
-// are expected: a due episode with no captions stays absent and is tried again
-// on the next daily run.
+// manually supplied canonical transcript always wins. A vault speaker
+// transcript is selected only by exact episode number plus registry air date;
+// conflicting copies stop the step instead of guessing. Caption delays are
+// expected: a due episode with no source stays absent and is tried again on
+// the next daily run.
 //
 // Operator wiring (do not edit cron here): run after postlive-discover.mjs and
 // before snapshot/build-data so the newly created file reaches data.json.
@@ -16,6 +19,7 @@
 //   node scripts/restream/transcripts-pull.mjs --dry-run
 
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   existsSync,
   linkSync,
@@ -28,6 +32,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
+import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -35,6 +40,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
 const TRANSCRIPTS_DIR = join(ROOT, "transcripts");
+export const DEFAULT_VAULT = join(homedir(), "Documents", "Obsidian", "Hinterlands", "Dive Media Group", "Dive Radio");
 const YTDLP_BIN = process.env.YTDLP_BIN || "/opt/homebrew/bin/yt-dlp";
 const DAY = 86400000;
 
@@ -59,7 +65,8 @@ export function phoenixCalendarAgeDays(dateKey, now = Date.now()) {
 }
 
 export function isTranscriptDue(dateKey, now = Date.now()) {
-  return phoenixCalendarAgeDays(dateKey, now) >= 2;
+  // The air date is day one; the next Phoenix calendar date is day two.
+  return phoenixCalendarAgeDays(dateKey, now) >= 1;
 }
 
 function isDiveRadio(show) {
@@ -147,6 +154,51 @@ export function transcriptHeader(show, ep, youtubeTarget, pulledDate) {
   ].join("\n");
 }
 
+function regexEscape(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+export function speakerBody(raw) {
+  const text = String(raw).replace(/^\uFEFF/, "");
+  const match = /^\d{2}:\d{2}:\d{2} \[Speaker [^\]\r\n]+\]\r?$/m.exec(text);
+  if (!match) throw new Error("vault transcript has no timed speaker body");
+  return text.slice(match.index).replace(/\r\n/g, "\n").replace(/\n+$/, "");
+}
+
+export function vaultTranscriptCandidates(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT) {
+  if (!existsSync(vaultDir)) return [];
+  const pattern = new RegExp(`^e${ep}-transcript-${regexEscape(show.date)}(?:-[^.]+)?\\.txt$`);
+  return readdirSync(vaultDir)
+    .filter((name) => pattern.test(name))
+    .sort()
+    .map((file) => ({
+      file,
+      path: join(vaultDir, file),
+      body: speakerBody(readFileSync(join(vaultDir, file), "utf8")),
+    }));
+}
+
+export function planVaultTranscript(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT) {
+  const candidates = vaultTranscriptCandidates(show, ep, vaultDir);
+  if (!candidates.length) return null;
+  const hashes = new Set(candidates.map((candidate) => createHash("sha256").update(candidate.body).digest("hex")));
+  if (hashes.size > 1) {
+    throw new Error(`E${ep} has conflicting vault transcripts for ${show.date}: ${candidates.map((candidate) => candidate.file).join(", ")}`);
+  }
+  return candidates[0];
+}
+
+export function restreamTranscriptHeader(show, ep, youtubeTarget, vaultFile) {
+  if (!youtubeTarget?.videoId) throw new Error(`E${ep} has no registered YouTube upload for its transcript header`);
+  const url = `https://youtube.com/watch?v=${youtubeTarget.videoId}`;
+  return [
+    episodeHeader(show, ep),
+    `Aired: ${show.date} · YouTube: ${url}`,
+    `Source: Restream speaker transcript (vault ${vaultFile}). Speaker labels are automatic — verify quotes against video.`,
+    "",
+  ].join("\n") + "\n";
+}
+
 export function writeTranscriptOnce(path, content) {
   mkdirSync(dirname(path), { recursive: true });
   if (existsSync(path)) return false;
@@ -227,6 +279,7 @@ export function runTranscriptPull({
   dryRun = false,
   root = ROOT,
   ytdlpBin = YTDLP_BIN,
+  vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT,
   downloadVtt = (target) => downloadEnglishVtt(target, { ytdlpBin }),
   writeOnce = writeTranscriptOnce,
   logger = console,
@@ -240,6 +293,22 @@ export function runTranscriptPull({
   for (const plan of plans) {
     if (existsSync(plan.path)) {
       logger.log(`transcripts: E${plan.ep} already has a transcript — kept unchanged`);
+      continue;
+    }
+    const vaultTranscript = planVaultTranscript(plan.show, plan.ep, vaultDir);
+    if (vaultTranscript) {
+      if (dryRun) {
+        logger.log(`transcripts: E${plan.ep} would import ${vaultTranscript.file} from the owner vault`);
+        continue;
+      }
+      const content = restreamTranscriptHeader(plan.show, plan.ep, plan.youtubeTargets[0], vaultTranscript.file) + vaultTranscript.body;
+      const stored = writeOnce(plan.path, content);
+      if (stored) {
+        created++;
+        logger.log(`transcripts: E${plan.ep} imported ${vaultTranscript.file} from the owner vault`);
+      } else {
+        logger.log(`transcripts: E${plan.ep} gained a transcript while the vault source was being read — kept that file unchanged`);
+      }
       continue;
     }
     if (!plan.due) {
