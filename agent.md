@@ -1,12 +1,12 @@
 # Dive Radio — agent brief
 
-Built 2026-09-04T03:01:39.133Z · data through 2026-09-04 · health read 2026-09-03 (data through 2026-09-04) · chapters written 2026-09-02 · brief v1
+Built 2026-09-04T03:03:13.746Z · data through 2026-09-04 · health read 2026-09-03 (data through 2026-09-04) · chapters written 2026-09-02 · brief v1
 
 ## 1. How to read this
 
 This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the five actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Three clocks: the data build (2026-09-04T03:01:39.133Z); the show-health read (2026-09-03, over data through 2026-09-04 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-02).
+Three clocks: the data build (2026-09-04T03:03:13.746Z); the show-health read (2026-09-03, over data through 2026-09-04 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-02).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
