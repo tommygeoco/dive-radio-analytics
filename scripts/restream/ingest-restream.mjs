@@ -387,6 +387,9 @@ export async function runRestreamIngest({ root = ROOT, logPath = LOG_PATH, now =
     const entries = [], pending = [], failures = [];
     for (const event of fresh) {
       const show = episodeForRestreamEvent(event, registry);
+      // The owner account can host unrelated shows. Only exact Radio matches
+      // and explicitly named Radio events belong to this publishing system.
+      if (!show && !/dive\s*radio/i.test(event.title || "")) continue;
       if (show?.date > phoenixDateKey(checkedAt)) continue;
       const path = join(eventsDir, `${event.id}.json`);
       let viewers, messages, raw;
@@ -410,7 +413,7 @@ export async function runRestreamIngest({ root = ROOT, logPath = LOG_PATH, now =
         const disposition = analyticsDisposition(event, viewers, messages, state.events[event.id], Date.parse(checkedAt));
         state.events[event.id] = disposition.state;
         if (show) state.events[event.id].reading = readingEnvelope({ source: "restream", episode: show.slug, objectId: String(event.id), pulledAt: checkedAt, state: disposition.action === "ingest" ? "ready" : "pending" });
-        if (raw && disposition.action === "ingest" && show) state.events[event.id].reading = raw.reading || readingEnvelope({ source: "restream", episode: show.slug, objectId: String(event.id), pulledAt: raw.fetchedAt, state: "ready" });
+        if (raw && disposition.action === "ingest" && show) state.events[event.id].reading = raw.reading || { ...readingEnvelope({ source: "restream", episode: show.slug, objectId: String(event.id), pulledAt: raw.fetchedAt, state: "ready" }), legacyEvidence: true };
         if (disposition.action === "retry") { if (disposition.blocking && show) pending.push(event.id); continue; }
         if (disposition.action === "no-stream") continue;
         if (!show) throw new Error(`Restream event ${event.id} has no exact registered episode destination`);
