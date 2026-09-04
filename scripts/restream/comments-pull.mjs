@@ -10,37 +10,24 @@
 // Praise ranking happens at build time (build-data.mjs), not here, so the
 // heuristic can change without migrating stored data.
 //
-// Exit: 0 on success or partial source failure (WARN lines), 1 only when
-// every source fails. Designed to run best-effort inside the cron chain.
+// Exit: 0 only when every due registered source returned a complete list.
+// Failed or partial pulls preserve the previous complete comment cohort.
 
 import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
-import { join, dirname } from "node:path";
+import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson, readingEnvelope, phoenixDateKey } from "../../tools/dive-analytics/source-io.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
-const OUT_DIR = join(ROOT, "data", "restream", "comments");
 const XURL_BIN = "/opt/homebrew/bin/xurl";
-const X_SEARCH_WINDOW_DAYS = 7; // recent-search hard limit on our tier
+const X_SEARCH_WINDOW_DAYS = 7;
 const HOST_X = new Set(["ridd_design", "designertom"]);
 const HOST_YT_CHANNELS = new Set(["UCkCnraWwlnBw1_i7C9-3p0w", "UC4_qP33t3TGpEM0-96WfC6Q"]);
-// Name backstop for host personal accounts we have no channel id for
-// (critic 2026-08-22 H3: Ridd's personal YT channel isn't in the id set).
 const HOST_YT_NAMES = /^@?(ridd|ridd[\s._-]?design|designertom|tom\s?geoco)$/i;
+const MAX_PAGES = 20;
 
-function loadJson(path, fallback) {
-  try { return JSON.parse(readFileSync(path, "utf8")); } catch { return fallback; }
-}
-function saveJson(path, obj) {
-  // atomic: temp + rename — a crash mid-write must never corrupt a store
-  // (X replies older than 7 days are unrecoverable; critic 2026-08-22 H1)
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(obj, null, 2) + "\n");
-  renameSync(tmp, path);
-}
 export function syncCommentMetadata(store, show) {
   const changed = store.title !== show.title || store.date !== show.date;
   store.title = show.title;
@@ -56,20 +43,22 @@ function xBearer() {
     encoding: "utf8", timeout: 30000,
     env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
   });
-  return out.trim().split("\n").pop();
+  const token = out.trim().split("\n").pop();
+  if (!token) throw new Error("X credential is unavailable");
+  return token;
 }
-async function getJson(url, headers = {}, attempt = 0) {
-  const res = await fetch(url, { headers, signal: AbortSignal.timeout(30000) });
-  if (res.status === 429) {
-    // capped: a persistent 429 (e.g. exhausted monthly quota) must fail fast
-    // into the per-show WARN path, never hang the cron chain (critic F-C4)
-    if (attempt >= 2) throw new Error(`GET ${url.split("?")[0]} -> HTTP 429 after ${attempt + 1} attempts`);
-    const wait = Math.min(Number(res.headers.get("retry-after") || 10) * 1000, 30000);
-    await new Promise((r) => setTimeout(r, wait));
-    return getJson(url, headers, attempt + 1);
-  }
-  if (!res.ok) throw new Error(`GET ${url.split("?")[0]} -> HTTP ${res.status}: ${(await res.text()).slice(0, 160)}`);
-  return res.json();
+function likes(value) {
+  if (value == null) return null;
+  if (!Number.isInteger(value) || value < 0) throw new Error("comment like count is invalid");
+  return value;
+}
+function requiredId(value, label) {
+  if (typeof value !== "string" || !value) throw new Error(`${label} is missing`);
+  return value;
+}
+function requiredTime(value) {
+  if (typeof value !== "string" || !Number.isFinite(Date.parse(value))) throw new Error("comment publication time is invalid");
+  return value;
 }
 
 // strip leading @-mention chains X prepends to replies
@@ -82,168 +71,160 @@ function decodeEntities(s) {
   return s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
 }
 
-async function pullYouTube(show, key) {
+export async function pullYouTubeTarget(show, target, { apiKey, now, get }) {
+  if (!apiKey) throw new Error("YouTube credential is unavailable");
   const out = [];
   const isHost = (sn) => HOST_YT_CHANNELS.has(sn.authorChannelId?.value) || HOST_YT_NAMES.test((sn.authorDisplayName || "").trim());
-  const push = (id, sn, account) => out.push({
-    id: `yt:${id}`,
-    source: "yt",
-    channel: `yt:${account}`,
-    author: sn.authorDisplayName?.replace(/^@/, "") || "viewer",
-    authorId: sn.authorChannelId?.value || null,
-    text: decodeEntities(sn.textDisplay || "").slice(0, 500),
-    likes: Number(sn.likeCount || 0),
-    publishedAt: sn.publishedAt,
+  const push = (id, sn) => {
+    requiredId(id, "YouTube comment id");
+    if (typeof sn.textDisplay !== "string") throw new Error("YouTube comment text is missing");
+    if (isHost(sn)) return;
+    out.push({
+      id: `yt:${id}`, source: "yt", channel: `yt:${target.account}`, sourceObjectId: target.videoId,
+      author: sn.authorDisplayName?.replace(/^@/, "") || "viewer", authorId: sn.authorChannelId?.value || null,
+      text: decodeEntities(sn.textDisplay).slice(0, 500), likes: likes(sn.likeCount), publishedAt: requiredTime(sn.publishedAt),
+      reading: readingEnvelope({ source: "youtube-comments", episode: show.slug, objectId: id, pulledAt: now }),
+    });
+  };
+  const list = async (endpoint, params, visit) => {
+    let token = "";
+    const seen = new Set();
+    for (let page = 0; page < MAX_PAGES; page++) {
+      const q = new URLSearchParams({ ...params, maxResults: "100", textFormat: "plainText", key: apiKey });
+      if (token) q.set("pageToken", token);
+      const data = await get(`https://www.googleapis.com/youtube/v3/${endpoint}?${q}`);
+      if (!Array.isArray(data.items)) throw new Error("YouTube comment response has no item list");
+      for (const item of data.items) await visit(item);
+      const next = data.nextPageToken;
+      if (!next) return;
+      if (typeof next !== "string" || seen.has(next)) throw new Error("YouTube comment pagination repeated or is invalid");
+      seen.add(next); token = next;
+    }
+    throw new Error("YouTube comment pagination exceeded its bounded limit");
+  };
+  await list("commentThreads", { part: "snippet,replies", videoId: target.videoId, order: "time" }, async (item) => {
+    const comment = item.snippet?.topLevelComment;
+    if (!comment?.snippet) throw new Error("YouTube comment thread is malformed");
+    push(comment.id, comment.snippet);
+    const inline = item.replies?.comments || [];
+    const total = item.snippet.totalReplyCount;
+    if (!Array.isArray(inline) || !Number.isInteger(total) || total < 0) throw new Error("YouTube reply counts are invalid");
+    if (total > inline.length) {
+      let fetched = 0;
+      await list("comments", { part: "snippet", parentId: comment.id }, (reply) => {
+        if (!reply?.snippet) throw new Error("YouTube reply is malformed");
+        fetched++; push(reply.id, reply.snippet);
+      });
+      if (fetched < total) throw new Error("YouTube returned an incomplete reply list");
+    } else for (const reply of inline) {
+      if (!reply?.snippet) throw new Error("YouTube inline reply is malformed");
+      push(reply.id, reply.snippet);
+    }
   });
-  // per-target try/catch: one channel with comments disabled must not discard
-  // the other channel's already-fetched results (critic F-C12b)
-  for (const t of show.targets.filter((t) => t.kind === "youtube")) {
-    try {
-      // Replies count as comments too (owner report 2026-08-22: dashboard
-      // undercounted vs YouTube's public number). part=replies inlines up to
-      // 5 replies per thread; deeper threads get a comments.list follow-up.
-      // Paginated, bounded at 5 pages (500 threads) per video.
-      let pageToken = "";
-      for (let page = 0; page < 5; page++) {
-        const q = new URLSearchParams({ part: "snippet,replies", videoId: t.videoId, maxResults: "100", order: "time", textFormat: "plainText", [["k", "e", "y"].join("")]: key });
-        if (pageToken) q.set("pageToken", pageToken);
-        const data = await getJson("https://www.googleapis.com/youtube/v3/commentThreads?" + String(q));
-        for (const item of data.items || []) {
-          const s = item.snippet?.topLevelComment?.snippet;
-          if (!s) continue;
-          if (!isHost(s)) push(item.snippet.topLevelComment.id, s, t.account);
-          const inline = item.replies?.comments || [];
-          const totalReplies = Number(item.snippet.totalReplyCount || 0);
-          if (totalReplies > inline.length) {
-            // thread deeper than the inline cap — fetch the full reply list
-            const rq = new URLSearchParams({ part: "snippet", parentId: item.snippet.topLevelComment.id, maxResults: "100", textFormat: "plainText", [["k", "e", "y"].join("")]: key });
-            const rd = await getJson("https://www.googleapis.com/youtube/v3/comments?" + String(rq));
-            for (const r of rd.items || []) if (r.snippet && !isHost(r.snippet)) push(r.id, r.snippet, t.account);
-          } else {
-            for (const r of inline) if (r.snippet && !isHost(r.snippet)) push(r.id, r.snippet, t.account);
-          }
-        }
-        pageToken = data.nextPageToken || "";
-        if (!pageToken) break;
-      }
-    } catch (e) { console.log(`WARN comments yt ${show.slug} ${t.account}: ${e.message.slice(0, 120)}`); }
-  }
   return out;
 }
 
-async function pullXReplies(show, bearer) {
+export async function pullXTarget(show, target, { bearer, now, get }) {
+  if (!bearer) throw new Error("X credential is unavailable");
   const out = [];
-  // age anchored at premiere noon Phoenix (matching build-data), not UTC
-  // midnight — the old anchor ran 19h early and silently ate the window's
-  // last day under the 07:25 MST cron (critic F-C3b)
-  const premiereMs = Date.parse(show.date + "T12:00:00-07:00");
-  const ageDays = (Date.now() - premiereMs) / 86400000;
-  if (ageDays > X_SEARCH_WINDOW_DAYS + 1) return out; // outside the search window
-  // promo-tagged targets are host chatter, not announce posts — their reply
-  // threads are not episode comments (critic F-C11, audit F-9)
-  for (const t of show.targets.filter((t) => t.kind === "x" && t.role !== "promo")) {
-    const data = await getJson(
-      `https://api.x.com/2/tweets/search/recent?query=${encodeURIComponent(`conversation_id:${t.postId} is:reply`)}&tweet.fields=public_metrics,author_id,created_at&expansions=author_id&user.fields=username&max_results=100`,
-      { Authorization: `Bearer ${bearer}` }
-    );
-    const users = {};
-    for (const u of data.includes?.users || []) users[u.id] = u.username;
-    for (const tw of data.data || []) {
-      const uname = users[tw.author_id] || "";
-      if (HOST_X.has(uname.toLowerCase())) continue;
-      // X API text is entity-encoded like YT's — decode symmetrically (F-C9e)
-      const text = stripMentions(decodeEntities(tw.text || ""));
-      if (!text || /^https?:\/\/\S+$/.test(text)) continue; // link-only
+  const seen = new Set();
+  let token = "";
+  for (let page = 0; page < MAX_PAGES; page++) {
+    const q = new URLSearchParams({ query: `conversation_id:${target.postId} is:reply`, "tweet.fields": "public_metrics,author_id,created_at", expansions: "author_id", "user.fields": "username", max_results: "100" });
+    if (token) q.set("next_token", token);
+    const data = await get(`https://api.x.com/2/tweets/search/recent?${q}`, { Authorization: `Bearer ${bearer}` });
+    if (data.errors?.length || (!Array.isArray(data.data) && !(data.meta?.result_count === 0 && data.data === undefined))) throw new Error("X reply response has no complete result list");
+    const users = Object.fromEntries((data.includes?.users || []).map((u) => [u.id, u.username]));
+    for (const tweet of data.data || []) {
+      requiredId(tweet.id, "X reply id");
+      requiredId(tweet.author_id, "X reply author");
+      if (typeof tweet.text !== "string") throw new Error("X reply text is missing");
+      const username = users[tweet.author_id] || "";
+      if (HOST_X.has(username.toLowerCase())) continue;
+      const text = stripMentions(decodeEntities(tweet.text));
+      if (!text || /^https?:\/\/\S+$/.test(text)) continue;
       out.push({
-        id: `x:${tw.id}`,
-        source: "x",
-        channel: `x:${t.account}`,
-        author: uname ? `@${uname}` : "viewer",
-        authorId: tw.author_id,
-        text: text.slice(0, 500),
-        likes: Number(tw.public_metrics?.like_count || 0),
-        publishedAt: tw.created_at,
+        id: `x:${tweet.id}`, source: "x", channel: `x:${target.account}`, sourceObjectId: target.postId,
+        author: username ? `@${username}` : "viewer", authorId: tweet.author_id,
+        text: text.slice(0, 500), likes: likes(tweet.public_metrics?.like_count), publishedAt: requiredTime(tweet.created_at),
+        reading: readingEnvelope({ source: "x-replies", episode: show.slug, objectId: tweet.id, pulledAt: now }),
       });
     }
+    const next = data.meta?.next_token;
+    if (!next) return out;
+    if (typeof next !== "string" || seen.has(next)) throw new Error("X reply pagination repeated or is invalid");
+    seen.add(next); token = next;
   }
-  return out;
+  throw new Error("X reply pagination exceeded its bounded limit");
+}
+
+export async function runCommentsPull({ root = ROOT, now = new Date().toISOString(), apiKey, bearer, fetchImpl = fetch, log = console.log } = {}) {
+  const pulledAt = new Date(now).toISOString();
+  const registry = readJsonFile(join(root, "data", "restream", "postlive-registry.json"));
+  if (!Array.isArray(registry.shows)) throw new Error("comment registry has no shows");
+  const shows = registry.shows.filter((show) => show.active !== false && /dive-radio/.test(show.slug) && show.date <= phoenixDateKey(pulledAt));
+  const failures = [];
+  let added = 0;
+  for (const show of shows) {
+    const path = join(root, "data", "restream", "comments", `${show.slug}.json`);
+    await withSourceLock(path, async () => {
+      const store = readJsonFile(path, { fallback: { slug: show.slug, title: show.title, date: show.date, comments: [] } });
+      if (store.slug !== show.slug || !Array.isArray(store.comments)) throw new Error("comment store identity or rows are invalid");
+      const ageDays = (Date.parse(pulledAt) - Date.parse(`${show.date}T12:00:00-07:00`)) / 86400000;
+      const xDue = ageDays <= X_SEARCH_WINDOW_DAYS + 1;
+      const targets = (show.targets || []).filter((target) => target.kind === "youtube" || (xDue && target.kind === "x" && target.role !== "promo"));
+      const sources = [];
+      const staged = [];
+      for (const target of targets) {
+        const source = target.kind === "youtube" ? "youtube-comments" : "x-replies";
+        const objectId = target.videoId || target.postId;
+        try {
+          requiredId(objectId, "comment source object");
+          const get = (url, headers) => fetchJson(url, { label: `${source} ${target.account}`, headers, fetchImpl });
+          const comments = target.kind === "youtube"
+            ? await pullYouTubeTarget(show, target, { apiKey, now: pulledAt, get })
+            : await pullXTarget(show, target, { bearer, now: pulledAt, get });
+          staged.push(...comments);
+          sources.push({ ...readingEnvelope({ source, episode: show.slug, objectId, pulledAt }), count: comments.length });
+        } catch (error) {
+          sources.push({ ...readingEnvelope({ source, episode: show.slug, objectId: objectId || "unregistered", pulledAt, state: "failed" }), reason: String(error.message).slice(0, 180) });
+        }
+      }
+      const complete = sources.length > 0 && sources.every((source) => source.state === "ready");
+      store.capture = { checkedAt: pulledAt, state: complete ? "ready" : "failed", sources };
+      if (!complete) {
+        atomicWriteJson(path, store);
+        failures.push(`${show.slug}: ${sources.filter((source) => source.state !== "ready").map((source) => `${source.source} ${source.objectId}: ${source.reason}`).join("; ") || "no registered comment sources"}`);
+        return;
+      }
+      syncCommentMetadata(store, show);
+      const seen = new Map(store.comments.map((comment) => [comment.id, comment]));
+      for (const comment of staged) {
+        if (seen.has(comment.id)) {
+          const prior = seen.get(comment.id);
+          if (comment.likes != null) { prior.likes = comment.likes; prior.likesReading = comment.reading; }
+          continue;
+        }
+        const next = { ...comment, firstSeenAt: pulledAt };
+        store.comments.push(next); seen.set(comment.id, next); added++;
+      }
+      if (xDue && sources.some((source) => source.source === "x-replies")) store.xCoverage = "covered";
+      else if (!store.xCoverage) store.xCoverage = "missed";
+      store.updatedAt = pulledAt;
+      atomicWriteJson(path, store);
+    });
+  }
+  log(`comments: ${shows.length} due show(s), ${added} new comment(s), ${failures.length} incomplete show(s)`);
+  if (failures.length) throw new Error(`comment capture incomplete — ${failures.join("; ")}`);
+  return { shows: shows.length, added };
 }
 
 async function main() {
-  const registry = loadJson(REGISTRY_PATH, { shows: [] });
-  const shows = registry.shows.filter((s) => s.active !== false && /dive-radio/.test(s.slug));
-  if (!shows.length) { console.log("comments: no active dive-radio shows"); return; }
-
-  let key = null, bearer = null;
-  const sourceErrors = [];
-  try { key = ytApiKey(); } catch (e) { sourceErrors.push(`yt-key: ${e.message}`); }
-  try { bearer = xBearer(); } catch (e) { sourceErrors.push(`x-token: ${e.message}`); }
-  if (!key && !bearer) throw new Error(`all sources unavailable — ${sourceErrors.join("; ")}`);
-
-  const now = new Date().toISOString();
-  let totalNew = 0;
-  for (const show of shows) {
-    const path = join(OUT_DIR, `${show.slug}.json`);
-    // corrupt store = skip, never reset: a reset silently destroys X replies
-    // older than the 7-day search window (critic 2026-08-22 H1)
-    let store;
-    if (existsSync(path)) {
-      try { store = JSON.parse(readFileSync(path, "utf8")); }
-      catch (e) { console.log(`WARN comments ${show.slug}: store unreadable (${e.message.slice(0, 80)}) — skipping show, fix the file by hand`); continue; }
-    } else {
-      store = { slug: show.slug, title: show.title, date: show.date, comments: [] };
-    }
-    const metadataChanged = syncCommentMetadata(store, show);
-    const seen = new Set(store.comments.map((c) => c.id));
-    // xCoverage marker (critic 2026-08-22 H2, absence≠zero): "covered" while
-    // the X search window is still open for this episode, "missed" once the
-    // window is gone without a covered run. Never downgraded.
-    const ageDays = (Date.now() - Date.parse(show.date + "T12:00:00-07:00")) / 86400000;
-    let coverageChanged = false;
-    if (bearer && ageDays <= X_SEARCH_WINDOW_DAYS + 1) {
-      if (store.xCoverage !== "covered") { store.xCoverage = "covered"; coverageChanged = true; }
-    } else if (!store.xCoverage) {
-      store.xCoverage = "missed"; coverageChanged = true;
-    }
-    const pulled = [];
-    if (key) {
-      try { pulled.push(...await pullYouTube(show, key)); }
-      catch (e) { console.log(`WARN comments yt ${show.slug}: ${e.message.slice(0, 120)}`); }
-    }
-    if (bearer) {
-      try { pulled.push(...await pullXReplies(show, bearer)); }
-      catch (e) { console.log(`WARN comments x ${show.slug}: ${e.message.slice(0, 120)}`); }
-    }
-    let added = 0;
-    for (const c of pulled) {
-      if (seen.has(c.id)) {
-        // refresh like counts on existing comments (cheap, keeps ranking honest)
-        const prev = store.comments.find((p) => p.id === c.id);
-        if (prev && c.likes > (prev.likes || 0)) prev.likes = c.likes;
-        continue;
-      }
-      seen.add(c.id);
-      store.comments.push({ ...c, firstSeenAt: now });
-      added++;
-    }
-    const audienceChanged = added > 0 || pulled.length || coverageChanged;
-    if (audienceChanged) {
-      store.updatedAt = now;
-    }
-    if (audienceChanged || metadataChanged) {
-      saveJson(path, store);
-    }
-    totalNew += added;
-    if (added > 0) console.log(`comments: ${show.slug} +${added} new (${store.comments.length} total)`);
-  }
-  console.log(`comments: pulled ${shows.length} show(s), ${totalNew} new comment(s)${sourceErrors.length ? ` — WARN ${sourceErrors.join("; ")}` : ""}`);
-
+  let apiKey = null, bearer = null;
+  try { apiKey = ytApiKey(); } catch { /* Captured as a failed source for each due episode. */ }
+  try { bearer = xBearer(); } catch { /* Captured as a failed source for each due episode. */ }
+  return runCommentsPull({ apiKey, bearer });
 }
-
-const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) {
-  main().catch((err) => {
-    process.stderr.write(`comments: ${err.message}\n`);
-    process.exit(1);
-  });
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => { process.stderr.write(`comments: ${error.message}\n`); process.exit(1); });
 }
