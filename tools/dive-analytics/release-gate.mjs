@@ -32,6 +32,7 @@ export function verifyCheckout(root, { run = checkedCommand, log = console.log }
   const scripts = [...walk(root, 'tools'), ...walk(root, 'scripts')].filter(f => /\.(mjs|js|sh)$/.test(f));
   for (const file of scripts) {
     if (file.endsWith('.sh')) run('sh', ['-n', file], { cwd: root });
+    else if (file.endsWith('.js') && file.includes('cron')) new (Object.getPrototypeOf(async function() {}).constructor)('exec', readFileSync(join(root, file), 'utf8'));
     else invoke(['--check', file]);
   }
   let inlineScripts = 0;

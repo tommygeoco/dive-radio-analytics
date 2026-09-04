@@ -36,7 +36,7 @@ import {
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
 const HISTORY_DIR = join(ROOT, "data", "restream", "postlive");
-const LOG_PATH =
+const LOG_PATH = process.env.DIVE_POSTLIVE_LOG_PATH ||
   "/Users/bones/Documents/Obsidian/Hinterlands/Ops/Bones/live-show-analytics.md";
 const BEGIN = "<!-- POSTLIVE:BEGIN -->";
 const END = "<!-- POSTLIVE:END -->";
