@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
@@ -14,6 +14,8 @@ import {
   hasViewerAnalytics,
   loadState,
   saveState,
+  runRestreamIngest,
+  updateLog,
 } from "../../../scripts/restream/ingest-restream.mjs";
 
 const NOW = Date.parse("2026-09-04T14:00:00.000Z");
@@ -224,6 +226,36 @@ try {
   assert.equal(startedNeverCloses.action, "retry");
   assert.equal(startedNeverCloses.blocking, true);
   assert.equal(startedNeverCloses.state.status, "no-analytics");
+
+  const root = join(base, "integration");
+  const dir = join(root, "data", "restream");
+  mkdirSync(dir, { recursive: true });
+  saveState({ events: {} }, join(dir, "state.json"));
+  writeFileSync(join(dir, "postlive-registry.json"), JSON.stringify({ shows: [{ slug: "dive-radio-fixture", date: "2026-09-03", targets: [{ kind: "youtube", videoId: "video" }] }] }));
+  const event = { ...STREAMED_EVENT, destinations: [{ channelId: 11, externalUrl: "https://youtube.com/watch?v=video" }] };
+  const logPath = join(root, "log.md");
+  writeFileSync(logPath, "_Last ingest: old_\n<!-- LOG:BEGIN -->\n<!-- DETAIL:BEGIN -->\n");
+  const fetchFor = (pending) => async (url) => ({ ok: true, json: async () => url.includes("history?") ? [event] : url.endsWith("viewers") ? (pending ? {} : COMPLETE_VIEWERS) : COMPLETE_MESSAGES });
+  const waiting = await runRestreamIngest({ root, logPath, now: NOW, token: "fixture", fetchImpl: fetchFor(true), log() {} });
+  assert.equal(waiting.pending, 1);
+  assert.equal(existsSync(join(dir, "events", `${event.id}.json`)), false);
+  assert.equal(loadState(join(dir, "state.json")).events[event.id].reading.state, "pending");
+  const ready = await runRestreamIngest({ root, logPath, now: NOW + 1000, token: "fixture", fetchImpl: fetchFor(false), log() {} });
+  assert.equal(ready.ingested, 1);
+  const archived = readFileSync(join(dir, "events", `${event.id}.json`), "utf8");
+  const again = await runRestreamIngest({ root, logPath, now: NOW + 2000, token: "fixture", fetchImpl: fetchFor(false), log() {} });
+  assert.equal(again.ingested, 0);
+  assert.equal(readFileSync(join(dir, "events", `${event.id}.json`), "utf8"), archived);
+  // Simulate interruption after the archive/log but before the state commit.
+  saveState({ events: {} }, join(dir, "state.json"));
+  await runRestreamIngest({ root, logPath, now: NOW + 3000, token: "fixture", fetchImpl: async (url) => {
+    assert.ok(url.includes("history?"), "recovery must reuse its complete archive");
+    return { ok: true, json: async () => [event] };
+  }, log() {} });
+  assert.equal((readFileSync(logPath, "utf8").match(/- Event ID:/g) || []).length, 1);
+  assert.equal(readFileSync(join(dir, "events", `${event.id}.json`), "utf8"), archived);
+  assert.equal(hasViewerAnalytics({ ...COMPLETE_VIEWERS, total: { ...COMPLETE_VIEWERS.total, mean: -1 } }), false);
+  await assert.rejects(runRestreamIngest({ root, logPath, now: NOW, token: null, log() {} }), /credential/);
 } finally {
   rmSync(base, { force: true, recursive: true });
 }

@@ -22,6 +22,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from "
 import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { getAccessToken } from "./restream-token.mjs";
+import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock, fetchJson, readingEnvelope, phoenixDateKey } from "../../tools/dive-analytics/source-io.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const DATA_DIR = join(ROOT, "data", "restream");
@@ -63,23 +64,6 @@ function validStateEntry(entry) {
     && parseSavedTime(entry.confirmedAt);
 }
 
-async function api(path, token) {
-  const res = await fetch(`${API}${path}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    signal: AbortSignal.timeout(30000),
-  });
-  if (res.status === 404) return null;
-  if (res.status === 429) {
-    const wait = Number(res.headers.get("retry-after") || 5) * 1000;
-    await new Promise((r) => setTimeout(r, Math.min(wait, 30000)));
-    return api(path, token);
-  }
-  if (!res.ok) {
-    const text = (await res.text()).slice(0, 200);
-    throw new Error(`GET ${path} -> HTTP ${res.status}: ${text}`);
-  }
-  return res.json();
-}
 
 export function loadState(path = STATE_PATH) {
   if (!existsSync(path)) {
@@ -104,10 +88,7 @@ export function loadState(path = STATE_PATH) {
 }
 
 export function saveState(state, path = STATE_PATH) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tempPath = `${path}.${process.pid}.${Date.now()}.tmp`;
-  writeFileSync(tempPath, JSON.stringify(state, null, 2) + "\n");
-  renameSync(tempPath, path);
+  atomicWriteJson(path, state);
 }
 
 // --- normalization helpers (defensive against shape drift) ---
@@ -157,20 +138,21 @@ function objectRecord(value) {
 function validSeries(series, valueKey) {
   return Array.isArray(series)
     && series.length > 0
-    && series.every((point) => objectRecord(point)
-      && Number.isFinite(point.timestamp)
-      && Number.isFinite(point[valueKey]));
+    && series.every((point, index) => objectRecord(point)
+      && Number.isFinite(point.timestamp) && point.timestamp >= 0
+      && (!index || point.timestamp > series[index - 1].timestamp)
+      && Number.isFinite(point[valueKey]) && point[valueKey] >= 0);
 }
 
 function validViewerGroup(group) {
   return objectRecord(group)
-    && [group.mean, group.max, group.viewsTotal, group.watchedTime].every(Number.isFinite)
+    && [group.mean, group.max, group.viewsTotal, group.watchedTime].every((value) => Number.isFinite(value) && value >= 0)
     && validSeries(group.viewersPerMinute, "viewers");
 }
 
 function validMessageGroup(group) {
   return objectRecord(group)
-    && [group.messagesTotal, group.chattersTotal].every(Number.isFinite)
+    && [group.messagesTotal, group.chattersTotal].every((value) => Number.isFinite(value) && value >= 0)
     && validSeries(group.messagesPerMinute, "messages");
 }
 
@@ -338,104 +320,124 @@ function insertAfterMarker(content, marker, insertion) {
   return content.slice(0, at) + "\n" + insertion + content.slice(at);
 }
 
-function updateLog(entries) {
-  if (!existsSync(LOG_PATH)) throw new Error(`log file missing: ${LOG_PATH}`);
-  let content = readFileSync(LOG_PATH, "utf8");
-  // newest first: entries arrive newest-first from the API; insert in reverse
-  // so the final order after repeated inserts stays newest-at-top.
-  for (const e of [...entries].reverse()) {
-    content = insertAfterMarker(content, LOG_MARKER, e.row);
-    content = insertAfterMarker(content, DETAIL_MARKER, "\n" + e.detail);
+export function updateLog(entries, logPath = LOG_PATH, now = new Date().toISOString()) {
+  if (!existsSync(logPath)) throw new Error(`log file missing: ${logPath}`);
+  let content = readFileSync(logPath, "utf8");
+  for (const entry of [...entries].reverse()) {
+    if (content.includes(`- Event ID: \`${entry.eventId}\``)) continue;
+    content = insertAfterMarker(content, LOG_MARKER, entry.row);
+    content = insertAfterMarker(content, DETAIL_MARKER, "\n" + entry.detail);
   }
-  content = content.replace(
-    /_Last ingest: .*_/,
-    `_Last ingest: ${new Date().toISOString()} (${entries.length} new)_`
-  );
-  writeFileSync(LOG_PATH, content);
+  content = content.replace(/_Last ingest: .*_/, `_Last ingest: ${now} (${entries.length} checked)_`);
+  atomicWriteText(logPath, content);
+}
+
+function destinationIdentity(url) {
+  let value;
+  try { value = new URL(url); } catch { return null; }
+  if (/(^|\.)youtube\.com$/.test(value.hostname)) {
+    const id = value.searchParams.get("v") || value.pathname.match(/^\/live\/([^/]+)/)?.[1];
+    return id ? `youtube:${id}` : null;
+  }
+  if (value.hostname === "youtu.be") return `youtube:${value.pathname.slice(1)}`;
+  const id = value.pathname.match(/^\/i\/broadcasts\/([^/]+)/)?.[1];
+  return id && /^(x|twitter)\.com$/.test(value.hostname) ? `x:${id}` : null;
+}
+
+export function episodeForRestreamEvent(event, registry) {
+  const ids = new Set((event.destinations || []).map((destination) => destinationIdentity(destination.externalUrl)).filter(Boolean));
+  const matches = (registry.shows || []).filter((show) => (show.targets || []).some((target) => ids.has(target.kind === "youtube" ? `youtube:${target.videoId}` : `x:${target.broadcastId}`)));
+  if (matches.length > 1) throw new Error(`Restream event ${event.id} matches several episodes`);
+  return matches[0] || null;
+}
+
+export async function runRestreamIngest({ root = ROOT, logPath = LOG_PATH, now = new Date().toISOString(), token, fetchImpl = fetch, dryRun = false, backfill = false, log = console.log } = {}) {
+  const dataDir = join(root, "data", "restream");
+  const statePath = join(dataDir, "state.json");
+  const eventsDir = join(dataDir, "events");
+  return withSourceLock(statePath, async () => {
+    const state = loadState(statePath);
+    const registry = readJsonFile(join(dataDir, "postlive-registry.json"));
+    const checkedAt = new Date(now).toISOString();
+    if (!token) throw new Error("Restream credential is unavailable");
+    const api = (path, allow404 = false) => fetchJson(`${API}${path}`, { label: `Restream ${path.split("?")[0]}`, headers: { Authorization: `Bearer ${token}` }, fetchImpl, allow404 });
+    const events = [];
+    const seenIds = new Set();
+    const maxPages = backfill ? 40 : 2;
+    for (let page = 0; page < maxPages; page++) {
+      const batch = asEventList(await api(`/user/events/history?limit=${PAGE_LIMIT}&offset=${page * PAGE_LIMIT}`));
+      for (const event of batch) {
+        if (!event?.id || seenIds.has(String(event.id))) throw new Error("Restream history has missing or duplicate event IDs");
+        seenIds.add(String(event.id)); events.push(event);
+      }
+      if (batch.length < PAGE_LIMIT) break;
+      if (page === maxPages - 1) {
+        const unclosed = Object.keys(state.events).filter((id) => state.events[id].status === "no-analytics" && !seenIds.has(id));
+        if (unclosed.length) throw new Error("Restream history window omitted pending events; retry with the existing backfill option");
+      }
+    }
+    if (!events.length) throw new Error("Restream returned empty event history");
+    for (const [id, entry] of Object.entries(state.events)) {
+      if (entry.status !== "ingested") continue;
+      const raw = readJsonFile(join(eventsDir, `${id}.json`));
+      if (String(raw?.event?.id) !== id || !hasViewerAnalytics(raw.viewers, expectedChannelIds(raw.event)) || !hasMessageAnalytics(raw.messages, expectedChannelIds(raw.event))) throw new Error(`Restream archived event ${id} is missing or incomplete`);
+    }
+    const fresh = events.filter((event) => eventDate(event)?.getTime() <= Date.parse(checkedAt) && eventNeedsAnalytics(state.events[event.id]));
+    if (dryRun) { log(`restream-ingest: ${fresh.length} event(s) would be checked (dry run)`); return { ingested: 0, pending: 0, dryRun: true }; }
+    const entries = [], pending = [], failures = [];
+    for (const event of fresh) {
+      const show = episodeForRestreamEvent(event, registry);
+      if (show?.date > phoenixDateKey(checkedAt)) continue;
+      const path = join(eventsDir, `${event.id}.json`);
+      let viewers, messages, raw;
+      try {
+        if (existsSync(path)) {
+          raw = readJsonFile(path);
+          if (String(raw?.event?.id) !== String(event.id)) throw new Error("archive identity mismatch");
+          viewers = raw.viewers; messages = raw.messages;
+        } else {
+          viewers = await api(`/user/events/${event.id}/analytics/viewers`, true);
+          messages = await api(`/user/events/${event.id}/analytics/messages`, true);
+        }
+        // Missing fields indicate delayed reports; impossible finite values
+        // indicate broken source data and cannot be treated as ordinary waiting.
+        for (const payload of [viewers, messages]) for (const group of [payload?.total, ...Object.values(payload?.byChannel || {})]) {
+          for (const value of Object.values(group || {})) if (typeof value === "number" && (!Number.isFinite(value) || value < 0)) throw new Error("Restream returned invalid negative/nonfinite counts");
+          for (const series of [group?.viewersPerMinute, group?.messagesPerMinute]) for (const point of series || []) {
+            for (const [key, value] of Object.entries(point)) if (key !== "timestamp" && typeof value === "number" && (!Number.isFinite(value) || value < 0)) throw new Error("Restream returned invalid minute counts");
+          }
+        }
+        const disposition = analyticsDisposition(event, viewers, messages, state.events[event.id], Date.parse(checkedAt));
+        state.events[event.id] = disposition.state;
+        if (show) state.events[event.id].reading = readingEnvelope({ source: "restream", episode: show.slug, objectId: String(event.id), pulledAt: checkedAt, state: disposition.action === "ingest" ? "ready" : "pending" });
+        if (raw && disposition.action === "ingest" && show) state.events[event.id].reading = raw.reading || readingEnvelope({ source: "restream", episode: show.slug, objectId: String(event.id), pulledAt: raw.fetchedAt, state: "ready" });
+        if (disposition.action === "retry") { if (disposition.blocking && show) pending.push(event.id); continue; }
+        if (disposition.action === "no-stream") continue;
+        if (!show) throw new Error(`Restream event ${event.id} has no exact registered episode destination`);
+        raw ||= { event, viewers, messages, fetchedAt: checkedAt, reading: state.events[event.id].reading };
+        if (!existsSync(path)) atomicWriteJson(path, raw);
+        const mins = durationMinutes(raw.event, raw.viewers);
+        entries.push({ eventId: String(event.id), row: summaryRow(raw.event, raw.viewers, raw.messages, mins), detail: detailBlock(raw.event, raw.viewers, raw.messages, mins, {}) });
+      } catch (error) {
+        state.events[event.id] = { status: "no-analytics", checkedAt, firstCheckedAt: state.events[event.id]?.firstCheckedAt || checkedAt, attempts: priorNoAnalyticsChecks(state.events[event.id]) + 1, missing: [error.message] };
+        if (show) state.events[event.id].reading = readingEnvelope({ source: "restream", episode: show.slug, objectId: String(event.id), pulledAt: checkedAt, state: "failed" });
+        failures.push(`${event.id}: ${error.message}`);
+      }
+    }
+    if (entries.length) updateLog(entries, logPath, checkedAt);
+    state.checkedAt = checkedAt;
+    state.capture = { checkedAt, state: failures.length ? "failed" : pending.length ? "pending" : "ready", pendingEvents: pending, errors: failures };
+    saveState(state, statePath);
+    if (failures.length) throw new Error(`Restream capture failed — ${failures.join("; ")}`);
+    log(`restream-ingest: ingested ${entries.length} event(s), ${pending.length} pending`);
+    return { ingested: entries.length, pending: pending.length };
+  });
 }
 
 async function main() {
   const token = await getAccessToken();
-  const state = loadState();
-
-  // channel id -> display name map (best effort)
-  const channelMap = {};
-  try {
-    const channels = await api("/user/channel/all", token);
-    for (const ch of Array.isArray(channels) ? channels : []) {
-      channelMap[ch.id] = ch.displayName || ch.name || `channel ${ch.id}`;
-    }
-  } catch (err) {
-    process.stderr.write(`channel map unavailable: ${err.message}\n`);
-  }
-
-  // walk history
-  const events = [];
-  for (let page = 0; page < MAX_PAGES; page++) {
-    const payload = await api(
-      `/user/events/history?limit=${PAGE_LIMIT}&offset=${page * PAGE_LIMIT}`,
-      token
-    );
-    const batch = asEventList(payload);
-    events.push(...batch);
-    if (batch.length < PAGE_LIMIT) break;
-  }
-
-  const fresh = events.filter((ev) => ev?.id && eventNeedsAnalytics(state.events[ev.id]));
-  if (!fresh.length) {
-    console.log(`restream-ingest: no new events (${events.length} in history window)`);
-    return;
-  }
-  if (DRY_RUN) {
-    console.log(
-      `restream-ingest (dry-run): would ingest ${fresh.length} event(s):\n` +
-        fresh.map((e) => `  ${fmtDate(eventDate(e))}  ${e.title || e.id}`).join("\n")
-    );
-    return;
-  }
-
-  mkdirSync(EVENTS_DIR, { recursive: true });
-  const entries = [];
-  const blockingRetries = [];
-  let awaitingNoStreamConfirmation = 0;
-  let confirmedNoStream = 0;
-  for (const ev of fresh) {
-    const viewers = await api(`/user/events/${ev.id}/analytics/viewers`, token);
-    const messages = await api(`/user/events/${ev.id}/analytics/messages`, token);
-    const disposition = analyticsDisposition(ev, viewers, messages, state.events[ev.id]);
-    state.events[ev.id] = disposition.state;
-    if (disposition.action === "retry") {
-      if (disposition.blocking) blockingRetries.push({ id: ev.id, missing: disposition.state.missing });
-      else awaitingNoStreamConfirmation++;
-      continue;
-    }
-    if (disposition.action === "no-stream") {
-      confirmedNoStream++;
-      continue;
-    }
-    const raw = { event: ev, viewers, messages, fetchedAt: new Date().toISOString() };
-    writeFileSync(join(EVENTS_DIR, `${ev.id}.json`), JSON.stringify(raw, null, 2) + "\n");
-    const mins = durationMinutes(ev, viewers);
-    entries.push({
-      date: eventDate(ev),
-      row: summaryRow(ev, viewers, messages, mins),
-      detail: detailBlock(ev, viewers, messages, mins, channelMap),
-    });
-  }
-
-  if (entries.length) updateLog(entries);
-  saveState(state);
-  if (blockingRetries.length) {
-    const details = blockingRetries
-      .map((item) => `${item.id} missing ${item.missing.join(" and ")}`)
-      .join("; ");
-    throw new Error(`analytics are not ready for ${blockingRetries.length} streamed event(s); retry state was saved and no partial event was archived — ${details}`);
-  }
-  console.log(
-    `restream-ingest: ingested ${entries.length} event(s)`
-      + `${awaitingNoStreamConfirmation ? `, ${awaitingNoStreamConfirmation} finished event(s) still confirming no stream` : ""}`
-      + `${confirmedNoStream ? `, ${confirmedNoStream} event(s) confirmed as never started` : ""}`
-  );
+  const result = await runRestreamIngest({ token, dryRun: DRY_RUN, backfill: BACKFILL });
+  if (result.pending) process.exitCode = 20;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
