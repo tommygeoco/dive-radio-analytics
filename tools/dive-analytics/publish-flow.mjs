@@ -135,7 +135,8 @@ export function pushMain(root, log = console.log) {
   let last = "";
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     rebaseIfMainMoved(root, log);
-    command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
+    const gate = command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
+    if (gate.stdout.trim()) log(tail(gate.stdout, 1));
     const push = git(root, ["push", "--quiet", "origin", "HEAD:main"], { allowFailure: true, timeout: 20 * 60_000 });
     if (push.status === 0) {
       git(root, ["fetch", "--quiet", "origin", "main"]);
@@ -195,7 +196,8 @@ async function deployProduction(root, sha, log) {
       assertCleanRelease(root, sha);
       assertProductionProject(root);
       // The hook also runs this gate, but every deploy is independently gated.
-      command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
+      const gate = command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
+      if (gate.stdout.trim()) log(tail(gate.stdout, 1));
       assertCleanRelease(root, sha);
       const run = command(root, "vercel", ["deploy", "--prod", "--yes"], { allowFailure: true, timeout: 10 * 60_000 });
       deploymentUrl = (run.stdout.match(/https:\/\/[a-z0-9-]+\.vercel\.app/g) || []).at(-1) || null;
