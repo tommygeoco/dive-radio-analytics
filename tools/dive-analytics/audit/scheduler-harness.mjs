@@ -123,7 +123,8 @@ export async function runFixtureSuite({ keep = false } = {}) {
     assert.throws(() => stale.captureReceipt(stale.root), /no longer matches data.js/);
     checks.push("old receipt and post-proof artifact changes cannot prove a new run");
 
-    const report = { synthetic: true, createdAt: new Date().toISOString(), root: base, checks, result: "passed", sourceApisCalled: false, deploymentsMade: false, canonicalAttemptsChanged: false };
+    const environmentPresence = Object.fromEntries(["BEEHIIV_API_KEY", "ANTHROPIC_API_KEY", "OP_SERVICE_ACCOUNT_TOKEN"].map((key) => [key, Boolean(process.env[key])]));
+    const report = { synthetic: true, createdAt: new Date().toISOString(), root: base, checks, result: "passed", environmentPresence, sourceApisCalled: false, deploymentsMade: false, canonicalAttemptsChanged: false };
     saveReceipt(join(base, "report.json"), report);
     return report;
   } finally { if (!keep) rmSync(base, { recursive: true, force: true }); }

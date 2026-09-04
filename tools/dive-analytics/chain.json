@@ -20,7 +20,8 @@
    "step": "transcripts",
    "script": "scripts/restream/transcripts-pull.mjs",
    "writes": [
-    "transcripts/*.txt"
+    "transcripts/*.txt",
+    "data/restream/transcript-state.json"
    ],
    "freshnessKey": null,
    "required": true,
