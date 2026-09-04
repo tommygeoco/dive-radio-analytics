@@ -17,6 +17,7 @@ import { readFileSync, writeFileSync, chmodSync, renameSync, mkdirSync } from "n
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { randomBytes } from "node:crypto";
+import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson } from "../../tools/dive-analytics/source-io.mjs";
 
 const TOKEN_PATH = join(homedir(), ".openclaw", "secrets", "restream-tokens.json");
 const AUTHORIZE_URL = "https://api.restream.io/oauth/authorize";
@@ -29,11 +30,13 @@ const SKEW_MS = 5 * 60 * 1000;
 // stale op-daemon socket; see 2026-07-27 incident). On persistent failure,
 // fall back to creds cached in the 0600 token file by a previous good read.
 function readOpCreds({ attempts = 3, timeoutMs = 10000 } = {}) {
-  const opToken = execFileSync(
+  if (process.env.RESTREAM_CLIENT_ID && process.env.RESTREAM_CLIENT_SECRET) return { clientId: process.env.RESTREAM_CLIENT_ID, clientSecret: process.env.RESTREAM_CLIENT_SECRET };
+  let opToken = process.env.OP_SERVICE_ACCOUNT_TOKEN;
+  if (!opToken) try { opToken = execFileSync(
     "security",
     ["find-generic-password", "-s", "ai.openclaw.op_service_account_token", "-w"],
-    { encoding: "utf8" }
-  ).trim();
+    { encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "pipe"] }
+  ).trim(); } catch { throw new Error("Restream 1Password service credential is unavailable"); }
   const env = { ...process.env, OP_SERVICE_ACCOUNT_TOKEN: opToken, OP_CACHE: "false" };
   const read = (field) =>
     execFileSync("op", ["--cache=false", "read", `op://OpenClaw/Restream/${field}`], {
@@ -52,7 +55,7 @@ function readOpCreds({ attempts = 3, timeoutMs = 10000 } = {}) {
     } catch (err) {
       lastErr = err;
       process.stderr.write(
-        `restream-token: op read attempt ${i}/${attempts} failed (${err.code || err.message})\n`
+        `restream-token: op read attempt ${i}/${attempts} failed (credential read failed)\n`
       );
     }
   }
@@ -61,29 +64,16 @@ function readOpCreds({ attempts = 3, timeoutMs = 10000 } = {}) {
     process.stderr.write("restream-token: 1Password unreachable, using cached client creds\n");
     return { clientId: cache.client_id, clientSecret: cache.client_secret };
   }
-  throw lastErr;
+  throw new Error("Restream client credentials are unavailable after bounded 1Password checks");
 }
 
-function readCache() {
-  try {
-    return JSON.parse(readFileSync(TOKEN_PATH, "utf8"));
-  } catch {
-    return null;
-  }
-}
+function readCache(path = TOKEN_PATH) { return readJsonFile(path, { fallback: null }); }
+function writeCache(cache, path = TOKEN_PATH) { atomicWriteJson(path, cache, { mode: 0o600 }); }
 
-function writeCache(cache) {
-  mkdirSync(dirname(TOKEN_PATH), { recursive: true, mode: 0o700 });
-  const tmp = `${TOKEN_PATH}.tmp`;
-  writeFileSync(tmp, JSON.stringify(cache, null, 2) + "\n", { mode: 0o600 });
-  chmodSync(tmp, 0o600);
-  renameSync(tmp, TOKEN_PATH);
-  chmodSync(TOKEN_PATH, 0o600);
-}
-
-async function tokenRequest(params, creds) {
+export async function tokenRequest(params, creds, { fetchImpl = fetch } = {}) {
   const basic = Buffer.from(`${creds.clientId}:${creds.clientSecret}`).toString("base64");
-  const res = await fetch(TOKEN_URL, {
+  const data = await fetchJson(TOKEN_URL, {
+    label: "Restream token refresh", fetchImpl, timeoutMs: 20000, maxAttempts: 1,
     method: "POST",
     headers: {
       Authorization: `Basic ${basic}`,
@@ -92,12 +82,7 @@ async function tokenRequest(params, creds) {
     body: new URLSearchParams(params),
     signal: AbortSignal.timeout(20000),
   });
-  if (!res.ok) {
-    const text = (await res.text()).slice(0, 300);
-    throw new Error(`token request failed HTTP ${res.status}: ${text}`);
-  }
-  const data = await res.json();
-  if (!data.access_token) throw new Error("token response missing access_token");
+  if (typeof data.access_token !== "string" || !data.access_token) throw new Error("token response missing access_token");
   return data;
 }
 
@@ -117,16 +102,17 @@ export function needsRefresh(cache, nowMs = Date.now(), skewMs = SKEW_MS) {
   return nowMs >= cache.expires_at_ms - skewMs;
 }
 
-export async function getAccessToken() {
-  let cache = readCache();
+export async function getAccessToken({ tokenPath = TOKEN_PATH, readCredentials = readOpCreds, request = tokenRequest, now = Date.now(), log = (line) => process.stderr.write(line + "\n") } = {}) {
+  return withSourceLock(tokenPath, async () => {
+  let cache = readCache(tokenPath);
   if (!cache || !cache.refresh_token) {
     throw new Error(
-      `no Restream token cache at ${TOKEN_PATH} — run --auth-url then --exchange to authorize`
+      `no Restream token cache at ${tokenPath} — run --auth-url then --exchange to authorize`
     );
   }
-  if (needsRefresh(cache)) {
-    const creds = readOpCreds();
-    const data = await tokenRequest(
+  if (needsRefresh(cache, now)) {
+    const creds = readCredentials();
+    const data = await request(
       { grant_type: "refresh_token", refresh_token: cache.refresh_token },
       creds
     );
@@ -135,10 +121,11 @@ export async function getAccessToken() {
       client_id: creds.clientId,
       client_secret: creds.clientSecret,
     };
-    writeCache(cache);
-    process.stderr.write("restream-token: refreshed\n");
+    writeCache(cache, tokenPath);
+    log("restream-token: refreshed");
   }
   return cache.access_token;
+  });
 }
 
 function arg(name) {
@@ -167,11 +154,11 @@ async function main() {
       { grant_type: "authorization_code", code, redirect_uri: redirect },
       creds
     );
-    writeCache({
+    await withSourceLock(TOKEN_PATH, () => writeCache({
       ...cacheFromResponse(data),
       client_id: creds.clientId,
       client_secret: creds.clientSecret,
-    });
+    }));
     process.stderr.write("restream-token: authorized, cache written\n");
     return;
   }
