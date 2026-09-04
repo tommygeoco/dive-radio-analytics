@@ -10,6 +10,7 @@ import { buildLatest, partialHistoryOf } from "../build-data.mjs";
 import { computeRatings, readAgeOf, scoreEpisode } from "../ratings.mjs";
 import { anomalyFlags, premiereMs, firstYtSnapshot, latestCurrentYtSnapshot, latestYtSnapshot, snapshotAt, ytSnapshotAt, ytViewsOf } from "../baselines.mjs";
 import { collectFacts } from "../recommendations.mjs";
+import { airDayHistoryNote, phoenixDateKey } from "../../../scripts/restream/postlive-track.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -48,6 +49,15 @@ assert.equal(partialHistoryOf([preAir], PREMIERE), null, "a positive waiting-roo
 assert.equal(partialHistoryOf([preAir, airDay], PREMIERE), null, "air-date data cannot start tracking");
 assert.equal(partialHistoryOf([zeroAirDay, nextDay], PREMIERE), false, "the first next-date reading starts on time");
 assert.equal(partialHistoryOf([zeroAirDay, late], PREMIERE), true, "a startup zero cannot hide late tracking");
+
+const airDateEvening = Date.parse("2026-09-04T02:53:55.785Z");
+const nextDateMorning = Date.parse("2026-09-04T14:00:00.000Z");
+assert.equal(phoenixDateKey(airDateEvening), PREMIERE, "the UTC next day can still be air day in Phoenix");
+assert.equal(airDayHistoryNote(PREMIERE, airDateEvening), "current reading only; history starts tomorrow");
+assert.equal(airDayHistoryNote(PREMIERE, nextDateMorning), null, "the air-day note leaves after the Phoenix date changes");
+const reportSource = readFileSync(join(ROOT, "scripts", "restream", "postlive-track.mjs"), "utf8");
+assert.doesNotMatch(reportSource, /first week tracked/, "the weekly report must not call an air-day current read a tracked week");
+assert.match(reportSource, /airDayHistoryNote\(show\.date, reportNow\)/, "the weekly report must apply the Phoenix air-day gate");
 
 const zeroEpisode = { slug: "zero", ep: 1, premiere: PREMIERE, snapshots: [zeroAirDay], latest: {} };
 const airDayEpisode = { ...zeroEpisode, slug: "air-day", snapshots: [airDay], latest: { ytTotal: 12 } };

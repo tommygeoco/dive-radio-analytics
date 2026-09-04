@@ -375,6 +375,23 @@ function fmtShort(iso) {
   });
 }
 
+export function phoenixDateKey(value = Date.now()) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Phoenix",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date(value));
+  const pick = (type) => parts.find((part) => part.type === type)?.value;
+  return `${pick("year")}-${pick("month")}-${pick("day")}`;
+}
+
+export function airDayHistoryNote(showDate, now = Date.now()) {
+  return phoenixDateKey(now) === showDate
+    ? "current reading only; history starts tomorrow"
+    : null;
+}
+
 // Episode-level X plays summary from a snapshot's metrics + the registry
 // targets. Falls back to a target's persisted high-water mark when the
 // current pull failed (stale), and counts coverage so partial aggregates are
@@ -707,7 +724,8 @@ function closestSnapshotBefore(snapshots, cutoffMs) {
 async function report(args) {
   const registry = loadJson(REGISTRY_PATH, { shows: [] });
   const includeAll = args.includes("--all");
-  const cutoff = Date.now() - TRACK_WINDOW_DAYS * 86400000;
+  const reportNow = Date.now();
+  const cutoff = reportNow - TRACK_WINDOW_DAYS * 86400000;
   const shows = registry.shows.filter(
     (s) => s.active !== false && (includeAll || Date.parse(s.date) >= cutoff)
   );
@@ -715,8 +733,8 @@ async function report(args) {
     console.log("Post-live weekly: no shows in the tracking window.");
     return;
   }
-  const weekAgo = Date.now() - 7 * 86400000;
-  const lines = [`Post-live watch report — week of ${new Date().toLocaleDateString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", year: "numeric" })}`];
+  const weekAgo = reportNow - 7 * 86400000;
+  const lines = [`Post-live watch report — week of ${new Date(reportNow).toLocaleDateString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", year: "numeric" })}`];
   lines.push("Units: Total views = YT views + X broadcast plays (both video playback). X reach = post impressions (exposure), never included in views.");
   const sorted = [...shows].sort((a, b) => (a.date < b.date ? 1 : -1));
   const grand = { yt: 0, ytComplete: true, dYt: 0, reach: 0, dReach: 0, plays: null, playsPartial: false };
@@ -747,11 +765,13 @@ async function report(args) {
       grand.dReach += dReach;
       anyBaseline = true;
     }
-    const wk = (d) => (d === null ? "first week tracked" : `${signedNum(d)} this week`);
+    const wk = (d) => (d === null ? "no seven-day comparison yet" : `${signedNum(d)} this week`);
     const ytWeek = yt == null ? "no reading yet" : wk(dYt);
+    const airDayNote = airDayHistoryNote(show.date, reportNow);
     lines.push(`\n${show.title} (${show.date})`);
-    lines.push(
-      `  Total views ${totalViewsCell(yt, plays)} (YT ${num(yt)} + X plays ${plays.value == null ? "–" : num(plays.value)}) · YT ${ytWeek} · X reach ${num(reach)} (${wk(dReach)})`
+    lines.push(airDayNote
+      ? `  Total views ${totalViewsCell(yt, plays)} (YT ${num(yt)} + X plays ${plays.value == null ? "–" : num(plays.value)}) · ${airDayNote} · X reach ${num(reach)}`
+      : `  Total views ${totalViewsCell(yt, plays)} (YT ${num(yt)} + X plays ${plays.value == null ? "–" : num(plays.value)}) · YT ${ytWeek} · X reach ${num(reach)} (${wk(dReach)})`
     );
     for (const c of COLUMNS) {
       if (!Object.hasOwn(latest.metrics, c.key)) continue;
