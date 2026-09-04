@@ -355,3 +355,14 @@ real scheduler manual run IDs/statuses, final SHA equal origin/main, clean relea
 trees, deployment identity, all-public-file parity, browser screenshots, durable
 receipt and alert state. Immediate proof and future unattended evidence are
 reported separately. The old completion checkboxes above are historical only.
+
+Additional concrete acceptance from the complete read: dry/rehearsal paths never
+resolve alerts; proof-only may resolve only a receipt-bound ready production
+state. Legacy `passed` attempts do not establish current source readiness. Slack
+acknowledgements must identify an actual message result, reject unrelated `ts` or
+failed status, and be durably saved before queue removal. Corrupt state cannot
+leak the run lock. Lock-deferred required jobs cannot claim completed work.
+Every history envelope validates source IDs, episode, timestamps and complete
+channels; missing or future timestamps fail. Missing live/newsletter results
+remain truthful unavailable states without fabricating zeros. Full fixtures must
+also cover explicit-zero X broadcast counts and null-valued monotonic history.
