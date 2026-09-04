@@ -175,16 +175,20 @@ async function main() {
   if (!todo.length) { console.log("chapters: every transcript already has chapters under this prompt"); return; }
   if (dry) { for (const t of todo) console.log(`chapters: would write E${t.episode.ep} ${t.episode.slug} (${t.parsed.format}, ${t.parsed.segments.length} segments)`); return; }
   let written = 0;
+  const failures = [];
   for (const { episode, parsed, replaces } of todo) {
     let result;
     try {
       result = await callModel(`Episode: ${episode.title}\nAired: ${episode.premiere}\nTranscript clock: ${parsed.clock === "upload" ? "the YouTube upload's" : "the live stream's"}\n\nTRANSCRIPT\n${transcriptForModel(parsed)}`);
-    } catch (error) { console.log(`WARN chapters: E${episode.ep} model call failed — ${error.message}; skipped`); continue; }
+    } catch (error) { failures.push(`E${episode.ep}: model request failed (${error.message})`); continue; }
     let parsedOut;
     try { parsedOut = extractJson(result.text); }
-    catch (error) { console.log(`WARN chapters: E${episode.ep} returned no JSON (${error.message}; stop_reason ${result.stopReason}; reply starts: ${JSON.stringify(result.text.slice(0, 200))}); skipped`); continue; }
-    const grounded = groundChapters(parsedOut.chapters, parsed);
-    if (!grounded.chapters.length) { console.log(`WARN chapters: E${episode.ep} — none of the returned chapters ground (${grounded.dropped[0]?.why}); skipped`); continue; }
+    catch (error) { failures.push(`E${episode.ep}: model response was not valid JSON (${error.message})`); continue; }
+    let grounded;
+    try { grounded = groundChapters(parsedOut.chapters, parsed); }
+    catch (error) { failures.push(`E${episode.ep}: chapter grounding failed (${error.message})`); continue; }
+    if (!grounded.chapters.length) { failures.push(`E${episode.ep}: no returned chapter grounded (${grounded.dropped[0]?.why || "empty response"})`); continue; }
+    if (grounded.dropped.length || grounded.status !== "complete") failures.push(`E${episode.ep}: some required chapter grounding or completeness checks failed`);
     if (replaces) {
       // rule 9: a changed transcript or prompt re-derives the list visibly —
       // the older list is kept byte-identical under superseded
@@ -199,11 +203,12 @@ async function main() {
     written++;
     console.log(`chapters: E${episode.ep} — ${grounded.chapters.length} chapter(s) kept, ${grounded.dropped.length} dropped, ${grounded.status}`);
   }
-  if (!written) { console.log("WARN chapters: nothing written; previous store kept"); return; }
+  if (!written) throw new Error(`chapter generation failed; previous store kept: ${failures.join("; ")}`);
   store.version = STORE_VERSION; store.promptVersion = PROMPT_VERSION; store.updatedAt = new Date().toISOString(); store.provider = "anthropic";
   validateStore(store);
   saveAtomic(STORE_PATH, store);
   console.log(`chapters: wrote ${written} episode(s) — rebuild data to publish`);
+  if (failures.length) throw new Error(`chapter generation incomplete after saving grounded candidates: ${failures.join("; ")}`);
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

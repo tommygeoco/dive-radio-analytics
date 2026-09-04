@@ -407,7 +407,7 @@ async function callModel(messages) {
   return { text, model };
 }
 
-// v8 W20: up to three attempts; a grounding failure goes back to the model
+// v8 W20: up to two attempts; a grounding failure goes back to the model
 // verbatim so the retry is a correction, not a re-roll. Transport errors
 // (no key, HTTP, timeout) throw immediately — retrying those wastes the
 // window and the prune floor handles the day.
@@ -420,7 +420,7 @@ async function regenerate(sheet) {
     allowedNumbers: [...allowedTokens(sheet.facts)].sort((a, b) =>
       (parseFloat(a.replace(/,/g, "")) - parseFloat(b.replace(/,/g, ""))) || a.localeCompare(b)),
   }) }];
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 2; attempt++) {
     const result = await callModel(messages);
     let parsed = null;
     try {
@@ -429,7 +429,7 @@ async function regenerate(sheet) {
       if (parsed.items.length !== TOP_N) throw new Error(`exactly ${TOP_N} ranked items required, got ${parsed.items.length}`);
       return { items: parsed.items, model: result.model, attempts: attempt };
     } catch (error) {
-      console.log(`recommendations: attempt ${attempt}/3 failed grounding — ${error.message}`);
+      console.log(`recommendations: attempt ${attempt}/2 failed grounding — ${error.message}`);
       // the exact failure and the item it points at go back with the reply,
       // so the retry is a targeted correction (v8 W20)
       const id = /^([a-z0-9-]{3,40}): /.exec(error.message)?.[1];
@@ -438,7 +438,7 @@ async function regenerate(sheet) {
       messages.push({ role: "user", content: `Your reply failed validation: ${error.message}.${offender ? ` The offending item was: ${JSON.stringify(offender)}.` : ""} Return the corrected full JSON now — same rules, every digit sequence copied verbatim from allowedNumbers.` });
     }
   }
-  throw new Error("three attempts all failed grounding");
+  throw new Error("two attempts all failed grounding");
 }
 
 async function main() {
@@ -475,6 +475,7 @@ async function main() {
   } catch (error) {
     console.log(`WARN recommendations: ${error.message}; falling back to the deterministic prune`);
     pruneStore(sheet);
+    throw new Error(`recommendation generation failed: ${error.message}; previous valid recommendations were pruned against current facts`);
   }
 }
 

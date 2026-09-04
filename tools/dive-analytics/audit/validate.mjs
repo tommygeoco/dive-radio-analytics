@@ -2661,6 +2661,7 @@ try {
   }
   for (const fixture of [
     ["source-integrity.test.mjs", "source-to-screen integrity"],
+    ["model-failures.test.mjs", "model failure preservation"],
     ["youtube-missing-data.test.mjs", "missing-data capture"],
     ["youtube-release-date.test.mjs", "broadcast-day discovery"],
     ["episode-date-sync.test.mjs", "episode-date store sync"],

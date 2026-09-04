@@ -145,28 +145,17 @@ async function main() {
     console.log("moment-summaries: every current moment already has a summary");
     return;
   }
-  let result;
-  try {
-    result = await callModel({ task: "Write one context note per key.", moments: missing });
-  } catch (error) {
-    console.log(`WARN moment-summaries: ${error.message}; previous store kept`);
-    return;
+  const result = await callModel({ task: "Write one context note per key.", moments: missing });
+  const parsed = JSON.parse(result.text);
+  const staged = {};
+  for (const w of missing) {
+    const text = parsed.summaries?.[w.key];
+    if (text == null) throw new Error(`model omitted a required moment summary; previous store kept`);
+    validateSummary(text);
+    staged[w.key] = { summary: text, writtenAt: new Date().toISOString() };
   }
-  let added = 0;
-  try {
-    const parsed = JSON.parse(result.text);
-    for (const w of missing) {
-      const text = parsed.summaries?.[w.key];
-      if (text == null) continue;
-      validateSummary(text);
-      store.entries[w.key] = { summary: text, writtenAt: new Date().toISOString() };
-      added++;
-    }
-  } catch (error) {
-    console.log(`WARN moment-summaries: invalid model output (${error.message}); previous store kept`);
-    return;
-  }
-  if (!added) { console.log("WARN moment-summaries: model returned no usable summaries; previous store kept"); return; }
+  const added = Object.keys(staged).length;
+  store.entries = { ...store.entries, ...staged };
   store.version = STORE_VERSION;
   store.promptVersion = PROMPT_VERSION;
   store.updatedAt = new Date().toISOString();

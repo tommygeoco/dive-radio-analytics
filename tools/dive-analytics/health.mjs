@@ -60,13 +60,10 @@
 // that set changed since the last saved read the drivers must name the check
 // that joined or left (prompt v4 — unconditional; under v3 only when the
 // score also moved by more than 5). One immutable entry per Phoenix calendar day.
-// Model failure is non-fatal and never leaves the day without a read (PRD
-// v10 W34): after two failed model attempts — or with no model key at all —
-// a DETERMINISTIC fallback writes the entry: score = the weighted mean,
-// bullets = the strongest and weakest scored facts verbatim, headline and
-// drivers from fixed plain-word templates over the check words and the
-// direction. It passes the same grounding rules the model must, and is
-// stamped provider "deterministic" so the store and the page can say so.
+// A failed model read never advances the saved day. After one retry the CLI
+// fails and preserves the prior entry so the scheduler can record the failure.
+// The deterministic synthesis remains an explicit diagnostic (--probe-fallback)
+// and historical deterministic entries keep their original provider label.
 // After seven days without any fresh entry the projection withholds the score.
 //
 // v8 W20 staleness audit (2026-08-23): this store CANNOT go stale the way
@@ -976,7 +973,7 @@ async function callOnce(system, payload) {
       }),
       signal: AbortSignal.timeout(180000),
     });
-    if (!response.ok) throw new Error(`anthropic HTTP ${response.status}: ${(await response.text()).slice(0, 200)}`);
+    if (!response.ok) throw new Error(`anthropic HTTP ${response.status}`);
     const body = await response.json();
     const text = (body.content || []).filter((block) => block.type === "text").map((block) => block.text).join("\n");
     if (!text.trim()) throw new Error("empty Anthropic response");
@@ -988,7 +985,7 @@ async function callOnce(system, payload) {
     body: JSON.stringify({ model: cfg.model, max_output_tokens: MAX_TOKENS, instructions: system, input: JSON.stringify(payload) }),
     signal: AbortSignal.timeout(180000),
   });
-  if (!response.ok) throw new Error(`openai HTTP ${response.status}: ${(await response.text()).slice(0, 200)}`);
+  if (!response.ok) throw new Error(`openai HTTP ${response.status}`);
   const body = await response.json();
   const text = body.output_text || (body.output || []).flatMap((item) => item.content || []).filter((item) => item.type === "output_text").map((item) => item.text).join("\n");
   if (!text.trim()) throw new Error("empty OpenAI response");
@@ -1166,12 +1163,7 @@ export function projectHealth(store, { now = Date.now() } = {}) {
 }
 
 async function synthesize(inputs) {
-  // no key at all: the deterministic read, said plainly
-  if (!process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) {
-    const synthesis = validateSynthesis(fallbackSynthesis(inputs), inputs);
-    console.log("WARN health: no model key in the environment — deterministic fallback read");
-    return { synthesis, provider: "deterministic", model: "fallback-v1" };
-  }
+  if (!process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) throw new Error("health model credential is unavailable; previous saved score kept");
   const system = readFileSync(PROMPT_PATH, "utf8");
   const payload = {
     task: "Write today's Dive Radio show-health summary.",
@@ -1199,10 +1191,7 @@ async function synthesize(inputs) {
       lastError = error;
     }
   }
-  // two failed model attempts: the deterministic read rather than a stale day
-  console.log(`WARN health: model synthesis failed twice (${lastError.message}) — deterministic fallback read`);
-  const synthesis = validateSynthesis(fallbackSynthesis(inputs), inputs);
-  return { synthesis, provider: "deterministic", model: "fallback-v1" };
+  throw new Error(`health model synthesis failed after two attempts: ${lastError.message}; previous saved score kept`);
 }
 
 function loadStore() {
@@ -1262,13 +1251,7 @@ async function main() {
     throw new Error("health prompt changed without a prompt version bump");
   }
 
-  let result;
-  try {
-    result = await synthesize(inputs);
-  } catch (error) {
-    console.log(`WARN health: ${error.message}; previous saved score kept`);
-    return;
-  }
+  const result = await synthesize(inputs);
   const entry = {
     date,
     score: result.synthesis.score,
