@@ -4,8 +4,8 @@
     "id": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
     "name": "UX Tools"
   },
-  "updatedAt": "2026-09-04T05:15:52.381Z",
-  "lastSuccessfulAt": "2026-09-04T05:15:52.381Z",
+  "updatedAt": "2026-09-04T15:45:35.783Z",
+  "lastSuccessfulAt": "2026-09-04T15:45:35.783Z",
   "episodes": {
     "2026-07-17-dive-radio-bumpy-takeoff": {
       "status": "no-direct-link",
@@ -76,31 +76,31 @@
               "url": "https://www.youtube.com/live/lnAecYrKYos?si=21YMVzwcizfMSZsT&utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=7-changes-in-brand-world-building",
               "baseUrl": "https://www.youtube.com/live/lnAecYrKYos",
               "target": "youtube:lnAecYrKYos",
-              "emailClicks": 76,
-              "verifiedEmailClicks": 27,
-              "uniqueClicksForThisLink": 33,
-              "uniqueVerifiedClicksForThisLink": 24
+              "emailClicks": 80,
+              "verifiedEmailClicks": 28,
+              "uniqueClicksForThisLink": 35,
+              "uniqueVerifiedClicksForThisLink": 25
             },
             {
               "url": "https://www.youtube.com/live/lnAecYrKYos?utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=7-changes-in-brand-world-building",
               "baseUrl": "https://www.youtube.com/live/lnAecYrKYos",
               "target": "youtube:lnAecYrKYos",
-              "emailClicks": 33,
-              "verifiedEmailClicks": 14,
-              "uniqueClicksForThisLink": 20,
-              "uniqueVerifiedClicksForThisLink": 14
+              "emailClicks": 38,
+              "verifiedEmailClicks": 18,
+              "uniqueClicksForThisLink": 24,
+              "uniqueVerifiedClicksForThisLink": 18
             }
           ],
-          "emailClicks": 109,
-          "verifiedEmailClicks": 41,
+          "emailClicks": 118,
+          "verifiedEmailClicks": 46,
           "clicksReason": null,
           "combinedUniqueReaders": null,
           "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
         }
       ],
       "totals": {
-        "emailClicks": 109,
-        "verifiedEmailClicks": 41,
+        "emailClicks": 118,
+        "verifiedEmailClicks": 46,
         "combinedUniqueReaders": null,
         "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
       },
@@ -110,6 +110,12 @@
           "pulledAt": "2026-09-04T05:15:52.381Z",
           "emailClicks": 109,
           "verifiedEmailClicks": 41
+        },
+        {
+          "date": "2026-09-04",
+          "pulledAt": "2026-09-04T15:45:35.783Z",
+          "emailClicks": 118,
+          "verifiedEmailClicks": 46
         }
       ]
     }

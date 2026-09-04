@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-02T00:47:33.992Z",
+  "updatedAt": "2026-09-04T15:50:09.711Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -578,6 +578,88 @@
       "promptVersion": 1,
       "model": "claude-fable-5",
       "writtenAt": "2026-09-02T00:46:37.166Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
+      "sha256": "3ca7ee6c1cdc07f26ca9481af1c4e3740860248e04779a899980611d83cb9435",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:17",
+          "seconds": 197,
+          "title": "Cold open and show intro",
+          "gist": "A montage on AI tooling opens the show before the hosts greet the chat and admit brand work isn't their forte.",
+          "quote": "The tooling kind of increases our capacity in the day"
+        },
+        {
+          "start": "00:08:34",
+          "seconds": 514,
+          "title": "Designer of the week nominations",
+          "gist": "Callers nominate designers for their AI craft, tools, and community spirit as voting opens.",
+          "quote": "Lucas did win designer of the week"
+        },
+        {
+          "start": "00:18:21",
+          "seconds": 1101,
+          "title": "Fresh model drop and AI news reactions",
+          "gist": "Hosts react to a new model release, a pricing gaffe, a multi agent interface, and a CMS launch.",
+          "quote": "came out, just before the show went live"
+        },
+        {
+          "start": "00:25:08",
+          "seconds": 1508,
+          "title": "World models and generated video and interfaces",
+          "gist": "Hosts watch world model demos, on demand video streams, and an interface that generates itself.",
+          "quote": "the first multimodal world model that generates image and video frames"
+        },
+        {
+          "start": "00:33:30",
+          "seconds": 2010,
+          "title": "Brand engineering at Vercel",
+          "gist": "A clip from Vercel's creative lead shows a team building internal tools instead of one off assets.",
+          "quote": "would you like to actually take the lead on this team"
+        },
+        {
+          "start": "00:41:22",
+          "seconds": 2482,
+          "title": "Demos of internal brand tools",
+          "gist": "Guests demo a parametric toolkit, a client map generator, and a set of tiny creative tools.",
+          "quote": "this is a tool that I've built called Oodles"
+        },
+        {
+          "start": "01:02:12",
+          "seconds": 3732,
+          "title": "Brand universes and world building the dive brand",
+          "gist": "A studio owner urges Disneyland style brands while the hosts explore underwater worlds for their own site.",
+          "quote": "How have brand universes started to kind of expand?"
+        },
+        {
+          "start": "01:21:44",
+          "seconds": 4904,
+          "title": "Sound design as part of a brand",
+          "gist": "A guest designer layers product sounds and a host shows his soundboard experiments.",
+          "quote": "sound design is now breaking out of games into product"
+        },
+        {
+          "start": "01:33:17",
+          "seconds": 5597,
+          "title": "Branding trends from the Chutzpah sisters",
+          "gist": "Two guests describe in person activations, superfan communities, and micro shows as brand plays.",
+          "quote": "another pair of those folks are the Chutzpah sisters"
+        },
+        {
+          "start": "01:40:53",
+          "seconds": 6053,
+          "title": "One up weekly picks, winner reveal, and closing",
+          "gist": "Hosts trade favorite finds, announce the vote winner, and preview a careers episode before signing off.",
+          "quote": "get into one Up Weekly, brought to you by Lovable"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "writtenAt": "2026-09-04T15:50:09.710Z"
     }
   }
 }

@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-03
+# Show-health verification — 2026-09-04
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; never blocks publish.
 
-## Accuracy — the 2026-09-03 read
+## Accuracy — the 2026-09-04 read
 
-Score 53 (weighted mean 52.9, health-v9, prompt v7); reads Steal These AI Design Patterns + Live Ca at 7.4 days; carried: subscribers; promo-qualified: growth.sameAge.
+Score 55 (weighted mean 56, health-v9, prompt v7); reads How to Engineer a Brand Universe at 0.9 days; carried: audience quality, reach, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -51,7 +51,7 @@ Most recent resolutions:
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 14% (at full weight the mean would move -1.4) · promo-qualified measures: growth.sameAge · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 4.
+Carried share of scored checks: 43% (at full weight the mean would move -1) · promo-qualified measures: none · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 4.
 
 - WARN — The check set changed 3 times in 30 days — the number keeps changing what it measures.
 - INFO — The scoring rules changed 4 time(s) in the last 30 days; the daily trend restarts each time.

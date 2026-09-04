@@ -203,6 +203,59 @@
           "peakConcurrent": 575
         }
       }
+    },
+    {
+      "ts": "2026-09-04T15:45:40.663Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1349,
+          "detail": {
+            "views": 1349,
+            "likes": 26,
+            "comments": 1,
+            "title": "Dive Radio: How to Engineer a Brand Universe",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 1401,
+          "detail": {
+            "views": 1401,
+            "likes": 22,
+            "comments": 0,
+            "title": "Dive Radio: How to Engineer a Brand Universe",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "views": 19123,
+          "detail": {
+            "views": 5793,
+            "likes": 23,
+            "replies": 2,
+            "reposts": 2,
+            "bookmarks": 19,
+            "quotes": 1
+          },
+          "plays": 1120,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 359
+        },
+        "x:designertom": {
+          "views": 9786,
+          "detail": {
+            "views": 8670,
+            "likes": 22,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 11,
+            "quotes": 3
+          },
+          "plays": 1940,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 575
+        }
+      }
     }
   ]
 }

@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-04T02:23:25.795Z",
+  "updatedAt": "2026-09-04T15:46:16.354Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -765,6 +765,140 @@
         ],
         "confidence": 0.7
       }
+    },
+    "x:2095687290190500096": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z"
+    },
+    "x:2095639312880816204": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.95,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z"
+    },
+    "x:2095603967560765492": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.95,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z",
+      "audit": {
+        "at": "2026-09-04T15:46:16.354Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.98
+      }
+    },
+    "yt:UgxdqR-E60y0zauSZLp4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "format"
+      ],
+      "confidence": 0.75,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z",
+      "audit": {
+        "at": "2026-09-04T15:46:16.354Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "format"
+        ],
+        "confidence": 0.9
+      }
+    },
+    "x:2095868322243891404": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z"
+    },
+    "x:2095863259081380102": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.8,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z"
+    },
+    "x:2095862955522887905": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "topic choice"
+      ],
+      "confidence": 0.7,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z",
+      "audit": {
+        "at": "2026-09-04T15:46:16.354Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "topic choice"
+        ],
+        "confidence": 0.7
+      }
+    },
+    "x:2095862835653820623": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.65,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-04T15:46:16.354Z",
+      "audit": {
+        "at": "2026-09-04T15:46:16.354Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.7
+      }
     }
   },
   "golden": {
@@ -785,9 +919,9 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-04T02:23:25.795Z",
+    "at": "2026-09-04T15:46:16.354Z",
     "status": "complete",
-    "added": 0,
+    "added": 8,
     "reviewed": 0,
     "pendingIds": []
   },
