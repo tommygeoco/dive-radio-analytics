@@ -119,6 +119,7 @@ export async function runFixtureSuite({ keep = false } = {}) {
     stale.publish("ready", MORNING - 20_000);
     await assert.rejects(async () => stale.captureReceipt(stale.root, { startedAt: new Date(MORNING).toISOString() }), /current release and run/);
     stale.publish("ready", MORNING);
+    assert.throws(() => readPublishEvidence(stale.root, { path: stale.proofPath, now: MORNING + 999 }), /current release and run/, "a future build timestamp never proves completed publication");
     writeFileSync(join(stale.root, "data.js"), "changed after proof\n");
     assert.throws(() => stale.captureReceipt(stale.root), /no longer matches data.js/);
     checks.push("old receipt and post-proof artifact changes cannot prove a new run");

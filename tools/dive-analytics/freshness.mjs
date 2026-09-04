@@ -12,7 +12,6 @@ const ROOT = join(HERE, "..", "..");
 export const PROD_URL = "https://dive-radio-analytics.vercel.app/data.json";
 export const MAX_AGE_HOURS = 26;
 export const LINE_PREFIX = "Prod dashboard";
-const FUTURE_SLOP_MS = 5 * 60 * 1000;
 
 function phoenixParts(value) {
   const date = value instanceof Date ? value : new Date(value);
@@ -42,7 +41,7 @@ export function freshnessVerdict(generatedAt, now = Date.now(), { requireToday =
   const nowMs = now instanceof Date ? now.getTime() : Number(now);
   if (!Number.isFinite(generated)) return { ok: false, kind: "unreadable", message: "production data has no readable build time" };
   if (!Number.isFinite(nowMs)) throw new Error("freshness clock is invalid");
-  if (generated > nowMs + FUTURE_SLOP_MS) return { ok: false, kind: "future", generatedAt, message: `production build time ${generatedAt} is in the future` };
+  if (generated > nowMs) return { ok: false, kind: "future", generatedAt, message: `production build time ${generatedAt} is in the future` };
   const ageHours = (nowMs - generated) / 3600000;
   if (requireToday && phoenixDay(generated) !== phoenixDay(nowMs)) {
     return { ok: false, kind: "prior-day", generatedAt, ageHours, message: `production still serves the ${phoenixDay(generated)} build; Phoenix is on ${phoenixDay(nowMs)}` };

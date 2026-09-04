@@ -8,6 +8,7 @@ import { acquireLock } from "../alert-queue.mjs";
 import { runDaily, readAttemptState, reconcileInterruptedState } from "../run-daily.mjs";
 import { runStepWithPolicy } from "../run-chain.mjs";
 import { runFixtureSuite } from "./scheduler-harness.mjs";
+import { pendingSourceStates } from "../run-receipt.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const temp = mkdtempSync(join(tmpdir(), "dive-scheduler-contract."));
@@ -31,6 +32,19 @@ try {
   const interrupted = reconcileInterruptedState({ version: 1, timezone: "America/Phoenix", days: { "2026-09-02": [{ id: "old", mode: "primary", startedAt: new Date(now).toISOString(), status: "running" }] }, invocations: {} }, now + 1);
   assert.equal(interrupted.days["2026-09-02"][0].status, "failed:interrupted"); assertions++;
   assert.equal(interrupted.days["2026-09-02"].length, 1); assertions++;
+  for (const status of ["proving", "finishing"]) {
+    interrupted.days["2026-09-02"][0].status = status;
+    assert.equal(reconcileInterruptedState(interrupted, now + 1).days["2026-09-02"][0].status, "failed:interrupted"); assertions++;
+  }
+  assert.deepEqual(pendingSourceStates([{ slug: "one", episode: 1, youtube: { state: "stale" }, watch: { state: "missing" }, live: { state: "future" }, transcript: { state: "idle" }, promotion: { state: "ready" } }]).map((source) => source.source), ["youtube", "watch"]); assertions++;
+
+  const finishingPath = join(temp, "finishing-state.json");
+  const finishingStatus = await runDaily({ statePath: finishingPath, root: temp, isolatedRoot: temp, now, mode: "primary", prepare: () => temp, getOrigin: () => "a".repeat(40), queue: () => {}, run: () => ({ status: 0 }), captureReceipt: () => ({ sha: "a".repeat(40), generatedAt: new Date(now).toISOString(), proof: { ok: true }, sourceStates: [] }), resolve: () => {
+    assert.equal(readAttemptState(finishingPath).days["2026-09-02"][0].status, "finishing"); assertions++;
+    throw new Error("simulated alert resolution interruption");
+  } });
+  assert.equal(finishingStatus, 1); assertions++;
+  assert.equal(readAttemptState(finishingPath).days["2026-09-02"][0].status, "failed:alert-resolution"); assertions++;
   const lockPath = join(temp, "stale.lock"); writeFileSync(lockPath, JSON.stringify({ pid: 2147483647, startedAt: new Date(now).toISOString() }));
   const release = acquireLock(lockPath); release();
   assert.equal(existsSync(lockPath), false); assertions++;

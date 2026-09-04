@@ -71,14 +71,14 @@ export function readAttemptState(path = STATE_PATH) {
 export function reconcileInterruptedState(state, now = Date.now()) {
   const next = structuredClone(state);
   for (const attempts of Object.values(next.days)) for (const attempt of attempts) {
-    if (attempt.status === "running") {
+    if (["running", "proving", "finishing"].includes(attempt.status)) {
       attempt.status = "failed:interrupted";
       attempt.endedAt = new Date(now).toISOString();
       if (attempt.receipt) attempt.receipt.finalState = attempt.status;
     }
   }
   for (const invocations of Object.values(next.invocations || {})) for (const invocation of invocations) {
-    if (["preparing", "running"].includes(invocation.status)) {
+    if (["preparing", "running", "proving", "finishing"].includes(invocation.status)) {
       invocation.status = "failed:interrupted";
       invocation.endedAt = new Date(now).toISOString();
     }
@@ -454,9 +454,17 @@ export async function runDaily({
       try { receipt.sourceStates = publicSourceStates(JSON.parse(readFileSync(join(publisherRoot, "data.json"), "utf8")), now); }
       catch { /* An unreadable build is named by the failed receipt, never fabricated. */ }
     }
-    let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, savedStatus, endedAt, receipt);
-    finished = finishInvocation(finished, invocation.day, invocation.id, savedStatus, Date.now(), runError?.message || null);
+    const finishing = status === 0 || status === YOUTUBE_WATCH_PENDING_EXIT;
+    const intermediateStatus = finishing ? "finishing" : savedStatus;
+    let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, intermediateStatus, endedAt, { ...receipt, finalState: intermediateStatus });
+    finished = finishInvocation(finished, invocation.day, invocation.id, intermediateStatus, Date.now(), runError?.message || null);
     saveAttemptState(statePath, finished);
+    const finalize = () => {
+      const finalTime = Date.now();
+      const finalReceipt = { ...receipt, endedAt: new Date(finalTime).toISOString(), finalState: savedStatus };
+      const finalState = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, savedStatus, finalTime, finalReceipt);
+      saveAttemptState(statePath, finishInvocation(finalState, invocation.day, invocation.id, savedStatus, finalTime));
+    };
     if (status === YOUTUBE_WATCH_PENDING_EXIT) {
       const finalAttempt = reserved.number >= MAX_DAILY_ATTEMPTS;
       if (finalAttempt) {
@@ -481,6 +489,7 @@ export async function runDaily({
       console.log(!finalAttempt
         ? "daily-run: production was updated with the data available now; pending sources will be tried again at noon."
         : "daily-run: production was updated with the data available now; sources remain unavailable and no third run will start today.");
+      finalize();
       return 0;
     }
     if (status !== 0) {
@@ -495,6 +504,7 @@ export async function runDaily({
         const cleared = readAttemptState(statePath);
         delete cleared.failureAlerts[reserved.day];
         saveAttemptState(statePath, cleared);
+        finalize();
       }
       catch (error) {
         const failed = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, "failed:alert-resolution", Date.now(), { ...receipt, finalState: "failed:alert-resolution" });

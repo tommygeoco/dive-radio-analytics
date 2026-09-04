@@ -126,7 +126,7 @@ export async function recoverPublish({
   proofOnly = false,
   recordProof = (proof, at) => saveReceipt(RECOVERY_PROOF_PATH, {
     version: 1, day: phoenixDay(at), checkedAt: new Date(at).toISOString(), mode: proofOnly ? "proof-only" : "recovery",
-    finalState: proof.ok ? "passed" : proof.youtubeWatchPending ? SOURCE_PENDING_STATUS : "failed",
+    finalState: proof.finishing ? "finishing" : proof.ok ? "passed" : proof.youtubeWatchPending ? SOURCE_PENDING_STATUS : "failed",
     sha: proof.receipt?.sha || null, generatedAt: proof.freshness?.generatedAt || null,
     sourceStates: proof.receipt?.sourceStates || [], deployment: proof.receipt?.deployment || null,
     productionProof: proof.parity, checklist: proof.checklist, receiptValid: proof.receipt?.ok === true,
@@ -156,12 +156,14 @@ export async function recoverPublish({
   try {
     canonicalRoot = prepare(root, publisherRoot);
     before = await verify({ root: canonicalRoot, now, statePath });
-    recordProof(before, now);
+    recordProof({ ...before, finishing: before.ok === true }, now);
     if (before.ok && !proofOnly) {
       resolve();
       beforeResolved = true;
+      recordProof(before, now);
     }
   } catch (error) {
+    if (before) recordProof({ ...before, ok: false, youtubeWatchPending: false }, now);
     const line = `Daily production check could not prepare its isolated checkout — ${error.message}.`;
     queue([line]);
     console.error(`recovery: ${line}`);
@@ -173,6 +175,7 @@ export async function recoverPublish({
     const checklistOk = before.checklist?.ok === true || before.youtubeWatchPending === true;
     const productionOk = before.freshness?.ok === true && before.parity?.ok === true && before.receipt?.ok === true && checklistOk;
     if (productionOk) {
+      recordProof(before, now);
       console.log(`recovery: proof only — production serves today's build and all ${before.parity.checked} public files match; no recovery was started.`);
       return 0;
     }
@@ -238,7 +241,7 @@ export async function recoverPublish({
   }
   try {
     const after = await verify({ root: canonicalRoot, now: Date.now(), statePath });
-    recordProof(after, Date.now());
+    recordProof({ ...after, finishing: after.ok === true }, Date.now());
     if (!after.ok) {
       if (after.youtubeWatchPending === true && after.freshness?.ok === true && after.parity?.ok === true) {
         console.log("recovery: noon published every available update; YouTube is still preparing the newest episode's watch data, so no third run will start today.");
@@ -250,6 +253,7 @@ export async function recoverPublish({
       return 1;
     }
     resolve();
+    recordProof(after, Date.now());
     console.log(`recovery: production now serves today's build and all ${after.parity.checked} public files match.`);
     return 0;
   } finally {

@@ -22,6 +22,7 @@ assert.equal(phoenixDay(morning), "2026-09-02");
 
 assert.equal(freshnessVerdict("not-a-time", morning).kind, "unreadable");
 assert.equal(freshnessVerdict("2026-09-03T00:00:00Z", morning).kind, "future");
+assert.equal(freshnessVerdict(new Date(morning + 1).toISOString(), morning).kind, "future", "even a one-millisecond future stamp cannot prove a completed build");
 assert.equal(freshnessVerdict("2026-09-01T12:00:00Z", morning, { requireToday: false }).kind, "old");
 
 {

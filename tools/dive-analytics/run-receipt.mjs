@@ -35,7 +35,7 @@ export function lastProductionProof(path = PUBLISH_PROOF_PATH) {
 }
 export function pendingSourceStates(sources) {
   return sources.flatMap((episode) => Object.entries(episode)
-    .filter(([, reading]) => reading && typeof reading === "object" && ["pending", "failed"].includes(reading.state))
+    .filter(([, reading]) => reading && typeof reading === "object" && ["pending", "failed", "missing", "stale"].includes(reading.state))
     .map(([source, reading]) => ({ episode: episode.episode, slug: episode.slug, source, ...reading })));
 }
 export function publicSourceStates(data, now = Date.now()) {
@@ -72,7 +72,7 @@ export function readPublishEvidence(root, {
   if (proof?.version !== 1 || proof.sha !== sha.stdout.trim() || proof.generatedAt !== data.generatedAt
     || proof.site !== "https://dive-radio-analytics.vercel.app" || !/^https:\/\/[a-z0-9-]+\.vercel\.app\/?$/i.test(proof.deployment?.url || "")
     || proof.proof?.ok !== true || !Number.isFinite(stamp) || !Number.isFinite(generated)
-    || stamp < generated || stamp > now + 300_000 || phoenixDay(generated) !== phoenixDay(now)
+    || stamp < generated || stamp > now || generated > now || phoenixDay(generated) !== phoenixDay(now)
     || (startedAt != null && (stamp < Date.parse(startedAt) || generated < Date.parse(startedAt)))) {
     throw new Error("production receipt does not identify this current release and run");
   }
