@@ -217,10 +217,10 @@ new acceptance. Updated PRD section 10 is the implementation contract.
 - [x] Locate clean launcher and runtime main at baseline; verify origin/main; preserve dirty user checkout.
 - [x] Verify baseline 16-file production parity independently; identify missing chart-library proof and source/store/status gaps.
 - [x] Update PRD with every source, store, clock, consumer, failure path and exact tests before code.
-- [ ] Repair source transactions, request completeness, capture metadata, future-episode filtering and canonical writes.
-- [ ] Repair frozen-rating validation and source-to-screen consumers without new features.
+- [x] Repair source transactions, request completeness, capture metadata, future-episode filtering and canonical writes.
+- [x] Repair frozen-rating validation and source-to-screen consumers without new features.
 - [ ] Repair durable run/alert receipts, bounded child execution, scheduler truth and recovery.
-- [ ] Repair safe release hooks, clean exact-commit release and all-artifact proof.
+- [x] Repair safe release hooks, clean exact-commit release and all-artifact proof.
 - [ ] Run complete audit fixtures, syntax, ratings/build/strict validator and frozen-byte proof.
 - [ ] Push clean main, deploy, prove production bytes/time, run controlled real scheduler executions, capture browser.
 - [ ] Record final evidence and explicitly retain future mornings/reboot observation as unproven.
@@ -253,3 +253,27 @@ User benefit: failures remain visible and recovery works after interruption.
 User benefit: success means the validated release is actually on the public alias.
 5. Integration: fixture runs, real scheduler proof, browser, final source inventory.
 User benefit: operational truth is reviewable now; future streak claims wait for evidence.
+
+### Integration checkpoint — 2026-09-04 13:54 MST
+
+- The first integrated gate passed 39 audit suites, 89 script syntax checks and
+  two inline page scripts. Strict validator: 0 failures, 42 warnings, 0 drift.
+  Warnings retain historical gaps and the genuinely unavailable E8 watch history.
+- Fresh authorized source calls checked 16 YouTube video IDs and 22 X posts across
+  eight due episodes, both owner Analytics accounts, every newsletter page, four
+  audience accounts, comments, Restream state and all eight transcripts. Thirty
+  real source stores passed source integrity before promotion from a temporary
+  capture checkout. The temporary operator log kept capture verification separate
+  from the owner's vault. No daily attempt was spent or reset.
+- E8 owner Analytics still returns no usable watch totals on both registered
+  videos. The complete earlier seven cohorts advanced; no E8 history was added.
+- Five frozen raw rating entry substrings are identical to baseline 94d6517:
+  SHA256 b94babfe6d7e0db344524ece29ef687ecc49cd243db4269c37cf48d921634081.
+  Only the enclosing store update timestamp can change.
+- Release review added original committed-artifact validation before disposable
+  rebuild, exact Vercel project and organization checks, and an explicit full gate
+  before every push even if a hook is absent. Runtime preparation installs and
+  verifies the committed hook, including fresh clones.
+- Final review is closing model error propagation and alert reconciliation after
+  an ambiguous provider response. No push, deployment or live job mutation has
+  occurred at this checkpoint. A final complete gate follows those changes.

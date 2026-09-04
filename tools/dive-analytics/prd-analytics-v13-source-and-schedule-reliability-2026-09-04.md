@@ -366,3 +366,12 @@ Every history envelope validates source IDs, episode, timestamps and complete
 channels; missing or future timestamps fail. Missing live/newsletter results
 remain truthful unavailable states without fabricating zeros. Full fixtures must
 also cover explicit-zero X broadcast counts and null-valued monotonic history.
+
+The final release review also requires `publish-project.test.mjs`: missing or
+malformed project links, wrong project/organization IDs and environment overrides
+fail before deploy. Publishing invokes the full gate before every push independent
+of hook presence. The gate validates the original committed public artifacts
+before rebuilding its disposable copy. Dedicated model scripts preserve prior
+valid stores on request/parse/grounding failure and return nonzero; a deterministic
+prune may remove stale recommendations but must not hide the failed model step.
+Intentional already-current and no-eligible-input paths may return success.

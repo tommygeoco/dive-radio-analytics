@@ -86,16 +86,15 @@ through `run-daily.mjs`, which prepares a clean `main` clone under
 `~/Library/Application Support/Dive Radio Analytics/publisher-main`, prevents
 overlap, records every invocation before checkout checks, and allows the
 scheduled run plus one reserved recovery. Active development files never enter
-that clone. The scheduled bootstrap still comes from the launcher checkout
-until the operator points the job at the committed copy in `publisher-main`,
-so changes to the bootstrap files themselves must stay committed. Discovery
+that clone. Every Dive Radio job starts from the committed runtime checkout,
+including ingestion, transcript recovery, alerts and weekly reporting. Discovery
 and snapshot now write an append-only source receipt and refuse the morning
 build unless both YouTube accounts, both X accounts, and both X live broadcasts
 were actually reached. Restream live events remain retryable until peak,
 average, views, watch time, minute readings, chat, and destination details are
 all present. The chain pulls main before capture, retries each required platform
 pull once, validates the final files, pushes the exact checked commit, deploys
-production, and compares all eight public files byte-for-byte. An 08:15 check
+production, and compares all nine core public files and every declared transcript byte-for-byte. An 08:15 check
 proves production against that same clean clone and starts the one recovery
 when production is not current. The 12:15 check also uses an available attempt
 if both earlier jobs were missed. If production is current and only the newest
@@ -123,7 +122,7 @@ The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:
 
 ```text
-ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → build-data → validate → publish → alerts → freshness
+ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → chapters → critic (Mondays) → build-data → validate → publish → alerts → freshness
 ```
 
 (`recommendations` and `moment-summaries` need ANTHROPIC_API_KEY like
