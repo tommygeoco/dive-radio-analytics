@@ -53,7 +53,7 @@ try {
       sentArgs.push(args);
       appendQueueLines(["arrived during send"], queue);
       assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: () => ({ status: 0, stdout: "{}" }) }), /already in use/);
-      return { status: 0, stdout: JSON.stringify({ ok: true, result: { messageId: "slack-123" } }) };
+      return { status: 0, stdout: JSON.stringify({ action: "send", channel: "slack", handledBy: "core", messageId: "slack-123", payload: { result: { messageId: "slack-123", target: { kind: "channel", id: "DABC1234" } } } }) };
     },
   });
   assert.deepEqual(result, { sent: 1, receipts: ["slack-123"] });
@@ -62,6 +62,7 @@ try {
   const confirmed = JSON.parse(readFileSync(`${queue}.receipts.json`, "utf8")).attempts.at(-1);
   assert.equal(confirmed.state, "confirmed");
   assert.equal(confirmed.receipt, "slack-123");
+  assert.equal(confirmed.channelId, "DABC1234", "the actual OpenClaw core outbound target is preserved for later history reconciliation");
   assert.ok(Number.isFinite(Date.parse(confirmed.acknowledgedAt)));
   assert.deepEqual(confirmed.lines, ["one"], "durable provider evidence identifies exactly the acknowledged lines");
 
@@ -70,6 +71,7 @@ try {
   }
   assert.equal(deliveryId({ payload: { result: { channelId: "Ctest", ts: "123.456" } } }), "123.456");
   assert.equal(deliveryChannelId({ payload: { result: { channelId: "DABC1234" } } }), "DABC1234");
+  assert.equal(deliveryChannelId({ payload: { result: { target: { kind: "user", id: "UABC1234" } } } }), null, "a user recipient is not a provider conversation id");
 
   const reconcileNow = Date.parse("2026-09-04T20:00:00Z");
   const oldAttempt = { channel: "slack", account: "default", target: "user:UTEST", lines: ["one & two"], attemptedAt: new Date(reconcileNow - 300000).toISOString(), finishedAt: new Date(reconcileNow - 240000).toISOString() };

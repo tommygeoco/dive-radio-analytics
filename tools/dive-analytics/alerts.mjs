@@ -221,6 +221,9 @@ export function deliveryId(value) {
 export function deliveryChannelId(value) {
   if (!value || typeof value !== "object" || value.ok === false || value.dryRun || value.error) return null;
   if (/^[CDG][A-Z0-9]+$/.test(value.channelId || "")) return value.channelId;
+  // OpenClaw's core Slack outbound adapter normalizes channelId into this
+  // typed target; its plugin action path still returns channelId directly.
+  if (value.target?.kind === "channel" && /^[CDG][A-Z0-9]+$/.test(value.target.id || "")) return value.target.id;
   for (const key of ["result", "payload"]) {
     const found = deliveryChannelId(value[key]);
     if (found) return found;
