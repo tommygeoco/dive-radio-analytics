@@ -105,6 +105,8 @@ export async function runFixtureSuite({ keep = false } = {}) {
     assert.equal(count, 1);
     assert.equal(await missing.recover({ now: NOON + 5000, run: () => { throw new Error("third attempt forbidden"); } }), 0);
     assert.equal(readQueue(missing.queuePath).length, count);
+    assert.equal(await missing.recover({ now: NOON + 3 * 3600_000, run: () => { throw new Error("no work outside recovery window"); } }), 0, "an exhausted current pending day can be checked safely at any hour");
+    assert.equal(readQueue(missing.queuePath).length, count);
     checks.push("exhausted pending source alerts exactly once and refuses a third capture");
 
     const failure = fixture(base, "failure-clear");

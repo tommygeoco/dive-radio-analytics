@@ -52,7 +52,7 @@ export function checklistVerdict(statePath = STATE_PATH, now = Date.now()) {
           ok: false,
           youtubeWatchPending,
           message: youtubeWatchPending
-            ? "the newest episode's YouTube watch data is not ready yet"
+            ? "source data is not ready yet"
             : attempt || invocation
               ? `today's publishing checklist last ended ${attempt?.status || invocation?.status || "without a result"}`
               : "today's publishing checklist has no recorded run",
@@ -182,23 +182,6 @@ export async function recoverPublish({
     console.error(`recovery: proof only — ${proofMessage(before)}; no recovery was started.`);
     return 1;
   }
-  const action = recoveryAction(before, now);
-  if (action === "done") {
-    if (!beforeResolved) throw new Error("production proof completed without reconciling its alert state");
-    console.log(`recovery: production serves today's build and all ${before.parity.checked} public files match.`);
-    return 0;
-  }
-  if (action === "defer") {
-    console.log("recovery: production is current; newest episode YouTube watch data is not ready yet, so the one remaining whole-chain run stays reserved for noon.");
-    return 0;
-  }
-  if (action === "fail") {
-    const line = `Daily production check failed outside either recovery window — ${proofMessage(before)}.`;
-    queue([line]);
-    console.error(`recovery: ${line}`);
-    return 1;
-  }
-
   if (before.youtubeWatchPending && before.receipt?.ok === true) {
     const releaseState = guard(`${statePath}.run.lock`);
     try {
@@ -214,11 +197,32 @@ export async function recoverPublish({
         console.log("recovery: production is proved with unavailable source data; both daily attempts are recorded, the warning is durable, and no third run was started.");
         return 0;
       }
+    } catch (error) {
+      recordProof({ ...before, ok: false, youtubeWatchPending: false }, now);
+      throw error;
     } finally { releaseState(); }
   }
 
+  const action = recoveryAction(before, now);
+  if (action === "done") {
+    if (!beforeResolved) throw new Error("production proof completed without reconciling its alert state");
+    console.log(`recovery: production serves today's build and all ${before.parity.checked} public files match.`);
+    return 0;
+  }
+  if (action === "defer") {
+    console.log("recovery: production is current; source data is not ready yet, so the one remaining whole-chain run stays reserved for noon.");
+    return 0;
+  }
+  if (action === "fail") {
+    const line = `Daily production check failed outside either recovery window — ${proofMessage(before)}.`;
+    queue([line]);
+    console.error(`recovery: ${line}`);
+    return 1;
+  }
+
+
   console.log(before.youtubeWatchPending
-    ? "recovery: newest episode YouTube watch data is still pending; starting the one reserved noon run."
+    ? "recovery: source data is still pending; starting the one reserved noon run."
     : `recovery: production check failed — ${proofMessage(before)}; starting one available recovery run.`);
   let child;
   try { child = await run(); }
@@ -244,7 +248,7 @@ export async function recoverPublish({
     recordProof({ ...after, finishing: after.ok === true }, Date.now());
     if (!after.ok) {
       if (after.youtubeWatchPending === true && after.freshness?.ok === true && after.parity?.ok === true) {
-        console.log("recovery: noon published every available update; YouTube is still preparing the newest episode's watch data, so no third run will start today.");
+        console.log("recovery: noon published every available update; source data is still unavailable, so no third run will start today.");
         return 0;
       }
       const line = `Daily publish recovery finished, but production still failed its checks — ${proofMessage(after)}.`;
