@@ -7,7 +7,7 @@ import { spawnSync } from "node:child_process";
 import { allowlistSpecs, assertPublishScope, classifyPaths, pathMatchesSpec, stagePublishScope } from "../publish-scope.mjs";
 
 const specs = allowlistSpecs();
-assert.ok(specs.includes("data.json") && specs.includes("data/restream/alerts-state.json") && specs.includes("tools/dive-analytics/audit/CRITIC-*.md"));
+assert.ok(specs.includes("data.json") && !specs.includes("data/restream/alerts-state.json") && specs.includes("tools/dive-analytics/audit/CRITIC-*.md"));
 assert.equal(pathMatchesSpec("transcripts/episode one.txt", "transcripts/*.txt"), true);
 assert.equal(pathMatchesSpec("transcripts/nested/episode.txt", "transcripts/*.txt"), false);
 assert.equal(pathMatchesSpec("tools/dive-analytics/audit/CRITIC-2026-09-01.md", "tools/dive-analytics/audit/CRITIC-*.md"), true);

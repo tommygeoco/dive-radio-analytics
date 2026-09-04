@@ -17,7 +17,7 @@ try {
   writeFileSync(join(root, 'tools/dive-analytics/build-data.mjs'), "import{writeFileSync,readFileSync}from'node:fs';if(readFileSync('ratings-output','utf8')!=='called')process.exit(2);writeFileSync('data.json','rebuilt');\n");
   writeFileSync(join(root, 'tools/dive-analytics/audit/validate.mjs'), "import{readFileSync}from'node:fs';if(readFileSync('data.json','utf8')!=='rebuilt')process.exit(3);\n");
   writeFileSync(join(root, 'tools/dive-analytics/audit/one.test.mjs'), "import{readFileSync}from'node:fs';if(readFileSync('data.json','utf8')!=='rebuilt')process.exit(4);\n");
-  writeFileSync(join(root, 'data.json'), 'committed');
+  writeFileSync(join(root, 'data.json'), 'rebuilt');
   run('git', ['add', '--all']); run('git', ['commit', '-qm', 'fixture']);
   writeFileSync(join(root, 'data.json'), 'user data');
   writeFileSync(join(root, 'agent.md'), 'user untracked');
@@ -28,6 +28,12 @@ try {
   assert.equal(readFileSync(join(root, 'data.json'), 'utf8'), 'user data');
   assert.equal(readFileSync(join(root, 'agent.md'), 'utf8'), 'user untracked');
   assert.equal(run('git', ['status', '--porcelain']), before);
+  writeFileSync(join(root, 'data.json'), 'broken committed artifact');
+  run('git', ['add', '--', 'data.json']); run('git', ['commit', '-qm', 'broken candidate fixture']);
+  assert.throws(() => verifyCandidate({ root, log: () => {} }), /failed/);
+  writeFileSync(join(root, 'data.json'), 'rebuilt');
+  run('git', ['add', '--', 'data.json']); run('git', ['commit', '-qm', 'restore candidate fixture']);
+  writeFileSync(join(root, 'data.json'), 'user data');
   for (const [path, code] of [['tools/dive-analytics/build-data.mjs', 7], ['tools/dive-analytics/audit/validate.mjs', 8], ['tools/dive-analytics/audit/one.test.mjs', 9]]) {
     const prior = readFileSync(join(root, path));
     writeFileSync(join(root, path), `process.exit(${code});\n`);

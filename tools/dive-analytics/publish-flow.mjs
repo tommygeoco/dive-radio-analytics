@@ -172,7 +172,8 @@ function assertCleanRelease(root, sha) {
 
 async function deployProduction(root, sha, log) {
   let deploymentUrl = null;
-  const site = process.env.DIVE_PROD_SITE || SITE;
+  if (process.env.DIVE_PROD_SITE && process.env.DIVE_PROD_SITE !== SITE) throw new Error("production proof must use the canonical Dive Radio alias");
+  const site = SITE;
   const result = await deployWithParity({
     log,
     deploy: async () => {

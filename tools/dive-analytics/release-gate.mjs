@@ -24,6 +24,9 @@ function walk(root, path) {
 export function verifyCheckout(root, { run = checkedCommand, log = console.log } = {}) {
   const node = process.execPath;
   const invoke = (args, timeout) => run(node, args, { cwd: root, timeout });
+  // Validate the exact committed bytes before rebuilding this disposable copy.
+  // Otherwise a build could repair a broken candidate only inside the gate.
+  invoke(['tools/dive-analytics/audit/validate.mjs'], 180_000);
   invoke(['tools/dive-analytics/ratings.mjs']);
   invoke(['tools/dive-analytics/build-data.mjs']);
   const validation = invoke(['tools/dive-analytics/audit/validate.mjs'], 180_000);
