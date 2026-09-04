@@ -33,6 +33,17 @@ try {
   assert.equal(retried.copied.length, 0, "the retry does not need to recopy a protected transcript");
   assert.equal(refreshes, 1, "the next run retries the previously failed search refresh");
   assert.equal(existsSync(refreshState), false, "only a successful refresh clears pending state");
+  const messages = [];
+  mirrorTranscripts({ source, vault, refreshState, quietCurrent: true, refresh: () => { refreshes++; }, log: (m) => messages.push(m) });
+  assert.equal(refreshes, 2, "an already-complete vault without a pending marker still checks its search index");
+  assert.deepEqual(messages, [], "quiet current still performs indexing without routine announcements");
+  assert.equal(existsSync(refreshState), false);
+  assert.throws(() => mirrorTranscripts({ source, vault, refreshState, refresh: () => { throw new Error("index unavailable on unchanged vault"); }, log: () => {} }), /search index refresh failed/);
+  assert.equal(existsSync(refreshState), true, "an unchanged vault cannot mask a failed index refresh");
+  mirrorTranscripts({ source, vault, refreshState, refresh: () => { refreshes++; }, log: () => {} });
+  assert.equal(existsSync(refreshState), false);
+  mirrorTranscripts({ source, vault, refreshState, dryRun: true, refresh: () => { throw new Error("dry run must not index"); }, log: () => {} });
+  assert.equal(existsSync(refreshState), false, "dry run never creates refresh state");
   assert.equal(mirrorTranscripts({ source, vault, refreshState, noQmd: true, log: () => {} }).copied.length, 0);
   assert.match(DEFAULT_SOURCE, /Dive Radio Analytics\/publisher-main\/transcripts$/, "default source belongs to the isolated publisher");
 

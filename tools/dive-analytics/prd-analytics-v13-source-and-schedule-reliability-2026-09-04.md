@@ -109,7 +109,10 @@ The existing schedule remains one system:
 - 06:50 Restream ingest prepares live-event source data.
 - 07:00 `restream-postlive-snapshot` calls `run-daily.mjs --primary`.
 - 08:00 transcript mirror copies any newly released transcript into the owner
-  vault and refreshes search only when needed.
+  vault and checks both Dive search collections every run. Existing vault copies
+  never suppress indexing. A failed refresh leaves the durable marker and exits
+  nonzero; successful refresh alone clears it. QMD must read the isolated
+  publisher transcript folder and embed only the two named Dive collections.
 - 08:15 and 12:15 `restream-postlive-freshness` prove production and own the one
   reserved recovery run. Either check repairs any unproved production state when
   an attempt remains; an honest YouTube wait at 08:15 reserves the run for 12:15.

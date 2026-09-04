@@ -43,9 +43,10 @@ function mirrorTranscriptFiles({
   vault = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT,
   refreshScript = process.env.DIVE_QMD_REFRESH || DEFAULT_REFRESH,
   refreshState = TRANSCRIPT_REFRESH_STATE_PATH,
-  refresh = (script, collections) => execFileSync(process.execPath, [script, ...collections], { stdio: "pipe", timeout: 40 * 60 * 1000 }),
+  refresh = (script, collections) => execFileSync(process.execPath, [script, ...collections], { stdio: "pipe", timeout: 12 * 60 * 1000 }),
   dryRun = false,
   noQmd = false,
+  quietCurrent = false,
   log = console.log,
 } = {}) {
   if (!existsSync(source)) throw new Error(`source folder missing at ${source}`);
@@ -68,7 +69,10 @@ function mirrorTranscriptFiles({
     planned.push({ source: join(source, file), target, destination: join(vault, target) });
   }
   if (problems.length) throw new Error(problems.join("; "));
-  if (!dryRun && planned.length) saveRefreshState(refreshState, planned.map((item) => item.target));
+  const wasPending = !dryRun && pendingRefresh(refreshState);
+  // A vault copy does not prove that the canonical transcript is indexed.
+  // Check both collections on every scheduled run, including an unchanged vault.
+  if (!dryRun && (planned.length || !noQmd)) saveRefreshState(refreshState, planned.map((item) => item.target));
   for (const item of planned) {
     if (!dryRun) writeTranscriptOnce(item.destination, readFileSync(item.source));
     copied.push(item.target);
@@ -79,7 +83,7 @@ function mirrorTranscriptFiles({
     try {
       refresh(refreshScript, COLLECTIONS);
       unlinkSync(refreshState);
-      log("Dive Radio transcript mirror: search index refreshed.");
+      if (!quietCurrent || copied.length || wasPending) log("Dive Radio transcript mirror: search index refreshed.");
     } catch (error) {
       problems.push(`search index refresh failed (${String(error.message || error).split("\n")[0]})`);
     }
@@ -95,7 +99,7 @@ export function mirrorTranscripts(options = {}) {
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
   try {
-    const result = mirrorTranscripts({ dryRun: process.argv.includes("--dry-run"), noQmd: process.argv.includes("--no-qmd") });
+    const result = mirrorTranscripts({ dryRun: process.argv.includes("--dry-run"), noQmd: process.argv.includes("--no-qmd"), quietCurrent: process.argv.includes("--quiet-current") });
     if (!result.copied.length && !process.argv.includes("--quiet-current")) console.log("Dive Radio transcript mirror: already current.");
   } catch (error) {
     console.error(`Dive Radio transcript mirror: ${error.message}.`);

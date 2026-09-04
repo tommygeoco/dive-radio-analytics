@@ -299,3 +299,13 @@ the served checkout at
 The final report records actual commit, generatedAt, per-file hashes, current
 source states, exact live schedules and scheduler run IDs. No multi-day streak or
 actual reboot is inferred from the temporary crash/restart fixtures.
+
+### Local retrieval follow-up, 2026-09-04
+
+The QMD collection and active OpenClaw lookup/recap skills still referenced the
+old development checkout after production repair. The transcript mirror now
+refreshes its two search collections on every run, independent of vault copies,
+and keeps failed indexing pending. Regression fixtures cover an unchanged vault
+with no marker, index failure/retry, and quiet successful indexing. Native QMD
+configuration and Workshop skill application are verified separately in the
+Hinterlands `dive-radio-retrieval-repair.md` plan.
