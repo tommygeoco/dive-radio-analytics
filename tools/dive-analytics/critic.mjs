@@ -2,18 +2,19 @@
 // critic.mjs — standing critic for the shipped dashboard (PRD v4 Part 3).
 // Audits the ARTIFACT (data.json + index.html as a reader experiences it)
 // through five lenses: cognitive load, readability, verbosity/suppression,
-// fact-check, decision usefulness. One model call, temperature 0. Findings go
+// fact-check, decision usefulness. One model call plus one retry. Findings go
 // to tools/dive-analytics/audit/CRITIC-<date>.md. The critic never edits
-// anything and never blocks publish: on model failure it writes "did not run"
-// and exits 0. Prompt lives in critic-prompt.md (versioned; changes are commits).
+// anything. Findings are advisory; a failed or incomplete audit exits nonzero
+// and preserves the previous report. Prompt lives in critic-prompt.md.
 //
 // Run: node tools/dive-analytics/critic.mjs            (full run)
 //      node tools/dive-analytics/critic.mjs --dry      (print bundle stats, no call)
 //      node tools/dive-analytics/critic.mjs --tag W8   (keep same-day workstream reports separate)
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { atomicWriteText, fetchJson, phoenixDateKey, readJsonFile, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -24,12 +25,10 @@ const MAX_TOKENS = 16000;
 // --- harvest: compact, deterministic audit bundle ---
 
 function harvest() {
-  const data = JSON.parse(readFileSync(join(ROOT, "data.json"), "utf8"));
+  const data = readJsonFile(join(ROOT, "data.json"));
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
-  let ratings = null;
-  try { ratings = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
-  let healthHistory = null;
-  try { healthHistory = JSON.parse(readFileSync(join(ROOT, "data", "restream", "health-history.json"), "utf8")); } catch { /* absent */ }
+  const ratings = readJsonFile(join(ROOT, "data", "restream", "episode-ratings.json"), { fallback: null });
+  const healthHistory = readJsonFile(join(ROOT, "data", "restream", "health-history.json"), { fallback: null });
 
   // episodes: the numbers a reader can see, compact
   const episodes = data.episodes.map((e) => ({
@@ -72,7 +71,10 @@ function harvest() {
   const historyLines = {};
   for (const e of data.episodes) {
     const hp = join(ROOT, "data", "restream", "yt-analytics-history", `${e.slug}.jsonl`);
-    try { historyLines[e.slug] = readFileSync(hp, "utf8").split("\n").filter(Boolean).slice(-3).map((l) => JSON.parse(l)); } catch { /* none yet */ }
+    if (existsSync(hp)) {
+      try { historyLines[e.slug] = readFileSync(hp, "utf8").split("\n").filter(Boolean).slice(-3).map((l) => JSON.parse(l)); }
+      catch { throw new Error("critic analytics history is unreadable or malformed"); }
+    }
   }
 
   return {
@@ -98,10 +100,10 @@ function harvest() {
 
 // --- model call ---
 
-async function callModel(system, user) {
-  const key = process.env.ANTHROPIC_API_KEY;
+async function callModel(system, user, { fetchImpl = fetch, key = process.env.ANTHROPIC_API_KEY } = {}) {
   if (!key) throw new Error("ANTHROPIC_API_KEY not set");
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const j = await fetchJson("https://api.anthropic.com/v1/messages", {
+    label: "critic model", fetchImpl, timeoutMs: 180000, maxAttempts: 1,
     method: "POST",
     headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
     body: JSON.stringify({
@@ -114,69 +116,71 @@ async function callModel(system, user) {
       system,
       messages: [{ role: "user", content: user }],
     }),
-    signal: AbortSignal.timeout(180000),
   });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  const j = await res.json();
-  const text = (j.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
-  if (!text.trim()) throw new Error("empty critic response");
+  if (j.stop_reason !== "end_turn" || !Array.isArray(j.content)) throw new Error("critic model returned an incomplete response");
+  const text = j.content.filter((b) => b.type === "text" && typeof b.text === "string").map((b) => b.text).join("\n");
+  const findings = text.match(/^- (?:PASS|WARN|FAIL)\s+[—–-]\s+\S/gm) || [];
+  if (![1,2,3,4,5].every((lens) => new RegExp(`^## ${lens}\\. \\S`, "m").test(text))
+    || !/^## Verdict\s*\n\s*\S/m.test(text) || !/^## The one recommendation\s*\n\s*\S/m.test(text)
+    || findings.length < 1 || findings.length > 12) throw new Error("critic model returned an invalid report");
   return text;
 }
 
 // --- main ---
 
-const dry = process.argv.includes("--dry");
-const date = new Date().toISOString().slice(0, 10);
-const tagAt = process.argv.indexOf("--tag");
-const tag = tagAt >= 0 ? process.argv[tagAt + 1] : null;
-if (tagAt >= 0 && (!tag || !/^[A-Za-z0-9-]+$/.test(tag))) throw new Error("--tag requires letters, numbers, or hyphens");
-const outPath = join(OUT_DIR, `CRITIC-${date}${tag ? `-${tag}` : ""}.md`);
+export async function run({ dry = false, tag = null, now = Date.now(), fetchImpl = fetch } = {}) {
+  const date = phoenixDateKey(now);
+  if (tag != null && (typeof tag !== "string" || !/^[A-Za-z0-9-]+$/.test(tag))) throw new Error("--tag requires letters, numbers, or hyphens");
+  const outPath = join(OUT_DIR, `CRITIC-${date}${tag ? `-${tag}` : ""}.md`);
+  return withSourceLock(outPath, async () => {
+    const bundle = harvest();
+    const system = readFileSync(join(HERE, "critic-prompt.md"), "utf8");
+    const user = [
+      "Audit this shipped dashboard state.",
+      "",
+      "## data (what renders; compact export of data.json + episode health)",
+      "```json",
+      JSON.stringify({ ...bundle, indexHtml: undefined }, null, 1),
+      "```",
+      "",
+      "## index.html (full page source — CSS, copy templates, render logic, About text)",
+      "```html",
+      bundle.indexHtml,
+      "```",
+    ].join("\n");
 
-const bundle = harvest();
-const system = readFileSync(join(HERE, "critic-prompt.md"), "utf8");
-const user = [
-  "Audit this shipped dashboard state.",
-  "",
-  "## data (what renders; compact export of data.json + episode health)",
-  "```json",
-  JSON.stringify({ ...bundle, indexHtml: undefined }, null, 1),
-  "```",
-  "",
-  "## index.html (full page source — CSS, copy templates, render logic, About text)",
-  "```html",
-  bundle.indexHtml,
-  "```",
-].join("\n");
+    if (dry) {
+      console.log(`critic --dry: bundle ${Math.round(user.length / 1024)}KB, ${bundle.episodes.length} episodes, ${bundle.insights.length} insights. No call made.`);
+      return { dry: true, outPath };
+    }
 
-if (dry) {
-  console.log(`critic --dry: bundle ${Math.round(user.length / 1024)}KB, ${bundle.episodes.length} episodes, ${bundle.insights.length} insights. No call made.`);
-  process.exit(0);
+    let report;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try { report = await callModel(system, user, { fetchImpl }); break; }
+      catch (error) {
+        if (attempt === 2) throw error;
+      }
+    }
+
+    const header = `# Dashboard critic — ${date}\n\nModel: ${MODEL} · prompt: critic-prompt.md · artifact: data.json generated ${bundle.generatedAt}\n\n---\n\n`;
+    atomicWriteText(outPath, header + report + "\n");
+    const fails = (report.match(/^- FAIL/gm) || []).length;
+    const warns = (report.match(/^- WARN/gm) || []).length;
+    const passes = (report.match(/^- PASS/gm) || []).length;
+    console.log(`critic: ${fails} FAIL, ${warns} WARN, ${passes} PASS -> ${outPath}`);
+    if (fails > 0) console.log(`critic: FAILURES flagged — read ${outPath}`);
+    return { outPath, fails, warns, passes };
+  });
 }
 
-let report;
-let ran = true;
-try {
-  report = await callModel(system, user);
-} catch (err) {
-  // one retry, then never block the chain
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  const tagAt = process.argv.indexOf("--tag");
   try {
-    report = await callModel(system, user);
-  } catch (err2) {
-    ran = false;
-    report = `# Critic did not run — ${date}\n\nModel call failed twice: ${err2.message}\n\nPublish is unaffected; rerun manually: node tools/dive-analytics/critic.mjs`;
+    if (tagAt >= 0 && !process.argv[tagAt + 1]) throw new Error("--tag requires letters, numbers, or hyphens");
+    await run({ dry: process.argv.includes("--dry"), tag: tagAt >= 0 ? process.argv[tagAt + 1] : null });
+  } catch (error) {
+    console.error(`critic: ${error.message}`);
+    process.exitCode = 1;
   }
 }
-
-const header = `# Dashboard critic — ${date}\n\nModel: ${MODEL} · prompt: critic-prompt.md · artifact: data.json generated ${bundle.generatedAt}\n\n---\n\n`;
-writeFileSync(outPath, (ran ? header : "") + report + "\n");
-
-if (ran) {
-  const fails = (report.match(/^- FAIL/gm) || []).length;
-  const warns = (report.match(/^- WARN/gm) || []).length;
-  const passes = (report.match(/^- PASS/gm) || []).length;
-  console.log(`critic: ${fails} FAIL, ${warns} WARN, ${passes} PASS -> ${outPath}`);
-  if (fails > 0) console.log(`critic: FAILURES flagged — read ${outPath}`);
-} else {
-  console.log(`critic: did not run (model unavailable) -> ${outPath}`);
-}
-process.exit(0);

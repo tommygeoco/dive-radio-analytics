@@ -25,15 +25,17 @@
 // Deterministic: no model, no network. It reads the stores build-data reads
 // plus the health store and the feedback file, appends only new claims and
 // resolutions to data/restream/health-verify.json (never rewrites a resolved
-// row), and rewrites tools/dive-analytics/audit/HEALTH-VERIFY.md. It never
-// blocks publish: findings are WARN lines and the report. Run after health.mjs
+// row), and rewrites tools/dive-analytics/audit/HEALTH-VERIFY.md. Warnings are
+// advisory; invalid inputs and deterministic FAIL findings stop promotion.
+// Run after health.mjs
 // and build-data (chain step "health-verify"); `--dry` prints without writing.
 
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as BL from "./baselines.mjs";
 import { CHECK_LABELS, WEIGHTS_BY_FORMULA, checkScoreOf, deterministicMean } from "./health.mjs";
+import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -57,13 +59,6 @@ export const LIMITS = Object.freeze({
 const cell = (t) => String(t ?? "").replace(/\|/g, "/").replace(/\s+/g, " ");
 
 const phoenixDate = (ms) => new Date(ms - PHX_OFFSET).toISOString().slice(0, 10);
-const readJson = (path, fallback = null) => (existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : fallback);
-function saveAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(value, null, 2) + "\n");
-  renameSync(tmp, path);
-}
 const num = (n) => (Number.isFinite(n) ? n.toLocaleString("en-US") : "–");
 const pct = (n) => (Number.isFinite(n) ? `${n > 0 ? "+" : ""}${Math.round(n * 10) / 10}%` : "–");
 const daysBetween = (a, b) => Math.round((Date.parse(`${b}T12:00:00Z`) - Date.parse(`${a}T12:00:00Z`)) / DAY);
@@ -226,7 +221,11 @@ function resolve(claim, { data, today }) {
 // --- owner feel vs the read (health-feedback.jsonl) -------------------------------
 function readFeedback() {
   if (!existsSync(FEEDBACK_PATH)) return [];
-  return readFileSync(FEEDBACK_PATH, "utf8").split("\n").filter(Boolean).map((line) => { try { return JSON.parse(line); } catch { return null; } }).filter((r) => r && r.date && ["better", "same", "worse"].includes(r.feel));
+  let rows;
+  try { rows = readFileSync(FEEDBACK_PATH, "utf8").split("\n").filter(Boolean).map((line) => JSON.parse(line)); }
+  catch { throw new Error("health feedback is unreadable or malformed"); }
+  if (rows.some((row) => !row || !/^\d{4}-\d{2}-\d{2}$/.test(row.date) || !Number.isFinite(Date.parse(row.date)) || !["better", "same", "worse"].includes(row.feel))) throw new Error("health feedback has an invalid row");
+  return rows;
 }
 // Two honest comparisons per note: the read's direction word (a slope over
 // episodes) and the score's move since the previous saved read (points);
@@ -321,7 +320,7 @@ function report({ today, entry, accuracy, ledger, longevityResult, feel }) {
   const p = (t = "") => lines.push(t);
   p(`# Show-health verification — ${today}`);
   p();
-  p(`Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; never blocks publish.`);
+  p(`Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.`);
   p();
   p(`## Accuracy — the ${entry?.date ?? "(none)"} read`);
   p();
@@ -393,47 +392,59 @@ function report({ today, entry, accuracy, ledger, longevityResult, feel }) {
 }
 
 export function run({ now = Date.now(), dry = false } = {}) {
-  const data = readJson(DATA_PATH);
-  if (!data) throw new Error("data.json is missing — run build-data first");
-  const store = readJson(HEALTH_PATH, { entries: [] });
-  const today = phoenixDate(Date.parse(data.generatedAt) || now);
-  const entries = (store.entries || []).filter((e) => e.date <= today).sort((a, b) => a.date.localeCompare(b.date));
-  const entry = entries.at(-1) || null;
-  const ledger = readJson(LEDGER_PATH, { version: LEDGER_VERSION, updatedAt: null, claims: [] });
-  if (ledger.version !== LEDGER_VERSION || !Array.isArray(ledger.claims)) throw new Error("health-verify.json has an unsupported schema");
-  const known = new Set(ledger.claims.map((c) => c.id));
-  let added = 0, resolvedNow = 0;
-  for (const claim of claimsFrom(entry, data)) {
-    if (known.has(claim.id)) continue;
-    ledger.claims.push({ ...claim, resolution: null });
-    known.add(claim.id);
-    added++;
-  }
-  for (const claim of ledger.claims) {
-    if (claim.resolution) continue;
-    const resolution = resolve(claim, { data, today });
-    if (resolution) { claim.resolution = resolution; resolvedNow++; }
-  }
-  const accuracy = checkAccuracy(entry, data);
-  const longevityResult = longevity(entries, data);
-  const feel = feelAgreement(readFeedback(), entries);
-  const md = report({ today, entry, accuracy, ledger, longevityResult, feel });
-  if (!dry) {
-    ledger.updatedAt = new Date(now).toISOString();
-    saveAtomic(LEDGER_PATH, ledger);
-    mkdirSync(dirname(REPORT_PATH), { recursive: true });
-    writeFileSync(REPORT_PATH, md);
-  }
-  return { today, added, resolvedNow, accuracy, longevity: longevityResult, feel, ledger, md };
+  return withSourceLock(LEDGER_PATH, () => {
+    const data = readJsonFile(DATA_PATH);
+    if (!data) throw new Error("data.json is missing — run build-data first");
+    const generatedAt = typeof data.generatedAt === "string" ? Date.parse(data.generatedAt) : NaN;
+    if (!Number.isFinite(generatedAt) || generatedAt > now) throw new Error("health verification requires a valid current data timestamp");
+    const store = readJsonFile(HEALTH_PATH);
+    const today = phoenixDate(generatedAt);
+    if (!Array.isArray(store?.entries) || !store.entries.length) throw new Error("health verification requires a saved health entry");
+    if (store.entries.some((entry) => !entry || !/^\d{4}-\d{2}-\d{2}$/.test(entry.date) || !Number.isFinite(Date.parse(entry.date)) || entry.date > today)) throw new Error("health history has an invalid or future entry");
+    const entries = [...store.entries].sort((a, b) => a.date.localeCompare(b.date));
+    const entry = entries.at(-1);
+    const ledger = readJsonFile(LEDGER_PATH, { fallback: { version: LEDGER_VERSION, updatedAt: null, claims: [] } });
+    if (ledger.version !== LEDGER_VERSION || !Array.isArray(ledger.claims)) throw new Error("health-verify.json has an unsupported schema");
+    const known = new Set(ledger.claims.map((c) => c.id));
+    let added = 0, resolvedNow = 0;
+    for (const claim of claimsFrom(entry, data)) {
+      if (known.has(claim.id)) continue;
+      ledger.claims.push({ ...claim, resolution: null });
+      known.add(claim.id);
+      added++;
+    }
+    for (const claim of ledger.claims) {
+      if (claim.resolution) continue;
+      const resolution = resolve(claim, { data, today });
+      if (resolution) { claim.resolution = resolution; resolvedNow++; }
+    }
+    const accuracy = checkAccuracy(entry, data);
+    const failures = accuracy.filter((finding) => finding.severity === "fail");
+    if (failures.length) throw new Error(`health verification failed ${failures.length} deterministic accuracy check(s); prior ledger and report preserved`);
+    const longevityResult = longevity(entries, data);
+    const feel = feelAgreement(readFeedback(), entries);
+    const md = report({ today, entry, accuracy, ledger, longevityResult, feel });
+    if (!dry) {
+      ledger.updatedAt = new Date(now).toISOString();
+      atomicWriteJson(LEDGER_PATH, ledger);
+      atomicWriteText(REPORT_PATH, md);
+    }
+    return { today, added, resolvedNow, accuracy, longevity: longevityResult, feel, ledger, md };
+  });
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
-  const dry = process.argv.includes("--dry");
-  const out = run({ dry });
-  for (const f of out.accuracy) console.log(`${f.severity === "fail" ? "FAIL" : f.severity === "warn" ? "WARN" : "info"} verify: ${f.text}`);
-  for (const f of out.longevity.findings) console.log(`${f.severity === "warn" ? "WARN" : "info"} verify: ${f.text}`);
-  const t = { hit: 0, miss: 0, neutral: 0, void: 0 };
-  for (const c of out.ledger.claims) if (c.resolution) t[c.resolution.outcome] = (t[c.resolution.outcome] || 0) + 1;
-  console.log(`health-verify: ${out.today} — ${out.added} new claim(s), ${out.resolvedNow} resolved today; ledger ${out.ledger.claims.length} claim(s): ${t.hit} hit, ${t.miss} miss, ${t.neutral} neutral, ${t.void} void; feel notes ${out.feel.length}${dry ? " (dry run — nothing written)" : ` — wrote ${REPORT_PATH.replace(ROOT + "/", "")}`}`);
+  try {
+    const dry = process.argv.includes("--dry");
+    const out = run({ dry });
+    for (const f of out.accuracy) console.log(`${f.severity === "fail" ? "FAIL" : f.severity === "warn" ? "WARN" : "info"} verify: ${f.text}`);
+    for (const f of out.longevity.findings) console.log(`${f.severity === "warn" ? "WARN" : "info"} verify: ${f.text}`);
+    const t = { hit: 0, miss: 0, neutral: 0, void: 0 };
+    for (const c of out.ledger.claims) if (c.resolution) t[c.resolution.outcome] = (t[c.resolution.outcome] || 0) + 1;
+    console.log(`health-verify: ${out.today} — ${out.added} new claim(s), ${out.resolvedNow} resolved today; ledger ${out.ledger.claims.length} claim(s): ${t.hit} hit, ${t.miss} miss, ${t.neutral} neutral, ${t.void} void; feel notes ${out.feel.length}${dry ? " (dry run — nothing written)" : ` — wrote ${REPORT_PATH.replace(ROOT + "/", "")}`}`);
+  } catch (error) {
+    console.error(`health-verify: ${error.message}`);
+    process.exitCode = 1;
+  }
 }
