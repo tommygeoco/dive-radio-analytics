@@ -24,8 +24,41 @@
       "likes": 0,
       "publishedAt": "2026-09-03T13:01:35.000Z",
       "firstSeenAt": "2026-09-03T14:00:31.693Z"
+    },
+    {
+      "id": "x:2095687290190500096",
+      "source": "x",
+      "channel": "x:ridd_design",
+      "author": "@evilrabbit_",
+      "authorId": "3375985313",
+      "text": "so good guys 🤍🫂",
+      "likes": 0,
+      "publishedAt": "2026-09-04T01:36:00.000Z",
+      "firstSeenAt": "2026-09-04T02:54:49.232Z"
+    },
+    {
+      "id": "x:2095639312880816204",
+      "source": "x",
+      "channel": "x:designertom",
+      "author": "@ciguleva",
+      "authorId": "935988478969511937",
+      "text": "love your show 🙂",
+      "likes": 1,
+      "publishedAt": "2026-09-03T22:25:21.000Z",
+      "firstSeenAt": "2026-09-04T02:54:49.232Z"
+    },
+    {
+      "id": "x:2095603967560765492",
+      "source": "x",
+      "channel": "x:designertom",
+      "author": "@ciguleva",
+      "authorId": "935988478969511937",
+      "text": "hey! 👋",
+      "likes": 1,
+      "publishedAt": "2026-09-03T20:04:54.000Z",
+      "firstSeenAt": "2026-09-04T02:54:49.232Z"
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-03T14:00:31.693Z"
+  "updatedAt": "2026-09-04T02:54:49.232Z"
 }

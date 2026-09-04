@@ -74,7 +74,7 @@ export const COVERS = Object.freeze([
   "health.checks[]*", "health.asOf*", "health.direction*", "health.outlook*", "health.pros[]*", "health.cons[]*", "health.drivers[]*", "health.checkSetChange*", "health.facts[]*", "health.trend*",
   "baselines.constants*", "baselines.pace.{slug}*", "baselines.launch.{slug}*", "baselines.newestVsPrevious*", "baselines.direction.votes[]*", "baselines.direction.measures[]*", "baselines.outlook.nextFirstWeek*", "baselines.outlook.coolOff*", "baselines.anomaly.{slug}*", "baselines.knownBreaks[]*",
   "generatedAt", "dests", "dests[]", "dests[].key", "dests[].label", "dests[].platform",
-  "episodes", "episodes[]", "episodes[].slug", "episodes[].title", "episodes[].premiere", "episodes[].show", "episodes[].active", "episodes[].partialHistory", "episodes[].ep", "episodes[].ageDays", "episodes[].transcript", "episodes[].subsPer1k", "episodes[].discoveryShare",
+  "episodes", "episodes[]", "episodes[].slug", "episodes[].title", "episodes[].premiere", "episodes[].show", "episodes[].active", "episodes[].partialHistory", "episodes[].historyReady", "episodes[].historyReason", "episodes[].ep", "episodes[].ageDays", "episodes[].transcript", "episodes[].subsPer1k", "episodes[].discoveryShare",
   "episodes[].announces", "episodes[].announces[]", "episodes[].announces[].account", "episodes[].announces[].role", "episodes[].announces[].ts", "episodes[].announces[].url",
   "episodes[].links", "episodes[].links.{dest}",
   "episodes[].latest", "episodes[].latest.ts", "episodes[].latest.ytTotal", "episodes[].latest.youtubeAsOf", "episodes[].latest.youtubeStale", "episodes[].latest.xImpressions", "episodes[].latest.xPlays", "episodes[].latest.xPlaysInfo", "episodes[].latest.totalViews", "episodes[].latest.totalViewsInfo", "episodes[].latest.byDest", "episodes[].latest.byDest.{dest}",
@@ -162,7 +162,7 @@ function episodeDigest(e, data) {
     ? (totalInfo.reason || "YouTube views are not available yet.")
     : (youtubeStale || totalInfo.incomplete ? (totalInfo.reason || "Some viewing data is not available yet.") : null);
   return {
-    ep: e.ep, slug: e.slug, title: short(e.title), premiere: e.premiere, ageDays: e.ageDays, trackedLate: e.partialHistory == null ? null : e.partialHistory === true, dashboard: `${SITE}/#${e.slug}`,
+    ep: e.ep, slug: e.slug, title: short(e.title), premiere: e.premiere, ageDays: e.ageDays, trackedLate: e.partialHistory == null ? null : e.partialHistory === true, history: { ready: e.historyReady === true, reason: e.historyReason || null }, dashboard: `${SITE}/#${e.slug}`,
     links: { youtube: Object.fromEntries(yt), xReplays: Object.fromEntries(x), announces: (e.announces || []).map((a) => ({ account: a.account, at: a.ts, url: a.url || null })), transcript: e.transcript ? `${SITE}/transcripts/${e.slug}.txt` : null },
     views: { youtube: youtubeMissing ? null : e.latest.ytTotal, youtubeAsOf: e.latest?.youtubeAsOf ?? null, youtubeStale, youtubeMarker: youtubeMissing ? "missing" : youtubeStale ? "old" : null, xPlays: e.latest?.xPlays ?? null, xPlaysMarker: plays.partial ? "partial" : plays.stale ? "stale" : null, total: youtubeMissing ? null : (e.latest?.totalViews ?? null), incomplete: youtubeMissing || youtubeStale || totalInfo.incomplete === true, reason: viewsReason, xReach: e.latest?.xImpressions ?? null, asOf: e.latest?.ts ?? null, byDest: e.latest?.byDest || {} },
     firstWeek: e.metrics?.week1Velocity != null ? { value: e.metrics.week1Velocity } : absent(e.metrics?.week1Note || "no clean first week"),

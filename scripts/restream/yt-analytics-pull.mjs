@@ -110,7 +110,7 @@ export function appendHistoryLine(path, line, { expectedChannels = [], premiere 
   if (expectedChannels.some((key) => !Object.hasOwn(line.channels, key))) return false;
   if (!Object.values(line.channels).some((channel) => Number.isFinite(channel?.views) && channel.views > 0)) return false;
   if (!Number.isFinite(line.ageDays) || line.ageDays < 0) return false;
-  if (premiere && Date.parse(line.pulledAt) < premiereMs(premiere)) return false;
+  if (premiere && (typeof line.date !== "string" || line.date <= premiere)) return false;
   const lines = readHistory(path);
   if (lines.some((l) => l.date === line.date)) return false;
   mkdirSync(dirname(path), { recursive: true });

@@ -19,6 +19,7 @@ node tools/dive-analytics/audit/youtube-release-date.test.mjs >/dev/null || { ec
 node tools/dive-analytics/audit/episode-date-sync.test.mjs >/dev/null || { echo "pre-push: episode-date sync fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/youtube-zero-downstream.test.mjs >/dev/null || { echo "pre-push: YouTube startup-zero fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/x-broadcast-plays.test.mjs >/dev/null || { echo "pre-push: X broadcast-only fixtures failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/x-broadcast-discovery.test.mjs >/dev/null || { echo "pre-push: X broadcast discovery fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/chain-heal.test.mjs >/dev/null || { echo "pre-push: chain-heal rehearsal failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/publish-scope.test.mjs >/dev/null || { echo "pre-push: publish scope test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/publisher-checkout.test.mjs >/dev/null || { echo "pre-push: publisher checkout test failed — push refused" >&2; exit 1; }

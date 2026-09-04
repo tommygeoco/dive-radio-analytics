@@ -814,6 +814,7 @@ const TT_NAME = {
 };
 const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const X_KEYS = ["x:ridd_design", "x:designertom"];
+const VIEW_KEYS = [...YT_KEYS, ...X_KEYS];
 const GRID = "#1d2433", DIMLINE = "#3a4458";
 
 // Strategy-impact categories: colors validated distinct from the platform
@@ -843,9 +844,9 @@ function premiereMs(dateStr) {
   const [y,m,d] = dateStr.split("-").map(Number);
   return Date.UTC(y, m-1, d, 12) + PHX;
 }
-// Trajectory math sums YouTube views only — the one complete watch history.
-// X broadcast plays have no series before 2026-08-21; the chart title states
-// this scope in place (no fabricated history, no silently mixed units).
+// Current totals and historical view charts use video playback only: YouTube
+// views plus X broadcast plays. A historical point exists only when every
+// registered playback destination has a stored value at that snapshot.
 // `includesYoutube` is the build-authored availability gate. Raw startup rows
 // can contain two zero counters while YouTube is still preparing the report;
 // those rows are absent here, not day one and not a point at zero.
@@ -857,7 +858,15 @@ function displayedTotal(e) {
   const value = e?.latest?.totalViews;
   return Number.isFinite(value) && value > 0 ? value : null;
 }
-function splitOf(byDest) {
+function expectedXKeys(e) {
+  const expected = e?.latest?.xPlaysInfo?.total || 0;
+  if (!expected) return [];
+  const linked = X_KEYS.filter((key) => e?.links?.[key]);
+  if (linked.length === expected) return linked;
+  const current = X_KEYS.filter((key) => Number.isFinite(e?.latest?.byDest?.[key]?.plays));
+  return current.length === expected ? current : [];
+}
+function splitOf(e, byDest) {
   const split = {};
   let hasPositive = false;
   for (const k of YT_KEYS) {
@@ -865,35 +874,57 @@ function splitOf(byDest) {
     split[k] = Number.isFinite(value) ? value : null;
     if (value > 0) hasPositive = true;
   }
-  return hasPositive ? split : null;
+  if (!hasPositive) return null;
+  const expected = e?.latest?.xPlaysInfo?.total || 0;
+  const xKeys = expectedXKeys(e);
+  if (expected && xKeys.length !== expected) return null;
+  for (const k of X_KEYS) split[k] = null;
+  for (const k of xKeys) {
+    const value = byDest?.[k]?.plays;
+    if (!Number.isFinite(value)) return null;
+    split[k] = value;
+  }
+  return split;
 }
 function splitTotal(split) {
   if (!split) return null;
-  const values = YT_KEYS.map((k) => split[k]).filter(Number.isFinite);
+  const values = VIEW_KEYS.map((k) => split[k]).filter(Number.isFinite);
   return values.length ? values.reduce((total, value) => total + value, 0) : null;
 }
-function splitDelta(cur, prev) {
-  const current = splitOf(cur);
-  const previous = splitOf(prev);
+function splitDelta(e, cur, prev) {
+  const current = splitOf(e, cur);
+  const previous = splitOf(e, prev);
   if (!current) return null;
   if (!previous) return current;
   const split = {};
-  for (const k of YT_KEYS) {
+  for (const k of VIEW_KEYS) {
     split[k] = Number.isFinite(current[k]) && Number.isFinite(previous[k])
       ? current[k] - previous[k]
       : null;
   }
   return split;
 }
-function weeklyWithYoutube(e) {
-  if (!hasYoutubeReading(e)) return [];
-  return (e.weekly || []).filter((row) => splitOf(row.byDest));
+function weeklyWithViews(e) {
+  if (!e.historyReady) return [];
+  return (e.weekly || []).filter((row) => splitOf(e, row.byDest));
 }
 function youtubeWaitScope() {
   const waiting = EPS.filter((e) => !hasYoutubeReading(e)).map((e) => `E${e.ep}`);
   if (!waiting.length) return "";
   const names = waiting.length === 1 ? waiting[0] : `${waiting.slice(0, -1).join(", ")} and ${waiting.at(-1)}`;
   return `${names} ${waiting.length === 1 ? "has" : "have"} no YouTube reading yet`;
+}
+function historyWaitScope() {
+  const waitingEpisodes = EPS.filter((e) => e.historyReady === false);
+  const waiting = waitingEpisodes.map((e) => `E${e.ep}`);
+  if (!waiting.length) return "";
+  const names = waiting.length === 1 ? waiting[0] : `${waiting.slice(0, -1).join(", ")} and ${waiting.at(-1)}`;
+  const allAiredToday = waitingEpisodes.every((e) => e.premiere === phoenixDateKey());
+  return allAiredToday ? `${names} ${waiting.length === 1 ? "starts" : "start"} tomorrow` : `${names} waiting for a full-day read`;
+}
+function historyDay(premiere, value) {
+  const date = phoenixDateKey(value);
+  return Math.round((Date.parse(`${date}T12:00:00Z`) - Date.parse(`${premiere}T12:00:00Z`)) / DAY);
 }
 function fmtDate(ms) { return new Date(ms - PHX).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); }
 const ORDINAL_DAY = ["", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth", "nineteenth", "twentieth", "twenty-first", "twenty-second", "twenty-third", "twenty-fourth", "twenty-fifth", "twenty-sixth", "twenty-seventh", "twenty-eighth", "twenty-ninth", "thirtieth", "thirty-first"];
@@ -2171,36 +2202,36 @@ function chartTitle() {
   }
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
-    const waiting = youtubeWaitScope();
-    return [currentView().title, `${scopeTag(PLOGO.yt, "YouTube only")} ${state.byDate ? "by date" : "since release"}${hasAnnounce && !state.byDate ? " · \u25b2 X announce posts" : ""}${waiting ? ` · ${esc(waiting)}` : ""}`];
+    const waiting = historyWaitScope();
+    return [currentView().title, `YouTube + X · complete reads only${state.byDate ? " · by date" : ""}${hasAnnounce && !state.byDate ? " · \u25b2 X posts" : ""}${waiting ? ` · ${esc(waiting)}` : ""}`];
   }
-  const waiting = youtubeWaitScope();
-  return ["Weekly YouTube views", `Episodes side by side${waiting ? ` · ${esc(waiting)}` : ""}`];
+  const waiting = historyWaitScope();
+  return ["Weekly total views", `YouTube + X · complete reads only${waiting ? ` · ${esc(waiting)}` : ""}`];
 }
 
 /* ================= charts ================= */
 function seriesFor(e) {
-  const prem = premiereMs(e.premiere);
   const pts = [];
-  if (!hasYoutubeReading(e)) return pts;
+  if (!e.historyReady) return pts;
   if (state.mode === "race") {
     for (const s of e.snapshots || []) {
-      const split = splitOf(s.byDest);
+      const split = splitOf(e, s.byDest);
       const views = splitTotal(split);
       if (views == null) continue;
       const t = Date.parse(s.ts);
-      if (t < prem) continue;
+      if (phoenixDateKey(t) <= e.premiere) continue;
+      const day = historyDay(e.premiere, t);
       pts.push(state.byDate
         ? { x: t, y: views, meta: { ts: s.ts, split } }
-        : { x: Math.round(((t - prem) / DAY) * 10) / 10, y: views, meta: { ts: s.ts, day: (t - prem) / DAY, split } });
+        : { x: day, y: views, meta: { ts: s.ts, day, split } });
     }
   } else {
-    const weekly = weeklyWithYoutube(e);
+    const weekly = weeklyWithViews(e);
     for (let i = 0; i < weekly.length; i++) {
       const cur = weekly[i].byDest;
       const prev = i === 0 ? null : weekly[i - 1].byDest;
       const first = i === 0;
-      const split = first ? splitOf(cur) : splitDelta(cur, prev);
+      const split = first ? splitOf(e, cur) : splitDelta(e, cur, prev);
       const views = splitTotal(split);
       if (views == null) continue;
       pts.push({
@@ -2427,7 +2458,7 @@ function externalTooltip(context) {
       if (meta == null) { el.style.opacity = 0; return; }
       if (meta.week !== undefined) html += `<div class="meta">Week ${grouped ? meta.week : meta.week + 1} · ${fmtDate(Date.parse(meta.ts))}</div>`;
       else html += `<div class="meta">${meta.day == null ? "" : `Day ${Math.round(meta.day)} · `}${fmtDate(Date.parse(meta.ts))}</div>`;
-      html += `<div class="big">${nfmt(yVal)} YT views${isDelta ? " gained" : ""}</div>`;
+      html += `<div class="big">${nfmt(yVal)} total views${isDelta ? " gained" : ""}</div>`;
       if (!isDelta && item.dataIndex > 0) {
         const prev = ds.data[item.dataIndex - 1].y;
         const d = yVal - prev;
@@ -2435,9 +2466,11 @@ function externalTooltip(context) {
       }
       if (meta.split) {
         html += `<div class="div"></div>`;
-        for (const k of YT_KEYS) {
+        for (const k of VIEW_KEYS) {
           const v = meta.split[k];
-          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v)}</span></div>`;
+          if (v == null) continue;
+          const unit = X_KEYS.includes(k) ? " plays" : " views";
+          html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v != null && isDelta && meta.note === null && v >= 0 ? "+" : ""}${metricText(v)}${unit}</span></div>`;
         }
       }
       if (meta.note) html += `<div class="note">${meta.note}</div>`;
@@ -2682,12 +2715,12 @@ function render() {
   // episodes side by side (a linear axis stacked every episode's week-1 bar
   // on the same x and made the view unreadable).
   if (isDelta && !isCal) {
-    const maxWeek = Math.max(1, ...EPS.flatMap(e => weeklyWithYoutube(e).map(w => w.week)));
+    const maxWeek = Math.max(1, ...EPS.flatMap(e => weeklyWithViews(e).map(w => w.week)));
     const labels = Array.from({ length: maxWeek }, (_, i) => "week " + (i + 1));
     const datasets = source.map((e) => {
       const soloed = state.solo === e.slug;
       const hidden = state.solo !== null && !soloed;
-      const weekly = weeklyWithYoutube(e);
+      const weekly = weeklyWithViews(e);
       const byWeek = new Map(weekly.map((w, i) => [w.week, i]));
       const data = [], metas = [];
       for (let wk = 1; wk <= maxWeek; wk++) {
@@ -2695,7 +2728,7 @@ function render() {
         if (i === undefined) { data.push(null); metas.push(null); continue; }
         const w = weekly[i];
         const first = i === 0;
-        const split = first ? splitOf(w.byDest) : splitDelta(w.byDest, weekly[i - 1].byDest);
+        const split = first ? splitOf(e, w.byDest) : splitDelta(e, w.byDest, weekly[i - 1].byDest);
         data.push(splitTotal(split));
         metas.push({ ts: w.boundary, week: w.week, split,
           note: first ? (e.partialHistory ? "views at registration (late-registered)" : "first tracked week") : null });
@@ -2712,7 +2745,7 @@ function render() {
         interaction: { mode: "nearest", intersect: true },
         scales: {
           x: { ticks: { color: "#b7c1d1", font: { weight: 700 } }, grid: { display: false } },
-          y: { beginAtZero: true, title: { display: true, text: "YouTube views gained", color: "#8a94a8" },
+          y: { beginAtZero: true, title: { display: true, text: "Total views gained", color: "#8a94a8" },
             ticks: { color: "#8a94a8", callback: v => kfmt(v) }, grid: { color: GRID } },
         },
         plugins: { legend: { display: false }, tooltip: { enabled: false, external: externalTooltip } },
@@ -2726,7 +2759,7 @@ function render() {
   }
 
   const newestSeriesSlug = state.mode === "race"
-    ? [...source].reverse().find(hasYoutubeReading)?.slug
+    ? [...source].reverse().find((e) => seriesFor(e).length)?.slug
     : NEWEST.slug;
   const datasets = source.map((e) => {
     const isNewest = e.slug === newestSeriesSlug;
@@ -2763,10 +2796,10 @@ function render() {
   if (isRace) {
     const mpts = [];
     for (const e of source) {
-      if (!hasYoutubeReading(e)) continue;
+      if (!seriesFor(e).length) continue;
       if (state.solo && state.solo !== e.slug) continue;
       for (const a of e.announces || []) {
-        const x = (Date.parse(a.ts) - premiereMs(e.premiere)) / DAY;
+        const x = historyDay(e.premiere, Date.parse(a.ts));
         if (!isFinite(x) || x < 0 || x > 60) continue;
         mpts.push({ x, y: 0, acct: a.account });
       }
@@ -2806,7 +2839,7 @@ function render() {
         },
         y: {
           beginAtZero: true,
-          title: { display: true, text: isLive ? "Concurrent viewers" : "YouTube views", color: "#8a94a8" },
+          title: { display: true, text: isLive ? "Concurrent viewers" : "Total views", color: "#8a94a8" },
           ticks: { color: "#8a94a8", callback: v => kfmt(v) },
           grid: { color: GRID },
         },
@@ -2888,13 +2921,13 @@ function buildTable() {
       html += `<td>${e.latest.xImpressions == null ? "–" : nfmt(e.latest.xImpressions)}</td></tr>`;
     }
   } else if (kind === "race") {
-    html += `<th>Episode</th><th>Days old</th><th>First week ${PLOGO.yt}</th><th>${PLOGO.yt} views now</th></tr>`;
+    html += `<th>Episode</th><th>History</th><th>Total views now</th><th>${PLOGO.yt} now</th><th>${PLOGO.x} plays now</th></tr>`;
     for (const e of [...EPS].reverse()) {
-      const hasYoutube = hasYoutubeReading(e);
       html += `<tr><td class="t">${esc(label(e))}</td>`;
-      html += `<td class="t">${!hasYoutube || e.ageDays == null ? "–" : e.ageDays}</td>`;
-      html += `<td>${!hasYoutube || !(e.metrics?.week1Velocity > 0) ? "–" : nfmt(e.metrics.week1Velocity)}</td>`;
-      html += `<td>${metricText(youtubeValue(e, e.latest.ytTotal))}</td></tr>`;
+      html += `<td class="t">${e.historyReady ? "ready" : "waiting for full-day read"}</td>`;
+      html += `<td>${metricText(displayedTotal(e))}</td>`;
+      html += `<td>${metricText(youtubeValue(e, e.latest.ytTotal))}</td>`;
+      html += `<td>${metricText(e.latest.xPlays)}</td></tr>`;
     }
   } else {
     html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>`;
@@ -2928,8 +2961,8 @@ function buildEmptyNote() {
   const el = document.getElementById("emptynote");
   el.style.display = "none";
   if (state.mode === "live" || state.mode !== "delta" || state.table) return;
-  const waiting = youtubeWaitScope();
-  const missing = EPS.filter(e => hasYoutubeReading(e) && weeklyWithYoutube(e).length === 0);
+  const waiting = historyWaitScope();
+  const missing = EPS.filter(e => e.historyReady && weeklyWithViews(e).length === 0);
   if (!waiting && !missing.length) return;
   const next = new Date(mondayNoonAfter(Date.now()) - PHX);
   const when = next.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
@@ -3012,7 +3045,7 @@ function buildAbout() {
   <p><b>Total views</b> = YouTube views (both channels) + plays from resolved X broadcasts (both hosts). Native videos and teaser clips attached to posts are excluded. Both included sources count video playback — YouTube counts a qualified view (~30s), X counts a broadcast play start, so treat the sum as directional. If YouTube has not reported views yet, its startup zeros are shown as missing and do not start the episode’s history.</p>
   <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
-  <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
+  <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. Views after release adds YouTube views and X broadcast plays only when every watch destination has a stored count; history begins the morning after air day. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
   <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>

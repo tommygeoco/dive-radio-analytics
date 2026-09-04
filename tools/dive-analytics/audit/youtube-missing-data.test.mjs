@@ -127,8 +127,20 @@ const postAir = historyLine({
   endDate: "2026-09-03",
   channels: { "yt:joindiveclub": { totals: { views: 1 } } },
 });
-assert.equal(appendHistoryLine(historyPath, postAir, { expectedChannels: ["yt:joindiveclub"], premiere: "2026-09-03" }), true, "the first positive post-air pull may claim the date");
-assert.deepEqual(readHistory(historyPath), [postAir]);
-assert.match(readFileSync(historyPath, "utf8"), /"views":1/);
+assert.equal(appendHistoryLine(historyPath, postAir, { expectedChannels: ["yt:joindiveclub"], premiere: "2026-09-03" }), false, "an air-date pull cannot claim day one");
+assert.equal(existsSync(historyPath), false);
+
+const nextDay = historyLine({
+  premiere: "2026-09-03",
+  pulledAt: "2026-09-04T14:00:00.000Z",
+  endDate: "2026-09-04",
+  channels: {
+    "yt:joindiveclub": { totals: { views: 20 } },
+    "yt:designertom": { totals: { views: 0 } },
+  },
+});
+assert.equal(appendHistoryLine(historyPath, nextDay, { expectedChannels: ["yt:joindiveclub", "yt:designertom"], premiere: "2026-09-03" }), true, "the first positive next-date pull may claim day one");
+assert.deepEqual(readHistory(historyPath), [nextDay]);
+assert.match(readFileSync(historyPath, "utf8"), /"views":20/);
 
 console.log("youtube-missing-data.test: missing counts stay null, empty and all-zero history are skipped, raw explicit zero is preserved");

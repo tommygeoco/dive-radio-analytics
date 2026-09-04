@@ -79,6 +79,35 @@ export function phxDate(iso) {
   return new Date(Date.parse(iso) - 7 * 3600000).toISOString().slice(0, 10);
 }
 
+export function broadcastIdFromUrls(urls = []) {
+  for (const value of urls) {
+    const match = String(value || "").match(/(?:x\.com|twitter\.com)\/i\/broadcasts\/([^/?#]+)/i);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+export function normalizedEpisodeTitle(value) {
+  return String(value || "")
+    .replace(/https?:\/\/\S+/gi, " ")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+// A late X broadcast may appear after YouTube has already registered the
+// episode. Match an exact title first, then one same-day show. Anything
+// ambiguous stays unregistered and loud rather than being guessed.
+export function existingShowForXBroadcast(post, shows) {
+  if (!post?.broadcastId) return null;
+  const active = (shows || []).filter((show) => show.active !== false && (/dive.?radio/i.test(show.title || "") || /dive-radio/.test(show.slug || "")));
+  const postTitle = normalizedEpisodeTitle(post.text);
+  const exact = active.filter((show) => normalizedEpisodeTitle(show.title) === postTitle);
+  if (exact.length === 1) return exact[0];
+  const sameDay = active.filter((show) => show.date === post.date);
+  return sameDay.length === 1 ? sameDay[0] : null;
+}
+
 // Live uploads often enter the uploads playlist before they air. Their episode
 // day comes from the broadcast clock, not the playlist publication clock.
 export function episodeDateForVideo(video) {
@@ -156,7 +185,7 @@ async function discoverYouTube() {
 async function discoverX(episodeVideoIds) {
   const bearer = xBearer();
   const headers = { Authorization: `Bearer ${bearer}` };
-  const found = []; // { postId, account, createdAt, date, text, linkedVideoId }
+  const found = []; // { postId, account, createdAt, date, text, linkedVideoId, broadcastId }
   const allEpisodeIds = new Set([...episodeVideoIds, ...knownVideoIds]);
   for (const account of X_ACCOUNTS) {
     let user;
@@ -184,6 +213,7 @@ async function discoverX(episodeVideoIds) {
       if (knownPostIds.has(t.id)) continue;
       if (Date.parse(t.created_at) < since) continue;
       const urls = (t.entities?.urls || []).map((u) => u.expanded_url || u.url || "");
+      const broadcastId = broadcastIdFromUrls(urls);
       let linkedVideoId = null;
       for (const u of urls) {
         const m = u.match(/(?:youtube\.com\/(?:watch\?v=|live\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
@@ -196,7 +226,9 @@ async function discoverX(episodeVideoIds) {
         account,
         createdAt: t.created_at,
         date: phxDate(t.created_at),
+        text: t.text || "",
         linkedVideoId,
+        broadcastId,
         url: `https://x.com/${account}/status/${t.id}`,
       });
     }
@@ -258,16 +290,18 @@ async function main() {
     registrations.push({ title: canon.title, date, urls, why: `new episode (${vids.length} YT, ${urls.length - vids.length} X)` });
   }
 
-  // leftover X posts that link an ALREADY-registered episode => merge into that show
+  // Leftover X posts may link an already-registered YouTube episode or carry
+  // the X broadcast itself after the morning discovery pass.
   for (const p of xFound) {
     if (p.claimed) continue;
-    if (!p.linkedVideoId) {
+    const show = p.linkedVideoId
+      ? registry.shows.find((s) => (s.targets || []).some((t) => t.videoId === p.linkedVideoId))
+      : existingShowForXBroadcast(p, registry.shows);
+    if (!show) {
       console.log(`discover: skipping X post ${p.url} — mentions Dive Radio but matches no episode within 3 days`);
       continue;
     }
-    const show = registry.shows.find((s) => (s.targets || []).some((t) => t.videoId === p.linkedVideoId));
-    if (!show) continue;
-    registrations.push({ title: show.title, date: show.date, urls: [p.url], why: `late X announce for ${show.slug}` });
+    registrations.push({ title: show.title, date: show.date, urls: [p.url], why: `late X ${p.broadcastId ? "broadcast" : "announce"} for ${show.slug}` });
     p.claimed = true;
   }
 

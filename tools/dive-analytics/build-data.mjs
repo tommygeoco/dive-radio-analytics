@@ -19,7 +19,7 @@ import { momentKey } from "./moment-summaries.mjs";
 import { buildBrief } from "./agent-brief.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
-  firstYtSnapshot, latestYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
+  firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
   ytViewsOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS, NOTES,
 } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
@@ -154,7 +154,7 @@ export function partialHistoryOf(snapshots, premiere) {
 export function buildLatest(show, latest, selectedYt) {
   const latestYt = selectedYt !== undefined
     ? selectedYt
-    : latestYtSnapshot({ snapshots: latest ? [latest] : [], premiere: show?.date || show?.premiere });
+    : latestCurrentYtSnapshot({ snapshots: latest ? [latest] : [], premiere: show?.date || show?.premiere });
   const playsInfo = xPlaysSummary(show, latest.byDest);
   const ytTotal = latestYt ? ytViewsOf(latestYt) : null;
   const youtubeAsOf = ytTotal != null ? latestYt.ts : null;
@@ -255,7 +255,9 @@ export function computeAll({ now = Date.now() } = {}) {
     let week1Velocity = null;
     let week1Note = null;
     if (partialHistory == null) {
-      week1Note = NOTES.noYtReading;
+      week1Note = latestCurrentYtSnapshot({ snapshots: snaps, premiere: show.date })
+        ? NOTES.noFullDayReading
+        : NOTES.noYtReading;
     } else if (partialHistory) {
       week1Note = "excluded: partial history";
     } else if (ageDays < 7) {
@@ -281,7 +283,7 @@ export function computeAll({ now = Date.now() } = {}) {
       }
     }
 
-    const latestYt = latestYtSnapshot({ snapshots: snaps, premiere: show.date });
+    const latestYt = latestCurrentYtSnapshot({ snapshots: snaps, premiere: show.date });
     const ytViews = ytViewsOf(latestYt);
     const ytEng =
       (latestYt?.byDest["yt:joindiveclub"]?.likes || 0) +
@@ -299,6 +301,7 @@ export function computeAll({ now = Date.now() } = {}) {
         account: t.account,
         role: t.role || "announce",
         ts: new Date(Number((BigInt(t.postId) >> 22n) + 1288834974657n)).toISOString(),
+        url: t.url || null,
       }))
       .sort((a, b) => (a.ts < b.ts ? -1 : 1));
 
@@ -322,6 +325,8 @@ export function computeAll({ now = Date.now() } = {}) {
       show: isDiveRadio ? "dive-radio" : "other",
       active: show.active !== false,
       partialHistory,
+      historyReady: ytSnaps.length > 0,
+      historyReason: ytSnaps.length ? null : NOTES.noFullDayReading,
       announces,
       snapshots: snaps,
       weekly,
@@ -439,15 +444,11 @@ export function computeAll({ now = Date.now() } = {}) {
   // from the registry targets; known reporting breaks from baselines
   let chapterStore = null;
   try { chapterStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "chapters.json"), "utf8")); } catch { /* not written yet */ }
-  let registryShows = [];
-  try { registryShows = JSON.parse(readFileSync(join(ROOT, "data", "restream", "postlive-registry.json"), "utf8")).shows || []; } catch { /* no registry */ }
   for (const e of episodes) {
     const entry = chapterStore?.entries?.[e.slug] || null;
     e.chapters = entry
       ? { status: entry.status, clock: entry.clock, format: entry.format, writtenAt: entry.writtenAt, list: entry.chapters.map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote })) }
       : (e.transcript ? { status: "none", clock: null, format: null, writtenAt: null, list: [], reason: "chapters not written yet" } : { status: "none", clock: null, format: null, writtenAt: null, list: [], reason: "no transcript" });
-    const targets = (registryShows.find((sh) => sh.slug === e.slug)?.targets || []).filter((t) => t.kind === "x" && t.url);
-    for (const a of e.announces || []) { const t = targets.find((x) => x.account === a.account); a.url = t?.url || null; }
   }
   baselines.knownBreaks = KNOWN_BREAKS.map((b) => ({ ...b }));
   return {
@@ -493,7 +494,7 @@ function attachEpisodeHealth(dive) {
     e.health = {
       pending: true,
       readCompleteOn: new Date(premiereMs(e.premiere) + READ_DAYS * DAY - PHX_OFFSET).toISOString().slice(0, 10),
-      ...(!Number.isFinite(ytAge) ? { reason: NOTES.noYtReading } : {}),
+      ...(!Number.isFinite(ytAge) ? { reason: e.latest?.ytTotal != null ? NOTES.noFullDayReading : NOTES.noYtReading } : {}),
     };
   }
 }

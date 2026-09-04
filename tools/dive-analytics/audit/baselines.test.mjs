@@ -79,18 +79,26 @@ for (let i = 0; i < 12; i++) {
     "yt:joindiveclub": { views: 3, likes: 0, comments: 0 },
     "yt:designertom": { views: 0, likes: 0, comments: 0 },
   } };
+  const airDay = { ts: ts(date, 0.3), byDest: {
+    "yt:joindiveclub": { views: 12, likes: 1, comments: 0 },
+    "yt:designertom": { views: 0, likes: 0, comments: 0 },
+    "x:ridd_design": { views: 450, plays: 110 },
+  } };
   const positivePlusZero = { ts: ts(date, 2), byDest: {
     "yt:joindiveclub": { views: 42, likes: 3, comments: 1 },
     "yt:designertom": { views: 0, likes: 0, comments: 0 },
     "x:ridd_design": { views: 600, plays: 140 },
   } };
-  const e = { premiere: date, snapshots: [preAir, zero, absent, positivePlusZero] };
+  const e = { premiere: date, snapshots: [preAir, airDay, zero, absent, positivePlusZero] };
   assert.equal(B.hasYtReading(zero), false, "an all-zero public row is not a YouTube reading");
   assert.equal(B.hasYtReading(absent), false, "an X-only snapshot is not a YouTube reading");
   assert.equal(B.ytViewsOf(zero), null);
   assert.equal(B.ytEngagementOf(zero), null);
   assert.equal(B.hasYtReading(positivePlusZero), true, "one positive channel makes the combined reading valid");
   assert.equal(B.hasYtReading(preAir), true, "the raw count remains measurable before the episode clock is applied");
+  assert.equal(B.latestCurrentYtSnapshot({ premiere: date, snapshots: [preAir, airDay] }), airDay, "air-date data can power the current card");
+  assert.equal(B.firstYtSnapshot({ premiere: date, snapshots: [preAir, airDay] }), null, "air-date data cannot become day one");
+  assert.equal(B.snapshotAt({ premiere: date, snapshots: [airDay] }, 0.3), null, "air-date X data stays out of history too");
   assert.equal(B.ytViewsOf(positivePlusZero), 42, "the valid zero companion channel stays in the sum");
   assert.equal(B.ytEngagementOf(positivePlusZero), 4);
   assert.equal(B.snapshotAt(e, 1), zero, "the generic selector remains available for X");
@@ -112,6 +120,10 @@ for (let i = 0; i < 12; i++) {
   assert.equal(B.historyAt([emptyLine, zeroLine], 1), emptyLine, "the generic history selector is unchanged");
   assert.equal(B.ytHistoryAt([emptyLine, zeroLine], 1), null, "empty and all-zero history lines cannot satisfy a YouTube read");
   assert.equal(B.ytHistoryAt([preAirLine, emptyLine, zeroLine, validLine], 1), validLine, "the selector skips pre-air, empty, and zero rows for a positive history reading");
+  const airDateLine = { date, ageDays: 0.3, channels: { "yt:joindiveclub": { views: 12 } } };
+  const nextDateLine = { date: new Date(B.premiereMs(date) + 86400000 - PHX).toISOString().slice(0, 10), ageDays: 0.8, channels: { "yt:joindiveclub": { views: 20 }, "yt:designertom": { views: 0 } } };
+  assert.equal(B.ytHistoryAt([airDateLine], 0.3, date), null, "an owner analytics line from air date is not historical");
+  assert.equal(B.ytHistoryAt([airDateLine, nextDateLine], 0.8, date), nextDateLine, "the next Phoenix date is the first eligible owner analytics read");
 }
 
 // The all-zero episode never becomes an own reading or a future peer, and the
@@ -154,6 +166,19 @@ for (let i = 0; i < 12; i++) {
   assert.equal(inputs.subScores.growth.measures.sameAge.value, null, "show health does not score an all-zero YouTube launch");
   assert.equal(inputs.subScores.growth.measures.sameAge.reason, B.NOTES.noYtReading);
   assert.equal(inputs.subScores.audienceQuality.measures.engagement.value, null, "show health does not score zero engagement before a YouTube view reading");
+
+  const airDateTs = ts(newest.premiere, 0.3);
+  const airDateNewest = {
+    ...newest,
+    snapshots: [{ ...newest.snapshots[0], ts: airDateTs }],
+    latest: { ...newest.latest, ts: airDateTs },
+  };
+  const beforeAirDate = [p1, p2, p3, zeroPeer, airDateNewest];
+  const airDateInputs = computeHealthInputs({
+    data: { generatedAt: airDateTs, episodes: beforeAirDate, showTrend: { week1VelocityByEpisode: [] }, commentSummary: {}, baselines: { direction, outlook, launch: {} } },
+    now: Date.parse(airDateTs), root: "/tmp/dive-radio-air-date-health-fixture-does-not-exist",
+  });
+  assert.notEqual(airDateInputs.asOf.newest, airDateNewest.slug, "an episode cannot anchor show health on its air date");
 }
 
 // --- window ---

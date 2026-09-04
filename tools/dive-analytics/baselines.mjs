@@ -65,6 +65,7 @@ export const NOTES = Object.freeze({
   carried: (title) => `carried from ${title}, the latest finished episode — counted at half weight`,
   provisional: "an early read — the episode is under a week old",
   noYtReading: "YouTube views are not available yet.",
+  noFullDayReading: "The first full-day reading arrives after air day.",
   noLaunchReading: "No reading at the launch age.",
   fewForWord: "Three episodes show the slope; a direction word needs four.",
   readFromPromo: (title) => `read from ${title}, the latest finished episode — the newest episode's own read is promo-driven`,
@@ -93,6 +94,19 @@ export function premiereMs(dateStr) {
 export function ageDaysOf(ts, premiere) {
   const t = typeof ts === "number" ? ts : Date.parse(ts);
   return (t - premiereMs(premiere)) / DAY;
+}
+
+export function phoenixDateOf(ts) {
+  const t = typeof ts === "number" ? ts : Date.parse(ts);
+  return Number.isFinite(t) ? new Date(t - PHX_OFFSET).toISOString().slice(0, 10) : null;
+}
+
+// Historical analysis starts with the first snapshot on the Phoenix date
+// after the show airs. Air-date counters remain valid current facts, but they
+// are never "day one" and cannot enter comparisons, health, or ratings.
+export function historicalSnapshotsOf(episode) {
+  if (!episode?.premiere) return [];
+  return (episode.snapshots || []).filter((snap) => phoenixDateOf(snap?.ts) > episode.premiere);
 }
 
 export const round1 = (x) => Math.round(x * 10) / 10;
@@ -130,7 +144,7 @@ export function readingAt(series, ageDays, tol, ageOf) {
 }
 
 export function snapshotAt(episode, ageDays) {
-  return readingAt(episode.snapshots, ageDays, SNAPSHOT_TOL, (s) => ageDaysOf(s.ts, episode.premiere));
+  return readingAt(historicalSnapshotsOf(episode), ageDays, SNAPSHOT_TOL, (s) => ageDaysOf(s.ts, episode.premiere));
 }
 
 export function historyAt(lines, ageDays) {
@@ -138,7 +152,7 @@ export function historyAt(lines, ageDays) {
 }
 
 export function currentAge(episode) {
-  const last = episode.snapshots?.[episode.snapshots.length - 1];
+  const last = historicalSnapshotsOf(episode).at(-1);
   return last ? ageDaysOf(last.ts, episode.premiere) : null;
 }
 
@@ -157,18 +171,24 @@ export const ytEngagementOf = (snap) => hasYtReading(snap)
   : null;
 export const xImpressionsOf = (snap) => X_KEYS.reduce((a, k) => a + (snap?.byDest?.[k]?.views || 0), 0);
 
-// Metric-specific selectors keep the generic snapshot/history selectors
-// available for X while ensuring YouTube comparisons see only real readings.
-// The show's noon-Phoenix premiere clock is also the hard lower bound: a
-// waiting-room count captured earlier that day remains raw evidence, not a
-// historical reading.
-export function ytSnapshotsOf(episode) {
+// Current cards may use a real post-premiere count on air day. Historical
+// selectors add the stricter next-Phoenix-date gate above.
+export function currentYtSnapshotsOf(episode) {
   if (!episode?.premiere) return [];
   return (episode.snapshots || []).filter((snap) => {
     if (!hasYtReading(snap)) return false;
     const age = ageDaysOf(snap.ts, episode.premiere);
     return Number.isFinite(age) && age >= 0;
   });
+}
+
+export function latestCurrentYtSnapshot(episode) {
+  return currentYtSnapshotsOf(episode).at(-1) || null;
+}
+
+export function ytSnapshotsOf(episode) {
+  const historical = new Set(historicalSnapshotsOf(episode));
+  return currentYtSnapshotsOf(episode).filter((snap) => historical.has(snap));
 }
 
 export function ytSnapshotAt(episode, ageDays) {
@@ -188,11 +208,12 @@ export function ytCurrentAge(episode) {
   return last ? ageDaysOf(last.ts, episode.premiere) : null;
 }
 
-export const hasYtHistoryReading = (line) => Number.isFinite(line?.ageDays) && line.ageDays >= 0
+export const hasYtHistoryReading = (line, premiere = null) => Number.isFinite(line?.ageDays) && line.ageDays >= 0
+  && (!premiere || (typeof line?.date === "string" && line.date > premiere))
   && YT_KEYS.some((k) => Number.isFinite(line?.channels?.[k]?.views) && line.channels[k].views > 0);
 
-export function ytHistoryAt(lines, ageDays) {
-  return readingAt((lines || []).filter(hasYtHistoryReading), ageDays, HISTORY_TOL, (l) => l.ageDays);
+export function ytHistoryAt(lines, ageDays, premiere = null) {
+  return readingAt((lines || []).filter((line) => hasYtHistoryReading(line, premiere)), ageDays, HISTORY_TOL, (l) => l.ageDays);
 }
 
 // X plays at a snapshot, only when every X destination that should carry
@@ -317,7 +338,7 @@ export function anomalyFlags(episodes, { minPeers = MIN_PEERS } = {}) {
         const ownSnap = Number.isFinite(ownAge) ? at(e, ownAge) : null;
         result = ownSnap ? tryTier(2, unit.at(e, ownSnap), (p) => { const s = at(p, ownAge); return s ? unit.at(p, s) : null; }) : null;
       }
-      if (!result) result = tryTier(3, unit.latest(e), (p) => unit.latest(p));
+      if (!result && Number.isFinite(age)) result = tryTier(3, unit.latest(e), (p) => unit.latest(p));
       units[unit.key] = result || { tier: null, value: null, typical: null, n: 0, window: [], flag: false };
       if (result?.flag) {
         hits.push(`${fmt(result.value)} ${unit.label} vs a typical ${fmt(result.typical)}`);
@@ -785,8 +806,8 @@ export function newestVsPrevious(episodes, flags, { history = null } = {}) {
   const ns = Number.isFinite(A) ? snapshotAt(newest, A) : null;
   const ps = Number.isFinite(A) ? snapshotAt(previous, A) : null;
   out.reach = ns && ps ? { pct: pct(xImpressionsOf(ns), xImpressionsOf(ps)), ageBasis: "sameAge" } : { pct: null, reason: TOO_YOUNG };
-  const nl = history ? ytHistoryAt(history(newest.slug), A) : null;
-  const pl = history ? ytHistoryAt(history(previous.slug), A) : null;
+  const nl = history ? ytHistoryAt(history(newest.slug), A, newest.premiere) : null;
+  const pl = history ? ytHistoryAt(history(previous.slug), A, previous.premiere) : null;
   const blend = (line) => {
     let num = 0, den = 0;
     for (const t of Object.values(line?.channels || {})) { if (Number.isFinite(t.views) && t.views > 0 && Number.isFinite(t.averageViewPercentage)) { num += t.averageViewPercentage * t.views; den += t.views; } }

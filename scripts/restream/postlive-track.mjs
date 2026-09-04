@@ -297,6 +297,16 @@ function slugify(title, date) {
   return `${date}-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40)}`;
 }
 
+const registryTitleKey = (value) => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+
+export function findExistingShow(shows, title, date) {
+  const slug = slugify(title, date);
+  const exactSlug = (shows || []).find((show) => show.slug === slug);
+  if (exactSlug) return exactSlug;
+  const matches = (shows || []).filter((show) => show.date === date && registryTitleKey(show.title) === registryTitleKey(title));
+  return matches.length === 1 ? matches[0] : null;
+}
+
 async function register(args) {
   const title = argValue(args, "--title");
   const date = argValue(args, "--date");
@@ -328,7 +338,7 @@ async function register(args) {
 
   const registry = loadJson(REGISTRY_PATH, { shows: [] });
   const slug = slugify(title, date);
-  const existing = registry.shows.find((s) => s.slug === slug);
+  const existing = findExistingShow(registry.shows, title, date);
   if (existing) {
     // merge new targets into an existing show
     for (const t of targets) {
@@ -341,7 +351,7 @@ async function register(args) {
   }
   saveJson(REGISTRY_PATH, registry);
   console.log(
-    `registered "${title}" (${slug}) with ${targets.length} destination(s):\n` +
+    `registered "${title}" (${existing?.slug || slug}) with ${targets.length} destination(s):\n` +
       targets.map((t) => `  ${targetKey(t)} -> ${t.videoId ?? t.postId}`).join("\n")
   );
 }

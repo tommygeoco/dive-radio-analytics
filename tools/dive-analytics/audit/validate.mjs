@@ -14,6 +14,7 @@
 //                           no plays on YT, and absence is never stored as zero
 //   2. monotonic views    — cumulative views never decrease per destination
 //   3. late-reg flags     — partialHistory starts at the first positive YouTube
+//                            read on a later Phoenix date; air date is current only
 //                           reading after premiere (>5d); pre-air and startup-zero
 //                           rows are evidence, not day one
 //   4. freshness          — newest snapshot and generatedAt both < 26h old,
@@ -125,9 +126,9 @@ function premiereMs(dateStr) {
   for (const e of eps) {
     if ("total" in e.latest) { bad++; fail(`${e.slug}: latest.total exists — mixed impressions+views field must not ship`); }
     const latestSnap = e.snapshots.at(-1);
-    const latestYtSnap = BL.latestYtSnapshot(e);
+    const latestYtSnap = BL.latestCurrentYtSnapshot(e);
     const expectedYt = BL.ytViewsOf(latestYtSnap);
-    if (e.latest.ytTotal !== expectedYt) { bad++; fail(`${e.slug}: latest.ytTotal ${e.latest.ytTotal} does not match the latest positive YouTube reading (${expectedYt})`); }
+    if (e.latest.ytTotal !== expectedYt) { bad++; fail(`${e.slug}: latest.ytTotal ${e.latest.ytTotal} does not match the latest confirmed current YouTube reading (${expectedYt})`); }
     if (e.latest.youtubeAsOf !== (latestYtSnap?.ts ?? null) || e.latest.youtubeStale !== !!(latestYtSnap && latestYtSnap.ts !== latestSnap.ts)) {
       bad++; fail(`${e.slug}: latest YouTube reading time or old-reading marker does not match history`);
     }
@@ -221,13 +222,26 @@ function premiereMs(dateStr) {
   for (const e of eps) {
     const first = BL.firstYtSnapshot(e);
     const expected = first ? Date.parse(first.ts) - premiereMs(e.premiere) > PARTIAL_DAYS * DAY : null;
-    if (e.partialHistory !== expected) { bad++; fail(`${e.slug}: partialHistory=${e.partialHistory}, expected ${expected} from the first positive post-air YouTube reading${first ? ` (${first.ts})` : " (none yet)"}`); }
+    const historical = BL.historicalSnapshotsOf(e);
+    const currentYt = BL.latestCurrentYtSnapshot(e);
+    if (historical.some((snap) => BL.phoenixDateOf(snap.ts) <= e.premiere)) { bad++; fail(`${e.slug}: an air-date snapshot entered historical selection`); }
+    if (e.partialHistory !== expected) { bad++; fail(`${e.slug}: partialHistory=${e.partialHistory}, expected ${expected} from the first positive next-date YouTube reading${first ? ` (${first.ts})` : " (none yet)"}`); }
+    if (e.historyReady !== (BL.ytSnapshotsOf(e).length > 0)) { bad++; fail(`${e.slug}: historyReady disagrees with the next-date reading rule`); }
+    if (!e.historyReady && e.historyReason !== BL.NOTES.noFullDayReading) { bad++; fail(`${e.slug}: waiting history has no plain full-day reason`); }
+    if (e.historyReady && e.historyReason != null) { bad++; fail(`${e.slug}: ready history still carries a waiting reason`); }
     if (e.partialHistory == null && e.metrics.week1Velocity !== null) { bad++; fail(`${e.slug}: no YouTube reading exists but week1Velocity=${e.metrics.week1Velocity}`); }
-    if (e.partialHistory == null && !/YouTube views are not available/i.test(e.metrics.week1Note || "")) { bad++; fail(`${e.slug}: unknown tracking start has no plain missing-data reason`); }
+    const expectedWaitReason = currentYt ? BL.NOTES.noFullDayReading : BL.NOTES.noYtReading;
+    if (e.partialHistory == null && e.metrics.week1Note !== expectedWaitReason) { bad++; fail(`${e.slug}: unknown tracking start has the wrong missing-data reason`); }
     if (e.partialHistory && e.metrics.week1Velocity !== null) { bad++; fail(`${e.slug}: late-reg episode has week1Velocity=${e.metrics.week1Velocity} — must be excluded`); }
     if (e.partialHistory && !/partial/i.test(e.metrics.week1Note || "")) { bad++; fail(`${e.slug}: late-reg episode missing exclusion note`); }
+    if (!historical.length) {
+      const anomaly = data.baselines?.anomaly?.[e.slug];
+      if (anomaly?.flagged || Object.values(anomaly?.units || {}).some((unit) => unit?.value != null)) {
+        bad++; fail(`${e.slug}: air-date values entered anomaly history`);
+      }
+    }
   }
-  if (!bad) ok("late-reg: tracking starts at the first positive post-air YouTube reading; pre-air and startup-zero rows cannot enter first-week math");
+  if (!bad) ok("day-one gate: air-date rows remain current-only; history starts with a positive reading on a later Phoenix date");
 }
 
 // --- 4. freshness ---
@@ -711,7 +725,8 @@ function premiereMs(dateStr) {
         if (!a || a.pending !== true || "score" in a) { bad++; fail(`episode health: ${e.slug} must ship only a pending marker before day 21`); continue; }
         const expectOn = new Date(premiereMs(e.premiere) + 21 * DAY - 7 * 3600000).toISOString().slice(0, 10);
         if (a.readCompleteOn !== expectOn) { bad++; fail(`episode health: ${e.slug} readCompleteOn ${a.readCompleteOn} != premiere + 21 days (${expectOn})`); }
-        if (!Number.isFinite(ytAge) && a.reason !== BL.NOTES.noYtReading) { bad++; fail(`episode health: ${e.slug} has no YouTube reading and no explicit missing-data reason`); }
+        const expectedReason = e.latest?.ytTotal != null ? BL.NOTES.noFullDayReading : BL.NOTES.noYtReading;
+        if (!Number.isFinite(ytAge) && a.reason !== expectedReason) { bad++; fail(`episode health: ${e.slug} has no historical YouTube reading and no explicit reason`); }
         continue;
       }
       if (!r) { bad++; fail(`episode health: ${e.slug} has a ${ytAge.toFixed(1)}d YouTube reading but no store entry`); continue; }
@@ -1454,12 +1469,13 @@ function premiereMs(dateStr) {
   }
   if (!/function hasYoutubeReading\(e\) \{ return e\?\.latest\?\.totalViewsInfo\?\.includesYoutube === true; \}/.test(html)
     || !/function youtubeValue\(e, value\)/.test(html)
-    || !/return hasPositive \? split : null;/.test(html)
-    || !/if \(!hasYoutubeReading\(e\)\) return pts;/.test(seriesSource)
+    || !/if \(!hasPositive\) return null;/.test(html)
+    || !/if \(!e\.historyReady\) return pts;/.test(seriesSource)
     || !/if \(views == null\) continue;/.test(seriesSource)
-    || !/if \(t < prem\) continue;/.test(seriesSource)
+    || !/if \(phoenixDateKey\(t\) <= e\.premiere\) continue;/.test(seriesSource)
+    || !/const value = byDest\?\.\[k\]\?\.plays;[\s\S]*if \(!Number\.isFinite\(value\)\) return null;/.test(html)
     || !/\["yt:joindiveclub", \(e\) => youtubeValue\(e, e\.latest\.byDest\["yt:joindiveclub"\]\?\.views\)\]/.test(html)) {
-    bad++; fail("dashboard absence: every YouTube surface must use the stored availability flag and skip pre-air or zero-only history rows");
+    bad++; fail("dashboard absence: current YouTube uses its availability flag; history skips air date and incomplete X play rows");
   }
   if (!bad) ok("dashboard absence: tables and tooltips keep missing values distinct from real zeroes");
 }
@@ -1849,6 +1865,7 @@ function premiereMs(dateStr) {
     ["youtube-release-date.test.mjs", "broadcast-day discovery"],
     ["episode-date-sync.test.mjs", "episode-date store sync"],
     ["youtube-zero-downstream.test.mjs", "startup-zero downstream"],
+    ["x-broadcast-discovery.test.mjs", "late X broadcast discovery"],
   ]) {
     try {
       execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
@@ -2045,6 +2062,7 @@ function premiereMs(dateStr) {
         if (d.views.total !== agentTotal || d.views.youtube !== agentYoutube) { bad++; fail(`agent: E${e.ep} views in the brief do not re-derive from data.json under the missing-YouTube rule`); }
         if (agentYoutube == null && (d.views.youtubeMarker !== "missing" || !d.views.reason)) { bad++; fail(`agent: E${e.ep} missing YouTube is not named in the brief`); }
         if (d.trackedLate !== (e.partialHistory == null ? null : e.partialHistory === true)) { bad++; fail(`agent: E${e.ep} tracking state does not preserve unknown separately from on-time`); }
+        if (d.history?.ready !== e.historyReady || d.history?.reason !== e.historyReason) { bad++; fail(`agent: E${e.ep} history state does not match data.json`); }
         const launch = data.baselines?.launch?.[e.slug];
         if (launch?.word && (d.launch?.word !== launch.word || !!d.launch?.promoDriven !== !!launch.promoDriven)) { bad++; fail(`agent: E${e.ep} launch word in the brief does not re-derive`); }
         if (e.health?.score != null && d.health?.score !== e.health.score) { bad++; fail(`agent: E${e.ep} episode health in the brief does not re-derive`); }

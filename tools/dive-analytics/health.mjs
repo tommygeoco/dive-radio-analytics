@@ -129,7 +129,11 @@ export const HEALTH_STORE_VERSION = 3;
 // health-v6 (2026-09-03, broadcast-only correction): commenters per thousand
 // can read only a finished episode. A young episode's rate previously entered
 // the fact sheet even though the peer window correctly required maturity.
-export const FORMULA_VERSION = "health-v6";
+// health-v7/v8 (2026-09-03, air-date correction): an episode cannot become the
+// show-health anchor until the Phoenix date after it airs. Current air-date
+// counters remain visible on its card but stay out of the saved daily read.
+// v8 is the first saved read built after all four destination stores landed.
+export const FORMULA_VERSION = "health-v8";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
 // the 2026-08-24 transition (two checks left, score held at 51) shipped with
@@ -172,6 +176,8 @@ export const WEIGHTS_BY_FORMULA = Object.freeze({
   "health-v4": BASE_WEIGHTS,
   "health-v5": BASE_WEIGHTS,
   "health-v6": BASE_WEIGHTS,
+  "health-v7": BASE_WEIGHTS,
+  "health-v8": BASE_WEIGHTS,
 });
 export const CHECK_LABELS = Object.freeze({
   growth: "growth", audienceQuality: "audience quality", reachEfficiency: "reach", livePull: "live turnout", participation: "participation", conversion: "subscribers", sentiment: "goodwill",
@@ -414,7 +420,11 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   if (!source?.episodes?.length) throw new Error("data.json has no episodes");
   const sourceNow = now ?? Date.parse(source.generatedAt);
   if (!Number.isFinite(sourceNow)) throw new Error("health source time is invalid");
-  const episodes = [...source.episodes].sort((a, b) => a.premiere.localeCompare(b.premiere));
+  const sourceDate = phoenixDate(sourceNow);
+  const episodes = [...source.episodes]
+    .filter((episode) => episode.premiere < sourceDate)
+    .sort((a, b) => a.premiere.localeCompare(b.premiere));
+  if (!episodes.length) throw new Error("No episode has completed its air date yet.");
   const newest = episodes.at(-1);
   const analyticsBySlug = new Map();
   const historyBySlug = new Map();
@@ -517,11 +527,11 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     if (!own) return measurement(id, null, null, { reason: "No episode at least a week old has a YouTube analytics report yet." });
     const A = ageOf(own);
     const window = windowFor(own, episodes);
-    const lineValue = (e) => { const line = ytHistoryAt(historyBySlug.get(e.slug), A); return line ? pick(line.channels) : null; };
+    const lineValue = (e) => { const line = ytHistoryAt(historyBySlug.get(e.slug), A, e.premiere); return line ? pick(line.channels) : null; };
     const sameAge = peersFor({ own, window, flags, units: UNIT_FAMILIES.views, valueOf: lineValue });
     const ownLine = lineValue(own);
     if (sameAge.typical != null && Number.isFinite(ownLine)) {
-      return measurement(id, ownLine, sameAge, { ageBasis: "sameAge", episodeRead: own.slug, readDate: ytHistoryAt(historyBySlug.get(own.slug), A)?.date ?? null, ...carriedOpts(own) });
+      return measurement(id, ownLine, sameAge, { ageBasis: "sameAge", episodeRead: own.slug, readDate: ytHistoryAt(historyBySlug.get(own.slug), A, own.premiere)?.date ?? null, ...carriedOpts(own) });
     }
     if (prevBasis(check, id) === "sameAge") return measurement(id, null, sameAge, { reason: NOTES.noReadingAtAge });
     const matureOwn = latestAtLeast(MATURITY_DAYS.analytics, (e) => analyticsBySlug.has(e.slug));
@@ -1287,7 +1297,7 @@ async function main() {
   if (existing) {
     // rule 9: a formula bump re-derives the day visibly — the older read is
     // kept byte-identical under `superseded`, and the new read says what it replaced
-    entry.rederivedFrom = { formulaVersion: existing.formulaVersion, score: existing.score };
+    entry.rederivedFrom = existing.rederivedFrom || { formulaVersion: existing.formulaVersion, score: existing.score };
     store.entries = store.entries.filter((e) => e !== existing);
     store.superseded.push({ supersededOn: date, by: FORMULA_VERSION, entry: existing });
   }

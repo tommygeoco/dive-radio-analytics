@@ -140,7 +140,7 @@ function analyticsReading(e, kind, io, { basis }) {
     ? (ch) => blendFrom(ch, (t) => t.averageViewPercentage)
     : (ch) => ({ value: conversionFrom(ch), channels: [] });
   if (basis === "sameAge") {
-    const line = ytHistoryAt(io.readHistory(e.slug), READ_DAYS);
+    const line = ytHistoryAt(io.readHistory(e.slug), READ_DAYS, e.premiere);
     if (!line) return null;
     const r = pick(line.channels);
     return r.value == null ? null : { value: r.value, channels: r.channels, source: "history", readDate: line.date, atDay: round1(line.ageDays) };
@@ -180,12 +180,13 @@ export function scoreEpisode(target, window, flags, io = DEFAULT_IO) {
   const checks = {};
   const age = readAgeOf(target);
   if (!Number.isFinite(age)) {
+    const missingReason = target.latest?.ytTotal != null ? NOTES.noFullDayReading : NOTES.noYtReading;
     const empty = Object.fromEntries(CHECKS.map((key) => [key, {
       value: null, typical: null, ratio: null, score: null, weight: 0,
-      sample: 0, peers: [], reason: NOTES.noYtReading, ageBasis: null,
+      sample: 0, peers: [], reason: missingReason, ageBasis: null,
       note: null, excluded: [],
     }]));
-    return { score: null, checks: empty, missingChecks: [...CHECKS], atDay: null, reason: NOTES.noYtReading, reproducible: true };
+    return { score: null, checks: empty, missingChecks: [...CHECKS], atDay: null, reason: missingReason, reproducible: true };
   }
   const atDay = round1(age);
   const peerOf = (p, value, extra) => ({ slug: p.slug, value, ...extra });
