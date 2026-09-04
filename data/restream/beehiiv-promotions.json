@@ -4,8 +4,8 @@
     "id": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
     "name": "UX Tools"
   },
-  "updatedAt": "2026-09-04T15:45:35.783Z",
-  "lastSuccessfulAt": "2026-09-04T15:45:35.783Z",
+  "updatedAt": "2026-09-04T16:23:36.378Z",
+  "lastSuccessfulAt": "2026-09-04T16:23:36.378Z",
   "episodes": {
     "2026-07-17-dive-radio-bumpy-takeoff": {
       "status": "no-direct-link",
@@ -113,7 +113,7 @@
         },
         {
           "date": "2026-09-04",
-          "pulledAt": "2026-09-04T15:45:35.783Z",
+          "pulledAt": "2026-09-04T16:23:36.378Z",
           "emailClicks": 118,
           "verifiedEmailClicks": 46
         }

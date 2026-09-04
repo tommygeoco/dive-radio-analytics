@@ -23,13 +23,14 @@
     "2026-08-28-dive-radio-steal-these-ai-design-pattern": null,
     "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": null
   },
-  "staleCount": 1,
-  "healthDate": "2026-09-03",
-  "healthFormula": "health-v8",
+  "staleCount": 0,
+  "healthDate": "2026-09-04",
+  "healthFormula": "health-v9",
   "healthDirection": "mixed",
   "promoFlagged": [
     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
   ],
   "healthCheckSet": [
     "growth",

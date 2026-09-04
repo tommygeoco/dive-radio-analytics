@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-04T16:19:03.227Z",
-  "lastSuccessfulDiscoveryAt": "2026-09-04T16:18:33.783Z",
-  "lastSuccessfulSnapshotAt": "2026-09-04T16:19:03.227Z",
+  "updatedAt": "2026-09-04T16:23:58.163Z",
+  "lastSuccessfulDiscoveryAt": "2026-09-04T16:23:36.283Z",
+  "lastSuccessfulSnapshotAt": "2026-09-04T16:23:58.163Z",
   "discoveries": [
     {
       "startedAt": "2026-09-04T16:18:32.092Z",
@@ -63,6 +63,66 @@
       "episodeCoverage": [],
       "errors": [],
       "finishedAt": "2026-09-04T16:18:33.783Z"
+    },
+    {
+      "startedAt": "2026-09-04T16:23:34.683Z",
+      "status": "ok",
+      "lookbackDays": 10,
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 0,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 0,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "found": 0,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        }
+      },
+      "found": {
+        "youtube": 0,
+        "x": 1
+      },
+      "registrations": {
+        "attempted": true,
+        "success": true,
+        "planned": 0,
+        "completed": 0
+      },
+      "episodeCoverage": [],
+      "errors": [],
+      "finishedAt": "2026-09-04T16:23:36.283Z"
     }
   ],
   "snapshots": [
@@ -153,6 +213,94 @@
       },
       "errors": [],
       "finishedAt": "2026-09-04T16:19:03.227Z"
+    },
+    {
+      "ts": "2026-09-04T16:23:58.163Z",
+      "startedAt": "2026-09-04T16:23:40.575Z",
+      "status": "ok",
+      "currentEpisodeDates": [
+        "2026-09-03"
+      ],
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "expected": 2,
+              "found": 2,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 3,
+              "found": 3,
+              "error": null
+            }
+          ]
+        },
+        "xBroadcast": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            }
+          ]
+        }
+      },
+      "requested": {
+        "youtube": 16,
+        "x": 22,
+        "xBroadcast": 16
+      },
+      "found": {
+        "youtube": 16,
+        "x": 22,
+        "xBroadcast": 16
+      },
+      "errors": [],
+      "finishedAt": "2026-09-04T16:23:58.163Z"
     }
   ]
 }
