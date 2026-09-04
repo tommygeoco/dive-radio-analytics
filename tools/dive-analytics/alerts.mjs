@@ -325,7 +325,9 @@ export function deliverPending({
     if (history.version !== 1 || !Array.isArray(history.attempts)) throw new Error("alert delivery receipts are unreadable");
     const receipts = [];
     let sent = 0;
-    let reconciliationReads = 0;
+    const nextReconciliation = history.attempts.filter((attempt) => attempt.channel === channel && attempt.account === account && attempt.target === target
+      && ["sending", "unconfirmed"].includes(attempt.state) && attempt.lines?.some((line) => pending.includes(line)))
+      .sort((a, b) => (Date.parse(a.reconciliation?.checkedAt) || 0) - (Date.parse(b.reconciliation?.checkedAt) || 0))[0];
     const held = new Set();
     // A producer may append a line after the provider answered but before we
     // acknowledged the old batch. Reconcile saved lines before forming new
@@ -335,8 +337,8 @@ export function deliverPending({
       if (!Array.isArray(attempt.lines)) throw new Error("alert delivery receipt has no batch lines");
       const retained = attempt.lines.filter((line) => pending.includes(line));
       if (["sending", "unconfirmed"].includes(attempt.state) && retained.length) {
-        const outcome = reconciliationReads++ === 0 ? reconcile(attempt, history) : { state: "unknown", reason: "bounded history check deferred until the next run" };
-        attempt.reconciliation = outcome;
+        const outcome = attempt === nextReconciliation ? reconcile(attempt, history) : { state: "unknown", reason: "bounded history check deferred until the next run" };
+        if (attempt === nextReconciliation) attempt.reconciliation = outcome;
         if (outcome.state === "confirmed" && outcome.receipt) {
           attempt.state = "confirmed"; attempt.receipt = outcome.receipt; attempt.channelId = outcome.channelId;
         } else if (outcome.state === "not-sent") {
