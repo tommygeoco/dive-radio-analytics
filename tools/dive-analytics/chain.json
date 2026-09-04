@@ -93,12 +93,12 @@
    "step": "live",
    "script": "scripts/restream/ingest-restream.mjs",
    "writes": [
-      "data/restream/events/*.json",
-      "data/restream/state.json"
-    ],
-    "freshnessKey": null,
-    "required": true,
-    "scope": "all"
+    "data/restream/events/*.json",
+    "data/restream/state.json"
+   ],
+   "freshnessKey": null,
+   "required": true,
+   "scope": "all"
   },
   {
    "step": "ratings",
@@ -188,6 +188,18 @@
    "model": true
   },
   {
+   "step": "critic",
+   "script": "tools/dive-analytics/critic.mjs",
+   "writes": [
+    "tools/dive-analytics/audit/CRITIC-*.md"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all",
+   "model": true,
+   "when": "Mondays"
+  },
+  {
    "step": "build-data",
    "script": "tools/dive-analytics/build-data.mjs",
    "writes": [
@@ -220,11 +232,10 @@
   {
    "step": "alerts",
    "script": "tools/dive-analytics/alerts.mjs",
-   "writes": [
-    "data/restream/alerts-state.json"
-   ],
+   "writes": [],
    "runtimeWrites": [
-    "~/Library/Application Support/Dive Radio Analytics/alerts-pending.json"
+    "~/Library/Application Support/Dive Radio Analytics/alerts-pending.json",
+    "~/Library/Application Support/Dive Radio Analytics/alerts-state.json"
    ],
    "freshnessKey": null,
    "required": true,
@@ -240,18 +251,6 @@
    "freshnessKey": null,
    "required": true,
    "scope": "all"
-  },
-  {
-   "step": "critic",
-   "script": "tools/dive-analytics/critic.mjs",
-   "writes": [
-    "tools/dive-analytics/audit/CRITIC-*.md"
-   ],
-   "freshnessKey": null,
-   "required": false,
-   "scope": "all",
-   "model": true,
-   "when": "Mondays"
   }
  ]
 }

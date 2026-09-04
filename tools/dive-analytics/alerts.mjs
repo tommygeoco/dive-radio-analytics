@@ -27,12 +27,16 @@ import { fileURLToPath } from "node:url";
 import { CHECK_LABELS } from "./health.mjs";
 import { MIN_PEERS } from "./baselines.mjs";
 import { acknowledgeQueueLines, acquireLock, appendQueueLines, QUEUE_PATH, readQueue } from "./alert-queue.mjs";
-import { DAILY_STATE_PATH } from "./runtime-paths.mjs";
+import { ALERT_STATE_PATH, DAILY_STATE_PATH } from "./runtime-paths.mjs";
+import { saveReceipt } from "./run-receipt.mjs";
+import { createHash, randomUUID } from "node:crypto";
+import { phoenixDay } from "./freshness.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const DATA_PATH = join(ROOT, "data.json");
-const STATE_PATH = join(ROOT, "data", "restream", "alerts-state.json");
+const STATE_PATH = ALERT_STATE_PATH;
+const LEGACY_STATE_PATH = join(ROOT, "data", "restream", "alerts-state.json");
 const CLASSIFIED_PATH = join(ROOT, "data", "restream", "comments-classified.json");
 const NEG_SPIKE = 3; // new negative comments in one day that count as a spike
 
@@ -41,10 +45,7 @@ function loadJson(path, fallback) {
   return JSON.parse(readFileSync(path, "utf8")); // corrupt file = loud crash, never silent reset
 }
 function saveAtomic(path, obj) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(obj, null, 2) + "\n");
-  renameSync(tmp, path);
+  saveReceipt(path, obj);
 }
 const short = (t) => t.replace(/^Dive Radio:\s*/i, "");
 
@@ -205,11 +206,13 @@ function arg(name, fallback = null) {
 
 export function deliveryId(value) {
   if (!value || typeof value !== "object") return null;
-  for (const key of ["messageId", "message_id", "ts"]) {
+  if (value.ok === false || value.dryRun === true || value.error || ["failed", "error"].includes(value.status)) return null;
+  for (const key of ["messageId", "message_id"]) {
     if (typeof value[key] === "string" && value[key].trim()) return value[key].trim();
   }
-  for (const child of Object.values(value)) {
-    const found = deliveryId(child);
+  if (typeof value.channelId === "string" && /^\d+\.\d+$/.test(value.ts || "")) return value.ts;
+  for (const key of ["result", "payload"]) {
+    const found = deliveryId(value[key]);
     if (found) return found;
   }
   return null;
@@ -243,6 +246,9 @@ export function deliverPending({
   send = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 60_000 }),
   chainGuard = () => acquireLock(`${DAILY_STATE_PATH}.run.lock`, { label: "daily publishing chain", maxAgeMs: 2 * 60 * 60 * 1000 }),
   log = console.log,
+  receiptPath = `${queuePath}.receipts.json`,
+  persist = (value) => saveReceipt(receiptPath, value),
+  acknowledge = (lines) => acknowledgeQueueLines(lines, queuePath),
 } = {}) {
   if (!target) throw new Error("alert delivery target is required");
   let releaseChain;
@@ -258,16 +264,44 @@ export function deliverPending({
     release = acquireLock(`${queuePath}.delivery.lock`, { label: "alert delivery", maxAgeMs: 5 * 60 * 1000 });
     const pending = readQueue(queuePath);
     if (!pending.length) { log("dive-alerts: queue empty — nothing to send."); return { sent: 0, receipts: [] }; }
+    const history = existsSync(receiptPath) ? JSON.parse(readFileSync(receiptPath, "utf8")) : { version: 1, attempts: [] };
+    if (history.version !== 1 || !Array.isArray(history.attempts)) throw new Error("alert delivery receipts are unreadable");
     const receipts = [];
     let sent = 0;
     for (const batch of alertBatches(pending)) {
+      const key = createHash("sha256").update(JSON.stringify({ day: phoenixDay(Date.now()), channel, account, target, lines: batch })).digest("hex");
+      const confirmed = history.attempts.findLast((attempt) => attempt.key === key && attempt.state === "confirmed");
+      if (confirmed) {
+        acknowledge(batch);
+        receipts.push(confirmed.receipt);
+        sent += batch.length;
+        continue;
+      }
+      const unresolved = history.attempts.findLast((attempt) => attempt.key === key && ["sending", "unconfirmed"].includes(attempt.state));
+      if (unresolved) throw new Error(`alert delivery ${unresolved.id} has an unconfirmed provider outcome; queued lines are retained for reconciliation`);
+      const attempt = { id: randomUUID(), key, channel, account, target, lines: batch, attemptedAt: new Date().toISOString(), state: "sending" };
+      history.attempts.push(attempt);
+      persist(history);
       const message = `Dive Radio — what changed:\n${batch.map((line) => `• ${line}`).join("\n")}`;
-      const result = send(["message", "send", "--channel", channel, "--account", account, "--target", target, "--message", message, "--json"]);
-      const status = Number.isInteger(result.status) ? result.status : 1;
-      if (status !== 0) throw new Error(`Slack send failed (exit ${status}) — ${String(result.stderr || result.stdout || "no details").trim().split("\n").at(-1)}`);
-      const receipt = deliveryId(parseCommandJson(result.stdout));
-      if (!receipt) throw new Error("Slack send returned no message receipt");
-      acknowledgeQueueLines(batch, queuePath);
+      let result;
+      try { result = send(["message", "send", "--channel", channel, "--account", account, "--target", target, "--message", message, "--json"]); }
+      catch (error) { result = { status: null, error }; }
+      const status = Number.isInteger(result?.status) && !result?.error && !result?.signal ? result.status : 1;
+      let receipt;
+      try { if (status === 0) receipt = deliveryId(parseCommandJson(result.stdout)); } catch { /* Unconfirmed sends keep all evidence and queued lines. */ }
+      attempt.finishedAt = new Date().toISOString();
+      if (status !== 0 || !receipt) {
+        // A known nonzero command is retried; interrupted or zero-without-receipt
+        // outcomes require reconciliation because a blind retry could duplicate.
+        attempt.state = Number.isInteger(result?.status) && result.status !== 0 && !result.error && !result.signal ? "failed" : "unconfirmed";
+        attempt.exitCode = Number.isInteger(result?.status) ? result.status : null;
+        persist(history);
+        throw new Error(status !== 0 ? `Slack send failed (exit ${status})` : "Slack send returned no message receipt");
+      }
+      attempt.state = "confirmed";
+      attempt.receipt = receipt;
+      persist(history);
+      acknowledge(batch);
       receipts.push(receipt);
       sent += batch.length;
     }
@@ -277,6 +311,25 @@ export function deliverPending({
     release?.();
     releaseChain();
   }
+}
+
+export function detectAndQueue({ dataPath = DATA_PATH, statePath = STATE_PATH, legacyStatePath = LEGACY_STATE_PATH, queuePath = QUEUE_PATH, snapshot = snapshotState } = {}) {
+  const release = acquireLock(`${statePath}.lock`, { label: "alert detection" });
+  try {
+    const marker = `${statePath}.initialized-v1`;
+    if (!existsSync(statePath) && existsSync(marker)) throw new Error("alert detection state is missing after initialization");
+    const data = JSON.parse(readFileSync(dataPath, "utf8"));
+    const cur = snapshot(data);
+    const prev = existsSync(statePath) ? loadJson(statePath, null) : loadJson(legacyStatePath, null);
+    if (prev && (!Number.isInteger(prev.episodeCount) || !Number.isInteger(prev.staleCount) || !prev.complaints || typeof prev.complaints !== "object" || !prev.w1v || typeof prev.w1v !== "object")) {
+      throw new Error("alert detection state is invalid");
+    }
+    const found = prev ? detect(prev, cur, data) : [];
+    if (found.length) appendQueueLines(found, queuePath);
+    saveAtomic(statePath, cur);
+    if (!existsSync(marker)) saveAtomic(marker, { version: 1, initializedAt: new Date().toISOString() });
+    return { count: found.length, bootstrapped: !prev };
+  } finally { release(); }
 }
 
 if (isMain) {
@@ -299,25 +352,14 @@ if (isMain) {
     }
   } else if (deliverMode) {
     try {
-      deliverPending({ channel: arg("--channel", "slack"), account: arg("--account", "default"), target: arg("--target") });
+      const result = deliverPending({ channel: arg("--channel", "slack"), account: arg("--account", "default"), target: arg("--target") });
+      if (result.deferred) process.exitCode = 75;
     } catch (error) {
       console.error(`dive-alerts: ${error.message}; pending lines were kept.`);
       process.exit(1);
     }
   } else {
-    const data = JSON.parse(readFileSync(DATA_PATH, "utf8"));
-    const cur = snapshotState(data);
-    const prev = loadJson(STATE_PATH, null);
-    if (!prev) {
-      saveAtomic(STATE_PATH, cur);
-      console.log("alerts: state bootstrapped — no alerts on first run.");
-    } else {
-      const found = detect(prev, cur, data);
-      if (found.length) {
-        appendQueueLines(found, QUEUE_PATH);
-      }
-      saveAtomic(STATE_PATH, cur);
-      console.log(`alerts: ${found.length} material change(s)${found.length ? " queued" : ""}.`);
-    }
+    const result = detectAndQueue();
+    console.log(result.bootstrapped ? "alerts: state bootstrapped — no alerts on first run." : `alerts: ${result.count} material change(s)${result.count ? " queued" : ""}.`);
   }
 }

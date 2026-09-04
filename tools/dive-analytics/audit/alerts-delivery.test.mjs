@@ -1,15 +1,18 @@
 // alerts-delivery.test.mjs — pending lines leave the queue only after an
 // acknowledged Slack send; producer writes during delivery survive.
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { alertLines, deliverPending } from "../alerts.mjs";
+import { alertLines, deliveryId, detectAndQueue, deliverPending } from "../alerts.mjs";
 import { appendQueueLines, readQueue } from "../alert-queue.mjs";
 
 const dir = mkdtempSync(join(tmpdir(), "dive-alert-delivery."));
 const queue = join(dir, "pending.json");
-const reset = (lines) => writeFileSync(queue, JSON.stringify(lines, null, 2) + "\n");
+const reset = (lines) => {
+  writeFileSync(queue, JSON.stringify(lines, null, 2) + "\n");
+  if (existsSync(`${queue}.receipts.json`)) unlinkSync(`${queue}.receipts.json`);
+};
 const noChain = () => () => {};
 
 try {
@@ -37,6 +40,7 @@ try {
   }), /no message receipt/);
   assert.deepEqual(readQueue(queue), ["one"]);
 
+  reset(["one"]);
   const sentArgs = [];
   const result = deliverPending({
     queuePath: queue,
@@ -55,6 +59,33 @@ try {
   assert.deepEqual(result, { sent: 1, receipts: ["slack-123"] });
   assert.deepEqual(readQueue(queue), ["arrived during send"]);
   assert.deepEqual(sentArgs[0].slice(0, 8), ["message", "send", "--channel", "slack", "--account", "default", "--target", "user:test"]);
+  const confirmed = JSON.parse(readFileSync(`${queue}.receipts.json`, "utf8")).attempts.at(-1);
+  assert.equal(confirmed.state, "confirmed");
+  assert.equal(confirmed.receipt, "slack-123");
+  assert.deepEqual(confirmed.lines, ["one"], "durable provider evidence identifies exactly the acknowledged lines");
+
+  for (const invalid of [{ ts: "123.456" }, { ok: false, result: { messageId: "bad" } }, { dryRun: true, messageId: "bad" }, { metadata: { ts: "123.456", messageId: "bad" } }, { result: { error: "failed", messageId: "bad" } }]) {
+    assert.equal(deliveryId(invalid), null, "non-message timestamps and failed/dry results never acknowledge queued warnings");
+  }
+  assert.equal(deliveryId({ payload: { result: { channelId: "Ctest", ts: "123.456" } } }), "123.456");
+
+  reset(["crash after receipt"]);
+  let crashSends = 0;
+  const crashSend = () => { crashSends++; return { status: 0, stdout: JSON.stringify({ result: { messageId: "crash-proof" } }) }; };
+  assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: crashSend, log: () => {}, acknowledge: () => { throw new Error("simulated interruption after receipt"); } }), /simulated interruption/);
+  assert.deepEqual(readQueue(queue), ["crash after receipt"]);
+  assert.equal(JSON.parse(readFileSync(`${queue}.receipts.json`, "utf8")).attempts.at(-1).state, "confirmed");
+  deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: crashSend, log: () => {} });
+  assert.equal(crashSends, 1, "a saved provider receipt prevents duplicate sending after restart");
+  assert.deepEqual(readQueue(queue), []);
+
+  reset(["unconfirmed send"]);
+  let uncertainSends = 0;
+  const unconfirmedSend = () => { uncertainSends++; return { status: null, error: new Error("timeout") }; };
+  assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: unconfirmedSend, log: () => {} }), /Slack send failed/);
+  assert.throws(() => deliverPending({ queuePath: queue, target: "user:test", chainGuard: noChain, send: unconfirmedSend, log: () => {} }), /unconfirmed provider outcome/);
+  assert.equal(uncertainSends, 1, "uncertain provider success is not blindly retried");
+  assert.deepEqual(readQueue(queue), ["unconfirmed send"]);
 
   reset(["Daily publish recovery failed; production still needs attention."]);
   let staleSend = 0;
@@ -73,6 +104,21 @@ try {
   const cur = { ...prev, promoFlagged: ["one"] };
   const data = { episodes: [{ slug: "one", ep: 1, title: "Dive Radio: Test" }], showTrend: {}, baselines: {} };
   assert.match(alertLines(prev, cur, data).at(-1).text, /E1 \(Test\)/, "promo flag alerts do not crash on the episode title");
+
+  const dataPath = join(dir, "data.json");
+  const statePath = join(dir, "runtime-state.json");
+  const legacyStatePath = join(dir, "legacy-state.json");
+  writeFileSync(dataPath, JSON.stringify(data));
+  writeFileSync(legacyStatePath, JSON.stringify(prev));
+  const legacyBytes = readFileSync(legacyStatePath, "utf8");
+  reset([]);
+  const detected = detectAndQueue({ dataPath, statePath, legacyStatePath, queuePath: queue, snapshot: () => cur });
+  assert.equal(detected.count, 1);
+  assert.equal(readFileSync(legacyStatePath, "utf8"), legacyBytes, "legacy tracked detection state is never changed");
+  assert.equal(existsSync(`${statePath}.initialized-v1`), true);
+  unlinkSync(statePath);
+  assert.throws(() => detectAndQueue({ dataPath, statePath, legacyStatePath, queuePath: queue, snapshot: () => cur }), /missing after initialization/);
+  assert.equal(existsSync(`${statePath}.lock`), false);
 } finally {
   rmSync(dir, { force: true, recursive: true });
 }
