@@ -204,3 +204,52 @@ the read-before snapshot, and deployment follows the existing checked retry path
 - GitHub `main`, Vercel production, and the existing project link.
 - OpenClaw 2026.9.1 scheduler, current Slack delivery target, and existing 1Password
   environment loading. Secrets remain outside Git and logs.
+
+## Reopened end-to-end audit — 2026-09-04
+
+The owner requested complete source-to-production repair against unverified
+baseline 94d6517. Earlier completed steps are historical and do not discharge this
+new acceptance. Updated PRD section 10 is the implementation contract.
+
+### Progress
+
+- [x] Read the v5 constitution, existing v13 PRD/plan, README, CLAUDE, architecture and assigned source/validator/scheduler/deploy code before implementation.
+- [x] Locate clean launcher and runtime main at baseline; verify origin/main; preserve dirty user checkout.
+- [x] Verify baseline 16-file production parity independently; identify missing chart-library proof and source/store/status gaps.
+- [x] Update PRD with every source, store, clock, consumer, failure path and exact tests before code.
+- [ ] Repair source transactions, request completeness, capture metadata, future-episode filtering and canonical writes.
+- [ ] Repair frozen-rating validation and source-to-screen consumers without new features.
+- [ ] Repair durable run/alert receipts, bounded child execution, scheduler truth and recovery.
+- [ ] Repair safe release hooks, clean exact-commit release and all-artifact proof.
+- [ ] Run complete audit fixtures, syntax, ratings/build/strict validator and frozen-byte proof.
+- [ ] Push clean main, deploy, prove production bytes/time, run controlled real scheduler executions, capture browser.
+- [ ] Record final evidence and explicitly retain future mornings/reboot observation as unproven.
+
+### Discoveries and decisions
+
+- Comments can label failed reads as covered; older snapshot cohorts can be partial;
+  several canonical writers truncate directly or silently reset corrupt JSON.
+- Ratings can use an incomplete watch cohort and silently replace an unreadable
+  frozen store. Every frozenAt baseline entry must be preserved byte-for-byte.
+- The pre-push hook rebuilds caller files and checks only a hard-coded subset of
+  tests. The revised gate must operate in an isolated temporary copy.
+- Daily attempts record status and start SHA but lack complete source/build/deploy
+  receipts. Existing legacy attempts remain unchanged; new proof is additional.
+- Root owns release proof and documentation; independent source, surface and
+  scheduler branches own separate file sets and return concern-level commits.
+- No package manifest/dependency tree or dev-discipline harness exists in this
+  repo. Use the existing install-hooks script and this complete plan. User's
+  explicit plain one-line commits override the skill's commit-body preference.
+
+### Concrete steps and user benefit
+
+1. Source lane: stage complete identified responses and promote atomically.
+User benefit: a successful request for one channel cannot produce a blended number.
+2. Surface lane: enforce validated source cohorts and immutable frozen entries.
+User benefit: every existing number remains traceable and past scores cannot drift.
+3. Scheduler lane: persist results, cap attempts, preserve alerts and check statuses.
+User benefit: failures remain visible and recovery works after interruption.
+4. Release lane: isolate gates, prove exact main and every served file.
+User benefit: success means the validated release is actually on the public alias.
+5. Integration: fixture runs, real scheduler proof, browser, final source inventory.
+User benefit: operational truth is reviewable now; future streak claims wait for evidence.

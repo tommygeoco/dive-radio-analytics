@@ -248,3 +248,110 @@ cohort and history remains one immutable line per eligible Phoenix date.
   GitHub and Vercel release, 16-file production parity, both cron readbacks, and
   successful transcript and recovery manual runs. E8 watched share remains
   honestly absent because both current owner reports still contain no rows.
+
+## 10. End-to-end re-audit contract (2026-09-04, supersedes earlier completion claims)
+
+The owner requested a fresh audit and repair of every existing production path.
+Baseline `94d65170dc92245f86544066a99635bb68d7f95a` is evidence to compare,
+not an acceptance result. The launch checkout and runtime clone were clean main
+at that baseline and GitHub matched on this audit's first fetch. The unrelated
+`~/Dev/2026/dive-radio-analytics` agent branch is dirty and must remain untouched.
+Implementation runs in isolated concern branches; production runs only from a
+clean, current main checkout with its installed, verified repository hook.
+
+### Ownership, lineage, definitions and clocks
+
+All source owners below are the existing Dive Radio owners. The chain machine is
+the sole canonical capture writer. Every new reading must carry or inherit from
+its containing record: source, episode slug, source object ID, pull timestamp and
+completeness state. Historical records without these fields must remain clearly
+legacy evidence; missing provenance must never be invented or backdated.
+
+| Source / owner | Source IDs and raw response | Canonical stores / writer | Existing public consumers and units | Schedule |
+|---|---|---|---|---|
+| YouTube Data / Dive Club and DesignerTom | registered channel ID and episode video ID; statistics and liveStreamingDetails | registry, postlive snapshots, source receipts / discover + track | views are counts; likes and comments are counts; totals, first weeks, pace, charts, health, agent brief | daily full chain and one recovery |
+| YouTube owner Analytics / both registered accounts | OAuth owner, exact registered video ID, report dates, full totals/retention/traffic response | yt-analytics + yt-analytics-history / yt-analytics-pull | watched share percent; average duration seconds; estimated watch time minutes; subscriber counts; retention fraction; traffic views | daily full chain and one recovery |
+| X / ridd_design and designertom | exact post ID, account ID, resolved broadcast ID; API public metrics and broadcast counter | registry, postlive snapshots, source receipts / discover + track | impressions are reach; broadcast plays only enter views; tweet/teaser videos never enter plays | daily full chain and recovery |
+| Restream / existing owner account | event ID matched to exact destination video/broadcast IDs; summary, minute and destination responses | events + state / ingest-restream | peak and average concurrent viewers; live views count; seconds converted once to watched minutes; minute samples with unsampled null | 06:50 ingestion and chain live step |
+| Transcript / owner vault or YouTube captions | exact episode/date/title and source file or registered video ID | transcripts / transcripts-pull; owner vault / mirror-transcripts | transcript link, chapters and grounded moments; timestamps seconds on the documented source clock | chain pull; 08:00 mirror/recovery |
+| Beehiiv / UX Tools owner | issue ID, exact registered target URL, tracked link ID, provider click records | beehiiv-promotions / beehiiv-promotions-pull | tracked email clicks and verified clicks are separate counts, never views or summed unique readers | daily full chain and recovery |
+| YouTube/X comments / both owners | comment/reply ID, video/post ID, pagination response and capture time | comments / comments-pull; labels / dedicated classifier | verified feedback counts, themes and commenters; pending/review/noise never public | daily full chain |
+| Channel audience / both owners | channel/user ID and complete statistics response | channel-stats / channel-stats-pull | existing audience history counts only; no new surface | daily full chain |
+| Frozen ratings / deterministic writer | validated source cohorts and stored peer inputs | episode-ratings / ratings | existing episode scores and their components; existing frozenAt entries byte immutable | chain before build |
+| Model summaries / dedicated scripts | validated deterministic fact bundle and model/prompt stamps | health-history, recommendations, moment-summaries, chapters | existing scores, prose and transcript-grounded material; unavailable/stale facts withheld | existing model steps only |
+| Publication / chain machine | validated source stores, exact Git SHA, generatedAt, deployment ID/URL and per-file hashes | public artifacts + durable runtime receipts | dashboard, agents page, data.json/data.js, agent files, chart library, every served transcript | daily and recovery, proof checks without attempt |
+| Operations / OpenClaw | job ID, structured child exit, attempt ID and Phoenix date | runtime daily ledger, source states, alert queue and delivery receipts | freshness stamp, existing source-state text, owner alerts | primary, recovery, alert and weekly jobs verified live |
+
+Phoenix calendar dates govern air dates and daily attempts. UTC timestamps remain
+ISO instants. Future episodes are not queried and do not create missing warnings.
+Same-day absence is idle until the next Phoenix day. A complete source zero is
+valid for count metrics; an undefined denominator produces an unavailable rate.
+A zero-view watch report cannot define watched share and cannot start history.
+
+States are: missing (no validated source record), pending (valid source response
+has not supplied the report), ready (all required IDs/fields/times validate),
+failed (request, parsing or validation failed), stale (previous valid reading,
+with its original time), and future (not eligible for capture). These are internal
+contracts projected through existing public fields/copy. No new dashboard measure
+or section is authorized. Partial evidence remains internal. A current incomplete
+pull never enters public data/history; any preserved last complete cohort keeps
+its original time and explicitly stale/unavailable semantics.
+
+### Atomicity, retry, release and recovery
+
+All canonical writes use unique same-directory temporary files and atomic rename.
+Read-modify-write operations require a cross-process lock held through promotion;
+locks identify the owner and do not evict a live writer merely because time passed.
+Malformed existing stores fail closed rather than silently reset. API requests
+have finite deadlines, finite retries and checked status/JSON/schema/pagination.
+Complete episode/channel cohorts are staged before promotion. No partial or
+mixed-time cohort can become history, ratings, health or a public number.
+
+Publication executes ratings, build, strict validator, all audit fixtures and
+syntax checks before every push/deployment. Hooks must test in temporary copies
+and preserve every byte of caller work. Release checks exact origin/main, branch,
+HEAD, cleanliness, project identity and every child status. The deploy command is
+`vercel deploy --prod --yes`; a URL alone is insufficient. Cache-busted production
+reads must match local generatedAt and every expected public file, including the
+vendored chart library and all declared transcripts. A durable receipt records
+Phoenix date, attempt, source states, SHA, generatedAt, deployment and per-artifact
+proof before a run may finish successfully. Proof-only checks spend no attempts.
+
+A failed or pending day is recoverable under the two-attempt cap. One specific
+cause plus the last successful production proof is recorded durably. Alert
+attempts and confirmed Slack delivery receipts survive restarts; failed delivery
+never discards the queue. A warning resolves only after source readiness and
+production proof both pass. Controlled scheduler fixtures use separate temporary
+stores/ledger/queue and are marked synthetic; they never spend or reset actual
+production attempts or masquerade as real source readings. Actual production
+proof is captured separately. No reboot or future morning streak is claimed from
+fixtures; persisted configuration, stale-owner recovery and future run receipts
+are the immediate evidence.
+
+### Failure risks and executable acceptance
+
+Every fixture uses temporary stores; real source failures are not injected into
+canonical analytics. Tests below are required implementation deliverables, not
+claims that the baseline already satisfies them.
+
+| Failure risk | Required automated evidence / exact fixture suite |
+|---|---|
+| Missing/invalid credentials; timeout; rate limit; 4xx/5xx; malformed JSON; empty body | source-io.test.mjs plus source pull fixtures: bounded calls, nonzero error, no numeric promotion |
+| Partial channels; wrong/stale IDs; mixed pull timestamps; zero versus absent | youtube-missing-data.test.mjs, youtube-readiness.test.mjs, youtube-validator-negative.test.mjs, source-receipts.test.mjs |
+| Late source result; Phoenix/UTC rollover; future/same-day episode | youtube-release-date.test.mjs, episode-date-sync.test.mjs, run-daily.test.mjs, recover-publish.test.mjs |
+| Missing transcripts/newsletter/X/live results | transcripts-pull.test.mjs, beehiiv-promotions.test.mjs, x-broadcast-plays.test.mjs, ingest-restream.test.mjs |
+| Failed/partial/paginated comments or channel response | comments-pull.test.mjs, channel-stats.test.mjs: no false coverage or successful reading |
+| Stale stores; partial history; source-less number; frozen-rating mutation | source-integrity.test.mjs, youtube-zero-downstream.test.mjs, full validate.mjs negative fixtures |
+| Concurrent runs, lock contention, interrupted write, stale lock after crash | source-io.test.mjs, alert-queue.test.mjs, run-daily.test.mjs: prior bytes intact and no duplicate history |
+| Dirty/stale/wrong release checkout; hook clobbers work | publisher-checkout.test.mjs, publish-git.test.mjs, release-gate.test.mjs |
+| Build or validator failure; child no status; timeout; deploy failure | publish-flow.test.mjs, release-gate.test.mjs, run-chain-policy.test.mjs, scheduler-contract.test.mjs |
+| Deployment URL succeeds but alias/cache stale or any public file differs | live-parity.test.mjs, publish-flow.test.mjs; exact bytes and stamp required |
+| Alert delivery failure; crash after send; later source readiness clears warning | alerts-delivery.test.mjs, alert-queue.test.mjs, recover-publish.test.mjs; durable delivery/resolve evidence |
+| Scheduler restart/reboot; duplicate recovery; attempts exhausted; proof-only | run-daily.test.mjs, recover-publish.test.mjs, scheduler-contract.test.mjs; persisted live readback plus controlled manual scheduler executions |
+
+Final acceptance requires all audit files and syntax checks pass, exact strict
+validator exit 0, baseline frozen-entry byte comparison, current source states,
+real scheduler manual run IDs/statuses, final SHA equal origin/main, clean release
+trees, deployment identity, all-public-file parity, browser screenshots, durable
+receipt and alert state. Immediate proof and future unattended evidence are
+reported separately. The old completion checkboxes above are historical only.
