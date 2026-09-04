@@ -7,6 +7,7 @@
 // final build is rebuilt and validated again before it can be pushed.
 
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { atomicWriteJson } from "./source-io.mjs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
@@ -19,7 +20,18 @@ import { checkLiveParity, SITE } from "./live-parity.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
 export const MAX_ATTEMPTS = 2;
+export const PRODUCTION_PROJECT = Object.freeze({ projectId: "prj_qhIPgmf5xXY36ECFM28gGxww9770", orgId: "team_I5Lv2baPfAlRXOmFfSkNHInZ" });
 const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
+
+export function assertProductionProject(root, env = process.env) {
+  let linked;
+  try { linked = JSON.parse(readFileSync(join(root, ".vercel", "project.json"), "utf8")); }
+  catch { throw new Error("the verified Dive Radio Vercel project link is missing or unreadable"); }
+  for (const [field, variable] of [["projectId", "VERCEL_PROJECT_ID"], ["orgId", "VERCEL_ORG_ID"]]) {
+    if (linked[field] !== PRODUCTION_PROJECT[field] || (env[variable] && env[variable] !== PRODUCTION_PROJECT[field])) throw new Error("Vercel project or organization differs from the verified production identity");
+  }
+  return PRODUCTION_PROJECT;
+}
 
 function tail(text, lines = 12) {
   return String(text || "").trim().split("\n").filter(Boolean).slice(-lines).join("\n");
@@ -123,7 +135,8 @@ export function pushMain(root, log = console.log) {
   let last = "";
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     rebaseIfMainMoved(root, log);
-    const push = git(root, ["push", "--quiet", "origin", "HEAD:main"], { allowFailure: true });
+    command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
+    const push = git(root, ["push", "--quiet", "origin", "HEAD:main"], { allowFailure: true, timeout: 20 * 60_000 });
     if (push.status === 0) {
       git(root, ["fetch", "--quiet", "origin", "main"]);
       const local = gitText(root, ["rev-parse", "HEAD"]);
@@ -171,6 +184,7 @@ function assertCleanRelease(root, sha) {
 }
 
 async function deployProduction(root, sha, log) {
+  assertProductionProject(root);
   let deploymentUrl = null;
   if (process.env.DIVE_PROD_SITE && process.env.DIVE_PROD_SITE !== SITE) throw new Error("production proof must use the canonical Dive Radio alias");
   const site = SITE;
@@ -179,6 +193,7 @@ async function deployProduction(root, sha, log) {
     deploy: async () => {
       git(root, ["fetch", "--quiet", "origin", "main"]);
       assertCleanRelease(root, sha);
+      assertProductionProject(root);
       // The hook also runs this gate, but every deploy is independently gated.
       command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
       assertCleanRelease(root, sha);
@@ -212,6 +227,7 @@ async function deployProduction(root, sha, log) {
 }
 
 export async function publishRelease({ root = ROOT, log = console.log } = {}) {
+  assertProductionProject(root);
   const origin = gitText(root, ["remote", "get-url", "origin"]);
   if (!/^(https:\/\/github\.com\/|git@github\.com:)tommygeoco\/dive-radio-analytics(?:\.git)?$/.test(origin)) throw new Error("publisher origin is not the Dive Radio repository");
   assertPublisherCheckout(root);

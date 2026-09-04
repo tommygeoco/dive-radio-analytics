@@ -31,6 +31,8 @@ try {
   writeFileSync(join(publisher, "data.json"), "base\n");
   writeFileSync(join(publisher, "README.md"), "base\n");
   writeFileSync(join(publisher, "tools", "dive-analytics", "ratings.mjs"), "process.exit(0);\n");
+  const gate = join(publisher, "tools", "dive-analytics", "release-gate.mjs");
+  writeFileSync(gate, "process.exit(0);\n");
   writeFileSync(join(publisher, "tools", "dive-analytics", "build-data.mjs"), "import { writeFileSync } from 'node:fs'; writeFileSync('data.json', 'rebuilt\\n');\n");
   writeFileSync(join(publisher, "tools", "dive-analytics", "audit", "validate.mjs"), "process.exit(0);\n");
   git(publisher, "add", "-A");
@@ -58,6 +60,13 @@ try {
   assert.equal(git(origin, "rev-parse", "main"), movedHead);
   assert.equal(readFileSync(join(publisher, "data.json"), "utf8"), "rebuilt\n", "final build ran after main moved");
   assert.equal(readFileSync(join(publisher, "README.md"), "utf8"), "main moved\n");
+
+  writeFileSync(gate, "process.exit(23);\n");
+  git(publisher, "add", "--", gate); git(publisher, "commit", "-qm", "gate rejection fixture");
+  assert.throws(() => pushMain(publisher, () => {}), /failed/);
+  assert.equal(git(origin, "rev-parse", "main"), movedHead, "failed gate must stop before push even without an installed hook");
+  writeFileSync(gate, "process.exit(0);\n");
+  git(publisher, "add", "--", gate); git(publisher, "commit", "-qm", "restore gate fixture");
 
   const attempts = join(base, "push-attempts.txt");
   const hook = join(origin, "hooks", "pre-receive");
