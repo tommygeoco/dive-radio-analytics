@@ -219,7 +219,7 @@ new acceptance. Updated PRD section 10 is the implementation contract.
 - [x] Update PRD with every source, store, clock, consumer, failure path and exact tests before code.
 - [x] Repair source transactions, request completeness, capture metadata, future-episode filtering and canonical writes.
 - [x] Repair frozen-rating validation and source-to-screen consumers without new features.
-- [ ] Repair durable run/alert receipts, bounded child execution, scheduler truth and recovery.
+- [x] Repair durable run/alert receipts, bounded child execution, scheduler truth and recovery.
 - [x] Repair safe release hooks, clean exact-commit release and all-artifact proof.
 - [ ] Run complete audit fixtures, syntax, ratings/build/strict validator and frozen-byte proof.
 - [ ] Push clean main, deploy, prove production bytes/time, run controlled real scheduler executions, capture browser.
@@ -277,3 +277,25 @@ User benefit: operational truth is reviewable now; future streak claims wait for
 - Final review is closing model error propagation and alert reconciliation after
   an ambiguous provider response. No push, deployment or live job mutation has
   occurred at this checkpoint. A final complete gate follows those changes.
+
+### Release candidate
+
+The integrated release includes strict nonzero model and verification failures,
+atomic output preservation, and bounded Slack history reconciliation for ambiguous
+sends. Confirmed provider receipts survive a crash before acknowledgement; an
+unknown send does not block unrelated new alerts. Every job will use the runtime
+checkout after exact seven-job configuration readback.
+
+The live recommendation generation attempt was rejected on both bounded attempts
+by the young-versus-mature comparison guard. The command returned nonzero and
+pruned one stale recommendation; four saved recommendations remain grounded in
+current facts. This is failed refresh evidence, not a successful model call. Other
+existing model steps kept today's immutable health read and current chapters,
+added two grounded moment summaries, and passed deterministic health verification.
+
+Final production, scheduler, frozen-byte and browser evidence is retained outside
+the served checkout at
+`~/Library/Application Support/Dive Radio Analytics/reliability-2026-09-04/`.
+The final report records actual commit, generatedAt, per-file hashes, current
+source states, exact live schedules and scheduler run IDs. No multi-day streak or
+actual reboot is inferred from the temporary crash/restart fixtures.
