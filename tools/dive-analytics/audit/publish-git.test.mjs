@@ -5,7 +5,7 @@ import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync 
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { spawnSync } from "node:child_process";
-import { pushMain } from "../publish-flow.mjs";
+import { pushMain, assertCleanRelease } from "../publish-flow.mjs";
 
 const base = mkdtempSync(join(tmpdir(), "dive-publish-git."));
 const origin = join(base, "origin.git");
@@ -45,6 +45,7 @@ try {
   const firstHead = git(publisher, "rev-parse", "HEAD");
   assert.equal(pushMain(publisher, () => {}), firstHead);
   assert.equal(git(origin, "rev-parse", "main"), firstHead);
+  assertCleanRelease(publisher, firstHead);
 
   git(base, "clone", "-q", origin, other);
   identity(other);
@@ -52,6 +53,8 @@ try {
   git(other, "add", "--", "README.md");
   git(other, "commit", "-qm", "code moved");
   git(other, "push", "-q", "origin", "main");
+  assert.equal(git(publisher, "rev-parse", "origin/main"), firstHead, "cached main still looks current after another publisher advances it");
+  assert.throws(() => assertCleanRelease(publisher, firstHead), /release is not exact origin\/main/, "release proof must refresh the remote after long gates and deploys");
 
   writeFileSync(join(publisher, "data.json"), "local second\n");
   git(publisher, "add", "--", "data.json");

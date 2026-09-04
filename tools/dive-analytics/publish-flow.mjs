@@ -177,7 +177,9 @@ export async function deployWithParity({
   return { ok: false, message: last };
 }
 
-function assertCleanRelease(root, sha) {
+export function assertCleanRelease(root, sha) {
+  // Long gates and deployments can outlive the last remote fetch.
+  git(root, ["fetch", "--quiet", "origin", "main"]);
   const state = assertPublisherCheckout(root);
   if (state.dirtyPaths.length) throw new Error("release checkout changed after validation");
   if (gitText(root, ["rev-parse", "HEAD"]) !== sha) throw new Error("release HEAD changed after validation");
