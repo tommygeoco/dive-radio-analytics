@@ -146,6 +146,19 @@ try {
   });
   assert.deepEqual(missing, { created: 0, waiting: 1, planned: 1 });
   assert.equal(existsSync(transcriptPath), false);
+  const statePath = join(pipelineRoot, "data", "restream", "transcript-state.json");
+  let state = JSON.parse(readFileSync(statePath));
+  assert.equal(state.entries[slug].reading.state, "pending");
+  assert.equal(state.entries[slug].reading.episode, slug);
+  assert.throws(() => runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: quiet,
+    downloadVtt() { throw new Error("HTTP 403 forbidden"); } }), /caption download failed/);
+  state = JSON.parse(readFileSync(statePath));
+  assert.equal(state.entries[slug].reading.state, "failed");
+  assert.throws(() => runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: quiet,
+    downloadVtt() { return "malformed captions"; } }), /no readable timestamped cues/);
+  runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: thursdayMorningPhoenix - 86400000, logger: quiet,
+    downloadVtt() { throw new Error("future source must never run"); } });
+  assert.equal(JSON.parse(readFileSync(statePath)).entries[slug].reading.state, "failed", "future checks neither query nor record a missing result");
 } finally {
   rmSync(pipelineRoot, { recursive: true, force: true });
 }

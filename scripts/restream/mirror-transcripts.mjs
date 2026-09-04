@@ -8,6 +8,8 @@ import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
+import { atomicWriteJson, withSourceLock } from "../../tools/dive-analytics/source-io.mjs";
+import { writeTranscriptOnce } from "./transcripts-pull.mjs";
 import { ISOLATED_PUBLISHER_ROOT, TRANSCRIPT_REFRESH_STATE_PATH } from "../../tools/dive-analytics/runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -26,9 +28,7 @@ function saveRefreshState(path, files) {
     neededSince: previous?.neededSince || new Date().toISOString(),
     files: [...new Set([...(previous?.files || []), ...files])],
   };
-  const tmp = `${path}.${process.pid}.${Date.now()}.tmp`;
-  writeFileSync(tmp, JSON.stringify(state, null, 2) + "\n", { mode: 0o600 });
-  renameSync(tmp, path);
+  atomicWriteJson(path, state, { mode: 0o600 });
 }
 
 function pendingRefresh(path) {
@@ -38,7 +38,7 @@ function pendingRefresh(path) {
   return true;
 }
 
-export function mirrorTranscripts({
+function mirrorTranscriptFiles({
   source = process.env.DIVE_TRANSCRIPT_SOURCE || DEFAULT_SOURCE,
   vault = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT,
   refreshScript = process.env.DIVE_QMD_REFRESH || DEFAULT_REFRESH,
@@ -70,7 +70,7 @@ export function mirrorTranscripts({
   if (problems.length) throw new Error(problems.join("; "));
   if (!dryRun && planned.length) saveRefreshState(refreshState, planned.map((item) => item.target));
   for (const item of planned) {
-    if (!dryRun) copyFileSync(item.source, item.destination);
+    if (!dryRun) writeTranscriptOnce(item.destination, readFileSync(item.source));
     copied.push(item.target);
   }
   for (const target of copied) log(`Dive Radio transcript mirror: copied ${target}${dryRun ? " (dry run)" : ""}`);
@@ -86,6 +86,10 @@ export function mirrorTranscripts({
   }
   if (problems.length) throw new Error(problems.join("; "));
   return { copied, refreshPending: noQmd && needsRefresh };
+}
+
+export function mirrorTranscripts(options = {}) {
+  return withSourceLock(options.refreshState || TRANSCRIPT_REFRESH_STATE_PATH, () => mirrorTranscriptFiles(options));
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

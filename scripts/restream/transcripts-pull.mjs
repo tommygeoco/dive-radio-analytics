@@ -35,6 +35,7 @@ import { tmpdir } from "node:os";
 import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { atomicWriteJson, readJsonFile, withSourceLock, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -230,14 +231,14 @@ function downloadEnglishVtt(target, { ytdlpBin = YTDLP_BIN } = {}) {
       "--fragment-retries", "1",
       "--socket-timeout", "20",
       "--output", join(workDir, "%(id)s.%(ext)s"),
-      target.url || `https://www.youtube.com/watch?v=${target.videoId}`,
+      `https://www.youtube.com/watch?v=${target.videoId}`,
     ], {
       encoding: "utf8",
       timeout: 120000,
       stdio: ["ignore", "pipe", "pipe"],
       env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
     });
-    const files = readdirSync(workDir).filter((name) => name.endsWith(".vtt")).sort();
+    const files = readdirSync(workDir).filter((name) => name.startsWith(`${target.videoId}.`) && name.endsWith(".vtt")).sort();
     if (!files.length) throw new Error("YouTube has not published English auto-captions yet");
     return readFileSync(join(workDir, files[0]), "utf8");
   } finally {
@@ -274,7 +275,7 @@ export function planTranscriptPulls(registry, { now = Date.now(), transcriptsDir
   });
 }
 
-export function runTranscriptPull({
+function pullTranscriptFiles({
   now = Date.now(),
   dryRun = false,
   root = ROOT,
@@ -288,10 +289,31 @@ export function runTranscriptPull({
   const transcriptsDir = join(root, "transcripts");
   const registry = JSON.parse(readFileSync(registryPath, "utf8"));
   const plans = planTranscriptPulls(registry, { now, transcriptsDir });
+  const statePath = join(root, "data", "restream", "transcript-state.json");
+  const state = readJsonFile(statePath, { fallback: { schemaVersion: 1, entries: {} } });
+  if (state.schemaVersion !== 1 || !state.entries || typeof state.entries !== "object" || Array.isArray(state.entries)) throw new Error("transcript source state is invalid");
+  const pulledAt = new Date(now).toISOString();
+  const record = (plan, sourceState, objectId, reason = null) => {
+    if (dryRun) return;
+    const sha256 = existsSync(plan.path) ? createHash("sha256").update(readFileSync(plan.path)).digest("hex") : null;
+    const previous = state.entries[plan.show.slug];
+    state.entries[plan.show.slug] = {
+      reading: sourceState === "ready" && previous?.reading?.state === "ready" && previous?.sha256 === sha256
+        ? previous.reading
+        : readingEnvelope({ source: "transcript", episode: plan.show.slug, objectId, pulledAt, state: sourceState }),
+      checkedAt: pulledAt,
+      reason, file: existsSync(plan.path) ? `transcripts/${plan.show.slug}.txt` : null,
+      ...(sha256 ? { sha256 } : {}),
+    };
+    state.checkedAt = pulledAt;
+    atomicWriteJson(statePath, state);
+  };
   let created = 0;
   let waiting = 0;
   for (const plan of plans) {
+    if (plan.show.date > phoenixDateKey(now)) continue;
     if (existsSync(plan.path)) {
+      record(plan, "ready", `file:transcripts/${plan.show.slug}.txt`);
       logger.log(`transcripts: E${plan.ep} already has a transcript — kept unchanged`);
       continue;
     }
@@ -306,8 +328,10 @@ export function runTranscriptPull({
       if (stored) {
         created++;
         logger.log(`transcripts: E${plan.ep} imported ${vaultTranscript.file} from the owner vault`);
+        record(plan, "ready", `vault:${vaultTranscript.file}`);
       } else {
         logger.log(`transcripts: E${plan.ep} gained a transcript while the vault source was being read — kept that file unchanged`);
+        record(plan, "ready", `file:transcripts/${plan.show.slug}.txt`);
       }
       continue;
     }
@@ -320,12 +344,17 @@ export function runTranscriptPull({
       continue;
     }
     let stored = false;
+    const hardErrors = [];
     for (const target of plan.youtubeTargets) {
       let body;
       try {
         body = vttToTranscript(downloadVtt(target));
       } catch (error) {
-        if (error?.code === "ENOENT") throw new Error(`yt-dlp is unavailable at ${ytdlpBin}`);
+        const expectedDelay = /captions pending|not published English auto-captions|no subtitles|no automatic captions|no English auto-captions/i.test(errorLine(error));
+        if (!expectedDelay) {
+          hardErrors.push(error?.code === "ENOENT" ? `yt-dlp is unavailable at ${ytdlpBin}` : `caption download failed for E${plan.ep}: ${errorLine(error)}`);
+          continue;
+        }
         logger.warn(`WARN  transcripts: E${plan.ep} ${target.account || target.videoId} captions unavailable — ${errorLine(error)}`);
         continue;
       }
@@ -336,23 +365,36 @@ export function runTranscriptPull({
       if (stored) {
         created++;
         logger.log(`transcripts: E${plan.ep} saved YouTube auto-captions from ${target.account || target.videoId}`);
+        record(plan, "ready", `youtube:${target.videoId}`);
       } else {
         logger.log(`transcripts: E${plan.ep} gained a transcript while captions were downloading — kept that file unchanged`);
+        record(plan, "ready", `file:transcripts/${plan.show.slug}.txt`);
       }
       break;
     }
     if (!stored && !existsSync(plan.path)) {
+      if (hardErrors.length) {
+        record(plan, "failed", `youtube:${plan.youtubeTargets.map((target) => target.videoId).join(",") || "unregistered"}`, "Caption downloads failed; no transcript was promoted.");
+        throw new Error(hardErrors.join("; "));
+      }
       waiting++;
+      record(plan, "pending", `youtube:${plan.youtubeTargets.map((target) => target.videoId).join(",") || "unregistered"}`, "No English captions or owner transcript are available yet.");
       logger.warn(`WARN  transcripts: E${plan.ep} is due but no English auto-captions are available; it will be tried again tomorrow`);
     }
   }
   return { created, waiting, planned: plans.length };
 }
 
+export function runTranscriptPull(options = {}) {
+  const statePath = join(options.root || ROOT, "data", "restream", "transcript-state.json");
+  return withSourceLock(statePath, () => pullTranscriptFiles(options));
+}
+
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
   const result = runTranscriptPull({ dryRun });
   console.log(`transcripts: ${result.created} created, ${result.waiting} waiting, ${result.planned} tracked episode(s)`);
+  if (result.waiting && !dryRun) process.exitCode = 20;
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
