@@ -1,64 +1,16 @@
 #!/bin/sh
-# install-hooks.sh — PRD v11 W36/W41: drift is caught at push time, not at 07:00.
-# Installs .git/hooks/pre-push, which runs the fixture tests and the validator
-# in STRICT mode on a fresh build (drift blocks here), restores the generated
-# files, and warns when a push from a non-chain machine carries store files.
-#   sh scripts/dev/install-hooks.sh
-set -e
+# Install a candidate-only gate. It never rebuilds or resets the caller's files.
+set -eu
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
-HOOK="$REPO/.git/hooks/pre-push"
+HOOK="$(git -C "$REPO" rev-parse --git-path hooks/pre-push)"
+case "$HOOK" in /*) ;; *) HOOK="$REPO/$HOOK" ;; esac
+mkdir -p "$(dirname "$HOOK")"
 cat > "$HOOK" <<'HOOKEOF'
 #!/bin/sh
-# pre-push (installed by scripts/dev/install-hooks.sh) — PRD v11 W36/W41
+set -eu
 REPO="$(git rev-parse --show-toplevel)"
-cd "$REPO" || exit 1
-echo "pre-push: fixtures + strict validator on a fresh build …"
-node tools/dive-analytics/audit/baselines.test.mjs >/dev/null || { echo "pre-push: baselines fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/youtube-missing-data.test.mjs >/dev/null || { echo "pre-push: YouTube missing-data fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/youtube-validator-negative.test.mjs >/dev/null || { echo "pre-push: YouTube validator rejection fixture failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/youtube-release-date.test.mjs >/dev/null || { echo "pre-push: YouTube broadcast-day fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/episode-date-sync.test.mjs >/dev/null || { echo "pre-push: episode-date sync fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/youtube-zero-downstream.test.mjs >/dev/null || { echo "pre-push: YouTube startup-zero fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/x-broadcast-plays.test.mjs >/dev/null || { echo "pre-push: X broadcast-only fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/x-broadcast-discovery.test.mjs >/dev/null || { echo "pre-push: X broadcast discovery fixtures failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/chain-heal.test.mjs >/dev/null || { echo "pre-push: chain-heal rehearsal failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/publish-scope.test.mjs >/dev/null || { echo "pre-push: publish scope test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/publisher-checkout.test.mjs >/dev/null || { echo "pre-push: publisher checkout test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/live-parity.test.mjs >/dev/null || { echo "pre-push: live parity test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/publish-flow.test.mjs >/dev/null || { echo "pre-push: publish flow test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/publish-git.test.mjs >/dev/null || { echo "pre-push: publish Git rehearsal failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/freshness.test.mjs >/dev/null || { echo "pre-push: production freshness test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/mirror-transcripts.test.mjs >/dev/null || { echo "pre-push: transcript mirror test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/transcript-cron-script.test.mjs >/dev/null || { echo "pre-push: transcript cron wrapper test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/run-chain-policy.test.mjs >/dev/null || { echo "pre-push: chain retry policy test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/run-daily.test.mjs >/dev/null || { echo "pre-push: daily attempt limit test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/recover-publish.test.mjs >/dev/null || { echo "pre-push: recovery test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/alert-queue.test.mjs >/dev/null || { echo "pre-push: alert queue test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/alerts-delivery.test.mjs >/dev/null || { echo "pre-push: alert delivery test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/validate-tiers.test.mjs >/dev/null || { echo "pre-push: validator tier test failed — push refused" >&2; exit 1; }
-node tools/dive-analytics/audit/agent-brief.test.mjs >/dev/null || { echo "pre-push: agent brief fixtures failed — push refused" >&2; exit 1; }
-DIRTY_DATA=0; git diff --quiet -- data.json data.js || DIRTY_DATA=1
-node tools/dive-analytics/build-data.mjs >/dev/null || { echo "pre-push: build-data failed — push refused" >&2; exit 1; }
-OUT="$(node tools/dive-analytics/audit/validate.mjs 2>&1)"; CODE=$?
-[ "$DIRTY_DATA" = 0 ] && git checkout -- data.json data.js agent.md agent.json llms.txt 2>/dev/null
-if [ $CODE -ne 0 ]; then
-  echo "$OUT" | grep -E "^(FAIL|DRIFT)" | head -20 >&2
-  echo "pre-push: the strict validator refused this tree (fail or drift above) — fix before pushing" >&2
-  exit 1
-fi
-# rule 26: stores have one writer (the chain machine, DIVE_CHAIN_MACHINE=1)
-if [ -z "${DIVE_CHAIN_MACHINE:-}" ]; then
-  while read -r local_ref local_sha remote_ref remote_sha; do
-    [ "$local_sha" = "0000000000000000000000000000000000000000" ] && continue
-    if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then RANGE="$local_sha"; else RANGE="$remote_sha..$local_sha"; fi
-    STORES="$(git diff --name-only "$RANGE" -- 'data/restream/*' data.json data.js 2>/dev/null | head -5)"
-    [ -n "$STORES" ] && echo "pre-push: WARNING — this push changes store or generated files from a machine that is not the chain machine:
-$STORES
-  (rule 26: the chain machine is the only writer; its next run heals a same-day conflict, but prefer code-only pushes)" >&2
-  done
-fi
-echo "pre-push: ok"
-exit 0
+cd "$REPO"
+exec node tools/dive-analytics/release-gate.mjs
 HOOKEOF
 chmod +x "$HOOK"
-echo "install-hooks: pre-push installed at $HOOK"
+printf 'install-hooks: pre-push installed at %s\n' "$HOOK"
