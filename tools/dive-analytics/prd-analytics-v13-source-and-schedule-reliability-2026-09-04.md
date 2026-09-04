@@ -375,3 +375,19 @@ before rebuilding its disposable copy. Dedicated model scripts preserve prior
 valid stores on request/parse/grounding failure and return nonzero; a deterministic
 prune may remove stale recommendations but must not hide the failed model step.
 Intentional already-current and no-eligible-input paths may return success.
+
+### Recommendation fact bindings
+
+New recommendation generations must bind each item to unique, existing `factIds`.
+The validator checks every numeric citation against only those facts and the
+existing structural constants, and applies the young-versus-finished rate rule
+to those facts' recorded comparison metadata. This fixes identical-value
+collisions without allowing unrelated facts to authorize a comparison. Retention
+shape facts carry comparison metadata as well; no new measurement is introduced.
+The store preserves these internal bindings and stamped metadata. Public copy is
+checked against the exact bound store item, and technical fact IDs are not shown.
+Legacy unbound items retain their conservative existing validation; no bindings
+are inferred or backfilled. Missing bindings on new model output, unknown or
+duplicate IDs, uncited numbers, and mixed-age rate comparisons all fail safely.
+The recommendation-bindings fixture covers the real E4/E3 retention collision,
+genuine mixed-age rates with the same values, and malformed or missing bindings.

@@ -258,6 +258,7 @@ export function buildDigest(data) {
     health: healthDigest(data),
     direction: directionDigest(data),
     outlook: outlookDigest(data),
+    // Internal factIds stay in the source store; validator binds this prose to the exact stored item.
     recommendations: (data.insights || []).filter((i) => i.rank != null).sort((a, b) => a.rank - b.rank).map((i) => ({ rank: i.rank, id: i.id, category: i.category, serves: i.serves || null, finding: i.text, action: i.recommendation, caveat: i.caveat || null })),
     episodes: eps.map((e) => episodeDigest(e, data)),
     trajectory: {

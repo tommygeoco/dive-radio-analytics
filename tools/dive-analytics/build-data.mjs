@@ -439,7 +439,7 @@ export function computeAll({ now = Date.now() } = {}) {
     const allowed = allowedNumbers(sheet.facts);
     const current = [];
     for (const r of recStore.items) {
-      try { validateItem(r, sheet.facts, allowed); current.push(r); }
+      try { validateItem(r, sheet.facts, allowed, { requireFactIds: recStore.promptVersion >= 5 }); current.push(r); }
       catch (err) { insightsStale.push({ id: r.id, why: String(err.message).replace(/^[a-z0-9-]+: /, "") }); }
     }
     // W35: a ranked store ships in its own order — item one is this week's

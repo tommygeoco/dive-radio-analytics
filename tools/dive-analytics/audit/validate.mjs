@@ -1698,7 +1698,7 @@ try {
       // grounding against the facts the store stamps (PRD v9 §4.6); stores
       // written before fact stamping can only be judged against today's sheet
       if (Array.isArray(store.facts)) {
-        try { recs.validateItems(store.items, store.facts); }
+        try { recs.validateItems(store.items, store.facts, { requireFactIds: store.promptVersion >= 5 }); }
         catch (err) { bad++; fail(`recommendations: store is not grounded in its own stamped facts — ${err.message}`); }
       } else warn("recommendations: store predates fact stamping — grounded against today's sheet only");
       // currency: shipped items pass today's sheet; stale items fail it, and
@@ -1708,7 +1708,7 @@ try {
       const staleIds = (data.insightsStale || []).map((x) => x.id);
       for (const item of store.items || []) {
         let err = null;
-        try { recs.validateItem(item, sheet.facts, allowed); } catch (e) { err = e; }
+        try { recs.validateItem(item, sheet.facts, allowed, { requireFactIds: store.promptVersion >= 5 }); } catch (e) { err = e; }
         const shipped = data.insights.some((i) => i.id === item.id);
         if (err && shipped) { bad++; fail(`recommendations: ${item.id} is shipped but no longer grounded — ${err.message}`); }
         if (!err && !shipped && data.insights.some((i) => !("chartState" in i))) { bad++; fail(`recommendations: ${item.id} is grounded today but missing from the page`); }
@@ -1749,8 +1749,12 @@ try {
     }
     for (const item of store.items || []) {
       const shipped = data.insights.find((i) => i.id === item.id);
-      if (shipped && (shipped.text !== item.text || shipped.recommendation !== item.recommendation)) {
-        bad++; fail(`recommendations: ${item.id} text drifted between store and page`);
+      if (shipped && (shipped.text !== item.text || shipped.recommendation !== item.recommendation
+          || (shipped.caveat || null) !== (item.caveat || null))) {
+        bad++; fail(`recommendations: ${item.id} prose drifted between store and page`);
+      }
+      if (shipped && Object.hasOwn(shipped, "factIds")) {
+        bad++; fail(`recommendations: ${item.id} exposes internal fact bindings on the public page`);
       }
     }
     if (!bad) ok(`recommendations: ${(store.items || []).length} saved item(s), ${(data.insightsStale || []).length} stale and held back — every shipped number grounded in today's fact sheet, page matches the store`);
@@ -2662,6 +2666,7 @@ try {
   for (const fixture of [
     ["source-integrity.test.mjs", "source-to-screen integrity"],
     ["model-failures.test.mjs", "model failure preservation"],
+    ["recommendation-bindings.test.mjs", "recommendation fact bindings"],
     ["youtube-missing-data.test.mjs", "missing-data capture"],
     ["youtube-release-date.test.mjs", "broadcast-day discovery"],
     ["episode-date-sync.test.mjs", "episode-date store sync"],
