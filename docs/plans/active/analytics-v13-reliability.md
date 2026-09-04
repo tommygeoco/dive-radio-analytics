@@ -20,8 +20,8 @@ same bytes that passed validation. No new data or UI is in scope.
 - [x] 2026-09-04 11:33 MST - implemented atomic YouTube cohorts, locked history writes, and source-store validation.
 - [x] 2026-09-04 11:33 MST - implemented retry, idle, waiting, final-attempt alert, and proof-only behavior with executable fixtures.
 - [x] 2026-09-04 11:35 MST - passed 30 deterministic tests and the ratings to build to strict-validator release gate without changing a frozen score.
-- [ ] 2026-09-04 11:10 MST - update and prove the transcript and recovery OpenClaw jobs.
-- [ ] 2026-09-04 11:10 MST - run the full local release gate, push, deploy, prove parity, and capture a screenshot.
+- [x] 2026-09-04 11:41 MST - updated and proved the transcript and recovery OpenClaw jobs without consuming another daily attempt.
+- [x] 2026-09-04 11:43 MST - pushed main, deployed production, proved 16-file parity and the production time, and captured the dashboard.
 
 ## Surprises & Discoveries
 
@@ -79,8 +79,22 @@ same bytes that passed validation. No new data or UI is in scope.
 
 ## Outcomes & Retrospective
 
-Pending implementation. This section will record commit ids, production evidence,
-cron run receipts, remaining source absence, and the rolling unattended-run gate.
+The source and schedule contract shipped in `9ffd1d3`; implementation shipped in
+`cd278c9`. A watch reading now advances only as one complete same-pull set, history
+writes are locked and atomic, future and air-date gaps stay idle, both scheduled
+recovery windows can repair a missed morning, final missing-source alerts are dated
+and durable, and stale source alerts clear only after ready data is proved live.
+
+Production at `https://dive-radio-analytics.vercel.app` served local
+`generatedAt` `2026-09-04T18:35:22.692Z`, and all 16 public artifacts matched.
+E8 still has no YouTube watch report from either owner account, so its watched
+share remains absent and explicitly waiting; its existing YouTube views, X plays,
+live-event facts, transcript, and newsletter facts remain source-backed.
+
+The transcript and production-proof jobs both completed real manual runs with
+status `ok`. The daily ledger remained at exactly two prior passed attempts. The
+fourteen-morning unattended observation gate begins with the next 06:50/07:00 run;
+it cannot be truthfully claimed from a same-day manual proof.
 
 ## Context and Orientation
 
@@ -127,14 +141,14 @@ User benefit: a malformed store fails closed before any number reaches productio
 3. [complete] Make the chain handle waiting after a retry, preserve the two-run cap,
    and durably mark one alert after the reserved recovery still lacks watch data.
 User benefit: expected source delay no longer blocks the day's other facts or stays silent indefinitely.
-4. [pending] Repair the transcript OpenClaw wrapper and correct recovery wording,
+4. [complete] Repair the transcript OpenClaw wrapper and correct recovery wording,
    add proof-only recovery, and preserve every schedule, destination, timeout, and
    failure-alert field.
 User benefit: green cron history once again means the owned command actually succeeded.
 5. [complete] Run focused fixtures and the ratings to build to validator chain, update
    docs, then commit the source reliability concern.
 User benefit: every changed behavior is reproducible without risking a third live run today.
-6. [pending] Push, deploy, prove exact public parity and production time, manually
+6. [complete] Push, deploy, prove exact public parity and production time, manually
    exercise safe cron proofs, and capture the dashboard screenshot.
 User benefit: the repaired code and jobs are verified on the path used each morning, not only locally.
 
@@ -147,9 +161,9 @@ User benefit: the repaired code and jobs are verified on the path used each morn
 - [x] Existing source, alert, checkout, publish, freshness, and parity fixtures pass.
 - [x] Ratings, build-data, and strict validator exit 0 on the release tree.
 - [x] Frozen rating entries remain byte-identical.
-- [ ] Transcript wrapper fixtures cover success, nonzero, and missing status; OpenClaw job readback and manual histories prove real exit behavior.
-- [ ] GitHub main, Vercel production, public bytes, and cache-busted generatedAt agree.
-- [ ] Final browser screenshot shows honest missing watch data, not zero or a blend.
+- [x] Transcript wrapper fixtures cover success, nonzero, and missing status; OpenClaw job readback and manual histories prove real exit behavior.
+- [x] GitHub main, Vercel production, public bytes, and cache-busted generatedAt agree.
+- [x] Final browser screenshot shows honest missing watch data, not zero or a blend.
 
 ## Idempotence and Recovery
 
@@ -171,7 +185,17 @@ the read-before snapshot, and deployment follows the existing checked retry path
 - Deterministic review after implementation: 30 test files passed, including a
   full-validator rejection of an in-memory mixed-time cohort; strict validation
   reported 0 failures, 41 historical warnings, and 0 drift before release.
-- Commit, deployment, parity, cron run ids, and screenshot path will be appended.
+- GitHub main and the deployed implementation: `cd278c91094dedd130e366905b46342429b11daa`.
+- Vercel deployment: `https://dive-radio-analytics-5d7uwsznx-toolbenders.vercel.app`,
+  aliased to `https://dive-radio-analytics.vercel.app`.
+- Cache-busted production proof: all 16 files matched and both local and production
+  reported `generatedAt` `2026-09-04T18:35:22.692Z`.
+- Transcript manual run: `manual:84781eb0-d195-4203-a13a-026f4b453eeb:1788547282193:9`,
+  status `ok`, silent because the mirror was current.
+- Recovery manual run: `manual:34741aa2-342e-454e-9eea-30fff2b92c18:1788547296361:10`,
+  status `ok`, reporting all 16 public files matched; daily attempt count stayed two.
+- Production browser capture: `https://dive-radio-analytics.vercel.app/?cb=release-cd278c9`,
+  showing E8's watched share as “YouTube is still preparing this number.”
 
 ## Interfaces and Dependencies
 
