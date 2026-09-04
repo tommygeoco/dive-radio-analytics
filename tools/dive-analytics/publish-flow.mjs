@@ -7,6 +7,8 @@
 // final build is rebuilt and validated again before it can be pushed.
 
 import { spawnSync } from "node:child_process";
+import { atomicWriteJson } from "./source-io.mjs";
+import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
@@ -23,14 +25,16 @@ function tail(text, lines = 12) {
   return String(text || "").trim().split("\n").filter(Boolean).slice(-lines).join("\n");
 }
 
-function command(root, executable, args, { allowFailure = false, env = ENV } = {}) {
+function command(root, executable, args, { allowFailure = false, env = ENV, timeout = 120_000 } = {}) {
   const result = spawnSync(executable, args, {
     cwd: root,
     encoding: "utf8",
     env,
     maxBuffer: 16 * 1024 * 1024,
+    timeout,
+    killSignal: "SIGKILL",
   });
-  const status = Number.isInteger(result.status) ? result.status : 1;
+  const status = !result.error && !result.signal && Number.isInteger(result.status) ? result.status : 1;
   if (!allowFailure && status !== 0) {
     const detail = tail(result.stderr || result.stdout) || `exit ${status}`;
     throw new Error(`${executable} ${args[0] || ""} failed — ${detail}`);
@@ -43,9 +47,10 @@ const gitText = (root, args) => git(root, args).stdout.trim();
 
 function runBuildAndValidation(root, log) {
   log("publish: rebuilding the public files from the final stores.");
+  command(root, process.execPath, ["tools/dive-analytics/ratings.mjs"]);
   command(root, process.execPath, ["tools/dive-analytics/build-data.mjs"]);
   log("publish: checking the final files before release.");
-  command(root, process.execPath, ["tools/dive-analytics/audit/validate.mjs", "--publish"]);
+  command(root, process.execPath, ["tools/dive-analytics/audit/validate.mjs"]);
 }
 
 function restoreAfterPull(root, stashed, log) {
@@ -158,15 +163,29 @@ export async function deployWithParity({
   return { ok: false, message: last };
 }
 
-async function deployProduction(root, log) {
+function assertCleanRelease(root, sha) {
+  const state = assertPublisherCheckout(root);
+  if (state.dirtyPaths.length) throw new Error("release checkout changed after validation");
+  if (gitText(root, ["rev-parse", "HEAD"]) !== sha) throw new Error("release HEAD changed after validation");
+  if (gitText(root, ["rev-parse", "origin/main"]) !== sha) throw new Error("release is not exact origin/main");
+}
+
+async function deployProduction(root, sha, log) {
+  let deploymentUrl = null;
   const site = process.env.DIVE_PROD_SITE || SITE;
   const result = await deployWithParity({
     log,
     deploy: async () => {
-      const run = command(root, "vercel", ["deploy", "--prod", "--yes"], { allowFailure: true });
+      git(root, ["fetch", "--quiet", "origin", "main"]);
+      assertCleanRelease(root, sha);
+      // The hook also runs this gate, but every deploy is independently gated.
+      command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
+      assertCleanRelease(root, sha);
+      const run = command(root, "vercel", ["deploy", "--prod", "--yes"], { allowFailure: true, timeout: 10 * 60_000 });
+      deploymentUrl = (run.stdout.match(/https:\/\/[a-z0-9-]+\.vercel\.app/g) || []).at(-1) || null;
       const summary = tail(run.stdout || run.stderr, 3);
       if (summary) log(summary);
-      return run.status === 0
+      return run.status === 0 && deploymentUrl
         ? { ok: true }
         : { ok: false, message: tail(run.stderr || run.stdout) || `Vercel exit ${run.status}` };
     },
@@ -174,7 +193,7 @@ async function deployProduction(root, log) {
       try {
         const proof = await checkLiveParity({ root, site, cacheBust: String(Date.now()) });
         return proof.ok
-          ? { ok: true, checked: proof.checked }
+          ? { ...proof, ok: true }
           : { ok: false, message: proof.mismatches.map((item) => `${item.file}: ${item.reason}`).join("; ") };
       } catch (error) {
         return { ok: false, message: error.message };
@@ -182,20 +201,28 @@ async function deployProduction(root, log) {
     },
   });
   if (!result.ok) throw new Error(`production was not confirmed after two deploy attempts — ${result.message}`);
+  assertCleanRelease(root, sha);
+  const receipt = { version: 1, sha, generatedAt: result.proof.generatedAt, site,
+    deployment: { url: deploymentUrl }, proof: result.proof };
+  const proofPath = process.env.DIVE_PUBLISH_PROOF_PATH || join(process.env.DIVE_RUNTIME_DIR || join(homedir(), "Library", "Application Support", "Dive Radio Analytics"), "publish-proof.json");
+  atomicWriteJson(proofPath, receipt, { mode: 0o600 });
   log(`publish: production matches all ${result.proof.checked} public files byte-for-byte.`);
+  return receipt;
 }
 
 export async function publishRelease({ root = ROOT, log = console.log } = {}) {
-  healLeftovers(root, { log });
+  const origin = gitText(root, ["remote", "get-url", "origin"]);
+  if (!/^(https:\/\/github\.com\/|git@github\.com:)tommygeoco\/dive-radio-analytics(?:\.git)?$/.test(origin)) throw new Error("publisher origin is not the Dive Radio repository");
   assertPublisherCheckout(root);
+  healLeftovers(root, { log });
   pullCurrentMain(root, log);
   runBuildAndValidation(root, log);
   const committed = commitFinalOutputs(root);
   log(committed ? "publish: committed today's declared chain outputs." : "publish: no new data commit was needed.");
   const sha = pushMain(root, log);
-  await deployProduction(root, log);
-  assertPublisherCheckout(root);
-  return { sha };
+  const receipt = await deployProduction(root, sha, log);
+  assertCleanRelease(root, sha);
+  return receipt;
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

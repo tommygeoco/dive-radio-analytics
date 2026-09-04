@@ -11,8 +11,8 @@ import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
 
-assert.deepEqual(PARITY_ARTIFACTS, ["index.html", "agents.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"]);
-assert.equal(PARITY_ARTIFACTS, PUBLIC_ARTIFACTS, "local assembly and live parity share one eight-file manifest");
+assert.deepEqual(PARITY_ARTIFACTS, ["index.html", "agents.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md", "chart.umd.js"]);
+assert.equal(PARITY_ARTIFACTS, PUBLIC_ARTIFACTS, "local assembly and live parity share one nine-file manifest");
 
 const fixture = Object.fromEntries(PARITY_ARTIFACTS.map((file) => [file, Buffer.from(`${file}\n`)]));
 const transcriptSlug = "2026-09-03-dive-radio-parity-fixture";
@@ -77,9 +77,11 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
     writeFileSync(join(root, transcriptFile), transcriptBytes);
     const complete = { ...fixture, [transcriptFile]: transcriptBytes };
     const requested = [];
+    const cacheValues = [];
     const fetchFrom = (files) => async (url) => {
       const file = decodeURIComponent(new URL(url).pathname.slice(1));
       requested.push(file);
+      cacheValues.push(new URL(url).searchParams.get("cb"));
       if (!(file in files)) return { ok: false, status: 404 };
       const content = files[file];
       return {
@@ -93,6 +95,10 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
 
     const exact = await checkLiveParity({ root, fetchImpl: fetchFrom(complete) });
     assert.equal(exact.ok, true);
+    assert.equal(exact.generatedAt, "2026-09-03T14:00:00.000Z");
+    assert.equal(exact.artifacts.length, PARITY_ARTIFACTS.length + 1);
+    assert.ok(exact.artifacts.every(a => /^[a-f0-9]{64}$/.test(a.sha256) && a.bytes > 0));
+    assert.ok(cacheValues.every(Boolean));
     assert.equal(exact.checked, PARITY_ARTIFACTS.length + 1);
     assert.ok(requested.includes(transcriptFile), "a data-declared transcript must be fetched for production parity");
 
@@ -120,4 +126,4 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
   }
 }
 
-console.log("live-parity.test: eight core artifacts and data-declared transcripts are fetched and byte-checked; missing, changed, and failed live files are rejected");
+console.log("live-parity.test: nine core artifacts and data-declared transcripts are fetched and byte-checked; missing, changed, and failed live files are rejected");

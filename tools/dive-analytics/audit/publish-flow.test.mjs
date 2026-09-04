@@ -60,9 +60,9 @@ assert.equal(MAX_ATTEMPTS, 2);
   assert.match(flow, /stagePublishScope\(root\)/);
   assert.match(flow, /\["push", "--quiet", "origin", "HEAD:main"\]/);
   assert.doesNotMatch(flow, /git add -A|git add --all/);
-  assert.match(flow, /validate\.mjs", "--publish"/);
+  assert.match(flow, /validate\.mjs"/);
   assert.match(wrapper, /set -eu/);
   assert.doesNotMatch(wrapper, /vercel[^\n]*\|/);
 }
 
-console.log("publish-flow.test: two-try bound, failed deploy handling, exact proof, main-only push, scoped staging, and final validation pass");
+console.log("publish-flow.test: two-try bound, failed deploy handling, exact proof, main-only push, scoped staging, and strict final validation pass");

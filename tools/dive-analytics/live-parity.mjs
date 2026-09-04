@@ -41,7 +41,10 @@ export async function parityArtifactsForRoot(root = ROOT) {
   const data = JSON.parse(await readFile(join(root, "data.json"), "utf8"));
   const transcripts = (data.episodes || [])
     .filter((episode) => episode?.transcript === true && typeof episode.slug === "string")
-    .map((episode) => `transcripts/${episode.slug}.txt`)
+    .map((episode) => {
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(episode.slug)) throw new Error("unsafe transcript slug in public artifact manifest");
+      return `transcripts/${episode.slug}.txt`;
+    })
     .sort();
   return [...PARITY_ARTIFACTS, ...transcripts];
 }
@@ -68,7 +71,12 @@ export async function checkLiveParity({ root = ROOT, site = SITE, cacheBust = St
   const failedFiles = new Set(fetchErrors.map((item) => item.file));
   const result = compareArtifactMaps(local, live, artifacts);
   const mismatches = [...fetchErrors, ...result.mismatches.filter((item) => !failedFiles.has(item.file))];
-  return { ...result, mismatches, ok: mismatches.length === 0 };
+  const localData = JSON.parse(local["data.json"].toString("utf8"));
+  if (!Number.isFinite(Date.parse(localData.generatedAt))) throw new Error("local generatedAt is invalid");
+  return { ...result, mismatches, ok: mismatches.length === 0,
+    generatedAt: localData.generatedAt, checkedAt: new Date().toISOString(),
+    artifacts: artifacts.map(file => ({ file, sha256: sha256(local[file]), bytes: local[file].length })),
+  };
 }
 
 function arg(name, fallback) {

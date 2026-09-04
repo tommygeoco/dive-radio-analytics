@@ -1,5 +1,5 @@
 // public-artifacts.mjs — one exact local assembly contract for every served
-// human and agent file. Five files are derived from data.readout; three are
+// human and agent file. Five files are derived from data.readout; four are
 // static source files carried byte-for-byte. Static files are never described
 // as generated.
 
@@ -15,6 +15,7 @@ export const STATIC_PUBLIC_ARTIFACTS = Object.freeze([
   "index.html",
   "agents.html",
   "agent-skill.md",
+  "chart.umd.js",
 ]);
 
 export const PUBLIC_ARTIFACTS = Object.freeze([
@@ -26,6 +27,7 @@ export const PUBLIC_ARTIFACTS = Object.freeze([
   "agent.json",
   "llms.txt",
   "agent-skill.md",
+  "chart.umd.js",
 ]);
 
 export const PUBLIC_ARTIFACT_KIND = Object.freeze(Object.fromEntries([

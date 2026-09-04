@@ -30,6 +30,7 @@ try {
   mkdirSync(join(publisher, "tools", "dive-analytics", "audit"), { recursive: true });
   writeFileSync(join(publisher, "data.json"), "base\n");
   writeFileSync(join(publisher, "README.md"), "base\n");
+  writeFileSync(join(publisher, "tools", "dive-analytics", "ratings.mjs"), "process.exit(0);\n");
   writeFileSync(join(publisher, "tools", "dive-analytics", "build-data.mjs"), "import { writeFileSync } from 'node:fs'; writeFileSync('data.json', 'rebuilt\\n');\n");
   writeFileSync(join(publisher, "tools", "dive-analytics", "audit", "validate.mjs"), "process.exit(0);\n");
   git(publisher, "add", "-A");
