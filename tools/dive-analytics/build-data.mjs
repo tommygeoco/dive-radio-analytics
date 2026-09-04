@@ -660,7 +660,7 @@ function attachWatch(dive, now) {
 
     const bySource = new Map();
     let trafficTotal = 0;
-    const trafficChannels = chans.every(([, c]) => Array.isArray(c.trafficSources) && c.trafficSources.length) ? chans : [];
+    const trafficChannels = chans.every(([, c]) => Array.isArray(c.trafficSources) && c.trafficSources.length && c.trafficSources.every((row) => Number.isFinite(row.views) && row.views >= 0 && typeof row.insightTrafficSourceType === "string")) ? chans : [];
     for (const [, c] of trafficChannels) {
       for (const t of c.trafficSources || []) {
         if (!Number.isFinite(t.views) || t.views <= 0) continue;

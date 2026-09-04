@@ -6,9 +6,10 @@ export const FROZEN_BASELINE = '94d65170dc92245f86544066a99635bb68d7f95a';
 export const FRESH_MS = 26 * 3600000;
 
 export function checkedTime(value, { now = Date.now(), label = 'timestamp', maxAge = null } = {}) {
+  if (!Number.isFinite(now)) throw new Error(`${label} validation clock is invalid`);
   const time = typeof value === 'string' ? Date.parse(value) : NaN;
   if (!Number.isFinite(time)) throw new Error(`${label} is missing or invalid`);
-  if (time > now + 60_000) throw new Error(`${label} is in the future`);
+  if (time > now) throw new Error(`${label} is in the future`);
   if (maxAge != null && now - time > maxAge) throw new Error(`${label} is stale`);
   return time;
 }
@@ -145,9 +146,15 @@ export function sourceStoreIntegrityErrors(root, now = Date.now()) {
         check(stored.capture.reading, {source:'postlive',episode:show.slug,objectId:show.slug}, `${show.slug} source check`, stored.capture.checkedAt);
         if (stored.capture.state !== stored.capture.reading?.state) errors.push(`${show.slug} source-check states disagree`);
       }
+      if(stored.capture?.state==='ready' && stored.snapshots?.at(-1)?.ts!==stored.capture.checkedAt) errors.push(`${show.slug}: ready source check has no matching complete snapshot`);
+      if(stored.capture && Date.parse(stored.snapshots?.at(-1)?.ts)>Date.parse(stored.capture.checkedAt)) errors.push(`${show.slug}: source check predates its latest snapshot`);
+      let previousSnapshotTime=-Infinity;
       for (const snapshot of stored.snapshots || []) {
         const label = `${show.slug} ${snapshot.ts}`;
         try { checkedTime(snapshot.ts,{now,label}); } catch(error){errors.push(error.message);}
+        const snapshotTime=Date.parse(snapshot.ts);
+        if(snapshotTime<=previousSnapshotTime) errors.push(`${label}: duplicate or out-of-order snapshot`);
+        previousSnapshotTime=snapshotTime;
         if (!snapshot.reading) { if (!legacy.has(JSON.stringify(snapshot))) errors.push(`${label}: new snapshot has no source provenance`); continue; }
         check(snapshot.reading,{source:'postlive',episode:show.slug,objectId:show.slug},label,snapshot.ts);
         if (Number.isFinite(Date.parse(snapshot.ts)) && new Date(Date.parse(snapshot.ts)-7*3600000).toISOString().slice(0,10)<show.date) errors.push(`${label}: future episode was queried`);
@@ -159,18 +166,20 @@ export function sourceStoreIntegrityErrors(root, now = Date.now()) {
           const ids=group.map(t=>t.videoId || t.postId).filter(Boolean).sort();
           const source=key.startsWith('yt:')?'youtube-data':'x-post';
           check(metric.reading,{source,episode:show.slug,objectId:ids.join(',')},`${label} ${key}`,snapshot.ts);
-          if(metric.reading?.state!=='ready' || !Number.isFinite(metric.views) || metric.views<0) errors.push(`${label} ${key}: incomplete count`);
+          if(metric.reading?.state!=='ready' || !Number.isSafeInteger(metric.views) || metric.views<0) errors.push(`${label} ${key}: incomplete count`);
           if (!Array.isArray(metric.sources) || metric.sources.length!==ids.length || ids.some(id=>!metric.sources.some(item=>item.objectId===id))) errors.push(`${label} ${key}: source object list is incomplete`);
           for(const item of metric.sources || []) {
             check(item.reading,{source,episode:show.slug,objectId:item.objectId},`${label} ${key} object`,snapshot.ts);
-            if(item.reading?.state!=='ready' || !Number.isFinite(item.views) || item.views<0) errors.push(`${label} ${key}: incomplete source object`);
+            if(item.reading?.state!=='ready' || !Number.isSafeInteger(item.views) || item.views<0) errors.push(`${label} ${key}: incomplete source object`);
           }
           if((metric.sources || []).reduce((sum,item)=>sum+item.views,0)!==metric.views) errors.push(`${label} ${key}: count differs from source rows`);
+          const expectedBroadcasts=[...new Set(group.filter(t=>t.role!=='promo' && t.broadcastId).map(t=>t.broadcastId))].sort();
+          if(expectedBroadcasts.length && metric.plays==null) errors.push(`${label} ${key}: resolved broadcasts are missing from the source cohort`);
           if(metric.plays != null){
-            const broadcasts=[...new Set(group.filter(t=>t.role!=='promo' && t.broadcastId).map(t=>t.broadcastId))].sort();
+            const broadcasts=expectedBroadcasts;
             if(!Array.isArray(metric.broadcasts) || metric.broadcasts.length!==broadcasts.length || broadcasts.some(id=>!metric.broadcasts.some(item=>item.objectId===id))) errors.push(`${label} ${key}: broadcast source objects differ from registry`);
             check(metric.playsReading,{source:'x-broadcast',episode:show.slug,objectId:broadcasts.join(',')},`${label} ${key} plays`,snapshot.ts);
-            if(metric.playsReading?.state!=='ready' || !Number.isFinite(metric.plays) || metric.plays<0 || (metric.broadcasts || []).reduce((sum,item)=>sum+item.views,0)!==metric.plays) errors.push(`${label} ${key}: broadcast count differs from complete source rows`);
+            if(metric.playsReading?.state!=='ready' || !Number.isSafeInteger(metric.plays) || metric.plays<0 || (metric.broadcasts || []).reduce((sum,item)=>sum+item.views,0)!==metric.plays) errors.push(`${label} ${key}: broadcast count differs from complete source rows`);
           }
         }
       }
@@ -180,12 +189,15 @@ export function sourceStoreIntegrityErrors(root, now = Date.now()) {
       const store=read(analyticsPath), original=baseline(analyticsPath);
       const entries=Object.entries(store.channels || {});
       if(entries.length){try{checkedTime(store.updatedAt,{now,label:`${show.slug} analytics updatedAt`});}catch(error){errors.push(error.message);}}
+      if(entries.length && !store.reading && entries.some(([key,channel])=>JSON.stringify(channel)!==JSON.stringify(original?.channels?.[key]))) errors.push(`${show.slug}: new analytics cohort has no episode source envelope`);
       if(entries.length && !completeYoutubeWatchCohort(targets,store).length) errors.push(`${show.slug}: analytics is not a complete current-video cohort`);
       if(store.reading) { check(store.reading,{source:'youtube-analytics',episode:show.slug,objectId:show.slug},`${show.slug} analytics`,store.updatedAt);if(store.reading.state!=='ready') errors.push(`${show.slug}: analytics numeric store is not ready`); }
       for(const [key,channel] of entries){
         if(!channel.reading){if(JSON.stringify(channel)!==JSON.stringify(original?.channels?.[key])) errors.push(`${show.slug} ${key}: new analytics has no source provenance`);continue;}
         const target=targets.find(t=>t.key===key);
         check(channel.reading,{source:'youtube-analytics',episode:show.slug,objectId:target?.videoId},`${show.slug} ${key}`,store.updatedAt);
+        for(const [field,value] of Object.entries(channel.totals || {})) if(value!=null && (typeof value!=='number' || !Number.isFinite(value) || value<0)) errors.push(`${show.slug} ${key}: invalid analytics ${field}`);
+        if(!Number.isSafeInteger(channel.totals?.views)) errors.push(`${show.slug} ${key}: invalid analytics views`);
         if(channel.reading.state!=='ready') errors.push(`${show.slug} ${key}: incomplete analytics entered numeric store`);
       }
     }
@@ -203,7 +215,7 @@ export function sourceStoreIntegrityErrors(root, now = Date.now()) {
       for(const comment of store.comments || []){
         const source=comment.source==='yt'?'youtube-comments':'x-replies';
         const objectId=comment.id?.replace(/^(yt|x):/,'');
-        if(comment.likesReading) check(comment.likesReading,{source,episode:show.slug,objectId},`${show.slug} comment likes ${comment.id}`);
+        if(comment.likesReading) {check(comment.likesReading,{source,episode:show.slug,objectId},`${show.slug} comment likes ${comment.id}`);if(comment.likesReading.state!=='ready' || !Number.isSafeInteger(comment.likes) || comment.likes<0) errors.push(`${show.slug} comment ${comment.id}: incomplete likes update`);}
         if(!comment.reading){
           const originalComment=legacy.get(comment.id);
           const unchanged={...comment};delete unchanged.likesReading;
@@ -212,7 +224,9 @@ export function sourceStoreIntegrityErrors(root, now = Date.now()) {
         }
         check(comment.reading,{source,episode:show.slug,objectId},`${show.slug} comment ${comment.id}`);
         const group=(show.targets || []).filter(t=>comment.source==='yt'?t.kind==='youtube':t.kind==='x');
-        if(!group.some(t=>(t.videoId || t.postId)===comment.sourceObjectId)) errors.push(`${show.slug} comment ${comment.id}: unregistered parent object`);
+        if(!group.some(t=>(t.videoId || t.postId)===comment.sourceObjectId && `${comment.source}:${t.account}`===comment.channel)) errors.push(`${show.slug} comment ${comment.id}: unregistered parent object`);
+        if(comment.likes!=null && (!Number.isSafeInteger(comment.likes) || comment.likes<0)) errors.push(`${show.slug} comment ${comment.id}: invalid likes`);
+        try{checkedTime(comment.publishedAt,{now,label:`${show.slug} comment publication`});}catch(error){errors.push(error.message);}
         if(comment.reading.state!=='ready') errors.push(`${show.slug} comment ${comment.id}: incomplete capture`);
       }
       if(store.capture){

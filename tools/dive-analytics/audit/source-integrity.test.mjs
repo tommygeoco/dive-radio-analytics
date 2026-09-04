@@ -15,7 +15,9 @@ assert.equal(ytViewsOf(snapshot),100);assert.equal(ytEngagementOf(snapshot),null
 snapshot.byDest['yt:joindiveclub'].likes=0;assert.equal(ytEngagementOf(snapshot),3);
 assert.deepEqual(monotonicDrops([{byDest:{yt:{views:100}}},{byDest:{yt:{views:null}}},{byDest:{yt:{views:120}}}]),[]);
 assert.equal(monotonicDrops([{byDest:{yt:{views:100}}},{byDest:{yt:{views:null}}},{byDest:{yt:{views:90}}}]).length,1);
-for(const value of [null,'invalid','2026-09-05T16:00:00Z']) assert.throws(()=>checkedTime(value,{now}));
+assert.throws(()=>checkedTime(time,{now:NaN}),/validation clock/);
+assert.equal(checkedTime(time,{now}),now);
+for(const value of [null,'invalid','2026-09-04T16:00:00.001Z','2026-09-05T16:00:00Z']) assert.throws(()=>checkedTime(value,{now}));
 assert.throws(()=>checkedTime('2026-09-02T16:00:00Z',{now,maxAge:26*3600000}),/stale/);
 const zero={ts:time,reading:{state:'ready'},byDest:{'yt:joindiveclub':{views:0},'yt:designertom':{views:0}}};assert.equal(ytViewsOf(zero),0);assert.equal(ytViewsOf({...zero,reading:null}),null);
 const channels=Object.fromEntries([['yt:joindiveclub','one'],['yt:designertom','two']].map(([key,videoId])=>[key,{videoId,pulledAt:time,totals:{views:100,averageViewPercentage:20}}]));
@@ -51,6 +53,9 @@ try {
     s => s.snapshots[0].metrics['yt:joindiveclub'].reading.objectId='wrong',
     s => s.snapshots[0].metrics['yt:joindiveclub'].sources[0].views=11,
     s => delete s.snapshots[0].metrics['yt:designertom'],
+    s => s.snapshots.push(structuredClone(s.snapshots[0])),
+    s => { s.capture={state:'ready',checkedAt:'2026-09-04T15:00:00.000Z',reading:envelope('postlive',show.slug)}; },
+    s => { s.snapshots[0].metrics['yt:joindiveclub'].views=1.5;s.snapshots[0].metrics['yt:joindiveclub'].sources[0].views=1.5; },
   ]) {
     const changed=structuredClone(candidate);mutate(changed);save(path,changed);
     assert.ok(sourceStoreIntegrityErrors(root,now).length,'source corruption must stop promotion');

@@ -615,7 +615,7 @@ try {
   else ok(`freshness: newest snapshot ${((now - newest) / 3600000).toFixed(1)}h old`);
   if (now - gen > FRESH_MS) fail(`freshness: data.json generated ${((now - gen) / 3600000).toFixed(1)}h ago (limit 26h)`);
   else ok(`freshness: data.json generated ${((now - gen) / 3600000).toFixed(1)}h ago`);
-  if (gen < newest - 60000) fail(`freshness: data.json (${data.generatedAt}) is OLDER than the newest snapshot — build did not run after last snapshot`);
+  if (gen < newest) fail(`freshness: data.json (${data.generatedAt}) is OLDER than the newest snapshot — build did not run after last snapshot`);
 }
 
 // --- 5. roster consistency ---
@@ -2810,7 +2810,7 @@ try {
             if (step.required) { bad++; fail(msg); } else warn(msg);
             continue;
           }
-          if (Date.parse(stamp) > builtAt + 60000) { bad++; fail(`chain: ${pattern} has a future timestamp`); }
+          if (Date.parse(stamp) > builtAt) { bad++; fail(`chain: ${pattern} has a future timestamp`); }
           const lag = builtAt - Date.parse(stamp);
           if (lag > FRESH_MS) {
             const msg = `chain: ${pattern} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
@@ -2839,7 +2839,7 @@ try {
             if (step.required && ext !== ".jsonl") { bad++; fail(`chain: ${pattern.replace("*", slug)} has no valid timestamp`); }
             continue;
           }
-          if (Date.parse(stamp) > builtAt + 60000) { bad++; fail(`chain: ${pattern.replace("*", slug)} has a future timestamp`); }
+          if (Date.parse(stamp) > builtAt) { bad++; fail(`chain: ${pattern.replace("*", slug)} has a future timestamp`); }
           const lag = builtAt - Date.parse(stamp);
           if (lag > FRESH_MS) {
             const msg = `chain: ${pattern.replace("*", slug)} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;

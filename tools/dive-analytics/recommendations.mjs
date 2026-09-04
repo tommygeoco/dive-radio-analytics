@@ -39,7 +39,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { liveDepthOf } from "./baselines.mjs";
 
-import { currentAnalyticsCohort } from "./source-integrity.mjs";
+import { currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
 
 import { atomicWriteText, withSourceLock } from "./source-io.mjs";
 
@@ -442,6 +442,7 @@ async function regenerate(sheet) {
 }
 
 async function main() {
+  assertSourceStoreIntegrity(ROOT);
   const sheet = collectFacts();
   if (process.argv.includes("--facts")) {
     console.log(JSON.stringify(sheet, null, 1));

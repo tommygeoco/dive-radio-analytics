@@ -98,7 +98,7 @@ const DATA_PATH = join(ROOT, "data.json");
 const STORE_PATH = join(ROOT, "data", "restream", "health-history.json");
 const ANALYTICS_DIR = join(ROOT, "data", "restream", "yt-analytics");
 const CLASSIFIED_PATH = join(ROOT, "data", "restream", "comments-classified.json");
-import { currentAnalyticsCohort } from "./source-integrity.mjs";
+import { currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
 
 const HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-history");
 const PROMPT_PATH = join(HERE, "health-prompt.md");
@@ -1218,6 +1218,7 @@ function loadStore() {
 }
 
 async function main() {
+  assertSourceStoreIntegrity(ROOT);
   const data = readJson(DATA_PATH);
   if (!data) throw new Error("data.json is missing");
   const sourceNow = Date.parse(data.generatedAt);

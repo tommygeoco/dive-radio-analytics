@@ -36,6 +36,7 @@ import { BANNED } from "./recommendations.mjs";
 import { parseTranscript } from "./watch-moments.mjs";
 
 import { atomicWriteText, withSourceLock } from "./source-io.mjs";
+import { assertSourceStoreIntegrity } from "./source-integrity.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -131,6 +132,7 @@ async function callModel(payload) {
 }
 
 async function main() {
+  assertSourceStoreIntegrity(ROOT);
   const store = readJson(STORE_PATH) || { version: STORE_VERSION, promptVersion: PROMPT_VERSION, updatedAt: null, provider: null, model: null, entries: {} };
   if (process.argv.includes("--check")) {
     validateStore(store);

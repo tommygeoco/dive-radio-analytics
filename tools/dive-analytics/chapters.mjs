@@ -26,6 +26,7 @@ import { BANNED } from "./recommendations.mjs";
 import { readTranscript, hasTimestamp, quoteFoundAfter, toSeconds, slice } from "./transcripts.mjs";
 
 import { atomicWriteText, withSourceLock } from "./source-io.mjs";
+import { assertSourceStoreIntegrity } from "./source-integrity.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -139,6 +140,7 @@ function transcriptForModel(parsed) {
 }
 
 async function main() {
+  assertSourceStoreIntegrity(ROOT);
   const check = process.argv.includes("--check");
   const dry = process.argv.includes("--dry");
   const store = readJson(STORE_PATH) || { version: STORE_VERSION, promptVersion: PROMPT_VERSION, updatedAt: null, provider: null, model: null, entries: {} };
