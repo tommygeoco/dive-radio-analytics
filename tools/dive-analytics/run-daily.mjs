@@ -5,9 +5,9 @@
 // normally runs in the morning; YouTube's expected watch-report
 // delay keeps it available for noon.
 
-import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
-import { dirname, isAbsolute, join } from "node:path";
+import { dirname, isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { acquireLock, appendQueueLines, importLegacyQueueFile, resolveOperationalAlerts } from "./alert-queue.mjs";
 import { healLeftovers } from "./chain-heal.mjs";
@@ -89,7 +89,7 @@ export function reconcileInterruptedState(state, now = Date.now()) {
 export function saveAttemptState(path, state) {
   saveReceipt(path, state);
   const marker = `${path}.initialized-v1`;
-  if (!existsSync(marker)) writeFileSync(marker, JSON.stringify({ version: 1, initializedAt: new Date().toISOString() }) + "\n", { mode: 0o600 });
+  if (!existsSync(marker)) saveReceipt(marker, { version: 1, initializedAt: new Date().toISOString() });
 }
 
 export function queueDailyFailure(statePath, day, line, queue, lastProof = lastProductionProof()) {
@@ -304,6 +304,22 @@ export function runBoundedChain(args, cwd, {
   });
 }
 
+export function installPublisherHook(root) {
+  const installer = join(root, "scripts", "dev", "install-hooks.sh");
+  const template = readFileSync(installer, "utf8").match(/<<'HOOKEOF'\r?\n([\s\S]*?)\r?\nHOOKEOF(?:\r?\n|$)/)?.[1];
+  if (!template) throw new Error("publisher hook installer has no verifiable pre-push template");
+  const installed = command("sh", [installer], { cwd: root });
+  if (installed.status !== 0 || installed.error || installed.signal) throw new Error("publisher pre-push hook could not be installed");
+  const hookName = checkedGit(root, ["rev-parse", "--git-path", "hooks/pre-push"]);
+  const hook = isAbsolute(hookName) ? hookName : join(root, hookName);
+  if (readFileSync(hook, "utf8") !== `${template}\n` || (statSync(hook).mode & 0o111) === 0) {
+    throw new Error("publisher pre-push hook does not match the executable repository template");
+  }
+  const checked = command("sh", ["-n", hook], { cwd: root });
+  if (checked.status !== 0 || checked.error || checked.signal) throw new Error("publisher pre-push hook has invalid shell syntax");
+  return hook;
+}
+
 export function ensureIsolatedCheckout(sourceRoot = ROOT, isolatedRoot = PUBLISHER_ROOT, { log = console.log } = {}) {
   const origin = checkedGit(sourceRoot, ["remote", "get-url", "origin"]);
   const gitDir = join(isolatedRoot, ".git");
@@ -355,10 +371,11 @@ export function ensureIsolatedCheckout(sourceRoot = ROOT, isolatedRoot = PUBLISH
     if (restored.status !== 0) healLeftovers(isolatedRoot, { log });
   }
   assertPublisherCheckout(isolatedRoot);
+  installPublisherHook(isolatedRoot);
 
   const sourceProject = join(sourceRoot, ".vercel", "project.json");
   const isolatedProject = join(isolatedRoot, ".vercel", "project.json");
-  if (existsSync(sourceProject)) {
+  if (existsSync(sourceProject) && resolve(sourceProject) !== resolve(isolatedProject)) {
     mkdirSync(dirname(isolatedProject), { recursive: true, mode: 0o700 });
     copyFileSync(sourceProject, isolatedProject);
   } else if (!existsSync(isolatedProject)) {

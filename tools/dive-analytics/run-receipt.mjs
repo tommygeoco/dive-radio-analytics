@@ -18,6 +18,11 @@ export function saveReceipt(path, value) {
     fsyncSync(fd);
     closeSync(fd); fd = null;
     renameSync(tmp, path);
+    // Persist the directory entry too: a flushed file alone does not make its
+    // rename durable if the host loses power immediately after this write.
+    fd = openSync(dirname(path), "r");
+    fsyncSync(fd);
+    closeSync(fd); fd = null;
   } finally {
     if (fd != null) closeSync(fd);
     try { unlinkSync(tmp); } catch (error) { if (error.code !== "ENOENT") throw error; }

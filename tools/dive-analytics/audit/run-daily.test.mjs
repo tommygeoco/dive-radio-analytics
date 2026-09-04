@@ -2,10 +2,10 @@
 // recovery, then reset on the next Phoenix day.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { ensureIsolatedCheckout, finishAttempt, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily as runDailyActual } from "../run-daily.mjs";
+import { ensureIsolatedCheckout, finishAttempt, installPublisherHook, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily as runDailyActual } from "../run-daily.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "../youtube-readiness.mjs";
 
 const receiptEvidence = { sha: "a".repeat(40), generatedAt: "2026-09-02T14:00:00Z", proof: { ok: true, checked: 1, artifacts: [] }, sourceStates: [] };
@@ -59,7 +59,21 @@ try {
   writeFileSync(join(source, "README.md"), "first\n");
   writeFileSync(join(source, "data.json"), "{}\n");
   writeFileSync(join(source, "data", "restream", "state.json"), "{\"source\":\"first\"}\n");
-  git(source, "add", ".gitignore", "README.md", "data.json", "data/restream/state.json");
+  mkdirSync(join(source, "scripts", "dev"), { recursive: true });
+  const hookInstaller = `#!/bin/sh
+set -eu
+REPO="$(cd "$(dirname "$0")/../.." && pwd)"
+HOOK="$(git -C "$REPO" rev-parse --git-path hooks/pre-push)"
+case "$HOOK" in /*) ;; *) HOOK="$REPO/$HOOK" ;; esac
+mkdir -p "$(dirname "$HOOK")"
+cat > "$HOOK" <<'HOOKEOF'
+#!/bin/sh
+exit 0
+HOOKEOF
+chmod +x "$HOOK"
+`;
+  writeFileSync(join(source, "scripts", "dev", "install-hooks.sh"), hookInstaller);
+  git(source, "add", ".gitignore", "README.md", "data.json", "data/restream/state.json", "scripts/dev/install-hooks.sh");
   git(source, "commit", "-m", "initial");
   git(source, "remote", "add", "origin", remote);
   git(source, "push", "-u", "origin", "main");
@@ -77,6 +91,23 @@ try {
   assert.equal(ensureIsolatedCheckout(source, isolated, { log: () => {} }), isolated);
   assert.equal(readFileSync(join(isolated, "README.md"), "utf8"), "first\n", "dirty development files never enter the publisher");
   assert.equal(readFileSync(join(isolated, ".vercel", "project.json"), "utf8"), "{\"projectId\":\"test\"}\n");
+  const installedHook = join(isolated, ".git", "hooks", "pre-push");
+  assert.equal(readFileSync(installedHook, "utf8"), "#!/bin/sh\nexit 0\n", "a fresh clone installs its committed pre-push gate");
+  assert.ok(statSync(installedHook).mode & 0o111, "the installed hook is executable");
+  writeFileSync(installedHook, "#!/bin/sh\nexit 1\n");
+  ensureIsolatedCheckout(isolated, isolated, { log: () => {} });
+  assert.equal(readFileSync(installedHook, "utf8"), "#!/bin/sh\nexit 0\n", "an existing runtime repairs its hook before publishing");
+  assert.equal(readFileSync(join(isolated, ".vercel", "project.json"), "utf8"), "{\"projectId\":\"test\"}\n", "the runtime can prepare itself without copying a file over itself");
+  const customHooks = join(temp, "custom-hooks");
+  git(isolated, "config", "core.hooksPath", customHooks);
+  assert.equal(installPublisherHook(isolated), join(customHooks, "pre-push"), "verification follows Git's active hook path");
+  git(isolated, "config", "--unset", "core.hooksPath");
+  const savedInstaller = join(isolated, "scripts", "dev", "install-hooks.sh");
+  writeFileSync(savedInstaller, hookInstaller.replace('cat > "$HOOK"', 'cat > /dev/null'));
+  writeFileSync(installedHook, "#!/bin/sh\nexit 1\n");
+  assert.throws(() => installPublisherHook(isolated), /does not match/, "a successful installer that did not install its template fails closed");
+  writeFileSync(savedInstaller, hookInstaller);
+  installPublisherHook(isolated);
 
   git(temp, "clone", remote, writer);
   git(writer, "checkout", "main");
@@ -139,6 +170,8 @@ try {
   });
   assert.equal(preflightStatus, 1);
   let saved = readAttemptState(statePath);
+  assert.equal(JSON.parse(readFileSync(`${statePath}.initialized-v1`, "utf8")).version, 1);
+  assert.equal(statSync(`${statePath}.initialized-v1`).mode & 0o777, 0o600, "the initialized marker uses the private atomic receipt writer");
   assert.equal(saved.days["2026-09-02"], undefined, "a preflight failure does not spend a chain attempt");
   assert.equal(saved.invocations["2026-09-02"].at(-1).status, "failed:preflight", "the failed invocation is still recorded");
   assert.match(queued.at(-1), /isolated checkout/);
