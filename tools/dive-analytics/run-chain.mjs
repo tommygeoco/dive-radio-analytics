@@ -34,7 +34,7 @@ import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { healLeftovers } from "./chain-heal.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
-import { appendQueueLines, QUEUE_PATH, resolveOperationalAlerts } from "./alert-queue.mjs";
+import { appendQueueLines, QUEUE_PATH } from "./alert-queue.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT } from "./youtube-readiness.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -46,6 +46,7 @@ const dry = process.argv.includes("--dry");
 const rehearse = process.argv.includes("--rehearse");
 const REHEARSE_SKIP = new Set(["publish", "alerts", "freshness", "critic"]);
 const RETRY_ONCE = new Set(["discover", "snapshot", "yt-analytics", "newsletter-promotion"]);   // W39: the required steps that talk to a platform
+const SOURCE_PENDING_STEPS = new Set(["snapshot", "yt-analytics", "live", "newsletter-promotion", "transcripts"]);
 const RETRY_PAUSE_MS = 60_000;
 const LOG_DIR = process.env.DIVE_CHAIN_LOG_DIR || join(homedir(), "Library", "Logs", "dive-radio-analytics");
 const LOG_KEEP_DAYS = 30;
@@ -89,6 +90,10 @@ function showLast() {
 
 // --- W37: one line into the queue the dive-alerts automation delivers ----------
 function queueAlert(text) {
+  if (process.env.DIVE_DAILY_OWNS_ALERTS === "1") {
+    log(`chain: ${text} — the daily runner owns the durable alert`);
+    return;
+  }
   try {
     appendQueueLines([text], QUEUE_PATH);
     log(`chain: queued an alert — ${text}`);
@@ -165,16 +170,23 @@ export async function runStepWithPolicy({
   retryOnce = RETRY_ONCE,
   onRetry = () => {},
 } = {}) {
-  let result = await execute(cmd);
+  const checkedExecute = async () => {
+    try {
+      const result = await execute(cmd);
+      return Number.isInteger(result?.code) && !result?.error && !result?.signal
+        ? result : { code: 1, lastErr: result?.error?.message || "child returned no valid exit status" };
+    } catch (error) { return { code: 1, lastErr: error.message }; }
+  };
+  let result = await checkedExecute();
   let attempts = 1;
-  const isPending = () => step?.step === "yt-analytics" && result.code === YOUTUBE_WATCH_PENDING_EXIT;
+  const isPending = () => SOURCE_PENDING_STEPS.has(step?.step) && result.code === YOUTUBE_WATCH_PENDING_EXIT;
   if (!isPending() && result.code !== 0 && step?.required && retryOnce.has(step.step)) {
     onRetry(result);
     await wait(retryPauseMs);
-    result = await execute(cmd);
+    result = await checkedExecute();
     attempts++;
   }
-  return { ...result, attempts, youtubeWatchPending: isPending() };
+  return { ...result, attempts, youtubeWatchPending: isPending(), sourcePending: isPending() };
 }
 
 async function main() {
@@ -198,21 +210,12 @@ async function main() {
     let { code, lastErr } = outcome;
     if (outcome.youtubeWatchPending) {
       youtubeWatchPending = true;
-      log("chain: newest episode YouTube watch data is not ready yet — continuing so the morning production build stays current");
+      log(`chain: ${step.step} has unavailable source data — continuing with the validated unavailable state`);
       continue;
     }
     if (code === 0) {
-      if (step.step === "publish") {
-        published = true;
-        try {
-          resolveOperationalAlerts(QUEUE_PATH, { includeYoutubeWatch: !youtubeWatchPending });
-          log("chain: cleared resolved production warnings after parity passed");
-        } catch (error) {
-          code = 1;
-          lastErr = `could not reconcile the alert queue after production proof — ${error.message}`;
-        }
-      }
-      if (code === 0) continue;
+      if (step.step === "publish") published = true;
+      continue;
     }
     if (step.required) {
       log(`chain: ${step.step} failed (exit ${code}) — required, stopping here`, process.stderr);
@@ -226,20 +229,22 @@ async function main() {
     queueAlert(`chain: optional ${step.step} check failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""}; production can update, but this part of the morning data is not current`);
     log(`chain: ${step.step} failed (exit ${code}) — not required, continuing`);
   }
+  // Planning and rehearsal never claim a production result or resolve alerts.
+  if (dry || rehearse) {
+    log(`chain: ${dry ? "plan" : "rehearsal"} finished; production was not proved.`);
+    if (failedOptional) process.exit(10);
+    return;
+  }
+  if (!published) throw new Error("required publication was skipped");
   if (failedOptional) {
     log(`chain: production finished with ${failedOptional} data check${failedOptional === 1 ? "" : "s"} not current`, process.stderr);
     process.exit(10);
   }
   if (youtubeWatchPending) {
-    log("chain: production is current except for the newest episode's YouTube watch data; noon will run the whole chain once more");
+    log("chain: production is current with unavailable source data; recovery will check again within the daily allowance");
     process.exit(YOUTUBE_WATCH_PENDING_EXIT);
   }
-  try {
-    resolveOperationalAlerts(QUEUE_PATH, { includeChecklist: true, includeYoutubeWatch: true });
-  } catch (error) {
-    queueAlert(`chain: the checklist finished but its resolved warnings could not be reconciled at ${phxClock()} — ${error.message}`);
-    process.exit(1);
-  }
+  // run-daily owns resolution after it durably binds this exit to the receipt.
   log(`chain: done${failedOptional ? ` — ${failedOptional} optional step(s) failed` : ""}`);
 }
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];

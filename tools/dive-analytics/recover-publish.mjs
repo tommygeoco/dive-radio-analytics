@@ -11,8 +11,10 @@ import { fileURLToPath } from "node:url";
 import { acquireLock, appendQueueLines, resolveOperationalAlerts } from "./alert-queue.mjs";
 import { checkProductionFreshness, phoenixDay, phoenixHour } from "./freshness.mjs";
 import { checkLiveParity, SITE } from "./live-parity.mjs";
-import { ensureIsolatedCheckout, PUBLISHER_ROOT, readAttemptState, RUN_LOCK_MAX_AGE_MS, STATE_PATH } from "./run-daily.mjs";
+import { ensureIsolatedCheckout, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, PUBLISHER_ROOT, readAttemptState, RUN_LOCK_MAX_AGE_MS, saveAttemptState, STATE_PATH } from "./run-daily.mjs";
 import { isYoutubeWatchPendingStatus } from "./youtube-readiness.mjs";
+import { pendingSourceStates, readPublishEvidence, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
+import { RECOVERY_PROOF_PATH } from "./runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
@@ -42,8 +44,8 @@ export function checklistVerdict(statePath = STATE_PATH, now = Date.now()) {
     const attempt = state.days?.[day]?.at(-1);
     const invocation = state.invocations?.[day]?.at(-1);
     const ok = attempt?.status === "passed" && invocation?.status === "passed";
-    const youtubeWatchPending = isYoutubeWatchPendingStatus(attempt?.status)
-      && isYoutubeWatchPendingStatus(invocation?.status);
+    const waiting = (status) => isYoutubeWatchPendingStatus(status) || status === SOURCE_PENDING_STATUS;
+    const youtubeWatchPending = waiting(attempt?.status) && waiting(invocation?.status);
     return ok
       ? { ok: true, youtubeWatchPending: false, message: "today's complete publishing checklist passed" }
       : {
@@ -67,6 +69,7 @@ export async function verifyProduction({
   fetchImpl = globalThis.fetch,
   statePath = STATE_PATH,
   checklist = (path, at) => checklistVerdict(path, at),
+  evidence = (path, options) => readPublishEvidence(path, options),
 } = {}) {
   const freshness = await checkProductionFreshness({
     url: `${site}/data.json?cb=${encodeURIComponent(String(now))}`,
@@ -80,15 +83,22 @@ export async function verifyProduction({
     parity = { ok: false, mismatches: [{ file: "production", reason: error.message }] };
   }
   const checklistResult = checklist(statePath, now);
-  const youtubeWatchPending = checklistResult.youtubeWatchPending === true
+  let receipt;
+  try { receipt = { ok: true, ...evidence(root, { now }) }; }
+  catch (error) { receipt = { ok: false, message: error.message }; }
+  const pending = pendingSourceStates(receipt.sourceStates || []);
+  const youtubeWatchPending = pending.length > 0
+    && receipt.ok
     && freshness.ok
     && parity.ok;
   return {
-    ok: freshness.ok && parity.ok && checklistResult.ok,
+    ok: freshness.ok && parity.ok && receipt.ok && checklistResult.ok && !pending.length,
     freshness,
     parity,
     checklist: checklistResult,
     youtubeWatchPending,
+    receipt,
+    pendingSources: pending,
   };
 }
 
@@ -97,6 +107,7 @@ function proofMessage(proof) {
   if (proof.freshness?.ok !== true) parts.push(proof.freshness?.message || "production build is not current");
   if (proof.parity?.ok !== true) parts.push(`public files differ (${proof.parity?.mismatches?.map((item) => item.file).join(", ") || "unknown file"})`);
   if (proof.checklist && !proof.checklist.ok) parts.push(proof.checklist.message || "today's publishing checklist did not pass");
+  if (proof.receipt?.ok === false) parts.push(`production receipt: ${proof.receipt.message}`);
   return parts.join("; ") || "production did not pass its checks";
 }
 
@@ -108,11 +119,18 @@ export async function recoverPublish({
   guard = (path) => acquireLock(path, { label: "daily publishing chain", maxAgeMs: RUN_LOCK_MAX_AGE_MS }),
   wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
   queue = (lines) => appendQueueLines(lines),
-  resolve = () => resolveOperationalAlerts(undefined, { includeYoutubeWatch: true }),
+  resolve = () => resolveOperationalAlerts(undefined, { includeChecklist: true, includeYoutubeWatch: true }),
   prepare = (source, target) => ensureIsolatedCheckout(source, target),
   verify = (options) => verifyProduction(options),
   run = () => spawnSync(process.execPath, ["tools/dive-analytics/run-daily.mjs", "--recovery"], { cwd: root, env: process.env, stdio: "inherit" }),
   proofOnly = false,
+  recordProof = (proof, at) => saveReceipt(RECOVERY_PROOF_PATH, {
+    version: 1, day: phoenixDay(at), checkedAt: new Date(at).toISOString(), mode: proofOnly ? "proof-only" : "recovery",
+    finalState: proof.ok ? "passed" : proof.youtubeWatchPending ? SOURCE_PENDING_STATUS : "failed",
+    sha: proof.receipt?.sha || null, generatedAt: proof.freshness?.generatedAt || null,
+    sourceStates: proof.receipt?.sourceStates || [], deployment: proof.receipt?.deployment || null,
+    productionProof: proof.parity, checklist: proof.checklist, receiptValid: proof.receipt?.ok === true,
+  }),
 } = {}) {
   let release;
   for (let check = 1; check <= LOCK_CHECKS; check++) {
@@ -138,6 +156,7 @@ export async function recoverPublish({
   try {
     canonicalRoot = prepare(root, publisherRoot);
     before = await verify({ root: canonicalRoot, now, statePath });
+    recordProof(before, now);
     if (before.ok && !proofOnly) {
       resolve();
       beforeResolved = true;
@@ -152,7 +171,7 @@ export async function recoverPublish({
   }
   if (proofOnly) {
     const checklistOk = before.checklist?.ok === true || before.youtubeWatchPending === true;
-    const productionOk = before.freshness?.ok === true && before.parity?.ok === true && checklistOk;
+    const productionOk = before.freshness?.ok === true && before.parity?.ok === true && before.receipt?.ok === true && checklistOk;
     if (productionOk) {
       console.log(`recovery: proof only — production serves today's build and all ${before.parity.checked} public files match; no recovery was started.`);
       return 0;
@@ -177,11 +196,31 @@ export async function recoverPublish({
     return 1;
   }
 
+  if (before.youtubeWatchPending && before.receipt?.ok === true) {
+    const releaseState = guard(`${statePath}.run.lock`);
+    try {
+      const state = readAttemptState(statePath);
+      const day = phoenixDay(now);
+      if ((state.days[day]?.length || 0) >= MAX_DAILY_ATTEMPTS) {
+        const marker = markYoutubeWatchAlert(state, day, now);
+        if (marker.needed) {
+          const reason = (before.pendingSources || []).map((source) => `E${source.episode} ${source.source}: ${source.reason || source.state}`).join("; ");
+          queue([`Daily publishing source data remains unavailable on ${day}: ${reason || "source pending"}. Last production proof: ${before.receipt.generatedAt} (${before.receipt.sha.slice(0, 8)}).`]);
+          saveAttemptState(statePath, marker.state);
+        }
+        console.log("recovery: production is proved with unavailable source data; both daily attempts are recorded, the warning is durable, and no third run was started.");
+        return 0;
+      }
+    } finally { releaseState(); }
+  }
+
   console.log(before.youtubeWatchPending
     ? "recovery: newest episode YouTube watch data is still pending; starting the one reserved noon run."
     : `recovery: production check failed — ${proofMessage(before)}; starting one available recovery run.`);
-  const child = run();
-  const status = Number.isInteger(child.status) ? child.status : 1;
+  let child;
+  try { child = await run(); }
+  catch (error) { child = { status: 1, error }; }
+  const status = Number.isInteger(child?.status) && !child?.error && !child?.signal ? child.status : 1;
   if (status !== 0) {
     const line = `Daily publish recovery failed (exit ${status}); production still needs attention.`;
     queue([line]);
@@ -199,6 +238,7 @@ export async function recoverPublish({
   }
   try {
     const after = await verify({ root: canonicalRoot, now: Date.now(), statePath });
+    recordProof(after, Date.now());
     if (!after.ok) {
       if (after.youtubeWatchPending === true && after.freshness?.ok === true && after.parity?.ok === true) {
         console.log("recovery: noon published every available update; YouTube is still preparing the newest episode's watch data, so no third run will start today.");

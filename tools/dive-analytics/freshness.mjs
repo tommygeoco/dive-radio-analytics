@@ -71,7 +71,9 @@ export async function checkProductionFreshness({
   fetchImpl = globalThis.fetch,
 } = {}) {
   try {
-    const response = await fetchImpl(url, {
+    const target = new URL(url);
+    target.searchParams.set("cb", `${now}-${crypto.randomUUID()}`);
+    const response = await fetchImpl(target.href, {
       headers: { "cache-control": "no-cache" },
       signal: AbortSignal.timeout(30_000),
     });

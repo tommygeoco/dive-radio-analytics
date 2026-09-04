@@ -27,6 +27,7 @@ assert.deepEqual(await runCodes([YOUTUBE_WATCH_PENDING_EXIT]), {
   lastErr: "source error",
   attempts: 1,
   youtubeWatchPending: true,
+  sourcePending: true,
   calls: 1,
   waits: 0,
 });
@@ -35,6 +36,7 @@ assert.deepEqual(await runCodes([1, YOUTUBE_WATCH_PENDING_EXIT]), {
   lastErr: "source error",
   attempts: 2,
   youtubeWatchPending: true,
+  sourcePending: true,
   calls: 2,
   waits: 1,
 });
@@ -43,6 +45,7 @@ assert.deepEqual(await runCodes([1, 0]), {
   lastErr: "source error",
   attempts: 2,
   youtubeWatchPending: false,
+  sourcePending: false,
   calls: 2,
   waits: 1,
 });
@@ -51,6 +54,7 @@ assert.deepEqual(await runCodes([1, 1]), {
   lastErr: "source error",
   attempts: 2,
   youtubeWatchPending: false,
+  sourcePending: false,
   calls: 2,
   waits: 1,
 });

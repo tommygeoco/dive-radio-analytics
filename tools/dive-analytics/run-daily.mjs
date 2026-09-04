@@ -9,12 +9,14 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFil
 import { spawn, spawnSync } from "node:child_process";
 import { dirname, isAbsolute, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { acquireLock, appendQueueLines, importLegacyQueueFile } from "./alert-queue.mjs";
+import { acquireLock, appendQueueLines, importLegacyQueueFile, resolveOperationalAlerts } from "./alert-queue.mjs";
 import { healLeftovers } from "./chain-heal.mjs";
 import { phoenixDay } from "./freshness.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { DAILY_STATE_PATH, ISOLATED_PUBLISHER_ROOT } from "./runtime-paths.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "./youtube-readiness.mjs";
+import { lastProductionProof, pendingSourceStates, publicSourceStates, readPublishEvidence, receiptForAttempt, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
+import { randomUUID } from "node:crypto";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
@@ -43,8 +45,17 @@ export function readAttemptState(path = STATE_PATH) {
   if (typeof state.invocations !== "object" || Array.isArray(state.invocations)) throw new Error("daily invocation state is unreadable");
   state.youtubeWatchAlerts ??= {};
   if (typeof state.youtubeWatchAlerts !== "object" || Array.isArray(state.youtubeWatchAlerts)) throw new Error("daily YouTube watch alert state is unreadable");
-  for (const attempts of Object.values(state.days)) {
-    if (!Array.isArray(attempts)) throw new Error("daily attempt state has an invalid day");
+  state.failureAlerts ??= {};
+  if (typeof state.failureAlerts !== "object" || Array.isArray(state.failureAlerts)) throw new Error("daily failure alert state is unreadable");
+  for (const [day, attempts] of Object.entries(state.days)) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Array.isArray(attempts) || attempts.length > MAX_DAILY_ATTEMPTS) throw new Error("daily attempt state has an invalid day");
+    for (const attempt of attempts) {
+      if (!attempt || typeof attempt.id !== "string" || !attempt.id || !["primary", "recovery"].includes(attempt.mode)
+        || !Number.isFinite(Date.parse(attempt.startedAt)) || phoenixDay(attempt.startedAt) !== day || typeof attempt.status !== "string") {
+        throw new Error("daily attempt state has an invalid attempt");
+      }
+    }
+    if (new Set(attempts.map((attempt) => attempt.id)).size !== attempts.length) throw new Error("daily attempt state has duplicate attempt ids");
   }
   for (const invocations of Object.values(state.invocations)) {
     if (!Array.isArray(invocations)) throw new Error("daily invocation state has an invalid day");
@@ -57,16 +68,41 @@ export function readAttemptState(path = STATE_PATH) {
   return state;
 }
 
-function saveAttemptState(path, state) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.${process.pid}.${Date.now()}.tmp`;
-  writeFileSync(tmp, JSON.stringify(state, null, 2) + "\n", { mode: 0o600 });
-  renameSync(tmp, path);
+export function reconcileInterruptedState(state, now = Date.now()) {
+  const next = structuredClone(state);
+  for (const attempts of Object.values(next.days)) for (const attempt of attempts) {
+    if (attempt.status === "running") {
+      attempt.status = "failed:interrupted";
+      attempt.endedAt = new Date(now).toISOString();
+      if (attempt.receipt) attempt.receipt.finalState = attempt.status;
+    }
+  }
+  for (const invocations of Object.values(next.invocations || {})) for (const invocation of invocations) {
+    if (["preparing", "running"].includes(invocation.status)) {
+      invocation.status = "failed:interrupted";
+      invocation.endedAt = new Date(now).toISOString();
+    }
+  }
+  return next;
+}
+
+export function saveAttemptState(path, state) {
+  saveReceipt(path, state);
   const marker = `${path}.initialized-v1`;
   if (!existsSync(marker)) writeFileSync(marker, JSON.stringify({ version: 1, initializedAt: new Date().toISOString() }) + "\n", { mode: 0o600 });
 }
 
-export function nextAttempt(state, now = Date.now(), { mode = "primary", id = `${process.pid}-${Date.now()}`, origin = null } = {}) {
+export function queueDailyFailure(statePath, day, line, queue, lastProof = lastProductionProof()) {
+  const state = readAttemptState(statePath);
+  if (state.failureAlerts[day]) return false;
+  const message = `${line} Phoenix date: ${day}. Last successful production proof: ${lastProof ? `${lastProof.generatedAt} (${lastProof.sha.slice(0, 8)})` : "none recorded"}.`;
+  queue([message]);
+  state.failureAlerts[day] = { queuedAt: new Date().toISOString(), cause: line, lastProof };
+  saveAttemptState(statePath, state);
+  return true;
+}
+
+export function nextAttempt(state, now = Date.now(), { mode = "primary", id = randomUUID(), origin = null } = {}) {
   const day = phoenixDay(now);
   if (!day) throw new Error("daily attempt clock is invalid");
   const attempts = state.days[day] || [];
@@ -100,16 +136,17 @@ export function markYoutubeWatchAlert(state, day, queuedAt = Date.now()) {
   return { needed: true, state: next };
 }
 
-export function finishAttempt(state, day, id, status, endedAt = Date.now()) {
+export function finishAttempt(state, day, id, status, endedAt = Date.now(), receipt = null) {
   const next = structuredClone(state);
   const attempt = next.days?.[day]?.find((item) => item.id === id);
   if (!attempt) throw new Error("daily attempt record disappeared");
   attempt.status = status;
   attempt.endedAt = new Date(endedAt).toISOString();
+  if (receipt) attempt.receipt = receipt;
   return next;
 }
 
-export function startInvocation(state, now = Date.now(), { mode = "primary", id = `${process.pid}-${Date.now()}` } = {}) {
+export function startInvocation(state, now = Date.now(), { mode = "primary", id = randomUUID() } = {}) {
   const day = phoenixDay(now);
   if (!day) throw new Error("daily invocation clock is invalid");
   const next = structuredClone(state);
@@ -206,7 +243,14 @@ export function runBoundedChain(args, cwd, {
   env = process.env,
 } = {}) {
   return new Promise((resolve) => {
-    const child = spawn(executable, args, { cwd, env, stdio: "inherit", detached: process.platform !== "win32" });
+    const child = spawn(executable, args, { cwd, env, stdio: ["ignore", "pipe", "pipe"], detached: process.platform !== "win32" });
+    let detail = "";
+    const output = (chunk, stream) => {
+      stream.write(chunk);
+      detail = (detail + String(chunk)).slice(-4000);
+    };
+    child.stdout?.on("data", (chunk) => output(chunk, process.stdout));
+    child.stderr?.on("data", (chunk) => output(chunk, process.stderr));
     let finished = false;
     let forceTimer = null;
     let settleTimer = null;
@@ -230,7 +274,7 @@ export function runBoundedChain(args, cwd, {
       if (settleTimer) clearTimeout(settleTimer);
       process.off("SIGTERM", onSigterm);
       process.off("SIGINT", onSigint);
-      resolve(result);
+      resolve({ ...result, detail: detail.trim().split("\n").filter(Boolean).slice(-2).join("; ").slice(-600) });
     };
     const beginStop = (status, message) => {
       if (stopResult) return;
@@ -343,12 +387,14 @@ export async function runDaily({
   prepare = (source, target) => ensureIsolatedCheckout(source, target),
   getOrigin = originSha,
   queue = (lines) => appendQueueLines(lines),
-  run = (args, cwd) => runBoundedChain(args, cwd),
+  run = (args, cwd) => runBoundedChain(args, cwd, { env: { ...process.env, DIVE_DAILY_OWNS_ALERTS: "1" } }),
+  captureReceipt = (publisherRoot, options) => readPublishEvidence(publisherRoot, options),
+  resolve = () => resolveOperationalAlerts(undefined, { includeChecklist: true, includeYoutubeWatch: true }),
 } = {}) {
   const release = acquireLock(`${statePath}.run.lock`, { now, label: "daily publishing chain", maxAgeMs: RUN_LOCK_MAX_AGE_MS });
-  const invocation = startInvocation(readAttemptState(statePath), now, { mode });
-  saveAttemptState(statePath, invocation.state);
   try {
+    const invocation = startInvocation(reconcileInterruptedState(readAttemptState(statePath), now), now, { mode });
+    saveAttemptState(statePath, invocation.state);
     let publisherRoot;
     try {
       publisherRoot = prepare(root, isolatedRoot);
@@ -356,7 +402,7 @@ export async function runDaily({
       const failed = finishInvocation(readAttemptState(statePath), invocation.day, invocation.id, "failed:preflight", Date.now(), error.message);
       saveAttemptState(statePath, failed);
       const line = `Daily publish could not prepare its isolated checkout — ${error.message}.`;
-      try { queue([line]); } catch (queueError) { console.error(`daily-run: could not queue the preflight alert (${queueError.message}).`); }
+      try { queueDailyFailure(statePath, invocation.day, line, queue); } catch (queueError) { console.error(`daily-run: could not queue the preflight alert (${queueError.message}).`); }
       console.error(`daily-run: ${line}`);
       return 1;
     }
@@ -366,7 +412,7 @@ export async function runDaily({
       const line = `Daily publish already used both automatic attempts for ${reserved.day}; no third run was started.`;
       const refused = finishInvocation(reserved.state, invocation.day, invocation.id, "refused:attempt-limit");
       saveAttemptState(statePath, refused);
-      try { queue([line]); } catch (queueError) { console.error(`daily-run: could not queue the attempt-limit alert (${queueError.message}).`); }
+      try { queueDailyFailure(statePath, invocation.day, line, queue); } catch (queueError) { console.error(`daily-run: could not queue the attempt-limit alert (${queueError.message}).`); }
       console.error(`daily-run: ${line}`);
       return 75;
     }
@@ -381,13 +427,34 @@ export async function runDaily({
       result = { status: 1 };
     }
     if (!Number.isInteger(result?.status) && result?.error) runError = result.error;
-    const status = Number.isInteger(result?.status) ? result.status : 1;
+    let status = Number.isInteger(result?.status) && !result?.error && !result?.signal ? result.status : 1;
+    let evidence = null;
+    if (status === 0 || status === YOUTUBE_WATCH_PENDING_EXIT) {
+      try {
+        evidence = captureReceipt(publisherRoot, { now: Date.now(), startedAt: new Date(now).toISOString() });
+        if (!evidence?.proof?.ok || !evidence?.sha || !evidence?.generatedAt) throw new Error("completed child returned no production evidence");
+        if (pendingSourceStates(evidence.sourceStates || []).length) status = YOUTUBE_WATCH_PENDING_EXIT;
+      } catch (error) {
+        runError = error;
+        status = 1;
+      }
+    }
     const savedStatus = status === 0
       ? "passed"
       : status === YOUTUBE_WATCH_PENDING_EXIT
-        ? YOUTUBE_WATCH_PENDING_STATUS
+        ? pendingSourceStates(evidence?.sourceStates || []).some((source) => source.source !== "watch") ? SOURCE_PENDING_STATUS : YOUTUBE_WATCH_PENDING_STATUS
         : `failed:${status}`;
-    let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, savedStatus);
+    const endedAt = Date.now();
+    const receipt = receiptForAttempt(evidence, {
+      day: reserved.day, number: reserved.number, mode,
+      startedAt: new Date(now).toISOString(), endedAt: new Date(endedAt).toISOString(), status: savedStatus,
+    });
+    receipt.lastSuccessfulProof = evidence ? { sha: evidence.sha, generatedAt: evidence.generatedAt, checkedAt: evidence.proof.checkedAt } : lastProductionProof();
+    if (!evidence) {
+      try { receipt.sourceStates = publicSourceStates(JSON.parse(readFileSync(join(publisherRoot, "data.json"), "utf8")), now); }
+      catch { /* An unreadable build is named by the failed receipt, never fabricated. */ }
+    }
+    let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, savedStatus, endedAt, receipt);
     finished = finishInvocation(finished, invocation.day, invocation.id, savedStatus, Date.now(), runError?.message || null);
     saveAttemptState(statePath, finished);
     if (status === YOUTUBE_WATCH_PENDING_EXIT) {
@@ -395,28 +462,46 @@ export async function runDaily({
       if (finalAttempt) {
         const alert = markYoutubeWatchAlert(readAttemptState(statePath), reserved.day);
         if (alert.needed) {
-          const line = `Newest episode YouTube watch data is still unavailable after the ${reserved.day} recovery run; production is current, but watch measures remain missing.`;
+          const pending = pendingSourceStates(evidence?.sourceStates || []);
+          const line = savedStatus === YOUTUBE_WATCH_PENDING_STATUS
+            ? `Newest episode YouTube watch data is still unavailable after the ${reserved.day} recovery run; production is current, but watch measures remain missing. Last production proof: ${evidence.generatedAt} (${evidence.sha.slice(0, 8)}).`
+            : `Daily publishing source data remains unavailable on ${reserved.day}: ${pending.map((source) => `E${source.episode} ${source.source}: ${source.reason || source.state}`).join("; ") || "source reported pending"}. Last production proof: ${evidence.generatedAt} (${evidence.sha.slice(0, 8)}).`;
           try {
             queue([line]);
             saveAttemptState(statePath, alert.state);
             console.log("daily-run: queued today's missing YouTube watch alert after the recovery check.");
           } catch (error) {
+            const alertFailed = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, "failed:alert", Date.now(), { ...receipt, finalState: "failed:alert" });
+            saveAttemptState(statePath, finishInvocation(alertFailed, invocation.day, invocation.id, "failed:alert", Date.now(), error.message));
             console.error(`daily-run: could not save the missing YouTube watch alert (${error.message}).`);
             return 1;
           }
         }
       }
       console.log(!finalAttempt
-        ? "daily-run: production was updated with the data available now; newest episode YouTube watch data will be tried again at noon."
-        : "daily-run: production was updated with the data available now; newest episode YouTube watch data remains unavailable and no third run will start today.");
+        ? "daily-run: production was updated with the data available now; pending sources will be tried again at noon."
+        : "daily-run: production was updated with the data available now; sources remain unavailable and no third run will start today.");
       return 0;
     }
     if (status !== 0) {
       const line = runError
         ? `Daily publishing chain stopped — ${runError.message}.`
-        : `Daily publishing checklist failed (exit ${status}); production needs verification.`;
-      try { queue([line]); } catch (queueError) { console.error(`daily-run: could not queue the chain alert (${queueError.message}).`); }
+        : `Daily publishing checklist failed (exit ${status}); production needs verification.${result?.detail ? ` Cause: ${result.detail}` : ""}`;
+      try { queueDailyFailure(statePath, invocation.day, line, queue, receipt.lastSuccessfulProof); } catch (queueError) { console.error(`daily-run: could not queue the chain alert (${queueError.message}).`); }
       console.error(`daily-run: ${line}`);
+    } else {
+      try {
+        resolve();
+        const cleared = readAttemptState(statePath);
+        delete cleared.failureAlerts[reserved.day];
+        saveAttemptState(statePath, cleared);
+      }
+      catch (error) {
+        const failed = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, "failed:alert-resolution", Date.now(), { ...receipt, finalState: "failed:alert-resolution" });
+        saveAttemptState(statePath, finishInvocation(failed, invocation.day, invocation.id, "failed:alert-resolution", Date.now(), error.message));
+        console.error(`daily-run: production was proved, but alert resolution failed (${error.message}).`);
+        return 1;
+      }
     }
     return status;
   } finally {

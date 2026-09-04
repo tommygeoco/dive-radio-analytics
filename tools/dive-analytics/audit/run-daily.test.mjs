@@ -5,9 +5,11 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { ensureIsolatedCheckout, finishAttempt, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily } from "../run-daily.mjs";
+import { ensureIsolatedCheckout, finishAttempt, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily as runDailyActual } from "../run-daily.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "../youtube-readiness.mjs";
 
+const receiptEvidence = { sha: "a".repeat(40), generatedAt: "2026-09-02T14:00:00Z", proof: { ok: true, checked: 1, artifacts: [] }, sourceStates: [] };
+const runDaily = (options) => runDailyActual({ captureReceipt: () => receiptEvidence, resolve: () => {}, ...options });
 const base = { version: 1, timezone: "America/Phoenix", days: {} };
 const dayOneMorning = Date.parse("2026-09-02T14:00:00Z");
 

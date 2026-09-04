@@ -5,9 +5,10 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checklistVerdict, recoverPublish, recoveryAction } from "../recover-publish.mjs";
+import { checklistVerdict, recoverPublish as recoverPublishActual, recoveryAction } from "../recover-publish.mjs";
 import { YOUTUBE_WATCH_PENDING_STATUS } from "../youtube-readiness.mjs";
 
+const recoverPublish = (options) => recoverPublishActual({ recordProof: () => {}, ...options });
 const HERE = dirname(fileURLToPath(import.meta.url));
 const morning = Date.parse("2026-09-02T15:15:00Z");
 const noon = Date.parse("2026-09-02T19:00:00Z");
@@ -35,7 +36,7 @@ assert.equal(recoveryAction({ ...youtubePending, parity: { ok: false } }, mornin
   writeFileSync(statePath, JSON.stringify({
     version: 1,
     timezone: "America/Phoenix",
-    days: { "2026-09-02": [{ status: YOUTUBE_WATCH_PENDING_STATUS }] },
+    days: { "2026-09-02": [{ id: "one", mode: "primary", startedAt: "2026-09-02T14:00:00Z", status: YOUTUBE_WATCH_PENDING_STATUS }] },
     invocations: { "2026-09-02": [{ status: YOUTUBE_WATCH_PENDING_STATUS }] },
   }));
   const verdict = checklistVerdict(statePath, morning);
@@ -227,6 +228,7 @@ assert.equal(recoveryAction({ ...youtubePending, parity: { ok: false } }, mornin
     verify: async () => ({
       ok: false,
       youtubeWatchPending: true,
+      receipt: { ok: true },
       freshness: { ok: true },
       parity: { ok: true, checked: 16 },
       checklist: { ok: false, youtubeWatchPending: true },
