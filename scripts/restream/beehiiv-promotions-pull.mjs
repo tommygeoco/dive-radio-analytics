@@ -205,11 +205,12 @@ export function buildPromotionStore({ registry, posts, previous = null, now = Da
     const sourceReading = readingEnvelope({ source: "beehiiv", episode: show.slug, objectId: publicationId, pulledAt: updatedAt, state: pending ? "pending" : "ready" });
     const capture = { checkedAt: updatedAt, state: sourceReading.state, reading: sourceReading, reason: pending ? "Beehiiv has not returned complete click counts for every exact episode link." : null };
     const prior = previous?.episodes?.[show.slug];
-    episodes[show.slug] = pending && prior?.status === "found" && prior.totals?.emailClicks != null && prior.totals?.verifiedEmailClicks != null
+    const preservePrior = pending && prior?.status === "found" && prior.totals?.emailClicks != null && prior.totals?.verifiedEmailClicks != null;
+    episodes[show.slug] = preservePrior
       ? { ...prior, capture }
       : { ...result, snapshots: pending ? (prior?.snapshots || []) : mergeSnapshot(prior?.snapshots, result, now, { episode: show.slug, objectId: publicationId }), capture };
-    if (!pending) for (const newsletter of episodes[show.slug].newsletters) {
-      newsletter.reading = readingEnvelope({ source: "beehiiv", episode: show.slug, objectId: newsletter.postId, pulledAt: updatedAt });
+    if (!preservePrior) for (const newsletter of episodes[show.slug].newsletters) {
+      newsletter.reading = readingEnvelope({ source: "beehiiv", episode: show.slug, objectId: newsletter.postId, pulledAt: updatedAt, state: sourceReading.state });
     }
   }
   for (const [slug, episode] of Object.entries(previous?.episodes || {})) {

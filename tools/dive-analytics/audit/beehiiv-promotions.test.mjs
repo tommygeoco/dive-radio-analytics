@@ -141,8 +141,21 @@ assert.equal(pendingStore.capture.state, "pending");
 assert.equal(pendingStore.episodes[show.slug].capture.state, "pending");
 assert.deepEqual(pendingStore.episodes[show.slug].totals, store.episodes[show.slug].totals);
 assert.deepEqual(pendingStore.episodes[show.slug].snapshots, store.episodes[show.slug].snapshots);
+assert.deepEqual(pendingStore.episodes[show.slug].newsletters, store.episodes[show.slug].newsletters, "preserved complete facts keep their original reading");
 assert.equal(pendingStore.lastSuccessfulAt, store.lastSuccessfulAt);
 assert.equal(pendingStore.capture.checkedAt, "2026-09-04T15:00:00.000Z");
+const firstPending = buildPromotionStore({ registry: { shows: [show] }, posts: [missingStats], now: Date.parse("2026-09-04T15:00Z"), publicationId: "pub_test" });
+assert.equal(firstPending.updatedAt, null);
+assert.equal(firstPending.lastSuccessfulAt, null);
+assert.deepEqual(firstPending.episodes[show.slug].snapshots, []);
+assert.equal(firstPending.episodes[show.slug].totals.emailClicks, null);
+assert.deepEqual(firstPending.episodes[show.slug].newsletters[0].reading, {
+  schemaVersion: 1, source: "beehiiv", episode: show.slug, objectId: post.id,
+  pulledAt: "2026-09-04T15:00:00.000Z", state: "pending",
+});
+const stillPending = buildPromotionStore({ registry: { shows: [show] }, posts: [missingStats], previous: firstPending, now: Date.parse("2026-09-04T16:00Z"), publicationId: "pub_test" });
+assert.equal(stillPending.episodes[show.slug].newsletters[0].reading.pulledAt, "2026-09-04T16:00:00.000Z");
+assert.equal(firstPending.episodes[show.slug].newsletters[0].reading.pulledAt, "2026-09-04T15:00:00.000Z", "refresh does not mutate previous pending facts");
 const futureStore = buildPromotionStore({ registry: { shows: [{ ...show, date: "2026-09-05" }] }, posts: [post], now: Date.parse("2026-09-04T06:30Z") });
 assert.deepEqual(futureStore.episodes, {});
 assert.equal(store.episodes[show.slug].snapshots.at(-1).reading.episode, show.slug);
