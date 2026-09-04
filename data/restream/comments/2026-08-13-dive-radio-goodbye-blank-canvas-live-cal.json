@@ -12,7 +12,15 @@
       "text": "I think 90 mins is perfect!",
       "likes": 0,
       "publishedAt": "2026-08-21T16:25:17Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "UgwNVZEMoKDsM6gaRtx4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgzeVCMu5-gXAiXR7wF4AaABAg",
@@ -23,7 +31,15 @@
       "text": "Sagi Haviv says a good logo needs to be 3 things: 1. Appropriate [like a feeling or personality that fits an industry], 2. Distinctive/memorable and 3. Super simple (the most important of the 3 things). A bad logo is: 1. Too complicated 2. Generic.",
       "likes": 0,
       "publishedAt": "2026-08-14T14:14:38Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "UgzeVCMu5-gXAiXR7wF4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgztFQjLpgrYSOwjofV4AaABAg",
@@ -34,7 +50,15 @@
       "text": "wow Tommy have you tried Hermes? Idk how you are still on Open Claw. But if that works for you how you want it then I understand not wanting to take the time to migrate.",
       "likes": 0,
       "publishedAt": "2026-08-14T11:42:23Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "UgztFQjLpgrYSOwjofV4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgzH1qjxgyCGSNWq-vp4AaABAg",
@@ -45,7 +69,15 @@
       "text": "The discussion around the lack of designer founders I think is a topic that should be expounded upon. \n\nI think these times should clarify for a lot of designers whether their craft actually aids their companies in creating real business moats. \n\nIt is very much the case that the design showcased by Google would be totally fine (to ship, maybe not share) in a context where they are still unsure about PMF. It is also the case that it probably doesn't matter what you think about their designs beca",
       "likes": 0,
       "publishedAt": "2026-08-18T16:14:02Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "UgzH1qjxgyCGSNWq-vp4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgwcRtAZCssi_VeZzYd4AaABAg",
@@ -56,9 +88,41 @@
       "text": "this is like mkbhd waveform podcast equivalent but for design industry",
       "likes": 3,
       "publishedAt": "2026-08-14T12:14:25Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "UgwcRtAZCssi_VeZzYd4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     }
   ],
-  "updatedAt": "2026-09-04T16:24:08.572Z",
-  "xCoverage": "missed"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "xCoverage": "missed",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "njOU7GKZcvc",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 3
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "G2_F3dd3RkA",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 2
+      }
+    ]
+  }
 }

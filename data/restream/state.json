@@ -32,5 +32,12 @@
       "status": "ingested",
       "ingestedAt": "2026-09-04T03:39:40.855Z"
     }
+  },
+  "checkedAt": "2026-09-04T20:50:46.589Z",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:46.589Z",
+    "state": "ready",
+    "pendingEvents": [],
+    "errors": []
   }
 }

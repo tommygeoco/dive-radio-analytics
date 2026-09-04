@@ -12,7 +12,15 @@
       "text": "banger episode, not able to join live but thanks for sharing guys ! And @tom pls fix your streaming ! :D Its so glitchy",
       "likes": 0,
       "publishedAt": "2026-08-10T08:53:22Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "UgwlosaebdKcQpgr8bR4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugxg7INEiTqIy81bUsh4AaABAg",
@@ -23,7 +31,15 @@
       "text": "Guys, love the show, but the quality is sooo poor. Like, come on, you're constantly talking about a high quality bar, craft, etc., yet we have to watch slideshows instead of videos, robovoices, drops",
       "likes": 3,
       "publishedAt": "2026-08-07T14:25:33Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "Ugxg7INEiTqIy81bUsh4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugz-gpechmoRhLvLgkx4AaABAg",
@@ -34,7 +50,15 @@
       "text": "hmmm being a web designer but i would you to call alan on your weekly podcast ep !!",
       "likes": 0,
       "publishedAt": "2026-08-07T06:35:33Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "Ugz-gpechmoRhLvLgkx4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgxUElzqQyNzo8mWeKd4AaABAg",
@@ -45,7 +69,15 @@
       "text": "What is the beginning music guys? Help a fellow designer out lol.",
       "likes": 0,
       "publishedAt": "2026-08-14T05:35:01Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "UgxUElzqQyNzo8mWeKd4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgwwpidBv0sRyniOPpt4AaABAg",
@@ -67,7 +99,15 @@
       "text": "@designertom lmao that's cold promoting your own stuff and not Ridd's",
       "likes": 0,
       "publishedAt": "2026-08-16T12:17:15Z",
-      "firstSeenAt": "2026-08-22T17:25:24.172Z"
+      "firstSeenAt": "2026-08-22T17:25:24.172Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "Ugxg7INEiTqIy81bUsh4AaABAg.A_D-mjoy05zA_ZxFx2JL8T",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgwwpidBv0sRyniOPpt4AaABAg.A_D2KQLWModA_D2N20meqs",
@@ -81,6 +121,30 @@
       "firstSeenAt": "2026-08-22T17:25:24.172Z"
     }
   ],
-  "updatedAt": "2026-09-04T16:24:08.572Z",
-  "xCoverage": "missed"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "xCoverage": "missed",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "0tRHVW0qRt4",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 4
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "ziyWxt6qzfM",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 1
+      }
+    ]
+  }
 }

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "2026-07-17-dive-radio-bumpy-takeoff": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+        "objectId": "file:transcripts/2026-07-17-dive-radio-bumpy-takeoff.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-07-17-dive-radio-bumpy-takeoff.txt",
+      "sha256": "7f27cd487a231f4cc9350440c4fa6c591bb0f52d03648fc98fbdb9f131014b96"
+    },
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "file:transcripts/2026-07-23-dive-radio-data-vs-intuition-web-designe.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-07-23-dive-radio-data-vs-intuition-web-designe.txt",
+      "sha256": "c63f95d422dd88d435e16e3fc4187cb7ddd2ad37ba6e115f7deb9b7d37350426"
+    },
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "objectId": "file:transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt",
+      "sha256": "1e964bc370469d38338610427ca2b6fc7c827f42baa2600161c13c06d82bae07"
+    },
+    "2026-08-06-dive-radio-backyard-designers-behind-the": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "file:transcripts/2026-08-06-dive-radio-backyard-designers-behind-the.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-08-06-dive-radio-backyard-designers-behind-the.txt",
+      "sha256": "197f94495b5b831b2ef2e2077ab98f3af622c3e4f3a1eeb8017960d7391f9928"
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "file:transcripts/2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.txt",
+      "sha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03"
+    },
+    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "file:transcripts/2026-08-20-dive-radio-the-mascot-industrial-complex.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-08-20-dive-radio-the-mascot-industrial-complex.txt",
+      "sha256": "e59dca596134380a83862ea62c303b9fe60a80e9d52da854c63b98c69c9d084d"
+    },
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "file:transcripts/2026-08-28-dive-radio-steal-these-ai-design-pattern.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-08-28-dive-radio-steal-these-ai-design-pattern.txt",
+      "sha256": "783dc63759db39bfe6e4338ccaf6754798a0ea3e5ea490d12349e82ec45d5475"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
+      "reading": {
+        "schemaVersion": 1,
+        "source": "transcript",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "file:transcripts/2026-09-02-dive-radio-how-to-engineer-a-brand-unive.txt",
+        "pulledAt": "2026-09-04T20:50:55.902Z",
+        "state": "ready"
+      },
+      "checkedAt": "2026-09-04T20:50:55.902Z",
+      "reason": null,
+      "file": "transcripts/2026-09-02-dive-radio-how-to-engineer-a-brand-unive.txt",
+      "sha256": "3ca7ee6c1cdc07f26ca9481af1c4e3740860248e04779a899980611d83cb9435"
+    }
+  },
+  "checkedAt": "2026-09-04T20:50:55.902Z"
+}

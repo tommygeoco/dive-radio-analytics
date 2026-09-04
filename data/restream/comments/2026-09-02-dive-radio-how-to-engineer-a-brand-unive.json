@@ -34,7 +34,15 @@
       "text": "so good guys 🤍🫂",
       "likes": 2,
       "publishedAt": "2026-09-04T01:36:00.000Z",
-      "firstSeenAt": "2026-09-04T02:54:49.232Z"
+      "firstSeenAt": "2026-09-04T02:54:49.232Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095687290190500096",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2095639312880816204",
@@ -45,7 +53,15 @@
       "text": "love your show 🙂",
       "likes": 1,
       "publishedAt": "2026-09-03T22:25:21.000Z",
-      "firstSeenAt": "2026-09-04T02:54:49.232Z"
+      "firstSeenAt": "2026-09-04T02:54:49.232Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095639312880816204",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2095603967560765492",
@@ -56,7 +72,15 @@
       "text": "hey! 👋",
       "likes": 1,
       "publishedAt": "2026-09-03T20:04:54.000Z",
-      "firstSeenAt": "2026-09-04T02:54:49.232Z"
+      "firstSeenAt": "2026-09-04T02:54:49.232Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095603967560765492",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgxdqR-E60y0zauSZLp4AaABAg",
@@ -65,9 +89,17 @@
       "author": "fisuhan",
       "authorId": "UCcpV_OydIUF7OaYHefyVmng",
       "text": "1:40:31\nI’m a regular Dive Club viewer, but somehow I only discovered the live events last week. Guess the algorithm finally gave me a push 😄\n\nReally loving the format. The raw conversations and unfiltered opinions are easily my favorite part. I just wish the time zone worked better for me. Watching live and actually interacting would make it even more fun, but I usually have to catch the recording instead.\n\nKeep these coming!",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-09-04T06:24:38Z",
-      "firstSeenAt": "2026-09-04T15:46:12.640Z"
+      "firstSeenAt": "2026-09-04T15:46:12.640Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "UgxdqR-E60y0zauSZLp4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2095868322243891404",
@@ -78,7 +110,15 @@
       "text": "Thanks for this, very insightful",
       "likes": 0,
       "publishedAt": "2026-09-04T13:35:22.000Z",
-      "firstSeenAt": "2026-09-04T15:46:12.640Z"
+      "firstSeenAt": "2026-09-04T15:46:12.640Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095868322243891404",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2095863259081380102",
@@ -89,7 +129,15 @@
       "text": "The metaverse era gets written off as a joke, but I think the work there will likely become relevant again. It was the last time brands asked how they behave in a space where they don't control the framing. Right idea, technology wasn't ready",
       "likes": 0,
       "publishedAt": "2026-09-04T13:15:14.000Z",
-      "firstSeenAt": "2026-09-04T15:46:12.640Z"
+      "firstSeenAt": "2026-09-04T15:46:12.640Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095863259081380102",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2095862955522887905",
@@ -100,7 +148,15 @@
       "text": "Which is why the Ramp conversation from last week is the closest thing I've seen to an answer. Cohesion over consistency. Jazz. A brand that behaves rather than one that gets applied.",
       "likes": 0,
       "publishedAt": "2026-09-04T13:14:02.000Z",
-      "firstSeenAt": "2026-09-04T15:46:12.640Z"
+      "firstSeenAt": "2026-09-04T15:46:12.640Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095862955522887905",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2095862835653820623",
@@ -111,9 +167,59 @@
       "text": "You're right Tommy, social was the last real shift, and it got absorbed, it's now a section in the guidelines about colour application and logo size. Generative interfaces can't be absorbed the same way. You're writing a framework for outcomes you'll never see.",
       "likes": 0,
       "publishedAt": "2026-09-04T13:13:33.000Z",
-      "firstSeenAt": "2026-09-04T15:46:12.640Z"
+      "firstSeenAt": "2026-09-04T15:46:12.640Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095862835653820623",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-04T16:24:08.572Z"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "Vh8ogFIE8CA",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 1
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "lnAecYrKYos",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095602694337839446",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 2
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2095602695512195280",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 5
+      }
+    ]
+  }
 }

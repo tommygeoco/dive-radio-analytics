@@ -12,7 +12,15 @@
       "text": "Finally! I got a sneak peek of it and genuinely impressed. I have never been a fan of Figma but lately, they've been killing it!",
       "likes": 2,
       "publishedAt": "2026-08-28T10:10:31Z",
-      "firstSeenAt": "2026-08-28T14:02:40.414Z"
+      "firstSeenAt": "2026-08-28T14:02:40.414Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "Ugy9s6caFPsgOixTcPJ4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2092974258003517718",
@@ -78,9 +86,41 @@
       "text": "55:43  it does and can in terms of capturing micro interactions/animations including ease and cubic bezier timing. To get it to work, I had to build a custom tight looped workflow based (not just skills or non-deterministic) orchestrated harness combining visual intelligence with frame by frame static analysis. I’ll send you guys a demo if I have it complete in a week. If I don’t have time to get it fully demo-able I’ll do a write up. Also I use GSAP/React, haven’t used framer since before gen a",
       "likes": 0,
       "publishedAt": "2026-09-01T12:06:21Z",
-      "firstSeenAt": "2026-09-01T13:00:31.460Z"
+      "firstSeenAt": "2026-09-01T13:00:31.460Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "UgxZ05HGxuJ19cC7HN94AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-04T16:24:08.572Z"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "sC3Wvi1Whm4",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 1
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "qPAPUmg_qZE",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 1
+      }
+    ]
+  }
 }

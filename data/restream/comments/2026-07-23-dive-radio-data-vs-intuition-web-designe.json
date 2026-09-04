@@ -12,7 +12,15 @@
       "text": "Love the data vs intuition conversation. Couldn't agree more with \"enough data to make a bet\"",
       "likes": 0,
       "publishedAt": "2026-08-06T16:49:23Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "UgxEVqoA6QUwVVMcrnV4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgzaM6yr8BIj0GRZ55F4AaABAg",
@@ -23,7 +31,15 @@
       "text": "Seek first the kingdom of God 📖Matthew 6:33",
       "likes": 2,
       "publishedAt": "2026-07-24T00:03:41Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "UgzaM6yr8BIj0GRZ55F4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgxyeBCR7SZb4xqjaC14AaABAg",
@@ -34,7 +50,15 @@
       "text": "If it's not too much work, y'all should share the links to the articles you're referencing throughout in the show notes :) Thanks for the pod!",
       "likes": 0,
       "publishedAt": "2026-07-29T10:28:47Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "UgxyeBCR7SZb4xqjaC14AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgzCGnyDEHv0pITrT0t4AaABAg",
@@ -45,7 +69,15 @@
       "text": "That intro music reminds me of early Future Sounds of London.  Also I JUST came back from Alaska, very cool!",
       "likes": 1,
       "publishedAt": "2026-07-28T14:13:39Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "UgzCGnyDEHv0pITrT0t4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugw0_SE5nx-kzg7mi6N4AaABAg",
@@ -56,9 +88,41 @@
       "text": "The Sound design in the Intro is so fire 🔥",
       "likes": 1,
       "publishedAt": "2026-07-24T05:34:10Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "Ugw0_SE5nx-kzg7mi6N4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     }
   ],
-  "updatedAt": "2026-09-04T16:24:08.572Z",
-  "xCoverage": "missed"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "xCoverage": "missed",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "TJqSfnadiGM",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 2
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "Pn6U5nWgD-g",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 3
+      }
+    ]
+  }
 }

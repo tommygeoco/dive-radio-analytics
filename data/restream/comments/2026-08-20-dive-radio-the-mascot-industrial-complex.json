@@ -23,7 +23,15 @@
       "text": "Peak intro, i love it🔥👀",
       "likes": 0,
       "publishedAt": "2026-08-21T05:51:33Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "UgzcQ7tLhmDU8Hw_Ln14AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgykYeq0fuXgPS6uzzt4AaABAg",
@@ -34,7 +42,15 @@
       "text": "I love this new format!",
       "likes": 1,
       "publishedAt": "2026-08-21T00:31:56Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "UgykYeq0fuXgPS6uzzt4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgycC2EjwPzptqmQnox4AaABAg",
@@ -45,7 +61,15 @@
       "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
       "likes": 2,
       "publishedAt": "2026-08-20T23:27:56Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "UgycC2EjwPzptqmQnox4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugy1hJceQ3I6aQ0IMXR4AaABAg",
@@ -56,7 +80,15 @@
       "text": "lol killer whale got me !",
       "likes": 0,
       "publishedAt": "2026-08-24T06:51:05Z",
-      "firstSeenAt": "2026-08-24T14:02:45.852Z"
+      "firstSeenAt": "2026-08-24T14:02:45.852Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "Ugy1hJceQ3I6aQ0IMXR4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgxB6c2zfa3bo749-wF4AaABAg",
@@ -67,7 +99,15 @@
       "text": "Good podcast dude !!!!!",
       "likes": 0,
       "publishedAt": "2026-08-24T10:20:17Z",
-      "firstSeenAt": "2026-08-24T14:02:45.852Z"
+      "firstSeenAt": "2026-08-24T14:02:45.852Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "UgxB6c2zfa3bo749-wF4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugycpd2h87OpPl0kAz14AaABAg",
@@ -78,7 +118,15 @@
       "text": "Are these available on Spotify?",
       "likes": 0,
       "publishedAt": "2026-09-01T05:07:02Z",
-      "firstSeenAt": "2026-09-01T13:00:31.460Z"
+      "firstSeenAt": "2026-09-01T13:00:31.460Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "Ugycpd2h87OpPl0kAz14AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugycpd2h87OpPl0kAz14AaABAg.AaCNjtBRDTdAaHIDFqXsUP",
@@ -89,9 +137,41 @@
       "text": "@joindiveclub yeah! 100% let's ask the rest :)",
       "likes": 0,
       "publishedAt": "2026-09-03T02:54:57Z",
-      "firstSeenAt": "2026-09-03T14:00:31.693Z"
+      "firstSeenAt": "2026-09-03T14:00:31.693Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "Ugycpd2h87OpPl0kAz14AaABAg.AaCNjtBRDTdAaHIDFqXsUP",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     }
   ],
-  "updatedAt": "2026-09-04T16:24:08.572Z",
-  "xCoverage": "covered"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "xCoverage": "covered",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "RhemcDEc_-A",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 6
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "eLA79C1jq1g",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 1
+      }
+    ]
+  }
 }

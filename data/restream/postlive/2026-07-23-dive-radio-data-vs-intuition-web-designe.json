@@ -6625,6 +6625,230 @@
           "peakConcurrent": 599
         }
       }
+    },
+    {
+      "ts": "2026-09-04T20:50:46.781Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "pulledAt": "2026-09-04T20:50:46.781Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1196,
+          "detail": {
+            "views": 1196,
+            "likes": 39,
+            "comments": 2,
+            "title": "Dive Radio: Linear on Data vs. Intuition, the Web Designer Is Back, Dialkit + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "TJqSfnadiGM",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "objectId": "TJqSfnadiGM",
+                "pulledAt": "2026-09-04T20:50:46.781Z",
+                "state": "ready"
+              },
+              "views": 1196,
+              "detail": {
+                "views": 1196,
+                "likes": 39,
+                "comments": 2,
+                "title": "Dive Radio: Linear on Data vs. Intuition, the Web Designer Is Back, Dialkit + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+            "objectId": "TJqSfnadiGM",
+            "pulledAt": "2026-09-04T20:50:46.781Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 926,
+          "detail": {
+            "views": 926,
+            "likes": 39,
+            "comments": 3,
+            "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "Pn6U5nWgD-g",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "objectId": "Pn6U5nWgD-g",
+                "pulledAt": "2026-09-04T20:50:46.781Z",
+                "state": "ready"
+              },
+              "views": 926,
+              "detail": {
+                "views": 926,
+                "likes": 39,
+                "comments": 3,
+                "title": "Dive Radio: Data vs. Intuition, Web Designers Are Back + Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+            "objectId": "Pn6U5nWgD-g",
+            "pulledAt": "2026-09-04T20:50:46.781Z",
+            "state": "ready"
+          }
+        },
+        "x:designertom": {
+          "views": 2240,
+          "detail": {
+            "views": 2240,
+            "likes": 1,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 635,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 246,
+          "sources": [
+            {
+              "objectId": "2080382612900606273",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "objectId": "2080382612900606273",
+                "pulledAt": "2026-09-04T20:50:46.781Z",
+                "state": "ready"
+              },
+              "views": 2240,
+              "detail": {
+                "views": 2240,
+                "likes": 1,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 2,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+            "objectId": "2080382612900606273",
+            "pulledAt": "2026-09-04T20:50:46.781Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+            "objectId": "1kKzDDbmjWqJv",
+            "pulledAt": "2026-09-04T20:50:46.781Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1kKzDDbmjWqJv",
+              "views": 635,
+              "peakConcurrent": 246,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:ridd_design": {
+          "views": 3901,
+          "detail": {
+            "views": 3901,
+            "likes": 3,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 1
+          },
+          "plays": 1179,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 599,
+          "sources": [
+            {
+              "objectId": "2080382611671626194",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+                "objectId": "2080382611671626194",
+                "pulledAt": "2026-09-04T20:50:46.781Z",
+                "state": "ready"
+              },
+              "views": 3901,
+              "detail": {
+                "views": 3901,
+                "likes": 3,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 2,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+            "objectId": "2080382611671626194",
+            "pulledAt": "2026-09-04T20:50:46.781Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+            "objectId": "1yxBeeoanDOJN",
+            "pulledAt": "2026-09-04T20:50:46.781Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1yxBeeoanDOJN",
+              "views": 1179,
+              "peakConcurrent": 599,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
-  ]
+  ],
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:46.781Z",
+    "state": "ready",
+    "reason": null,
+    "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "pulledAt": "2026-09-04T20:50:46.781Z",
+      "state": "ready"
+    }
+  }
 }

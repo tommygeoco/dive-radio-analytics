@@ -12,7 +12,15 @@
       "text": "this show is boring af, you only talk about AI slop, have nothing good to add",
       "likes": 1,
       "publishedAt": "2026-08-01T12:12:38Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "objectId": "UgwxQM1P37Fvu-uQMsZ4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
@@ -23,9 +31,41 @@
       "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
       "likes": 2,
       "publishedAt": "2026-07-31T04:05:55Z",
-      "firstSeenAt": "2026-08-22T06:19:29.033Z"
+      "firstSeenAt": "2026-08-22T06:19:29.033Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "objectId": "UgzVits6pK6eIXQLIeN4AaABAg",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready"
+      }
     }
   ],
-  "updatedAt": "2026-09-04T16:24:08.572Z",
-  "xCoverage": "missed"
+  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "xCoverage": "missed",
+  "capture": {
+    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "objectId": "9HYGZgaHdlw",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 2
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "objectId": "szvTFybWfK4",
+        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "state": "ready",
+        "count": 0
+      }
+    ]
+  }
 }

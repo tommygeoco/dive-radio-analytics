@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-04T16:23:58.163Z",
-  "lastSuccessfulDiscoveryAt": "2026-09-04T16:23:36.283Z",
-  "lastSuccessfulSnapshotAt": "2026-09-04T16:23:58.163Z",
+  "updatedAt": "2026-09-04T20:51:03.636Z",
+  "lastSuccessfulDiscoveryAt": "2026-09-04T20:50:34.965Z",
+  "lastSuccessfulSnapshotAt": "2026-09-04T20:51:03.636Z",
   "discoveries": [
     {
       "startedAt": "2026-09-04T16:18:32.092Z",
@@ -123,6 +123,66 @@
       "episodeCoverage": [],
       "errors": [],
       "finishedAt": "2026-09-04T16:23:36.283Z"
+    },
+    {
+      "startedAt": "2026-09-04T20:50:32.418Z",
+      "status": "ok",
+      "lookbackDays": 10,
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 0,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 0,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "found": 0,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        }
+      },
+      "found": {
+        "youtube": 0,
+        "x": 1
+      },
+      "registrations": {
+        "attempted": true,
+        "success": true,
+        "planned": 0,
+        "completed": 0
+      },
+      "episodeCoverage": [],
+      "errors": [],
+      "finishedAt": "2026-09-04T20:50:34.965Z"
     }
   ],
   "snapshots": [
@@ -301,6 +361,104 @@
       },
       "errors": [],
       "finishedAt": "2026-09-04T16:23:58.163Z"
+    },
+    {
+      "ts": "2026-09-04T20:51:03.636Z",
+      "startedAt": "2026-09-04T20:50:46.773Z",
+      "status": "ok",
+      "currentEpisodeDates": [
+        "2026-09-03"
+      ],
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "expected": 2,
+              "found": 2,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 3,
+              "found": 3,
+              "error": null
+            }
+          ]
+        },
+        "xBroadcast": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            }
+          ]
+        }
+      },
+      "requested": {
+        "youtube": 16,
+        "x": 22,
+        "xBroadcast": 16
+      },
+      "found": {
+        "youtube": 16,
+        "x": 22,
+        "xBroadcast": 16
+      },
+      "errors": [],
+      "promoted": [
+        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "2026-07-17-dive-radio-bumpy-takeoff"
+      ],
+      "finishedAt": "2026-09-04T20:51:03.636Z"
     }
   ]
 }
