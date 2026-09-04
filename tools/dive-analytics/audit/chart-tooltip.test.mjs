@@ -37,6 +37,8 @@ assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: tru
 assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: true, stale: true }, true, plain), "321 known views", "a blended total with an older source stays visibly incomplete");
 assert.equal(describeTotalViews(321, { includesYoutube: true, includesPlays: true }, true, plain), "321 total views", "a complete blended total is named as total views");
 
+assert.equal(pendingWatchMessage({slug:"newest",watch:null,sourceStates:{watch:{state:"failed",reason:"YouTube request failed."}}},"newest"), "YouTube request failed.");
+assert.equal(pendingWatchMessage({slug:"older",watch:null,sourceStates:{watch:{state:"stale",reason:"The saved watch reading is old."}}},"newest",{compact:true}), "Watch reading is old");
 const newestPendingWatch = { slug: "newest", watch: null, watchReport: { state: "pending" } };
 assert.equal(pendingWatchMessage(newestPendingWatch, "newest"), "YouTube is still preparing this number.", "the newest missing watch number explains the source wait");
 assert.equal(pendingWatchMessage(newestPendingWatch, "newest", { compact: true }), "Waiting for YouTube", "compact chart copy still names YouTube's wait");

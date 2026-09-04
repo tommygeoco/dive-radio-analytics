@@ -162,14 +162,17 @@ export function currentAge(episode) {
 // a real view count. That row is not the episode's first reading: it must not
 // set an age, enter a peer window, or lower a typical. A zero companion channel
 // is still valid once either channel has a positive count.
-export const hasYtReading = (snap) => YT_KEYS.some((k) => Number.isFinite(snap?.byDest?.[k]?.views) && snap.byDest[k].views > 0);
+export const hasYtReading = (snap) => YT_KEYS.every((k) => Number.isFinite(snap?.byDest?.[k]?.views) && snap.byDest[k].views >= 0)
+  && (YT_KEYS.some((k) => snap.byDest[k].views > 0) || snap.reading?.state === "ready");
 export const ytViewsOf = (snap) => hasYtReading(snap)
   ? YT_KEYS.reduce((a, k) => a + (Number.isFinite(snap?.byDest?.[k]?.views) ? snap.byDest[k].views : 0), 0)
   : null;
 export const ytEngagementOf = (snap) => hasYtReading(snap)
-  ? YT_KEYS.reduce((a, k) => a + (Number.isFinite(snap?.byDest?.[k]?.likes) ? snap.byDest[k].likes : 0) + (Number.isFinite(snap?.byDest?.[k]?.comments) ? snap.byDest[k].comments : 0), 0)
+  && YT_KEYS.every((k) => Number.isFinite(snap.byDest[k].likes) && Number.isFinite(snap.byDest[k].comments))
+  ? YT_KEYS.reduce((a, k) => a + snap.byDest[k].likes + snap.byDest[k].comments, 0)
   : null;
-export const xImpressionsOf = (snap) => X_KEYS.reduce((a, k) => a + (snap?.byDest?.[k]?.views || 0), 0);
+export const xImpressionsOf = (snap) => X_KEYS.every((k) => Number.isFinite(snap?.byDest?.[k]?.views))
+  ? X_KEYS.reduce((a, k) => a + snap.byDest[k].views, 0) : null;
 
 // Current cards may use a real post-premiere count on air day. Historical
 // selectors add the stricter next-Phoenix-date gate above.
@@ -188,7 +191,7 @@ export function latestCurrentYtSnapshot(episode) {
 
 export function ytSnapshotsOf(episode) {
   const historical = new Set(historicalSnapshotsOf(episode));
-  return currentYtSnapshotsOf(episode).filter((snap) => historical.has(snap));
+  return currentYtSnapshotsOf(episode).filter((snap) => historical.has(snap) && YT_KEYS.some((key) => snap.byDest[key].views > 0));
 }
 
 export function ytSnapshotAt(episode, ageDays) {
@@ -229,7 +232,8 @@ export function xPlaysOf(snap, expected) {
 
 export function engagementPer1kOf(snap) {
   const v = ytViewsOf(snap);
-  return v > 0 ? round1((ytEngagementOf(snap) / v) * 1000) : null;
+  const engagement = ytEngagementOf(snap);
+  return v > 0 && Number.isFinite(engagement) ? round1((engagement / v) * 1000) : null;
 }
 
 // --- window and peers ------------------------------------------------------

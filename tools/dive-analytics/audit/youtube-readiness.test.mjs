@@ -262,12 +262,12 @@ assert.match(pullSource, /atomicWriteText\(path, next\)/);
 assert.match(pullSource, /!usableYoutubeWatchTotals\(totals\)/);
 
 const buildSource = readFileSync(join(HERE, "..", "build-data.mjs"), "utf8");
-assert.match(buildSource, /completeYoutubeWatchCohort\(expectedChannels, j\)/);
+assert.match(buildSource, /currentAnalyticsCohort\(e, j, now\)/);
 
 const chainSource = readFileSync(join(HERE, "..", "run-chain.mjs"), "utf8");
 assert.match(chainSource, /runStepWithPolicy/);
 assert.match(chainSource, /youtubeWatchPending: isPending\(\)/);
-assert.match(chainSource, /continuing so the morning production build stays current/);
+assert.match(chainSource, /continuing with the validated unavailable state/);
 assert.match(chainSource, /if \(youtubeWatchPending\)[\s\S]*process\.exit\(YOUTUBE_WATCH_PENDING_EXIT\)/);
 
 console.log("youtube-readiness.test: newest no-row reports stay pending, saved totals survive, publish continues, and other failures stay failures");

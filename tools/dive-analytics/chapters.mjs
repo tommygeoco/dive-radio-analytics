@@ -19,11 +19,13 @@
 //   node tools/dive-analytics/chapters.mjs --check    # validate the store, no model
 //   node tools/dive-analytics/chapters.mjs --dry      # list what would be written
 
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BANNED } from "./recommendations.mjs";
 import { readTranscript, hasTimestamp, quoteFoundAfter, toSeconds, slice } from "./transcripts.mjs";
+
+import { atomicWriteText, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -43,10 +45,7 @@ const MARKUP = /<\/?[a-z]|```|https?:\/\/|\[[^\]]+\]\(/i;
 
 function readJson(path, fallback = null) { return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : fallback; }
 function saveAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(value, null, 2) + "\n");
-  renameSync(tmp, path);
+  atomicWriteText(path, JSON.stringify(value, null, 2) + "\n");
 }
 
 // one chapter's contract against its transcript; throws with the reason
@@ -119,7 +118,7 @@ async function callModel(payload) {
     body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages: [{ role: "user", content: payload }] }),
     signal: AbortSignal.timeout(300000),
   });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}`);
   const body = await res.json();
   return { text: (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n"), model, stopReason: body.stop_reason || null };
 }
@@ -206,4 +205,4 @@ async function main() {
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) main().catch((error) => { process.stderr.write(`chapters: ${error.message}\n`); process.exit(1); });
+if (isMain) Promise.resolve().then(() => withSourceLock(STORE_PATH, main)).catch((error) => { process.stderr.write(`chapters: ${error.message}\n`); process.exit(1); });

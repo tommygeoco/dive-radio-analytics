@@ -866,7 +866,7 @@ function displayedTotal(e) {
   const info = e?.latest?.totalViewsInfo || {};
   if (info.includesYoutube !== true && info.includesPlays !== true) return null;
   const value = e?.latest?.totalViews;
-  return Number.isFinite(value) && value > 0 ? value : null;
+  return Number.isFinite(value) && value >= 0 ? value : null;
 }
 function expectedXKeys(e) {
   const expected = e?.latest?.xPlaysInfo?.total || 0;
@@ -1805,6 +1805,11 @@ function buildPanel() {
   else if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
   else if (!tvi.includesPlays) html += `<div class="note">${PLOGO.yt} only — ${PLOGO.x} plays unavailable</div>`;
+  // Unavailable source checks use the existing notes in the episode view.
+  const sourceLabels = { live: "Live session", transcript: "Transcript", promotion: "Newsletter", comments: "Comments" };
+  const unavailable = Object.entries(sourceLabels).filter(([key]) => e.sourceStates?.[key]?.state && e.sourceStates[key].state !== "ready" && (key !== "comments" || !e.comments));
+  if (unavailable.length) html += `<div class="note">${unavailable.map(([key, label]) => `${label}: ${esc(e.sourceStates[key].reason || e.sourceStates[key].state)}`).join(" ")}</div>`;
+
   html += `</div>`;
 
   // — X reach —
@@ -1969,6 +1974,7 @@ function buildPanel() {
     }
     const foot = [];
     if (comments.commentersPer1k != null) foot.push(`${comments.commentersPer1k} commenting per 1,000 watches`);
+    else if (comments.commentersPer1kNote) foot.push(esc(comments.commentersPer1kNote));
     if (comments.xCoverage === "missed") foot.push("YouTube comments only — X replies weren’t captured for this episode");
     if (foot.length) html += `<div class="fbfoot">${foot.join(" · ")}</div>`;
     html += `</div>`;
@@ -2071,9 +2077,10 @@ function renderDrill() {
     drillState.filter === "positive" ? c.sentiment === "positive" || c.sentiment === "mixed" :
     c.sentiment === "negative" || c.sentiment === "mixed");
   const lEl = document.getElementById("dlist");
+  const refreshNote = e.sourceStates?.comments?.state && e.sourceStates.comments.state !== "ready" ? `<div class="dempty">${esc(e.comments.commentersPer1kNote)}</div>` : "";
   const missedNote = e.comments?.xCoverage === "missed"
     ? `<div class="dempty" style="padding:8px 0 4px;font-size:12px">X replies missing for this episode — it aired before comment tracking started (X search reaches back 7 days). YouTube comments only.</div>` : "";
-  lEl.innerHTML = (rows.length ? "" : `<div class="dempty">No feedback in this group.</div>`) + missedNote;
+  lEl.innerHTML = (rows.length ? "" : `<div class="dempty">No feedback in this group.</div>`) + missedNote + refreshNote;
   for (const c of rows) {
     const d = document.createElement("div");
     d.className = "drow";
@@ -2140,6 +2147,8 @@ function describeTotalViews(value, info = {}, includeUnit = false, format = (num
   return `${words}${includeUnit ? " total views" : ""}`;
 }
 function pendingWatchMessage(e, newestSlug, { compact = false } = {}) {
+  const source = e?.sourceStates?.watch;
+  if (source && source.state !== "ready" && e.watchReport?.state !== "pending") return compact ? source.state === "stale" ? "Watch reading is old" : "Watch data unavailable" : source.reason || "Watch data is not available for this episode.";
   if (!e || e.slug !== newestSlug || e.watchReport?.state !== "pending") return null;
   const hasSavedValue = Number.isFinite(e.watch?.avgPercent);
   if (compact) return hasSavedValue ? "Update pending" : "Waiting for YouTube";

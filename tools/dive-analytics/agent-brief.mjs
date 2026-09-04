@@ -78,6 +78,8 @@ export const COVERS = Object.freeze([
   "episodes", "episodes[]", "episodes[].slug", "episodes[].title", "episodes[].premiere", "episodes[].show", "episodes[].active", "episodes[].partialHistory", "episodes[].historyReady", "episodes[].historyReason", "episodes[].ep", "episodes[].ageDays", "episodes[].transcript", "episodes[].subsPer1k", "episodes[].discoveryShare",
   "episodes[].announces", "episodes[].announces[]", "episodes[].announces[].account", "episodes[].announces[].role", "episodes[].announces[].ts", "episodes[].announces[].url",
   "episodes[].links", "episodes[].links.{dest}",
+  ...["youtube", "x", "watch", "live", "transcript", "promotion", "comments"].flatMap((source) => ["state", "checkedAt", "reason"].map((field) => `episodes[].sourceStates.${source}.${field}`)),
+  "episodes[].sourceStates", "episodes[].sourceStates.youtube", "episodes[].sourceStates.x", "episodes[].sourceStates.watch", "episodes[].sourceStates.live", "episodes[].sourceStates.transcript", "episodes[].sourceStates.promotion", "episodes[].sourceStates.comments",
   "episodes[].latest", "episodes[].latest.ts", "episodes[].latest.ytTotal", "episodes[].latest.youtubeAsOf", "episodes[].latest.youtubeStale", "episodes[].latest.xImpressions", "episodes[].latest.xPlays", "episodes[].latest.xPlaysInfo", "episodes[].latest.totalViews", "episodes[].latest.totalViewsInfo", "episodes[].latest.byDest", "episodes[].latest.byDest.{dest}",
   "episodes[].metrics", "episodes[].metrics.week1Velocity", "episodes[].metrics.week1Note", "episodes[].metrics.flatlineWeek", "episodes[].metrics.engagementPer1k", "episodes[].metrics.anomaly",
   "episodes[].live", "episodes[].live.peak", "episodes[].live.avg", "episodes[].live.liveViews", "episodes[].live.watchedMin", "episodes[].live.chatMessages", "episodes[].live.chatters", "episodes[].live.durationMin", "episodes[].live.minutesPerViewer", "episodes[].live.holdRate", "episodes[].live.byChannel", "episodes[].live.byChannel[]",
@@ -157,7 +159,7 @@ function episodeDigest(e, data) {
   const moments = (w.moments || []).map((m) => ({ kind: m.kind, at: m.at, minutesIn: Math.round((m.estSec || 0) / 60), points: m.points, approx: !!m.approx, summary: m.summary || null, excerpt: cut(m.excerpt || "", BUDGET.excerptChars) }));
   const plays = e.latest?.xPlaysInfo || {};
   const totalInfo = e.latest?.totalViewsInfo || {};
-  const youtubeMissing = !(Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0);
+  const youtubeMissing = !(Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal >= 0);
   const youtubeStale = !youtubeMissing && e.latest?.youtubeStale === true;
   const viewsReason = youtubeMissing
     ? (totalInfo.reason || "YouTube views are not available yet.")
@@ -165,6 +167,7 @@ function episodeDigest(e, data) {
   return {
     ep: e.ep, slug: e.slug, title: short(e.title), premiere: e.premiere, ageDays: e.ageDays, trackedLate: e.partialHistory == null ? null : e.partialHistory === true, history: { ready: e.historyReady === true, reason: e.historyReason || null }, dashboard: `${SITE}/#${e.slug}`,
     links: { youtube: Object.fromEntries(yt), xReplays: Object.fromEntries(x), announces: (e.announces || []).map((a) => ({ account: a.account, at: a.ts, url: a.url || null })), transcript: e.transcript ? `${SITE}/transcripts/${e.slug}.txt` : null },
+    sourceStates: e.sourceStates || null,
     views: { youtube: youtubeMissing ? null : e.latest.ytTotal, youtubeAsOf: e.latest?.youtubeAsOf ?? null, youtubeStale, youtubeMarker: youtubeMissing ? "missing" : youtubeStale ? "old" : null, xPlays: e.latest?.xPlays ?? null, xPlaysMarker: plays.partial ? "partial" : plays.stale ? "stale" : null, total: youtubeMissing ? null : (e.latest?.totalViews ?? null), incomplete: youtubeMissing || youtubeStale || totalInfo.incomplete === true, reason: viewsReason, xReach: e.latest?.xImpressions ?? null, asOf: e.latest?.ts ?? null, byDest: e.latest?.byDest || {} },
     firstWeek: e.metrics?.week1Velocity != null ? { value: e.metrics.week1Velocity } : absent(e.metrics?.week1Note || "no clean first week"),
     launch: launch?.word ? { word: launch.word, label: `${launch.promoDriven ? "promo-driven" : launch.word}${launch.provisional ? " (so far)" : ""}`, promoDriven: !!launch.promoDriven, provisional: !!launch.provisional, late: !!launch.late, value: launch.value, typical: launch.typical, pct: launch.pct, peers: launch.n } : absent(launch?.reason || "no reading at the launch age"),
@@ -175,7 +178,7 @@ function episodeDigest(e, data) {
     engagementPer1k: e.metrics?.engagementPer1k ?? null, subsPer1k: e.subsPer1k ?? null, discoveryShare: e.discoveryShare ?? null,
     watching: w.avgPercent != null ? { sharePercent: w.avgPercent, avgDurationSec: w.avgDurationSec ?? null, minutesWatched: w.minutesWatched ?? null, traffic: (w.traffic || []).slice(0, 4).map((t) => ({ source: t.source, share: t.share })), shape: w.shape || null, updatedAt: w.updatedAt || null } : absent(e.watchReport?.reason || "no YouTube analytics report yet"),
     live: l.peak != null ? { peak: l.peak, average: l.avg, uniqueViewers: l.liveViews ?? null, minutesWatched: l.watchedMin ?? null, minutesPerViewer: l.minutesPerViewer ?? null, holdRate: l.holdRate ?? null, chatMessages: l.chatMessages, chatters: l.chatters, durationMin: l.durationMin } : absent("no live session record"),
-    feedback: c.captured != null ? { captured: c.captured, directional: c.feedbackCount ?? null, people: c.uniqueCommenters ?? null, enjoyed: c.enjoyCount ?? null, concerns: c.complaintCount ?? null, xReplies: c.xCoverage || null, enjoyThemes: c.enjoyThemes || [], concernThemes: c.complaintThemes || [], featured: (c.featured || []).slice(0, BUDGET.quotesPerEpisode).map((q) => ({ source: q.source, author: q.author, text: cut(q.text, 200) })) } : absent("no comments captured"),
+    feedback: c.captured != null ? { note: c.commentersPer1kNote || null, captured: c.captured, directional: c.feedbackCount ?? null, people: c.uniqueCommenters ?? null, enjoyed: c.enjoyCount ?? null, concerns: c.complaintCount ?? null, xReplies: c.xCoverage || null, enjoyThemes: c.enjoyThemes || [], concernThemes: c.complaintThemes || [], featured: (c.featured || []).slice(0, BUDGET.quotesPerEpisode).map((q) => ({ source: q.source, author: q.author, text: cut(q.text, 200) })) } : absent("no comments captured"),
     chapters, moments, health,
   };
 }
@@ -221,15 +224,15 @@ export function buildDigest(data) {
   const eps = [...(data.episodes || [])].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
   const latestSnapshot = eps.map((e) => e.latest?.ts).filter(Boolean).sort().at(-1) || null;
   const sumAvailable = (f) => {
-    const values = eps.map(f).filter(Number.isFinite);
-    return values.length ? values.reduce((a, value) => a + value, 0) : null;
+    const values = eps.map(f);
+    return values.length && values.every(Number.isFinite) ? values.reduce((a, value) => a + value, 0) : null;
   };
-  const youtubeComplete = eps.length > 0 && eps.every((e) => Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0);
+  const youtubeComplete = eps.length > 0 && eps.every((e) => Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal >= 0);
   const youtubeTotal = youtubeComplete ? eps.reduce((a, e) => a + e.latest.ytTotal, 0) : null;
   const viewsComplete = youtubeComplete && eps.every((e) => Number.isFinite(e.latest?.totalViews));
   const viewsTotal = viewsComplete ? eps.reduce((a, e) => a + e.latest.totalViews, 0) : null;
   const youtubeMarkers = eps.flatMap((e) => {
-    if (!(Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0)) return [`E${e.ep} missing`];
+    if (!(Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal >= 0)) return [`E${e.ep} missing`];
     if (e.latest?.youtubeStale) return [`E${e.ep} old${e.latest.youtubeAsOf ? ` (${day(e.latest.youtubeAsOf)})` : ""}`];
     return [];
   });
@@ -475,9 +478,12 @@ export function renderMarkdown(digest) {
       p(`Watch moments (from the YouTube retention curve; positions approximate):`);
       for (const m of e.moments) p(`- ${m.kind === "drop" ? "Drop" : "Hold"} about ${m.minutesIn} min in (${Math.round(m.at * 100)}% of the way): ${m.kind === "drop" ? `${fmtNum(m.points, 1)} of every hundred viewers left` : `${fmtNum(m.points, 1)} of every hundred extra were watching`}${m.summary ? ` — ${esc(m.summary)}` : ""}${m.excerpt ? ` — "${m.excerpt}"` : ""}`);
     }
+    const unavailableSources = Object.entries(e.sourceStates || {}).filter(([, source]) => source.state !== "ready");
+    if (unavailableSources.length) p(`Source checks: ${unavailableSources.map(([key, source]) => `${key}: ${source.state}${source.reason ? ` (${esc(source.reason)})` : ""}`).join("; ")}.`);
     if (abs(e.feedback)) p(`Feedback: — (${e.feedback.reason}).`);
     else {
       p(`Feedback: ${fmtNum(e.feedback.captured)} comments captured, ${fmtNum(e.feedback.directional)} with a clear lean from ${fmtNum(e.feedback.people)} people (${fmtNum(e.feedback.enjoyed)} enjoyed, ${fmtNum(e.feedback.concerns)} concerns)${e.feedback.xReplies === "covered" ? "; X replies included" : "; X replies not covered"}.${e.feedback.enjoyThemes.length ? ` Enjoyed: ${themeWords(e.feedback.enjoyThemes).join(", ")}.` : ""}${e.feedback.concernThemes.length ? ` Concerns: ${themeWords(e.feedback.concernThemes).join(", ")}.` : ""}`);
+      if (e.feedback.note) p(e.feedback.note);
       for (const q of e.feedback.featured) p(`- "${q.text}" — ${esc(q.author)} on ${q.source === "x" ? "X" : "YouTube"}`);
     }
     p(abs(e.health) ? `Episode health: — (${esc(e.health.reason)}).` : `Episode health: ${e.health.score} of 100, read on ${day(e.health.readOn)}${e.health.checks ? ` — ${Object.entries(e.health.checks).map(([k, v]) => `${k} ${v.score ?? `— (${esc(v.reason || "no reading")})`}`).join("; ")}` : ""}.`);

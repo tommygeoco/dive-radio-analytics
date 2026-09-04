@@ -29,11 +29,13 @@
 // Chain (owner machine): ratings → build-data → validate → health →
 //   recommendations → moment-summaries → build-data → validate → publish
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BANNED } from "./recommendations.mjs";
 import { parseTranscript } from "./watch-moments.mjs";
+
+import { atomicWriteText, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -77,14 +79,11 @@ export function validateStore(store) {
 
 function readJson(path, fallback = null) {
   if (!existsSync(path)) return fallback;
-  try { return JSON.parse(readFileSync(path, "utf8")); } catch { return fallback; }
+  return JSON.parse(readFileSync(path, "utf8"));
 }
 
 function saveAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(value, null, 1) + "\n");
-  renameSync(tmp, path);
+  atomicWriteText(path, JSON.stringify(value, null, 2) + "\n");
 }
 
 // Transcript context for the model: spoken words around each moment, wider
@@ -126,7 +125,7 @@ async function callModel(payload) {
     body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages: [{ role: "user", content: JSON.stringify(payload) }] }),
     signal: AbortSignal.timeout(180000),
   });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}`);
   const body = await res.json();
   return { text: (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n"), model };
 }
@@ -177,7 +176,7 @@ async function main() {
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) main().catch((error) => {
+if (isMain) Promise.resolve().then(() => withSourceLock(STORE_PATH, main)).catch((error) => {
   process.stderr.write(`moment-summaries: ${error.message}\n`);
   process.exit(1);
 });

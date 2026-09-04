@@ -35,6 +35,9 @@ import { fileURLToPath } from "node:url";
 import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric, youtubeTargetFingerprint, youtubeWatchReport } from "../youtube-readiness.mjs";
 import { discoveryShareOf, subsPer1kOf } from "../baselines.mjs";
 
+import { assertFrozenRatingsUnchanged, FROZEN_BASELINE, checkedTime, currentAnalyticsCohort, monotonicDrops, sourceStoreIntegrityErrors } from "../source-integrity.mjs";
+import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
+
 const HERE = dirname(fileURLToPath(import.meta.url)); // tools/dive-analytics/audit
 const TOOL = join(HERE, "..");
 const ROOT = join(TOOL, "..", "..");
@@ -72,6 +75,14 @@ function premiereMs(dateStr) {
   return Date.UTC(y, m - 1, d, 12) + 7 * 3600000;
 }
 
+// Every new store row proves identity, same-pull completeness and time; legacy
+// rows are accepted only unchanged from the independently audited baseline.
+try {
+  const errors = sourceStoreIntegrityErrors(ROOT, Date.parse(data.generatedAt));
+  for (const error of errors) fail(`source integrity: ${error}`);
+  if (!errors.length) ok("source integrity: new rows carry checked provenance; legacy evidence matches the frozen baseline");
+} catch (error) { fail(`source integrity: ${error.message}`); }
+
 // --- 1. unit sanity ---
 {
   let bad = 0;
@@ -81,7 +92,7 @@ function premiereMs(dateStr) {
       for (const [k, m] of Object.entries(s.byDest)) {
         if (k.startsWith("yt:") && m.plays != null) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays field on a YouTube destination`); }
         if (k.startsWith("x:") && m.plays != null) {
-          if (m.plays === 0) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays recorded as 0 — unavailable must be absent, never zero`); }
+          if (!Number.isFinite(m.plays) || m.plays < 0) { bad++; fail(`${e.slug} ${s.ts} ${k}: plays must be a valid nonnegative source count`); }
           if (m.playsSource !== "x-broadcast") { bad++; fail(`${e.slug} ${s.ts} ${k}: plays lack x-broadcast provenance`); }
           const account = k.slice(2);
           const resolved = (show?.targets || []).some((t) => t.kind === "x" && t.account === account && t.role !== "promo" && t.broadcastId);
@@ -91,7 +102,7 @@ function premiereMs(dateStr) {
         }
       }
     }
-    if (e.latest.xPlays === 0) { bad++; fail(`${e.slug}: latest.xPlays is 0 — must be null when unavailable`); }
+    if (e.latest.xPlays != null && (!Number.isFinite(e.latest.xPlays) || e.latest.xPlays < 0)) { bad++; fail(`${e.slug}: latest.xPlays is not a valid source count`); }
   }
   // Raw capture provenance: historical broadcast rows predate playsSource but
   // carry peakConcurrent only because the broadcast extractor wrote them.
@@ -133,7 +144,7 @@ function premiereMs(dateStr) {
     const latestYtSnap = BL.latestCurrentYtSnapshot(e);
     const expectedYt = BL.ytViewsOf(latestYtSnap);
     if (e.latest.ytTotal !== expectedYt) { bad++; fail(`${e.slug}: latest.ytTotal ${e.latest.ytTotal} does not match the latest confirmed current YouTube reading (${expectedYt})`); }
-    if (e.latest.youtubeAsOf !== (latestYtSnap?.ts ?? null) || e.latest.youtubeStale !== !!(latestYtSnap && latestYtSnap.ts !== latestSnap.ts)) {
+    if (e.latest.youtubeAsOf !== (latestYtSnap?.ts ?? null) || e.latest.youtubeStale !== !!(latestYtSnap && (latestYtSnap.ts !== latestSnap.ts || ["pending", "failed", "stale"].includes(e.sourceStates?.youtube?.state)))) {
       bad++; fail(`${e.slug}: latest YouTube reading time or old-reading marker does not match history`);
     }
     const expectedXImpressions = ["x:ridd_design", "x:designertom"]
@@ -175,7 +186,7 @@ function premiereMs(dateStr) {
   for (const p of data.showTrend?.cumulativeAllEpisodes || []) {
     if ("total" in p) { bad++; fail(`showTrend.cumulativeAllEpisodes carries mixed-unit 'total' — must be per-unit (ytViews/xReach)`); }
     if ("totalViews" in p) { bad++; fail(`showTrend.cumulativeAllEpisodes carries 'totalViews' — plays have no history; a blended time series is fabricated`); }
-    if (p.ytViews == null || p.xReach == null) { bad++; fail(`showTrend.cumulativeAllEpisodes entry missing per-unit fields`); }
+    if (![p.ytViews, p.xReach].every((value) => value === null || Number.isFinite(value))) { bad++; fail(`showTrend.cumulativeAllEpisodes entry has invalid per-unit fields`); }
   }
   if (!bad) ok("unit separation: totalViews uses available YouTube views and X plays; missing sources stay null and named");
 }
@@ -211,16 +222,9 @@ function premiereMs(dateStr) {
 {
   let bad = 0;
   for (const e of eps) {
-    const last = {};
-    for (const s of e.snapshots) {
-      for (const [k, m] of Object.entries(s.byDest)) {
-        if (last[k] != null && m.views < last[k]) {
-          const drop = last[k] - m.views;
-          if (drop > Math.max(50, last[k] * 0.02)) { bad++; fail(`${e.slug} ${k}: views dropped ${last[k]} -> ${m.views} at ${s.ts}`); }
-          else warn(`${e.slug} ${k}: small views dip ${last[k]} -> ${m.views} at ${s.ts} (API jitter?)`);
-        }
-        last[k] = m.views;
-      }
+    for (const drop of monotonicDrops(e.snapshots)) {
+      if (drop.before - drop.after > Math.max(50, drop.before * 0.02)) { bad++; fail(`${e.slug} ${drop.key}: views dropped ${drop.before} -> ${drop.after} at ${drop.ts}`); }
+      else warn(`${e.slug} ${drop.key}: small views dip ${drop.before} -> ${drop.after} at ${drop.ts} (API jitter?)`);
     }
   }
   if (!bad) ok("monotonic: cumulative views never materially decrease");
@@ -319,7 +323,8 @@ function premiereMs(dateStr) {
   for (const episode of eps) {
     const matches = candidatesFor(episode);
     if (episode.premiere < phoenixBuildDate && matches.length !== 1) {
-      bad++; fail(`${episode.slug}: finished episode has ${matches.length} Restream event records, expected exactly one`);
+      if (matches.length > 1) { bad++; fail(`${episode.slug}: finished episode has multiple Restream event records`); }
+      else if (episode.sourceStates?.live?.state !== "pending") { bad++; fail(`${episode.slug}: missing Restream reading is not explicitly unavailable`); }
     }
     if (episode.live && matches.length !== 1) {
       bad++; fail(`${episode.slug}: exported live session traces to ${matches.length} Restream events, not exactly one`);
@@ -422,8 +427,8 @@ function premiereMs(dateStr) {
       if (!Number.isFinite(point?.timestamp)) continue;
       const minute = Math.round((point.timestamp - started) / 60000);
       if (minute < 0) continue;
-      const chat = hasChatSeries ? (chatByMinute.get(minute) ?? 0) : null;
-      if (chat != null) chatTotal += chat;
+      const chat = hasChatSeries && chatByMinute.has(minute) ? chatByMinute.get(minute) : null;
+      chatTotal = chat != null && chatTotal != null ? chatTotal + chat : null;
       const byChannel = {};
       for (const [label, points] of viewersByChannelMinute) {
         byChannel[label] = points.has(minute) ? points.get(minute) : null;
@@ -604,7 +609,9 @@ function premiereMs(dateStr) {
   const newest = Math.max(...eps.filter((e) => e.active).map((e) => Date.parse(e.snapshots[e.snapshots.length - 1].ts)));
   const gen = Date.parse(data.generatedAt);
   const now = Date.now();
-  if (now - newest > FRESH_MS) fail(`freshness: newest snapshot is ${((now - newest) / 3600000).toFixed(1)}h old (limit 26h)`);
+  try { checkedTime(data.generatedAt, { now, label: "generatedAt", maxAge: FRESH_MS }); } catch (error) { fail(`freshness: ${error.message}`); }
+  for (const e of eps) for (const snapshot of e.snapshots || []) { try { checkedTime(snapshot.ts, { now, label: `${e.slug} snapshot` }); } catch (error) { fail(`freshness: ${error.message}`); } }
+  if (now - newest > FRESH_MS && !eps.some((e) => ["pending", "failed", "stale"].includes(e.sourceStates?.youtube?.state))) fail(`freshness: newest snapshot is ${((now - newest) / 3600000).toFixed(1)}h old (limit 26h)`);
   else ok(`freshness: newest snapshot ${((now - newest) / 3600000).toFixed(1)}h old`);
   if (now - gen > FRESH_MS) fail(`freshness: data.json generated ${((now - gen) / 3600000).toFixed(1)}h ago (limit 26h)`);
   else ok(`freshness: data.json generated ${((now - gen) / 3600000).toFixed(1)}h ago`);
@@ -614,7 +621,7 @@ function premiereMs(dateStr) {
 // --- 5. roster consistency ---
 {
   const expected = registry.shows.filter(
-    (s) => s.active !== false && (/dive.?radio/i.test(s.title) || /dive-radio/.test(s.slug)) && existsSync(join(HISTORY, `${s.slug}.json`))
+    (s) => s.active !== false && s.date <= new Date(Date.parse(data.generatedAt) - 7 * 3600000).toISOString().slice(0, 10) && (/dive.?radio/i.test(s.title) || /dive-radio/.test(s.slug)) && existsSync(join(HISTORY, `${s.slug}.json`))
   );
   const expectedSlugs = new Set(expected.map((s) => s.slug));
   const gotSlugs = new Set(eps.map((e) => e.slug));
@@ -749,11 +756,11 @@ function premiereMs(dateStr) {
     if (store.publication?.id !== pull.DEFAULT_PUBLICATION_ID || store.publication?.name !== pull.PUBLICATION_NAME) {
       bad++; fail("newsletter promotion: store is not tied to the fixed UX Tools publication");
     }
-    if (store.updatedAt !== store.lastSuccessfulAt || !Number.isFinite(Date.parse(store.lastSuccessfulAt))) {
+    if (store.updatedAt !== store.lastSuccessfulAt || (!Number.isFinite(Date.parse(store.lastSuccessfulAt)) && !(store.capture?.state === "pending" && store.lastSuccessfulAt === null))) {
       bad++; fail("newsletter promotion: successful pull time is missing or disagrees with the store update time");
     }
 
-    for (const show of registeredDiveShows) {
+    for (const show of registeredDiveShows.filter((show) => show.date <= new Date(Date.parse(data.generatedAt) - 7 * 3600000).toISOString().slice(0, 10))) {
       const entry = store.episodes?.[show.slug];
       if (!entry) { bad++; fail(`newsletter promotion: ${show.slug} has no checked result`); continue; }
       if (!new Set(["found", "no-direct-link"]).has(entry.status)) { bad++; fail(`newsletter promotion: ${show.slug} has an unknown status`); continue; }
@@ -771,7 +778,7 @@ function premiereMs(dateStr) {
         for (const newsletter of entry.newsletters) {
           if (!newsletter.postId || seenPosts.has(newsletter.postId)) { bad++; fail(`newsletter promotion: ${show.slug} repeats or omits a newsletter id`); }
           seenPosts.add(newsletter.postId);
-          if (!newsletter.title || !Number.isFinite(Date.parse(newsletter.publishedAt)) || Date.parse(newsletter.publishedAt) > Date.parse(store.lastSuccessfulAt)) {
+          if (!newsletter.title || !Number.isFinite(Date.parse(newsletter.publishedAt)) || Date.parse(newsletter.publishedAt) > Date.parse(entry.capture?.checkedAt || store.lastSuccessfulAt)) {
             bad++; fail(`newsletter promotion: ${show.slug} has an untitled, undated, or future newsletter`);
           }
           if (!/^https:\/\/uxtools\.beehiiv\.com\/p\//.test(newsletter.webUrl || "")) {
@@ -827,7 +834,7 @@ function premiereMs(dateStr) {
           bad++; fail(`newsletter promotion: ${show.slug} has a malformed Phoenix-day snapshot`);
         }
       }
-      if (entry.status === "found" && entry.totals?.emailClicks !== null && entry.totals?.verifiedEmailClicks !== null) {
+      if (entry.capture?.state !== "pending" && entry.status === "found" && entry.totals?.emailClicks !== null && entry.totals?.verifiedEmailClicks !== null) {
         const today = pull.phoenixDateKey(Date.parse(store.lastSuccessfulAt));
         const snapshot = snapshots.find((row) => row.date === today);
         if (!snapshot || snapshot.emailClicks !== entry.totals.emailClicks || snapshot.verifiedEmailClicks !== entry.totals.verifiedEmailClicks) {
@@ -839,7 +846,7 @@ function premiereMs(dateStr) {
     if (data.promotionUpdatedAt !== store.lastSuccessfulAt) { bad++; fail("newsletter promotion: data update time does not match the source store"); }
     for (const episode of eps) {
       const entry = store.episodes?.[episode.slug];
-      if (entry?.status !== "found") {
+      if (entry?.status !== "found" || (entry.capture && entry.capture.state !== "ready") || store.capture?.state === "failed" || episode.sourceStates?.promotion?.state !== "ready") {
         if (episode.promotion != null) { bad++; fail(`newsletter promotion: ${episode.slug} exposes promotion facts without an exact link`); }
         continue;
       }
@@ -848,7 +855,7 @@ function premiereMs(dateStr) {
       const expectedProjection = {
         status: "found",
         source: store.publication.name,
-        updatedAt: store.lastSuccessfulAt,
+        updatedAt: entry.capture?.reading?.state === "ready" ? entry.capture.reading.pulledAt : store.lastSuccessfulAt,
         emailClicks: entry.totals?.emailClicks ?? null,
         verifiedEmailClicks: entry.totals?.verifiedEmailClicks ?? null,
         clicksReason: entry.totals?.emailClicks == null || entry.totals?.verifiedEmailClicks == null
@@ -900,7 +907,7 @@ function premiereMs(dateStr) {
 // artifact. The release flow verifies exact production bytes after deployment.
 {
   let bad = 0;
-  const expectedPublic = ["index.html", "agents.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md"];
+  const expectedPublic = PUBLIC_ARTIFACTS;
   for (const f of [...expectedPublic, "chart.umd.js"]) {
     if (!existsSync(join(ROOT, f))) { bad++; fail(`publish: ${join(ROOT, f)} missing from repo root`); }
   }
@@ -1082,9 +1089,11 @@ function premiereMs(dateStr) {
       showRows.push(...rows);
       showViews += e.latest.totalViews || 0;
       const tvi = e.latest.totalViewsInfo || {};
-      const rateComplete = raw.xCoverage === "covered" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
+      const commentState = raw.capture?.state && raw.capture.state !== "ready" ? raw.capture.state : Date.parse(data.generatedAt) - Date.parse(raw.updatedAt) > FRESH_MS ? "stale" : "ready";
+      const rateComplete = raw.xCoverage === "covered" && commentState === "ready" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.incomplete && !tvi.partial && !tvi.stale;
       if (!rateComplete) showRateComplete = false;
       const expected = summarize(rows, e.latest.totalViews, rateComplete);
+      if (commentState !== "ready") expected.commentersPer1kNote = `Comments are from ${raw.updatedAt?.slice(0, 10) || "an earlier reading"}; the latest source check is ${commentState}. The commenting rate is not available.`;
       for (const [key, value] of Object.entries(expected)) {
         if (JSON.stringify(e.comments[key]) !== JSON.stringify(value)) { bad++; fail(`${e.slug}: comments.${key} disagrees with the classified-store recompute`); }
       }
@@ -1247,12 +1256,19 @@ function premiereMs(dateStr) {
   let store = null;
   try { store = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8")); } catch { /* absent */ }
   if (!store) {
-    warn("episode health: episode-ratings.json absent — health surfaces will not render (run tools/dive-analytics/ratings.mjs)");
+    fail("episode health: episode-ratings.json absent — health surfaces will not render (run tools/dive-analytics/ratings.mjs)");
   } else {
     const BL = await import(join(TOOL, "baselines.mjs"));
     if (store.algorithm !== "health21-v2") { bad++; fail(`episode health: store algorithm "${store.algorithm}" — expected health21-v2 (stale store; rerun ratings.mjs)`); }
     if (store.readDays !== 21) { bad++; fail(`episode health: store readDays ${store.readDays} — the read window is 21 days`); }
     if (store.windowN !== BL.WINDOW_N || store.minPeers !== BL.MIN_PEERS) { bad++; fail("episode health: store window/min-peers stamps differ from baselines.mjs"); }
+    const ratingPath = "data/restream/episode-ratings.json";
+    for (const revision of [FROZEN_BASELINE, "HEAD"]) {
+      try {
+        const baselineText = execFileSync("git", ["show", `${revision}:${ratingPath}`], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+        assertFrozenRatingsUnchanged(baselineText, readFileSync(join(ROOT, ratingPath), "utf8"));
+      } catch (error) { bad++; fail(`episode health: frozen byte integrity against ${revision} failed — ${error.message}`); }
+    }
     const flagsNow = BL.anomalyFlags(eps);
     const bySlug = new Map((store.scores || []).map((r) => [r.slug, r]));
     const epOrder = [...eps].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
@@ -1362,13 +1378,13 @@ function premiereMs(dateStr) {
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   const buildSource = readFileSync(join(TOOL, "build-data.mjs"), "utf8");
   if (!/mode: "watch"/.test(html)) { bad++; drift("watching: the chart has no Watching view"); }
-  if (!/function pendingWatchMessage\(e,[\s\S]{0,260}e\.watchReport\?\.state !== "pending"/.test(html)
+  if (!/function pendingWatchMessage\(e,[\s\S]{0,700}e\.watchReport\?\.state !== "pending"/.test(html)
     || !/cfg\._missingText = state\.metric === "watched"/.test(html)
     || !/chart\.config\._missingText = cfg\._missingText/.test(html)
     || !/pendingWatchMessage\(e, NEWEST\.slug\) \|\| "Watch data is not available/.test(html)) {
     bad++; drift("watching: a saved pending report must explain the missing newest value on the card, chart, and hover without drawing a zero");
   }
-  if (!/completeYoutubeWatchCohort\(expectedChannels, j\)/.test(buildSource)
+  if (!/currentAnalyticsCohort\(e, j, now\)/.test(buildSource)
     || !/weightedYoutubeMetric\(chans, "averageViewDuration"\)/.test(buildSource)
     || !/summedYoutubeMetric\(chans, "estimatedMinutesWatched"\)/.test(buildSource)
     || !/trafficChannels = chans\.every/.test(buildSource)
@@ -1480,11 +1496,11 @@ function premiereMs(dateStr) {
       bad++; fail(`watching: ${e.slug} exports watch-report state with no stored source — fabricated`);
     }
     if (!w) {
-      if (completeChannels) { bad++; fail(`watching: ${e.slug} has complete analytics but no exported watch block`); }
+      if (currentAnalyticsCohort(e, store, Date.parse(data.generatedAt)).length) { bad++; fail(`watching: ${e.slug} has complete current analytics but no exported watch block`); }
       continue;
     }
     if (!store) { bad++; fail(`watching: ${e.slug} exports watch data with no analytics store — fabricated`); continue; }
-    if (!completeChannels) { bad++; fail(`watching: ${e.slug} exports a blended watch number without every registered YouTube channel`); }
+    if (!currentAnalyticsCohort(e, store, Date.parse(data.generatedAt)).length) { bad++; fail(`watching: ${e.slug} exports stale, incomplete or wrong-video analytics`); }
     if (!Array.isArray(w.channels) || !w.channels.length) { bad++; fail(`watching: ${e.slug} watch block names no channels`); }
     if (w.channels?.length !== expectedChannels.length || expectedChannels.some((key) => !w.channels.includes(key))) {
       bad++; fail(`watching: ${e.slug} blended watch number does not use exactly its registered YouTube channels`);
@@ -2644,6 +2660,7 @@ function premiereMs(dateStr) {
     bad++; fail(`baselines: fixture test failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
   }
   for (const fixture of [
+    ["source-integrity.test.mjs", "source-to-screen integrity"],
     ["youtube-missing-data.test.mjs", "missing-data capture"],
     ["youtube-release-date.test.mjs", "broadcast-day discovery"],
     ["episode-date-sync.test.mjs", "episode-date store sync"],
@@ -2780,7 +2797,7 @@ function premiereMs(dateStr) {
           let stamp = null;
           try {
             const j = JSON.parse(readFileSync(path, "utf8"));
-            stamp = step.freshnessKey === "updatedAt" ? j.updatedAt
+            stamp = j.capture && ["pending", "failed"].includes(j.capture.state) ? j.capture.checkedAt : step.freshnessKey === "updatedAt" ? j.updatedAt
               : step.freshnessKey === "generatedAt" ? j.generatedAt
               : step.freshnessKey === "lastSuccessfulAt" ? j.lastSuccessfulAt
               : step.freshnessKey === "lastSuccessfulDiscoveryAt" ? j.lastSuccessfulDiscoveryAt
@@ -2793,6 +2810,7 @@ function premiereMs(dateStr) {
             if (step.required) { bad++; fail(msg); } else warn(msg);
             continue;
           }
+          if (Date.parse(stamp) > builtAt + 60000) { bad++; fail(`chain: ${pattern} has a future timestamp`); }
           const lag = builtAt - Date.parse(stamp);
           if (lag > FRESH_MS) {
             const msg = `chain: ${pattern} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
@@ -2810,9 +2828,18 @@ function premiereMs(dateStr) {
           let stamp = null;
           try {
             if (ext === ".jsonl") { const lines = readFileSync(path, "utf8").split("\n").filter(Boolean); stamp = lines.length ? JSON.parse(lines.at(-1)).pulledAt : null; }
-            else { const j = JSON.parse(readFileSync(path, "utf8")); stamp = step.freshnessKey === "snapshots[-1].ts" ? j.snapshots?.at(-1)?.ts : j.updatedAt; }
+            else { const j = JSON.parse(readFileSync(path, "utf8")); const check = j.capture || j.watchReport; stamp = check && ["pending", "failed", "idle"].includes(check.state) ? check.checkedAt : step.freshnessKey === "snapshots[-1].ts" ? j.snapshots?.at(-1)?.ts : j.updatedAt; }
           } catch { /* unreadable */ }
-          if (!stamp) continue;
+          if (!stamp || !Number.isFinite(Date.parse(stamp))) {
+            const source = ext === ".json" ? JSON.parse(readFileSync(path, "utf8")) : null;
+            if (source?.watchReport && ["pending", "failed", "idle"].includes(source.watchReport.state)) {
+              try { checkedTime(source.watchReport.checkedAt, { now: builtAt, maxAge: FRESH_MS, label: pattern.replace("*", slug) }); } catch (error) { bad++; fail(`chain: ${error.message}`); }
+              continue;
+            }
+            if (step.required && ext !== ".jsonl") { bad++; fail(`chain: ${pattern.replace("*", slug)} has no valid timestamp`); }
+            continue;
+          }
+          if (Date.parse(stamp) > builtAt + 60000) { bad++; fail(`chain: ${pattern.replace("*", slug)} has a future timestamp`); }
           const lag = builtAt - Date.parse(stamp);
           if (lag > FRESH_MS) {
             const msg = `chain: ${pattern.replace("*", slug)} is ${Math.round(lag / 3600000)} h behind the build (${stamp})`;
@@ -2848,8 +2875,8 @@ function premiereMs(dateStr) {
     if (!/pullCurrentMain\(root/.test(publishSource) || publishSource.indexOf("pullCurrentMain(root") > publishSource.indexOf("commitFinalOutputs(root")) { bad++; drift("chain: release must pull main before committing data"); }
     if (!/\["push", "--quiet", "origin", "HEAD:main"\]/.test(publishSource) || /\["push"[^\n]+"origin", "main"\]/.test(publishSource)) { bad++; drift("chain: every release push must send the checked commit to GitHub main"); }
     if (!/stagePublishScope\(root\)/.test(publishSource) || !/\["add", "--all", "--", \.\.\.paths\]/.test(scopeSource)) { bad++; drift("chain: release staging must use only exact declared output paths"); }
-    if (/git add -A|git add --all/.test(publishSource) || /vercel[^\n]*\|/.test(publishSource)) { bad++; drift("chain: release must not stage broadly or hide a Vercel failure in a pipe"); }
-    if (!/MAX_ATTEMPTS = 2/.test(publishSource) || !/checkLiveParity/.test(publishSource) || !/validate\.mjs", "--publish"/.test(publishSource)) { bad++; drift("chain: release must stop after two tries, recheck final files, and prove production bytes"); }
+    if (/git add -A|git add --all/.test(publishSource) || !/command\(root, "vercel", \["deploy", "--prod", "--yes"\]/.test(publishSource)) { bad++; drift("chain: release must not stage broadly or hide a Vercel failure in a pipe"); }
+    if (!/MAX_ATTEMPTS = 2/.test(publishSource) || !/checkLiveParity/.test(publishSource) || !/validate\.mjs/.test(publishSource)) { bad++; drift("chain: release must stop after two tries, recheck final files, and prove production bytes"); }
     if (!/PUBLIC_ARTIFACTS/.test(paritySource) || !/parityArtifactsForRoot/.test(paritySource) || !/transcripts\/\$\{episode\.slug\}\.txt/.test(paritySource) || !/AbortSignal\.timeout\(20_000\)/.test(paritySource)) { bad++; drift("chain: production byte checks must include every served transcript and use a bounded request"); }
     if (!/newsletter-promotion/.test(runnerSource) || !/RETRY_ONCE/.test(runnerSource)
       || !/new Set\(\["discover", "snapshot", "yt-analytics", "newsletter-promotion"\]\)/.test(runnerSource)) {
@@ -2868,10 +2895,10 @@ function premiereMs(dateStr) {
       || !/const dueShows = shows\.filter/.test(youtubeAnalyticsSource)
       || !/missingYoutubeAccounts\(dueShows, tokens\)/.test(youtubeAnalyticsSource)
       || !/acquireLock\(`\$\{path\}\.lock\.tmp`/.test(youtubeAnalyticsSource)
-      || !/renameSync\(tmp, path\)/.test(youtubeAnalyticsSource)
+      || !/atomicWriteText\(path, next\)/.test(youtubeAnalyticsSource)
       || !/!usableYoutubeWatchTotals\(totals\)/.test(youtubeAnalyticsSource)
       || !/runStepWithPolicy/.test(runnerSource)
-      || !/youtubeWatchPending: isPending\(\)/.test(runnerSource)
+      || !/sourcePending: isPending\(\)/.test(runnerSource)
       || !/status === YOUTUBE_WATCH_PENDING_EXIT/.test(dailySource)
       || !/markYoutubeWatchAlert/.test(dailySource)
       || !/const finalAttempt = reserved\.number >= MAX_DAILY_ATTEMPTS/.test(dailySource)
@@ -2931,7 +2958,7 @@ function premiereMs(dateStr) {
       || !/ISOLATED_PUBLISHER_ROOT[\s\S]*join\(RUNTIME_DIR, "publisher-main"\)/.test(runtimeSource)) {
       bad++; drift("chain: the isolated publisher and alert queue must live in the shared runtime folder outside Git");
     }
-    if (!/acknowledgeQueueLines\(batch/.test(alertsSource) || !/message", "send"/.test(alertsSource) || !/\.delivery\.lock/.test(alertsSource)
+    if (!/acknowledge\(batch\)/.test(alertsSource) || !/acknowledgeQueueLines\(lines, queuePath\)/.test(alertsSource) || !/message", "send"/.test(alertsSource) || !/\.delivery\.lock/.test(alertsSource)
       || !/timeout: 60_000/.test(alertsSource) || !/chainGuard/.test(alertsSource)
       || !/runBoundedChain/.test(dailySource) || !/detached: process\.platform !== "win32"/.test(dailySource)
       || !/process\.kill\(-child\.pid, signal\)/.test(dailySource) || !/stop\("SIGKILL"\)/.test(dailySource)
@@ -2950,8 +2977,8 @@ function premiereMs(dateStr) {
       || !/POSTLIVE_STORE\.test\(file\)/.test(healSource) || !/isolated\|chain\|publish/.test(healSource)) {
       bad++; drift("chain: recovery must restore interrupted pre-pull stores, preserve both post-live histories, and merge episode ratings without changing frozen entries");
     }
-    if (!/resolveOperationalAlerts\(QUEUE_PATH/.test(runnerSource) || !/includeChecklist: true/.test(runnerSource)
-      || !/includeYoutubeWatch: !youtubeWatchPending/.test(runnerSource)
+    if (!/resolveOperationalAlerts\(undefined/.test(dailySource) || !/includeChecklist: true/.test(dailySource)
+      || !/includeYoutubeWatch: true/.test(dailySource) || !/readPublishEvidence/.test(dailySource)
       || !/includeYoutubeWatch: true/.test(recoverySource)
       || !/resolve\(\)/.test(recoverySource) || !/checklistVerdict/.test(recoverySource)
       || !/checklistResult\.ok/.test(recoverySource)) {
@@ -3034,7 +3061,7 @@ function premiereMs(dateStr) {
       for (const e of data.episodes) {
         const d = (digest.episodes || []).find((x) => x.slug === e.slug);
         if (!d) { bad++; fail(`agent: episode ${e.slug} missing from the brief`); continue; }
-        const agentYoutube = Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0 ? e.latest.ytTotal : null;
+        const agentYoutube = Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal >= 0 ? e.latest.ytTotal : null;
         const agentTotal = agentYoutube == null ? null : (e.latest?.totalViews ?? null);
         if (d.views.total !== agentTotal || d.views.youtube !== agentYoutube) { bad++; fail(`agent: E${e.ep} views in the brief do not re-derive from data.json under the missing-YouTube rule`); }
         if (agentYoutube == null && (d.views.youtubeMarker !== "missing" || !d.views.reason)) { bad++; fail(`agent: E${e.ep} missing YouTube is not named in the brief`); }

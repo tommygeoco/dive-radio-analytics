@@ -42,10 +42,12 @@
 // Store: data/restream/episode-ratings.json — one entry per FINISHED episode.
 // Deterministic: no model calls, no network. Reads the same files as build-data.
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
 import { computeAll } from "./build-data.mjs";
+import { assertFrozenRatingsUnchanged, currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
+import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
 import {
   MIN_PEERS, NOTES, READ_DAYS, WINDOW_N, anomalyFlags, engagementPer1kOf, firstYtSnapshot,
   flagReason, peersFor, round1, round3, scoreOf, windowFor, ytCurrentAge, ytHistoryAt,
@@ -147,7 +149,9 @@ function analyticsReading(e, kind, io, { basis }) {
   }
   const file = io.readAnalytics(e.slug);
   if (!file) return null;
-  const r = pick(file.channels);
+  const cohort = currentAnalyticsCohort(e, file);
+  if (!cohort.length) return null;
+  const r = pick(Object.fromEntries(cohort));
   return r.value == null ? null : { value: r.value, channels: r.channels, source: "analytics-file", readDate: (file.updatedAt || "").slice(0, 10) || null, atDay: round1(ageDaysOf(file.updatedAt || Date.now(), e.premiere)) };
 }
 
@@ -280,10 +284,12 @@ export function scoreEpisode(target, window, flags, io = DEFAULT_IO) {
 // --- store orchestration ---
 
 export function computeRatings({ now = Date.now(), io = DEFAULT_IO } = {}) {
+  assertSourceStoreIntegrity(ROOT, now);
   const data = computeAll({ now });
   let store = null;
   if (existsSync(STORE_PATH)) {
-    try { store = JSON.parse(readFileSync(STORE_PATH, "utf8")); } catch { /* unreadable store — rebuild below */ }
+    store = JSON.parse(readFileSync(STORE_PATH, "utf8"));
+    if (!Array.isArray(store.scores)) throw new Error("ratings store has no scores array");
   }
   const sameAlgo = store?.algorithm === ALGORITHM;
   const prior = new Map(sameAlgo ? (store.scores || []).map((r) => [r.slug, r]) : []);
@@ -351,6 +357,8 @@ export function computeRatings({ now = Date.now(), io = DEFAULT_IO } = {}) {
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
   const dry = process.argv.includes("--dry");
+  const release = dry ? () => {} : acquireSourceLock(STORE_PATH);
+  try {
   const { _frozenKept, _computed, ...store } = computeRatings();
   for (const r of store.scores) {
     const flagsOut = [
@@ -361,5 +369,10 @@ if (isMain) {
     console.log(`E${r.ep} ${r.slug.slice(0, 34)} — health ${r.score ?? "–"} [${flagsOut.join(" · ")}]`);
   }
   console.log(`episode health (${ALGORITHM}): ${_computed} computed, ${_frozenKept} frozen kept${store.rederivedFrom ? ` — re-derived from ${store.rederivedFrom}` : ""}${dry ? " (dry run — store not written)" : ` — wrote ${STORE_PATH}`}`);
-  if (!dry) writeFileSync(STORE_PATH, JSON.stringify(store, null, 2) + "\n");
+  if (!dry) {
+    const next = JSON.stringify(store, null, 2) + "\n";
+    if (existsSync(STORE_PATH)) assertFrozenRatingsUnchanged(readFileSync(STORE_PATH, "utf8"), next);
+    atomicWriteText(STORE_PATH, next);
+  }
+  } finally { release(); }
 }

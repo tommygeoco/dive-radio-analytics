@@ -40,6 +40,7 @@ function episode(i, { firstDay = 1, lastDay = 40, promo = false, noWatch = false
   return {
     slug: `e${String(i + 1).padStart(2, "0")}`,
     premiere: date,
+    links: { "yt:joindiveclub": "https://youtube.com/watch?v=one", "yt:designertom": "https://youtube.com/watch?v=two" },
     snapshots: snaps,
     latest: { ts: last.ts, byDest: last.byDest, ytTotal, xPlays, xPlaysInfo: { partial: false, stale: false, total: 2, have: 2 }, xImpressions: B.xImpressionsOf(last), totalViews: ytTotal + xPlays },
     watch: noWatch ? undefined : { avgPercent: 10 + i * 0.5, curve: [0.01, 0.02, 0.5, 1].map((at) => ({ at, watching: Math.round((100 - at * 80 - i) * 100) / 100 })) },
@@ -292,10 +293,11 @@ assert.equal(B.trueMedian([]), null);
       { source: "yt", author: `late${i}`, sentiment: "negative", at: at(30) }, // outside the read window
     ] };
   }
-  const totals = (e, views) => ({ "yt:joindiveclub": { totals: { views: Math.round(views * 0.6), averageViewPercentage: 12 + e.ep, subscribersGained: 3 } }, "yt:designertom": { totals: { views: Math.round(views * 0.4), averageViewPercentage: 10 + e.ep, subscribersGained: 2 } } });
+  const analyticsNow = new Date().toISOString();
+  const totals = (e, views) => ({ "yt:joindiveclub": { videoId: "one", pulledAt: analyticsNow, totals: { views: Math.round(views * 0.6), averageViewPercentage: 12 + e.ep, subscribersGained: 3 } }, "yt:designertom": { videoId: "two", pulledAt: analyticsNow, totals: { views: Math.round(views * 0.4), averageViewPercentage: 10 + e.ep, subscribersGained: 2 } } });
   eps.forEach((e, i) => { e.ep = i + 1; });
   const io = {
-    readAnalytics: (slug) => { const e = eps.find((x) => x.slug === slug); return e.watch ? { updatedAt: ts(e.premiere, 40), channels: totals(e, 2000) } : null; },
+    readAnalytics: (slug) => { const e = eps.find((x) => x.slug === slug); return e.watch ? { updatedAt: analyticsNow, channels: totals(e, 2000) } : null; },
     readHistory: (slug) => {
       const e = eps.find((x) => x.slug === slug);
       if (!e.watch || e.ep > 7) return []; // only E1–E7 have a day-21 history line

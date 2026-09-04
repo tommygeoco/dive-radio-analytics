@@ -34,10 +34,14 @@
 //   publish → alerts. The second build-data projects the store into the
 //   page so validate's page-matches-store lock holds.
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync, unlinkSync } from "node:fs";
+import { existsSync, readFileSync, unlinkSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { liveDepthOf } from "./baselines.mjs";
+
+import { currentAnalyticsCohort } from "./source-integrity.mjs";
+
+import { atomicWriteText, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -59,14 +63,11 @@ const MARKUP = /<\/?[a-z]|```|https?:\/\/|\[[^\]]+\]\(/i;
 
 function readJson(path, fallback = null) {
   if (!existsSync(path)) return fallback;
-  try { return JSON.parse(readFileSync(path, "utf8")); } catch { return fallback; }
+  return JSON.parse(readFileSync(path, "utf8"));
 }
 
 function saveAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(value, null, 1) + "\n");
-  renameSync(tmp, path);
+  atomicWriteText(path, JSON.stringify(value, null, 2) + "\n");
 }
 
 const r1 = (x) => Math.round(x * 10) / 10;
@@ -200,14 +201,16 @@ export function collectFacts(data = readJson(DATA_PATH)) {
   for (const e of eps) {
     const j = readJson(join(yta, `${e.slug}.json`));
     const expected = Object.keys(e.latest?.byDest || {}).filter((key) => key.startsWith("yt:"));
-    const channelTotals = expected.map((key) => j?.channels?.[key]?.totals || null);
-    if (!expected.length || channelTotals.some((t) => !Number.isFinite(t?.views)) || channelTotals.reduce((sum, t) => sum + (t?.views ?? 0), 0) <= 0) {
+    const cohort = currentAnalyticsCohort(e, j, Date.parse(data.generatedAt));
+    const channelTotals = cohort.map(([, channel]) => channel.totals);
+    if (!cohort.length || channelTotals.some((t) => !Number.isFinite(t?.views)) || channelTotals.reduce((sum, t) => sum + (t?.views ?? 0), 0) <= 0) {
       analyticsComplete = false;
     }
-    for (const [key, ch] of Object.entries(j?.channels || {})) {
+    for (const [key, ch] of cohort) {
       const t = ch?.totals; if (!t) continue;
       const a = byChannel[key] = byChannel[key] || { views: 0, subs: 0, weighted: 0 };
       if (Number.isFinite(t.views)) a.views += t.views;
+      if (!Number.isFinite(t.subscribersGained) || !Number.isFinite(t.averageViewPercentage) || !Array.isArray(ch.trafficSources) || !ch.trafficSources.length || ch.trafficSources.some((row) => !Number.isFinite(row.views))) analyticsComplete = false;
       if (Number.isFinite(t.subscribersGained)) a.subs += t.subscribersGained;
       if (Number.isFinite(t.averageViewPercentage) && Number.isFinite(t.views)) a.weighted += t.averageViewPercentage * t.views;
       for (const row of ch.trafficSources || []) { traffic[row.insightTrafficSourceType] = (traffic[row.insightTrafficSourceType] || 0) + row.views; trafficTotal += row.views; }
@@ -229,10 +232,11 @@ export function collectFacts(data = readJson(DATA_PATH)) {
   }
 
   // platform split (plays are real watching; reach is not)
-  const youtubeComplete = eps.every((e) => Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0);
+  const youtubeComplete = eps.every((e) => Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal >= 0);
   const xValues = eps.map((e) => e.latest?.xPlays).filter(Number.isFinite);
   const ytAll = youtubeComplete ? eps.reduce((a, e) => a + e.latest.ytTotal, 0) : null;
-  const xAll = xValues.length ? xValues.reduce((a, value) => a + value, 0) : null;
+  const xAll = xValues.length === eps.length && eps.every((e) => !e.latest?.xPlaysInfo?.partial && !e.latest?.xPlaysInfo?.stale)
+    ? xValues.reduce((a, value) => a + value, 0) : null;
   add("views-yt-all", ytAll, "all-show YouTube views");
   add("views-x-all", xAll, "all-show X broadcast plays");
   if (ytAll != null && xAll != null && ytAll + xAll > 0) add("share-x-all", (xAll / (ytAll + xAll)) * 100, "share of all watching on X");
@@ -397,7 +401,7 @@ async function callModel(messages) {
     body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages }),
     signal: AbortSignal.timeout(180000),
   });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}`);
   const body = await res.json();
   const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
   return { text, model };
@@ -474,7 +478,7 @@ async function main() {
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) main().catch((error) => {
+if (isMain) Promise.resolve().then(() => withSourceLock(STORE_PATH, main)).catch((error) => {
   process.stderr.write(`recommendations: ${error.message}\n`);
   process.exit(1);
 });

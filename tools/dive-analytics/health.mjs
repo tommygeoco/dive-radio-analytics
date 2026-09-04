@@ -83,12 +83,14 @@
 //   node tools/dive-analytics/health.mjs                # append today's entry
 
 import {
-  existsSync, mkdirSync, readFileSync, renameSync, writeFileSync,
+  existsSync, readFileSync,
 } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn, ytHistoryAt, liveRatesOf, peersFor, snapshotAt, ytSnapshotAt, ytCurrentAge, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf, swingOf, bandsFor, stateOf, liveDepthOf, discoveryShareOf, STATE_WORDS, comparableAcrossBreaks, NOTE_BREAK } from "./baselines.mjs";
+
+import { atomicWriteText, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -96,6 +98,8 @@ const DATA_PATH = join(ROOT, "data.json");
 const STORE_PATH = join(ROOT, "data", "restream", "health-history.json");
 const ANALYTICS_DIR = join(ROOT, "data", "restream", "yt-analytics");
 const CLASSIFIED_PATH = join(ROOT, "data", "restream", "comments-classified.json");
+import { currentAnalyticsCohort } from "./source-integrity.mjs";
+
 const HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-history");
 const PROMPT_PATH = join(HERE, "health-prompt.md");
 const DAY = 86400000;
@@ -197,10 +201,7 @@ function readJson(path, fallback = null) {
 }
 
 function saveAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const tmp = `${path}.tmp`;
-  writeFileSync(tmp, JSON.stringify(value, null, 2) + "\n");
-  renameSync(tmp, path);
+  atomicWriteText(path, JSON.stringify(value, null, 2) + "\n");
 }
 
 function sha(value) {
@@ -243,13 +244,6 @@ function premiereMs(date) {
 
 function observedAgeMs(episode) {
   return Date.parse(episode.latest.ts) - premiereMs(episode.premiere);
-}
-
-function youtubeViews(snapshot) {
-  return Object.entries(snapshot?.byDest || {}).reduce(
-    (sum, [key, metrics]) => sum + (key.startsWith("yt:") ? Number(metrics.views || 0) : 0),
-    0,
-  );
 }
 
 function lastAtOrBefore(snapshots, cutoff) {
@@ -434,7 +428,7 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   const historyBySlug = new Map();
   for (const episode of episodes) {
     const analytics = readJson(join(root, "data", "restream", "yt-analytics", `${episode.slug}.json`));
-    if (analytics) analyticsBySlug.set(episode.slug, analytics);
+    if (currentAnalyticsCohort(episode, analytics, sourceNow).length) analyticsBySlug.set(episode.slug, analytics);
     const hp = join(root, "data", "restream", "yt-analytics-history", `${episode.slug}.jsonl`);
     historyBySlug.set(episode.slug, existsSync(hp) ? readFileSync(hp, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : []);
   }
@@ -1315,7 +1309,7 @@ async function main() {
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) main().catch((error) => {
+if (isMain) Promise.resolve().then(() => withSourceLock(STORE_PATH, main)).catch((error) => {
   process.stderr.write(`health: ${error.message}\n`);
   process.exit(1);
 });

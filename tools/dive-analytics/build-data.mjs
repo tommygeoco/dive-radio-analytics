@@ -4,7 +4,7 @@
 // Monday Slack report (postlive-track.mjs report --trends imports computeAll/trendsText).
 // PRD: Dive Media Group/Dive Radio/prd-episode-analytics-chart.md
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
 // negative-signal veto for featured quotes (comments critic 2026-08-22 C1):
@@ -17,11 +17,13 @@ import { momentKey } from "./moment-summaries.mjs";
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
 import { buildBrief } from "./agent-brief.mjs";
+import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
+import { currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
 import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric } from "./youtube-readiness.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
-  ytViewsOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS, NOTES,
+  ytViewsOf, ytEngagementOf, engagementPer1kOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS, NOTES,
 } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
@@ -99,12 +101,12 @@ export function compactSnap(s) {
     }
     if (m.peakConcurrent != null) byDest[k].peakConcurrent = m.peakConcurrent;
   }
-  return { ts: s.ts, byDest };
+  return { ts: s.ts, byDest, ...(s.reading ? { reading: s.reading } : {}) };
 }
 
 function total(byDest, keys) {
   const use = keys || DESTS.map((d) => d.key);
-  return use.reduce((a, k) => a + (byDest[k]?.views || 0), 0);
+  return totalOrNull(byDest, use);
 }
 
 function totalOrNull(byDest, keys) {
@@ -229,6 +231,7 @@ export function computeAll({ now = Date.now() } = {}) {
   const episodes = [];
 
   for (const show of registry.shows) {
+    if (show.date > fmtDate(now)) continue;
     const histPath = join(HISTORY_DIR, `${show.slug}.json`);
     if (!existsSync(histPath)) continue;
     const hist = JSON.parse(readFileSync(histPath, "utf8"));
@@ -290,7 +293,7 @@ export function computeAll({ now = Date.now() } = {}) {
       for (let i = 1; i < weekly.length; i++) {
         const t0 = total(weekly[i - 1].byDest, YT_KEYS);
         const t1 = total(weekly[i].byDest, YT_KEYS);
-        if (t1 > 0 && (t1 - t0) / t1 < FLATLINE_RATIO) {
+        if (Number.isFinite(t0) && t1 > 0 && (t1 - t0) / t1 < FLATLINE_RATIO) {
           flatlineWeek = weekly[i].week;
           break;
         }
@@ -299,12 +302,7 @@ export function computeAll({ now = Date.now() } = {}) {
 
     const latestYt = latestCurrentYtSnapshot({ snapshots: snaps, premiere: show.date });
     const ytViews = ytViewsOf(latestYt);
-    const ytEng =
-      (latestYt?.byDest["yt:joindiveclub"]?.likes || 0) +
-      (latestYt?.byDest["yt:joindiveclub"]?.comments || 0) +
-      (latestYt?.byDest["yt:designertom"]?.likes || 0) +
-      (latestYt?.byDest["yt:designertom"]?.comments || 0);
-    const engagementPer1k = ytViews > 0 ? Math.round((ytEng / ytViews) * 1000 * 10) / 10 : null;
+    const engagementPer1k = engagementPer1kOf(latestYt);
 
     // Announce receipts (PRD v2 W6): when each host's X post went out.
     // Timestamps come from the tweet id itself (snowflake epoch) — stored
@@ -332,6 +330,17 @@ export function computeAll({ now = Date.now() } = {}) {
       }
     }
 
+    const latestBlock = buildLatest(show, latest, latestYt);
+    const capture = hist.capture;
+    const staleCapture = capture?.state && capture.state !== "ready";
+    const staleAge = now - Date.parse(latest.ts) > 26 * 3600000;
+    if (staleCapture || staleAge) {
+      const reason = capture?.reason || "The latest source reading is old.";
+      latestBlock.youtubeStale = latestBlock.ytTotal != null;
+      latestBlock.xPlaysInfo.stale = latestBlock.xPlays != null;
+      latestBlock.xPlaysInfo.asOf = latest.ts;
+      Object.assign(latestBlock.totalViewsInfo, { youtubeStale: latestBlock.youtubeStale, stale: latestBlock.xPlaysInfo.stale, asOf: latest.ts, incomplete: true, reason });
+    }
     episodes.push({
       slug: show.slug,
       title: show.title,
@@ -347,7 +356,11 @@ export function computeAll({ now = Date.now() } = {}) {
       // Unit discipline (CARD-RULING-2026-08-21): totalViews = ytTotal +
       // xPlays — both count video playback events. xImpressions (reach) is
       // exposure, a different unit, and is NEVER part of any views total.
-      latest: buildLatest(show, latest, latestYt),
+      latest: latestBlock,
+      sourceStates: {
+        youtube: { state: staleCapture ? capture.state : staleAge ? "stale" : latestBlock.ytTotal == null ? "pending" : "ready", checkedAt: capture?.checkedAt || latest.ts, reason: staleCapture ? capture.reason : staleAge ? "The latest source reading is old." : latestBlock.ytTotal == null ? "YouTube views are not available." : null },
+        x: { state: staleCapture ? capture.state : staleAge ? "stale" : latestBlock.xPlays == null || latestBlock.xImpressions == null || latestBlock.xPlaysInfo.partial ? "pending" : "ready", checkedAt: capture?.checkedAt || latest.ts, reason: staleCapture ? capture.reason : staleAge ? "The latest source reading is old." : latestBlock.xPlays == null || latestBlock.xImpressions == null ? "X viewing data is not available." : null },
+      },
       links: Object.keys(links).length ? links : undefined,
       // transcript flag: a per-episode file under transcripts/ (served statically);
       // link renders only when the file actually exists — absence ≠ broken link
@@ -364,7 +377,7 @@ export function computeAll({ now = Date.now() } = {}) {
   // Exact newsletter promotion evidence is attached before comparisons are
   // built. The click counts stay separate from views; matched destination
   // ids only tell baselines which viewing unit received a known push.
-  const promotionUpdatedAt = attachNewsletterPromotions(dive);
+  const promotionUpdatedAt = attachNewsletterPromotions(dive, now);
 
   // Promo-outlier flags (PRD v9 W22b): the one definition lives in
   // baselines.mjs — a unit more than double the SAME-AGE typical of the
@@ -385,9 +398,20 @@ export function computeAll({ now = Date.now() } = {}) {
   }
 
   attachLiveSessions(dive, registry);
-  const commentSummary = attachComments(dive);
+  const commentSummary = attachComments(dive, now);
   attachEpisodeHealth(dive);
-  attachWatch(dive);
+  attachWatch(dive, now);
+  const transcriptStatePath = join(ROOT, "data", "restream", "transcript-state.json");
+  const transcriptState = existsSync(transcriptStatePath) ? JSON.parse(readFileSync(transcriptStatePath, "utf8")) : null;
+  const liveStatePath = join(ROOT, "data", "restream", "state.json");
+  const liveState = existsSync(liveStatePath) ? JSON.parse(readFileSync(liveStatePath, "utf8")) : null;
+  for (const e of dive) {
+    e.sourceStates.watch = { state: e.watch ? "ready" : e.watchReport?.state === "ready" ? "stale" : e.watchReport?.state || "missing", checkedAt: e.watchReport?.checkedAt || e.watch?.updatedAt || null, reason: e.watch ? null : e.watchReport?.state === "ready" ? "The saved YouTube watch reading is old." : e.watchReport?.reason || "YouTube watch data is not available." };
+    const liveEntry = Object.values(liveState?.events || {}).find((entry) => entry.reading?.episode === e.slug);
+    e.sourceStates.live ||= { state: e.live ? "ready" : liveEntry?.reading?.state || "pending", checkedAt: liveEntry?.reading?.pulledAt || null, reason: e.live ? null : liveEntry?.reason || "Restream live data is not available." };
+    const transcriptEntry = transcriptState?.entries?.[e.slug];
+    e.sourceStates.transcript = { state: transcriptEntry?.reading?.state || (e.transcript ? "ready" : "pending"), checkedAt: transcriptEntry?.reading?.pulledAt || null, reason: transcriptEntry?.reason || (e.transcript ? null : "No transcript has been returned.") };
+  }
   const baselines = computeBaselines(dive, { flags, history: readHistoryLines });
 
   // the saved show-health read is projected first: the recommendation fact
@@ -489,18 +513,25 @@ export function computeAll({ now = Date.now() } = {}) {
 // The dedicated pull script owns network access and the raw Beehiiv store.
 // This projection is deliberately small: exact issue links and click facts
 // for the dashboard, agent brief, Slack, and comparison exclusions.
-function attachNewsletterPromotions(dive) {
-  if (!existsSync(BEEHIIV_PATH)) return null;
+function attachNewsletterPromotions(dive, now = Date.now()) {
+  if (!existsSync(BEEHIIV_PATH)) {
+    for (const e of dive) e.sourceStates.promotion = { state: "missing", checkedAt: null, reason: "Newsletter result is not available." };
+    return null;
+  }
   const store = JSON.parse(readFileSync(BEEHIIV_PATH, "utf8"));
   for (const episode of dive) {
     const entry = store?.episodes?.[episode.slug];
-    if (entry?.status !== "found" || !Array.isArray(entry.newsletters) || !entry.newsletters.length) continue;
+    const checkedAt = entry?.capture?.reading?.state === "ready" ? entry.capture.reading.pulledAt : store.lastSuccessfulAt || store.updatedAt || null;
+    const stale = !Number.isFinite(Date.parse(checkedAt)) || now - Date.parse(checkedAt) > 26 * 3600000;
+    const capture = store.capture?.state === "failed" ? store.capture : entry?.capture;
+    episode.sourceStates.promotion = { state: capture?.state && capture.state !== "ready" ? capture.state : (entry?.status === "found" || entry?.status === "no-direct-link" ? stale ? "stale" : "ready" : "pending"), checkedAt: capture?.checkedAt || checkedAt, reason: capture?.reason || entry?.reason || (entry ? null : "Newsletter result is not available.") };
+    if (episode.sourceStates.promotion.state !== "ready" || entry?.status !== "found" || !Array.isArray(entry.newsletters) || !entry.newsletters.length) continue;
     const matchedTargets = [...new Set(entry.newsletters.flatMap((newsletter) => newsletter.matchedTargets || []))].sort();
     const matchedUnits = [...new Set(matchedTargets.map((target) => target.startsWith("youtube:") ? "ytViews" : target.startsWith("x:") ? "xPlays" : null).filter(Boolean))].sort();
     episode.promotion = {
       status: "found",
       source: store.publication?.name || "UX Tools",
-      updatedAt: store.lastSuccessfulAt || store.updatedAt || null,
+      updatedAt: checkedAt,
       emailClicks: entry.totals?.emailClicks ?? null,
       verifiedEmailClicks: entry.totals?.verifiedEmailClicks ?? null,
       clicksReason: entry.totals?.emailClicks == null || entry.totals?.verifiedEmailClicks == null
@@ -534,7 +565,7 @@ const ANALYTICS_HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-histo
 function readHistoryLines(slug) {
   const p = join(ANALYTICS_HISTORY_DIR, `${slug}.jsonl`);
   if (!existsSync(p)) return [];
-  try { return readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)); } catch { return []; }
+  return readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 }
 
 // --- episode health (W12): computed + frozen by ratings.mjs, attached from its store ---
@@ -580,7 +611,7 @@ function attachEpisodeHealth(dive) {
 // explicit watchReport state so the page can explain the wait without
 // inventing data.
 const WATCH_DIR = join(ROOT, "data", "restream", "yt-analytics");
-function attachWatch(dive) {
+function attachWatch(dive, now) {
   // W17 moment summaries: model-written context notes (owner directive
   // 2026-08-23 — the pins summarize what was happening, never raw quotes).
   // Attached verbatim from the store; a moment without an entry carries no
@@ -605,7 +636,7 @@ function attachWatch(dive) {
     const expectedChannels = Object.entries(e.links || {})
       .filter(([key]) => key.startsWith("yt:"))
       .map(([key, url]) => ({ key, videoId: new URL(url).searchParams.get("v") }));
-    const chans = completeYoutubeWatchCohort(expectedChannels, j);
+    const chans = currentAnalyticsCohort(e, j, now);
     if (!chans.length) continue;
     const currentChannels = Object.fromEntries(chans);
     const avgPercent = weightedYoutubeMetric(chans, "averageViewPercentage");
@@ -749,25 +780,31 @@ function summarizeComments(rows, { totalViews = null, rateComplete = false } = {
   };
 }
 
-function attachComments(dive) {
+function attachComments(dive, now = Date.now()) {
   let labels = {};
-  try { labels = JSON.parse(readFileSync(CLASSIFIED_PATH, "utf8")).classified || {}; } catch { /* store absent -> nothing surfaces */ }
+  if (existsSync(CLASSIFIED_PATH)) labels = JSON.parse(readFileSync(CLASSIFIED_PATH, "utf8")).classified || {};
   const showRows = [];
   let showViews = 0;
   let showRateComplete = true;
   for (const e of dive) {
     const path = join(COMMENTS_DIR, `${e.slug}.json`);
-    if (!existsSync(path)) continue;
-    let store;
-    try { store = JSON.parse(readFileSync(path, "utf8")); } catch { continue; }
+    if (!existsSync(path)) {
+      e.sourceStates.comments = { state: "missing", checkedAt: null, reason: "Comments have not been returned." };
+      showRateComplete = false;
+      continue;
+    }
+    const store = JSON.parse(readFileSync(path, "utf8"));
+    const commentState = store.capture?.state && store.capture.state !== "ready" ? store.capture.state : now - Date.parse(store.updatedAt) > 26 * 3600000 ? "stale" : "ready";
+    e.sourceStates.comments = { state: commentState, checkedAt: store.capture?.checkedAt || store.updatedAt || null, reason: store.capture?.reason || null };
     const all = store.comments || [];
     const labeled = all.map((comment) => ({ comment, label: labels[comment.id] || null }));
     showRows.push(...labeled);
     showViews += e.latest.totalViews || 0;
     const tvi = e.latest.totalViewsInfo || {};
-    const rateComplete = store.xCoverage === "covered" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
+    const rateComplete = store.xCoverage === "covered" && commentState === "ready" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.incomplete && !tvi.partial && !tvi.stale;
     if (!rateComplete) showRateComplete = false;
     const summary = summarizeComments(labeled, { totalViews: e.latest.totalViews, rateComplete });
+    if (commentState !== "ready") summary.commentersPer1kNote = `Comments are from ${store.updatedAt?.slice(0, 10) || "an earlier reading"}; the latest source check is ${commentState}. The commenting rate is not available.`;
     const featured = labeled
       .filter(({ label }) => label?.state === "ready" && label.relevance === "feedback" && label.sentiment === "positive")
       .map(({ comment }) => comment)
@@ -775,7 +812,7 @@ function attachComments(dive) {
       .map((c) => ({ ...c, score: (c.likes || 0) * 2 + (PRAISE.test(c.text) ? 1 : 0) }))
       .sort((a, b) => b.score - a.score || (a.publishedAt < b.publishedAt ? 1 : -1))
       .slice(0, 3)
-      .map((c) => ({ source: c.source, author: c.author, text: c.text.slice(0, 200), likes: c.likes || 0 }));
+      .map((c) => ({ source: c.source, author: c.author, text: c.text.slice(0, 200), likes: Number.isFinite(c.likes) ? c.likes : null }));
     const list = labeled
       .filter(({ label }) => label?.state === "ready" && label.relevance === "feedback" && SURFACE_SENTIMENTS.has(label.sentiment))
       .map(({ comment: c, label }) => ({
@@ -783,7 +820,7 @@ function attachComments(dive) {
         author: c.author,
         text: c.text,
         source: c.source,
-        likes: c.likes || 0,
+        likes: Number.isFinite(c.likes) ? c.likes : null,
         at: c.publishedAt,
         sentiment: label.sentiment,
         themes: label.themes,
@@ -911,8 +948,10 @@ export function projectLiveSession(ev, registry) {
       if (!Number.isFinite(at)) continue;
       const m = Math.round((at - started) / 60000);
       if (m < 0) continue;
-      const c = hasChatSeries ? (chatByMin.get(m) ?? 0) : null;
-      if (c != null) chatCum += c;
+      const c = hasChatSeries && chatByMin.has(m) ? chatByMin.get(m) : null;
+      // Once a minute is unsampled, the running total is unknown for the rest
+      // of this timeline. The independent provider session total stays valid.
+      chatCum = c != null && chatCum != null ? chatCum + c : null;
       const byChan = {};
       // A sparse per-destination series is not proof of zero viewers between
       // its saved points. Keep the destination present but mark an unsampled
@@ -963,23 +1002,7 @@ export function projectLiveSession(ev, registry) {
 // Attaches per-episode `live` block: peak/avg concurrent viewers, people who
 // watched live, watched minutes, chat totals, per-minute series, and channels.
 function attachLiveSessions(dive, registry) {
-  if (!existsSync(EVENTS_DIR)) {
-    // The Restream event archive lives only on the pipeline machine. A live
-    // session is an immutable historical fact — when the archive is absent
-    // (e.g. building from a fresh checkout), carry the `live` blocks forward
-    // from the last built artifact instead of silently dropping the Live tab
-    // (absence ≠ zero). On the pipeline machine this path never runs.
-    try {
-      const prev = JSON.parse(readFileSync(join(HERE, "data.json"), "utf8"));
-      let carried = 0;
-      for (const e of dive) {
-        const old = prev.episodes?.find((p) => p.slug === e.slug);
-        if (old?.live) { e.live = old.live; carried++; }
-      }
-      if (carried) console.error(`build: events archive absent — carried ${carried} live block(s) forward from previous data.json`);
-    } catch { /* no previous artifact — live stays absent */ }
-    return;
-  }
+  if (!existsSync(EVENTS_DIR)) return;
   const eventsBySlug = new Map();
   for (const f of readdirSync(EVENTS_DIR)) {
     if (!f.endsWith(".json")) continue;
@@ -996,6 +1019,7 @@ function attachLiveSessions(dive, registry) {
     const ev = eventsBySlug.get(e.slug);
     if (!ev) continue;
     e.live = projectLiveSession(ev, registry);
+    e.sourceStates.live = { state: "ready", checkedAt: ev.reading?.pulledAt || ev.fetchedAt || null, reason: null };
     // PRD v12: the two live-depth readings per episode, from the one definition
     const depth = liveDepthOf(e);
     e.live.minutesPerViewer = depth?.minutesPerViewer ?? null;
@@ -1051,15 +1075,14 @@ function cumulativeSeries(dive, now) {
   const first = Math.min(...dive.map((e) => Date.parse(e.snapshots[0].ts)));
   const out = [];
   for (let b = mondayNoonAtOrBefore(first) + WEEK; b <= now; b += WEEK) {
-    let ytViews = 0;
-    let xReach = 0;
-    for (const e of dive) {
-      const s = lastAtOrBefore(e.snapshots, b);
-      if (s) {
-        ytViews += total(s.byDest, YT_KEYS);
-        xReach += total(s.byDest, X_KEYS);
-      }
-    }
+    const eligible = dive.filter((e) => premiereMs(e.premiere) <= b);
+    const readings = eligible.map((e) => lastAtOrBefore(e.snapshots, b));
+    const sumUnit = (keys) => {
+      const values = readings.map((s) => s ? totalOrNull(s.byDest, keys) : null);
+      return values.length && values.every(Number.isFinite) ? values.reduce((a, v) => a + v, 0) : null;
+    };
+    const ytViews = sumUnit(YT_KEYS);
+    const xReach = sumUnit(X_KEYS);
     out.push({ boundary: new Date(b).toISOString(), ytViews, xReach });
   }
   return out;
@@ -1166,7 +1189,10 @@ function buildInsights(dive, { flags }) {
   // ≥7-day-old episodes only: a 1-day-old episode's "week 1" IS its lifetime,
   // which trivially inflates the share (review H-4).
   // suppressed below 3 clean samples (simplicity contract; critic 2026-08-22)
-  const phasePool = full.filter((e) => e.ageDays >= 7);
+  const phasePool = full.filter((e) => {
+    const firstWeek = lastAtOrBefore(e.snapshots, premiereMs(e.premiere) + 7 * DAY);
+    return e.ageDays >= 7 && firstWeek && [firstWeek, e.latest].every((s) => [YT_KEYS, X_KEYS].every((keys) => Number.isFinite(total(s.byDest, keys))));
+  });
   if (phasePool.length >= 3) {
     let w1x = 0, w1yt = 0, lifeX = 0, lifeYt = 0;
     for (const e of phasePool) {
@@ -1195,11 +1221,11 @@ function buildInsights(dive, { flags }) {
   // 4. host account split (X post impressions — reach, not video plays).
   // Outlier-flagged episodes are excluded: one promoted announce (E3) flips
   // the sign of this claim, so it cannot sit in the aggregate (review H-3).
-  const splitPool = dive.filter((e) => !e.metrics.anomaly);
+  const splitPool = dive.filter((e) => !e.metrics.anomaly && X_KEYS.every((key) => Number.isFinite(e.latest.byDest[key]?.views)));
   let ridd = 0, tom = 0;
   for (const e of splitPool) {
-    ridd += e.latest.byDest["x:ridd_design"]?.views || 0;
-    tom += e.latest.byDest["x:designertom"]?.views || 0;
+    ridd += e.latest.byDest["x:ridd_design"].views;
+    tom += e.latest.byDest["x:designertom"].views;
   }
   if (ridd + tom > 0 && splitPool.length >= 3) {
     const lead = ridd >= tom ? "@ridd_design" : "@designertom";
@@ -1445,6 +1471,9 @@ export function trendsText(data) {
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
+  const release = acquireSourceLock(join(ROOT, "data", "restream", "public-build"));
+  try {
+  assertSourceStoreIntegrity(ROOT);
   const data = computeAll();
   // "<" escaped in the JSON so a "</script>" inside user comment text can
   // never break out of a script context, even if the data is ever inlined
@@ -1452,15 +1481,16 @@ if (isMain) {
   // data.json and data.js so the validator's byte-match stays meaningful.
   const json = JSON.stringify(data, null, 1).replace(/</g, "\\u003c");
   // artifacts live at the repo root — the same directory Vercel serves
-  writeFileSync(join(ROOT, "data.json"), json);
-  writeFileSync(join(ROOT, "data.js"), `window.DIVE_DATA = ${json};\n`);
-  // PRD v12: the agent brief, its digest, and the index — pure over the same object
   const brief = buildBrief(data);
-  writeFileSync(join(ROOT, "agent.md"), brief.md);
-  writeFileSync(join(ROOT, "agent.json"), brief.json);
-  writeFileSync(join(ROOT, "llms.txt"), brief.llms);
+  atomicWriteText(join(ROOT, "data.json"), json);
+  atomicWriteText(join(ROOT, "data.js"), `window.DIVE_DATA = ${json};\n`);
+  // PRD v12: the agent brief, its digest, and the index — pure over the same object
+  atomicWriteText(join(ROOT, "agent.md"), brief.md);
+  atomicWriteText(join(ROOT, "agent.json"), brief.json);
+  atomicWriteText(join(ROOT, "llms.txt"), brief.llms);
   const dive = data.episodes.filter((e) => e.show === "dive-radio");
   console.log(
     `dive-analytics: wrote data.json + data.js + agent.md/agent.json/llms.txt — ${data.episodes.length} episodes (${dive.length} dive-radio), ${data.insights.length} insights, generated ${data.generatedAt}`
   );
+  } finally { release(); }
 }
