@@ -19,8 +19,9 @@
 // History (PRD v9 W22a): data/restream/yt-analytics-history/<slug>.jsonl —
 // one line per episode per Phoenix day, appended only after a pull in which
 // every authorized channel for that episode succeeded; skipped when a line
-// for that date exists; never rewritten (a YouTube restatement shows up as
-// the next day's line). This is what makes share watched and subscribers
+// for that date exists. A successful response with no totals or no positive
+// view count is also skipped, so it cannot reserve that day's reading; lines are never rewritten (a
+// YouTube restatement shows up as the next day's line). This is what makes share watched and subscribers
 // age-pinnable later. No backfill: history starts the day this shipped.
 //
 // Exit 0 on success or partial (WARN lines); 1 when every authorized channel fails.
@@ -104,12 +105,23 @@ export function readHistory(path) {
   return readFileSync(path, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 }
 // Append-only, one line per Phoenix date; returns false when that date exists.
-export function appendHistoryLine(path, line) {
+export function appendHistoryLine(path, line, { expectedChannels = [], premiere = null } = {}) {
+  if (!line?.channels || !Object.keys(line.channels).length) return false;
+  if (expectedChannels.some((key) => !Object.hasOwn(line.channels, key))) return false;
+  if (!Object.values(line.channels).some((channel) => Number.isFinite(channel?.views) && channel.views > 0)) return false;
+  if (!Number.isFinite(line.ageDays) || line.ageDays < 0) return false;
+  if (premiere && Date.parse(line.pulledAt) < premiereMs(premiere)) return false;
   const lines = readHistory(path);
   if (lines.some((l) => l.date === line.date)) return false;
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, (lines.length ? readFileSync(path, "utf8").replace(/\n?$/, "\n") : "") + JSON.stringify(line) + "\n");
   return true;
+}
+export function syncAnalyticsMetadata(store, show) {
+  const changed = store.title !== show.title || store.premiere !== show.date;
+  store.title = show.title;
+  store.premiere = show.date;
+  return changed;
 }
 function saveAtomic(path, obj) {
   mkdirSync(dirname(path), { recursive: true });
@@ -141,7 +153,8 @@ async function main() {
       try { store = JSON.parse(readFileSync(path, "utf8")); }
       catch (e) { console.log(`WARN yt-analytics ${show.slug}: store unreadable — skipping show (${e.message.slice(0, 60)})`); continue; }
     }
-    let changed = false;
+    let changed = syncAnalyticsMetadata(store, show);
+    let showPulled = 0;
     let showFailed = false;
     for (const t of (show.targets || []).filter((t) => t.kind === "youtube" && t.videoId)) {
       const token = tokens[t.account];
@@ -150,6 +163,10 @@ async function main() {
         const base = { startDate: show.date, endDate: today, filters: `video==${t.videoId}` };
         const totalsRep = await query(token, { ...base, metrics: "views,estimatedMinutesWatched,averageViewDuration,averageViewPercentage,subscribersGained,likes,comments" });
         const totals = rowsToObjects(totalsRep)[0] || null;
+        if (!totals) {
+          showFailed = true;
+          console.log(`WARN yt-analytics ${show.slug} ${t.account}: report returned no totals; history not advanced`);
+        }
         const trafficRep = await query(token, { ...base, metrics: "views,estimatedMinutesWatched", dimensions: "insightTrafficSourceType", sort: "-views" });
         const traffic = rowsToObjects(trafficRep);
         let retention = null;
@@ -158,16 +175,20 @@ async function main() {
           retention = rowsToObjects(r);
         } catch (e) { console.log(`WARN yt-analytics ${show.slug} ${t.account}: retention unavailable (${e.message.slice(0, 80)})`); }
         store.channels[`yt:${t.account}`] = { videoId: t.videoId, pulledAt: now, totals, trafficSources: traffic, retention };
-        changed = true; pulled++;
+        changed = true; showPulled++; pulled++;
       } catch (e) { failed++; showFailed = true; console.log(`WARN yt-analytics ${show.slug} ${t.account}: ${e.message.slice(0, 140)}`); }
     }
     if (changed) {
-      store.updatedAt = now; saveAtomic(path, store);
+      if (showPulled > 0) store.updatedAt = now;
+      saveAtomic(path, store);
       // history line only when every authorized channel for this episode
       // pulled this run — a partial day is no reading at all
-      if (!showFailed) {
+      if (showPulled > 0 && !showFailed) {
         const line = historyLine({ premiere: show.date, pulledAt: now, endDate: today, channels: store.channels });
-        if (appendHistoryLine(join(HISTORY_DIR, `${show.slug}.jsonl`), line)) appended++;
+        const expectedChannels = (show.targets || [])
+          .filter((target) => target.kind === "youtube" && target.videoId && tokens[target.account])
+          .map((target) => `yt:${target.account}`);
+        if (appendHistoryLine(join(HISTORY_DIR, `${show.slug}.jsonl`), line, { expectedChannels, premiere: show.date })) appended++;
       }
     }
   }

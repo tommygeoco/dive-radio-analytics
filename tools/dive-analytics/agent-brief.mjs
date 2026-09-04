@@ -77,7 +77,7 @@ export const COVERS = Object.freeze([
   "episodes", "episodes[]", "episodes[].slug", "episodes[].title", "episodes[].premiere", "episodes[].show", "episodes[].active", "episodes[].partialHistory", "episodes[].ep", "episodes[].ageDays", "episodes[].transcript", "episodes[].subsPer1k", "episodes[].discoveryShare",
   "episodes[].announces", "episodes[].announces[]", "episodes[].announces[].account", "episodes[].announces[].role", "episodes[].announces[].ts", "episodes[].announces[].url",
   "episodes[].links", "episodes[].links.{dest}",
-  "episodes[].latest", "episodes[].latest.ts", "episodes[].latest.ytTotal", "episodes[].latest.xImpressions", "episodes[].latest.xPlays", "episodes[].latest.xPlaysInfo", "episodes[].latest.totalViews", "episodes[].latest.totalViewsInfo", "episodes[].latest.byDest", "episodes[].latest.byDest.{dest}",
+  "episodes[].latest", "episodes[].latest.ts", "episodes[].latest.ytTotal", "episodes[].latest.youtubeAsOf", "episodes[].latest.youtubeStale", "episodes[].latest.xImpressions", "episodes[].latest.xPlays", "episodes[].latest.xPlaysInfo", "episodes[].latest.totalViews", "episodes[].latest.totalViewsInfo", "episodes[].latest.byDest", "episodes[].latest.byDest.{dest}",
   "episodes[].metrics", "episodes[].metrics.week1Velocity", "episodes[].metrics.week1Note", "episodes[].metrics.flatlineWeek", "episodes[].metrics.engagementPer1k", "episodes[].metrics.anomaly",
   "episodes[].live", "episodes[].live.peak", "episodes[].live.avg", "episodes[].live.liveViews", "episodes[].live.watchedMin", "episodes[].live.chatMessages", "episodes[].live.chatters", "episodes[].live.durationMin", "episodes[].live.minutesPerViewer", "episodes[].live.holdRate", "episodes[].live.byChannel", "episodes[].live.byChannel[]",
   "episodes[].comments", "episodes[].comments.captured", "episodes[].comments.feedbackCount", "episodes[].comments.uniqueCommenters", "episodes[].comments.enjoyCount", "episodes[].comments.complaintCount", "episodes[].comments.commentersPer1k", "episodes[].comments.commentersPer1kNote", "episodes[].comments.enjoyThemes", "episodes[].comments.complaintThemes", "episodes[].comments.featured", "episodes[].comments.featured[]", "episodes[].comments.xCoverage",
@@ -155,10 +155,16 @@ function episodeDigest(e, data) {
   const c = e.comments || {};
   const moments = (w.moments || []).map((m) => ({ kind: m.kind, at: m.at, minutesIn: Math.round((m.estSec || 0) / 60), points: m.points, approx: !!m.approx, summary: m.summary || null, excerpt: cut(m.excerpt || "", BUDGET.excerptChars) }));
   const plays = e.latest?.xPlaysInfo || {};
+  const totalInfo = e.latest?.totalViewsInfo || {};
+  const youtubeMissing = !(Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0);
+  const youtubeStale = !youtubeMissing && e.latest?.youtubeStale === true;
+  const viewsReason = youtubeMissing
+    ? (totalInfo.reason || "YouTube views are not available yet.")
+    : (youtubeStale || totalInfo.incomplete ? (totalInfo.reason || "Some viewing data is not available yet.") : null);
   return {
-    ep: e.ep, slug: e.slug, title: short(e.title), premiere: e.premiere, ageDays: e.ageDays, trackedLate: !!e.partialHistory, dashboard: `${SITE}/#${e.slug}`,
+    ep: e.ep, slug: e.slug, title: short(e.title), premiere: e.premiere, ageDays: e.ageDays, trackedLate: e.partialHistory == null ? null : e.partialHistory === true, dashboard: `${SITE}/#${e.slug}`,
     links: { youtube: Object.fromEntries(yt), xReplays: Object.fromEntries(x), announces: (e.announces || []).map((a) => ({ account: a.account, at: a.ts, url: a.url || null })), transcript: e.transcript ? `${SITE}/transcripts/${e.slug}.txt` : null },
-    views: { youtube: e.latest?.ytTotal ?? null, xPlays: e.latest?.xPlays ?? null, xPlaysMarker: plays.partial ? "partial" : plays.stale ? "stale" : null, total: e.latest?.totalViews ?? null, xReach: e.latest?.xImpressions ?? null, asOf: e.latest?.ts ?? null, byDest: e.latest?.byDest || {} },
+    views: { youtube: youtubeMissing ? null : e.latest.ytTotal, youtubeAsOf: e.latest?.youtubeAsOf ?? null, youtubeStale, youtubeMarker: youtubeMissing ? "missing" : youtubeStale ? "old" : null, xPlays: e.latest?.xPlays ?? null, xPlaysMarker: plays.partial ? "partial" : plays.stale ? "stale" : null, total: youtubeMissing ? null : (e.latest?.totalViews ?? null), incomplete: youtubeMissing || youtubeStale || totalInfo.incomplete === true, reason: viewsReason, xReach: e.latest?.xImpressions ?? null, asOf: e.latest?.ts ?? null, byDest: e.latest?.byDest || {} },
     firstWeek: e.metrics?.week1Velocity != null ? { value: e.metrics.week1Velocity } : absent(e.metrics?.week1Note || "no clean first week"),
     launch: launch?.word ? { word: launch.word, label: `${launch.promoDriven ? "promo-driven" : launch.word}${launch.provisional ? " (so far)" : ""}`, promoDriven: !!launch.promoDriven, provisional: !!launch.provisional, late: !!launch.late, value: launch.value, typical: launch.typical, pct: launch.pct, peers: launch.n } : absent(launch?.reason || "no reading at the launch age"),
     pace: pace?.rank != null ? { rank: pace.rank, of: pace.of, pct: pace.pct, value: pace.value, typical: pace.typical, ageDays: pace.ageDays } : absent(pace?.reason || "pace needs three other episodes at this age"),
@@ -211,7 +217,24 @@ function outlookDigest(data) {
 export function buildDigest(data) {
   const eps = [...(data.episodes || [])].sort((a, b) => (a.premiere < b.premiere ? -1 : 1));
   const latestSnapshot = eps.map((e) => e.latest?.ts).filter(Boolean).sort().at(-1) || null;
-  const sum = (f) => eps.reduce((a, e) => a + (Number.isFinite(f(e)) ? f(e) : 0), 0);
+  const sumAvailable = (f) => {
+    const values = eps.map(f).filter(Number.isFinite);
+    return values.length ? values.reduce((a, value) => a + value, 0) : null;
+  };
+  const youtubeComplete = eps.length > 0 && eps.every((e) => Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0);
+  const youtubeTotal = youtubeComplete ? eps.reduce((a, e) => a + e.latest.ytTotal, 0) : null;
+  const viewsComplete = youtubeComplete && eps.every((e) => Number.isFinite(e.latest?.totalViews));
+  const viewsTotal = viewsComplete ? eps.reduce((a, e) => a + e.latest.totalViews, 0) : null;
+  const youtubeMarkers = eps.flatMap((e) => {
+    if (!(Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0)) return [`E${e.ep} missing`];
+    if (e.latest?.youtubeStale) return [`E${e.ep} old${e.latest.youtubeAsOf ? ` (${day(e.latest.youtubeAsOf)})` : ""}`];
+    return [];
+  });
+  const totalsReason = !youtubeComplete
+    ? "YouTube views are not available for every episode yet."
+    : youtubeMarkers.length
+      ? "Some YouTube views are from an older reading."
+      : null;
   const markers = eps.filter((e) => e.latest?.xPlaysInfo?.partial || e.latest?.xPlaysInfo?.stale).map((e) => `E${e.ep}`);
   const cs = data.commentSummary || {};
   return {
@@ -222,7 +245,7 @@ export function buildDigest(data) {
     show: {
       name: "Dive Radio", episodes: eps.length, first: eps[0] ? { ep: eps[0].ep, premiere: eps[0].premiere } : null, latest: eps.at(-1) ? { ep: eps.at(-1).ep, premiere: eps.at(-1).premiere, title: short(eps.at(-1).title) } : null,
       channels: (data.dests || []).map((d) => ({ key: d.key, label: d.label, platform: d.platform })),
-      totals: { views: sum((e) => e.latest?.totalViews), youtube: sum((e) => e.latest?.ytTotal), xPlays: sum((e) => e.latest?.xPlays), xReach: sum((e) => e.latest?.xImpressions), xPlaysMarkers: markers },
+      totals: { views: viewsTotal, youtube: youtubeTotal, xPlays: sumAvailable((e) => e.latest?.xPlays), xReach: sumAvailable((e) => e.latest?.xImpressions), incomplete: !viewsComplete || youtubeMarkers.length > 0, reason: totalsReason, youtubeMarkers, xPlaysMarkers: markers },
       feedback: cs.captured != null ? { captured: cs.captured, directional: cs.feedbackCount, people: cs.uniqueCommenters, enjoyed: cs.enjoyCount, concerns: cs.complaintCount, enjoyThemes: cs.enjoyThemes || [], concernThemes: cs.complaintThemes || [] } : absent("no comments captured"),
     },
     health: healthDigest(data),
@@ -312,7 +335,7 @@ export function renderMarkdown(digest) {
   p();
   p(`- Episodes: ${s.episodes} (E${s.first?.ep} on ${s.first?.premiere} → E${s.latest?.ep} on ${s.latest?.premiere}, "${esc(s.latest?.title)}"), a weekly live show with call-ins.`);
   p(`- Channels: ${s.channels.map((ch) => `${ch.label} (${ch.key})`).join("; ")}.`);
-  p(`- Views so far: ${fmtNum(s.totals.views)} total = ${fmtNum(s.totals.youtube)} YouTube + ${fmtNum(s.totals.xPlays)} X plays${s.totals.xPlaysMarkers.length ? ` (X plays ${s.totals.xPlaysMarkers.join(", ")} carry a partial or stale marker)` : ""}. X reach so far: ${fmtNum(s.totals.xReach)} (exposure, kept apart).`);
+  p(`- Views so far: ${fmtNum(s.totals.views)} total = ${fmtNum(s.totals.youtube)} YouTube${s.totals.youtubeMarkers.length ? ` (${s.totals.youtubeMarkers.join(", ")})` : ""} + ${fmtNum(s.totals.xPlays)} X plays${s.totals.xPlaysMarkers.length ? ` (X plays ${s.totals.xPlaysMarkers.join(", ")} carry a partial or stale marker)` : ""}.${s.totals.reason ? ` ${esc(s.totals.reason)}` : ""} X reach so far: ${fmtNum(s.totals.xReach)} (exposure, kept apart).`);
   p(abs(s.feedback) ? `- Audience feedback: — (${s.feedback.reason}).` : `- Audience feedback captured: ${fmtNum(s.feedback.captured)} comments, ${fmtNum(s.feedback.directional)} with a clear lean from ${fmtNum(s.feedback.people)} people (${fmtNum(s.feedback.enjoyed)} enjoyed, ${fmtNum(s.feedback.concerns)} raised a concern).${s.feedback.enjoyThemes.length ? ` Enjoyed: ${themeWords(s.feedback.enjoyThemes).join(", ")}.` : ""}${s.feedback.concernThemes.length ? ` Concerns: ${themeWords(s.feedback.concernThemes).join(", ")}.` : ""}`);
   p(`- Dashboard: ${SITE}`);
   p();
@@ -423,7 +446,7 @@ export function renderMarkdown(digest) {
     if (e.promo) standing.push(`promo outlier${e.promo.provisional ? " (provisional until day twenty-one)" : ""}: ${esc(e.promo.note)}`);
     if (e.trackedLate) standing.push("tracked late: first snapshot more than five days after premiere, so its first week is undefined");
     p(`Standing: ${standing.join("; ")}.`);
-    p(`Views: ${fmtNum(e.views.youtube)} YouTube + ${fmtNum(e.views.xPlays)} X plays${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} = ${fmtNum(e.views.total)}; X reach ${fmtNum(e.views.xReach)}; likes and comments per thousand YouTube views ${e.engagementPer1k == null ? "—" : fmtNum(e.engagementPer1k, 1)}.`);
+    p(`Views: ${fmtNum(e.views.youtube)} YouTube${e.views.youtubeMarker === "old" ? ` (old reading${e.views.youtubeAsOf ? ` from ${day(e.views.youtubeAsOf)}` : ""})` : e.views.youtubeMarker === "missing" ? " (missing)" : ""} + ${fmtNum(e.views.xPlays)} X plays${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} = ${fmtNum(e.views.total)}${e.views.reason ? ` (${esc(e.views.reason)})` : ""}; X reach ${fmtNum(e.views.xReach)}; likes and comments per thousand YouTube views ${e.engagementPer1k == null ? "—" : fmtNum(e.engagementPer1k, 1)}.`);
     p(abs(e.watching) ? `Watching: — (${e.watching.reason}).` : `Watching (YouTube analytics, ${day(e.watching.updatedAt)}): ${pct(e.watching.sharePercent)} of the video watched on average, ${e.watching.avgDurationSec == null ? "—" : minutes(e.watching.avgDurationSec)} per view, ${fmtNum(e.watching.minutesWatched)} minutes watched in all; views came from ${e.watching.traffic.map((t) => `${t.source} ${pct(t.share)}`).join(", ")}; subscribers per thousand views ${e.subsPer1k == null ? "—" : fmtNum(e.subsPer1k, 1)}; discovery share ${e.discoveryShare == null ? "—" : pct(e.discoveryShare)}.`);
     p(abs(e.live) ? `Live session: — (${e.live.reason}).` : `Live session: peak ${fmtNum(e.live.peak)}, average ${fmtNum(e.live.average)}, ${fmtNum(e.live.uniqueViewers)} people watched live for ${fmtNum(e.live.minutesWatched)} minutes in all (${e.live.minutesPerViewer == null ? "—" : fmtNum(e.live.minutesPerViewer, 1)} minutes each; ${e.live.holdRate == null ? "hold rate —" : `${pct(e.live.holdRate, 0)} of the peak still watching at the end`}); ${fmtNum(e.live.chatMessages)} chat messages from ${fmtNum(e.live.chatters)} people over ${fmtNum(e.live.durationMin)} minutes.${(digest.knownBreaks || []).some((b) => e.ep >= b.fromEp) ? " Note the live-reporting break in section 3." : ""}`);
     if (abs(e.chapters)) p(`Chapters: — (${e.chapters.reason}).`);

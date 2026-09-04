@@ -41,6 +41,12 @@ function saveJson(path, obj) {
   writeFileSync(tmp, JSON.stringify(obj, null, 2) + "\n");
   renameSync(tmp, path);
 }
+export function syncCommentMetadata(store, show) {
+  const changed = store.title !== show.title || store.date !== show.date;
+  store.title = show.title;
+  store.date = show.date;
+  return changed;
+}
 function ytApiKey() {
   const creds = JSON.parse(readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8"));
   return creds.youtube_api_key || creds.api_key;
@@ -187,6 +193,7 @@ async function main() {
     } else {
       store = { slug: show.slug, title: show.title, date: show.date, comments: [] };
     }
+    const metadataChanged = syncCommentMetadata(store, show);
     const seen = new Set(store.comments.map((c) => c.id));
     // xCoverage marker (critic 2026-08-22 H2, absence≠zero): "covered" while
     // the X search window is still open for this episode, "missed" once the
@@ -219,8 +226,11 @@ async function main() {
       store.comments.push({ ...c, firstSeenAt: now });
       added++;
     }
-    if (added > 0 || pulled.length || coverageChanged) {
+    const audienceChanged = added > 0 || pulled.length || coverageChanged;
+    if (audienceChanged) {
       store.updatedAt = now;
+    }
+    if (audienceChanged || metadataChanged) {
       saveJson(path, store);
     }
     totalNew += added;
@@ -230,7 +240,10 @@ async function main() {
 
 }
 
-main().catch((err) => {
-  process.stderr.write(`comments: ${err.message}\n`);
-  process.exit(1);
-});
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  main().catch((err) => {
+    process.stderr.write(`comments: ${err.message}\n`);
+    process.exit(1);
+  });
+}

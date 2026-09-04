@@ -14,6 +14,10 @@ REPO="$(git rev-parse --show-toplevel)"
 cd "$REPO" || exit 1
 echo "pre-push: fixtures + strict validator on a fresh build …"
 node tools/dive-analytics/audit/baselines.test.mjs >/dev/null || { echo "pre-push: baselines fixtures failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/youtube-missing-data.test.mjs >/dev/null || { echo "pre-push: YouTube missing-data fixtures failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/youtube-release-date.test.mjs >/dev/null || { echo "pre-push: YouTube broadcast-day fixtures failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/episode-date-sync.test.mjs >/dev/null || { echo "pre-push: episode-date sync fixtures failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/youtube-zero-downstream.test.mjs >/dev/null || { echo "pre-push: YouTube startup-zero fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/x-broadcast-plays.test.mjs >/dev/null || { echo "pre-push: X broadcast-only fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/chain-heal.test.mjs >/dev/null || { echo "pre-push: chain-heal rehearsal failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/publish-scope.test.mjs >/dev/null || { echo "pre-push: publish scope test failed — push refused" >&2; exit 1; }

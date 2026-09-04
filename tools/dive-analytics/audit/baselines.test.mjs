@@ -9,7 +9,7 @@
 import assert from "node:assert/strict";
 import * as B from "../baselines.mjs";
 import { scoreEpisode, readAgeOf, WEIGHTS, MIN_WEIGHT } from "../ratings.mjs";
-import { deterministicMean, checkScoreOf, checkBandsOf, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
+import { computeHealthInputs, deterministicMean, checkScoreOf, checkBandsOf, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
 import { mergeHealthStores } from "../chain-heal.mjs";
 
 const DAY = 86400000;
@@ -64,6 +64,96 @@ for (let i = 0; i < 12; i++) {
   assert.equal(B.snapshotAt(eps[8], 5), null, "late-registered episode has no reading before its first snapshot");
   assert.equal(B.historyAt([{ ageDays: 19.6 }, { ageDays: 22.4 }], 21).ageDays, 19.6, "history: tie → earlier");
   assert.equal(B.historyAt([{ ageDays: 19.4 }], 21), null, "history: outside ±1.5");
+}
+
+// --- YouTube reading eligibility: a pre-reporting zero is absence, not day one ---
+{
+  const date = premiere(20);
+  const zero = { ts: ts(date, 1), byDest: {
+    "yt:joindiveclub": { views: 0, likes: 0, comments: 0 },
+    "yt:designertom": { views: 0, likes: 0, comments: 0 },
+    "x:ridd_design": { views: 400, plays: 100 },
+  } };
+  const absent = { ts: ts(date, 1.2), byDest: { "x:ridd_design": { views: 500, plays: 120 } } };
+  const preAir = { ts: ts(date, -0.2), byDest: {
+    "yt:joindiveclub": { views: 3, likes: 0, comments: 0 },
+    "yt:designertom": { views: 0, likes: 0, comments: 0 },
+  } };
+  const positivePlusZero = { ts: ts(date, 2), byDest: {
+    "yt:joindiveclub": { views: 42, likes: 3, comments: 1 },
+    "yt:designertom": { views: 0, likes: 0, comments: 0 },
+    "x:ridd_design": { views: 600, plays: 140 },
+  } };
+  const e = { premiere: date, snapshots: [preAir, zero, absent, positivePlusZero] };
+  assert.equal(B.hasYtReading(zero), false, "an all-zero public row is not a YouTube reading");
+  assert.equal(B.hasYtReading(absent), false, "an X-only snapshot is not a YouTube reading");
+  assert.equal(B.ytViewsOf(zero), null);
+  assert.equal(B.ytEngagementOf(zero), null);
+  assert.equal(B.hasYtReading(positivePlusZero), true, "one positive channel makes the combined reading valid");
+  assert.equal(B.hasYtReading(preAir), true, "the raw count remains measurable before the episode clock is applied");
+  assert.equal(B.ytViewsOf(positivePlusZero), 42, "the valid zero companion channel stays in the sum");
+  assert.equal(B.ytEngagementOf(positivePlusZero), 4);
+  assert.equal(B.snapshotAt(e, 1), zero, "the generic selector remains available for X");
+  assert.equal(B.ytSnapshotAt(e, 1), null, "the zero row cannot satisfy a YouTube age read");
+  assert.equal(B.firstYtSnapshot(e), positivePlusZero, "day one starts at the first positive YouTube reading");
+  assert.equal(B.latestYtSnapshot(e), positivePlusZero);
+  assert.equal(B.ytCurrentAge(e), 2);
+
+  const emptyLine = { date: "2026-01-01", ageDays: 1, channels: {} };
+  const zeroLine = { date: "2026-01-02", ageDays: 1.1, channels: {
+    "yt:joindiveclub": { views: 0 }, "yt:designertom": { views: 0 },
+  } };
+  const validLine = { date: "2026-01-03", ageDays: 1.3, channels: {
+    "yt:joindiveclub": { views: 50 }, "yt:designertom": { views: 0 },
+  } };
+  const preAirLine = { date: "2025-12-31", ageDays: -0.2, channels: {
+    "yt:joindiveclub": { views: 3 }, "yt:designertom": { views: 0 },
+  } };
+  assert.equal(B.historyAt([emptyLine, zeroLine], 1), emptyLine, "the generic history selector is unchanged");
+  assert.equal(B.ytHistoryAt([emptyLine, zeroLine], 1), null, "empty and all-zero history lines cannot satisfy a YouTube read");
+  assert.equal(B.ytHistoryAt([preAirLine, emptyLine, zeroLine, validLine], 1), validLine, "the selector skips pre-air, empty, and zero rows for a positive history reading");
+}
+
+// The all-zero episode never becomes an own reading or a future peer, and the
+// health input builder cannot score its launch or engagement as zero.
+{
+  const make = (i, views) => {
+    const date = premiere(30 + i);
+    const snap = { ts: ts(date, 1), byDest: {
+      "yt:joindiveclub": { views, likes: views > 0 ? 2 : 0, comments: 0 },
+      "yt:designertom": { views: 0, likes: 0, comments: 0 },
+      "x:ridd_design": { views: 500, plays: 100 },
+    } };
+    return {
+      ep: i + 1, slug: `zero-read-${i + 1}`, title: `Episode ${i + 1}`, premiere: date,
+      snapshots: [snap], latest: { ts: snap.ts, byDest: snap.byDest, ytTotal: views, xImpressions: 500, xPlays: 100, xPlaysInfo: { value: 100, have: 1, total: 1, partial: false, stale: false }, totalViews: views + 100 },
+      metrics: { week1Velocity: null, week1Note: "pending: episode under 7 days old" },
+    };
+  };
+  const [p1, p2, p3, zeroPeer, newest] = [100, 200, 300, 0, 220].map((v, i) => make(i, v));
+  const list = [p1, p2, p3, zeroPeer, newest];
+  const cleanFlags = new Map(list.map((x) => [x.slug, { flagged: false, units: {} }]));
+  const pace = B.paceFor(newest, list, cleanFlags);
+  assert.equal(pace.typical, 200, "the zero-only episode cannot lower a future pace typical");
+  assert.equal(pace.n, 3);
+  assert.ok(pace.excluded.some((x) => x.slug === zeroPeer.slug && x.why === "no reading at this age"));
+  const launch = B.launchReadFor(newest, list, cleanFlags);
+  assert.equal(launch.typical, 200, "the zero-only episode cannot lower a future launch typical");
+  assert.equal(B.paceFor(zeroPeer, list, cleanFlags), null, "the zero-only episode has no pace read");
+  assert.equal(B.launchReadFor(zeroPeer, list, cleanFlags), null, "the zero-only episode has no launch read");
+  const anomaly = B.anomalyFlags(list).get(zeroPeer.slug).units.ytViews;
+  assert.deepEqual(anomaly, { tier: null, value: null, typical: null, n: 0, window: [], flag: false }, "zero cannot enter the outlier history as a real value");
+
+  const direction = { measures: [{ key: "firstWeek", check: "growth", n: 0, pctPerEpisode: null, direction: null, points: [], reason: B.NOTES.fewPeers }], votes: [], overall: null };
+  const outlook = { nextFirstWeek: { low: null, high: null, typical: null, n: 0, window: [], pctPerEpisode: null, direction: null, reason: B.NOTES.fewPeers }, coolOff: null };
+  const zeroLatest = [p1, p2, p3, zeroPeer];
+  const inputs = computeHealthInputs({
+    data: { generatedAt: zeroPeer.latest.ts, episodes: zeroLatest, showTrend: { week1VelocityByEpisode: [] }, commentSummary: {}, baselines: { direction, outlook, launch: {} } },
+    now: Date.parse(zeroPeer.latest.ts), root: "/tmp/dive-radio-zero-health-fixture-does-not-exist",
+  });
+  assert.equal(inputs.subScores.growth.measures.sameAge.value, null, "show health does not score an all-zero YouTube launch");
+  assert.equal(inputs.subScores.growth.measures.sameAge.reason, B.NOTES.noYtReading);
+  assert.equal(inputs.subScores.audienceQuality.measures.engagement.value, null, "show health does not score zero engagement before a YouTube view reading");
 }
 
 // --- window ---

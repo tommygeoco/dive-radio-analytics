@@ -47,8 +47,9 @@ import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
 import { computeAll } from "./build-data.mjs";
 import {
-  MIN_PEERS, NOTES, READ_DAYS, WINDOW_N, anomalyFlags, engagementPer1kOf, historyAt, peersFor,
-  round1, round3, scoreOf, snapshotAt, windowFor, ytViewsOf, ageDaysOf,
+  MIN_PEERS, NOTES, READ_DAYS, WINDOW_N, anomalyFlags, engagementPer1kOf, firstYtSnapshot,
+  peersFor, round1, round3, scoreOf, windowFor, ytCurrentAge, ytHistoryAt,
+  ytSnapshotAt, ytViewsOf, ageDaysOf,
 } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -101,11 +102,11 @@ const DEFAULT_IO = { readAnalytics, readHistory };
 
 // read age: day 21, or the first real snapshot's age when tracking started later
 export function readAgeOf(e) {
-  const firstAge = ageDaysOf(e.snapshots[0].ts, e.premiere);
+  const first = firstYtSnapshot(e);
+  if (!first) return null;
+  const firstAge = ageDaysOf(first.ts, e.premiere);
   return Math.max(READ_DAYS, firstAge);
 }
-
-const currentAgeOf = (e) => ageDaysOf(e.snapshots[e.snapshots.length - 1].ts, e.premiere);
 
 // view-weighted share watched / subscribers per 1k from a channels block
 // (the analytics file's `channels` or a history line's `channels`)
@@ -139,7 +140,7 @@ function analyticsReading(e, kind, io, { basis }) {
     ? (ch) => blendFrom(ch, (t) => t.averageViewPercentage)
     : (ch) => ({ value: conversionFrom(ch), channels: [] });
   if (basis === "sameAge") {
-    const line = historyAt(io.readHistory(e.slug), READ_DAYS);
+    const line = ytHistoryAt(io.readHistory(e.slug), READ_DAYS);
     if (!line) return null;
     const r = pick(line.channels);
     return r.value == null ? null : { value: r.value, channels: r.channels, source: "history", readDate: line.date, atDay: round1(line.ageDays) };
@@ -178,21 +179,29 @@ function check(own, peerSet, extra = {}) {
 export function scoreEpisode(target, window, flags, io = DEFAULT_IO) {
   const checks = {};
   const age = readAgeOf(target);
+  if (!Number.isFinite(age)) {
+    const empty = Object.fromEntries(CHECKS.map((key) => [key, {
+      value: null, typical: null, ratio: null, score: null, weight: 0,
+      sample: 0, peers: [], reason: NOTES.noYtReading, ageBasis: null,
+      note: null, excluded: [],
+    }]));
+    return { score: null, checks: empty, missingChecks: [...CHECKS], atDay: null, reason: NOTES.noYtReading, reproducible: true };
+  }
   const atDay = round1(age);
   const peerOf = (p, value, extra) => ({ slug: p.slug, value, ...extra });
 
   // watch: same-age views — own at its read age, every peer at that same age
   {
-    const ownSnap = snapshotAt(target, age);
-    const ps = peersFor({ own: target, window, flags, valueOf: (p) => { const s = snapshotAt(p, age); return s ? ytViewsOf(s) : null; } });
-    ps.peers = ps.peers.map((x) => { const p = window.find((w) => w.slug === x.slug); const s = snapshotAt(p, age); return peerOf(p, x.value, { atDay, source: "snapshot", readDate: s.ts.slice(0, 10) }); });
+    const ownSnap = ytSnapshotAt(target, age);
+    const ps = peersFor({ own: target, window, flags, valueOf: (p) => { const s = ytSnapshotAt(p, age); return s ? ytViewsOf(s) : null; } });
+    ps.peers = ps.peers.map((x) => { const p = window.find((w) => w.slug === x.slug); const s = ytSnapshotAt(p, age); return peerOf(p, x.value, { atDay, source: "snapshot", readDate: s.ts.slice(0, 10) }); });
     checks.watch = check(ownSnap ? { value: ytViewsOf(ownSnap) } : null, ps, { atDay, ageBasis: "sameAge", note: NOTES.sameAge, excluded: ps.excluded });
   }
   // engagement: each episode at its OWN read age (a rate, so ages align)
   {
-    const ownSnap = snapshotAt(target, age);
-    const ps = peersFor({ own: target, window, flags, valueOf: (p) => { const s = snapshotAt(p, readAgeOf(p)); return s ? engagementPer1kOf(s) : null; } });
-    ps.peers = ps.peers.map((x) => { const p = window.find((w) => w.slug === x.slug); const s = snapshotAt(p, readAgeOf(p)); return peerOf(p, x.value, { atDay: round1(readAgeOf(p)), source: "snapshot", readDate: s.ts.slice(0, 10) }); });
+    const ownSnap = ytSnapshotAt(target, age);
+    const ps = peersFor({ own: target, window, flags, valueOf: (p) => { const pAge = readAgeOf(p); const s = Number.isFinite(pAge) ? ytSnapshotAt(p, pAge) : null; return s ? engagementPer1kOf(s) : null; } });
+    ps.peers = ps.peers.map((x) => { const p = window.find((w) => w.slug === x.slug); const pAge = readAgeOf(p); const s = ytSnapshotAt(p, pAge); return peerOf(p, x.value, { atDay: round1(pAge), source: "snapshot", readDate: s.ts.slice(0, 10) }); });
     checks.engagement = check(ownSnap ? { value: engagementPer1kOf(ownSnap) } : null, ps, { atDay, ageBasis: "sameAge", note: NOTES.sameAge, excluded: ps.excluded });
   }
   // retention + conversion: sameAge when own AND every usable peer has a day-21
@@ -284,13 +293,14 @@ export function computeRatings({ now = Date.now(), io = DEFAULT_IO } = {}) {
   const scores = [];
   let frozenKept = 0, computed = 0;
   for (const e of all) {
-    if (e.ageDays < READ_DAYS) continue; // three weeks not over — nothing exists yet
     const kept = prior.get(e.slug);
     if (kept) {
       scores.push(kept); // frozen forever within this algorithm version
       frozenKept++;
       continue;
     }
+    const ytAge = ytCurrentAge(e);
+    if (!Number.isFinite(ytAge) || ytAge < READ_DAYS) continue; // no real three-week YouTube reading yet
     const window = windowFor(e, all, { side: "before", n: WINDOW_N });
     const r = scoreEpisode(e, window, flags, io);
     const excluded = window.filter((p) => flags.get(p.slug)?.flagged).map((p) => ({ slug: p.slug, why: "promo outlier" }));
@@ -303,7 +313,7 @@ export function computeRatings({ now = Date.now(), io = DEFAULT_IO } = {}) {
       excluded,
       readDays: READ_DAYS,
       atDay: r.atDay,
-      frozenAtDay: round1(currentAgeOf(e)),
+      frozenAtDay: round1(ytAge),
       readCompleteOn: readCompleteOn(e.premiere),
       score: r.score,
       checks: r.checks,

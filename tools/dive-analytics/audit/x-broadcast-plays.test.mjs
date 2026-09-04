@@ -58,8 +58,9 @@ assert.deepEqual(parseBroadcastStatsLine("was_live|700|80"), {
   assert.equal("plays" in compact.byDest["x:ridd_design"], false, "export must not resurrect detail/native plays");
   const latest = buildLatest(show, compact);
   assert.equal(latest.xPlays, null);
-  assert.equal(latest.totalViews, 0);
+  assert.equal(latest.totalViews, null, "native X reach and a pre-air YouTube zero cannot become views");
   assert.equal(latest.totalViewsInfo.includesPlays, false);
+  assert.equal(latest.totalViewsInfo.includesYoutube, false);
 }
 
 // Even a poisoned tweet payload beside a valid broadcast contributes exactly

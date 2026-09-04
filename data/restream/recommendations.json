@@ -1,10 +1,10 @@
 {
  "version": 1,
  "promptVersion": 4,
- "updatedAt": "2026-09-03T17:39:44.860Z",
+ "updatedAt": "2026-09-04T02:28:36.179Z",
  "provider": "anthropic",
  "model": "claude-fable-5",
- "factsGeneratedAt": "2026-09-03T17:39:40.643Z",
+ "factsGeneratedAt": "2026-09-04T02:24:22.913Z",
  "facts": [
   {
    "id": "open-start-E1",
@@ -40,7 +40,7 @@
   },
   {
    "id": "subs1k-E1-joindiveclub",
-   "value": 5.6
+   "value": 5.5
   },
   {
    "id": "subs-E1-joindiveclub",
@@ -88,11 +88,11 @@
   },
   {
    "id": "open-at2-E2",
-   "value": 15
+   "value": 15.1
   },
   {
    "id": "watched-E2",
-   "value": 11
+   "value": 11.1
   },
   {
    "id": "subs1k-E2",
@@ -156,7 +156,7 @@
   },
   {
    "id": "discovery-E2",
-   "value": 18.9
+   "value": 19
   },
   {
    "id": "open-start-E3",
@@ -164,7 +164,7 @@
   },
   {
    "id": "open-at2-E3",
-   "value": 12.7
+   "value": 12.8
   },
   {
    "id": "watched-E3",
@@ -176,7 +176,7 @@
   },
   {
    "id": "watched-E3-designertom",
-   "value": 8.9
+   "value": 8.8
   },
   {
    "id": "subs1k-E3-designertom",
@@ -312,15 +312,15 @@
   },
   {
    "id": "open-start-E5",
-   "value": 69.7
+   "value": 69.4
   },
   {
    "id": "open-at2-E5",
-   "value": 12.4
+   "value": 12.2
   },
   {
    "id": "watched-E5",
-   "value": 13.3
+   "value": 13.2
   },
   {
    "id": "subs1k-E5",
@@ -328,7 +328,7 @@
   },
   {
    "id": "watched-E5-designertom",
-   "value": 12.1
+   "value": 12
   },
   {
    "id": "subs1k-E5-designertom",
@@ -349,6 +349,10 @@
   {
    "id": "subs-E5-joindiveclub",
    "value": 1
+  },
+  {
+   "id": "health-E5",
+   "value": 36
   },
   {
    "id": "peak-E5",
@@ -384,11 +388,11 @@
   },
   {
    "id": "discovery-E5",
-   "value": 11.7
+   "value": 11.8
   },
   {
    "id": "open-start-E6",
-   "value": 64.7
+   "value": 64.9
   },
   {
    "id": "open-at2-E6",
@@ -396,7 +400,7 @@
   },
   {
    "id": "watched-E6",
-   "value": 11.5
+   "value": 11.6
   },
   {
    "id": "subs1k-E6",
@@ -404,7 +408,7 @@
   },
   {
    "id": "watched-E6-designertom",
-   "value": 8.8
+   "value": 9
   },
   {
    "id": "subs1k-E6-designertom",
@@ -416,7 +420,7 @@
   },
   {
    "id": "watched-E6-joindiveclub",
-   "value": 13.4
+   "value": 13.5
   },
   {
    "id": "subs1k-E6-joindiveclub",
@@ -464,35 +468,35 @@
   },
   {
    "id": "open-start-E7",
-   "value": 70.7
+   "value": 69.8
   },
   {
    "id": "open-at2-E7",
-   "value": 12.9
+   "value": 12.6
   },
   {
    "id": "watched-E7",
-   "value": 11.1
+   "value": 11.2
   },
   {
    "id": "subs1k-E7",
-   "value": 0.6
-  },
-  {
-   "id": "watched-E7-joindiveclub",
-   "value": 12.3
-  },
-  {
-   "id": "subs1k-E7-joindiveclub",
    "value": 0.8
   },
   {
+   "id": "watched-E7-joindiveclub",
+   "value": 12.2
+  },
+  {
+   "id": "subs1k-E7-joindiveclub",
+   "value": 1.2
+  },
+  {
    "id": "subs-E7-joindiveclub",
-   "value": 2
+   "value": 3
   },
   {
    "id": "watched-E7-designertom",
-   "value": 9.9
+   "value": 10.2
   },
   {
    "id": "subs1k-E7-designertom",
@@ -536,7 +540,7 @@
   },
   {
    "id": "discovery-E7",
-   "value": 5.8
+   "value": 6.3
   },
   {
    "id": "show-health-score",
@@ -616,19 +620,19 @@
   },
   {
    "id": "dir-watching",
-   "value": 6.9
+   "value": 0.7
   },
   {
    "id": "dir-exposureWeekOne",
-   "value": 13.5
+   "value": 19.4
   },
   {
    "id": "dir-announceToPlay",
-   "value": 14
+   "value": 15.4
   },
   {
    "id": "dir-discoveryShare",
-   "value": 3.7
+   "value": 5
   },
   {
    "id": "dir-liveAverage",
@@ -664,7 +668,7 @@
   },
   {
    "id": "dir-subscribers",
-   "value": 25.8
+   "value": 39.9
   },
   {
    "id": "outlook-first-week-low",
@@ -708,7 +712,7 @@
   },
   {
    "id": "launch-typical-E4",
-   "value": 1942
+   "value": 1694.5
   },
   {
    "id": "launch-E5",
@@ -732,7 +736,7 @@
   },
   {
    "id": "launch-typical-E7",
-   "value": 1751
+   "value": 1470
   },
   {
    "id": "open-floor-E1",
@@ -748,7 +752,7 @@
   },
   {
    "id": "end-hold-E1",
-   "value": 10.1
+   "value": 10.2
   },
   {
    "id": "drop-E1-6",
@@ -780,7 +784,7 @@
   },
   {
    "id": "recovery-peak-E2",
-   "value": 29.6
+   "value": 29.7
   },
   {
    "id": "mid-hold-E2",
@@ -788,7 +792,7 @@
   },
   {
    "id": "end-hold-E2",
-   "value": 7
+   "value": 7.1
   },
   {
    "id": "drop-E2-9",
@@ -800,7 +804,7 @@
   },
   {
    "id": "drop-E2-14",
-   "value": 2.9
+   "value": 2.8
   },
   {
    "id": "drop-min-E2-14",
@@ -808,7 +812,7 @@
   },
   {
    "id": "drop-E2-39",
-   "value": 2.4
+   "value": 2.5
   },
   {
    "id": "drop-min-E2-39",
@@ -820,11 +824,11 @@
   },
   {
    "id": "recovery-peak-E3",
-   "value": 26.3
+   "value": 26.2
   },
   {
    "id": "mid-hold-E3",
-   "value": 13.4
+   "value": 13.5
   },
   {
    "id": "end-hold-E3",
@@ -832,7 +836,7 @@
   },
   {
    "id": "drop-E3-8",
-   "value": 4.1
+   "value": 3.9
   },
   {
    "id": "drop-min-E3-8",
@@ -888,7 +892,7 @@
   },
   {
    "id": "hold-E4-31",
-   "value": 2.2
+   "value": 2.1
   },
   {
    "id": "hold-min-E4-31",
@@ -904,11 +908,11 @@
   },
   {
    "id": "open-floor-E5",
-   "value": 10.3
+   "value": 10.1
   },
   {
    "id": "recovery-peak-E5",
-   "value": 26.7
+   "value": 26.3
   },
   {
    "id": "mid-hold-E5",
@@ -916,7 +920,7 @@
   },
   {
    "id": "end-hold-E5",
-   "value": 11.7
+   "value": 11.5
   },
   {
    "id": "drop-E5-12",
@@ -936,11 +940,11 @@
   },
   {
    "id": "drop-E5-50",
-   "value": 3.8
+   "value": 3.7
   },
   {
    "id": "drop-min-E5-50",
-   "value": 47
+   "value": 48
   },
   {
    "id": "hold-E5-56",
@@ -956,19 +960,19 @@
   },
   {
    "id": "recovery-peak-E6",
-   "value": 25.2
+   "value": 25.6
   },
   {
    "id": "mid-hold-E6",
-   "value": 16
+   "value": 16.4
   },
   {
    "id": "end-hold-E6",
-   "value": 9.5
+   "value": 9.4
   },
   {
    "id": "drop-E6-16",
-   "value": 4.4
+   "value": 4.3
   },
   {
    "id": "drop-min-E6-16",
@@ -984,7 +988,7 @@
   },
   {
    "id": "hold-E6-47",
-   "value": 2.2
+   "value": 2.3
   },
   {
    "id": "hold-min-E6-47",
@@ -992,7 +996,7 @@
   },
   {
    "id": "drop-E6-52",
-   "value": 2.7
+   "value": 2.6
   },
   {
    "id": "drop-min-E6-52",
@@ -1000,7 +1004,7 @@
   },
   {
    "id": "hold-E6-70",
-   "value": 2.5
+   "value": 2.3
   },
   {
    "id": "hold-min-E6-70",
@@ -1008,23 +1012,31 @@
   },
   {
    "id": "open-floor-E7",
-   "value": 10.6
+   "value": 10.2
   },
   {
    "id": "recovery-peak-E7",
-   "value": 24.4
+   "value": 24
   },
   {
    "id": "mid-hold-E7",
-   "value": 14.8
+   "value": 15
   },
   {
    "id": "end-hold-E7",
-   "value": 8.3
+   "value": 8.7
+  },
+  {
+   "id": "drop-E7-7",
+   "value": 2.7
+  },
+  {
+   "id": "drop-min-E7-7",
+   "value": 8
   },
   {
    "id": "drop-E7-18",
-   "value": 4.5
+   "value": 4.7
   },
   {
    "id": "drop-min-E7-18",
@@ -1032,201 +1044,66 @@
   },
   {
    "id": "drop-E7-40",
-   "value": 2.5
+   "value": 2.9
   },
   {
    "id": "drop-min-E7-40",
    "value": 44
   },
   {
-   "id": "drop-E7-58",
-   "value": 2.7
-  },
-  {
-   "id": "drop-min-E7-58",
-   "value": 63
-  },
-  {
-   "id": "traffic-SUBSCRIBER",
-   "value": 9304
-  },
-  {
-   "id": "traffic-share-SUBSCRIBER",
-   "value": 64.6
-  },
-  {
-   "id": "traffic-NO_LINK_OTHER",
-   "value": 1325
-  },
-  {
-   "id": "traffic-share-NO_LINK_OTHER",
-   "value": 9.2
-  },
-  {
-   "id": "traffic-RELATED_VIDEO",
-   "value": 980
-  },
-  {
-   "id": "traffic-share-RELATED_VIDEO",
-   "value": 6.8
-  },
-  {
-   "id": "traffic-YT_OTHER_PAGE",
-   "value": 516
-  },
-  {
-   "id": "traffic-share-YT_OTHER_PAGE",
-   "value": 3.6
-  },
-  {
-   "id": "traffic-YT_CHANNEL",
-   "value": 585
-  },
-  {
-   "id": "traffic-share-YT_CHANNEL",
-   "value": 4.1
-  },
-  {
-   "id": "traffic-EXT_URL",
-   "value": 580
-  },
-  {
-   "id": "traffic-share-EXT_URL",
-   "value": 4
-  },
-  {
-   "id": "traffic-YT_SEARCH",
-   "value": 665
-  },
-  {
-   "id": "traffic-share-YT_SEARCH",
-   "value": 4.6
-  },
-  {
-   "id": "traffic-NOTIFICATION",
-   "value": 325
-  },
-  {
-   "id": "traffic-share-NOTIFICATION",
-   "value": 2.3
-  },
-  {
-   "id": "traffic-PLAYLIST",
-   "value": 88
-  },
-  {
-   "id": "traffic-share-PLAYLIST",
-   "value": 0.6
-  },
-  {
-   "id": "traffic-END_SCREEN",
-   "value": 11
-  },
-  {
-   "id": "traffic-share-END_SCREEN",
-   "value": 0.1
-  },
-  {
-   "id": "traffic-SHORTS",
-   "value": 2
-  },
-  {
-   "id": "traffic-share-SHORTS",
-   "value": 0
-  },
-  {
-   "id": "traffic-SHORTS_CONTENT_LINKS",
-   "value": 15
-  },
-  {
-   "id": "traffic-share-SHORTS_CONTENT_LINKS",
-   "value": 0.1
-  },
-  {
-   "id": "traffic-IMMERSIVE_LIVE",
-   "value": 1
-  },
-  {
-   "id": "traffic-share-IMMERSIVE_LIVE",
-   "value": 0
-  },
-  {
-   "id": "channel-views-designertom",
-   "value": 6371
-  },
-  {
-   "id": "channel-subs-designertom",
-   "value": 9
-  },
-  {
-   "id": "channel-subs1k-designertom",
-   "value": 1.4
-  },
-  {
-   "id": "channel-watched-designertom",
-   "value": 9.7
-  },
-  {
-   "id": "channel-views-joindiveclub",
-   "value": 8017
-  },
-  {
-   "id": "channel-subs-joindiveclub",
-   "value": 20
-  },
-  {
-   "id": "channel-subs1k-joindiveclub",
-   "value": 2.5
-  },
-  {
-   "id": "channel-watched-joindiveclub",
-   "value": 11.6
-  },
-  {
    "id": "views-yt-all",
-   "value": 15682
+   "value": 17049
   },
   {
    "id": "views-x-all",
-   "value": 15547
+   "value": 15565
   },
   {
    "id": "share-x-all",
-   "value": 49.8
+   "value": 47.7
   },
   {
    "id": "views-total-all",
-   "value": 31229
+   "value": 32614
   }
  ],
  "attempts": 1,
  "ranked": true,
  "items": [
   {
-   "id": "fix-announce-follow-through",
+   "id": "fix-announce-to-play",
    "category": "promotion",
    "serves": "reachEfficiency",
-   "text": "Announce follow-through is softening: the read carried from an older finished episode sits at 13 against the show's usual 31.4, and the trend over the last 5 clean episodes points down.",
-   "recommendation": "Rebuild the announce this week: lead with a one-line hook and the direct play link, post from both accounts within minutes of going live, and pin a replay link right after the stream ends to test whether plays per announce recover."
+   "text": "Reach reads fragile: announce-to-play sits at 13 against a usual 31.4 and is softening (the newest read is carried from an older finished episode). Fewer of the people who see the announcement are actually pressing play.",
+   "recommendation": "Rework this week's announcement: post a short clip with a concrete hook within an hour of going live on both Dive Club and DesignerTom, pin it, and test one next-morning reminder post to see if plays recover."
   },
   {
-   "id": "tighten-the-middle",
+   "id": "tighten-mid-show",
    "category": "content",
    "serves": "audienceQuality",
-   "text": "On-demand watching is softening: the finished-episode share watched reads 8.9 against a usual 10.7. In E4, 5.9 of every 100 viewers left about 39% of the way in, roughly 48 minutes deep, near a meandering back-and-forth stretch.",
-   "recommendation": "Test a tighter middle: pre-plan segment hand-offs, cap each demo at a fixed length, and trim rambling transitions in the edit before upload to see whether share watched climbs back toward 10.7."
+   "text": "Audience quality reads fragile: watching is at 8.9 against a usual 10.6, carried from an older finished episode. On E4, 5.9 of every 100 viewers left around 48 minutes in, roughly two fifths of the way through, during a loose back-and-forth aside.",
+   "recommendation": "Tighten the middle of the show: pre-plan the segment order, cap each tangent, and test cutting one loose stretch near the middle. E5, the finished episode that held 17.5 through its middle half, ran a demo-heavy build segment there — repeat that structure."
   },
   {
-   "id": "lean-on-dive-club",
-   "category": "distribution",
+   "id": "restart-chat",
+   "category": "audience",
+   "serves": "participation",
+   "text": "Chat is thinning: chatters per 100 and messages per hour are both softening. E7 drew 92 messages from 40 chatters, while E1 drew 383 messages from 104 chatters.",
+   "recommendation": "Script two direct chat moments into the first half hour this week — a vote and a named shout-out like the designer-of-the-week feature — and have one host read chat answers on air to test whether prompts bring chatters back."
+  },
+  {
+   "id": "designertom-subscribe-ask",
+   "category": "audience",
    "serves": "conversion",
-   "text": "Dive Club converts and holds better than DesignerTom on the same shows: 2.5 subscribers per 1,000 views and 11.6 share watched versus 1.4 and 9.7, with 20 subscribers gained against 9 across the run.",
-   "recommendation": "Point every subscribe call this week at Dive Club — announces, end-of-show ask, and description links — and test DesignerTom as a clips-and-repost surface rather than a full mirror, then compare subscriber gains next episode."
+   "text": "Subscribers are softening, and the gap is on DesignerTom: it gained 0 subscribers on E3, E4 and E5, while Dive Club gained 7 on E4 at 5.7 per 1,000 views. On E1 DesignerTom converted at 13.2 per 1,000, so the channel can convert.",
+   "recommendation": "Add a specific on-air subscribe ask aimed at DesignerTom viewers this week — say what that channel uniquely gets next episode — and put a subscribe card at the strongest mid-show moment to test whether the 0 weeks were an ask problem."
+  },
+  {
+   "id": "route-x-to-youtube",
+   "category": "distribution",
+   "serves": "growth",
+   "text": "X carries a 47.7 share of all watching — 15,565 plays against 17,049 YouTube views — yet subscriber gains and search-and-suggested discovery only accrue on YouTube, so nearly half the audience sits where the show can't compound.",
+   "recommendation": "In this week's X broadcast, verbally point viewers to the YouTube replay twice and pin the YouTube link in the broadcast, then check next week whether YouTube first-week views tick up."
   }
- ],
- "prunedAt": "2026-09-03T17:39:44.860Z",
- "prunedIds": [
-  "revive-live-chat",
-  "protect-live-momentum"
  ]
 }

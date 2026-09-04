@@ -124,6 +124,58 @@ function chunk(arr, n) {
   return out;
 }
 
+function countOrNull(value) {
+  if (value == null || value === "") return null;
+  const count = Number(value);
+  return Number.isFinite(count) ? count : null;
+}
+
+// The Data API omits statistics while an upload is still waiting to air.
+// An omitted count is absence, not a measured zero; an explicit "0" remains 0.
+export function youtubeStatsOf(item) {
+  return {
+    views: countOrNull(item?.statistics?.viewCount),
+    likes: countOrNull(item?.statistics?.likeCount),
+    comments: countOrNull(item?.statistics?.commentCount),
+    title: item?.snippet?.title,
+    channelId: item?.snippet?.channelId,
+  };
+}
+
+export function mergedViewCount(previous, current) {
+  if (!Number.isFinite(current)) return Number.isFinite(previous) ? previous : null;
+  return (Number.isFinite(previous) ? previous : 0) + current;
+}
+
+export function syncPostliveMetadata(store, show) {
+  const changed = store.title !== show.title || store.date !== show.date;
+  store.title = show.title;
+  store.date = show.date;
+  return changed;
+}
+
+// Public YouTube can return an all-zero row before a scheduled stream airs.
+// Keep that raw row for audit, but it is not yet a usable audience reading.
+export function youtubeViewsForDisplay(metrics) {
+  const counts = Object.entries(metrics || {})
+    .filter(([key]) => key.startsWith("yt:"))
+    .map(([, value]) => value?.views);
+  if (!counts.some((value) => Number.isFinite(value) && value > 0)) return null;
+  return counts.reduce((sum, value) => sum + (Number.isFinite(value) ? value : 0), 0);
+}
+
+export function destinationViewsForDisplay(metrics, key) {
+  if (key.startsWith("yt:") && youtubeViewsForDisplay(metrics) == null) return null;
+  const value = metrics?.[key]?.views;
+  return Number.isFinite(value) ? value : null;
+}
+
+export function youtubeDeltaForDisplay(currentMetrics, previousMetrics) {
+  const current = youtubeViewsForDisplay(currentMetrics);
+  const previous = youtubeViewsForDisplay(previousMetrics);
+  return Number.isFinite(current) && Number.isFinite(previous) ? current - previous : null;
+}
+
 async function fetchYouTubeStats(videoIds) {
   if (!videoIds.length) return {};
   const key = ytApiKey();
@@ -133,13 +185,7 @@ async function fetchYouTubeStats(videoIds) {
       `https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${batch.join(",")}&key=${key}`
     );
     for (const item of data.items || []) {
-      stats[item.id] = {
-        views: Number(item.statistics?.viewCount ?? 0),
-        likes: Number(item.statistics?.likeCount ?? 0),
-        comments: Number(item.statistics?.commentCount ?? 0),
-        title: item.snippet?.title,
-        channelId: item.snippet?.channelId,
-      };
+      stats[item.id] = youtubeStatsOf(item);
     }
   }
   return stats;
@@ -370,7 +416,7 @@ export function buildShowMetrics(show, ytStats, xStats, broadcastStats) {
     const current = metrics[key] || {};
     metrics[key] = {
       ...current,
-      views: (current.views || 0) + s.views,
+      views: mergedViewCount(current.views, s.views),
       detail: detailOf(s),
     };
 
@@ -527,18 +573,15 @@ async function snapshot(args) {
       }
     }
 
-    let ytViews = 0;
+    const ytViews = youtubeViewsForDisplay(metrics);
     let xReach = 0;
     for (const [k, m] of Object.entries(metrics)) {
-      if (k.startsWith("yt:")) ytViews += m.views || 0;
-      else if (k.startsWith("x:")) xReach += m.views || 0;
+      if (k.startsWith("x:")) xReach += m.views || 0;
     }
     const histPath = join(HISTORY_DIR, `${show.slug}.json`);
     const hist = loadJson(histPath, { slug: show.slug, title: show.title, date: show.date, snapshots: [] });
+    syncPostliveMetadata(hist, show);
     const prev = hist.snapshots[hist.snapshots.length - 1];
-    const prevYt = prev
-      ? Object.entries(prev.metrics).reduce((a, [k, m]) => a + (k.startsWith("yt:") ? m.views || 0 : 0), 0)
-      : null;
     hist.snapshots.push({ ts: now, metrics });
     saveJson(histPath, hist);
     rows.push({
@@ -547,7 +590,7 @@ async function snapshot(args) {
       ytViews,
       xReach,
       plays: playsSummary(show, metrics),
-      deltaYt: prevYt === null ? null : ytViews - prevYt,
+      deltaYt: prev ? youtubeDeltaForDisplay(metrics, prev.metrics) : null,
     });
   }
   if (registryDirty) saveJson(REGISTRY_PATH, registry);
@@ -577,7 +620,14 @@ function signedNum(d) {
 // Total views = YT views + X broadcast plays (both video playback events;
 // CARD-RULING-2026-08-21). X impressions are exposure and never included.
 // Coverage markers survive: a partial sum is never presented as a whole.
-function totalViewsCell(ytViews, p) {
+export function totalViewsCell(ytViews, p) {
+  if (!Number.isFinite(ytViews)) {
+    if (p?.value == null) return "–";
+    let xOnly = `${num(p.value)} (X only)`;
+    if (p.partial) xOnly += ` ◐ ${p.have}/${p.total}`;
+    else if (p.stale && p.asOf) xOnly += ` (as of ${fmtShort(p.asOf)})`;
+    return xOnly;
+  }
   const v = ytViews + (p?.value ?? 0);
   let s = num(v);
   if (!p || p.value == null) s += " (YT only)";
@@ -603,7 +653,7 @@ function renderVault(rows, now, errors) {
   lines.push(`| Date | Show | Total views | ${COLUMNS.map((c) => c.label).join(" | ")} | Other reach | YT views | X reach | X plays | Δ YT day |`);
   lines.push(`|------|------|-------|${COLUMNS.map(() => "------").join("|")}|-------|-------|-------|-------|-------|`);
   for (const r of rows) {
-    const cols = COLUMNS.map((c) => num(r.metrics[c.key]?.views));
+    const cols = COLUMNS.map((c) => num(destinationViewsForDisplay(r.metrics, c.key)));
     const otherKeys = Object.keys(r.metrics).filter((k) => !COLUMNS.some((c) => c.key === k));
     const other = otherKeys.length ? num(otherKeys.reduce((a, k) => a + r.metrics[k].views, 0)) : "–";
     lines.push(
@@ -659,7 +709,7 @@ async function report(args) {
   const lines = [`Post-live watch report — week of ${new Date().toLocaleDateString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", year: "numeric" })}`];
   lines.push("Units: Total views = YT views + X broadcast plays (both video playback). X reach = post impressions (exposure), never included in views.");
   const sorted = [...shows].sort((a, b) => (a.date < b.date ? 1 : -1));
-  const grand = { yt: 0, dYt: 0, reach: 0, dReach: 0, plays: null, playsPartial: false };
+  const grand = { yt: 0, ytComplete: true, dYt: 0, reach: 0, dReach: 0, plays: null, playsPartial: false };
   let anyBaseline = false;
   for (const show of sorted) {
     const hist = loadJson(join(HISTORY_DIR, `${show.slug}.json`), null);
@@ -669,17 +719,18 @@ async function report(args) {
     }
     const latest = hist.snapshots[hist.snapshots.length - 1];
     const baseline = closestSnapshotBefore(hist.snapshots, weekAgo);
-    const yt = snapshotUnit(latest, "yt:");
+    const yt = youtubeViewsForDisplay(latest.metrics);
     const reach = snapshotUnit(latest, "x:");
     const plays = playsSummary(show, latest.metrics);
-    grand.yt += yt;
+    if (Number.isFinite(yt)) grand.yt += yt;
+    else grand.ytComplete = false;
     grand.reach += reach;
     if (plays.value != null) {
       grand.plays = (grand.plays ?? 0) + plays.value;
       if (plays.partial || plays.stale) grand.playsPartial = true;
     }
     if (plays.value == null) grand.playsPartial = true; // grand total is missing this episode's plays
-    const dYt = baseline ? yt - snapshotUnit(baseline, "yt:") : null;
+    const dYt = baseline ? youtubeDeltaForDisplay(latest.metrics, baseline.metrics) : null;
     const dReach = baseline ? reach - snapshotUnit(baseline, "x:") : null;
     if (dYt !== null) {
       grand.dYt += dYt;
@@ -687,22 +738,27 @@ async function report(args) {
       anyBaseline = true;
     }
     const wk = (d) => (d === null ? "first week tracked" : `${signedNum(d)} this week`);
+    const ytWeek = yt == null ? "no reading yet" : wk(dYt);
     lines.push(`\n${show.title} (${show.date})`);
     lines.push(
-      `  Total views ${totalViewsCell(yt, plays)} (YT ${num(yt)} + X plays ${plays.value == null ? "–" : num(plays.value)}) · YT ${wk(dYt)} · X reach ${num(reach)} (${wk(dReach)})`
+      `  Total views ${totalViewsCell(yt, plays)} (YT ${num(yt)} + X plays ${plays.value == null ? "–" : num(plays.value)}) · YT ${ytWeek} · X reach ${num(reach)} (${wk(dReach)})`
     );
     for (const c of COLUMNS) {
-      const cur = latest.metrics[c.key]?.views;
-      if (cur === undefined) continue;
-      const prev = baseline?.metrics[c.key]?.views;
-      const d = prev === undefined ? null : cur - prev;
+      if (!Object.hasOwn(latest.metrics, c.key)) continue;
+      const cur = destinationViewsForDisplay(latest.metrics, c.key);
+      const prev = baseline ? destinationViewsForDisplay(baseline.metrics, c.key) : null;
+      const d = Number.isFinite(cur) && Number.isFinite(prev) ? cur - prev : null;
       lines.push(
-        `  • ${c.label}: ${cur.toLocaleString("en-US")}${d === null ? "" : ` (${signedNum(d)})`}`
+        `  • ${c.label}: ${num(cur)}${d === null ? "" : ` (${signedNum(d)})`}`
       );
     }
   }
+  const allViews = grand.ytComplete
+    ? `${num(grand.yt + (grand.plays ?? 0))}${grand.playsPartial ? " ◐ some episodes' plays partial/stale/missing" : ""}`
+    : "– (some YouTube views missing)";
+  const allYt = grand.ytComplete ? num(grand.yt) : "– (some episodes missing)";
   lines.push(
-    `\nAll tracked shows — Total views: ${num(grand.yt + (grand.plays ?? 0))}${grand.playsPartial ? " ◐ some episodes' plays partial/stale/missing" : ""} · YT: ${num(grand.yt)}${anyBaseline ? ` (${signedNum(grand.dYt)} this week)` : ""} · X plays: ${grand.plays == null ? "–" : num(grand.plays)} · X reach: ${num(grand.reach)}${anyBaseline ? ` (${signedNum(grand.dReach)} this week)` : ""}.`
+    `\nAll tracked shows — Total views: ${allViews} · YT: ${allYt}${grand.ytComplete && anyBaseline ? ` (${signedNum(grand.dYt)} this week)` : ""} · X plays: ${grand.plays == null ? "–" : num(grand.plays)} · X reach: ${num(grand.reach)}${anyBaseline ? ` (${signedNum(grand.dReach)} this week)` : ""}.`
   );
   if (args.includes("--trends")) {
     try {

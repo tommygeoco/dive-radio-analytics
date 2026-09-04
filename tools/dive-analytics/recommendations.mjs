@@ -43,7 +43,8 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const DATA_PATH = join(ROOT, "data.json");
 const STORE_PATH = join(ROOT, "data", "restream", "recommendations.json");
-const MAX_TOKENS = 8000;
+// claude-fable-5 uses adaptive thinking from this same budget.
+const MAX_TOKENS = 16000;
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
@@ -188,39 +189,54 @@ export function collectFacts(data = readJson(DATA_PATH)) {
     }
   }
 
-  // whole-show traffic mix + per-channel totals from the analytics stores
+  // Whole-show traffic mix + per-channel totals from the analytics stores.
+  // These are whole-show claims, so one episode without a positive YouTube
+  // reading with finite channel counts withholds the entire aggregate. Missing
+  // analytics must never enter a recommendation fact as a zero.
   const traffic = {}; let trafficTotal = 0;
   const byChannel = {};
+  let analyticsComplete = true;
   const yta = join(ROOT, "data", "restream", "yt-analytics");
   for (const e of eps) {
     const j = readJson(join(yta, `${e.slug}.json`));
+    const expected = Object.keys(e.latest?.byDest || {}).filter((key) => key.startsWith("yt:"));
+    const channelTotals = expected.map((key) => j?.channels?.[key]?.totals || null);
+    if (!expected.length || channelTotals.some((t) => !Number.isFinite(t?.views)) || channelTotals.reduce((sum, t) => sum + (t?.views ?? 0), 0) <= 0) {
+      analyticsComplete = false;
+    }
     for (const [key, ch] of Object.entries(j?.channels || {})) {
       const t = ch?.totals; if (!t) continue;
       const a = byChannel[key] = byChannel[key] || { views: 0, subs: 0, weighted: 0 };
-      a.views += t.views || 0; a.subs += t.subscribersGained || 0; a.weighted += (t.averageViewPercentage || 0) * (t.views || 0);
+      if (Number.isFinite(t.views)) a.views += t.views;
+      if (Number.isFinite(t.subscribersGained)) a.subs += t.subscribersGained;
+      if (Number.isFinite(t.averageViewPercentage) && Number.isFinite(t.views)) a.weighted += t.averageViewPercentage * t.views;
       for (const row of ch.trafficSources || []) { traffic[row.insightTrafficSourceType] = (traffic[row.insightTrafficSourceType] || 0) + row.views; trafficTotal += row.views; }
     }
   }
-  for (const [src, views] of Object.entries(traffic)) {
-    add(`traffic-${src}`, views, `whole-show YouTube views from ${src}`);
-    if (trafficTotal > 0) add(`traffic-share-${src}`, (views / trafficTotal) * 100, `share of YouTube views from ${src}`);
-  }
-  for (const [key, a] of Object.entries(byChannel)) {
-    add(`channel-views-${key.slice(3)}`, a.views, `${key} total analytics views`);
-    add(`channel-subs-${key.slice(3)}`, a.subs, `${key} total subscribers gained`);
-    if (a.views > 0) {
-      add(`channel-subs1k-${key.slice(3)}`, (a.subs / a.views) * 1000, `${key} subscribers per 1,000 views`);
-      add(`channel-watched-${key.slice(3)}`, a.weighted / a.views, `${key} average share watched`);
+  if (analyticsComplete) {
+    for (const [src, views] of Object.entries(traffic)) {
+      add(`traffic-${src}`, views, `whole-show YouTube views from ${src}`);
+      if (trafficTotal > 0) add(`traffic-share-${src}`, (views / trafficTotal) * 100, `share of YouTube views from ${src}`);
+    }
+    for (const [key, a] of Object.entries(byChannel)) {
+      add(`channel-views-${key.slice(3)}`, a.views, `${key} total analytics views`);
+      add(`channel-subs-${key.slice(3)}`, a.subs, `${key} total subscribers gained`);
+      if (a.views > 0) {
+        add(`channel-subs1k-${key.slice(3)}`, (a.subs / a.views) * 1000, `${key} subscribers per 1,000 views`);
+        add(`channel-watched-${key.slice(3)}`, a.weighted / a.views, `${key} average share watched`);
+      }
     }
   }
 
   // platform split (plays are real watching; reach is not)
-  const ytAll = eps.reduce((a, e) => a + (e.latest.ytTotal || 0), 0);
-  const xAll = eps.reduce((a, e) => a + (e.latest.xPlays || 0), 0);
+  const youtubeComplete = eps.every((e) => Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0);
+  const xValues = eps.map((e) => e.latest?.xPlays).filter(Number.isFinite);
+  const ytAll = youtubeComplete ? eps.reduce((a, e) => a + e.latest.ytTotal, 0) : null;
+  const xAll = xValues.length ? xValues.reduce((a, value) => a + value, 0) : null;
   add("views-yt-all", ytAll, "all-show YouTube views");
   add("views-x-all", xAll, "all-show X broadcast plays");
-  if (ytAll + xAll > 0) add("share-x-all", (xAll / (ytAll + xAll)) * 100, "share of all watching on X");
-  add("views-total-all", ytAll + xAll, "all-show total views");
+  if (ytAll != null && xAll != null && ytAll + xAll > 0) add("share-x-all", (xAll / (ytAll + xAll)) * 100, "share of all watching on X");
+  add("views-total-all", ytAll != null && xAll != null ? ytAll + xAll : null, "all-show total views");
 
   return { generatedAt: data.generatedAt, facts, excerpts, context };
 }

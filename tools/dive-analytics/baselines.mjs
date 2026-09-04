@@ -64,6 +64,7 @@ export const NOTES = Object.freeze({
   promoQualified: "promo-driven lift — shown, not scored",
   carried: (title) => `carried from ${title}, the latest finished episode — counted at half weight`,
   provisional: "an early read — the episode is under a week old",
+  noYtReading: "YouTube views are not available yet.",
   noLaunchReading: "No reading at the launch age.",
   fewForWord: "Three episodes show the slope; a direction word needs four.",
   readFromPromo: (title) => `read from ${title}, the latest finished episode — the newest episode's own read is promo-driven`,
@@ -143,9 +144,56 @@ export function currentAge(episode) {
 
 // --- per-snapshot values ---------------------------------------------------
 
-export const ytViewsOf = (snap) => YT_KEYS.reduce((a, k) => a + (snap?.byDest?.[k]?.views || 0), 0);
-export const ytEngagementOf = (snap) => YT_KEYS.reduce((a, k) => a + (snap?.byDest?.[k]?.likes || 0) + (snap?.byDest?.[k]?.comments || 0), 0);
+// YouTube sometimes returns an all-zero public-stat row before it has published
+// a real view count. That row is not the episode's first reading: it must not
+// set an age, enter a peer window, or lower a typical. A zero companion channel
+// is still valid once either channel has a positive count.
+export const hasYtReading = (snap) => YT_KEYS.some((k) => Number.isFinite(snap?.byDest?.[k]?.views) && snap.byDest[k].views > 0);
+export const ytViewsOf = (snap) => hasYtReading(snap)
+  ? YT_KEYS.reduce((a, k) => a + (Number.isFinite(snap?.byDest?.[k]?.views) ? snap.byDest[k].views : 0), 0)
+  : null;
+export const ytEngagementOf = (snap) => hasYtReading(snap)
+  ? YT_KEYS.reduce((a, k) => a + (Number.isFinite(snap?.byDest?.[k]?.likes) ? snap.byDest[k].likes : 0) + (Number.isFinite(snap?.byDest?.[k]?.comments) ? snap.byDest[k].comments : 0), 0)
+  : null;
 export const xImpressionsOf = (snap) => X_KEYS.reduce((a, k) => a + (snap?.byDest?.[k]?.views || 0), 0);
+
+// Metric-specific selectors keep the generic snapshot/history selectors
+// available for X while ensuring YouTube comparisons see only real readings.
+// The show's noon-Phoenix premiere clock is also the hard lower bound: a
+// waiting-room count captured earlier that day remains raw evidence, not a
+// historical reading.
+export function ytSnapshotsOf(episode) {
+  if (!episode?.premiere) return [];
+  return (episode.snapshots || []).filter((snap) => {
+    if (!hasYtReading(snap)) return false;
+    const age = ageDaysOf(snap.ts, episode.premiere);
+    return Number.isFinite(age) && age >= 0;
+  });
+}
+
+export function ytSnapshotAt(episode, ageDays) {
+  return readingAt(ytSnapshotsOf(episode), ageDays, SNAPSHOT_TOL, (s) => ageDaysOf(s.ts, episode.premiere));
+}
+
+export function firstYtSnapshot(episode) {
+  return ytSnapshotsOf(episode)[0] || null;
+}
+
+export function latestYtSnapshot(episode) {
+  return ytSnapshotsOf(episode).at(-1) || null;
+}
+
+export function ytCurrentAge(episode) {
+  const last = latestYtSnapshot(episode);
+  return last ? ageDaysOf(last.ts, episode.premiere) : null;
+}
+
+export const hasYtHistoryReading = (line) => Number.isFinite(line?.ageDays) && line.ageDays >= 0
+  && YT_KEYS.some((k) => Number.isFinite(line?.channels?.[k]?.views) && line.channels[k].views > 0);
+
+export function ytHistoryAt(lines, ageDays) {
+  return readingAt((lines || []).filter(hasYtHistoryReading), ageDays, HISTORY_TOL, (l) => l.ageDays);
+}
 
 // X plays at a snapshot, only when every X destination that should carry
 // plays does (partial sums are never a value). `expected` = number of X keys
@@ -231,7 +279,7 @@ export function peersFor({ own, window, flags, valueOf, coverageOf = null, ownCo
 //                      never silently un-flags while history is thin
 // A flagged episode is excluded as a peer for every other typical in the build.
 const UNITS = [
-  { key: "ytViews", label: "YT views", at: (e, snap) => ytViewsOf(snap), latest: (e) => e.latest?.ytTotal },
+  { key: "ytViews", label: "YT views", at: (e, snap) => ytViewsOf(snap), latest: (e) => ytViewsOf(latestYtSnapshot(e)), snapshot: ytSnapshotAt },
   { key: "xPlays", label: "X plays", at: (e, snap) => xPlaysOf(snap, e.latest?.xPlaysInfo?.total), latest: (e) => (e.latest?.xPlaysInfo?.partial === false && e.latest?.xPlaysInfo?.stale === false ? e.latest.xPlays : null) },
   { key: "xImpressions", label: "X reach", at: (e, snap) => xImpressionsOf(snap), latest: (e) => e.latest?.xImpressions },
 ];
@@ -259,12 +307,15 @@ export function anomalyFlags(episodes, { minPeers = MIN_PEERS } = {}) {
       const age = currentAge(e);
       let result = null;
       if (Number.isFinite(age) && age >= READ_DAYS) {
-        const ownSnap = snapshotAt(e, READ_DAYS);
-        result = ownSnap ? tryTier(1, unit.at(e, ownSnap), (p) => { const s = snapshotAt(p, READ_DAYS); return s ? unit.at(p, s) : null; }) : null;
+        const at = unit.snapshot || snapshotAt;
+        const ownSnap = at(e, READ_DAYS);
+        result = ownSnap ? tryTier(1, unit.at(e, ownSnap), (p) => { const s = at(p, READ_DAYS); return s ? unit.at(p, s) : null; }) : null;
       }
       if (!result && Number.isFinite(age)) {
-        const ownSnap = snapshotAt(e, age);
-        result = ownSnap ? tryTier(2, unit.at(e, ownSnap), (p) => { const s = snapshotAt(p, age); return s ? unit.at(p, s) : null; }) : null;
+        const at = unit.snapshot || snapshotAt;
+        const ownAge = unit.key === "ytViews" ? ytCurrentAge(e) : age;
+        const ownSnap = Number.isFinite(ownAge) ? at(e, ownAge) : null;
+        result = ownSnap ? tryTier(2, unit.at(e, ownSnap), (p) => { const s = at(p, ownAge); return s ? unit.at(p, s) : null; }) : null;
       }
       if (!result) result = tryTier(3, unit.latest(e), (p) => unit.latest(p));
       units[unit.key] = result || { tier: null, value: null, typical: null, n: 0, window: [], flag: false };
@@ -417,13 +468,13 @@ export function computeDirection(episodes, flags, {
 } = {}) {
   const cleanFor = (family) => (e) => !flaggedOn(flags, e.slug, UNIT_FAMILIES[family]);
   const views = cleanFor("views"), reach = cleanFor("reach"), live = cleanFor("live");
-  const dayValue = (e, A, pick) => { const s = snapshotAt(e, A); return s ? pick(s) : null; };
+  const dayValue = (e, A, pick, at = snapshotAt) => { const s = at(e, A); return s ? pick(s) : null; };
   const finished = (e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.xAnnounce && Number.isFinite(e.latest?.xPlays)
     && e.latest?.xPlaysInfo?.partial === false && e.latest?.xPlaysInfo?.stale === false && e.latest?.xImpressions > 0;
   const mature = (e) => (currentAge(e) ?? 0) >= MATURITY_DAYS.analytics;
   const valueOf = {
     firstWeek: (e) => (views(e) ? weekValueOf(e) : null),
-    engagementWeekOne: (e) => (views(e) && !e.partialHistory ? dayValue(e, MATURITY_DAYS.xAnnounce, ytEngagementOf) : null),
+    engagementWeekOne: (e) => (views(e) && !e.partialHistory ? dayValue(e, MATURITY_DAYS.xAnnounce, ytEngagementOf, ytSnapshotAt) : null),
     watching: (e) => (views(e) && mature(e) ? watchOf(e) : null),
     exposureWeekOne: (e) => (reach(e) && !e.partialHistory ? dayValue(e, MATURITY_DAYS.xAnnounce, xImpressionsOf) : null),
     announceToPlay: (e) => (reach(e) && finished(e) ? (e.latest.xPlays / e.latest.xImpressions) * 100 : null),
@@ -540,24 +591,25 @@ export function liveRatesOf(episode) {
 // stays the permanent "beat its own bar" score. A flagged YouTube unit makes
 // the read promoDriven: the word is kept, the qualifier rides with it.
 export function launchReadFor(own, episodes, flags, { minPeers = MIN_PEERS } = {}) {
-  const age = currentAge(own);
-  if (!Number.isFinite(age) || !own.snapshots?.length) return null;
-  const firstAge = ageDaysOf(own.snapshots[0].ts, own.premiere);
+  const age = ytCurrentAge(own);
+  const first = firstYtSnapshot(own);
+  if (!Number.isFinite(age) || !first) return null;
+  const firstAge = ageDaysOf(first.ts, own.premiere);
   let readAge = LAUNCH_AGE;
   let provisional = false;
   if (age < LAUNCH_AGE) { readAge = age; provisional = true; }
   else if (firstAge > LAUNCH_AGE + SNAPSHOT_TOL) readAge = Math.min(firstAge, READ_DAYS);
-  else if (!snapshotAt(own, LAUNCH_AGE)) {
+  else if (!ytSnapshotAt(own, LAUNCH_AGE)) {
     // a missed day-7 snapshot: read at the first reading after the first
     // week rather than leaving the episode wordless forever
-    const later = own.snapshots.map((s) => ageDaysOf(s.ts, own.premiere)).find((a) => a > LAUNCH_AGE + SNAPSHOT_TOL);
+    const later = ytSnapshotsOf(own).map((s) => ageDaysOf(s.ts, own.premiere)).find((a) => a > LAUNCH_AGE + SNAPSHOT_TOL);
     if (Number.isFinite(later)) readAge = Math.min(later, READ_DAYS);
   }
   const late = readAge > LAUNCH_AGE + SNAPSHOT_TOL;
-  const ownSnap = snapshotAt(own, readAge);
+  const ownSnap = ytSnapshotAt(own, readAge);
   const value = ownSnap ? ytViewsOf(ownSnap) : null;
   const window = windowFor(own, episodes, { side: "either" });
-  const ps = peersFor({ own, window, flags, valueOf: (p) => { const s = snapshotAt(p, readAge); return s ? ytViewsOf(s) : null; }, minPeers, units: UNIT_FAMILIES.views });
+  const ps = peersFor({ own, window, flags, valueOf: (p) => { const s = ytSnapshotAt(p, readAge); return s ? ytViewsOf(s) : null; }, minPeers, units: UNIT_FAMILIES.views });
   const score = scoreOf(value, ps.typical);
   const word = score == null ? null : score >= BANDS.healthy ? LAUNCH_WORDS.strong : score >= BANDS.steady ? LAUNCH_WORDS.typical : LAUNCH_WORDS.soft;
   return {
@@ -585,13 +637,13 @@ export function launchReadFor(own, episodes, flags, { minPeers = MIN_PEERS } = {
 // MIN_PEERS peers carry readings at both ages — daily tracking only began
 // with E6, so expect this from E8/E9 on.
 export function coolOffFor(own, episodes, flags, { span = COOL_SPAN_DAYS, minPeers = MIN_PEERS } = {}) {
-  const age = currentAge(own);
+  const age = ytCurrentAge(own);
   if (!Number.isFinite(age) || age - span < SNAPSHOT_TOL) return null;
   // a promo tail is not a cool-off read: the lift is shown, never judged
   const promoDriven = flags?.get?.(own.slug)?.units?.ytViews?.flag === true;
   const ratioAt = (e) => {
-    const a = snapshotAt(e, age);
-    const b = snapshotAt(e, age - span);
+    const a = ytSnapshotAt(e, age);
+    const b = ytSnapshotAt(e, age - span);
     const va = a ? ytViewsOf(a) : null;
     const vb = b ? ytViewsOf(b) : null;
     return Number.isFinite(va) && Number.isFinite(vb) && vb > 0 ? va / vb : null;
@@ -632,14 +684,14 @@ export function coolOffFor(own, episodes, flags, { span = COOL_SPAN_DAYS, minPee
 // at that same age (outliers excluded). Descriptive standing, so peers may be
 // later episodes; it is never used to freeze anything.
 export function paceFor(own, episodes, flags, { minPeers = MIN_PEERS } = {}) {
-  const age = currentAge(own);
+  const age = ytCurrentAge(own);
   if (!Number.isFinite(age)) return null;
-  const ownSnap = snapshotAt(own, age);
+  const ownSnap = ytSnapshotAt(own, age);
   const ownValue = ownSnap ? ytViewsOf(ownSnap) : null;
   const window = windowFor(own, episodes, { side: "either" });
   const { peers, excluded, n, typical } = peersFor({
     own, window, flags,
-    valueOf: (p) => { const s = snapshotAt(p, age); return s ? ytViewsOf(s) : null; },
+    valueOf: (p) => { const s = ytSnapshotAt(p, age); return s ? ytViewsOf(s) : null; },
     minPeers,
   });
   if (!Number.isFinite(ownValue) || typical == null) {
@@ -733,8 +785,8 @@ export function newestVsPrevious(episodes, flags, { history = null } = {}) {
   const ns = Number.isFinite(A) ? snapshotAt(newest, A) : null;
   const ps = Number.isFinite(A) ? snapshotAt(previous, A) : null;
   out.reach = ns && ps ? { pct: pct(xImpressionsOf(ns), xImpressionsOf(ps)), ageBasis: "sameAge" } : { pct: null, reason: TOO_YOUNG };
-  const nl = history ? historyAt(history(newest.slug), A) : null;
-  const pl = history ? historyAt(history(previous.slug), A) : null;
+  const nl = history ? ytHistoryAt(history(newest.slug), A) : null;
+  const pl = history ? ytHistoryAt(history(previous.slug), A) : null;
   const blend = (line) => {
     let num = 0, den = 0;
     for (const t of Object.values(line?.channels || {})) { if (Number.isFinite(t.views) && t.views > 0 && Number.isFinite(t.averageViewPercentage)) { num += t.averageViewPercentage * t.views; den += t.views; } }

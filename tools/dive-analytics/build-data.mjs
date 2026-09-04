@@ -17,7 +17,11 @@ import { momentKey } from "./moment-summaries.mjs";
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
 import { buildBrief } from "./agent-brief.mjs";
-import { computeBaselines, anomalyFlags, paceFor, snapshotAt, subsPer1kOf, LAUNCH_AGE, ytViewsOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS } from "./baselines.mjs";
+import {
+  computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
+  firstYtSnapshot, latestYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
+  ytViewsOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS, NOTES,
+} from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -73,7 +77,7 @@ export function compactSnap(s) {
   for (const [k, m] of Object.entries(s.metrics || {})) {
     const d = m.detail || {};
     byDest[k] = {
-      views: m.views || 0,
+      views: Number.isFinite(m.views) ? m.views : null,
       likes: d.likes || 0,
       comments: d.comments ?? d.replies ?? 0,
     };
@@ -140,21 +144,61 @@ function num(n) {
   return Math.round(n).toLocaleString("en-US");
 }
 
+export function partialHistoryOf(snapshots, premiere) {
+  const first = firstYtSnapshot({ snapshots, premiere });
+  return first ? Date.parse(first.ts) - premiereMs(premiere) > PARTIAL_THRESHOLD_DAYS * DAY : null;
+}
+
 // Per-episode latest block. totalViewsInfo mirrors xPlaysInfo so partial/
 // stale coverage markers survive from build to render (audit F-2 guard).
-export function buildLatest(show, latest) {
+export function buildLatest(show, latest, selectedYt) {
+  const latestYt = selectedYt !== undefined
+    ? selectedYt
+    : latestYtSnapshot({ snapshots: latest ? [latest] : [], premiere: show?.date || show?.premiere });
   const playsInfo = xPlaysSummary(show, latest.byDest);
-  const ytTotal = total(latest.byDest, YT_KEYS);
+  const ytTotal = latestYt ? ytViewsOf(latestYt) : null;
+  const youtubeAsOf = ytTotal != null ? latestYt.ts : null;
+  const youtubeStale = ytTotal != null && latestYt.ts !== latest.ts;
+  const byDest = { ...latest.byDest };
+  if (ytTotal != null) {
+    for (const key of YT_KEYS) byDest[key] = latestYt.byDest[key] ?? null;
+  } else {
+    for (const key of YT_KEYS) {
+      if (byDest[key]) byDest[key] = { ...byDest[key], views: null };
+    }
+  }
+  const totalViews = ytTotal != null || playsInfo.value != null
+    ? (ytTotal ?? 0) + (playsInfo.value ?? 0)
+    : null;
+  const xExpected = playsInfo.total > 0;
+  const xMissing = xExpected && playsInfo.value == null;
+  const incomplete = ytTotal == null || youtubeStale || xMissing || playsInfo.partial || playsInfo.stale;
+  const reasons = [];
+  if (ytTotal == null) reasons.push("YouTube views are not available.");
+  else if (youtubeStale) reasons.push("YouTube views are from an older reading.");
+  if (xMissing) reasons.push("X plays are not available.");
+  else if (playsInfo.partial) reasons.push("Some X plays are not available.");
+  else if (playsInfo.stale) reasons.push("Some X plays are from an older reading.");
+  const reason = reasons.length ? reasons.join(" ") : null;
   return {
     ts: latest.ts,
-    byDest: latest.byDest,
+    byDest,
     ytTotal,
+    youtubeAsOf,
+    youtubeStale,
     xImpressions: total(latest.byDest, X_KEYS),
     xPlays: playsInfo.value,
     xPlaysInfo: playsInfo,
-    totalViews: ytTotal + (playsInfo.value ?? 0),
+    totalViews,
     totalViewsInfo: {
+      includesYoutube: ytTotal != null,
       includesPlays: playsInfo.value != null,
+      youtubeMissing: ytTotal == null,
+      youtubeAsOf,
+      youtubeStale,
+      missing: totalViews == null,
+      incomplete,
+      reason,
       partial: playsInfo.partial,
       stale: playsInfo.stale,
       asOf: playsInfo.asOf,
@@ -178,25 +222,28 @@ export function computeAll({ now = Date.now() } = {}) {
 
     const snaps = hist.snapshots.map(compactSnap).sort((a, b) => Date.parse(a.ts) - Date.parse(b.ts));
     const prem = premiereMs(show.date);
-    const firstTs = Date.parse(snaps[0].ts);
+    const ytSnaps = ytSnapshotsOf({ snapshots: snaps, premiere: show.date });
     const lastTs = Date.parse(snaps[snaps.length - 1].ts);
     const isDiveRadio = /dive.?radio/i.test(show.title) || /dive-radio/.test(show.slug);
     if (!isDiveRadio) continue; // Dive Radio only (owner directive 2026-08-21)
-    const partialHistory = firstTs - prem > PARTIAL_THRESHOLD_DAYS * DAY;
+    const partialHistory = partialHistoryOf(snaps, show.date);
 
     // weekly resample: Monday-noon-Phoenix boundaries; last snapshot at-or-before each;
     // nothing rendered before the first snapshot (no fabricated zeros).
     const weekly = [];
-    let b = mondayNoonAtOrBefore(firstTs) + WEEK; // first boundary at/after first snapshot
-    if (b - WEEK >= firstTs) b -= WEEK;
-    for (; b <= now; b += WEEK) {
-      const snap = lastAtOrBefore(snaps, b);
-      if (!snap) continue;
-      weekly.push({
-        week: Math.max(0, Math.floor((b - prem) / WEEK)),
-        boundary: new Date(b).toISOString(),
-        byDest: snap.byDest,
-      });
+    if (ytSnaps.length) {
+      const firstYtTs = Date.parse(ytSnaps[0].ts);
+      let b = mondayNoonAtOrBefore(firstYtTs) + WEEK; // first boundary at/after first real YouTube reading
+      if (b - WEEK >= firstYtTs) b -= WEEK;
+      for (; b <= now; b += WEEK) {
+        const snap = lastAtOrBefore(ytSnaps, b);
+        if (!snap) continue;
+        weekly.push({
+          week: Math.max(0, Math.floor((b - prem) / WEEK)),
+          boundary: new Date(b).toISOString(),
+          byDest: snap.byDest,
+        });
+      }
     }
 
     const latest = snaps[snaps.length - 1];
@@ -207,7 +254,9 @@ export function computeAll({ now = Date.now() } = {}) {
     // X reports post impressions (reach), a different unit; never mixed in.
     let week1Velocity = null;
     let week1Note = null;
-    if (partialHistory) {
+    if (partialHistory == null) {
+      week1Note = NOTES.noYtReading;
+    } else if (partialHistory) {
       week1Note = "excluded: partial history";
     } else if (ageDays < 7) {
       week1Note = "pending: episode under 7 days old";
@@ -215,13 +264,13 @@ export function computeAll({ now = Date.now() } = {}) {
       // ONE reading rule for "first-week views" (PRD v10 rule 16): the day-7
       // reading via the shared reading rule, the last snapshot inside the
       // week only when no reading sits within tolerance of day 7
-      const s7 = snapshotAt({ snapshots: snaps, premiere: show.date }, LAUNCH_AGE) || lastAtOrBefore(snaps, prem + 7 * DAY);
+      const s7 = ytSnapshotAt({ snapshots: ytSnaps, premiere: show.date }, LAUNCH_AGE) || lastAtOrBefore(ytSnaps, prem + 7 * DAY);
       week1Velocity = s7 ? ytViewsOf(s7) : null;
-      if (!week1Velocity) week1Note = "no snapshot inside first week";
+      if (week1Velocity == null) week1Note = "no snapshot inside first week";
     }
 
     let flatlineWeek = null;
-    if (!partialHistory) {
+    if (partialHistory === false) {
       for (let i = 1; i < weekly.length; i++) {
         const t0 = total(weekly[i - 1].byDest, YT_KEYS);
         const t1 = total(weekly[i].byDest, YT_KEYS);
@@ -232,12 +281,13 @@ export function computeAll({ now = Date.now() } = {}) {
       }
     }
 
-    const ytViews = (latest.byDest["yt:joindiveclub"]?.views || 0) + (latest.byDest["yt:designertom"]?.views || 0);
+    const latestYt = latestYtSnapshot({ snapshots: snaps, premiere: show.date });
+    const ytViews = ytViewsOf(latestYt);
     const ytEng =
-      (latest.byDest["yt:joindiveclub"]?.likes || 0) +
-      (latest.byDest["yt:joindiveclub"]?.comments || 0) +
-      (latest.byDest["yt:designertom"]?.likes || 0) +
-      (latest.byDest["yt:designertom"]?.comments || 0);
+      (latestYt?.byDest["yt:joindiveclub"]?.likes || 0) +
+      (latestYt?.byDest["yt:joindiveclub"]?.comments || 0) +
+      (latestYt?.byDest["yt:designertom"]?.likes || 0) +
+      (latestYt?.byDest["yt:designertom"]?.comments || 0);
     const engagementPer1k = ytViews > 0 ? Math.round((ytEng / ytViews) * 1000 * 10) / 10 : null;
 
     // Announce receipts (PRD v2 W6): when each host's X post went out.
@@ -278,7 +328,7 @@ export function computeAll({ now = Date.now() } = {}) {
       // Unit discipline (CARD-RULING-2026-08-21): totalViews = ytTotal +
       // xPlays — both count video playback events. xImpressions (reach) is
       // exposure, a different unit, and is NEVER part of any views total.
-      latest: buildLatest(show, latest),
+      latest: buildLatest(show, latest, latestYt),
       links: Object.keys(links).length ? links : undefined,
       // transcript flag: a per-episode file under transcripts/ (served statically);
       // link renders only when the file actually exists — absence ≠ broken link
@@ -435,9 +485,15 @@ function attachEpisodeHealth(dive) {
   const bySlug = new Map(((store?.scores) || []).map((r) => [r.slug, r]));
   for (const e of dive) {
     const r = bySlug.get(e.slug);
-    e.health = r || {
+    if (r) {
+      e.health = r;
+      continue;
+    }
+    const ytAge = ytCurrentAge(e);
+    e.health = {
       pending: true,
       readCompleteOn: new Date(premiereMs(e.premiere) + READ_DAYS * DAY - PHX_OFFSET).toISOString().slice(0, 10),
+      ...(!Number.isFinite(ytAge) ? { reason: NOTES.noYtReading } : {}),
     };
   }
 }
@@ -637,7 +693,7 @@ function attachComments(dive) {
     showRows.push(...labeled);
     showViews += e.latest.totalViews || 0;
     const tvi = e.latest.totalViewsInfo || {};
-    const rateComplete = store.xCoverage === "covered" && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
+    const rateComplete = store.xCoverage === "covered" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
     if (!rateComplete) showRateComplete = false;
     const summary = summarizeComments(labeled, { totalViews: e.latest.totalViews, rateComplete });
     const featured = labeled
@@ -909,7 +965,7 @@ export function categoryFor(id) {
 
 function buildInsights(dive, { flags }) {
   const insights = [];
-  const full = dive.filter((e) => !e.partialHistory);
+  const full = dive.filter((e) => e.partialHistory === false);
   const state = (o) => ({ xMode: "weeks", yMode: "cumulative", dests: DESTS.map((d) => d.key), solo: null, ...o });
 
   // 1. same-age pace rank for the newest episode
@@ -1009,7 +1065,7 @@ function buildInsights(dive, { flags }) {
 
   // 4b. watch-platform split — X plays share of total views (same unit
   // family: both are video playback counts; point-in-time, not a trend)
-  const withPlays = dive.filter((e) => e.latest.xPlays != null && !e.latest.xPlaysInfo?.partial);
+  const withPlays = dive.filter((e) => e.latest.ytTotal != null && e.latest.totalViews != null && e.latest.xPlays != null && !e.latest.xPlaysInfo?.partial);
   if (withPlays.length >= 3) {
     const plays = withPlays.reduce((a, e) => a + e.latest.xPlays, 0);
     const views = withPlays.reduce((a, e) => a + e.latest.totalViews, 0);

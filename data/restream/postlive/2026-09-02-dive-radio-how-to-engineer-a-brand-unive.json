@@ -1,7 +1,7 @@
 {
   "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
   "title": "Dive Radio: How to Engineer a Brand Universe",
-  "date": "2026-09-02",
+  "date": "2026-09-03",
   "snapshots": [
     {
       "ts": "2026-09-03T14:00:03.312Z",
@@ -42,6 +42,53 @@
           "detail": {
             "views": 425,
             "plays": null,
+            "likes": 3,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 1,
+            "quotes": 0
+          }
+        }
+      }
+    },
+    {
+      "ts": "2026-09-04T02:21:08.894Z",
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 607,
+          "detail": {
+            "views": 607,
+            "likes": 15,
+            "comments": 0,
+            "title": "Dive Radio: How to Engineer a Brand Universe",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          }
+        },
+        "yt:designertom": {
+          "views": 636,
+          "detail": {
+            "views": 636,
+            "likes": 19,
+            "comments": 0,
+            "title": "Dive Radio: How to Engineer a Brand Universe",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          }
+        },
+        "x:ridd_design": {
+          "views": 10348,
+          "detail": {
+            "views": 10348,
+            "likes": 104,
+            "replies": 7,
+            "reposts": 5,
+            "bookmarks": 67,
+            "quotes": 3
+          }
+        },
+        "x:designertom": {
+          "views": 969,
+          "detail": {
+            "views": 468,
             "likes": 3,
             "replies": 1,
             "reposts": 0,

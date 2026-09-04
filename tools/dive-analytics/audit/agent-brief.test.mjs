@@ -73,4 +73,48 @@ const ROOT = join(HERE, "..", "..", "..");
   ], t);
   assert.equal(g.chapters.length, 3); assert.equal(g.dropped.length, 1); assert.equal(g.status, "incomplete");
 }
+
+// 4. Missing YouTube stays missing in the episode and whole-show digest.
+// Unknown tracking start remains distinct from an on-time start, and an old
+// positive reading carries a plain marker instead of looking current.
+{
+  const episode = (ep, partialHistory, latest) => ({
+    ep, slug: `fixture-${ep}`, title: `Dive Radio E${ep}`, premiere: `2026-09-0${ep}`,
+    ageDays: 2, partialHistory, latest, metrics: { week1Velocity: null, week1Note: "YouTube views are not available yet." },
+  });
+  const current = episode(1, false, {
+    ts: "2026-09-03T12:00:00.000Z", ytTotal: 100, youtubeAsOf: "2026-09-03T12:00:00.000Z", youtubeStale: false,
+    xPlays: 20, xImpressions: 200, totalViews: 120, byDest: { "yt:one": { views: 100 }, "x:one": { views: 200, plays: 20 } },
+    xPlaysInfo: { partial: false, stale: false }, totalViewsInfo: { incomplete: false, reason: null },
+  });
+  const missing = episode(2, null, {
+    ts: "2026-09-04T12:00:00.000Z", ytTotal: null, youtubeAsOf: null, youtubeStale: false,
+    xPlays: 10, xImpressions: 300, totalViews: 10, byDest: { "yt:one": { views: 0 }, "x:one": { views: 300, plays: 10 } },
+    xPlaysInfo: { partial: false, stale: false }, totalViewsInfo: { incomplete: true, reason: "YouTube views are not available." },
+  });
+  const digest = AB.buildDigest({ generatedAt: "2026-09-04T12:00:00.000Z", episodes: [current, missing], dests: [], baselines: {} });
+  assert.equal(digest.episodes[0].trackedLate, false, "an on-time start stays false");
+  assert.equal(digest.episodes[0].views.total, current.latest.totalViews, "complete agent totals stay equal to canonical data");
+  assert.equal(digest.episodes[1].trackedLate, null, "an unknown tracking start does not become false");
+  assert.equal(digest.episodes[1].views.youtube, null);
+  assert.equal(digest.episodes[1].views.total, null, "an X-only subtotal is not presented as the whole episode total");
+  assert.equal(digest.episodes[1].views.youtubeMarker, "missing");
+  assert.match(digest.episodes[1].views.reason, /YouTube views are not available/);
+  assert.equal(digest.show.totals.youtube, null, "one missing episode withholds the whole-show YouTube total");
+  assert.equal(digest.show.totals.views, null, "one missing episode withholds the whole-show view total");
+  assert.deepEqual(digest.show.totals.youtubeMarkers, ["E2 missing"]);
+  assert.match(AB.renderMarkdown(digest), /E2 missing/);
+
+  const old = episode(2, false, {
+    ...missing.latest, ytTotal: 40, youtubeAsOf: "2026-09-03T12:00:00.000Z", youtubeStale: true, totalViews: 50,
+    byDest: { ...missing.latest.byDest, "yt:one": { views: 40 } },
+    totalViewsInfo: { incomplete: true, reason: "YouTube views are from an older reading." },
+  });
+  const oldDigest = AB.buildDigest({ generatedAt: "2026-09-04T12:00:00.000Z", episodes: [current, old], dests: [], baselines: {} });
+  assert.equal(oldDigest.episodes[1].views.youtubeMarker, "old");
+  assert.equal(oldDigest.episodes[1].views.youtubeStale, true);
+  assert.equal(oldDigest.episodes[1].views.youtubeAsOf, "2026-09-03T12:00:00.000Z");
+  assert.deepEqual(oldDigest.show.totals.youtubeMarkers, ["E2 old (2026-09-03)"]);
+  assert.match(AB.renderMarkdown(oldDigest), /old reading from 2026-09-03/);
+}
 console.log("agent-brief.test: census grammar, coverage on the real data, determinism, absence shape, chapter grounding pass");

@@ -75,8 +75,21 @@ async function getJson(url, headers = {}) {
   return res.json();
 }
 
-function phxDate(iso) {
+export function phxDate(iso) {
   return new Date(Date.parse(iso) - 7 * 3600000).toISOString().slice(0, 10);
+}
+
+// Live uploads often enter the uploads playlist before they air. Their episode
+// day comes from the broadcast clock, not the playlist publication clock.
+export function episodeDateForVideo(video) {
+  const live = video?.liveStreamingDetails;
+  const broadcastState = video?.snippet?.liveBroadcastContent;
+  const isLiveUpload = live != null || broadcastState === "upcoming" || broadcastState === "live";
+  if (isLiveUpload) {
+    const startsAt = live?.actualStartTime || live?.scheduledStartTime;
+    return startsAt ? phxDate(startsAt) : null;
+  }
+  return video?.snippet?.publishedAt ? phxDate(video.snippet.publishedAt) : null;
 }
 
 // --- load registry state for idempotency ---
@@ -97,22 +110,42 @@ async function discoverYouTube() {
   const key = ytApiKey();
   const found = []; // { videoId, title, publishedAt, date, account }
   for (const ch of YT_CHANNELS) {
-    const data = await getJson(
+    const playlist = await getJson(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ch.uploads}&maxResults=15&key=${key}`
     );
-    for (const item of data.items || []) {
+    const candidates = [];
+    for (const item of playlist.items || []) {
       const sn = item.snippet || {};
       const vid = sn.resourceId?.videoId;
       if (!vid || knownVideoIds.has(vid)) continue;
       if (!TITLE_RE.test(sn.title || "")) continue;
       if (Date.parse(sn.publishedAt) < since) continue;
+      candidates.push({ videoId: vid, playlistSnippet: sn });
+    }
+    if (!candidates.length) continue;
+    const details = await getJson(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${candidates.map((v) => v.videoId).join(",")}&key=${key}`
+    );
+    const byId = new Map((details.items || []).map((video) => [video.id, video]));
+    for (const candidate of candidates) {
+      const video = byId.get(candidate.videoId);
+      if (!video) {
+        console.log(`WARN discover: YouTube video ${candidate.videoId} returned no details — skipping`);
+        continue;
+      }
+      const date = episodeDateForVideo(video);
+      if (!date) {
+        console.log(`WARN discover: live YouTube video ${candidate.videoId} has no start time — skipping`);
+        continue;
+      }
+      const sn = video.snippet || candidate.playlistSnippet;
       found.push({
-        videoId: vid,
+        videoId: candidate.videoId,
         title: sn.title,
         publishedAt: sn.publishedAt,
-        date: phxDate(sn.publishedAt),
+        date,
         account: ch.account,
-        url: `https://www.youtube.com/watch?v=${vid}`,
+        url: `https://www.youtube.com/watch?v=${candidate.videoId}`,
       });
     }
   }
@@ -251,7 +284,10 @@ async function main() {
   if (dryRun) console.log("discover: dry run — nothing written.");
 }
 
-main().catch((err) => {
-  process.stderr.write(`discover: ${err.message}\n`);
-  process.exit(1);
-});
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  main().catch((err) => {
+    process.stderr.write(`discover: ${err.message}\n`);
+    process.exit(1);
+  });
+}

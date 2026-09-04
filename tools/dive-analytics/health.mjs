@@ -88,7 +88,7 @@ import {
 import { createHash } from "node:crypto";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn, historyAt, liveRatesOf, peersFor, snapshotAt, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf, swingOf, bandsFor, stateOf, liveDepthOf, discoveryShareOf, STATE_WORDS, comparableAcrossBreaks, NOTE_BREAK } from "./baselines.mjs";
+import { CARRIED_WEIGHT, MATURITY_DAYS, MIN_PEERS, NOTES, READ_DAYS, UNIT_FAMILIES, anomalyFlags, currentAge, flaggedOn, ytHistoryAt, liveRatesOf, peersFor, snapshotAt, ytSnapshotAt, ytCurrentAge, subsPer1kOf, windowFor, xImpressionsOf, xPlaysOf, ytEngagementOf, ytViewsOf, swingOf, bandsFor, stateOf, liveDepthOf, discoveryShareOf, STATE_WORDS, comparableAcrossBreaks, NOTE_BREAK } from "./baselines.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -449,6 +449,9 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   const paceWindow = windowFor(newest, episodes);
   const paceAge = Math.min(newestAge, READ_DAYS);
   const newestSnap = snapshotAt(newest, paceAge);
+  const newestYtAge = ytCurrentAge(newest);
+  const ytPaceAge = Number.isFinite(newestYtAge) ? Math.min(newestYtAge, READ_DAYS) : null;
+  const newestYtSnap = Number.isFinite(ytPaceAge) ? ytSnapshotAt(newest, ytPaceAge) : null;
   // the DIRECTION and OUTLOOK lenses are computed once, by build-data, from
   // the shared definitions (baselines.computeDirection / computeOutlook) and
   // served every build; the entry copies the served blocks so the history is
@@ -469,11 +472,11 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   } else {
     week1Measure = measurement("firstWeek", null, null, { reason: `Only ${firstWeekTrend.n} clean first weeks exist; at least three are required.` });
   }
-  const pacePeers = peersFor({ own: newest, window: paceWindow, flags, units: UNIT_FAMILIES.views, valueOf: (p) => { const s = snapshotAt(p, paceAge); return s ? ytViewsOf(s) : null; } });
+  const pacePeers = peersFor({ own: newest, window: paceWindow, flags, units: UNIT_FAMILIES.views, valueOf: (p) => { const s = Number.isFinite(ytPaceAge) ? ytSnapshotAt(p, ytPaceAge) : null; return s ? ytViewsOf(s) : null; } });
   const launchQualified = unitFlagged(newest, "ytViews");
-  const sameAgeMeasure = pacePeers.typical != null && newestSnap
-    ? measurement("sameAge", ytViewsOf(newestSnap), pacePeers, { ageBasis: "sameAge", episodeRead: newest.slug, qualified: launchQualified })
-    : measurement("sameAge", null, pacePeers, { reason: NOTES.youngAge(pacePeers.n) });
+  const sameAgeMeasure = pacePeers.typical != null && newestYtSnap
+    ? measurement("sameAge", ytViewsOf(newestYtSnap), pacePeers, { ageBasis: "sameAge", episodeRead: newest.slug, qualified: launchQualified })
+    : measurement("sameAge", null, pacePeers, { reason: newestYtSnap ? NOTES.youngAge(pacePeers.n) : NOTES.noYtReading });
   if (sameAgeMeasure.value != null && pacePeers.typical != null) {
     addFact("latest-same-age-youtube", sameAgeMeasure.value, "", (display) => `The latest episode has ${display} YouTube views at this age.`, [`data.json#episodes.${newest.slug}.latest.ytTotal`], launchQualified ? "promo" : null);
     addFact("typical-same-age-youtube", pacePeers.typical, "", (display) => `Earlier episodes typically had ${display} YouTube views at the same age.`, ["data.json#episodes.snapshots"]);
@@ -483,10 +486,10 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   };
 
   // --- Audience quality: likes and comments COUNTED at the newest episode's age (sameAge — a count, never diluted by promo views); share watched (sameAge via history, else mature; carried when not the newest) ---
-  const engPeers = peersFor({ own: newest, window: paceWindow, flags, units: UNIT_FAMILIES.views, valueOf: (p) => { const s = snapshotAt(p, paceAge); return s ? ytEngagementOf(s) : null; } });
-  const engagementMeasure = engPeers.typical != null && newestSnap
-    ? measurement("engagement", ytEngagementOf(newestSnap), engPeers, { ageBasis: "sameAge", episodeRead: newest.slug })
-    : measurement("engagement", null, engPeers, { reason: NOTES.youngAge(engPeers.n) });
+  const engPeers = peersFor({ own: newest, window: paceWindow, flags, units: UNIT_FAMILIES.views, valueOf: (p) => { const s = Number.isFinite(ytPaceAge) ? ytSnapshotAt(p, ytPaceAge) : null; return s ? ytEngagementOf(s) : null; } });
+  const engagementMeasure = engPeers.typical != null && newestYtSnap
+    ? measurement("engagement", ytEngagementOf(newestYtSnap), engPeers, { ageBasis: "sameAge", episodeRead: newest.slug })
+    : measurement("engagement", null, engPeers, { reason: newestYtSnap ? NOTES.youngAge(engPeers.n) : NOTES.noYtReading });
   if (engagementMeasure.score != null) {
     addFact("latest-engagement-count", engagementMeasure.value, "", (display) => `The latest episode has drawn ${display} likes and comments on YouTube at this age.`, [`data.json#episodes.${newest.slug}.snapshots`]);
     addFact("typical-engagement-count", engagementMeasure.typical, "", (display) => `Earlier episodes typically had ${display} likes and comments at the same age.`, ["data.json#episodes.snapshots"]);
@@ -514,11 +517,11 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
     if (!own) return measurement(id, null, null, { reason: "No episode at least a week old has a YouTube analytics report yet." });
     const A = ageOf(own);
     const window = windowFor(own, episodes);
-    const lineValue = (e) => { const line = historyAt(historyBySlug.get(e.slug), A); return line ? pick(line.channels) : null; };
+    const lineValue = (e) => { const line = ytHistoryAt(historyBySlug.get(e.slug), A); return line ? pick(line.channels) : null; };
     const sameAge = peersFor({ own, window, flags, units: UNIT_FAMILIES.views, valueOf: lineValue });
     const ownLine = lineValue(own);
     if (sameAge.typical != null && Number.isFinite(ownLine)) {
-      return measurement(id, ownLine, sameAge, { ageBasis: "sameAge", episodeRead: own.slug, readDate: historyAt(historyBySlug.get(own.slug), A)?.date ?? null, ...carriedOpts(own) });
+      return measurement(id, ownLine, sameAge, { ageBasis: "sameAge", episodeRead: own.slug, readDate: ytHistoryAt(historyBySlug.get(own.slug), A)?.date ?? null, ...carriedOpts(own) });
     }
     if (prevBasis(check, id) === "sameAge") return measurement(id, null, sameAge, { reason: NOTES.noReadingAtAge });
     const matureOwn = latestAtLeast(MATURITY_DAYS.analytics, (e) => analyticsBySlug.has(e.slug));

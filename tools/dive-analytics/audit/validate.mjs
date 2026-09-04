@@ -13,8 +13,9 @@
 //                           native tweet media and impressions can never enter plays,
 //                           no plays on YT, and absence is never stored as zero
 //   2. monotonic views    — cumulative views never decrease per destination
-//   3. late-reg flags     — partialHistory matches first-snapshot age (>5d) and
-//                           gates week1Velocity to null
+//   3. late-reg flags     — partialHistory starts at the first positive YouTube
+//                           reading after premiere (>5d); pre-air and startup-zero
+//                           rows are evidence, not day one
 //   4. freshness          — newest snapshot and generatedAt both < 26h old,
 //                           build not older than newest snapshot
 //   5. roster consistency — registry active dive-radio shows == data.json episodes,
@@ -120,31 +121,51 @@ function premiereMs(dateStr) {
 // exposure and must NEVER leak into any views total, under any field name.
 {
   let bad = 0;
+  const BL = await import(join(TOOL, "baselines.mjs"));
   for (const e of eps) {
     if ("total" in e.latest) { bad++; fail(`${e.slug}: latest.total exists — mixed impressions+views field must not ship`); }
-    if (e.latest.ytTotal == null || e.latest.xImpressions == null) { bad++; fail(`${e.slug}: per-unit fields (ytTotal/xImpressions) missing`); }
+    const latestSnap = e.snapshots.at(-1);
+    const latestYtSnap = BL.latestYtSnapshot(e);
+    const expectedYt = BL.ytViewsOf(latestYtSnap);
+    if (e.latest.ytTotal !== expectedYt) { bad++; fail(`${e.slug}: latest.ytTotal ${e.latest.ytTotal} does not match the latest positive YouTube reading (${expectedYt})`); }
+    if (e.latest.youtubeAsOf !== (latestYtSnap?.ts ?? null) || e.latest.youtubeStale !== !!(latestYtSnap && latestYtSnap.ts !== latestSnap.ts)) {
+      bad++; fail(`${e.slug}: latest YouTube reading time or old-reading marker does not match history`);
+    }
+    if (e.latest.xImpressions == null) { bad++; fail(`${e.slug}: latest.xImpressions missing`); }
     const info = e.latest.xPlaysInfo;
     if (info && info.value !== e.latest.xPlays) { bad++; fail(`${e.slug}: xPlays (${e.latest.xPlays}) != xPlaysInfo.value (${info.value})`); }
     // Total views: canonical definition, coverage-marker parity, no smuggled reach
-    if (e.latest.totalViews == null) { bad++; fail(`${e.slug}: latest.totalViews missing`); }
-    else {
-      if (e.latest.totalViews !== e.latest.ytTotal + (e.latest.xPlays ?? 0)) { bad++; fail(`${e.slug}: totalViews (${e.latest.totalViews}) != ytTotal + xPlays (${e.latest.ytTotal} + ${e.latest.xPlays ?? 0}) — definition violated`); }
+    const expectedTotal = e.latest.ytTotal != null || e.latest.xPlays != null
+      ? (e.latest.ytTotal ?? 0) + (e.latest.xPlays ?? 0)
+      : null;
+    if (e.latest.totalViews !== expectedTotal) { bad++; fail(`${e.slug}: totalViews (${e.latest.totalViews}) != available ytTotal + xPlays (${expectedTotal}) — definition violated`); }
+    if (e.latest.totalViews != null && e.latest.ytTotal != null) {
       if (
         e.latest.totalViews - e.latest.ytTotal === e.latest.xImpressions &&
         e.latest.xImpressions > 0 &&
         e.latest.xImpressions !== e.latest.xPlays
       ) { bad++; fail(`${e.slug}: totalViews appears to include xImpressions — impressions smuggled into the plays slot`); }
-      const tvi = e.latest.totalViewsInfo;
-      if (!tvi) { bad++; fail(`${e.slug}: totalViewsInfo missing — coverage markers cannot render`); }
-      else if (info && (tvi.partial !== info.partial || tvi.stale !== info.stale)) { bad++; fail(`${e.slug}: totalViewsInfo partial/stale disagrees with xPlaysInfo — marker state dropped between build and render`); }
     }
+    const tvi = e.latest.totalViewsInfo;
+    if (!tvi) { bad++; fail(`${e.slug}: totalViewsInfo missing — coverage markers cannot render`); continue; }
+    if (info && (tvi.partial !== info.partial || tvi.stale !== info.stale)) { bad++; fail(`${e.slug}: totalViewsInfo partial/stale disagrees with xPlaysInfo — marker state dropped between build and render`); }
+    const youtubeMissing = e.latest.ytTotal == null;
+    const xMissing = (info?.total ?? 0) > 0 && e.latest.xPlays == null;
+    const missing = e.latest.totalViews == null;
+    const youtubeStale = !!e.latest.youtubeStale;
+    const incomplete = youtubeMissing || youtubeStale || xMissing || !!info?.partial || !!info?.stale;
+    if (tvi.includesYoutube !== !youtubeMissing || tvi.youtubeMissing !== youtubeMissing || tvi.youtubeStale !== youtubeStale || tvi.youtubeAsOf !== (latestYtSnap?.ts ?? null) || tvi.missing !== missing || tvi.incomplete !== incomplete) {
+      bad++; fail(`${e.slug}: totalViewsInfo does not state which view sources are missing`);
+    }
+    if (incomplete && (typeof tvi.reason !== "string" || !tvi.reason.trim())) { bad++; fail(`${e.slug}: incomplete total views have no plain missing-data reason`); }
+    if (!incomplete && tvi.reason != null) { bad++; fail(`${e.slug}: complete total views carry a missing-data reason`); }
   }
   for (const p of data.showTrend?.cumulativeAllEpisodes || []) {
     if ("total" in p) { bad++; fail(`showTrend.cumulativeAllEpisodes carries mixed-unit 'total' — must be per-unit (ytViews/xReach)`); }
     if ("totalViews" in p) { bad++; fail(`showTrend.cumulativeAllEpisodes carries 'totalViews' — plays have no history; a blended time series is fabricated`); }
     if (p.ytViews == null || p.xReach == null) { bad++; fail(`showTrend.cumulativeAllEpisodes entry missing per-unit fields`); }
   }
-  if (!bad) ok("unit separation: totalViews = ytTotal + xPlays (marker parity held), no mixed or fabricated fields");
+  if (!bad) ok("unit separation: totalViews uses available YouTube views and X plays; missing sources stay null and named");
 }
 
 // --- 1c. playsStatus/high-water schema (F-4) ---
@@ -196,14 +217,17 @@ function premiereMs(dateStr) {
 // --- 3. late-reg flags present and honored ---
 {
   let bad = 0;
+  const BL = await import(join(TOOL, "baselines.mjs"));
   for (const e of eps) {
-    const firstTs = Date.parse(e.snapshots[0].ts);
-    const expected = firstTs - premiereMs(e.premiere) > PARTIAL_DAYS * DAY;
-    if (e.partialHistory !== expected) { bad++; fail(`${e.slug}: partialHistory=${e.partialHistory}, expected ${expected} (first snapshot ${e.snapshots[0].ts})`); }
+    const first = BL.firstYtSnapshot(e);
+    const expected = first ? Date.parse(first.ts) - premiereMs(e.premiere) > PARTIAL_DAYS * DAY : null;
+    if (e.partialHistory !== expected) { bad++; fail(`${e.slug}: partialHistory=${e.partialHistory}, expected ${expected} from the first positive post-air YouTube reading${first ? ` (${first.ts})` : " (none yet)"}`); }
+    if (e.partialHistory == null && e.metrics.week1Velocity !== null) { bad++; fail(`${e.slug}: no YouTube reading exists but week1Velocity=${e.metrics.week1Velocity}`); }
+    if (e.partialHistory == null && !/YouTube views are not available/i.test(e.metrics.week1Note || "")) { bad++; fail(`${e.slug}: unknown tracking start has no plain missing-data reason`); }
     if (e.partialHistory && e.metrics.week1Velocity !== null) { bad++; fail(`${e.slug}: late-reg episode has week1Velocity=${e.metrics.week1Velocity} — must be excluded`); }
     if (e.partialHistory && !/partial/i.test(e.metrics.week1Note || "")) { bad++; fail(`${e.slug}: late-reg episode missing exclusion note`); }
   }
-  if (!bad) ok("late-reg: partialHistory flags match snapshot history and gate velocity math");
+  if (!bad) ok("late-reg: tracking starts at the first positive post-air YouTube reading; pre-air and startup-zero rows cannot enter first-week math");
 }
 
 // --- 4. freshness ---
@@ -501,7 +525,7 @@ function premiereMs(dateStr) {
       showRows.push(...rows);
       showViews += e.latest.totalViews || 0;
       const tvi = e.latest.totalViewsInfo || {};
-      const rateComplete = raw.xCoverage === "covered" && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
+      const rateComplete = raw.xCoverage === "covered" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.partial && !tvi.stale;
       if (!rateComplete) showRateComplete = false;
       const expected = summarize(rows, e.latest.totalViews, rateComplete);
       for (const [key, value] of Object.entries(expected)) {
@@ -678,15 +702,19 @@ function premiereMs(dateStr) {
     for (const e of epOrder) {
       const r = bySlug.get(e.slug);
       const a = e.health;
-      // the 21-day gate is constitutional: no entry, no score, nothing early
-      if (e.ageDays < 21) {
-        if (r) { bad++; fail(`episode health: ${e.slug} is ${e.ageDays}d old but has a stored score — three weeks incomplete`); }
+      const ytAge = BL.ytCurrentAge(e);
+      const readReady = Number.isFinite(ytAge) && ytAge >= 21;
+      // The 21-day gate starts from a real YouTube reading. A raw startup zero
+      // cannot create an entry or make the pending state look complete.
+      if (!readReady) {
+        if (r) { bad++; fail(`episode health: ${e.slug} has no real three-week YouTube reading but has a stored score`); }
         if (!a || a.pending !== true || "score" in a) { bad++; fail(`episode health: ${e.slug} must ship only a pending marker before day 21`); continue; }
         const expectOn = new Date(premiereMs(e.premiere) + 21 * DAY - 7 * 3600000).toISOString().slice(0, 10);
         if (a.readCompleteOn !== expectOn) { bad++; fail(`episode health: ${e.slug} readCompleteOn ${a.readCompleteOn} != premiere + 21 days (${expectOn})`); }
+        if (!Number.isFinite(ytAge) && a.reason !== BL.NOTES.noYtReading) { bad++; fail(`episode health: ${e.slug} has no YouTube reading and no explicit missing-data reason`); }
         continue;
       }
-      if (!r) { bad++; fail(`episode health: ${e.slug} is ${e.ageDays}d old but has no store entry`); continue; }
+      if (!r) { bad++; fail(`episode health: ${e.slug} has a ${ytAge.toFixed(1)}d YouTube reading but no store entry`); continue; }
       // definition-lock: what shipped in data.json IS the store entry
       if (JSON.stringify(a) !== JSON.stringify(r)) { bad++; fail(`episode health: ${e.slug} attached entry disagrees with store — definition-lock broken`); }
       // window (PRD v9): this episode + the WINDOW_N that aired before it, never later
@@ -718,7 +746,7 @@ function premiereMs(dateStr) {
         for (const p of cs.peers) {
           if (p.source === "snapshot") {
             const pe = epOrder.find((x) => x.slug === p.slug);
-            const snap = pe && BL.snapshotAt(pe, p.atDay);
+            const snap = pe && BL.ytSnapshotAt(pe, p.atDay);
             const v = snap ? (c === "watch" ? BL.ytViewsOf(snap) : BL.engagementPer1kOf(snap)) : null;
             if (v !== p.value) { bad++; fail(`episode health: ${e.slug} check ${c} peer ${p.slug} value ${p.value} does not rebuild from the snapshot at day ${p.atDay} (${v})`); }
           }
@@ -1415,6 +1443,7 @@ function premiereMs(dateStr) {
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   const tooltipSource = html.match(/function externalTooltip\(context\) \{[\s\S]*?\n\}\n\nlet chart;/)?.[0] || "";
   const tableSource = html.match(/function buildTable\(\) \{[\s\S]*?\n\}\n\n\/\* M-1/)?.[0] || "";
+  const seriesSource = html.match(/function seriesFor\(e\) \{[\s\S]*?\n\}/)?.[0] || "";
   if (!tooltipSource || !tableSource) {
     bad++; fail("dashboard absence: could not locate tooltip and table renderers");
   } else if (/\?\?\s*0/.test(tooltipSource + tableSource)) {
@@ -1422,6 +1451,15 @@ function premiereMs(dateStr) {
   }
   if (!/function metricText\(value, missing = "–"\) \{ return value == null \? missing : nfmt\(value\); \}/.test(html)) {
     bad++; fail("dashboard absence: the shared missing-value formatter could hide a real zero or lacks a plain missing state");
+  }
+  if (!/function hasYoutubeReading\(e\) \{ return e\?\.latest\?\.totalViewsInfo\?\.includesYoutube === true; \}/.test(html)
+    || !/function youtubeValue\(e, value\)/.test(html)
+    || !/return hasPositive \? split : null;/.test(html)
+    || !/if \(!hasYoutubeReading\(e\)\) return pts;/.test(seriesSource)
+    || !/if \(views == null\) continue;/.test(seriesSource)
+    || !/if \(t < prem\) continue;/.test(seriesSource)
+    || !/\["yt:joindiveclub", \(e\) => youtubeValue\(e, e\.latest\.byDest\["yt:joindiveclub"\]\?\.views\)\]/.test(html)) {
+    bad++; fail("dashboard absence: every YouTube surface must use the stored availability flag and skip pre-air or zero-only history rows");
   }
   if (!bad) ok("dashboard absence: tables and tooltips keep missing values distinct from real zeroes");
 }
@@ -1541,7 +1579,8 @@ function premiereMs(dateStr) {
     // a range, or a standing; the launch word on a card carries no number
     if (!/DATA\.baselines\?\.direction/.test(healthSource) || !/DATA\.baselines\?\.outlook/.test(healthSource) || !/h\.asOf\?\.newestTitle/.test(healthSource)
       || !/DATA\.baselines\?\.direction/.test(compoundSource) || /h\.direction|h\.outlook/.test(healthSource)
-      || !/DATA\.baselines\?\.launch\?\.\[e\.slug\]/.test(stripSource) || !/DATA\.baselines\?\.launch\?\.\[e\.slug\]/.test(panelSource)
+      || !/function launchOf\(e\) \{[\s\S]{0,180}hasYoutubeReading\(e\)[\s\S]{0,180}DATA\.baselines\?\.launch\?\.\[e\.slug\][\s\S]{0,180}launch\?\.value > 0/.test(html)
+      || !/const launch = launchOf\(e\)/.test(stripSource) || !/const launch = launchOf\(e\)/.test(panelSource)
       || /theilSen|pctPerEpisode\s*=|Math\.log\(/.test(healthSource) || /class="hs launch[^`]*data-fold-number/.test(stripSource)) {
       bad++; fail("card layout: the page must render the stored direction, outlook, and as-of blocks and the launch words from data.baselines, with no slope or standing recomputed and no number on a launch word");
     }
@@ -1597,7 +1636,7 @@ function premiereMs(dateStr) {
       || (compoundSource.match(/cbar\$\{hot \? " hot" : ""\}/g) || []).length !== 2) {
       bad++; drift("card layout: trend bars must label value and episode with one emphasized bar, in both trend branches");
     }
-    if (!/splitReady = Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
+    if (!/splitReady = hasYoutube && Number\.isFinite\(tv\)[\s\S]*yt \+ x === tv/.test(heroSource)
       || /e\.latest\.(?:ytTotal|xPlays) \?\? 0/.test(heroSource)) {
       bad++; drift("card layout: the platform bar is not locked to complete stored YouTube and X values");
     }
@@ -1693,7 +1732,8 @@ function premiereMs(dateStr) {
   if (!/chart\.isDatasetVisible\(meta\.index\)/.test(totalsPlugin)
     || !/const endX = Math\.max\(\.\.\.bars\.map\(\(b\) => b\.x\)\);/.test(totalsPlugin)
     || !/const whole = visible\.length === chart\.data\.datasets\.length;/.test(totalsPlugin)
-    || !/const total = whole \? \(e\.latest\.totalViews \?\? e\.latest\.ytTotal\) : drawn;/.test(totalsPlugin)
+    || !/const available = showing\.filter\(Number\.isFinite\);/.test(totalsPlugin)
+    || !/const total = whole \? displayedTotal\(e\) : drawn;/.test(totalsPlugin)
     || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)
     || !/const segVis = chart\.data\.datasets\.map\(\(_, di\) => chart\.isDatasetVisible\(di\)\);/.test(html)
     || !/across shown destinations/.test(html)) {
@@ -1706,7 +1746,7 @@ function premiereMs(dateStr) {
   if (!/state\.metric = "views"; state\.byDate = false/.test(html) && !/state\.metric = "views";/.test(html)) {
     bad++; drift("chart metrics: reset does not restore the views measure");
   }
-  if (!html.includes("watched: { get: (e) => e.watch?.avgPercent ?? null")
+  if (!html.includes("watched: { get: (e) => hasYoutubeReading(e) ? e.watch?.avgPercent ?? null : null")
     || !html.includes("live: { get: (e) => e.live?.avg ?? null")
     || !html.includes("reach: { get: (e) => e.latest?.xImpressions ?? null")) {
     bad++; drift("chart metrics: each measure must read exactly its stored per-episode number, null when absent (never zero)");
@@ -1804,6 +1844,18 @@ function premiereMs(dateStr) {
   } catch (err) {
     bad++; fail(`baselines: fixture test failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
   }
+  for (const fixture of [
+    ["youtube-missing-data.test.mjs", "missing-data capture"],
+    ["youtube-release-date.test.mjs", "broadcast-day discovery"],
+    ["episode-date-sync.test.mjs", "episode-date store sync"],
+    ["youtube-zero-downstream.test.mjs", "startup-zero downstream"],
+  ]) {
+    try {
+      execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
+    } catch (err) {
+      bad++; fail(`YouTube ${fixture[1]} regression failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
+    }
+  }
   let B = null;
   try { B = await import(join(TOOL, "baselines.mjs")); }
   catch (err) { bad++; fail(`baselines: module failed to load — ${err.message}`); }
@@ -1835,6 +1887,22 @@ function premiereMs(dateStr) {
         }
         if (a.flagged && a.provisional !== Object.values(a.units).some((u) => u.flag && u.tier !== 1)) { bad++; fail(`baselines: ${slug} provisional stamp disagrees with its tiers`); }
       }
+      for (const e of eps.filter((episode) => !B.firstYtSnapshot(episode))) {
+        const launch = shipped.launch?.[e.slug] ?? null;
+        const pace = shipped.pace?.[e.slug] ?? null;
+        const ytAnomaly = shipped.anomaly?.[e.slug]?.units?.ytViews;
+        if (launch != null) { bad++; fail(`baselines: ${e.slug} has no YouTube reading but carries a launch result`); }
+        if (pace != null) { bad++; fail(`baselines: ${e.slug} has no YouTube reading but carries a pace result`); }
+        if (!ytAnomaly || ytAnomaly.tier != null || ytAnomaly.value != null || ytAnomaly.typical != null || ytAnomaly.n !== 0 || ytAnomaly.window?.length || ytAnomaly.flag) {
+          bad++; fail(`baselines: ${e.slug} pre-air or startup-zero row entered the YouTube outlier history`);
+        }
+        if (data.health?.asOf?.newest === e.slug) {
+          const measures = (data.health.checks || []).flatMap((check) => check.measures || []);
+          for (const measure of measures.filter((item) => ["sameAge", "engagement"].includes(item.key))) {
+            if (measure.value != null || measure.episodeRead === e.slug) { bad++; fail(`health: ${e.slug} startup zero entered ${measure.key}`); }
+          }
+        }
+      }
       for (const [slug, p] of Object.entries(shipped.pace)) {
         if (p && p.peers.includes(slug)) { bad++; fail(`baselines: ${slug} pace peers include itself`); }
         if (p && p.rank != null && p.n < shipped.constants.MIN_PEERS) { bad++; fail(`baselines: ${slug} pace ranked on ${p.n} peers`); }
@@ -1851,7 +1919,7 @@ function premiereMs(dateStr) {
       if (shipped.watchPct.typical != null && shipped.watchPct.n < shipped.constants.MIN_PEERS) { bad++; fail("baselines: watched typical from fewer than MIN_PEERS episodes"); }
     }
   }
-  if (!bad) ok(`baselines: fixture test green; data.baselines re-derives — ${Object.values(data.baselines?.anomaly || {}).filter((a) => a.flagged).length} outlier(s), windows exclude self and outliers, nothing below ${data.baselines?.constants?.MIN_PEERS} peers`);
+  if (!bad) ok(`baselines: fixtures green; pre-air and startup-zero rows are absent from launch, pace, outliers, and health; ${Object.values(data.baselines?.anomaly || {}).filter((a) => a.flagged).length} outlier(s)`);
 }
 
 // --- 1v. chain freshness (PRD v9 W24): every required input store is fresh against the chain definition ---
@@ -1972,7 +2040,11 @@ function premiereMs(dateStr) {
       for (const e of data.episodes) {
         const d = (digest.episodes || []).find((x) => x.slug === e.slug);
         if (!d) { bad++; fail(`agent: episode ${e.slug} missing from the brief`); continue; }
-        if (d.views.total !== (e.latest?.totalViews ?? null) || d.views.youtube !== (e.latest?.ytTotal ?? null)) { bad++; fail(`agent: E${e.ep} views in the brief do not re-derive from data.json`); }
+        const agentYoutube = Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal > 0 ? e.latest.ytTotal : null;
+        const agentTotal = agentYoutube == null ? null : (e.latest?.totalViews ?? null);
+        if (d.views.total !== agentTotal || d.views.youtube !== agentYoutube) { bad++; fail(`agent: E${e.ep} views in the brief do not re-derive from data.json under the missing-YouTube rule`); }
+        if (agentYoutube == null && (d.views.youtubeMarker !== "missing" || !d.views.reason)) { bad++; fail(`agent: E${e.ep} missing YouTube is not named in the brief`); }
+        if (d.trackedLate !== (e.partialHistory == null ? null : e.partialHistory === true)) { bad++; fail(`agent: E${e.ep} tracking state does not preserve unknown separately from on-time`); }
         const launch = data.baselines?.launch?.[e.slug];
         if (launch?.word && (d.launch?.word !== launch.word || !!d.launch?.promoDriven !== !!launch.promoDriven)) { bad++; fail(`agent: E${e.ep} launch word in the brief does not re-derive`); }
         if (e.health?.score != null && d.health?.score !== e.health.score) { bad++; fail(`agent: E${e.ep} episode health in the brief does not re-derive`); }

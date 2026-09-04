@@ -22,10 +22,10 @@ lives on the owner machine).
 
 | Step | Script | Writes | Model? | On failure |
 |---|---|---|---|---|
-| discover | `scripts/restream/postlive-discover.mjs` | `data/restream/postlive-registry.json` (new episodes, 4 destinations) | no | warns; registry unchanged |
+| discover | `scripts/restream/postlive-discover.mjs` | `data/restream/postlive-registry.json` (new episodes, 4 destinations) | no | live episode day comes from its actual or scheduled start; a waiting live upload with no start time is skipped |
 | transcripts | `scripts/restream/transcripts-pull.mjs` | `transcripts/<slug>.txt` (yt-dlp auto-captions, day 2+) | no | absent; retried next day |
 | snapshot | `scripts/restream/postlive-track.mjs snapshot` | `data/restream/postlive/<slug>.json` (append) | no | destination absent from that snapshot |
-| yt-analytics | `scripts/restream/yt-analytics-pull.mjs` | `data/restream/yt-analytics/<slug>.json` (overwrite) + `yt-analytics-history/<slug>.jsonl` (append, one line per Phoenix day when every authorized channel pulled) | no | file unchanged (stale `updatedAt`); no history line that day |
+| yt-analytics | `scripts/restream/yt-analytics-pull.mjs` | `data/restream/yt-analytics/<slug>.json` (overwrite) + `yt-analytics-history/<slug>.jsonl` (append, one line per Phoenix day when every authorized channel pulled) | no | no history line unless the show has begun, every expected channel returned, and at least one has positive views; a pre-air, empty, or all-zero response cannot reserve the day |
 | comments | `scripts/restream/comments-pull.mjs` | `data/restream/comments/<slug>.json` (append by id) | no | store unchanged |
 | classify | `scripts/restream/comments-classify.mjs` | `data/restream/comments-classified.json` (append by id) | **yes** | previous labels stay; golden-set gate FAILs loudly |
 | channel-stats | `scripts/restream/channel-stats-pull.mjs` | `data/restream/channel-stats.json` (one point/channel/UTC day) | no | day absent |
@@ -56,9 +56,9 @@ days since the episode's premiere (noon Phoenix).
 | Store | Shape | Written | Time semantics | Gotchas |
 |---|---|---|---|---|
 | `postlive-registry.json` | show → destinations (videoId, postId, broadcastId, role), `playsStatus`, `playsHighWater` | discover, track | mutable registry | `playsStatus`/`playsHighWater` are *current* state, not per-snapshot — re-reading an old snapshot yields today's staleness verdict |
-| `postlive/<slug>.json` | `snapshots[]` of `{ts, metrics[dest]: {views, plays?, playsSource?, detail{likes, comments…}}}` | track (every run, every active episode ≤ 60 d old) | **append-only time series** — the only store with real history | X `plays` is written only by the resolved broadcast extractor (`playsSource: "x-broadcast"`); native tweet-video counters are never requested or stored as plays. Episodes stop receiving snapshots at 60 days; E3–E6 were first snapshotted 2026-08-21 (late registration), so same-age peers for young ages are thin until ~E9 |
+| `postlive/<slug>.json` | `snapshots[]` of `{ts, metrics[dest]: {views, plays?, playsSource?, detail{likes, comments…}}}` | track (every run, every active episode ≤ 60 d old) | **append-only time series** — the only store with real history | missing YouTube counts are stored as `null`; any pre-air row and an explicit all-zero startup row stay as raw evidence but are not historical readings. X `plays` is written only by the resolved broadcast extractor (`playsSource: "x-broadcast"`); native tweet-video counters are never requested or stored as plays |
 | `yt-analytics/<slug>.json` | per channel: `totals{views, estimatedMinutesWatched, averageViewDuration, averageViewPercentage, subscribersGained, likes, comments}`, `retention[]` (100-point curve), `trafficSources[]`, `updatedAt` | yt-analytics-pull (all episodes, every run) | **overwrite; lifetime-to-date** (`startDate = premiere, endDate = today`) | a 2-day-old and a 30-day-old episode's `averageViewPercentage` are not comparable — comparisons from this file are stamped `mature` (both ≥ 21 d) |
-| `yt-analytics-history/<slug>.jsonl` | one line per Phoenix day: `{date, pulledAt, endDate, ageDays, channels{key: {views, averageViewPercentage, averageViewDuration, estimatedMinutesWatched, subscribersGained, likes, comments}}}` | yt-analytics-pull | **append-only**; never rewritten; no backfill | what makes share watched and subscribers readable at the same age (`baselines.historyAt`, ±1.5 d for YouTube's reporting jitter); starts 2026-08-23, so E1–E6 never get day-21 lines |
+| `yt-analytics-history/<slug>.jsonl` | one line per Phoenix day: `{date, pulledAt, endDate, ageDays, channels{key: {views, averageViewPercentage, averageViewDuration, estimatedMinutesWatched, subscribersGained, likes, comments}}}` | yt-analytics-pull | **append-only**; never rewritten; no backfill | same-age reads use only complete lines with a positive YouTube view count (`baselines.ytHistoryAt`, ±1.5 d); empty legacy lines remain evidence but never count as a day |
 | `comments/<slug>.json` | comments by id with `firstSeenAt`, `likes`, source (`yt`/`x`), `xCoverage` | comments-pull | **append by id**; YouTube pulled forever, **X replies only within 7 days** of premiere | `xCoverage: "missed"` for E1–E5 — their feedback is YouTube-only while E6 includes X |
 | `comments-classified.json` | per comment id: relevance, sentiment, themes, confidence, `classifiedAt`, version stamps; `lastRun` | classify | **append by id; a label is never re-read** unless `--reclassify-all` with a `CLASSIFIER_VERSION` bump | golden set (`audit/golden-comments.json`) gates every run: 100 % relevance / ≥95 % sentiment or previous labels stay |
 | `comments-sentiment.json` | wordlist-v1 labels | (legacy; not in chain) | — | only `hasNegativeSignal()` is still used, as a featured-quote veto |
@@ -81,7 +81,7 @@ days since the episode's premiere (noon Phoenix).
 `commentSummary`, `health`.
 
 Per episode: `slug, title, premiere, ep, ageDays, partialHistory, announces,
-snapshots[], weekly[], latest{ts, byDest, ytTotal, xImpressions, xPlays,
+snapshots[], weekly[], latest{ts, byDest, ytTotal, youtubeAsOf, youtubeStale, xImpressions, xPlays,
 xPlaysInfo, totalViews, totalViewsInfo}, links, transcript, metrics{week1Velocity,
 week1Note, flatlineWeek, engagementPer1k, anomaly}, live{peak, avg, liveViews,
 watchedMin, chatMessages, chatters, durationMin, series, byChannel},
@@ -90,9 +90,9 @@ minutesWatched, curve[], traffic[], byChannel, shape, moments}, health`.
 
 | Surface (page) | Field | Derived in | From | Definition / gate |
 |---|---|---|---|---|
-| Total views (hero, table, standings) | `latest.totalViews` | build-data `buildLatest` | snapshots | YT views + resolved X broadcast plays only; native tweet/teaser video counters are excluded; `totalViewsInfo{partial, stale}` mirrors `xPlaysInfo` (rule 1) |
+| Total views (hero, table, standings) | `latest.totalViews` | build-data `buildLatest` | snapshots | last positive YT reading + current resolved X broadcast plays; an absent source stays `null` and is named by `totalViewsInfo`; a later empty YT pull keeps the earlier number with `youtubeStale: true` |
 | X reach | `latest.xImpressions` | build-data | snapshots (X `views` = impressions) | exposure; never summed (rule 1) |
-| Pace ("#n of m at this age", ▲/▼ vs typical) | `data.baselines.pace[slug]`, `showTrend.paceRank` | `baselines.paceFor` via build-data | snapshots at the same age (`readingAt`, ±0.5 d) | the other episodes at that age, outliers out, ≥3 or absent with a reason; the page reads it, never recomputes |
+| Pace ("#n of m at this age", ▲/▼ vs typical) | `data.baselines.pace[slug]`, `showTrend.paceRank` | `baselines.paceFor` via build-data | positive post-air YouTube readings at the same age (`ytSnapshotAt`, ±0.5 d) | no pre-air reading starts the clock; the other episodes at that age, outliers out, ≥3 or absent with a reason |
 | First-week trend card (views) | `showTrend.week1VelocityByEpisode` | build-data | snapshot at ≤ day 7 | null for `partialHistory` or < 7 d; page and Slack give a direction only from 3 clean weeks; trend words need a three-point run |
 | Trend card (watched / reach / live) | bars from `watch.avgPercent`, `latest.xImpressions`, `live.peak`; verdict from `data.baselines.newestVsPrevious[metric]` | `baselines.newestVsPrevious` | reach: snapshots at the same age; watched: history lines at the same age; live: age-free | "Too young to compare…" when no same-age reading exists; quiet zone from `data.baselines.constants` |
 | Promo outlier | `metrics.anomaly`, `data.baselines.anomaly[slug]` | `baselines.anomalyFlags` | same-age readings of the nearby episodes (tier 1 at day 21; tier 2 at current age; tier 3 window-limited latest totals only while history is thin) | >2× the typical, ≥3 peers, self excluded; provisional until tier 1; excluded from host/announce/topic comparisons and every typical |
@@ -161,7 +161,7 @@ Blocks in file order, with what each locks (line refs at `96a4f2f`):
 |---|---|
 | 1 / 1b / 1c | unit discipline: no plays on YT, views+plays only, impressions never summed, `*Info` flags consistent, plays status schema |
 | 2 | cumulative views never drop (>2 % fails, less warns) |
-| 3 | `partialHistory` = first snapshot > 5 d; partial ⇒ no first-week value |
+| 3 | `partialHistory` starts at the first positive post-air YouTube reading; pre-air and all-zero startup rows are not day one; late start ⇒ no first-week value |
 | 4 | newest snapshot and `generatedAt` < 26 h; generatedAt ≥ newest snapshot |
 | 5 / 5a / 5b | registry ⇔ episodes; transcripts ⇔ files ⇔ links; tags schema |
 | 6 / 7 | artifact files present; `data.js` wraps `data.json`; **`data.json` byte-reproduces from stores** |
