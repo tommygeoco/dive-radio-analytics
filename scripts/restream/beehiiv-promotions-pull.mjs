@@ -215,12 +215,13 @@ export function buildPromotionStore({ registry, posts, previous = null, now = Da
   for (const [slug, episode] of Object.entries(previous?.episodes || {})) {
     if (!Object.hasOwn(episodes, slug)) episodes[slug] = episode;
   }
+  const pending = Object.values(episodes).some((entry) => entry.capture?.state === "pending");
   return {
     schemaVersion: 1,
     publication: { id: publicationId, name: PUBLICATION_NAME },
-    updatedAt,
-    lastSuccessfulAt: updatedAt,
-    capture: { checkedAt: updatedAt, state: Object.values(episodes).some((entry) => entry.capture?.state === "pending") ? "pending" : "ready" },
+    updatedAt: pending ? previous?.updatedAt ?? null : updatedAt,
+    lastSuccessfulAt: pending ? previous?.lastSuccessfulAt ?? null : updatedAt,
+    capture: { checkedAt: updatedAt, state: pending ? "pending" : "ready" },
     episodes,
   };
 }
@@ -249,7 +250,7 @@ export async function fetchConfirmedPosts({ apiKey, publicationId = DEFAULT_PUBL
     }
     if (!body.data.length && page > 1) throw new Error("Beehiiv returned an empty page before pagination completed");
     totalPages = body.total_pages === undefined ? 1 : Number(body.total_pages);
-    if (!Number.isInteger(totalPages) || totalPages < 1) throw new Error("Beehiiv posts response has an invalid page count");
+    if (!Number.isInteger(totalPages) || totalPages < 1 || totalPages > 100) throw new Error("Beehiiv posts response has an invalid or excessive page count");
     page++;
   } while (page <= totalPages);
   return posts;

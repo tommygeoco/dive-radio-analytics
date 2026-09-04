@@ -141,6 +141,8 @@ assert.equal(pendingStore.capture.state, "pending");
 assert.equal(pendingStore.episodes[show.slug].capture.state, "pending");
 assert.deepEqual(pendingStore.episodes[show.slug].totals, store.episodes[show.slug].totals);
 assert.deepEqual(pendingStore.episodes[show.slug].snapshots, store.episodes[show.slug].snapshots);
+assert.equal(pendingStore.lastSuccessfulAt, store.lastSuccessfulAt);
+assert.equal(pendingStore.capture.checkedAt, "2026-09-04T15:00:00.000Z");
 const futureStore = buildPromotionStore({ registry: { shows: [{ ...show, date: "2026-09-05" }] }, posts: [post], now: Date.parse("2026-09-04T06:30Z") });
 assert.deepEqual(futureStore.episodes, {});
 assert.equal(store.episodes[show.slug].snapshots.at(-1).reading.episode, show.slug);
@@ -161,5 +163,6 @@ assert.ok(pages.every((item) => item.auth === "Bearer test-only"));
 assert.ok(pages.every((item) => item.url.includes("expand%5B%5D=stats") && item.url.includes("expand%5B%5D=free_email_content")));
 await assert.rejects(() => fetchConfirmedPosts({ apiKey: "" }), /OpenClaw 1Password environment/);
 await assert.rejects(fetchConfirmedPosts({ apiKey: "fixture", fetchImpl: async () => ({ ok: true, json: async () => ({ data: [{ id: "duplicate" }], total_pages: 2 }) }) }), /duplicate post ID/);
+await assert.rejects(fetchConfirmedPosts({ apiKey: "fixture", fetchImpl: async () => ({ ok: true, json: async () => ({ data: [{ id: "post" }], total_pages: 1000000 }) }) }), /excessive page count/);
 
 console.log("beehiiv-promotions.test: exact episode links, safe click sums, unique-reader guard, daily snapshots, and pagination pass");
