@@ -7,6 +7,7 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
@@ -176,7 +177,7 @@ export function phoenixDateKey(value = Date.now()) {
   return `${part("year")}-${part("month")}-${part("day")}`;
 }
 
-export function mergeSnapshot(previous, result, pulledAt) {
+export function mergeSnapshot(previous, result, pulledAt, { episode, objectId } = {}) {
   const snapshots = Array.isArray(previous) ? previous.filter((row) => row && typeof row.date === "string") : [];
   if (result.status !== "found" || !result.totals || (result.totals.emailClicks == null && result.totals.verifiedEmailClicks == null)) return snapshots;
   const next = {
@@ -184,6 +185,7 @@ export function mergeSnapshot(previous, result, pulledAt) {
     pulledAt: new Date(pulledAt).toISOString(),
     emailClicks: result.totals.emailClicks,
     verifiedEmailClicks: result.totals.verifiedEmailClicks,
+    ...(episode && objectId ? { reading: readingEnvelope({ source: "beehiiv", episode, objectId, pulledAt: new Date(pulledAt).toISOString() }) } : {}),
   };
   return [...snapshots.filter((row) => row.date !== next.date), next].sort((a, b) => a.date.localeCompare(b.date));
 }
@@ -192,17 +194,23 @@ export function buildPromotionStore({ registry, posts, previous = null, now = Da
   const updatedAt = new Date(now).toISOString();
   const episodes = {};
   const shows = (registry?.shows || [])
-    .filter((show) => isDiveRadio(show))
+    .filter((show) => isDiveRadio(show) && show.active !== false && show.date <= phoenixDateKey(now))
     .sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug));
   for (const show of shows) {
     const result = promotionForEpisode(show, posts, { now });
     if (previous?.episodes?.[show.slug]?.status === "found" && result.status !== "found") {
       throw new Error(`Beehiiv no longer returned the exact link previously saved for ${show.slug}; previous promotion facts were kept`);
     }
-    episodes[show.slug] = {
-      ...result,
-      snapshots: mergeSnapshot(previous?.episodes?.[show.slug]?.snapshots, result, now),
-    };
+    const pending = result.status === "found" && (result.totals?.emailClicks == null || result.totals?.verifiedEmailClicks == null);
+    const sourceReading = readingEnvelope({ source: "beehiiv", episode: show.slug, objectId: publicationId, pulledAt: updatedAt, state: pending ? "pending" : "ready" });
+    const capture = { checkedAt: updatedAt, state: sourceReading.state, reading: sourceReading, reason: pending ? "Beehiiv has not returned complete click counts for every exact episode link." : null };
+    const prior = previous?.episodes?.[show.slug];
+    episodes[show.slug] = pending && prior?.status === "found" && prior.totals?.emailClicks != null && prior.totals?.verifiedEmailClicks != null
+      ? { ...prior, capture }
+      : { ...result, snapshots: pending ? (prior?.snapshots || []) : mergeSnapshot(prior?.snapshots, result, now, { episode: show.slug, objectId: publicationId }), capture };
+    if (!pending) for (const newsletter of episodes[show.slug].newsletters) {
+      newsletter.reading = readingEnvelope({ source: "beehiiv", episode: show.slug, objectId: newsletter.postId, pulledAt: updatedAt });
+    }
   }
   for (const [slug, episode] of Object.entries(previous?.episodes || {})) {
     if (!Object.hasOwn(episodes, slug)) episodes[slug] = episode;
@@ -212,6 +220,7 @@ export function buildPromotionStore({ registry, posts, previous = null, now = Da
     publication: { id: publicationId, name: PUBLICATION_NAME },
     updatedAt,
     lastSuccessfulAt: updatedAt,
+    capture: { checkedAt: updatedAt, state: Object.values(episodes).some((entry) => entry.capture?.state === "pending") ? "pending" : "ready" },
     episodes,
   };
 }
@@ -219,6 +228,7 @@ export function buildPromotionStore({ registry, posts, previous = null, now = Da
 export async function fetchConfirmedPosts({ apiKey, publicationId = DEFAULT_PUBLICATION_ID, fetchImpl = fetch } = {}) {
   if (!apiKey) throw new Error("BEEHIIV_API_KEY is not available; run through the OpenClaw 1Password environment");
   const posts = [];
+  const seenIds = new Set();
   let page = 1;
   let totalPages = 1;
   do {
@@ -228,15 +238,17 @@ export async function fetchConfirmedPosts({ apiKey, publicationId = DEFAULT_PUBL
       ["status", "confirmed"], ["platform", "all"], ["order_by", "publish_date"], ["direction", "desc"],
       ["limit", "100"], ["page", String(page)], ["expand[]", "stats"], ["expand[]", "free_email_content"],
     ]) url.searchParams.append(key, value);
-    const response = await fetchImpl(url, {
+    const body = await fetchJson(url, {
+      label: "Beehiiv posts request", fetchImpl,
       headers: { Authorization: `Bearer ${apiKey}` },
-      signal: AbortSignal.timeout(30_000),
     });
-    if (!response.ok) throw new Error(`Beehiiv posts request failed with HTTP ${response.status}`);
-    const body = await response.json();
     if (!Array.isArray(body?.data)) throw new Error("Beehiiv posts response has no data list");
-    posts.push(...body.data);
-    totalPages = Number(body.total_pages || 1);
+    for (const post of body.data) {
+      if (typeof post?.id !== "string" || !post.id || seenIds.has(post.id)) throw new Error("Beehiiv returned a missing or duplicate post ID");
+      seenIds.add(post.id); posts.push(post);
+    }
+    if (!body.data.length && page > 1) throw new Error("Beehiiv returned an empty page before pagination completed");
+    totalPages = body.total_pages === undefined ? 1 : Number(body.total_pages);
     if (!Number.isInteger(totalPages) || totalPages < 1) throw new Error("Beehiiv posts response has an invalid page count");
     page++;
   } while (page <= totalPages);
@@ -245,17 +257,10 @@ export async function fetchConfirmedPosts({ apiKey, publicationId = DEFAULT_PUBL
 
 export function assertUsablePosts(posts) {
   if (!Array.isArray(posts) || !posts.length) throw new Error("Beehiiv returned no confirmed posts; previous promotion facts were kept");
-  if (!posts.some((post) => typeof post?.content?.free?.email === "string" && Array.isArray(post?.stats?.clicks))) {
-    throw new Error("Beehiiv returned no usable email content and click stats; previous promotion facts were kept");
+  if (!posts.every((post) => post?.platform === "web" || (typeof post?.content?.free?.email === "string" && Array.isArray(post?.stats?.clicks)))) {
+    throw new Error("Beehiiv returned incomplete email content or click stats; previous promotion facts were kept");
   }
   return posts;
-}
-
-function writeJsonAtomic(path, value) {
-  mkdirSync(dirname(path), { recursive: true });
-  const temp = `${path}.${process.pid}.${Date.now()}.tmp`;
-  writeFileSync(temp, JSON.stringify(value, null, 2) + "\n", { encoding: "utf8", flag: "wx" });
-  renameSync(temp, path);
 }
 
 export async function run({
@@ -269,23 +274,27 @@ export async function run({
   fetchImpl = fetch,
   log = console.log,
 } = {}) {
-  const registry = JSON.parse(readFileSync(registryPath, "utf8"));
-  const previous = existsSync(storePath) ? JSON.parse(readFileSync(storePath, "utf8")) : null;
-  const posts = await fetchConfirmedPosts({ apiKey, publicationId, fetchImpl });
-  assertUsablePosts(posts);
-  const store = buildPromotionStore({ registry, posts, previous, now, publicationId });
-  if (!dryRun) writeJsonAtomic(storePath, store);
-  const found = Object.entries(store.episodes).filter(([, episode]) => episode.status === "found");
-  const current = found.at(-1);
-  const currentText = current && current[1].totals?.verifiedEmailClicks != null
-    ? `; latest match ${current[0]} has ${current[1].totals.verifiedEmailClicks} verified email clicks`
-    : "";
-  log(`newsletter promotions: checked ${Object.keys(store.episodes).length} episodes, found ${found.length}${currentText}${dryRun ? " (dry run)" : ""}`);
-  return store;
+  return withSourceLock(storePath, async () => {
+    const registry = readJsonFile(registryPath);
+    const previous = readJsonFile(storePath, { fallback: null });
+    let store;
+    try {
+      const posts = await fetchConfirmedPosts({ apiKey, publicationId, fetchImpl });
+      assertUsablePosts(posts);
+      store = buildPromotionStore({ registry, posts, previous, now, publicationId });
+    } catch (error) {
+      if (!dryRun && previous) atomicWriteJson(storePath, { ...previous, capture: { checkedAt: new Date(now).toISOString(), state: "failed", reason: String(error.message).slice(0, 220) } });
+      throw error;
+    }
+    if (!dryRun) atomicWriteJson(storePath, store);
+    const found = Object.entries(store.episodes).filter(([, episode]) => episode.status === "found");
+    log(`newsletter promotions: checked ${Object.keys(store.episodes).length} episodes, found ${found.length}; ${store.capture.state}${dryRun ? " (dry run)" : ""}`);
+    return store;
+  });
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  run({ dryRun: process.argv.includes("--dry-run") }).catch((error) => {
+  run({ dryRun: process.argv.includes("--dry-run") }).then((store) => { if (store.capture?.state === "pending") process.exitCode = 20; }).catch((error) => {
     process.stderr.write(`newsletter promotions: ${String(error?.message || error).replace(/\s+/g, " ").slice(0, 300)}\n`);
     process.exit(1);
   });
