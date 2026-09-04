@@ -21,6 +21,11 @@ assert.equal(staged.snapshot.metrics['x:ridd_design'].plays, 0);
 assert.equal(staged.snapshot.metrics['yt:joindiveclub'].detail.likes, null);
 assert.equal(staged.snapshot.metrics['yt:joindiveclub'].reading.objectId, 'vd');
 assert.equal(staged.snapshot.metrics['x:designertom'].playsReading.objectId, 'bt');
+const multiShow = { ...show, targets: [...show.targets, { kind: 'x', account: 'ridd_design', postId: 'pd2', role: 'promo' }] };
+const multi = stageShowCapture(multiShow, { ...args, xStats: { ...args.xStats, pd2: { ...xrow, views: 11, likes: 2 } } });
+assert.equal(multi.snapshot.metrics['x:ridd_design'].views, 11);
+assert.equal(multi.snapshot.metrics['x:ridd_design'].detail.likes, 2);
+assert.equal(multi.snapshot.metrics['x:ridd_design'].sources.length, 2);
 const hist = { slug: show.slug, snapshots: [staged.snapshot] };
 for (const bad of [
   { ...args, ytStats: { vd: youtube.vd } },

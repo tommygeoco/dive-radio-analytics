@@ -65,20 +65,22 @@ const loadJson = (path, fallback) => readJsonFile(path, { fallback });
 const saveJson = atomicWriteJson;
 
 function ytApiKey() {
-  const creds = JSON.parse(
-    readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8")
-  );
+  let creds;
+  try { creds = JSON.parse(readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8")); }
+  catch { throw new Error("YouTube credential file is unavailable or invalid"); }
   const key = creds.youtube_api_key || creds.api_key;
   if (!key) throw new Error("no youtube api key in secrets");
   return key;
 }
 
 function xBearer() {
-  const out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
+  let out;
+  try { out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
     encoding: "utf8",
     timeout: 30000,
     env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
   });
+  } catch { throw new Error("X credential command failed"); }
   const token = out.trim().split("\n").pop();
   if (!token) throw new Error("xurl token returned empty output");
   return token;
@@ -113,7 +115,8 @@ function chunk(arr, n) {
 function countOrNull(value) {
   if (value == null || value === "") return null;
   const count = Number(value);
-  return Number.isFinite(count) && count >= 0 ? count : null;
+  if (!Number.isFinite(count) || count < 0) throw new Error("source returned an invalid count");
+  return count;
 }
 
 // The Data API omits statistics while an upload is still waiting to air.
@@ -482,6 +485,10 @@ export function stageShowCapture(show, { ytStats = {}, xStats = {}, broadcastSta
       const value = t.kind === "youtube" ? ytStats[t.videoId] : xStats[t.postId];
       return { objectId, reading: readingEnvelope({ source, episode: show.slug, objectId, pulledAt: checkedAt }), views: value.views, detail: detailOf(value) };
     });
+    for (const field of ["views", "likes", "comments", "replies", "reposts", "bookmarks", "quotes"]) {
+      const values = metric.sources.map(r => r.detail[field]);
+      if (values.some(v => v !== undefined)) metric.detail[field] = values.every(Number.isFinite) ? values.reduce((a,b) => a+b,0) : null;
+    }
     metric.reading = readingEnvelope({ source, episode: show.slug, objectId: group.map(t => t.videoId || t.postId).sort().join(","), pulledAt: checkedAt });
     if (metric.plays != null) {
       const ids = [...new Set(group.map(t => t.broadcastId).filter(id => id && broadcastStats[id]))].sort();

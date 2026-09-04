@@ -183,7 +183,7 @@ async function main() {
         if (owner.items?.length !== 1 || owner.items[0].id !== cfg.channelId) throw new Error(`YouTube owner identity does not match ${account}`);
       }
     }
-    catch (e) { tokens[account] = null; warns.push(e.message.slice(0, 120)); }
+    catch { tokens[account] = null; warns.push(`YouTube owner authorization failed for ${account}`); }
   }
   const authorized = Object.entries(tokens).filter(([, t]) => t).map(([a]) => a);
   if (!authorized.length) throw new Error(`no authorized YouTube channels — ${warns.join("; ")}`);

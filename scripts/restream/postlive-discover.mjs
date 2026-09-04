@@ -48,20 +48,22 @@ const LOOKBACK_DAYS = daysIdx > -1 ? Number(args[daysIdx + 1]) : 10;
 const since = Date.now() - LOOKBACK_DAYS * 86400000;
 
 function ytApiKey() {
-  const creds = JSON.parse(
-    readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8")
-  );
+  let creds;
+  try { creds = JSON.parse(readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8")); }
+  catch { throw new Error("YouTube credential file is unavailable or invalid"); }
   const key = creds.youtube_api_key || creds.api_key;
   if (!key) throw new Error("no youtube api key in secrets");
   return key;
 }
 
 function xBearer() {
-  const out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
+  let out;
+  try { out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
     encoding: "utf8",
     timeout: 30000,
     env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
   });
+  } catch { throw new Error("X credential command failed"); }
   const token = out.trim().split("\n").pop();
   if (!token) throw new Error("xurl token returned empty output");
   return token;
