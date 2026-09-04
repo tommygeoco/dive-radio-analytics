@@ -15,6 +15,7 @@ cd "$REPO" || exit 1
 echo "pre-push: fixtures + strict validator on a fresh build …"
 node tools/dive-analytics/audit/baselines.test.mjs >/dev/null || { echo "pre-push: baselines fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/youtube-missing-data.test.mjs >/dev/null || { echo "pre-push: YouTube missing-data fixtures failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/youtube-validator-negative.test.mjs >/dev/null || { echo "pre-push: YouTube validator rejection fixture failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/youtube-release-date.test.mjs >/dev/null || { echo "pre-push: YouTube broadcast-day fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/episode-date-sync.test.mjs >/dev/null || { echo "pre-push: episode-date sync fixtures failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/youtube-zero-downstream.test.mjs >/dev/null || { echo "pre-push: YouTube startup-zero fixtures failed — push refused" >&2; exit 1; }
@@ -28,6 +29,8 @@ node tools/dive-analytics/audit/publish-flow.test.mjs >/dev/null || { echo "pre-
 node tools/dive-analytics/audit/publish-git.test.mjs >/dev/null || { echo "pre-push: publish Git rehearsal failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/freshness.test.mjs >/dev/null || { echo "pre-push: production freshness test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/mirror-transcripts.test.mjs >/dev/null || { echo "pre-push: transcript mirror test failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/transcript-cron-script.test.mjs >/dev/null || { echo "pre-push: transcript cron wrapper test failed — push refused" >&2; exit 1; }
+node tools/dive-analytics/audit/run-chain-policy.test.mjs >/dev/null || { echo "pre-push: chain retry policy test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/run-daily.test.mjs >/dev/null || { echo "pre-push: daily attempt limit test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/recover-publish.test.mjs >/dev/null || { echo "pre-push: recovery test failed — push refused" >&2; exit 1; }
 node tools/dive-analytics/audit/alert-queue.test.mjs >/dev/null || { echo "pre-push: alert queue test failed — push refused" >&2; exit 1; }

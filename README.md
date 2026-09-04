@@ -97,15 +97,27 @@ all present. The chain pulls main before capture, retries each required platform
 pull once, validates the final files, pushes the exact checked commit, deploys
 production, and compares all eight public files byte-for-byte. An 08:15 check
 proves production against that same clean clone and starts the one recovery
-when production is not current. If production is current and only the newest
-YouTube watch report is still pending, it keeps that attempt for the 12:15
-check, which reruns the complete chain once. Alerts use a locked queue beside
+when production is not current. The 12:15 check also uses an available attempt
+if both earlier jobs were missed. If production is current and only the newest
+YouTube watch report is still pending at 08:15, it keeps that attempt for the
+12:15 check, which reruns the complete chain once. If that recovery still finds no
+complete two-channel watch report, it queues one alert for the Phoenix day and
+the daily ledger prevents a duplicate. YouTube watch channels advance only as
+one same-pull, current-video reading; a partial response preserves the whole
+prior reading or leaves the reading absent, never a cross-day blend. Future
+episodes are not queried, and an empty air-date check stays idle until the next
+Phoenix date. Daily watch history is locked and replaced atomically. Alerts use a locked queue beside
 the clone, outside Git, and stay there
 until OpenClaw returns a Slack message receipt; the delivery worker runs every
 five minutes. The pipeline also discovers newly published episodes and
 collects audience comments. A
 separate model step removes noise, labels reactions, audits a sample, and keeps
 unclear items off every surface. Built with vanilla JS + Chart.js (MIT, vendored).
+
+The 08:00 transcript mirror uses the tested OpenClaw script stored at
+`tools/dive-analytics/transcript-cron-script.js`. It reads the inner command's
+structured exit code, stays quiet when nothing changed, and fails the job on a
+nonzero or missing status so the configured failure alert is truthful.
 
 The publish chain must run health only after the first deterministic gate, then
 rebuild so today's saved entry reaches the public artifact:

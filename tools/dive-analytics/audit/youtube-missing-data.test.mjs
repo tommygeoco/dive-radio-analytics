@@ -14,7 +14,9 @@ import {
   youtubeStatsOf,
   youtubeViewsForDisplay,
 } from "../../../scripts/restream/postlive-track.mjs";
-import { appendHistoryLine, historyLine, readHistory } from "../../../scripts/restream/yt-analytics-pull.mjs";
+import { appendHistoryLine, historyLine, phoenixDate, readHistory } from "../../../scripts/restream/yt-analytics-pull.mjs";
+
+assert.equal(phoenixDate("2026-09-05T01:00:00.000Z"), "2026-09-04", "the writer keeps Phoenix's date during the UTC evening rollover");
 
 const missing = youtubeStatsOf({
   id: "scheduled",
@@ -130,17 +132,20 @@ const postAir = historyLine({
 assert.equal(appendHistoryLine(historyPath, postAir, { expectedChannels: ["yt:joindiveclub"], premiere: "2026-09-03" }), false, "an air-date pull cannot claim day one");
 assert.equal(existsSync(historyPath), false);
 
-const nextDay = historyLine({
+const partialNextDay = historyLine({
   premiere: "2026-09-03",
   pulledAt: "2026-09-04T14:00:00.000Z",
   endDate: "2026-09-04",
   channels: {
-    "yt:joindiveclub": { totals: { views: 20 } },
-    "yt:designertom": { totals: { views: 0 } },
+    "yt:joindiveclub": { totals: { views: 20, averageViewPercentage: 12 } },
+    "yt:designertom": { totals: { views: 0, averageViewPercentage: 0 } },
   },
 });
-assert.equal(appendHistoryLine(historyPath, nextDay, { expectedChannels: ["yt:joindiveclub", "yt:designertom"], premiere: "2026-09-03" }), true, "the first positive next-date pull may claim day one");
+assert.equal(appendHistoryLine(historyPath, partialNextDay, { expectedChannels: ["yt:joindiveclub", "yt:designertom"], premiere: "2026-09-03" }), false, "one zero channel cannot make a two-channel watched-share history point");
+const nextDay = structuredClone(partialNextDay);
+nextDay.channels["yt:designertom"] = { views: 7, averageViewPercentage: 9 };
+assert.equal(appendHistoryLine(historyPath, nextDay, { expectedChannels: ["yt:joindiveclub", "yt:designertom"], premiere: "2026-09-03" }), true, "the first complete positive next-date pull may claim day one");
 assert.deepEqual(readHistory(historyPath), [nextDay]);
 assert.match(readFileSync(historyPath, "utf8"), /"views":20/);
 
-console.log("youtube-missing-data.test: missing counts stay null, empty and all-zero history are skipped, raw explicit zero is preserved");
+console.log("youtube-missing-data.test: missing counts stay null, empty and partial history are skipped, raw explicit zero is preserved");

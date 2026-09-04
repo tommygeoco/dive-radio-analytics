@@ -27,7 +27,7 @@ const COMMAND_TIMEOUT_MS = 2 * 60 * 1000;
 const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
 
 function emptyState() {
-  return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {} };
+  return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {} };
 }
 
 export function readAttemptState(path = STATE_PATH) {
@@ -41,11 +41,18 @@ export function readAttemptState(path = STATE_PATH) {
   }
   state.invocations ??= {};
   if (typeof state.invocations !== "object" || Array.isArray(state.invocations)) throw new Error("daily invocation state is unreadable");
+  state.youtubeWatchAlerts ??= {};
+  if (typeof state.youtubeWatchAlerts !== "object" || Array.isArray(state.youtubeWatchAlerts)) throw new Error("daily YouTube watch alert state is unreadable");
   for (const attempts of Object.values(state.days)) {
     if (!Array.isArray(attempts)) throw new Error("daily attempt state has an invalid day");
   }
   for (const invocations of Object.values(state.invocations)) {
     if (!Array.isArray(invocations)) throw new Error("daily invocation state has an invalid day");
+  }
+  for (const marker of Object.values(state.youtubeWatchAlerts)) {
+    if (marker?.event !== "newest-youtube-watch-still-waiting" || !Number.isFinite(Date.parse(marker?.queuedAt))) {
+      throw new Error("daily YouTube watch alert state has an invalid marker");
+    }
   }
   return state;
 }
@@ -76,7 +83,21 @@ export function nextAttempt(state, now = Date.now(), { mode = "primary", id = `$
   for (const savedDay of Object.keys(next.days)) {
     if (Date.parse(`${savedDay}T12:00:00Z`) < keepAfter) delete next.days[savedDay];
   }
+  for (const savedDay of Object.keys(next.youtubeWatchAlerts || {})) {
+    if (Date.parse(`${savedDay}T12:00:00Z`) < keepAfter) delete next.youtubeWatchAlerts[savedDay];
+  }
   return { allowed: true, day, number: attempts.length + 1, id, state: next };
+}
+
+export function markYoutubeWatchAlert(state, day, queuedAt = Date.now()) {
+  if (state.youtubeWatchAlerts?.[day]) return { needed: false, state };
+  const next = structuredClone(state);
+  next.youtubeWatchAlerts ??= {};
+  next.youtubeWatchAlerts[day] = {
+    event: "newest-youtube-watch-still-waiting",
+    queuedAt: new Date(queuedAt).toISOString(),
+  };
+  return { needed: true, state: next };
 }
 
 export function finishAttempt(state, day, id, status, endedAt = Date.now()) {
@@ -370,7 +391,24 @@ export async function runDaily({
     finished = finishInvocation(finished, invocation.day, invocation.id, savedStatus, Date.now(), runError?.message || null);
     saveAttemptState(statePath, finished);
     if (status === YOUTUBE_WATCH_PENDING_EXIT) {
-      console.log("daily-run: production was updated with the data available now; newest episode YouTube watch data will be tried again at noon.");
+      const finalAttempt = reserved.number >= MAX_DAILY_ATTEMPTS;
+      if (finalAttempt) {
+        const alert = markYoutubeWatchAlert(readAttemptState(statePath), reserved.day);
+        if (alert.needed) {
+          const line = `Newest episode YouTube watch data is still unavailable after the ${reserved.day} recovery run; production is current, but watch measures remain missing.`;
+          try {
+            queue([line]);
+            saveAttemptState(statePath, alert.state);
+            console.log("daily-run: queued today's missing YouTube watch alert after the recovery check.");
+          } catch (error) {
+            console.error(`daily-run: could not save the missing YouTube watch alert (${error.message}).`);
+            return 1;
+          }
+        }
+      }
+      console.log(!finalAttempt
+        ? "daily-run: production was updated with the data available now; newest episode YouTube watch data will be tried again at noon."
+        : "daily-run: production was updated with the data available now; newest episode YouTube watch data remains unavailable and no third run will start today.");
       return 0;
     }
     if (status !== 0) {

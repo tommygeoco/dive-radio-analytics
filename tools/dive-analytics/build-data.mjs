@@ -17,7 +17,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
 import { buildBrief } from "./agent-brief.mjs";
-import { completeYoutubeWatchChannels, summedYoutubeMetric, weightedYoutubeMetric } from "./youtube-readiness.mjs";
+import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric } from "./youtube-readiness.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
@@ -602,8 +602,10 @@ function attachWatch(dive) {
         reason: j.watchReport.reason ?? null,
       };
     }
-    const expectedChannels = Object.keys(e.links || {}).filter((key) => key.startsWith("yt:"));
-    const chans = completeYoutubeWatchChannels(expectedChannels, j.channels || {});
+    const expectedChannels = Object.entries(e.links || {})
+      .filter(([key]) => key.startsWith("yt:"))
+      .map(([key, url]) => ({ key, videoId: new URL(url).searchParams.get("v") }));
+    const chans = completeYoutubeWatchCohort(expectedChannels, j);
     if (!chans.length) continue;
     const currentChannels = Object.fromEntries(chans);
     const avgPercent = weightedYoutubeMetric(chans, "averageViewPercentage");

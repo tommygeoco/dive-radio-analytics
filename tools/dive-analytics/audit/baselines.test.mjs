@@ -109,19 +109,19 @@ for (let i = 0; i < 12; i++) {
 
   const emptyLine = { date: "2026-01-01", ageDays: 1, channels: {} };
   const zeroLine = { date: "2026-01-02", ageDays: 1.1, channels: {
-    "yt:joindiveclub": { views: 0 }, "yt:designertom": { views: 0 },
+    "yt:joindiveclub": { views: 0, averageViewPercentage: 0 }, "yt:designertom": { views: 0, averageViewPercentage: 0 },
   } };
   const validLine = { date: "2026-01-03", ageDays: 1.3, channels: {
-    "yt:joindiveclub": { views: 50 }, "yt:designertom": { views: 0 },
+    "yt:joindiveclub": { views: 50, averageViewPercentage: 12 }, "yt:designertom": { views: 7, averageViewPercentage: 9 },
   } };
   const preAirLine = { date: "2025-12-31", ageDays: -0.2, channels: {
-    "yt:joindiveclub": { views: 3 }, "yt:designertom": { views: 0 },
+    "yt:joindiveclub": { views: 3, averageViewPercentage: 12 }, "yt:designertom": { views: 2, averageViewPercentage: 9 },
   } };
   assert.equal(B.historyAt([emptyLine, zeroLine], 1), emptyLine, "the generic history selector is unchanged");
   assert.equal(B.ytHistoryAt([emptyLine, zeroLine], 1), null, "empty and all-zero history lines cannot satisfy a YouTube read");
   assert.equal(B.ytHistoryAt([preAirLine, emptyLine, zeroLine, validLine], 1), validLine, "the selector skips pre-air, empty, and zero rows for a positive history reading");
-  const airDateLine = { date, ageDays: 0.3, channels: { "yt:joindiveclub": { views: 12 } } };
-  const nextDateLine = { date: new Date(B.premiereMs(date) + 86400000 - PHX).toISOString().slice(0, 10), ageDays: 0.8, channels: { "yt:joindiveclub": { views: 20 }, "yt:designertom": { views: 0 } } };
+  const airDateLine = { date, ageDays: 0.3, channels: { "yt:joindiveclub": { views: 12, averageViewPercentage: 12 }, "yt:designertom": { views: 4, averageViewPercentage: 9 } } };
+  const nextDateLine = { date: new Date(B.premiereMs(date) + 86400000 - PHX).toISOString().slice(0, 10), ageDays: 0.8, channels: { "yt:joindiveclub": { views: 20, averageViewPercentage: 12 }, "yt:designertom": { views: 5, averageViewPercentage: 9 } } };
   assert.equal(B.ytHistoryAt([airDateLine], 0.3, date), null, "an owner analytics line from air date is not historical");
   assert.equal(B.ytHistoryAt([airDateLine, nextDateLine], 0.8, date), nextDateLine, "the next Phoenix date is the first eligible owner analytics read");
 }

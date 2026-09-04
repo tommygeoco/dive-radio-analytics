@@ -210,7 +210,9 @@ export function ytCurrentAge(episode) {
 
 export const hasYtHistoryReading = (line, premiere = null) => Number.isFinite(line?.ageDays) && line.ageDays >= 0
   && (!premiere || (typeof line?.date === "string" && line.date > premiere))
-  && YT_KEYS.some((k) => Number.isFinite(line?.channels?.[k]?.views) && line.channels[k].views > 0);
+  && YT_KEYS.every((k) => Number.isFinite(line?.channels?.[k]?.views)
+    && line.channels[k].views > 0
+    && Number.isFinite(line.channels[k].averageViewPercentage));
 
 export function ytHistoryAt(lines, ageDays, premiere = null) {
   return readingAt((lines || []).filter((line) => hasYtHistoryReading(line, premiere)), ageDays, HISTORY_TOL, (l) => l.ageDays);

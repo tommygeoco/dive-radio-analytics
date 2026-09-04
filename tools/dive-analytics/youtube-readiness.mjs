@@ -30,15 +30,24 @@ export function youtubePullExitCode({ shows = [], missingTotals = [], hardFailur
   if (hardFailures > 0) return 1;
   if (!missingTotals.length) return 0;
 
+  const today = phoenixDate(now);
+  if (!today) return 1;
   const dated = shows
     .filter((show) => typeof show?.date === "string" && typeof show?.slug === "string")
     .sort((a, b) => b.date.localeCompare(a.date));
-  const newestDate = dated[0]?.date;
-  if (!newestDate) return 1;
-  const newestSlugs = new Set(dated.filter((show) => show.date === newestDate).map((show) => show.slug));
-  if (missingTotals.some((item) => !newestSlugs.has(item?.slug))) return 1;
+  const bySlug = new Map(dated.map((show) => [show.slug, show]));
+  if (missingTotals.some((item) => !bySlug.has(item?.slug))) return 1;
 
-  const today = phoenixDate(now);
+  // A preregistered future episode is idle. It must not turn a still-waiting
+  // aired episode into an "older report" failure or create a recovery need.
+  const actionable = missingTotals.filter((item) => bySlug.get(item.slug).date <= today);
+  if (!actionable.length) return 0;
+  const aired = dated.filter((show) => show.date <= today);
+  const newestDate = aired[0]?.date;
+  if (!newestDate) return 0;
+  const newestSlugs = new Set(aired.filter((show) => show.date === newestDate).map((show) => show.slug));
+  if (actionable.some((item) => !newestSlugs.has(item?.slug))) return 1;
+
   const daysAfterAir = today ? dayDistance(newestDate, today) : null;
   if (daysAfterAir == null) return 1;
   if (daysAfterAir <= 0) return 0;
@@ -60,19 +69,47 @@ export function missingYoutubeAccounts(shows = [], tokens = {}) {
   return [...expected].filter((account) => !tokens[account]).sort();
 }
 
-export function youtubeWatchReport({ checkedAt, missingChannels = [], failedChannels = [] } = {}) {
-  const failed = [...new Set(failedChannels)];
-  const missing = [...new Set([...missingChannels, ...failed])];
-  return {
-    state: failed.length ? "failed" : missing.length ? "pending" : "ready",
+export function youtubeWatchReport({
+  checkedAt,
+  airDate = null,
+  probes = [],
+  previous = null,
+  previousTargetFingerprint = null,
+} = {}) {
+  const targetFingerprint = youtubeTargetFingerprint(probes);
+  const failed = probes.filter((probe) => probe?.result === "request-failed").map((probe) => probe.key);
+  const missing = probes.filter((probe) => probe?.result !== "ready").map((probe) => probe.key);
+  const checkedDate = phoenixDate(checkedAt);
+  const idle = missing.length && !failed.length && typeof airDate === "string"
+    && checkedDate && checkedDate <= airDate;
+  const state = failed.length ? "failed" : missing.length ? (idle ? "idle" : "pending") : "ready";
+  const report = {
+    state,
     checkedAt,
     missingChannels: missing,
     reason: failed.length
       ? "YouTube Analytics could not return every watch report"
+      : idle
+        ? "YouTube watch data is not due until after this episode's air date"
       : missing.length
         ? "YouTube Analytics has not returned this episode's watch data yet"
         : null,
   };
+  report.targetFingerprint = targetFingerprint;
+  report.probes = probes.map((probe) => ({
+    key: probe.key,
+    videoId: probe.videoId,
+    result: probe.result,
+    observed: probe.observed ?? null,
+  }));
+  if (state === "pending") {
+    const sameTargets = previous?.state === "pending"
+      && (previous?.targetFingerprint || previousTargetFingerprint) === targetFingerprint;
+    report.pendingSince = sameTargets
+      ? previous.pendingSince || previous.checkedAt || checkedAt
+      : checkedAt;
+  }
+  return report;
 }
 
 export function usableYoutubeWatchTotals(totals) {
@@ -84,10 +121,89 @@ export function usableYoutubeWatchTotals(totals) {
 // Return exactly the registered channels only when every one has a usable
 // watch report. A view count without the watched-share field is still an
 // incomplete report and must never collapse into a one-channel blend.
-export function completeYoutubeWatchChannels(expectedChannels = [], channels = {}) {
-  if (!expectedChannels.length) return [];
-  if (expectedChannels.some((key) => !usableYoutubeWatchTotals(channels?.[key]?.totals))) return [];
-  return expectedChannels.map((key) => [key, channels[key]]);
+function normalizedYoutubeTargets(expectedTargets = []) {
+  return expectedTargets.map((target) => typeof target === "string"
+    ? { key: target, videoId: null }
+    : { key: target?.key, videoId: target?.videoId ?? null });
+}
+
+export function youtubeTargetFingerprint(expectedTargets = []) {
+  return normalizedYoutubeTargets(expectedTargets)
+    .map(({ key, videoId }) => `${key || "?"}:${videoId || "?"}`)
+    .sort()
+    .join("|");
+}
+
+export function youtubeChannelsFingerprint(channels = {}) {
+  return youtubeTargetFingerprint(Object.entries(channels || {}).map(([key, channel]) => ({
+    key,
+    videoId: channel?.videoId ?? null,
+  })));
+}
+
+export function youtubeWatchProbe({ key, videoId, totals = null, failed = false } = {}) {
+  if (failed || (totals && (!Number.isFinite(totals.views) || totals.views < 0))) {
+    return { key, videoId, result: "request-failed", observed: null };
+  }
+  if (!totals) return { key, videoId, result: "no-row", observed: null };
+  const observed = {
+    views: Number.isFinite(totals.views) ? totals.views : null,
+    averageViewPercentage: Number.isFinite(totals.averageViewPercentage) ? totals.averageViewPercentage : null,
+  };
+  if (totals.views === 0) return { key, videoId, result: "zero-views", observed };
+  if (!Number.isFinite(totals.averageViewPercentage)) return { key, videoId, result: "missing-share", observed };
+  return { key, videoId, result: "ready", observed };
+}
+
+// A watch reading is one episode-level source transaction. Every registered
+// channel must be usable, belong to the current video id, and carry one shared
+// pull time. `updatedAt`, when supplied, must name that same transaction.
+export function completeYoutubeWatchChannels(expectedTargets = [], channels = {}) {
+  const targets = normalizedYoutubeTargets(expectedTargets);
+  if (!targets.length || targets.some(({ key }) => typeof key !== "string" || !key.startsWith("yt:"))) return [];
+  const expectedKeys = new Set(targets.map(({ key }) => key));
+  if (expectedKeys.size !== targets.length) return [];
+  const storedKeys = Object.keys(channels || {});
+  if (storedKeys.length !== expectedKeys.size || storedKeys.some((key) => !expectedKeys.has(key))) return [];
+  const entries = targets.map(({ key, videoId }) => [key, channels?.[key], videoId]);
+  if (entries.some(([, channel, videoId]) => !usableYoutubeWatchTotals(channel?.totals)
+    || (videoId && channel?.videoId !== videoId)
+    || !Number.isFinite(Date.parse(channel?.pulledAt)))) return [];
+  const pulledAt = new Set(entries.map(([, channel]) => channel.pulledAt));
+  if (pulledAt.size !== 1) return [];
+  return entries.map(([key, channel]) => [key, channel]);
+}
+
+export function completeYoutubeWatchCohort(expectedTargets = [], store = {}) {
+  if (!Number.isFinite(Date.parse(store?.updatedAt))) return [];
+  const entries = completeYoutubeWatchChannels(expectedTargets, store?.channels || {});
+  if (!entries.length || entries.some(([, channel]) => channel.pulledAt !== store.updatedAt)) return [];
+  return entries;
+}
+
+// Select the only cohort consumers may see after a pull. A complete candidate
+// advances as a whole. Otherwise the complete previous current-id cohort stays
+// byte-for-byte; with no such cohort, channels stays empty. Incomplete source
+// evidence belongs only in watchReport.probes.
+export function youtubeCohortAfterPull({
+  previousStore = {},
+  expectedTargets = [],
+  candidateChannels = {},
+  checkedAt,
+  acceptCandidate = true,
+} = {}) {
+  const targets = normalizedYoutubeTargets(expectedTargets);
+  const candidate = acceptCandidate
+    ? completeYoutubeWatchCohort(targets, { channels: candidateChannels, updatedAt: checkedAt })
+    : [];
+  if (candidate.length === targets.length && targets.length) {
+    return { channels: Object.fromEntries(candidate), updatedAt: checkedAt, advanced: true };
+  }
+  const previous = completeYoutubeWatchCohort(targets, previousStore);
+  if (previous.length === targets.length && targets.length) {
+    return { channels: previousStore.channels, updatedAt: previousStore.updatedAt, advanced: false };
+  }
+  return { channels: {}, updatedAt: null, advanced: false };
 }
 
 export function weightedYoutubeMetric(channelEntries = [], field) {
@@ -103,11 +219,4 @@ export function weightedYoutubeMetric(channelEntries = [], field) {
 export function summedYoutubeMetric(channelEntries = [], field) {
   if (!channelEntries.length || channelEntries.some(([, channel]) => !Number.isFinite(channel?.totals?.[field]))) return null;
   return channelEntries.reduce((sum, [, channel]) => sum + channel.totals[field], 0);
-}
-
-export function youtubeChannelAfterPull({ previous = null, videoId, pulledAt, totals, trafficSources, retention } = {}) {
-  if (!usableYoutubeWatchTotals(totals)
-    && usableYoutubeWatchTotals(previous?.totals)
-    && previous.videoId === videoId) return previous;
-  return { videoId, pulledAt, totals: totals ?? null, trafficSources, retention };
 }

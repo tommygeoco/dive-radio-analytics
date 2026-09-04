@@ -47,8 +47,9 @@ These extend, and do not weaken, the v5 constitution and v11 publish rules.
     preserves the remaining run for 12:15. If the final allowed attempt still
     finds no complete report, one dated plain alert is queued for that Phoenix day
     and marked in the existing daily ledger so repeated checks do not resend it.
-    The source is tried again on later days; no zero, guess, or fabricated history
-    is written.
+    The source is tried again on later days; a later complete reading plus proven
+    production clears any undelivered stale source warning. No zero, guess, or
+    fabricated history is written.
 31. **Retries keep their meaning.** A required platform step runs at most twice.
     `hard error → success` succeeds, `hard error → waiting` publishes honest
     waiting data, and `hard error → hard error` stops and alerts. Waiting itself
@@ -110,7 +111,8 @@ The existing schedule remains one system:
 - 08:00 transcript mirror copies any newly released transcript into the owner
   vault and refreshes search only when needed.
 - 08:15 and 12:15 `restream-postlive-freshness` prove production and own the one
-  reserved recovery run.
+  reserved recovery run. Either check repairs any unproved production state when
+  an attempt remains; an honest YouTube wait at 08:15 reserves the run for 12:15.
 - every five minutes `dive-alerts` delivers queued warnings and removes them only
   after a Slack receipt.
 - Monday noon reporting stays read-only.
@@ -137,6 +139,7 @@ is corrected to match its two daily checks.
 | Final allowed attempt still waiting | production remains current; queue and durably mark one dated plain missing-watch alert for the day; refuse a third run |
 | Daily state or alert queue is missing/corrupt | fail closed; never silently reset the attempt cap or discard an alert |
 | Another run owns the lock | bounded wait/check, then fail and alert without touching its checkout |
+| 07:00 and 08:15 were missed or never reached capture | 12:15 uses an available bounded attempt, then proves production |
 | Git, deploy, or parity cannot be proved | bounded retry, then fail and alert; never claim current production |
 | Transcript inner command exits nonzero or gives no status | OpenClaw job fails and its configured alert fires |
 | Transcript succeeds with no new file | job succeeds silently |

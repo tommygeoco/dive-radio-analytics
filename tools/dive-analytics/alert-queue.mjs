@@ -32,6 +32,9 @@ const CHECKLIST_PREFIXES = [
   "Daily publishing",
   "chain:",
 ];
+const YOUTUBE_WATCH_PREFIXES = [
+  "Newest episode YouTube watch data",
+];
 
 function processIsAlive(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return false;
@@ -183,6 +186,7 @@ export function resolveOperationalAlerts(path = QUEUE_PATH, {
   waitMs = 5_000,
   wait = waitSync,
   includeChecklist = false,
+  includeYoutubeWatch = false,
 } = {}) {
   let releaseDelivery = null;
   for (let check = 1; check <= checks; check++) {
@@ -195,7 +199,11 @@ export function resolveOperationalAlerts(path = QUEUE_PATH, {
     }
   }
   try {
-    const prefixes = includeChecklist ? [...PRODUCTION_PREFIXES, ...CHECKLIST_PREFIXES] : PRODUCTION_PREFIXES;
+    const prefixes = [
+      ...PRODUCTION_PREFIXES,
+      ...(includeChecklist ? CHECKLIST_PREFIXES : []),
+      ...(includeYoutubeWatch ? YOUTUBE_WATCH_PREFIXES : []),
+    ];
     return replaceQueueLines(
       (line) => prefixes.some((prefix) => line.startsWith(prefix)),
       [],

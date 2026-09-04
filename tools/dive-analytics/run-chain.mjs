@@ -156,6 +156,27 @@ function runStep(cmd) {
 }
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+export async function runStepWithPolicy({
+  step,
+  cmd,
+  execute = runStep,
+  wait = sleep,
+  retryPauseMs = RETRY_PAUSE_MS,
+  retryOnce = RETRY_ONCE,
+  onRetry = () => {},
+} = {}) {
+  let result = await execute(cmd);
+  let attempts = 1;
+  const isPending = () => step?.step === "yt-analytics" && result.code === YOUTUBE_WATCH_PENDING_EXIT;
+  if (!isPending() && result.code !== 0 && step?.required && retryOnce.has(step.step)) {
+    onRetry(result);
+    await wait(retryPauseMs);
+    result = await execute(cmd);
+    attempts++;
+  }
+  return { ...result, attempts, youtubeWatchPending: isPending() };
+}
+
 async function main() {
   if (process.argv.includes("--last")) { showLast(); return; }
   if (!dry) { openLog(); pullFirst(); }
@@ -169,22 +190,22 @@ async function main() {
     const cmd = parts[0].endsWith(".sh") ? ["sh", ...parts] : ["node", ...parts];
     if (dry) { console.log(`chain: would run ${step.step}${step.required ? "" : " (optional)"} — ${cmd.join(" ")}`); continue; }
     log(`chain: ${step.step} …`);
-    let { code, lastErr } = await runStep(cmd);
-    if (step.step === "yt-analytics" && code === YOUTUBE_WATCH_PENDING_EXIT) {
+    const outcome = await runStepWithPolicy({
+      step,
+      cmd,
+      onRetry: ({ code }) => log(`chain: ${step.step} failed (exit ${code}) — required, retrying once in ${RETRY_PAUSE_MS / 1000}s`),
+    });
+    let { code, lastErr } = outcome;
+    if (outcome.youtubeWatchPending) {
       youtubeWatchPending = true;
       log("chain: newest episode YouTube watch data is not ready yet — continuing so the morning production build stays current");
       continue;
-    }
-    if (code !== 0 && step.required && RETRY_ONCE.has(step.step)) {
-      log(`chain: ${step.step} failed (exit ${code}) — required, retrying once in ${RETRY_PAUSE_MS / 1000}s`);
-      await sleep(RETRY_PAUSE_MS);
-      ({ code, lastErr } = await runStep(cmd));
     }
     if (code === 0) {
       if (step.step === "publish") {
         published = true;
         try {
-          resolveOperationalAlerts(QUEUE_PATH);
+          resolveOperationalAlerts(QUEUE_PATH, { includeYoutubeWatch: !youtubeWatchPending });
           log("chain: cleared resolved production warnings after parity passed");
         } catch (error) {
           code = 1;
@@ -214,11 +235,16 @@ async function main() {
     process.exit(YOUTUBE_WATCH_PENDING_EXIT);
   }
   try {
-    resolveOperationalAlerts(QUEUE_PATH, { includeChecklist: true });
+    resolveOperationalAlerts(QUEUE_PATH, { includeChecklist: true, includeYoutubeWatch: true });
   } catch (error) {
     queueAlert(`chain: the checklist finished but its resolved warnings could not be reconciled at ${phxClock()} — ${error.message}`);
     process.exit(1);
   }
   log(`chain: done${failedOptional ? ` — ${failedOptional} optional step(s) failed` : ""}`);
 }
-main().catch((error) => { log(`chain: ${error.message}`, process.stderr); process.exit(1); });
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) main().catch((error) => {
+  log(`chain: ${error.message}`, process.stderr);
+  queueAlert(`chain: runner stopped at ${phxClock()} — ${error.message}`);
+  process.exit(1);
+});

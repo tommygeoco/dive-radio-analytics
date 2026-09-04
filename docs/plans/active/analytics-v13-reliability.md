@@ -19,6 +19,7 @@ same bytes that passed validation. No new data or UI is in scope.
 - [x] 2026-09-04 11:10 MST - wrote the v13 source and schedule reliability PRD.
 - [x] 2026-09-04 11:33 MST - implemented atomic YouTube cohorts, locked history writes, and source-store validation.
 - [x] 2026-09-04 11:33 MST - implemented retry, idle, waiting, final-attempt alert, and proof-only behavior with executable fixtures.
+- [x] 2026-09-04 11:35 MST - passed 30 deterministic tests and the ratings to build to strict-validator release gate without changing a frozen score.
 - [ ] 2026-09-04 11:10 MST - update and prove the transcript and recovery OpenClaw jobs.
 - [ ] 2026-09-04 11:10 MST - run the full local release gate, push, deploy, prove parity, and capture a screenshot.
 
@@ -45,6 +46,12 @@ same bytes that passed validation. No new data or UI is in scope.
   typed YouTube-waiting outcome.
 - The watch-history writer rewrote the JSONL file without an atomic rename. It is
   now serialized with an ignored crash-recovery lock and atomically replaced.
+- A queued missing-watch warning could outlive the missing source if Slack was
+  unavailable. It now has its own resolution class and clears only after a
+  complete watch reading is proved on production.
+- Noon handled only typed YouTube waiting, so a missed 07:00 and 08:15 could leave
+  production stale despite an unused attempt. Both scheduled checks now repair any
+  unproved production state; the ledger still refuses attempt three.
 
 ## Decision Log
 
@@ -124,7 +131,7 @@ User benefit: expected source delay no longer blocks the day's other facts or st
    add proof-only recovery, and preserve every schedule, destination, timeout, and
    failure-alert field.
 User benefit: green cron history once again means the owned command actually succeeded.
-5. [pending] Run focused fixtures and the ratings to build to validator chain, update
+5. [complete] Run focused fixtures and the ratings to build to validator chain, update
    docs, then commit the source reliability concern.
 User benefit: every changed behavior is reproducible without risking a third live run today.
 6. [pending] Push, deploy, prove exact public parity and production time, manually
@@ -138,7 +145,7 @@ User benefit: the repaired code and jobs are verified on the path used each morn
 - [x] Runner tests cover waiting, hard-to-waiting, hard-to-ready, and two hard failures.
 - [x] Daily and recovery tests cover the once-per-day recovery alert marker, third-run refusal, and next-day reset.
 - [x] Existing source, alert, checkout, publish, freshness, and parity fixtures pass.
-- [ ] Ratings, build-data, and strict validator exit 0 on the release tree.
+- [x] Ratings, build-data, and strict validator exit 0 on the release tree.
 - [x] Frozen rating entries remain byte-identical.
 - [ ] Transcript wrapper fixtures cover success, nonzero, and missing status; OpenClaw job readback and manual histories prove real exit behavior.
 - [ ] GitHub main, Vercel production, public bytes, and cache-busted generatedAt agree.

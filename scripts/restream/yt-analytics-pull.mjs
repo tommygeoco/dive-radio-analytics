@@ -13,9 +13,10 @@
 //   views, estimatedMinutesWatched, averageViewDuration, averageViewPercentage,
 //   subscribersGained, likes, comments + traffic-source breakdown + retention
 //   curve (elapsedVideoTimeRatio → audienceWatchRatio).
-// Store: data/restream/yt-analytics/<slug>.json — one block per channel with
-// pulledAt stamp; overwritten per pull (the Analytics API is the source of
-// truth for its own aggregates; nothing here is a high-water guess).
+// Store: data/restream/yt-analytics/<slug>.json — one episode cohort whose
+// registered channel blocks share a pulledAt stamp. A pull is staged first and
+// replaces the cohort only when every registered channel is usable in that same
+// pull. Nothing here is a high-water guess and partial pulls never mix dates.
 //
 // History (PRD v9 W22a): data/restream/yt-analytics-history/<slug>.jsonl —
 // one line per episode per Phoenix day, appended only after a pull in which
@@ -34,7 +35,17 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from "
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { missingYoutubeAccounts, usableYoutubeWatchTotals, YOUTUBE_WATCH_PENDING_EXIT, youtubeChannelAfterPull, youtubePullExitCode, youtubeWatchReport } from "../../tools/dive-analytics/youtube-readiness.mjs";
+import {
+  missingYoutubeAccounts,
+  usableYoutubeWatchTotals,
+  YOUTUBE_WATCH_PENDING_EXIT,
+  youtubeChannelsFingerprint,
+  youtubeCohortAfterPull,
+  youtubePullExitCode,
+  youtubeWatchProbe,
+  youtubeWatchReport,
+} from "../../tools/dive-analytics/youtube-readiness.mjs";
+import { acquireLock } from "../../tools/dive-analytics/alert-queue.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
@@ -112,15 +123,30 @@ export function readHistory(path) {
 // Append-only, one line per Phoenix date; returns false when that date exists.
 export function appendHistoryLine(path, line, { expectedChannels = [], premiere = null } = {}) {
   if (!line?.channels || !Object.keys(line.channels).length) return false;
-  if (expectedChannels.some((key) => !Object.hasOwn(line.channels, key))) return false;
-  if (!Object.values(line.channels).some((channel) => Number.isFinite(channel?.views) && channel.views > 0)) return false;
+  const storedChannels = Object.keys(line.channels);
+  if (!expectedChannels.length
+    || storedChannels.length !== expectedChannels.length
+    || storedChannels.some((key) => !expectedChannels.includes(key))) return false;
+  if (expectedChannels.some((key) => !Number.isFinite(line.channels[key]?.views)
+    || line.channels[key].views <= 0
+    || !Number.isFinite(line.channels[key]?.averageViewPercentage))) return false;
   if (!Number.isFinite(line.ageDays) || line.ageDays < 0) return false;
   if (premiere && (typeof line.date !== "string" || line.date <= premiere)) return false;
-  const lines = readHistory(path);
-  if (lines.some((l) => l.date === line.date)) return false;
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, (lines.length ? readFileSync(path, "utf8").replace(/\n?$/, "\n") : "") + JSON.stringify(line) + "\n");
-  return true;
+  // Keep the crash-recovery lock ignored by Git so an interrupted manual pull
+  // cannot make the next publisher preflight reject its own checkout.
+  const release = acquireLock(`${path}.lock.tmp`, { label: "YouTube watch history" });
+  try {
+    const lines = readHistory(path);
+    if (lines.some((l) => l.date === line.date)) return false;
+    const next = (lines.length ? readFileSync(path, "utf8").replace(/\n?$/, "\n") : "") + JSON.stringify(line) + "\n";
+    const tmp = `${path}.${process.pid}.${Date.now()}.tmp`;
+    writeFileSync(tmp, next);
+    renameSync(tmp, path);
+    return true;
+  } finally {
+    release();
+  }
 }
 export function syncAnalyticsMetadata(store, show) {
   const changed = store.title !== show.title || store.premiere !== show.date;
@@ -138,8 +164,9 @@ function saveAtomic(path, obj) {
 async function main() {
   const registry = JSON.parse(readFileSync(REGISTRY_PATH, "utf8"));
   const shows = registry.shows.filter((s) => s.active !== false && /dive-radio/.test(s.slug));
-  const today = new Date().toISOString().slice(0, 10);
   const now = new Date().toISOString();
+  const today = phoenixDate(now);
+  const dueShows = shows.filter((show) => typeof show.date === "string" && show.date <= today);
 
   const tokens = {};
   const warns = [];
@@ -149,7 +176,7 @@ async function main() {
   }
   const authorized = Object.entries(tokens).filter(([, t]) => t).map(([a]) => a);
   if (!authorized.length) { console.error(`yt-analytics: no authorized channels — ${warns.join("; ")}`); process.exit(1); }
-  const missingAccounts = missingYoutubeAccounts(shows, tokens);
+  const missingAccounts = missingYoutubeAccounts(dueShows, tokens);
   if (missingAccounts.length) {
     console.error(`yt-analytics: missing owner access for ${missingAccounts.join(", ")} — no one-channel report was published`);
     process.exit(1);
@@ -157,91 +184,105 @@ async function main() {
 
   let pulled = 0, failed = 0, appended = 0;
   const missingTotals = [];
-  for (const show of shows) {
+  for (const show of dueShows) {
     const path = join(OUT_DIR, `${show.slug}.json`);
     let store = { slug: show.slug, title: show.title, premiere: show.date, channels: {} };
     if (existsSync(path)) {
       try { store = JSON.parse(readFileSync(path, "utf8")); }
       catch (e) { console.log(`WARN yt-analytics ${show.slug}: store unreadable — skipping show (${e.message.slice(0, 60)})`); continue; }
     }
+    const previousStore = structuredClone(store);
     let changed = syncAnalyticsMetadata(store, show);
-    let showPulled = 0;
-    let showTotalsPulled = 0;
-    let showFailed = false;
-    const showMissingTotals = [];
     const showRequestFailures = [];
-    for (const t of (show.targets || []).filter((t) => t.kind === "youtube" && t.videoId)) {
+    const expectedTargets = (show.targets || [])
+      .filter((target) => target.kind === "youtube" && target.videoId && tokens[target.account])
+      .map((target) => ({ key: `yt:${target.account}`, videoId: target.videoId }));
+    const candidateChannels = Object.fromEntries(expectedTargets.map(({ key, videoId }) => [key, {
+      videoId,
+      pulledAt: now,
+      totals: null,
+      trafficSources: [],
+      retention: null,
+    }]));
+    const probesByKey = new Map(expectedTargets.map(({ key, videoId }) => [key, youtubeWatchProbe({ key, videoId, failed: true })]));
+    for (const t of (show.targets || []).filter((target) => target.kind === "youtube" && target.videoId)) {
       const token = tokens[t.account];
       if (!token) continue; // unauthorized channel: absent, never zero
+      const key = `yt:${t.account}`;
       try {
-        const key = `yt:${t.account}`;
-        const previous = store.channels?.[key];
         const base = { startDate: show.date, endDate: today, filters: `video==${t.videoId}` };
         const totalsRep = await query(token, { ...base, metrics: "views,estimatedMinutesWatched,averageViewDuration,averageViewPercentage,subscribersGained,likes,comments" });
         const totals = rowsToObjects(totalsRep)[0] || null;
-        if (!usableYoutubeWatchTotals(totals)) {
-          showFailed = true;
-          showMissingTotals.push(key);
+        const totalsProbe = youtubeWatchProbe({ key, videoId: t.videoId, totals });
+        if (totalsProbe.result === "request-failed") {
+          failed++;
+          showRequestFailures.push(key);
+          console.log(`WARN yt-analytics ${show.slug} ${t.account}: report returned a malformed watch row; history not advanced`);
+        } else if (!usableYoutubeWatchTotals(totals)) {
           missingTotals.push({ slug: show.slug, channel: key });
           console.log(`WARN yt-analytics ${show.slug} ${t.account}: report returned no usable watch totals; history not advanced`);
-        } else {
-          showTotalsPulled++;
         }
         const trafficRep = await query(token, { ...base, metrics: "views,estimatedMinutesWatched", dimensions: "insightTrafficSourceType", sort: "-views" });
         const traffic = rowsToObjects(trafficRep);
         let retention = null;
+        let requestFailed = totalsProbe.result === "request-failed";
         try {
           const r = await query(token, { ...base, metrics: "audienceWatchRatio", dimensions: "elapsedVideoTimeRatio" });
           retention = rowsToObjects(r);
         } catch (e) {
           failed++;
-          showFailed = true;
+          requestFailed = true;
           showRequestFailures.push(key);
           console.log(`WARN yt-analytics ${show.slug} ${t.account}: retention request failed (${e.message.slice(0, 80)})`);
         }
-        // A successful empty report says nothing about the last exact report.
-        // Keep that saved block byte-for-byte and describe the new check in
-        // watchReport. A first-ever empty report remains explicit null.
-        store.channels[key] = youtubeChannelAfterPull({
-          previous,
+        candidateChannels[key] = {
           videoId: t.videoId,
           pulledAt: now,
-          totals,
+          totals: totals ?? null,
           trafficSources: traffic,
           retention,
-        });
-        changed = true; showPulled++; pulled++;
+        };
+        probesByKey.set(key, requestFailed
+          ? youtubeWatchProbe({ key, videoId: t.videoId, failed: true })
+          : totalsProbe);
+        changed = true; pulled++;
       } catch (e) {
         failed++;
-        showFailed = true;
-        showRequestFailures.push(`yt:${t.account}`);
+        showRequestFailures.push(key);
+        probesByKey.set(key, youtubeWatchProbe({ key, videoId: t.videoId, failed: true }));
         console.log(`WARN yt-analytics ${show.slug} ${t.account}: ${e.message.slice(0, 140)}`);
       }
     }
-    if (showPulled > 0 || showRequestFailures.length) {
+    if (expectedTargets.length) {
+      const cohort = youtubeCohortAfterPull({
+        previousStore,
+        expectedTargets,
+        candidateChannels,
+        checkedAt: now,
+        acceptCandidate: showRequestFailures.length === 0,
+      });
+      store.channels = cohort.channels;
+      if (cohort.updatedAt) store.updatedAt = cohort.updatedAt;
+      else delete store.updatedAt;
       store.watchReport = youtubeWatchReport({
         checkedAt: now,
-        missingChannels: showMissingTotals,
-        failedChannels: showRequestFailures,
+        airDate: show.date,
+        probes: expectedTargets.map(({ key }) => probesByKey.get(key)),
+        previous: previousStore.watchReport,
+        previousTargetFingerprint: youtubeChannelsFingerprint(previousStore.channels),
       });
       changed = true;
-    }
-    if (changed) {
-      if (showTotalsPulled > 0 && !showFailed) store.updatedAt = now;
-      else if (!Object.values(store.channels || {}).some((channel) => channel?.totals)) delete store.updatedAt;
-      saveAtomic(path, store);
       // history line only when every authorized channel for this episode
-      // pulled this run — a partial day is no reading at all
-      if (showPulled > 0 && !showFailed) {
-        const line = historyLine({ premiere: show.date, pulledAt: now, endDate: today, channels: store.channels });
-        const expectedChannels = (show.targets || [])
-          .filter((target) => target.kind === "youtube" && target.videoId && tokens[target.account])
-          .map((target) => `yt:${target.account}`);
+      // formed the newly staged cohort — preserved old data is never a new read
+      if (cohort.advanced) {
+        const line = historyLine({ premiere: show.date, pulledAt: now, endDate: today, channels: candidateChannels });
+        const expectedChannels = expectedTargets.map(({ key }) => key);
         if (appendHistoryLine(join(HISTORY_DIR, `${show.slug}.jsonl`), line, { expectedChannels, premiere: show.date })) appended++;
       }
     }
+    if (changed) saveAtomic(path, store);
   }
-  console.log(`yt-analytics: pulled ${pulled} video report(s) across ${shows.length} episode(s); ${appended} history line(s) appended; authorized: ${authorized.join(", ")}${failed ? ` — ${failed} failure(s)` : ""}${warns.length ? ` — WARN ${warns.join("; ")}` : ""}`);
+  console.log(`yt-analytics: pulled ${pulled} video report(s) across ${dueShows.length} due episode(s); ${appended} history line(s) appended; authorized: ${authorized.join(", ")}${failed ? ` — ${failed} failure(s)` : ""}${warns.length ? ` — WARN ${warns.join("; ")}` : ""}`);
   const exitCode = youtubePullExitCode({
     shows,
     missingTotals,

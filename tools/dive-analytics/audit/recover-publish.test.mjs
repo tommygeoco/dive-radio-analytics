@@ -22,7 +22,8 @@ const youtubePending = {
 };
 assert.equal(recoveryAction(fresh, morning), "done");
 assert.equal(recoveryAction(stale, morning), "recover");
-assert.equal(recoveryAction(stale, noon), "fail");
+assert.equal(recoveryAction(stale, noon), "recover", "12:15 repairs a missed or failed morning when an attempt remains");
+assert.equal(recoveryAction(stale, Date.parse("2026-09-02T20:30:00Z")), "fail", "outside both scheduled windows the checker does not start surprise work");
 assert.equal(recoveryAction(youtubePending, morning), "defer", "08:15 keeps the second whole-chain attempt for noon");
 assert.equal(recoveryAction(youtubePending, noon), "recover", "noon uses the reserved whole-chain attempt for the late report");
 assert.equal(recoveryAction({ ...youtubePending, freshness: { ok: false } }, morning), "recover", "a real production problem still recovers in the morning");
@@ -76,6 +77,27 @@ assert.equal(recoveryAction({ ...youtubePending, parity: { ok: false } }, mornin
   });
   assert.equal(status, 0);
   assert.equal(runs, 1, "noon retries the whole chain rather than running a one-off YouTube patch");
+  assert.equal(checks, 2);
+}
+
+{
+  let runs = 0;
+  let checks = 0;
+  const status = await recoverPublish({
+    now: noon,
+    guard: () => () => {},
+    prepare: () => "/isolated/publisher",
+    verify: async () => {
+      checks++;
+      return checks === 1
+        ? { ok: false, freshness: { ok: false, message: "no build today" }, parity: { ok: false, mismatches: [{ file: "data.json" }] }, checklist: { ok: false } }
+        : { ok: true, freshness: { ok: true }, parity: { ok: true, checked: 16 }, checklist: { ok: true } };
+    },
+    run: () => { runs++; return { status: 0 }; },
+    resolve: () => {},
+  });
+  assert.equal(status, 0);
+  assert.equal(runs, 1, "the noon check uses an available recovery when the morning never published");
   assert.equal(checks, 2);
 }
 
@@ -194,11 +216,55 @@ assert.equal(recoveryAction({ ...youtubePending, parity: { ok: false } }, mornin
   assert.equal(checks, 1, "recovery proves production once the publisher becomes idle");
 }
 
+{
+  let runs = 0;
+  let resolved = 0;
+  const status = await recoverPublish({
+    now: noon,
+    proofOnly: true,
+    guard: () => () => {},
+    prepare: () => "/isolated/publisher",
+    verify: async () => ({
+      ok: false,
+      youtubeWatchPending: true,
+      freshness: { ok: true },
+      parity: { ok: true, checked: 16 },
+      checklist: { ok: false, youtubeWatchPending: true },
+    }),
+    run: () => { runs++; return { status: 0 }; },
+    resolve: () => { resolved++; },
+  });
+  assert.equal(status, 0, "proof-only confirms current exact production even when the source checklist is honestly waiting");
+  assert.equal(runs, 0, "proof-only can never spend a chain attempt");
+  assert.equal(resolved, 0, "proof-only does not mutate the alert queue");
+}
+
+{
+  let runs = 0;
+  const status = await recoverPublish({
+    now: noon,
+    proofOnly: true,
+    guard: () => () => {},
+    prepare: () => "/isolated/publisher",
+    verify: async () => ({
+      ok: false,
+      freshness: { ok: true },
+      parity: { ok: true, checked: 16 },
+      checklist: { ok: false, message: "today's publishing checklist could not be read" },
+    }),
+    run: () => { runs++; return { status: 0 }; },
+    resolve: () => {},
+  });
+  assert.equal(status, 1, "proof-only cannot call fresh bytes green when the checklist is missing or unreadable");
+  assert.equal(runs, 0);
+}
+
 const source = readFileSync(join(HERE, "..", "recover-publish.mjs"), "utf8");
 assert.match(source, /run-daily\.mjs", "--recovery"/);
 assert.doesNotMatch(source, /run-chain\.mjs/);
 assert.match(source, /const after = await verify/);
 assert.match(source, /return "defer"/);
 assert.match(source, /NOON_START/);
+assert.match(source, /proofOnly: process\.argv\.includes\("--proof-only"\)/);
 
-console.log("recover-publish.test: fresh no-op, morning recovery, late-YouTube noon retry, post-run proof, and overlap guard pass");
+console.log("recover-publish.test: fresh no-op, proof-only safety, morning recovery, late-YouTube noon retry, post-run proof, and overlap guard pass");

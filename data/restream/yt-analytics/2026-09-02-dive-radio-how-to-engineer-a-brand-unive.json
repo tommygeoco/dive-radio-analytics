@@ -2,22 +2,7 @@
   "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
   "title": "Dive Radio: How to Engineer a Brand Universe",
   "premiere": "2026-09-03",
-  "channels": {
-    "yt:joindiveclub": {
-      "videoId": "Vh8ogFIE8CA",
-      "pulledAt": "2026-09-04T16:23:58.207Z",
-      "totals": null,
-      "trafficSources": [],
-      "retention": []
-    },
-    "yt:designertom": {
-      "videoId": "lnAecYrKYos",
-      "pulledAt": "2026-09-04T16:23:58.207Z",
-      "totals": null,
-      "trafficSources": [],
-      "retention": []
-    }
-  },
+  "channels": {},
   "watchReport": {
     "state": "pending",
     "checkedAt": "2026-09-04T16:23:58.207Z",
@@ -25,6 +10,22 @@
       "yt:joindiveclub",
       "yt:designertom"
     ],
-    "reason": "YouTube Analytics has not returned this episode's watch data yet"
+    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "targetFingerprint": "yt:designertom:lnAecYrKYos|yt:joindiveclub:Vh8ogFIE8CA",
+    "probes": [
+      {
+        "key": "yt:joindiveclub",
+        "videoId": "Vh8ogFIE8CA",
+        "result": "no-row",
+        "observed": null
+      },
+      {
+        "key": "yt:designertom",
+        "videoId": "lnAecYrKYos",
+        "result": "no-row",
+        "observed": null
+      }
+    ],
+    "pendingSince": "2026-09-04T16:23:58.207Z"
   }
 }

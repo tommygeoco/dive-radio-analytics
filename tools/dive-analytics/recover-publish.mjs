@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // recover-publish.mjs — verify production after the morning chain and use the
-// one reserved recovery attempt. A normal failure uses it during the morning
-// window. When production is current and the only pending item is the newest
-// episode's YouTube watch report, 08:15 leaves the attempt unused and noon
-// runs the whole chain again. run-daily still enforces the two-attempt cap.
+// one reserved recovery attempt. A failure uses any available attempt during
+// either scheduled check. When production is current and the only pending item
+// is the newest episode's YouTube watch report, 08:15 leaves the attempt unused
+// and noon runs the whole chain again. run-daily still enforces the two-attempt cap.
 
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
@@ -31,6 +31,7 @@ export function recoveryAction(proof, now = Date.now()) {
     if (hour != null && hour >= NOON_START && hour < NOON_END) return "recover";
   }
   if (hour != null && hour >= MORNING_START && hour < MORNING_END) return "recover";
+  if (hour != null && hour >= NOON_START && hour < NOON_END) return "recover";
   return "fail";
 }
 
@@ -93,9 +94,9 @@ export async function verifyProduction({
 
 function proofMessage(proof) {
   const parts = [];
-  if (!proof.freshness.ok) parts.push(proof.freshness.message);
-  if (!proof.parity.ok) parts.push(`public files differ (${proof.parity.mismatches.map((item) => item.file).join(", ") || "unknown file"})`);
-  if (proof.checklist && !proof.checklist.ok) parts.push(proof.checklist.message);
+  if (proof.freshness?.ok !== true) parts.push(proof.freshness?.message || "production build is not current");
+  if (proof.parity?.ok !== true) parts.push(`public files differ (${proof.parity?.mismatches?.map((item) => item.file).join(", ") || "unknown file"})`);
+  if (proof.checklist && !proof.checklist.ok) parts.push(proof.checklist.message || "today's publishing checklist did not pass");
   return parts.join("; ") || "production did not pass its checks";
 }
 
@@ -107,10 +108,11 @@ export async function recoverPublish({
   guard = (path) => acquireLock(path, { label: "daily publishing chain", maxAgeMs: RUN_LOCK_MAX_AGE_MS }),
   wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
   queue = (lines) => appendQueueLines(lines),
-  resolve = () => resolveOperationalAlerts(),
+  resolve = () => resolveOperationalAlerts(undefined, { includeYoutubeWatch: true }),
   prepare = (source, target) => ensureIsolatedCheckout(source, target),
   verify = (options) => verifyProduction(options),
   run = () => spawnSync(process.execPath, ["tools/dive-analytics/run-daily.mjs", "--recovery"], { cwd: root, env: process.env, stdio: "inherit" }),
+  proofOnly = false,
 } = {}) {
   let release;
   for (let check = 1; check <= LOCK_CHECKS; check++) {
@@ -136,7 +138,7 @@ export async function recoverPublish({
   try {
     canonicalRoot = prepare(root, publisherRoot);
     before = await verify({ root: canonicalRoot, now, statePath });
-    if (before.ok) {
+    if (before.ok && !proofOnly) {
       resolve();
       beforeResolved = true;
     }
@@ -147,6 +149,16 @@ export async function recoverPublish({
     return 1;
   } finally {
     release();
+  }
+  if (proofOnly) {
+    const checklistOk = before.checklist?.ok === true || before.youtubeWatchPending === true;
+    const productionOk = before.freshness?.ok === true && before.parity?.ok === true && checklistOk;
+    if (productionOk) {
+      console.log(`recovery: proof only — production serves today's build and all ${before.parity.checked} public files match; no recovery was started.`);
+      return 0;
+    }
+    console.error(`recovery: proof only — ${proofMessage(before)}; no recovery was started.`);
+    return 1;
   }
   const action = recoveryAction(before, now);
   if (action === "done") {
@@ -159,7 +171,7 @@ export async function recoverPublish({
     return 0;
   }
   if (action === "fail") {
-    const line = `Daily production check failed outside the morning recovery window — ${proofMessage(before)}.`;
+    const line = `Daily production check failed outside either recovery window — ${proofMessage(before)}.`;
     queue([line]);
     console.error(`recovery: ${line}`);
     return 1;
@@ -167,7 +179,7 @@ export async function recoverPublish({
 
   console.log(before.youtubeWatchPending
     ? "recovery: newest episode YouTube watch data is still pending; starting the one reserved noon run."
-    : `recovery: morning production check failed — ${proofMessage(before)}; starting the one recovery run.`);
+    : `recovery: production check failed — ${proofMessage(before)}; starting one available recovery run.`);
   const child = run();
   const status = Number.isInteger(child.status) ? child.status : 1;
   if (status !== 0) {
@@ -206,7 +218,7 @@ export async function recoverPublish({
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) recoverPublish().then((status) => process.exit(status)).catch((error) => {
+if (isMain) recoverPublish({ proofOnly: process.argv.includes("--proof-only") }).then((status) => process.exit(status)).catch((error) => {
   console.error(`recovery: ${error.message}`);
   process.exit(1);
 });

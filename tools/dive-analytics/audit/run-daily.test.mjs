@@ -5,7 +5,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { ensureIsolatedCheckout, finishAttempt, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily } from "../run-daily.mjs";
+import { ensureIsolatedCheckout, finishAttempt, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, nextAttempt, readAttemptState, retireLegacyQueueChange, runBoundedChain, runDaily } from "../run-daily.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "../youtube-readiness.mjs";
 
 const base = { version: 1, timezone: "America/Phoenix", days: {} };
@@ -29,6 +29,10 @@ assert.equal(third.state.days["2026-09-02"].length, 2, "a refused third run is n
 const nextDay = nextAttempt(secondDone, Date.parse("2026-09-03T14:00:00Z"), { mode: "primary", id: "next" });
 assert.equal(nextDay.allowed, true);
 assert.equal(nextDay.number, 1);
+
+const firstAlert = markYoutubeWatchAlert(firstDone, "2026-09-02", dayOneMorning);
+assert.equal(firstAlert.needed, true);
+assert.equal(markYoutubeWatchAlert(firstAlert.state, "2026-09-02", dayOneMorning + 1000).needed, false, "the daily source alert has one durable event marker");
 
 const temp = mkdtempSync(join(tmpdir(), "dive-daily-isolation."));
 const remote = join(temp, "remote.git");
@@ -179,6 +183,44 @@ try {
   assert.equal(pendingSaved.invocations["2026-09-02"].at(-1).status, YOUTUBE_WATCH_PENDING_STATUS);
   assert.equal(queued.length, queueCountBeforePending, "expected YouTube report delay does not queue a false production-failure alert");
 
+  const firstRecoveryStatePath = join(temp, "state", "first-recovery-pending-attempts.json");
+  const queueCountBeforeFirstRecovery = queued.length;
+  const firstRecoveryPending = await runDaily({
+    root: source,
+    isolatedRoot: isolated,
+    statePath: firstRecoveryStatePath,
+    now: dayOneMorning,
+    mode: "recovery",
+    prepare: () => isolated,
+    getOrigin: () => "abc",
+    queue: (lines) => queued.push(...lines),
+    run: () => ({ status: YOUTUBE_WATCH_PENDING_EXIT }),
+  });
+  assert.equal(firstRecoveryPending, 0);
+  const firstRecoverySaved = readAttemptState(firstRecoveryStatePath);
+  assert.equal(firstRecoverySaved.days["2026-09-02"].length, 1, "an 08:15 recovery can be the first whole-chain attempt");
+  assert.equal(firstRecoverySaved.youtubeWatchAlerts["2026-09-02"], undefined, "the first attempt does not send the final missing-source alert");
+  assert.equal(queued.length, queueCountBeforeFirstRecovery);
+
+  const pendingRecoveryStatus = await runDaily({
+    root: source,
+    isolatedRoot: isolated,
+    statePath: pendingStatePath,
+    now: dayOneMorning + 5 * 3600000,
+    mode: "recovery",
+    prepare: () => isolated,
+    getOrigin: () => "abc",
+    queue: (lines) => queued.push(...lines),
+    run: () => ({ status: YOUTUBE_WATCH_PENDING_EXIT }),
+  });
+  assert.equal(pendingRecoveryStatus, 0, "honest missing data after recovery does not mislabel production as failed");
+  const pendingAfterRecovery = readAttemptState(pendingStatePath);
+  assert.equal(pendingAfterRecovery.days["2026-09-02"].length, 2);
+  assert.equal(pendingAfterRecovery.youtubeWatchAlerts["2026-09-02"].event, "newest-youtube-watch-still-waiting");
+  assert.equal(queued.length, queueCountBeforePending + 1, "the reserved run queues one plain missing-watch alert");
+  assert.match(queued.at(-1), /watch measures remain missing/);
+  assert.match(queued.at(-1), /2026-09-02/, "daily source alerts remain distinct while an earlier day's line is still queued");
+
   const failedStatus = await runDaily({
     root: source,
     isolatedRoot: isolated,
@@ -201,4 +243,4 @@ try {
   rmSync(temp, { force: true, recursive: true });
 }
 
-console.log("run-daily.test: bounded attempts and process groups, recorded preflights, clone quarantine, queue migration, dirty-source isolation, main sync, conflict healing, output preservation, and next-day reset pass");
+console.log("run-daily.test: bounded attempts, durable missing-watch alerts, process groups, recorded preflights, clone quarantine, queue migration, dirty-source isolation, main sync, conflict healing, output preservation, and next-day reset pass");

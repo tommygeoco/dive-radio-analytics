@@ -25,15 +25,17 @@ try {
   assert.deepEqual(importLegacyQueueFile(legacy, queue), ["old operational warning", "material audience note"]);
   assert.deepEqual(readQueue(queue), ["arrived during delivery", "old operational warning", "material audience note"], "legacy lines are durably appended before a checkout retires its tracked queue");
 
-  appendQueueLines(["Daily publish recovery failed.", "Prod dashboard is stale.", "chain: capture failed."], queue);
+  appendQueueLines(["Daily publish recovery failed.", "Prod dashboard is stale.", "chain: capture failed.", "Newest episode YouTube watch data is still unavailable after the 2026-09-02 recovery run."], queue);
   const deliveryRelease = acquireLock(`${queue}.delivery.lock`, { label: "alert delivery" });
   assert.throws(() => resolveOperationalAlerts(queue, { checks: 1 }), /already in use/, "success cannot rewrite the queue under an in-flight delivery");
   assert.equal(readQueue(queue).includes("Daily publish recovery failed."), true);
   deliveryRelease();
   resolveOperationalAlerts(queue);
-  assert.deepEqual(readQueue(queue), ["arrived during delivery", "old operational warning", "material audience note", "Daily publish recovery failed.", "chain: capture failed."], "production proof clears stale-production warnings but keeps incomplete-checklist failures");
+  assert.deepEqual(readQueue(queue), ["arrived during delivery", "old operational warning", "material audience note", "Daily publish recovery failed.", "chain: capture failed.", "Newest episode YouTube watch data is still unavailable after the 2026-09-02 recovery run."], "production proof clears stale-production warnings but keeps incomplete-checklist and source warnings");
   resolveOperationalAlerts(queue, { includeChecklist: true });
-  assert.deepEqual(readQueue(queue), ["arrived during delivery", "old operational warning", "material audience note"], "only a completed checklist clears earlier checklist failures");
+  assert.deepEqual(readQueue(queue), ["arrived during delivery", "old operational warning", "material audience note", "Newest episode YouTube watch data is still unavailable after the 2026-09-02 recovery run."], "a completed checklist does not clear a source warning without explicit source proof");
+  resolveOperationalAlerts(queue, { includeYoutubeWatch: true });
+  assert.deepEqual(readQueue(queue), ["arrived during delivery", "old operational warning", "material audience note"], "a complete watch read with production proof clears the stale source warning");
 
   const lock = `${queue}.delivery.lock`;
   const release = acquireLock(lock, { label: "alert delivery" });
