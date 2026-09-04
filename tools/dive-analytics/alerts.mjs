@@ -262,23 +262,35 @@ export function deliverPending({
   let release = null;
   try {
     release = acquireLock(`${queuePath}.delivery.lock`, { label: "alert delivery", maxAgeMs: 5 * 60 * 1000 });
-    const pending = readQueue(queuePath);
+    let pending = readQueue(queuePath);
     if (!pending.length) { log("dive-alerts: queue empty — nothing to send."); return { sent: 0, receipts: [] }; }
     const history = existsSync(receiptPath) ? JSON.parse(readFileSync(receiptPath, "utf8")) : { version: 1, attempts: [] };
     if (history.version !== 1 || !Array.isArray(history.attempts)) throw new Error("alert delivery receipts are unreadable");
     const receipts = [];
     let sent = 0;
+    // A producer may append a line after the provider answered but before we
+    // acknowledged the old batch. Reconcile saved lines before forming new
+    // batches, so a changed batch or Phoenix day cannot duplicate that send.
+    for (const attempt of history.attempts) {
+      if (attempt.channel !== channel || attempt.account !== account || attempt.target !== target || attempt.acknowledgedAt) continue;
+      if (!Array.isArray(attempt.lines)) throw new Error("alert delivery receipt has no batch lines");
+      const retained = attempt.lines.filter((line) => pending.includes(line));
+      if (["sending", "unconfirmed"].includes(attempt.state) && retained.length) {
+        throw new Error(`alert delivery ${attempt.id} has an unconfirmed provider outcome; queued lines are retained for reconciliation`);
+      }
+      if (attempt.state !== "confirmed") continue;
+      if (!attempt.receipt) throw new Error("confirmed alert delivery has no provider receipt");
+      if (retained.length) {
+        acknowledge(retained);
+        sent += retained.length;
+        receipts.push(attempt.receipt);
+      }
+      attempt.acknowledgedAt = new Date().toISOString();
+      persist(history);
+      pending = readQueue(queuePath);
+    }
     for (const batch of alertBatches(pending)) {
       const key = createHash("sha256").update(JSON.stringify({ day: phoenixDay(Date.now()), channel, account, target, lines: batch })).digest("hex");
-      const confirmed = history.attempts.findLast((attempt) => attempt.key === key && attempt.state === "confirmed");
-      if (confirmed) {
-        acknowledge(batch);
-        receipts.push(confirmed.receipt);
-        sent += batch.length;
-        continue;
-      }
-      const unresolved = history.attempts.findLast((attempt) => attempt.key === key && ["sending", "unconfirmed"].includes(attempt.state));
-      if (unresolved) throw new Error(`alert delivery ${unresolved.id} has an unconfirmed provider outcome; queued lines are retained for reconciliation`);
       const attempt = { id: randomUUID(), key, channel, account, target, lines: batch, attemptedAt: new Date().toISOString(), state: "sending" };
       history.attempts.push(attempt);
       persist(history);
@@ -302,6 +314,8 @@ export function deliverPending({
       attempt.receipt = receipt;
       persist(history);
       acknowledge(batch);
+      attempt.acknowledgedAt = new Date().toISOString();
+      persist(history);
       receipts.push(receipt);
       sent += batch.length;
     }
