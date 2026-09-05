@@ -1520,6 +1520,10 @@ try {
     if (channelEntries.some(([, channel]) => !Array.isArray(channel.retention) || !channel.retention.length) && w.curve) {
       bad++; fail(`watching: ${e.slug} exports a watch curve while a registered channel has no curve`);
     }
+    const curveUnavailableReason = w.curve ? null : "Audience curve and topic moments aren't available from YouTube yet.";
+    if (w.curveUnavailableReason !== curveUnavailableReason) {
+      bad++; fail(`watching: ${e.slug} must explain a missing curve independently of available watch totals`);
+    }
     if (channelEntries.some(([, channel]) => !Array.isArray(channel.trafficSources) || !channel.trafficSources.length) && w.traffic) {
       bad++; fail(`watching: ${e.slug} exports view sources while a registered channel has no source report`);
     }

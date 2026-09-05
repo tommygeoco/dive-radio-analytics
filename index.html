@@ -1887,6 +1887,7 @@ function buildPanel() {
     if (wparts.length) html += `<div class="gline">${wparts.join("")}</div>`;
     const pending = pendingWatchMessage(e, NEWEST.slug);
     if (pending) html += `<div class="unavailable">${esc(pending)}</div>`;
+    if (w.curveUnavailableReason) html += `<div class="unavailable">${esc(w.curveUnavailableReason)}</div>`;
     if (w.curve) {
       const pts = w.curve.map(p => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching) * 40).toFixed(1)}`).join(" ");
       // W16 moment pins — rendered ONLY from the stored episode.watch.moments

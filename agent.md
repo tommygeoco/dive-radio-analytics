@@ -1,12 +1,12 @@
 # Dive Radio — agent brief
 
-Built 2026-09-05T19:17:23.292Z · data through 2026-09-05 · health read 2026-09-05 (data through 2026-09-05) · chapters written 2026-09-04 · brief v1
+Built 2026-09-05T20:39:39.165Z · data through 2026-09-05 · health read 2026-09-05 (data through 2026-09-05) · chapters written 2026-09-04 · brief v1
 
 ## 1. How to read this
 
 This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Three clocks: the data build (2026-09-05T19:17:23.292Z); the show-health read (2026-09-05, over data through 2026-09-05 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-04).
+Three clocks: the data build (2026-09-05T20:39:39.165Z); the show-health read (2026-09-05, over data through 2026-09-05 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-04).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -409,6 +409,7 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:21:44 — Sound design as part of a brand: A guest designer layers product sounds and a host shows his soundboard experiments.
 - 01:33:17 — Branding trends from the Chutzpah sisters: Two guests describe in person activations, superfan communities, and micro shows as brand plays.
 - 01:40:53 — One up weekly picks, winner reveal, and closing: Hosts trade favorite finds, announce the vote winner, and preview a careers episode before signing off.
+Audience curve and topic moments aren't available from YouTube yet.
 Feedback: 10 comments captured, 7 with a clear lean from 7 people (7 enjoyed, 0 concerns); X replies included. Enjoyed: other (5).
 - "so good guys 🤍🫂" — @evilrabbit_ on X
 - "love your show 🙂" — @ciguleva on X

@@ -611,17 +611,21 @@ function attachEpisodeHealth(dive) {
 // explicit watchReport state so the page can explain the wait without
 // inventing data.
 const WATCH_DIR = join(ROOT, "data", "restream", "yt-analytics");
-function attachWatch(dive, now) {
+export function attachWatch(dive, now, {
+  watchDir = WATCH_DIR,
+  transcriptsDir = TRANSCRIPTS_DIR,
+  summaryPath = join(ROOT, "data", "restream", "moment-summaries.json"),
+} = {}) {
   // W17 moment summaries: model-written context notes (owner directive
   // 2026-08-23 — the pins summarize what was happening, never raw quotes).
   // Attached verbatim from the store; a moment without an entry carries no
   // summary and renders no context line (absence is silent, quotes are
   // never the fallback).
   let summaryStore = null;
-  try { summaryStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "moment-summaries.json"), "utf8")); } catch { /* no store yet */ }
+  try { summaryStore = JSON.parse(readFileSync(summaryPath, "utf8")); } catch { /* no store yet */ }
   for (const e of dive) {
     let j = null;
-    try { j = JSON.parse(readFileSync(join(WATCH_DIR, `${e.slug}.json`), "utf8")); } catch { continue; }
+    try { j = JSON.parse(readFileSync(join(watchDir, `${e.slug}.json`), "utf8")); } catch { continue; }
     // Straight-through source state for honest pending UI. The page never
     // guesses from episode age: it names YouTube's wait only when the latest
     // pull stored that state, with the checked time and affected channels.
@@ -697,6 +701,7 @@ function attachWatch(dive, now) {
       avgDurationSec: avgDurationSec != null ? Math.round(avgDurationSec) : null,
       minutesWatched: minutesWatched != null ? Math.round(minutesWatched) : null,
       curve,
+      curveUnavailableReason: curve ? null : "Audience curve and topic moments aren't available from YouTube yet.",
       traffic,
       updatedAt: j.updatedAt ?? null,
     };
@@ -704,8 +709,8 @@ function attachWatch(dive, now) {
     // W16 (v6): transcript × retention moments — deterministic shape facts and
     // annotated exit/jump-in moments, only when BOTH a blended curve and the
     // episode's transcript exist. An episode missing either carries neither
-    // block, and nothing anywhere says so (absence is silent).
-    const transcriptPath = join(TRANSCRIPTS_DIR, `${e.slug}.txt`);
+    // block. A missing curve has its own explanation, independent of totals.
+    const transcriptPath = join(transcriptsDir, `${e.slug}.txt`);
     if (curve && existsSync(transcriptPath)) {
       const wm = watchMoments({
         curve,

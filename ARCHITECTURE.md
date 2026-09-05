@@ -82,6 +82,14 @@ days since the episode's premiere (noon Phoenix).
 
 ## 3. Number lineage — page → `data.json` → store → script → rule
 
+Watch totals and audience retention arrive independently. `watch.curveUnavailableReason`
+is null when the aligned two-channel curve exists; otherwise the deterministic
+build supplies the panel and agent brief with the same explanation that the
+audience curve and topic moments are not available from YouTube yet. Valid watch
+totals remain visible. The existing daily capture retries retention for every
+aired episode; the normal build and moment-summary steps attach topic markers
+once the curve is returned. No marker is inferred from average watch percentage.
+
 `data.json` top level: `generatedAt`, `dests[4]`, `episodes[]`, `insights[]`,
 `showTrend{week1VelocityByEpisode, cumulativeAllEpisodes, paceRank}`,
 `commentSummary`, `health`, `promotionUpdatedAt`.

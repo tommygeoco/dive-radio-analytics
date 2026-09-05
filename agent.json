@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-09-05T19:17:23.292Z",
+ "generatedAt": "2026-09-05T20:39:39.165Z",
  "promotionUpdatedAt": "2026-09-05T19:15:05.368Z",
  "clocks": {
-  "data": "2026-09-05T19:17:23.292Z",
+  "data": "2026-09-05T20:39:39.165Z",
   "dataThrough": "2026-09-05T19:15:09.331Z",
   "healthRead": "2026-09-05",
   "healthDataThrough": "2026-09-05T14:01:16.169Z",
@@ -1274,6 +1274,7 @@
     "sharePercent": 10.63,
     "avgDurationSec": 784,
     "minutesWatched": 16389,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -1608,6 +1609,7 @@
     "sharePercent": 11.06,
     "avgDurationSec": 794,
     "minutesWatched": 27832,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -1941,6 +1943,7 @@
     "sharePercent": 9.13,
     "avgDurationSec": 618,
     "minutesWatched": 16722,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -2279,6 +2282,7 @@
     "sharePercent": 8.89,
     "avgDurationSec": 658,
     "minutesWatched": 21468,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -2602,6 +2606,7 @@
     "sharePercent": 13.28,
     "avgDurationSec": 757,
     "minutesWatched": 15393,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -2970,6 +2975,7 @@
     "sharePercent": 11.52,
     "avgDurationSec": 657,
     "minutesWatched": 13988,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -3340,6 +3346,7 @@
     "sharePercent": 11.27,
     "avgDurationSec": 741,
     "minutesWatched": 23094,
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -3721,6 +3728,7 @@
     "sharePercent": 18.06,
     "avgDurationSec": 717,
     "minutesWatched": 9765,
+    "curveUnavailableReason": "Audience curve and topic moments aren't available from YouTube yet.",
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -4053,7 +4061,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-09-05T19:17:23.292Z",
+    "stamp": "2026-09-05T20:39:39.165Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -4068,7 +4076,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-09-05T19:17:23.292Z",
+    "stamp": "2026-09-05T20:39:39.165Z",
     "note": "5 current actions; saved model actions whose numbers changed are held back"
    },
    {
@@ -4248,6 +4256,7 @@
   "episodes[].watch.avgPercent",
   "episodes[].watch.avgDurationSec",
   "episodes[].watch.minutesWatched",
+  "episodes[].watch.curveUnavailableReason",
   "episodes[].watch.traffic",
   "episodes[].watch.traffic[]",
   "episodes[].watch.shape",

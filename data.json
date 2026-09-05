@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-05T19:17:23.292Z",
+ "generatedAt": "2026-09-05T20:39:39.165Z",
  "chaptersUpdatedAt": "2026-09-04T15:50:09.711Z",
  "promotionUpdatedAt": "2026-09-05T19:15:05.368Z",
  "dests": [
@@ -6894,6 +6894,7 @@
       "watching": 0.073
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -13542,6 +13543,7 @@
       "watching": 0.056
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -19196,6 +19198,7 @@
       "watching": 0.062
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -25018,6 +25021,7 @@
       "watching": 0.048
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -30498,6 +30502,7 @@
       "watching": 0.086
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -35830,6 +35835,7 @@
       "watching": 0.076
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -40420,6 +40426,7 @@
       "watching": 0.056
      }
     ],
+    "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
@@ -42816,6 +42823,7 @@
     "avgDurationSec": 717,
     "minutesWatched": 9765,
     "curve": null,
+    "curveUnavailableReason": "Audience curve and topic moments aren't available from YouTube yet.",
     "traffic": [
      {
       "source": "SUBSCRIBER",
