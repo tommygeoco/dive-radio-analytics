@@ -2,30 +2,185 @@
   "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
   "title": "Dive Radio: How to Engineer a Brand Universe",
   "premiere": "2026-09-03",
-  "channels": {},
+  "channels": {
+    "yt:joindiveclub": {
+      "videoId": "Vh8ogFIE8CA",
+      "pulledAt": "2026-09-05T19:15:26.952Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "Vh8ogFIE8CA",
+        "pulledAt": "2026-09-05T19:15:26.952Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1124,
+        "estimatedMinutesWatched": 5418,
+        "averageViewDuration": 850,
+        "averageViewPercentage": 20.82,
+        "subscribersGained": 2,
+        "likes": 16,
+        "comments": 2
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 927,
+          "estimatedMinutesWatched": 2294
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 47,
+          "estimatedMinutesWatched": 664
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 40,
+          "estimatedMinutesWatched": 435
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 36,
+          "estimatedMinutesWatched": 857
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 24,
+          "estimatedMinutesWatched": 543
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 24,
+          "estimatedMinutesWatched": 196
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 16,
+          "estimatedMinutesWatched": 259
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 5,
+          "estimatedMinutesWatched": 131
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 5,
+          "estimatedMinutesWatched": 34
+        }
+      ],
+      "retention": []
+    },
+    "yt:designertom": {
+      "videoId": "lnAecYrKYos",
+      "pulledAt": "2026-09-05T19:15:26.952Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "lnAecYrKYos",
+        "pulledAt": "2026-09-05T19:15:26.952Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1171,
+        "estimatedMinutesWatched": 4347,
+        "averageViewDuration": 589,
+        "averageViewPercentage": 15.410000000000002,
+        "subscribersGained": 14,
+        "likes": 20,
+        "comments": 0
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 909,
+          "estimatedMinutesWatched": 1963
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 130,
+          "estimatedMinutesWatched": 742
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 54,
+          "estimatedMinutesWatched": 269
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 26,
+          "estimatedMinutesWatched": 219
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 18,
+          "estimatedMinutesWatched": 618
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 13,
+          "estimatedMinutesWatched": 101
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 11,
+          "estimatedMinutesWatched": 342
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 5,
+          "estimatedMinutesWatched": 0
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 3,
+          "estimatedMinutesWatched": 12
+        },
+        {
+          "insightTrafficSourceType": "SHORTS",
+          "views": 2,
+          "estimatedMinutesWatched": 78
+        }
+      ],
+      "retention": []
+    }
+  },
   "watchReport": {
-    "state": "pending",
-    "checkedAt": "2026-09-05T14:01:00.131Z",
-    "missingChannels": [
-      "yt:joindiveclub",
-      "yt:designertom"
-    ],
-    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "state": "ready",
+    "checkedAt": "2026-09-05T19:15:26.952Z",
+    "missingChannels": [],
+    "reason": null,
     "targetFingerprint": "yt:designertom:lnAecYrKYos|yt:joindiveclub:Vh8ogFIE8CA",
     "probes": [
       {
         "key": "yt:joindiveclub",
         "videoId": "Vh8ogFIE8CA",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1124,
+          "averageViewPercentage": 20.82
+        }
       },
       {
         "key": "yt:designertom",
         "videoId": "lnAecYrKYos",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1171,
+          "averageViewPercentage": 15.410000000000002
+        }
       }
-    ],
-    "pendingSince": "2026-09-04T16:23:58.207Z"
-  }
+    ]
+  },
+  "reading": {
+    "schemaVersion": 1,
+    "source": "youtube-analytics",
+    "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+    "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+    "pulledAt": "2026-09-05T19:15:26.952Z",
+    "state": "ready"
+  },
+  "updatedAt": "2026-09-05T19:15:26.952Z"
 }

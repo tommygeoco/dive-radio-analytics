@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "Ugy9s6caFPsgOixTcPJ4AaABAg",
-        "pulledAt": "2026-09-05T14:01:12.751Z",
+        "pulledAt": "2026-09-05T19:15:37.655Z",
         "state": "ready"
       }
     },
@@ -92,15 +92,15 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "UgxZ05HGxuJ19cC7HN94AaABAg",
-        "pulledAt": "2026-09-05T14:01:12.751Z",
+        "pulledAt": "2026-09-05T19:15:37.655Z",
         "state": "ready"
       }
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-05T14:01:12.751Z",
+  "updatedAt": "2026-09-05T19:15:37.655Z",
   "capture": {
-    "checkedAt": "2026-09-05T14:01:12.751Z",
+    "checkedAt": "2026-09-05T19:15:37.655Z",
     "state": "ready",
     "sources": [
       {
@@ -108,7 +108,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "sC3Wvi1Whm4",
-        "pulledAt": "2026-09-05T14:01:12.751Z",
+        "pulledAt": "2026-09-05T19:15:37.655Z",
         "state": "ready",
         "count": 1
       },
@@ -117,7 +117,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "qPAPUmg_qZE",
-        "pulledAt": "2026-09-05T14:01:12.751Z",
+        "pulledAt": "2026-09-05T19:15:37.655Z",
         "state": "ready",
         "count": 1
       }
