@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "UgwNVZEMoKDsM6gaRtx4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -37,7 +37,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "UgzeVCMu5-gXAiXR7wF4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -56,7 +56,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "UgztFQjLpgrYSOwjofV4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -75,7 +75,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "UgzH1qjxgyCGSNWq-vp4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -94,15 +94,15 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "UgwcRtAZCssi_VeZzYd4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     }
   ],
-  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "updatedAt": "2026-09-05T14:01:12.751Z",
   "xCoverage": "missed",
   "capture": {
-    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "checkedAt": "2026-09-05T14:01:12.751Z",
     "state": "ready",
     "sources": [
       {
@@ -110,7 +110,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "njOU7GKZcvc",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 3
       },
@@ -119,7 +119,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "G2_F3dd3RkA",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 2
       }

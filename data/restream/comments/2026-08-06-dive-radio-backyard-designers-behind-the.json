@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "UgwlosaebdKcQpgr8bR4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -37,7 +37,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "Ugxg7INEiTqIy81bUsh4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -56,7 +56,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "Ugz-gpechmoRhLvLgkx4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -75,7 +75,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "UgxUElzqQyNzo8mWeKd4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -105,7 +105,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "Ugxg7INEiTqIy81bUsh4AaABAg.A_D-mjoy05zA_ZxFx2JL8T",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -121,10 +121,10 @@
       "firstSeenAt": "2026-08-22T17:25:24.172Z"
     }
   ],
-  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "updatedAt": "2026-09-05T14:01:12.751Z",
   "xCoverage": "missed",
   "capture": {
-    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "checkedAt": "2026-09-05T14:01:12.751Z",
     "state": "ready",
     "sources": [
       {
@@ -132,7 +132,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "0tRHVW0qRt4",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 4
       },
@@ -141,7 +141,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
         "objectId": "ziyWxt6qzfM",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 1
       }

@@ -29,7 +29,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "UgzcQ7tLhmDU8Hw_Ln14AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -48,7 +48,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "UgykYeq0fuXgPS6uzzt4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -67,7 +67,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "UgycC2EjwPzptqmQnox4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -86,7 +86,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "Ugy1hJceQ3I6aQ0IMXR4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -105,7 +105,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "UgxB6c2zfa3bo749-wF4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -124,7 +124,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "Ugycpd2h87OpPl0kAz14AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -143,15 +143,15 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "Ugycpd2h87OpPl0kAz14AaABAg.AaCNjtBRDTdAaHIDFqXsUP",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     }
   ],
-  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "updatedAt": "2026-09-05T14:01:12.751Z",
   "xCoverage": "covered",
   "capture": {
-    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "checkedAt": "2026-09-05T14:01:12.751Z",
     "state": "ready",
     "sources": [
       {
@@ -159,7 +159,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "RhemcDEc_-A",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 6
       },
@@ -168,7 +168,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "eLA79C1jq1g",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 1
       }

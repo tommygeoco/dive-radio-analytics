@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "9HYGZgaHdlw",
-      "pulledAt": "2026-09-04T20:50:46.543Z",
+      "pulledAt": "2026-09-05T14:01:00.131Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "9HYGZgaHdlw",
-        "pulledAt": "2026-09-04T20:50:46.543Z",
+        "pulledAt": "2026-09-05T14:01:00.131Z",
         "state": "ready"
       },
       "totals": {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "szvTFybWfK4",
-      "pulledAt": "2026-09-04T20:50:46.543Z",
+      "pulledAt": "2026-09-05T14:01:00.131Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "szvTFybWfK4",
-        "pulledAt": "2026-09-04T20:50:46.543Z",
+        "pulledAt": "2026-09-05T14:01:00.131Z",
         "state": "ready"
       },
       "totals": {
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-04T20:50:46.543Z",
+  "updatedAt": "2026-09-05T14:01:00.131Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "pulledAt": "2026-09-04T20:50:46.543Z",
+    "pulledAt": "2026-09-05T14:01:00.131Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-04T20:50:46.543Z",
+    "checkedAt": "2026-09-05T14:01:00.131Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:szvTFybWfK4|yt:joindiveclub:9HYGZgaHdlw",

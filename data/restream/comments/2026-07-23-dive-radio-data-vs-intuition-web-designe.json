@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "UgxEVqoA6QUwVVMcrnV4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -37,7 +37,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "UgzaM6yr8BIj0GRZ55F4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -56,7 +56,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "UgxyeBCR7SZb4xqjaC14AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -75,7 +75,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "UgzCGnyDEHv0pITrT0t4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -94,15 +94,15 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Ugw0_SE5nx-kzg7mi6N4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     }
   ],
-  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "updatedAt": "2026-09-05T14:01:12.751Z",
   "xCoverage": "missed",
   "capture": {
-    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "checkedAt": "2026-09-05T14:01:12.751Z",
     "state": "ready",
     "sources": [
       {
@@ -110,7 +110,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "TJqSfnadiGM",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 2
       },
@@ -119,7 +119,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Pn6U5nWgD-g",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 3
       }

@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "UgxBZWwh2mfJS8CqpDJ4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -37,7 +37,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "UgyYEIb6QFUmQUAuiB14AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -56,7 +56,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "Ugz9WleMTJ4Ey7HR2kF4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -75,7 +75,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "UgzOmG6-eJRGYTwiRNZ4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -94,7 +94,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "Ugxwjib7K70jpgikqXR4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -113,7 +113,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "UgwlYI2C7EEJ1yf5gQJ4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -132,7 +132,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "UgyJOzX10_droNMkaWx4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     },
@@ -151,15 +151,15 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "UgxE-eFVC2ezvRlRspt4AaABAg",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready"
       }
     }
   ],
-  "updatedAt": "2026-09-04T20:50:57.340Z",
+  "updatedAt": "2026-09-05T14:01:12.751Z",
   "xCoverage": "missed",
   "capture": {
-    "checkedAt": "2026-09-04T20:50:57.340Z",
+    "checkedAt": "2026-09-05T14:01:12.751Z",
     "state": "ready",
     "sources": [
       {
@@ -167,7 +167,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "VcLm0kAGCck",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 6
       },
@@ -176,7 +176,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "FqsXWbfKmGw",
-        "pulledAt": "2026-09-04T20:50:57.340Z",
+        "pulledAt": "2026-09-05T14:01:12.751Z",
         "state": "ready",
         "count": 2
       }
