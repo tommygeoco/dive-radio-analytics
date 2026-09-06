@@ -1,23 +1,23 @@
 {
   "version": 1,
   "promptVersion": 5,
-  "updatedAt": "2026-09-05T19:17:09.970Z",
+  "updatedAt": "2026-09-06T14:02:20.939Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
-  "factsGeneratedAt": "2026-09-05T19:15:45.590Z",
+  "factsGeneratedAt": "2026-09-06T14:00:52.895Z",
   "facts": [
     {
       "id": "open-start-E1",
       "value": 66.8,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "open-at2-E1",
       "value": 12.1,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
@@ -26,7 +26,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "subs1k-E1",
@@ -34,7 +34,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "watched-E1-joindiveclub",
@@ -42,7 +42,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "subs1k-E1-joindiveclub",
@@ -50,7 +50,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "subs-E1-joindiveclub",
@@ -62,7 +62,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "subs1k-E1-designertom",
@@ -70,7 +70,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "subs-E1-designertom",
@@ -114,20 +114,20 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 1,
-      "ageDays": 50
+      "ageDays": 50.8
     },
     {
       "id": "open-start-E2",
       "value": 66.4,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "open-at2-E2",
       "value": 15.2,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
@@ -136,7 +136,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "subs1k-E2",
@@ -144,7 +144,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "watched-E2-joindiveclub",
@@ -152,7 +152,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "subs1k-E2-joindiveclub",
@@ -160,7 +160,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "subs-E2-joindiveclub",
@@ -172,7 +172,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "subs1k-E2-designertom",
@@ -180,7 +180,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "subs-E2-designertom",
@@ -224,20 +224,20 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 2,
-      "ageDays": 44
+      "ageDays": 44.8
     },
     {
       "id": "open-start-E3",
       "value": 73.1,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "open-at2-E3",
       "value": 12.9,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
@@ -246,7 +246,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "subs1k-E3",
@@ -254,7 +254,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "watched-E3-joindiveclub",
@@ -262,7 +262,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "subs1k-E3-joindiveclub",
@@ -270,7 +270,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "subs-E3-joindiveclub",
@@ -282,7 +282,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "subs1k-E3-designertom",
@@ -290,7 +290,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "subs-E3-designertom",
@@ -334,20 +334,20 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 3,
-      "ageDays": 37
+      "ageDays": 37.8
     },
     {
       "id": "open-start-E4",
       "value": 69.9,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "open-at2-E4",
       "value": 11.8,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
@@ -356,7 +356,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "subs1k-E4",
@@ -364,7 +364,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "watched-E4-joindiveclub",
@@ -372,7 +372,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "subs1k-E4-joindiveclub",
@@ -380,7 +380,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "subs-E4-joindiveclub",
@@ -392,7 +392,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "subs1k-E4-designertom",
@@ -400,7 +400,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "subs-E4-designertom",
@@ -444,20 +444,20 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 4,
-      "ageDays": 30
+      "ageDays": 30.8
     },
     {
       "id": "open-start-E5",
       "value": 69.2,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "open-at2-E5",
       "value": 12.3,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
@@ -466,7 +466,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "subs1k-E5",
@@ -474,7 +474,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "watched-E5-joindiveclub",
@@ -482,7 +482,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "subs1k-E5-joindiveclub",
@@ -490,7 +490,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "subs-E5-joindiveclub",
@@ -502,7 +502,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "subs1k-E5-designertom",
@@ -510,7 +510,7 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "subs-E5-designertom",
@@ -558,20 +558,20 @@
       "kind": "episode-rate",
       "basis": "mature",
       "episode": 5,
-      "ageDays": 23
+      "ageDays": 23.8
     },
     {
       "id": "open-start-E6",
       "value": 64.3,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
       "id": "open-at2-E6",
       "value": 13.3,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
@@ -580,7 +580,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "subs1k-E6",
@@ -588,7 +588,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "watched-E6-joindiveclub",
@@ -596,7 +596,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "subs1k-E6-joindiveclub",
@@ -604,7 +604,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "subs-E6-joindiveclub",
@@ -616,7 +616,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "subs1k-E6-designertom",
@@ -624,7 +624,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "subs-E6-designertom",
@@ -668,20 +668,20 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 6,
-      "ageDays": 16
+      "ageDays": 16.8
     },
     {
       "id": "open-start-E7",
       "value": 68.6,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
       "id": "open-at2-E7",
       "value": 13.2,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
@@ -690,7 +690,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "subs1k-E7",
@@ -698,7 +698,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "watched-E7-joindiveclub",
@@ -706,7 +706,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "subs1k-E7-joindiveclub",
@@ -714,7 +714,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "subs-E7-joindiveclub",
@@ -726,7 +726,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "subs1k-E7-designertom",
@@ -734,7 +734,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "subs-E7-designertom",
@@ -778,7 +778,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 7,
-      "ageDays": 9
+      "ageDays": 9.8
     },
     {
       "id": "watched-E8",
@@ -786,7 +786,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "subs1k-E8",
@@ -794,7 +794,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "watched-E8-joindiveclub",
@@ -802,7 +802,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "subs1k-E8-joindiveclub",
@@ -810,7 +810,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "subs-E8-joindiveclub",
@@ -822,7 +822,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "subs1k-E8-designertom",
@@ -830,7 +830,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "subs-E8-designertom",
@@ -874,7 +874,7 @@
       "kind": "episode-rate",
       "basis": "young",
       "episode": 8,
-      "ageDays": 2
+      "ageDays": 2.8
     },
     {
       "id": "show-health-score",
@@ -1034,7 +1034,7 @@
     },
     {
       "id": "dir-announceToPlay",
-      "value": 15.5
+      "value": 15.6
     },
     {
       "id": "dir-discoveryShare",
@@ -1148,35 +1148,35 @@
       "id": "open-floor-E1",
       "value": 12.1,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "recovery-peak-E1",
       "value": 28.5,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "mid-hold-E1",
       "value": 14.4,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "end-hold-E1",
       "value": 10.1,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "drop-E1-6",
       "value": 7.7,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1187,7 +1187,7 @@
       "id": "drop-E1-27",
       "value": 2.7,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1198,7 +1198,7 @@
       "id": "drop-E1-99",
       "value": 3.5,
       "episode": 1,
-      "ageDays": 50,
+      "ageDays": 50.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1209,35 +1209,35 @@
       "id": "open-floor-E2",
       "value": 13.9,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "recovery-peak-E2",
       "value": 29.6,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "mid-hold-E2",
       "value": 13.2,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "end-hold-E2",
       "value": 7,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "drop-E2-9",
       "value": 3.4,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1248,7 +1248,7 @@
       "id": "drop-E2-14",
       "value": 2.9,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1259,7 +1259,7 @@
       "id": "drop-E2-39",
       "value": 2.4,
       "episode": 2,
-      "ageDays": 44,
+      "ageDays": 44.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1270,35 +1270,35 @@
       "id": "open-floor-E3",
       "value": 11.1,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "recovery-peak-E3",
       "value": 26.3,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "mid-hold-E3",
       "value": 13.6,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "end-hold-E3",
       "value": 8.7,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "drop-E3-8",
       "value": 3.9,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1309,7 +1309,7 @@
       "id": "drop-E3-41",
       "value": 2.7,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1320,7 +1320,7 @@
       "id": "drop-E3-50",
       "value": 2.9,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1331,7 +1331,7 @@
       "id": "hold-E3-77",
       "value": 2.2,
       "episode": 3,
-      "ageDays": 37,
+      "ageDays": 37.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1342,35 +1342,35 @@
       "id": "open-floor-E4",
       "value": 10.9,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "recovery-peak-E4",
       "value": 22.1,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "mid-hold-E4",
       "value": 11.6,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "end-hold-E4",
       "value": 6.6,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "drop-E4-9",
       "value": 4.6,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1381,7 +1381,7 @@
       "id": "hold-E4-31",
       "value": 2.2,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1392,7 +1392,7 @@
       "id": "drop-E4-39",
       "value": 6,
       "episode": 4,
-      "ageDays": 30,
+      "ageDays": 30.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1403,35 +1403,35 @@
       "id": "open-floor-E5",
       "value": 10,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "recovery-peak-E5",
       "value": 26.2,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "mid-hold-E5",
       "value": 17.5,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "end-hold-E5",
       "value": 11.9,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
       "id": "drop-E5-12",
       "value": 5.4,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1442,7 +1442,7 @@
       "id": "drop-E5-20",
       "value": 2.8,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1453,7 +1453,7 @@
       "id": "drop-E5-50",
       "value": 3.6,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1464,7 +1464,7 @@
       "id": "hold-E5-56",
       "value": 2.3,
       "episode": 5,
-      "ageDays": 23,
+      "ageDays": 23.8,
       "comparisonBasis": "mature"
     },
     {
@@ -1475,35 +1475,35 @@
       "id": "open-floor-E6",
       "value": 11.7,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
       "id": "recovery-peak-E6",
       "value": 24.8,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
       "id": "mid-hold-E6",
       "value": 16.1,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
       "id": "end-hold-E6",
       "value": 9.2,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
       "id": "drop-E6-7",
       "value": 2.5,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
@@ -1514,7 +1514,7 @@
       "id": "drop-E6-16",
       "value": 4.1,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
@@ -1525,7 +1525,7 @@
       "id": "drop-E6-36",
       "value": 2.5,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
@@ -1536,7 +1536,7 @@
       "id": "hold-E6-50",
       "value": 3.4,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
@@ -1547,7 +1547,7 @@
       "id": "hold-E6-70",
       "value": 2.5,
       "episode": 6,
-      "ageDays": 16,
+      "ageDays": 16.8,
       "comparisonBasis": "young"
     },
     {
@@ -1558,35 +1558,35 @@
       "id": "open-floor-E7",
       "value": 11,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
       "id": "recovery-peak-E7",
       "value": 25.6,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
       "id": "mid-hold-E7",
       "value": 15.4,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
       "id": "end-hold-E7",
       "value": 8.8,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
       "id": "drop-E7-7",
       "value": 3.2,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
@@ -1597,7 +1597,7 @@
       "id": "drop-E7-18",
       "value": 4.5,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
@@ -1608,7 +1608,7 @@
       "id": "drop-E7-40",
       "value": 3.8,
       "episode": 7,
-      "ageDays": 9,
+      "ageDays": 9.8,
       "comparisonBasis": "young"
     },
     {
@@ -1753,70 +1753,76 @@
     },
     {
       "id": "views-yt-all",
-      "value": 19933
+      "value": 20231
     },
     {
       "id": "views-x-all",
-      "value": 19298
+      "value": 19358
     },
     {
       "id": "share-x-all",
-      "value": 49.2
+      "value": 48.9
     },
     {
       "id": "views-total-all",
-      "value": 39231
+      "value": 39589
     }
   ],
   "attempts": 1,
   "ranked": true,
   "items": [
     {
-      "id": "restore-subscribe-ask",
+      "id": "lift-subscriber-conversion",
       "category": "promotion",
       "serves": "conversion",
       "factIds": [
-        "check-conversion",
         "hm-conversion-subscribers",
         "hm-typical-conversion-subscribers",
-        "subs1k-E1",
-        "subs1k-E1-designertom",
-        "subs1k-E1-joindiveclub",
-        "subs1k-E5"
+        "subs1k-E5-joindiveclub",
+        "subs1k-E5-designertom"
       ],
-      "text": "Subscriber conversion is fragile: the carried reading is 0.8 subscribers per 1,000 views against a typical 3.2. E1 converted at 8.7 blended — 13.2 on DesignerTom, 5.5 on Dive Club — but E5 managed only 0.8.",
-      "recommendation": "Script a direct subscribe ask early and again at the close of this week's stream, and pin a subscribe comment on both channels. DesignerTom converted far better on E1, so test whether the ask lands hardest there."
+      "text": "Subscriber conversion is fragile: the newest read is 0.8 subscribers per 1,000 views against a typical 3.2, carried from an older finished episode. On that episode, E5, Dive Club converted at 1.4 per 1,000 while DesignerTom converted at 0.",
+      "recommendation": "Script one clear on-air subscribe ask early in this week's show and pin a subscribe comment on both channels; give DesignerTom its own ask since it sat at 0 on E5, and compare which channel's ask moves subscribers next episode."
     },
     {
-      "id": "rework-announce-and-search",
+      "id": "rework-announce-to-play",
       "category": "distribution",
       "serves": "reachEfficiency",
       "factIds": [
-        "check-reachEfficiency",
         "hm-reachEfficiency-announceToPlay",
         "hm-typical-reachEfficiency-announceToPlay",
         "hm-reachEfficiency-discoveryShare",
-        "hm-typical-reachEfficiency-discoveryShare",
-        "traffic-share-SUBSCRIBER"
+        "hm-typical-reachEfficiency-discoveryShare"
       ],
-      "text": "Reach is fragile: the carried announce-to-play reading is 18.1 against a typical 29.5, and search-and-suggested share sits at 11.7 versus a typical 14 — both softening while a 66.3 share of YouTube views comes from existing subscribers.",
-      "recommendation": "Rework this week's episode announce — new hook, post at a different hour on X — and rewrite titles and descriptions around terms designers actually search, then compare next week's announce-to-play and discovery share against these readings."
+      "text": "Reach is fragile and softening: the newest announce-to-play read is 18.1 against a typical 29.5, and the share of views from search and suggested sits at 11.7 against a typical 14 — both carried from an older finished episode.",
+      "recommendation": "Rework the announce this week: post it earlier, lead with a short hook clip instead of plain text, and have both hosts repost it; then check whether the next episode's announce-to-play read climbs back toward its usual level."
     },
     {
-      "id": "revive-chat-participation",
-      "category": "audience",
+      "id": "pull-chatters-back-in",
+      "category": "content",
       "serves": "participation",
       "factIds": [
-        "check-participation",
         "hm-participation-chattersPer100",
         "hm-typical-participation-chattersPer100",
-        "chatters-E1",
-        "chat-E1",
         "chatters-E8",
+        "chatters-E1",
         "live-viewers-E8"
       ],
-      "text": "Chat is thinning: chatters per 100 live viewers read 37.8 against a typical 77.5. E1 drew 104 chatters and 383 messages; E8 drew only 37 chatters from 872 people watching live.",
-      "recommendation": "Open this week's stream with a direct question to chat, read chatter names aloud in the first segment, and run one mid-show poll; check afterward whether chatters per 100 moves back toward the usual level."
+      "text": "Live turnout is building — 872 people watched E8 live — but chat is thinning: only 37 people chatted on E8 versus 104 on E1, and chatters at the peak read 37.8 against a typical 77.5.",
+      "recommendation": "Open this week's show with a direct question to chat, read chatter names aloud in the first segment, and run one mid-show poll or vote; test whether calling on the newer live viewers directly lifts the number of people who chat."
+    },
+    {
+      "id": "open-discovery-surfaces",
+      "category": "distribution",
+      "serves": "growth",
+      "factIds": [
+        "traffic-share-SUBSCRIBER",
+        "traffic-SHORTS",
+        "traffic-share-YT_SEARCH",
+        "traffic-share-RELATED_VIDEO"
+      ],
+      "text": "The show leans almost entirely on existing fans: 66.3 of YouTube views come from SUBSCRIBER traffic, search brings 4.6 and related videos 6.1, and Shorts have delivered just 4 views across the whole show.",
+      "recommendation": "Cut two or three Shorts from each episode's strongest moments this week and rewrite titles and descriptions with searchable phrases viewers actually type; watch whether search and Shorts start bringing any new viewers at all."
     },
     {
       "id": "tighten-mid-show",
@@ -1825,25 +1831,10 @@
       "factIds": [
         "drop-E4-39",
         "drop-min-E4-39",
-        "drop-E4-9",
-        "drop-min-E4-9"
+        "watched-E4"
       ],
-      "text": "E4's biggest exit came about two fifths of the way in, near 48 minutes, where 6 of every 100 viewers left during a rambling image-pasting story; another 4.6 of every 100 left early, around 11 minutes in.",
-      "recommendation": "Test tightening long personal-project stories: pre-plan a hard cut to the next demo when a segment runs on, and trim that mid-show stretch in the next upload's edit to see if the middle holds better."
-    },
-    {
-      "id": "lock-live-schedule",
-      "category": "audience",
-      "serves": "livePull",
-      "factIds": [
-        "check-livePull",
-        "hm-livePull-peak",
-        "hm-typical-livePull-peak",
-        "hm-livePull-liveViewers",
-        "hm-typical-livePull-liveViewers"
-      ],
-      "text": "Live pull is healthy and building: the newest peak hit 98 live viewers against a typical 71, and 872 people watched live versus a typical 495.",
-      "recommendation": "Lock the same day and start time for next week's stream and announce it on both channels at the close of this week's show, so the building live habit stays unbroken while the weaker measures get fixed."
+      "text": "On E4, 6 of every 100 viewers left about two-fifths of the way in, around 48 minutes, during a loose rambling back-and-forth; E4 finished with an average of 8.9 of the video watched, the softest of the finished shows' middles.",
+      "recommendation": "Pre-outline the mid-show demo segments with a stated payoff up front, and trim the loosest stretch of the recording in the VOD edit; test over the next two episodes whether a tighter middle holds more viewers past that point."
     }
   ]
 }

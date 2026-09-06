@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "TJqSfnadiGM",
-      "pulledAt": "2026-09-05T19:15:26.952Z",
+      "pulledAt": "2026-09-06T14:00:28.102Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "TJqSfnadiGM",
-        "pulledAt": "2026-09-05T19:15:26.952Z",
+        "pulledAt": "2026-09-06T14:00:28.102Z",
         "state": "ready"
       },
       "totals": {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "Pn6U5nWgD-g",
-      "pulledAt": "2026-09-05T19:15:26.952Z",
+      "pulledAt": "2026-09-06T14:00:28.102Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Pn6U5nWgD-g",
-        "pulledAt": "2026-09-05T19:15:26.952Z",
+        "pulledAt": "2026-09-06T14:00:28.102Z",
         "state": "ready"
       },
       "totals": {
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-05T19:15:26.952Z",
+  "updatedAt": "2026-09-06T14:00:28.102Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-    "pulledAt": "2026-09-05T19:15:26.952Z",
+    "pulledAt": "2026-09-06T14:00:28.102Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-05T19:15:26.952Z",
+    "checkedAt": "2026-09-06T14:00:28.102Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Pn6U5nWgD-g|yt:joindiveclub:TJqSfnadiGM",

@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "Ugy9s6caFPsgOixTcPJ4AaABAg",
-        "pulledAt": "2026-09-05T19:15:37.655Z",
+        "pulledAt": "2026-09-06T14:00:39.691Z",
         "state": "ready"
       }
     },
@@ -92,15 +92,35 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "UgxZ05HGxuJ19cC7HN94AaABAg",
-        "pulledAt": "2026-09-05T19:15:37.655Z",
+        "pulledAt": "2026-09-06T14:00:39.691Z",
         "state": "ready"
       }
+    },
+    {
+      "id": "yt:Ugw9FX-bxPor7BQNDEJ4AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "sC3Wvi1Whm4",
+      "author": "hanakimis",
+      "authorId": "UCDK9GS9JwN9_dMU2utfUDKw",
+      "text": "Hi. What is the link to the on design site?",
+      "likes": 0,
+      "publishedAt": "2026-09-06T04:52:02Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "Ugw9FX-bxPor7BQNDEJ4AaABAg",
+        "pulledAt": "2026-09-06T14:00:39.691Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-06T14:00:39.691Z"
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-05T19:15:37.655Z",
+  "updatedAt": "2026-09-06T14:00:39.691Z",
   "capture": {
-    "checkedAt": "2026-09-05T19:15:37.655Z",
+    "checkedAt": "2026-09-06T14:00:39.691Z",
     "state": "ready",
     "sources": [
       {
@@ -108,16 +128,16 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "sC3Wvi1Whm4",
-        "pulledAt": "2026-09-05T19:15:37.655Z",
+        "pulledAt": "2026-09-06T14:00:39.691Z",
         "state": "ready",
-        "count": 1
+        "count": 2
       },
       {
         "schemaVersion": 1,
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "qPAPUmg_qZE",
-        "pulledAt": "2026-09-05T19:15:37.655Z",
+        "pulledAt": "2026-09-06T14:00:39.691Z",
         "state": "ready",
         "count": 1
       }
