@@ -312,6 +312,30 @@ Hinterlands `dive-radio-retrieval-repair.md` plan.
 
 ## Public-X authentication repair — 2026-09-07
 
+### Owner-directed incident recovery — 2026-09-07
+
+The owner requested immediate repair and publication after both morning attempts
+failed. Live evidence: the 07:00 primary and 08:15 recovery ran at origin/main
+1e6997a, failed X personal OAuth discovery, and left production at September 6.
+The existing three app-auth/recovery commits are local only. Native app-auth
+read-only verification returned both public accounts successfully today.
+
+- [x] Verify scheduler history, production timestamp, runtime checkout and ledger.
+- [ ] Adopt existing repairs with regression and source-only release checks.
+- [ ] Add one explicit operator repair after two failed automatic attempts,
+  requiring a reason and changed committed code; retain every attempt and the
+  unchanged limit of two automatic attempts. No scheduler may select this mode.
+- [ ] Run the complete chain from the dedicated publisher, with real source
+  capture, strict validation, full release gate and exact production proof.
+- [ ] Record live timestamp, source status, frozen-entry comparison and browser.
+
+Source-only code adoption must reject any changed source store or served artifact
+and run every audit and syntax check. It does not certify or deploy the old
+dataset. The ordinary publication gate still validates saved and rebuilt data
+strictly against the real clock. This removes the stale-data repair deadlock.
+The operator run is authorized by the owner's immediate repair request in this
+task, not by the scheduler; historical failed attempts are never reset or erased.
+
 ### Scope and progress
 
 - [x] Read required contracts, repository guidance and the existing reliability plan.

@@ -3,7 +3,8 @@
 // It prevents overlapping runs and permits at most two whole-chain attempts
 // on one Phoenix day: the 07:00 run and one reserved recovery. The recovery
 // normally runs in the morning; YouTube's expected watch-report
-// delay keeps it available for noon.
+// delay keeps it available for noon. An owner-directed operator repair can run
+// once after two failed automatic attempts, on changed code with a saved reason.
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
@@ -48,11 +49,21 @@ export function readAttemptState(path = STATE_PATH) {
   state.failureAlerts ??= {};
   if (typeof state.failureAlerts !== "object" || Array.isArray(state.failureAlerts)) throw new Error("daily failure alert state is unreadable");
   for (const [day, attempts] of Object.entries(state.days)) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Array.isArray(attempts) || attempts.length > MAX_DAILY_ATTEMPTS) throw new Error("daily attempt state has an invalid day");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Array.isArray(attempts)
+      || attempts.filter(a => a?.mode !== "operator-repair").length > MAX_DAILY_ATTEMPTS
+      || attempts.filter(a => a?.mode === "operator-repair").length > 1) throw new Error("daily attempt state has an invalid day");
     for (const attempt of attempts) {
-      if (!attempt || typeof attempt.id !== "string" || !attempt.id || !["primary", "recovery"].includes(attempt.mode)
+      if (!attempt || typeof attempt.id !== "string" || !attempt.id || !["primary", "recovery", "operator-repair"].includes(attempt.mode)
         || !Number.isFinite(Date.parse(attempt.startedAt)) || phoenixDay(attempt.startedAt) !== day || typeof attempt.status !== "string") {
         throw new Error("daily attempt state has an invalid attempt");
+      }
+      if (attempt.mode === "operator-repair") {
+        validateRepairReason(attempt.reason);
+        const prior = attempts.slice(0, attempts.indexOf(attempt));
+        if (prior.length !== MAX_DAILY_ATTEMPTS || prior.some(a => a.mode === "operator-repair" || !a.status.startsWith("failed:"))
+          || !/^[a-f0-9]{40}$/.test(attempt.origin || "") || attempt.origin === prior.at(-1)?.origin) {
+          throw new Error("operator repair requires two prior failures and changed committed code");
+        }
       }
     }
     if (new Set(attempts.map((attempt) => attempt.id)).size !== attempts.length) throw new Error("daily attempt state has duplicate attempt ids");
@@ -102,11 +113,27 @@ export function queueDailyFailure(statePath, day, line, queue, lastProof = lastP
   return true;
 }
 
-export function nextAttempt(state, now = Date.now(), { mode = "primary", id = randomUUID(), origin = null } = {}) {
+function validateRepairReason(reason) {
+  if (typeof reason !== "string" || reason.trim().length < 12 || reason.length > 300 || /[\r\n]/.test(reason)) {
+    throw new Error("operator repair requires a 12-300 character single-line reason recording the owner's authorization");
+  }
+}
+
+export function nextAttempt(state, now = Date.now(), { mode = "primary", id = randomUUID(), origin = null, reason } = {}) {
   const day = phoenixDay(now);
   if (!day) throw new Error("daily attempt clock is invalid");
   const attempts = state.days[day] || [];
-  if (attempts.length >= MAX_DAILY_ATTEMPTS) return { allowed: false, day, number: attempts.length + 1, state };
+  if (!["primary", "recovery", "operator-repair"].includes(mode)) throw new Error("unknown daily run mode");
+  if (mode === "operator-repair") {
+    validateRepairReason(reason);
+    if (attempts.some(a => a.mode === mode)) return { allowed: false, day, number: attempts.length + 1, state };
+    if (attempts.length !== MAX_DAILY_ATTEMPTS || attempts.some(a => !a.status.startsWith("failed:"))
+      || !/^[a-f0-9]{40}$/.test(origin || "") || origin === attempts.at(-1)?.origin) {
+      throw new Error("operator repair requires two prior failures and changed committed code");
+    }
+  } else if (attempts.filter(a => a.mode !== "operator-repair").length >= MAX_DAILY_ATTEMPTS) {
+    return { allowed: false, day, number: attempts.length + 1, state };
+  }
   const next = structuredClone(state);
   next.days[day] = [...attempts, {
     id,
@@ -114,6 +141,7 @@ export function nextAttempt(state, now = Date.now(), { mode = "primary", id = ra
     origin,
     startedAt: new Date(now).toISOString(),
     status: "running",
+    ...(mode === "operator-repair" ? { reason: reason.trim() } : {}),
   }];
   const keepAfter = Date.parse(`${day}T12:00:00Z`) - 31 * 86400000;
   for (const savedDay of Object.keys(next.days)) {
@@ -390,8 +418,8 @@ function originSha(root) {
 }
 
 function modeFromArgs(args) {
-  const modes = ["primary", "recovery"].filter((mode) => args.includes(`--${mode}`));
-  if (modes.length !== 1) throw new Error("choose exactly one run mode: --primary or --recovery");
+  const modes = ["primary", "recovery", "operator-repair"].filter((mode) => args.includes(`--${mode}`));
+  if (modes.length !== 1) throw new Error("choose exactly one run mode: --primary, --recovery or --operator-repair");
   return modes[0];
 }
 
@@ -401,6 +429,7 @@ export async function runDaily({
   statePath = STATE_PATH,
   now = Date.now(),
   mode,
+  reason,
   prepare = (source, target) => ensureIsolatedCheckout(source, target),
   getOrigin = originSha,
   queue = (lines) => appendQueueLines(lines),
@@ -408,6 +437,7 @@ export async function runDaily({
   captureReceipt = (publisherRoot, options) => readPublishEvidence(publisherRoot, options),
   resolve = () => resolveOperationalAlerts(undefined, { includeChecklist: true, includeYoutubeWatch: true }),
 } = {}) {
+  if (mode === "operator-repair") validateRepairReason(reason);
   const release = acquireLock(`${statePath}.run.lock`, { now, label: "daily publishing chain", maxAgeMs: RUN_LOCK_MAX_AGE_MS });
   try {
     const invocation = startInvocation(reconcileInterruptedState(readAttemptState(statePath), now), now, { mode });
@@ -424,9 +454,17 @@ export async function runDaily({
       return 1;
     }
 
-    const reserved = nextAttempt(readAttemptState(statePath), now, { mode, origin: getOrigin(publisherRoot) });
+    let reserved;
+    try {
+      reserved = nextAttempt(readAttemptState(statePath), now, { mode, origin: getOrigin(publisherRoot), reason });
+    } catch (error) {
+      saveAttemptState(statePath, finishInvocation(readAttemptState(statePath), invocation.day, invocation.id, "refused:run-policy", Date.now(), error.message));
+      throw error;
+    }
     if (!reserved.allowed) {
-      const line = `Daily publish already used both automatic attempts for ${reserved.day}; no third run was started.`;
+      const line = mode === "operator-repair"
+        ? `The operator repair for ${reserved.day} was already used; no additional run was started.`
+        : `Daily publish already used both automatic attempts for ${reserved.day}; no third automatic run was started.`;
       const refused = finishInvocation(reserved.state, invocation.day, invocation.id, "refused:attempt-limit");
       saveAttemptState(statePath, refused);
       try { queueDailyFailure(statePath, invocation.day, line, queue); } catch (queueError) { console.error(`daily-run: could not queue the attempt-limit alert (${queueError.message}).`); }
@@ -434,7 +472,9 @@ export async function runDaily({
       return 75;
     }
     saveAttemptState(statePath, reserved.state);
-    console.log(`daily-run: ${reserved.day} attempt ${reserved.number} of ${MAX_DAILY_ATTEMPTS} (${mode}).`);
+    console.log(mode === "operator-repair"
+      ? `daily-run: ${reserved.day} owner-directed operator repair; both failed automatic attempts retained. Reason: ${reason.trim()}`
+      : `daily-run: ${reserved.day} attempt ${reserved.number} of ${MAX_DAILY_ATTEMPTS} (${mode}).`);
     let result;
     let runError = null;
     try {
@@ -544,7 +584,7 @@ if (isMain) {
       const day = phoenixDay(Date.now());
       console.log(`daily-run: dry run — ${state.days[day]?.length || 0} of ${MAX_DAILY_ATTEMPTS} attempts recorded for ${day}; isolated publisher ${PUBLISHER_ROOT}; no work started.`);
     } else {
-      runDaily({ mode: modeFromArgs(process.argv.slice(2)) }).then((status) => process.exit(status)).catch((error) => {
+      runDaily({ mode: modeFromArgs(process.argv.slice(2)), reason: process.argv.find(arg => arg.startsWith("--reason="))?.slice(9) }).then((status) => process.exit(status)).catch((error) => {
         console.error(`daily-run: ${error.message}`);
         process.exit(1);
       });

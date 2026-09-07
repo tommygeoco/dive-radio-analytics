@@ -116,6 +116,13 @@ complete two-channel watch report, it queues one alert for the Phoenix day and
 the daily ledger prevents a duplicate. After two hard-failed attempts, recovery
 returns a failure without launching another child. Its daily failure marker stays
 after alert delivery, so repeated checks cannot requeue the same warning.
+After the owner explicitly requests immediate incident recovery, an operator can
+run `run-daily.mjs --operator-repair --reason="Owner authorization and repair reason"`
+from the dedicated publisher. This permits one recorded repair after two hard
+failures, only on a changed committed revision. It retains both failures and
+their receipts, uses the same lock and complete release chain, and refuses a
+second repair. Scheduled primary/recovery modes still allow only two automatic
+attempts and never select the operator mode.
 YouTube watch channels advance only as
 one same-pull, current-video reading; a partial response preserves the whole
 prior reading or leaves the reading absent, never a cross-day blend. Future

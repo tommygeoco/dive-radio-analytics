@@ -59,6 +59,13 @@ complete-cohort checks and missing-value rules are unchanged. Restream uses
 
 ---
 
+Owner-directed incident recovery uses `run-daily --operator-repair --reason=...`
+after exactly two hard failures and a changed committed revision. It appends one
+third record in the same daily ledger, tagged `operator-repair`, preserving the
+two automatic receipts. Replay is refused even after a crash. Scheduled modes
+still cap automatic work at two attempts; the operator path shares their lock,
+full chain and production proof. No job is configured for operator mode.
+
 ## 2. Stores and their time semantics
 
 This is the section to read before comparing two numbers. "Age" means

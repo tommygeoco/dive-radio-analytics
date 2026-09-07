@@ -209,6 +209,15 @@ is corrected to match its two daily checks.
 - No third automatic full-chain attempt on a Phoenix day.
 - No broad cron rewrite, new scheduler, or secret movement.
 
+September 7 owner-directed recovery exception: an immediate repair request may
+authorize one `--operator-repair` after two hard failures, with a saved reason
+and changed committed code. Both failed records remain intact. This explicit
+manual mode shares the production lock and full strict release chain; it cannot
+be replayed or selected by the scheduler. Two automatic attempts remain the cap.
+Source-only repair adoption requires identical stored data and served artifacts
+plus every audit and syntax check. A subsequent data release still requires all
+strict current-clock validation and exact production proof.
+
 ## 8. Immediate acceptance
 
 1. Atomic cohort fixtures prove partial or mixed-time data cannot be consumed.

@@ -108,6 +108,16 @@ postlive-discover → transcripts-pull → newsletter-promotion → postlive-tra
 - **Transcript cron status is literal:** install `tools/dive-analytics/transcript-cron-script.js` verbatim as the 08:00 OpenClaw script. It stays quiet on a current mirror and throws on a nonzero or missing inner exit code; never replace it with shell `$status` handling.
 - **`run-chain.mjs` pulls main before the first step** (PRD v10 W34) and `postlive-publish.sh` pulls `--rebase` again before it pushes; a stash conflict on the generated files (`data.json`, `data.js`) is resolved by taking the pulled tree and rebuilding, never by aborting. Work from another machine may land on main directly when it changes no store files; commit `data.json`/`data.js` only when the chain machine has already pulled the code that produces them (the chain rebuilds them every morning).
 
+Incident recovery exception, authorized September 7: after two hard-failed
+automatic attempts, an explicitly owner-directed `--operator-repair` may run once
+from the dedicated publisher on changed committed code, with a recorded
+`--reason`. It keeps the two failures and uses the same lock, capture, strict
+validation, release and live-proof path. Never reset the ledger, select another
+state file, or configure a scheduler to use operator mode. Code-only adoption
+may use `DIVE_SOURCE_ONLY_PUSH=1` only when every source store and public artifact
+is identical to origin/main; its full audit/syntax gate does not certify a data
+release. Every production publish still runs the ordinary strict gate.
+
 ## How to change a number (the procedure)
 
 1. **Find the definition** in `ARCHITECTURE.md` §3 (number → store → script → rule) and the PRD section that introduced it.
