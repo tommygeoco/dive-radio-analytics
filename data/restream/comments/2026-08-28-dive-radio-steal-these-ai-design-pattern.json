@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "Ugy9s6caFPsgOixTcPJ4AaABAg",
-        "pulledAt": "2026-09-06T14:00:39.691Z",
+        "pulledAt": "2026-09-07T17:03:58.314Z",
         "state": "ready"
       }
     },
@@ -92,7 +92,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "UgxZ05HGxuJ19cC7HN94AaABAg",
-        "pulledAt": "2026-09-06T14:00:39.691Z",
+        "pulledAt": "2026-09-07T17:03:58.314Z",
         "state": "ready"
       }
     },
@@ -114,13 +114,21 @@
         "pulledAt": "2026-09-06T14:00:39.691Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-09-06T14:00:39.691Z"
+      "firstSeenAt": "2026-09-06T14:00:39.691Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "Ugw9FX-bxPor7BQNDEJ4AaABAg",
+        "pulledAt": "2026-09-07T17:03:58.314Z",
+        "state": "ready"
+      }
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-06T14:00:39.691Z",
+  "updatedAt": "2026-09-07T17:03:58.314Z",
   "capture": {
-    "checkedAt": "2026-09-06T14:00:39.691Z",
+    "checkedAt": "2026-09-07T17:03:58.314Z",
     "state": "ready",
     "sources": [
       {
@@ -128,7 +136,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "sC3Wvi1Whm4",
-        "pulledAt": "2026-09-06T14:00:39.691Z",
+        "pulledAt": "2026-09-07T17:03:58.314Z",
         "state": "ready",
         "count": 2
       },
@@ -137,7 +145,7 @@
         "source": "youtube-comments",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "qPAPUmg_qZE",
-        "pulledAt": "2026-09-06T14:00:39.691Z",
+        "pulledAt": "2026-09-07T17:03:58.314Z",
         "state": "ready",
         "count": 1
       }

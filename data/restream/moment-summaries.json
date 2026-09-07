@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-04T20:59:09.302Z",
+  "updatedAt": "2026-09-07T17:07:02.539Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -173,6 +173,26 @@
     "2026-08-20-dive-radio-the-mascot-industrial-complex|hold|0.5": {
       "summary": "Host demos mascot creation tools live, tweaking movement and expressions, showing cute animal characters, and joking with cohost Ridd over absurd mixed-media mascots including a killer whale version of him.",
       "writtenAt": "2026-09-04T20:59:09.302Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.09": {
+      "summary": "A host shows the logo of a startup he once sold, both hosts admit branding is not their strength, then recorded videos nominate designers Marina and Laura Escobar for designer of the week.",
+      "writtenAt": "2026-09-07T17:07:02.539Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.32": {
+      "summary": "Hosts react to new AI video tools, including on-demand generated clips, a live stream where viewers prompt scenes in real time, and an announcement of Solaris, a model that generates interactive interfaces.",
+      "writtenAt": "2026-09-07T17:07:02.539Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.38": {
+      "summary": "Hosts discuss generated interfaces as branding's next big shift after social media, cite designers with strong personal brands, then play a clip of Evil Rabbit describing his creative team's work at Vercel.",
+      "writtenAt": "2026-09-07T17:07:02.539Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|hold|0.56": {
+      "summary": "A guest demos an interactive map tool built for an energy client that animates power corridors over real terrain, pulls in live data views, and lets the client generate and export branded scenes.",
+      "writtenAt": "2026-09-07T17:07:02.539Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|hold|0.71": {
+      "summary": "Hosts discuss rising demand and pay for brand designers and expanding brand universes, then play a clip of Mike Smith comparing brand world building to the immersive feeling of Disneyland.",
+      "writtenAt": "2026-09-07T17:07:02.539Z"
     }
   }
 }
