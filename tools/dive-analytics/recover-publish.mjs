@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import { acquireLock, appendQueueLines, resolveOperationalAlerts } from "./alert-queue.mjs";
 import { checkProductionFreshness, phoenixDay, phoenixHour } from "./freshness.mjs";
 import { checkLiveParity, SITE } from "./live-parity.mjs";
-import { ensureIsolatedCheckout, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, PUBLISHER_ROOT, readAttemptState, RUN_LOCK_MAX_AGE_MS, saveAttemptState, STATE_PATH } from "./run-daily.mjs";
+import { ensureIsolatedCheckout, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, PUBLISHER_ROOT, queueDailyFailure, readAttemptState, RUN_LOCK_MAX_AGE_MS, saveAttemptState, STATE_PATH } from "./run-daily.mjs";
 import { isYoutubeWatchPendingStatus } from "./youtube-readiness.mjs";
 import { pendingSourceStates, readPublishEvidence, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
 import { RECOVERY_PROOF_PATH } from "./runtime-paths.mjs";
@@ -165,7 +165,7 @@ export async function recoverPublish({
   } catch (error) {
     if (before) recordProof({ ...before, ok: false, youtubeWatchPending: false }, now);
     const line = `Daily production check could not prepare its isolated checkout — ${error.message}.`;
-    queue([line]);
+    queueDailyFailure(statePath, phoenixDay(now), line, queue);
     console.error(`recovery: ${line}`);
     return 1;
   } finally {
@@ -182,12 +182,20 @@ export async function recoverPublish({
     console.error(`recovery: proof only — ${proofMessage(before)}; no recovery was started.`);
     return 1;
   }
-  if (before.youtubeWatchPending && before.receipt?.ok === true) {
+  // Check every unproved outcome, not only an honest source wait. The daily
+  // runner remains the final cap guard if another invocation wins the race.
+  if (!before.ok) {
     const releaseState = guard(`${statePath}.run.lock`);
     try {
       const state = readAttemptState(statePath);
       const day = phoenixDay(now);
       if ((state.days[day]?.length || 0) >= MAX_DAILY_ATTEMPTS) {
+        if (!(before.youtubeWatchPending && before.receipt?.ok === true)) {
+          const line = `Daily publish already used both automatic attempts for ${day}; production remains unconfirmed and no third run was started.`;
+          queueDailyFailure(statePath, day, line, queue);
+          console.error(`recovery: ${line}`);
+          return 75;
+        }
         const marker = markYoutubeWatchAlert(state, day, now);
         if (marker.needed) {
           const reason = (before.pendingSources || []).map((source) => `E${source.episode} ${source.source}: ${source.reason || source.state}`).join("; ");
@@ -203,6 +211,13 @@ export async function recoverPublish({
     } finally { releaseState(); }
   }
 
+  // Use the daily failure marker as well as queue deduplication. A delivered
+  // line has left the queue, but its day marker must still suppress a replay.
+  const queueFailure = (line) => {
+    const unlock = guard(`${statePath}.run.lock`);
+    try { return queueDailyFailure(statePath, phoenixDay(now), line, queue); }
+    finally { unlock(); }
+  };
   const action = recoveryAction(before, now);
   if (action === "done") {
     if (!beforeResolved) throw new Error("production proof completed without reconciling its alert state");
@@ -215,7 +230,7 @@ export async function recoverPublish({
   }
   if (action === "fail") {
     const line = `Daily production check failed outside either recovery window — ${proofMessage(before)}.`;
-    queue([line]);
+    queueFailure(line);
     console.error(`recovery: ${line}`);
     return 1;
   }
@@ -230,7 +245,7 @@ export async function recoverPublish({
   const status = Number.isInteger(child?.status) && !child?.error && !child?.signal ? child.status : 1;
   if (status !== 0) {
     const line = `Daily publish recovery failed (exit ${status}); production still needs attention.`;
-    queue([line]);
+    queueFailure(line);
     console.error(`recovery: ${line}`);
     return status;
   }
@@ -252,7 +267,7 @@ export async function recoverPublish({
         return 0;
       }
       const line = `Daily publish recovery finished, but production still failed its checks — ${proofMessage(after)}.`;
-      queue([line]);
+      queueDailyFailure(statePath, phoenixDay(now), line, queue);
       console.error(`recovery: ${line}`);
       return 1;
     }

@@ -324,8 +324,8 @@ Hinterlands `dive-radio-retrieval-repair.md` plan.
   audit files pass (`node --test` with x-public-get, comments-pull, channel-stats,
   source-capture, source-receipts, x-broadcast-discovery, x-broadcast-plays and
   source-io under tools/dive-analytics/audit), exit 0. `git diff --check`: exit 0.
-- [ ] Repair hard-failure recovery exhaustion and durable alert deduplication.
-- [ ] Run combined safe verification and record handoff evidence.
+- [x] Repair hard-failure recovery exhaustion and durable alert deduplication.
+- [x] Run combined safe verification and record handoff evidence below.
 
 ### Discoveries and decisions
 
@@ -346,3 +346,89 @@ Read-only native smoke: `node --input-type=module -e` importing `xPublicGet`
 and requesting `/2/users/by?usernames=ridd_design,designertom&user.fields=public_metrics`
 returned `READ_ONLY_APP_AUTH: two public accounts returned`, exit 0. No store was
 written and no credential value was requested, exported or logged.
+
+### Recovery decision and evidence
+
+The hard-failure branch used to spawn `run-daily --recovery` after the two daily
+attempts had already been spent. The child refused correctly, but the checker
+queued another recovery-failed line after the prior line had been delivered.
+A disposable import of origin/main's recovery code reproduced this: two checks
+launched two refusing children and requeued after drain (fixture command exit 0).
+No production runner or queue was used in that reproduction.
+
+Recovery now checks the cap for every unproved outcome, not just a source wait.
+An exhausted hard failure returns 75 without launching the child. It uses the
+existing daily `failureAlerts` marker, under the existing run lock, for exhausted,
+child, preflight, out-of-window and final-proof failures. The child and checker
+therefore share one daily failure event. The queue must accept the warning before
+the marker is saved. Delivery removes the queue line, not the marker. Historical
+attempts, invocation records, the two-attempt policy and publish gates stay intact.
+Lock-contention alerts retain their existing behavior; they are not exhausted
+recovery events, and this repair adds no monitoring or delivery framework.
+
+Executable fixtures cover a delivered earlier daily failure, a new exhausted
+warning, queue drain, a child that consumes the second attempt and queues its own
+failure, failed queue writes, corrupt state, untouched attempt history and the
+next day's fresh budget. The test wrapper now supplies a disposable ledger even
+for legacy tests; it never inspects the owner's real attempt state.
+
+### Verification commands (2026-09-07)
+
+All commands ran in `/Users/bones/Dev/2026/dive-radio-analytics` on the repair
+branch. Network, publishing and deployment effects were not part of these tests.
+Existing tests use disposable fixtures. The one separately noted live call was
+an authorized read-only public-user lookup.
+
+```sh
+node --test tools/dive-analytics/audit/x-public-get.test.mjs tools/dive-analytics/audit/comments-pull.test.mjs tools/dive-analytics/audit/channel-stats.test.mjs tools/dive-analytics/audit/source-capture.test.mjs tools/dive-analytics/audit/source-receipts.test.mjs tools/dive-analytics/audit/x-broadcast-discovery.test.mjs tools/dive-analytics/audit/x-broadcast-plays.test.mjs tools/dive-analytics/audit/source-io.test.mjs
+# exit 0; 8 files passed
+node --test tools/dive-analytics/audit/recover-publish.test.mjs tools/dive-analytics/audit/run-daily.test.mjs tools/dive-analytics/audit/alert-queue.test.mjs tools/dive-analytics/audit/alerts-delivery.test.mjs
+# exit 0; 4 files passed
+node --test --test-concurrency=1 tools/dive-analytics/audit/*.test.mjs
+# exit 0; 44 files passed, 0 failed
+node --check tools/dive-analytics/recover-publish.mjs
+for script in scripts/restream/{x-public-get,postlive-discover,postlive-track,comments-pull,channel-stats-pull}.mjs tools/dive-analytics/audit/{x-public-get,recover-publish}.test.mjs; do node --check "$script" || exit; done
+# exit 0; all eight syntax checks passed
+git diff --check
+# exit 0
+node tools/dive-analytics/audit/validate.mjs
+# exit 1; 3 failures, 32 warnings, 0 drift
+```
+
+The strict validator correctly refuses the existing September 6 data: generatedAt
+is stale, the newest snapshot is 26.3 hours old, and data.json is 26.3 hours old
+(the limit is 26). Those three freshness failures are NOT waived or repaired by
+this code change. The validation rules, run-daily cap, `data.json`, `data.js` and
+all `data/restream` files have no diff against origin/main. Code fixtures passing
+does not mean the old saved dataset is publishable. No live publish was run.
+Full local audit output is in `.git/public-x-repair-tests.log`; strict output is
+in `.git/public-x-repair-validation.log` (local, not part of the release).
+
+### Safe adoption and rerun (main owns this, not executed here)
+
+App-auth commit: `4ff4affbebdfe81b5dbcfa58f64bb18ee314e40c`.
+Recovery is a separate concern-level commit following it. Adopt both reviewed
+commits through the normal main/publisher process; this task never pushes,
+publishes, edits the dedicated publisher, changes schedules or resets state.
+
+From the committed publisher checkout, inspect today's real budget with:
+
+```sh
+node tools/dive-analytics/run-daily.mjs --dry
+```
+
+If both attempts are recorded, do not run the chain again that Phoenix day. Do
+not remove records, change their dates, select another state file or call
+`run-chain.mjs` / `postlive-publish.sh` directly to avoid the cap. After adoption,
+`node tools/dive-analytics/recover-publish.mjs --proof-only` can check existing
+production without capture or another attempt; an old or failed checklist still
+fails honestly. Preparation may update the dedicated checkout, so main owns even
+that command. It is not a fresh data pull.
+
+The next real Phoenix day gets a new budget automatically. The normal scheduled
+`run-daily.mjs --primary` run (or the existing recovery window if an attempt is
+still available) pulls new data, validates it, and follows the full publishing
+path. A manual primary run, if main chooses one, must start from the dedicated
+publisher and still pass the same cap. Yesterday's records remain untouched.
+Independent final review, adoption, fresh capture, production proof and scheduler
+work remain with main; no claim of live repair or unattended stability is made.

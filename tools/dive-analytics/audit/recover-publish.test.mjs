@@ -6,9 +6,13 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { checklistVerdict, recoverPublish as recoverPublishActual, recoveryAction } from "../recover-publish.mjs";
+import { appendQueueLines, acknowledgeQueueLines, readQueue } from "../alert-queue.mjs";
+import { nextAttempt, finishAttempt, saveAttemptState, readAttemptState, queueDailyFailure } from "../run-daily.mjs";
 import { YOUTUBE_WATCH_PENDING_STATUS } from "../youtube-readiness.mjs";
 
-const recoverPublish = (options) => recoverPublishActual({ recordProof: () => {}, ...options });
+const suite = mkdtempSync(join(tmpdir(), "dive-recovery-suite-"));
+let fixture = 0;
+const recoverPublish = (options) => recoverPublishActual({ statePath: join(suite, `${fixture++}.json`), recordProof: () => {}, ...options });
 const HERE = dirname(fileURLToPath(import.meta.url));
 const morning = Date.parse("2026-09-02T15:15:00Z");
 const noon = Date.parse("2026-09-02T19:00:00Z");
@@ -270,3 +274,78 @@ assert.match(source, /NOON_START/);
 assert.match(source, /proofOnly: process\.argv\.includes\("--proof-only"\)/);
 
 console.log("recover-publish.test: fresh no-op, proof-only safety, morning recovery, late-YouTube noon retry, post-run proof, and overlap guard pass");
+
+// Real queue acknowledgement must not remove the durable daily failure marker.
+const day = "2026-09-02";
+const makeState = (count) => {
+  let state = { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {}, failureAlerts: {} };
+  for (let i = 0; i < count; i++) {
+    const attempt = nextAttempt(state, morning, { mode: i ? "recovery" : "primary", id: `attempt-${i}` });
+    state = finishAttempt(attempt.state, day, attempt.id, "failed:1", morning);
+  }
+  return state;
+};
+for (const alreadyReported of [false, true]) {
+  const statePath = join(suite, `exhausted-${alreadyReported}.json`);
+  const queuePath = join(suite, `queue-${alreadyReported}.json`);
+  writeFileSync(queuePath, "[]");
+  saveAttemptState(statePath, makeState(2));
+  const queue = (lines) => appendQueueLines(lines, queuePath);
+  if (alreadyReported) {
+    queueDailyFailure(statePath, day, "Daily publishing checklist failed (exit 1)", queue, null);
+    acknowledgeQueueLines(readQueue(queuePath), queuePath);
+  }
+  const attemptsBefore = JSON.stringify(readAttemptState(statePath).days);
+  let runs = 0;
+  const options = { statePath, now: morning, prepare: () => "/fixture", verify: async () => stale,
+    queue, run: () => { runs++; return { status: 75 }; } };
+  assert.equal(await recoverPublish(options), 75);
+  assert.equal(runs, 0, "an exhausted hard failure must not launch run-daily at all");
+  assert.equal(readQueue(queuePath).length, alreadyReported ? 0 : 1);
+  acknowledgeQueueLines(readQueue(queuePath), queuePath);
+  assert.equal(await recoverPublish({ ...options, now: noon }), 75);
+  assert.equal(readQueue(queuePath).length, 0, "queue drain must not rearm the exhausted warning");
+  assert.equal(runs, 0);
+  assert.equal(JSON.stringify(readAttemptState(statePath).days), attemptsBefore, "past attempts are never rewritten");
+}
+{
+  const statePath = join(suite, "child-failure.json"), queuePath = join(suite, "child-queue.json");
+  saveAttemptState(statePath, makeState(1)); writeFileSync(queuePath, "[]");
+  const queue = (lines) => appendQueueLines(lines, queuePath);
+  let runs = 0;
+  const options = { statePath, now: morning, prepare: () => "/fixture", verify: async () => stale, queue,
+    run: () => {
+      runs++;
+      const attempt = nextAttempt(readAttemptState(statePath), morning, { mode: "recovery", id: "second" });
+      saveAttemptState(statePath, finishAttempt(attempt.state, day, attempt.id, "failed:1", morning));
+      queueDailyFailure(statePath, day, "Daily publishing checklist failed (exit 1)", queue, null);
+      return { status: 1 };
+    } };
+  assert.equal(await recoverPublish(options), 1);
+  assert.equal(readQueue(queuePath).length, 1, "child and recovery share one failure event");
+  acknowledgeQueueLines(readQueue(queuePath), queuePath);
+  assert.equal(await recoverPublish(options), 75);
+  assert.equal(runs, 1); assert.deepEqual(readQueue(queuePath), []);
+  assert.equal(readAttemptState(statePath).days[day].length, 2);
+  // Tomorrow gets its own budget without deleting yesterday's records.
+  assert.equal(nextAttempt(readAttemptState(statePath), Date.parse("2026-09-03T15:15:00Z"), { mode: "primary" }).allowed, true);
+}
+{
+  const statePath = join(suite, "queue-failure.json");
+  saveAttemptState(statePath, makeState(2));
+  let runs = 0, queued = 0;
+  const options = { statePath, now: morning, prepare: () => "/fixture", verify: async () => stale,
+    run: () => { runs++; }, queue: () => { throw new Error("queue unavailable"); } };
+  await assert.rejects(recoverPublish(options), /queue unavailable/);
+  assert.equal(readAttemptState(statePath).failureAlerts[day], undefined, "failed queue writes cannot mark an alert delivered");
+  assert.equal(await recoverPublish({ ...options, queue: () => { queued++; } }), 75);
+  assert.equal(queued, 1); assert.equal(runs, 0);
+}
+{
+  const statePath = join(suite, "corrupt.json"); writeFileSync(statePath, "broken");
+  let runs = 0;
+  await assert.rejects(recoverPublish({ statePath, now: morning, prepare: () => "/fixture", verify: async () => stale, run: () => { runs++; } }));
+  assert.equal(runs, 0, "unreadable attempt history fails closed");
+}
+rmSync(suite, { recursive: true, force: true });
+console.log("recover-publish: hard-failure cap, durable warning after queue drain, child dedupe, queue failure and next-day budget passed");

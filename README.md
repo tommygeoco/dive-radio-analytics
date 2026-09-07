@@ -106,7 +106,10 @@ if both earlier jobs were missed. If production is current and only the newest
 YouTube watch report is still pending at 08:15, it keeps that attempt for the
 12:15 check, which reruns the complete chain once. If that recovery still finds no
 complete two-channel watch report, it queues one alert for the Phoenix day and
-the daily ledger prevents a duplicate. YouTube watch channels advance only as
+the daily ledger prevents a duplicate. After two hard-failed attempts, recovery
+returns a failure without launching another child. Its daily failure marker stays
+after alert delivery, so repeated checks cannot requeue the same warning.
+YouTube watch channels advance only as
 one same-pull, current-video reading; a partial response preserves the whole
 prior reading or leaves the reading absent, never a cross-day blend. Future
 episodes are not queried, and an empty air-date check stays idle until the next
