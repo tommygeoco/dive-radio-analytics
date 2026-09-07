@@ -81,6 +81,11 @@ semantics. The comparison rules (one `baselines.mjs`, like-for-like bases,
 eight-episode windows, three-peer minimum, rebuildable freezes, freshness)
 are specified in `tools/dive-analytics/prd-analytics-v7-*.md`.
 
+Public X discovery, tweet metrics, replies and follower counts use native
+`xurl --app hinterlands --auth app --method GET`. They do not depend on the
+owner's personal OAuth login; credentials stay inside xurl. See
+`ARCHITECTURE.md` §1 for request limits and failure behavior.
+
 Data is exported daily at 07:00 America/Phoenix. The OpenClaw job enters
 through `run-daily.mjs`, which prepares a clean `main` clone under
 `~/Library/Application Support/Dive Radio Analytics/publisher-main`, prevents

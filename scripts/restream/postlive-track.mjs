@@ -16,9 +16,9 @@
 //   node postlive-track.mjs list
 //
 // Auth: YouTube key from ~/.openclaw/secrets/youtube-credentials.json.
-//       X bearer via short-lived `xurl token --app hinterlands` (same pattern
-//       the xapi proxy uses; short-lived calls re-read the token file fresh).
+//       Public X requests use native xurl app auth; credentials stay in xurl.
 
+import { xPublicGet } from "./x-public-get.mjs";
 import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock, fetchJson, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
@@ -40,7 +40,6 @@ const LOG_PATH = process.env.DIVE_POSTLIVE_LOG_PATH ||
   "/Users/bones/Documents/Obsidian/Hinterlands/Ops/Bones/live-show-analytics.md";
 const BEGIN = "<!-- POSTLIVE:BEGIN -->";
 const END = "<!-- POSTLIVE:END -->";
-const XURL_BIN = "/opt/homebrew/bin/xurl";
 const YTDLP_BIN = process.env.YTDLP_BIN || "/opt/homebrew/bin/yt-dlp";
 const TRACK_WINDOW_DAYS = 60;
 const MAX_RESOLVE_ATTEMPTS = 5; // distinct failed runs before a target latches as "none"
@@ -73,18 +72,6 @@ function ytApiKey() {
   return key;
 }
 
-function xBearer() {
-  let out;
-  try { out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
-    encoding: "utf8",
-    timeout: 30000,
-    env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
-  });
-  } catch { throw new Error("X credential command failed"); }
-  const token = out.trim().split("\n").pop();
-  if (!token) throw new Error("xurl token returned empty output");
-  return token;
-}
 
 const getJson = (url, headers = {}) => fetchJson(url, { headers, label: "postlive source" });
 
@@ -213,18 +200,16 @@ async function fetchYouTubeStats(videoIds) {
   return stats;
 }
 
-async function fetchXStats(postIds) {
+export async function fetchXStats(postIds, { get = xPublicGet } = {}) {
   if (!postIds.length) return {};
-  const bearer = xBearer();
   const stats = {};
   for (const batch of chunk(postIds, 100)) {
     // Tweet metrics are reach/engagement only. Episode plays MUST come from
     // the resolved X broadcast below; native tweet-video view_count is never
     // requested or accepted as an episode view. Attachments are requested
     // only to identify native-video promos, without media public_metrics.
-    const data = await getJson(
-      `https://api.x.com/2/tweets?ids=${batch.join(",")}&tweet.fields=public_metrics,attachments,entities&expansions=attachments.media_keys&media.fields=type`,
-      { Authorization: `Bearer ${bearer}` }
+    const data = await get(
+      `https://api.x.com/2/tweets?ids=${batch.join(",")}&tweet.fields=public_metrics,attachments,entities&expansions=attachments.media_keys&media.fields=type`
     );
     if (!Array.isArray(data.data)) throw new Error("X post response has no post list");
     if (data.data.some(t => !batch.includes(t.id))) throw new Error("X returned an unrequested post");

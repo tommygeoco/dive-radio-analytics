@@ -13,15 +13,14 @@
 // Exit: 0 only when every due registered source returned a complete list.
 // Failed or partial pulls preserve the previous complete comment cohort.
 
-import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { xPublicGet } from "./x-public-get.mjs";
 import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson, readingEnvelope, phoenixDateKey } from "../../tools/dive-analytics/source-io.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const XURL_BIN = "/opt/homebrew/bin/xurl";
 const X_SEARCH_WINDOW_DAYS = 7;
 const HOST_X = new Set(["ridd_design", "designertom"]);
 const HOST_YT_CHANNELS = new Set(["UCkCnraWwlnBw1_i7C9-3p0w", "UC4_qP33t3TGpEM0-96WfC6Q"]);
@@ -38,15 +37,7 @@ function ytApiKey() {
   const creds = JSON.parse(readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8"));
   return creds.youtube_api_key || creds.api_key;
 }
-function xBearer() {
-  const out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
-    encoding: "utf8", timeout: 30000,
-    env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
-  });
-  const token = out.trim().split("\n").pop();
-  if (!token) throw new Error("X credential is unavailable");
-  return token;
-}
+
 function likes(value) {
   if (value == null) return null;
   if (!Number.isInteger(value) || value < 0) throw new Error("comment like count is invalid");
@@ -124,15 +115,14 @@ export async function pullYouTubeTarget(show, target, { apiKey, now, get }) {
   return out;
 }
 
-export async function pullXTarget(show, target, { bearer, now, get }) {
-  if (!bearer) throw new Error("X credential is unavailable");
+export async function pullXTarget(show, target, { now, get = xPublicGet }) {
   const out = [];
   const seen = new Set();
   let token = "";
   for (let page = 0; page < MAX_PAGES; page++) {
     const q = new URLSearchParams({ query: `conversation_id:${target.postId} is:reply`, "tweet.fields": "public_metrics,author_id,created_at", expansions: "author_id", "user.fields": "username", max_results: "100" });
     if (token) q.set("next_token", token);
-    const data = await get(`https://api.x.com/2/tweets/search/recent?${q}`, { Authorization: `Bearer ${bearer}` });
+    const data = await get(`https://api.x.com/2/tweets/search/recent?${q}`);
     if (data.errors?.length || (!Array.isArray(data.data) && !(data.meta?.result_count === 0 && data.data === undefined))) throw new Error("X reply response has no complete result list");
     const users = Object.fromEntries((data.includes?.users || []).map((u) => [u.id, u.username]));
     for (const tweet of data.data || []) {
@@ -158,7 +148,7 @@ export async function pullXTarget(show, target, { bearer, now, get }) {
   throw new Error("X reply pagination exceeded its bounded limit");
 }
 
-export async function runCommentsPull({ root = ROOT, now = new Date().toISOString(), apiKey, bearer, fetchImpl = fetch, log = console.log } = {}) {
+export async function runCommentsPull({ root = ROOT, now = new Date().toISOString(), apiKey, fetchImpl, xGet = fetchImpl ? (url) => fetchJson(url, { label: "X public request", fetchImpl }) : xPublicGet, log = console.log } = {}) {
   const pulledAt = new Date(now).toISOString();
   const registry = readJsonFile(join(root, "data", "restream", "postlive-registry.json"));
   if (!Array.isArray(registry.shows)) throw new Error("comment registry has no shows");
@@ -180,10 +170,10 @@ export async function runCommentsPull({ root = ROOT, now = new Date().toISOStrin
         const objectId = target.videoId || target.postId;
         try {
           requiredId(objectId, "comment source object");
-          const get = (url, headers) => fetchJson(url, { label: `${source} ${target.account}`, headers, fetchImpl });
+          const get = (url, headers) => fetchJson(url, { label: `${source} ${target.account}`, headers, fetchImpl: fetchImpl || fetch });
           const comments = target.kind === "youtube"
             ? await pullYouTubeTarget(show, target, { apiKey, now: pulledAt, get })
-            : await pullXTarget(show, target, { bearer, now: pulledAt, get });
+            : await pullXTarget(show, target, { now: pulledAt, get: xGet });
           staged.push(...comments);
           sources.push({ ...readingEnvelope({ source, episode: show.slug, objectId, pulledAt }), count: comments.length });
         } catch (error) {
@@ -220,10 +210,9 @@ export async function runCommentsPull({ root = ROOT, now = new Date().toISOStrin
 }
 
 async function main() {
-  let apiKey = null, bearer = null;
+  let apiKey = null;
   try { apiKey = ytApiKey(); } catch { /* Captured as a failed source for each due episode. */ }
-  try { bearer = xBearer(); } catch { /* Captured as a failed source for each due episode. */ }
-  return runCommentsPull({ apiKey, bearer });
+  return runCommentsPull({ apiKey });
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().catch((error) => { process.stderr.write(`comments: ${error.message}\n`); process.exit(1); });

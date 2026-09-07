@@ -4,7 +4,7 @@
 // subs and followers are what the show keeps. (PRD v2 W5, 2026-08-22)
 //
 // Sources: YouTube channels.list statistics (API key), X users lookup
-// (bearer via xurl, same pattern as comments-pull).
+// (native xurl app auth, same pattern as comments-pull).
 // Store: data/restream/channel-stats.json — append-only, ONE point per
 // channel per Phoenix day (legacy UTC dates remain unchanged). Absent days stay absent (absence ≠ zero; never
 // backfilled, never interpolated). Series starts the day this shipped.
@@ -12,16 +12,15 @@
 // Exit 0 only when all four registered accounts return complete statistics.
 // Partial checks retain prior series/current facts and save failed evidence.
 
-import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { xPublicGet } from "./x-public-get.mjs";
 import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson, readingEnvelope, phoenixDateKey } from "../../tools/dive-analytics/source-io.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const STORE_PATH = join(ROOT, "data", "restream", "channel-stats.json");
-const XURL_BIN = "/opt/homebrew/bin/xurl";
 
 export const YT_CHANNELS = [
   { key: "yt:joindiveclub", id: "UCkCnraWwlnBw1_i7C9-3p0w" },
@@ -36,13 +35,7 @@ function ytApiKey() {
   const creds = JSON.parse(readFileSync(join(homedir(), ".openclaw", "secrets", "youtube-credentials.json"), "utf8"));
   return creds.youtube_api_key || creds.api_key;
 }
-function xBearer() {
-  const out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
-    encoding: "utf8", timeout: 30000,
-    env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
-  });
-  return out.trim().split("\n").pop();
-}
+
 function knownCount(value, label) {
   if (value === null || value === undefined || value === "" || !/^\d+$/.test(String(value))) throw new Error(`${label} is unavailable or invalid`);
   const number = Number(value);
@@ -50,7 +43,7 @@ function knownCount(value, label) {
   return number;
 }
 
-export async function runChannelStats({ root = ROOT, now = new Date().toISOString(), apiKey, bearer, fetchImpl = fetch, log = console.log } = {}) {
+export async function runChannelStats({ root = ROOT, now = new Date().toISOString(), apiKey, fetchImpl, xGet = fetchImpl ? (url) => fetchJson(url, { label: "X public request", fetchImpl }) : xPublicGet, log = console.log } = {}) {
   const path = join(root, "data", "restream", "channel-stats.json");
   return withSourceLock(path, async () => {
     const store = readJsonFile(path, { fallback: { note: "New points use Phoenix calendar dates; legacy dates retain their original UTC meaning. Missing days are never backfilled.", series: {} } });
@@ -63,7 +56,7 @@ export async function runChannelStats({ root = ROOT, now = new Date().toISOStrin
     try {
       if (!apiKey) throw new Error("YouTube credential is unavailable");
       const q = new URLSearchParams({ part: "statistics", id: YT_CHANNELS.map((channel) => channel.id).join(","), key: apiKey });
-      const data = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${q}`, { label: "YouTube channel statistics", fetchImpl });
+      const data = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${q}`, { label: "YouTube channel statistics", fetchImpl: fetchImpl || fetch });
       if (!Array.isArray(data.items) || data.items.length !== YT_CHANNELS.length) throw new Error("YouTube did not return every registered channel");
       const ids = new Set(data.items.map((item) => item.id));
       if (ids.size !== data.items.length || YT_CHANNELS.some((channel) => !ids.has(channel.id))) throw new Error("YouTube returned unexpected channel IDs");
@@ -75,8 +68,7 @@ export async function runChannelStats({ root = ROOT, now = new Date().toISOStrin
       }
     } catch (error) { failures.push(error.message); }
     try {
-      if (!bearer) throw new Error("X credential is unavailable");
-      const data = await fetchJson(`https://api.x.com/2/users/by?usernames=${X_USERS.map((user) => user.username).join(",")}&user.fields=public_metrics`, { label: "X follower statistics", headers: { Authorization: `Bearer ${bearer}` }, fetchImpl });
+      const data = await xGet(`https://api.x.com/2/users/by?usernames=${X_USERS.map((user) => user.username).join(",")}&user.fields=public_metrics`);
       if (data.errors?.length || !Array.isArray(data.data) || data.data.length !== X_USERS.length) throw new Error("X did not return every registered account");
       const names = data.data.map((user) => user.username?.toLowerCase());
       if (new Set(names).size !== names.length || X_USERS.some((user) => !names.includes(user.username))) throw new Error("X returned unexpected accounts");
@@ -107,10 +99,9 @@ export async function runChannelStats({ root = ROOT, now = new Date().toISOStrin
   });
 }
 async function main() {
-  let apiKey = null, bearer = null;
+  let apiKey = null;
   try { apiKey = ytApiKey(); } catch { /* The source receipt records missing credentials. */ }
-  try { bearer = xBearer(); } catch { /* The source receipt records missing credentials. */ }
-  return runChannelStats({ apiKey, bearer });
+  return runChannelStats({ apiKey });
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   main().catch((error) => { process.stderr.write(`channel-stats: ${error.message}\n`); process.exit(1); });

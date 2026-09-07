@@ -45,8 +45,17 @@ lives on the owner machine).
 
 Secrets: `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` from the login shell; Beehiiv
 through the OpenClaw 1Password environment; YouTube
-API key + owner OAuth (both channels) and X bearer via the owner's tooling
-(`xurl`); Restream via `restream-token.mjs` (1Password). Nothing in the repo.
+API key + owner OAuth (both channels); public X reads use
+`scripts/restream/x-public-get.mjs` → native `xurl --app hinterlands --auth app
+--method GET`. Only the users, timeline, tweet metrics and recent-reply HTTPS
+`api.x.com` endpoints are allowed. xurl owns the credentials; no personal OAuth
+token extraction or credential fallback occurs. Requests have a 30-second timeout,
+at most two transport/known-server-error attempts, and no inline retry on 401,
+403, or 429. Raw xurl does not expose Retry-After without verbose diagnostics,
+so rate limits fail closed rather than using a guessed delay. Response bodies,
+URLs and child diagnostics never enter transport errors. Caller pagination,
+complete-cohort checks and missing-value rules are unchanged. Restream uses
+`restream-token.mjs` (1Password). Nothing in the repo.
 
 ---
 

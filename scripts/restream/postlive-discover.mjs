@@ -16,6 +16,7 @@
 // Usage: node scripts/restream/postlive-discover.mjs [--days 10] [--dry-run]
 // Zero-model, deterministic. Exits 0 with "no new episodes" when idle.
 
+import { xPublicGet } from "./x-public-get.mjs";
 import { fetchJson } from "../../tools/dive-analytics/source-io.mjs";
 import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
@@ -33,7 +34,6 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const REGISTRY_PATH = join(ROOT, "data", "restream", "postlive-registry.json");
 const TRACK = join(HERE, "postlive-track.mjs");
-const XURL_BIN = "/opt/homebrew/bin/xurl";
 
 const YT_CHANNELS = [
   { account: "joindiveclub", uploads: "UUkCnraWwlnBw1_i7C9-3p0w" },
@@ -56,18 +56,6 @@ function ytApiKey() {
   return key;
 }
 
-function xBearer() {
-  let out;
-  try { out = execFileSync(XURL_BIN, ["token", "--app", "hinterlands"], {
-    encoding: "utf8",
-    timeout: 30000,
-    env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
-  });
-  } catch { throw new Error("X credential command failed"); }
-  const token = out.trim().split("\n").pop();
-  if (!token) throw new Error("xurl token returned empty output");
-  return token;
-}
 
 const getJson = (url, headers = {}) => fetchJson(url, { headers, label: "episode discovery" });
 
@@ -214,25 +202,14 @@ export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
 }
 
 // --- 2. X: recent announce posts from both hosts ---
-export async function discoverX(episodeVideoIds, { get = getJson, bearerToken = null } = {}) {
-  let bearer;
-  try {
-    bearer = bearerToken || xBearer();
-  } catch (err) {
-    const error = errorText(err);
-    return {
-      found: [],
-      accounts: SOURCE_X_ACCOUNTS.map((account) => ({ account, attempted: false, success: false, found: 0, error })),
-    };
-  }
-  const headers = { Authorization: `Bearer ${bearer}` };
+export async function discoverX(episodeVideoIds, { get = xPublicGet } = {}) {
   const found = []; // { postId, account, createdAt, date, text, linkedVideoId, broadcastId }
   const accounts = [];
   const allEpisodeIds = new Set([...episodeVideoIds, ...knownVideoIds]);
   for (const account of SOURCE_X_ACCOUNTS) {
     let user;
     try {
-      user = await get(`https://api.x.com/2/users/by/username/${account}`, headers);
+      user = await get(`https://api.x.com/2/users/by/username/${account}`);
     } catch (err) {
       console.error(`discover: X user lookup failed for ${account}: ${err.message}`);
       accounts.push({ account, attempted: true, success: false, found: 0, error: `user lookup: ${errorText(err)}` });
@@ -249,7 +226,7 @@ export async function discoverX(episodeVideoIds, { get = getJson, bearerToken = 
       // filtered downstream (must mention dive radio or link a known episode).
       tl = await collectDiscoveryPages(
         `https://api.x.com/2/users/${uid}/tweets?max_results=100&exclude=retweets&tweet.fields=created_at,entities,text`,
-        { get, headers, kind: "x" }
+        { get, kind: "x" }
       );
     } catch (err) {
       console.error(`discover: X timeline failed for ${account}: ${err.message}`);

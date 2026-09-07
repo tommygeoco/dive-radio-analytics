@@ -24,6 +24,6 @@ try {
     await assert.rejects(runChannelStats({ root, now, apiKey: "fixture", bearer: "fixture", fetchImpl: async (url) => response(url.includes("googleapis") ? malformed : x), log() {} }), /incomplete/);
     store = JSON.parse(readFileSync(path)); assert.equal(JSON.stringify(store.series), series); assert.equal(JSON.stringify(store.current), current); assert.equal(store.capture.state, "failed");
   }
-  await assert.rejects(runChannelStats({ root, now, apiKey: null, bearer: null, log() {} }), /credential/);
+  await assert.rejects(runChannelStats({ root, now, apiKey: null, xGet: async () => { throw new Error("X app credential is unavailable"); }, log() {} }), /credential/);
   console.log("channel-stats: all-account cohort, IDs, missing counts, explicit zeroes, Phoenix rollover, idempotence and partial preservation passed");
 } finally { rmSync(root, { recursive: true, force: true }); }

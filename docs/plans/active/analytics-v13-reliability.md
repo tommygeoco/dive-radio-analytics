@@ -309,3 +309,40 @@ and keeps failed indexing pending. Regression fixtures cover an unchanged vault
 with no marker, index failure/retry, and quiet successful indexing. Native QMD
 configuration and Workshop skill application are verified separately in the
 Hinterlands `dive-radio-retrieval-repair.md` plan.
+
+## Public-X authentication repair — 2026-09-07
+
+### Scope and progress
+
+- [x] Read required contracts, repository guidance and the existing reliability plan.
+- [x] Preserve clean development `main` at a7a78d9; fetch origin/main and branch
+  `fix/public-x-app-auth` from 1e6997a. Rollback is reverting each focused commit;
+  no runtime checkout, scheduler, source store or attempt record is edited here.
+- [x] Replace four public-X token-extraction paths with shared native app auth.
+- [x] Test injected transports, both pagination grammars, tweet batching, honest
+  absence, error redaction, allowed endpoints and bounded retries: eight focused
+  audit files pass (`node --test` with x-public-get, comments-pull, channel-stats,
+  source-capture, source-receipts, x-broadcast-discovery, x-broadcast-plays and
+  source-io under tools/dive-analytics/audit), exit 0. `git diff --check`: exit 0.
+- [ ] Repair hard-failure recovery exhaustion and durable alert deduplication.
+- [ ] Run combined safe verification and record handoff evidence.
+
+### Discoveries and decisions
+
+The personal-login `xurl token` command was unnecessary for these public reads.
+The native app-auth request keeps credentials in xurl and uses the existing app
+without changing permissions. Existing injected `get`/`fetchImpl` transports stay
+available; explicit `xGet` supports source-specific fixtures. Personal bearer
+options are no longer used. No new dependency or validation exception was added.
+
+The shared transport only accepts the five public endpoint shapes used here.
+It captures, but never forwards, child diagnostics. Auth failures do not trigger
+a credential fallback. Raw xurl offers no safe Retry-After header output, so a
+429 ends the request without an inline retry; existing whole-chain limits remain.
+Caller schemas and bounded pagination are unchanged. X broadcasts still come
+from the existing broadcast extractor, not tweet-video counters.
+
+Read-only native smoke: `node --input-type=module -e` importing `xPublicGet`
+and requesting `/2/users/by?usernames=ridd_design,designertom&user.fields=public_metrics`
+returned `READ_ONLY_APP_AUTH: two public accounts returned`, exit 0. No store was
+written and no credential value was requested, exported or logged.

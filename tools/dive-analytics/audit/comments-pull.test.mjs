@@ -26,7 +26,7 @@ try {
   store = JSON.parse(readFileSync(path));
   assert.equal(store.comments.length, 1); assert.equal(store.comments[0].likes, 0); assert.equal(store.comments[0].reading.objectId, "c1"); assert.equal(store.xCoverage, "covered");
   const previous = JSON.stringify(store.comments);
-  await assert.rejects(runCommentsPull({ root, now: "2026-09-04T16:00:00Z", apiKey: null, bearer: null, log() {} }), /credential/);
+  await assert.rejects(runCommentsPull({ root, now: "2026-09-04T16:00:00Z", apiKey: null, xGet: async () => { throw new Error("X app credential is unavailable"); }, log() {} }), /credential/);
   store = JSON.parse(readFileSync(path)); assert.equal(JSON.stringify(store.comments), previous); assert.equal(store.updatedAt, now);
   const replies = await pullYouTubeTarget(show, show.targets[0], { apiKey: "fixture", now, get: async (url) => {
     if (url.includes("commentThreads")) return { items: [{ snippet: { topLevelComment: { id: "top", snippet: sn() }, totalReplyCount: 2 } }] };
