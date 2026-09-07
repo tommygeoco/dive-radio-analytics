@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { completionExit } from '../run-chain.mjs';
+import { ADVISORY_PENDING_EXIT, ADVISORY_PENDING_STATUS } from '../run-receipt.mjs';
+import { readAttemptState, runDaily } from '../run-daily.mjs';
+import { checklistVerdict } from '../recover-publish.mjs';
+import { phoenixDay } from '../freshness.mjs';
+const now = Date.now(), day = phoenixDay(now);
+assert.equal(completionExit({ published: true, failedAdvisories: 1 }), ADVISORY_PENDING_EXIT);
+assert.equal(completionExit({ published: true, failedOptional: 1, failedAdvisories: 1 }), 10);
+assert.equal(completionExit({ published: true, youtubeWatchPending: true }), 20);
+assert.throws(() => completionExit({ published: false, failedAdvisories: 1 }), /publication was skipped/);
+const dir = mkdtempSync(join(tmpdir(), 'dive-advisory-'));
+try {
+  const statePath = join(dir, 'daily.json');
+  const alerts = [];
+  const proof = { sha: 'b'.repeat(40), generatedAt: new Date(now).toISOString(), sourceStates: [], proof: { ok: true, checked: 17, artifacts: [] } };
+  const options = { root: dir, isolatedRoot: dir, statePath, now, mode: 'primary', prepare: () => dir, getOrigin: () => 'b'.repeat(40), queue: lines => alerts.push(...lines), resolve: () => {}, run: () => ({ status: ADVISORY_PENDING_EXIT }), captureReceipt: () => proof };
+  assert.equal(await runDaily(options), 0);
+  let state = readAttemptState(statePath);
+  assert.equal(state.days[day][0].status, ADVISORY_PENDING_STATUS);
+  assert.equal(state.days[day][0].receipt.productionProof.ok, true);
+  assert.equal(state.days[day][0].receipt.advisoryFailures[0].step, 'critic');
+  assert.equal(checklistVerdict(statePath, now).ok, true);
+  assert.equal(checklistVerdict(statePath, now).advisoryPending, true);
+  assert.match(alerts[0], /optional Monday review is unavailable/);
+  alerts.length = 0; // delivered and drained
+  assert.equal(await runDaily({ ...options, mode: 'recovery' }), 0);
+  assert.equal(alerts.length, 0, 'advisory warning is durable across delivery and recovery');
+  assert.equal(await runDaily({ ...options, mode: 'recovery' }), 75);
+  assert.equal(readAttemptState(statePath).days[day].length, 2);
+  const missingPath = join(dir, 'missing-proof.json');
+  assert.equal(await runDaily({ ...options, statePath: missingPath, captureReceipt: () => { throw new Error('production proof missing'); } }), 1);
+  assert.equal(readAttemptState(missingPath).days[day][0].status, 'failed:1');
+  const dataFailure = join(dir, 'data-failure.json');
+  assert.equal(await runDaily({ ...options, statePath: dataFailure, run: () => ({ status: 10 }) }), 10);
+  assert.equal(checklistVerdict(dataFailure, now).ok, false, 'failed data/model steps still fail the checklist');
+  const missingWatch = join(dir, 'pending-watch.json');
+  assert.equal(await runDaily({ ...options, statePath: missingWatch, captureReceipt: () => ({ ...proof, sourceStates: [{ episode: 8, watch: { state: 'pending' } }] }) }), 0);
+  assert.equal(checklistVerdict(missingWatch, now).ok, false, 'advisory status cannot hide a pending source');
+  const queueFailure = join(dir, 'queue-failure.json');
+  assert.equal(await runDaily({ ...options, statePath: queueFailure, queue: () => { throw new Error('queue write failed'); } }), 1);
+  assert.equal(readAttemptState(queueFailure).days[day][0].status, 'failed:alert');
+} finally { rmSync(dir, { recursive: true, force: true }); }
+console.log('advisory publication: verified bytes required, critic visibly pending, data failures preserved, source waiting, durable alerts and cap pass');

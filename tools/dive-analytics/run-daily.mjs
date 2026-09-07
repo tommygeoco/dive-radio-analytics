@@ -16,7 +16,7 @@ import { phoenixDay } from "./freshness.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { DAILY_STATE_PATH, ISOLATED_PUBLISHER_ROOT } from "./runtime-paths.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "./youtube-readiness.mjs";
-import { lastProductionProof, pendingSourceStates, publicSourceStates, readPublishEvidence, receiptForAttempt, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
+import { ADVISORY_PENDING_EXIT, ADVISORY_PENDING_STATUS, lastProductionProof, pendingSourceStates, publicSourceStates, readPublishEvidence, receiptForAttempt, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
 import { randomUUID } from "node:crypto";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -30,7 +30,7 @@ const COMMAND_TIMEOUT_MS = 2 * 60 * 1000;
 const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
 
 function emptyState() {
-  return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {}, failureAlerts: {} };
+  return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {}, failureAlerts: {}, advisoryAlerts: {} };
 }
 
 export function readAttemptState(path = STATE_PATH) {
@@ -48,6 +48,8 @@ export function readAttemptState(path = STATE_PATH) {
   if (typeof state.youtubeWatchAlerts !== "object" || Array.isArray(state.youtubeWatchAlerts)) throw new Error("daily YouTube watch alert state is unreadable");
   state.failureAlerts ??= {};
   if (typeof state.failureAlerts !== "object" || Array.isArray(state.failureAlerts)) throw new Error("daily failure alert state is unreadable");
+  state.advisoryAlerts ??= {};
+  if (typeof state.advisoryAlerts !== "object" || Array.isArray(state.advisoryAlerts)) throw new Error("daily advisory alert state is unreadable");
   for (const [day, attempts] of Object.entries(state.days)) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Array.isArray(attempts)
       || attempts.filter(a => a?.mode !== "operator-repair").length > MAX_DAILY_ATTEMPTS
@@ -485,8 +487,9 @@ export async function runDaily({
     }
     if (!Number.isInteger(result?.status) && result?.error) runError = result.error;
     let status = Number.isInteger(result?.status) && !result?.error && !result?.signal ? result.status : 1;
+    const advisoryPending = status === ADVISORY_PENDING_EXIT;
     let evidence = null;
-    if (status === 0 || status === YOUTUBE_WATCH_PENDING_EXIT) {
+    if (status === 0 || status === YOUTUBE_WATCH_PENDING_EXIT || advisoryPending) {
       try {
         evidence = captureReceipt(publisherRoot, { now: Date.now(), startedAt: new Date(now).toISOString() });
         if (!evidence?.proof?.ok || !evidence?.sha || !evidence?.generatedAt) throw new Error("completed child returned no production evidence");
@@ -498,6 +501,7 @@ export async function runDaily({
     }
     const savedStatus = status === 0
       ? "passed"
+      : status === ADVISORY_PENDING_EXIT ? ADVISORY_PENDING_STATUS
       : status === YOUTUBE_WATCH_PENDING_EXIT
         ? pendingSourceStates(evidence?.sourceStates || []).some((source) => source.source !== "watch") ? SOURCE_PENDING_STATUS : YOUTUBE_WATCH_PENDING_STATUS
         : `failed:${status}`;
@@ -506,12 +510,13 @@ export async function runDaily({
       day: reserved.day, number: reserved.number, mode,
       startedAt: new Date(now).toISOString(), endedAt: new Date(endedAt).toISOString(), status: savedStatus,
     });
+    if (advisoryPending) receipt.advisoryFailures = [{ step: "critic", state: "unavailable", reason: "The optional Monday review did not complete; all publication checks still apply." }];
     receipt.lastSuccessfulProof = evidence ? { sha: evidence.sha, generatedAt: evidence.generatedAt, checkedAt: evidence.proof.checkedAt } : lastProductionProof();
     if (!evidence) {
       try { receipt.sourceStates = publicSourceStates(JSON.parse(readFileSync(join(publisherRoot, "data.json"), "utf8")), now); }
       catch { /* An unreadable build is named by the failed receipt, never fabricated. */ }
     }
-    const finishing = status === 0 || status === YOUTUBE_WATCH_PENDING_EXIT;
+    const finishing = status === 0 || status === YOUTUBE_WATCH_PENDING_EXIT || status === ADVISORY_PENDING_EXIT;
     const intermediateStatus = finishing ? "finishing" : savedStatus;
     let finished = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, intermediateStatus, endedAt, { ...receipt, finalState: intermediateStatus });
     finished = finishInvocation(finished, invocation.day, invocation.id, intermediateStatus, Date.now(), runError?.message || null);
@@ -522,6 +527,21 @@ export async function runDaily({
       const finalState = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, savedStatus, finalTime, finalReceipt);
       saveAttemptState(statePath, finishInvocation(finalState, invocation.day, invocation.id, savedStatus, finalTime));
     };
+    if (advisoryPending && evidence) {
+      const state = readAttemptState(statePath);
+      state.advisoryAlerts ??= {};
+      if (!state.advisoryAlerts[reserved.day]) {
+        try {
+          queue([`Daily publication is verified for ${reserved.day}; the optional Monday review is unavailable. The review failure is retained in the run receipt.`]);
+          state.advisoryAlerts[reserved.day] = { queuedAt: new Date().toISOString(), step: "critic", sha: evidence.sha };
+          saveAttemptState(statePath, state);
+        } catch (error) {
+          const failed = finishAttempt(readAttemptState(statePath), reserved.day, reserved.id, "failed:alert", Date.now(), { ...receipt, finalState: "failed:alert" });
+          saveAttemptState(statePath, finishInvocation(failed, invocation.day, invocation.id, "failed:alert", Date.now(), error.message));
+          return 1;
+        }
+      }
+    }
     if (status === YOUTUBE_WATCH_PENDING_EXIT) {
       const finalAttempt = reserved.number >= MAX_DAILY_ATTEMPTS;
       if (finalAttempt) {
@@ -549,7 +569,7 @@ export async function runDaily({
       finalize();
       return 0;
     }
-    if (status !== 0) {
+    if (status !== 0 && status !== ADVISORY_PENDING_EXIT) {
       const line = runError
         ? `Daily publishing chain stopped — ${runError.message}.`
         : `Daily publishing checklist failed (exit ${status}); production needs verification.${result?.detail ? ` Cause: ${result.detail}` : ""}`;
@@ -570,7 +590,8 @@ export async function runDaily({
         return 1;
       }
     }
-    return status;
+    if (status === ADVISORY_PENDING_EXIT) console.log("daily-run: publication verified; optional Monday review remains unavailable in the receipt.");
+    return status === ADVISORY_PENDING_EXIT ? 0 : status;
   } finally {
     release();
   }

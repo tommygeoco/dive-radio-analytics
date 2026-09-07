@@ -31,6 +31,9 @@ export function saveReceipt(path, value) {
 
 const present = (value) => typeof value === "number" && Number.isFinite(value);
 export const SOURCE_PENDING_STATUS = "waiting:sources";
+// The critic is an advisory report, not an input to any public metric.
+export const ADVISORY_PENDING_EXIT = 21;
+export const ADVISORY_PENDING_STATUS = "passed:advisory-pending";
 export function lastProductionProof(path = PUBLISH_PROOF_PATH) {
   try {
     const saved = JSON.parse(readFileSync(path, "utf8"));

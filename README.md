@@ -163,3 +163,10 @@ The classifier, health writer, recommendation engine, moment summarizer,
 and standing critic are the only model-backed scripts. `build-data.mjs`
 (including the watch-moments extraction it imports) stays deterministic and
 never calls a model.
+
+The Monday critic is an advisory report and supplies no public metrics. If only
+that report fails, the chain still requires capture, both validations, Git,
+deployment and exact live proof. It records `passed:advisory-pending`, preserves
+the review failure in the receipt and queues one dated warning. Freshness can
+confirm the successful publication without another capture. Other failed model
+or data steps still fail the checklist; missing source data remains pending.

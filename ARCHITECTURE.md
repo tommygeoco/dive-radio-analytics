@@ -66,6 +66,12 @@ two automatic receipts. Replay is refused even after a crash. Scheduled modes
 still cap automatic work at two attempts; the operator path shares their lock,
 full chain and production proof. No job is configured for operator mode.
 
+The critic alone has a separate advisory outcome: chain exit 21 becomes
+`passed:advisory-pending` only after real production evidence is read. The run
+receipt retains the failed review, and `advisoryAlerts[day]` deduplicates its
+dated warning. Recovery can prove this publication, while pending source data
+and any other failed model/data step still block a complete-data verdict.
+
 ## 2. Stores and their time semantics
 
 This is the section to read before comparing two numbers. "Age" means

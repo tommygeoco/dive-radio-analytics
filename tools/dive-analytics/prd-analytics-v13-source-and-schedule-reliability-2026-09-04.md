@@ -218,6 +218,13 @@ Source-only repair adoption requires identical stored data and served artifacts
 plus every audit and syntax check. A subsequent data release still requires all
 strict current-clock validation and exact production proof.
 
+The September 7 recovery also exposed a critic-only timeout being reported as
+failed publication. The critic supplies no source or public metric. A dedicated
+exit 21 may yield `passed:advisory-pending` only with complete publication proof,
+an explicit advisory failure in the run receipt, and a durable dated warning.
+Other model/data failures remain nonzero and pending sources remain pending.
+This is a separate report status, not a relaxation of any validator failure.
+
 ## 8. Immediate acceptance
 
 1. Atomic cohort fixtures prove partial or mixed-time data cannot be consumed.

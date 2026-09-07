@@ -36,6 +36,7 @@ import { healLeftovers } from "./chain-heal.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { appendQueueLines, QUEUE_PATH } from "./alert-queue.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT } from "./youtube-readiness.mjs";
+import { ADVISORY_PENDING_EXIT } from "./run-receipt.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -189,10 +190,19 @@ export async function runStepWithPolicy({
   return { ...result, attempts, youtubeWatchPending: isPending(), sourcePending: isPending() };
 }
 
+export function completionExit({ published, failedOptional = 0, failedAdvisories = 0, youtubeWatchPending = false }) {
+  if (!published) throw new Error("required publication was skipped");
+  if (failedOptional) return 10;
+  if (failedAdvisories) return ADVISORY_PENDING_EXIT;
+  if (youtubeWatchPending) return YOUTUBE_WATCH_PENDING_EXIT;
+  return 0;
+}
+
 async function main() {
   if (process.argv.includes("--last")) { showLast(); return; }
   if (!dry) { openLog(); pullFirst(); }
   let failedOptional = 0;
+  let failedAdvisories = 0;
   let published = false;
   let youtubeWatchPending = false;
   for (const step of chain.steps) {
@@ -225,20 +235,25 @@ async function main() {
       queueAlert(`chain: ${step.step} failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""} — ${outcome}; \`node tools/dive-analytics/run-chain.mjs --last\` on the chain machine shows the log`);
       process.exit(1);
     }
-    failedOptional++;
+    if (step.step === "critic") failedAdvisories++;
+    else failedOptional++;
     queueAlert(`chain: optional ${step.step} check failed at ${phxClock()} (exit ${code})${lastErr ? ` — ${lastErr.split("\n").at(-1).slice(0, 160)}` : ""}; production can update, but this part of the morning data is not current`);
     log(`chain: ${step.step} failed (exit ${code}) — not required, continuing`);
   }
   // Planning and rehearsal never claim a production result or resolve alerts.
   if (dry || rehearse) {
     log(`chain: ${dry ? "plan" : "rehearsal"} finished; production was not proved.`);
-    if (failedOptional) process.exit(10);
+    if (failedOptional || failedAdvisories) process.exit(10);
     return;
   }
   if (!published) throw new Error("required publication was skipped");
   if (failedOptional) {
     log(`chain: production finished with ${failedOptional} data check${failedOptional === 1 ? "" : "s"} not current`, process.stderr);
     process.exit(10);
+  }
+  if (failedAdvisories) {
+    log("chain: production is current; the optional Monday review is unavailable", process.stderr);
+    process.exit(completionExit({ published, failedOptional, failedAdvisories, youtubeWatchPending }));
   }
   if (youtubeWatchPending) {
     log("chain: production is current with unavailable source data; recovery will check again within the daily allowance");

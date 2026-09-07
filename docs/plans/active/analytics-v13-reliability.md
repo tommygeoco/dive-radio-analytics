@@ -321,13 +321,28 @@ The existing three app-auth/recovery commits are local only. Native app-auth
 read-only verification returned both public accounts successfully today.
 
 - [x] Verify scheduler history, production timestamp, runtime checkout and ledger.
-- [ ] Adopt existing repairs with regression and source-only release checks.
-- [ ] Add one explicit operator repair after two failed automatic attempts,
+- [x] Adopt existing repairs with regression and source-only release checks.
+- [x] Add one explicit operator repair after two failed automatic attempts,
   requiring a reason and changed committed code; retain every attempt and the
   unchanged limit of two automatic attempts. No scheduler may select this mode.
-- [ ] Run the complete chain from the dedicated publisher, with real source
+- [x] Run capture and publication from the dedicated publisher, with real source
   capture, strict validation, full release gate and exact production proof.
-- [ ] Record live timestamp, source status, frozen-entry comparison and browser.
+- [x] Record live timestamp, source status, frozen-entry comparison and browser.
+- [ ] Reconcile the advisory-only incomplete result and prove the scheduler.
+
+Publication 069590f passed 46 audit suites and 97 syntax checks; all 17 public
+files match production at generatedAt 2026-09-07T17:11:15.920Z. All eight episodes'
+source states are ready; five frozen entries are byte-identical. Browser shows
+today, health 54, latest views 8,386 and no errors. The Monday critic was stopped
+after four minutes to release the site. An independent same-commit retry then
+also timed out after its two bounded provider calls. The legacy runner's exit 10
+therefore describes an incomplete advisory report despite verified publication.
+
+The advisory correction introduces a typed critic-only result. Its receipt and
+dated alert retain the report failure; missing proof, any failed data/model step,
+pending sources and the capture-attempt cap remain enforced. Today's initial
+operator outcome is retained when its already-completed publication is reconciled
+under this explicit status. No further source capture is authorized or needed.
 
 Source-only code adoption must reject any changed source store or served artifact
 and run every audit and syntax check. It does not certify or deploy the old

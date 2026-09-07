@@ -13,7 +13,7 @@ import { checkProductionFreshness, phoenixDay, phoenixHour } from "./freshness.m
 import { checkLiveParity, SITE } from "./live-parity.mjs";
 import { ensureIsolatedCheckout, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, PUBLISHER_ROOT, queueDailyFailure, readAttemptState, RUN_LOCK_MAX_AGE_MS, saveAttemptState, STATE_PATH } from "./run-daily.mjs";
 import { isYoutubeWatchPendingStatus } from "./youtube-readiness.mjs";
-import { pendingSourceStates, readPublishEvidence, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
+import { ADVISORY_PENDING_STATUS, pendingSourceStates, readPublishEvidence, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
 import { RECOVERY_PROOF_PATH } from "./runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -43,11 +43,13 @@ export function checklistVerdict(statePath = STATE_PATH, now = Date.now()) {
     const day = phoenixDay(now);
     const attempt = state.days?.[day]?.at(-1);
     const invocation = state.invocations?.[day]?.at(-1);
-    const ok = attempt?.status === "passed" && invocation?.status === "passed";
+    const completed = status => status === "passed" || status === ADVISORY_PENDING_STATUS;
+    const ok = completed(attempt?.status) && completed(invocation?.status);
+    const advisoryPending = attempt?.status === ADVISORY_PENDING_STATUS;
     const waiting = (status) => isYoutubeWatchPendingStatus(status) || status === SOURCE_PENDING_STATUS;
     const youtubeWatchPending = waiting(attempt?.status) && waiting(invocation?.status);
     return ok
-      ? { ok: true, youtubeWatchPending: false, message: "today's complete publishing checklist passed" }
+      ? { ok: true, youtubeWatchPending: false, ...(advisoryPending ? { advisoryPending: true } : {}), message: advisoryPending ? "today's publication is verified; the optional Monday review is unavailable" : "today's complete publishing checklist passed" }
       : {
           ok: false,
           youtubeWatchPending,

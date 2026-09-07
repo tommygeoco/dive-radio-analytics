@@ -118,6 +118,13 @@ may use `DIVE_SOURCE_ONLY_PUSH=1` only when every source store and public artifa
 is identical to origin/main; its full audit/syntax gate does not certify a data
 release. Every production publish still runs the ordinary strict gate.
 
+The Monday critic alone is advisory: it supplies no public number. Its failure
+can produce `passed:advisory-pending` only after the full required chain and
+production proof pass. The receipt and one dated alert retain that failure.
+All other failed optional model/data steps keep their nonzero checklist result,
+and unavailable source data keeps its waiting state. Never use advisory status
+to certify missing production proof or to erase a failed capture.
+
 ## How to change a number (the procedure)
 
 1. **Find the definition** in `ARCHITECTURE.md` §3 (number → store → script → rule) and the PRD section that introduced it.
