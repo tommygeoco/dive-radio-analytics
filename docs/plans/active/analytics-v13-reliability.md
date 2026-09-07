@@ -432,3 +432,18 @@ path. A manual primary run, if main chooses one, must start from the dedicated
 publisher and still pass the same cap. Yesterday's records remain untouched.
 Independent final review, adoption, fresh capture, production proof and scheduler
 work remain with main; no claim of live repair or unattended stability is made.
+
+### September 7 independent review — first-run failure marker
+
+The first independent review found a new edge case: recovery preparation could
+fail before the daily ledger had ever existed, and the new deduplication helper
+then dereferenced a missing failureAlerts map. A temporary-fixture regression
+failed with exit 1 before the fix. The empty-ledger constructor now includes that
+map, matching the normal loaded-state shape. Existing initialized-but-missing
+ledgers still fail closed; no live ledger is changed.
+
+The regression verifies one queued warning, no fabricated capture attempt, no
+second warning on replay, and refusal rather than reset after an initialized
+ledger disappears. The focused recovery test passes after the fix. This changes
+only first-run state initialization, not the two-attempt cap or publication
+validation. After the fix, node --test --test-concurrency=1 tools/dive-analytics/audit/*.test.mjs exited 0: 44 passed, 0 failed (47.94 seconds). git diff --check and the daily-runner syntax check also exited 0. Independent recheck remains pending.

@@ -29,7 +29,7 @@ const COMMAND_TIMEOUT_MS = 2 * 60 * 1000;
 const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
 
 function emptyState() {
-  return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {} };
+  return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {}, failureAlerts: {} };
 }
 
 export function readAttemptState(path = STATE_PATH) {

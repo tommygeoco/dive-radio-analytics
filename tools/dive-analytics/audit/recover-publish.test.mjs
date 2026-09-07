@@ -16,6 +16,31 @@ const recoverPublish = (options) => recoverPublishActual({ statePath: join(suite
 const HERE = dirname(fileURLToPath(import.meta.url));
 const morning = Date.parse("2026-09-02T15:15:00Z");
 const noon = Date.parse("2026-09-02T19:00:00Z");
+// A first-ever preflight failure must alert even before a ledger exists.
+{
+  const statePath = join(suite, "first-preflight.json");
+  const queued = [];
+  let runs = 0;
+  const options = {
+    statePath, now: morning, guard: () => () => {},
+    prepare: () => { throw new Error("fixture preparation failed"); },
+    verify: async () => { assert.fail("failed preflight must not verify production"); },
+    run: () => { runs++; return { status: 0 }; },
+    queue: (lines) => queued.push(...lines),
+    resolve: () => {},
+  };
+  assert.equal(await recoverPublish(options), 1);
+  assert.equal(queued.length, 1, "first failure is queued without a pre-existing ledger");
+  assert.equal(runs, 0);
+  assert.deepEqual(readAttemptState(statePath).days, {}, "no capture attempt is fabricated");
+  assert.equal(await recoverPublish(options), 1);
+  assert.equal(queued.length, 1, "repeated preparation failure is still deduplicated");
+  assert.equal(runs, 0);
+  rmSync(statePath);
+  await assert.rejects(recoverPublish(options), /missing after initialization/);
+  assert.equal(queued.length, 1, "a lost initialized ledger is not reset or reported as new");
+}
+
 const fresh = { ok: true };
 const stale = { ok: false };
 const youtubePending = {
