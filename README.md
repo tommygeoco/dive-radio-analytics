@@ -86,6 +86,13 @@ Public X discovery, tweet metrics, replies and follower counts use native
 owner's personal OAuth login; credentials stay inside xurl. See
 `ARCHITECTURE.md` §1 for request limits and failure behavior.
 
+For code-only incident fixes while saved data is stale, the installed pre-push
+hook accepts `DIVE_SOURCE_ONLY_PUSH=1 git push origin HEAD:main`. This gate
+requires main as an ancestor, byte-identical source stores and public artifacts,
+and all audit tests and syntax checks. It adopts code without certifying or
+deploying the old dataset. Normal data publication always runs the full strict
+release gate against the current clock before pushing and deploying.
+
 Data is exported daily at 07:00 America/Phoenix. The OpenClaw job enters
 through `run-daily.mjs`, which prepares a clean `main` clone under
 `~/Library/Application Support/Dive Radio Analytics/publisher-main`, prevents

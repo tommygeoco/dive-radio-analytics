@@ -21,15 +21,27 @@ export function checkedCommand(executable, args, { cwd, timeout = 120_000, env =
 function walk(root, path) {
   return readdirSync(join(root, path), { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(root, join(path, e.name)) : [join(path, e.name)]);
 }
-export function verifyCheckout(root, { run = checkedCommand, log = console.log } = {}) {
+export function assertSourceOnlyCandidate(root, revision, base = 'origin/main') {
+  checkedCommand('git', ['merge-base', '--is-ancestor', base, revision], { cwd: root });
+  const paths = checkedCommand('git', ['diff', '--name-only', '-z', base, revision, '--'], { cwd: root }).split('\0').filter(Boolean);
+  if (!paths.length || paths.some(path => !/^(scripts\/|tools\/|docs\/|(?:README|CLAUDE|ARCHITECTURE)\.md$)/.test(path))) {
+    throw new Error('source-only adoption requires code/docs changes and identical source stores and served artifacts');
+  }
+  return paths;
+}
+
+export function verifyCheckout(root, { run = checkedCommand, log = console.log, sourceOnly = false } = {}) {
   const node = process.execPath;
   const invoke = (args, timeout) => run(node, args, { cwd: root, timeout });
   // Validate the exact committed bytes before rebuilding this disposable copy.
   // Otherwise a build could repair a broken candidate only inside the gate.
-  invoke(['tools/dive-analytics/audit/validate.mjs'], 180_000);
-  invoke(['tools/dive-analytics/ratings.mjs']);
-  invoke(['tools/dive-analytics/build-data.mjs']);
-  const validation = invoke(['tools/dive-analytics/audit/validate.mjs'], 180_000);
+  let validation = 'source-only adoption: data is unchanged; production validation remains required before publishing';
+  if (!sourceOnly) {
+    invoke(['tools/dive-analytics/audit/validate.mjs'], 180_000);
+    invoke(['tools/dive-analytics/ratings.mjs']);
+    invoke(['tools/dive-analytics/build-data.mjs']);
+    validation = invoke(['tools/dive-analytics/audit/validate.mjs'], 180_000);
+  }
   const files = walk(root, 'tools/dive-analytics/audit').filter(f => f.endsWith('.test.mjs')).sort();
   for (const file of files) { invoke([file], 180_000); log(`release-gate: passed ${file.split('/').at(-1)}`); }
   const scripts = [...walk(root, 'tools'), ...walk(root, 'scripts')].filter(f => /\.(mjs|js|sh)$/.test(f));
@@ -46,20 +58,21 @@ export function verifyCheckout(root, { run = checkedCommand, log = console.log }
       new vm.Script(match[2], { filename: file }); inlineScripts++;
     }
   }
-  const summary = validation.trim().split('\n').filter(l => /failure\(s\)|drift\(s\)/.test(l)).at(-1) || 'validator exited 0';
+  const summary = sourceOnly ? validation : validation.trim().split('\n').filter(l => /failure\(s\)|drift\(s\)/.test(l)).at(-1) || 'validator exited 0';
   log(`release-gate: ${files.length} audit files; ${scripts.length} script syntax checks; ${inlineScripts} page scripts; ${summary}`);
   return { tests: files.length, syntax: scripts.length, inlineScripts, validation: summary };
 }
 
-export function verifyCandidate({ root = ROOT, revision = 'HEAD', log = console.log } = {}) {
+export function verifyCandidate({ root = ROOT, revision = 'HEAD', log = console.log, sourceOnly = false } = {}) {
   const scratch = mkdtempSync(join(tmpdir(), 'dive-release-gate-'));
   try {
     const sha = checkedCommand('git', ['rev-parse', '--verify', `${revision}^{commit}`], { cwd: root }).trim();
+    if (sourceOnly) assertSourceOnlyCandidate(root, sha);
     checkedCommand('git', ['clone', '--quiet', '--no-hardlinks', '--no-checkout', root, scratch]);
     checkedCommand('git', ['checkout', '--quiet', '--detach', sha], { cwd: scratch });
-    return { sha, ...verifyCheckout(scratch, { log }) };
+    return { sha, ...verifyCheckout(scratch, { log, sourceOnly }) };
   } finally { rmSync(scratch, { recursive: true, force: true }); }
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  try { verifyCandidate(); } catch (e) { console.error(`release-gate: ${e.message}`); process.exitCode = 1; }
+  try { verifyCandidate({ sourceOnly: process.argv.includes('--source-only') }); } catch (e) { console.error(`release-gate: ${e.message}`); process.exitCode = 1; }
 }

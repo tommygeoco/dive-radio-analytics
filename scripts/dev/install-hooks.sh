@@ -10,6 +10,9 @@ cat > "$HOOK" <<'HOOKEOF'
 set -eu
 REPO="$(git rev-parse --show-toplevel)"
 cd "$REPO"
+if [ "${DIVE_SOURCE_ONLY_PUSH:-}" = "1" ]; then
+  exec node tools/dive-analytics/release-gate.mjs --source-only
+fi
 exec node tools/dive-analytics/release-gate.mjs
 HOOKEOF
 chmod +x "$HOOK"
