@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-07
+# Show-health verification — 2026-09-08
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-09-07 read
+## Accuracy — the 2026-09-08 read
 
-Score 54 (weighted mean 55.5, health-v9, prompt v7); reads How to Engineer a Brand Universe at 3.9 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
+Score 54 (weighted mean 55, health-v9, prompt v7); reads How to Engineer a Brand Universe at 4.8 days; carried: reach, subscribers; promo-qualified: growth.sameAge, reachEfficiency.exposure.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -51,11 +51,11 @@ Most recent resolutions:
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 29% (at full weight the mean would move -2.4) · promo-qualified measures: growth.sameAge, reachEfficiency.exposure · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 4.
+Carried share of scored checks: 29% (at full weight the mean would move -2.7) · promo-qualified measures: growth.sameAge, reachEfficiency.exposure · steady-state check-set changes in 30 days: 3 · days without a read in 30: 1 · scoring-rule changes in 30 days: 4.
 
 - WARN — The check set changed 3 times in 30 days — the number keeps changing what it measures.
 - INFO — The scoring rules changed 4 time(s) in the last 30 days; the daily trend restarts each time.
-- INFO — Direction measures still thin: firstWeek (3 episodes); engagementWeekOne (3 episodes).
+- INFO — Direction measures still thin: firstWeek (3 episodes); engagementWeekOne (3 episodes); exposureWeekOne (3 episodes).
 
 ## Open claims
 

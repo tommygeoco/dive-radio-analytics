@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-07T17:07:02.539Z",
+  "updatedAt": "2026-09-08T14:02:43.965Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -193,6 +193,14 @@
     "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|hold|0.71": {
       "summary": "Hosts discuss rising demand and pay for brand designers and expanding brand universes, then play a clip of Mike Smith comparing brand world building to the immersive feeling of Disneyland.",
       "writtenAt": "2026-09-07T17:07:02.539Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|hold|0.29": {
+      "summary": "Hosts discuss AI web publishing tools, then one shows the other a new multimodal world model and on-demand video generation demos, reacting to clips.",
+      "writtenAt": "2026-09-08T14:02:43.965Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.58": {
+      "summary": "Hosts debate whether the brand engineer title will last, discussing custom asset-generating tools handed to clients and reading chat pushback that it is design work.",
+      "writtenAt": "2026-09-08T14:02:43.965Z"
     }
   }
 }
