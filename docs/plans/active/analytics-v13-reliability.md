@@ -531,3 +531,17 @@ inside a 0700 directory, and is not a source store or a served artifact. The
 validator compares against the importer's one verified source read instead of
 opening the cloud file a second time. This preserves exact parity without making
 an unchanged historical transcript depend on repeated cloud-file reads.
+
+### Reserved recovery protection
+
+- [x] Verify September 9's scheduler retry used the second attempt in primary
+  mode at 07:11, leaving the scheduled recovery nothing to run.
+- [x] Refuse primary replays after any capture on that Phoenix day. Preserve the
+  first attempt, return a nonzero refusal, and reserve the remaining capture for
+  explicit recovery. Existing legacy primary/primary records remain valid history.
+- [x] Fixture proves primary replay cannot consume the second attempt, recovery
+  can still use it, and the next Phoenix day gets its normal first attempt.
+
+Decision: preserve the two-attempt cap and existing cron definitions. Enforce the
+primary/recovery distinction in the runner so scheduler-level retries cannot
+consume the later recovery opportunity. Failed invocations and alerts stay honest.

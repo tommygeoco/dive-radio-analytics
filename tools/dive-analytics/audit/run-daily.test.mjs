@@ -18,6 +18,10 @@ assert.equal(first.allowed, true);
 assert.equal(first.number, 1);
 const firstDone = finishAttempt(first.state, first.day, first.id, "failed:1", dayOneMorning + 1000);
 assert.equal(firstDone.days["2026-09-02"][0].status, "failed:1");
+const replay = nextAttempt(firstDone, dayOneMorning + 1000, { mode: "primary" });
+assert.equal(replay.allowed, false, "scheduler retries must preserve the reserved recovery attempt");
+assert.equal(replay.reason, "primary-already-ran");
+assert.deepEqual(replay.state, firstDone, "replays must preserve the first failure exactly");
 
 const second = nextAttempt(firstDone, dayOneMorning + 2000, { mode: "recovery", id: "two", origin: "abc" });
 assert.equal(second.allowed, true);
@@ -261,7 +265,7 @@ chmod +x "$HOOK"
     isolatedRoot: isolated,
     statePath,
     now: dayOneMorning + 2000,
-    mode: "primary",
+    mode: "recovery",
     prepare: () => isolated,
     getOrigin: () => "def",
     queue: (lines) => queued.push(...lines),

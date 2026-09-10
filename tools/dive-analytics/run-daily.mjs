@@ -135,6 +135,8 @@ export function nextAttempt(state, now = Date.now(), { mode = "primary", id = ra
     }
   } else if (attempts.filter(a => a.mode !== "operator-repair").length >= MAX_DAILY_ATTEMPTS) {
     return { allowed: false, day, number: attempts.length + 1, state };
+  } else if (mode === "primary" && attempts.length) {
+    return { allowed: false, reason: "primary-already-ran", day, number: attempts.length + 1, state };
   }
   const next = structuredClone(state);
   next.days[day] = [...attempts, {
@@ -464,10 +466,12 @@ export async function runDaily({
       throw error;
     }
     if (!reserved.allowed) {
-      const line = mode === "operator-repair"
+      const line = reserved.reason === "primary-already-ran"
+        ? `The primary capture already ran for ${reserved.day}; the remaining attempt is reserved for recovery.`
+        : mode === "operator-repair"
         ? `The operator repair for ${reserved.day} was already used; no additional run was started.`
         : `Daily publish already used both automatic attempts for ${reserved.day}; no third automatic run was started.`;
-      const refused = finishInvocation(reserved.state, invocation.day, invocation.id, "refused:attempt-limit");
+      const refused = finishInvocation(reserved.state, invocation.day, invocation.id, reserved.reason === "primary-already-ran" ? "refused:primary-replay" : "refused:attempt-limit");
       saveAttemptState(statePath, refused);
       try { queueDailyFailure(statePath, invocation.day, line, queue); } catch (queueError) { console.error(`daily-run: could not queue the attempt-limit alert (${queueError.message}).`); }
       console.error(`daily-run: ${line}`);
