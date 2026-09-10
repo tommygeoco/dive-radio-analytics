@@ -5165,10 +5165,763 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-09T14:01:33.749Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "pulledAt": "2026-09-09T14:01:33.749Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2971,
+          "detail": {
+            "views": 2971,
+            "likes": 29,
+            "comments": 3,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "sC3Wvi1Whm4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "sC3Wvi1Whm4",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 2971,
+              "detail": {
+                "views": 2971,
+                "likes": 29,
+                "comments": 3,
+                "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "sC3Wvi1Whm4",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2769,
+          "detail": {
+            "views": 2769,
+            "likes": 18,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "qPAPUmg_qZE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "qPAPUmg_qZE",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 2769,
+              "detail": {
+                "views": 2769,
+                "likes": 18,
+                "comments": 1,
+                "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "qPAPUmg_qZE",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 5653,
+          "detail": {
+            "views": 5653,
+            "likes": 44,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 19,
+            "quotes": 0
+          },
+          "plays": 1090,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 408,
+          "sources": [
+            {
+              "objectId": "2093066121649991990",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093066121649991990",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 2724,
+              "detail": {
+                "views": 2724,
+                "likes": 23,
+                "replies": 0,
+                "reposts": 1,
+                "bookmarks": 13,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2092646157709185177",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2092646157709185177",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 2929,
+              "detail": {
+                "views": 2929,
+                "likes": 21,
+                "replies": 2,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "2092646157709185177,2093066121649991990",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "1NxarolynyDKj",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1NxarolynyDKj",
+              "views": 1090,
+              "peakConcurrent": 408,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 9706,
+          "detail": {
+            "views": 9706,
+            "likes": 35,
+            "replies": 3,
+            "reposts": 3,
+            "bookmarks": 27,
+            "quotes": 2
+          },
+          "plays": 1765,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 320,
+          "sources": [
+            {
+              "objectId": "2093094217283506661",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093094217283506661",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 2179,
+              "detail": {
+                "views": 2179,
+                "likes": 22,
+                "replies": 1,
+                "reposts": 2,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2093066120580468925",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093066120580468925",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 7527,
+              "detail": {
+                "views": 7527,
+                "likes": 13,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 26,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "2093066120580468925,2093094217283506661",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "1RJZzBDprpwJB",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1RJZzBDprpwJB",
+              "views": 1765,
+              "peakConcurrent": 320,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-09T14:11:45.688Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "pulledAt": "2026-09-09T14:11:45.688Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2971,
+          "detail": {
+            "views": 2971,
+            "likes": 29,
+            "comments": 3,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "sC3Wvi1Whm4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "sC3Wvi1Whm4",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 2971,
+              "detail": {
+                "views": 2971,
+                "likes": 29,
+                "comments": 3,
+                "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "sC3Wvi1Whm4",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2769,
+          "detail": {
+            "views": 2769,
+            "likes": 18,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "qPAPUmg_qZE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "qPAPUmg_qZE",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 2769,
+              "detail": {
+                "views": 2769,
+                "likes": 18,
+                "comments": 1,
+                "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "qPAPUmg_qZE",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 5653,
+          "detail": {
+            "views": 5653,
+            "likes": 44,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 19,
+            "quotes": 0
+          },
+          "plays": 1090,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 408,
+          "sources": [
+            {
+              "objectId": "2093066121649991990",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093066121649991990",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 2724,
+              "detail": {
+                "views": 2724,
+                "likes": 23,
+                "replies": 0,
+                "reposts": 1,
+                "bookmarks": 13,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2092646157709185177",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2092646157709185177",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 2929,
+              "detail": {
+                "views": 2929,
+                "likes": 21,
+                "replies": 2,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "2092646157709185177,2093066121649991990",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "1NxarolynyDKj",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1NxarolynyDKj",
+              "views": 1090,
+              "peakConcurrent": 408,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 9706,
+          "detail": {
+            "views": 9706,
+            "likes": 35,
+            "replies": 3,
+            "reposts": 3,
+            "bookmarks": 27,
+            "quotes": 2
+          },
+          "plays": 1765,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 320,
+          "sources": [
+            {
+              "objectId": "2093094217283506661",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093094217283506661",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 2179,
+              "detail": {
+                "views": 2179,
+                "likes": 22,
+                "replies": 1,
+                "reposts": 2,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2093066120580468925",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093066120580468925",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 7527,
+              "detail": {
+                "views": 7527,
+                "likes": 13,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 26,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "2093066120580468925,2093094217283506661",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "1RJZzBDprpwJB",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1RJZzBDprpwJB",
+              "views": 1765,
+              "peakConcurrent": 320,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-10T14:47:51.948Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "pulledAt": "2026-09-10T14:47:51.948Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2984,
+          "detail": {
+            "views": 2984,
+            "likes": 29,
+            "comments": 3,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "sC3Wvi1Whm4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "sC3Wvi1Whm4",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 2984,
+              "detail": {
+                "views": 2984,
+                "likes": 29,
+                "comments": 3,
+                "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "sC3Wvi1Whm4",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2808,
+          "detail": {
+            "views": 2808,
+            "likes": 18,
+            "comments": 1,
+            "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "qPAPUmg_qZE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "qPAPUmg_qZE",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 2808,
+              "detail": {
+                "views": 2808,
+                "likes": 18,
+                "comments": 1,
+                "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "qPAPUmg_qZE",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 5667,
+          "detail": {
+            "views": 5667,
+            "likes": 44,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 19,
+            "quotes": 0
+          },
+          "plays": 1096,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 408,
+          "sources": [
+            {
+              "objectId": "2093066121649991990",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093066121649991990",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 2731,
+              "detail": {
+                "views": 2731,
+                "likes": 23,
+                "replies": 0,
+                "reposts": 1,
+                "bookmarks": 13,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2092646157709185177",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2092646157709185177",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 2936,
+              "detail": {
+                "views": 2936,
+                "likes": 21,
+                "replies": 2,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "2092646157709185177,2093066121649991990",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "1NxarolynyDKj",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1NxarolynyDKj",
+              "views": 1096,
+              "peakConcurrent": 408,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 9767,
+          "detail": {
+            "views": 9767,
+            "likes": 35,
+            "replies": 3,
+            "reposts": 3,
+            "bookmarks": 28,
+            "quotes": 2
+          },
+          "plays": 1791,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 320,
+          "sources": [
+            {
+              "objectId": "2093094217283506661",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093094217283506661",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 2181,
+              "detail": {
+                "views": 2181,
+                "likes": 22,
+                "replies": 1,
+                "reposts": 2,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2093066120580468925",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+                "objectId": "2093066120580468925",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 7586,
+              "detail": {
+                "views": 7586,
+                "likes": 13,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 27,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "2093066120580468925,2093094217283506661",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+            "objectId": "1RJZzBDprpwJB",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1RJZzBDprpwJB",
+              "views": 1791,
+              "peakConcurrent": 320,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-08T14:00:10.728Z",
+    "checkedAt": "2026-09-10T14:47:51.948Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -5176,7 +5929,7 @@
       "source": "postlive",
       "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "pulledAt": "2026-09-08T14:00:10.728Z",
+      "pulledAt": "2026-09-10T14:47:51.948Z",
       "state": "ready"
     }
   }

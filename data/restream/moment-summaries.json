@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-08T14:02:43.965Z",
+  "updatedAt": "2026-09-10T14:50:33.469Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -201,6 +201,14 @@
     "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.58": {
       "summary": "Hosts debate whether the brand engineer title will last, discussing custom asset-generating tools handed to clients and reading chat pushback that it is design work.",
       "writtenAt": "2026-09-08T14:02:43.965Z"
+    },
+    "2026-07-17-dive-radio-bumpy-takeoff|drop|0.22": {
+      "summary": "Hosts joke about a noise-cancelling mask gadget, admit feeling self-conscious talking aloud to AI and sending messy prompts, then shift to a futuristic golf-cart-like vehicle.",
+      "writtenAt": "2026-09-10T14:50:33.468Z"
+    },
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.31": {
+      "summary": "Host recounts a viral pay-to-rank leaderboard project earning fast money, plugs designer voting and live call-ins, then introduces Charles Patterson's invite-only design showcase site.",
+      "writtenAt": "2026-09-10T14:50:33.469Z"
     }
   }
 }

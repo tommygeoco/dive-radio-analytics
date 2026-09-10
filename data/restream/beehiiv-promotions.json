@@ -4,10 +4,10 @@
     "id": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
     "name": "UX Tools"
   },
-  "updatedAt": "2026-09-08T14:00:04.966Z",
-  "lastSuccessfulAt": "2026-09-08T14:00:04.966Z",
+  "updatedAt": "2026-09-10T14:47:28.787Z",
+  "lastSuccessfulAt": "2026-09-10T14:47:28.787Z",
   "capture": {
-    "checkedAt": "2026-09-08T14:00:04.966Z",
+    "checkedAt": "2026-09-10T14:47:28.787Z",
     "state": "ready"
   },
   "episodes": {
@@ -18,14 +18,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-07-17-dive-radio-bumpy-takeoff",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -38,14 +38,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -58,14 +58,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -78,14 +78,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -98,14 +98,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -118,14 +118,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -138,14 +138,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null
@@ -171,23 +171,23 @@
               "url": "https://www.youtube.com/live/lnAecYrKYos?si=21YMVzwcizfMSZsT&utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=7-changes-in-brand-world-building",
               "baseUrl": "https://www.youtube.com/live/lnAecYrKYos",
               "target": "youtube:lnAecYrKYos",
-              "emailClicks": 89,
-              "verifiedEmailClicks": 36,
-              "uniqueClicksForThisLink": 40,
-              "uniqueVerifiedClicksForThisLink": 30
+              "emailClicks": 97,
+              "verifiedEmailClicks": 42,
+              "uniqueClicksForThisLink": 44,
+              "uniqueVerifiedClicksForThisLink": 33
             },
             {
               "url": "https://www.youtube.com/live/lnAecYrKYos?utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=7-changes-in-brand-world-building",
               "baseUrl": "https://www.youtube.com/live/lnAecYrKYos",
               "target": "youtube:lnAecYrKYos",
-              "emailClicks": 46,
-              "verifiedEmailClicks": 23,
-              "uniqueClicksForThisLink": 30,
-              "uniqueVerifiedClicksForThisLink": 23
+              "emailClicks": 51,
+              "verifiedEmailClicks": 24,
+              "uniqueClicksForThisLink": 32,
+              "uniqueVerifiedClicksForThisLink": 24
             }
           ],
-          "emailClicks": 135,
-          "verifiedEmailClicks": 59,
+          "emailClicks": 148,
+          "verifiedEmailClicks": 66,
           "clicksReason": null,
           "combinedUniqueReaders": null,
           "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links.",
@@ -196,14 +196,14 @@
             "source": "beehiiv",
             "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
             "objectId": "post_179faf55-d19b-4399-b9f2-e2d892de4820",
-            "pulledAt": "2026-09-08T14:00:04.966Z",
+            "pulledAt": "2026-09-10T14:47:28.787Z",
             "state": "ready"
           }
         }
       ],
       "totals": {
-        "emailClicks": 135,
-        "verifiedEmailClicks": 59,
+        "emailClicks": 148,
+        "verifiedEmailClicks": 66,
         "combinedUniqueReaders": null,
         "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
       },
@@ -283,17 +283,45 @@
             "pulledAt": "2026-09-08T14:00:04.966Z",
             "state": "ready"
           }
+        },
+        {
+          "date": "2026-09-09",
+          "pulledAt": "2026-09-09T14:11:40.729Z",
+          "emailClicks": 146,
+          "verifiedEmailClicks": 64,
+          "reading": {
+            "schemaVersion": 1,
+            "source": "beehiiv",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
+            "pulledAt": "2026-09-09T14:11:40.729Z",
+            "state": "ready"
+          }
+        },
+        {
+          "date": "2026-09-10",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
+          "emailClicks": 148,
+          "verifiedEmailClicks": 66,
+          "reading": {
+            "schemaVersion": 1,
+            "source": "beehiiv",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
+            "pulledAt": "2026-09-10T14:47:28.787Z",
+            "state": "ready"
+          }
         }
       ],
       "capture": {
-        "checkedAt": "2026-09-08T14:00:04.966Z",
+        "checkedAt": "2026-09-10T14:47:28.787Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-08T14:00:04.966Z",
+          "pulledAt": "2026-09-10T14:47:28.787Z",
           "state": "ready"
         },
         "reason": null

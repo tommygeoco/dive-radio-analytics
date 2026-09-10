@@ -6507,10 +6507,703 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-09T14:01:33.749Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "pulledAt": "2026-09-09T14:01:33.749Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 894,
+          "detail": {
+            "views": 894,
+            "likes": 21,
+            "comments": 7,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "RhemcDEc_-A",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "RhemcDEc_-A",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 894,
+              "detail": {
+                "views": 894,
+                "likes": 21,
+                "comments": 7,
+                "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "RhemcDEc_-A",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 626,
+          "detail": {
+            "views": 626,
+            "likes": 14,
+            "comments": 1,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "eLA79C1jq1g",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "eLA79C1jq1g",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 626,
+              "detail": {
+                "views": 626,
+                "likes": 14,
+                "comments": 1,
+                "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "eLA79C1jq1g",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 7762,
+          "detail": {
+            "views": 7762,
+            "likes": 11,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 1
+          },
+          "plays": 835,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 201,
+          "sources": [
+            {
+              "objectId": "2090529384369381505",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090529384369381505",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 7762,
+              "detail": {
+                "views": 7762,
+                "likes": 11,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "2090529384369381505",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "1DGleVBNBVjJL",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1DGleVBNBVjJL",
+              "views": 835,
+              "peakConcurrent": 201,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1280,
+          "detail": {
+            "views": 1280,
+            "likes": 12,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 0,
+            "quotes": 0
+          },
+          "plays": 341,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 125,
+          "sources": [
+            {
+              "objectId": "2090529387162878297",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090529387162878297",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 945,
+              "detail": {
+                "views": 945,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2090519715097747965",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090519715097747965",
+                "pulledAt": "2026-09-09T14:01:33.749Z",
+                "state": "ready"
+              },
+              "views": 335,
+              "detail": {
+                "views": 335,
+                "likes": 1,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "2090519715097747965,2090529387162878297",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "1aKbdEoAoEBJX",
+            "pulledAt": "2026-09-09T14:01:33.749Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1aKbdEoAoEBJX",
+              "views": 341,
+              "peakConcurrent": 125,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-09T14:11:45.688Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "pulledAt": "2026-09-09T14:11:45.688Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 894,
+          "detail": {
+            "views": 894,
+            "likes": 21,
+            "comments": 7,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "RhemcDEc_-A",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "RhemcDEc_-A",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 894,
+              "detail": {
+                "views": 894,
+                "likes": 21,
+                "comments": 7,
+                "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "RhemcDEc_-A",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 626,
+          "detail": {
+            "views": 626,
+            "likes": 14,
+            "comments": 1,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "eLA79C1jq1g",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "eLA79C1jq1g",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 626,
+              "detail": {
+                "views": 626,
+                "likes": 14,
+                "comments": 1,
+                "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "eLA79C1jq1g",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 7762,
+          "detail": {
+            "views": 7762,
+            "likes": 11,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 1
+          },
+          "plays": 835,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 201,
+          "sources": [
+            {
+              "objectId": "2090529384369381505",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090529384369381505",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 7762,
+              "detail": {
+                "views": 7762,
+                "likes": 11,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "2090529384369381505",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "1DGleVBNBVjJL",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1DGleVBNBVjJL",
+              "views": 835,
+              "peakConcurrent": 201,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1280,
+          "detail": {
+            "views": 1280,
+            "likes": 12,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 0,
+            "quotes": 0
+          },
+          "plays": 341,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 125,
+          "sources": [
+            {
+              "objectId": "2090529387162878297",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090529387162878297",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 945,
+              "detail": {
+                "views": 945,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2090519715097747965",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090519715097747965",
+                "pulledAt": "2026-09-09T14:11:45.688Z",
+                "state": "ready"
+              },
+              "views": 335,
+              "detail": {
+                "views": 335,
+                "likes": 1,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "2090519715097747965,2090529387162878297",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "1aKbdEoAoEBJX",
+            "pulledAt": "2026-09-09T14:11:45.688Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1aKbdEoAoEBJX",
+              "views": 341,
+              "peakConcurrent": 125,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-10T14:47:51.948Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "pulledAt": "2026-09-10T14:47:51.948Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 906,
+          "detail": {
+            "views": 906,
+            "likes": 21,
+            "comments": 7,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "RhemcDEc_-A",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "RhemcDEc_-A",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 906,
+              "detail": {
+                "views": 906,
+                "likes": 21,
+                "comments": 7,
+                "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "RhemcDEc_-A",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 637,
+          "detail": {
+            "views": 637,
+            "likes": 14,
+            "comments": 1,
+            "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "eLA79C1jq1g",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "eLA79C1jq1g",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 637,
+              "detail": {
+                "views": 637,
+                "likes": 14,
+                "comments": 1,
+                "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "eLA79C1jq1g",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 7767,
+          "detail": {
+            "views": 7767,
+            "likes": 11,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 1
+          },
+          "plays": 838,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 201,
+          "sources": [
+            {
+              "objectId": "2090529384369381505",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090529384369381505",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 7767,
+              "detail": {
+                "views": 7767,
+                "likes": 11,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "2090529384369381505",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "1DGleVBNBVjJL",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1DGleVBNBVjJL",
+              "views": 838,
+              "peakConcurrent": 201,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1280,
+          "detail": {
+            "views": 1280,
+            "likes": 12,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 0,
+            "quotes": 0
+          },
+          "plays": 341,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 125,
+          "sources": [
+            {
+              "objectId": "2090529387162878297",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090529387162878297",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 945,
+              "detail": {
+                "views": 945,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2090519715097747965",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+                "objectId": "2090519715097747965",
+                "pulledAt": "2026-09-10T14:47:51.948Z",
+                "state": "ready"
+              },
+              "views": 335,
+              "detail": {
+                "views": 335,
+                "likes": 1,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "2090519715097747965,2090529387162878297",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+            "objectId": "1aKbdEoAoEBJX",
+            "pulledAt": "2026-09-10T14:47:51.948Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1aKbdEoAoEBJX",
+              "views": 341,
+              "peakConcurrent": 125,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-08T14:00:10.728Z",
+    "checkedAt": "2026-09-10T14:47:51.948Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -6518,7 +7211,7 @@
       "source": "postlive",
       "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
       "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-      "pulledAt": "2026-09-08T14:00:10.728Z",
+      "pulledAt": "2026-09-10T14:47:51.948Z",
       "state": "ready"
     }
   }
