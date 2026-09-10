@@ -122,6 +122,13 @@ export function episodeDateForVideo(video) {
   return video?.snippet?.publishedAt ? phxDate(video.snippet.publishedAt) : null;
 }
 
+export function broadcastHasNotStarted(video, now = Date.now()) {
+  const live = video?.liveStreamingDetails;
+  if (live?.actualStartTime) return Date.parse(live.actualStartTime) > now;
+  return video?.snippet?.liveBroadcastContent === "upcoming"
+    || Date.parse(live?.scheduledStartTime) > now;
+}
+
 // --- load registry state for idempotency ---
 const registry = existsSync(REGISTRY_PATH)
   ? JSON.parse(readFileSync(REGISTRY_PATH, "utf8"))
@@ -140,8 +147,9 @@ function errorText(err) {
   return String(err?.message || err || "unknown error").replace(/\s+/g, " ").slice(0, 240);
 }
 
-export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
+export async function discoverYouTube({ get = getJson, apiKey = null, now = Date.now() } = {}) {
   const found = []; // { videoId, title, publishedAt, date, account }
+  const deferred = [];
   const accounts = [];
   let key;
   try {
@@ -178,10 +186,14 @@ export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
         for (const candidate of candidates) {
           const video = byId.get(candidate.videoId);
           if (!video) throw new Error(`video ${candidate.videoId} returned no details`);
+          if (broadcastHasNotStarted(video, now)) {
+            deferred.push({ videoId: candidate.videoId, account: ch.account, scheduledStartTime: video.liveStreamingDetails?.scheduledStartTime || null, reason: "broadcast has not started" });
+            continue;
+          }
           const date = episodeDateForVideo(video);
           if (!date) throw new Error(`live video ${candidate.videoId} has no start time`);
           const sn = video.snippet || candidate.playlistSnippet;
-          if (date > phxDate(new Date().toISOString())) continue;
+          if (date > phxDate(new Date(now).toISOString())) continue;
           accountFound.push({
             videoId: candidate.videoId,
             title: sn.title,
@@ -198,7 +210,7 @@ export async function discoverYouTube({ get = getJson, apiKey = null } = {}) {
       accounts.push({ account: ch.account, attempted: true, success: false, found: 0, error: errorText(err) });
     }
   }
-  return { found, accounts };
+  return { found, accounts, deferred };
 }
 
 // --- 2. X: recent announce posts from both hosts ---
@@ -279,6 +291,7 @@ async function main() {
   const startedAt = new Date().toISOString();
   const ytResult = await discoverYouTube();
   const ytFound = ytResult.found;
+  for (const video of ytResult.deferred || []) console.log(`discover: ${video.account}/${video.videoId} has not started; existing episode capture continues`);
   const xResult = await discoverX(new Set(ytFound.map((v) => v.videoId)));
   const xFound = xResult.found;
   const sources = {
@@ -378,7 +391,7 @@ async function main() {
   const sourceErrors = Object.entries(sources).filter(([,v]) => !v.success).map(([k]) => `${k} discovery incomplete`);
   if (sourceErrors.length || coverageErrors.length) {
     if (!dryRun) appendSourceReceipt("discovery", { startedAt, status: "partial", sources, episodeCoverage, errors: [...sourceErrors, ...coverageErrors], registrations: { attempted: false, success: false, planned: registrations.length, completed: 0 } });
-    throw new Error("source discovery incomplete; registry unchanged");
+    throw new Error(`source discovery incomplete; registry unchanged — ${[...sourceErrors, ...coverageErrors].join("; ")}`);
   }
   const registrationErrors = [];
   let registered = 0;
@@ -413,6 +426,7 @@ async function main() {
     lookbackDays: LOOKBACK_DAYS,
     sources,
     found: { youtube: ytFound.length, x: xFound.length },
+    deferredBroadcasts: ytResult.deferred || [],
     registrations: {
       attempted: !dryRun,
       success: !dryRun && registrationErrors.length === 0,

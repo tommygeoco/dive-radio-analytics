@@ -486,3 +486,27 @@ second warning on replay, and refusal rather than reset after an initialized
 ledger disappears. The focused recovery test passes after the fix. This changes
 only first-run state initialization, not the two-attempt cap or publication
 validation. After the fix, node --test --test-concurrency=1 tools/dive-analytics/audit/*.test.mjs exited 0: 44 passed, 0 failed (47.94 seconds). git diff --check and the daily-runner syntax check also exited 0. Independent recheck remains pending.
+
+## September 10 repeated publication failure
+
+The owner requested immediate repair. Production remained September 8. September
+9 captured eight episodes and eight owner-Analytics history rows, then failed
+strict transcript parity because two cloud-backed vault files returned read
+error -11. September 10 reached both YouTube and X accounts successfully but
+stopped because a same-day upcoming broadcast lacked one X destination. Original
+attempts and all 45 dirty captured files were copied to the private incident
+folder before modifying the release path. No captured reading is backdated.
+
+### Discovery repair
+
+- [x] Reproduce the same-day upcoming broadcast with injected real response shapes.
+- [x] Defer broadcasts still marked upcoming or scheduled in the future, using
+  actual start when supplied. Store deferred IDs in the successful discovery
+  receipt. Aired episodes still pass all destination completeness checks.
+- [x] Verify live read-only discovery reaches both platforms and defers today's
+  two upcoming YouTube uploads without changing the registry.
+- [ ] Adopt the committed repairs and complete the remaining authorized recovery.
+
+Decision: YouTube's exact broadcast state and timestamp are available at discovery;
+being on today's Phoenix date does not mean a broadcast has begun. This does not
+alter the date-only readiness rules for an already registered episode.
