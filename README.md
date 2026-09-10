@@ -170,3 +170,9 @@ deployment and exact live proof. It records `passed:advisory-pending`, preserves
 the review failure in the receipt and queues one dated warning. Freshness can
 confirm the successful publication without another capture. Other failed model
 or data steps still fail the checklist; missing source data remains pending.
+
+For a manual daily recovery on the owner machine, use the same 1Password
+configuration as OpenClaw: `op run --env-file "$HOME/.openclaw/runtime/op-run.env"`
+followed by `-- node tools/dive-analytics/run-daily.mjs --recovery`, from the
+isolated publisher checkout. The launcher checks the required newsletter key
+before spending a capture attempt. Never print or copy injected credential values.

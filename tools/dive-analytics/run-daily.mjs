@@ -427,6 +427,17 @@ function modeFromArgs(args) {
   return modes[0];
 }
 
+export function assertCaptureEnvironment(env = process.env) {
+  if (!env.BEEHIIV_API_KEY?.trim()) {
+    throw new Error("BEEHIIV_API_KEY is unavailable; launch through the existing OpenClaw 1Password environment before spending a capture attempt");
+  }
+}
+
+export function prepareCaptureCheckout(source, target) {
+  assertCaptureEnvironment();
+  return ensureIsolatedCheckout(source, target);
+}
+
 export async function runDaily({
   root = ROOT,
   isolatedRoot = PUBLISHER_ROOT,
@@ -434,7 +445,7 @@ export async function runDaily({
   now = Date.now(),
   mode,
   reason,
-  prepare = (source, target) => ensureIsolatedCheckout(source, target),
+  prepare = prepareCaptureCheckout,
   getOrigin = originSha,
   queue = (lines) => appendQueueLines(lines),
   run = (args, cwd) => runBoundedChain(args, cwd, { env: { ...process.env, DIVE_DAILY_OWNS_ALERTS: "1" } }),

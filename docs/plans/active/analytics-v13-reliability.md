@@ -545,3 +545,19 @@ an unchanged historical transcript depend on repeated cloud-file reads.
 Decision: preserve the two-attempt cap and existing cron definitions. Enforce the
 primary/recovery distinction in the runner so scheduler-level retries cannot
 consume the later recovery opportunity. Failed invocations and alerts stay honest.
+
+### Manual launcher preflight correction
+
+The first manual recovery was started without the OpenClaw 1Password environment.
+It completed discovery but correctly failed the required newsletter step because
+BEEHIIV_API_KEY was absent. No new metrics were captured. This operator mistake
+is retained as today's second failed attempt; no ledger record is reset or
+relabelled. The existing `op run --env-file` path was verified to supply the
+newsletter and both model credentials without printing any value.
+
+- [x] Add a required newsletter credential check before preparing the capture
+  checkout or reserving an attempt. Missing local launch prerequisites now leave
+  a failed preflight invocation and preserve the capture budget.
+- [x] Fixture proves no child runs, no attempt is spent, and recovery remains usable.
+- [ ] Deploy this changed committed code and use the owner-authorized one-time
+  operator repair through the verified environment, preserving both failures.
