@@ -36,6 +36,7 @@ import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { atomicWriteJson, readJsonFile, withSourceLock, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
+import { readVerifiedSource, SOURCE_CACHE_DIR } from "../../tools/dive-analytics/verified-source-read.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -175,7 +176,7 @@ export function vaultTranscriptCandidates(show, ep, vaultDir = process.env.DIVE_
     .map((file) => ({
       file,
       path: join(vaultDir, file),
-      body: speakerBody(readFileSync(join(vaultDir, file), "utf8")),
+      body: speakerBody(readVerifiedSource(join(vaultDir, file), { cacheDir: resolve(vaultDir) === resolve(DEFAULT_VAULT) ? SOURCE_CACHE_DIR : null })),
     }));
 }
 

@@ -510,3 +510,24 @@ folder before modifying the release path. No captured reading is backdated.
 Decision: YouTube's exact broadcast state and timestamp are available at discovery;
 being on today's Phoenix date does not mean a broadcast has begun. This does not
 alter the date-only readiness rules for an already registered episode.
+
+### Transcript source read repair
+
+- [x] Add bounded transient-read retries and a private atomic source-byte cache.
+- [x] Verify E7 and E8 can currently be read directly from their exact vault files;
+  seed the cache from those successful reads, never from public transcripts.
+- [x] Fixtures reject an unseeded cache, corrupt bytes, changed source identity,
+  deleted source and permission failures; they prove retry success and private modes.
+- [x] Keep exact source selection, conflicting-copy checks, source/body parity,
+  transcript headers and clock checks in strict validation.
+
+Decision: after three transient read errors only, the reader may use bytes it
+previously read successfully from the same absolute source path if device, inode,
+size, modification time and change time still match before and after the read.
+It checks the stored SHA256 and byte length. Readable source bytes always win;
+source deletion, access denial, changed metadata, cache corruption or no prior
+source read still fail. The cache is under the private runtime folder, mode 0600
+inside a 0700 directory, and is not a source store or a served artifact. The
+validator compares against the importer's one verified source read instead of
+opening the cloud file a second time. This preserves exact parity without making
+an unchanged historical transcript depend on repeated cloud-file reads.

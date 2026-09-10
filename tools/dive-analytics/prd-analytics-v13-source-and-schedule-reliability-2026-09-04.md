@@ -410,3 +410,16 @@ are inferred or backfilled. Missing bindings on new model output, unknown or
 duplicate IDs, uncited numbers, and mixed-age rate comparisons all fail safely.
 The recommendation-bindings fixture covers the real E4/E3 retention collision,
 genuine mixed-age rates with the same values, and malformed or missing bindings.
+
+## September 10 immutable transcript source reads
+
+The exact vault-source check can reuse previously read source bytes only after
+bounded transient read errors and only while the source's absolute path, device,
+inode, size, modification time and change time remain identical. The private
+runtime cache must have matching SHA256 and byte length. Cache creation requires
+a successful read of the actual source, never reconstruction from a published
+transcript. A readable changed source always replaces the cached reading and is
+checked against the canonical transcript. Missing sources, permission errors,
+changed metadata, conflicting source files, invalid bodies and corrupt or absent
+cache data remain strict failures. Both importer and validator use this same
+verified read; public transcript bytes and all header/clock checks are unchanged.

@@ -703,7 +703,7 @@ try {
       if (!existsSync(sourcePath)) { bad++; fail(`${episode.slug}: named vault source ${vaultSource} is missing`); }
       else {
         try {
-          if (pull.speakerBody(raw) !== pull.speakerBody(readFileSync(sourcePath, "utf8"))) {
+          if (pull.speakerBody(raw) !== vaultPlan?.body) {
             bad++; fail(`${episode.slug}: canonical transcript body differs from ${vaultSource}`);
           }
           const parsed = transcriptReader.parseTranscript(raw);
