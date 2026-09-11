@@ -617,10 +617,18 @@ newsletter and both model credentials without printing any value.
 - [x] Added visible latest-episode quotes and a searchable/source-filtered drilldown with original links/timestamps.
 - [x] Reused the same projection in the agent brief and expanded Slack summary; historical health inputs are unchanged.
 - [x] Browser preview displays real Episode 9 X praise and the recovered BEST EPISODE live-chat message.
-- [ ] Finish all recovered classifications, final strict validation, independent review and production browser proof.
+- [x] Finish all recovered classifications, final strict validation, independent review and production browser proof.
 
 ### Surprises and decisions
 
 - Capturing source text does not make it visible. Acceptance now requires rendered quote text and working search/source filters in production, not just archived bytes or deployed code.
 - Chat supplies anonymous author labels, so the expanded display counts messages rather than unique people. No cross-platform identity is inferred and no historical score is redefined.
 - Independent review found missing quote URL allowlisting, hidden incomplete-source notices, and unsupported-config retention. Fixed by grounding quote links in approved records, rendering source/processing notices, and preserving prior labels while automatically processing changed source text or a newly supported classifier contract.
+
+### Audience production acceptance
+
+- Released `1da5d4fc1abd1c7a52236207e16b0057e21f7316`; build 2026-09-11T23:10:31.575Z. Canonical production matched all 18 public artifacts at 23:14:53.422Z.
+- All 52 audit suites, 108 script syntax checks and two page scripts passed; strict validation had zero failures, 41 existing warnings and zero drift.
+- Private classification finished with 105 approved expanded messages and zero unprocessed records; uncertain review candidates remain private. E9 displays 53 merged comments, 48 positive and five with criticism.
+- Production browser verified visible preview quotes, full list, live-chat search for best (including BEST EPISODE!!, hands down best show yet, and by far the best show), source links/timestamps, criticism filtering and clearing search.
+- Fresh agent brief exam and expanded-feedback regression passed after live archive cross-check. E1 is omitted from the brief by the existing archive policy; the examiner correctly qualified the longest-viewer answer until checking the complete archive.

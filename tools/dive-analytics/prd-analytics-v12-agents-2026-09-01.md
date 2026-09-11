@@ -407,3 +407,5 @@ promotion units, pipe-containing titles, deterministic selection and size.
   answers against the exact live-parity-verified data.json/agent.json. Production
   build 2026-09-11T17:08:30.193Z; commit 855aa54; 18-file byte parity at
   2026-09-11T17:12:48.742Z. Future unattended mornings remain unverified.
+
+- September 11 audience-feedback acceptance: production `1da5d4fc`, build 2026-09-11T23:10:31.575Z, 18-file parity at 23:14:53.422Z. Fresh-context agent answered the twelve standard questions from agent.md, honestly limiting the longest-viewer comparison to its eight printed episodes, then confirmed every answer against live agent.json (omitted E1 is 7.1 minutes/viewer versus E9 at 14.2). No factual discrepancies. Added regression passed: E9 has 53 expanded feedback messages, 48 positive and five with criticism; both featured quotes match their approved sources; message totals do not replace historical distinct-person scoring. JSON paths were verified in the archive after the brief-only answer pass.
