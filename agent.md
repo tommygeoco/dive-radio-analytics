@@ -1,14 +1,14 @@
 # Dive Radio — agent brief
 
-Built 2026-09-11T21:41:56.630Z · data through 2026-09-11 · health read 2026-09-11 (data through 2026-09-11) · chapters written 2026-09-11 · brief v1
+Built 2026-09-11T23:08:13.285Z · data through 2026-09-11 · health read 2026-09-11 (data through 2026-09-11) · chapters written 2026-09-11 · brief v1
 
 ## 1. How to read this
 
 This is the current read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, episode chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Episode archive: 9 episodes in https://dive-radio-analytics.vercel.app/agent.json; 9 included here, 0 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
+Episode archive: 9 episodes in https://dive-radio-analytics.vercel.app/agent.json; 8 included here, 1 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-09-11T21:41:56.630Z); the show-health read (2026-09-11, over data through 2026-09-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
+Three clocks: the data build (2026-09-11T23:08:13.285Z); the show-health read (2026-09-11, over data through 2026-09-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -179,7 +179,6 @@ Views as of 2026-09-11; first week, launch, and pace at the same age; episode he
 
 | Ep | Date | Title | YouTube | X plays | X reach | Total | First week | Launch | Pace | Ep. health | Live peak / avg / people / min | Min per viewer | Hold | Watched | Subs/1k | Discovery | Feedback + / − | Promo |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| E1 | 2026-07-17 | Bumpy Takeoff | 2,130 | 1,784 | 5,436 | 3,914 | 1,830 | strong | — | —² | 90 / 65 / 1,131 / 8,060 | 7.1 | 48% | 10.6% | 8.6 | 15.1% | 7 / 0 | — |
 | E2 | 2026-07-23 | Data vs. Intuition, Web Designers Are Back + Call-Ins | 2,145 | 1,815 | 6,145 | 3,960 | 1,751 | strong | — | —² | 71 / 56 / 1,119 / 6,720 | 6.0 | 61% | 11.1% | 2.8 | 19.4% | 3 / 0 | — |
 | E3 | 2026-07-30 | Mixed Media Workflows, Game Design, + Live Call-Ins | 1,635 | 4,278 | 19,949 | 5,913 | —¹ | soft | — | —² | 53 / 42 / 1,226 / 4,746 | 3.9 | 96% | 9.1% | 0.0 | 12.8% | 1 / 1 | outlier (provisional) |
 | E4 | 2026-08-06 | Backyard Designers behind-the-scenes | 1,994 | 1,905 | 4,679 | 3,899 | —¹ | strong | #3 of 4 (-4%) | —² | 63 / 48 / 1,199 / 5,952 | 5.0 | 77% | 8.9% | 3.5 | 14.0% | 2 / 2 | — |
@@ -192,22 +191,6 @@ Views as of 2026-09-11; first week, launch, and pace at the same age; episode he
 ¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.
 
 ## 6. Episode by episode
-
-### E1 — Bumpy Takeoff (2026-07-17)
-
-Links: YouTube joindiveclub https://youtube.com/watch?v=VcLm0kAGCck · YouTube designertom https://youtube.com/watch?v=FqsXWbfKmGw · X replay @ridd_design https://x.com/i/broadcasts/1AxRnnrOvlrxl · X replay @designertom https://x.com/i/broadcasts/1pKdRRwpkaQJW · announce @ridd_design https://x.com/ridd_design/status/2077862030455800172 · announce @designertom https://x.com/designertom/status/2077862031730815011 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-07-17-dive-radio-bumpy-takeoff.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-07-17-dive-radio-bumpy-takeoff
-(older episode — table row, links, promotion, and chapter titles; the full section is in agent.json)
-Chapters (model-written from the transcript, complete; timestamps on the YouTube upload's clock — links jump to the moment):
-- 00:03:15 — Cold open montage and a bumpy first launch (https://youtube.com/watch?v=VcLm0kAGCck&t=195s)
-- 00:07:34 — Why launch a live design show (https://youtube.com/watch?v=VcLm0kAGCck&t=454s)
-- 00:14:08 — Daily driver models and going local (https://youtube.com/watch?v=VcLm0kAGCck&t=848s)
-- 00:20:10 — Voice interfaces take over daily life (https://youtube.com/watch?v=VcLm0kAGCck&t=1210s)
-- 00:31:15 — Cursor's comeback and the great bundling (https://youtube.com/watch?v=VcLm0kAGCck&t=1875s)
-- 00:39:56 — The Gal retirement debate and an AI style test (https://youtube.com/watch?v=VcLm0kAGCck&t=2396s)
-- 00:57:36 — Burnout, token FOMO, and panic attacks (https://youtube.com/watch?v=VcLm0kAGCck&t=3456s)
-- 01:04:21 — Rebranding Dive with mood boards and a playable radio (https://youtube.com/watch?v=VcLm0kAGCck&t=3861s)
-- 01:25:18 — A whirlwind brand sprint and audience voting (https://youtube.com/watch?v=VcLm0kAGCck&t=5118s)
-- 01:53:27 — One-up finds, listener questions, and signing off (https://youtube.com/watch?v=VcLm0kAGCck&t=6807s)
 
 ### E2 — Data vs. Intuition, Web Designers Are Back + Call-Ins (2026-07-23)
 
@@ -314,6 +297,10 @@ Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 19 min in (20% of the way): 2.6 of every hundred viewers left — The hosts scroll a community pile-on: replies roasting an AI-generated design post, delete-this jokes included, while they debate how seriously to take the backlash. — "sarcastic. This is some kind of a weird 00:18:53  corporate comms thing." A genius. 00:18:58  And then I just closed Twitter. And then 00:19:00  I came back a…"
 - Drop about 47 min in (50% of the way): 3.5 of every hundred viewers left — Show-and-tell of a community-made card game site: the hosts admire its productized admin flow — drag a card and it deploys — until the site's autoplaying music derails the segment and they close the tab. — "Thank god because I would have that was 00:47:26  a flashbang equivalent. But, uh, yeah, 00:47:28  everyone's in there. Go craft deck.gg. 00:47:30  Gabe, 00:47…"
 - Hold about 53 min in (56% of the way): 2.2 of every hundred extra were watching — A guest walks through how their prototyping workflow changed — from making messes on top of the production codebase to isolated quick mockups — and shares a screen of the new setup. — "mainly because I was curious. I had it 00:53:05  pull out the HTML quick mockup 00:53:08  prototypes that I had made this week. 00:53:11  It's a lot, man. 00:5…"
+Dashboard audience feedback: 14 messages (10 positive, 4 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Some comments are awaiting review.
+- "Mic sounds good" — Person 13 on YouTube live chat ([original](https://www.youtube.com/watch?v=G2_F3dd3RkA))
+- "mic s good" — Person 4 on YouTube live chat ([original](https://www.youtube.com/watch?v=G2_F3dd3RkA))
 Feedback: 5 comments captured, 3 with a clear lean from 3 people (1 enjoyed, 0 concerns); X replies not covered.
 The commenting rate isn’t available — some replies or watch counts are missing.
 - "I think 90 mins is perfect!" — DeanChateaux on YouTube
@@ -343,6 +330,10 @@ Watch moments (from the YouTube retention curve; positions approximate):
 - Hold about 45 min in (47% of the way): 2.1 of every hundred extra were watching — Hosts discuss mascots as attachment strategy, read a viewer comment on logos losing meaning, plug sponsor Lovable, then demo open-source blob character tools live, tweaking eyes, rotation and expressions. — "This is what we're seeing. 00:44:42 [Speaker 3] Right? 00:44:43 [Speaker 3] On on one end of the scale of personification, it's about bringing it's about kind…"
 - Drop about 49 min in (52% of the way): 2.5 of every hundred viewers left — A host screen-shares open source mascot tools, tweaking blob eyes and motion for a dive character, plugs sponsor Lovable, and riffs on cute animal logos and children's books. — "If you can't unsee that, people are saying, I cannot unsee that. 00:49:26 [Speaker 3] That's RID's final form. 00:49:28 [Speaker 3] Let me introduce you to rid…"
 - Hold about 67 min in (70% of the way): 2.7 of every hundred extra were watching — Hosts chat about making stories with their kids, plug the designer of the week vote, then bring caller DJ on air and troubleshoot his missing audio while asking the chat to confirm sound. — "Sorry, DJ. 01:06:29 [Speaker 6] Create different pose variation. 01:06:31 [Speaker 6] Hey, Tommy. 01:06:32 [Speaker 6] I just wanna say thank you so much for f…"
+Dashboard audience feedback: 24 messages (13 positive, 11 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Some comments are awaiting review.
+- "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that." — tylerhuntdesign on YouTube
+- "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!" — @robhope on X ([original](https://x.com/i/status/2090735871938970092))
 Feedback: 8 comments captured, 6 with a clear lean from 6 people (6 enjoyed, 0 concerns); X replies included. Enjoyed: other (4).
 - "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!" — @robhope on X
 - "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that." — tylerhuntdesign on YouTube
@@ -370,6 +361,10 @@ Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 8 min in (7% of the way): 2.6 of every hundred viewers left — Hosts open the show joking about early beta access to a Figma feature and working from home, then set up the main topic: interface patterns in agentic AI design tools. — "That's 00:07:37 [Speaker 3] not a military anymore. 00:07:38 [Speaker 3] That would 00:07:38 [Speaker 1] be a meaty problem. 00:07:39 [Speaker 1] I know I don'…"
 - Drop about 20 min in (18% of the way): 5.3 of every hundred viewers left — A host nominates designer Alex for designer of the week, praising his work on Honk and other apps, while the other host screen-shares a live voting page with competing progress bars. — "It I, Lucas getting some love today. 00:19:41 [Speaker 3] Lucas is getting some love today. 00:19:45 [Speaker 3] There's some work to be done on these other en…"
 - Drop about 44 min in (40% of the way): 3.8 of every hundred viewers left — A guest closes a talk on Ramp's brand refresh favoring coherence over consistency; hosts praise the work, plug audience voting, then one host begins defending his cohost's design credentials. — "it. 00:43:43 [Speaker 3] That's a cool I I love, like, four week sprint blocks of something. 00:43:49 [Speaker 3] Like, hey. 00:43:49 [Speaker 3] We're about t…"
+Dashboard audience feedback: 12 messages (12 positive, 0 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Some comments are awaiting review.
+- "Here's my Granola show notes (came in a bit late, but some good stuff in there): [link] Thanks for doing this each week!" — @BetterNeil on X ([original](https://x.com/i/status/2093095692277370929))
+- "@designertom love/have that shirt! (ep was good too)" — @adamtrabold on X ([original](https://x.com/i/status/2097322455236837619))
 Feedback: 8 comments captured, 1 with a clear lean from 1 people (1 enjoyed, 0 concerns); X replies included.
 - "Here's my Granola show notes (came in a bit late, but some good stuff in there): [link] Thanks for doing this each week!" — @BetterNeil on X
 Episode health: — (read completes on 2026-09-17 (day twenty-one)).
@@ -398,6 +393,10 @@ Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 31 min in (32% of the way): 2.6 of every hundred viewers left — Hosts react to new AI video tools, including on-demand generated clips, a live stream where viewers prompt scenes in real time, and an announcement of Solaris, a model that generates interactive interfaces. — "Solaris, interfaces that are generated, not coded. 00:30:52 [Speaker 2] That's crazy, man. 00:30:53 [Speaker 2] I I I gen genuinely am having a harder time wra…"
 - Drop about 37 min in (38% of the way): 5.4 of every hundred viewers left — Hosts discuss generated interfaces as branding's next big shift after social media, cite designers with strong personal brands, then play a clip of Evil Rabbit describing his creative team's work at Vercel. — "We're actually improving their daily workflow. 00:36:41 [Speaker 8] We are not just a designer anymore. 00:36:43 [Speaker 8] We are builders. 00:36:43 [Speaker…"
 - Hold about 54 min in (56% of the way): 2.1 of every hundred extra were watching — A guest demos an interactive map tool built for an energy client that animates power corridors over real terrain, pulls in live data views, and lets the client generate and export branded scenes. — "You could build it. 00:54:06 [Speaker 5] Yeah. 00:54:07 [Speaker 5] You would get there. 00:54:07 [Speaker 5] You would get there and it would be incredible. 0…"
+Dashboard audience feedback: 20 messages (20 positive, 0 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Some comments are awaiting review.
+- "@designertom @IniAbiodun @BrettFromDJ @evilrabbit_ @thenickpattison @gennydee @JaredTredly @CharlesPattson Really cool 👏🏾. I love what you guys are doing at Dive Radio 💯." — @Khlaseek_dsgner on X ([original](https://x.com/i/status/2096925770316644438))
+- "so good guys 🤍🫂" — @evilrabbit_ on X ([original](https://x.com/i/status/2095687290190500096))
 Feedback: 11 comments captured, 8 with a clear lean from 8 people (7 enjoyed, 0 concerns); X replies included. Enjoyed: other (5).
 - "so good guys 🤍🫂" — @evilrabbit_ on X
 - "love your show 🙂" — @ciguleva on X
@@ -423,6 +422,10 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:53:56 — What matters most when accepting an offer: Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views.
 - 02:16:59 — Closing questions, weekly picks, and the vote winner: Hosts answer chat questions on cold outreach, share finds, and announce designer of the week.
 Source checks: watch: pending (YouTube Analytics has not returned this episode's watch data yet).
+Dashboard audience feedback: 53 messages (48 positive, 5 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Some comments are awaiting review.
+- "This was fun and in good company! super informative for designers currently looking for their next place.  I have a little cameo at ~2:01 💁🏻‍♀️ [link]" — @gennydee on X ([original](https://x.com/i/status/2098220848251388270))
+- "@designertom @ridd_design Best show so far... Lot of juice to get from this one episode.   I have watched it twice already Keep getting better. @designertom  @ridd_design 🫡🫡" — @omostical on X ([original](https://x.com/i/status/2098328331066228973))
 Feedback: 5 comments captured, 5 with a clear lean from 5 people (4 enjoyed, 0 concerns); X replies included. Enjoyed: other (4).
 - "As always, an absolute banger of a show." — @BetterNeil on X
 - "Hej would it be possible to add featured designers links into descriptions ? good one" — Techne89 on YouTube
@@ -433,7 +436,6 @@ Episode health: — (read completes on 2026-10-01 (day twenty-one)).
 First weeks in air order (YouTube views at day seven; a launch reading stands in where a clean first week does not exist):
 | Ep | Date | First week | Launch reading |
 |---|---|---|---|
-| E1 | 2026-07-17 | 1,830 | 1,830 (strong) |
 | E2 | 2026-07-23 | 1,751 | 1,751 (strong) |
 | E3 | 2026-07-30 | — (excluded: partial history) | 1,601 (soft) |
 | E4 | 2026-08-06 | — (excluded: partial history) | 1,892 (strong) |
@@ -506,7 +508,6 @@ Cadence: one chain run at 07:00 America/Phoenix (pull, capture, score, write, va
 - https://dive-radio-analytics.vercel.app/data.json — the raw data the dashboard renders: daily series per destination, per-minute live audience, watch curves, every classified comment
 - https://dive-radio-analytics.vercel.app/llms.txt — the index of everything here
 - https://dive-radio-analytics.vercel.app/agent-skill.md — a drop-in skill for Claude Code and OpenClaw
-- https://dive-radio-analytics.vercel.app/transcripts/2026-07-17-dive-radio-bumpy-takeoff.txt — E1 transcript (YouTube caption format)
 - https://dive-radio-analytics.vercel.app/transcripts/2026-07-23-dive-radio-data-vs-intuition-web-designe.txt — E2 transcript (live speaker format)
 - https://dive-radio-analytics.vercel.app/transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt — E3 transcript (YouTube caption format)
 - https://dive-radio-analytics.vercel.app/transcripts/2026-08-06-dive-radio-backyard-designers-behind-the.txt — E4 transcript (live speaker format)
@@ -522,6 +523,7 @@ Left out of this brief on purpose (in data.json instead):
 - episodes[].weekly — weekly roll-ups of the same series — in data.json
 - episodes[].live.series — the per-minute live audience — summarised as peak, average, minutes per viewer, and hold rate
 - episodes[].watch.curve — the hundred-point watch curve — summarised by its shape and the moments
+- episodes[].audience.list — full classified YouTube, X-thread and live-chat messages; message totals and featured quotes reach the brief, complete text is in data.json
 - episodes[].comments.list — every classified comment — counts, themes, and featured quotes stand in; the list is in data.json
 - episodes[].watch.moments[].excerpt — cut to a short excerpt in the brief; the full verbatim excerpt is in data.json
 - episodes[].chapters.list[].quote — the grounding quote behind each chapter — the timestamp and title are what an agent needs; the quote is in agent.json

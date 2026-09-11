@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-09-11T21:41:56.630Z",
+ "generatedAt": "2026-09-11T23:08:13.285Z",
  "promotionUpdatedAt": "2026-09-11T17:02:37.027Z",
  "clocks": {
-  "data": "2026-09-11T21:41:56.630Z",
+  "data": "2026-09-11T23:08:13.285Z",
   "dataThrough": "2026-09-11T17:02:39.374Z",
   "healthRead": "2026-09-11",
   "healthDataThrough": "2026-09-11T17:03:21.888Z",
@@ -1283,6 +1283,10 @@
     "chatters": 104,
     "durationMin": 123
    },
+   "expandedFeedback": {
+    "value": null,
+    "reason": "no expanded conversation capture"
+   },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "captured": 8,
@@ -1618,6 +1622,10 @@
     "chatters": 55,
     "durationMin": 120
    },
+   "expandedFeedback": {
+    "value": null,
+    "reason": "no expanded conversation capture"
+   },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "captured": 5,
@@ -1951,6 +1959,10 @@
     "chatMessages": 169,
     "chatters": 56,
     "durationMin": 113
+   },
+   "expandedFeedback": {
+    "value": null,
+    "reason": "no expanded conversation capture"
    },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
@@ -2291,6 +2303,10 @@
     "chatters": 55,
     "durationMin": 124
    },
+   "expandedFeedback": {
+    "value": null,
+    "reason": "no expanded conversation capture"
+   },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
     "captured": 7,
@@ -2614,6 +2630,57 @@
     "chatMessages": 100,
     "chatters": 39,
     "durationMin": 95
+   },
+   "expandedFeedback": {
+    "count": 14,
+    "positiveCount": 10,
+    "negativeCount": 4,
+    "sources": {
+     "x": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     },
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "chat:742d84a3521a6c45f358e511d257b91794fa76da5c8c4de507609c9ae8d2b288:1",
+      "source": "live-chat",
+      "author": "Person 13",
+      "text": "Mic sounds good",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-13T20:08:11Z",
+      "url": "https://www.youtube.com/watch?v=G2_F3dd3RkA",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "audio quality"
+      ]
+     },
+     {
+      "id": "chat:b39786702e50aad02c1e689438d288f55eae3e616ecbe50151054335124e273e:1",
+      "source": "live-chat",
+      "author": "Person 4",
+      "text": "mic s good",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-13T20:08:14Z",
+      "url": "https://www.youtube.com/watch?v=G2_F3dd3RkA",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "audio quality"
+      ]
+     }
+    ]
    },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
@@ -2983,6 +3050,57 @@
     "chatMessages": 127,
     "chatters": 41,
     "durationMin": 95
+   },
+   "expandedFeedback": {
+    "count": 24,
+    "positiveCount": 13,
+    "negativeCount": 11,
+    "sources": {
+     "x": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     },
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "yt:UgycC2EjwPzptqmQnox4AaABAg",
+      "author": "tylerhuntdesign",
+      "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-08-20T23:27:56Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "x:2090735871938970092",
+      "author": "@robhope",
+      "text": "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!",
+      "source": "x",
+      "likes": 2,
+      "at": "2026-08-21T09:40:50.000Z",
+      "sentiment": "positive",
+      "themes": [
+       "pacing"
+      ],
+      "platform": "X",
+      "channel": null,
+      "url": "https://x.com/i/status/2090735871938970092"
+     }
+    ]
    },
    "feedback": {
     "note": null,
@@ -3380,6 +3498,57 @@
     "chatMessages": 92,
     "chatters": 40,
     "durationMin": 110
+   },
+   "expandedFeedback": {
+    "count": 12,
+    "positiveCount": 12,
+    "negativeCount": 0,
+    "sources": {
+     "x": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     },
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "x:2093095692277370929",
+      "author": "@BetterNeil",
+      "text": "Here's my Granola show notes (came in a bit late, but some good stuff in there): [link] Thanks for doing this each week!",
+      "source": "x",
+      "likes": 1,
+      "at": "2026-08-27T21:57:55.000Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "X",
+      "channel": null,
+      "url": "https://x.com/i/status/2093095692277370929"
+     },
+     {
+      "id": "x:2097322455236837619",
+      "source": "x",
+      "author": "@adamtrabold",
+      "text": "@designertom love/have that shirt! (ep was good too)",
+      "platform": "X",
+      "channel": null,
+      "at": "2026-09-08T13:53:34.000Z",
+      "url": "https://x.com/i/status/2097322455236837619",
+      "likes": 1,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ]
    },
    "feedback": {
     "note": null,
@@ -3810,6 +3979,57 @@
     "chatters": 37,
     "durationMin": 115
    },
+   "expandedFeedback": {
+    "count": 20,
+    "positiveCount": 20,
+    "negativeCount": 0,
+    "sources": {
+     "x": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     },
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "x:2096925770316644438",
+      "source": "x",
+      "author": "@Khlaseek_dsgner",
+      "text": "@designertom @IniAbiodun @BrettFromDJ @evilrabbit_ @thenickpattison @gennydee @JaredTredly @CharlesPattson Really cool 👏🏾. I love what you guys are doing at Dive Radio 💯.",
+      "platform": "X",
+      "channel": null,
+      "at": "2026-09-07T11:37:17.000Z",
+      "url": "https://x.com/i/status/2096925770316644438",
+      "likes": 3,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "x:2095687290190500096",
+      "author": "@evilrabbit_",
+      "text": "so good guys 🤍🫂",
+      "source": "x",
+      "likes": 2,
+      "at": "2026-09-04T01:36:00.000Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "X",
+      "channel": null,
+      "url": "https://x.com/i/status/2095687290190500096"
+     }
+    ]
+   },
    "feedback": {
     "note": null,
     "captured": 11,
@@ -4168,6 +4388,57 @@
     "chatters": 73,
     "durationMin": 151
    },
+   "expandedFeedback": {
+    "count": 53,
+    "positiveCount": 48,
+    "negativeCount": 5,
+    "sources": {
+     "x": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     },
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-11T21:41:19.128Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "x:2098220848251388270",
+      "source": "x",
+      "author": "@gennydee",
+      "text": "This was fun and in good company! super informative for designers currently looking for their next place.  I have a little cameo at ~2:01 💁🏻‍♀️ [link]",
+      "platform": "X",
+      "channel": null,
+      "at": "2026-09-11T01:23:27.000Z",
+      "url": "https://x.com/i/status/2098220848251388270",
+      "likes": 13,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "x:2098328331066228973",
+      "source": "x",
+      "author": "@omostical",
+      "text": "@designertom @ridd_design Best show so far... Lot of juice to get from this one episode.   I have watched it twice already Keep getting better. @designertom  @ridd_design 🫡🫡",
+      "platform": "X",
+      "channel": null,
+      "at": "2026-09-11T08:30:33.000Z",
+      "url": "https://x.com/i/status/2098328331066228973",
+      "likes": 2,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ]
+   },
    "feedback": {
     "note": null,
     "captured": 5,
@@ -4475,7 +4746,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-09-11T21:41:56.630Z",
+    "stamp": "2026-09-11T23:08:13.285Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -4490,7 +4761,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-09-11T21:41:56.630Z",
+    "stamp": "2026-09-11T23:08:13.285Z",
     "note": "1 current action; saved model actions whose numbers changed are held back"
    },
    {
@@ -4509,6 +4780,8 @@
   "episodes[].latest.xPlaysInfo*",
   "episodes[].latest.totalViewsInfo*",
   "episodes[].promotion*",
+  "episodes[].audience.featured[]*",
+  "episodes[].audience.sources*",
   "episodes[].metrics*",
   "episodes[].live.byChannel[]*",
   "episodes[].comments.featured[]*",
@@ -4636,6 +4909,16 @@
   "episodes[].live.holdRate",
   "episodes[].live.byChannel",
   "episodes[].live.byChannel[]",
+  "episodes[].audience",
+  "episodes[].audience.count",
+  "episodes[].audience.positiveCount",
+  "episodes[].audience.negativeCount",
+  "episodes[].audience.featured",
+  "episodes[].audience.featured[]",
+  "episodes[].audience.sources",
+  "episodes[].audience.note",
+  "episodes[].audience.notices",
+  "episodes[].audience.notices[]",
   "episodes[].comments",
   "episodes[].comments.captured",
   "episodes[].comments.feedbackCount",
@@ -4775,6 +5058,10 @@
    "reason": "the hundred-point watch curve — summarised by its shape and the moments"
   },
   {
+   "path": "episodes[].audience.list",
+   "reason": "full classified YouTube, X-thread and live-chat messages; message totals and featured quotes reach the brief, complete text is in data.json"
+  },
+  {
    "path": "episodes[].comments.list",
    "reason": "every classified comment — counts, themes, and featured quotes stand in; the list is in data.json"
   },
@@ -4807,7 +5094,6 @@
   "archiveUrl": "https://dive-radio-analytics.vercel.app/agent.json",
   "totalEpisodes": 9,
   "includedSlugs": [
-   "2026-07-17-dive-radio-bumpy-takeoff",
    "2026-07-23-dive-radio-data-vs-intuition-web-designe",
    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
    "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -4817,6 +5103,6 @@
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
    "2026-09-10-dive-radio-how-designers-are-getting-hir"
   ],
-  "archivedCount": 0
+  "archivedCount": 1
  }
 }
