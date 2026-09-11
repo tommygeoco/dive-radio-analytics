@@ -97,7 +97,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "UgxdqR-E60y0zauSZLp4AaABAg",
-        "pulledAt": "2026-09-10T14:48:33.626Z",
+        "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready"
       }
     },
@@ -201,15 +201,15 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "Ugz2VLFIYF5xuP7CLp14AaABAg",
-        "pulledAt": "2026-09-10T14:48:33.626Z",
+        "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready"
       }
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-10T14:48:33.626Z",
+  "updatedAt": "2026-09-11T17:03:17.498Z",
   "capture": {
-    "checkedAt": "2026-09-10T14:48:33.626Z",
+    "checkedAt": "2026-09-11T17:03:17.498Z",
     "state": "ready",
     "sources": [
       {
@@ -217,7 +217,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "Vh8ogFIE8CA",
-        "pulledAt": "2026-09-10T14:48:33.626Z",
+        "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready",
         "count": 2
       },
@@ -226,7 +226,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "lnAecYrKYos",
-        "pulledAt": "2026-09-10T14:48:33.626Z",
+        "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready",
         "count": 0
       },
@@ -235,18 +235,18 @@
         "source": "x-replies",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "2095602694337839446",
-        "pulledAt": "2026-09-10T14:48:33.626Z",
+        "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready",
-        "count": 2
+        "count": 0
       },
       {
         "schemaVersion": 1,
         "source": "x-replies",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "2095602695512195280",
-        "pulledAt": "2026-09-10T14:48:33.626Z",
+        "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready",
-        "count": 5
+        "count": 0
       }
     ]
   }

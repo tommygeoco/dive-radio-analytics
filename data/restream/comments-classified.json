@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-10T14:48:37.347Z",
+  "updatedAt": "2026-09-11T17:03:21.888Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -941,6 +941,111 @@
         ],
         "confidence": 0.85
       }
+    },
+    "yt:UgwJM-SZIdGK63JhdJR4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.65,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-11T14:01:22.516Z",
+      "audit": {
+        "at": "2026-09-11T14:01:22.516Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.65
+      }
+    },
+    "yt:UgxQ6qvEYob-BRyaeOZ4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "neutral",
+      "themes": [
+        "topic choice"
+      ],
+      "confidence": 0.7,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-11T14:01:22.516Z",
+      "audit": {
+        "at": "2026-09-11T14:01:22.516Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "neutral",
+        "themes": [
+          "topic choice"
+        ],
+        "confidence": 0.7
+      }
+    },
+    "yt:Ugz7G34VaMGlgeCpbsV4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.8,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-11T14:01:22.516Z",
+      "audit": {
+        "at": "2026-09-11T14:01:22.516Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.8
+      }
+    },
+    "x:2098179066834690160": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.95,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-11T14:01:22.516Z"
+    },
+    "yt:UgwjrpZLi_JTjJrg0v54AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-11T17:03:21.888Z",
+      "audit": {
+        "at": "2026-09-11T17:03:21.888Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.9
+      }
     }
   },
   "golden": {
@@ -961,9 +1066,9 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-10T14:48:37.347Z",
+    "at": "2026-09-11T17:03:21.888Z",
     "status": "complete",
-    "added": 0,
+    "added": 1,
     "reviewed": 0,
     "pendingIds": []
   },

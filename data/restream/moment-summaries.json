@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-10T14:50:33.469Z",
+  "updatedAt": "2026-09-11T17:05:36.023Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -209,6 +209,10 @@
     "2026-08-28-dive-radio-steal-these-ai-design-pattern|drop|0.31": {
       "summary": "Host recounts a viral pay-to-rank leaderboard project earning fast money, plugs designer voting and live call-ins, then introduces Charles Patterson's invite-only design showcase site.",
       "writtenAt": "2026-09-10T14:50:33.469Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.1": {
+      "summary": "Hosts move from brand work in products into the designer of the week segment, playing recorded nominations for Marina and Laura before a host shares his own pick, Jackie.",
+      "writtenAt": "2026-09-11T17:05:36.023Z"
     }
   }
 }

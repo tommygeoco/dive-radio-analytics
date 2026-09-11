@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-04T15:50:09.711Z",
+  "updatedAt": "2026-09-11T17:08:17.383Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -660,6 +660,88 @@
       "promptVersion": 1,
       "model": "claude-fable-5",
       "writtenAt": "2026-09-04T15:50:09.710Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
+      "sha256": "80c173ae1fc1d286c6b7227e86535f3f586b2847d867da7c5fe4bfb6068b47b6",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:17",
+          "seconds": 197,
+          "title": "Cold open teases the episode before the hosts say hello",
+          "gist": "A montage of voices opens the show before the hosts greet the live chat and tease the topic.",
+          "quote": "Show up, try things, be curious"
+        },
+        {
+          "start": "00:06:23",
+          "seconds": 383,
+          "title": "Tommy announces he is joining Inflight as cofounder",
+          "gist": "A host shares news of joining the startup and the pair discuss prototype feedback and prompting with links.",
+          "quote": "cat's out of the bag"
+        },
+        {
+          "start": "00:14:55",
+          "seconds": 895,
+          "title": "Designer of the week nominations from the community",
+          "gist": "Hosts play recorded nominations spotlighting community designers and open the audience vote.",
+          "quote": "please go vote for designer of the week"
+        },
+        {
+          "start": "00:25:05",
+          "seconds": 1505,
+          "title": "Apple event reactions then Astra model experiments",
+          "gist": "Hosts react to the new phone lineup and folding duo, then tour demos people built with a new model.",
+          "quote": "So here's what dropped"
+        },
+        {
+          "start": "00:40:49",
+          "seconds": 2449,
+          "title": "What the data shows about the design job market",
+          "gist": "Hosts review economy projections, talent network findings, and pay, and invite listeners to a survey.",
+          "quote": "let's look at some of the data"
+        },
+        {
+          "start": "00:52:07",
+          "seconds": 3127,
+          "title": "How designers actually get discovered",
+          "gist": "Hosts debate social posts, private groups, and portfolios, with a guest clip on packaging your work.",
+          "quote": "which do you think is more important for getting discovered"
+        },
+        {
+          "start": "01:04:07",
+          "seconds": 3847,
+          "title": "Going direct with prototypes and cold pitches",
+          "gist": "Designers recount pitching prototypes, working a conference, and messaging hiring managers directly.",
+          "quote": "I'm gonna share my work and let people find me"
+        },
+        {
+          "start": "01:22:24",
+          "seconds": 4944,
+          "title": "Hiring managers reveal how they screen designers",
+          "gist": "Guests from Shopify, Notion, and Linear explain how they evaluate designers, followed by new hire stories.",
+          "quote": "how a design is being assessed at the start of a funnel"
+        },
+        {
+          "start": "01:53:56",
+          "seconds": 6836,
+          "title": "What matters most when accepting an offer",
+          "gist": "Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views.",
+          "quote": "What matters most when accepting an offer"
+        },
+        {
+          "start": "02:16:59",
+          "seconds": 8219,
+          "title": "Closing questions, weekly picks, and the vote winner",
+          "gist": "Hosts answer chat questions on cold outreach, share finds, and announce designer of the week.",
+          "quote": "haul of submissions from people in the community"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "writtenAt": "2026-09-11T17:08:17.383Z"
     }
   }
 }

@@ -31,11 +31,23 @@
     "f4b20ec7-bb9d-45e5-8d2c-c4a163637c92": {
       "status": "ingested",
       "ingestedAt": "2026-09-04T03:39:40.855Z"
+    },
+    "41f9c60f-9c49-4be6-8349-50d74f96d929": {
+      "status": "ingested",
+      "ingestedAt": "2026-09-11T14:01:49.338Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "restream",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "41f9c60f-9c49-4be6-8349-50d74f96d929",
+        "pulledAt": "2026-09-11T14:01:49.338Z",
+        "state": "ready"
+      }
     }
   },
-  "checkedAt": "2026-09-10T14:48:40.857Z",
+  "checkedAt": "2026-09-11T17:03:33.618Z",
   "capture": {
-    "checkedAt": "2026-09-10T14:48:40.857Z",
+    "checkedAt": "2026-09-11T17:03:33.618Z",
     "state": "ready",
     "pendingEvents": [],
     "errors": []

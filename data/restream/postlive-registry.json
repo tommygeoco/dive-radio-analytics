@@ -45,7 +45,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1024,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -59,7 +59,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 760,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         }
@@ -100,7 +100,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 635,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -113,7 +113,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 1180,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         }
@@ -154,8 +154,8 @@
           "broadcastId": "1nGnRRMEPDkGO",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1463,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1465,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -169,7 +169,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 2813,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         }
@@ -210,8 +210,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1356,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1359,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -224,7 +224,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 546,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         }
@@ -265,8 +265,8 @@
           "broadcastId": "1pKdRDDymlnJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1164,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1166,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -279,8 +279,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1048,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1053,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         }
@@ -320,8 +320,8 @@
           "broadcastId": "1DGleVBNBVjJL",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 838,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 839,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -334,7 +334,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 341,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -384,8 +384,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1096,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1097,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -418,8 +418,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1791,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1810,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         }
@@ -481,8 +481,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1456,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 1463,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
         },
@@ -495,10 +495,78 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2551,
-            "asOf": "2026-09-10T14:47:51.948Z"
+            "value": 2557,
+            "asOf": "2026-09-11T17:02:39.374Z"
           },
           "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+      "date": "2026-09-10",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "DUejFPtYll0",
+          "url": "https://www.youtube.com/watch?v=DUejFPtYll0",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: How Designers Are Getting Hired in 2026"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "OZG115v6TTg",
+          "url": "https://www.youtube.com/watch?v=OZG115v6TTg",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: How Designers Are Getting Hired in 2026"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2098139616511721866",
+          "url": "https://x.com/ridd_design/status/2098139616511721866",
+          "broadcastId": "1dxYlagOpBMJX",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 1512,
+            "asOf": "2026-09-11T17:02:39.374Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2098139617082155260",
+          "url": "https://x.com/designertom/status/2098139617082155260",
+          "broadcastId": "1dJrPreRalpKX",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 1688,
+            "asOf": "2026-09-11T17:02:39.374Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2098103520344052221",
+          "url": "https://x.com/designertom/status/2098103520344052221",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2097727992290288031",
+          "url": "https://x.com/designertom/status/2097727992290288031",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
         }
       ]
     }
