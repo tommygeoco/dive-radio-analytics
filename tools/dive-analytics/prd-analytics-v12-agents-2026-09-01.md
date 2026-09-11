@@ -376,3 +376,25 @@ raised to 100 KB fail.
   chapters step and the brief artifacts (92 s): five actions regenerated
   against the v5 read, publish parity confirmed on `data.json` and
   `agent.json`. Soft size line raised to 80 KB (71 KB shipped).
+
+## September 11 reliability amendment
+
+Episode 9 exposed an early-return bug: older sections omitted the chapter
+list required by this contract. Compact sections now retain chapter titles,
+clock-correct links, chapter absence reasons, and promotion facts. The validator
+checks escaped titles within their own episode section.
+
+The original collapse rule also exceeded 100 KB as the catalog grew. Markdown
+now removes the oldest episode sections, table rows, first-week rows, and
+transcript links until it fits the 80 KB target, retaining at least the newest
+episode. The 100 KB hard limit still applies. The introduction names the total,
+included and archived counts and links to the complete agent.json archive.
+Show totals and comparisons continue to use all episodes. The JSON archive keeps
+every episode and exposes markdown.archiveUrl, totalEpisodes, includedSlugs and
+archivedCount. Validation re-derives this manifest and every complete archived
+episode, and still grounds all chapters against source transcripts. Exact live
+parity already includes both artifacts. This supersedes the requirement that
+all historical chapter titles remain in the single Markdown document.
+
+Regression fixtures cover 8, 9, 10, 16, 24, 52 and 100 episodes, archive retention,
+promotion units, pipe-containing titles, deterministic selection and size.

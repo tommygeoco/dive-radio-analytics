@@ -313,7 +313,27 @@ function lineageDigest(data) {
 }
 
 // --- the markdown ------------------------------------------------------------------
-export function renderMarkdown(digest) {
+export const chapterMarkdownPrefix = (chapter) => `- ${chapter.start} — ${esc(chapter.title)}`;
+
+// Keep the complete structured archive. Only the Markdown's episode window
+// shrinks; show totals, health facts, comparisons, and their reasons stay whole.
+export function markdownView(digest) {
+  let from = 0;
+  while (true) {
+    const episodes = digest.episodes.slice(from);
+    const manifest = {
+      archiveUrl: `${SITE}/agent.json`, totalEpisodes: digest.episodes.length,
+      includedSlugs: episodes.map((episode) => episode.slug), archivedCount: from,
+    };
+    const md = renderMarkdownWindow(digest, episodes, manifest);
+    if (Buffer.byteLength(md, "utf8") <= BUDGET.warnBytes || episodes.length <= 1) return { md, manifest };
+    from++;
+  }
+}
+
+export function renderMarkdown(digest) { return markdownView(digest).md; }
+
+function renderMarkdownWindow(digest, episodes, manifest) {
   const L = [];
   const p = (s = "") => L.push(s);
   const abs = (v) => (v && typeof v === "object" && "value" in v && v.value === null);
@@ -324,7 +344,9 @@ export function renderMarkdown(digest) {
   p();
   p(HEADINGS[0]);
   p();
-  p(`This is the complete read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, every episode with its chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders ${SITE}, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.`);
+  p(`This is the current read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, episode chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders ${SITE}, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.`);
+  p();
+  p(`Episode archive: ${manifest.totalEpisodes} episodes in ${manifest.archiveUrl}; ${episodes.length} included here, ${manifest.archivedCount} older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.`);
   p();
   p(`Three clocks: the data build (${c.data}); the show-health read (${c.healthRead || "none"}, over data through ${c.healthDataThrough ? day(c.healthDataThrough) : "—"} — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (${c.chaptersWritten ? day(c.chaptersWritten) : "none yet"}).`);
   p();
@@ -340,11 +362,14 @@ export function renderMarkdown(digest) {
   p();
   // 2
   const s = digest.show;
+  const markerList = (markers) => markers.length <= BUDGET.fullSectionsForLast
+    ? markers.join(", ")
+    : `${markers.length} episodes; see show.totals in ${manifest.archiveUrl} for every marker`;
   p(HEADINGS[1]);
   p();
   p(`- Episodes: ${s.episodes} (E${s.first?.ep} on ${s.first?.premiere} → E${s.latest?.ep} on ${s.latest?.premiere}, "${esc(s.latest?.title)}"), a weekly live show with call-ins.`);
   p(`- Channels: ${s.channels.map((ch) => `${ch.label} (${ch.key})`).join("; ")}.`);
-  p(`- Views so far: ${fmtNum(s.totals.views)} total = ${fmtNum(s.totals.youtube)} YouTube${s.totals.youtubeMarkers.length ? ` (${s.totals.youtubeMarkers.join(", ")})` : ""} + ${fmtNum(s.totals.xPlays)} X plays${s.totals.xPlaysMarkers.length ? ` (X plays ${s.totals.xPlaysMarkers.join(", ")} carry a partial or stale marker)` : ""}.${s.totals.reason ? ` ${esc(s.totals.reason)}` : ""} X reach so far: ${fmtNum(s.totals.xReach)} (exposure, kept apart).`);
+  p(`- Views so far: ${fmtNum(s.totals.views)} total = ${fmtNum(s.totals.youtube)} YouTube${s.totals.youtubeMarkers.length ? ` (${markerList(s.totals.youtubeMarkers)})` : ""} + ${fmtNum(s.totals.xPlays)} X plays${s.totals.xPlaysMarkers.length ? ` (X plays ${markerList(s.totals.xPlaysMarkers)} carry a partial or stale marker)` : ""}.${s.totals.reason ? ` ${esc(s.totals.reason)}` : ""} X reach so far: ${fmtNum(s.totals.xReach)} (exposure, kept apart).`);
   p(abs(s.feedback) ? `- Audience feedback: — (${s.feedback.reason}).` : `- Audience feedback captured: ${fmtNum(s.feedback.captured)} comments, ${fmtNum(s.feedback.directional)} with a clear lean from ${fmtNum(s.feedback.people)} people (${fmtNum(s.feedback.enjoyed)} enjoyed, ${fmtNum(s.feedback.concerns)} raised a concern).${s.feedback.enjoyThemes.length ? ` Enjoyed: ${themeWords(s.feedback.enjoyThemes).join(", ")}.` : ""}${s.feedback.concernThemes.length ? ` Concerns: ${themeWords(s.feedback.concernThemes).join(", ")}.` : ""}`);
   p(`- Dashboard: ${SITE}`);
   p();
@@ -425,7 +450,7 @@ export function renderMarkdown(digest) {
   p();
   p(`| Ep | Date | Title | YouTube | X plays | X reach | Total | First week | Launch | Pace | Ep. health | Live peak / avg / people / min | Min per viewer | Hold | Watched | Subs/1k | Discovery | Feedback + / − | Promo |`);
   p(`|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|`);
-  for (const e of digest.episodes) {
+  for (const e of episodes) {
     const fw = abs(e.firstWeek) ? "—¹" : fmtNum(e.firstWeek.value);
     const la = abs(e.launch) ? "—" : `${e.launch.promoDriven ? "promo-driven" : e.launch.word}${e.launch.provisional ? " (so far)" : ""}`;
     const pa = abs(e.pace) ? "—" : `#${e.pace.rank} of ${e.pace.of} (${e.pace.pct >= 0 ? "+" : ""}${e.pace.pct}%)`;
@@ -441,23 +466,21 @@ export function renderMarkdown(digest) {
   // 6
   p(HEADINGS[5]);
   p();
-  const fullFrom = Math.max(0, digest.episodes.length - BUDGET.fullSectionsForLast);
-  digest.episodes.forEach((e, i) => {
+  const renderChapters = (e, compact = false) => {
+    if (abs(e.chapters)) p(`Chapters: — (${e.chapters.reason}).`);
+    else {
+      p(`Chapters (model-written from the transcript, ${e.chapters.status}; timestamps on ${e.chapters.clock === "upload" ? "the YouTube upload's clock — links jump to the moment" : "the live recording's clock — a few minutes off the upload, so no links"}):`);
+      for (const ch of e.chapters.list) p(`${chapterMarkdownPrefix(ch)}${compact ? "" : `: ${esc(ch.gist)}`}${ch.link ? ` (${ch.link})` : ""}`);
+    }
+  };
+  const fullFrom = Math.max(0, episodes.length - BUDGET.fullSectionsForLast);
+  episodes.forEach((e, i) => {
     p(`### E${e.ep} — ${esc(e.title)} (${e.premiere})`);
     p();
     const yt = Object.entries(e.links.youtube).map(([k, u]) => `YouTube ${k.replace("yt:", "")} ${u}`);
     const xr = Object.entries(e.links.xReplays).map(([k, u]) => `X replay ${k.replace("x:", "@")} ${u}`);
     const an = e.links.announces.filter((a) => a.url).map((a) => `announce @${a.account} ${a.url}`);
     p(`Links: ${[...yt, ...xr, ...an].join(" · ")}${e.links.transcript ? ` · transcript ${e.links.transcript}` : " · no transcript"} · dashboard ${e.dashboard}`);
-    if (i < fullFrom) { p(`(older episode — table row and links only; the full section is in agent.json)`); p(); return; }
-    const standing = [];
-    standing.push(abs(e.launch) ? `launch — (${e.launch.reason})` : `launch ${e.launch.promoDriven ? "promo-driven" : e.launch.word}${e.launch.provisional ? " so far" : ""}: ${fmtNum(e.launch.value)} YouTube views against a typical ${fmtNum(e.launch.typical)} at that age (${e.launch.pct >= 0 ? "+" : ""}${e.launch.pct}%, ${e.launch.peers} peers)`);
-    standing.push(abs(e.pace) ? `pace — (${e.pace.reason})` : `pace #${e.pace.rank} of ${e.pace.of} at ${fmtNum(e.pace.ageDays, 1)} days (${e.pace.pct >= 0 ? "+" : ""}${e.pace.pct}% against the typical ${fmtNum(e.pace.typical)})`);
-    standing.push(abs(e.firstWeek) ? `first week — (${esc(e.firstWeek.reason)})` : `first week ${fmtNum(e.firstWeek.value)} YouTube views`);
-    if (e.promo) standing.push(`promo outlier${e.promo.provisional ? " (provisional until day twenty-one)" : ""}: ${esc(e.promo.note)}`);
-    if (e.trackedLate) standing.push("tracked late: first snapshot more than five days after premiere, so its first week is undefined");
-    p(`Standing: ${standing.join("; ")}.`);
-    p(`Views: ${fmtNum(e.views.youtube)} YouTube${e.views.youtubeMarker === "old" ? ` (old reading${e.views.youtubeAsOf ? ` from ${day(e.views.youtubeAsOf)}` : ""})` : e.views.youtubeMarker === "missing" ? " (missing)" : ""} + ${fmtNum(e.views.xPlays)} X plays${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} = ${fmtNum(e.views.total)}${e.views.reason ? ` (${esc(e.views.reason)})` : ""}; X reach ${fmtNum(e.views.xReach)}; likes and comments per thousand YouTube views ${e.engagementPer1k == null ? "—" : fmtNum(e.engagementPer1k, 1)}.`);
     if (e.promotion?.status === "found") {
       const tracked = e.promotion.emailClicks == null
         ? `tracked email clicks not available${e.promotion.clicksReason ? ` (${esc(e.promotion.clicksReason)})` : ""}`
@@ -468,13 +491,23 @@ export function renderMarkdown(digest) {
       const issue = e.promotion.newsletters?.at(-1) || null;
       p(`Promotion: ${esc(e.promotion.source || "UX Tools")} email linked this episode — ${tracked}; ${verified}.${issue?.url ? ` Issue: ${issue.url}${issue.title ? ` (${esc(issue.title)})` : ""}.` : ""} These clicks are not part of views.`);
     }
+    if (i < fullFrom) {
+      p(`(older episode — table row, links, promotion, and chapter titles; the full section is in agent.json)`);
+      renderChapters(e, true);
+      p();
+      return;
+    }
+    const standing = [];
+    standing.push(abs(e.launch) ? `launch — (${e.launch.reason})` : `launch ${e.launch.promoDriven ? "promo-driven" : e.launch.word}${e.launch.provisional ? " so far" : ""}: ${fmtNum(e.launch.value)} YouTube views against a typical ${fmtNum(e.launch.typical)} at that age (${e.launch.pct >= 0 ? "+" : ""}${e.launch.pct}%, ${e.launch.peers} peers)`);
+    standing.push(abs(e.pace) ? `pace — (${e.pace.reason})` : `pace #${e.pace.rank} of ${e.pace.of} at ${fmtNum(e.pace.ageDays, 1)} days (${e.pace.pct >= 0 ? "+" : ""}${e.pace.pct}% against the typical ${fmtNum(e.pace.typical)})`);
+    standing.push(abs(e.firstWeek) ? `first week — (${esc(e.firstWeek.reason)})` : `first week ${fmtNum(e.firstWeek.value)} YouTube views`);
+    if (e.promo) standing.push(`promo outlier${e.promo.provisional ? " (provisional until day twenty-one)" : ""}: ${esc(e.promo.note)}`);
+    if (e.trackedLate) standing.push("tracked late: first snapshot more than five days after premiere, so its first week is undefined");
+    p(`Standing: ${standing.join("; ")}.`);
+    p(`Views: ${fmtNum(e.views.youtube)} YouTube${e.views.youtubeMarker === "old" ? ` (old reading${e.views.youtubeAsOf ? ` from ${day(e.views.youtubeAsOf)}` : ""})` : e.views.youtubeMarker === "missing" ? " (missing)" : ""} + ${fmtNum(e.views.xPlays)} X plays${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} = ${fmtNum(e.views.total)}${e.views.reason ? ` (${esc(e.views.reason)})` : ""}; X reach ${fmtNum(e.views.xReach)}; likes and comments per thousand YouTube views ${e.engagementPer1k == null ? "—" : fmtNum(e.engagementPer1k, 1)}.`);
     p(abs(e.watching) ? `Watching: — (${e.watching.reason}).` : `Watching (YouTube analytics, ${day(e.watching.updatedAt)}): ${pct(e.watching.sharePercent)} of the video watched on average, ${e.watching.avgDurationSec == null ? "—" : minutes(e.watching.avgDurationSec)} per view, ${fmtNum(e.watching.minutesWatched)} minutes watched in all; views came from ${e.watching.traffic.map((t) => `${t.source} ${pct(t.share)}`).join(", ")}; subscribers per thousand views ${e.subsPer1k == null ? "—" : fmtNum(e.subsPer1k, 1)}; discovery share ${e.discoveryShare == null ? "—" : pct(e.discoveryShare)}.`);
     p(abs(e.live) ? `Live session: — (${e.live.reason}).` : `Live session: peak ${fmtNum(e.live.peak)}, average ${fmtNum(e.live.average)}, ${fmtNum(e.live.uniqueViewers)} people watched live for ${fmtNum(e.live.minutesWatched)} minutes in all (${e.live.minutesPerViewer == null ? "—" : fmtNum(e.live.minutesPerViewer, 1)} minutes each; ${e.live.holdRate == null ? "hold rate —" : `${pct(e.live.holdRate, 0)} of the peak still watching at the end`}); ${fmtNum(e.live.chatMessages)} chat messages from ${fmtNum(e.live.chatters)} people over ${fmtNum(e.live.durationMin)} minutes.${(digest.knownBreaks || []).some((b) => e.ep >= b.fromEp) ? " Note the live-reporting break in section 3." : ""}`);
-    if (abs(e.chapters)) p(`Chapters: — (${e.chapters.reason}).`);
-    else {
-      p(`Chapters (model-written from the transcript, ${e.chapters.status}; timestamps on ${e.chapters.clock === "upload" ? "the YouTube upload's clock — links jump to the moment" : "the live recording's clock — a few minutes off the upload, so no links"}):`);
-      for (const ch of e.chapters.list) p(`- ${ch.start} — ${esc(ch.title)}: ${esc(ch.gist)}${ch.link ? ` (${ch.link})` : ""}`);
-    }
+    renderChapters(e);
     if (e.watching.curveUnavailableReason) p(e.watching.curveUnavailableReason);
     if (e.moments.length) {
       p(`Watch moments (from the YouTube retention curve; positions approximate):`);
@@ -497,7 +530,8 @@ export function renderMarkdown(digest) {
   p();
   p(`First weeks in air order (YouTube views at day seven; a launch reading stands in where a clean first week does not exist):`);
   p(`| Ep | Date | First week | Launch reading |`); p(`|---|---|---|---|`);
-  for (const w of t.firstWeeks) { const e = digest.episodes.find((x) => x.slug === w.slug); const la = e && !abs(e.launch) ? `${fmtNum(e.launch.value)} (${e.launch.promoDriven ? "promo-driven" : e.launch.word}${e.launch.provisional ? ", so far" : ""})` : "—"; p(`| E${e?.ep ?? "?"} | ${w.premiere} | ${w.value == null ? `— (${esc(w.note || "no clean first week")})` : fmtNum(w.value)} | ${la} |`); }
+  const included = new Map(episodes.map((episode) => [episode.slug, episode]));
+  for (const w of t.firstWeeks) { const e = included.get(w.slug); if (!e) continue; const la = !abs(e.launch) ? `${fmtNum(e.launch.value)} (${e.launch.promoDriven ? "promo-driven" : e.launch.word}${e.launch.provisional ? ", so far" : ""})` : "—"; p(`| E${e.ep} | ${w.premiere} | ${w.value == null ? `— (${esc(w.note || "no clean first week")})` : fmtNum(w.value)} | ${la} |`); }
   p();
   p(abs(t.newestPace) ? `Newest episode's pace: — (${t.newestPace.reason}).` : `Newest episode's pace: E${t.newestPace.ep} is #${t.newestPace.rank} of ${t.newestPace.of} at ${fmtNum(t.newestPace.ageDays, 1)} days (${t.newestPace.pct >= 0 ? "+" : ""}${t.newestPace.pct}% against the typical), promo-driven lifts shown as such above.`);
   if (t.newestVsPrevious) p(`Newest against the previous episode at the same age (${fmtNum(t.newestVsPrevious.ageDays, 1)} days): X reach ${t.newestVsPrevious.reach?.pct == null ? "—" : `${t.newestVsPrevious.reach.pct >= 0 ? "+" : ""}${t.newestVsPrevious.reach.pct}%`}, share watched ${t.newestVsPrevious.watched?.pct == null ? "—" : `${t.newestVsPrevious.watched.pct >= 0 ? "+" : ""}${t.newestVsPrevious.watched.pct}%`}, live ${t.newestVsPrevious.live?.pct == null ? "—" : `${t.newestVsPrevious.live.pct >= 0 ? "+" : ""}${t.newestVsPrevious.live.pct}%`}.`);
@@ -530,11 +564,11 @@ export function renderMarkdown(digest) {
   // 10
   p(HEADINGS[9]);
   p();
-  p(`- ${SITE}/agent.json — this brief as data (the same digest, with the grounding quote behind each chapter)`);
+  p(`- ${SITE}/agent.json — the complete episode archive and show digest, with the grounding quote behind each chapter and the Markdown selection manifest`);
   p(`- ${SITE}/data.json — the raw data the dashboard renders: daily series per destination, per-minute live audience, watch curves, every classified comment`);
   p(`- ${SITE}/llms.txt — the index of everything here`);
   p(`- ${SITE}/agent-skill.md — a drop-in skill for Claude Code and OpenClaw`);
-  for (const e of digest.episodes) if (e.links.transcript) p(`- ${e.links.transcript} — E${e.ep} transcript (${e.chapters && !abs(e.chapters) ? `${e.chapters.clock === "upload" ? "YouTube caption" : "live speaker"} format` : "text"})`);
+  for (const e of episodes) if (e.links.transcript) p(`- ${e.links.transcript} — E${e.ep} transcript (${e.chapters && !abs(e.chapters) ? `${e.chapters.clock === "upload" ? "YouTube caption" : "live speaker"} format` : "text"})`);
   p(`- ${SITE} — the dashboard; "About this data" at the bottom carries the methodology in the owners' words`);
   p();
   p(`Left out of this brief on purpose (in data.json instead):`);
@@ -550,8 +584,8 @@ export function renderLlms(digest) {
   L.push(`> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (${digest.generatedAt}).`);
   L.push(``);
   L.push(`## Read first`);
-  L.push(`- [Agent brief](${SITE}/agent.md): everything, for reading — start with its first section`);
-  L.push(`- [Agent digest](${SITE}/agent.json): the same content as data`);
+  L.push(`- [Agent brief](${SITE}/agent.md): the current read and recent episodes — start with its first section for the archive boundary`);
+  L.push(`- [Agent digest](${SITE}/agent.json): the complete show and episode archive, including every chapter and link`);
   L.push(`- [Skill](${SITE}/agent-skill.md): a drop-in skill file for Claude Code and OpenClaw`);
   L.push(``);
   L.push(`## Raw data`);
@@ -568,5 +602,7 @@ export function renderLlms(digest) {
 
 export function buildBrief(data) {
   const digest = buildDigest(data);
-  return { md: renderMarkdown(digest), json: JSON.stringify(digest, null, 1) + "\n", llms: renderLlms(digest), digest };
+  const view = markdownView(digest);
+  digest.markdown = view.manifest;
+  return { md: view.md, json: JSON.stringify(digest, null, 1) + "\n", llms: renderLlms(digest), digest };
 }

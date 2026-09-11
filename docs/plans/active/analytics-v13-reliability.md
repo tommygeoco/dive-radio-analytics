@@ -561,3 +561,30 @@ newsletter and both model credentials without printing any value.
 - [x] Fixture proves no child runs, no attempt is spent, and recovery remains usable.
 - [ ] Deploy this changed committed code and use the owner-authorized one-time
   operator repair through the verified environment, preserving both failures.
+
+## September 11 incident continuation
+
+### Progress
+
+- [x] Reproduced 07:02 failure: episode nine activates compact Markdown and
+  silently drops episode one's ten chapters; 08:15 recovery repeats the failure.
+- [x] Added a failing growth regression, restored compact chapter/promotion facts,
+  and independently reviewed adjacent rollover failures.
+- [x] Bounded Markdown with an explicit complete JSON archive; tested through
+  100 episodes and retained strict archive, chapter, unit and size validation.
+- [ ] Complete strict current-source validation, source adoption and production
+  repair using the recorded operator mode; preserve both automatic failures.
+- [ ] Prove exact production bytes and record unattended acceptance separately.
+
+### Surprises and decisions
+
+- The original eight-detail-section cap was insufficient: the catalog itself
+  eventually exceeded the 100 KB hard limit. Use the existing verified JSON
+  archive and an explicit deterministic Markdown selection instead of raising
+  the limit or suppressing genuine grounding failures.
+- A valid pipe in a chapter title was escaped by rendering but searched raw by
+  validation. Use the shared escaped prefix within the correct episode section.
+- Current-source verification also observed transcript metadata changing during
+  reads. Retry a complete read with fresh before/after metadata, bounded to three
+  attempts. Never accept constantly changing bytes or use a cache for a metadata
+  mismatch; permission/missing-source failures remain blocking.

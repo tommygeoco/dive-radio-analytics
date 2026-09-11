@@ -3068,7 +3068,17 @@ try {
       }
       const ranked = (data.insights || []).filter((i) => i.rank != null);
       for (const i of ranked) { const d = (digest.recommendations || []).find((r) => r.id === i.id); if (!d || d.finding !== i.text || d.action !== i.recommendation || d.rank !== i.rank) { bad++; fail(`agent: recommendation ${i.id} in the brief does not re-derive from data.json`); } if (!md.includes(i.recommendation)) { bad++; fail(`agent: recommendation ${i.id} action text is not in agent.md verbatim`); } }
+      const expectedBrief = AB.buildBrief(data);
+      if (JSON.stringify(digest.markdown) !== JSON.stringify(expectedBrief.digest.markdown)) {
+        bad++; fail("agent: Markdown archive manifest does not re-derive from the complete catalog");
+      }
+      if (JSON.stringify(digest.episodes) !== JSON.stringify(expectedBrief.digest.episodes)) {
+        bad++; fail("agent: complete JSON episode archive does not re-derive from data.json");
+      }
+      const includedSlugs = new Set(expectedBrief.digest.markdown.includedSlugs);
       for (const e of data.episodes) {
+        const inMarkdown = includedSlugs.has(e.slug);
+        const section = inMarkdown ? (md.split(`### E${e.ep} —`)[1] || "").split("\n### ")[0].split("\n## ")[0] : "";
         const d = (digest.episodes || []).find((x) => x.slug === e.slug);
         if (!d) { bad++; fail(`agent: episode ${e.slug} missing from the brief`); continue; }
         const agentYoutube = Number.isFinite(e.latest?.ytTotal) && e.latest.ytTotal >= 0 ? e.latest.ytTotal : null;
@@ -3077,10 +3087,10 @@ try {
         if (agentYoutube == null && (d.views.youtubeMarker !== "missing" || !d.views.reason)) { bad++; fail(`agent: E${e.ep} missing YouTube is not named in the brief`); }
         if (d.trackedLate !== (e.partialHistory == null ? null : e.partialHistory === true)) { bad++; fail(`agent: E${e.ep} tracking state does not preserve unknown separately from on-time`); }
         if (JSON.stringify(d.promotion ?? null) !== JSON.stringify(e.promotion ?? null)) { bad++; fail(`agent: E${e.ep} newsletter promotion facts do not re-derive from data.json`); }
-        if (e.promotion?.status === "found") {
-          if (!md.includes("These clicks are not part of views.")) { bad++; fail(`agent: E${e.ep} newsletter clicks are not kept separate from views in agent.md`); }
-          if (e.promotion.emailClicks != null && e.promotion.emailClicks > 0 && !md.includes(e.promotion.emailClicks.toLocaleString("en-US"))) { bad++; fail(`agent: E${e.ep} tracked email clicks are missing from agent.md`); }
-          if (e.promotion.verifiedEmailClicks != null && e.promotion.verifiedEmailClicks > 0 && !md.includes(e.promotion.verifiedEmailClicks.toLocaleString("en-US"))) { bad++; fail(`agent: E${e.ep} verified email clicks are missing from agent.md`); }
+        if (inMarkdown && e.promotion?.status === "found") {
+          if (!section.includes("These clicks are not part of views.")) { bad++; fail(`agent: E${e.ep} newsletter clicks are not kept separate from views in agent.md`); }
+          if (e.promotion.emailClicks != null && e.promotion.emailClicks > 0 && !section.includes(e.promotion.emailClicks.toLocaleString("en-US"))) { bad++; fail(`agent: E${e.ep} tracked email clicks are missing from agent.md`); }
+          if (e.promotion.verifiedEmailClicks != null && e.promotion.verifiedEmailClicks > 0 && !section.includes(e.promotion.verifiedEmailClicks.toLocaleString("en-US"))) { bad++; fail(`agent: E${e.ep} verified email clicks are missing from agent.md`); }
         }
         if (d.history?.ready !== e.historyReady || d.history?.reason !== e.historyReason) { bad++; fail(`agent: E${e.ep} history state does not match data.json`); }
         const launch = data.baselines?.launch?.[e.slug];
@@ -3089,13 +3099,13 @@ try {
         // absences carry reasons, never empty stand-ins (rule 2)
         for (const k of ["firstWeek", "launch", "pace", "watching", "live", "feedback", "chapters", "health"]) { const v = d[k]; if (v && typeof v === "object" && "value" in v && v.value === null && !v.reason) { bad++; fail(`agent: E${e.ep} ${k} is absent without a reason`); } }
         // links resolve: every link in the section is one data.json carries, a transcript on disk, or the site
-        for (const [k, u] of Object.entries(e.links || {})) if (!md.includes(u)) { bad++; fail(`agent: E${e.ep} link ${k} is not in agent.md`); }
+        for (const [k, u] of Object.entries(e.links || {})) if (inMarkdown && !section.includes(u)) { bad++; fail(`agent: E${e.ep} link ${k} is not in agent.md`); }
         if (e.transcript && !existsSync(join(ROOT, "transcripts", `${e.slug}.txt`))) { bad++; fail(`agent: E${e.ep} transcript link would not resolve`); }
         // chapters: the brief lists exactly what the store holds; each grounds
         if (e.chapters?.list?.length) {
           if ((d.chapters?.list || []).length !== e.chapters.list.length) { bad++; fail(`agent: E${e.ep} chapters in the brief (${(d.chapters?.list || []).length}) differ from the store (${e.chapters.list.length})`); }
-          for (const c of e.chapters.list) if (!md.includes(`- ${c.start} — ${c.title}`)) { bad++; fail(`agent: E${e.ep} chapter at ${c.start} is not in agent.md`); }
-          if (e.chapters.clock !== "upload" && /&t=\d+s/.test((md.split(`### E${e.ep} —`)[1] || "").split("\n### ")[0])) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link on the live recording's clock`); }
+          for (const c of e.chapters.list) if (inMarkdown && !section.includes(AB.chapterMarkdownPrefix(c))) { bad++; fail(`agent: E${e.ep} chapter at ${c.start} is not in agent.md`); }
+          if (inMarkdown && e.chapters.clock !== "upload" && /&t=\d+s/.test(section)) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link on the live recording's clock`); }
         }
       }
       // chapters store grounds against the transcripts (fail)

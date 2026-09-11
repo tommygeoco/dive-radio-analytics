@@ -176,3 +176,10 @@ configuration as OpenClaw: `op run --env-file "$HOME/.openclaw/runtime/op-run.en
 followed by `-- node tools/dive-analytics/run-daily.mjs --recovery`, from the
 isolated publisher checkout. The launcher checks the required newsletter key
 before spending a capture attempt. Never print or copy injected credential values.
+
+The agent Markdown brief targets 80 KB as the catalog grows. Its introduction
+states which episodes are included and links to the complete `agent.json`
+archive, which retains every episode, chapter, source state and link. Show totals
+and comparisons always use the complete catalog. The archive selection and
+archived facts are re-derived by validation and both files receive live parity
+checks; catalog growth cannot silently discard historical data.

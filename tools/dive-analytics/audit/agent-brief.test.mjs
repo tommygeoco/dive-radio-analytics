@@ -51,6 +51,44 @@ const ROOT = join(HERE, "..", "..", "..");
   for (const e of a.digest.episodes) for (const k of ["firstWeek", "launch", "pace", "watching", "live", "feedback", "chapters", "health"]) { const v = e[k]; if (v && "value" in v && v.value === null) assert.ok(v.reason, `${e.slug} ${k} reason`); }
 }
 
+// Growth must not remove chapters or promotion facts when an episode ages out
+// of the eight detailed sections. Exercise both sides and repeated rollovers.
+{
+  const base = JSON.parse(readFileSync(join(ROOT, "data.json"), "utf8"));
+  for (const count of [8, 9, 10, 16, 24, 52, 100]) {
+    const data = structuredClone(base);
+    data.episodes = Array.from({ length: count }, (_, i) => ({
+      ...structuredClone(base.episodes[0]), ep: i + 1, slug: `growth-fixture-${i + 1}`,
+      promotion: { status: "found", source: "UX Tools", emailClicks: 12345 + i,
+        verifiedEmailClicks: 11234 + i, newsletters: [] },
+    }));
+    data.episodes[0].chapters.list[0].title = "The work | The craft";
+    data.episodes.at(-1).chapters.list[0].title = "The work | The craft";
+    const brief = AB.buildBrief(data);
+    assert.equal(brief.digest.episodes.length, count, "complete archive never drops an episode");
+    assert.equal(brief.digest.markdown.archivedCount + brief.digest.markdown.includedSlugs.length, count);
+    assert.deepEqual(brief.digest.markdown, AB.markdownView(brief.digest).manifest);
+    assert.equal(brief.md, AB.renderMarkdown(brief.digest));
+    const included = new Set(brief.digest.markdown.includedSlugs);
+    for (const episode of data.episodes) {
+      const archived = brief.digest.episodes.find(e => e.slug === episode.slug);
+      assert.deepEqual(archived.chapters.list.map(c => c.title), episode.chapters.list.map(c => c.title));
+      assert.equal(archived.promotion.verifiedEmailClicks, episode.promotion.verifiedEmailClicks);
+      if (!included.has(episode.slug)) continue;
+      const section = brief.md.split(`### E${episode.ep} —`)[1]?.split("\n### ")[0];
+      assert.ok(section, `E${episode.ep} section at ${count} episodes`);
+      for (const chapter of episode.chapters.list) {
+        assert.ok(section.includes(AB.chapterMarkdownPrefix(chapter)),
+          `E${episode.ep} retains chapter ${chapter.start} at ${count} episodes`);
+      }
+      assert.ok(section.includes((12345 + episode.ep - 1).toLocaleString("en-US")), "promotion clicks retained");
+      assert.ok(section.includes("These clicks are not part of views."), "promotion units retained");
+    }
+    assert.ok(Buffer.byteLength(brief.md) <= AB.BUDGET.warnBytes, `size at ${count} episodes`);
+    assert.ok(brief.md.includes(brief.digest.markdown.archiveUrl), "complete archive is discoverable");
+  }
+}
+
 // 3. chapter grounding: timestamp must exist, quote verbatim within the window, spacing enforced
 {
   const raw = ["Dive Radio E0 — fixture", "Aired: 2026-01-01 · YouTube: https://youtube.com/watch?v=abc", "Source: Restream speaker transcript", "",
