@@ -18,10 +18,11 @@ export function readVerifiedSource(path, {
   wait = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms),
 } = {}) {
   const source = resolve(path);
-  const before = identity(stat(source)); // ENOENT / permissions never use cache.
+  let before;
   const cachePath = cacheDir ? join(cacheDir, `${hash(source)}.json`) : null;
   let lastError;
   for (let attempt = 0; attempt < 3; attempt++) {
+    before = identity(stat(source)); // ENOENT / permissions never use cache.
     let text;
     try { text = read(source, "utf8"); }
     catch (error) {
@@ -30,14 +31,18 @@ export function readVerifiedSource(path, {
       if (attempt < 2) wait(250 * (attempt + 1));
       continue;
     }
-    if (!same(before, identity(stat(source)))) throw new Error("transcript source changed during its read");
+    if (!same(before, identity(stat(source)))) {
+      lastError = new Error("transcript source changed during its read");
+      if (attempt < 2) wait(250 * (attempt + 1));
+      continue; // accept only a complete read bracketed by matching metadata
+    }
     if (cachePath) {
       mkdirSync(cacheDir, { recursive: true, mode: 0o700 });
       atomicWriteJson(cachePath, { version: 1, source, identity: before, sha256: hash(text), text }, { mode: 0o600 });
     }
     return text;
   }
-  if (!cachePath || !same(before, identity(stat(source)))) throw lastError;
+  if (!transientSourceRead(lastError) || !cachePath || !same(before, identity(stat(source)))) throw lastError;
   let cached;
   try { cached = JSON.parse(readFileSync(cachePath, "utf8")); }
   catch { throw lastError; }

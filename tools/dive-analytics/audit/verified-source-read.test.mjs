@@ -27,6 +27,14 @@ try {
   let calls = 0;
   assert.equal(readVerifiedSource(source, { ...options, cacheDir: null, read(path, encoding) { if (++calls < 3) return blocked(); return readFileSync(path, encoding); } }), body);
   assert.equal(calls, 3, "transient reads receive bounded retries even without a cache");
+  let metadataCalls = 0;
+  assert.equal(readVerifiedSource(source, { ...options, cacheDir: null,
+    stat(path) { const value = statSync(path); return { ...value, ctimeMs: ++metadataCalls === 1 ? value.ctimeMs - 1 : value.ctimeMs }; },
+  }), body, "a file-provider metadata transition is retried and must settle before accepting bytes");
+  let changing = 0;
+  assert.throws(() => readVerifiedSource(source, { ...options, cacheDir: null,
+    stat(path) { return { ...statSync(path), ctimeMs: ++changing }; },
+  }), /source changed/, "a source that keeps changing is never accepted");
   writeFileSync(source, body + "Source edited.\n");
   assert.throws(() => readVerifiedSource(source, { ...options, read: blocked }), /file provider busy/, "changed source metadata invalidates cached bytes");
   assert.equal(readVerifiedSource(source, options), body + "Source edited.\n", "a readable changed source always wins and remains subject to transcript parity");
