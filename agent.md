@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-09-11T17:08:30.193Z · data through 2026-09-11 · health read 2026-09-11 (data through 2026-09-11) · chapters written 2026-09-11 · brief v1
+Built 2026-09-11T21:41:56.630Z · data through 2026-09-11 · health read 2026-09-11 (data through 2026-09-11) · chapters written 2026-09-11 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 9 episodes in https://dive-radio-analytics.vercel.app/agent.json; 9 included here, 0 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-09-11T17:08:30.193Z); the show-health read (2026-09-11, over data through 2026-09-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
+Three clocks: the data build (2026-09-11T21:41:56.630Z); the show-health read (2026-09-11, over data through 2026-09-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
