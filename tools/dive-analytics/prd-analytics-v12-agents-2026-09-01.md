@@ -398,3 +398,12 @@ all historical chapter titles remain in the single Markdown document.
 
 Regression fixtures cover 8, 9, 10, 16, 24, 52 and 100 episodes, archive retention,
 promotion units, pipe-containing titles, deterministic selection and size.
+
+- September 11 live acceptance: fresh-context examiner answered 12/12 questions
+  from production agent.md and matched every answer to live agent.json: current
+  build/health, fragile checks, first action, E9 identity and chapters, retained
+  E1 chapters, pending watch source, view units, complete archive counts, health
+  clocks and outlook. No discrepancies. Parent independently cross-checked the
+  answers against the exact live-parity-verified data.json/agent.json. Production
+  build 2026-09-11T17:08:30.193Z; commit 855aa54; 18-file byte parity at
+  2026-09-11T17:12:48.742Z. Future unattended mornings remain unverified.
