@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 // Owner archive: complete source text and provenance, separate from scored feedback.
-import { readdirSync, mkdirSync, chmodSync } from 'node:fs';
+import { readdirSync, mkdirSync, chmodSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock, fetchJson, phoenixDateKey } from '../../tools/dive-analytics/source-io.mjs';
 import { getAccessToken } from './restream-token.mjs';
+import { asEventList, episodeForRestreamEvent } from './ingest-restream.mjs';
 import { xPublicGet } from './x-public-get.mjs';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const ARCHIVE = join(homedir(), 'Library/Application Support/Dive Radio Analytics/audience-archive');
@@ -16,10 +17,11 @@ function validList(data) {
   if (data.errors?.length || (!Array.isArray(data.data) && !(data.meta?.result_count === 0 && data.data === undefined))) throw new Error('X archive response is incomplete');
   return data.data || [];
 }
-export async function captureX(targets, { get = xPublicGet, saveRaw = () => {} } = {}) {
+export async function captureX(targets, { get = xPublicGet, saveRaw = () => {}, seedRoots = [] } = {}) {
   if (!targets.length) return [];
   const queue = []; const queued = new Set(); const records = new Map();
   const enqueue = id => { if (typeof id !== 'string' || !id) throw new Error('Missing X conversation id'); if (!queued.has(id)) { queued.add(id); queue.push(id); } };
+  for (const root of seedRoots) enqueue(root);
   const retain = data => {
     const users = Object.fromEntries((data.includes?.users || []).map(u => [u.id, u.username]));
     for (const post of validList(data)) {
@@ -76,13 +78,26 @@ export function archiveMarkdown(store) {
   return `# Audience archive: ${escape(store.slug)}\n\n${rows.length} retained source records. Includes hosts, ordinary discussion, praise and criticism; this is not a scored feedback count. X coverage is limited to registered anchors, their parent conversations, and quotes of those roots within the recent-search window. Quotes of other individual replies are not searched. Chat author labels are exactly as supplied by Restream.\n\n` + rows.map(r => `## ${escape(r.author)} · ${escape(r.source === 'x' ? 'X' : `${r.platform} / ${r.channel}`)}\n\n${escape(r.publishedAt)}${r.url ? ` · [Original post](${r.url})` : ` · Event ${escape(r.eventId)}`}\n\n${escape(r.text).split('\n').map(line => `> ${line}`).join('\n')}\n\n`).join('');
 }
 
-export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Date().toISOString(), xGet = xPublicGet, chatGet, log = console.log } = {}) {
+export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Date().toISOString(), xGet = xPublicGet, chatGet, budgetMs = 180000, clock = Date.now, log = console.log } = {}) {
   mkdirSync(archive, { recursive: true, mode: 0o700 }); chmodSync(archive, 0o700);
   const registry = readJsonFile(join(root, 'data/restream/postlive-registry.json'));
   const eventsDir = join(root, 'data/restream/events');
-  const events = readdirSync(eventsDir).filter(f => f.endsWith('.json')).map(f => readJsonFile(join(eventsDir, f)).event).filter(Boolean);
-  const shows = registry.shows.filter(s => s.active !== false && /dive-radio/.test(s.slug) && s.date <= phoenixDateKey(now) && Date.parse(now) - Date.parse(`${s.date}T00:00:00-07:00`) <= 8 * 86400000);
-  let bearer; const failures = []; let added = 0;
+  const events = (existsSync(eventsDir) ? readdirSync(eventsDir) : []).filter(f => f.endsWith('.json')).map(f => readJsonFile(join(eventsDir, f)).event).filter(Boolean);
+  const shows = registry.shows.filter(s => s.active !== false && /dive-radio/.test(s.slug) && s.date <= phoenixDateKey(now) && Date.parse(now) - Date.parse(`${s.date}T00:00:00-07:00`) <= 30 * 86400000);
+  const deadline = clock() + budgetMs;
+  const bounded = get => async url => {
+    if (clock() >= deadline) throw new Error('Audience archive time budget exhausted');
+    // Let the current bounded request finish so its raw response is retained.
+    return get(url);
+  };
+  xGet = bounded(xGet);
+  let bearer;
+  const restreamGet = bounded(chatGet || (async url => {
+    if (!bearer) bearer = await getAccessToken();
+    return fetchJson(url, { label: 'Restream audience archive', headers: { Authorization: `Bearer ${bearer}` } });
+  }));
+  let history;
+  const failures = []; let added = 0;
   for (const show of shows) {
     const path = join(archive, `${show.slug}.json`);
     await withSourceLock(path, async () => {
@@ -91,13 +106,33 @@ export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Dat
       const rawDir = join(archive, 'raw', show.slug, now.replace(/[:.]/g, '-'));
       mkdirSync(rawDir, { recursive: true, mode: 0o700 });
       const saveRaw = (key, response) => atomicWriteJson(join(rawDir, `${key}.json`), { pulledAt: now, response }, { mode: 0o600 });
-      const targetUrls = new Set(show.targets.flatMap(t => [t.url, t.videoId && `https://www.youtube.com/watch?v=${t.videoId}`, t.broadcastId && `https://x.com/i/broadcasts/${t.broadcastId}`]).filter(Boolean));
-      const matched = events.filter(e => e.status === 'finished' && e.destinations?.some(d => targetUrls.has(d.externalUrl)));
-      const sources = [{ name: 'x', collect: () => captureX(show.targets.filter(t => t.kind === 'x'), { get: xGet, saveRaw }) }, ...matched.map(e => ({ name: `chat:${e.id}`, collect: async () => {
-        if (!chatGet && !bearer) bearer = await getAccessToken();
-        return captureChat(e.id, { saveRaw, get: chatGet || (url => fetchJson(url, { label: 'Restream chat archive', headers: { Authorization: `Bearer ${bearer}` } })) });
-      } }))];
-      if (!matched.length) sources.push({ name: 'live-chat', collect: () => { throw new Error('No finished Restream event matches registered source URLs'); } });
+      const sources = [{ name: 'x', collect: () => captureX(show.targets.filter(t => t.kind === 'x'), { get: xGet, saveRaw, seedRoots: [...new Set(store.records.filter(r => r.source === 'x').map(r => r.conversationId).filter(Boolean))] }) }, {
+        name: 'live-chat', collect: async () => {
+          // Always enumerate history: a restarted show can have several events,
+          // including ones absent from the analytics ingest.
+          if (!history) {
+            const found = []; const seen = new Set();
+            for (let page = 0; page < 20; page++) {
+              const response = await restreamGet(`https://api.restream.io/v2/user/events/history?limit=50&offset=${page * 50}`);
+              await saveRaw(`event-history-${page}`, response);
+              const batch = asEventList(response);
+              for (const event of batch) {
+                if (!event.id || seen.has(event.id)) throw new Error('Restream history repeated or missing event identity');
+                seen.add(event.id); found.push(event);
+              }
+              if (batch.length < 50) { history = found; break; }
+            }
+            if (!history) throw new Error('Restream history pagination limit reached');
+          }
+          const allEvents = new Map(events.map(event => [event.id, event]));
+          for (const event of history) allEvents.set(event.id, event);
+          const matched = [...allEvents.values()].filter(e => e.status === 'finished' && episodeForRestreamEvent(e, registry)?.slug === show.slug);
+          if (!matched.length) throw new Error('No finished Restream event matches registered sources');
+          const rows = [];
+          for (const event of matched) rows.push(...await captureChat(event.id, { saveRaw, get: restreamGet }));
+          return rows;
+        }
+      }];
       for (const source of sources) {
         try {
           const rows = await source.collect(); const seen = new Set(store.records.map(r => r.id));

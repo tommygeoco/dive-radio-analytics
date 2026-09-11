@@ -17,3 +17,13 @@ Validation: focused archive regression tests cover promo-parent and quote discov
 ## Builder triage
 
 Independent final_critic review: PASS, no blocking findings. Accepted coverage qualification for quotes of non-root replies and potentially unrelated discussion in parent conversations. The archive explicitly labels this unscored scope. The reviewer initially raised a publication-blocking concern, then retracted it after checking the existing optional comments step in chain.json.
+
+## Future-episode hardening
+
+The initial comments-step integration could be skipped by an earlier required transcript or analytics failure, and eight days was too short for continued replies. The archive now has its own optional step immediately after episode discovery, with explicit private runtime outputs. It runs daily for 30 days per episode and carries forward saved conversation IDs, so a quote post aging out of recent search does not hide later replies to its thread. Retained archives do not expire.
+
+When no finished event is present locally, capture reads bounded Restream event history and uses the existing canonical destination-ID matcher. This handles YouTube watch/live/short URL forms and rejects ambiguous episode assignments. Capture does not depend on the separate analytics ingest having succeeded. Scored comments remain a separate later step.
+
+Regression proof creates an October episode with no local events directory, resolves its chat from history, then advances to day 14 and captures a new reply through a previously saved quote conversation. The repeated chat message remains one stored record. Chain tests require capture after discovery and before transcripts with no public/store output declaration.
+
+Future-hardening critic findings fixed: enumerate all bounded history pages even when local events exist, retaining restarted/split events matched to the same episode; a multi-page fixture proves both are kept. Archive collection has a three-minute request-start budget plus at most the current bounded request, after which remaining sources fail explicitly and the optional chain continues. A zero-budget test proves no source call starts and failed receipts remain. Live 30-day capture retained another 529 records across five episodes with no failed sources.

@@ -1,6 +1,6 @@
 {
  "cron": "0 7 * * * America/Phoenix",
- "note": "Ordered chain definition (PRD v9 §4.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` enters through run-daily.mjs, which runs this chain from an isolated main clone outside active development. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish. `runtimeWrites` names operational state outside Git.",
+ "note": "Ordered chain definition (PRD v9 \u00a74.5). The scheduler line above is documentation; the owner machine's OpenClaw automation `restream-postlive-snapshot` enters through run-daily.mjs, which runs this chain from an isolated main clone outside active development. validate.mjs block 1v reads `writes`, `freshnessKey`, `required`, and `scope` to decide which stores must be fresh before publish. `runtimeWrites` names operational state outside Git.",
  "steps": [
   {
    "step": "discover",
@@ -15,6 +15,17 @@
    "freshnessKey": "lastSuccessfulDiscoveryAt",
    "required": true,
    "scope": "all"
+  },
+  {
+   "step": "audience-archive",
+   "script": "scripts/restream/comments-archive.mjs",
+   "writes": [],
+   "runtimeWrites": [
+    "~/Library/Application Support/Dive Radio Analytics/audience-archive/**"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "episodes-within-30d"
   },
   {
    "step": "transcripts",

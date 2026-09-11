@@ -17,7 +17,6 @@ import { readFileSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { runArchive } from "./comments-archive.mjs";
 import { xPublicGet } from "./x-public-get.mjs";
 import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson, readingEnvelope, phoenixDateKey } from "../../tools/dive-analytics/source-io.mjs";
 
@@ -213,13 +212,7 @@ export async function runCommentsPull({ root = ROOT, now = new Date().toISOStrin
 async function main() {
   let apiKey = null;
   try { apiKey = ytApiKey(); } catch { /* Captured as a failed source for each due episode. */ }
-  // Capture independently first, even when a scored-comment source later fails.
-  let archiveError;
-  try { await runArchive(); } catch (error) { archiveError = error; }
-  const result = await runCommentsPull({ apiKey });
-  // The optional chain step records incompleteness without blocking publication.
-  if (archiveError) throw archiveError;
-  return result;
+  return runCommentsPull({ apiKey });
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().catch((error) => { process.stderr.write(`comments: ${error.message}\n`); process.exit(1); });

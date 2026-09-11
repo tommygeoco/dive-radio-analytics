@@ -94,12 +94,13 @@ Rules that follow from the shape:
 Runs on the owner machine from the dedicated checkout `/Users/bones/Library/Application Support/Dive Radio Analytics/publisher-main`. The OpenClaw automation `restream-postlive-snapshot` enters at 07:00 America/Phoenix through `node tools/dive-analytics/run-daily.mjs --primary`; it never runs from an active development tree. A 06:50 job ingests Restream into the same checkout. The disabled 06:00 rehearsal stays disabled. `recover-publish.mjs` checks production at 08:15 and 12:15. A real morning failure uses the reserved recovery immediately; when production is current and only the newest YouTube watch report is pending, 08:15 saves that attempt and 12:15 reruns the complete chain once. A Monday-noon job reads reports from the same checkout. The repo is both source and served site; publish means exact scoped commit + `HEAD:main` push + Vercel production deploy + exact proof of nine core files plus every declared transcript.
 
 ```
-postlive-discover → transcripts-pull → newsletter-promotion → postlive-track snapshot → yt-analytics-pull
+postlive-discover → audience-archive → transcripts-pull → newsletter-promotion → postlive-track snapshot → yt-analytics-pull
 → comments-pull → comments-classify → channel-stats-pull → ingest-restream
 → ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → chapters
 → critic (Mondays) → build-data → validate → publish → alerts → freshness
 ```
 
+- `audience-archive` runs immediately after discovery, before transcript and analytics failures can stop the chain. It saves private full-text X conversations and Restream chat daily for 30 days after each episode, retains discovered conversation IDs for later replies, and can discover matching Restream history when the analytics ingest is missing. Its optional failure is recorded and alerted through the existing chain policy. Archives remain outside Git/public metrics.
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The scheduler is an OpenClaw automation on the owner machine (`openclaw cron list`), not a crontab; do not add one here.
