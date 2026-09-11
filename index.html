@@ -518,6 +518,15 @@
   .panel .themeitem { color: var(--t2); font-size: 13px; padding: 2px 0; }
   .panel .themeempty { color: var(--t3); font-size: 12px; line-height: 1.35; }
 
+  #audience-preview { margin-bottom: var(--gap); }
+  #audience-preview .fb { padding: 0; }
+  .dtools { display: flex; gap: 8px; padding: 0 20px 12px; }
+  .dtools input, .dtools select { min-width: 0; padding: 8px 10px; background: var(--s1); border: 1px solid var(--border); border-radius: 6px; color: var(--t1); font: inherit; }
+  .dtools input { flex: 1; width: 50%; }
+  .dtools select { max-width: 42%; }
+  .drow .txt, .bq p { overflow-wrap: anywhere; white-space: pre-wrap; }
+  .feedback-source { color: var(--t3); text-decoration: underline; text-underline-offset: 2px; }
+
   /* ---- controls ---- */
   .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-left: auto; }
   /* head-row controls are one shape in two states: same box, same padding,
@@ -777,6 +786,7 @@
     <div class="emptynote" id="emptynote" style="display:none"></div>
   </div>
   <div class="panel" id="panel" style="display:none"></div>
+  <section class="panel" id="audience-preview" aria-label="Audience feedback" style="display:none"></section>
 
   <div class="insights" id="insights" aria-label="What matters"></div>
 
@@ -790,6 +800,7 @@
 <div id="drill"><div class="dcard">
   <div class="dhead"><span class="h" id="dtitle"></span><button type="button" class="x" id="dclose" aria-label="Close feedback">×</button></div>
   <div class="dtabs" id="dtabs"></div>
+  <div class="dtools"><input id="dsearch" type="search" placeholder="Search comments" aria-label="Search comments"><select id="dsource" aria-label="Comment source"><option value="all">All sources</option><option value="yt">YouTube comments</option><option value="x">X threads</option><option value="live-chat">Live chat</option></select></div>
   <div class="dlist" id="dlist"></div>
 </div></div>
 
@@ -1955,7 +1966,9 @@ function buildPanel() {
   // PRD v12 W43: chapters sit above the feedback — topics with timestamps
   if (e.chapters?.list?.length) html += `<div class="psec wide">${chaptersHTML(e)}</div>`;
   const comments = e.comments;
-  if (comments) {
+  if (e.audience && (e.audience.count || e.audience.notices.length)) {
+    html += audienceHTML(e);
+  } else if (comments) {
     const ppl = comments.uniqueCommenters;
     html += `<div class="psec wide fb"><div class="fbhead"><div class="kicker">Audience feedback</div>
       <div class="pills">
@@ -1989,16 +2002,43 @@ function buildPanel() {
     a.addEventListener("click", () => openDrill(e.slug, a.dataset.f)));
 }
 
+function feedbackSource(comment) {
+  return comment.source === "live-chat" ? `${comment.platform || "Stream"} live chat` : comment.source === "yt" ? "YouTube" : "X";
+}
+function feedbackOriginal(comment) {
+  if (!/^https:\/\/(?:x\.com|www\.youtube\.com|youtu\.be)\//.test(comment.url || "")) return "";
+  return `<a class="feedback-source" href="${esc(comment.url)}" target="_blank" rel="noopener noreferrer">Original ↗</a>`;
+}
+function audienceHTML(episode) {
+  const audience = episode.audience;
+  return `<div class="psec wide fb"><div class="fbhead"><div class="kicker">Audience feedback · E${episode.ep}</div>
+    ${audience.count ? `<div class="pills"><button type="button" class="pill senti-link" data-f="positive"><i class="dot good"></i>${audience.positiveCount} positive comments</button>
+    <button type="button" class="pill senti-link" data-f="negative"><i class="dot bad"></i>${audience.negativeCount} with criticism</button>
+    <button type="button" class="pill senti-link more" data-f="all">Read all ${audience.count} comments →</button></div>` : `<div class="fbfoot">Audience feedback is not available yet.</div>`}</div>
+    ${audience.featured.slice(0, 2).map(q => `<blockquote class="bq"><p>“${esc(q.text)}”</p><footer>${esc(q.author)} · ${esc(feedbackSource(q))} ${feedbackOriginal(q)}</footer></blockquote>`).join("")}
+    <div class="fbfoot">Captured audience feedback. Mixed reactions appear in both groups.${audience.notices.length ? `<br>${audience.notices.map(esc).join(" ")}` : ""}</div></div>`;
+}
+function buildAudiencePreview() {
+  const el = document.getElementById("audience-preview");
+  const episode = EPS.find(e => e.slug === (state.solo || state.panel)) || NEWEST;
+  if (!episode.audience || (!episode.audience.count && !episode.audience.notices.length) || state.panel === episode.slug) { el.style.display = "none"; el.innerHTML = ""; return; }
+  el.innerHTML = audienceHTML(episode); el.style.display = "";
+  el.querySelectorAll(".senti-link").forEach(button => button.addEventListener("click", () => openDrill(episode.slug, button.dataset.f)));
+}
+
 /* ================= drilldown modal (Layer 3) ================= */
-const drillState = { slug: null, filter: "all" };
+const drillState = { slug: null, filter: "all", query: "", source: "all" };
 function openDrill(slug, filter) {
   const e = EPS.find(x => x.slug === slug);
-  if (!e?.comments?.list) return;
+  if (!e?.audience?.list && !e?.comments?.list) return;
   drillState.slug = slug;
   drillState.filter = filter || "all";
+  drillState.query = ""; drillState.source = "all";
   renderDrill();
   document.getElementById("drill").classList.add("on");
 }
+document.getElementById("dsearch").addEventListener("input", event => { drillState.query = event.target.value; renderDrill(); });
+document.getElementById("dsource").addEventListener("change", event => { drillState.source = event.target.value; renderDrill(); });
 function closeDrill() { document.getElementById("drill").classList.remove("on"); }
 /* ================= growth-trend card: is the show growing? (PRD v2 W2) ================= */
 function buildCompound() {
@@ -2061,10 +2101,13 @@ function buildCompound() {
 function renderDrill() {
   const e = EPS.find(x => x.slug === drillState.slug);
   if (!e) return;
-  const list = e.comments.list || [];
+  const view = e.audience || e.comments;
+  const list = view.list || [];
+  document.getElementById("dsearch").value = drillState.query;
+  document.getElementById("dsource").value = drillState.source;
   document.getElementById("dtitle").textContent = `Audience feedback — ${label(e)}`;
-  const tabs = [["all", `All feedback ${list.length}`], ["positive", `Enjoyed ${e.comments.enjoyCount}`],
-    ["negative", `Didn’t ${e.comments.complaintCount}`]];
+  const tabs = [["all", `All feedback ${list.length}`], ["positive", `Positive ${e.audience ? view.positiveCount : view.enjoyCount}`],
+    ["negative", `With criticism ${e.audience ? view.negativeCount : view.complaintCount}`]];
   const tEl = document.getElementById("dtabs");
   tEl.innerHTML = "";
   for (const [f, lab] of tabs) {
@@ -2076,20 +2119,23 @@ function renderDrill() {
   }
   const rows = list.filter(c => drillState.filter === "all" ? true :
     drillState.filter === "positive" ? c.sentiment === "positive" || c.sentiment === "mixed" :
-    c.sentiment === "negative" || c.sentiment === "mixed");
+    c.sentiment === "negative" || c.sentiment === "mixed")
+    .filter(c => drillState.source === "all" || c.source === drillState.source)
+    .filter(c => `${c.text} ${c.author}`.toLowerCase().includes(drillState.query.toLowerCase()));
   const lEl = document.getElementById("dlist");
-  const refreshNote = e.sourceStates?.comments?.state && e.sourceStates.comments.state !== "ready" ? `<div class="dempty">${esc(e.comments.commentersPer1kNote)}</div>` : "";
-  const missedNote = e.comments?.xCoverage === "missed"
+  const refreshNote = !e.audience && e.sourceStates?.comments?.state && e.sourceStates.comments.state !== "ready" ? `<div class="dempty">${esc(e.comments.commentersPer1kNote)}</div>` : "";
+  const missedNote = !e.audience && e.comments?.xCoverage === "missed"
     ? `<div class="dempty" style="padding:8px 0 4px;font-size:12px">X replies missing for this episode — it aired before comment tracking started (X search reaches back 7 days). YouTube comments only.</div>` : "";
-  lEl.innerHTML = (rows.length ? "" : `<div class="dempty">No feedback in this group.</div>`) + missedNote + refreshNote;
+  const audienceNotices = (e.audience?.notices || []).map(note => `<div class="dempty">${esc(note)}</div>`).join("");
+  lEl.innerHTML = audienceNotices + (rows.length ? "" : `<div class="dempty">No feedback in this group.</div>`) + missedNote + refreshNote;
   for (const c of rows) {
     const d = document.createElement("div");
     d.className = "drow";
     d.innerHTML = `<div class="m"><span class="who">${esc(c.author)}</span>
-      <span class="src">${c.source === "yt" ? "YouTube" : "X"}</span>
+      <span class="src">${esc(feedbackSource(c))}</span>
       ${c.likes ? `<span>${c.likes}♥</span>` : ""}
       <span class="senti ${c.sentiment}">${c.sentiment === "mixed" ? "± both" : c.sentiment === "positive" ? "enjoyed" : "didn’t"}</span></div>
-      <div class="txt">${esc(c.text)}</div>`;
+      <div class="txt">${esc(c.text)}</div><div class="m">${feedbackOriginal(c)}${c.at ? `<time datetime="${esc(c.at)}">${esc(c.at.replace("T", " ").replace(/\.000Z$/, " UTC").replace(/Z$/, " UTC"))}</time>` : ""}</div>`;
     lEl.appendChild(d);
   }
 }
@@ -2968,6 +3014,7 @@ function render() {
   buildHero();
   buildStrip();
   buildPanel();
+  buildAudiencePreview();
   buildCompound();
   buildTable();
   buildEmptyNote();
@@ -3404,7 +3451,8 @@ function buildAbout() {
   <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, <b>▲</b> and <b>▼</b> mark above or below the show’s typical level and <b>≈</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says Waiting for YouTube instead of showing a zero.</p>
-  <p><b>Audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
+  <p><b>Live chat and X threads</b> are captured alongside YouTube feedback. Their displayed totals count messages, not distinct people; mixed reactions appear in both positive and criticism lists. Live-chat names are supplied by Restream, which may anonymize them. Only confidently classified feedback is shown; the full source archive is retained privately. Expanded conversation and chat feedback does not change historical health scores or commenting rates.</p>
+  <p><b>Scored audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
   <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The words are written by a model over the day’s checked facts; when the model fails, the previous dated read is kept and the refresh reports a failure. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — orange fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos. Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <p><b>What matters</b> lists the current actions for this week, in order — written by a model over the day’s show-health read (each check’s state, which way every measure is heading, the outlook, each launch word) and the full fact sheet, with the biggest lever first. Every number in an item is copied from a stored fact; an item whose numbers move out from under it is held back rather than shown. The category on each item is the decision it informs. The same-age pace of the newest episode stays on its card and in the chart standings. The first two current actions also appear in the health card’s Do next area.</p>

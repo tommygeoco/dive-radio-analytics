@@ -95,11 +95,11 @@ export function providerConfig() {
   throw new Error("ANTHROPIC_API_KEY or OPENAI_API_KEY is required");
 }
 
-async function callOnce(system, payload) {
+async function callOnce(system, payload, { timeoutMs = 180000 } = {}) {
   const cfg = providerConfig();
   if (cfg.provider === "anthropic") {
     const body = await fetchJson("https://api.anthropic.com/v1/messages", {
-      label: "comment classifier Anthropic", maxAttempts: 1, timeoutMs: 180000,
+      label: "comment classifier Anthropic", maxAttempts: 1, timeoutMs,
       method: "POST",
       headers: {
         "x-api-key": cfg.key,
@@ -112,7 +112,7 @@ async function callOnce(system, payload) {
         system,
         messages: [{ role: "user", content: JSON.stringify(payload) }],
       }),
-      signal: AbortSignal.timeout(180000),
+      signal: AbortSignal.timeout(timeoutMs),
     });
     const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
     if (!text.trim()) throw new Error(`empty Anthropic response (stop_reason ${body.stop_reason}, blocks ${JSON.stringify((body.content || []).map((b) => b.type))}, output_tokens ${body.usage?.output_tokens})`);
@@ -120,7 +120,7 @@ async function callOnce(system, payload) {
   }
 
   const body = await fetchJson("https://api.openai.com/v1/responses", {
-    label: "comment classifier OpenAI", maxAttempts: 1, timeoutMs: 180000,
+    label: "comment classifier OpenAI", maxAttempts: 1, timeoutMs,
     method: "POST",
     headers: { Authorization: `Bearer ${cfg.key}`, "content-type": "application/json" },
     body: JSON.stringify({
@@ -129,7 +129,7 @@ async function callOnce(system, payload) {
       instructions: system,
       input: JSON.stringify(payload),
     }),
-    signal: AbortSignal.timeout(180000),
+    signal: AbortSignal.timeout(timeoutMs),
   });
   const text = body.output_text || (body.output || []).flatMap((o) => o.content || []).filter((c) => c.type === "output_text").map((c) => c.text).join("\n");
   if (!text.trim()) throw new Error("empty OpenAI response");
@@ -382,6 +382,34 @@ async function classifyUnlocked({ reclassify = false } = {}) {
   saveAtomic(STORE_PATH, store);
   console.log(`classifier: ${rows.length} comment(s) labeled, ${reviewed} sent to review (${Object.keys(store.classified).length} stored)`);
   return store.lastRun;
+}
+
+// Reuse the proven classifier and golden gate for the separate display archive.
+// No archive text enters the historical scored-comment store.
+export async function classifyAudienceBatch(comments, { now = new Date().toISOString(), goldenStorePath = STORE_PATH } = {}) {
+  const cfg = currentConfig();
+  const gateStore = loadJson(goldenStorePath, blankStore());
+  assertVersionDiscipline(gateStore);
+  if (!gateStore.golden?.passed || gateStore.golden.configHash !== cfg.configHash) throw new Error("Audience classifier requires the existing comments golden gate for this configuration");
+  const originalIds = new Map(comments.map((comment, index) => [`c${index}`, comment.id]));
+  const input = comments.map((comment, index) => ({ id: `c${index}`, text: comment.text }));
+  const result = await callOnce(cfg.prompt, { task: 'classify', comments: input }, { timeoutMs: 90000 });
+  const rows = parseClassifications(result.text, input.map(c => c.id));
+  const sample = deterministicAuditSample(rows, cfg.configHash);
+  const byId = new Map(input.map(c => [c.id, c]));
+  const auditPrompt = `${cfg.prompt}\n\n## Independent second read\nRe-classify each comment from scratch using only the rules above. Return the same classifications JSON shape.`;
+  const second = await callOnce(auditPrompt, { task: 'second read', comments: sample.map(r => byId.get(r.id)) }, { timeoutMs: 90000 });
+  const audits = new Map(parseClassifications(second.text, sample.map(r => r.id)).map(r => [r.id, r]));
+  return {
+    config: { classifierVersion: CLASSIFIER_VERSION, promptVersion: PROMPT_VERSION, promptHash: cfg.promptHash, configHash: cfg.configHash, model: cfg.model, provider: cfg.provider, golden: gateStore.golden },
+    labels: rows.map(row => {
+      const audit = audits.get(row.id);
+      // An uncertain label must not become a public quote just because two
+      // model reads repeat the same uncertainty.
+      const ready = row.confidence >= 0.8 && (!audit || (audit.confidence >= 0.8 && sameLabel(row, audit)));
+      return { ...row, id: originalIds.get(row.id), state: ready ? 'ready' : 'review', classifiedAt: now, ...(audit ? { audit } : {}) };
+    }),
+  };
 }
 
 function classify(options) { return withSourceLock(STORE_PATH, () => classifyUnlocked(options)); }

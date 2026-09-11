@@ -68,7 +68,7 @@ const bandWords = (score) => (score == null ? "—" : score >= 55 ? "above usual
 export const COVERS = Object.freeze([
   // bundles consumed whole (trailing *)
   "episodes[].announces[]*", "episodes[].links.{dest}*", "episodes[].latest.byDest.{dest}*", "episodes[].latest.xPlaysInfo*", "episodes[].latest.totalViewsInfo*",
-  "episodes[].promotion*",
+  "episodes[].promotion*", "episodes[].audience.featured[]*", "episodes[].audience.sources*",
   "episodes[].metrics*", "episodes[].live.byChannel[]*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
   "episodes[].health*", "episodes[].watchReport*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*",
   "insights[]*", "insightsStale[]*", "showTrend.week1VelocityByEpisode[]*", "showTrend.paceRank*", "commentSummary.enjoyThemes[]*", "commentSummary.complaintThemes[]*",
@@ -83,6 +83,7 @@ export const COVERS = Object.freeze([
   "episodes[].latest", "episodes[].latest.ts", "episodes[].latest.ytTotal", "episodes[].latest.youtubeAsOf", "episodes[].latest.youtubeStale", "episodes[].latest.xImpressions", "episodes[].latest.xPlays", "episodes[].latest.xPlaysInfo", "episodes[].latest.totalViews", "episodes[].latest.totalViewsInfo", "episodes[].latest.byDest", "episodes[].latest.byDest.{dest}",
   "episodes[].metrics", "episodes[].metrics.week1Velocity", "episodes[].metrics.week1Note", "episodes[].metrics.flatlineWeek", "episodes[].metrics.engagementPer1k", "episodes[].metrics.anomaly",
   "episodes[].live", "episodes[].live.peak", "episodes[].live.avg", "episodes[].live.liveViews", "episodes[].live.watchedMin", "episodes[].live.chatMessages", "episodes[].live.chatters", "episodes[].live.durationMin", "episodes[].live.minutesPerViewer", "episodes[].live.holdRate", "episodes[].live.byChannel", "episodes[].live.byChannel[]",
+  "episodes[].audience", "episodes[].audience.count", "episodes[].audience.positiveCount", "episodes[].audience.negativeCount", "episodes[].audience.featured", "episodes[].audience.featured[]", "episodes[].audience.sources", "episodes[].audience.note", "episodes[].audience.notices", "episodes[].audience.notices[]",
   "episodes[].comments", "episodes[].comments.captured", "episodes[].comments.feedbackCount", "episodes[].comments.uniqueCommenters", "episodes[].comments.enjoyCount", "episodes[].comments.complaintCount", "episodes[].comments.commentersPer1k", "episodes[].comments.commentersPer1kNote", "episodes[].comments.enjoyThemes", "episodes[].comments.complaintThemes", "episodes[].comments.featured", "episodes[].comments.featured[]", "episodes[].comments.xCoverage",
   "episodes[].health", "episodes[].health.score", "episodes[].health.pending", "episodes[].health.readCompleteOn", "episodes[].health.reason", "episodes[].health.checks", "episodes[].health.missingChecks", "episodes[].health.algorithm", "episodes[].health.window", "episodes[].health.windowIds", "episodes[].health.excluded", "episodes[].health.reproducible", "episodes[].health.rederivedFrom", "episodes[].health.weightUsed", "episodes[].health.readAge", "episodes[].health.readAgeDays", "episodes[].health.stillReading",
   "episodes[].watch", "episodes[].watch.avgPercent", "episodes[].watch.avgDurationSec", "episodes[].watch.minutesWatched", "episodes[].watch.curveUnavailableReason", "episodes[].watch.traffic", "episodes[].watch.traffic[]", "episodes[].watch.shape", "episodes[].watch.moments", "episodes[].watch.moments[]", "episodes[].watch.byChannel", "episodes[].watch.byChannel[]", "episodes[].watch.channels", "episodes[].watch.updatedAt",
@@ -100,6 +101,7 @@ export const LEAVES_OUT = Object.freeze([
   { path: "episodes[].weekly", reason: "weekly roll-ups of the same series — in data.json" },
   { path: "episodes[].live.series", reason: "the per-minute live audience — summarised as peak, average, minutes per viewer, and hold rate" },
   { path: "episodes[].watch.curve", reason: "the hundred-point watch curve — summarised by its shape and the moments" },
+  { path: "episodes[].audience.list", reason: "full classified YouTube, X-thread and live-chat messages; message totals and featured quotes reach the brief, complete text is in data.json" },
   { path: "episodes[].comments.list", reason: "every classified comment — counts, themes, and featured quotes stand in; the list is in data.json" },
   { path: "episodes[].watch.moments[].excerpt", reason: "cut to a short excerpt in the brief; the full verbatim excerpt is in data.json" },
   { path: "episodes[].chapters.list[].quote", reason: "the grounding quote behind each chapter — the timestamp and title are what an agent needs; the quote is in agent.json" },
@@ -178,6 +180,7 @@ function episodeDigest(e, data) {
     engagementPer1k: e.metrics?.engagementPer1k ?? null, subsPer1k: e.subsPer1k ?? null, discoveryShare: e.discoveryShare ?? null,
     watching: w.avgPercent != null ? { sharePercent: w.avgPercent, avgDurationSec: w.avgDurationSec ?? null, minutesWatched: w.minutesWatched ?? null, curveUnavailableReason: w.curveUnavailableReason ?? null, traffic: (w.traffic || []).slice(0, 4).map((t) => ({ source: t.source, share: t.share })), shape: w.shape || null, updatedAt: w.updatedAt || null } : absent(e.watchReport?.reason || "no YouTube analytics report yet"),
     live: l.peak != null ? { peak: l.peak, average: l.avg, uniqueViewers: l.liveViews ?? null, minutesWatched: l.watchedMin ?? null, minutesPerViewer: l.minutesPerViewer ?? null, holdRate: l.holdRate ?? null, chatMessages: l.chatMessages, chatters: l.chatters, durationMin: l.durationMin } : absent("no live session record"),
+    expandedFeedback: e.audience ? { count: e.audience.count, positiveCount: e.audience.positiveCount, negativeCount: e.audience.negativeCount, sources: e.audience.sources, note: e.audience.note, notices: e.audience.notices, featured: e.audience.featured.slice(0, BUDGET.quotesPerEpisode).map(q => ({ ...q, text: cut(q.text, 200) })) } : absent("no expanded conversation capture"),
     feedback: c.captured != null ? { note: c.commentersPer1kNote || null, captured: c.captured, directional: c.feedbackCount ?? null, people: c.uniqueCommenters ?? null, enjoyed: c.enjoyCount ?? null, concerns: c.complaintCount ?? null, xReplies: c.xCoverage || null, enjoyThemes: c.enjoyThemes || [], concernThemes: c.complaintThemes || [], featured: (c.featured || []).slice(0, BUDGET.quotesPerEpisode).map((q) => ({ source: q.source, author: q.author, text: cut(q.text, 200) })) } : absent("no comments captured"),
     chapters, moments, health,
   };
@@ -515,6 +518,12 @@ function renderMarkdownWindow(digest, episodes, manifest) {
     }
     const unavailableSources = Object.entries(e.sourceStates || {}).filter(([, source]) => source.state !== "ready");
     if (unavailableSources.length) p(`Source checks: ${unavailableSources.map(([key, source]) => `${key}: ${source.state}${source.reason ? ` (${esc(source.reason)})` : ""}`).join("; ")}.`);
+    if (!abs(e.expandedFeedback)) {
+      const a = e.expandedFeedback;
+      p(`Dashboard audience feedback: ${fmtNum(a.count)} messages (${fmtNum(a.positiveCount)} positive, ${fmtNum(a.negativeCount)} with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.`);
+      for (const notice of a.notices || []) p(notice);
+      for (const q of a.featured) p(`- "${q.text}" — ${esc(q.author)} on ${q.source === "live-chat" ? `${q.platform || "Stream"} live chat` : q.source === "x" ? "X" : "YouTube"}${q.url ? ` ([original](${q.url}))` : ""}`);
+    }
     if (abs(e.feedback)) p(`Feedback: — (${e.feedback.reason}).`);
     else {
       p(`Feedback: ${fmtNum(e.feedback.captured)} comments captured, ${fmtNum(e.feedback.directional)} with a clear lean from ${fmtNum(e.feedback.people)} people (${fmtNum(e.feedback.enjoyed)} enjoyed, ${fmtNum(e.feedback.concerns)} concerns)${e.feedback.xReplies === "covered" ? "; X replies included" : "; X replies not covered"}.${e.feedback.enjoyThemes.length ? ` Enjoyed: ${themeWords(e.feedback.enjoyThemes).join(", ")}.` : ""}${e.feedback.concernThemes.length ? ` Concerns: ${themeWords(e.feedback.concernThemes).join(", ")}.` : ""}`);

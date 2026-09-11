@@ -16,6 +16,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // PRD v9 W22a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
+import { audienceView } from "./audience-view.mjs";
 import { buildBrief } from "./agent-brief.mjs";
 import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
 import { currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
@@ -399,6 +400,14 @@ export function computeAll({ now = Date.now() } = {}) {
 
   attachLiveSessions(dive, registry);
   const commentSummary = attachComments(dive, now);
+  const audiencePath = join(ROOT, "data", "restream", "audience-feedback.json");
+  if (existsSync(audiencePath)) {
+    const audienceStore = JSON.parse(readFileSync(audiencePath, "utf8"));
+    for (const episode of dive) {
+      const view = audienceView(episode.comments, audienceStore.episodes?.[episode.slug], { now, commentState: episode.sourceStates?.comments });
+      if (view) episode.audience = view;
+    }
+  }
   attachEpisodeHealth(dive);
   attachWatch(dive, now);
   const transcriptStatePath = join(ROOT, "data", "restream", "transcript-state.json");
@@ -1456,7 +1465,9 @@ export function trendsLines(data) {
     const drop = momentEp.watch.moments.filter((m) => m.kind === "drop").sort((a, b) => b.points - a.points || a.at - b.at)[0];
     push(`• Sharpest exit in ${shortTitle(momentEp.title)}: ${drop.points} of every 100 viewers leave ${drop.approx ? "roughly" : "about"} ${minutesInWords(drop.estSec)}${drop.summary ? ` — ${drop.summary}` : ""}.`);
   }
-  // W8: newest-episode feedback, read from the same exported rollup as the page.
+  const audience = newest?.audience;
+  if (audience) push(`• Captured audience feedback: ${audience.count} comments; ${audience.positiveCount} positive; ${audience.negativeCount} with criticism (mixed reactions appear in both groups).${audience.notices.length ? ` ${audience.notices.join(" ")}` : ""}`, { kind: "audience-expanded" });
+  // W8: original scored-comment cohort retained for historical comparison.
   const c = newest?.comments;
   if (c) {
     const enjoyed = c.enjoyCount ? `${c.enjoyCount} ${c.enjoyCount === 1 ? "person enjoyed" : "people enjoyed"} something` : "no praise yet";

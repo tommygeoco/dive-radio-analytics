@@ -607,3 +607,20 @@ newsletter and both model credentials without printing any value.
 - Fourteen daily observation checks are scheduled in this thread at 08:45 Phoenix
   (`verify-dive-daily-publishing`). Future unattended reliability remains
   unverified until those real scheduled mornings occur.
+
+## September 11 audience display correction
+
+### Progress
+
+- [x] Found the missing connection: private retention had shipped without a public display projection.
+- [x] Added a golden-gated classifier bridge, strict public fields, native-ID dedupe and a separate message-count display cohort.
+- [x] Added visible latest-episode quotes and a searchable/source-filtered drilldown with original links/timestamps.
+- [x] Reused the same projection in the agent brief and expanded Slack summary; historical health inputs are unchanged.
+- [x] Browser preview displays real Episode 9 X praise and the recovered BEST EPISODE live-chat message.
+- [ ] Finish all recovered classifications, final strict validation, independent review and production browser proof.
+
+### Surprises and decisions
+
+- Capturing source text does not make it visible. Acceptance now requires rendered quote text and working search/source filters in production, not just archived bytes or deployed code.
+- Chat supplies anonymous author labels, so the expanded display counts messages rather than unique people. No cross-platform identity is inferred and no historical score is redefined.
+- Independent review found missing quote URL allowlisting, hidden incomplete-source notices, and unsupported-config retention. Fixed by grounding quote links in approved records, rendering source/processing notices, and preserving prior labels while automatically processing changed source text or a newly supported classifier contract.

@@ -92,6 +92,20 @@
    "model": true
   },
   {
+   "step": "audience-feedback",
+   "script": "scripts/restream/audience-feedback.mjs",
+   "writes": [
+    "data/restream/audience-feedback.json"
+   ],
+   "runtimeWrites": [
+    "~/Library/Application Support/Dive Radio Analytics/audience-archive/audience-labels.json"
+   ],
+   "freshnessKey": "updatedAt",
+   "required": false,
+   "scope": "all",
+   "model": true
+  },
+  {
    "step": "channel-stats",
    "script": "scripts/restream/channel-stats-pull.mjs",
    "writes": [

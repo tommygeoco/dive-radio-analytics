@@ -95,12 +95,13 @@ Runs on the owner machine from the dedicated checkout `/Users/bones/Library/Appl
 
 ```
 postlive-discover → audience-archive → transcripts-pull → newsletter-promotion → postlive-track snapshot → yt-analytics-pull
-→ comments-pull → comments-classify → channel-stats-pull → ingest-restream
+→ comments-pull → comments-classify → audience-feedback → channel-stats-pull → ingest-restream
 → ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → chapters
 → critic (Mondays) → build-data → validate → publish → alerts → freshness
 ```
 
 - `audience-archive` runs immediately after discovery, before transcript and analytics failures can stop the chain. It saves private full-text X conversations and Restream chat daily for 30 days after each episode, retains discovered conversation IDs for later replies, and can discover matching Restream history when the analytics ingest is missing. Its optional failure is recorded and alerted through the existing chain policy. Archives remain outside Git/public metrics.
+- `audience-feedback` classifies private archive text with the existing golden-gated model, publishes only high-confidence relevant feedback, and feeds the visible dashboard preview/drilldown and agent brief. Message totals are a separate display cohort; they never replace historical distinct-commenter, rate, sentiment or health inputs. Pending/review records remain private; prior labels survive source/configuration revisions.
 - The second `build-data → validate` exists so today's health entry reaches the published artifact.
 - `validate` failing anywhere = no publish. Fix the cause; do not weaken the check.
 - `tools/dive-analytics/chain.json` is the versioned chain definition (order, what each step writes, which stores must be fresh). The scheduler is an OpenClaw automation on the owner machine (`openclaw cron list`), not a crontab; do not add one here.

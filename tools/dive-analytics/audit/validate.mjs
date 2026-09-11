@@ -946,6 +946,29 @@ try {
   }
 }
 
+// Expanded feedback is a display cohort, independently re-derived from its
+// approved store. Raw archive records and uncertain labels must never ship.
+{
+  const { validateAudienceStore } = await import("../audience-integrity.mjs");
+  const { audienceView } = await import("../audience-view.mjs");
+  const path = join(ROOT, "data/restream/audience-feedback.json");
+  let errors = [];
+  if (existsSync(path)) {
+    try {
+      const store = JSON.parse(readFileSync(path, "utf8"));
+      const { createHash } = await import("node:crypto");
+      const promptHash = createHash("sha256").update(readFileSync(join(ROOT, "scripts/restream/comments-classify-prompt.md"), "utf8")).digest("hex");
+      errors.push(...validateAudienceStore(store, { promptHash }));
+      for (const episode of data.episodes) {
+        const expected = audienceView(episode.comments, store.episodes?.[episode.slug], { now: data.generatedAt, commentState: episode.sourceStates?.comments });
+        if (JSON.stringify(episode.audience || null) !== JSON.stringify(expected)) errors.push(`${episode.slug}: displayed audience feedback differs from approved source records`);
+      }
+    } catch { errors.push("audience feedback store cannot be verified"); }
+  } else if (data.episodes.some(e => e.audience)) errors.push("public audience feedback has no approved source store");
+  for (const error of errors) fail(error);
+  if (!errors.length) ok("expanded audience feedback: approved source text, labels, deduplicated counts and display quotes match");
+}
+
 // --- 1d. featured comments sanity (comments-pull + attachComments) ---
 {
   let bad = 0;
@@ -3114,7 +3137,7 @@ try {
       // known breaks reach every affected row (fail)
       for (const b of data.baselines?.knownBreaks || []) { for (const c of data.health?.checks || []) for (const m of c.measures || []) if (b.measures.includes(m.key) && m.value != null && !md.includes(`known reporting break: ${b.note}`)) { bad++; fail(`agent: the known break is not noted on the ${m.key} row`); } }
       // links: every http(s) link in the brief is the site, a data link, or a transcript (fail)
-      const known = new Set([...data.episodes.flatMap((e) => [...Object.values(e.links || {}), ...(e.announces || []).map((a) => a.url).filter(Boolean), ...(e.promotion?.newsletters || []).map((newsletter) => newsletter.url).filter(Boolean)])]);
+      const known = new Set([...data.episodes.flatMap((e) => [...Object.values(e.links || {}), ...(e.announces || []).map((a) => a.url).filter(Boolean), ...(e.promotion?.newsletters || []).map((newsletter) => newsletter.url).filter(Boolean), ...(e.audience?.list || []).map(comment => comment.url).filter(Boolean)])]);
       for (const url of md.match(/https?:\/\/[^\s)\]|"]+/g) || []) {
         const bare = url.replace(/[.,;:]+$/, "").replace(/&t=\d+s$/, "");
         if (bare.startsWith(AB.SITE) || known.has(bare)) continue;
