@@ -572,9 +572,9 @@ newsletter and both model credentials without printing any value.
   and independently reviewed adjacent rollover failures.
 - [x] Bounded Markdown with an explicit complete JSON archive; tested through
   100 episodes and retained strict archive, chapter, unit and size validation.
-- [ ] Complete strict current-source validation, source adoption and production
+- [x] Complete strict current-source validation, source adoption and production
   repair using the recorded operator mode; preserve both automatic failures.
-- [ ] Prove exact production bytes and record unattended acceptance separately.
+- [x] Prove exact production bytes and record unattended acceptance separately.
 
 ### Surprises and decisions
 
@@ -588,3 +588,22 @@ newsletter and both model credentials without printing any value.
   reads. Retry a complete read with fresh before/after metadata, bounded to three
   attempts. Never accept constantly changing bytes or use a cache for a metadata
   mismatch; permission/missing-source failures remain blocking.
+
+### Verified outcome
+
+- Source commits: `3fa0c0f` (stable transcript retry), `b0eb372` (catalog growth).
+- Production commit: `855aa54bf0dbe8f07a3a67ecdd61cadffc273dce`.
+- Build: 2026-09-11T17:08:30.193Z. Exact canonical production proof at
+  2026-09-11T17:12:48.742Z: 18 files, no mismatches.
+- Release: 49 audit files, 101 script syntax checks, two page scripts;
+  strict validation: zero failures, 41 warnings, zero drift.
+- Browser: refreshed-today header, E9 latest card, 7,928 total views, transcript
+  link, promotion units and ten grounded chapters verified on the canonical site.
+- Source state: both YouTube watch reports for E9 remain unavailable; this is
+  visible, and does not block the other current data. Operator receipt retains
+  `waiting:newest-youtube-watch`; both hard-failed automatic attempts remain.
+- Independent final code critic: no blocking defects. The pre-existing exact
+  Markdown/JSON/index rebuild check was verified, not replaced or weakened.
+- Fourteen daily observation checks are scheduled in this thread at 08:45 Phoenix
+  (`verify-dive-daily-publishing`). Future unattended reliability remains
+  unverified until those real scheduled mornings occur.
