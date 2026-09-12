@@ -177,6 +177,17 @@ export function parseClassifications(text, expectedIds) {
   return rows;
 }
 
+// Source IDs are opaque provenance, not text for the model to transcribe.
+// Validate the complete alias set before restoring exact native IDs locally.
+export async function callClassifications(system, payload, { call = callModel } = {}) {
+  const ids = payload.comments.map(row => row.id);
+  if (new Set(ids).size !== ids.length) throw new Error("duplicate classifier input id");
+  const comments = payload.comments.map((row, i) => ({ ...row, id: `c${i}` }));
+  const result = await call(system, { ...payload, comments });
+  return parseClassifications(result.text, comments.map(row => row.id))
+    .map(row => ({ ...row, id: ids[Number(row.id.slice(1))] }));
+}
+
 function currentConfig() {
   const cfg = providerConfig();
   const prompt = promptText();
@@ -242,8 +253,7 @@ function goldenCases() {
 async function runGoldenGate(store, cfg, now) {
   const cases = goldenCases();
   const comments = cases.map((c) => ({ id: c.id, text: c.text }));
-  const result = await callModel(cfg.prompt, { task: "classify", comments });
-  const rows = parseClassifications(result.text, comments.map((c) => c.id));
+  const rows = await callClassifications(cfg.prompt, { task: "classify", comments });
   const byId = new Map(rows.map((r) => [r.id, r]));
   let relevanceCorrect = 0;
   let sentimentCorrect = 0;
@@ -322,8 +332,7 @@ async function classifyUnlocked({ reclassify = false } = {}) {
   let rows;
   let audits;
   try {
-    const result = await callModel(cfg.prompt, { task: "classify", comments: input });
-    rows = parseClassifications(result.text, input.map((c) => c.id));
+    rows = await callClassifications(cfg.prompt, { task: "classify", comments: input });
     const auditSet = deterministicAuditSample(rows, cfg.configHash);
     const rawById = new Map(comments.map((c) => [c.id, c]));
     const auditInput = auditSet.map((r) => ({
@@ -337,8 +346,7 @@ async function classifyUnlocked({ reclassify = false } = {}) {
       },
     }));
     const auditPrompt = `${cfg.prompt}\n\n## Independent second read\nRe-classify each comment from scratch using only the rules above. Each comment carries the first pass's label under "original" for reference only. Form your own judgment; where your best label differs from the original, return yours. Return the same classifications JSON shape.`;
-    const auditResult = await callModel(auditPrompt, { task: "second read", comments: auditInput });
-    audits = parseClassifications(auditResult.text, auditInput.map((c) => c.id));
+    audits = await callClassifications(auditPrompt, { task: "second read", comments: auditInput });
   } catch (err) {
     stampStore(store, cfg, now);
     store.lastRun = { at: now, status: "pending", added: 0, reviewed: 0, pendingIds: comments.map((c) => c.id), error: err.message };

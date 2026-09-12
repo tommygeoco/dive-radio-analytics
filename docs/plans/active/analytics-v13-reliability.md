@@ -632,3 +632,10 @@ newsletter and both model credentials without printing any value.
 - Private classification finished with 105 approved expanded messages and zero unprocessed records; uncertain review candidates remain private. E9 displays 53 merged comments, 48 positive and five with criticism.
 - Production browser verified visible preview quotes, full list, live-chat search for best (including BEST EPISODE!!, hands down best show yet, and by far the best show), source links/timestamps, criticism filtering and clearing search.
 - Fresh agent brief exam and expanded-feedback regression passed after live archive cross-check. E1 is omitted from the brief by the existing archive policy; the examiner correctly qualified the longest-viewer answer until checking the complete archive.
+
+## September 12 unattended observation and classifier repair
+
+- The 07:00 primary captured sources, passed validation and deployed `2015ab8c`; all 18 files matched at 14:08:02Z. Live data.json and agent.json still matched at the 08:45 Phoenix check. No manual recovery produced this deployment.
+- Overall attempt remains `failed:10`: the optional legacy classifier rejected a model-mutated YouTube ID, withholding two new comments. E9 watch totals are independently pending at YouTube. The 08:15 recovery reserved the remaining attempt for noon.
+- Repair: use short request-local IDs in golden, first and second classifier reads; validate the complete response ID set before restoring exact native IDs locally. Prompt, semantic label contract, native-ID audit sampling and historical labels are unchanged. Regression tests cover reordered results, long source IDs and rejection of missing/duplicate/foreign IDs.
+- Preserve the failed-attempt ledger and noon allowance. This observation proves unattended publication with a classifier failure, not full unattended success.
