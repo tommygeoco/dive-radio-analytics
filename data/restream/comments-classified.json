@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-11T17:03:21.888Z",
+  "updatedAt": "2026-09-12T14:01:03.409Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1066,11 +1066,15 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-11T17:03:21.888Z",
-    "status": "complete",
-    "added": 1,
+    "at": "2026-09-12T14:01:03.409Z",
+    "status": "pending",
+    "added": 0,
     "reviewed": 0,
-    "pendingIds": []
+    "pendingIds": [
+      "yt:UgzbzoCNlRcq0tHKW3p4AaABAg",
+      "yt:UgwJM-SZIdGK63JhdJR4AaABAg.AabyIW1f3NzAadOSAVLody"
+    ],
+    "error": "unexpected or duplicate id \"yt:UgwJM-SZIdGK63JhdJR4AaABAg.AadOSAVLody\""
   },
   "provider": "anthropic"
 }

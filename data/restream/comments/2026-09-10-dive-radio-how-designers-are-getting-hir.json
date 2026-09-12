@@ -11,7 +11,7 @@
       "author": "JaredTredly.Design",
       "authorId": "UCfvZHH9sNEDfksGmZVTouAg",
       "text": "That intro was not for public consumption, but it's out there now hahah!",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-09-11T12:55:27Z",
       "reading": {
         "schemaVersion": 1,
@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgwJM-SZIdGK63JhdJR4AaABAg",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready"
       }
     },
@@ -39,7 +39,7 @@
       "author": "NitinExplainsOfficial",
       "authorId": "UC_Rl9hOeZwxardFl1Di3Osw",
       "text": "Man! This session scared the sh!t out of me. At this point, getting a design job feels like a game of minesweeper, one wrong move and you're gone. I think running a micro non-tech business would be much easier than this.",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-09-11T08:57:29Z",
       "reading": {
         "schemaVersion": 1,
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgxQ6qvEYob-BRyaeOZ4AaABAg",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready"
       }
     },
@@ -67,7 +67,7 @@
       "author": "Techne89",
       "authorId": "UC__hQ0rRVf4DqgWgIfr8a1A",
       "text": "Hej would it be possible to add featured designers links into descriptions ? good one",
-      "likes": 1,
+      "likes": 2,
       "publishedAt": "2026-09-11T05:56:09Z",
       "reading": {
         "schemaVersion": 1,
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "Ugz7G34VaMGlgeCpbsV4AaABAg",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready"
       }
     },
@@ -111,7 +111,7 @@
         "source": "x-replies",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "2098179066834690160",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready"
       }
     },
@@ -123,7 +123,7 @@
       "author": "SudhaGS-c9i",
       "authorId": "UCbW31SYWXrOgMHsLPztcFRQ",
       "text": "Absolutely worth watching.",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-09-11T16:43:49Z",
       "reading": {
         "schemaVersion": 1,
@@ -133,11 +133,59 @@
         "pulledAt": "2026-09-11T17:03:17.498Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-09-11T17:03:17.498Z"
+      "firstSeenAt": "2026-09-11T17:03:17.498Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "UgwjrpZLi_JTjJrg0v54AaABAg",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
+        "state": "ready"
+      }
+    },
+    {
+      "id": "yt:UgzbzoCNlRcq0tHKW3p4AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "DUejFPtYll0",
+      "author": "lancerloco",
+      "authorId": "UCBq_jubwiI0nNVFog5O591w",
+      "text": "Thanks for putting this together and going over. \n\nMy takeaways from this is no matter how daunting all this is (and guess what, every job search is) it comes back to how well are you telling your story (via sharing, portfolio, etc. in order to distinct yourself) and how are you engaging with real life. I think it’s more important than ever to find ways to interact with people in a genuine way to let them know what you’re all about.",
+      "likes": 0,
+      "publishedAt": "2026-09-11T23:32:23Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "UgzbzoCNlRcq0tHKW3p4AaABAg",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-12T14:00:59.163Z"
+    },
+    {
+      "id": "yt:UgwJM-SZIdGK63JhdJR4AaABAg.AabyIW1f3NzAadOSAVLody",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "DUejFPtYll0",
+      "author": "DanRobertWood",
+      "authorId": "UCidh2jGXGasyZQjD18Bz1vw",
+      "text": "💀",
+      "likes": 0,
+      "publishedAt": "2026-09-12T02:11:57Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "UgwJM-SZIdGK63JhdJR4AaABAg.AabyIW1f3NzAadOSAVLody",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-12T14:00:59.163Z"
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-11T17:03:17.498Z",
+    "checkedAt": "2026-09-12T14:00:59.163Z",
     "state": "ready",
     "sources": [
       {
@@ -145,16 +193,16 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "DUejFPtYll0",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready",
-        "count": 2
+        "count": 4
       },
       {
         "schemaVersion": 1,
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "OZG115v6TTg",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready",
         "count": 2
       },
@@ -163,7 +211,7 @@
         "source": "x-replies",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "2098139616511721866",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready",
         "count": 0
       },
@@ -172,12 +220,12 @@
         "source": "x-replies",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "2098139617082155260",
-        "pulledAt": "2026-09-11T17:03:17.498Z",
+        "pulledAt": "2026-09-12T14:00:59.163Z",
         "state": "ready",
         "count": 1
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-09-11T17:03:17.498Z"
+  "updatedAt": "2026-09-12T14:00:59.163Z"
 }
