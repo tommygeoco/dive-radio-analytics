@@ -1,10 +1,10 @@
 {
   "version": 1,
   "promptVersion": 5,
-  "updatedAt": "2026-09-12T14:02:49.144Z",
+  "updatedAt": "2026-09-13T08:14:54.256Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
-  "factsGeneratedAt": "2026-09-12T14:01:10.468Z",
+  "factsGeneratedAt": "2026-09-13T08:13:44.809Z",
   "facts": [
     {
       "id": "open-start-E1",
@@ -927,8 +927,80 @@
       "value": 69.3
     },
     {
+      "id": "linkedin-chat-E1",
+      "value": 43
+    },
+    {
+      "id": "linkedin-chatters-E1",
+      "value": 9
+    },
+    {
+      "id": "linkedin-chat-E2",
+      "value": 6
+    },
+    {
+      "id": "linkedin-chatters-E2",
+      "value": 5
+    },
+    {
+      "id": "linkedin-chat-E3",
+      "value": 0
+    },
+    {
+      "id": "linkedin-chatters-E3",
+      "value": 0
+    },
+    {
+      "id": "linkedin-chat-E4",
+      "value": 4
+    },
+    {
+      "id": "linkedin-chatters-E4",
+      "value": 4
+    },
+    {
+      "id": "linkedin-chat-E5",
+      "value": 2
+    },
+    {
+      "id": "linkedin-chatters-E5",
+      "value": 2
+    },
+    {
+      "id": "linkedin-chat-E6",
+      "value": 8
+    },
+    {
+      "id": "linkedin-chatters-E6",
+      "value": 3
+    },
+    {
+      "id": "linkedin-chat-E7",
+      "value": 3
+    },
+    {
+      "id": "linkedin-chatters-E7",
+      "value": 1
+    },
+    {
+      "id": "linkedin-chat-E8",
+      "value": 16
+    },
+    {
+      "id": "linkedin-chatters-E8",
+      "value": 3
+    },
+    {
+      "id": "linkedin-chat-E9",
+      "value": 20
+    },
+    {
+      "id": "linkedin-chatters-E9",
+      "value": 8
+    },
+    {
       "id": "show-health-score",
-      "value": 59
+      "value": 58
     },
     {
       "id": "check-growth",
@@ -944,15 +1016,15 @@
     },
     {
       "id": "check-audienceQuality",
-      "value": 54
+      "value": 64
     },
     {
       "id": "hm-audienceQuality-watching",
-      "value": 11.4
+      "value": 11.3
     },
     {
       "id": "hm-typical-audienceQuality-watching",
-      "value": 10.6
+      "value": 8.9
     },
     {
       "id": "check-reachEfficiency",
@@ -964,11 +1036,11 @@
     },
     {
       "id": "hm-typical-reachEfficiency-announceToPlay",
-      "value": 31.2
+      "value": 31.1
     },
     {
       "id": "hm-reachEfficiency-discoveryShare",
-      "value": 13.7
+      "value": 13.5
     },
     {
       "id": "hm-typical-reachEfficiency-discoveryShare",
@@ -1048,15 +1120,15 @@
     },
     {
       "id": "check-conversion",
-      "value": 12
+      "value": 41
     },
     {
       "id": "hm-conversion-subscribers",
-      "value": 0.7
+      "value": 0.6
     },
     {
       "id": "hm-typical-conversion-subscribers",
-      "value": 2.8
+      "value": 0.8
     },
     {
       "id": "check-sentiment",
@@ -1763,67 +1835,70 @@
   "ranked": true,
   "items": [
     {
-      "id": "revive-subscriber-asks",
-      "category": "content",
-      "serves": "conversion",
-      "factIds": [
-        "hm-conversion-subscribers",
-        "hm-typical-conversion-subscribers",
-        "subs1k-E1",
-        "subs1k-E1-designertom",
-        "subs1k-E1-joindiveclub"
-      ],
-      "text": "Subscriber pull is fragile: the newest carried reading is 0.7 per 1,000 views against a usual 2.8. The best finished episode, E1, converted at 8.6 blended — 13.1 on DesignerTom against 5.3 on Dive Club.",
-      "recommendation": "Re-watch E1 and copy its subscribe-ask moments into this week's script: one spoken ask early, one near the end, plus a pinned comment on both channels. Track which channel's rate moves first to learn where the ask lands."
-    },
-    {
-      "id": "fix-announce-posts",
+      "id": "fix-announce-to-play",
       "category": "promotion",
       "serves": "reachEfficiency",
       "factIds": [
         "hm-reachEfficiency-announceToPlay",
-        "hm-typical-reachEfficiency-announceToPlay"
+        "hm-typical-reachEfficiency-announceToPlay",
+        "dir-announceToPlay"
       ],
-      "text": "Announce-to-play is the weakest reach signal and reads softening: the newest carried reading is 13 against the show's usual level of 31.2 — most people who see the announce never press play.",
-      "recommendation": "Run a two-format test this week: one announce led by a short clip of the show's best moment, one plain link post, published at different hours on X and the YouTube community tab. Keep whichever format draws more plays for the next episode."
+      "text": "Reach off announcements is the fragile check: the announce-to-play reading carried from the latest finished episode sits at 13 against the show's usual 31.1, and the measure is softening episode over episode.",
+      "recommendation": "Rebuild this week's X announce: lead with a short clip of the strongest moment instead of a static post, name one concrete takeaway in the first line, and repost once mid-week at a different hour to test which version gets played."
     },
     {
-      "id": "rebuild-discovery-titles",
-      "category": "distribution",
-      "serves": "reachEfficiency",
-      "factIds": [
-        "discovery-E2",
-        "discovery-E5",
-        "discovery-E6"
-      ],
-      "text": "Search and suggested traffic is softening across finished episodes: E2 pulled 19.6 of its YouTube views from discovery, while E5 got only 11.6 and E6 13.5.",
-      "recommendation": "Rewrite E5 and E6 titles, thumbnails, and descriptions this week around searchable topic phrases modeled on E2, then watch whether suggested and search views pick up — a test, since topic alone may not explain the gap."
-    },
-    {
-      "id": "trim-mid-show-exits",
+      "id": "revive-subscriber-conversion",
       "category": "content",
-      "serves": "audienceQuality",
+      "serves": "conversion",
       "factIds": [
-        "drop-E4-39",
-        "drop-min-E4-39",
-        "drop-E4-9",
-        "drop-min-E4-9"
+        "subs1k-E1",
+        "subs1k-E6",
+        "subs1k-E1-designertom",
+        "subs1k-E1-joindiveclub",
+        "dir-subscribers"
       ],
-      "text": "E4 lost 6 of every 100 viewers about two-fifths of the way in, around 48 minutes, during a long free-form show-and-tell riff; another 4.6 of every 100 left around 11 minutes in. Timings are approximate from the live recording.",
-      "recommendation": "Cap each mid-show demo at a fixed length this week and move to the next beat before the riff runs long — then compare the next episode's mid-show exits to test whether tighter segments hold viewers."
+      "text": "Subscribers per 1,000 views fell from 8.6 on E1 to 0.6 on E6 across both channels, and the subscriber trend reads softening. On E1, DesignerTom converted at 13.1 per 1,000 while Dive Club sat at 5.3.",
+      "recommendation": "Script one direct spoken subscribe ask per channel this week, placed right after the strongest segment, and pin each channel link in chat. Track which channel's subscriber count moves to learn where asks land best."
     },
     {
-      "id": "convert-live-turnout-to-chat",
+      "id": "widen-chat-voices",
       "category": "audience",
       "serves": "participation",
       "factIds": [
+        "hm-participation-chattersPer100",
+        "hm-typical-participation-chattersPer100",
+        "chatters-E1",
+        "chatters-E9",
+        "hm-participation-messagesPerHour"
+      ],
+      "text": "Chat is loud but from fewer people: chatters per 100 viewers read 54.9 against the usual 69.2, even with messages per hour at 109.3. E9 drew 73 distinct chatters where E1 drew 104.",
+      "recommendation": "Open the next show with one easy, named question to the room, read out and answer first-time chatters by name, and run a quick chat poll near the top of the hour to pull lurkers in. Compare distinct chatters after."
+    },
+    {
+      "id": "tighten-the-open",
+      "category": "content",
+      "serves": "audienceQuality",
+      "factIds": [
+        "drop-E1-6",
+        "drop-min-E1-6",
+        "open-at2-E1"
+      ],
+      "text": "E1 lost 7.7 of every 100 viewers very early — about 7 minutes in, during the loose 'pull back the curtain' setup — and only 12 of 100 were still watching at the 2% mark.",
+      "recommendation": "Test a tighter cold open next episode: cut the preamble, land the first real segment inside the opening minutes, and move housekeeping later. Compare the early-drop shape on the replay to see if the trim holds more viewers."
+    },
+    {
+      "id": "protect-live-turnout",
+      "category": "promotion",
+      "serves": "livePull",
+      "factIds": [
         "hm-livePull-peak",
         "hm-typical-livePull-peak",
-        "hm-participation-chattersPer100",
-        "hm-typical-participation-chattersPer100"
+        "hm-livePull-minutesWatched",
+        "hm-typical-livePull-minutesWatched",
+        "dir-livePeak"
       ],
-      "text": "Live pull is healthy — the newest peak hit 133 viewers against a usual 71 — but chatters per 100 slipped to 54.9 from a typical 69.2: more people are showing up, a smaller share is talking.",
-      "recommendation": "Add two direct chat prompts per hour next show — a named viewer shout-out and a quick one-word vote question — to pull the newly arrived live viewers into chat while turnout is high."
+      "text": "Live pull is the healthiest check and building: the newest peak hit 133 live viewers against a usual 71, and live minutes watched reached 16,459 against a usual 6,001.",
+      "recommendation": "Protect the streak: keep the same day, time, and format next week, tease the next episode's topic on air during the close, and pin the upcoming date in chat so the growing live crowd knows exactly when to return."
     }
   ]
 }

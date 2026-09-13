@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-09-13T07:59:24.119Z",
+ "generatedAt": "2026-09-13T08:15:07.434Z",
  "promotionUpdatedAt": "2026-09-12T14:00:18.758Z",
  "clocks": {
-  "data": "2026-09-13T07:59:24.119Z",
+  "data": "2026-09-13T08:15:07.434Z",
   "dataThrough": "2026-09-12T14:00:23.025Z",
   "healthRead": "2026-09-12",
   "healthDataThrough": "2026-09-12T14:01:03.409Z",
@@ -62,14 +62,14 @@
   },
   "feedback": {
    "captured": 61,
-   "directional": 38,
-   "people": 35,
-   "enjoyed": 30,
+   "directional": 39,
+   "people": 36,
+   "enjoyed": 31,
    "concerns": 3,
    "enjoyThemes": [
     {
      "theme": "other",
-     "count": 21
+     "count": 22
     },
     {
      "theme": "format",
@@ -1093,29 +1093,47 @@
  "recommendations": [
   {
    "rank": 1,
-   "id": "rebuild-discovery-titles",
-   "category": "distribution",
+   "id": "fix-announce-to-play",
+   "category": "promotion",
    "serves": "reachEfficiency",
-   "finding": "Search and suggested traffic is softening across finished episodes: E2 pulled 19.6 of its YouTube views from discovery, while E5 got only 11.6 and E6 13.5.",
-   "action": "Rewrite E5 and E6 titles, thumbnails, and descriptions this week around searchable topic phrases modeled on E2, then watch whether suggested and search views pick up — a test, since topic alone may not explain the gap.",
+   "finding": "Reach off announcements is the fragile check: the announce-to-play reading carried from the latest finished episode sits at 13 against the show's usual 31.1, and the measure is softening episode over episode.",
+   "action": "Rebuild this week's X announce: lead with a short clip of the strongest moment instead of a static post, name one concrete takeaway in the first line, and repost once mid-week at a different hour to test which version gets played.",
    "caveat": null
   },
   {
    "rank": 2,
-   "id": "trim-mid-show-exits",
+   "id": "revive-subscriber-conversion",
    "category": "content",
-   "serves": "audienceQuality",
-   "finding": "E4 lost 6 of every 100 viewers about two-fifths of the way in, around 48 minutes, during a long free-form show-and-tell riff; another 4.6 of every 100 left around 11 minutes in. Timings are approximate from the live recording.",
-   "action": "Cap each mid-show demo at a fixed length this week and move to the next beat before the riff runs long — then compare the next episode's mid-show exits to test whether tighter segments hold viewers.",
+   "serves": "conversion",
+   "finding": "Subscribers per 1,000 views fell from 8.6 on E1 to 0.6 on E6 across both channels, and the subscriber trend reads softening. On E1, DesignerTom converted at 13.1 per 1,000 while Dive Club sat at 5.3.",
+   "action": "Script one direct spoken subscribe ask per channel this week, placed right after the strongest segment, and pin each channel link in chat. Track which channel's subscriber count moves to learn where asks land best.",
    "caveat": null
   },
   {
    "rank": 3,
-   "id": "convert-live-turnout-to-chat",
+   "id": "widen-chat-voices",
    "category": "audience",
    "serves": "participation",
-   "finding": "Live pull is healthy — the newest peak hit 133 viewers against a usual 71 — but chatters per 100 slipped to 54.9 from a typical 69.2: more people are showing up, a smaller share is talking.",
-   "action": "Add two direct chat prompts per hour next show — a named viewer shout-out and a quick one-word vote question — to pull the newly arrived live viewers into chat while turnout is high.",
+   "finding": "Chat is loud but from fewer people: chatters per 100 viewers read 54.9 against the usual 69.2, even with messages per hour at 109.3. E9 drew 73 distinct chatters where E1 drew 104.",
+   "action": "Open the next show with one easy, named question to the room, read out and answer first-time chatters by name, and run a quick chat poll near the top of the hour to pull lurkers in. Compare distinct chatters after.",
+   "caveat": null
+  },
+  {
+   "rank": 4,
+   "id": "tighten-the-open",
+   "category": "content",
+   "serves": "audienceQuality",
+   "finding": "E1 lost 7.7 of every 100 viewers very early — about 7 minutes in, during the loose 'pull back the curtain' setup — and only 12 of 100 were still watching at the 2% mark.",
+   "action": "Test a tighter cold open next episode: cut the preamble, land the first real segment inside the opening minutes, and move housekeeping later. Compare the early-drop shape on the replay to see if the trim holds more viewers.",
+   "caveat": null
+  },
+  {
+   "rank": 5,
+   "id": "protect-live-turnout",
+   "category": "promotion",
+   "serves": "livePull",
+   "finding": "Live pull is the healthiest check and building: the newest peak hit 133 live viewers against a usual 71, and live minutes watched reached 16,459 against a usual 6,001.",
+   "action": "Protect the streak: keep the same day, time, and format next week, tease the next episode's topic on air during the close, and pin the upcoming date in chat so the growing live crowd knows exactly when to return.",
    "caveat": null
   }
  ],
@@ -1336,8 +1354,52 @@
     "durationMin": 123
    },
    "expandedFeedback": {
-    "value": null,
-    "reason": "no expanded conversation capture"
+    "count": 15,
+    "positiveCount": 15,
+    "negativeCount": 0,
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "More captured comments are still being processed.",
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "yt:Ugxwjib7K70jpgikqXR4AaABAg",
+      "author": "StangeDeCastro",
+      "text": "finally a release notes successor",
+      "source": "yt",
+      "likes": 4,
+      "at": "2026-07-17T13:47:33Z",
+      "sentiment": "positive",
+      "themes": [
+       "format"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgwlYI2C7EEJ1yf5gQJ4AaABAg",
+      "author": "BetterNeil",
+      "text": "Love the intro vid, we need a breakdown of that... clickin' play on the rest of this while I work! So good",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T10:37:32Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     }
+    ]
    },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
@@ -1704,8 +1766,52 @@
     "durationMin": 120
    },
    "expandedFeedback": {
-    "value": null,
-    "reason": "no expanded conversation capture"
+    "count": 4,
+    "positiveCount": 4,
+    "negativeCount": 0,
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "More captured comments are still being processed.",
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "yt:Ugw0_SE5nx-kzg7mi6N4AaABAg",
+      "author": "Jegteix",
+      "text": "The Sound design in the Intro is so fire 🔥",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-24T05:34:10Z",
+      "sentiment": "positive",
+      "themes": [
+       "audio quality"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:2f4ea040c6eb25e4df0c8f1e3a0a6255a5cfc6bc5d6d400761f1db340580e1c1:1",
+      "source": "live-chat",
+      "author": "Person 30",
+      "text": "So stoked to catch this one. I found your guys site for the pod and then got busy and forgot but so glad to have found it again!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-23T20:34:36Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ]
    },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
@@ -2071,8 +2177,52 @@
     "durationMin": 113
    },
    "expandedFeedback": {
-    "value": null,
-    "reason": "no expanded conversation capture"
+    "count": 4,
+    "positiveCount": 3,
+    "negativeCount": 1,
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "More captured comments are still being processed.",
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
+      "author": "khangdbui",
+      "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-07-31T04:05:55Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:c830ad99e92f413b63f1e6137f6db8948fcc38d96231cc7dab5f1221ce9b3565:1",
+      "source": "live-chat",
+      "author": "Person 3",
+      "text": "Lets fucking go!🤘🏼",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-07-30T20:02:02Z",
+      "url": "https://www.youtube.com/watch?v=szvTFybWfK4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ]
    },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
@@ -2443,8 +2593,51 @@
     "durationMin": 124
    },
    "expandedFeedback": {
-    "value": null,
-    "reason": "no expanded conversation capture"
+    "count": 23,
+    "positiveCount": 20,
+    "negativeCount": 5,
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "featured": [
+     {
+      "id": "chat:0ba5e5dc84bf36dd9cdf19183b9f78faa2a68b374e1c7ed780494521a76a9d24:1",
+      "source": "live-chat",
+      "author": "Person 12",
+      "text": "This was a massive thing you both may have been cooking, this was such a cool stepping stone towards bringing designers together",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T20:38:36Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:504078037a698ac46f4d3c5f825fb9d89ddd0a2b186835325967efe72581dc2c:1",
+      "source": "live-chat",
+      "author": "Person 19",
+      "text": "Hands down, one of my favorite moments on Design Twitter this year",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T20:39:39Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ]
    },
    "feedback": {
     "note": "The commenting rate isn’t available — some replies or watch counts are missing.",
@@ -2810,13 +3003,12 @@
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-11T21:41:19.128Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
     "notices": [
      "X threads: the last capture is over a day old. Showing saved feedback.",
-     "Live chat: the last capture is over a day old. Showing saved feedback.",
      "Some comments are awaiting review."
     ],
     "featured": [
@@ -3261,7 +3453,7 @@
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -3738,7 +3930,7 @@
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -4253,7 +4445,7 @@
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -4678,8 +4870,8 @@
     "durationMin": 151
    },
    "expandedFeedback": {
-    "count": 53,
-    "positiveCount": 48,
+    "count": 54,
+    "positiveCount": 49,
     "negativeCount": 5,
     "sources": {
      "x": {
@@ -4688,7 +4880,7 @@
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -4731,15 +4923,15 @@
    "feedback": {
     "note": null,
     "captured": 7,
-    "directional": 5,
-    "people": 5,
-    "enjoyed": 4,
+    "directional": 6,
+    "people": 6,
+    "enjoyed": 5,
     "concerns": 0,
     "xReplies": "covered",
     "enjoyThemes": [
      {
       "theme": "other",
-      "count": 4
+      "count": 5
      }
     ],
     "concernThemes": [],
@@ -5035,7 +5227,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-09-13T07:59:24.119Z",
+    "stamp": "2026-09-13T08:15:07.434Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -5050,8 +5242,8 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-09-13T07:59:24.119Z",
-    "note": "3 current actions; saved model actions whose numbers changed are held back"
+    "stamp": "2026-09-13T08:15:07.434Z",
+    "note": "5 current actions; saved model actions whose numbers changed are held back"
    },
    {
     "store": "chapters",

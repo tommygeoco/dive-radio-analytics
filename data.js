@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-13T07:59:24.119Z",
+ "generatedAt": "2026-09-13T08:15:07.434Z",
  "chaptersUpdatedAt": "2026-09-11T17:08:17.383Z",
  "promotionUpdatedAt": "2026-09-12T14:00:18.758Z",
  "dests": [
@@ -6677,6 +6677,297 @@ window.DIVE_DATA = {
      }
     ],
     "xCoverage": "missed"
+   },
+   "audience": {
+    "count": 15,
+    "positiveCount": 15,
+    "negativeCount": 0,
+    "featured": [
+     {
+      "id": "yt:Ugxwjib7K70jpgikqXR4AaABAg",
+      "author": "StangeDeCastro",
+      "text": "finally a release notes successor",
+      "source": "yt",
+      "likes": 4,
+      "at": "2026-07-17T13:47:33Z",
+      "sentiment": "positive",
+      "themes": [
+       "format"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgwlYI2C7EEJ1yf5gQJ4AaABAg",
+      "author": "BetterNeil",
+      "text": "Love the intro vid, we need a breakdown of that... clickin' play on the rest of this while I work! So good",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T10:37:32Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgzOmG6-eJRGYTwiRNZ4AaABAg",
+      "author": "simonbloom1",
+      "text": "Love this !!",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T15:44:33Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     }
+    ],
+    "list": [
+     {
+      "id": "yt:Ugxwjib7K70jpgikqXR4AaABAg",
+      "author": "StangeDeCastro",
+      "text": "finally a release notes successor",
+      "source": "yt",
+      "likes": 4,
+      "at": "2026-07-17T13:47:33Z",
+      "sentiment": "positive",
+      "themes": [
+       "format"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgwlYI2C7EEJ1yf5gQJ4AaABAg",
+      "author": "BetterNeil",
+      "text": "Love the intro vid, we need a breakdown of that... clickin' play on the rest of this while I work! So good",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T10:37:32Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgzOmG6-eJRGYTwiRNZ4AaABAg",
+      "author": "simonbloom1",
+      "text": "Love this !!",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-17T15:44:33Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:Ugz9WleMTJ4Ey7HR2kF4AaABAg",
+      "author": "BaAllen7239",
+      "text": "Excited for this! I've been watching you guys for the past 4 or 5 months. I'm a traditional graphic designer turned web designer and now in the last few years doing more product design. Thankful for you guys keeping excitement alive for digital design in the age of AI!",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-18T15:20:15Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgyYEIb6QFUmQUAuiB14AaABAg",
+      "author": "Xijbor",
+      "text": "Appreciate the conversations and the love for the community. Very inspiring, and excited for what's to come! \u003c3",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-18T15:33:03Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgxE-eFVC2ezvRlRspt4AaABAg",
+      "author": "anandastimm",
+      "text": "Very cool first show! Looking forward to the next editions :-) One question: what is the other moodboard tool called? Cosmos, Pinterest and ? Orina?",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-21T12:28:06Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgyJOzX10_droNMkaWx4AaABAg",
+      "author": "DGlazeAllDay",
+      "text": "THIS is the kind of content we need right now. Friendly, inviting, informative, and CURRENT! \n\nY'all's comments about how much y'all talk to your AI made me feel seen - I spend most of my commute talking with Claude, but the moment I want to use Claude around another person - my fingers malfunction and I forget how to type.",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-21T20:03:01Z",
+      "sentiment": "positive",
+      "themes": [
+       "topic choice",
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:82afba13969abf7cf23184d230913287cdccb04c6d7315cf4ddb75a5f7d20600:1",
+      "source": "live-chat",
+      "author": "Person 26",
+      "text": "So happy to see two of my favorite peeps jamming!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T21:14:31Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "host chemistry"
+      ]
+     },
+     {
+      "id": "chat:7b88e8e55209cc025e4127dd3c6fc37cb5fcf111b84dca40380b8c4933424b1d:1",
+      "source": "live-chat",
+      "author": "Person 46",
+      "text": "Ayeee this is sick!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T21:25:43Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:d950c87c8b8ce61228ab836a5a79b2bcb926dfd9ad108fc6d302c130412d43dd:1",
+      "source": "live-chat",
+      "author": "Person 60",
+      "text": "This is nice",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T21:40:18Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:c88559bfb08c50127c7a5be80ac259e45194e23b49bea70e3b25e77b88d0301b:1",
+      "source": "live-chat",
+      "author": "Person 81",
+      "text": "So sick!!!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T23:03:59Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:5681ec74de0e89ec8016f67628190821ac0b9ccf9e27779260c5a98d7a625df5:1",
+      "source": "live-chat",
+      "author": "Person 46",
+      "text": "HOLY thats so cool - you should totally do a walkthrough some time :)",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T23:05:24Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "format"
+      ]
+     },
+     {
+      "id": "chat:05e9ab44a0a962bb81a2f046e702bde9651a353c325a998a50937619bdd7f3a6:1",
+      "source": "live-chat",
+      "author": "Person 46",
+      "text": "Thanks guys - very cool!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T23:07:47Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:63384b3cc52e54a318d60417dac9e7092ce46e0e87212af25b0ec83705581035:1",
+      "source": "live-chat",
+      "author": "Person 91",
+      "text": "Well done guys!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T23:07:48Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:e331c4ab12162430eb94d86a03b687e940f18911d70f055dffdb67718e88a771:1",
+      "source": "live-chat",
+      "author": "Person 98",
+      "text": "Loved it!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-16T23:08:04Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ],
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "notices": [
+     "More captured comments are still being processed.",
+     "Some comments are awaiting review."
+    ],
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "ep": 1,
@@ -13611,6 +13902,131 @@ window.DIVE_DATA = {
     ],
     "xCoverage": "missed"
    },
+   "audience": {
+    "count": 4,
+    "positiveCount": 4,
+    "negativeCount": 0,
+    "featured": [
+     {
+      "id": "yt:Ugw0_SE5nx-kzg7mi6N4AaABAg",
+      "author": "Jegteix",
+      "text": "The Sound design in the Intro is so fire 🔥",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-24T05:34:10Z",
+      "sentiment": "positive",
+      "themes": [
+       "audio quality"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:2f4ea040c6eb25e4df0c8f1e3a0a6255a5cfc6bc5d6d400761f1db340580e1c1:1",
+      "source": "live-chat",
+      "author": "Person 30",
+      "text": "So stoked to catch this one. I found your guys site for the pod and then got busy and forgot but so glad to have found it again!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-23T20:34:36Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "yt:UgxyeBCR7SZb4xqjaC14AaABAg",
+      "author": "BentoBox",
+      "text": "If it's not too much work, y'all should share the links to the articles you're referencing throughout in the show notes :) Thanks for the pod!",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-07-29T10:28:47Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     }
+    ],
+    "list": [
+     {
+      "id": "yt:Ugw0_SE5nx-kzg7mi6N4AaABAg",
+      "author": "Jegteix",
+      "text": "The Sound design in the Intro is so fire 🔥",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-07-24T05:34:10Z",
+      "sentiment": "positive",
+      "themes": [
+       "audio quality"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:2f4ea040c6eb25e4df0c8f1e3a0a6255a5cfc6bc5d6d400761f1db340580e1c1:1",
+      "source": "live-chat",
+      "author": "Person 30",
+      "text": "So stoked to catch this one. I found your guys site for the pod and then got busy and forgot but so glad to have found it again!",
+      "platform": "LinkedIn",
+      "channel": "Michael Riddering",
+      "at": "2026-07-23T20:34:36Z",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "yt:UgxyeBCR7SZb4xqjaC14AaABAg",
+      "author": "BentoBox",
+      "text": "If it's not too much work, y'all should share the links to the articles you're referencing throughout in the show notes :) Thanks for the pod!",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-07-29T10:28:47Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgxEVqoA6QUwVVMcrnV4AaABAg",
+      "author": "AndresTheDesigner",
+      "text": "Love the data vs intuition conversation. Couldn't agree more with \"enough data to make a bet\"",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-06T16:49:23Z",
+      "sentiment": "positive",
+      "themes": [
+       "topic choice"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     }
+    ],
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "notices": [
+     "More captured comments are still being processed.",
+     "Some comments are awaiting review."
+    ],
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+   },
    "health": {
     "ep": 2,
     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -19586,6 +20002,132 @@ window.DIVE_DATA = {
      }
     ],
     "xCoverage": "missed"
+   },
+   "audience": {
+    "count": 4,
+    "positiveCount": 3,
+    "negativeCount": 1,
+    "featured": [
+     {
+      "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
+      "author": "khangdbui",
+      "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-07-31T04:05:55Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:c830ad99e92f413b63f1e6137f6db8948fcc38d96231cc7dab5f1221ce9b3565:1",
+      "source": "live-chat",
+      "author": "Person 3",
+      "text": "Lets fucking go!🤘🏼",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-07-30T20:02:02Z",
+      "url": "https://www.youtube.com/watch?v=szvTFybWfK4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:c47542dd82383a84aaf57e970ec4542d954065a623cf81dd6247e897943a6d24:1",
+      "source": "live-chat",
+      "author": "Person 7",
+      "text": "love the vibe",
+      "platform": "X",
+      "channel": "designertom",
+      "at": "2026-07-30T20:04:20Z",
+      "url": "https://x.com/designertom/status/2082919223639052481",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ],
+    "list": [
+     {
+      "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
+      "author": "khangdbui",
+      "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+      "source": "yt",
+      "likes": 2,
+      "at": "2026-07-31T04:05:55Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "yt:UgwxQM1P37Fvu-uQMsZ4AaABAg",
+      "author": "bgdnsr",
+      "text": "this show is boring af, you only talk about AI slop, have nothing good to add",
+      "source": "yt",
+      "likes": 1,
+      "at": "2026-08-01T12:12:38Z",
+      "sentiment": "negative",
+      "themes": [
+       "topic choice",
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:c830ad99e92f413b63f1e6137f6db8948fcc38d96231cc7dab5f1221ce9b3565:1",
+      "source": "live-chat",
+      "author": "Person 3",
+      "text": "Lets fucking go!🤘🏼",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-07-30T20:02:02Z",
+      "url": "https://www.youtube.com/watch?v=szvTFybWfK4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:c47542dd82383a84aaf57e970ec4542d954065a623cf81dd6247e897943a6d24:1",
+      "source": "live-chat",
+      "author": "Person 7",
+      "text": "love the vibe",
+      "platform": "X",
+      "channel": "designertom",
+      "at": "2026-07-30T20:04:20Z",
+      "url": "https://x.com/designertom/status/2082919223639052481",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ],
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "notices": [
+     "More captured comments are still being processed.",
+     "Some comments are awaiting review."
+    ],
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "ep": 3,
@@ -25707,6 +26249,417 @@ window.DIVE_DATA = {
     ],
     "xCoverage": "missed"
    },
+   "audience": {
+    "count": 23,
+    "positiveCount": 20,
+    "negativeCount": 5,
+    "featured": [
+     {
+      "id": "chat:0ba5e5dc84bf36dd9cdf19183b9f78faa2a68b374e1c7ed780494521a76a9d24:1",
+      "source": "live-chat",
+      "author": "Person 12",
+      "text": "This was a massive thing you both may have been cooking, this was such a cool stepping stone towards bringing designers together",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T20:38:36Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:504078037a698ac46f4d3c5f825fb9d89ddd0a2b186835325967efe72581dc2c:1",
+      "source": "live-chat",
+      "author": "Person 19",
+      "text": "Hands down, one of my favorite moments on Design Twitter this year",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T20:39:39Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:1535543cfce19a1b705c17eece69726d1b8b9e40d9631da7d2c2378067f1d02c:1",
+      "source": "live-chat",
+      "author": "Person 1",
+      "text": "this is so cool",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T20:51:05Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     }
+    ],
+    "list": [
+     {
+      "id": "yt:Ugxg7INEiTqIy81bUsh4AaABAg",
+      "author": "qwertyPechenkO",
+      "text": "Guys, love the show, but the quality is sooo poor. Like, come on, you're constantly talking about a high quality bar, craft, etc., yet we have to watch slideshows instead of videos, robovoices, drops",
+      "source": "yt",
+      "likes": 3,
+      "at": "2026-08-07T14:25:33Z",
+      "sentiment": "mixed",
+      "themes": [
+       "video quality",
+       "audio quality"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     },
+     {
+      "id": "chat:a3b1df6ad0bed5ff25f36b499485158bfaeefa13eb276be0dd56a219702d248e:1",
+      "source": "live-chat",
+      "author": "Person 11",
+      "text": "Tommy mic is low",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T20:06:11Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "negative",
+      "themes": [
+       "audio quality"
+      ]
+     },
+     {
+      "id": "chat:46f770cf525b86487f9d96445243dbb6ab70c921e0c99e7d9c5686a0d22969e5:1",
+      "source": "live-chat",
+      "author": "Person 12",
+      "text": "Need to bump up Tommy’s mic",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T20:08:34Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "negative",
+      "themes": [
+       "audio quality"
+      ]
+     },
+     {
+      "id": "chat:75f73223f65cd5c14def875f48dfe1ed11f8137c7a27e6c7abfbfd928ecd66b2:1",
+      "source": "live-chat",
+      "author": "Person 12",
+      "text": "Mic volume issue is a tradition now",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T20:09:43Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "negative",
+      "themes": [
+       "audio quality"
+      ]
+     },
+     {
+      "id": "chat:0ba5e5dc84bf36dd9cdf19183b9f78faa2a68b374e1c7ed780494521a76a9d24:1",
+      "source": "live-chat",
+      "author": "Person 12",
+      "text": "This was a massive thing you both may have been cooking, this was such a cool stepping stone towards bringing designers together",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T20:38:36Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:504078037a698ac46f4d3c5f825fb9d89ddd0a2b186835325967efe72581dc2c:1",
+      "source": "live-chat",
+      "author": "Person 19",
+      "text": "Hands down, one of my favorite moments on Design Twitter this year",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T20:39:39Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:1535543cfce19a1b705c17eece69726d1b8b9e40d9631da7d2c2378067f1d02c:1",
+      "source": "live-chat",
+      "author": "Person 1",
+      "text": "this is so cool",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T20:51:05Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:5ae1bdf6e573864d445dc294ad169328093b9463fce86145e342213e7eabf578:1",
+      "source": "live-chat",
+      "author": "Person 33",
+      "text": "haha so chill",
+      "platform": "X",
+      "channel": "designertom",
+      "at": "2026-08-06T21:04:52Z",
+      "url": "https://x.com/designertom/status/2085456051626029562",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:ddd7f89f3d750fc687f858ef6de518495317dd3b383cb89f8c665f372b30e98b:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "Sooo cool",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T21:04:54Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:c9907cc07f037512f14bdf3e5934e46a61a4195546a32a9ad4388ebc23c67fcc:1",
+      "source": "live-chat",
+      "author": "Person 1",
+      "text": "guys this is gold",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T21:10:26Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:547068fa38b114e284a51418c8ca3469176d3b1f4e4253defc99d8de117b24cb:1",
+      "source": "live-chat",
+      "author": "Person 1",
+      "text": "like this live walkthrough is 100%",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T21:10:34Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "format"
+      ]
+     },
+     {
+      "id": "chat:0961478746f6b802697799d134174f1a2f572135dd4bde53b652cdb93225af59:1",
+      "source": "live-chat",
+      "author": "Person 35",
+      "text": "Love how you prompted it to individuallly pull each asset",
+      "platform": "X",
+      "channel": "ridd_design",
+      "at": "2026-08-06T21:13:14Z",
+      "url": "https://x.com/ridd_design/status/2085456049541427675",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:a8e3ccbb64dd73913f0e8eed4347d562e4aaa5147d321c2a3fa3acc07b96d41f:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "This one is really great",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T21:25:21Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:97fc8fe0a4bfac4fe353cbac9af99c699b36a841440e38cfd44d4b3693c8c0b8:1",
+      "source": "live-chat",
+      "author": "Person 29",
+      "text": "incredible",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T21:26:13Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:5096f7843de92cf8bf520926b61e27b4a946cc1c4c4f8bd94c26ce2f7305a0ef:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "Love it!!!",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T21:26:22Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:2277f9b9b1abb088b7c2b5576fd5d45ee3400611f8d9ace111efcdd0cd4b6c94:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "“Rescue a designer today” love it 🤣🤣🤣",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T21:28:04Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:bb5dd13e5cfafcb037096aaac29192d52d32dd1f4763407fe780e24741a183a4:1",
+      "source": "live-chat",
+      "author": "Person 12",
+      "text": "Tom’s been one of my favorite people to listen to so far, wish he does more public speaking and interviews, his talk with Jayneil Sneak Peek was fantastic that I comeback to frequently as a motivation",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T21:39:58Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "guest"
+      ]
+     },
+     {
+      "id": "chat:33f661ceb74ff37d4fc9293da7eb88b8fe2ffd41979b4e88b5c29b196fe26540:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "Tom is the best!",
+      "platform": "YouTube",
+      "channel": "Tommy Geoco",
+      "at": "2026-08-06T21:40:51Z",
+      "url": "https://www.youtube.com/watch?v=ziyWxt6qzfM",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "guest"
+      ]
+     },
+     {
+      "id": "chat:0d00fc156e1503302fdbc19a140da329afcde416af0169b6edcd49e2a3aa2f28:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "Soooooo cool",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T21:47:47Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:623c0c0d3016f1262cfebb944c556f4407fb055b2b03a8436fc2913fdd9f8783:1",
+      "source": "live-chat",
+      "author": "Person 9",
+      "text": "Ahahah! Love this live call idea",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T21:56:26Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "call-in segment"
+      ]
+     },
+     {
+      "id": "chat:66952e28de7bb80ae80c6e0cb2eb73907e7d88444461c90d42a2d83c8e2161db:1",
+      "source": "live-chat",
+      "author": "Person 48",
+      "text": "Enjoyed the show fellas 🙌",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T22:04:34Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "chat:4e270f1d9d36026fe4ff70b323cf9166c914102c33a855dd56d9a843abcbcf6c:1",
+      "source": "live-chat",
+      "author": "Person 17",
+      "text": "Amazing show!!!",
+      "platform": "YouTube",
+      "channel": "Dive Club ?",
+      "at": "2026-08-06T22:04:54Z",
+      "url": "https://www.youtube.com/watch?v=0tRHVW0qRt4",
+      "likes": null,
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
+     },
+     {
+      "id": "yt:UgwlosaebdKcQpgr8bR4AaABAg",
+      "author": "rugu16",
+      "text": "banger episode, not able to join live but thanks for sharing guys ! And @tom pls fix your streaming ! :D Its so glitchy",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-08-10T08:53:22Z",
+      "sentiment": "mixed",
+      "themes": [
+       "video quality",
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
+     }
+    ],
+    "sources": {
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-13T08:05:04.706Z"
+     }
+    },
+    "notices": [
+     "Some comments are awaiting review."
+    ],
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+   },
    "health": {
     "ep": 4,
     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -31757,12 +32710,11 @@ window.DIVE_DATA = {
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-11T21:41:19.128Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "notices": [
      "X threads: the last capture is over a day old. Showing saved feedback.",
-     "Live chat: the last capture is over a day old. Showing saved feedback.",
      "Some comments are awaiting review."
     ],
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
@@ -37946,7 +38898,7 @@ window.DIVE_DATA = {
       "platform": "LinkedIn",
       "channel": "Michael Riddering",
       "at": "2026-08-20T21:03:13Z",
-      "url": null,
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/",
       "likes": null,
       "sentiment": "negative",
       "themes": [
@@ -38041,7 +38993,7 @@ window.DIVE_DATA = {
       "platform": "LinkedIn",
       "channel": "Michael Riddering",
       "at": "2026-08-20T21:03:58Z",
-      "url": null,
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/",
       "likes": null,
       "sentiment": "negative",
       "themes": [
@@ -38146,7 +39098,7 @@ window.DIVE_DATA = {
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "notices": [
@@ -43540,7 +44492,7 @@ window.DIVE_DATA = {
       "platform": "LinkedIn",
       "channel": "Michael Riddering",
       "at": "2026-08-27T21:19:09Z",
-      "url": null,
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/",
       "likes": null,
       "sentiment": "positive",
       "themes": [
@@ -43660,7 +44612,7 @@ window.DIVE_DATA = {
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "notices": [
@@ -47027,7 +47979,7 @@ window.DIVE_DATA = {
       "platform": "LinkedIn",
       "channel": "Michael Riddering",
       "at": "2026-09-03T20:11:16Z",
-      "url": null,
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7501031584624717824/",
       "likes": null,
       "sentiment": "positive",
       "themes": [
@@ -47207,7 +48159,7 @@ window.DIVE_DATA = {
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "notices": [
@@ -50060,16 +51012,16 @@ window.DIVE_DATA = {
    },
    "comments": {
     "captured": 7,
-    "feedbackCount": 5,
-    "uniqueCommenters": 5,
-    "enjoyCount": 4,
+    "feedbackCount": 6,
+    "uniqueCommenters": 6,
+    "enjoyCount": 5,
     "complaintCount": 0,
-    "commentersPer1k": 0.5,
+    "commentersPer1k": 0.6,
     "commentersPer1kNote": null,
     "enjoyThemes": [
      {
       "theme": "other",
-      "count": 4
+      "count": 5
      }
     ],
     "complaintThemes": [],
@@ -50141,13 +51093,25 @@ window.DIVE_DATA = {
       "themes": [
        "other"
       ]
+     },
+     {
+      "id": "yt:UgzbzoCNlRcq0tHKW3p4AaABAg",
+      "author": "lancerloco",
+      "text": "Thanks for putting this together and going over. \n\nMy takeaways from this is no matter how daunting all this is (and guess what, every job search is) it comes back to how well are you telling your story (via sharing, portfolio, etc. in order to distinct yourself) and how are you engaging with real life. I think it’s more important than ever to find ways to interact with people in a genuine way to let them know what you’re all about.",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-09-11T23:32:23Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ]
      }
     ],
     "xCoverage": "covered"
    },
    "audience": {
-    "count": 53,
-    "positiveCount": 48,
+    "count": 54,
+    "positiveCount": 49,
     "negativeCount": 5,
     "featured": [
      {
@@ -50521,7 +51485,7 @@ window.DIVE_DATA = {
       "platform": "LinkedIn",
       "channel": "Michael Riddering",
       "at": "2026-09-10T21:15:44Z",
-      "url": null,
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/",
       "likes": null,
       "sentiment": "positive",
       "themes": [
@@ -50536,7 +51500,7 @@ window.DIVE_DATA = {
       "platform": "LinkedIn",
       "channel": "Michael Riddering",
       "at": "2026-09-10T21:18:02Z",
-      "url": null,
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/",
       "likes": null,
       "sentiment": "positive",
       "themes": [
@@ -50992,6 +51956,21 @@ window.DIVE_DATA = {
       "themes": [
        "topic choice"
       ]
+     },
+     {
+      "id": "yt:UgzbzoCNlRcq0tHKW3p4AaABAg",
+      "author": "lancerloco",
+      "text": "Thanks for putting this together and going over. \n\nMy takeaways from this is no matter how daunting all this is (and guess what, every job search is) it comes back to how well are you telling your story (via sharing, portfolio, etc. in order to distinct yourself) and how are you engaging with real life. I think it’s more important than ever to find ways to interact with people in a genuine way to let them know what you’re all about.",
+      "source": "yt",
+      "likes": 0,
+      "at": "2026-09-11T23:32:23Z",
+      "sentiment": "positive",
+      "themes": [
+       "other"
+      ],
+      "platform": "YouTube",
+      "channel": null,
+      "url": null
      }
     ],
     "sources": {
@@ -51001,7 +51980,7 @@ window.DIVE_DATA = {
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-12T14:00:04.500Z"
+      "checkedAt": "2026-09-13T08:05:04.706Z"
      }
     },
     "notices": [
@@ -51104,40 +52083,47 @@ window.DIVE_DATA = {
  ],
  "insights": [
   {
-   "id": "rebuild-discovery-titles",
-   "text": "Search and suggested traffic is softening across finished episodes: E2 pulled 19.6 of its YouTube views from discovery, while E5 got only 11.6 and E6 13.5.",
-   "recommendation": "Rewrite E5 and E6 titles, thumbnails, and descriptions this week around searchable topic phrases modeled on E2, then watch whether suggested and search views pick up — a test, since topic alone may not explain the gap.",
-   "category": "distribution",
+   "id": "fix-announce-to-play",
+   "text": "Reach off announcements is the fragile check: the announce-to-play reading carried from the latest finished episode sits at 13 against the show's usual 31.1, and the measure is softening episode over episode.",
+   "recommendation": "Rebuild this week's X announce: lead with a short clip of the strongest moment instead of a static post, name one concrete takeaway in the first line, and repost once mid-week at a different hour to test which version gets played.",
+   "category": "promotion",
    "rank": 1,
    "serves": "reachEfficiency"
   },
   {
-   "id": "trim-mid-show-exits",
-   "text": "E4 lost 6 of every 100 viewers about two-fifths of the way in, around 48 minutes, during a long free-form show-and-tell riff; another 4.6 of every 100 left around 11 minutes in. Timings are approximate from the live recording.",
-   "recommendation": "Cap each mid-show demo at a fixed length this week and move to the next beat before the riff runs long — then compare the next episode's mid-show exits to test whether tighter segments hold viewers.",
+   "id": "revive-subscriber-conversion",
+   "text": "Subscribers per 1,000 views fell from 8.6 on E1 to 0.6 on E6 across both channels, and the subscriber trend reads softening. On E1, DesignerTom converted at 13.1 per 1,000 while Dive Club sat at 5.3.",
+   "recommendation": "Script one direct spoken subscribe ask per channel this week, placed right after the strongest segment, and pin each channel link in chat. Track which channel's subscriber count moves to learn where asks land best.",
    "category": "content",
    "rank": 2,
-   "serves": "audienceQuality"
+   "serves": "conversion"
   },
   {
-   "id": "convert-live-turnout-to-chat",
-   "text": "Live pull is healthy — the newest peak hit 133 viewers against a usual 71 — but chatters per 100 slipped to 54.9 from a typical 69.2: more people are showing up, a smaller share is talking.",
-   "recommendation": "Add two direct chat prompts per hour next show — a named viewer shout-out and a quick one-word vote question — to pull the newly arrived live viewers into chat while turnout is high.",
+   "id": "widen-chat-voices",
+   "text": "Chat is loud but from fewer people: chatters per 100 viewers read 54.9 against the usual 69.2, even with messages per hour at 109.3. E9 drew 73 distinct chatters where E1 drew 104.",
+   "recommendation": "Open the next show with one easy, named question to the room, read out and answer first-time chatters by name, and run a quick chat poll near the top of the hour to pull lurkers in. Compare distinct chatters after.",
    "category": "audience",
    "rank": 3,
    "serves": "participation"
-  }
- ],
- "insightsStale": [
-  {
-   "id": "revive-subscriber-asks",
-   "why": "number 0.7 is not in the cited facts"
   },
   {
-   "id": "fix-announce-posts",
-   "why": "number 31.2 is not in the cited facts"
+   "id": "tighten-the-open",
+   "text": "E1 lost 7.7 of every 100 viewers very early — about 7 minutes in, during the loose 'pull back the curtain' setup — and only 12 of 100 were still watching at the 2% mark.",
+   "recommendation": "Test a tighter cold open next episode: cut the preamble, land the first real segment inside the opening minutes, and move housekeeping later. Compare the early-drop shape on the replay to see if the trim holds more viewers.",
+   "category": "content",
+   "rank": 4,
+   "serves": "audienceQuality"
+  },
+  {
+   "id": "protect-live-turnout",
+   "text": "Live pull is the healthiest check and building: the newest peak hit 133 live viewers against a usual 71, and live minutes watched reached 16,459 against a usual 6,001.",
+   "recommendation": "Protect the streak: keep the same day, time, and format next week, tease the next episode's topic on air during the close, and pin the upcoming date in chat so the growing live crowd knows exactly when to return.",
+   "category": "promotion",
+   "rank": 5,
+   "serves": "livePull"
   }
  ],
+ "insightsStale": [],
  "showTrend": {
   "week1VelocityByEpisode": [
    {
@@ -51245,16 +52231,16 @@ window.DIVE_DATA = {
  },
  "commentSummary": {
   "captured": 61,
-  "feedbackCount": 38,
-  "uniqueCommenters": 35,
-  "enjoyCount": 30,
+  "feedbackCount": 39,
+  "uniqueCommenters": 36,
+  "enjoyCount": 31,
   "complaintCount": 3,
   "commentersPer1k": null,
   "commentersPer1kNote": "The commenting rate isn’t available — some replies or watch counts are missing.",
   "enjoyThemes": [
    {
     "theme": "other",
-    "count": 21
+    "count": 22
    },
    {
     "theme": "format",

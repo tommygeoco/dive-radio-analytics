@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-09-13T07:59:24.119Z · data through 2026-09-12 · health read 2026-09-12 (data through 2026-09-12) · chapters written 2026-09-11 · brief v1
+Built 2026-09-13T08:15:07.434Z · data through 2026-09-12 · health read 2026-09-12 (data through 2026-09-12) · chapters written 2026-09-11 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 9 episodes in https://dive-radio-analytics.vercel.app/agent.json; 7 included here, 2 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-09-13T07:59:24.119Z); the show-health read (2026-09-12, over data through 2026-09-12 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
+Three clocks: the data build (2026-09-13T08:15:07.434Z); the show-health read (2026-09-12, over data through 2026-09-12 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -25,7 +25,7 @@ Not here: the raw daily series, the per-minute live audience, the hundred-point 
 - Episodes: 9 (E1 on 2026-07-17 → E9 on 2026-09-10, "How Designers Are Getting Hired in 2026"), a weekly live show with call-ins.
 - Channels: LinkedIn · Ridd (linkedin:michaelriddering); YT Dive Club (yt:joindiveclub); YT DesignerTom (yt:designertom); X @ridd_design (x:ridd_design); X @designertom (x:designertom).
 - Views so far: 52,405 total = 28,703 YouTube + 23,702 X plays. X reach so far: 119,665 (exposure, kept apart).
-- Audience feedback captured: 61 comments, 38 with a clear lean from 35 people (30 enjoyed, 3 raised a concern). Enjoyed: other (21), format (3), topic choice (3).
+- Audience feedback captured: 61 comments, 39 with a clear lean from 36 people (31 enjoyed, 3 raised a concern). Enjoyed: other (22), format (3), topic choice (3).
 - Dashboard: https://dive-radio-analytics.vercel.app
 
 ## 3. Show health today
@@ -170,12 +170,16 @@ Known reporting breaks:
 
 ## 4. What to do this week
 
-1. [distribution · helps reach] Search and suggested traffic is softening across finished episodes: E2 pulled 19.6 of its YouTube views from discovery, while E5 got only 11.6 and E6 13.5.
-   → Rewrite E5 and E6 titles, thumbnails, and descriptions this week around searchable topic phrases modeled on E2, then watch whether suggested and search views pick up — a test, since topic alone may not explain the gap.
-2. [content · helps audience quality] E4 lost 6 of every 100 viewers about two-fifths of the way in, around 48 minutes, during a long free-form show-and-tell riff; another 4.6 of every 100 left around 11 minutes in. Timings are approximate from the live recording.
-   → Cap each mid-show demo at a fixed length this week and move to the next beat before the riff runs long — then compare the next episode's mid-show exits to test whether tighter segments hold viewers.
-3. [audience · helps participation] Live pull is healthy — the newest peak hit 133 viewers against a usual 71 — but chatters per 100 slipped to 54.9 from a typical 69.2: more people are showing up, a smaller share is talking.
-   → Add two direct chat prompts per hour next show — a named viewer shout-out and a quick one-word vote question — to pull the newly arrived live viewers into chat while turnout is high.
+1. [promotion · helps reach] Reach off announcements is the fragile check: the announce-to-play reading carried from the latest finished episode sits at 13 against the show's usual 31.1, and the measure is softening episode over episode.
+   → Rebuild this week's X announce: lead with a short clip of the strongest moment instead of a static post, name one concrete takeaway in the first line, and repost once mid-week at a different hour to test which version gets played.
+2. [content · helps subscribers] Subscribers per 1,000 views fell from 8.6 on E1 to 0.6 on E6 across both channels, and the subscriber trend reads softening. On E1, DesignerTom converted at 13.1 per 1,000 while Dive Club sat at 5.3.
+   → Script one direct spoken subscribe ask per channel this week, placed right after the strongest segment, and pin each channel link in chat. Track which channel's subscriber count moves to learn where asks land best.
+3. [audience · helps participation] Chat is loud but from fewer people: chatters per 100 viewers read 54.9 against the usual 69.2, even with messages per hour at 109.3. E9 drew 73 distinct chatters where E1 drew 104.
+   → Open the next show with one easy, named question to the room, read out and answer first-time chatters by name, and run a quick chat poll near the top of the hour to pull lurkers in. Compare distinct chatters after.
+4. [content · helps audience quality] E1 lost 7.7 of every 100 viewers very early — about 7 minutes in, during the loose 'pull back the curtain' setup — and only 12 of 100 were still watching at the 2% mark.
+   → Test a tighter cold open next episode: cut the preamble, land the first real segment inside the opening minutes, and move housekeeping later. Compare the early-drop shape on the replay to see if the trim holds more viewers.
+5. [promotion · helps live turnout] Live pull is the healthiest check and building: the newest peak hit 133 live viewers against a usual 71, and live minutes watched reached 16,459 against a usual 6,001.
+   → Protect the streak: keep the same day, time, and format next week, tease the next episode's topic on air during the close, and pin the upcoming date in chat so the growing live crowd knows exactly when to return.
 
 ## 5. Episodes
 
@@ -189,7 +193,7 @@ Views as of 2026-09-12; first week, launch, and pace at the same age; episode he
 | E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,582 | 1,180 | 9,061 | 2,762 | 1,189 | soft | #5 of 6 (-18%) | 38 | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.3% | 0.6 | 13.5% | 6 / 0 | — |
 | E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 5,879 | 2,916 | 15,530 | 8,795 | —¹ | promo-driven | #1 of 6 (+209%) | —² | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.2% | 0.7 | 6.8% | 1 / 0 | outlier (provisional) |
 | E8 | 2026-09-03 | How to Engineer a Brand Universe | 5,634 | 4,033 | 36,418 | 9,667 | —¹ | promo-driven | #1 of 5 (+260%) | —² | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 11.4% | 6.2 | 7.9% | 7 / 0 | UX Tools |
-| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 6,410 | 3,571 | 13,107 | 9,981 | —¹ | — | — | —² | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | — | — | — | 4 / 0 | UX Tools |
+| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 6,410 | 3,571 | 13,107 | 9,981 | —¹ | — | — | —² | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | — | — | — | 5 / 0 | UX Tools |
 
 ¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.
 
@@ -222,6 +226,11 @@ Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 56 min in (50% of the way): 2.9 of every hundred viewers left — A live gameplay demo, music and all: one host plays an AI-built game on screen — running out of missiles, fumbling a landing — while framing it as a playable experiment, not a market-ready game. — "like uh-oh. 00:56:18  No, end of 00:56:20  No, end of 00:56:20  Oh, we got it. 00:56:23  And then anything else 00:56:25  >> She's smiling. 00:56:25  >> So goo…"
 - Hold about 87 min in (77% of the way): 2.3 of every hundred extra were watching — The maker explains an AI catching its own broken model — the mesh was unworkable vector soup — and re-meshing it, then walks through the wiki-fed critic agent they use to gate what counts as good. — "And so the way that I did that and 01:26:44  someone talked about it here by the way. 01:26:46  They called it this adversarial agent 01:26:48  and he said uh…"
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
+Dashboard audience feedback: 4 messages (3 positive, 1 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+More captured comments are still being processed.
+Some comments are awaiting review.
+- "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!" — khangdbui on YouTube
+- "Lets fucking go!🤘🏼" — Person 3 on YouTube live chat ([original](https://www.youtube.com/watch?v=szvTFybWfK4))
 Feedback: 2 comments captured, 2 with a clear lean from 2 people (1 enjoyed, 1 concerns); X replies not covered.
 The commenting rate isn’t available — some replies or watch counts are missing.
 - "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!" — khangdbui on YouTube
@@ -253,6 +262,10 @@ Watch moments (from the YouTube retention curve; positions approximate):
 - Hold about 38 min in (31% of the way): 2.2 of every hundred extra were watching — The backyard-project team gets candid about the launch: feedback lists and voice notes pouring in unprompted, the game becoming something they never set out to make, and asking designers what would help. — "I don't I don't care. 00:38:04 [Speaker 2] Is this, oh, that's not analytics. 00:38:09 [Speaker 2] Yeah. 00:38:09 [Speaker 2] What is, you know, what are you l…"
 - Drop about 48 min in (39% of the way): 6.0 of every hundred viewers left — One of the makers screen-shares a story deck generated by voice with an AI design tool reading the game's own codebase — built in the final hours before the show — and tests whether its images stay consistent. — "And I'm just rambling at this point, and I'm pasting in images that I can find from from the world of backyard baseball. 00:48:06 [Speaker 3] And we're going b…"
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
+Dashboard audience feedback: 23 messages (20 positive, 5 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Some comments are awaiting review.
+- "This was a massive thing you both may have been cooking, this was such a cool stepping stone towards bringing designers together" — Person 12 on YouTube live chat ([original](https://www.youtube.com/watch?v=ziyWxt6qzfM))
+- "Hands down, one of my favorite moments on Design Twitter this year" — Person 19 on YouTube live chat ([original](https://www.youtube.com/watch?v=0tRHVW0qRt4))
 Feedback: 7 comments captured, 3 with a clear lean from 3 people (2 enjoyed, 2 concerns); X replies not covered.
 The commenting rate isn’t available — some replies or watch counts are missing.
 Episode health: — (Fewer than three earlier episodes to compare with.).
@@ -286,7 +299,6 @@ Watch moments (from the YouTube retention curve; positions approximate):
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
 Dashboard audience feedback: 14 messages (10 positive, 4 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
 X threads: the last capture is over a day old. Showing saved feedback.
-Live chat: the last capture is over a day old. Showing saved feedback.
 Some comments are awaiting review.
 - "Mic sounds good" — Person 13 on YouTube live chat ([original](https://www.youtube.com/watch?v=G2_F3dd3RkA))
 - "mic s good" — Person 4 on YouTube live chat ([original](https://www.youtube.com/watch?v=G2_F3dd3RkA))
@@ -425,11 +437,11 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:53:56 — What matters most when accepting an offer: Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views.
 - 02:16:59 — Closing questions, weekly picks, and the vote winner: Hosts answer chat questions on cold outreach, share finds, and announce designer of the week.
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.); watch: pending (YouTube Analytics has not returned this episode's watch data yet).
-Dashboard audience feedback: 53 messages (48 positive, 5 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Dashboard audience feedback: 54 messages (49 positive, 5 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
 Some comments are awaiting review.
 - "This was fun and in good company! super informative for designers currently looking for their next place.  I have a little cameo at ~2:01 💁🏻‍♀️ [link]" — @gennydee on X ([original](https://x.com/i/status/2098220848251388270))
 - "Hej would it be possible to add featured designers links into descriptions ? good one" — Techne89 on YouTube
-Feedback: 7 comments captured, 5 with a clear lean from 5 people (4 enjoyed, 0 concerns); X replies included. Enjoyed: other (4).
+Feedback: 7 comments captured, 6 with a clear lean from 6 people (5 enjoyed, 0 concerns); X replies included. Enjoyed: other (5).
 - "Hej would it be possible to add featured designers links into descriptions ? good one" — Techne89 on YouTube
 - "That intro was not for public consumption, but it's out there now hahah!" — JaredTredly.Design on YouTube
 Episode health: — (read completes on 2026-10-01 (day twenty-one)).
@@ -499,7 +511,7 @@ Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-wee
 | audience comments + classifier | 2026-09-13 | YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off |
 | UX Tools newsletter | 2026-09-12 | exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views |
 | show-health read | 2026-09-12 | health-v9; model wording over checked facts |
-| recommendations | 2026-09-13 | 3 current actions; saved model actions whose numbers changed are held back |
+| recommendations | 2026-09-13 | 5 current actions; saved model actions whose numbers changed are held back |
 | chapters | 2026-09-11 | model-written per transcript, every timestamp and quote grounded in the transcript |
 
 Cadence: one chain run at 07:00 America/Phoenix (pull, capture, score, write, validate, publish); a freshness check at 08:15 and noon. The build is deterministic and reproducible byte for byte from the stores; the validator refuses to publish when any surface disagrees with its store.
