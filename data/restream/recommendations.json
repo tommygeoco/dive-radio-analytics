@@ -1,10 +1,10 @@
 {
   "version": 1,
   "promptVersion": 5,
-  "updatedAt": "2026-09-13T14:08:43.573Z",
+  "updatedAt": "2026-09-13T15:22:47.500Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
-  "factsGeneratedAt": "2026-09-13T14:07:00.485Z",
+  "factsGeneratedAt": "2026-09-13T15:21:30.270Z",
   "facts": [
     {
       "id": "open-start-E1",
@@ -1064,7 +1064,7 @@
     },
     {
       "id": "show-health-score",
-      "value": 58
+      "value": 62
     },
     {
       "id": "check-growth",
@@ -1104,11 +1104,11 @@
     },
     {
       "id": "hm-reachEfficiency-discoveryShare",
-      "value": 13.5
+      "value": 13.8
     },
     {
       "id": "hm-typical-reachEfficiency-discoveryShare",
-      "value": 14
+      "value": 14.1
     },
     {
       "id": "check-livePull",
@@ -1184,7 +1184,7 @@
     },
     {
       "id": "check-conversion",
-      "value": 41
+      "value": 40
     },
     {
       "id": "hm-conversion-subscribers",
@@ -1994,7 +1994,7 @@
     },
     {
       "id": "views-yt-all",
-      "value": 29732
+      "value": 29782
     },
     {
       "id": "views-x-all",
@@ -2006,14 +2006,14 @@
     },
     {
       "id": "views-total-all",
-      "value": 53572
+      "value": 53622
     }
   ],
   "attempts": 1,
   "ranked": true,
   "items": [
     {
-      "id": "announce-to-play-fragile",
+      "id": "fix-x-announce-to-play",
       "category": "promotion",
       "serves": "reachEfficiency",
       "factIds": [
@@ -2022,61 +2022,61 @@
         "hm-typical-reachEfficiency-announceToPlay",
         "dir-announceToPlay"
       ],
-      "text": "Reach off announcements is the show's one fragile check: the latest finished episode turned announcement views into plays at 13 against a usual level of 31.1, and the announce-to-play trend is softening.",
-      "recommendation": "Rebuild this week's announce posts on X and LinkedIn: lead with a short clip of the episode's strongest moment instead of a static card, and test a different posting time. Compare plays per announcement next week to see which version pulls."
+      "text": "Reach off announcements is today's one fragile check: announce-to-play on X is softening, with the read carried from the latest finished episode at 13 against the show's usual 31.1.",
+      "recommendation": "Rebuild this week's X announce as a test: lead with a short highlight clip, put the play link in the first line, and post a second announce at a different hour to see if plays off announcements recover."
     },
     {
-      "id": "subscriber-conversion-soft",
-      "category": "content",
+      "id": "rebuild-subscribe-ask",
+      "category": "audience",
       "serves": "conversion",
       "factIds": [
+        "check-conversion",
         "hm-conversion-subscribers",
         "hm-typical-conversion-subscribers",
         "dir-subscribers",
-        "subs1k-E6-designertom",
-        "subs1k-E6-joindiveclub"
+        "subs1k-E6-joindiveclub",
+        "subs1k-E6-designertom"
       ],
-      "text": "Subscribers are softening: the newest carried read is 0.6 per 1,000 views against a usual 0.8, and on finished E6 the DesignerTom channel added 0 subscribers per 1,000 views while Dive Club added 1.1.",
-      "recommendation": "Script one direct, specific subscribe ask per show on both channels this week — say what subscribers get next episode and point at the button — with extra weight on DesignerTom, where E6 converted nobody. Watch whether the next finished week moves."
+      "text": "Subscriber conversion is softening: the read carried from the latest finished episode is 0.6 per 1,000 views against a usual 0.8, and on that episode Dive Club converted at 1.1 per 1,000 while DesignerTom gained 0.",
+      "recommendation": "Add a spoken subscribe ask plus a pinned comment on both channels right after the strongest segment this week, then compare each channel's subscriber gain on the next episode to see which channel responds."
     },
     {
-      "id": "search-discovery-small",
+      "id": "trim-mid-show-exit",
+      "category": "content",
+      "serves": "audienceQuality",
+      "factIds": [
+        "drop-E4-39",
+        "drop-min-E4-39"
+      ],
+      "text": "E4 lost 6 of every 100 viewers about two-fifths of the way in — roughly 48 minutes into the video — during a long back-and-forth anecdote; timing is approximate from the live recording.",
+      "recommendation": "Test a tighter mid-show: trim or re-order long anecdote stretches near that point in the next edit, and plan a segment reset — a new visual or a chat question — around the middle to see if fewer viewers leave."
+    },
+    {
+      "id": "open-discovery-surfaces",
       "category": "distribution",
       "serves": "reachEfficiency",
       "factIds": [
         "traffic-share-SUBSCRIBER",
         "traffic-share-YT_SEARCH",
         "traffic-share-RELATED_VIDEO",
-        "hm-reachEfficiency-discoveryShare",
-        "hm-typical-reachEfficiency-discoveryShare",
+        "traffic-SHORTS",
         "dir-discoveryShare"
       ],
-      "text": "The show leans on people it already has: 68.8% of YouTube views come from subscribers, only 4.7% from search and 5.3% from suggested videos, and the discovery share is softening at 13.5 against a usual 14.",
-      "recommendation": "Rewrite titles and descriptions this week around terms designers actually search — hiring, portfolios, tools by name — and add chapter markers to the replay. Check in a couple of weeks whether search and suggested views pick up."
+      "text": "Subscribers drive 68.8 of every 100 YouTube views while search brings 4.7 and suggested videos 5.3; Shorts have brought 5 views in total, and discovery share is softening.",
+      "recommendation": "Cut two or three Shorts from the strongest recent segments this week and rewrite titles and descriptions around the search phrases designers actually type, then watch whether search and suggested views climb."
     },
     {
-      "id": "chat-breadth-narrow",
+      "id": "convert-new-live-crowd",
       "category": "audience",
       "serves": "participation",
       "factIds": [
-        "hm-participation-messagesPerHour",
-        "hm-typical-participation-messagesPerHour",
+        "hm-livePull-peak",
+        "hm-typical-livePull-peak",
         "hm-participation-chattersPer100",
         "hm-typical-participation-chattersPer100"
       ],
-      "text": "Chat is busy but concentrated: messages per hour run at 109.3 against a usual 80.5, while distinct chatters per 100 viewers sit at 54.9 against a usual 69.2 — a smaller core is doing more of the talking.",
-      "recommendation": "Early in the next live show, pose one easy question to the whole room, read new names aloud as they answer, and pin the question on screen. Test whether the count of distinct chatters climbs back toward the usual level."
-    },
-    {
-      "id": "replay-opening-cliff",
-      "category": "content",
-      "serves": "audienceQuality",
-      "factIds": [
-        "open-start-E6",
-        "open-at2-E6"
-      ],
-      "text": "Replay openings shed most viewers almost immediately: on finished E6, 63.8 of every 100 were watching near the start but only 13.1 remained by the 2% mark of the video.",
-      "recommendation": "Re-cut the next replay upload with a tight hook: open on the single best moment as a teaser before any intros or housekeeping, and trim the warm-up. Compare the early watch curve against past uploads to see if more people survive the open."
+      "text": "Live pull is healthy and building — the newest peak hit 133 against a usual 71 — but chatters per 100 viewers sit at 54.9 versus a typical 69.2, so a smaller slice of the bigger crowd is chatting.",
+      "recommendation": "Protect participation: open each show with a direct chat prompt — a quick vote or a name-your-tool question — and greet first-time chatters by name to pull the larger live audience into the conversation."
     }
   ]
 }
