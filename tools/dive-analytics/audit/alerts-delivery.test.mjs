@@ -4,6 +4,8 @@ import assert from "node:assert/strict";
 import { existsSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { alertLines, deliveryChannelId, deliveryId, detectAndQueue, deliverPending, reconcileDeliveryAttempt } from "../alerts.mjs";
 import { appendQueueLines, readQueue } from "../alert-queue.mjs";
 
@@ -154,6 +156,32 @@ try {
   assert.deepEqual(deferred, { sent: 0, receipts: [], deferred: true }, "delivery waits while a publish or recovery proof can still resolve the warning");
   assert.equal(staleSend, 0, "an operational warning is never sent while a success proof is in flight");
   assert.equal(readQueue(queue).length, 1, "the deferred warning remains queued until proof resolves it or delivery retries");
+
+  // Exercise the scheduler-facing exit code with isolated state. A held
+  // publishing lock must leave queued alerts alone without paging the owner.
+  const cliState = join(dir, "daily-attempts.json");
+  const cliLock = `${cliState}.run.lock`;
+  const runCli = () => spawnSync(process.execPath, [fileURLToPath(new URL("../alerts.mjs", import.meta.url)), "--deliver", "--target", "user:test"], {
+    encoding: "utf8", timeout: 10_000,
+    env: { ...process.env, DIVE_RUNTIME_DIR: dir, DIVE_DAILY_STATE_PATH: cliState, DIVE_ALERT_QUEUE_PATH: queue },
+  });
+  writeFileSync(cliLock, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }));
+  for (const lines of [[], ["waiting for publishing checks"]]) {
+    reset(lines);
+    const before = readFileSync(queue, "utf8");
+    const paused = runCli();
+    assert.equal(paused.status, 0, `expected publishing pause must not trigger a failure alert: ${paused.stderr}`);
+    assert.match(paused.stdout, /publishing checks are active/);
+    assert.equal(readFileSync(queue, "utf8"), before);
+    assert.equal(existsSync(`${queue}.receipts.json`), false, "a paused run never attempts delivery");
+  }
+  unlinkSync(cliLock);
+  writeFileSync(`${queue}.initialized-v1`, JSON.stringify({ version: 1 }));
+  writeFileSync(queue, "invalid queue");
+  const broken = runCli();
+  assert.equal(broken.status, 1, "real queue failures still trigger scheduler failure alerts");
+  assert.match(broken.stderr, /pending lines were kept/);
+  assert.equal(readFileSync(queue, "utf8"), "invalid queue");
 
   const prev = { episodeCount: 1, newestSlug: "one", paceRank: null, complaints: { one: 0 }, reviewCount: 0, w1v: {}, staleCount: 0, promoFlagged: [], healthCheckSet: null };
   const cur = { ...prev, promoFlagged: ["one"] };

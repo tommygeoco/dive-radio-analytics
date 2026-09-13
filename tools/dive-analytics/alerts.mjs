@@ -444,8 +444,9 @@ if (isMain) {
     }
   } else if (deliverMode) {
     try {
-      const result = deliverPending({ channel: arg("--channel", "slack"), account: arg("--account", "default"), target: arg("--target") });
-      if (result.deferred) process.exitCode = 75;
+      // A publishing lock is an expected pause; the next scheduled run retries.
+      // Only actual delivery errors should trigger the scheduler's failure alert.
+      deliverPending({ channel: arg("--channel", "slack"), account: arg("--account", "default"), target: arg("--target") });
     } catch (error) {
       console.error(`dive-alerts: ${error.message}; pending lines were kept.`);
       process.exit(1);
