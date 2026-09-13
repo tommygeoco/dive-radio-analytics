@@ -85,3 +85,18 @@ test('approved LinkedIn feedback links to its registered broadcast and passes pu
   output.episodes[slug].list[0].url = 'https://www.linkedin.com.evil.test/feed/update/urn:li:ugcPost:123456/';
   assert(validateAudienceStore(output).some(error => error.includes('provenance')));
 });
+
+test('targeted LinkedIn classification leaves unrelated historical records honestly pending', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'audience-linkedin-')); const archive = join(root, 'private');
+  mkdirSync(join(root, 'data/restream'), { recursive: true }); mkdirSync(archive);
+  writeFileSync(join(root, 'data/restream/postlive-registry.json'), JSON.stringify({ shows }));
+  const records = [{ ...row(chatId), platform: 'LinkedIn' }, row('x:123')];
+  writeFileSync(join(archive, `${slug}.json`), JSON.stringify({ slug, records, captures: [] }));
+  const requested = [];
+  try {
+    const output = await runAudienceFeedback({ root, archive, now, onlyPlatform: 'LinkedIn', classify: async rows => { requested.push(...rows.map(r => r.id)); return { config, labels: rows.map(label) }; }, log: () => {} });
+    assert.deepEqual(requested, [chatId]);
+    assert.equal(output.episodes[slug].processing.pending, 1);
+    assert.equal(output.episodes[slug].list.length, 1);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});

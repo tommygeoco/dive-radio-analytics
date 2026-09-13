@@ -54,7 +54,8 @@ export function publicAudienceStore(archives, labels, configurations, shows, now
   }
   return { version: 1, updatedAt: now, configurations: usedConfigurations, episodes };
 }
-export async function runAudienceFeedback({ root = ROOT, archive = ARCHIVE, now = new Date().toISOString(), maxBatches = 12, batchSize = 40, concurrency = 2, budgetMs = 300000, classify = classifyAudienceBatch, log = console.log } = {}) {
+export async function runAudienceFeedback({ root = ROOT, archive = ARCHIVE, now = new Date().toISOString(), maxBatches = 12, batchSize = 40, concurrency = 2, budgetMs = 300000, onlyPlatform = null, classify = classifyAudienceBatch, log = console.log } = {}) {
+  if (onlyPlatform !== null && onlyPlatform !== 'LinkedIn') throw new Error('Unsupported audience platform filter');
   if (!existsSync(archive)) throw new Error('Audience source archive is missing');
   const registry = readJsonFile(join(root, 'data/restream/postlive-registry.json'));
   const archives = readdirSync(archive).filter(f => f.endsWith('.json') && f.includes('dive-radio')).sort().reverse()
@@ -65,7 +66,7 @@ export async function runAudienceFeedback({ root = ROOT, archive = ARCHIVE, now 
     const store = readJsonFile(path, { fallback: { version: 1, labels: {}, configurations: {} } });
     if (store.version !== 1 || !store.labels || !store.configurations) throw new Error('Audience label store is invalid');
     const records = [...new Map(archives.flatMap(a => a.records.filter(eligibleAudienceRecord)).map(row => [row.id, row])).values()];
-    const pending = records.filter(row => !store.labels[row.id] || store.labels[row.id].contentHash !== textHash(row.text) || !supportedAudienceConfig(store.configurations[store.labels[row.id].configHash]));
+    const pending = records.filter(row => (!onlyPlatform || row.platform === onlyPlatform) && (!store.labels[row.id] || store.labels[row.id].contentHash !== textHash(row.text) || !supportedAudienceConfig(store.configurations[store.labels[row.id].configHash])));
     let added = 0; let failure = null; let diagnostic = null;
     const deadline = Date.now() + budgetMs;
     const publishApproved = () => atomicWriteJson(join(root, 'data/restream/audience-feedback.json'), publicAudienceStore(archives, store.labels, store.configurations, registry.shows, now));
