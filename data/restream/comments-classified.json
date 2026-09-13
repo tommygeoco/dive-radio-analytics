@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-12T15:49:40.203Z",
+  "updatedAt": "2026-09-13T14:01:37.897Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1078,6 +1078,48 @@
         "themes": [],
         "confidence": 0.95
       }
+    },
+    "yt:UgzkXYhsAXw_-sI2Jwl4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-13T14:01:37.897Z",
+      "audit": {
+        "at": "2026-09-13T14:01:37.897Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.85
+      }
+    },
+    "yt:Ugw_NbtCfKAWh0dD4494AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.75,
+      "classifierVersion": 1,
+      "promptVersion": 1,
+      "model": "claude-fable-5",
+      "classifiedAt": "2026-09-13T14:01:37.897Z",
+      "audit": {
+        "at": "2026-09-13T14:01:37.897Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.75
+      }
     }
   },
   "golden": {
@@ -1098,7 +1140,7 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-12T15:49:40.203Z",
+    "at": "2026-09-13T14:01:37.897Z",
     "status": "complete",
     "added": 2,
     "reviewed": 0,

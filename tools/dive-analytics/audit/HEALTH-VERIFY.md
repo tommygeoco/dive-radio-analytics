@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-12
+# Show-health verification — 2026-09-13
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-09-12 read
+## Accuracy — the 2026-09-13 read
 
-Score 58 (weighted mean 59.5, health-v9, prompt v7); reads How Designers Are Getting Hired in 2026 at 1.8 days; carried: audience quality, reach, subscribers.
+Score 62 (weighted mean 59.5, health-v9, prompt v7); reads How Designers Are Getting Hired in 2026 at 2.8 days; carried: audience quality, reach, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -51,7 +51,7 @@ Most recent resolutions:
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 43% (at full weight the mean would move -1.8) · promo-qualified measures: none · steady-state check-set changes in 30 days: 3 · days without a read in 30: 2 · scoring-rule changes in 30 days: 4.
+Carried share of scored checks: 43% (at full weight the mean would move -1.9) · promo-qualified measures: none · steady-state check-set changes in 30 days: 3 · days without a read in 30: 2 · scoring-rule changes in 30 days: 4.
 
 - WARN — The check set changed 3 times in 30 days — the number keeps changing what it measures.
 - INFO — The scoring rules changed 4 time(s) in the last 30 days; the daily trend restarts each time.

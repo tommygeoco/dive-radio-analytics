@@ -7860,10 +7860,221 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-13T14:00:53.127Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "pulledAt": "2026-09-13T14:00:53.127Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 959,
+          "detail": {
+            "views": 959,
+            "likes": 22,
+            "comments": 3,
+            "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "9HYGZgaHdlw",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                "objectId": "9HYGZgaHdlw",
+                "pulledAt": "2026-09-13T14:00:53.127Z",
+                "state": "ready"
+              },
+              "views": 959,
+              "detail": {
+                "views": 959,
+                "likes": 22,
+                "comments": 3,
+                "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+            "objectId": "9HYGZgaHdlw",
+            "pulledAt": "2026-09-13T14:00:53.127Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 678,
+          "detail": {
+            "views": 678,
+            "likes": 24,
+            "comments": 0,
+            "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "szvTFybWfK4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                "objectId": "szvTFybWfK4",
+                "pulledAt": "2026-09-13T14:00:53.127Z",
+                "state": "ready"
+              },
+              "views": 678,
+              "detail": {
+                "views": 678,
+                "likes": 24,
+                "comments": 0,
+                "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+            "objectId": "szvTFybWfK4",
+            "pulledAt": "2026-09-13T14:00:53.127Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3255,
+          "detail": {
+            "views": 3255,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 1467,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 562,
+          "sources": [
+            {
+              "objectId": "2082919224268169560",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                "objectId": "2082919224268169560",
+                "pulledAt": "2026-09-13T14:00:53.127Z",
+                "state": "ready"
+              },
+              "views": 3255,
+              "detail": {
+                "views": 3255,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 2,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+            "objectId": "2082919224268169560",
+            "pulledAt": "2026-09-13T14:00:53.127Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+            "objectId": "1nGnRRMEPDkGO",
+            "pulledAt": "2026-09-13T14:00:53.127Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1nGnRRMEPDkGO",
+              "views": 1467,
+              "peakConcurrent": 562,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 16698,
+          "detail": {
+            "views": 16698,
+            "likes": 12,
+            "replies": 2,
+            "reposts": 0,
+            "bookmarks": 7,
+            "quotes": 2
+          },
+          "plays": 2814,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 399,
+          "sources": [
+            {
+              "objectId": "2082919223639052481",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+                "objectId": "2082919223639052481",
+                "pulledAt": "2026-09-13T14:00:53.127Z",
+                "state": "ready"
+              },
+              "views": 16698,
+              "detail": {
+                "views": 16698,
+                "likes": 12,
+                "replies": 2,
+                "reposts": 0,
+                "bookmarks": 7,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+            "objectId": "2082919223639052481",
+            "pulledAt": "2026-09-13T14:00:53.127Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+            "objectId": "1nGeLLpzNAQKX",
+            "pulledAt": "2026-09-13T14:00:53.127Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1nGeLLpzNAQKX",
+              "views": 2814,
+              "peakConcurrent": 399,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-12T14:00:23.025Z",
+    "checkedAt": "2026-09-13T14:00:53.127Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -7871,7 +8082,7 @@
       "source": "postlive",
       "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
       "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "pulledAt": "2026-09-12T14:00:23.025Z",
+      "pulledAt": "2026-09-13T14:00:53.127Z",
       "state": "ready"
     }
   }

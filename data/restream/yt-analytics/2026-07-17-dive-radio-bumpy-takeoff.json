@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "VcLm0kAGCck",
-      "pulledAt": "2026-09-12T14:00:43.296Z",
+      "pulledAt": "2026-09-13T14:01:13.879Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "VcLm0kAGCck",
-        "pulledAt": "2026-09-12T14:00:43.296Z",
+        "pulledAt": "2026-09-13T14:01:13.879Z",
         "state": "ready"
       },
       "totals": {
-        "views": 750,
+        "views": 754,
         "estimatedMinutesWatched": 10274,
         "averageViewDuration": 839,
         "averageViewPercentage": 11.37,
@@ -32,11 +32,11 @@
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
           "views": 130,
-          "estimatedMinutesWatched": 1987
+          "estimatedMinutesWatched": 1994
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 85,
+          "views": 89,
           "estimatedMinutesWatched": 984
         },
         {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "FqsXWbfKmGw",
-      "pulledAt": "2026-09-12T14:00:43.296Z",
+      "pulledAt": "2026-09-13T14:01:13.879Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "FqsXWbfKmGw",
-        "pulledAt": "2026-09-12T14:00:43.296Z",
+        "pulledAt": "2026-09-13T14:01:13.879Z",
         "state": "ready"
       },
       "totals": {
@@ -949,18 +949,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-12T14:00:43.296Z",
+  "updatedAt": "2026-09-13T14:01:13.879Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-17-dive-radio-bumpy-takeoff",
     "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
-    "pulledAt": "2026-09-12T14:00:43.296Z",
+    "pulledAt": "2026-09-13T14:01:13.879Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-12T14:00:43.296Z",
+    "checkedAt": "2026-09-13T14:01:13.879Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:FqsXWbfKmGw|yt:joindiveclub:VcLm0kAGCck",
@@ -970,7 +970,7 @@
         "videoId": "VcLm0kAGCck",
         "result": "ready",
         "observed": {
-          "views": 750,
+          "views": 754,
           "averageViewPercentage": 11.37
         }
       },

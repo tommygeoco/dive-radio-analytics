@@ -2,30 +2,185 @@
   "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
   "title": "Dive Radio: How Designers Are Getting Hired in 2026",
   "premiere": "2026-09-10",
-  "channels": {},
+  "channels": {
+    "yt:joindiveclub": {
+      "videoId": "DUejFPtYll0",
+      "pulledAt": "2026-09-13T14:01:13.879Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "DUejFPtYll0",
+        "pulledAt": "2026-09-13T14:01:13.879Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 2129,
+        "estimatedMinutesWatched": 13882,
+        "averageViewDuration": 997,
+        "averageViewPercentage": 19.38,
+        "subscribersGained": 3,
+        "likes": 35,
+        "comments": 0
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 1817,
+          "estimatedMinutesWatched": 7163
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 74,
+          "estimatedMinutesWatched": 1695
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 62,
+          "estimatedMinutesWatched": 1319
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 51,
+          "estimatedMinutesWatched": 769
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 42,
+          "estimatedMinutesWatched": 1226
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 39,
+          "estimatedMinutesWatched": 1184
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 30,
+          "estimatedMinutesWatched": 371
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 9,
+          "estimatedMinutesWatched": 92
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 5,
+          "estimatedMinutesWatched": 59
+        }
+      ],
+      "retention": []
+    },
+    "yt:designertom": {
+      "videoId": "OZG115v6TTg",
+      "pulledAt": "2026-09-13T14:01:13.879Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "OZG115v6TTg",
+        "pulledAt": "2026-09-13T14:01:13.879Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1780,
+        "estimatedMinutesWatched": 7347,
+        "averageViewDuration": 795,
+        "averageViewPercentage": 14.44,
+        "subscribersGained": 7,
+        "likes": 40,
+        "comments": 1
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 1527,
+          "estimatedMinutesWatched": 4262
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 70,
+          "estimatedMinutesWatched": 727
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 64,
+          "estimatedMinutesWatched": 511
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 31,
+          "estimatedMinutesWatched": 666
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 29,
+          "estimatedMinutesWatched": 240
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 25,
+          "estimatedMinutesWatched": 419
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 21,
+          "estimatedMinutesWatched": 155
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 11,
+          "estimatedMinutesWatched": 350
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 1,
+          "estimatedMinutesWatched": 12
+        },
+        {
+          "insightTrafficSourceType": "SHORTS",
+          "views": 1,
+          "estimatedMinutesWatched": 0
+        }
+      ],
+      "retention": []
+    }
+  },
   "watchReport": {
-    "state": "pending",
-    "checkedAt": "2026-09-12T14:00:43.296Z",
-    "missingChannels": [
-      "yt:joindiveclub",
-      "yt:designertom"
-    ],
-    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "state": "ready",
+    "checkedAt": "2026-09-13T14:01:13.879Z",
+    "missingChannels": [],
+    "reason": null,
     "targetFingerprint": "yt:designertom:OZG115v6TTg|yt:joindiveclub:DUejFPtYll0",
     "probes": [
       {
         "key": "yt:joindiveclub",
         "videoId": "DUejFPtYll0",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 2129,
+          "averageViewPercentage": 19.38
+        }
       },
       {
         "key": "yt:designertom",
         "videoId": "OZG115v6TTg",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1780,
+          "averageViewPercentage": 14.44
+        }
       }
-    ],
-    "pendingSince": "2026-09-11T14:00:56.950Z"
-  }
+    ]
+  },
+  "reading": {
+    "schemaVersion": 1,
+    "source": "youtube-analytics",
+    "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+    "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+    "pulledAt": "2026-09-13T14:01:13.879Z",
+    "state": "ready"
+  },
+  "updatedAt": "2026-09-13T14:01:13.879Z"
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-11T17:05:36.023Z",
+  "updatedAt": "2026-09-13T14:08:53.905Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -213,6 +213,14 @@
     "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.1": {
       "summary": "Hosts move from brand work in products into the designer of the week segment, playing recorded nominations for Marina and Laura before a host shares his own pick, Jackie.",
       "writtenAt": "2026-09-11T17:05:36.023Z"
+    },
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe|drop|0.11": {
+      "summary": "Hosts celebrate Sid landing a startup role, plug the vote page, then play recorded community nominations from evil rabbit, Dan Mall, and Rob spotlighting designers and illustrators.",
+      "writtenAt": "2026-09-13T14:08:53.905Z"
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|drop|0.21": {
+      "summary": "Hosts react to backlash over a Google design post, recall recorded critique videos for a design course, and debate whether the mockery would differ if an individual designer had shared it.",
+      "writtenAt": "2026-09-13T14:08:53.905Z"
     }
   }
 }
