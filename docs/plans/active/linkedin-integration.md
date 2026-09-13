@@ -9,9 +9,9 @@ Include Ridd's existing LinkedIn broadcasts in daily episode tracking and availa
 - [x] Verified nine exact broadcast URLs and chat counters in saved Restream events; verified member analytics API documentation and access requirements.
 - [x] Implemented daily source registration, private owner metric imports, LinkedIn episode panel/brief/facts, chat link provenance, and removal of unsupported Restream viewer zeros.
 - [x] Focused tests for identity, missing values, observed zero, import idempotency/conflicts, and chat totals.
-- [x] Full regression run: 54 audit files, 112 script syntax checks, two page scripts. Final focused tests passed; strict validator reported zero failures and zero drift (44 pre-existing warnings). Desktop and 390px mobile passed with no horizontal overflow or browser errors.
-- [x] Historical Restream capture recovered all available LinkedIn text: 107 records across nine episode archives. All 107 were processed; 15 approved feedback items across six episodes are public candidates. Other newly recovered platform text remains in the private backlog for normal daily processing.
-- [x] Initial production release e5594b6: all 18 public files matched byte-for-byte; real desktop and fresh 390px mobile checks passed. Live comment inspection identified a renderer allowlist that still hid valid LinkedIn original links; final correction and proof follow.
+- [x] Full regression run: 54 audit files, 112 script syntax checks, two page scripts. Final focused tests passed; strict validator reported zero failures and zero drift (41 warnings in the final release gate). Desktop and 390px mobile passed with no horizontal overflow or browser errors.
+- [x] Historical Restream capture recovered all available LinkedIn text: 107 records across nine episode archives. All 107 were processed; 15 approved feedback items across six episodes are published. Other newly recovered platform text remains in the private backlog for normal daily processing.
+- [x] Initial production release e5594b6: all 18 public files matched byte-for-byte; real desktop and fresh 390px mobile checks passed. Final correction ca657bf also matched all 18 files at 2026-09-13T08:25:02Z; browser verification confirmed both E9 LinkedIn Original links and no console errors.
 - [ ] External dependency: LinkedIn Community Management approval and Ridd OAuth consent. No API collector or automatic viewing data is claimed ready.
 
 ## Surprises & Discoveries
@@ -35,6 +35,6 @@ Source registration retains existing YouTube/X targets. Owner observation timest
 
 ## Outcomes & Retrospective
 
-Pending runtime verification and release.
+Released and verified through ca657bf. All nine historical broadcast sources are registered; the existing daily chain discovers future sources and processes available chat. Historical LinkedIn archive processing is complete (107 records); 15 approved items are included in public feedback and synthesis inputs. Owner metric imports are ready. Automatic viewing analytics remains blocked on app approval and Ridd authorization; no historical viewer values were invented. Future unattended execution has not yet been observed. Release evidence is retained in the dedicated publisher runtime linkedin-release-2026-09-13 directory (result.json and renderer-proof.json).
 
 Release finding: the pre-push hook inherited `GIT_DIR` from a linked worktree, so its supposed scratch checkout detached the caller and failed validation. Strip repository-local Git environment variables for gate subprocesses, preserving authentication/environment settings. Regression reproduces hook variables and proves the original branch and dirty files remain unchanged. No checks are disabled.
