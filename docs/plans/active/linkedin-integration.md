@@ -36,3 +36,5 @@ Source registration retains existing YouTube/X targets. Owner observation timest
 ## Outcomes & Retrospective
 
 Pending runtime verification and release.
+
+Release finding: the pre-push hook inherited `GIT_DIR` from a linked worktree, so its supposed scratch checkout detached the caller and failed validation. Strip repository-local Git environment variables for gate subprocesses, preserving authentication/environment settings. Regression reproduces hook variables and proves the original branch and dirty files remain unchanged. No checks are disabled.

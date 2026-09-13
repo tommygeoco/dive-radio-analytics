@@ -23,6 +23,17 @@ try {
   writeFileSync(join(root, 'agent.md'), 'user untracked');
   const before = run('git', ['status', '--porcelain']);
   const good = verifyCandidate({ root, log: () => {} });
+  const hookVariables = { GIT_DIR: join(root, '.git'), GIT_WORK_TREE: root, GIT_INDEX_FILE: join(root, '.git/index') };
+  const savedEnv = Object.fromEntries(Object.keys(hookVariables).map(key => [key, process.env[key]]));
+  const branchBefore = run('git', ['symbolic-ref', 'HEAD']);
+  try {
+    Object.assign(process.env, hookVariables);
+    assert.equal(verifyCandidate({ root, log: () => {} }).tests, 1);
+    assert.equal(run('git', ['symbolic-ref', 'HEAD']), branchBefore, 'pre-push environment must not detach the original checkout');
+    assert.equal(run('git', ['status', '--porcelain']), before);
+  } finally {
+    for (const [key, value] of Object.entries(savedEnv)) { if (value === undefined) delete process.env[key]; else process.env[key] = value; }
+  }
   assert.equal(good.tests, 1);
   assert.equal(good.syntax, 4);
   assert.equal(readFileSync(join(root, 'data.json'), 'utf8'), 'user data');

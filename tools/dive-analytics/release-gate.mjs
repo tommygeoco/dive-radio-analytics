@@ -8,8 +8,15 @@ import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+// Git hooks export repository-local variables. Child checkouts must resolve
+// their own .git directory; otherwise scratch checkout can detach the caller.
+export function isolatedGitEnvironment(env = process.env) {
+  const result = { ...env };
+  for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_PREFIX', 'GIT_INTERNAL_SUPER_PREFIX', 'GIT_IMPLICIT_WORK_TREE', 'GIT_SHALLOW_FILE', 'GIT_GRAFT_FILE']) delete result[key];
+  return result;
+}
 export function checkedCommand(executable, args, { cwd, timeout = 120_000, env = process.env } = {}) {
-  const r = spawnSync(executable, args, { cwd, env, encoding: 'utf8', timeout, killSignal: 'SIGKILL', maxBuffer: 16 * 1024 * 1024 });
+  const r = spawnSync(executable, args, { cwd, env: isolatedGitEnvironment(env), encoding: 'utf8', timeout, killSignal: 'SIGKILL', maxBuffer: 16 * 1024 * 1024 });
   if (r.error || r.signal || r.status !== 0) {
     const detail = r.error?.code || r.signal || `exit ${r.status ?? 'missing'}`;
     // Commands can include source credentials in diagnostics. Never include arguments or raw output here.
