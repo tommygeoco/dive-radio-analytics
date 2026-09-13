@@ -10,8 +10,8 @@ Include Ridd's existing LinkedIn broadcasts in daily episode tracking and availa
 - [x] Implemented daily source registration, private owner metric imports, LinkedIn episode panel/brief/facts, chat link provenance, and removal of unsupported Restream viewer zeros.
 - [x] Focused tests for identity, missing values, observed zero, import idempotency/conflicts, and chat totals.
 - [x] Full regression run: 54 audit files, 112 script syntax checks, two page scripts. Final focused tests passed; strict validator reported zero failures and zero drift (44 pre-existing warnings). Desktop and 390px mobile passed with no horizontal overflow or browser errors.
-- [ ] Historical chat capture and approved feedback projection from the dedicated publisher.
-- [ ] Commit, production deployment, byte parity and desktop/mobile runtime proof.
+- [x] Historical Restream capture recovered all available LinkedIn text: 107 records across nine episode archives. All 107 were processed; 15 approved feedback items across six episodes are public candidates. Other newly recovered platform text remains in the private backlog for normal daily processing.
+- [x] Initial production release e5594b6: all 18 public files matched byte-for-byte; real desktop and fresh 390px mobile checks passed. Live comment inspection identified a renderer allowlist that still hid valid LinkedIn original links; final correction and proof follow.
 - [ ] External dependency: LinkedIn Community Management approval and Ridd OAuth consent. No API collector or automatic viewing data is claimed ready.
 
 ## Surprises & Discoveries

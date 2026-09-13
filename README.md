@@ -1,8 +1,9 @@
 # Dive Radio — Episode Analytics
 
-Analytics dashboard for Dive Radio episode performance across four
-destinations: YouTube (Dive Club + DesignerTom) and X (@ridd_design +
-@designertom).
+Analytics dashboard for Dive Radio episode performance across YouTube
+(Dive Club + DesignerTom), X (@ridd_design + @designertom), and LinkedIn
+(Ridd). LinkedIn currently supplies episode links and available live chat;
+viewing analytics requires owner observations or approved API access.
 
 - Card layout: show-health gauge + six-check diagnosis + today's-read cards,
   then latest-episode and growth-trend cards, then the episode carousel above

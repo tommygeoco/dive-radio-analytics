@@ -2018,7 +2018,8 @@ function feedbackSource(comment) {
   return comment.source === "live-chat" ? `${comment.platform || "Stream"} live chat` : comment.source === "yt" ? "YouTube" : "X";
 }
 function feedbackOriginal(comment) {
-  if (!/^https:\/\/(?:x\.com|www\.youtube\.com|youtu\.be)\//.test(comment.url || "")) return "";
+  const linkedin = /^https:\/\/www\.linkedin\.com\/feed\/update\/urn:li:(ugcPost|share):\d+\/$/.test(comment.url || "");
+  if (!linkedin && !/^https:\/\/(?:x\.com|www\.youtube\.com|youtu\.be)\//.test(comment.url || "")) return "";
   return `<a class="feedback-source" href="${esc(comment.url)}" target="_blank" rel="noopener noreferrer">Original ↗</a>`;
 }
 function audienceHTML(episode) {

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
@@ -74,5 +75,20 @@ test('LinkedIn reaches recommendation facts, source context and weekly text with
   assert(!sheet.facts.some(f => f.id === `linkedin-plays-E${episode.ep}`));
   assert.equal(sheet.context.linkedin[`E${episode.ep}`].state, 'awaiting-access');
   assert(trendsLines(data).some(row => row.kind === 'linkedin' && row.text.includes(episode.linkedin.url)));
-  assert.equal(episode.latest.totalViews, episode.latest.ytTotal + episode.latest.xPlays);
+  const expected = episode.latest.ytTotal != null || episode.latest.xPlays != null ? (episode.latest.ytTotal ?? 0) + (episode.latest.xPlays ?? 0) : null;
+  assert.equal(episode.latest.totalViews, expected);
+});
+
+
+test('feedback renderer exposes exact LinkedIn original links without allowing arbitrary profile or spoofed URLs', () => {
+  const html = readFileSync(new URL('../../../index.html', import.meta.url), 'utf8');
+  const functionText = html.match(/function feedbackOriginal\(comment\) \{[\s\S]*?\n\}/)?.[0];
+  assert(functionText);
+  const render = vm.runInNewContext(`(${functionText})`, { esc: value => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') });
+  assert.match(render({ url }), /Original ↗/);
+  assert.match(render({ url }), /rel="noopener noreferrer"/);
+  assert.equal(render({ url: 'https://www.linkedin.com/in/michaelriddering/' }), '');
+  assert.equal(render({ url: 'https://www.linkedin.com.evil.test/feed/update/urn:li:ugcPost:123456/' }), '');
+  assert.equal(render({ url: 'javascript:alert(1)' }), '');
+  assert.match(render({ url: 'https://x.com/i/status/123456' }), /Original ↗/);
 });
