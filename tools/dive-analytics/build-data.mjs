@@ -16,6 +16,7 @@ import { momentKey } from "./moment-summaries.mjs";
 // PRD v9 W22a: the one definition of "typical" — projected as data.baselines
 // so the page, the scorers, and the critic all read the same windows, flags,
 // and constants. No consumer is switched in W22a; this only adds the projection.
+import { LINKEDIN_KEY, readLinkedinSources, projectLinkedin, validateMetricImport, validateLinkedinStore } from "./linkedin.mjs";
 import { audienceView } from "./audience-view.mjs";
 import { buildBrief } from "./agent-brief.mjs";
 import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
@@ -39,6 +40,7 @@ const HEALTH_PATH = join(ROOT, "data", "restream", "health-history.json");
 const BEEHIIV_PATH = join(ROOT, "data", "restream", "beehiiv-promotions.json");
 
 export const DESTS = [
+  { key: LINKEDIN_KEY, label: "LinkedIn · Ridd", platform: "linkedin" },
   { key: "yt:joindiveclub", label: "YT Dive Club", platform: "yt" },
   { key: "yt:designertom", label: "YT DesignerTom", platform: "yt" },
   { key: "x:ridd_design", label: "X @ridd_design", platform: "x" },
@@ -399,6 +401,21 @@ export function computeAll({ now = Date.now() } = {}) {
   }
 
   attachLiveSessions(dive, registry);
+  const linkedinSources = readLinkedinSources(ROOT, registry.shows);
+  const linkedinPath = join(ROOT, 'data/restream/linkedin-metrics.json');
+  const linkedinStore = existsSync(linkedinPath) ? JSON.parse(readFileSync(linkedinPath, 'utf8')) : { version: 1, episodes: {} };
+  validateLinkedinStore(linkedinStore, linkedinSources.discovered, now);
+  for (const episode of dive) {
+    const source = linkedinSources.discovered[episode.slug];
+    if (!source) continue;
+    const entry = linkedinStore.episodes[episode.slug];
+    if (entry && entry.urn !== source.urn) throw new Error('LinkedIn metrics belong to a different broadcast');
+    for (const reading of entry?.readings || []) validateMetricImport({ version: 1, slug: episode.slug, url: source.url, ...reading }, source, now);
+    episode.linkedin = projectLinkedin(source, linkedinSources.events.find(raw => raw.event.id === source.eventId), entry?.readings || [], now);
+    episode.links ||= {};
+    episode.links[LINKEDIN_KEY] = source.url;
+    episode.sourceStates.linkedin = { state: episode.linkedin.state, checkedAt: episode.linkedin.observedAt, reason: episode.linkedin.reason };
+  }
   const commentSummary = attachComments(dive, now);
   const audiencePath = join(ROOT, "data", "restream", "audience-feedback.json");
   if (existsSync(audiencePath)) {
@@ -943,7 +960,7 @@ export function projectLiveSession(ev, registry) {
   const chanMinutes = {};
   if (Number.isFinite(started)) {
     for (const [cid, cv] of Object.entries(ev?.viewers?.byChannel || {})) {
-      if (!Array.isArray(cv?.viewersPerMinute)) continue;
+      if (chanLabel[cid] === "LinkedIn" || !Array.isArray(cv?.viewersPerMinute)) continue;
       const minuteMap = new Map();
       for (const point of cv.viewersPerMinute) {
         const at = eventMs(point?.timestamp);
@@ -983,7 +1000,7 @@ export function projectLiveSession(ev, registry) {
     ...Object.keys(ev?.messages?.byChannel || {}),
   ]);
   for (const cid of channelIds) {
-    const cv = ev?.viewers?.byChannel?.[cid] || {};
+    const cv = chanLabel[cid] === "LinkedIn" ? {} : ev?.viewers?.byChannel?.[cid] || {};
     const cm = ev?.messages?.byChannel?.[cid] || {};
     const row = {
       label: chanLabel[cid] || `channel ${cid}`,
@@ -1264,7 +1281,7 @@ function buildInsights(dive, { flags }) {
     const shares = withPlays.map((e) => ({ e, s: e.latest.xPlays / e.latest.totalViews })).sort((a, b) => b.s - a.s);
     insights.push({
       id: "watch-split",
-      text: `This is a genuinely two-platform show: ${Math.round((plays / views) * 100)}% of all actual watching happens on X broadcasts (${num(plays)} of ${num(views)} total views), not just YouTube with an X echo.`,
+      text: `Among the measured YouTube and X views: ${Math.round((plays / views) * 100)}% of measured YouTube and X viewing happens on X broadcasts (${num(plays)} of ${num(views)} total views), not just YouTube with an X echo.`,
       recommendation: `Give X broadcasts first-class treatment — real titles, thumbnails, and call-outs, not simulcast leftovers.`,
       caveat: `Per-episode X share ranges ${Math.round(shares[shares.length - 1].s * 100)}% (${refOf(shares[shares.length - 1].e)}) to ${Math.round(shares[0].s * 100)}% (${refOf(shares[0].e)}); only episodes with complete X play counts are included (${withPlays.length}).`,
       chartState: state({ chart: "standings" }),
@@ -1406,6 +1423,12 @@ export function trendsLines(data) {
   // carries its reason). The wording says what each number is — its own read
   // against the episodes before it — never a trend across them.
   const newest = data.episodes[data.episodes.length - 1];
+  if (newest?.linkedin) {
+    const li = newest.linkedin;
+    const chat = Number.isFinite(li.liveChat.messages) ? `${num(li.liveChat.messages)} live chat messages` : 'live chat count unavailable';
+    const people = Number.isFinite(li.liveChat.chatters) ? ` from ${num(li.liveChat.chatters)} participants` : '';
+    push(`• LinkedIn: ${chat}${people} on ${shortTitle(newest.title)}. ${li.reason || `Analytics observed ${li.observedAt.slice(0, 10)}.`} ${li.url}`, { kind: 'linkedin' });
+  }
   if (newest?.promotion?.status === "found") {
     const p = newest.promotion;
     const clicks = p.emailClicks == null

@@ -20,6 +20,7 @@ export function eligibleAudienceRecord(row) {
     && !(row.source === 'x' && HOSTS.has(String(row.author || '').replace(/^@/, '').toLowerCase()));
 }
 function chatUrl(row, show) {
+  if (/^linkedin$/i.test(row.platform || '')) return show.linkedin?.url || null;
   const channel = String(row.channel || '').toLowerCase();
   const account = /dive club/.test(channel) ? 'joindiveclub' : /tommy|designertom/.test(channel) ? 'designertom' : /ridd/.test(channel) ? 'ridd_design' : null;
   const kind = /youtube/i.test(row.platform || '') ? 'youtube' : /^x$/i.test(row.platform || '') ? 'x' : null;

@@ -1,8 +1,13 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-12T14:03:05.034Z",
+ "generatedAt": "2026-09-13T07:59:24.119Z",
  "chaptersUpdatedAt": "2026-09-11T17:08:17.383Z",
  "promotionUpdatedAt": "2026-09-12T14:00:18.758Z",
  "dests": [
+  {
+   "key": "linkedin:michaelriddering",
+   "label": "LinkedIn · Ridd",
+   "platform": "linkedin"
+  },
   {
    "key": "yt:joindiveclub",
    "label": "YT Dive Club",
@@ -4939,6 +4944,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-07-20T19:26:30.825Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -4959,7 +4969,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=VcLm0kAGCck",
     "yt:designertom": "https://youtube.com/watch?v=FqsXWbfKmGw",
     "x:ridd_design": "https://x.com/i/broadcasts/1AxRnnrOvlrxl",
-    "x:designertom": "https://x.com/i/broadcasts/1pKdRRwpkaQJW"
+    "x:designertom": "https://x.com/i/broadcasts/1pKdRRwpkaQJW",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/"
    },
    "transcript": true,
    "ageDays": 56.8,
@@ -4987,7 +4998,6 @@ window.DIVE_DATA = {
       "ct": 1,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 2,
        "X @designertom": null,
        "YT DesignerTom": 1
@@ -5000,7 +5010,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 8
@@ -5013,7 +5022,6 @@ window.DIVE_DATA = {
       "ct": 8,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -5026,7 +5034,6 @@ window.DIVE_DATA = {
       "ct": 10,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -5039,7 +5046,6 @@ window.DIVE_DATA = {
       "ct": 14,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -5052,7 +5058,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -5065,7 +5070,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -5078,7 +5082,6 @@ window.DIVE_DATA = {
       "ct": 28,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -5091,7 +5094,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -5104,7 +5106,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -5117,7 +5118,6 @@ window.DIVE_DATA = {
       "ct": 37,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -5130,7 +5130,6 @@ window.DIVE_DATA = {
       "ct": 39,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -5143,7 +5142,6 @@ window.DIVE_DATA = {
       "ct": 45,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -5156,7 +5154,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -5169,7 +5166,6 @@ window.DIVE_DATA = {
       "ct": 51,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5182,7 +5178,6 @@ window.DIVE_DATA = {
       "ct": 53,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -5195,7 +5190,6 @@ window.DIVE_DATA = {
       "ct": 57,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 65,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -5208,7 +5202,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 65,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -5221,7 +5214,6 @@ window.DIVE_DATA = {
       "ct": 70,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -5234,7 +5226,6 @@ window.DIVE_DATA = {
       "ct": 72,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5247,7 +5238,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 63,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5260,7 +5250,6 @@ window.DIVE_DATA = {
       "ct": 76,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5273,7 +5262,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5286,7 +5274,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 63,
        "X @designertom": null,
        "YT DesignerTom": 26
@@ -5299,7 +5286,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -5312,7 +5298,6 @@ window.DIVE_DATA = {
       "ct": 85,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -5325,7 +5310,6 @@ window.DIVE_DATA = {
       "ct": 90,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5338,7 +5322,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5351,7 +5334,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5364,7 +5346,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5377,7 +5358,6 @@ window.DIVE_DATA = {
       "ct": 99,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5390,7 +5370,6 @@ window.DIVE_DATA = {
       "ct": 99,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5403,7 +5382,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -5416,7 +5394,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 52,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -5429,7 +5406,6 @@ window.DIVE_DATA = {
       "ct": 105,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -5442,7 +5418,6 @@ window.DIVE_DATA = {
       "ct": 108,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 64,
        "X @designertom": null,
        "YT DesignerTom": 26
@@ -5455,7 +5430,6 @@ window.DIVE_DATA = {
       "ct": 115,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 63,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5468,7 +5442,6 @@ window.DIVE_DATA = {
       "ct": 117,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5481,7 +5454,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5494,7 +5466,6 @@ window.DIVE_DATA = {
       "ct": 121,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 61,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5507,7 +5478,6 @@ window.DIVE_DATA = {
       "ct": 121,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5520,7 +5490,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5533,7 +5502,6 @@ window.DIVE_DATA = {
       "ct": 126,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5546,7 +5514,6 @@ window.DIVE_DATA = {
       "ct": 126,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5559,7 +5526,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5572,7 +5538,6 @@ window.DIVE_DATA = {
       "ct": 128,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5585,7 +5550,6 @@ window.DIVE_DATA = {
       "ct": 130,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5598,7 +5562,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 61,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5611,7 +5574,6 @@ window.DIVE_DATA = {
       "ct": 134,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5624,7 +5586,6 @@ window.DIVE_DATA = {
       "ct": 136,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5637,7 +5598,6 @@ window.DIVE_DATA = {
       "ct": 140,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5650,7 +5610,6 @@ window.DIVE_DATA = {
       "ct": 145,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 64,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -5663,7 +5622,6 @@ window.DIVE_DATA = {
       "ct": 145,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5676,7 +5634,6 @@ window.DIVE_DATA = {
       "ct": 145,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 65,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5689,7 +5646,6 @@ window.DIVE_DATA = {
       "ct": 145,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5702,7 +5658,6 @@ window.DIVE_DATA = {
       "ct": 145,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5715,7 +5670,6 @@ window.DIVE_DATA = {
       "ct": 145,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5728,7 +5682,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5741,7 +5694,6 @@ window.DIVE_DATA = {
       "ct": 148,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5754,7 +5706,6 @@ window.DIVE_DATA = {
       "ct": 151,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5767,7 +5718,6 @@ window.DIVE_DATA = {
       "ct": 152,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5780,7 +5730,6 @@ window.DIVE_DATA = {
       "ct": 156,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5793,7 +5742,6 @@ window.DIVE_DATA = {
       "ct": 156,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -5806,7 +5754,6 @@ window.DIVE_DATA = {
       "ct": 157,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 53,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -5819,7 +5766,6 @@ window.DIVE_DATA = {
       "ct": 157,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 52,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -5832,7 +5778,6 @@ window.DIVE_DATA = {
       "ct": 157,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -5845,7 +5790,6 @@ window.DIVE_DATA = {
       "ct": 160,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -5858,7 +5802,6 @@ window.DIVE_DATA = {
       "ct": 162,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -5871,7 +5814,6 @@ window.DIVE_DATA = {
       "ct": 164,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -5884,7 +5826,6 @@ window.DIVE_DATA = {
       "ct": 166,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -5897,7 +5838,6 @@ window.DIVE_DATA = {
       "ct": 168,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5910,7 +5850,6 @@ window.DIVE_DATA = {
       "ct": 172,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -5923,7 +5862,6 @@ window.DIVE_DATA = {
       "ct": 173,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5936,7 +5874,6 @@ window.DIVE_DATA = {
       "ct": 175,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5949,7 +5886,6 @@ window.DIVE_DATA = {
       "ct": 176,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -5962,7 +5898,6 @@ window.DIVE_DATA = {
       "ct": 177,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5975,7 +5910,6 @@ window.DIVE_DATA = {
       "ct": 180,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -5988,7 +5922,6 @@ window.DIVE_DATA = {
       "ct": 181,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6001,7 +5934,6 @@ window.DIVE_DATA = {
       "ct": 181,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -6014,7 +5946,6 @@ window.DIVE_DATA = {
       "ct": 187,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6027,7 +5958,6 @@ window.DIVE_DATA = {
       "ct": 189,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -6040,7 +5970,6 @@ window.DIVE_DATA = {
       "ct": 191,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6053,7 +5982,6 @@ window.DIVE_DATA = {
       "ct": 194,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6066,7 +5994,6 @@ window.DIVE_DATA = {
       "ct": 198,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6079,7 +6006,6 @@ window.DIVE_DATA = {
       "ct": 200,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -6092,7 +6018,6 @@ window.DIVE_DATA = {
       "ct": 202,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6105,7 +6030,6 @@ window.DIVE_DATA = {
       "ct": 202,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6118,7 +6042,6 @@ window.DIVE_DATA = {
       "ct": 204,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -6131,7 +6054,6 @@ window.DIVE_DATA = {
       "ct": 207,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6144,7 +6066,6 @@ window.DIVE_DATA = {
       "ct": 208,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6157,7 +6078,6 @@ window.DIVE_DATA = {
       "ct": 212,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6170,7 +6090,6 @@ window.DIVE_DATA = {
       "ct": 215,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6183,7 +6102,6 @@ window.DIVE_DATA = {
       "ct": 221,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6196,7 +6114,6 @@ window.DIVE_DATA = {
       "ct": 235,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6209,7 +6126,6 @@ window.DIVE_DATA = {
       "ct": 245,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6222,7 +6138,6 @@ window.DIVE_DATA = {
       "ct": 262,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -6235,7 +6150,6 @@ window.DIVE_DATA = {
       "ct": 271,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -6248,7 +6162,6 @@ window.DIVE_DATA = {
       "ct": 281,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6261,7 +6174,6 @@ window.DIVE_DATA = {
       "ct": 292,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6274,7 +6186,6 @@ window.DIVE_DATA = {
       "ct": 300,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6287,7 +6198,6 @@ window.DIVE_DATA = {
       "ct": 300,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -6300,7 +6210,6 @@ window.DIVE_DATA = {
       "ct": 303,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -6313,7 +6222,6 @@ window.DIVE_DATA = {
       "ct": 311,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -6326,7 +6234,6 @@ window.DIVE_DATA = {
       "ct": 317,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6339,7 +6246,6 @@ window.DIVE_DATA = {
       "ct": 317,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6352,7 +6258,6 @@ window.DIVE_DATA = {
       "ct": 318,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6365,7 +6270,6 @@ window.DIVE_DATA = {
       "ct": 321,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -6378,7 +6282,6 @@ window.DIVE_DATA = {
       "ct": 326,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6391,7 +6294,6 @@ window.DIVE_DATA = {
       "ct": 336,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -6404,7 +6306,6 @@ window.DIVE_DATA = {
       "ct": 340,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -6417,7 +6318,6 @@ window.DIVE_DATA = {
       "ct": 343,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -6430,7 +6330,6 @@ window.DIVE_DATA = {
       "ct": 347,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -6443,7 +6342,6 @@ window.DIVE_DATA = {
       "ct": 349,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -6456,7 +6354,6 @@ window.DIVE_DATA = {
       "ct": 350,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -6469,7 +6366,6 @@ window.DIVE_DATA = {
       "ct": 352,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -6482,7 +6378,6 @@ window.DIVE_DATA = {
       "ct": 352,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -6495,7 +6390,6 @@ window.DIVE_DATA = {
       "ct": 355,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -6508,7 +6402,6 @@ window.DIVE_DATA = {
       "ct": 357,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -6521,7 +6414,6 @@ window.DIVE_DATA = {
       "ct": 360,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -6534,7 +6426,6 @@ window.DIVE_DATA = {
       "ct": 360,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -6547,7 +6438,6 @@ window.DIVE_DATA = {
       "ct": 362,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -6560,7 +6450,6 @@ window.DIVE_DATA = {
       "ct": 366,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -6573,7 +6462,6 @@ window.DIVE_DATA = {
       "ct": 382,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -6586,7 +6474,6 @@ window.DIVE_DATA = {
       "ct": 383,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 32,
        "X @designertom": 0,
        "YT DesignerTom": 10
@@ -6632,16 +6519,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 43,
       "chatters": 9
      }
     ],
     "minutesPerViewer": 7.1,
     "holdRate": 47.7
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+    "urn": "urn:li:ugcPost:7483627739963379712",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 43,
+     "chatters": 9,
+     "observedAt": "2026-07-20T19:26:30.825Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 8,
@@ -12068,6 +11979,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-07-26T14:20:06.057Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -12088,7 +12004,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=TJqSfnadiGM",
     "yt:designertom": "https://youtube.com/watch?v=Pn6U5nWgD-g",
     "x:designertom": "https://x.com/i/broadcasts/1kKzDDbmjWqJv",
-    "x:ridd_design": "https://x.com/i/broadcasts/1yxBeeoanDOJN"
+    "x:ridd_design": "https://x.com/i/broadcasts/1yxBeeoanDOJN",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/"
    },
    "transcript": true,
    "ageDays": 50.8,
@@ -12116,7 +12033,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 7,
        "X @designertom": null,
        "YT DesignerTom": 2
@@ -12129,7 +12045,6 @@ window.DIVE_DATA = {
       "ct": 5,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": null,
        "YT DesignerTom": 8
@@ -12142,7 +12057,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12155,7 +12069,6 @@ window.DIVE_DATA = {
       "ct": 11,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -12168,7 +12081,6 @@ window.DIVE_DATA = {
       "ct": 14,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -12181,7 +12093,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -12194,7 +12105,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12207,7 +12117,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12220,7 +12129,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -12233,7 +12141,6 @@ window.DIVE_DATA = {
       "ct": 28,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12246,7 +12153,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12259,7 +12165,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -12272,7 +12177,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -12285,7 +12189,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12298,7 +12201,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12311,7 +12213,6 @@ window.DIVE_DATA = {
       "ct": 37,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12324,7 +12225,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12337,7 +12237,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12350,7 +12249,6 @@ window.DIVE_DATA = {
       "ct": 43,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12363,7 +12261,6 @@ window.DIVE_DATA = {
       "ct": 43,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12376,7 +12273,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12389,7 +12285,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12402,7 +12297,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12415,7 +12309,6 @@ window.DIVE_DATA = {
       "ct": 49,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12428,7 +12321,6 @@ window.DIVE_DATA = {
       "ct": 53,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12441,7 +12333,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12454,7 +12345,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12467,7 +12357,6 @@ window.DIVE_DATA = {
       "ct": 55,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12480,7 +12369,6 @@ window.DIVE_DATA = {
       "ct": 57,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12493,7 +12381,6 @@ window.DIVE_DATA = {
       "ct": 57,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12506,7 +12393,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -12519,7 +12405,6 @@ window.DIVE_DATA = {
       "ct": 67,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -12532,7 +12417,6 @@ window.DIVE_DATA = {
       "ct": 68,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -12545,7 +12429,6 @@ window.DIVE_DATA = {
       "ct": 71,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -12558,7 +12441,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -12571,7 +12453,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12584,7 +12465,6 @@ window.DIVE_DATA = {
       "ct": 75,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12597,7 +12477,6 @@ window.DIVE_DATA = {
       "ct": 76,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12610,7 +12489,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12623,7 +12501,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -12636,7 +12513,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -12649,7 +12525,6 @@ window.DIVE_DATA = {
       "ct": 86,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -12662,7 +12537,6 @@ window.DIVE_DATA = {
       "ct": 87,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -12675,7 +12549,6 @@ window.DIVE_DATA = {
       "ct": 87,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -12688,7 +12561,6 @@ window.DIVE_DATA = {
       "ct": 91,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -12701,7 +12573,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -12714,7 +12585,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12727,7 +12597,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -12740,7 +12609,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12753,7 +12621,6 @@ window.DIVE_DATA = {
       "ct": 106,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12766,7 +12633,6 @@ window.DIVE_DATA = {
       "ct": 106,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -12779,7 +12645,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -12792,7 +12657,6 @@ window.DIVE_DATA = {
       "ct": 110,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -12805,7 +12669,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -12818,7 +12681,6 @@ window.DIVE_DATA = {
       "ct": 114,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -12831,7 +12693,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -12844,7 +12705,6 @@ window.DIVE_DATA = {
       "ct": 121,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12857,7 +12717,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -12870,7 +12729,6 @@ window.DIVE_DATA = {
       "ct": 129,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -12883,7 +12741,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -12896,7 +12753,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -12909,7 +12765,6 @@ window.DIVE_DATA = {
       "ct": 133,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12922,7 +12777,6 @@ window.DIVE_DATA = {
       "ct": 133,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12935,7 +12789,6 @@ window.DIVE_DATA = {
       "ct": 134,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12948,7 +12801,6 @@ window.DIVE_DATA = {
       "ct": 135,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12961,7 +12813,6 @@ window.DIVE_DATA = {
       "ct": 136,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12974,7 +12825,6 @@ window.DIVE_DATA = {
       "ct": 139,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -12987,7 +12837,6 @@ window.DIVE_DATA = {
       "ct": 141,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13000,7 +12849,6 @@ window.DIVE_DATA = {
       "ct": 143,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13013,7 +12861,6 @@ window.DIVE_DATA = {
       "ct": 144,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13026,7 +12873,6 @@ window.DIVE_DATA = {
       "ct": 144,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13039,7 +12885,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13052,7 +12897,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13065,7 +12909,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13078,7 +12921,6 @@ window.DIVE_DATA = {
       "ct": 150,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13091,7 +12933,6 @@ window.DIVE_DATA = {
       "ct": 152,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13104,7 +12945,6 @@ window.DIVE_DATA = {
       "ct": 152,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13117,7 +12957,6 @@ window.DIVE_DATA = {
       "ct": 152,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13130,7 +12969,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13143,7 +12981,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13156,7 +12993,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13169,7 +13005,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13182,7 +13017,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13195,7 +13029,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13208,7 +13041,6 @@ window.DIVE_DATA = {
       "ct": 156,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13221,7 +13053,6 @@ window.DIVE_DATA = {
       "ct": 158,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13234,7 +13065,6 @@ window.DIVE_DATA = {
       "ct": 163,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13247,7 +13077,6 @@ window.DIVE_DATA = {
       "ct": 166,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13260,7 +13089,6 @@ window.DIVE_DATA = {
       "ct": 168,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13273,7 +13101,6 @@ window.DIVE_DATA = {
       "ct": 170,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13286,7 +13113,6 @@ window.DIVE_DATA = {
       "ct": 170,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13299,7 +13125,6 @@ window.DIVE_DATA = {
       "ct": 170,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13312,7 +13137,6 @@ window.DIVE_DATA = {
       "ct": 172,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -13325,7 +13149,6 @@ window.DIVE_DATA = {
       "ct": 172,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -13338,7 +13161,6 @@ window.DIVE_DATA = {
       "ct": 176,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -13351,7 +13173,6 @@ window.DIVE_DATA = {
       "ct": 180,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13364,7 +13185,6 @@ window.DIVE_DATA = {
       "ct": 185,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -13377,7 +13197,6 @@ window.DIVE_DATA = {
       "ct": 189,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -13390,7 +13209,6 @@ window.DIVE_DATA = {
       "ct": 191,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13403,7 +13221,6 @@ window.DIVE_DATA = {
       "ct": 192,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13416,7 +13233,6 @@ window.DIVE_DATA = {
       "ct": 194,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13429,7 +13245,6 @@ window.DIVE_DATA = {
       "ct": 197,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13442,7 +13257,6 @@ window.DIVE_DATA = {
       "ct": 206,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13455,7 +13269,6 @@ window.DIVE_DATA = {
       "ct": 238,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13468,7 +13281,6 @@ window.DIVE_DATA = {
       "ct": 257,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13481,7 +13293,6 @@ window.DIVE_DATA = {
       "ct": 270,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -13494,7 +13305,6 @@ window.DIVE_DATA = {
       "ct": 284,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -13507,7 +13317,6 @@ window.DIVE_DATA = {
       "ct": 296,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -13520,7 +13329,6 @@ window.DIVE_DATA = {
       "ct": 298,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -13533,7 +13341,6 @@ window.DIVE_DATA = {
       "ct": 298,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -13546,7 +13353,6 @@ window.DIVE_DATA = {
       "ct": 298,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -13559,7 +13365,6 @@ window.DIVE_DATA = {
       "ct": 299,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -13572,7 +13377,6 @@ window.DIVE_DATA = {
       "ct": 302,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -13585,7 +13389,6 @@ window.DIVE_DATA = {
       "ct": 302,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -13598,7 +13401,6 @@ window.DIVE_DATA = {
       "ct": 302,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -13611,7 +13413,6 @@ window.DIVE_DATA = {
       "ct": 303,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -13624,7 +13425,6 @@ window.DIVE_DATA = {
       "ct": 303,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -13637,7 +13437,6 @@ window.DIVE_DATA = {
       "ct": 305,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -13650,7 +13449,6 @@ window.DIVE_DATA = {
       "ct": 307,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -13663,7 +13461,6 @@ window.DIVE_DATA = {
       "ct": 310,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 32,
        "X @designertom": 0,
        "YT DesignerTom": 13
@@ -13709,16 +13506,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 6,
       "chatters": 5
      }
     ],
     "minutesPerViewer": 6,
     "holdRate": 61.1
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/",
+    "urn": "urn:li:ugcPost:7485957571070058496",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 6,
+     "chatters": 5,
+     "observedAt": "2026-07-26T14:20:06.057Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 5,
@@ -18229,6 +18050,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-07-31T14:20:05.914Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -18249,7 +18075,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=9HYGZgaHdlw",
     "yt:designertom": "https://youtube.com/watch?v=szvTFybWfK4",
     "x:ridd_design": "https://x.com/i/broadcasts/1nGnRRMEPDkGO",
-    "x:designertom": "https://x.com/i/broadcasts/1nGeLLpzNAQKX"
+    "x:designertom": "https://x.com/i/broadcasts/1nGeLLpzNAQKX",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488682639726583808/"
    },
    "transcript": true,
    "ageDays": 43.8,
@@ -18277,7 +18104,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 2,
        "X @designertom": 0,
        "YT DesignerTom": 3
@@ -18290,7 +18116,6 @@ window.DIVE_DATA = {
       "ct": 1,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 5,
        "X @designertom": null,
        "YT DesignerTom": 6
@@ -18303,7 +18128,6 @@ window.DIVE_DATA = {
       "ct": 3,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 11,
        "X @designertom": null,
        "YT DesignerTom": 7
@@ -18316,7 +18140,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 11,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -18329,7 +18152,6 @@ window.DIVE_DATA = {
       "ct": 9,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 14,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18342,7 +18164,6 @@ window.DIVE_DATA = {
       "ct": 13,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -18355,7 +18176,6 @@ window.DIVE_DATA = {
       "ct": 15,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18368,7 +18188,6 @@ window.DIVE_DATA = {
       "ct": 17,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18381,7 +18200,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -18394,7 +18212,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 8
@@ -18407,7 +18224,6 @@ window.DIVE_DATA = {
       "ct": 19,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 7
@@ -18420,7 +18236,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -18433,7 +18248,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18446,7 +18260,6 @@ window.DIVE_DATA = {
       "ct": 23,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 8
@@ -18459,7 +18272,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -18472,7 +18284,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18485,7 +18296,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -18498,7 +18308,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -18511,7 +18320,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -18524,7 +18332,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18537,7 +18344,6 @@ window.DIVE_DATA = {
       "ct": 29,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18550,7 +18356,6 @@ window.DIVE_DATA = {
       "ct": 31,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -18563,7 +18368,6 @@ window.DIVE_DATA = {
       "ct": 40,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -18576,7 +18380,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -18589,7 +18392,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -18602,7 +18404,6 @@ window.DIVE_DATA = {
       "ct": 45,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -18615,7 +18416,6 @@ window.DIVE_DATA = {
       "ct": 49,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -18628,7 +18428,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -18641,7 +18440,6 @@ window.DIVE_DATA = {
       "ct": 57,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -18654,7 +18452,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -18667,7 +18464,6 @@ window.DIVE_DATA = {
       "ct": 59,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -18680,7 +18476,6 @@ window.DIVE_DATA = {
       "ct": 60,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -18693,7 +18488,6 @@ window.DIVE_DATA = {
       "ct": 60,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -18706,7 +18500,6 @@ window.DIVE_DATA = {
       "ct": 60,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -18719,7 +18512,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -18732,7 +18524,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -18745,7 +18536,6 @@ window.DIVE_DATA = {
       "ct": 65,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -18758,7 +18548,6 @@ window.DIVE_DATA = {
       "ct": 65,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -18771,7 +18560,6 @@ window.DIVE_DATA = {
       "ct": 66,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -18784,7 +18572,6 @@ window.DIVE_DATA = {
       "ct": 70,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -18797,7 +18584,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -18810,7 +18596,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -18823,7 +18608,6 @@ window.DIVE_DATA = {
       "ct": 75,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -18836,7 +18620,6 @@ window.DIVE_DATA = {
       "ct": 76,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -18849,7 +18632,6 @@ window.DIVE_DATA = {
       "ct": 76,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -18862,7 +18644,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -18875,7 +18656,6 @@ window.DIVE_DATA = {
       "ct": 79,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -18888,7 +18668,6 @@ window.DIVE_DATA = {
       "ct": 79,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -18901,7 +18680,6 @@ window.DIVE_DATA = {
       "ct": 79,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -18914,7 +18692,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -18927,7 +18704,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -18940,7 +18716,6 @@ window.DIVE_DATA = {
       "ct": 82,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -18953,7 +18728,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -18966,7 +18740,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -18979,7 +18752,6 @@ window.DIVE_DATA = {
       "ct": 87,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -18992,7 +18764,6 @@ window.DIVE_DATA = {
       "ct": 88,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -19005,7 +18776,6 @@ window.DIVE_DATA = {
       "ct": 92,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -19018,7 +18788,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19031,7 +18800,6 @@ window.DIVE_DATA = {
       "ct": 94,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -19044,7 +18812,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -19057,7 +18824,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -19070,7 +18836,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19083,7 +18848,6 @@ window.DIVE_DATA = {
       "ct": 98,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19096,7 +18860,6 @@ window.DIVE_DATA = {
       "ct": 98,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19109,7 +18872,6 @@ window.DIVE_DATA = {
       "ct": 98,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19122,7 +18884,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19135,7 +18896,6 @@ window.DIVE_DATA = {
       "ct": 103,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19148,7 +18908,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -19161,7 +18920,6 @@ window.DIVE_DATA = {
       "ct": 108,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -19174,7 +18932,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -19187,7 +18944,6 @@ window.DIVE_DATA = {
       "ct": 111,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -19200,7 +18956,6 @@ window.DIVE_DATA = {
       "ct": 111,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -19213,7 +18968,6 @@ window.DIVE_DATA = {
       "ct": 111,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -19226,7 +18980,6 @@ window.DIVE_DATA = {
       "ct": 112,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -19239,7 +18992,6 @@ window.DIVE_DATA = {
       "ct": 112,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -19252,7 +19004,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -19265,7 +19016,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -19278,7 +19028,6 @@ window.DIVE_DATA = {
       "ct": 115,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19291,7 +19040,6 @@ window.DIVE_DATA = {
       "ct": 115,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19304,7 +19052,6 @@ window.DIVE_DATA = {
       "ct": 116,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19317,7 +19064,6 @@ window.DIVE_DATA = {
       "ct": 116,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19330,7 +19076,6 @@ window.DIVE_DATA = {
       "ct": 117,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19343,7 +19088,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19356,7 +19100,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -19369,7 +19112,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19382,7 +19124,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19395,7 +19136,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19408,7 +19148,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19421,7 +19160,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19434,7 +19172,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19447,7 +19184,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -19460,7 +19196,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -19473,7 +19208,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -19486,7 +19220,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 26
@@ -19499,7 +19232,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19512,7 +19244,6 @@ window.DIVE_DATA = {
       "ct": 122,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19525,7 +19256,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19538,7 +19268,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19551,7 +19280,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19564,7 +19292,6 @@ window.DIVE_DATA = {
       "ct": 129,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19577,7 +19304,6 @@ window.DIVE_DATA = {
       "ct": 141,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 28
@@ -19590,7 +19316,6 @@ window.DIVE_DATA = {
       "ct": 142,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19603,7 +19328,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 27
@@ -19616,7 +19340,6 @@ window.DIVE_DATA = {
       "ct": 159,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 26
@@ -19629,7 +19352,6 @@ window.DIVE_DATA = {
       "ct": 160,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 26
@@ -19642,7 +19364,6 @@ window.DIVE_DATA = {
       "ct": 161,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 26
@@ -19655,7 +19376,6 @@ window.DIVE_DATA = {
       "ct": 161,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -19668,7 +19388,6 @@ window.DIVE_DATA = {
       "ct": 161,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -19681,7 +19400,6 @@ window.DIVE_DATA = {
       "ct": 161,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -19694,7 +19412,6 @@ window.DIVE_DATA = {
       "ct": 163,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -19707,7 +19424,6 @@ window.DIVE_DATA = {
       "ct": 165,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19720,7 +19436,6 @@ window.DIVE_DATA = {
       "ct": 166,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19733,7 +19448,6 @@ window.DIVE_DATA = {
       "ct": 169,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -19746,7 +19460,6 @@ window.DIVE_DATA = {
       "ct": 169,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 23
@@ -19792,16 +19505,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 0,
       "chatters": 0
      }
     ],
     "minutesPerViewer": 3.9,
     "holdRate": 96
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488682639726583808/",
+    "urn": "urn:li:ugcPost:7488682639726583808",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 0,
+     "chatters": 0,
+     "observedAt": "2026-07-31T14:20:05.914Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 2,
@@ -24319,6 +24056,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-08-07T14:20:33.439Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -24339,7 +24081,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=0tRHVW0qRt4",
     "yt:designertom": "https://youtube.com/watch?v=ziyWxt6qzfM",
     "x:ridd_design": "https://x.com/i/broadcasts/1vJpPPMgdDoJE",
-    "x:designertom": "https://x.com/i/broadcasts/1rGmqqBdNVkGy"
+    "x:designertom": "https://x.com/i/broadcasts/1rGmqqBdNVkGy",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491221759405338624/"
    },
    "transcript": true,
    "ageDays": 36.8,
@@ -24367,7 +24110,6 @@ window.DIVE_DATA = {
       "ct": 2,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 1,
        "X @designertom": null,
        "YT DesignerTom": 2
@@ -24380,7 +24122,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 9,
        "X @designertom": null,
        "YT DesignerTom": 5
@@ -24393,7 +24134,6 @@ window.DIVE_DATA = {
       "ct": 10,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 12,
        "X @designertom": null,
        "YT DesignerTom": 6
@@ -24406,7 +24146,6 @@ window.DIVE_DATA = {
       "ct": 14,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 14,
        "X @designertom": null,
        "YT DesignerTom": 7
@@ -24419,7 +24158,6 @@ window.DIVE_DATA = {
       "ct": 17,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": null,
        "YT DesignerTom": 10
@@ -24432,7 +24170,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -24445,7 +24182,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -24458,7 +24194,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -24471,7 +24206,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24484,7 +24218,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -24497,7 +24230,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24510,7 +24242,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -24523,7 +24254,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24536,7 +24266,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24549,7 +24278,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24562,7 +24290,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -24575,7 +24302,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24588,7 +24314,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -24601,7 +24326,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24614,7 +24338,6 @@ window.DIVE_DATA = {
       "ct": 28,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -24627,7 +24350,6 @@ window.DIVE_DATA = {
       "ct": 28,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24640,7 +24362,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -24653,7 +24374,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24666,7 +24386,6 @@ window.DIVE_DATA = {
       "ct": 31,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24679,7 +24398,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24692,7 +24410,6 @@ window.DIVE_DATA = {
       "ct": 33,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24705,7 +24422,6 @@ window.DIVE_DATA = {
       "ct": 33,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24718,7 +24434,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24731,7 +24446,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -24744,7 +24458,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24757,7 +24470,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -24770,7 +24482,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -24783,7 +24494,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 11
@@ -24796,7 +24506,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -24809,7 +24518,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -24822,7 +24530,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 9
@@ -24835,7 +24542,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -24848,7 +24554,6 @@ window.DIVE_DATA = {
       "ct": 43,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -24861,7 +24566,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24874,7 +24578,6 @@ window.DIVE_DATA = {
       "ct": 45,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24887,7 +24590,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24900,7 +24602,6 @@ window.DIVE_DATA = {
       "ct": 48,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24913,7 +24614,6 @@ window.DIVE_DATA = {
       "ct": 50,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -24926,7 +24626,6 @@ window.DIVE_DATA = {
       "ct": 53,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -24939,7 +24638,6 @@ window.DIVE_DATA = {
       "ct": 57,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24952,7 +24650,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24965,7 +24662,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -24978,7 +24674,6 @@ window.DIVE_DATA = {
       "ct": 59,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -24991,7 +24686,6 @@ window.DIVE_DATA = {
       "ct": 60,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -25004,7 +24698,6 @@ window.DIVE_DATA = {
       "ct": 61,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25017,7 +24710,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -25030,7 +24722,6 @@ window.DIVE_DATA = {
       "ct": 67,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25043,7 +24734,6 @@ window.DIVE_DATA = {
       "ct": 68,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -25056,7 +24746,6 @@ window.DIVE_DATA = {
       "ct": 72,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -25069,7 +24758,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -25082,7 +24770,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -25095,7 +24782,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -25108,7 +24794,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25121,7 +24806,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -25134,7 +24818,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -25147,7 +24830,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -25160,7 +24842,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25173,7 +24854,6 @@ window.DIVE_DATA = {
       "ct": 89,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25186,7 +24866,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -25199,7 +24878,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -25212,7 +24890,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -25225,7 +24902,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 12
@@ -25238,7 +24914,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 13
@@ -25251,7 +24926,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -25264,7 +24938,6 @@ window.DIVE_DATA = {
       "ct": 99,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 14
@@ -25277,7 +24950,6 @@ window.DIVE_DATA = {
       "ct": 99,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -25290,7 +24962,6 @@ window.DIVE_DATA = {
       "ct": 99,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25303,7 +24974,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25316,7 +24986,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -25329,7 +24998,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25342,7 +25010,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25355,7 +25022,6 @@ window.DIVE_DATA = {
       "ct": 103,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25368,7 +25034,6 @@ window.DIVE_DATA = {
       "ct": 104,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -25381,7 +25046,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25394,7 +25058,6 @@ window.DIVE_DATA = {
       "ct": 108,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25407,7 +25070,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25420,7 +25082,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25433,7 +25094,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25446,7 +25106,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25459,7 +25118,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25472,7 +25130,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25485,7 +25142,6 @@ window.DIVE_DATA = {
       "ct": 124,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25498,7 +25154,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25511,7 +25166,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -25524,7 +25178,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25537,7 +25190,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25550,7 +25202,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -25563,7 +25214,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25576,7 +25226,6 @@ window.DIVE_DATA = {
       "ct": 132,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 15
@@ -25589,7 +25238,6 @@ window.DIVE_DATA = {
       "ct": 133,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 16
@@ -25602,7 +25250,6 @@ window.DIVE_DATA = {
       "ct": 134,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 17
@@ -25615,7 +25262,6 @@ window.DIVE_DATA = {
       "ct": 135,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25628,7 +25274,6 @@ window.DIVE_DATA = {
       "ct": 135,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25641,7 +25286,6 @@ window.DIVE_DATA = {
       "ct": 136,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -25654,7 +25298,6 @@ window.DIVE_DATA = {
       "ct": 139,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -25667,7 +25310,6 @@ window.DIVE_DATA = {
       "ct": 139,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -25680,7 +25322,6 @@ window.DIVE_DATA = {
       "ct": 142,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -25693,7 +25334,6 @@ window.DIVE_DATA = {
       "ct": 143,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -25706,7 +25346,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -25719,7 +25358,6 @@ window.DIVE_DATA = {
       "ct": 147,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -25732,7 +25370,6 @@ window.DIVE_DATA = {
       "ct": 147,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 25
@@ -25745,7 +25382,6 @@ window.DIVE_DATA = {
       "ct": 149,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 24
@@ -25758,7 +25394,6 @@ window.DIVE_DATA = {
       "ct": 154,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": null,
        "YT DesignerTom": 23
@@ -25771,7 +25406,6 @@ window.DIVE_DATA = {
       "ct": 155,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 22
@@ -25784,7 +25418,6 @@ window.DIVE_DATA = {
       "ct": 156,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -25797,7 +25430,6 @@ window.DIVE_DATA = {
       "ct": 158,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": null,
        "YT DesignerTom": 21
@@ -25810,7 +25442,6 @@ window.DIVE_DATA = {
       "ct": 160,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -25823,7 +25454,6 @@ window.DIVE_DATA = {
       "ct": 163,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 20
@@ -25836,7 +25466,6 @@ window.DIVE_DATA = {
       "ct": 163,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25849,7 +25478,6 @@ window.DIVE_DATA = {
       "ct": 164,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 19
@@ -25862,7 +25490,6 @@ window.DIVE_DATA = {
       "ct": 165,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25875,7 +25502,6 @@ window.DIVE_DATA = {
       "ct": 165,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25888,7 +25514,6 @@ window.DIVE_DATA = {
       "ct": 165,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25901,7 +25526,6 @@ window.DIVE_DATA = {
       "ct": 165,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25914,7 +25538,6 @@ window.DIVE_DATA = {
       "ct": 165,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25927,7 +25550,6 @@ window.DIVE_DATA = {
       "ct": 167,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25940,7 +25562,6 @@ window.DIVE_DATA = {
       "ct": 167,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25953,7 +25574,6 @@ window.DIVE_DATA = {
       "ct": 167,
       "byChan": {
        "X @ridd_design": null,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": null,
        "YT DesignerTom": 18
@@ -25966,7 +25586,6 @@ window.DIVE_DATA = {
       "ct": 167,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 26,
        "X @designertom": 0,
        "YT DesignerTom": 18
@@ -26012,16 +25631,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 4,
       "chatters": 4
      }
     ],
     "minutesPerViewer": 5,
     "holdRate": 76.7
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491221759405338624/",
+    "urn": "urn:li:ugcPost:7491221759405338624",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 4,
+     "chatters": 4,
+     "observedAt": "2026-08-07T14:20:33.439Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 7,
@@ -30548,6 +30191,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-08-14T14:20:05.860Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -30568,7 +30216,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=njOU7GKZcvc",
     "yt:designertom": "https://youtube.com/watch?v=G2_F3dd3RkA",
     "x:ridd_design": "https://x.com/i/broadcasts/1pKdRDDymlnJW",
-    "x:designertom": "https://x.com/i/broadcasts/1AxRnZZeVNzxl"
+    "x:designertom": "https://x.com/i/broadcasts/1AxRnZZeVNzxl",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7493743714008485888/"
    },
    "transcript": true,
    "ageDays": 29.8,
@@ -30596,7 +30245,6 @@ window.DIVE_DATA = {
       "ct": 1,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 3,
        "X @designertom": 1,
        "YT DesignerTom": 3
@@ -30609,7 +30257,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 5,
        "X @designertom": 0,
        "YT DesignerTom": 3
@@ -30622,7 +30269,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 8,
        "X @designertom": 1,
        "YT DesignerTom": 8
@@ -30635,7 +30281,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 9,
        "X @designertom": 0,
        "YT DesignerTom": 8
@@ -30648,7 +30293,6 @@ window.DIVE_DATA = {
       "ct": 8,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 15,
        "X @designertom": 1,
        "YT DesignerTom": 8
@@ -30661,7 +30305,6 @@ window.DIVE_DATA = {
       "ct": 10,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 15,
        "X @designertom": 1,
        "YT DesignerTom": 10
@@ -30674,7 +30317,6 @@ window.DIVE_DATA = {
       "ct": 14,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 1,
        "YT DesignerTom": 12
@@ -30687,7 +30329,6 @@ window.DIVE_DATA = {
       "ct": 23,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 1,
        "YT DesignerTom": 12
@@ -30700,7 +30341,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 3,
        "YT DesignerTom": 12
@@ -30713,7 +30353,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 3,
        "YT DesignerTom": 12
@@ -30726,7 +30365,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -30739,7 +30377,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -30752,7 +30389,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 15,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -30765,7 +30401,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -30778,7 +30413,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -30791,7 +30425,6 @@ window.DIVE_DATA = {
       "ct": 28,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 3,
        "YT DesignerTom": 14
@@ -30804,7 +30437,6 @@ window.DIVE_DATA = {
       "ct": 29,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -30817,7 +30449,6 @@ window.DIVE_DATA = {
       "ct": 31,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -30830,7 +30461,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 2,
        "YT DesignerTom": 14
@@ -30843,7 +30473,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 4,
        "YT DesignerTom": 15
@@ -30856,7 +30485,6 @@ window.DIVE_DATA = {
       "ct": 33,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -30869,7 +30497,6 @@ window.DIVE_DATA = {
       "ct": 33,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 3,
        "YT DesignerTom": 15
@@ -30882,7 +30509,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 3,
        "YT DesignerTom": 15
@@ -30895,7 +30521,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 4,
        "YT DesignerTom": 17
@@ -30908,7 +30533,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 4,
        "YT DesignerTom": 17
@@ -30921,7 +30545,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 5,
        "YT DesignerTom": 14
@@ -30934,7 +30557,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 3,
        "YT DesignerTom": 14
@@ -30947,7 +30569,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 3,
        "YT DesignerTom": 18
@@ -30960,7 +30581,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 17
@@ -30973,7 +30593,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 5,
        "YT DesignerTom": 17
@@ -30986,7 +30605,6 @@ window.DIVE_DATA = {
       "ct": 48,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 4,
        "YT DesignerTom": 18
@@ -30999,7 +30617,6 @@ window.DIVE_DATA = {
       "ct": 49,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 5,
        "YT DesignerTom": 16
@@ -31012,7 +30629,6 @@ window.DIVE_DATA = {
       "ct": 50,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -31025,7 +30641,6 @@ window.DIVE_DATA = {
       "ct": 51,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 5,
        "YT DesignerTom": 16
@@ -31038,7 +30653,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 6,
        "YT DesignerTom": 17
@@ -31051,7 +30665,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -31064,7 +30677,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -31077,7 +30689,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 5,
        "YT DesignerTom": 19
@@ -31090,7 +30701,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 6,
        "YT DesignerTom": 15
@@ -31103,7 +30713,6 @@ window.DIVE_DATA = {
       "ct": 60,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 9,
        "YT DesignerTom": 16
@@ -31116,7 +30725,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 7,
        "YT DesignerTom": 16
@@ -31129,7 +30737,6 @@ window.DIVE_DATA = {
       "ct": 63,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 7,
        "YT DesignerTom": 19
@@ -31142,7 +30749,6 @@ window.DIVE_DATA = {
       "ct": 63,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 18
@@ -31155,7 +30761,6 @@ window.DIVE_DATA = {
       "ct": 63,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 7,
        "YT DesignerTom": 16
@@ -31168,7 +30773,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 9,
        "YT DesignerTom": 14
@@ -31181,7 +30785,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 8,
        "YT DesignerTom": 16
@@ -31194,7 +30797,6 @@ window.DIVE_DATA = {
       "ct": 68,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 6,
        "YT DesignerTom": 14
@@ -31207,7 +30809,6 @@ window.DIVE_DATA = {
       "ct": 69,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -31220,7 +30821,6 @@ window.DIVE_DATA = {
       "ct": 71,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -31233,7 +30833,6 @@ window.DIVE_DATA = {
       "ct": 72,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 7,
        "YT DesignerTom": 15
@@ -31246,7 +30845,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 7,
        "YT DesignerTom": 15
@@ -31259,7 +30857,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 6,
        "YT DesignerTom": 15
@@ -31272,7 +30869,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 7,
        "YT DesignerTom": 17
@@ -31285,7 +30881,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 6,
        "YT DesignerTom": 19
@@ -31298,7 +30893,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 6,
        "YT DesignerTom": 17
@@ -31311,7 +30905,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -31324,7 +30917,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -31337,7 +30929,6 @@ window.DIVE_DATA = {
       "ct": 75,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 6,
        "YT DesignerTom": 14
@@ -31350,7 +30941,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 6,
        "YT DesignerTom": 15
@@ -31363,7 +30953,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 6,
        "YT DesignerTom": 11
@@ -31376,7 +30965,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 13
@@ -31389,7 +30977,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 13
@@ -31402,7 +30989,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 14
@@ -31415,7 +31001,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 14
@@ -31428,7 +31013,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 15
@@ -31441,7 +31025,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -31454,7 +31037,6 @@ window.DIVE_DATA = {
       "ct": 77,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 5,
        "YT DesignerTom": 15
@@ -31467,7 +31049,6 @@ window.DIVE_DATA = {
       "ct": 78,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 5,
        "YT DesignerTom": 15
@@ -31480,7 +31061,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 5,
        "YT DesignerTom": 15
@@ -31493,7 +31073,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 4,
        "YT DesignerTom": 15
@@ -31506,7 +31085,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 4,
        "YT DesignerTom": 15
@@ -31519,7 +31097,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 4,
        "YT DesignerTom": 15
@@ -31532,7 +31109,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 3,
        "YT DesignerTom": 15
@@ -31545,7 +31121,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 3,
        "YT DesignerTom": 16
@@ -31558,7 +31133,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 3,
        "YT DesignerTom": 16
@@ -31571,7 +31145,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31584,7 +31157,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31597,7 +31169,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 3,
        "YT DesignerTom": 18
@@ -31610,7 +31181,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31623,7 +31193,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31636,7 +31205,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31649,7 +31217,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31662,7 +31229,6 @@ window.DIVE_DATA = {
       "ct": 83,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -31675,7 +31241,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 2,
        "YT DesignerTom": 16
@@ -31688,7 +31253,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 2,
        "YT DesignerTom": 16
@@ -31701,7 +31265,6 @@ window.DIVE_DATA = {
       "ct": 85,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 2,
        "YT DesignerTom": 15
@@ -31714,7 +31277,6 @@ window.DIVE_DATA = {
       "ct": 89,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 2,
        "YT DesignerTom": 15
@@ -31727,7 +31289,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 2,
        "YT DesignerTom": 14
@@ -31740,7 +31301,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 2,
        "YT DesignerTom": 14
@@ -31753,7 +31313,6 @@ window.DIVE_DATA = {
       "ct": 95,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -31766,7 +31325,6 @@ window.DIVE_DATA = {
       "ct": 95,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -31779,7 +31337,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -31792,7 +31349,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 2,
        "YT DesignerTom": 11
@@ -31805,7 +31361,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 2,
        "YT DesignerTom": 11
@@ -31818,7 +31373,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": 0,
        "YT Dive Club": 16,
        "X @designertom": 2,
        "YT DesignerTom": 11
@@ -31864,16 +31418,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 2,
       "chatters": 2
      }
     ],
     "minutesPerViewer": 8.8,
     "holdRate": 63
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7493743714008485888/",
+    "urn": "urn:li:ugcPost:7493743714008485888",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 2,
+     "chatters": 2,
+     "observedAt": "2026-08-14T14:20:05.860Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 5,
@@ -32183,9 +31761,11 @@ window.DIVE_DATA = {
      }
     },
     "notices": [
+     "X threads: the last capture is over a day old. Showing saved feedback.",
+     "Live chat: the last capture is over a day old. Showing saved feedback.",
      "Some comments are awaiting review."
     ],
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "ep": 5,
@@ -36754,6 +36334,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-08-21T14:20:35.271Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -36774,7 +36359,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=RhemcDEc_-A",
     "yt:designertom": "https://youtube.com/watch?v=eLA79C1jq1g",
     "x:ridd_design": "https://x.com/i/broadcasts/1DGleVBNBVjJL",
-    "x:designertom": "https://x.com/i/broadcasts/1aKbdEoAoEBJX"
+    "x:designertom": "https://x.com/i/broadcasts/1aKbdEoAoEBJX",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/"
    },
    "transcript": true,
    "ageDays": 22.8,
@@ -36802,7 +36388,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 8,
        "X @designertom": 0,
        "YT DesignerTom": 2
@@ -36815,7 +36400,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 12,
        "X @designertom": 1,
        "YT DesignerTom": 5
@@ -36828,7 +36412,6 @@ window.DIVE_DATA = {
       "ct": 6,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 13,
        "X @designertom": 1,
        "YT DesignerTom": 5
@@ -36841,7 +36424,6 @@ window.DIVE_DATA = {
       "ct": 6,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 0,
        "YT DesignerTom": 7
@@ -36854,7 +36436,6 @@ window.DIVE_DATA = {
       "ct": 9,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 17,
        "X @designertom": 1,
        "YT DesignerTom": 10
@@ -36867,7 +36448,6 @@ window.DIVE_DATA = {
       "ct": 10,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 0,
        "YT DesignerTom": 9
@@ -36880,7 +36460,6 @@ window.DIVE_DATA = {
       "ct": 10,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 0,
        "YT DesignerTom": 10
@@ -36893,7 +36472,6 @@ window.DIVE_DATA = {
       "ct": 11,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 0,
        "YT DesignerTom": 7
@@ -36906,7 +36484,6 @@ window.DIVE_DATA = {
       "ct": 11,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 0,
        "YT DesignerTom": 8
@@ -36919,7 +36496,6 @@ window.DIVE_DATA = {
       "ct": 12,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 0,
        "YT DesignerTom": 8
@@ -36932,7 +36508,6 @@ window.DIVE_DATA = {
       "ct": 16,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 1,
        "YT DesignerTom": 9
@@ -36945,7 +36520,6 @@ window.DIVE_DATA = {
       "ct": 19,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 4,
        "YT DesignerTom": 10
@@ -36958,7 +36532,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 3,
        "YT DesignerTom": 11
@@ -36971,7 +36544,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 3,
        "YT DesignerTom": 10
@@ -36984,7 +36556,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -36997,7 +36568,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 1,
        "YT DesignerTom": 11
@@ -37010,7 +36580,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 1,
        "YT DesignerTom": 12
@@ -37023,7 +36592,6 @@ window.DIVE_DATA = {
       "ct": 29,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -37036,7 +36604,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 3,
        "YT DesignerTom": 13
@@ -37049,7 +36616,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -37062,7 +36628,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -37075,7 +36640,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": 1,
        "YT DesignerTom": 12
@@ -37088,7 +36652,6 @@ window.DIVE_DATA = {
       "ct": 31,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -37101,7 +36664,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": 1,
        "YT DesignerTom": 15
@@ -37114,7 +36676,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": 2,
        "YT DesignerTom": 18
@@ -37127,7 +36688,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": 1,
        "YT DesignerTom": 17
@@ -37140,7 +36700,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 3,
        "YT DesignerTom": 17
@@ -37153,7 +36712,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 5,
        "YT DesignerTom": 16
@@ -37166,7 +36724,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": 1,
        "YT DesignerTom": 18
@@ -37179,7 +36736,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": 3,
        "YT DesignerTom": 15
@@ -37192,7 +36748,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 5,
        "YT DesignerTom": 13
@@ -37205,7 +36760,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 2,
        "YT DesignerTom": 13
@@ -37218,7 +36772,6 @@ window.DIVE_DATA = {
       "ct": 37,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": 2,
        "YT DesignerTom": 14
@@ -37231,7 +36784,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": 2,
        "YT DesignerTom": 16
@@ -37244,7 +36796,6 @@ window.DIVE_DATA = {
       "ct": 39,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": 2,
        "YT DesignerTom": 15
@@ -37257,7 +36808,6 @@ window.DIVE_DATA = {
       "ct": 40,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": 2,
        "YT DesignerTom": 16
@@ -37270,7 +36820,6 @@ window.DIVE_DATA = {
       "ct": 40,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -37283,7 +36832,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 1,
        "YT DesignerTom": 16
@@ -37296,7 +36844,6 @@ window.DIVE_DATA = {
       "ct": 43,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": 1,
        "YT DesignerTom": 19
@@ -37309,7 +36856,6 @@ window.DIVE_DATA = {
       "ct": 43,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 3,
        "YT DesignerTom": 21
@@ -37322,7 +36868,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 3,
        "YT DesignerTom": 21
@@ -37335,7 +36880,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 4,
        "YT DesignerTom": 18
@@ -37348,7 +36892,6 @@ window.DIVE_DATA = {
       "ct": 49,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": 4,
        "YT DesignerTom": 20
@@ -37361,7 +36904,6 @@ window.DIVE_DATA = {
       "ct": 49,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 3,
        "YT DesignerTom": 19
@@ -37374,7 +36916,6 @@ window.DIVE_DATA = {
       "ct": 50,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": 2,
        "YT DesignerTom": 19
@@ -37387,7 +36928,6 @@ window.DIVE_DATA = {
       "ct": 51,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": 2,
        "YT DesignerTom": 16
@@ -37400,7 +36940,6 @@ window.DIVE_DATA = {
       "ct": 53,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 2,
        "YT DesignerTom": 18
@@ -37413,7 +36952,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": 4,
        "YT DesignerTom": 15
@@ -37426,7 +36964,6 @@ window.DIVE_DATA = {
       "ct": 55,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 4,
        "YT DesignerTom": 9
@@ -37439,7 +36976,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 37,
        "X @designertom": 3,
        "YT DesignerTom": 10
@@ -37452,7 +36988,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 2,
        "YT DesignerTom": 17
@@ -37465,7 +37000,6 @@ window.DIVE_DATA = {
       "ct": 65,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": 2,
        "YT DesignerTom": 14
@@ -37478,7 +37012,6 @@ window.DIVE_DATA = {
       "ct": 65,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -37491,7 +37024,6 @@ window.DIVE_DATA = {
       "ct": 66,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 3,
        "YT DesignerTom": 16
@@ -37504,7 +37036,6 @@ window.DIVE_DATA = {
       "ct": 67,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": 3,
        "YT DesignerTom": 16
@@ -37517,7 +37048,6 @@ window.DIVE_DATA = {
       "ct": 67,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": 3,
        "YT DesignerTom": 15
@@ -37530,7 +37060,6 @@ window.DIVE_DATA = {
       "ct": 68,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 39,
        "X @designertom": 3,
        "YT DesignerTom": 15
@@ -37543,7 +37072,6 @@ window.DIVE_DATA = {
       "ct": 71,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -37556,7 +37084,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 1,
        "YT DesignerTom": 10
@@ -37569,7 +37096,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 1,
        "YT DesignerTom": 9
@@ -37582,7 +37108,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 1,
        "YT DesignerTom": 9
@@ -37595,7 +37120,6 @@ window.DIVE_DATA = {
       "ct": 75,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 0,
        "YT DesignerTom": 9
@@ -37608,7 +37132,6 @@ window.DIVE_DATA = {
       "ct": 78,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 0,
        "YT DesignerTom": 10
@@ -37621,7 +37144,6 @@ window.DIVE_DATA = {
       "ct": 94,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 0,
        "YT DesignerTom": 11
@@ -37634,7 +37156,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 12
@@ -37647,7 +37168,6 @@ window.DIVE_DATA = {
       "ct": 101,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 13
@@ -37660,7 +37180,6 @@ window.DIVE_DATA = {
       "ct": 102,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 14
@@ -37673,7 +37192,6 @@ window.DIVE_DATA = {
       "ct": 103,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 13
@@ -37686,7 +37204,6 @@ window.DIVE_DATA = {
       "ct": 103,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -37699,7 +37216,6 @@ window.DIVE_DATA = {
       "ct": 103,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -37712,7 +37228,6 @@ window.DIVE_DATA = {
       "ct": 104,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -37725,7 +37240,6 @@ window.DIVE_DATA = {
       "ct": 104,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -37738,7 +37252,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 3,
        "YT DesignerTom": 12
@@ -37751,7 +37264,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -37764,7 +37276,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 1,
        "YT DesignerTom": 12
@@ -37777,7 +37288,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 1,
        "YT DesignerTom": 12
@@ -37790,7 +37300,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 12
@@ -37803,7 +37312,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 0,
        "YT DesignerTom": 12
@@ -37816,7 +37324,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 0,
        "YT DesignerTom": 11
@@ -37829,7 +37336,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 1,
        "YT DesignerTom": 11
@@ -37842,7 +37348,6 @@ window.DIVE_DATA = {
       "ct": 122,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 1,
        "YT DesignerTom": 11
@@ -37855,7 +37360,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 2,
        "YT DesignerTom": 10
@@ -37868,7 +37372,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 2,
        "YT DesignerTom": 10
@@ -37881,7 +37384,6 @@ window.DIVE_DATA = {
       "ct": 124,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 3,
        "YT DesignerTom": 10
@@ -37894,7 +37396,6 @@ window.DIVE_DATA = {
       "ct": 124,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 2,
        "YT DesignerTom": 11
@@ -37907,7 +37408,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 2,
        "YT DesignerTom": 12
@@ -37920,7 +37420,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -37933,7 +37432,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 1,
        "YT DesignerTom": 15
@@ -37946,7 +37444,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 1,
        "YT DesignerTom": 17
@@ -37959,7 +37456,6 @@ window.DIVE_DATA = {
       "ct": 126,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 1,
        "YT DesignerTom": 16
@@ -37972,7 +37468,6 @@ window.DIVE_DATA = {
       "ct": 126,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 1,
        "YT DesignerTom": 15
@@ -37985,7 +37480,6 @@ window.DIVE_DATA = {
       "ct": 126,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 1,
        "YT DesignerTom": 15
@@ -37998,7 +37492,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 1,
        "YT DesignerTom": 14
@@ -38011,7 +37504,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -38024,7 +37516,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -38037,7 +37528,6 @@ window.DIVE_DATA = {
       "ct": 127,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": 0,
        "YT Dive Club": 27,
        "X @designertom": 1,
        "YT DesignerTom": 13
@@ -38083,16 +37573,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 8,
       "chatters": 3
      }
     ],
     "minutesPerViewer": 10.2,
     "holdRate": 62.3
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/",
+    "urn": "urn:li:ugcPost:7496281015804575744",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 8,
+     "chatters": 3,
+     "observedAt": "2026-08-21T14:20:35.271Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 8,
@@ -38638,7 +38152,7 @@ window.DIVE_DATA = {
     "notices": [
      "Some comments are awaiting review."
     ],
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "ep": 6,
@@ -42418,6 +41932,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-08-28T13:50:35.785Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -42438,7 +41957,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=sC3Wvi1Whm4",
     "yt:designertom": "https://youtube.com/watch?v=qPAPUmg_qZE",
     "x:ridd_design": "https://x.com/ridd_design/status/2092646157709185177",
-    "x:designertom": "https://x.com/i/broadcasts/1RJZzBDprpwJB"
+    "x:designertom": "https://x.com/i/broadcasts/1RJZzBDprpwJB",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/"
    },
    "transcript": true,
    "ageDays": 15.8,
@@ -42466,7 +41986,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": 0,
        "YT Dive Club": 1,
        "X @designertom": 0,
        "YT DesignerTom": 2
@@ -42479,7 +41998,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 0,
-       "LinkedIn": null,
        "YT Dive Club": 3,
        "X @designertom": 0,
        "YT DesignerTom": 3
@@ -42492,7 +42010,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 7,
        "X @designertom": 1,
        "YT DesignerTom": 3
@@ -42505,7 +42022,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 9,
        "X @designertom": 1,
        "YT DesignerTom": 4
@@ -42518,7 +42034,6 @@ window.DIVE_DATA = {
       "ct": 0,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 9,
        "X @designertom": 3,
        "YT DesignerTom": 6
@@ -42531,7 +42046,6 @@ window.DIVE_DATA = {
       "ct": 1,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 10,
        "X @designertom": 7,
        "YT DesignerTom": 7
@@ -42544,7 +42058,6 @@ window.DIVE_DATA = {
       "ct": 2,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 11,
        "X @designertom": 5,
        "YT DesignerTom": 7
@@ -42557,7 +42070,6 @@ window.DIVE_DATA = {
       "ct": 5,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 14,
        "X @designertom": 7,
        "YT DesignerTom": 6
@@ -42570,7 +42082,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 15,
        "X @designertom": 2,
        "YT DesignerTom": 7
@@ -42583,7 +42094,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 4,
        "YT DesignerTom": 10
@@ -42596,7 +42106,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 5,
        "YT DesignerTom": 11
@@ -42609,7 +42118,6 @@ window.DIVE_DATA = {
       "ct": 9,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 5,
        "YT DesignerTom": 11
@@ -42622,7 +42130,6 @@ window.DIVE_DATA = {
       "ct": 9,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 13
@@ -42635,7 +42142,6 @@ window.DIVE_DATA = {
       "ct": 9,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 4,
        "YT DesignerTom": 12
@@ -42648,7 +42154,6 @@ window.DIVE_DATA = {
       "ct": 11,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 5,
        "YT DesignerTom": 12
@@ -42661,7 +42166,6 @@ window.DIVE_DATA = {
       "ct": 12,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 9,
        "YT DesignerTom": 13
@@ -42674,7 +42178,6 @@ window.DIVE_DATA = {
       "ct": 13,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -42687,7 +42190,6 @@ window.DIVE_DATA = {
       "ct": 13,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -42700,7 +42202,6 @@ window.DIVE_DATA = {
       "ct": 13,
       "byChan": {
        "X @ridd_design": 18,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 5,
        "YT DesignerTom": 15
@@ -42713,7 +42214,6 @@ window.DIVE_DATA = {
       "ct": 14,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 6,
        "YT DesignerTom": 14
@@ -42726,7 +42226,6 @@ window.DIVE_DATA = {
       "ct": 16,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -42739,7 +42238,6 @@ window.DIVE_DATA = {
       "ct": 16,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 8,
        "YT DesignerTom": 14
@@ -42752,7 +42250,6 @@ window.DIVE_DATA = {
       "ct": 17,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 7,
        "YT DesignerTom": 15
@@ -42765,7 +42262,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 6,
        "YT DesignerTom": 15
@@ -42778,7 +42274,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 22,
        "X @designertom": 5,
        "YT DesignerTom": 15
@@ -42791,7 +42286,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 11,
        "YT DesignerTom": 14
@@ -42804,7 +42298,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 7,
        "YT DesignerTom": 16
@@ -42817,7 +42310,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -42830,7 +42322,6 @@ window.DIVE_DATA = {
       "ct": 22,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 5,
        "YT DesignerTom": 14
@@ -42843,7 +42334,6 @@ window.DIVE_DATA = {
       "ct": 24,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 6,
        "YT DesignerTom": 14
@@ -42856,7 +42346,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 5,
        "YT DesignerTom": 14
@@ -42869,7 +42358,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 5,
        "YT DesignerTom": 13
@@ -42882,7 +42370,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 9,
        "YT DesignerTom": 16
@@ -42895,7 +42382,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -42908,7 +42394,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 7,
        "YT DesignerTom": 15
@@ -42921,7 +42406,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 7,
        "YT DesignerTom": 14
@@ -42934,7 +42418,6 @@ window.DIVE_DATA = {
       "ct": 29,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 7,
        "YT DesignerTom": 11
@@ -42947,7 +42430,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 9,
        "YT DesignerTom": 13
@@ -42960,7 +42442,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 8,
        "YT DesignerTom": 13
@@ -42973,7 +42454,6 @@ window.DIVE_DATA = {
       "ct": 33,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 8,
        "YT DesignerTom": 13
@@ -42986,7 +42466,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 7,
        "YT DesignerTom": 17
@@ -42999,7 +42478,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 7,
        "YT DesignerTom": 16
@@ -43012,7 +42490,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 7,
        "YT DesignerTom": 16
@@ -43025,7 +42502,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 10,
        "YT DesignerTom": 16
@@ -43038,7 +42514,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 8,
        "YT DesignerTom": 17
@@ -43051,7 +42526,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 8,
        "YT DesignerTom": 17
@@ -43064,7 +42538,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 8,
        "YT DesignerTom": 19
@@ -43077,7 +42550,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 7,
        "YT DesignerTom": 19
@@ -43090,7 +42562,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 9,
        "YT DesignerTom": 15
@@ -43103,7 +42574,6 @@ window.DIVE_DATA = {
       "ct": 40,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 8,
        "YT DesignerTom": 18
@@ -43116,7 +42586,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 10,
        "YT DesignerTom": 17
@@ -43129,7 +42598,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 11,
        "YT DesignerTom": 19
@@ -43142,7 +42610,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 9,
        "YT DesignerTom": 17
@@ -43155,7 +42622,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 9,
        "YT DesignerTom": 19
@@ -43168,7 +42634,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 8,
        "YT DesignerTom": 20
@@ -43181,7 +42646,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 8,
        "YT DesignerTom": 18
@@ -43194,7 +42658,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 10,
        "YT DesignerTom": 17
@@ -43207,7 +42670,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 10,
        "YT DesignerTom": 16
@@ -43220,7 +42682,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 11,
        "YT DesignerTom": 14
@@ -43233,7 +42694,6 @@ window.DIVE_DATA = {
       "ct": 43,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 11,
        "YT DesignerTom": 13
@@ -43246,7 +42706,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 10,
        "YT DesignerTom": 16
@@ -43259,7 +42718,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 9,
        "YT DesignerTom": 16
@@ -43272,7 +42730,6 @@ window.DIVE_DATA = {
       "ct": 45,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 8,
        "YT DesignerTom": 17
@@ -43285,7 +42742,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 8,
        "YT DesignerTom": 18
@@ -43298,7 +42754,6 @@ window.DIVE_DATA = {
       "ct": 48,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 7,
        "YT DesignerTom": 18
@@ -43311,7 +42766,6 @@ window.DIVE_DATA = {
       "ct": 48,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 6,
        "YT DesignerTom": 19
@@ -43324,7 +42778,6 @@ window.DIVE_DATA = {
       "ct": 50,
       "byChan": {
        "X @ridd_design": 3,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 6,
        "YT DesignerTom": 20
@@ -43337,7 +42790,6 @@ window.DIVE_DATA = {
       "ct": 51,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 6,
        "YT DesignerTom": 20
@@ -43350,7 +42802,6 @@ window.DIVE_DATA = {
       "ct": 51,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 7,
        "YT DesignerTom": 20
@@ -43363,7 +42814,6 @@ window.DIVE_DATA = {
       "ct": 51,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 8,
        "YT DesignerTom": 20
@@ -43376,7 +42826,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 8,
        "YT DesignerTom": 20
@@ -43389,7 +42838,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 9,
        "YT DesignerTom": 20
@@ -43402,7 +42850,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 10,
        "YT DesignerTom": 20
@@ -43415,7 +42862,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 10,
        "YT DesignerTom": 20
@@ -43428,7 +42874,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 10,
        "YT DesignerTom": 20
@@ -43441,7 +42886,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43454,7 +42898,6 @@ window.DIVE_DATA = {
       "ct": 53,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43467,7 +42910,6 @@ window.DIVE_DATA = {
       "ct": 54,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 22
@@ -43480,7 +42922,6 @@ window.DIVE_DATA = {
       "ct": 55,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43493,7 +42934,6 @@ window.DIVE_DATA = {
       "ct": 56,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43506,7 +42946,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43519,7 +42958,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43532,7 +42970,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 21
@@ -43545,7 +42982,6 @@ window.DIVE_DATA = {
       "ct": 59,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 21
@@ -43558,7 +42994,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 20
@@ -43571,7 +43006,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 19
@@ -43584,7 +43018,6 @@ window.DIVE_DATA = {
       "ct": 63,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 19
@@ -43597,7 +43030,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 18
@@ -43610,7 +43042,6 @@ window.DIVE_DATA = {
       "ct": 68,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 12,
        "YT DesignerTom": 18
@@ -43623,7 +43054,6 @@ window.DIVE_DATA = {
       "ct": 69,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 17
@@ -43636,7 +43066,6 @@ window.DIVE_DATA = {
       "ct": 72,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 11,
        "YT DesignerTom": 16
@@ -43649,7 +43078,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 11,
        "YT DesignerTom": 16
@@ -43662,7 +43090,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 11,
        "YT DesignerTom": 15
@@ -43675,7 +43102,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 11,
        "YT DesignerTom": 14
@@ -43688,7 +43114,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 11,
        "YT DesignerTom": 14
@@ -43701,7 +43126,6 @@ window.DIVE_DATA = {
       "ct": 79,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 10,
        "YT DesignerTom": 14
@@ -43714,7 +43138,6 @@ window.DIVE_DATA = {
       "ct": 79,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 10,
        "YT DesignerTom": 15
@@ -43727,7 +43150,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 10,
        "YT DesignerTom": 15
@@ -43740,7 +43162,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 9,
        "YT DesignerTom": 16
@@ -43753,7 +43174,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 9,
        "YT DesignerTom": 16
@@ -43766,7 +43186,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 9,
        "YT DesignerTom": 17
@@ -43779,7 +43198,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 8,
        "YT DesignerTom": 16
@@ -43792,7 +43210,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 8,
        "YT DesignerTom": 16
@@ -43805,7 +43222,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43818,7 +43234,6 @@ window.DIVE_DATA = {
       "ct": 81,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43831,7 +43246,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43844,7 +43258,6 @@ window.DIVE_DATA = {
       "ct": 84,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43857,7 +43270,6 @@ window.DIVE_DATA = {
       "ct": 85,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43870,7 +43282,6 @@ window.DIVE_DATA = {
       "ct": 88,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43883,7 +43294,6 @@ window.DIVE_DATA = {
       "ct": 90,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43896,7 +43306,6 @@ window.DIVE_DATA = {
       "ct": 92,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": 0,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -43942,16 +43351,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 3,
       "chatters": 1
      }
     ],
     "minutesPerViewer": 8.3,
     "holdRate": 74.9
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/",
+    "urn": "urn:li:ugcPost:7498782244623405056",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 3,
+     "chatters": 1,
+     "observedAt": "2026-08-28T13:50:35.785Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 8,
@@ -44233,7 +43666,7 @@ window.DIVE_DATA = {
     "notices": [
      "Some comments are awaiting review."
     ],
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "pending": true,
@@ -45699,6 +45132,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-09-04T03:39:40.842Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -45719,7 +45157,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=Vh8ogFIE8CA",
     "yt:designertom": "https://youtube.com/watch?v=lnAecYrKYos",
     "x:ridd_design": "https://x.com/i/broadcasts/1AKEmvbREYaKL",
-    "x:designertom": "https://x.com/i/broadcasts/1AxRnZzVQkDxl"
+    "x:designertom": "https://x.com/i/broadcasts/1AxRnZzVQkDxl",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7501031584624717824/"
    },
    "transcript": true,
    "ageDays": 8.8,
@@ -45835,7 +45274,6 @@ window.DIVE_DATA = {
       "ct": 3,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 4,
        "X @designertom": 1,
        "YT DesignerTom": 4
@@ -45848,7 +45286,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 6,
        "X @designertom": 6,
        "YT DesignerTom": 7
@@ -45861,7 +45298,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 12,
        "X @designertom": 6,
        "YT DesignerTom": 11
@@ -45874,7 +45310,6 @@ window.DIVE_DATA = {
       "ct": 6,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 14,
        "X @designertom": 8,
        "YT DesignerTom": 12
@@ -45887,7 +45322,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 16,
        "X @designertom": 8,
        "YT DesignerTom": 15
@@ -45900,7 +45334,6 @@ window.DIVE_DATA = {
       "ct": 8,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 6,
        "YT DesignerTom": 19
@@ -45913,7 +45346,6 @@ window.DIVE_DATA = {
       "ct": 12,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 18,
        "X @designertom": 8,
        "YT DesignerTom": 19
@@ -45926,7 +45358,6 @@ window.DIVE_DATA = {
       "ct": 14,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 6,
        "YT DesignerTom": 21
@@ -45939,7 +45370,6 @@ window.DIVE_DATA = {
       "ct": 15,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 19,
        "X @designertom": 11,
        "YT DesignerTom": 20
@@ -45952,7 +45382,6 @@ window.DIVE_DATA = {
       "ct": 18,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 20,
        "X @designertom": 11,
        "YT DesignerTom": 24
@@ -45965,7 +45394,6 @@ window.DIVE_DATA = {
       "ct": 19,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 15,
        "YT DesignerTom": 25
@@ -45978,7 +45406,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 12,
        "YT DesignerTom": 22
@@ -45991,7 +45418,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 14,
        "YT DesignerTom": 23
@@ -46004,7 +45430,6 @@ window.DIVE_DATA = {
       "ct": 20,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 15,
        "YT DesignerTom": 23
@@ -46017,7 +45442,6 @@ window.DIVE_DATA = {
       "ct": 22,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 17,
        "YT DesignerTom": 24
@@ -46030,7 +45454,6 @@ window.DIVE_DATA = {
       "ct": 22,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 11,
        "YT DesignerTom": 26
@@ -46043,7 +45466,6 @@ window.DIVE_DATA = {
       "ct": 22,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 13,
        "YT DesignerTom": 26
@@ -46056,7 +45478,6 @@ window.DIVE_DATA = {
       "ct": 22,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 11,
        "YT DesignerTom": 28
@@ -46069,7 +45490,6 @@ window.DIVE_DATA = {
       "ct": 23,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 13,
        "YT DesignerTom": 29
@@ -46082,7 +45502,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 16,
        "YT DesignerTom": 31
@@ -46095,7 +45514,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 10,
        "YT DesignerTom": 31
@@ -46108,7 +45526,6 @@ window.DIVE_DATA = {
       "ct": 26,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 12,
        "YT DesignerTom": 33
@@ -46121,7 +45538,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 15,
        "YT DesignerTom": 32
@@ -46134,7 +45550,6 @@ window.DIVE_DATA = {
       "ct": 29,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 18,
        "YT DesignerTom": 34
@@ -46147,7 +45562,6 @@ window.DIVE_DATA = {
       "ct": 30,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 19,
        "YT DesignerTom": 30
@@ -46160,7 +45574,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 21,
        "YT DesignerTom": 34
@@ -46173,7 +45586,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 21,
        "YT DesignerTom": 35
@@ -46186,7 +45598,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 15,
        "YT DesignerTom": 36
@@ -46199,7 +45610,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 9,
        "YT DesignerTom": 31
@@ -46212,7 +45622,6 @@ window.DIVE_DATA = {
       "ct": 36,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 8,
        "YT DesignerTom": 32
@@ -46225,7 +45634,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 11,
        "YT DesignerTom": 32
@@ -46238,7 +45646,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": 10,
        "YT DesignerTom": 36
@@ -46251,7 +45658,6 @@ window.DIVE_DATA = {
       "ct": 40,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 11,
        "YT DesignerTom": 31
@@ -46264,7 +45670,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 12,
        "YT DesignerTom": 33
@@ -46277,7 +45682,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 12,
        "YT DesignerTom": 33
@@ -46290,7 +45694,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 10,
        "YT DesignerTom": 36
@@ -46303,7 +45706,6 @@ window.DIVE_DATA = {
       "ct": 41,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 14,
        "YT DesignerTom": 37
@@ -46316,7 +45718,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 16,
        "YT DesignerTom": 39
@@ -46329,7 +45730,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 10,
        "YT DesignerTom": 37
@@ -46342,7 +45742,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 8,
        "YT DesignerTom": 35
@@ -46355,7 +45754,6 @@ window.DIVE_DATA = {
       "ct": 45,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 10,
        "YT DesignerTom": 30
@@ -46368,7 +45766,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 9,
        "YT DesignerTom": 25
@@ -46381,7 +45778,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 8,
        "YT DesignerTom": 24
@@ -46394,7 +45790,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": 7,
        "YT DesignerTom": 27
@@ -46407,7 +45802,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 7,
        "YT DesignerTom": 27
@@ -46420,7 +45814,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 6,
        "YT DesignerTom": 29
@@ -46433,7 +45826,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 6,
        "YT DesignerTom": 29
@@ -46446,7 +45838,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 12,
        "YT DesignerTom": 30
@@ -46459,7 +45850,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 10,
        "YT DesignerTom": 30
@@ -46472,7 +45862,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": 10,
        "YT DesignerTom": 30
@@ -46485,7 +45874,6 @@ window.DIVE_DATA = {
       "ct": 47,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 8,
        "YT DesignerTom": 30
@@ -46498,7 +45886,6 @@ window.DIVE_DATA = {
       "ct": 53,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 10,
        "YT DesignerTom": 36
@@ -46511,7 +45898,6 @@ window.DIVE_DATA = {
       "ct": 56,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 33,
        "X @designertom": 8,
        "YT DesignerTom": 29
@@ -46524,7 +45910,6 @@ window.DIVE_DATA = {
       "ct": 58,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 9,
        "YT DesignerTom": 27
@@ -46537,7 +45922,6 @@ window.DIVE_DATA = {
       "ct": 61,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 11,
        "YT DesignerTom": 28
@@ -46550,7 +45934,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 9,
        "YT DesignerTom": 27
@@ -46563,7 +45946,6 @@ window.DIVE_DATA = {
       "ct": 62,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 10,
        "YT DesignerTom": 33
@@ -46576,7 +45958,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 13,
        "YT DesignerTom": 30
@@ -46589,7 +45970,6 @@ window.DIVE_DATA = {
       "ct": 64,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 10,
        "YT DesignerTom": 32
@@ -46602,7 +45982,6 @@ window.DIVE_DATA = {
       "ct": 67,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -46615,7 +45994,6 @@ window.DIVE_DATA = {
       "ct": 69,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 8,
        "YT DesignerTom": 30
@@ -46628,7 +46006,6 @@ window.DIVE_DATA = {
       "ct": 71,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 8,
        "YT DesignerTom": 28
@@ -46641,7 +46018,6 @@ window.DIVE_DATA = {
       "ct": 71,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 8,
        "YT DesignerTom": 26
@@ -46654,7 +46030,6 @@ window.DIVE_DATA = {
       "ct": 72,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 8,
        "YT DesignerTom": 24
@@ -46667,7 +46042,6 @@ window.DIVE_DATA = {
       "ct": 73,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 8,
        "YT DesignerTom": 22
@@ -46680,7 +46054,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 9,
        "YT DesignerTom": 21
@@ -46693,7 +46066,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 22
@@ -46706,7 +46078,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 8,
        "YT DesignerTom": 24
@@ -46719,7 +46090,6 @@ window.DIVE_DATA = {
       "ct": 74,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 7,
        "YT DesignerTom": 25
@@ -46732,7 +46102,6 @@ window.DIVE_DATA = {
       "ct": 76,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 7,
        "YT DesignerTom": 27
@@ -46745,7 +46114,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 6,
        "YT DesignerTom": 28
@@ -46758,7 +46126,6 @@ window.DIVE_DATA = {
       "ct": 80,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 30
@@ -46771,7 +46138,6 @@ window.DIVE_DATA = {
       "ct": 85,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 6,
        "YT DesignerTom": 28
@@ -46784,7 +46150,6 @@ window.DIVE_DATA = {
       "ct": 88,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 6,
        "YT DesignerTom": 27
@@ -46797,7 +46162,6 @@ window.DIVE_DATA = {
       "ct": 91,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 6,
        "YT DesignerTom": 26
@@ -46810,7 +46174,6 @@ window.DIVE_DATA = {
       "ct": 93,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -46823,7 +46186,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 6,
        "YT DesignerTom": 23
@@ -46836,7 +46198,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 6,
        "YT DesignerTom": 22
@@ -46849,7 +46210,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 5,
        "YT DesignerTom": 22
@@ -46862,7 +46222,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 5,
        "YT DesignerTom": 22
@@ -46875,7 +46234,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 5,
        "YT DesignerTom": 22
@@ -46888,7 +46246,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 5,
        "YT DesignerTom": 22
@@ -46901,7 +46258,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 5,
        "YT DesignerTom": 23
@@ -46914,7 +46270,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 5,
        "YT DesignerTom": 23
@@ -46927,7 +46282,6 @@ window.DIVE_DATA = {
       "ct": 97,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 6,
        "YT DesignerTom": 23
@@ -46940,7 +46294,6 @@ window.DIVE_DATA = {
       "ct": 98,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -46953,7 +46306,6 @@ window.DIVE_DATA = {
       "ct": 99,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 7,
        "YT DesignerTom": 24
@@ -46966,7 +46318,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 31,
        "X @designertom": 7,
        "YT DesignerTom": 24
@@ -46979,7 +46330,6 @@ window.DIVE_DATA = {
       "ct": 100,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 32,
        "X @designertom": 8,
        "YT DesignerTom": 25
@@ -46992,7 +46342,6 @@ window.DIVE_DATA = {
       "ct": 102,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 7,
        "YT DesignerTom": 25
@@ -47005,7 +46354,6 @@ window.DIVE_DATA = {
       "ct": 105,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 29,
        "X @designertom": 6,
        "YT DesignerTom": 25
@@ -47018,7 +46366,6 @@ window.DIVE_DATA = {
       "ct": 106,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 28,
        "X @designertom": 6,
        "YT DesignerTom": 26
@@ -47031,7 +46378,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 5,
        "YT DesignerTom": 26
@@ -47044,7 +46390,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 5,
        "YT DesignerTom": 27
@@ -47057,7 +46402,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 5,
        "YT DesignerTom": 25
@@ -47070,7 +46414,6 @@ window.DIVE_DATA = {
       "ct": 108,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 5,
        "YT DesignerTom": 24
@@ -47083,7 +46426,6 @@ window.DIVE_DATA = {
       "ct": 108,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 23
@@ -47096,7 +46438,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 21
@@ -47109,7 +46450,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 20
@@ -47122,7 +46462,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": 6,
-       "LinkedIn": null,
        "YT Dive Club": 27,
        "X @designertom": 7,
        "YT DesignerTom": 19
@@ -47135,7 +46474,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 19
@@ -47148,7 +46486,6 @@ window.DIVE_DATA = {
       "ct": 115,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 6,
        "YT DesignerTom": 20
@@ -47161,7 +46498,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 26,
        "X @designertom": 5,
        "YT DesignerTom": 21
@@ -47174,7 +46510,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 5,
        "YT DesignerTom": 22
@@ -47187,7 +46522,6 @@ window.DIVE_DATA = {
       "ct": 118,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 4,
        "YT DesignerTom": 23
@@ -47200,7 +46534,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 25,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47213,7 +46546,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47226,7 +46558,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47239,7 +46570,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47252,7 +46582,6 @@ window.DIVE_DATA = {
       "ct": 125,
       "byChan": {
        "X @ridd_design": 4,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47265,7 +46594,6 @@ window.DIVE_DATA = {
       "ct": 128,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47278,7 +46606,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47291,7 +46618,6 @@ window.DIVE_DATA = {
       "ct": 133,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47304,7 +46630,6 @@ window.DIVE_DATA = {
       "ct": 135,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": null,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47317,7 +46642,6 @@ window.DIVE_DATA = {
       "ct": 137,
       "byChan": {
        "X @ridd_design": 5,
-       "LinkedIn": 0,
        "YT Dive Club": 23,
        "X @designertom": 4,
        "YT DesignerTom": 24
@@ -47363,16 +46687,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 16,
       "chatters": 3
      }
     ],
     "minutesPerViewer": 9,
     "holdRate": 57.2
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7501031584624717824/",
+    "urn": "urn:li:ugcPost:7501031584624717824",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 16,
+     "chatters": 3,
+     "observedAt": "2026-09-04T03:39:40.842Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 11,
@@ -47865,7 +47213,7 @@ window.DIVE_DATA = {
     "notices": [
      "Some comments are awaiting review."
     ],
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "pending": true,
@@ -48736,6 +48084,11 @@ window.DIVE_DATA = {
      "checkedAt": "2026-09-11T14:01:49.338Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -48756,7 +48109,8 @@ window.DIVE_DATA = {
     "yt:joindiveclub": "https://youtube.com/watch?v=DUejFPtYll0",
     "yt:designertom": "https://youtube.com/watch?v=OZG115v6TTg",
     "x:ridd_design": "https://x.com/i/broadcasts/1dxYlagOpBMJX",
-    "x:designertom": "https://x.com/i/broadcasts/1dJrPreRalpKX"
+    "x:designertom": "https://x.com/i/broadcasts/1dJrPreRalpKX",
+    "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/"
    },
    "transcript": true,
    "ageDays": 1.8,
@@ -48824,7 +48178,6 @@ window.DIVE_DATA = {
       "ct": 1,
       "byChan": {
        "X @ridd_design": 2,
-       "LinkedIn": null,
        "YT Dive Club": 9,
        "X @designertom": 2,
        "YT DesignerTom": 7
@@ -48837,7 +48190,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": 7,
-       "LinkedIn": null,
        "YT Dive Club": 14,
        "X @designertom": 5,
        "YT DesignerTom": 13
@@ -48850,7 +48202,6 @@ window.DIVE_DATA = {
       "ct": 4,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 21,
        "X @designertom": 6,
        "YT DesignerTom": 16
@@ -48863,7 +48214,6 @@ window.DIVE_DATA = {
       "ct": 7,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 24,
        "X @designertom": 6,
        "YT DesignerTom": 21
@@ -48876,7 +48226,6 @@ window.DIVE_DATA = {
       "ct": 9,
       "byChan": {
        "X @ridd_design": 8,
-       "LinkedIn": null,
        "YT Dive Club": 30,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -48889,7 +48238,6 @@ window.DIVE_DATA = {
       "ct": 12,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 36,
        "X @designertom": 6,
        "YT DesignerTom": 28
@@ -48902,7 +48250,6 @@ window.DIVE_DATA = {
       "ct": 17,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 38,
        "X @designertom": 6,
        "YT DesignerTom": 27
@@ -48915,7 +48262,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 4,
        "YT DesignerTom": 30
@@ -48928,7 +48274,6 @@ window.DIVE_DATA = {
       "ct": 21,
       "byChan": {
        "X @ridd_design": 17,
-       "LinkedIn": null,
        "YT Dive Club": 34,
        "X @designertom": 5,
        "YT DesignerTom": 33
@@ -48941,7 +48286,6 @@ window.DIVE_DATA = {
       "ct": 22,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 35,
        "X @designertom": 1,
        "YT DesignerTom": 33
@@ -48954,7 +48298,6 @@ window.DIVE_DATA = {
       "ct": 25,
       "byChan": {
        "X @ridd_design": 20,
-       "LinkedIn": null,
        "YT Dive Club": 40,
        "X @designertom": 3,
        "YT DesignerTom": 33
@@ -48967,7 +48310,6 @@ window.DIVE_DATA = {
       "ct": 27,
       "byChan": {
        "X @ridd_design": 18,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": 2,
        "YT DesignerTom": 34
@@ -48980,7 +48322,6 @@ window.DIVE_DATA = {
       "ct": 31,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 44,
        "X @designertom": 1,
        "YT DesignerTom": 36
@@ -48993,7 +48334,6 @@ window.DIVE_DATA = {
       "ct": 32,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": 4,
        "YT DesignerTom": 41
@@ -49006,7 +48346,6 @@ window.DIVE_DATA = {
       "ct": 34,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": 3,
        "YT DesignerTom": 39
@@ -49019,7 +48358,6 @@ window.DIVE_DATA = {
       "ct": 35,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": 2,
        "YT DesignerTom": 37
@@ -49032,7 +48370,6 @@ window.DIVE_DATA = {
       "ct": 37,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": 1,
        "YT DesignerTom": 37
@@ -49045,7 +48382,6 @@ window.DIVE_DATA = {
       "ct": 38,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 52,
        "X @designertom": 2,
        "YT DesignerTom": 35
@@ -49058,7 +48394,6 @@ window.DIVE_DATA = {
       "ct": 40,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": 2,
        "YT DesignerTom": 37
@@ -49071,7 +48406,6 @@ window.DIVE_DATA = {
       "ct": 42,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": 4,
        "YT DesignerTom": 36
@@ -49084,7 +48418,6 @@ window.DIVE_DATA = {
       "ct": 44,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": 5,
        "YT DesignerTom": 40
@@ -49097,7 +48430,6 @@ window.DIVE_DATA = {
       "ct": 46,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": 4,
        "YT DesignerTom": 37
@@ -49110,7 +48442,6 @@ window.DIVE_DATA = {
       "ct": 49,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49123,7 +48454,6 @@ window.DIVE_DATA = {
       "ct": 50,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": 4,
        "YT DesignerTom": 39
@@ -49136,7 +48466,6 @@ window.DIVE_DATA = {
       "ct": 52,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 52,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -49149,7 +48478,6 @@ window.DIVE_DATA = {
       "ct": 57,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49162,7 +48490,6 @@ window.DIVE_DATA = {
       "ct": 70,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": 5,
        "YT DesignerTom": 36
@@ -49175,7 +48502,6 @@ window.DIVE_DATA = {
       "ct": 78,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": 6,
        "YT DesignerTom": 38
@@ -49188,7 +48514,6 @@ window.DIVE_DATA = {
       "ct": 91,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": 3,
        "YT DesignerTom": 35
@@ -49201,7 +48526,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": 4,
        "YT DesignerTom": 34
@@ -49214,7 +48538,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 4,
        "YT DesignerTom": 36
@@ -49227,7 +48550,6 @@ window.DIVE_DATA = {
       "ct": 96,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 3,
        "YT DesignerTom": 38
@@ -49240,7 +48562,6 @@ window.DIVE_DATA = {
       "ct": 98,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": 5,
        "YT DesignerTom": 37
@@ -49253,7 +48574,6 @@ window.DIVE_DATA = {
       "ct": 104,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": 3,
        "YT DesignerTom": 39
@@ -49266,7 +48586,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": 3,
        "YT DesignerTom": 39
@@ -49279,7 +48598,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": 5,
        "YT DesignerTom": 38
@@ -49292,7 +48610,6 @@ window.DIVE_DATA = {
       "ct": 107,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": 8,
        "YT DesignerTom": 43
@@ -49305,7 +48622,6 @@ window.DIVE_DATA = {
       "ct": 109,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": 5,
        "YT DesignerTom": 42
@@ -49318,7 +48634,6 @@ window.DIVE_DATA = {
       "ct": 110,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": 4,
        "YT DesignerTom": 41
@@ -49331,7 +48646,6 @@ window.DIVE_DATA = {
       "ct": 111,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": 3,
        "YT DesignerTom": 39
@@ -49344,7 +48658,6 @@ window.DIVE_DATA = {
       "ct": 112,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": 3,
        "YT DesignerTom": 37
@@ -49357,7 +48670,6 @@ window.DIVE_DATA = {
       "ct": 112,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 61,
        "X @designertom": 5,
        "YT DesignerTom": 38
@@ -49370,7 +48682,6 @@ window.DIVE_DATA = {
       "ct": 112,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49383,7 +48694,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": 4,
        "YT DesignerTom": 38
@@ -49396,7 +48706,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": 4,
        "YT DesignerTom": 38
@@ -49409,7 +48718,6 @@ window.DIVE_DATA = {
       "ct": 113,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": 5,
        "YT DesignerTom": 42
@@ -49422,7 +48730,6 @@ window.DIVE_DATA = {
       "ct": 114,
       "byChan": {
        "X @ridd_design": 9,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": 5,
        "YT DesignerTom": 43
@@ -49435,7 +48742,6 @@ window.DIVE_DATA = {
       "ct": 115,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": 3,
        "YT DesignerTom": 41
@@ -49448,7 +48754,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 70,
        "X @designertom": 5,
        "YT DesignerTom": 43
@@ -49461,7 +48766,6 @@ window.DIVE_DATA = {
       "ct": 119,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 70,
        "X @designertom": 7,
        "YT DesignerTom": 43
@@ -49474,7 +48778,6 @@ window.DIVE_DATA = {
       "ct": 120,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 42
@@ -49487,7 +48790,6 @@ window.DIVE_DATA = {
       "ct": 121,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 64,
        "X @designertom": 6,
        "YT DesignerTom": 43
@@ -49500,7 +48802,6 @@ window.DIVE_DATA = {
       "ct": 121,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 5,
        "YT DesignerTom": 42
@@ -49513,7 +48814,6 @@ window.DIVE_DATA = {
       "ct": 123,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 4,
        "YT DesignerTom": 41
@@ -49526,7 +48826,6 @@ window.DIVE_DATA = {
       "ct": 128,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": 4,
        "YT DesignerTom": 41
@@ -49539,7 +48838,6 @@ window.DIVE_DATA = {
       "ct": 129,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 65,
        "X @designertom": 5,
        "YT DesignerTom": 41
@@ -49552,7 +48850,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 66,
        "X @designertom": 6,
        "YT DesignerTom": 42
@@ -49565,7 +48862,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 66,
        "X @designertom": 6,
        "YT DesignerTom": 43
@@ -49578,7 +48874,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 6,
        "YT DesignerTom": 41
@@ -49591,7 +48886,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -49604,7 +48898,6 @@ window.DIVE_DATA = {
       "ct": 131,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 7,
        "YT DesignerTom": 42
@@ -49617,7 +48910,6 @@ window.DIVE_DATA = {
       "ct": 135,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 6,
        "YT DesignerTom": 41
@@ -49630,7 +48922,6 @@ window.DIVE_DATA = {
       "ct": 136,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 6,
        "YT DesignerTom": 40
@@ -49643,7 +48934,6 @@ window.DIVE_DATA = {
       "ct": 139,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 5,
        "YT DesignerTom": 40
@@ -49656,7 +48946,6 @@ window.DIVE_DATA = {
       "ct": 142,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 67,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49669,7 +48958,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49682,7 +48970,6 @@ window.DIVE_DATA = {
       "ct": 146,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 69,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49695,7 +48982,6 @@ window.DIVE_DATA = {
       "ct": 147,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 71,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49708,7 +48994,6 @@ window.DIVE_DATA = {
       "ct": 147,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 72,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49721,7 +49006,6 @@ window.DIVE_DATA = {
       "ct": 150,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 74,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49734,7 +49018,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 75,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49747,7 +49030,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 77,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49760,7 +49042,6 @@ window.DIVE_DATA = {
       "ct": 153,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 75,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49773,7 +49054,6 @@ window.DIVE_DATA = {
       "ct": 155,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 73,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49786,7 +49066,6 @@ window.DIVE_DATA = {
       "ct": 156,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 72,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49799,7 +49078,6 @@ window.DIVE_DATA = {
       "ct": 157,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 70,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49812,7 +49090,6 @@ window.DIVE_DATA = {
       "ct": 157,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 69,
        "X @designertom": 5,
        "YT DesignerTom": 40
@@ -49825,7 +49102,6 @@ window.DIVE_DATA = {
       "ct": 158,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 39
@@ -49838,7 +49114,6 @@ window.DIVE_DATA = {
       "ct": 158,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 38
@@ -49851,7 +49126,6 @@ window.DIVE_DATA = {
       "ct": 159,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 38
@@ -49864,7 +49138,6 @@ window.DIVE_DATA = {
       "ct": 159,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 37
@@ -49877,7 +49150,6 @@ window.DIVE_DATA = {
       "ct": 161,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 36
@@ -49890,7 +49162,6 @@ window.DIVE_DATA = {
       "ct": 162,
       "byChan": {
        "X @ridd_design": 17,
-       "LinkedIn": null,
        "YT Dive Club": 68,
        "X @designertom": 5,
        "YT DesignerTom": 36
@@ -49903,7 +49174,6 @@ window.DIVE_DATA = {
       "ct": 164,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 65,
        "X @designertom": 5,
        "YT DesignerTom": 36
@@ -49916,7 +49186,6 @@ window.DIVE_DATA = {
       "ct": 169,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 63,
        "X @designertom": 5,
        "YT DesignerTom": 37
@@ -49929,7 +49198,6 @@ window.DIVE_DATA = {
       "ct": 169,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": 6,
        "YT DesignerTom": 38
@@ -49942,7 +49210,6 @@ window.DIVE_DATA = {
       "ct": 170,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": 6,
        "YT DesignerTom": 38
@@ -49955,7 +49222,6 @@ window.DIVE_DATA = {
       "ct": 173,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": 6,
        "YT DesignerTom": 39
@@ -49968,7 +49234,6 @@ window.DIVE_DATA = {
       "ct": 175,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 53,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -49981,7 +49246,6 @@ window.DIVE_DATA = {
       "ct": 179,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -49994,7 +49258,6 @@ window.DIVE_DATA = {
       "ct": 179,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -50007,7 +49270,6 @@ window.DIVE_DATA = {
       "ct": 180,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -50020,7 +49282,6 @@ window.DIVE_DATA = {
       "ct": 181,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": 7,
        "YT DesignerTom": 40
@@ -50033,7 +49294,6 @@ window.DIVE_DATA = {
       "ct": 183,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 65,
        "X @designertom": 7,
        "YT DesignerTom": 41
@@ -50046,7 +49306,6 @@ window.DIVE_DATA = {
       "ct": 186,
       "byChan": {
        "X @ridd_design": 10,
-       "LinkedIn": null,
        "YT Dive Club": 64,
        "X @designertom": 7,
        "YT DesignerTom": 39
@@ -50059,7 +49318,6 @@ window.DIVE_DATA = {
       "ct": 189,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 63,
        "X @designertom": 7,
        "YT DesignerTom": 38
@@ -50072,7 +49330,6 @@ window.DIVE_DATA = {
       "ct": 191,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 63,
        "X @designertom": 7,
        "YT DesignerTom": 37
@@ -50085,7 +49342,6 @@ window.DIVE_DATA = {
       "ct": 193,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 62,
        "X @designertom": 7,
        "YT DesignerTom": 35
@@ -50098,7 +49354,6 @@ window.DIVE_DATA = {
       "ct": 194,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 61,
        "X @designertom": 7,
        "YT DesignerTom": 34
@@ -50111,7 +49366,6 @@ window.DIVE_DATA = {
       "ct": 197,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 61,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50124,7 +49378,6 @@ window.DIVE_DATA = {
       "ct": 201,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 60,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50137,7 +49390,6 @@ window.DIVE_DATA = {
       "ct": 202,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 59,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50150,7 +49402,6 @@ window.DIVE_DATA = {
       "ct": 203,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 58,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50163,7 +49414,6 @@ window.DIVE_DATA = {
       "ct": 203,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 57,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50176,7 +49426,6 @@ window.DIVE_DATA = {
       "ct": 204,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 56,
        "X @designertom": 9,
        "YT DesignerTom": 33
@@ -50189,7 +49438,6 @@ window.DIVE_DATA = {
       "ct": 204,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 55,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50202,7 +49450,6 @@ window.DIVE_DATA = {
       "ct": 206,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50215,7 +49462,6 @@ window.DIVE_DATA = {
       "ct": 207,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50228,7 +49474,6 @@ window.DIVE_DATA = {
       "ct": 214,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50241,7 +49486,6 @@ window.DIVE_DATA = {
       "ct": 215,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50254,7 +49498,6 @@ window.DIVE_DATA = {
       "ct": 218,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 35
@@ -50267,7 +49510,6 @@ window.DIVE_DATA = {
       "ct": 218,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50280,7 +49522,6 @@ window.DIVE_DATA = {
       "ct": 219,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50293,7 +49534,6 @@ window.DIVE_DATA = {
       "ct": 220,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50306,7 +49546,6 @@ window.DIVE_DATA = {
       "ct": 222,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50319,7 +49558,6 @@ window.DIVE_DATA = {
       "ct": 226,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50332,7 +49570,6 @@ window.DIVE_DATA = {
       "ct": 227,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50345,7 +49582,6 @@ window.DIVE_DATA = {
       "ct": 231,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 8,
        "YT DesignerTom": 34
@@ -50358,7 +49594,6 @@ window.DIVE_DATA = {
       "ct": 233,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 9,
        "YT DesignerTom": 34
@@ -50371,7 +49606,6 @@ window.DIVE_DATA = {
       "ct": 234,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 9,
        "YT DesignerTom": 34
@@ -50384,7 +49618,6 @@ window.DIVE_DATA = {
       "ct": 238,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 10,
        "YT DesignerTom": 34
@@ -50397,7 +49630,6 @@ window.DIVE_DATA = {
       "ct": 240,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 54,
        "X @designertom": 11,
        "YT DesignerTom": 35
@@ -50410,7 +49642,6 @@ window.DIVE_DATA = {
       "ct": 242,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 53,
        "X @designertom": 10,
        "YT DesignerTom": 34
@@ -50423,7 +49654,6 @@ window.DIVE_DATA = {
       "ct": 243,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 52,
        "X @designertom": 9,
        "YT DesignerTom": 34
@@ -50436,7 +49666,6 @@ window.DIVE_DATA = {
       "ct": 243,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": 9,
        "YT DesignerTom": 34
@@ -50449,7 +49678,6 @@ window.DIVE_DATA = {
       "ct": 243,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": 8,
        "YT DesignerTom": 33
@@ -50462,7 +49690,6 @@ window.DIVE_DATA = {
       "ct": 243,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": 7,
        "YT DesignerTom": 33
@@ -50475,7 +49702,6 @@ window.DIVE_DATA = {
       "ct": 243,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": 7,
        "YT DesignerTom": 33
@@ -50488,7 +49714,6 @@ window.DIVE_DATA = {
       "ct": 243,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": 7,
        "YT DesignerTom": 33
@@ -50501,7 +49726,6 @@ window.DIVE_DATA = {
       "ct": 245,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": 7,
        "YT DesignerTom": 34
@@ -50514,7 +49738,6 @@ window.DIVE_DATA = {
       "ct": 248,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": 7,
        "YT DesignerTom": 34
@@ -50527,7 +49750,6 @@ window.DIVE_DATA = {
       "ct": 249,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": 7,
        "YT DesignerTom": 35
@@ -50540,7 +49762,6 @@ window.DIVE_DATA = {
       "ct": 249,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": 7,
        "YT DesignerTom": 35
@@ -50553,7 +49774,6 @@ window.DIVE_DATA = {
       "ct": 249,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 51,
        "X @designertom": 8,
        "YT DesignerTom": 36
@@ -50566,7 +49786,6 @@ window.DIVE_DATA = {
       "ct": 249,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 50,
        "X @designertom": 7,
        "YT DesignerTom": 34
@@ -50579,7 +49798,6 @@ window.DIVE_DATA = {
       "ct": 250,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 49,
        "X @designertom": 7,
        "YT DesignerTom": 32
@@ -50592,7 +49810,6 @@ window.DIVE_DATA = {
       "ct": 250,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": 7,
        "YT DesignerTom": 31
@@ -50605,7 +49822,6 @@ window.DIVE_DATA = {
       "ct": 252,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": 7,
        "YT DesignerTom": 29
@@ -50618,7 +49834,6 @@ window.DIVE_DATA = {
       "ct": 254,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": 7,
        "YT DesignerTom": 28
@@ -50631,7 +49846,6 @@ window.DIVE_DATA = {
       "ct": 254,
       "byChan": {
        "X @ridd_design": 11,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": 6,
        "YT DesignerTom": 27
@@ -50644,7 +49858,6 @@ window.DIVE_DATA = {
       "ct": 254,
       "byChan": {
        "X @ridd_design": 12,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": 6,
        "YT DesignerTom": 26
@@ -50657,7 +49870,6 @@ window.DIVE_DATA = {
       "ct": 256,
       "byChan": {
        "X @ridd_design": 13,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": 6,
        "YT DesignerTom": 26
@@ -50670,7 +49882,6 @@ window.DIVE_DATA = {
       "ct": 256,
       "byChan": {
        "X @ridd_design": 14,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": 6,
        "YT DesignerTom": 25
@@ -50683,7 +49894,6 @@ window.DIVE_DATA = {
       "ct": 257,
       "byChan": {
        "X @ridd_design": 15,
-       "LinkedIn": null,
        "YT Dive Club": 47,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -50696,7 +49906,6 @@ window.DIVE_DATA = {
       "ct": 259,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 48,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -50709,7 +49918,6 @@ window.DIVE_DATA = {
       "ct": 261,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 46,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -50722,7 +49930,6 @@ window.DIVE_DATA = {
       "ct": 263,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 45,
        "X @designertom": 6,
        "YT DesignerTom": 24
@@ -50735,7 +49942,6 @@ window.DIVE_DATA = {
       "ct": 266,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 43,
        "X @designertom": 7,
        "YT DesignerTom": 25
@@ -50748,7 +49954,6 @@ window.DIVE_DATA = {
       "ct": 270,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 42,
        "X @designertom": 7,
        "YT DesignerTom": 25
@@ -50761,7 +49966,6 @@ window.DIVE_DATA = {
       "ct": 273,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": null,
        "YT Dive Club": 41,
        "X @designertom": 8,
        "YT DesignerTom": 25
@@ -50774,7 +49978,6 @@ window.DIVE_DATA = {
       "ct": 275,
       "byChan": {
        "X @ridd_design": 16,
-       "LinkedIn": 0,
        "YT Dive Club": 41,
        "X @designertom": 8,
        "YT DesignerTom": 26
@@ -50820,16 +50023,40 @@ window.DIVE_DATA = {
      },
      {
       "label": "LinkedIn",
-      "peak": 0,
-      "avg": 0,
-      "views": 0,
-      "watchedMin": 0,
+      "peak": null,
+      "avg": null,
+      "views": null,
+      "watchedMin": null,
       "messages": 20,
       "chatters": 8
      }
     ],
     "minutesPerViewer": 14.2,
     "holdRate": 69.3
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/",
+    "urn": "urn:li:ugcPost:7503493234619293697",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 20,
+     "chatters": 8,
+     "observedAt": "2026-09-11T14:01:49.338Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "comments": {
     "captured": 7,
@@ -51780,7 +51007,7 @@ window.DIVE_DATA = {
     "notices": [
      "Some comments are awaiting review."
     ],
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
     "pending": true,
@@ -52042,7 +51269,7 @@ window.DIVE_DATA = {
  },
  "health": {
   "date": "2026-09-12",
-  "ageDays": 0,
+  "ageDays": 1,
   "withheld": false,
   "formulaVersion": "health-v9",
   "provider": "anthropic",

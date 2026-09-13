@@ -27,6 +27,6 @@ export function audienceView(comments, archive, { now, commentState } = {}) {
     list,
     sources: archive.sources,
     notices,
-    note: 'Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.',
+    note: 'Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.',
   };
 }

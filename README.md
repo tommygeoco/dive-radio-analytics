@@ -183,3 +183,12 @@ archive, which retains every episode, chapter, source state and link. Show total
 and comparisons always use the complete catalog. The archive selection and
 archived facts are re-derived by validation and both files receive live parity
 checks; catalog growth cannot silently discard historical data.
+
+LinkedIn (Ridd) is also tracked through the exact Restream broadcast destination:
+all available historical episode links, live chat counts, approved audience
+feedback, source status, and recommendation facts. LinkedIn's unsupported
+Restream viewer counters remain missing. Optional owner analytics observations
+are imported from a private inbox and displayed with their observation dates;
+they do not rewrite existing YouTube/X totals or historical scores. Automatic
+viewing analytics still requires LinkedIn approval and Ridd's authorization.
+See [LinkedIn setup and imports](docs/linkedin-setup.md).

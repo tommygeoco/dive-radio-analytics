@@ -92,6 +92,17 @@
    "model": true
   },
   {
+   "step": "linkedin-discovery",
+   "script": "scripts/restream/linkedin-sync.mjs",
+   "writes": [
+    "data/restream/postlive-registry.json",
+    "data/restream/linkedin-metrics.json"
+   ],
+   "freshnessKey": null,
+   "required": true,
+   "scope": "registered-restream-broadcasts"
+  },
+  {
    "step": "audience-feedback",
    "script": "scripts/restream/audience-feedback.mjs",
    "writes": [
@@ -125,6 +136,17 @@
    "freshnessKey": null,
    "required": true,
    "scope": "all"
+  },
+  {
+   "step": "linkedin",
+   "script": "scripts/restream/linkedin-sync.mjs",
+   "writes": [
+    "data/restream/postlive-registry.json",
+    "data/restream/linkedin-metrics.json"
+   ],
+   "freshnessKey": null,
+   "required": true,
+   "scope": "registered-restream-broadcasts"
   },
   {
    "step": "ratings",

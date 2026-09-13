@@ -75,3 +75,13 @@ test('unsupported old configurations are withheld and never poison the public co
   const output = publicAudienceStore([{ slug, records: [record], captures: [] }], labels, { [config.configHash]: previous }, shows, now);
   assert.deepEqual(output.configurations, {}); assert.equal(output.episodes[slug].processing.pending, 1); assert.equal(output.episodes[slug].list.length, 0);
 });
+
+test('approved LinkedIn feedback links to its registered broadcast and passes public provenance checks', () => {
+  const record = { ...row(chatId), platform: 'LinkedIn', channel: 'Michael Riddering' };
+  const linkedin = { url: 'https://www.linkedin.com/feed/update/urn:li:ugcPost:123456/' };
+  const output = publicAudienceStore([{ slug, records: [record], captures: [] }], { [record.id]: label(record) }, { [config.configHash]: config }, [{ ...shows[0], linkedin }], now);
+  assert.equal(output.episodes[slug].list[0].url, linkedin.url);
+  assert.deepEqual(validateAudienceStore(output), []);
+  output.episodes[slug].list[0].url = 'https://www.linkedin.com.evil.test/feed/update/urn:li:ugcPost:123456/';
+  assert(validateAudienceStore(output).some(error => error.includes('provenance')));
+});

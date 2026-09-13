@@ -36,6 +36,7 @@ import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric,
 import { discoveryShareOf, subsPer1kOf } from "../baselines.mjs";
 
 import { assertFrozenRatingsUnchanged, FROZEN_BASELINE, checkedTime, currentAnalyticsCohort, monotonicDrops, sourceStoreIntegrityErrors } from "../source-integrity.mjs";
+import { readLinkedinSources, validateLinkedinStore, projectLinkedin, LINKEDIN_KEY } from "../linkedin.mjs";
 import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url)); // tools/dive-analytics/audit
@@ -410,6 +411,7 @@ try {
     for (const [channelId, channel] of Object.entries(raw.viewers?.byChannel || {})) {
       if (!Array.isArray(channel?.viewersPerMinute)) continue;
       const descriptor = descriptors.get(String(channelId)) || { key: null, label: `channel ${channelId}` };
+      if (descriptor.label === "LinkedIn") continue;
       const points = new Map();
       for (const point of channel.viewersPerMinute || []) {
         if (!Number.isFinite(point?.timestamp)) continue;
@@ -463,7 +465,7 @@ try {
       ...Object.keys(raw.messages?.byChannel || {}),
     ]);
     for (const channelId of rawChannelIds) {
-      const channel = raw.viewers?.byChannel?.[channelId] || null;
+      const channel = descriptors.get(String(channelId))?.label === "LinkedIn" ? null : raw.viewers?.byChannel?.[channelId] || null;
       const sourceMessages = raw.messages?.byChannel?.[channelId] || null;
       const values = {
         peak: valueOf(channel, "max"),
@@ -2653,6 +2655,27 @@ try {
   if (!bad) ok("page gutter: one spacing token drives every card, column, and row; container insets compensated so painted edges align");
 }
 
+// LinkedIn identity, evidence and absence contract, independently rebuilt from source records.
+{
+  let bad = 0;
+  try {
+    const { discovered, events } = readLinkedinSources(ROOT, registry.shows);
+    const path = join(ROOT, 'data/restream/linkedin-metrics.json');
+    const store = existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : { version: 1, episodes: {} };
+    validateLinkedinStore(store, discovered, Date.parse(data.generatedAt));
+    for (const e of eps) {
+      const source = discovered[e.slug];
+      if (!source) { if (e.linkedin) { bad++; fail(`${e.slug}: LinkedIn has no verified broadcast`); } continue; }
+      const registered = registry.shows.find(show => show.slug === e.slug)?.linkedin;
+      if (JSON.stringify(registered) !== JSON.stringify(source)) { bad++; fail(`${e.slug}: LinkedIn registry differs from the exact Restream destination`); }
+      const expected = projectLinkedin(source, events.find(raw => raw.event.id === source.eventId), store.episodes[e.slug]?.readings || [], Date.parse(data.generatedAt));
+      if (JSON.stringify(e.linkedin) !== JSON.stringify(expected) || e.links?.[LINKEDIN_KEY] !== source.url) { bad++; fail(`${e.slug}: LinkedIn metrics or link do not reproduce from evidence`); }
+      for (const row of e.audience?.list || []) if (row.platform === 'LinkedIn' && row.url && row.url !== source.url) { bad++; fail(`${e.slug}: LinkedIn feedback links to a different broadcast`); }
+    }
+  } catch (error) { bad++; fail(`LinkedIn source contract: ${error.message}`); }
+  if (!bad) ok('LinkedIn: exact broadcast identity, owner observation provenance, chat-only Restream coverage and public projection agree');
+}
+
 // --- 1r. destination links (W18): stored, recomputed from the registry, opened safely ---
 {
   let bad = 0;
@@ -2667,9 +2690,11 @@ try {
         else if (t.postId) expected[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
       }
     }
+    if (show?.linkedin?.url) expected["linkedin:michaelriddering"] = show.linkedin.url;
     const want = Object.keys(expected).length ? expected : undefined;
     if (JSON.stringify(e.links ?? null) !== JSON.stringify(want ?? null)) { bad++; fail(`links: ${e.slug} stored destination links do not recompute from the registry`); }
     for (const url of Object.values(e.links || {})) {
+      if (/^https:\/\/www\.linkedin\.com\/feed\/update\/urn:li:(ugcPost|share):\d+\/$/.test(url)) continue;
       if (!/^https:\/\/(youtube\.com\/watch\?v=[A-Za-z0-9_-]+|x\.com\/(i\/broadcasts\/[A-Za-z0-9]+|[A-Za-z0-9_]+\/status\/\d+))$/.test(url)) {
         bad++; fail(`links: ${e.slug} link has an unexpected shape — ${url}`);
       }

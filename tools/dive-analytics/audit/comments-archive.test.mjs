@@ -99,3 +99,22 @@ test('archive budget stops source calls before they can consume the publishing r
     assert.equal(store.captures.filter(c => c.state === 'failed').length, 2);
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
+
+test('owner historical mode retrieves old Restream chat without X requests or invented daily history', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'audience-history-')); const archive = join(root, 'private');
+  mkdirSync(join(root, 'data/restream/events'), { recursive: true });
+  writeFileSync(join(root, 'data/restream/postlive-registry.json'), JSON.stringify({ shows: [{ slug: '2026-07-17-dive-radio-old', date: '2026-07-17', targets: [{ kind: 'youtube', videoId: 'old' }] }] }));
+  writeFileSync(join(root, 'data/restream/events/old.json'), JSON.stringify({ event: { id: 'old-event', status: 'finished', destinations: [{ externalUrl: 'https://youtube.com/watch?v=old' }] } }));
+  let xCalls = 0;
+  const opts = { root, archive, now: '2026-09-13T08:00:00Z', log: () => {}, xGet: async () => { xCalls++; throw new Error('must not query X'); }, chatGet: async url => url.includes('/events/history?') ? [] : { messages: [{ platform: 'LinkedIn', channelName: 'Ridd', author: 'Person 1', text: 'Great discussion', timestamp: '2026-07-17T19:00:00Z' }] } };
+  try {
+    assert.equal((await runArchive(opts)).shows, 0);
+    assert.equal((await runArchive({ ...opts, restreamHistory: true })).added, 1);
+    assert.equal((await runArchive({ ...opts, restreamHistory: true })).added, 0);
+    assert.equal(xCalls, 0);
+    const saved = JSON.parse(readFileSync(join(archive, '2026-07-17-dive-radio-old.json')));
+    assert.equal(saved.records[0].publishedAt, '2026-07-17T19:00:00Z');
+    assert.equal(saved.records[0].firstSeenAt, opts.now);
+    assert(saved.captures.every(c => c.source === 'live-chat'));
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});

@@ -68,6 +68,7 @@ const bandWords = (score) => (score == null ? "—" : score >= 55 ? "above usual
 export const COVERS = Object.freeze([
   // bundles consumed whole (trailing *)
   "episodes[].announces[]*", "episodes[].links.{dest}*", "episodes[].latest.byDest.{dest}*", "episodes[].latest.xPlaysInfo*", "episodes[].latest.totalViewsInfo*",
+  "episodes[].linkedin*", "episodes[].sourceStates.linkedin*",
   "episodes[].promotion*", "episodes[].audience.featured[]*", "episodes[].audience.sources*",
   "episodes[].metrics*", "episodes[].live.byChannel[]*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
   "episodes[].health*", "episodes[].watchReport*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*",
@@ -115,7 +116,7 @@ export const LEAVES_OUT = Object.freeze([
 export function censusPaths(data, depth = CENSUS_DEPTH) {
   const out = new Set();
   const isSlug = (k) => /^\d{4}-\d{2}-\d{2}-/.test(k);
-  const isDest = (k) => /^(yt|x):/.test(k);
+  const isDest = (k) => /^(yt|x|linkedin):/.test(k);
   const walk = (value, path, level) => {
     if (level > depth || value == null || typeof value !== "object") return;
     if (Array.isArray(value)) {
@@ -170,6 +171,7 @@ function episodeDigest(e, data) {
     ep: e.ep, slug: e.slug, title: short(e.title), premiere: e.premiere, ageDays: e.ageDays, trackedLate: e.partialHistory == null ? null : e.partialHistory === true, history: { ready: e.historyReady === true, reason: e.historyReason || null }, dashboard: `${SITE}/#${e.slug}`,
     links: { youtube: Object.fromEntries(yt), xReplays: Object.fromEntries(x), announces: (e.announces || []).map((a) => ({ account: a.account, at: a.ts, url: a.url || null })), transcript: e.transcript ? `${SITE}/transcripts/${e.slug}.txt` : null },
     sourceStates: e.sourceStates || null,
+    linkedin: e.linkedin || null,
     views: { youtube: youtubeMissing ? null : e.latest.ytTotal, youtubeAsOf: e.latest?.youtubeAsOf ?? null, youtubeStale, youtubeMarker: youtubeMissing ? "missing" : youtubeStale ? "old" : null, xPlays: e.latest?.xPlays ?? null, xPlaysMarker: plays.partial ? "partial" : plays.stale ? "stale" : null, total: youtubeMissing ? null : (e.latest?.totalViews ?? null), incomplete: youtubeMissing || youtubeStale || totalInfo.incomplete === true, reason: viewsReason, xReach: e.latest?.xImpressions ?? null, asOf: e.latest?.ts ?? null, byDest: e.latest?.byDest || {} },
     firstWeek: e.metrics?.week1Velocity != null ? { value: e.metrics.week1Velocity } : absent(e.metrics?.week1Note || "no clean first week"),
     launch: launch?.word ? { word: launch.word, label: `${launch.promoDriven ? "promo-driven" : launch.word}${launch.provisional ? " (so far)" : ""}`, promoDriven: !!launch.promoDriven, provisional: !!launch.provisional, late: !!launch.late, value: launch.value, typical: launch.typical, pct: launch.pct, peers: launch.n } : absent(launch?.reason || "no reading at the launch age"),
@@ -484,6 +486,13 @@ function renderMarkdownWindow(digest, episodes, manifest) {
     const xr = Object.entries(e.links.xReplays).map(([k, u]) => `X replay ${k.replace("x:", "@")} ${u}`);
     const an = e.links.announces.filter((a) => a.url).map((a) => `announce @${a.account} ${a.url}`);
     p(`Links: ${[...yt, ...xr, ...an].join(" · ")}${e.links.transcript ? ` · transcript ${e.links.transcript}` : " · no transcript"} · dashboard ${e.dashboard}`);
+    if (e.linkedin) {
+      const li = e.linkedin;
+      p(`LinkedIn broadcast: ${li.url}`);
+      p(`LinkedIn live chat: ${fmtNum(li.liveChat.messages)} messages; ${fmtNum(li.liveChat.chatters)} participants. ${li.reason ? esc(li.reason) : `Analytics observed ${day(li.observedAt)}.`}`);
+      for (const [key, value] of Object.entries(li.metrics)) if (value != null) p(`LinkedIn ${key}: ${fmtNum(value)}.`);
+      p(li.note);
+    }
     if (e.promotion?.status === "found") {
       const tracked = e.promotion.emailClicks == null
         ? `tracked email clicks not available${e.promotion.clicksReason ? ` (${esc(e.promotion.clicksReason)})` : ""}`

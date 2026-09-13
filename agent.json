@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-09-12T14:03:05.034Z",
+ "generatedAt": "2026-09-13T07:59:24.119Z",
  "promotionUpdatedAt": "2026-09-12T14:00:18.758Z",
  "clocks": {
-  "data": "2026-09-12T14:03:05.034Z",
+  "data": "2026-09-13T07:59:24.119Z",
   "dataThrough": "2026-09-12T14:00:23.025Z",
   "healthRead": "2026-09-12",
   "healthDataThrough": "2026-09-12T14:01:03.409Z",
@@ -24,6 +24,11 @@
    "title": "How Designers Are Getting Hired in 2026"
   },
   "channels": [
+   {
+    "key": "linkedin:michaelriddering",
+    "label": "LinkedIn · Ridd",
+    "platform": "linkedin"
+   },
    {
     "key": "yt:joindiveclub",
     "label": "YT Dive Club",
@@ -81,7 +86,7 @@
  "health": {
   "date": "2026-09-12",
   "dataThrough": "2026-09-12T14:01:03.409Z",
-  "ageDays": 0,
+  "ageDays": 1,
   "readState": "early",
   "formulaVersion": "health-v9",
   "provider": "anthropic",
@@ -1171,6 +1176,11 @@
      "checkedAt": "2026-07-20T19:26:30.825Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -1186,6 +1196,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/",
+    "urn": "urn:li:ugcPost:7483627739963379712",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 43,
+     "chatters": 9,
+     "observedAt": "2026-07-20T19:26:30.825Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 2132,
@@ -1510,6 +1544,11 @@
      "checkedAt": "2026-07-26T14:20:06.057Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -1525,6 +1564,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/",
+    "urn": "urn:li:ugcPost:7485957571070058496",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 6,
+     "chatters": 5,
+     "observedAt": "2026-07-26T14:20:06.057Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 2148,
@@ -1844,6 +1907,11 @@
      "checkedAt": "2026-07-31T14:20:05.914Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -1859,6 +1927,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488682639726583808/",
+    "urn": "urn:li:ugcPost:7488682639726583808",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 0,
+     "chatters": 0,
+     "observedAt": "2026-07-31T14:20:05.914Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 1636,
@@ -2186,6 +2278,11 @@
      "checkedAt": "2026-08-07T14:20:33.439Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -2201,6 +2298,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491221759405338624/",
+    "urn": "urn:li:ugcPost:7491221759405338624",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 4,
+     "chatters": 4,
+     "observedAt": "2026-08-07T14:20:33.439Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 1994,
@@ -2514,6 +2635,11 @@
      "checkedAt": "2026-08-14T14:20:05.860Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -2529,6 +2655,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7493743714008485888/",
+    "urn": "urn:li:ugcPost:7493743714008485888",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 2,
+     "chatters": 2,
+     "observedAt": "2026-08-14T14:20:05.860Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 1288,
@@ -2663,8 +2813,10 @@
       "checkedAt": "2026-09-11T21:41:19.128Z"
      }
     },
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
     "notices": [
+     "X threads: the last capture is over a day old. Showing saved feedback.",
+     "Live chat: the last capture is over a day old. Showing saved feedback.",
      "Some comments are awaiting review."
     ],
     "featured": [
@@ -2935,6 +3087,11 @@
      "checkedAt": "2026-08-21T14:20:35.271Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -2950,6 +3107,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/",
+    "urn": "urn:li:ugcPost:7496281015804575744",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 8,
+     "chatters": 3,
+     "observedAt": "2026-08-21T14:20:35.271Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 1582,
@@ -3083,7 +3264,7 @@
       "checkedAt": "2026-09-12T14:00:04.500Z"
      }
     },
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
     "notices": [
      "Some comments are awaiting review."
     ],
@@ -3379,6 +3560,11 @@
      "checkedAt": "2026-08-28T13:50:35.785Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -3394,6 +3580,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/",
+    "urn": "urn:li:ugcPost:7498782244623405056",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 3,
+     "chatters": 1,
+     "observedAt": "2026-08-28T13:50:35.785Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 5879,
@@ -3531,7 +3741,7 @@
       "checkedAt": "2026-09-12T14:00:04.500Z"
      }
     },
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
     "notices": [
      "Some comments are awaiting review."
     ],
@@ -3778,6 +3988,11 @@
      "checkedAt": "2026-09-04T03:39:40.842Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -3793,6 +4008,30 @@
      "checkedAt": "2026-09-04T20:50:55.902Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7501031584624717824/",
+    "urn": "urn:li:ugcPost:7501031584624717824",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 16,
+     "chatters": 3,
+     "observedAt": "2026-09-04T03:39:40.842Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 5634,
@@ -4017,7 +4256,7 @@
       "checkedAt": "2026-09-12T14:00:04.500Z"
      }
     },
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
     "notices": [
      "Some comments are awaiting review."
     ],
@@ -4269,6 +4508,11 @@
      "checkedAt": "2026-09-11T14:01:49.338Z",
      "reason": null
     },
+    "linkedin": {
+     "state": "awaiting-access",
+     "checkedAt": null,
+     "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream."
+    },
     "comments": {
      "state": "ready",
      "checkedAt": "2026-09-12T14:00:59.163Z",
@@ -4284,6 +4528,30 @@
      "checkedAt": "2026-09-11T14:00:05.145Z",
      "reason": null
     }
+   },
+   "linkedin": {
+    "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/",
+    "urn": "urn:li:ugcPost:7503493234619293697",
+    "state": "awaiting-access",
+    "observedAt": null,
+    "source": null,
+    "metrics": {
+     "plays": null,
+     "uniqueViewers": null,
+     "watchTimeMinutes": null,
+     "impressions": null,
+     "reactions": null,
+     "comments": null,
+     "reposts": null
+    },
+    "liveChat": {
+     "messages": 20,
+     "chatters": 8,
+     "observedAt": "2026-09-11T14:01:49.338Z"
+    },
+    "history": [],
+    "reason": "LinkedIn analytics access is not connected. Live chat is captured through Restream.",
+    "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
     "youtube": 6410,
@@ -4423,7 +4691,7 @@
       "checkedAt": "2026-09-12T14:00:04.500Z"
      }
     },
-    "note": "Comments from YouTube, X threads and live chat. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
     "notices": [
      "Some comments are awaiting review."
     ],
@@ -4767,7 +5035,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-09-12T14:03:05.034Z",
+    "stamp": "2026-09-13T07:59:24.119Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -4782,7 +5050,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-09-12T14:03:05.034Z",
+    "stamp": "2026-09-13T07:59:24.119Z",
     "note": "3 current actions; saved model actions whose numbers changed are held back"
    },
    {
@@ -4800,6 +5068,8 @@
   "episodes[].latest.byDest.{dest}*",
   "episodes[].latest.xPlaysInfo*",
   "episodes[].latest.totalViewsInfo*",
+  "episodes[].linkedin*",
+  "episodes[].sourceStates.linkedin*",
   "episodes[].promotion*",
   "episodes[].audience.featured[]*",
   "episodes[].audience.sources*",
@@ -5115,7 +5385,6 @@
   "archiveUrl": "https://dive-radio-analytics.vercel.app/agent.json",
   "totalEpisodes": 9,
   "includedSlugs": [
-   "2026-07-23-dive-radio-data-vs-intuition-web-designe",
    "2026-07-30-dive-radio-mixed-media-workflows-game-de",
    "2026-08-06-dive-radio-backyard-designers-behind-the",
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -5124,6 +5393,6 @@
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
    "2026-09-10-dive-radio-how-designers-are-getting-hir"
   ],
-  "archivedCount": 1
+  "archivedCount": 2
  }
 }

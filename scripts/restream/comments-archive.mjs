@@ -78,12 +78,12 @@ export function archiveMarkdown(store) {
   return `# Audience archive: ${escape(store.slug)}\n\n${rows.length} retained source records. Includes hosts, ordinary discussion, praise and criticism; this is not a scored feedback count. X coverage is limited to registered anchors, their parent conversations, and quotes of those roots within the recent-search window. Quotes of other individual replies are not searched. Chat author labels are exactly as supplied by Restream.\n\n` + rows.map(r => `## ${escape(r.author)} · ${escape(r.source === 'x' ? 'X' : `${r.platform} / ${r.channel}`)}\n\n${escape(r.publishedAt)}${r.url ? ` · [Original post](${r.url})` : ` · Event ${escape(r.eventId)}`}\n\n${escape(r.text).split('\n').map(line => `> ${line}`).join('\n')}\n\n`).join('');
 }
 
-export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Date().toISOString(), xGet = xPublicGet, chatGet, budgetMs = 180000, clock = Date.now, log = console.log } = {}) {
+export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Date().toISOString(), xGet = xPublicGet, chatGet, budgetMs = 180000, restreamHistory = false, clock = Date.now, log = console.log } = {}) {
   mkdirSync(archive, { recursive: true, mode: 0o700 }); chmodSync(archive, 0o700);
   const registry = readJsonFile(join(root, 'data/restream/postlive-registry.json'));
   const eventsDir = join(root, 'data/restream/events');
   const events = (existsSync(eventsDir) ? readdirSync(eventsDir) : []).filter(f => f.endsWith('.json')).map(f => readJsonFile(join(eventsDir, f)).event).filter(Boolean);
-  const shows = registry.shows.filter(s => s.active !== false && /dive-radio/.test(s.slug) && s.date <= phoenixDateKey(now) && Date.parse(now) - Date.parse(`${s.date}T00:00:00-07:00`) <= 30 * 86400000);
+  const shows = registry.shows.filter(s => s.active !== false && /dive-radio/.test(s.slug) && s.date <= phoenixDateKey(now) && (restreamHistory || Date.parse(now) - Date.parse(`${s.date}T00:00:00-07:00`) <= 30 * 86400000));
   const deadline = clock() + budgetMs;
   const bounded = get => async url => {
     if (clock() >= deadline) throw new Error('Audience archive time budget exhausted');
@@ -133,7 +133,7 @@ export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Dat
           return rows;
         }
       }];
-      for (const source of sources) {
+      for (const source of sources.filter(source => !restreamHistory || source.name === 'live-chat')) {
         try {
           const rows = await source.collect(); const seen = new Set(store.records.map(r => r.id));
           for (const row of rows) if (!seen.has(row.id)) { store.records.push({ ...row, firstSeenAt: now, evidenceDirectory: rawDir }); seen.add(row.id); added++; }
@@ -150,4 +150,4 @@ export async function runArchive({ root = ROOT, archive = ARCHIVE, now = new Dat
   if (failures.length) throw new Error(`Audience archive incomplete: ${failures.join(', ')}`);
   return { added, shows: shows.length };
 }
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) runArchive().catch(error => { console.error(error.message); process.exitCode = 1; });
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) runArchive({ restreamHistory: process.argv.includes('--restream-history') }).catch(error => { console.error(error.message); process.exitCode = 1; });
