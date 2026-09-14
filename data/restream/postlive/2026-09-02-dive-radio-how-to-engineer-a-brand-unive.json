@@ -4427,10 +4427,281 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-14T14:00:27.661Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "pulledAt": "2026-09-14T14:00:27.661Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 3108,
+          "detail": {
+            "views": 3108,
+            "likes": 44,
+            "comments": 2,
+            "title": "Dive Radio: How to Engineer a Brand Universe",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "Vh8ogFIE8CA",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "Vh8ogFIE8CA",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 3108,
+              "detail": {
+                "views": 3108,
+                "likes": 44,
+                "comments": 2,
+                "title": "Dive Radio: How to Engineer a Brand Universe",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "Vh8ogFIE8CA",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2636,
+          "detail": {
+            "views": 2636,
+            "likes": 38,
+            "comments": 0,
+            "title": "Dive Radio: How to Engineer a Brand Universe",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "lnAecYrKYos",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "lnAecYrKYos",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 2636,
+              "detail": {
+                "views": 2636,
+                "likes": 38,
+                "comments": 0,
+                "title": "Dive Radio: How to Engineer a Brand Universe",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "lnAecYrKYos",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 22922,
+          "detail": {
+            "views": 22922,
+            "likes": 148,
+            "replies": 10,
+            "reposts": 7,
+            "bookmarks": 112,
+            "quotes": 3
+          },
+          "plays": 1479,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 359,
+          "sources": [
+            {
+              "objectId": "2095496568589988011",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "2095496568589988011",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 15188,
+              "detail": {
+                "views": 15188,
+                "likes": 122,
+                "replies": 8,
+                "reposts": 5,
+                "bookmarks": 87,
+                "quotes": 2
+              }
+            },
+            {
+              "objectId": "2095602694337839446",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "2095602694337839446",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 7734,
+              "detail": {
+                "views": 7734,
+                "likes": 26,
+                "replies": 2,
+                "reposts": 2,
+                "bookmarks": 25,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "2095496568589988011,2095602694337839446",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "1AKEmvbREYaKL",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AKEmvbREYaKL",
+              "views": 1479,
+              "peakConcurrent": 359,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 13671,
+          "detail": {
+            "views": 13671,
+            "likes": 30,
+            "replies": 3,
+            "reposts": 2,
+            "bookmarks": 12,
+            "quotes": 3
+          },
+          "plays": 2570,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 575,
+          "sources": [
+            {
+              "objectId": "2095508360510709794",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "2095508360510709794",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 714,
+              "detail": {
+                "views": 714,
+                "likes": 3,
+                "replies": 0,
+                "reposts": 1,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2095276446386434056",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "2095276446386434056",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 574,
+              "detail": {
+                "views": 574,
+                "likes": 3,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2095602695512195280",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+                "objectId": "2095602695512195280",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 12383,
+              "detail": {
+                "views": 12383,
+                "likes": 24,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 11,
+                "quotes": 3
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "2095276446386434056,2095508360510709794,2095602695512195280",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "1AxRnZzVQkDxl",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnZzVQkDxl",
+              "views": 2570,
+              "peakConcurrent": 575,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-13T15:15:29.709Z",
+    "checkedAt": "2026-09-14T14:00:27.661Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -4438,7 +4709,7 @@
       "source": "postlive",
       "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-      "pulledAt": "2026-09-13T15:15:29.709Z",
+      "pulledAt": "2026-09-14T14:00:27.661Z",
       "state": "ready"
     }
   }

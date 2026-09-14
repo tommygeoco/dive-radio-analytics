@@ -1,14 +1,14 @@
 # Dive Radio — agent brief
 
-Built 2026-09-13T15:23:03.850Z · data through 2026-09-13 · health read 2026-09-13 (data through 2026-09-13) · chapters written 2026-09-11 · brief v1
+Built 2026-09-14T14:01:48.145Z · data through 2026-09-14 · health read 2026-09-13 (data through 2026-09-13) · chapters written 2026-09-11 · brief v1
 
 ## 1. How to read this
 
 This is the current read of the Dive Radio live show as of its last data refresh: performance by platform, comparisons made like for like, today's show-health read, the current actions for the week, episode chapters, moments, and audience words, the trajectory, and the definitions behind each number. It is written by the same deterministic build that renders https://dive-radio-analytics.vercel.app, from the same stores, and it is rebuilt on every refresh. Where a number is missing, a dash and its reason stand in its place.
 
-Episode archive: 9 episodes in https://dive-radio-analytics.vercel.app/agent.json; 7 included here, 2 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
+Episode archive: 9 episodes in https://dive-radio-analytics.vercel.app/agent.json; 6 included here, 3 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-09-13T15:23:03.850Z); the show-health read (2026-09-13, over data through 2026-09-13 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
+Three clocks: the data build (2026-09-14T14:01:48.145Z); the show-health read (2026-09-13, over data through 2026-09-13 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-11).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -24,13 +24,13 @@ Not here: the raw daily series, the per-minute live audience, the hundred-point 
 
 - Episodes: 9 (E1 on 2026-07-17 → E9 on 2026-09-10, "How Designers Are Getting Hired in 2026"), a weekly live show with call-ins.
 - Channels: LinkedIn · Ridd (linkedin:michaelriddering); YT Dive Club (yt:joindiveclub); YT DesignerTom (yt:designertom); X @ridd_design (x:ridd_design); X @designertom (x:designertom).
-- Views so far: 53,622 total = 29,782 YouTube + 23,840 X plays. X reach so far: 120,123 (exposure, kept apart).
-- Audience feedback captured: 63 comments, 40 with a clear lean from 37 people (32 enjoyed, 3 raised a concern). Enjoyed: other (23), format (3), topic choice (3).
+- Views so far: 54,693 total = 30,790 YouTube + 23,903 X plays. X reach so far: 120,349 (exposure, kept apart).
+- Audience feedback captured: 65 comments, 40 with a clear lean from 37 people (32 enjoyed, 3 raised a concern). Enjoyed: other (23), format (3), topic choice (3).
 - Dashboard: https://dive-radio-analytics.vercel.app
 
 ## 3. Show health today
 
-Read saved 2026-09-13 over data through 2026-09-13 (today); state: early — the newest episode is under a week old. Formula health-v9.
+Read saved 2026-09-13 over data through 2026-09-13 (1 day(s) behind the data); state: early — the newest episode is under a week old. Formula health-v9.
 
 **Score 62 of 100 — above usual** (fifty is the show's usual level). Direction over the last clean episodes, as of the read: **mixed**.
 
@@ -176,64 +176,25 @@ Known reporting breaks:
    → Add a spoken subscribe ask plus a pinned comment on both channels right after the strongest segment this week, then compare each channel's subscriber gain on the next episode to see which channel responds.
 3. [content · helps audience quality] E4 lost 6 of every 100 viewers about two-fifths of the way in — roughly 48 minutes into the video — during a long back-and-forth anecdote; timing is approximate from the live recording.
    → Test a tighter mid-show: trim or re-order long anecdote stretches near that point in the next edit, and plan a segment reset — a new visual or a chat question — around the middle to see if fewer viewers leave.
-4. [distribution · helps reach] Subscribers drive 68.8 of every 100 YouTube views while search brings 4.7 and suggested videos 5.3; Shorts have brought 5 views in total, and discovery share is softening.
-   → Cut two or three Shorts from the strongest recent segments this week and rewrite titles and descriptions around the search phrases designers actually type, then watch whether search and suggested views climb.
-5. [audience · helps participation] Live pull is healthy and building — the newest peak hit 133 against a usual 71 — but chatters per 100 viewers sit at 54.9 versus a typical 69.2, so a smaller slice of the bigger crowd is chatting.
+4. [audience · helps participation] Live pull is healthy and building — the newest peak hit 133 against a usual 71 — but chatters per 100 viewers sit at 54.9 versus a typical 69.2, so a smaller slice of the bigger crowd is chatting.
    → Protect participation: open each show with a direct chat prompt — a quick vote or a name-your-tool question — and greet first-time chatters by name to pull the larger live audience into the conversation.
 
 ## 5. Episodes
 
-Views as of 2026-09-13; first week, launch, and pace at the same age; episode health is the frozen day-twenty-one read.
+Views as of 2026-09-14; first week, launch, and pace at the same age; episode health is the frozen day-twenty-one read.
 
 | Ep | Date | Title | YouTube | X plays | X reach | Total | First week | Launch | Pace | Ep. health | Live peak / avg / people / min | Min per viewer | Hold | Watched | Subs/1k | Discovery | Feedback + / − | Promo |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| E3 | 2026-07-30 | Mixed Media Workflows, Game Design, + Live Call-Ins | 1,637 | 4,281 | 19,953 | 5,918 | —¹ | soft | — | —² | 53 / 42 / 1,226 / 4,746 | 3.9 | 96% | 9.1% | 0.0 | 12.7% | 1 / 1 | outlier (provisional) |
-| E4 | 2026-08-06 | Backyard Designers behind-the-scenes | 1,994 | 1,906 | 4,682 | 3,900 | —¹ | strong | #3 of 4 (-4%) | —² | 63 / 48 / 1,199 / 5,952 | 5.0 | 77% | 8.9% | 3.5 | 14.1% | 2 / 2 | — |
-| E5 | 2026-08-13 | Goodbye, Blank Canvas + Live Call-Ins | 1,289 | 2,226 | 9,334 | 3,515 | —¹ | soft | #5 of 5 (-36%) | 36 | 64 / 46 / 495 / 4,370 | 8.8 | 63% | 13.2% | 0.8 | 11.6% | 1 / 0 | — |
-| E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,597 | 1,183 | 9,066 | 2,780 | 1,189 | soft | #5 of 6 (-18%) | 38 | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.3% | 0.6 | 13.8% | 6 / 0 | — |
-| E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 5,894 | 2,924 | 15,551 | 8,818 | —¹ | promo-driven | #1 of 6 (+209%) | —² | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.2% | 0.7 | 7.0% | 1 / 0 | outlier (provisional) |
-| E8 | 2026-09-03 | How to Engineer a Brand Universe | 5,698 | 4,042 | 36,528 | 9,740 | —¹ | promo-driven | #1 of 5 (+258%) | —² | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 11.3% | 6.1 | 8.4% | 7 / 0 | UX Tools |
-| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 7,388 | 3,679 | 13,405 | 11,067 | —¹ | — | — | —² | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | 17.1% | 2.6 | 4.2% | 6 / 0 | UX Tools |
+| E4 | 2026-08-06 | Backyard Designers behind-the-scenes | 1,999 | 1,906 | 4,683 | 3,905 | —¹ | strong | #3 of 4 (-4%) | —² | 63 / 48 / 1,199 / 5,952 | 5.0 | 77% | 8.9% | 3.5 | 14.1% | 2 / 2 | — |
+| E5 | 2026-08-13 | Goodbye, Blank Canvas + Live Call-Ins | 1,291 | 2,235 | 9,345 | 3,526 | —¹ | soft | #5 of 5 (-36%) | 36 | 64 / 46 / 495 / 4,370 | 8.8 | 63% | 13.2% | 0.8 | 11.6% | 1 / 0 | — |
+| E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,606 | 1,183 | 9,067 | 2,789 | 1,189 | soft | #4 of 6 (-18%) | 38 | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.3% | 0.6 | 13.9% | 6 / 0 | — |
+| E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 5,913 | 2,929 | 15,577 | 8,842 | —¹ | promo-driven | #1 of 6 (+209%) | —² | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.1% | 0.7 | 7.0% | 1 / 0 | outlier (provisional) |
+| E8 | 2026-09-03 | How to Engineer a Brand Universe | 5,744 | 4,049 | 36,593 | 9,793 | —¹ | promo-driven | #1 of 5 (+256%) | —² | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 11.2% | 6.0 | 8.5% | 7 / 0 | UX Tools |
+| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 8,313 | 3,721 | 13,524 | 12,034 | —¹ | promo-driven (so far) | #1 of 4 (+454%) | —² | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | 12.3% | 2.2 | 6.5% | 6 / 0 | UX Tools |
 
 ¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.
 
 ## 6. Episode by episode
-
-### E3 — Mixed Media Workflows, Game Design, + Live Call-Ins (2026-07-30)
-
-Links: YouTube joindiveclub https://youtube.com/watch?v=9HYGZgaHdlw · YouTube designertom https://youtube.com/watch?v=szvTFybWfK4 · X replay @ridd_design https://x.com/i/broadcasts/1nGnRRMEPDkGO · X replay @designertom https://x.com/i/broadcasts/1nGeLLpzNAQKX · announce @designertom https://x.com/designertom/status/2082919223639052481 · announce @ridd_design https://x.com/ridd_design/status/2082919224268169560 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-07-30-dive-radio-mixed-media-workflows-game-de
-LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:7488682639726583808/
-LinkedIn live chat: 0 messages; 0 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
-LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
-Standing: launch soft: 1,601 YouTube views against a typical 1,923 at that age (-17%, 5 peers); pace — (Only 2 earlier episodes were tracked this early; at least three are needed.); first week — (excluded: partial history); promo outlier (provisional until day twenty-one): more than double what a typical episode gets (4,281 X plays vs a typical 2,066; 19,596 X reach vs a typical 6,065) — treat the affected viewing numbers as a promo-driven outlier, not topic signal; tracked late: first snapshot more than five days after premiere, so its first week is undefined.
-Views: 1,637 YouTube + 4,281 X plays = 5,918; X reach 19,953; likes and comments per thousand YouTube views 29.9.
-Watching (YouTube analytics, 2026-09-13): 9.1% of the video watched on average, 10 min per view, 16,725 minutes watched in all; views came from SUBSCRIBER 53.3%, EXT_URL 11.4%, NO_LINK_OTHER 9.1%, RELATED_VIDEO 8.4%; subscribers per thousand views 0.0; discovery share 12.7%.
-Live session: peak 53, average 42, 1,226 people watched live for 4,746 minutes in all (3.9 minutes each; 96% of the peak still watching at the end); 169 chat messages from 56 people over 113 minutes.
-Chapters (model-written from the transcript, complete; timestamps on the YouTube upload's clock — links jump to the moment):
-- 00:03:18 — Opening montage and welcome to the show: A montage on AI workflows and curiosity plays before the hosts greet listeners and thank new partners. (https://youtube.com/watch?v=9HYGZgaHdlw&t=198s)
-- 00:06:27 — Designer of the week nominations and voting: Community members and the hosts nominate designers of the week and listeners are invited to vote. (https://youtube.com/watch?v=9HYGZgaHdlw&t=387s)
-- 00:21:01 — Live demo of the Backyard Designers draft game: Cohost Rid demos a game where players draft real designers under a follower-based salary cap. (https://youtube.com/watch?v=9HYGZgaHdlw&t=1261s)
-- 00:39:59 — The wave of one-shot AI games: The hosts scroll through one-shot AI-built games and discuss what the demos reveal about tool workflows. (https://youtube.com/watch?v=9HYGZgaHdlw&t=2399s)
-- 00:52:49 — A roguelike demo grown from a one-shot prompt: Host Tommy shows a roguelike he grew from a one-shot prompt and compares working with AI to shaping clay. (https://youtube.com/watch?v=9HYGZgaHdlw&t=3169s)
-- 01:01:11 — Mixed media landing pages and the draw zero site: The hosts click through playful landing pages, including a community-shared scroll story they both admire. (https://youtube.com/watch?v=9HYGZgaHdlw&t=3671s)
-- 01:09:14 — Shaping clay: an image and asset workflow: Tommy walks through mood boarding, image generation, and pruning AI outputs into usable game assets. (https://youtube.com/watch?v=9HYGZgaHdlw&t=4154s)
-- 01:26:09 — A wiki-fed critic agent that gates the work: Tommy explains building a research wiki and a cranky critic agent that judges each loop of work. (https://youtube.com/watch?v=9HYGZgaHdlw&t=5169s)
-- 01:32:13 — Call-in line opens and a live portfolio critique: The hosts open the phone line, debate mixed media's future, and critique caller James's portfolio site live. (https://youtube.com/watch?v=9HYGZgaHdlw&t=5533s)
-- 01:51:06 — Designer of the week winner and sign-off: The hosts announce the winning nominee, reflect on planning week to week, and close the episode. (https://youtube.com/watch?v=9HYGZgaHdlw&t=6666s)
-Watch moments (from the YouTube retention curve; positions approximate):
-- Drop about 9 min in (8% of the way): 3.9 of every hundred viewers left — The nomination chain continues — a recorded video hands the torch to an engineer at Resend — and the hosts talk about how the pay-it-forward format started and why it is becoming their favorite segment. — ">> Totally. 00:08:55  >> Hi, my name is Eniola. I am honored to 00:08:57  be the inaugural designer of the week on 00:08:59  Dive Radio. And now I would love t…"
-- Drop about 46 min in (41% of the way): 2.6 of every hundred viewers left — A talk stretch on AI demo overload: the hosts argue the viral demos are really experiments in chaining tools together — mixed-media workflows — not finished products, and that people judge them wrong. — "We're seeing like Blender mixed with 00:46:09  Higgs Field mixed with Claude. That's a 00:46:11  workflow I'm going to show you guys in a 00:46:12  second. Or…"
-- Drop about 56 min in (50% of the way): 2.9 of every hundred viewers left — A live gameplay demo, music and all: one host plays an AI-built game on screen — running out of missiles, fumbling a landing — while framing it as a playable experiment, not a market-ready game. — "Hold on. 00:56:15  Oh, the tree didn't give up now cuz I'm 00:56:16  like uh-oh. 00:56:18  No, end of 00:56:20  No, end of 00:56:20  Oh, we got it. 00:56:23  A…"
-- Hold about 87 min in (77% of the way): 2.3 of every hundred extra were watching — The maker explains an AI catching its own broken model — the mesh was unworkable vector soup — and re-meshing it, then walks through the wiki-fed critic agent they use to gate what counts as good. — "that loop is can continue or not. 01:26:42  And so the way that I did that and 01:26:44  someone talked about it here by the way. 01:26:46  They called it this…"
-Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
-Dashboard audience feedback: 32 messages (13 positive, 19 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
-Some comments are awaiting review.
-- "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!" — khangdbui on YouTube
-- "Lets fucking go!🤘🏼" — Person 3 on YouTube live chat ([original](https://www.youtube.com/watch?v=szvTFybWfK4))
-Feedback: 2 comments captured, 2 with a clear lean from 2 people (1 enjoyed, 1 concerns); X replies not covered.
-The commenting rate isn’t available — some replies or watch counts are missing.
-- "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!" — khangdbui on YouTube
-Episode health: — (Fewer than three earlier episodes to compare with.).
 
 ### E4 — Backyard Designers behind-the-scenes (2026-08-06)
 
@@ -241,9 +202,9 @@ Links: YouTube joindiveclub https://youtube.com/watch?v=0tRHVW0qRt4 · YouTube d
 LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:7491221759405338624/
 LinkedIn live chat: 4 messages; 4 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
-Standing: launch strong: 1,892 YouTube views against a typical 1,695 at that age (+12%, 4 peers); pace #3 of 4 at 37.8 days (-4% against the typical 2,074); first week — (excluded: partial history); tracked late: first snapshot more than five days after premiere, so its first week is undefined.
-Views: 1,994 YouTube + 1,906 X plays = 3,900; X reach 4,682; likes and comments per thousand YouTube views 31.6.
-Watching (YouTube analytics, 2026-09-13): 8.9% of the video watched on average, 11 min per view, 21,532 minutes watched in all; views came from SUBSCRIBER 54.7%, NO_LINK_OTHER 11.9%, RELATED_VIDEO 8.8%, EXT_URL 7.8%; subscribers per thousand views 3.5; discovery share 14.1%.
+Standing: launch strong: 1,892 YouTube views against a typical 1,695 at that age (+12%, 4 peers); pace #3 of 4 at 38.8 days (-4% against the typical 2,075); first week — (excluded: partial history); tracked late: first snapshot more than five days after premiere, so its first week is undefined.
+Views: 1,999 YouTube + 1,906 X plays = 3,905; X reach 4,683; likes and comments per thousand YouTube views 31.5.
+Watching (YouTube analytics, 2026-09-14): 8.9% of the video watched on average, 11 min per view, 21,532 minutes watched in all; views came from SUBSCRIBER 54.7%, NO_LINK_OTHER 11.9%, RELATED_VIDEO 8.9%, EXT_URL 7.8%; subscribers per thousand views 3.5; discovery share 14.1%.
 Live session: peak 63, average 48, 1,199 people watched live for 5,952 minutes in all (5.0 minutes each; 77% of the peak still watching at the end); 167 chat messages from 55 people over 124 minutes.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
 - 00:03:23 — Cold open, hellos, and the first designer nomination: A montage on AI tooling leads into the hosts' greetings, sponsor shout outs, and Daniela's nomination.
@@ -258,10 +219,11 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:42:51 — One up picks, a caller's portfolio question, and the winner: The hosts trade favorite finds, advise caller Kyle on sharing work, name Dimitri winner, and sign off.
 Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 11 min in (9% of the way): 4.6 of every hundred viewers left — A recorded nomination praising a jaw-dropping WebGL demo wraps up, and the hosts riff on the double nomination and how comforting it is to hear a master admit he didn't know how he pulled it off. — "We're doing a piece on Zuck. 00:11:04 [Speaker 2] We need something that just, like, encapsulates these these eras that Zuck has been through. 00:11:10 [Speake…"
-- Hold about 38 min in (31% of the way): 2.2 of every hundred extra were watching — The backyard-project team gets candid about the launch: feedback lists and voice notes pouring in unprompted, the game becoming something they never set out to make, and asking designers what would help. — "I don't I don't care. 00:38:04 [Speaker 2] Is this, oh, that's not analytics. 00:38:09 [Speaker 2] Yeah. 00:38:09 [Speaker 2] What is, you know, what are you l…"
-- Drop about 48 min in (39% of the way): 6.0 of every hundred viewers left — One of the makers screen-shares a story deck generated by voice with an AI design tool reading the game's own codebase — built in the final hours before the show — and tests whether its images stay consistent. — "And I'm just rambling at this point, and I'm pasting in images that I can find from from the world of backyard baseball. 00:48:06 [Speaker 3] And we're going b…"
+- Hold about 38 min in (31% of the way): 2.3 of every hundred extra were watching — The backyard-project team gets candid about the launch: feedback lists and voice notes pouring in unprompted, the game becoming something they never set out to make, and asking designers what would help. — "What is, you know, what are you looking at here? 00:38:14 [Speaker 3] For me, it was I can't remember how I found it, but the the time on-site was wild. 00:38:…"
+- Drop about 48 min in (39% of the way): 5.9 of every hundred viewers left — One of the makers screen-shares a story deck generated by voice with an AI design tool reading the game's own codebase — built in the final hours before the show — and tests whether its images stay consistent. — "And I'm just rambling at this point, and I'm pasting in images that I can find from from the world of backyard baseball. 00:48:06 [Speaker 3] And we're going b…"
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
 Dashboard audience feedback: 23 messages (20 positive, 5 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+Live chat: the last capture is over a day old. Showing saved feedback.
 Some comments are awaiting review.
 - "This was a massive thing you both may have been cooking, this was such a cool stepping stone towards bringing designers together" — Person 12 on YouTube live chat ([original](https://www.youtube.com/watch?v=ziyWxt6qzfM))
 - "Hands down, one of my favorite moments on Design Twitter this year" — Person 19 on YouTube live chat ([original](https://www.youtube.com/watch?v=0tRHVW0qRt4))
@@ -275,9 +237,9 @@ Links: YouTube joindiveclub https://youtube.com/watch?v=njOU7GKZcvc · YouTube d
 LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:7493743714008485888/
 LinkedIn live chat: 2 messages; 2 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
-Standing: launch soft: 1,127 YouTube views against a typical 1,751 at that age (-36%, 3 peers); pace #5 of 5 at 30.8 days (-36% against the typical 2,018); first week — (excluded: partial history); tracked late: first snapshot more than five days after premiere, so its first week is undefined.
-Views: 1,289 YouTube + 2,226 X plays = 3,515; X reach 9,334; likes and comments per thousand YouTube views 33.4.
-Watching (YouTube analytics, 2026-09-13): 13.2% of the video watched on average, 13 min per view, 15,473 minutes watched in all; views came from SUBSCRIBER 60.5%, NO_LINK_OTHER 9.3%, RELATED_VIDEO 6.4%, YT_CHANNEL 6.0%; subscribers per thousand views 0.8; discovery share 11.6%.
+Standing: launch soft: 1,127 YouTube views against a typical 1,751 at that age (-36%, 3 peers); pace #5 of 5 at 31.8 days (-36% against the typical 2,020); first week — (excluded: partial history); tracked late: first snapshot more than five days after premiere, so its first week is undefined.
+Views: 1,291 YouTube + 2,235 X plays = 3,526; X reach 9,345; likes and comments per thousand YouTube views 33.3.
+Watching (YouTube analytics, 2026-09-14): 13.2% of the video watched on average, 13 min per view, 15,473 minutes watched in all; views came from SUBSCRIBER 60.5%, NO_LINK_OTHER 9.3%, RELATED_VIDEO 6.4%, YT_CHANNEL 6.0%; subscribers per thousand views 0.8; discovery share 11.6%.
 Live session: peak 64, average 46, 495 people watched live for 4,370 minutes in all (8.8 minutes each; 63% of the peak still watching at the end); 100 chat messages from 39 people over 95 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the YouTube upload's clock — links jump to the moment):
 - 00:04:41 — Show open and the fiber internet saga: The hosts greet listeners and Rid tells the story of contractors cutting his brand new fiber line. (https://youtube.com/watch?v=njOU7GKZcvc&t=281s)
@@ -298,6 +260,7 @@ Watch moments (from the YouTube retention curve; positions approximate):
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
 Dashboard audience feedback: 14 messages (10 positive, 4 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
 X threads: the last capture is over a day old. Showing saved feedback.
+Live chat: the last capture is over a day old. Showing saved feedback.
 Some comments are awaiting review.
 - "Mic sounds good" — Person 13 on YouTube live chat ([original](https://www.youtube.com/watch?v=G2_F3dd3RkA))
 - "mic s good" — Person 4 on YouTube live chat ([original](https://www.youtube.com/watch?v=G2_F3dd3RkA))
@@ -312,9 +275,9 @@ Links: YouTube joindiveclub https://youtube.com/watch?v=RhemcDEc_-A · YouTube d
 LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/
 LinkedIn live chat: 8 messages; 3 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
-Standing: launch soft: 1,189 YouTube views against a typical 1,751 at that age (-32%, 3 peers); pace #5 of 6 at 23.8 days (-18% against the typical 1,940); first week 1,189 YouTube views.
-Views: 1,597 YouTube + 1,183 X plays = 2,780; X reach 9,066; likes and comments per thousand YouTube views 26.9.
-Watching (YouTube analytics, 2026-09-13): 11.3% of the video watched on average, 11 min per view, 14,182 minutes watched in all; views came from SUBSCRIBER 59.3%, NO_LINK_OTHER 10.7%, YT_SEARCH 7.6%, RELATED_VIDEO 6.3%; subscribers per thousand views 0.6; discovery share 13.8%.
+Standing: launch soft: 1,189 YouTube views against a typical 1,751 at that age (-32%, 3 peers); pace #4 of 6 at 24.8 days (-18% against the typical 1,949); first week 1,189 YouTube views.
+Views: 1,606 YouTube + 1,183 X plays = 2,789; X reach 9,067; likes and comments per thousand YouTube views 26.8.
+Watching (YouTube analytics, 2026-09-14): 11.3% of the video watched on average, 11 min per view, 14,201 minutes watched in all; views came from SUBSCRIBER 59.3%, NO_LINK_OTHER 10.7%, YT_SEARCH 7.6%, RELATED_VIDEO 6.3%; subscribers per thousand views 0.6; discovery share 13.9%.
 Live session: peak 71, average 50, 467 people watched live for 4,750 minutes in all (10.2 minutes each; 62% of the peak still watching at the end); 127 chat messages from 41 people over 95 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
 - 00:04:36 — Show opens with hosts checking in from New York: Hosts open the live show, catch up on a busy week away from home, and thank the sponsors.
@@ -348,9 +311,9 @@ Links: YouTube joindiveclub https://youtube.com/watch?v=sC3Wvi1Whm4 · YouTube d
 LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/
 LinkedIn live chat: 3 messages; 1 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
-Standing: launch promo-driven: 5,188 YouTube views against a typical 1,470 at that age (+253%, 4 peers); pace #1 of 6 at 16.8 days (+209% against the typical 1,905); first week — (excluded: promo-driven outlier); promo outlier (provisional until day twenty-one): more than double what a typical episode gets (5,894 YT views vs a typical 1,905; 15,551 X reach vs a typical 6,001) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 5,894 YouTube + 2,924 X plays = 8,818; X reach 15,551; likes and comments per thousand YouTube views 8.8.
-Watching (YouTube analytics, 2026-09-13): 11.2% of the video watched on average, 12 min per view, 26,531 minutes watched in all; views came from SUBSCRIBER 80.9%, NO_LINK_OTHER 4.3%, YT_SEARCH 4.1%, RELATED_VIDEO 2.9%; subscribers per thousand views 0.7; discovery share 7.0%.
+Standing: launch promo-driven: 5,188 YouTube views against a typical 1,470 at that age (+253%, 4 peers); pace #1 of 6 at 17.8 days (+209% against the typical 1,911); first week — (excluded: promo-driven outlier); promo outlier (provisional until day twenty-one): more than double what a typical episode gets (5,913 YT views vs a typical 1,911; 15,577 X reach vs a typical 6,013) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
+Views: 5,913 YouTube + 2,929 X plays = 8,842; X reach 15,577; likes and comments per thousand YouTube views 9.0.
+Watching (YouTube analytics, 2026-09-14): 11.1% of the video watched on average, 12 min per view, 26,649 minutes watched in all; views came from SUBSCRIBER 80.7%, NO_LINK_OTHER 4.4%, YT_SEARCH 4.1%, RELATED_VIDEO 3.0%; subscribers per thousand views 0.7; discovery share 7.0%.
 Live session: peak 72, average 56, 727 people watched live for 6,050 minutes in all (8.3 minutes each; 75% of the peak still watching at the end); 92 chat messages from 40 people over 110 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
 - 00:03:19 — Cold open on designing with AI and staying curious: A montage of voices reflects on how AI tooling expands daily exploration before the hosts greet listeners.
@@ -365,10 +328,11 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:34:49 — Mobbin workflows, one up picks, and the winner reveal: Hosts demo pattern research through Mobbin's MCP, trade weekly picks, and crown the designer of the week.
 Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 20 min in (18% of the way): 5.0 of every hundred viewers left — A host nominates designer Alex for designer of the week, praising his work on Honk and other apps, while the other host screen-shares a live voting page with competing progress bars. — "It I, Lucas getting some love today. 00:19:41 [Speaker 3] Lucas is getting some love today. 00:19:45 [Speaker 3] There's some work to be done on these other en…"
-- Drop about 34 min in (31% of the way): 2.9 of every hundred viewers left — Host recounts a viral pay-to-rank leaderboard project earning fast money, plugs designer voting and live call-ins, then introduces Charles Patterson's invite-only design showcase site. — "Kits is even, like, remember Outbid? 00:33:56 [Speaker 3] You know? 00:33:57 [Speaker 3] And it's like, yeah. 00:33:58 [Speaker 3] That's how fast it seems lik…"
-- Drop about 44 min in (40% of the way): 4.1 of every hundred viewers left — A guest closes a talk on Ramp's brand refresh favoring coherence over consistency; hosts praise the work, plug audience voting, then one host begins defending his cohost's design credentials. — "it. 00:43:43 [Speaker 3] That's a cool I I love, like, four week sprint blocks of something. 00:43:49 [Speaker 3] Like, hey. 00:43:49 [Speaker 3] We're about t…"
+- Drop about 34 min in (31% of the way): 2.8 of every hundred viewers left — Host recounts a viral pay-to-rank leaderboard project earning fast money, plugs designer voting and live call-ins, then introduces Charles Patterson's invite-only design showcase site. — "Kits is even, like, remember Outbid? 00:33:56 [Speaker 3] You know? 00:33:57 [Speaker 3] And it's like, yeah. 00:33:58 [Speaker 3] That's how fast it seems lik…"
+- Drop about 44 min in (40% of the way): 3.9 of every hundred viewers left — A guest closes a talk on Ramp's brand refresh favoring coherence over consistency; hosts praise the work, plug audience voting, then one host begins defending his cohost's design credentials. — "it. 00:43:43 [Speaker 3] That's a cool I I love, like, four week sprint blocks of something. 00:43:49 [Speaker 3] Like, hey. 00:43:49 [Speaker 3] We're about t…"
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
 Dashboard audience feedback: 12 messages (12 positive, 0 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
+More captured comments are still being processed.
 Some comments are awaiting review.
 - "Here's my Granola show notes (came in a bit late, but some good stuff in there): [link] Thanks for doing this each week!" — @BetterNeil on X ([original](https://x.com/i/status/2093095692277370929))
 - "@designertom love/have that shirt! (ep was good too)" — @adamtrabold on X ([original](https://x.com/i/status/2097322455236837619))
@@ -383,9 +347,9 @@ LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:75010315
 LinkedIn live chat: 16 messages; 3 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
 Promotion: UX Tools email linked this episode — 149 tracked email clicks; 67 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building (7 changes in brand world-building). These clicks are not part of views.
-Standing: launch promo-driven: 5,432 YouTube views against a typical 1,470 at that age (+270%, 4 peers); pace #1 of 5 at 9.8 days (+258% against the typical 1,591); first week — (excluded: promo-driven outlier); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (36,528 X reach vs a typical 7,360) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 5,698 YouTube + 4,042 X plays = 9,740; X reach 36,528; likes and comments per thousand YouTube views 14.7.
-Watching (YouTube analytics, 2026-09-13): 11.3% of the video watched on average, 11 min per view, 26,044 minutes watched in all; views came from SUBSCRIBER 71.2%, EXT_URL 7.9%, NO_LINK_OTHER 5.7%, YT_SEARCH 5.1%; subscribers per thousand views 6.1; discovery share 8.4%.
+Standing: launch promo-driven: 5,432 YouTube views against a typical 1,470 at that age (+270%, 4 peers); pace #1 of 5 at 10.8 days (+256% against the typical 1,612); first week — (excluded: promo-driven outlier); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (36,593 X reach vs a typical 7,385) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
+Views: 5,744 YouTube + 4,049 X plays = 9,793; X reach 36,593; likes and comments per thousand YouTube views 14.6.
+Watching (YouTube analytics, 2026-09-14): 11.2% of the video watched on average, 11 min per view, 26,337 minutes watched in all; views came from SUBSCRIBER 71.1%, EXT_URL 7.8%, NO_LINK_OTHER 5.6%, YT_SEARCH 5.3%; subscribers per thousand views 6.0; discovery share 8.5%.
 Live session: peak 98, average 68, 872 people watched live for 7,820 minutes in all (9.0 minutes each; 57% of the peak still watching at the end); 137 chat messages from 37 people over 115 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
 - 00:03:17 — Cold open and show intro: A montage on AI tooling opens the show before the hosts greet the chat and admit brand work isn't their forte.
@@ -399,8 +363,8 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:33:17 — Branding trends from the Chutzpah sisters: Two guests describe in person activations, superfan communities, and micro shows as brand plays.
 - 01:40:53 — One up weekly picks, winner reveal, and closing: Hosts trade favorite finds, announce the vote winner, and preview a careers episode before signing off.
 Watch moments (from the YouTube retention curve; positions approximate):
-- Drop about 10 min in (10% of the way): 3.5 of every hundred viewers left — Hosts move from brand work in products into the designer of the week segment, playing recorded nominations for Marina and Laura before a host shares his own pick, Jackie. — "Chris Puckett has someone worth mentioning. 00:09:45 [Speaker 5] What's going on, Dive Radio? 00:09:47 [Speaker 7] My name is Chris. 00:09:48 [Speaker 7] This…"
-- Drop about 37 min in (38% of the way): 4.9 of every hundred viewers left — Hosts discuss generated interfaces as branding's next big shift after social media, cite designers with strong personal brands, then play a clip of Evil Rabbit describing his creative team's work at Vercel. — "And, if you do that, I want you to do a little thing. 00:37:08 [Speaker 2] Just come down here. 00:37:09 [Speaker 2] You see a little button here? 00:37:11 [Sp…"
+- Drop about 10 min in (10% of the way): 3.3 of every hundred viewers left — Hosts move from brand work in products into the designer of the week segment, playing recorded nominations for Marina and Laura before a host shares his own pick, Jackie. — "Chris Puckett has someone worth mentioning. 00:09:45 [Speaker 5] What's going on, Dive Radio? 00:09:47 [Speaker 7] My name is Chris. 00:09:48 [Speaker 7] This…"
+- Drop about 37 min in (38% of the way): 4.9 of every hundred viewers left — Hosts discuss generated interfaces as branding's next big shift after social media, cite designers with strong personal brands, then play a clip of Evil Rabbit describing his creative team's work at Vercel. — "You see a little button here? 00:37:11 [Speaker 2] It's a thumb. 00:37:12 [Speaker 2] Just click it one time, you know. 00:37:14 [Speaker 2] Don't click it two…"
 - Drop about 57 min in (58% of the way): 2.3 of every hundred viewers left — Hosts debate whether the brand engineer title will last, discussing custom asset-generating tools handed to clients and reading chat pushback that it is design work. — "And instead of trying to, like, build one giant tool, which a lot of people try to do, I'm just gonna continue to add small tools to Playground, that they each…"
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
 Dashboard audience feedback: 20 messages (20 positive, 0 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
@@ -418,10 +382,10 @@ Links: YouTube joindiveclub https://youtube.com/watch?v=DUejFPtYll0 · YouTube d
 LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/
 LinkedIn live chat: 20 messages; 8 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
-Promotion: UX Tools email linked this episode — 266 tracked email clicks; 171 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/how-linear-hires-designers (How Linear hires designers). These clicks are not part of views.
-Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 2 earlier episodes were tracked this early; at least three are needed.); first week — (pending: episode under 7 days old); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (13,405 X reach vs a typical 6,146) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 7,388 YouTube + 3,679 X plays = 11,067; X reach 13,405; likes and comments per thousand YouTube views 18.9.
-Watching (YouTube analytics, 2026-09-13): 17.1% of the video watched on average, 15 min per view, 21,229 minutes watched in all; views came from SUBSCRIBER 85.5%, NO_LINK_OTHER 3.4%, RELATED_VIDEO 2.6%, YT_OTHER_PAGE 1.9%; subscribers per thousand views 2.6; discovery share 4.2%.
+Promotion: UX Tools email linked this episode — 281 tracked email clicks; 190 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/how-linear-hires-designers (How Linear hires designers). These clicks are not part of views.
+Standing: launch promo-driven so far: 8,313 YouTube views against a typical 1,501 at that age (+454%, 3 peers); pace #1 of 4 at 3.8 days (+454% against the typical 1,501); first week — (pending: episode under 7 days old); promo outlier (provisional until day twenty-one): UX Tools email linked the YouTube upload; more than double what a typical episode gets (13,524 X reach vs a typical 5,390) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
+Views: 8,313 YouTube + 3,721 X plays = 12,034; X reach 13,524; likes and comments per thousand YouTube views 18.5.
+Watching (YouTube analytics, 2026-09-14): 12.3% of the video watched on average, 14 min per view, 35,915 minutes watched in all; views came from SUBSCRIBER 82.5%, NO_LINK_OTHER 4.3%, RELATED_VIDEO 3.9%, YT_SEARCH 2.5%; subscribers per thousand views 2.2; discovery share 6.5%.
 Live session: peak 133, average 109, 1,159 people watched live for 16,459 minutes in all (14.2 minutes each; 69% of the peak still watching at the end); 275 chat messages from 73 people over 151 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
 - 00:03:17 — Cold open teases the episode before the hosts say hello: A montage of voices opens the show before the hosts greet the live chat and tease the topic.
@@ -434,13 +398,16 @@ Chapters (model-written from the transcript, complete; timestamps on the live re
 - 01:22:24 — Hiring managers reveal how they screen designers: Guests from Shopify, Notion, and Linear explain how they evaluate designers, followed by new hire stories.
 - 01:53:56 — What matters most when accepting an offer: Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views.
 - 02:16:59 — Closing questions, weekly picks, and the vote winner: Hosts answer chat questions on cold outreach, share finds, and announce designer of the week.
-Audience curve and topic moments aren't available from YouTube yet.
+Watch moments (from the YouTube retention curve; positions approximate):
+- Drop about 14 min in (12% of the way): 6.3 of every hundred viewers left — "How do a few designers there's there's four people on this team. 00:13:52 [Speaker 3] How how do you build and take something to market today? 00:13:55 [Speake…"
+- Drop about 29 min in (25% of the way): 3.1 of every hundred viewers left — "Not this specific animation, but, like, how it plays with the rest of the phone UI because the time has to go underneath this, and they kinda crushed it. 00:28…"
+- Drop about 66 min in (57% of the way): 3.2 of every hundred viewers left — "So it shows the problem. 01:05:53 [Speaker 15] It shows the design decision, the business impact. 01:05:56 [Speaker 15] I sent this to the hiring manager. 01:0…"
 Source checks: linkedin: awaiting-access (LinkedIn analytics access is not connected. Live chat is captured through Restream.).
 Dashboard audience feedback: 55 messages (50 positive, 5 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
 Some comments are awaiting review.
 - "This was fun and in good company! super informative for designers currently looking for their next place.  I have a little cameo at ~2:01 💁🏻‍♀️ [link]" — @gennydee on X ([original](https://x.com/i/status/2098220848251388270))
 - "Hej would it be possible to add featured designers links into descriptions ? good one" — Techne89 on YouTube
-Feedback: 9 comments captured, 7 with a clear lean from 7 people (6 enjoyed, 0 concerns); X replies included. Enjoyed: other (6).
+Feedback: 11 comments captured, 7 with a clear lean from 7 people (6 enjoyed, 0 concerns); X replies included. Enjoyed: other (6).
 - "That intro was not for public consumption, but it's out there now hahah!" — JaredTredly.Design on YouTube
 - "Hej would it be possible to add featured designers links into descriptions ? good one" — Techne89 on YouTube
 Episode health: — (read completes on 2026-10-01 (day twenty-one)).
@@ -450,16 +417,15 @@ Episode health: — (read completes on 2026-10-01 (day twenty-one)).
 First weeks in air order (YouTube views at day seven; a launch reading stands in where a clean first week does not exist):
 | Ep | Date | First week | Launch reading |
 |---|---|---|---|
-| E3 | 2026-07-30 | — (excluded: partial history) | 1,601 (soft) |
 | E4 | 2026-08-06 | — (excluded: partial history) | 1,892 (strong) |
 | E5 | 2026-08-13 | — (excluded: partial history) | 1,127 (soft) |
 | E6 | 2026-08-20 | 1,189 | 1,189 (soft) |
 | E7 | 2026-08-27 | — (excluded: promo-driven outlier) | 5,188 (promo-driven) |
 | E8 | 2026-09-03 | — (excluded: promo-driven outlier) | 5,432 (promo-driven) |
-| E9 | 2026-09-10 | — (pending: episode under 7 days old) | — |
+| E9 | 2026-09-10 | — (pending: episode under 7 days old) | 8,313 (promo-driven, so far) |
 
-Newest episode's pace: — (Only 2 earlier episodes were tracked this early; at least three are needed.).
-Newest against the previous episode at the same age (2.8 days): X reach -61%, share watched -5%, live +36%.
+Newest episode's pace: E9 is #1 of 4 at 3.8 days (+454% against the typical), promo-driven lifts shown as such above.
+Newest against the previous episode at the same age (3.8 days): X reach -62%, share watched -3%, live +36%.
 
 Direction as of this build (the read in section 3 may be a day behind): overall **mixed**.
 | Measure | Word | Change each episode | Readings | Compared how |
@@ -469,7 +435,7 @@ Direction as of this build (the read in section 3 may be a day behind): overall 
 | share of the video watched | holding | +3.2% | 5 | as the earlier episodes stand now |
 | first-week X reach | — (Three episodes show the slope; a direction word needs four.) | +13.5% | 3 | at the same age |
 | announce-to-play on X | softening | -13.4% | 5 | as the earlier episodes stand now |
-| YouTube views from search and suggested videos | softening | -6.4% | 5 | as the earlier episodes stand now |
+| YouTube views from search and suggested videos | softening | -6.6% | 5 | as the earlier episodes stand now |
 | average live viewers | building | +19.0% | 5 | as they stand (no age) |
 | peak live viewers | building | +18.8% | 5 | as they stand (no age) |
 | people who watched live | building | +25.0% | 5 | as they stand (no age) |
@@ -479,7 +445,7 @@ Direction as of this build (the read in section 3 may be a day behind): overall 
 | minutes each live viewer stayed | building | +10.0% | 5 | as they stand (no age) |
 | share of the peak still watching at the end | holding | +0.6% | 5 | as they stand (no age) |
 | subscribers per thousand views | softening | -37.7% | 5 | as the earlier episodes stand now |
-Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-week direction too few for a word; cool-off of the newest episode at 2.8 days: — (promo-driven lift — shown, not scored).
+Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-week direction too few for a word; cool-off of the newest episode at 3.8 days: — (promo-driven lift — shown, not scored).
 
 ## 8. Definitions
 
@@ -504,13 +470,13 @@ Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-wee
 
 | Store | Freshest stamp | What it feeds |
 |---|---|---|
-| daily snapshots (YouTube Data API, X) | 2026-09-13 | append-only time series per destination; the source of views, likes, comments, X reach and plays |
-| YouTube analytics (owner OAuth) | 2026-09-13 | share watched, average duration, minutes watched, traffic sources, subscribers gained; a daily history line per episode since 2026-08-23 |
+| daily snapshots (YouTube Data API, X) | 2026-09-14 | append-only time series per destination; the source of views, likes, comments, X reach and plays |
+| YouTube analytics (owner OAuth) | 2026-09-14 | share watched, average duration, minutes watched, traffic sources, subscribers gained; a daily history line per episode since 2026-08-23 |
 | Restream live events | 2026-09-10 | peak, average, unique viewers, minutes watched, chat; frozen at first ingest |
-| audience comments + classifier | 2026-09-13 | YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off |
-| UX Tools newsletter | 2026-09-13 | exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views |
+| audience comments + classifier | 2026-09-14 | YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off |
+| UX Tools newsletter | 2026-09-14 | exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views |
 | show-health read | 2026-09-13 | health-v9; model wording over checked facts |
-| recommendations | 2026-09-13 | 5 current actions; saved model actions whose numbers changed are held back |
+| recommendations | 2026-09-14 | 4 current actions; saved model actions whose numbers changed are held back |
 | chapters | 2026-09-11 | model-written per transcript, every timestamp and quote grounded in the transcript |
 
 Cadence: one chain run at 07:00 America/Phoenix (pull, capture, score, write, validate, publish); a freshness check at 08:15 and noon. The build is deterministic and reproducible byte for byte from the stores; the validator refuses to publish when any surface disagrees with its store.
@@ -521,7 +487,6 @@ Cadence: one chain run at 07:00 America/Phoenix (pull, capture, score, write, va
 - https://dive-radio-analytics.vercel.app/data.json — the raw data the dashboard renders: daily series per destination, per-minute live audience, watch curves, every classified comment
 - https://dive-radio-analytics.vercel.app/llms.txt — the index of everything here
 - https://dive-radio-analytics.vercel.app/agent-skill.md — a drop-in skill for Claude Code and OpenClaw
-- https://dive-radio-analytics.vercel.app/transcripts/2026-07-30-dive-radio-mixed-media-workflows-game-de.txt — E3 transcript (YouTube caption format)
 - https://dive-radio-analytics.vercel.app/transcripts/2026-08-06-dive-radio-backyard-designers-behind-the.txt — E4 transcript (live speaker format)
 - https://dive-radio-analytics.vercel.app/transcripts/2026-08-13-dive-radio-goodbye-blank-canvas-live-cal.txt — E5 transcript (YouTube caption format)
 - https://dive-radio-analytics.vercel.app/transcripts/2026-08-20-dive-radio-the-mascot-industrial-complex.txt — E6 transcript (live speaker format)

@@ -1,4 +1,4 @@
-# Show-health verification — 2026-09-13
+# Show-health verification — 2026-09-14
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 

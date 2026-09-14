@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgwJM-SZIdGK63JhdJR4AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgxQ6qvEYob-BRyaeOZ4AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "Ugz7G34VaMGlgeCpbsV4AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -111,7 +111,7 @@
         "source": "x-replies",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "2098179066834690160",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -139,7 +139,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgwjrpZLi_JTjJrg0v54AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -167,7 +167,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgzbzoCNlRcq0tHKW3p4AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -195,7 +195,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgwJM-SZIdGK63JhdJR4AaABAg.AabyIW1f3NzAadOSAVLody",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -223,7 +223,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "UgzkXYhsAXw_-sI2Jwl4AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
     },
@@ -251,13 +251,53 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "Ugw_NbtCfKAWh0dD4494AaABAg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready"
       }
+    },
+    {
+      "id": "yt:UgzOBdTwn2z3lTXSy-14AaABAg",
+      "source": "yt",
+      "channel": "yt:designertom",
+      "sourceObjectId": "OZG115v6TTg",
+      "author": "jasonrabboathceo",
+      "authorId": "UCWbdUZsKSnovdX_OlMv79uw",
+      "text": "I’m gonna keep bugging you guys about that intro music I need that for locking in guys!! Who is the artist?!",
+      "likes": 0,
+      "publishedAt": "2026-09-14T02:40:05Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "UgzOBdTwn2z3lTXSy-14AaABAg",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-14T14:01:09.602Z"
+    },
+    {
+      "id": "yt:UgzOBdTwn2z3lTXSy-14AaABAg.AaiaG1NtOaSAajJtQc7Awt",
+      "source": "yt",
+      "channel": "yt:designertom",
+      "sourceObjectId": "OZG115v6TTg",
+      "author": "jasonrabboathceo",
+      "authorId": "UCWbdUZsKSnovdX_OlMv79uw",
+      "text": "@designertomyou’re the king brother!!",
+      "likes": 0,
+      "publishedAt": "2026-09-14T09:27:33Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "UgzOBdTwn2z3lTXSy-14AaABAg.AaiaG1NtOaSAajJtQc7Awt",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-14T14:01:09.602Z"
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-13T15:16:07.686Z",
+    "checkedAt": "2026-09-14T14:01:09.602Z",
     "state": "ready",
     "sources": [
       {
@@ -265,7 +305,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "DUejFPtYll0",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready",
         "count": 6
       },
@@ -274,16 +314,16 @@
         "source": "youtube-comments",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "OZG115v6TTg",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready",
-        "count": 2
+        "count": 4
       },
       {
         "schemaVersion": 1,
         "source": "x-replies",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "2098139616511721866",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready",
         "count": 0
       },
@@ -292,12 +332,12 @@
         "source": "x-replies",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "2098139617082155260",
-        "pulledAt": "2026-09-13T15:16:07.686Z",
+        "pulledAt": "2026-09-14T14:01:09.602Z",
         "state": "ready",
         "count": 1
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-09-13T15:16:07.686Z"
+  "updatedAt": "2026-09-14T14:01:09.602Z"
 }

@@ -10395,10 +10395,221 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-14T14:00:27.661Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+        "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
+        "pulledAt": "2026-09-14T14:00:27.661Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1282,
+          "detail": {
+            "views": 1282,
+            "likes": 49,
+            "comments": 7,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "VcLm0kAGCck",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+                "objectId": "VcLm0kAGCck",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 1282,
+              "detail": {
+                "views": 1282,
+                "likes": 49,
+                "comments": 7,
+                "title": "Dive Radio: Bumpy Takeoff",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+            "objectId": "VcLm0kAGCck",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 854,
+          "detail": {
+            "views": 854,
+            "likes": 45,
+            "comments": 4,
+            "title": "Dive Radio: Bumpy Takeoff",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "FqsXWbfKmGw",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+                "objectId": "FqsXWbfKmGw",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 854,
+              "detail": {
+                "views": 854,
+                "likes": 45,
+                "comments": 4,
+                "title": "Dive Radio: Bumpy Takeoff",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+            "objectId": "FqsXWbfKmGw",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 1527,
+          "detail": {
+            "views": 1527,
+            "likes": 10,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1024,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 466,
+          "sources": [
+            {
+              "objectId": "2077862030455800172",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+                "objectId": "2077862030455800172",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 1527,
+              "detail": {
+                "views": 1527,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+            "objectId": "2077862030455800172",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+            "objectId": "1AxRnnrOvlrxl",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnnrOvlrxl",
+              "views": 1024,
+              "peakConcurrent": 466,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 3932,
+          "detail": {
+            "views": 3932,
+            "likes": 26,
+            "replies": 3,
+            "reposts": 0,
+            "bookmarks": 8,
+            "quotes": 2
+          },
+          "plays": 760,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 286,
+          "sources": [
+            {
+              "objectId": "2077862031730815011",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+                "objectId": "2077862031730815011",
+                "pulledAt": "2026-09-14T14:00:27.661Z",
+                "state": "ready"
+              },
+              "views": 3932,
+              "detail": {
+                "views": 3932,
+                "likes": 26,
+                "replies": 3,
+                "reposts": 0,
+                "bookmarks": 8,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+            "objectId": "2077862031730815011",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+            "objectId": "1pKdRRwpkaQJW",
+            "pulledAt": "2026-09-14T14:00:27.661Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1pKdRRwpkaQJW",
+              "views": 760,
+              "peakConcurrent": 286,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-13T15:15:29.709Z",
+    "checkedAt": "2026-09-14T14:00:27.661Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -10406,7 +10617,7 @@
       "source": "postlive",
       "episode": "2026-07-17-dive-radio-bumpy-takeoff",
       "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
-      "pulledAt": "2026-09-13T15:15:29.709Z",
+      "pulledAt": "2026-09-14T14:00:27.661Z",
       "state": "ready"
     }
   }
