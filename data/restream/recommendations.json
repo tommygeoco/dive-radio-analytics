@@ -1,10 +1,10 @@
 {
   "version": 1,
   "promptVersion": 5,
-  "updatedAt": "2026-09-14T14:01:32.657Z",
+  "updatedAt": "2026-09-14T15:16:33.486Z",
   "provider": "anthropic",
   "model": "claude-fable-5",
-  "factsGeneratedAt": "2026-09-14T14:01:18.982Z",
+  "factsGeneratedAt": "2026-09-14T15:16:20.041Z",
   "facts": [
     {
       "id": "open-start-E1",
@@ -1362,7 +1362,7 @@
     },
     {
       "id": "launch-E9",
-      "value": 8313
+      "value": 8358
     },
     {
       "id": "launch-typical-E9",
@@ -2088,11 +2088,11 @@
     },
     {
       "id": "views-yt-all",
-      "value": 30790
+      "value": 30835
     },
     {
       "id": "views-x-all",
-      "value": 23903
+      "value": 23906
     },
     {
       "id": "share-x-all",
@@ -2100,7 +2100,7 @@
     },
     {
       "id": "views-total-all",
-      "value": 54693
+      "value": 54741
     }
   ],
   "attempts": 1,
@@ -2162,5 +2162,6 @@
   "prunedAt": "2026-09-14T14:01:32.657Z",
   "prunedIds": [
     "open-discovery-surfaces"
-  ]
+  ],
+  "regroundedAt": "2026-09-14T15:16:33.486Z"
 }

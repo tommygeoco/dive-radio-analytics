@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "DUejFPtYll0",
-      "pulledAt": "2026-09-14T14:00:48.884Z",
+      "pulledAt": "2026-09-14T15:15:52.731Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "DUejFPtYll0",
-        "pulledAt": "2026-09-14T14:00:48.884Z",
+        "pulledAt": "2026-09-14T15:15:52.731Z",
         "state": "ready"
       },
       "totals": {
@@ -475,13 +475,13 @@
     },
     "yt:designertom": {
       "videoId": "OZG115v6TTg",
-      "pulledAt": "2026-09-14T14:00:48.884Z",
+      "pulledAt": "2026-09-14T15:15:52.731Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "OZG115v6TTg",
-        "pulledAt": "2026-09-14T14:00:48.884Z",
+        "pulledAt": "2026-09-14T15:15:52.731Z",
         "state": "ready"
       },
       "totals": {
@@ -951,7 +951,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-14T14:00:48.884Z",
+    "checkedAt": "2026-09-14T15:15:52.731Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:OZG115v6TTg|yt:joindiveclub:DUejFPtYll0",
@@ -981,8 +981,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
     "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-    "pulledAt": "2026-09-14T14:00:48.884Z",
+    "pulledAt": "2026-09-14T15:15:52.731Z",
     "state": "ready"
   },
-  "updatedAt": "2026-09-14T14:00:48.884Z"
+  "updatedAt": "2026-09-14T15:15:52.731Z"
 }
