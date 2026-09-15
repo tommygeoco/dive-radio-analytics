@@ -14,6 +14,23 @@ export function checkedTime(value, { now = Date.now(), label = 'timestamp', maxA
   return time;
 }
 
+// X post ids are snowflakes: bits above 22 hold milliseconds since the X epoch.
+const X_EPOCH_MS = 1288834974657n;
+export function xPostCreatedAt(postId) {
+  if (typeof postId !== 'string' || !/^\d{1,20}$/.test(postId)) return null;
+  const ms = Number((BigInt(postId) >> 22n) + X_EPOCH_MS);
+  return Number.isFinite(ms) ? ms : null;
+}
+
+// A registered target belongs to a snapshot's cohort only if it existed when
+// the snapshot was taken. Only X posts carry their creation time; every other
+// target counts as always present.
+export function targetExistedAt(target, time) {
+  if (target?.kind !== 'x' || !Number.isFinite(time)) return true;
+  const created = xPostCreatedAt(target.postId);
+  return created == null ? true : created <= time;
+}
+
 export function youtubeTargetsForEpisode(episode) {
   return Object.entries(episode.links || {}).filter(([key]) => key.startsWith('yt:'))
     .map(([key, url]) => ({ key, videoId: new URL(url).searchParams.get('v') }));
@@ -159,10 +176,14 @@ export function sourceStoreIntegrityErrors(root, now = Date.now()) {
         check(snapshot.reading,{source:'postlive',episode:show.slug,objectId:show.slug},label,snapshot.ts);
         if (Number.isFinite(Date.parse(snapshot.ts)) && new Date(Date.parse(snapshot.ts)-7*3600000).toISOString().slice(0,10)<show.date) errors.push(`${label}: future episode was queried`);
         if (snapshot.reading.state !== 'ready') errors.push(`${label}: incomplete snapshot entered history`);
-        const expectedKeys = [...new Set((show.targets || []).filter(t => ['youtube','x'].includes(t.kind)).map(t => `${t.kind==='youtube'?'yt':'x'}:${t.account}`))];
+        // A snapshot is judged against the targets that existed when it was
+        // taken: an X post published later (its id carries its creation time)
+        // cannot retroactively make an older complete cohort incomplete.
+        const liveTargets=(show.targets || []).filter(t => targetExistedAt(t, snapshotTime));
+        const expectedKeys = [...new Set(liveTargets.filter(t => ['youtube','x'].includes(t.kind)).map(t => `${t.kind==='youtube'?'yt':'x'}:${t.account}`))];
         if (expectedKeys.some(key => !snapshot.metrics?.[key])) errors.push(`${label}: partial destination cohort`);
         for (const [key, metric] of Object.entries(snapshot.metrics || {})) {
-          const group=(show.targets || []).filter(t => `${t.kind==='youtube'?'yt':t.kind}:${t.account}`===key);
+          const group=liveTargets.filter(t => `${t.kind==='youtube'?'yt':t.kind}:${t.account}`===key);
           const ids=group.map(t=>t.videoId || t.postId).filter(Boolean).sort();
           const source=key.startsWith('yt:')?'youtube-data':'x-post';
           check(metric.reading,{source,episode:show.slug,objectId:ids.join(',')},`${label} ${key}`,snapshot.ts);

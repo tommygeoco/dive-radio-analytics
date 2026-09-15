@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { frozenRatingBytes, assertFrozenRatingsUnchanged, checkedTime, currentAnalyticsCohort, monotonicDrops, validateHistoryRows, sourceStoreIntegrityErrors } from '../source-integrity.mjs';
+import { frozenRatingBytes, assertFrozenRatingsUnchanged, checkedTime, currentAnalyticsCohort, monotonicDrops, validateHistoryRows, sourceStoreIntegrityErrors, xPostCreatedAt, targetExistedAt } from '../source-integrity.mjs';
 import { readingEnvelope } from '../source-io.mjs';
 import { hasYtReading, ytViewsOf, ytEngagementOf, engagementPer1kOf, xImpressionsOf } from '../baselines.mjs';
 import { projectLiveSession } from '../build-data.mjs';
@@ -60,5 +60,18 @@ try {
     const changed=structuredClone(candidate);mutate(changed);save(path,changed);
     assert.ok(sourceStoreIntegrityErrors(root,now).length,'source corruption must stop promotion');
   }
+  // An X post registered later cannot invalidate a snapshot taken before it
+  // existed; a post that already existed and is missing still fails.
+  const snowflake = (iso) => String((BigInt(Date.parse(iso)) - 1288834974657n) << 22n);
+  const laterPost = { kind:'x', account:'designertom', postId: snowflake('2026-09-05T16:00:00.000Z'), role:'promo', broadcastResolved:true, playsStatus:'none' };
+  assert.equal(xPostCreatedAt(laterPost.postId), Date.parse('2026-09-05T16:00:00.000Z'));
+  assert.equal(targetExistedAt(laterPost, now), false);
+  assert.equal(targetExistedAt({ kind:'youtube', videoId:'one' }, now), true);
+  save(path,candidate);
+  save('data/restream/postlive-registry.json',{shows:[{...show,targets:[...show.targets,laterPost]}]});
+  assert.deepEqual(sourceStoreIntegrityErrors(root,now),[],'a later X post must not rewrite older cohorts');
+  const earlierPost = { ...laterPost, postId: snowflake('2026-09-03T16:00:00.000Z') };
+  save('data/restream/postlive-registry.json',{shows:[{...show,targets:[...show.targets,earlierPost]}]});
+  assert.ok(sourceStoreIntegrityErrors(root,now).length,'an X post that existed at snapshot time must be in the cohort');
 } finally { rmSync(root,{recursive:true,force:true}); }
 console.log('source-integrity.test: complete cohorts, null/zero, time, frozen bytes, lineage and sparse chat pass');
