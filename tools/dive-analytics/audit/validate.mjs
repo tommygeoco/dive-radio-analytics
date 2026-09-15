@@ -2839,7 +2839,11 @@ try {
     if (!newsletterStep?.required || newsletterStep.freshnessKey !== "lastSuccessfulAt" || JSON.stringify(newsletterStep.writes) !== JSON.stringify(["data/restream/beehiiv-promotions.json"]) || order.indexOf("newsletter-promotion") > firstBuild) {
       bad++; drift("chain: newsletter promotion capture must be required, current, and run before build-data");
     }
-    const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return e && e.ageDays <= 60; };
+    // Same calendar rule as the snapshot tracker (postlive-track.mjs
+    // TRACK_WINDOW_DAYS): an episode leaves the window 60 days after its
+    // premiere date. `ageDays` cannot be used here — it is measured to the
+    // last snapshot, so it freezes below 60 once snapshots stop.
+    const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e && Date.parse(e.premiere) >= builtAt - 60 * DAY; };
     const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e; };
     const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
     for (const step of chain.steps) {
