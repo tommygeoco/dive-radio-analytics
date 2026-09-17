@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "9HYGZgaHdlw",
-      "pulledAt": "2026-09-14T15:15:52.731Z",
+      "pulledAt": "2026-09-17T08:44:30.731Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "9HYGZgaHdlw",
-        "pulledAt": "2026-09-14T15:15:52.731Z",
+        "pulledAt": "2026-09-17T08:44:30.731Z",
         "state": "ready"
       },
       "totals": {
-        "views": 960,
-        "estimatedMinutesWatched": 10009,
-        "averageViewDuration": 630,
-        "averageViewPercentage": 9.31,
+        "views": 962,
+        "estimatedMinutesWatched": 10039,
+        "averageViewDuration": 632,
+        "averageViewPercentage": 9.33,
         "subscribersGained": 0,
         "likes": 22,
         "comments": 3
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 417,
+          "views": 418,
           "estimatedMinutesWatched": 3369
         },
         {
@@ -41,12 +41,12 @@
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
-          "views": 80,
-          "estimatedMinutesWatched": 1703
+          "views": 81,
+          "estimatedMinutesWatched": 1733
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
-          "views": 73,
+          "views": 72,
           "estimatedMinutesWatched": 1532
         },
         {
@@ -82,7 +82,7 @@
         },
         {
           "elapsedVideoTimeRatio": 0.02,
-          "audienceWatchRatio": 0.1326
+          "audienceWatchRatio": 0.1348
         },
         {
           "elapsedVideoTimeRatio": 0.03,
@@ -94,7 +94,7 @@
         },
         {
           "elapsedVideoTimeRatio": 0.05,
-          "audienceWatchRatio": 0.25
+          "audienceWatchRatio": 0.2522
         },
         {
           "elapsedVideoTimeRatio": 0.06,
@@ -106,55 +106,55 @@
         },
         {
           "elapsedVideoTimeRatio": 0.08,
-          "audienceWatchRatio": 0.2457
+          "audienceWatchRatio": 0.24780000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.09,
-          "audienceWatchRatio": 0.237
+          "audienceWatchRatio": 0.2391
         },
         {
           "elapsedVideoTimeRatio": 0.1,
-          "audienceWatchRatio": 0.21960000000000002
+          "audienceWatchRatio": 0.2217
         },
         {
           "elapsedVideoTimeRatio": 0.11,
-          "audienceWatchRatio": 0.2152
-        },
-        {
-          "elapsedVideoTimeRatio": 0.12,
-          "audienceWatchRatio": 0.237
-        },
-        {
-          "elapsedVideoTimeRatio": 0.13,
           "audienceWatchRatio": 0.21739999999999998
         },
         {
-          "elapsedVideoTimeRatio": 0.14,
-          "audienceWatchRatio": 0.213
+          "elapsedVideoTimeRatio": 0.12,
+          "audienceWatchRatio": 0.2457
         },
         {
-          "elapsedVideoTimeRatio": 0.15,
+          "elapsedVideoTimeRatio": 0.13,
+          "audienceWatchRatio": 0.2217
+        },
+        {
+          "elapsedVideoTimeRatio": 0.14,
           "audienceWatchRatio": 0.21960000000000002
         },
         {
+          "elapsedVideoTimeRatio": 0.15,
+          "audienceWatchRatio": 0.2261
+        },
+        {
           "elapsedVideoTimeRatio": 0.16,
-          "audienceWatchRatio": 0.2087
+          "audienceWatchRatio": 0.2109
         },
         {
           "elapsedVideoTimeRatio": 0.17,
-          "audienceWatchRatio": 0.1935
+          "audienceWatchRatio": 0.1957
         },
         {
           "elapsedVideoTimeRatio": 0.18,
-          "audienceWatchRatio": 0.1783
+          "audienceWatchRatio": 0.1804
         },
         {
           "elapsedVideoTimeRatio": 0.19,
-          "audienceWatchRatio": 0.1935
+          "audienceWatchRatio": 0.1957
         },
         {
           "elapsedVideoTimeRatio": 0.2,
-          "audienceWatchRatio": 0.1826
+          "audienceWatchRatio": 0.1848
         },
         {
           "elapsedVideoTimeRatio": 0.21,
@@ -162,43 +162,43 @@
         },
         {
           "elapsedVideoTimeRatio": 0.22,
-          "audienceWatchRatio": 0.16519999999999999
+          "audienceWatchRatio": 0.1674
         },
         {
           "elapsedVideoTimeRatio": 0.23,
-          "audienceWatchRatio": 0.16519999999999999
+          "audienceWatchRatio": 0.1674
         },
         {
           "elapsedVideoTimeRatio": 0.24,
-          "audienceWatchRatio": 0.1609
-        },
-        {
-          "elapsedVideoTimeRatio": 0.25,
-          "audienceWatchRatio": 0.16519999999999999
-        },
-        {
-          "elapsedVideoTimeRatio": 0.26,
-          "audienceWatchRatio": 0.1522
-        },
-        {
-          "elapsedVideoTimeRatio": 0.27,
           "audienceWatchRatio": 0.163
         },
         {
+          "elapsedVideoTimeRatio": 0.25,
+          "audienceWatchRatio": 0.1674
+        },
+        {
+          "elapsedVideoTimeRatio": 0.26,
+          "audienceWatchRatio": 0.1543
+        },
+        {
+          "elapsedVideoTimeRatio": 0.27,
+          "audienceWatchRatio": 0.16519999999999999
+        },
+        {
           "elapsedVideoTimeRatio": 0.28,
-          "audienceWatchRatio": 0.1565
+          "audienceWatchRatio": 0.15869999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.29,
-          "audienceWatchRatio": 0.1457
+          "audienceWatchRatio": 0.1478
         },
         {
           "elapsedVideoTimeRatio": 0.3,
-          "audienceWatchRatio": 0.1435
+          "audienceWatchRatio": 0.1457
         },
         {
           "elapsedVideoTimeRatio": 0.31,
-          "audienceWatchRatio": 0.1565
+          "audienceWatchRatio": 0.15869999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.32,
@@ -480,17 +480,17 @@
     },
     "yt:designertom": {
       "videoId": "szvTFybWfK4",
-      "pulledAt": "2026-09-14T15:15:52.731Z",
+      "pulledAt": "2026-09-17T08:44:30.731Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "szvTFybWfK4",
-        "pulledAt": "2026-09-14T15:15:52.731Z",
+        "pulledAt": "2026-09-17T08:44:30.731Z",
         "state": "ready"
       },
       "totals": {
-        "views": 677,
+        "views": 678,
         "estimatedMinutesWatched": 6829,
         "averageViewDuration": 607,
         "averageViewPercentage": 8.98,
@@ -531,7 +531,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 18,
+          "views": 19,
           "estimatedMinutesWatched": 154
         },
         {
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-14T15:15:52.731Z",
+  "updatedAt": "2026-09-17T08:44:30.731Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "pulledAt": "2026-09-14T15:15:52.731Z",
+    "pulledAt": "2026-09-17T08:44:30.731Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-14T15:15:52.731Z",
+    "checkedAt": "2026-09-17T08:44:30.731Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:szvTFybWfK4|yt:joindiveclub:9HYGZgaHdlw",
@@ -975,8 +975,8 @@
         "videoId": "9HYGZgaHdlw",
         "result": "ready",
         "observed": {
-          "views": 960,
-          "averageViewPercentage": 9.31
+          "views": 962,
+          "averageViewPercentage": 9.33
         }
       },
       {
@@ -984,7 +984,7 @@
         "videoId": "szvTFybWfK4",
         "result": "ready",
         "observed": {
-          "views": 677,
+          "views": 678,
           "averageViewPercentage": 8.98
         }
       }

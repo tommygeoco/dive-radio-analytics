@@ -8706,10 +8706,854 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-15T07:21:49.518Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "pulledAt": "2026-09-15T07:21:49.518Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1272,
+          "detail": {
+            "views": 1272,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "0tRHVW0qRt4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "0tRHVW0qRt4",
+                "pulledAt": "2026-09-15T07:21:49.518Z",
+                "state": "ready"
+              },
+              "views": 1272,
+              "detail": {
+                "views": 1272,
+                "likes": 36,
+                "comments": 5,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "0tRHVW0qRt4",
+            "pulledAt": "2026-09-15T07:21:49.518Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 732,
+          "detail": {
+            "views": 732,
+            "likes": 21,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "ziyWxt6qzfM",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "ziyWxt6qzfM",
+                "pulledAt": "2026-09-15T07:21:49.518Z",
+                "state": "ready"
+              },
+              "views": 732,
+              "detail": {
+                "views": 732,
+                "likes": 21,
+                "comments": 1,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "ziyWxt6qzfM",
+            "pulledAt": "2026-09-15T07:21:49.518Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3539,
+          "detail": {
+            "views": 3539,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1360,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 680,
+          "sources": [
+            {
+              "objectId": "2085456049541427675",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456049541427675",
+                "pulledAt": "2026-09-15T07:21:49.518Z",
+                "state": "ready"
+              },
+              "views": 3539,
+              "detail": {
+                "views": 3539,
+                "likes": 20,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456049541427675",
+            "pulledAt": "2026-09-15T07:21:49.518Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1vJpPPMgdDoJE",
+            "pulledAt": "2026-09-15T07:21:49.518Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1vJpPPMgdDoJE",
+              "views": 1360,
+              "peakConcurrent": 680,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1145,
+          "detail": {
+            "views": 1145,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 216,
+          "sources": [
+            {
+              "objectId": "2085456051626029562",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456051626029562",
+                "pulledAt": "2026-09-15T07:21:49.518Z",
+                "state": "ready"
+              },
+              "views": 1145,
+              "detail": {
+                "views": 1145,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 2,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456051626029562",
+            "pulledAt": "2026-09-15T07:21:49.518Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1rGmqqBdNVkGy",
+            "pulledAt": "2026-09-15T07:21:49.518Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1rGmqqBdNVkGy",
+              "views": 546,
+              "peakConcurrent": 216,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-15T15:15:29.279Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "pulledAt": "2026-09-15T15:15:29.279Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1272,
+          "detail": {
+            "views": 1272,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "0tRHVW0qRt4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "0tRHVW0qRt4",
+                "pulledAt": "2026-09-15T15:15:29.279Z",
+                "state": "ready"
+              },
+              "views": 1272,
+              "detail": {
+                "views": 1272,
+                "likes": 36,
+                "comments": 5,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "0tRHVW0qRt4",
+            "pulledAt": "2026-09-15T15:15:29.279Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 732,
+          "detail": {
+            "views": 732,
+            "likes": 21,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "ziyWxt6qzfM",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "ziyWxt6qzfM",
+                "pulledAt": "2026-09-15T15:15:29.279Z",
+                "state": "ready"
+              },
+              "views": 732,
+              "detail": {
+                "views": 732,
+                "likes": 21,
+                "comments": 1,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "ziyWxt6qzfM",
+            "pulledAt": "2026-09-15T15:15:29.279Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3539,
+          "detail": {
+            "views": 3539,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1360,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 680,
+          "sources": [
+            {
+              "objectId": "2085456049541427675",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456049541427675",
+                "pulledAt": "2026-09-15T15:15:29.279Z",
+                "state": "ready"
+              },
+              "views": 3539,
+              "detail": {
+                "views": 3539,
+                "likes": 20,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456049541427675",
+            "pulledAt": "2026-09-15T15:15:29.279Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1vJpPPMgdDoJE",
+            "pulledAt": "2026-09-15T15:15:29.279Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1vJpPPMgdDoJE",
+              "views": 1360,
+              "peakConcurrent": 680,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1146,
+          "detail": {
+            "views": 1146,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 546,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 216,
+          "sources": [
+            {
+              "objectId": "2085456051626029562",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456051626029562",
+                "pulledAt": "2026-09-15T15:15:29.279Z",
+                "state": "ready"
+              },
+              "views": 1146,
+              "detail": {
+                "views": 1146,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 2,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456051626029562",
+            "pulledAt": "2026-09-15T15:15:29.279Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1rGmqqBdNVkGy",
+            "pulledAt": "2026-09-15T15:15:29.279Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1rGmqqBdNVkGy",
+              "views": 546,
+              "peakConcurrent": 216,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-15T23:01:19.547Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "pulledAt": "2026-09-15T23:01:19.547Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1272,
+          "detail": {
+            "views": 1272,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "0tRHVW0qRt4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "0tRHVW0qRt4",
+                "pulledAt": "2026-09-15T23:01:19.547Z",
+                "state": "ready"
+              },
+              "views": 1272,
+              "detail": {
+                "views": 1272,
+                "likes": 36,
+                "comments": 5,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "0tRHVW0qRt4",
+            "pulledAt": "2026-09-15T23:01:19.547Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 732,
+          "detail": {
+            "views": 732,
+            "likes": 21,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "ziyWxt6qzfM",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "ziyWxt6qzfM",
+                "pulledAt": "2026-09-15T23:01:19.547Z",
+                "state": "ready"
+              },
+              "views": 732,
+              "detail": {
+                "views": 732,
+                "likes": 21,
+                "comments": 1,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "ziyWxt6qzfM",
+            "pulledAt": "2026-09-15T23:01:19.547Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3539,
+          "detail": {
+            "views": 3539,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1360,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 680,
+          "sources": [
+            {
+              "objectId": "2085456049541427675",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456049541427675",
+                "pulledAt": "2026-09-15T23:01:19.547Z",
+                "state": "ready"
+              },
+              "views": 3539,
+              "detail": {
+                "views": 3539,
+                "likes": 20,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456049541427675",
+            "pulledAt": "2026-09-15T23:01:19.547Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1vJpPPMgdDoJE",
+            "pulledAt": "2026-09-15T23:01:19.547Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1vJpPPMgdDoJE",
+              "views": 1360,
+              "peakConcurrent": 680,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1147,
+          "detail": {
+            "views": 1147,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 547,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 216,
+          "sources": [
+            {
+              "objectId": "2085456051626029562",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456051626029562",
+                "pulledAt": "2026-09-15T23:01:19.547Z",
+                "state": "ready"
+              },
+              "views": 1147,
+              "detail": {
+                "views": 1147,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 2,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456051626029562",
+            "pulledAt": "2026-09-15T23:01:19.547Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1rGmqqBdNVkGy",
+            "pulledAt": "2026-09-15T23:01:19.547Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1rGmqqBdNVkGy",
+              "views": 547,
+              "peakConcurrent": 216,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-17T08:44:12.464Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "pulledAt": "2026-09-17T08:44:12.464Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1272,
+          "detail": {
+            "views": 1272,
+            "likes": 36,
+            "comments": 5,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "0tRHVW0qRt4",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "0tRHVW0qRt4",
+                "pulledAt": "2026-09-17T08:44:12.464Z",
+                "state": "ready"
+              },
+              "views": 1272,
+              "detail": {
+                "views": 1272,
+                "likes": 36,
+                "comments": 5,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "0tRHVW0qRt4",
+            "pulledAt": "2026-09-17T08:44:12.464Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 733,
+          "detail": {
+            "views": 733,
+            "likes": 21,
+            "comments": 1,
+            "title": "Dive Radio: Backyard Designers behind-the-scenes",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "ziyWxt6qzfM",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "ziyWxt6qzfM",
+                "pulledAt": "2026-09-17T08:44:12.464Z",
+                "state": "ready"
+              },
+              "views": 733,
+              "detail": {
+                "views": 733,
+                "likes": 21,
+                "comments": 1,
+                "title": "Dive Radio: Backyard Designers behind-the-scenes",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "ziyWxt6qzfM",
+            "pulledAt": "2026-09-17T08:44:12.464Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3540,
+          "detail": {
+            "views": 3540,
+            "likes": 20,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 6,
+            "quotes": 2
+          },
+          "plays": 1360,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 680,
+          "sources": [
+            {
+              "objectId": "2085456049541427675",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456049541427675",
+                "pulledAt": "2026-09-17T08:44:12.464Z",
+                "state": "ready"
+              },
+              "views": 3540,
+              "detail": {
+                "views": 3540,
+                "likes": 20,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456049541427675",
+            "pulledAt": "2026-09-17T08:44:12.464Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1vJpPPMgdDoJE",
+            "pulledAt": "2026-09-17T08:44:12.464Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1vJpPPMgdDoJE",
+              "views": 1360,
+              "peakConcurrent": 680,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 1147,
+          "detail": {
+            "views": 1147,
+            "likes": 11,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 2,
+            "quotes": 0
+          },
+          "plays": 547,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 216,
+          "sources": [
+            {
+              "objectId": "2085456051626029562",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+                "objectId": "2085456051626029562",
+                "pulledAt": "2026-09-17T08:44:12.464Z",
+                "state": "ready"
+              },
+              "views": 1147,
+              "detail": {
+                "views": 1147,
+                "likes": 11,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 2,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "2085456051626029562",
+            "pulledAt": "2026-09-17T08:44:12.464Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+            "objectId": "1rGmqqBdNVkGy",
+            "pulledAt": "2026-09-17T08:44:12.464Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1rGmqqBdNVkGy",
+              "views": 547,
+              "peakConcurrent": 216,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-14T15:15:32.239Z",
+    "checkedAt": "2026-09-17T08:44:12.464Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -8717,7 +9561,7 @@
       "source": "postlive",
       "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
       "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
-      "pulledAt": "2026-09-14T15:15:32.239Z",
+      "pulledAt": "2026-09-17T08:44:12.464Z",
       "state": "ready"
     }
   }

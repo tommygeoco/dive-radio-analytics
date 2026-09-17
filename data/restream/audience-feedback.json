@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-14T15:16:17.752Z",
+  "updatedAt": "2026-09-17T08:44:56.180Z",
   "configurations": {
     "b62b6ab71cae8f9572b568fc2da5d988875fbed648acd63b2e31ade1291dcfbe": {
       "classifierVersion": 1,
@@ -33,15 +33,15 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         }
       },
       "processing": {
-        "pending": 0,
+        "pending": 14,
         "review": 128
       },
       "list": [
@@ -1252,11 +1252,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         }
       },
       "processing": {
@@ -1582,11 +1582,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         }
       },
       "processing": {
@@ -1864,11 +1864,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-09-14T15:15:06.389Z"
+          "checkedAt": "2026-09-17T08:43:22.264Z"
         }
       },
       "processing": {

@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-14T15:16:14.930Z",
+  "updatedAt": "2026-09-17T08:44:53.339Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1140,13 +1140,16 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-14T15:16:14.930Z",
+    "at": "2026-09-17T08:44:53.339Z",
     "status": "pending",
     "added": 0,
     "reviewed": 0,
     "pendingIds": [
       "yt:UgzOBdTwn2z3lTXSy-14AaABAg",
-      "yt:UgzOBdTwn2z3lTXSy-14AaABAg.AaiaG1NtOaSAajJtQc7Awt"
+      "yt:UgzOBdTwn2z3lTXSy-14AaABAg.AaiaG1NtOaSAajJtQc7Awt",
+      "yt:UgwkqGyjQMLZNdlaE5h4AaABAg",
+      "yt:Ugwo3RNivyT3aGB15FV4AaABAg",
+      "yt:Ugy6RHppQWH02ApNQRV4AaABAg"
     ],
     "error": "model call failed after 2 attempts: comment classifier Anthropic returned HTTP 400 after 1 attempt(s)"
   },
