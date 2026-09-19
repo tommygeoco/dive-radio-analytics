@@ -96,13 +96,21 @@ export function normalizedEpisodeTitle(value) {
     .trim();
 }
 
+export function broadcastTitleFromEntities(entities, broadcastId) {
+  if (!broadcastId) return null;
+  const link = (entities?.urls || []).find((entry) =>
+    broadcastIdFromUrls([entry.expanded_url || entry.url]) === broadcastId
+  );
+  return typeof link?.description === "string" ? link.description : null;
+}
+
 // A late X broadcast may appear after YouTube has already registered the
 // episode. Match an exact title first, then one same-day show. Anything
 // ambiguous stays unregistered and loud rather than being guessed.
 export function existingShowForXBroadcast(post, shows) {
   if (!post?.broadcastId) return null;
   const active = (shows || []).filter((show) => show.active !== false && (/dive.?radio/i.test(show.title || "") || /dive-radio/.test(show.slug || "")));
-  const postTitle = normalizedEpisodeTitle(post.text);
+  const postTitle = normalizedEpisodeTitle(post.broadcastTitle || post.text);
   const exact = active.filter((show) => normalizedEpisodeTitle(show.title) === postTitle);
   if (exact.length === 1) return exact[0];
   const sameDay = active.filter((show) => show.date === post.date);
@@ -259,12 +267,13 @@ export async function discoverX(episodeVideoIds, { get = xPublicGet } = {}) {
       if (Date.parse(t.created_at) < since) continue;
       const urls = (t.entities?.urls || []).map((u) => u.expanded_url || u.url || "");
       const broadcastId = broadcastIdFromUrls(urls);
+      const broadcastTitle = broadcastTitleFromEntities(t.entities, broadcastId);
       let linkedVideoId = null;
       for (const u of urls) {
         const m = u.match(/(?:youtube\.com\/(?:watch\?v=|live\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
         if (m && allEpisodeIds.has(m[1])) { linkedVideoId = m[1]; break; }
       }
-      const mentions = /dive\s*radio/i.test(t.text || "");
+      const mentions = /dive\s*radio/i.test(t.text || "") || /dive\s*radio/i.test(broadcastTitle || "");
       if (!linkedVideoId && !mentions) continue;
       found.push({
         postId: t.id,
@@ -274,6 +283,7 @@ export async function discoverX(episodeVideoIds, { get = xPublicGet } = {}) {
         text: t.text || "",
         linkedVideoId,
         broadcastId,
+        broadcastTitle,
         url: `https://x.com/${account}/status/${t.id}`,
       });
     }
@@ -337,7 +347,7 @@ async function main() {
     for (const p of xFound) {
       if (p.claimed) continue;
       const links = p.linkedVideoId && vids.some((v) => v.videoId === p.linkedVideoId);
-      const near = !p.linkedVideoId && p.broadcastId && normalizedEpisodeTitle(p.text) === normalizedEpisodeTitle(canon.title);
+      const near = !p.linkedVideoId && p.broadcastId && normalizedEpisodeTitle(p.broadcastTitle || p.text) === normalizedEpisodeTitle(canon.title);
       if (links || near) {
         p.claimed = true;
         urls.push(p.url);

@@ -4,6 +4,8 @@ import {
   broadcastIdFromUrls,
   existingShowForXBroadcast,
   normalizedEpisodeTitle,
+  broadcastTitleFromEntities,
+  discoverX,
 } from "../../../scripts/restream/postlive-discover.mjs";
 import { findExistingShow } from "../../../scripts/restream/postlive-track.mjs";
 
@@ -26,5 +28,19 @@ assert.equal(existingShowForXBroadcast(sameDay, [e8, { ...e8, slug: "other" }]),
 assert.equal(existingShowForXBroadcast({ ...sameDay, broadcastId: null }, [e8]), null, "a plain mention is not treated as a broadcast");
 assert.equal(existingShowForXBroadcast({ ...sameDay, date: "2026-09-09" }, [e7, e8]), null, "an unmatched date is never guessed");
 assert.equal(findExistingShow([{ ...e8, slug: "2026-09-02-old-slug" }], e8.title, e8.date)?.slug, "2026-09-02-old-slug", "registration keeps the existing episode identity after a date correction");
+
+const entities = { urls: [{ expanded_url: `https://x.com/i/broadcasts/${broadcastId}`, description: e8.title }] };
+assert.equal(broadcastTitleFromEntities(entities, broadcastId), e8.title);
+assert.equal(broadcastTitleFromEntities(entities, "different"), null);
+assert.equal(broadcastTitleFromEntities({ urls: [{ expanded_url: "https://example.com", description: e8.title }] }, broadcastId), null);
+const discovered = await discoverX([], { get: async (url) => url.includes('/by/username/')
+  ? { data: { id: 'fixture-user' } }
+  : { data: [{ id: 'fixture-broadcast', created_at: new Date().toISOString(), text: 'https://t.co/short', entities }], meta: { result_count: 1 } } });
+assert.equal(discovered.found.length, 2, 'both hosts can post only a broadcast link');
+for (const post of discovered.found) {
+  assert.equal(post.broadcastId, broadcastId);
+  assert.equal(post.broadcastTitle, e8.title);
+  assert.equal(existingShowForXBroadcast(post, [e7, e8]), e8, 'linked broadcast metadata supplies the exact episode title');
+}
 
 console.log("x-broadcast-discovery.test: late broadcasts attach by exact title or one same-day episode; ambiguity fails closed");
