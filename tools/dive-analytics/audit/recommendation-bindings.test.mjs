@@ -1,3 +1,5 @@
+import { installGatewayFixture } from "./model-gateway-fixture.mjs";
+process.env.DIVE_MODEL_TRANSPORT = "direct-api"; // These fixtures exercise the explicit API rollback path.
 import assert from "node:assert/strict";
 import { cpSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { execFileSync, spawnSync } from "node:child_process";
@@ -64,6 +66,7 @@ assert.ok(emitted.filter(f => /^(peak|avg|chat|chatters)-/.test(f.id)).every(f =
 // store can be touched; a preload supplies only copied fact-sheet values.
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../../..");
 const temp = realpathSync(mkdtempSync(join(tmpdir(), "dive-recommendation-bindings-")));
+installGatewayFixture(temp);
 try {
   const root = join(temp, "repo");
   execFileSync("git", ["clone", "--quiet", "--shared", ROOT, root]);

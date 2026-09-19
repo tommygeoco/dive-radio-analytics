@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // critic.mjs — standing critic for the shipped dashboard (PRD v4 Part 3).
 // Audits the ARTIFACT (data.json + index.html as a reader experiences it)
 // through five lenses: cognitive load, readability, verbosity/suppression,
@@ -101,8 +102,9 @@ function harvest() {
 // --- model call ---
 
 async function callModel(system, user, { fetchImpl = fetch, key = process.env.ANTHROPIC_API_KEY } = {}) {
-  if (!key) throw new Error("ANTHROPIC_API_KEY not set");
-  const j = await fetchJson("https://api.anthropic.com/v1/messages", {
+  if (!useGateway() && !key) throw new Error("ANTHROPIC_API_KEY not set");
+  const gateway = useGateway() ? await gatewayModel(system, [{ role: "user", content: user }], { maxTokens: MAX_TOKENS }) : null;
+  const j = gateway ? { stop_reason: gateway.stopReason, content: [{ type: "text", text: gateway.text }] } : await fetchJson("https://api.anthropic.com/v1/messages", {
     label: "critic model", fetchImpl, timeoutMs: 180000, maxAttempts: 1,
     method: "POST",
     headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
@@ -162,7 +164,7 @@ export async function run({ dry = false, tag = null, now = Date.now(), fetchImpl
       }
     }
 
-    const header = `# Dashboard critic — ${date}\n\nModel: ${MODEL} · prompt: critic-prompt.md · artifact: data.json generated ${bundle.generatedAt}\n\n---\n\n`;
+    const header = `# Dashboard critic — ${date}\n\nModel: ${useGateway() ? gatewayConfig().model : MODEL} · prompt: critic-prompt.md · artifact: data.json generated ${bundle.generatedAt}\n\n---\n\n`;
     atomicWriteText(outPath, header + report + "\n");
     const fails = (report.match(/^- FAIL/gm) || []).length;
     const warns = (report.match(/^- WARN/gm) || []).length;

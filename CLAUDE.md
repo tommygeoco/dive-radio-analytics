@@ -180,3 +180,34 @@ to certify missing production proof or to erase a failed capture.
 - **agent brief / census** (PRD v12, rules 27–29) — `agent.md` / `agent.json` / `llms.txt` are written by build-data from the same object as `data.json` (pure, locale-free, `agent-brief.mjs`); `COVERS` and `LEAVES_OUT` list every data path, `censusPaths()` is the one path grammar (`[]`, `{slug}`, `{dest}`, depth ≤ 4), and a path in neither list is drift. A new surface or piece of intelligence must reach the brief in the same commit. Absences are `{value: null, reason}`; the brief states its three clocks (data, health read, chapters).
 - **chapters** — topics with timestamps per episode, model-written once per transcript (`chapters.mjs`, store keyed by slug with the transcript sha, superseded on change) and grounded: the timestamp exists, the quote is found within 90 seconds, chapters are three minutes apart. Deep links only when the transcript runs on the YouTube upload's clock (captions); Restream transcripts run on the live-stream clock.
 - **superseded / rederivedFrom** — on the day a formula ships, the day's older-formula read is moved byte-identical under `store.superseded[]` and the new read names it; the validator accepts exactly that shape. `chain-heal.mjs` merges the store by day when a stash pop left it conflicted.
+
+## Model authentication (2026-09-19)
+
+All six L3 model callers now default to the local Hinterlands OpenClaw gateway's
+frontier tier (Astra through ChatGPT OAuth). Audience feedback inherits the comment
+classifier route and its configuration-specific golden gate. Numeric synthesis,
+grounding rules, frozen stores, and publishing ownership are unchanged.
+
+The shared native client is at
+`~/Dev/2026/hinterlands/scripts/openclaw/model-completion.mjs`.
+`HINTERLANDS_MODEL_CLIENT` can select its installation path; `OPENCLAW_BIN` selects
+the installed OpenClaw executable. These are code paths, never credentials.
+The local gateway owns OAuth renewal and the provider adapter. No API key is
+required in these model scripts when using the gateway. Gateway failures fail
+the step; they never fall back to paid API calls.
+
+Switch the entire OpenAI fleet (including these gateway calls) from Hinterlands:
+`npm run model:auth -- api --restart`; return with
+`npm run model:auth -- oauth --restart`. The operator must authorize any restart.
+`status` and `api --dry-run` are read-only options. API mode needs API credits.
+
+For explicit per-process rollback to the original direct API code, set
+`DIVE_MODEL_TRANSPORT=direct-api`. Existing per-script model/key environment
+variables apply only in that mode. Gateway mode follows the central frontier
+alias. Never set direct-api merely to get around a gateway outage.
+
+The gateway has no per-request output-token setting: its configured model budget
+governs generation, while the adapter bounds accepted output and requires a clean
+completion. Full prompts travel through the native SDK without shell argument
+limits. Existing JSON, golden, citation and transcript-grounding checks still gate
+writes. Test fixtures exercise both transports without using real model credentials.

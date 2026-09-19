@@ -1,3 +1,5 @@
+import { installGatewayFixture } from "./model-gateway-fixture.mjs";
+process.env.DIVE_MODEL_TRANSPORT = "direct-api"; // These fixtures exercise the explicit API rollback path.
 import assert from 'node:assert/strict';
 import { cpSync, existsSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -9,6 +11,7 @@ import { phoenixDateKey } from '../source-io.mjs';
 // Exercise actual CLI exits against disposable stores and a network stub.
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../..');
 const temp = realpathSync(mkdtempSync(join(tmpdir(), 'dive-verification-failures-')));
+installGatewayFixture(temp);
 const root = join(temp, 'repo');
 try {
   execFileSync('git', ['clone', '--quiet', '--shared', ROOT, root]);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // health.mjs — W10 deterministic show checks + model-written health summary.
 //
 // This is the only script allowed to call a model for show health. It uses
@@ -949,6 +950,7 @@ function fallbackSynthesis(inputs) {
 }
 
 function providerConfig() {
+  if (useGateway()) return gatewayConfig();
   if (process.env.ANTHROPIC_API_KEY) {
     return { provider: "anthropic", key: process.env.ANTHROPIC_API_KEY, model: process.env.HEALTH_MODEL || DEFAULT_ANTHROPIC_MODEL };
   }
@@ -960,6 +962,7 @@ function providerConfig() {
 }
 
 async function callOnce(system, payload) {
+  if (useGateway()) return gatewayModel(system, [{ role: "user", content: JSON.stringify(payload) }], { timeoutMs: 180000, maxTokens: MAX_TOKENS });
   const cfg = providerConfig();
   if (cfg.provider === "anthropic") {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -1163,7 +1166,7 @@ export function projectHealth(store, { now = Date.now() } = {}) {
 }
 
 async function synthesize(inputs) {
-  if (!process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) throw new Error("health model credential is unavailable; previous saved score kept");
+  if (!useGateway() && !process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) throw new Error("health model credential is unavailable; previous saved score kept");
   const system = readFileSync(PROMPT_PATH, "utf8");
   const payload = {
     task: "Write today's Dive Radio show-health summary.",

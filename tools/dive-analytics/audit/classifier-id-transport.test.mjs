@@ -1,3 +1,4 @@
+process.env.DIVE_MODEL_TRANSPORT = "direct-api"; // These fixtures exercise the explicit API rollback path.
 import assert from 'node:assert/strict';
 import { callClassifications } from '../../../scripts/restream/comments-classify.mjs';
 const ids = ['yt:UgwJM-SZIdGK63JhdJR4AaABAg.AadOSAVLodyAaeExtremelyLongSuffix', 'yt:UgzbzoCNlRcq0tHKW3p4AaABAg'];

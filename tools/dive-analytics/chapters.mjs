@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // chapters.mjs — topics with timestamps, one list per episode (PRD v12 W43).
 //
 // The only place a model reads a transcript end to end. For every episode
@@ -110,6 +111,7 @@ Rules:
 5. Never write: composite, percentile, pillar, ratio, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.`;
 
 async function callModel(payload) {
+  if (useGateway()) return gatewayModel(SYSTEM, [{ role: "user", content: payload }], { timeoutMs: 300000, maxTokens: MAX_TOKENS });
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) throw new Error("ANTHROPIC_API_KEY not set");
   const model = process.env.CHAPTERS_MODEL || DEFAULT_ANTHROPIC_MODEL;
@@ -204,7 +206,7 @@ async function main() {
     console.log(`chapters: E${episode.ep} — ${grounded.chapters.length} chapter(s) kept, ${grounded.dropped.length} dropped, ${grounded.status}`);
   }
   if (!written) throw new Error(`chapter generation failed; previous store kept: ${failures.join("; ")}`);
-  store.version = STORE_VERSION; store.promptVersion = PROMPT_VERSION; store.updatedAt = new Date().toISOString(); store.provider = "anthropic";
+  store.version = STORE_VERSION; store.promptVersion = PROMPT_VERSION; store.updatedAt = new Date().toISOString(); store.provider = useGateway() ? gatewayConfig().provider : "anthropic";
   validateStore(store);
   saveAtomic(STORE_PATH, store);
   console.log(`chapters: wrote ${written} episode(s) — rebuild data to publish`);

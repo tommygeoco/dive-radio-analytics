@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // moment-summaries.mjs — v6.1 W17: model-written context for watch moments.
 //
 // The panel pins and the Slack sharpest-exit line no longer show raw
@@ -117,6 +118,7 @@ Rules for every summary:
 4. Describe; never speculate about WHY people left, and never editorialize about the show's quality.`;
 
 async function callModel(payload) {
+  if (useGateway()) return gatewayModel(SYSTEM, [{ role: "user", content: JSON.stringify(payload) }], { timeoutMs: 180000, maxTokens: MAX_TOKENS });
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) throw new Error("ANTHROPIC_API_KEY not set");
   const model = process.env.SUMMARIES_MODEL || DEFAULT_ANTHROPIC_MODEL;
@@ -159,7 +161,7 @@ async function main() {
   store.version = STORE_VERSION;
   store.promptVersion = PROMPT_VERSION;
   store.updatedAt = new Date().toISOString();
-  store.provider = "anthropic";
+  store.provider = useGateway() ? gatewayConfig().provider : "anthropic";
   store.model = result.model;
   validateStore(store);
   saveAtomic(STORE_PATH, store);

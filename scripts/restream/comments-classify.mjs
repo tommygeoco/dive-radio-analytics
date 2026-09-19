@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { useGateway, gatewayConfig, gatewayModel } from "../../tools/dive-analytics/model-route.mjs";
 // comments-classify.mjs — model-backed relevance, sentiment, and theme labels.
 // Dedicated model script: no SDK dependencies, fetch only. The deterministic
 // exporter reads its persisted store; build-data.mjs never calls a model.
@@ -79,6 +80,7 @@ export function loadClassifiedStore() {
 }
 
 export function providerConfig() {
+  if (useGateway()) return gatewayConfig();
   if (process.env.ANTHROPIC_API_KEY) {
     return {
       provider: "anthropic",
@@ -96,6 +98,7 @@ export function providerConfig() {
 }
 
 async function callOnce(system, payload, { timeoutMs = 180000 } = {}) {
+  if (useGateway()) return gatewayModel(system, [{ role: "user", content: JSON.stringify(payload) }], { timeoutMs: timeoutMs, maxTokens: MAX_TOKENS });
   const cfg = providerConfig();
   if (cfg.provider === "anthropic") {
     const body = await fetchJson("https://api.anthropic.com/v1/messages", {

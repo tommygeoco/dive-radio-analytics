@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // recommendations.mjs — W15 tactical recommendation engine (model-backed).
 //
 // Reads EVERYTHING the pipeline stores — episode totals, the verified
@@ -456,6 +457,7 @@ Facts marked basis "young" belong to episodes under three weeks old; their rates
 10. context carries words, not numbers: a state word, a direction word, a launch word may be quoted; numeric claims still require cited facts. A measure marked "carried from an older finished episode" describes that episode, not the newest; a "promo-driven lift" is shown, never scored, and never a reason to celebrate or to worry.`;
 
 async function callModel(messages) {
+  if (useGateway()) return gatewayModel(SYSTEM, messages, { timeoutMs: 180000, maxTokens: MAX_TOKENS });
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) throw new Error("ANTHROPIC_API_KEY not set");
   const model = process.env.RECS_MODEL || DEFAULT_ANTHROPIC_MODEL;
@@ -525,7 +527,7 @@ async function main() {
       version: STORE_VERSION,
       promptVersion: PROMPT_VERSION,
       updatedAt: new Date().toISOString(),
-      provider: "anthropic",
+      provider: useGateway() ? gatewayConfig().provider : "anthropic",
       model: gen.model,
       factsGeneratedAt: sheet.generatedAt,
       // The identity and comparison metadata remain internal reading provenance.
