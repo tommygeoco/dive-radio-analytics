@@ -1,0 +1,4353 @@
+Dive Radio E10 — How To Become a Founding Designer
+Aired: 2026-09-17 · YouTube: https://youtube.com/watch?v=x05zZ90lY28
+Source: Restream speaker transcript (vault e10-transcript-2026-09-17.txt). Speaker labels are automatic — verify quotes against video.
+
+00:03:17 [Speaker 1]
+And desire for people to just see what flows and 100 people, the different experiments that people are running and the different learnings that others have.
+00:03:27 [Speaker 1]
+Tooling kind of increases our capacity in the day.
+00:03:30 [Speaker 1]
+We have more things we can do now because the tooling makes those kind of rope things easier.
+00:03:37 [Speaker 1]
+I'm able to go through, you know, a spectrum of explorations that are so much larger than I could do in a day, and I can do it in minutes.
+00:03:46 [Speaker 1]
+Agents are using tools.
+
+00:03:49 [Speaker 1]
+What does that look like, and what does that mean?
+00:03:53 [Speaker 1]
+Show up, try things, and be curious.
+00:03:56 [Speaker 1]
+I think the future is bright, but it has to be built.
+00:03:59 [Speaker 1]
+I can always see things that I didn't plan on seeing.
+00:04:02 [Speaker 1]
+I'm making micro decisions that I didn't have a grid for a year ago, and it's only because of the ability that that I consume.
+
+00:04:09 [Speaker 1]
+I feel like there's this binary thinking that, like, AI means fully automated, and it's like, no.
+00:04:13 [Speaker 1]
+In fact, I think some of the better workflows are the ones that aren't fully automated.
+00:04:17 [Speaker 1]
+The ability to effectively multitask at a really high level is one of the core skills of operating in this, like, AI world.
+00:04:26 [Speaker 1]
+So, no preconceived notions about how things should be done.
+00:04:31 [Speaker 1]
+This is the moment in time right now to create the rewards of the public reach of this.
+
+00:04:37 [Speaker 2]
+What do you do with the question, whatever?
+
+00:04:39 [Speaker 3]
+Hey, guys.
+00:04:40 [Speaker 3]
+Hi.
+
+00:04:40 [Speaker 4]
+What's up, design fam?
+00:04:41 [Speaker 4]
+This is Chloe Park.
+00:04:42 [Speaker 4]
+Jenny Wen.
+
+00:04:43 [Speaker 5]
+This is Soleil, and you're listening.
+
+00:04:45 [Speaker 4]
+And you're listening to the dive
+
+00:04:46 [Speaker 1]
+Dive.
+
+00:04:46 [Speaker 4]
+Dive radio show.
+
+00:04:53 [Speaker 2]
+Hello.
+00:04:54 [Speaker 2]
+Hello.
+
+00:04:55 [Speaker 1]
+Hello.
+
+00:04:57 [Speaker 2]
+Welcome to Dive Radio.
+00:05:00 [Speaker 2]
+The live show every Thursday at 1PM Pacific, where designers never stop learning.
+
+00:05:05 [Speaker 6]
+Is that a tag?
+00:05:06 [Speaker 6]
+I feel like we that's like a three year old tagline.
+00:05:08 [Speaker 6]
+We'll work on that.
+
+00:05:08 [Speaker 1]
+We'll work on that.
+00:05:09 [Speaker 1]
+Yeah.
+
+00:05:09 [Speaker 2]
+We'll we'll we'll we'll massage it.
+
+00:05:10 [Speaker 6]
+Let's just put a pin in that one.
+
+00:05:11 [Speaker 2]
+I I I like it.
+00:05:12 [Speaker 2]
+I like it.
+00:05:13 [Speaker 2]
+And that's that's you know, it's funny because we've been getting a little bit of guff on our thumbnails.
+00:05:19 [Speaker 2]
+Fair.
+00:05:19 [Speaker 2]
+Totally fair.
+
+00:05:20 [Speaker 2]
+Listen.
+00:05:20 [Speaker 2]
+Those things are coming Sure.
+00:05:21 [Speaker 2]
+Hot out of a slot cannon.
+00:05:23 [Speaker 2]
+And it's it's, I think, actually in line with the topic we're talking about today.
+00:05:28 [Speaker 2]
+When you are a founder designer or a founding designer, not the same things, and and you gotta make a bunch of trade offs.
+
+00:05:36 [Speaker 2]
+Mhmm.
+00:05:36 [Speaker 2]
+And we're kind of, we're leveraging what we got in in order to bring, I think, what are some, a growing level of quality to the show.
+00:05:45 [Speaker 2]
+Where are you at, man?
+00:05:46 [Speaker 2]
+Things look a little different over there.
+00:05:47 [Speaker 2]
+It's my
+
+00:05:48 [Speaker 1]
+new backdrop.
+00:05:48 [Speaker 1]
+What do you think about my new office?
+
+00:05:49 [Speaker 6]
+I was thinking about transitioning the podcast to this.
+
+00:05:51 [Speaker 2]
+There we go.
+00:05:52 [Speaker 2]
+Yeah.
+00:05:52 [Speaker 2]
+The white walls, that's the new brand.
+
+00:05:54 [Speaker 6]
+It's the new brand.
+00:05:55 [Speaker 6]
+I'm trying to frame my head correctly here in this, door frame.
+00:05:58 [Speaker 6]
+No.
+00:05:58 [Speaker 6]
+I am in a so I'm in sunny Oceanside, California for Value Con, and I found this place to get Wi Fi about ninety minutes ago.
+00:06:07 [Speaker 6]
+It is a an a church from 1875 that has a, like, this I'm I'm surrounded by pastoral offices, and they let me rent this space, fiber Internet.
+
+00:06:17 [Speaker 6]
+Let's go.
+00:06:18 [Speaker 6]
+Like, I'm I'm I'm cruising.
+00:06:19 [Speaker 6]
+Pretty happy with the find, actually.
+
+00:06:21 [Speaker 2]
+How's, ValioCon?
+
+00:06:23 [Speaker 6]
+It's good.
+00:06:24 [Speaker 6]
+So a quick story about that, actually.
+00:06:28 [Speaker 6]
+They had Drew Drew asked me to no.
+00:06:30 [Speaker 6]
+He didn't even actually ask me.
+00:06:31 [Speaker 6]
+He just released the schedule, and I was speaking first.
+
+00:06:33 [Speaker 6]
+So I was the opening person to go on the stage, and I'm a a chronic procrastinator.
+00:06:38 [Speaker 6]
+And so, naturally, I started working on my presentation on the flight to San Diego.
+00:06:44 [Speaker 6]
+And it was actually the very first time that I had built something entirely in voice mode in codecs.
+00:06:51 [Speaker 6]
+Kinda sick, actually.
+00:06:53 [Speaker 6]
+Like, just talking to Astra on this layover in Chicago was how I I built most of this thing.
+
+00:07:00 [Speaker 6]
+And I had some hiccups along the way.
+00:07:03 [Speaker 6]
+The first one is I get into this airplane, and my I missed my flight, so I had got booted.
+00:07:08 [Speaker 6]
+I did get on a new flight, and I'm booted all the way to the back row.
+00:07:11 [Speaker 6]
+And, you know, I'm kinda working.
+00:07:13 [Speaker 6]
+And the seat next to me is this mom.
+
+00:07:17 [Speaker 6]
+This mom is by herself with two 10 old twins.
+
+00:07:21 [Speaker 1]
+Oh.
+
+00:07:21 [Speaker 6]
+She is a human jungle gym.
+
+00:07:23 [Speaker 2]
+Yeah.
+
+00:07:23 [Speaker 6]
+She is she's just one little thing from snapping and having a complete meltdown.
+00:07:29 [Speaker 6]
+Like, she just can't do it.
+00:07:31 [Speaker 6]
+It's it's hell on earth for this lady.
+00:07:32 [Speaker 6]
+At one point, she has to get up and take this one kid to the bathroom because something happened, and there's some of the kids, like, starting to crawl into the middle of the hallway.
+00:07:39 [Speaker 6]
+And And so I just I just scooped the kid up.
+
+00:07:41 [Speaker 6]
+Like, he's gonna get trampled on.
+00:07:42 [Speaker 6]
+So I'm like, now I'm holding this 10 old baby, still trying to do things in codex.
+00:07:46 [Speaker 6]
+Mom sits down.
+00:07:47 [Speaker 6]
+I kinda give her a glance, like, hey.
+00:07:49 [Speaker 6]
+You're gonna take this kid back?
+
+00:07:50 [Speaker 6]
+And she's not even looking at me, dude.
+00:07:52 [Speaker 6]
+She's not even looking at me.
+00:07:54 [Speaker 6]
+She hasn't said one word.
+00:07:55 [Speaker 6]
+She you like, she doesn't want this kid back.
+00:07:58 [Speaker 6]
+It's she's made it very, very clear.
+
+00:08:00 [Speaker 6]
+Like, hold that baby.
+00:08:01 [Speaker 6]
+So now I am just I'm holding this kid.
+00:08:04 [Speaker 6]
+So, like, the time I have for my presentation, I'm holding this kid.
+00:08:06 [Speaker 6]
+It's not really going well.
+00:08:07 [Speaker 6]
+Right?
+
+00:08:07 [Speaker 6]
+So I'm like, okay.
+00:08:08 [Speaker 6]
+That's fine.
+00:08:08 [Speaker 6]
+You know, that's fine.
+00:08:09 [Speaker 6]
+I'll work in the hotel room.
+00:08:11 [Speaker 6]
+I get to the hotel room.
+
+00:08:12 [Speaker 6]
+The Wi Fi is down.
+00:08:15 [Speaker 6]
+So I I built this presentation all through the night tethered to my phone on 770 kilobytes down per second, and I finished it about, twenty four minutes before going on stage, and I show up and Drew gives me this, like, where the hell have you been looks.
+00:08:32 [Speaker 6]
+Like, let's get you mic'd up, get you behind the stage.
+00:08:35 [Speaker 6]
+It worked out okay, but it was a very it was an intense twenty four hours leading up to walking on
+
+00:08:42 [Speaker 1]
+the stage to valuecom, but
+
+00:08:43 [Speaker 6]
+it's been a joy since then.
+
+00:08:46 [Speaker 2]
+Well, well done.
+00:08:47 [Speaker 2]
+Those are some heroics and a glimpse inside of what it's like to be a founder trying to juggle a bunch of things while still being a good human.
+
+00:08:57 [Speaker 1]
+I I
+
+00:08:57 [Speaker 2]
+think so.
+00:08:58 [Speaker 2]
+Yeah.
+00:08:58 [Speaker 2]
+Yeah.
+00:08:59 [Speaker 2]
+Yeah.
+00:08:59 [Speaker 2]
+We have Emil who says, please get a designer or a motion person on the intro.
+
+00:09:04 [Speaker 2]
+It's kinda glitching.
+00:09:05 [Speaker 2]
+I know.
+00:09:06 [Speaker 2]
+I know.
+00:09:08 [Speaker 2]
+I look at it.
+00:09:08 [Speaker 2]
+I go, that could be better.
+
+00:09:10 [Speaker 2]
+That could be better.
+00:09:12 [Speaker 2]
+We're working on it.
+00:09:13 [Speaker 2]
+The thing that's getting a lot of time, and I think it's paying off, are the the actual topics and the the community participation in each of these episodes.
+00:09:23 [Speaker 2]
+You know, last week, we had our best episode yet really digging into the state of design jobs, and I'm really proud of that.
+00:09:32 [Speaker 2]
+And I got a lot of comments from people who got a lot of value out of that.
+
+00:09:36 [Speaker 2]
+And we're trying to do that every week.
+00:09:37 [Speaker 2]
+And it and, you know, it's the documentary, Six Days to Air, I think it was, the South Park, where they're just going to get the next episode out.
+00:09:47 [Speaker 2]
+This is a side project for Ridd and I that is slowly becoming a first class citizen, and, we are putting quite a bit of work into it.
+00:09:54 [Speaker 2]
+So I'm glad you guys appreciate it.
+00:09:55 [Speaker 2]
+We pay attention to your feedback.
+
+00:09:57 [Speaker 2]
+The, we're, you know, we're we're trying to do it.
+00:09:59 [Speaker 2]
+And one of the things that I love is how we get to spotlight everybody.
+00:10:02 [Speaker 2]
+I'm gonna kick right into it because we do have some pretty cool people to spotlight.
+00:10:06 [Speaker 2]
+Last week for the designer of the week, Jonas Lupe won the designer of the week.
+00:10:11 [Speaker 2]
+And I'm just gonna kick it right off because Jonas has, someone that he's gonna pay it forward to.
+
+00:10:16 [Speaker 2]
+And this is, I think, a pretty good selection.
+00:10:21 [Speaker 2]
+Let's get right into
+
+00:10:23 [Speaker 7]
+it.
+00:10:23 [Speaker 7]
+Hi, friends.
+00:10:24 [Speaker 7]
+First of all, I wanted to say thank you for awarding me the designer of the week last week.
+00:10:28 [Speaker 7]
+I feel very, very grateful for that.
+00:10:31 [Speaker 7]
+It means a lot.
+
+00:10:32 [Speaker 7]
+So I want to pay it forward, and I'm doing that by submitting Thomas.
+00:10:35 [Speaker 7]
+Thomas is mayor.
+00:10:36 [Speaker 7]
+He's a Dutch designer based in Nijmegen, The Netherlands.
+00:10:40 [Speaker 7]
+And why I wanna submit Thomas is first of all, his work is amazing.
+00:10:45 [Speaker 7]
+He cares a lot about the details, but, he also cares a lot about making sure his clients get the results they were looking for or why they hired him.
+
+00:10:56 [Speaker 7]
+And that is one of the first things that stand out if you go to his contra page and read all of the recommendations or reviews, people are praising and blessing him because of the work and the quality of the work.
+00:11:08 [Speaker 7]
+And not only that, Thomas is also this incredible human being.
+00:11:13 [Speaker 7]
+I have the blessing of being able to chat with Thomas on a regular basis and just share thoughts, navigating the creative field.
+00:11:22 [Speaker 7]
+So I I truly appreciate him as a human being, and, yeah, that alone deserves designer of the week award to me.
+
+00:11:31 [Speaker 2]
+Oh, dude.
+00:11:31 [Speaker 2]
+I love the way people are just, like, really shouting out the the folks who are inspiring them.
+00:11:36 [Speaker 2]
+That that's actually super meaningful.
+00:11:38 [Speaker 2]
+And, I I catch the contra in the background as the showcase for the portfolio.
+00:11:42 [Speaker 2]
+Love seeing that being surfaced right now.
+
+00:11:45 [Speaker 6]
+Yeah.
+
+00:11:46 [Speaker 2]
+In addition, Victoria.
+00:11:48 [Speaker 2]
+Now, Victoria is somebody that is one of my favorite designers out there.
+00:11:51 [Speaker 2]
+She does some killer work with Framers.
+00:11:52 [Speaker 2]
+She does a lot of really cool stuff.
+00:11:54 [Speaker 2]
+I wanted her to find, kind of let us know who she's been inspired by lately.
+
+00:11:59 [Speaker 8]
+Hello.
+00:11:59 [Speaker 8]
+My name is Victoria.
+
+00:12:00 [Speaker 9]
+Okay.
+00:12:00 [Speaker 9]
+First of all, Yael is on
+
+00:12:02 [Speaker 8]
+the Shopify design team, and we know that they're rock stars.
+00:12:05 [Speaker 8]
+But I want to eliminate her, because I recently become obsessed with her personal projects.
+00:12:11 [Speaker 8]
+Okay.
+00:12:12 [Speaker 8]
+Great.
+00:12:12 [Speaker 8]
+Just look at that app.
+
+00:12:13 [Speaker 8]
+Look at that loading animation.
+00:12:15 [Speaker 8]
+This is so cool.
+00:12:16 [Speaker 8]
+And the idea is you can upload photo, turn it into three d version of yourself, add the clothes you're actually wearing and share your looks with friends.
+00:12:25 [Speaker 8]
+You can also see what your friends are wearing, discover pieces you like and even like shop their outfits.
+00:12:32 [Speaker 8]
+Look at that.
+
+00:12:32 [Speaker 8]
+We can click here and then it redirects us to the retailer.
+00:12:38 [Speaker 8]
+She's motion interaction designer and you can feel that immediately in the products she built and I especially love that this is a personal project that become a real product and this is what makes me inspired And, of course, you can see the same energy in her Shopify work.
+00:12:54 [Speaker 8]
+For example, that guy in the buffer, this one, this is
+
+00:12:58 [Speaker 1]
+like so cool.
+
+00:13:00 [Speaker 8]
+She's definitely someone to watch.
+00:13:01 [Speaker 8]
+Go check her portfolio.
+00:13:03 [Speaker 8]
+She's so great.
+
+00:13:06 [Speaker 2]
+Oh, that's cool.
+00:13:07 [Speaker 2]
+I I I hadn't watched this full one yet.
+00:13:09 [Speaker 2]
+That is really cool.
+00:13:10 [Speaker 2]
+You can, by the way, vote on the designer of the week at dive.radio/vote.
+00:13:14 [Speaker 2]
+We will announce the winner at the end of the show.
+
+00:13:17 [Speaker 2]
+I have a nomination, and that's a lot to follow-up with.
+00:13:21 [Speaker 2]
+But I will say that I have been paying attention to Charlotta Blunarova for, a little while now.
+00:13:28 [Speaker 2]
+And what I really appreciate, she she does a lot of great work, branding and web design, and and Framer's a big tool of choice that she talks about a lot.
+00:13:36 [Speaker 2]
+But the thing that I love, and I'm always a geek for this, if you're somebody who really appreciates the little details and you make it a point to really call out those little details.
+00:13:45 [Speaker 2]
+You do a lot of playground stuff.
+
+00:13:47 [Speaker 2]
+You share those experiments.
+00:13:50 [Speaker 2]
+That stuff gets on my radar.
+00:13:52 [Speaker 2]
+She has this little series called Working Notes, and it's just a little Twitter thread.
+00:13:56 [Speaker 2]
+And she just spotlights little details that she comes across, and and the things that are beautiful about them and calls them out.
+00:14:06 [Speaker 2]
+Love somebody who is able to string together what are seemingly unlike things and and bring them all together.
+
+00:14:15 [Speaker 2]
+Additionally, another thing that I'm a big fan of are designers who are building their own tools to then create other branding elements and other things that help them do the job.
+00:14:26 [Speaker 2]
+And she has done a lot of that.
+00:14:28 [Speaker 2]
+She shares a lot of the output from the tools that she creates, and she like, this is one of those outputs that she was just kinda playing with.
+00:14:35 [Speaker 2]
+She went and built out that tool to help her create these random assets, and she just shares every single one of these experiments.
+00:14:42 [Speaker 2]
+You can see some of these things come to life, in these little branding assets that she'll create.
+
+00:14:48 [Speaker 2]
+Love this stuff.
+00:14:49 [Speaker 2]
+Love this.
+
+00:14:50 [Speaker 6]
+My kind of Twitter feed, man.
+
+00:14:51 [Speaker 2]
+Just a
+
+00:14:52 [Speaker 6]
+ton of work and output and ideas.
+00:14:55 [Speaker 6]
+Super creative.
+
+00:14:56 [Speaker 2]
+Yeah.
+00:14:57 [Speaker 2]
+Absolutely a big fan.
+00:14:58 [Speaker 2]
+Please give her a follow.
+00:14:59 [Speaker 2]
+Give her a vote.
+00:15:00 [Speaker 2]
+Sharlota Blunarova.
+
+00:15:02 [Speaker 2]
+Who do you got, Rid?
+
+00:15:03 [Speaker 6]
+Alright.
+00:15:03 [Speaker 6]
+I'm I'm gonna go kinda rogue here and and do something totally different again, which is, I wanna share Nathan here.
+00:15:11 [Speaker 6]
+And for so so Nathan actually just recently joined as a design engineer at Vercel.
+00:15:15 [Speaker 6]
+Super talented.
+00:15:16 [Speaker 6]
+Been around a while.
+
+00:15:17 [Speaker 6]
+The reason that I'm sharing Nathan is he's the creator of Flinto.
+00:15:22 [Speaker 6]
+Did you ever use Flinto time?
+
+00:15:24 [Speaker 2]
+Didn't, but I've I'm familiar.
+
+00:15:26 [Speaker 6]
+Dude, Flinto was a humongous part of what made me realize that I wanted to do design for my entire career because I had this cracked version of Adobe Illustrator, and then I would export the images, and I would dump them into Flinto.
+00:15:40 [Speaker 6]
+And I would this is how you used a prototype.
+00:15:42 [Speaker 6]
+Like, I I don't know.
+00:15:44 [Speaker 6]
+I'm curious, like, in the chat of other people who have done this, but, like, the idea of you had to draw these, like, kinda transparent blue boxes o on top of the static images, and you'd lay them all out in Flinto and wire up every single thing so tediously.
+00:15:57 [Speaker 6]
+And then it would give you a little link.
+
+00:15:59 [Speaker 6]
+And I remember I would add it to my home screen, and I would continually just update the add to your home screen Flinto link, and then I would just walk around showing it to anybody who would give me two minutes.
+00:16:10 [Speaker 6]
+I'm so obsessed with Flinto.
+00:16:11 [Speaker 6]
+It meant so much to me as a product.
+00:16:13 [Speaker 6]
+And so I found Nathan somewhat recently, and, you know, his work's great, but I'm I just had I had such a fanboy moment.
+00:16:22 [Speaker 6]
+I was like, oh my god.
+
+00:16:23 [Speaker 6]
+You created Flinto.
+00:16:25 [Speaker 6]
+Thank you.
+00:16:26 [Speaker 6]
+Like, this is a big part of why I am doing what I'm doing professionally.
+00:16:30 [Speaker 6]
+And so I wanted to give a little bit more of, like, a throwback shout out than, somebody who's maybe you know, he doesn't have the Twitter feed of a bunch of experiments kinda thing, but this is, like, one of the OGs in the industry that I'm, like, I'm gonna take a little second to tip my cap and say thank you.
+
+00:16:45 [Speaker 2]
+I love that.
+00:16:46 [Speaker 2]
+I I already have someone in mind for next week who's similar, where they don't have this big visualized Twitter feed, but they have some work I really wanna shout them out for.
+00:16:55 [Speaker 2]
+So, keep that in mind if you're working on something dope, and we have a way to find it.
+00:16:59 [Speaker 2]
+We wanna see you.
+
+00:17:01 [Speaker 6]
+Kevin too.
+00:17:02 [Speaker 6]
+He says that, Red, you were born in the Great Depression.
+00:17:06 [Speaker 6]
+And that is indeed a way to look at this, man.
+00:17:09 [Speaker 6]
+It was, this is some tough times of prototyping, but it felt like magic at the time.
+
+00:17:14 [Speaker 2]
+I love that.
+00:17:15 [Speaker 2]
+I love that.
+00:17:16 [Speaker 2]
+This is dive.radio/votes.
+00:17:19 [Speaker 2]
+Head on over.
+00:17:20 [Speaker 2]
+Give a vote.
+
+00:17:20 [Speaker 2]
+We already have two in the lead, but I have seen many comebacks by now.
+00:17:26 [Speaker 2]
+This is episode 10.
+00:17:27 [Speaker 2]
+And, get over there.
+00:17:29 [Speaker 2]
+Give some love to someone who deserves it.
+00:17:32 [Speaker 2]
+We will announce that at the end of the show.
+
+00:17:35 [Speaker 2]
+So, speaking of which, I just wanna call this out, Riz.
+00:17:38 [Speaker 2]
+So here's the state of the show.
+00:17:40 [Speaker 2]
+I wanna everybody who's been tuning in live or, checking it out after the fact, thank you for tuning in.
+00:17:46 [Speaker 2]
+You are making this a lot of fun for us.
+00:17:48 [Speaker 2]
+You are also helping us just spotlight and give back to this community in a way that's really life giving.
+
+00:17:54 [Speaker 2]
+You can see, this is how this stuff works.
+00:17:55 [Speaker 2]
+It kinda starts with the low murmur, and then there's a compounding effect that really takes off, And we are experiencing that right now.
+00:18:02 [Speaker 2]
+It's a lot of fun to see this.
+00:18:04 [Speaker 2]
+Little dashboard I've coded at one point.
+00:18:06 [Speaker 2]
+It's been kind of the way we track.
+
+00:18:08 [Speaker 2]
+Hey.
+00:18:09 [Speaker 2]
+Is this thing working?
+00:18:10 [Speaker 2]
+Is this thing on?
+00:18:11 [Speaker 2]
+You know?
+
+00:18:12 [Speaker 6]
+We've been kinda figuring out the format too as we go, which has been like, I look back at the first episode, and I'm like, respectfully, that sucked ass.
+00:18:20 [Speaker 6]
+You know?
+00:18:20 [Speaker 6]
+Like, that wasn't the way.
+00:18:21 [Speaker 6]
+And I think we're kinda we're kinda locking in on something that even I'm having so much fun consuming, like, real time.
+00:18:28 [Speaker 6]
+So we're excited.
+
+00:18:29 [Speaker 6]
+We're excited to keep doing this.
+00:18:30 [Speaker 6]
+It's definitely life giving.
+
+00:18:31 [Speaker 2]
+Yeah.
+00:18:31 [Speaker 2]
+And, you know, last week, we did a really fantastic episode on the state of design jobs, but I'm not satisfied.
+00:18:38 [Speaker 2]
+And for those who don't know, I've been running an annual design survey for a while.
+00:18:42 [Speaker 2]
+UX tools has been publishing that since 2017.
+00:18:45 [Speaker 2]
+We're trying to get more granular per quarter to understand what's happening in different categories of design.
+
+00:18:51 [Speaker 2]
+This quarter, we are exploring the compensation, the roles, the responsibilities of design jobs.
+00:18:57 [Speaker 2]
+Please head over to dive.radio/survey.
+00:19:02 [Speaker 2]
+I'm so sorry.
+00:19:03 [Speaker 2]
+I just butchered that entirely.
+00:19:04 [Speaker 2]
+It is survey.dive.radio.
+
+00:19:07 [Speaker 10]
+See, we're still fuming this out.
+
+00:19:09 [Speaker 2]
+You know, the If many of you have already filled this out, we're gonna publish the results of this to really get some clarity on what's happening with design jobs in November.
+00:19:17 [Speaker 2]
+Head over to survey.dive.radio.
+00:19:19 [Speaker 2]
+Please help us fill that out.
+00:19:20 [Speaker 2]
+And if you are somebody who is looking for work or you just kinda wanna know what's out there, you can also check out dive.club/talent.
+00:19:29 [Speaker 2]
+We really gotta consolidate these things.
+
+00:19:31 [Speaker 2]
+Yeah.
+
+00:19:32 [Speaker 6]
+Our URLs and everything about the websites, we will fix it.
+
+00:19:35 [Speaker 2]
+We're we're working on it.
+00:19:36 [Speaker 2]
+Thank you for bearing with us.
+00:19:37 [Speaker 2]
+But, we do have the dive talent network, and it has been really cool to see the way that this thing is helping a lot of folks.
+00:19:43 [Speaker 2]
+So let's get into it.
+00:19:45 [Speaker 2]
+Enough of our self promotional stuff.
+
+00:19:47 [Speaker 2]
+I'm just gonna kick right off with something.
+00:19:49 [Speaker 2]
+Alright?
+00:19:49 [Speaker 2]
+We're gonna do some reacts to the news.
+00:19:51 [Speaker 2]
+The sketch the founding sketch team just announced Elex.
+00:19:56 [Speaker 2]
+Alright?
+
+00:19:56 [Speaker 2]
+Now I did get access to this.
+00:19:58 [Speaker 2]
+I haven't had a chance to dabble with it.
+00:20:00 [Speaker 2]
+We've been pretty busy.
+00:20:01 [Speaker 2]
+So I don't really know what this is yet.
+00:20:04 [Speaker 2]
+I tweeted about it just to give them a little bit of love.
+
+00:20:07 [Speaker 2]
+I imagine it's a canvas tool.
+00:20:09 [Speaker 2]
+I have no clue what that
+
+00:20:10 [Speaker 6]
+say much.
+00:20:11 [Speaker 6]
+They didn't say much.
+00:20:11 [Speaker 6]
+The only thing that was, like, the novel inside, I think, that I saw was that the files live locally inside of your code base.
+
+00:20:18 [Speaker 2]
+Well, so here's the thing.
+00:20:19 [Speaker 2]
+And I say this with love because I have a fond memory of Sketch.
+00:20:24 [Speaker 2]
+I mean, it really took me out of the Photoshop era Totally.
+00:20:27 [Speaker 2]
+Of trying to design interfaces, and it changed everything for me.
+00:20:30 [Speaker 2]
+It made me decide to become a full fledged product designer when I was a failing, bumbling front end engineer.
+
+00:20:36 [Speaker 2]
+And they kind of refer to this as this sort of, like, agentic product building or a source of truth.
+00:20:42 [Speaker 2]
+Personally, I think most design tools are gonna find themselves trying to use that language.
+00:20:47 [Speaker 2]
+And I find it interesting that this is what they're doing.
+00:20:50 [Speaker 2]
+But what they did not give us, alright, we go to the landing page.
+00:20:54 [Speaker 2]
+And I am not trying to poop on anybody.
+
+00:20:57 [Speaker 2]
+Just maybe some feedback.
+00:20:59 [Speaker 2]
+This is cool.
+00:20:59 [Speaker 2]
+This starts But
+
+00:21:00 [Speaker 6]
+the turd's coming out.
+
+00:21:01 [Speaker 1]
+I'm not gonna poop.
+
+00:21:02 [Speaker 6]
+This this is turd's
+
+00:21:02 [Speaker 2]
+coming out.
+00:21:02 [Speaker 2]
+Out pretty cool.
+00:21:03 [Speaker 2]
+There's some stuff here that I like.
+00:21:05 [Speaker 2]
+I don't understand what it is off the jump.
+00:21:09 [Speaker 2]
+And I know I'm not the only one because Chris Puckett came out and he said some things like that.
+
+00:21:14 [Speaker 2]
+He made kind of a shorthand post about it and he said, hey.
+00:21:16 [Speaker 2]
+My bad.
+00:21:17 [Speaker 2]
+Let me give some constructive criticism.
+00:21:18 [Speaker 2]
+We're not gonna watch the video, but you can go check it out.
+00:21:21 [Speaker 2]
+And it basically says, hey, here's some things that I would do differently.
+
+00:21:24 [Speaker 2]
+But my feedback is, if you are launching something, show me what you got.
+00:21:28 [Speaker 2]
+I wanna understand.
+00:21:30 [Speaker 2]
+Let me understand it right away from a visual.
+00:21:32 [Speaker 2]
+Yeah.
+00:21:33 [Speaker 2]
+It's really helpful because, obviously, people are very excited.
+
+00:21:35 [Speaker 2]
+There's a lot of people who have fond memories about Sketch.
+00:21:37 [Speaker 2]
+They wanna see what Elex is up to.
+00:21:40 [Speaker 2]
+So there you go.
+00:21:41 [Speaker 2]
+Another big announcement.
+00:21:42 [Speaker 2]
+Common knowledge has joined Figma.
+
+00:21:45 [Speaker 2]
+Now, this is interesting to me.
+00:21:47 [Speaker 2]
+For those who are not familiar or aware what common knowledge is, you may remember this visualization.
+00:21:53 [Speaker 2]
+This is that generative interfaces that they were bringing to life and showing you different ways.
+00:21:58 [Speaker 2]
+They're zooming in and out, and the views are changing, interfaces are generating in real time.
+00:22:04 [Speaker 2]
+This, we talked about a couple weeks ago, and we saw this happening with, RunwayML, kind of released, I believe it was Solaris.
+
+00:22:12 [Speaker 2]
+I we still don't really know how to conceptualize this idea of, like, real time generative interfaces, but it is interesting that Figma said, yoink, we want that.
+00:22:21 [Speaker 2]
+Yeah.
+00:22:21 [Speaker 2]
+And I'm curious to see what they do with it.
+
+00:22:23 [Speaker 6]
+I got to meet Eddie.
+00:22:25 [Speaker 6]
+Mhmm.
+00:22:25 [Speaker 6]
+Eddie Jowell.
+00:22:26 [Speaker 6]
+He he's incredibly talented.
+00:22:29 [Speaker 6]
+He was presenting alongside us at South Park Commons.
+
+00:22:33 [Speaker 6]
+I guess that would have been last summer and had some really, really fresh takes and kind of he builds a lot in these middle grounds where you just kinda look at it and you're like, I don't know how to put a box around that because it's kinda straddling so many different mediums and formats that I'm familiar with.
+00:22:52 [Speaker 6]
+And I just am excited to see
+
+00:22:53 [Speaker 1]
+what they do.
+00:22:54 [Speaker 1]
+It's gonna be fun.
+
+00:22:55 [Speaker 2]
+Yeah.
+00:22:55 [Speaker 2]
+Yeah.
+00:22:55 [Speaker 2]
+I'll I'll very, very just interesting to see the times are changing here.
+00:23:00 [Speaker 2]
+We did see so here's the thing.
+00:23:03 [Speaker 2]
+This went super viral.
+
+00:23:05 [Speaker 2]
+I wanna talk about it just real briefly, which was we we see this kind of, look at this here for a second.
+00:23:13 [Speaker 2]
+29,500,000
+
+00:23:16 [Speaker 6]
+Oh, shoot.
+
+00:23:16 [Speaker 2]
+Views.
+00:23:17 [Speaker 2]
+Woah.
+00:23:17 [Speaker 2]
+Did you did you see this?
+
+00:23:19 [Speaker 6]
+I didn't watch the video.
+00:23:20 [Speaker 6]
+And, honestly, I'm kinda glad that you're bringing it up because it was one of those things where it's, like, obviously, it's a big deal.
+00:23:24 [Speaker 6]
+Everybody's talking about it.
+00:23:25 [Speaker 6]
+I don't have the time to invest in it.
+00:23:26 [Speaker 6]
+So I don't really know anything about what makes this interesting or novel, and I was kind of hoping to have you explain it
+
+00:23:31 [Speaker 2]
+to me anyway.
+00:23:32 [Speaker 2]
+Yeah.
+00:23:32 [Speaker 2]
+Absolutely.
+00:23:33 [Speaker 2]
+So it's Type Safe AI, which is a new sort of model that they brought to market.
+00:23:38 [Speaker 2]
+And it's like, okay, another model.
+
+00:23:39 [Speaker 2]
+It's not is it gonna compete with the frontiers?
+00:23:41 [Speaker 2]
+Not exactly.
+00:23:42 [Speaker 2]
+And I don't think necessarily the goal.
+00:23:45 [Speaker 2]
+And and I'll explain to this.
+00:23:46 [Speaker 2]
+So the one of the founders here created ChatGPT, the product, and the reinforcement learning for human feedback mechanism, which I believe started kind of as just the thumbs up, thumbs down on your prompts and then grew to be even more.
+
+00:24:00 [Speaker 2]
+And I think there's a lot more going on under the hood and expanded on this concept.
+00:24:05 [Speaker 2]
+I am by no means the qualified person to talk about this, but, the summary here is they have a product called JEV.
+00:24:12 [Speaker 2]
+They've been in stealth for a while.
+00:24:13 [Speaker 2]
+They just came out.
+00:24:14 [Speaker 2]
+The video's not a banger, some big clue y animated video.
+
+00:24:19 [Speaker 2]
+The reason that it's really popping off is people started to play with this.
+00:24:22 [Speaker 2]
+And so, it's not something that can write code.
+00:24:25 [Speaker 2]
+It can't generate natural language.
+00:24:27 [Speaker 2]
+It's not reasoning step by step.
+00:24:29 [Speaker 2]
+But what it's doing is it's classifying and routing.
+
+00:24:32 [Speaker 2]
+It's scoring things and ranking them.
+00:24:36 [Speaker 2]
+The biggest thing that people are calling out about this, though, is how fast it does those things.
+00:24:43 [Speaker 2]
+This is Steve Ruiz of TL draw.
+00:24:45 [Speaker 2]
+Says, I asked it to, one shot a perfect multiplayer whiteboarding app in React.
+00:24:50 [Speaker 2]
+It got there in ten, twelve x faster than Claude.
+
+00:24:55 [Speaker 2]
+A 12 times faster than Claude.
+00:24:58 [Speaker 2]
+Now it said it can't code.
+00:24:59 [Speaker 2]
+I don't I haven't used this yet.
+
+00:25:01 [Speaker 6]
+Okay.
+
+00:25:02 [Speaker 2]
+Yeah.
+00:25:02 [Speaker 2]
+You know?
+00:25:02 [Speaker 2]
+And but but I think what people are doing is they're routing tasks to other things.
+00:25:06 [Speaker 2]
+And something about that is making it move fast here.
+00:25:09 [Speaker 2]
+You can look at Riley talks about how he set it up to classify 500 emails in seconds.
+
+00:25:16 [Speaker 2]
+It did it in seconds, and it cost 3.5¢ to do it.
+00:25:21 [Speaker 2]
+Okay.
+00:25:21 [Speaker 2]
+So suddenly, there's this kind of new category being born of a lot of the, like, monotonous tasks that it's like, why am I wasting this on one of the frontier models?
+00:25:32 [Speaker 2]
+And even if I go, like, a generation behind, it still takes a moment to think, whereas it seems like TypeSafe is maybe the right routing model to do that very quickly.
+
+00:25:42 [Speaker 6]
+This was the topic of dinner last night with a bunch of people at ValuCon was basically there's the demand for more intelligence is decreasing so rapidly.
+00:25:51 [Speaker 6]
+Like
+
+00:25:52 [Speaker 1]
+Yeah.
+
+00:25:52 [Speaker 6]
+Astra is incredible, man.
+00:25:53 [Speaker 6]
+Can't even imagine why I would need more intelligence than Astra, but goodness if it was cheaper and faster.
+
+00:26:00 [Speaker 2]
+That seems to be a really a big gap right now.
+00:26:03 [Speaker 2]
+Now we do have, like, little things coming out.
+00:26:05 [Speaker 2]
+Everyone said said they're gonna try to align and slow down, obviously.
+00:26:07 [Speaker 2]
+Cloud CoWork merging into Cloud.
+00:26:09 [Speaker 2]
+I think that's, like, these are these small product wins.
+
+00:26:11 [Speaker 2]
+And it seems like we're probably gonna see this influx less about the increase in intelligence and maybe more about the shipping of different products coming up.
+00:26:19 [Speaker 2]
+Sam Altman's tweeting a lot about this.
+00:26:21 [Speaker 2]
+So we'll kinda see what that is.
+00:26:23 [Speaker 2]
+I'm excited to see it, but I'm still paying attention to the design lane, man, because there's a lot of cool stuff coming out.
+00:26:28 [Speaker 2]
+Right?
+
+00:26:29 [Speaker 2]
+Dan Petty's been heads down helping design as a founding designer on Quiver AI.
+00:26:34 [Speaker 2]
+This is a tool that, they just introduced Arrow two, not sponsored, by the way.
+00:26:39 [Speaker 2]
+We just like to talk about some of these things that are coming up.
+00:26:41 [Speaker 2]
+Should be.
+00:26:43 [Speaker 2]
+Because it's it's supposedly one of the best ways to generate vector images and assets.
+
+00:26:49 [Speaker 2]
+And I think that's really interesting.
+00:26:51 [Speaker 2]
+I will be playing with this.
+00:26:53 [Speaker 2]
+I just wanna this thing got 200,000 views, and I just said it looks looks damn cool.
+
+00:26:58 [Speaker 6]
+Oh, this is your tweet with that much?
+
+00:27:00 [Speaker 2]
+I'm like, I just said it looks cool.
+00:27:03 [Speaker 2]
+So I will send an invoice, you know, and, but it but it does.
+00:27:07 [Speaker 2]
+It does look pretty cool, and it's, I think, a testament to just the fact that products that do scratch an itch that people have been needing.
+00:27:14 [Speaker 2]
+Not sure how many folks have tried to generate well working vector, assets.
+00:27:20 [Speaker 2]
+This is this is neat to see.
+
+00:27:21 [Speaker 10]
+What's cool
+
+00:27:21 [Speaker 6]
+is, like, paper is the interface for me for this, too.
+00:27:24 [Speaker 6]
+Like, I don't actually have to even learn a new tool.
+00:27:26 [Speaker 6]
+It's just functionality that lives in paper and I now use it all the time.
+
+00:27:29 [Speaker 2]
+No, dude.
+00:27:30 [Speaker 2]
+I use paper for everything.
+00:27:31 [Speaker 2]
+It's a big big big, that is my daily driver currently.
+00:27:34 [Speaker 2]
+Now, here's, you know, there's there's something I wanna talk about.
+00:27:38 [Speaker 2]
+That's kind of the news of what's been released, in the last week or so.
+
+00:27:43 [Speaker 2]
+You know what came across my feed?
+00:27:44 [Speaker 2]
+Now I know both of us have been fans of Flora.
+00:27:48 [Speaker 2]
+Flo has been dope.
+00:27:49 [Speaker 2]
+Right?
+00:27:49 [Speaker 2]
+Like, she I've and I know you interviewed her for the dive club.
+
+00:27:53 [Speaker 2]
+She kinda started as a there was no voice on Twitter.
+00:27:56 [Speaker 2]
+Maybe it was last year.
+00:27:57 [Speaker 2]
+No follower count.
+00:27:59 [Speaker 2]
+And by the merits of her work and just kinda sharing how her journey went through getting different roles, suddenly, I saw this card from t b p n, and they're they're putting out recruitment cards for floor.
+00:28:10 [Speaker 2]
+And I'm like, oh, dude.
+
+00:28:12 [Speaker 2]
+That's freaking cool.
+00:28:13 [Speaker 2]
+And I I think we talked a little bit about last week about how people are putting themselves out there.
+00:28:18 [Speaker 2]
+Designers are trying to get jobs, get exposure, the different ways they're doing that.
+00:28:23 [Speaker 2]
+And one of the things that happened the minute I got off the livestream is I got a DM from someone in the community who wanted to help me.
+00:28:31 [Speaker 2]
+They they want they were sharing their portfolio.
+
+00:28:33 [Speaker 2]
+They they gave me a big wall of text about things, and and I read it.
+00:28:38 [Speaker 2]
+And I sent them some feedback about, hey.
+00:28:40 [Speaker 2]
+Like, I really appreciate it.
+00:28:41 [Speaker 2]
+Here's what I think.
+00:28:42 [Speaker 2]
+They actually shared something really cool, which I wanna share with everybody.
+
+00:28:45 [Speaker 2]
+And right after that, Dan Mahl shared something, a a take on the same topic.
+
+00:28:52 [Speaker 6]
+Mhmm.
+
+00:28:52 [Speaker 2]
+Dan Mull, who was, I think, full of wisdom, one of the kindest humans I know, and came out and said, hey, listen up.
+00:28:59 [Speaker 2]
+If you're gonna shoot your shot, do it.
+00:29:02 [Speaker 2]
+But here's how you should do it.
+00:29:03 [Speaker 2]
+Here's how you shouldn't.
+00:29:05 [Speaker 2]
+Now, this is a longer video.
+
+00:29:06 [Speaker 2]
+I I recommend checking out the seven minute video.
+00:29:09 [Speaker 2]
+But there's two takes we cut up, and I wanna hear from this because it did spark some conversation.
+00:29:14 [Speaker 2]
+And I want your feedback on this, Ridd.
+00:29:16 [Speaker 2]
+And, I'll give my take in just a second.
+
+00:29:18 [Speaker 11]
+What's up, designers and agency owners?
+00:29:20 [Speaker 11]
+I wanna show you a message that I just received that's not great, and I wanna show you how to improve it.
+00:29:25 [Speaker 11]
+Says, hey, Dan.
+00:29:26 [Speaker 11]
+Very insightful message on your last video.
+00:29:28 [Speaker 11]
+Those numbers are mind blowing and looks unreal from this that part of the world.
+
+00:29:31 [Speaker 11]
+And there's a control link here, and then it says, I'm a product designer and well versed in graphics and brand design, about seven years experience.
+00:29:36 [Speaker 11]
+I would like to volunteer a hand to your team for three weeks or more.
+00:29:40 [Speaker 11]
+I believe I will learn a lot of things judging from just that video.
+00:29:43 [Speaker 11]
+If you have a spot, I'll be so glad to take it.
+00:29:44 [Speaker 11]
+Here's a snippet of my work.
+
+00:29:46 [Speaker 11]
+So overall, it's a nice polite message, but it doesn't work or at least it doesn't work for me as the recipient.
+00:29:51 [Speaker 11]
+And so whatever message you sent, it has to work for the recipient.
+00:29:53 [Speaker 11]
+So let me tell you what didn't work for me when I read a message like this.
+00:29:56 [Speaker 11]
+I would like to volunteer a hand to your team for three weeks or more.
+00:29:59 [Speaker 11]
+This is where it gets problematic.
+
+00:30:01 [Speaker 11]
+Volunteer a hand to my team for what?
+00:30:03 [Speaker 11]
+You wanna sweep around the office?
+00:30:04 [Speaker 11]
+Do wanna do design?
+00:30:05 [Speaker 11]
+Like, I have to infer that stuff from the fact that you're a product designer.
+00:30:09 [Speaker 11]
+But, like, do you wanna do brand design for me?
+
+00:30:11 [Speaker 11]
+Do you wanna do graphic design?
+00:30:12 [Speaker 11]
+Why am I doing all this work to answer these questions?
+00:30:14 [Speaker 11]
+You should have answered these questions.
+00:30:16 [Speaker 11]
+I believe I will learn a lot of things judging from just that video.
+00:30:19 [Speaker 11]
+It's like, oh, I see what you want.
+
+00:30:21 [Speaker 11]
+You want something.
+00:30:22 [Speaker 11]
+You're not actually volunteering to help me.
+00:30:25 [Speaker 11]
+You are asking if I can help you.
+00:30:27 [Speaker 11]
+But the problem with it is it's under the guise of I'm gonna help you.
+00:30:31 [Speaker 11]
+For me, what I hear and think when I get a message like this is like, oh, man, it's gonna be a ton of work to hire this person, work with them.
+
+00:30:38 [Speaker 11]
+They're probably gonna need a lot from me.
+00:30:40 [Speaker 11]
+Already in this message, they need a lot from me.
+00:30:42 [Speaker 11]
+So how much more of it when I actually hire them?
+00:30:44 [Speaker 11]
+If you send messages like this to people, make sure that you are saying what's in it for them.
+00:30:49 [Speaker 11]
+If you want to get this gig, you're more likely to get it when you send something to them that makes it feel like they get more out of it too.
+
+00:30:55 [Speaker 12]
+I have had a lot of pitches of people saying they wanna work with me, and there's a few points that are gonna be important for you to realize if you are sliding in the DMs.
+00:31:05 [Speaker 12]
+I have hired only contractors.
+00:31:07 [Speaker 12]
+Luke works with me as a permanent contractor, and he's a permanent contractor that I trust with everything.
+00:31:14 [Speaker 12]
+If I got in a accident tomorrow and couldn't work, I would trust Luke to run my business for me.
+00:31:19 [Speaker 12]
+That's the level of trust, and that's the bar that I have on anyone else that that wants to work with me.
+
+00:31:25 [Speaker 12]
+I think this is the way that you should pitch to work with people.
+00:31:29 [Speaker 12]
+Luke did not approach me with the intention of essentially becoming my business partner.
+00:31:34 [Speaker 12]
+He came to me for advice, and we formed a friendship.
+00:31:37 [Speaker 12]
+That then had him in my mind.
+00:31:39 [Speaker 12]
+So I reached out to Luke like, hey, Luke.
+
+00:31:40 [Speaker 12]
+Can you help me with this?
+00:31:41 [Speaker 12]
+I'll pay you, please.
+00:31:42 [Speaker 12]
+And then guess what?
+00:31:43 [Speaker 12]
+There was more and there was more.
+00:31:45 [Speaker 12]
+And then before you know it, I'm saying to him, hey.
+
+00:31:47 [Speaker 12]
+This is great.
+00:31:48 [Speaker 12]
+Why don't I retain you for 50% of all work that you do with me?
+00:31:52 [Speaker 12]
+That is the best way, in my opinion.
+00:31:53 [Speaker 12]
+Genuine connection.
+00:31:55 [Speaker 12]
+That's what you need.
+
+00:31:56 [Speaker 12]
+Just form relationships and be a good person.
+00:31:58 [Speaker 12]
+If you are posting consistently good work online and you're trying to make genuine connections with people, you will be in their mind.
+00:32:07 [Speaker 12]
+Create genuine connection because these people you're reaching out to are people, and they're people that are gonna be very, very attached to the work that they're doing.
+00:32:16 [Speaker 12]
+K?
+00:32:17 [Speaker 12]
+Makes sense?
+
+00:32:20 [Speaker 2]
+A tale a tale of two Dans.
+00:32:22 [Speaker 2]
+Oh, I do.
+00:32:23 [Speaker 2]
+Yeah.
+00:32:24 [Speaker 2]
+And and I I'm curious.
+00:32:25 [Speaker 2]
+How often do you get DMs, cold DMs for people wanting to help you and reach out to you in this way?
+
+00:32:30 [Speaker 1]
+A lot.
+
+00:32:31 [Speaker 2]
+Yeah.
+00:32:31 [Speaker 2]
+Yeah.
+00:32:32 [Speaker 2]
+Yeah.
+00:32:33 [Speaker 2]
+I think Dan Mall nailed it.
+00:32:35 [Speaker 2]
+You know?
+
+00:32:36 [Speaker 2]
+If I have to infer and do all this work, it's it's hard.
+00:32:39 [Speaker 2]
+There's a lot of stuff that we probably could use help with, but, like, the fact that we don't have the help yet, it's because we just don't even have the time to untangle the whole thing.
+00:32:48 [Speaker 2]
+We might not have the resources.
+00:32:49 [Speaker 2]
+I had someone reach out, and they had a great portfolio.
+00:32:51 [Speaker 2]
+It was like a number of things.
+
+00:32:53 [Speaker 2]
+It was like, hey.
+00:32:53 [Speaker 2]
+I would love to I would love help on this or maybe this.
+00:32:56 [Speaker 2]
+It was like they were giving me options of ways I could help them.
+00:32:58 [Speaker 2]
+They showed me some projects they worked on.
+00:33:00 [Speaker 2]
+A lot of the projects weren't really relevant to anything I had going on, but they did have this project.
+
+00:33:05 [Speaker 2]
+And so this was Jeffrey, and Jeffrey and I spoke.
+00:33:08 [Speaker 2]
+I sent Jeffrey a wonderful voice note about it.
+00:33:10 [Speaker 2]
+And, I was like, by the way, dude, the little plug in you made for Cosmo was kinda dope.
+00:33:15 [Speaker 2]
+And he made this thing that helped you generate mood boards using connecting your AI into Cosmo.
+00:33:23 [Speaker 2]
+And I just wanted to share it because it is pretty nifty.
+
+00:33:27 [Speaker 2]
+Big Cosmo fan myself.
+00:33:29 [Speaker 2]
+Yeah.
+00:33:30 [Speaker 2]
+Yeah.
+00:33:30 [Speaker 2]
+Same.
+
+00:33:36 [Speaker 6]
+Okay.
+
+00:33:38 [Speaker 2]
+This is a browser plugin.
+00:33:40 [Speaker 2]
+That's the prompt.
+00:33:43 [Speaker 2]
+Yours tending assorted.
+
+00:33:47 [Speaker 6]
+Also, RIP your DMs getting a DM and then sharing the thing to thousands of people.
+00:33:52 [Speaker 6]
+I know.
+00:33:53 [Speaker 6]
+Everybody DM Tommy your ideas.
+
+00:33:55 [Speaker 2]
+Oh, jeez.
+00:33:56 [Speaker 2]
+But look at this.
+00:33:56 [Speaker 2]
+It just generated
+
+00:33:57 [Speaker 10]
+a whole bunch
+
+00:33:58 [Speaker 2]
+of cause like, I was like, oh, that's actually kinda clean.
+00:34:02 [Speaker 2]
+Now, I like I like the process of going through and handpicking things.
+00:34:06 [Speaker 2]
+I think there's a lot of value still inside of that.
+00:34:09 [Speaker 2]
+But this is a really interesting little thing, and I thought it was pretty nifty, that share.
+00:34:13 [Speaker 2]
+So, Jeffrey, thank you for sharing that to us.
+
+00:34:15 [Speaker 2]
+If you send me a bunch of stuff you make, sometimes I look at it and I can't promise it.
+00:34:20 [Speaker 2]
+It's hard.
+00:34:21 [Speaker 2]
+But, you know, I I wanna call something out.
+00:34:23 [Speaker 2]
+Right?
+00:34:23 [Speaker 2]
+And we're gonna get into Notion, who is a sponsor of the show.
+
+00:34:27 [Speaker 2]
+They allow us to build what we've been creating here.
+00:34:30 [Speaker 2]
+Thank you, Notion, for that.
+00:34:32 [Speaker 2]
+There are times where, people will be like, hey.
+00:34:35 [Speaker 2]
+I I read that newsletter.
+00:34:37 [Speaker 2]
+I watched the video.
+
+00:34:38 [Speaker 2]
+I synthesized it into something for you.
+00:34:40 [Speaker 2]
+Maybe this is useful.
+00:34:41 [Speaker 2]
+That kind of activity is actually very helpful sometimes.
+00:34:44 [Speaker 2]
+Like, yes, of course, we have granola, and we have all kinds of ways to transcript.
+00:34:47 [Speaker 2]
+It's actually not at a super expensive task, but there is a little bit of overhead to really make it useful for people.
+
+00:34:54 [Speaker 2]
+And it's something even we've been, not doing a great job of, creating show notes.
+00:34:58 [Speaker 2]
+And we have so much we have so much.
+00:35:00 [Speaker 2]
+Like, last week's episode on hiring, there's so much value in there that if you're somebody who's looking for a job and you're not pointing AI at that episode to turn that into, like, a bundle of insights, I would recommend doing it.
+00:35:13 [Speaker 2]
+And one of the ways that you could do that now is Notion introduced their skills API.
+00:35:18 [Speaker 2]
+Notion has become it's my knowledge management platform.
+
+00:35:20 [Speaker 2]
+We're working with them because we use them.
+00:35:23 [Speaker 2]
+And the skills API, the skills this the whole thing that they allow you to do is to create skills that you can then store and use inside of your Notion agent or even externally with Cloud.
+
+00:35:36 [Speaker 13]
+With this?
+00:35:37 [Speaker 13]
+I'm looking
+
+00:35:38 [Speaker 6]
+at the timestamp right now.
+00:35:39 [Speaker 6]
+I didn't even see this.
+00:35:40 [Speaker 6]
+This is sick.
+00:35:40 [Speaker 6]
+Even just by the one line description, I'm like, oh, yeah.
+00:35:42 [Speaker 6]
+That makes a ton of sense.
+
+00:35:43 [Speaker 2]
+Ton of sense, man.
+00:35:44 [Speaker 2]
+And and what's interesting too is, like, a lot of companies are starting to have, you know, in addition to all the other knowledge management you have to do inside the organization, now you have the knowledge management your skills.
+00:35:55 [Speaker 2]
+Like, everyone's creating different skills.
+00:35:57 [Speaker 2]
+And I was like, you know what's interesting is this show, I feel like every episode we have, because every episode is typically one major theme.
+00:36:05 [Speaker 2]
+We do our beginning stuff, and then we get into one theme.
+
+00:36:08 [Speaker 2]
+And it's like, how can we turn our episodes into a skill that might help somebody find some clarity?
+00:36:14 [Speaker 2]
+And so I'm kind of experimenting with this, and I decided to create the dive radio skills library using Notion skills.
+00:36:21 [Speaker 2]
+This is the design job search coach skill, and I I gave it a quick test.
+00:36:26 [Speaker 2]
+We'll look at that in a second.
+00:36:28 [Speaker 2]
+And it's not so much that I expect people to read through all of this.
+
+00:36:32 [Speaker 2]
+This is essentially the description of how the skill works, what it outputs.
+00:36:36 [Speaker 2]
+This is more for your agent.
+00:36:38 [Speaker 2]
+Your agent is gonna use this skill.
+00:36:40 [Speaker 2]
+And the way and we're gonna try to build these.
+00:36:42 [Speaker 2]
+This is an episode today about becoming a founding designer, and it'll make a skill here.
+
+00:36:47 [Speaker 2]
+If you go to dive.radio/skills, you can check out the beginning of this skills library.
+00:36:53 [Speaker 2]
+But this design this job search coach, if you apply this, you know, like, for example, you have to be signed into Notion.
+00:37:01 [Speaker 2]
+And if you click at the top, you can either enable the skill internally on your Notion agent or you can download it for local agents on your machine.
+00:37:10 [Speaker 2]
+So if you have anything else that you use it for.
+00:37:13 [Speaker 2]
+And when you do that, let's say you come across something like the Stripe design job listing, and you're like, you know, I heard a lot of feedback about how to evaluate some of these design jobs.
+
+00:37:25 [Speaker 2]
+I heard a lot of things from that dive club episode on how to, maybe consider if I'm the right fit for it.
+00:37:32 [Speaker 2]
+Well, you would run this skill against the job listing here.
+00:37:38 [Speaker 2]
+And you could do that either from your Notion agent.
+00:37:40 [Speaker 2]
+You could do it from Claude once you install the skill and maybe a quick blurb about you.
+00:37:45 [Speaker 2]
+You'd have to have some context so it understands who you are.
+
+00:37:48 [Speaker 2]
+And if you have that, what it gives you is a sort of generative breakdown of things that you can start to kind of weed through.
+00:37:54 [Speaker 2]
+Now, it gives you a summary of the job posting facts, not that any of this is super new or novel, but it'll kind of fact check any contradictions for you.
+00:38:02 [Speaker 2]
+But then it'll really get into a fit read.
+00:38:05 [Speaker 2]
+Some of the things that maybe you wanna consider, am I the right fit for this?
+00:38:09 [Speaker 2]
+What do I think?
+
+00:38:09 [Speaker 2]
+Right?
+00:38:10 [Speaker 2]
+We heard some great, great feedback from designers and hiring managers last week.
+00:38:15 [Speaker 2]
+And then maybe there's, like, an evidence checklist, and it'll kind of point you through things that, this is why I think you're a good fit for this.
+00:38:22 [Speaker 2]
+It'll give you convictions, and then it'll actually give you, like, how might you reach out to this hiring manager about your fit?
+00:38:30 [Speaker 2]
+How might what might some of the questions you would specifically ask about this role?
+
+00:38:35 [Speaker 2]
+It'll provide you with some interview prep, and it'll also let you know, hey.
+00:38:39 [Speaker 2]
+Here are some of the things that we don't yet know, you know, that this skill can't tell you.
+00:38:43 [Speaker 2]
+So this is just an evolution of one skill.
+00:38:46 [Speaker 2]
+This is something to try.
+00:38:47 [Speaker 2]
+I would love feedback.
+
+00:38:48 [Speaker 2]
+I'm not trying to just put this out there and forget about it.
+00:38:51 [Speaker 2]
+We really do wanna create some skills around these episodes that are helpful to designers.
+00:38:56 [Speaker 2]
+If you try these and you see room for improvement, let me know.
+00:39:00 [Speaker 2]
+If you wanna submit a skill off of one of these episodes to include in this library, we're not charging anything for this stuff, let me know and we'll put it in.
+00:39:08 [Speaker 2]
+And that is one way that if you reach out to me and you're like, hey, I built a skill for the episode.
+
+00:39:13 [Speaker 2]
+I'm gonna Actually, though.
+
+00:39:13 [Speaker 6]
+Into you.
+
+00:39:14 [Speaker 2]
+Yeah.
+00:39:15 [Speaker 2]
+Yeah.
+00:39:15 [Speaker 2]
+You know?
+00:39:16 [Speaker 2]
+So a lot a lot of fun stuff there.
+00:39:17 [Speaker 2]
+Notion, thank you for sponsoring this episode.
+
+00:39:19 [Speaker 2]
+Thank you for being part of this design community.
+00:39:22 [Speaker 2]
+Really big fan with that.
+00:39:25 [Speaker 2]
+All that said, I wanna get into the meat of this.
+00:39:27 [Speaker 2]
+So I have a problem, Ridd.
+00:39:30 [Speaker 2]
+Alright?
+
+00:39:30 [Speaker 2]
+Yeah, man.
+00:39:31 [Speaker 2]
+This is my problem.
+00:39:32 [Speaker 2]
+I get excited about our topics, and then I reach out to all the people who I'm excited to hear from, assuming that most people are too busy.
+00:39:41 [Speaker 2]
+We have six days to put these episodes together.
+00:39:44 [Speaker 2]
+And so I reach out to a bunch assuming there's gonna be some percentage of fall off.
+
+00:39:48 [Speaker 2]
+Everybody is showing up.
+00:39:51 [Speaker 2]
+Everybody records.
+00:39:52 [Speaker 2]
+Buckle up, baby.
+00:39:54 [Speaker 2]
+You know?
+00:39:54 [Speaker 2]
+And so we have some things that we're gonna hear from.
+
+00:39:57 [Speaker 2]
+So a founding designer.
+00:39:59 [Speaker 2]
+Right?
+00:39:59 [Speaker 2]
+There's sometimes, I think people kind of confuse a founding designer with a design founder.
+00:40:05 [Speaker 2]
+And there are differences, certainly, obviously, ownership and a number of other things.
+00:40:09 [Speaker 2]
+But then I think there are people who think they want to become founding designers.
+
+00:40:13 [Speaker 2]
+We know that in the dive talent network, this is a really hot role that people are looking for.
+
+00:40:19 [Speaker 6]
+Yeah.
+
+00:40:20 [Speaker 2]
+It's hard
+
+00:40:20 [Speaker 1]
+like the
+
+00:40:20 [Speaker 6]
+b role, man.
+
+00:40:21 [Speaker 2]
+It is it is hard to hire for.
+00:40:24 [Speaker 2]
+And it's hard to do if you get hired for it.
+00:40:27 [Speaker 2]
+I would wager I've been a I've been a first design hire, which is different than necessarily a founding designer.
+00:40:33 [Speaker 2]
+I've been I've been a design founder, and I've been a founding designer.
+00:40:36 [Speaker 2]
+And all of those things are complicated.
+
+00:40:40 [Speaker 2]
+So I wanna hear from people on a number of different buckets today.
+00:40:44 [Speaker 2]
+What is it, what is the job?
+00:40:47 [Speaker 2]
+You know, who is it right for?
+00:40:50 [Speaker 2]
+And how do you know when maybe it's time to leave, which is kind of a hot topic?
+00:40:54 [Speaker 2]
+And we're gonna hear first from we just saw Quiver.
+
+00:40:56 [Speaker 2]
+We're gonna hear from Dan Petty, who I think is a lot of great advice about this.
+
+00:41:02 [Speaker 14]
+The role of a founding product designer has to be one of the hardest roles in design.
+00:41:08 [Speaker 14]
+I
+
+00:41:08 [Speaker 6]
+mean, it
+
+00:41:09 [Speaker 14]
+just it just is.
+00:41:10 [Speaker 14]
+It's there's so much involved.
+00:41:12 [Speaker 14]
+You gotta you gotta design.
+00:41:13 [Speaker 14]
+You've gotta research.
+00:41:14 [Speaker 14]
+You've gotta give feedback.
+
+00:41:16 [Speaker 14]
+You've gotta listen to feedback.
+00:41:17 [Speaker 14]
+You've gotta do marketing.
+00:41:19 [Speaker 14]
+You've gotta do social media stuff.
+00:41:20 [Speaker 14]
+You've gotta be a voice of the product.
+00:41:22 [Speaker 14]
+You've gotta do just so much stuff.
+
+00:41:26 [Speaker 14]
+It's can be overwhelming.
+00:41:28 [Speaker 14]
+But I think where we make it really, really hard on ourselves as founding product designers is we think we were hired to absolutely know everything and be able to do everything and know every answer to every question when it comes to product design.
+00:41:49 [Speaker 14]
+And I don't think that's the case.
+00:41:51 [Speaker 14]
+I think the best founding product designers, the ones that are very successful, are the ones that can listen to feedback from the team and look know how to look for nuggets of of good stuff that people are providing in the feedback.
+00:42:07 [Speaker 14]
+Know how to take all that and make the product even better.
+
+00:42:13 [Speaker 14]
+Provide your experience and their experience because they they know a lot about user experience too.
+00:42:18 [Speaker 14]
+You may they might not be able to visualize it because they're not designers, but just because they're not designers doesn't mean that they don't understand product design.
+00:42:26 [Speaker 14]
+And that's something that we have to understand and listen to, and I think those that out there that can do that are very, very rare.
+00:42:35 [Speaker 14]
+Very rare.
+00:42:36 [Speaker 14]
+And that's the founding product designer that's just gonna be so successful right now.
+
+00:42:42 [Speaker 14]
+The one that can listen.
+
+00:42:45 [Speaker 2]
+I I love that.
+00:42:46 [Speaker 2]
+We we he kinda got right into the tactics of a few things, and we're gonna talk a little bit about the the actual role and the differences.
+00:42:53 [Speaker 2]
+Someone in here, by the way, says, Dan, absolutely mogging the, home office setup.
+00:42:58 [Speaker 2]
+And, yes, I've always admired the the garage studio setup that he had.
+00:43:02 [Speaker 2]
+Like, look at that as a warehouse.
+
+00:43:04 [Speaker 6]
+He's got, like, eight different angles, and they all look good too.
+00:43:06 [Speaker 6]
+Yeah.
+
+00:43:07 [Speaker 2]
+Yeah.
+00:43:08 [Speaker 2]
+I love that.
+00:43:09 [Speaker 2]
+And and I love just the, like, very concise listening piece, which
+
+00:43:13 [Speaker 6]
+Mhmm.
+
+00:43:14 [Speaker 2]
+Is something that I regularly have to remind myself of because I'm such a see red go person.
+00:43:20 [Speaker 2]
+And sometimes it's like, hey, hold on.
+00:43:23 [Speaker 2]
+No matter how talented or experienced you might be, no one person has a monopoly on ideas, you know?
+00:43:29 [Speaker 2]
+And it is really worthwhile to, like, sometimes exercise some constraint.
+00:43:34 [Speaker 2]
+Now, somebody else I think who really helps us identify this, like, what is a founding designer is our good friend, Tom Johnson, who before working at Vercel was, in fact, the founding designer at BaseDash, and this is what he has to say.
+
+00:43:49 [Speaker 10]
+I would say a founding designer role comes down to there's quite a few factors.
+00:43:53 [Speaker 10]
+One would be first determining if it's a true founding designer role.
+00:43:55 [Speaker 10]
+There's a very big difference between a designer who is the first designer on the team of an established culture, an established product market fit, an established anything.
+00:44:03 [Speaker 10]
+That's a very different thing than someone who is so early or joins very early after a pivot or after a fundraise or after some kind of like new market push where you're truly founding the direction of the product.
+00:44:13 [Speaker 10]
+So if it's the second one, the other thing you should start to ask is who is the founder?
+
+00:44:17 [Speaker 10]
+What is their past experience?
+00:44:19 [Speaker 10]
+Have they worked with designers in the past?
+00:44:20 [Speaker 10]
+Will they give you that voice?
+00:44:22 [Speaker 10]
+Because it will be very tricky if you join a team as a founding designer while your founder has been functioning as the designer.
+00:44:29 [Speaker 10]
+They have to give you that purview, that ability to steer and direct the product because that's very crucial.
+
+00:44:35 [Speaker 10]
+The other thing I would say is who else is on the team?
+00:44:37 [Speaker 10]
+If you're joining a team and there's about 10 engineers or five engineers or very much engineering led, it's very different than if you're joining in if it's very much product led or very marketing led.
+00:44:47 [Speaker 10]
+They're both good things.
+00:44:48 [Speaker 10]
+I guess it depends on what type of company it this.
+00:44:50 [Speaker 10]
+But, like, if you're joining a a team and it's all engineers, realize that the founder, they may be approaching design as an engineering problem.
+
+00:44:56 [Speaker 10]
+Understand that if an engineering founder is interviewing you, they may have a very different perspective of what design function is.
+00:45:02 [Speaker 10]
+I would say the best signal would be is if they've worked with other designers.
+00:45:06 [Speaker 10]
+The other thing I would, look for in a founder as a founding designer is malleability.
+00:45:11 [Speaker 10]
+Like, can they take their baby, their thing that they have, developed or designed, can they get rid of it?
+00:45:17 [Speaker 10]
+Like, if the market changes, do you think that this person would be willing to give up on it in favor of a different idea?
+
+00:45:24 [Speaker 10]
+Are they coming up with those ideas themselves?
+00:45:26 [Speaker 10]
+Have they tried three or four different iterations and you've seen from past evidence, like, this is a new product or are they trying to just make something work over and over and over again?
+00:45:33 [Speaker 10]
+It's just never quite hitting.
+00:45:34 [Speaker 10]
+So you wanna find someone that you can like really push on each other and like compliment those, those two facets.
+00:45:41 [Speaker 10]
+And also I would say a founding team, if you're looking at it from a designer, really look into who their their capital is from.
+
+00:45:47 [Speaker 10]
+If they're bootstrapped, I I don't really know that world.
+00:45:49 [Speaker 10]
+But if they're coming from, like, investors, understand the investor relationship is very important for a founding designer.
+00:45:56 [Speaker 10]
+Not because you're gonna be dealing with the investors, but because if you see the other teams that the investors have contributed to are all design led, it's gonna be a good perspective.
+00:46:03 [Speaker 10]
+Like, they're gonna be understanding, like, what that is.
+00:46:05 [Speaker 10]
+They may counterbalance some things from the from the investor.
+
+00:46:08 [Speaker 10]
+They may also just, like, push for, you know, design excellence or whatever it is because they are definitely someone who they can be totally hands off in my check and then go away.
+00:46:16 [Speaker 10]
+Or they can be someone who is crucial to giving good advice, putting you in the room with people who are also in their, investment pools.
+00:46:23 [Speaker 10]
+Understanding those things would be really important.
+00:46:25 [Speaker 10]
+Hopefully, that's helpful.
+
+00:46:28 [Speaker 6]
+I love that take because that's basically my nugget too is I've been in this role a few different times, and the nature of the role is so incredibly dictated by the core people that you're around because it's such a small group, and you're kinda brought in as the person to express the ideas.
+00:46:44 [Speaker 6]
+And a lot of them have in the founder's head.
+00:46:47 [Speaker 6]
+You know?
+00:46:47 [Speaker 6]
+And sometimes there is that transition, like, oh, man.
+00:46:49 [Speaker 6]
+It's so much harder when the founder has been doing a little bit of design and there's kind of a hand off, and you're kinda, like, pulling more of it toward you.
+
+00:46:58 [Speaker 6]
+It's so you you gotta you can't come in with a plan, really.
+00:47:02 [Speaker 6]
+You can't come in with a plan.
+00:47:03 [Speaker 6]
+Like, you have to first deeply understand the founders that you are working with and then adapt.
+
+00:47:10 [Speaker 2]
+I think, you know, there's a lot of designers who are like, I'd really love to be a founding designer because I assume it comes with all this agency.
+00:47:18 [Speaker 2]
+I get to kind of, explore a blue sky problem.
+00:47:22 [Speaker 2]
+And and I think there are pieces of that that are really intriguing to people.
+00:47:26 [Speaker 2]
+What I like what Tom said here was how you might also evaluate who you work for that is the founder.
+
+00:47:32 [Speaker 13]
+And
+
+00:47:32 [Speaker 2]
+I think that's a really important piece because you are going to have a very turbulent couple of years.
+00:47:40 [Speaker 2]
+Things are gonna be hard.
+00:47:41 [Speaker 2]
+You're gonna try to find product market fit.
+00:47:43 [Speaker 2]
+You're gonna have to learn how to clash and then kind of regroup and then get excited.
+00:47:48 [Speaker 2]
+And, you know, if you're gonna put yourself through those things and listen, the founding designer role, all these roles, no matter what they are, can be taxing, but that one especially can be taxing.
+
+00:47:57 [Speaker 2]
+And, you want it to at least be worthwhile.
+00:48:00 [Speaker 2]
+If, you know, if you're gonna be willing to go down with the ship, you want the ship to also have the ability to continue going if things work.
+
+00:48:06 [Speaker 6]
+And Great.
+
+00:48:06 [Speaker 2]
+That really comes down to who is the founder.
+00:48:10 [Speaker 2]
+Another person who's had a lot of experience with this is Kevin Tuohy, and I think we have a pretty cool take that he shares about this.
+
+00:48:21 [Speaker 5]
+The first half of my career was mostly in house at early stage startups, and I noticed a pattern that kind of kept recurring as I was doing that, which is essentially that around that two year mark, I both sort of had lost interest in the role and became bad at it.
+00:48:38 [Speaker 5]
+In hindsight, it's because that zero to one arc of building a product and building a business had ended.
+00:48:43 [Speaker 5]
+The company was in a new phase now, and there was no longer a founding designer role.
+00:48:47 [Speaker 5]
+That realization is what led me to kind of decide to try to focus on that zero to one arc over and over.
+00:48:52 [Speaker 5]
+And that's when I decided to go independent, and I've essentially been doing that founding designer role for my clients for the past fifteen years or so.
+
+00:48:59 [Speaker 5]
+I've got a few rubrics that designers can use to decide if this role might be good for them or not.
+00:49:05 [Speaker 5]
+The first is variety.
+00:49:07 [Speaker 5]
+You're gonna be doing everything under the banner of design.
+00:49:09 [Speaker 5]
+That might be fun things like packaging or, you know, physical design.
+00:49:13 [Speaker 5]
+But if avatars for social need to be made, you're gonna be making them.
+
+00:49:17 [Speaker 5]
+And it might not be on the day that you wanna make them.
+00:49:19 [Speaker 5]
+So just kind of like self assessing is that breadth and variety something that lights you up and excites you, or is it something that drains you?
+00:49:27 [Speaker 5]
+The second is ambiguity.
+00:49:28 [Speaker 5]
+There's a lot of tasks where there is no brief, there is no research, and that's gonna be your job.
+00:49:34 [Speaker 5]
+In a lot of later stage companies, it might be the case that the problem is sort of fixed and the solutions shift.
+
+00:49:41 [Speaker 5]
+In a lot of early stage roles, it's your job to come up with both the problem and the solution.
+00:49:45 [Speaker 5]
+The third is isolation.
+00:49:46 [Speaker 5]
+So how long are you gonna be comfortable being the only person on the team in that design function?
+00:49:52 [Speaker 5]
+The fourth is identity.
+00:49:53 [Speaker 5]
+So how much do you want your company and your work to be a part of your identity?
+
+00:49:58 [Speaker 5]
+If you wanna wear this company's t shirt out, if that makes you cringe, you might be cringing a lot at work in the founding designer role.
+00:50:05 [Speaker 5]
+And then the last one, and this is kind of the most important that took me the longest to sort of figure out is longevity.
+00:50:10 [Speaker 5]
+The role of the founding designer is only the same for, say, eighteen months to two years, and then it ends, and it becomes something else.
+00:50:18 [Speaker 5]
+Where do you wanna be in year three, and is this role in this company and this founder helping you aim there?
+00:50:24 [Speaker 5]
+I see very different types of roles being bucketed under this title of founding designer.
+
+00:50:31 [Speaker 5]
+One is, I would call, like, capital f, capital d, founding designer where that word founding is really carrying its weight and is really true.
+00:50:38 [Speaker 5]
+The founder in this case expects you to be a peer.
+00:50:41 [Speaker 5]
+They expect you to figure out not just the product, not just the brand, but really be thinking about the business and helping steer it, taking on a lot of responsibility and a lot of autonomy.
+00:50:50 [Speaker 5]
+If that's the case and it's a true founding role, you should be compensated for that in cash and equity very well.
+00:50:56 [Speaker 5]
+On the other end of the spectrum, roles that are marketed this way where the word founding is there mostly because it makes the role seem more attractive and what the founder is really after is their first designer.
+
+00:51:07 [Speaker 5]
+It's worth digging in with the hire or the founder or the recruiter and assessing, like, which of these roles is it?
+00:51:12 [Speaker 5]
+One good way to do that is to ask, in my first eight months, what decisions are gonna be put under my purview?
+00:51:19 [Speaker 5]
+You'll learn a lot from the answer to that.
+00:51:21 [Speaker 5]
+That's all.
+
+00:51:21 [Speaker 6]
+Thanks.
+
+00:51:21 [Speaker 5]
+Thanks, gang.
+
+00:51:22 [Speaker 6]
+Dude, that was so good.
+00:51:24 [Speaker 6]
+Kevin's so good.
+
+00:51:26 [Speaker 5]
+Am I a creator now?
+
+00:51:32 [Speaker 2]
+Oh, man.
+00:51:33 [Speaker 2]
+I need to hang out with Kev because, he he's that was that one so I love the capital f, capital d
+
+00:51:40 [Speaker 13]
+Yeah.
+
+00:51:40 [Speaker 2]
+Versus, like, lowercase.
+00:51:42 [Speaker 2]
+Big, big, I've heard in from a lot of friends in private.
+00:51:46 [Speaker 2]
+Hey.
+00:51:47 [Speaker 2]
+I'm trying to do this thing, but, like, the founder kinda won't let go.
+00:51:50 [Speaker 2]
+So there's you know, I have heard scenarios, and I think there's typically two that I've heard more, where you have founders who kind of don't care too much, where it's like, why don't they care about design, and why don't they really see, like, they're just kind of nonchalant?
+
+00:52:06 [Speaker 2]
+And then the the other side of it is, like, they all they care too much.
+00:52:09 [Speaker 2]
+They wanna be involved in everything.
+00:52:12 [Speaker 2]
+I think there was even a tweet recently where people were talking about how often Shopify CEO, Toby, is still in all the details, almost to, like, a a fault.
+00:52:18 [Speaker 2]
+And, founder who is a dog, like, who just really cares about the product, who's constantly, sometimes, making it a little bit hard?
+00:52:34 [Speaker 2]
+I I do think there is a a balance on giving people the ability to to run and make something great.
+
+00:52:40 [Speaker 2]
+But, I wanna ask you, Ridd.
+00:52:43 [Speaker 2]
+Before we move on to to kind of who should who is this role right for, what's been your experience as a founding designer?
+
+00:52:50 [Speaker 6]
+Yeah.
+00:52:50 [Speaker 6]
+I I'm I've definitely been on the full spectrum
+
+00:52:54 [Speaker 1]
+Mhmm.
+
+00:52:54 [Speaker 6]
+That he's describing.
+00:52:55 [Speaker 6]
+And I can think back to a specific time where we were working on this.
+00:52:59 [Speaker 6]
+I I joined the sports betting startup.
+
+00:53:01 [Speaker 2]
+This was
+
+00:53:01 [Speaker 6]
+before sports betting was as cool as as it
+
+00:53:03 [Speaker 2]
+is
+
+00:53:03 [Speaker 6]
+now.
+00:53:04 [Speaker 6]
+And in that situation, the two founders had so much clarity around what they wanted.
+00:53:12 [Speaker 6]
+They were horrendous designers.
+00:53:13 [Speaker 6]
+They had no idea.
+00:53:14 [Speaker 6]
+And so a big part of my role was I I actually I actually learned something along the way where I was doing a traditional, like, you know, hey.
+
+00:53:24 [Speaker 6]
+I made a thing.
+00:53:25 [Speaker 6]
+What do you think?
+00:53:26 [Speaker 6]
+Hey.
+00:53:26 [Speaker 6]
+I made a thing.
+00:53:26 [Speaker 6]
+What do you think?
+
+00:53:27 [Speaker 6]
+And and then I realized, like, they do wanna be more involved, but they don't actually know how to articulate feedback.
+00:53:33 [Speaker 6]
+They don't know how to articulate their ideas, and we're just moving too slow.
+00:53:36 [Speaker 6]
+And so I switched everything to even though we were working remotely, we would do four hour a day live design.
+00:53:43 [Speaker 6]
+We're gonna just open up Figma, and we're gonna design this together.
+00:53:47 [Speaker 6]
+And I was, like, the ex I was literally just the ability to, it was more of an execution role.
+
+00:53:52 [Speaker 6]
+Like, I I I wouldn't call that a a capital f, capital d.
+00:53:55 [Speaker 6]
+They just need somebody to help them navigate the forest of their own mind and visualize it in something that could be built.
+00:54:02 [Speaker 6]
+Whereas with the Maven was the kind of the opposite end of the spectrum where the the CEO founder super hands off from a product standpoint.
+00:54:12 [Speaker 6]
+He was doing everything else, and then there was a technical founder and the two of us, you know, laid the foundation for the product, where even two years later, it was it was was less about the product details even at that point because we didn't know who our ICP was.
+00:54:31 [Speaker 6]
+It changed, like, at the six month mark.
+
+00:54:33 [Speaker 6]
+We didn't know what the core value propositions were.
+00:54:35 [Speaker 6]
+What's you know, there were different types of problems.
+00:54:38 [Speaker 6]
+What do we solve in what order?
+00:54:39 [Speaker 6]
+Like, it was so much a positioning role.
+00:54:43 [Speaker 6]
+Like, I woke up every day and thought about how do we position this company?
+
+00:54:48 [Speaker 6]
+Therefore, what is the product that needs to be built?
+00:54:51 [Speaker 6]
+Therefore, how should I think about sequencing of my time and what should I explore?
+00:54:55 [Speaker 6]
+And it started every day from, like, a very top level strategy.
+00:54:59 [Speaker 6]
+And I freaking love that role, man.
+00:55:01 [Speaker 6]
+That's, like, my favorite role in the world.
+
+00:55:03 [Speaker 2]
+You know, I have this other story on on kind of a different end.
+00:55:06 [Speaker 2]
+It's it was less of a founding designer role, but definitely the first designer role.
+00:55:10 [Speaker 2]
+And and this was after having come from, like, an acquisition at a company, or an acquisition of my company as a founder.
+00:55:17 [Speaker 2]
+And, years later, I went and I worked for this company that I saw a lot of potential in.
+00:55:21 [Speaker 2]
+They been around for a little while, but they were about to see a huge increase during kind of the the pandemic era.
+
+00:55:28 [Speaker 2]
+And I get in here, and it was like, okay.
+00:55:31 [Speaker 2]
+I you know, there was expectations maybe set upfront, but really, I got in and immediately realized a couple of things.
+00:55:38 [Speaker 2]
+I'll tell you this.
+00:55:40 [Speaker 2]
+They were using Google, Slides to prototype and design their product.
+
+00:55:46 [Speaker 1]
+Oh.
+00:55:46 [Speaker 1]
+Oh, no.
+
+00:55:47 [Speaker 2]
+And they would get in a meeting, all the product people and then and the
+
+00:55:51 [Speaker 1]
+Oh, no.
+
+00:55:51 [Speaker 6]
+Lead engineers,
+
+00:55:53 [Speaker 2]
+and they would have slides.
+00:55:54 [Speaker 2]
+The the there was a mantra over there.
+00:55:56 [Speaker 2]
+And it was every the CEO would say, everything's a slide.
+00:56:00 [Speaker 2]
+And they would everything was a slide.
+00:56:02 [Speaker 2]
+And the way they would make decisions, they'd go slide by slide with a couple of just, like, a screenshot of some part of the product, and then they would kind of, like, piece it over here.
+
+00:56:10 [Speaker 2]
+They'd draw a red arrow, and then, like, they would jam for five minutes and then make a decision.
+00:56:15 [Speaker 2]
+They'd write it in red, the next slide.
+00:56:18 [Speaker 2]
+And this is how product decisions were made at this organization.
+00:56:21 [Speaker 2]
+And That's pretty cool.
+00:56:23 [Speaker 2]
+And and you have to understand my my first knee jerk reaction to this was, uh-oh.
+
+00:56:28 [Speaker 2]
+Right?
+00:56:29 [Speaker 2]
+This company would go on to become a multi multibillion dollar winner in their industry.
+00:56:34 [Speaker 2]
+Mhmm.
+00:56:35 [Speaker 2]
+And they they I I bet part of them still operate this way.
+00:56:38 [Speaker 2]
+And what I realized there was two things.
+
+00:56:40 [Speaker 2]
+One, there had been a culture of building.
+00:56:43 [Speaker 2]
+This team had won together.
+00:56:44 [Speaker 2]
+They had lost together over time.
+00:56:46 [Speaker 2]
+And I was getting involved with a team that had already established this sort of camaraderie around that.
+00:56:53 [Speaker 2]
+Who am I to come in and say, you're all doing it wrong and this needs to be different?
+
+00:56:57 [Speaker 2]
+Now, there was certainly, like, a I had to say internally say, is this something I wanna do and be a part of?
+00:57:02 [Speaker 2]
+Well, in the answer being yes to that, I continue to go in and there there are kinda two things that I took from this, which is one, when you join a company, when you join a team like this, before you start changing everything, grab an oar and start rowing.
+00:57:16 [Speaker 2]
+Right?
+00:57:16 [Speaker 2]
+They're already on a rhythm, and your job is to help them continue on that rhythm, but maybe make it faster.
+00:57:22 [Speaker 2]
+And then while you're doing that, looking around for wins.
+
+00:57:25 [Speaker 2]
+Maybe some of those wins are coming up you can impact.
+00:57:28 [Speaker 2]
+Maybe some of those things are getting documented in a little notebook you're putting in your back pocket for later.
+00:57:33 [Speaker 2]
+That was the the first thing.
+00:57:34 [Speaker 2]
+The second is trust is one of the most important things that you can generate on a team.
+00:57:40 [Speaker 2]
+Doesn't matter if you're a founding designer, first designer, or something on a mature company.
+
+00:57:44 [Speaker 2]
+Trust is not established through negotiating with words.
+00:57:47 [Speaker 2]
+Trust is not established in a document.
+00:57:50 [Speaker 2]
+Trust is not established by convincing people that your way is correct.
+00:57:55 [Speaker 2]
+Trust is established by going through full cycles of trying to create some stuff, putting down into the market, seeing the outcome from that, hearing feedback, and then either winning and losing together.
+00:58:08 [Speaker 2]
+Nice.
+
+00:58:09 [Speaker 2]
+And that is how real trust happens.
+00:58:12 [Speaker 2]
+And and I'll add one last thing.
+00:58:14 [Speaker 2]
+When you're in a room with people like this, sometimes designers wanna be the author of the net new ideas.
+00:58:20 [Speaker 2]
+And sometimes you have the opportunity to do that, and again, that's great.
+00:58:24 [Speaker 2]
+But you're not not you're not the monopoly.
+
+00:58:26 [Speaker 2]
+You don't have a monopoly on the ideas.
+00:58:27 [Speaker 2]
+Sometimes the role of the designer is to listen, as Dan Petty said, to the room and bring to life the ideas in a way that can be an artifact that you can slap in the center of the table and say, here's what you guys are saying.
+00:58:42 [Speaker 2]
+What do we think?
+00:58:42 [Speaker 2]
+Mhmm.
+00:58:43 [Speaker 2]
+Mhmm.
+
+00:58:43 [Speaker 2]
+And there is so much value in sometimes just being able to organize the collective conversations inside of a team, and and that gets you a lot further.
+00:58:53 [Speaker 2]
+And it also sometimes helps you make your arguments even better.
+
+00:58:56 [Speaker 6]
+Yeah.
+00:58:56 [Speaker 6]
+I agree.
+00:58:57 [Speaker 6]
+I I'll add one other thing on the trust subject because I I would have said the exact same thing.
+00:59:01 [Speaker 6]
+Like, honestly, trust comes from being right.
+00:59:03 [Speaker 6]
+You gotta put yourself out there and kinda be right, and then you build trust over time.
+
+00:59:07 [Speaker 6]
+One very specific tactic that I did to, I think, accelerate my ability to gain a bit of trust internally and and have, you know, leadership actually really listen and and take me seriously was I made it a point to be to basically position myself as the keeper of the competitive landscape.
+00:59:29 [Speaker 6]
+I went I researched everybody playing in the space.
+00:59:32 [Speaker 6]
+I created a Notion database that I cared about.
+00:59:35 [Speaker 6]
+And in that Notion database, I would I would organize screenshots.
+00:59:38 [Speaker 6]
+I would keep pricing up to date.
+
+00:59:40 [Speaker 6]
+I used, the Clay CRM to, like, pull in the, how are they changing their Twitter bios?
+00:59:47 [Speaker 6]
+How hey, this company changed their Twitter bios.
+00:59:50 [Speaker 6]
+That's like the most concise way you can think about your value proposition.
+00:59:52 [Speaker 6]
+So I had everybody in the space and I was pulling in the Twitter bios, and I quickly became one, I was able to to, like, surface that stuff, but and use it almost as, like, justification from our ideas, but more importantly, two, once people understood, oh, Ritz plugged himself in to this landscape, they come to me with questions.
+
+01:00:10 [Speaker 2]
+Mhmm.
+
+01:00:10 [Speaker 6]
+And now all of a sudden, you've inserted yourself into the highest level strategic conversations because you're the person that they wanna bring into that call just because you understand the landscape.
+01:00:21 [Speaker 6]
+And anybody can do that.
+01:00:22 [Speaker 6]
+All it was was just time and it ended up being one of the best things that I did in that role.
+
+01:00:26 [Speaker 2]
+And I think this that's I'm gonna use it as a segue because it's really fantastic.
+01:00:30 [Speaker 2]
+I think the things we both talked about and the things we've heard so far boiled down to designers who are doing things without asking for permission.
+01:00:40 [Speaker 2]
+Right?
+01:00:40 [Speaker 2]
+You're trying to build trust.
+01:00:41 [Speaker 2]
+You're you're you're creating a repository of the competitive landscape.
+
+01:00:45 [Speaker 2]
+And not everybody feels like that is something that comes natural to them.
+01:00:50 [Speaker 2]
+And if that doesn't come natural to you, there might be other sorts of team structures that are that you're better suited for, or maybe there's just a little bit of evolution that you can go through.
+01:01:00 [Speaker 2]
+But let's hear what some people have to say about who make for the best founding designers.
+01:01:05 [Speaker 2]
+And we're gonna hear from Josh Armentrout, a founding designer at DOS.
+
+01:01:09 [Speaker 6]
+Nice.
+01:01:09 [Speaker 6]
+Josh What's
+
+01:01:10 [Speaker 13]
+up, Dive Radio?
+01:01:11 [Speaker 13]
+My name is Josh Armentrout.
+01:01:12 [Speaker 13]
+I'm the founding designer at DOS.
+01:01:14 [Speaker 13]
+We're building AI native operations software to help consumer good companies manage their inventory orders, warehouses, demand planning, and a bunch more.
+01:01:23 [Speaker 13]
+I wanna share a bit of my perspective as the founding designer there, who I think should do this thing, what I looked for when I was considering the opportunity, and a little bit of my day to day and what to expect.
+
+01:01:32 [Speaker 13]
+In general, I don't think that being a founding designer is well suited to folks who are early in their career.
+01:01:36 [Speaker 13]
+There are exceptions, but in general, I think the support system that you need to be set up for success just isn't there.
+01:01:42 [Speaker 13]
+Founding designer is better suited for kind of one of two archetypes.
+01:01:46 [Speaker 13]
+The first of which is what I would think of as like a head of design.
+01:01:48 [Speaker 13]
+You know, think Henry Modeset has the skills and the experience to come in, build a product and then build and lead the team that continues to build the product the way that he did at perplexity.
+
+01:01:59 [Speaker 13]
+I am what I think is like the second archetype.
+01:02:01 [Speaker 13]
+Someone who's been on a team for a little while and then wants to, like, go and push themselves and see what they can do striking out on their own.
+01:02:08 [Speaker 13]
+I spent the first four years of my career working at Divvy and then bill.com after we got acquired and leaving to join DOS was me trying to tackle one of my career aspirations, which is to be heavily involved in designing an industry redefining piece of software, which is what I think we're doing.
+01:02:25 [Speaker 13]
+So when I was considering the opportunity, one of the things that was really important to me and I think is generally important was making sure that my skill set and where I spike the hardest was a good fit.
+01:02:35 [Speaker 13]
+For me, that's like systems thinking, untangling gnarly problems, working on abstractions, and that was perfect for a really complex piece of software like DOS where that skill set, you know, was really necessary.
+
+01:02:47 [Speaker 13]
+When I joined a year ago, we had about 30 people, and now we're over a 100.
+01:02:50 [Speaker 13]
+So the way that I work has changed a ton.
+01:02:52 [Speaker 13]
+Early on, the most important thing for me was establishing trust quickly with the people that I was collaborating with.
+01:02:59 [Speaker 13]
+So founder, go to market, services team, and especially engineers.
+01:03:03 [Speaker 13]
+And that just sped us up.
+
+01:03:04 [Speaker 13]
+Specifically, collaborating with engineers and being able to speak the language of engineers, super important for me and I think is generally important.
+01:03:13 [Speaker 13]
+Being able to frame my design intent in the language of engineering and how they think about problems minimize the chance for that intent to get lost in translation.
+01:03:24 [Speaker 13]
+And what that meant as a result is shorter feedback loops, higher quality that we're able to hit, and we can do all of that faster.
+01:03:30 [Speaker 13]
+And speed is everything when you're early in a startup.
+01:03:33 [Speaker 13]
+As we've grown, the way that I collaborate with everyone is way different.
+
+01:03:37 [Speaker 13]
+I have to build systems to enable people.
+01:03:39 [Speaker 13]
+I tweeted about a recent experience with the marketing team at my company where they needed to build some animations for the website.
+01:03:45 [Speaker 13]
+I didn't have time to do it because I have, like, 17 other things that I'm working on.
+01:03:48 [Speaker 13]
+So I taught them a workflow to build what they needed to build, and they crushed it.
+01:03:52 [Speaker 13]
+It was awesome.
+
+01:03:53 [Speaker 13]
+That's, like, a common example of how things change as a company grows, and you get, like, increasingly outnumbered as the only designer.
+01:04:01 [Speaker 13]
+But it's thrilling, honestly.
+01:04:02 [Speaker 13]
+Working as a founding designer is a ton of fun.
+01:04:04 [Speaker 13]
+It's super hard.
+01:04:05 [Speaker 13]
+But if you have the aspiration to do it, I say, go find a role that's a good fit for you, crush it, and hopefully, you hit huge financial upside and an awesome liquidity event.
+
+01:04:15 [Speaker 2]
+That easy.
+01:04:16 [Speaker 2]
+And Just
+
+01:04:17 [Speaker 6]
+like that, you know?
+01:04:17 [Speaker 6]
+Yeah.
+01:04:18 [Speaker 6]
+I'm not o for six.
+01:04:19 [Speaker 6]
+What are you talking about?
+
+01:04:21 [Speaker 2]
+Two two takes that he had that I love.
+01:04:23 [Speaker 2]
+I wanna call out real quick.
+01:04:24 [Speaker 2]
+We heard from Jenny d last week, hire who does a lot of hiring over there at Railway now, in the in that kind of design role.
+01:04:31 [Speaker 2]
+And one of the things they're looking for are designers who can create leverage outside of their what what their role is.
+01:04:36 [Speaker 2]
+And and he talked specifically about that doing it for the marketing team.
+
+01:04:40 [Speaker 2]
+The other piece is how he said go out and talk to the other, cross functional teams, the the the partners on in at your company to to kind of build that trust.
+01:04:50 [Speaker 2]
+And what I'll say is that is something I think I think sometimes junior designers don't feel like they have the permission to do.
+01:04:56 [Speaker 2]
+Oh, I I can just go talk to sales?
+01:04:59 [Speaker 2]
+Yeah.
+01:04:59 [Speaker 2]
+Oh, I can just go talk to marketing or some department that I don't interface with every day?
+
+01:05:03 [Speaker 2]
+Absolutely.
+01:05:04 [Speaker 2]
+In fact, when you do that, one of the best things you can do because you know how often sales folks, people who aren't necessarily product proper, have opinions about how the product should look, behave, what they're hearing from kind of the the front lines.
+01:05:21 [Speaker 2]
+If you become the doorway through which they can translate some of their ideas to the product team, you start to build allies.
+01:05:30 [Speaker 2]
+And through those allies, you might get some interesting data points.
+01:05:33 [Speaker 2]
+You might get someone in a leadership position who kind of backs the idea you have, and you can take that to a product, you know, a lead and say, hey, here's something interesting that we've uncovered.
+
+01:05:42 [Speaker 2]
+And it's not just necessarily your intuition.
+01:05:44 [Speaker 2]
+Intuition's great.
+01:05:46 [Speaker 2]
+But now you've got some data and some support behind it, and that is a great way to do that.
+
+01:05:50 [Speaker 6]
+Yep.
+01:05:50 [Speaker 6]
+Well said.
+01:05:51 [Speaker 6]
+And I think a lot of times the lens through which we talk about those sets of ideas are in larger, more political companies.
+01:05:56 [Speaker 6]
+And sometimes I have an aversion to it and you talk about, like, a listening tour.
+01:05:59 [Speaker 6]
+It's like, who the hell has time to do a listening tour?
+
+01:06:00 [Speaker 6]
+But when you're early at a start up,
+
+01:06:02 [Speaker 1]
+there's not that many people.
+01:06:03 [Speaker 1]
+You know?
+
+01:06:04 [Speaker 6]
+I think what did you say?
+01:06:05 [Speaker 6]
+30?
+01:06:05 [Speaker 6]
+Like, that's that's bigger than even me.
+01:06:07 [Speaker 6]
+Like, when I joined Maven, there was six.
+01:06:09 [Speaker 6]
+You know?
+
+01:06:10 [Speaker 6]
+Like, take the time to talk to those six people.
+01:06:12 [Speaker 6]
+Figure out what they want, what they feel is missing.
+01:06:14 [Speaker 6]
+Really understand, like, what are your the motivations, ideas, because you are the ideas person
+
+01:06:20 [Speaker 1]
+at
+
+01:06:20 [Speaker 6]
+that early stage.
+01:06:22 [Speaker 6]
+Like, maybe it's changed a little bit now because, you know, whatever.
+01:06:25 [Speaker 6]
+Maybe everybody's just, like, living in lovable prototyping.
+01:06:27 [Speaker 6]
+But especially especially when you're, like, the keeper of Figma.
+01:06:33 [Speaker 6]
+Like, people don't get to look at collectively add an idea unless you make it.
+
+01:06:37 [Speaker 6]
+You know?
+01:06:37 [Speaker 6]
+So, like, make them all.
+
+01:06:39 [Speaker 2]
+I would even say if you if now that everybody's prototyping, I'd be curious.
+01:06:42 [Speaker 2]
+This will be a great conversation for another episode.
+01:06:45 [Speaker 2]
+How are people creating the the highways with which those ideas are kind of traveling through?
+01:06:49 [Speaker 2]
+You know?
+01:06:49 [Speaker 2]
+Is it is it just Slack?
+
+01:06:51 [Speaker 2]
+Certainly, there's gotta be a better way.
+01:06:52 [Speaker 2]
+But, on the other side of this, right, we just talked about Flora and I wanna hear from her because Flora, just obviously hired over at Ramp, has come through and seen a couple of these phases.
+01:07:05 [Speaker 2]
+This is what she had to say.
+
+01:07:06 [Speaker 9]
+Hey, Tommy.
+01:07:07 [Speaker 9]
+I'm filming, my take here in beautiful Oceanside, California for Balcon regarding founding designers and hiring for founding designers and people who wanna be founding designers.
+01:07:15 [Speaker 9]
+In all honesty, this is a role that I would not recommend to the vast majority of junior designers.
+01:07:21 [Speaker 9]
+The reason for that is because as a junior, you often don't know what you don't know.
+01:07:26 [Speaker 9]
+Problems downstream of that are that you often don't have the confidence to assert your design decisions that go beyond just making something pretty or a nice interface.
+
+01:07:35 [Speaker 9]
+But design to me goes far deeper.
+01:07:37 [Speaker 9]
+It's the why behind why this product exists.
+01:07:40 [Speaker 9]
+It's the system and the pattern language of how this feature fits into the context of the larger product.
+01:07:47 [Speaker 9]
+It's understanding and having an awareness of what is appropriate and what is, one might say, tasteful.
+01:07:52 [Speaker 9]
+And this discernment and wisdom is something that comes usually with experience.
+
+01:07:57 [Speaker 9]
+And I think for many juniors, it's just really hard to do this without having at least a couple of years of design experience behind you.
+01:08:05 [Speaker 9]
+As for myself, I was most recently the founding design engineer, kind of like jack of all trades type of role.
+01:08:10 [Speaker 9]
+I think the word design engineer is also very amorphous.
+01:08:13 [Speaker 9]
+Every company can have a different definition for what that means.
+01:08:16 [Speaker 9]
+I would write code.
+
+01:08:16 [Speaker 9]
+I would try to fix these, like, front end bugs, but then I realized that this isn't where my leverage is.
+01:08:22 [Speaker 9]
+My leverage is helping the team identify what we should build in the first place and creating design specs that are clear and cohesive enough and coherent enough for our engineers to be able to essentially one shot it with production quality, scalable, maintainable code.
+01:08:35 [Speaker 9]
+After we came to this realization, my role actually pivoted into much more of a product design role in which I was working on both systems, but there was too much of an emphasis on the last 20% of design.
+01:08:46 [Speaker 9]
+And to me, the visual design of the interface is the very tip of the iceberg.
+01:08:52 [Speaker 9]
+What we actually get paid for as designers is all the thinking and the process that goes underneath.
+
+01:08:57 [Speaker 9]
+So it's extremely reductive to think that a designer only makes pretty screens.
+01:09:01 [Speaker 9]
+And that also goes to say that as a founding designer, you know, people are asked to do all types of things.
+01:09:06 [Speaker 9]
+You know, I made business cards.
+01:09:07 [Speaker 9]
+I made LinkedIn ads.
+01:09:09 [Speaker 9]
+I worked on the core product.
+
+01:09:10 [Speaker 9]
+I worked on the marketing side for design and dev.
+01:09:13 [Speaker 9]
+I think when it comes to hiring for these roles, founders are often looking towards an authority figure, which sometimes means, you know, they're looking towards their partners, whether that's in venture or people who maybe have been in this space for quite a few years.
+01:09:24 [Speaker 9]
+And I believe that's why when you hire for founding designers, it's really a role best suited to either people with a lot of experience, so folks who are at the senior level or higher, like staff, or really scrappy people who are willing to suffer and chew glass.
+01:09:37 [Speaker 9]
+As a founding designer, there's always a lot of ambiguity.
+01:09:40 [Speaker 9]
+It's really hard to make decisions sometimes, and it really depends on how much the company values design as well.
+
+01:09:45 [Speaker 9]
+You might be at a company that says they care about design, but they really care about the last 20% or the polish pass.
+01:09:49 [Speaker 9]
+Or you might be at a place that really sees the value of design as a system in which you're building for systems coherency and being considerate of the pattern language.
+
+01:09:59 [Speaker 6]
+I have some thoughts.
+01:10:00 [Speaker 6]
+I have some thoughts.
+
+01:10:01 [Speaker 2]
+Let's hear it.
+
+01:10:02 [Speaker 6]
+Floor is amazing.
+01:10:03 [Speaker 6]
+I agree with basically everything that said.
+01:10:04 [Speaker 6]
+I wanna underline one thing, which is, like, how you're kind of responsible for the pace of decision making in an org.
+01:10:13 [Speaker 6]
+And I think you kinda have
+
+01:10:15 [Speaker 1]
+to
+
+01:10:15 [Speaker 6]
+understand that.
+01:10:18 [Speaker 6]
+Right?
+01:10:18 [Speaker 6]
+Because you get it's so ambiguous.
+01:10:20 [Speaker 6]
+And and the feedback that you receive even like, you're not let me put it this way.
+01:10:25 [Speaker 6]
+Like, it's not like you have, like, this well defined project,
+
+01:10:29 [Speaker 1]
+and
+
+01:10:29 [Speaker 6]
+then you're just executing, and you're like, did I hit the bar?
+01:10:31 [Speaker 6]
+You know?
+01:10:31 [Speaker 6]
+It's not like that.
+01:10:32 [Speaker 6]
+You know?
+01:10:32 [Speaker 6]
+You're simultaneously figuring out what should we even work on, and then what do you think about what I made given that previous decision?
+
+01:10:42 [Speaker 6]
+And you so you have to be comfortable making decisions when nobody is, like, giving you the green stamp on stuff.
+01:10:48 [Speaker 6]
+But, like, you can't let things slow down because that is on you.
+01:10:51 [Speaker 6]
+You know?
+01:10:52 [Speaker 6]
+So you the decision making piece, that stood out to me.
+01:10:54 [Speaker 6]
+The other thing that I will say that, like, I agree the experience piece is it it is important.
+
+01:11:01 [Speaker 6]
+The one thing I'll caveat is if you have experience, maybe even not even directly design experience, but if you actually know an industry or a problem set outside of maybe even having worked in that sector or something like that, That makes you uniquely qualified to be a founding designer too because you have to be able to think strategically.
+01:11:23 [Speaker 6]
+And, again, it goes back to, like, that positioning idea too where if I I don't know if I'm if I'm like, take the the the sports betting piece for instance.
+01:11:32 [Speaker 6]
+Like, if I re I didn't know that.
+01:11:36 [Speaker 6]
+I don't think I would have been able to be a capital f, capital d designer in that experience.
+01:11:41 [Speaker 6]
+But if I was really into it and I was, you know, constantly using all of these books and, like, deploying portfolios every single week.
+
+01:11:48 [Speaker 6]
+Well, all of a sudden, I've experienced the problems.
+01:11:51 [Speaker 6]
+And, therefore, I actually am really qualified to go and solve them even if I only have a couple years of experience of professional design under my belt.
+01:11:57 [Speaker 6]
+So it's, like, the one addition I will toss under her points to.
+
+01:12:02 [Speaker 2]
+And I'll just piggyback real quick on what you said about the me kind of owning the cadence of of the speed of decision making.
+01:12:07 [Speaker 2]
+And I think this is something some people who come from, more mature organizations and then come over to a role like this underestimate where, you know, sometimes it's a binary, here's a good enough design decision, then here's, like, the one that I really spent a lot of time refining.
+01:12:22 [Speaker 2]
+And that is certainly one way to weigh the quality of design work.
+01:12:26 [Speaker 2]
+But in an organization that's still trying to figure it out, it's a young team, haven't found product market fit, sometimes the speed with which you arrive at a design decision is more important than the quality of the decision itself.
+01:12:39 [Speaker 2]
+And that thing is, I think, largely underestimated at times.
+
+01:12:43 [Speaker 2]
+We have people who say, hey, you know, I wish the thumbnails and the intro were better, but I will tell you that the fact that we even have anything at all with the speed that we were able to get those with was probably the more important thing to index on at least at first.
+
+01:12:55 [Speaker 6]
+That's really, really well said.
+01:12:57 [Speaker 6]
+And I used to present my concepts even on, like, a appetite spectrum.
+01:13:01 [Speaker 6]
+Like, what's our appetite here?
+01:13:03 [Speaker 6]
+And the goal is not even to come up with the best solution.
+01:13:06 [Speaker 6]
+It's I mean, I think this is applicable to all design, but I think it's incredibly important for a founding designer when the stakes are really high.
+
+01:13:13 [Speaker 6]
+You're literally, like, life or death every single day.
+01:13:15 [Speaker 6]
+It's, like, it's not to come up with the best possible design.
+01:13:17 [Speaker 6]
+It's to come up with the highest ROI design, and that is constantly thinking about this intersection of what you can bring to market, but also how quickly can you do it, and how can you set up the right foundations to unlock future ideas.
+01:13:31 [Speaker 6]
+Sorry.
+01:13:31 [Speaker 6]
+This is another quick ramble, something that's coming to mind.
+
+01:13:33 [Speaker 6]
+I think a huge part of being a founding designer too is to be able to see what are the building blocks that could unlock the paths, like, a year from now.
+01:13:43 [Speaker 6]
+Right?
+01:13:44 [Speaker 6]
+So you kinda have to, like, balance this this very future facing perspective with the short term needs.
+01:13:49 [Speaker 6]
+And if you can create like, that was that was always when I was able to establish the most influence in the org was when I I was able to position a concept.
+01:13:55 [Speaker 6]
+Be like, hey.
+
+01:13:56 [Speaker 6]
+Look.
+01:13:56 [Speaker 6]
+This solves that thing we were talking about, but what's even cooler is, you know how we, like, always come around this circle of ideas where it's always kinda feels like something that'll be inevitable in the future, but, like, look how perfectly that could put us onto that path.
+01:14:08 [Speaker 6]
+And being able to tell a story about how the thing is a launching pad for those, you know, other big ideas that maybe get discussed in, like, an off-site or randomly in meetings, that is a a a underrated tactic in this role.
+
+01:14:21 [Speaker 2]
+100%.
+01:14:21 [Speaker 2]
+Flo, by the way, the articulation on your thoughts was incredible in this video.
+01:14:25 [Speaker 2]
+Yeah.
+01:14:25 [Speaker 2]
+Which also this next person, Claire Taylor, over at Superpower, same.
+
+01:14:31 [Speaker 15]
+Biggest lesson I've learned as a founding designer is that the relationship comes before the design work.
+01:14:37 [Speaker 15]
+Whenever I join a team, I start by asking the founder what's on their plate, what's keeping them up at night.
+01:14:43 [Speaker 15]
+Then I find one of those problems and solve it quickly.
+01:14:45 [Speaker 15]
+It's so much easier to show the value of design that way than trying to explain it or trying to make a presentation to sell it.
+01:14:51 [Speaker 15]
+I also assume I might be the first designer they've worked closely with.
+
+01:14:55 [Speaker 15]
+They may not know how designers think or how they work.
+01:14:57 [Speaker 15]
+A big part of my role is translation.
+01:14:59 [Speaker 15]
+A founder can be as vague as they want or have as ambitious a goal as they can possibly dream up and my job is to turn it into something that they can react to, something that feels tangible that we can work through with the team.
+01:15:12 [Speaker 15]
+And over time that predictability builds trust and influence.
+01:15:15 [Speaker 15]
+When I was working with the founder at Chronicle he was the one who really gave me that feedback was like I can trust that I can give you an unclear problem and then know that you're going to take it away, ruminate and come up with a solution that's 10 times better than what I would have thought of.
+
+01:15:30 [Speaker 15]
+That way you know he can focus on something else that was demanding his attention.
+01:15:33 [Speaker 15]
+I also found that being hyper prepared for conversations with founders made that relationship so much clearer.
+01:15:40 [Speaker 15]
+When I was at Me and You we had just raised series a funding and we suddenly had that opportunity to grow the design team.
+01:15:47 [Speaker 15]
+I grabbed a FigJam board, I mapped out all the skills that we already had on the team and identified the gaps.
+01:15:53 [Speaker 15]
+I then was like okay if we're only hiring this many front end engineers we want them to be paired really tightly with a designer and therefore I think this is like the amount of designers we should hire.
+
+01:16:02 [Speaker 15]
+Not only did that help pave the way for the org design of the design team but it also helped shape how the rest of the product design and engineering org was shaped after that too.
+01:16:11 [Speaker 15]
+One thing that I think about when it comes to working with founders is that they're really wanting you to have an opinion and to have healthy debate with them.
+01:16:19 [Speaker 15]
+The key is to explain your rationale in a way that they understand and what they can care they care about.
+01:16:24 [Speaker 15]
+If they're someone who's very customer orientated talking stories about customers, if they're very data driven understand how the data that you're working with matters to them and and how you can help inform that data.
+01:16:37 [Speaker 15]
+This kind of all ladders into going into full founder mode yourself.
+
+01:16:40 [Speaker 15]
+You don't expect someone else to solve the problem, you fix it yourself and often that happens because you are going to be across everything.
+01:16:47 [Speaker 15]
+These are some of the questions that I'd ask myself when deciding if joining a startup as a founding designer is right for me.
+01:16:53 [Speaker 15]
+If someone were to tell me that months of work needed to be thrown away tomorrow does that fill me with dread or do I accept that loss and roll up my sleeves and move on?
+01:17:01 [Speaker 15]
+Does the idea of writing the playbook rather than following one excite me?
+01:17:05 [Speaker 15]
+Do I love trying new ways of working?
+
+01:17:07 [Speaker 15]
+Do I like testing myself not to open Figma for a week or do I crave ambiguous or unknown problems?
+01:17:14 [Speaker 15]
+And does the idea of not having a design system scare you or excite you?
+01:17:18 [Speaker 15]
+Founding designers thrive where they can move quickly without losing quality.
+01:17:22 [Speaker 15]
+You have to follow your gut more than follow the data because it doesn't exist yet.
+01:17:26 [Speaker 15]
+And, yeah, I've been working in startups the last fourteen years, and some of the products I helped launch are now household names in Australia.
+
+01:17:31 [Speaker 15]
+And so, you know, this is one tiny aspect of what I've learned, and I hope that this is helpful.
+01:17:37 [Speaker 15]
+Okay.
+01:17:38 [Speaker 15]
+Bye.
+
+01:17:39 [Speaker 2]
+That was helpful, Claire.
+01:17:41 [Speaker 2]
+Did we get did I get Claire's, role wrong there?
+01:17:43 [Speaker 2]
+I think I did.
+01:17:43 [Speaker 2]
+Didn't I?
+01:17:43 [Speaker 2]
+No.
+
+01:17:44 [Speaker 1]
+No.
+01:17:44 [Speaker 1]
+No.
+01:17:44 [Speaker 1]
+No.
+01:17:44 [Speaker 1]
+No.
+01:17:44 [Speaker 1]
+You got it.
+
+01:17:45 [Speaker 6]
+So so she actually, she was the founding designer at Chronicle, which if have you ever used Chronicle?
+
+01:17:51 [Speaker 2]
+I haven't.
+01:17:51 [Speaker 2]
+Beautiful, by the way.
+
+01:17:52 [Speaker 6]
+It's crazy well designed.
+01:17:54 [Speaker 6]
+Like, one time I always used it, and I just took screenshots for, like, twenty minutes and stuff.
+01:17:58 [Speaker 6]
+Unbelievably well designed.
+01:18:00 [Speaker 6]
+And she was in the dive talent network and just, got a role at Superpower.
+
+01:18:05 [Speaker 2]
+That is awesome.
+01:18:05 [Speaker 2]
+Another beautiful product.
+01:18:07 [Speaker 2]
+Yeah.
+01:18:07 [Speaker 2]
+Yeah.
+01:18:08 [Speaker 2]
+Yeah.
+
+01:18:09 [Speaker 2]
+Very, very good cause there.
+01:18:10 [Speaker 2]
+She makes something she teased it a a thread there that I did want to explore just for a moment, which was, like, founding designers, if you can really, as as Flo kind of put it, chew on glass and stare into the abyss, the old throwback to Elon's metaphor there, was, if you can do that, you may actually be suited to be a design founder.
+01:18:32 [Speaker 2]
+Right?
+01:18:32 [Speaker 2]
+Now actually leading the entire company, being the person who is trying to bring something to market and and owning that, which is just as equally as terrifying at times.
+01:18:41 [Speaker 2]
+And I wanted to hear from, two people who had done that, just to give a little bit of contrast, starting with, Joe Salowitz, who did that with LeadScout and now works over at Sublime Security and can speak kinda to both founding designer and design founder.
+
+01:18:55 [Speaker 10]
+Hi.
+01:18:55 [Speaker 10]
+I'm Joe Salowitz, and I'm a design founder.
+01:18:57 [Speaker 10]
+I was the founder of LeadScout, a platform for roofing contractors, siding contractors, and all sorts of exterior contractors to track their leads and their prospects.
+01:19:06 [Speaker 10]
+So the question is, what are some of the biggest challenges of being a founding designer?
+01:19:11 [Speaker 10]
+I think what makes a founding designer so formidable is their ability to hold so many things in tension at the same time.
+
+01:19:19 [Speaker 10]
+So whereas sales oriented founder will have the singular focus of selling the product or a engineer will have the singular focus of building the product.
+01:19:28 [Speaker 10]
+A design founder can hold a lot of things in tension at once and cast a vision of what the product can be.
+01:19:34 [Speaker 10]
+So holding a lot of things intention, what does that mean?
+01:19:36 [Speaker 10]
+Well, it means operating the business, the day to day, doing the design, understanding where you can get product market fit, how you can get it, and iterating your way over and over and over and over until you get to traction.
+01:19:51 [Speaker 10]
+We are innately, in tune with what the market wants and needs as designers.
+
+01:19:57 [Speaker 10]
+And we are really good at iterating and prototyping our way to that.
+01:20:01 [Speaker 10]
+So our superpower as designers is really doing a lot of things.
+01:20:06 [Speaker 10]
+I think there's a role that the designer sits in, which is the ability to work with cross functional people in a way that brings them together around a vision.
+01:20:14 [Speaker 10]
+So a founding designer can sit in this space of building and casting a vision and then democratizing that across people.
+01:20:20 [Speaker 10]
+What are they not for?
+
+01:20:21 [Speaker 10]
+Honestly, I would say, the distribution, they can have a hand in that.
+01:20:24 [Speaker 10]
+But let the other people who are strong with selling, strong with creating a narrative around the sales, let them do that work.
+01:20:30 [Speaker 10]
+The high level architecture work, let's say, like, server side stuff, infrastructure stuff, don't try to be great at that as a designer.
+01:20:38 [Speaker 10]
+We can certainly work in code.
+01:20:39 [Speaker 10]
+We should be working in code.
+
+01:20:40 [Speaker 10]
+We can be building.
+01:20:41 [Speaker 10]
+We should be building.
+01:20:42 [Speaker 10]
+But don't try to be the infrastructure architect.
+01:20:46 [Speaker 10]
+Let your CTO do that.
+01:20:47 [Speaker 10]
+Don't try to be the accountant.
+
+01:20:48 [Speaker 10]
+But support those people with great systems and ops.
+01:20:51 [Speaker 10]
+Number three, what should hiring managers and founders consider when bringing on a founding designer?
+01:20:55 [Speaker 10]
+You need a cross functional person.
+01:20:57 [Speaker 10]
+You need a generalist who has the ability to, one, take on a lot of things at the same time and hold those things in tension.
+01:21:03 [Speaker 10]
+But then, two, is very able to go deep and narrow when they need to and execute with a high level of fidelity and craft.
+
+01:21:12 [Speaker 10]
+That's, I think, one of, again, the unique abilities of a designer is the ability to hold those things in tension.
+01:21:17 [Speaker 10]
+Think wide in systems, but then also go extremely narrow and deep when it is needed within the organization.
+01:21:24 [Speaker 10]
+You also wanna make sure this person has a ton of sources of inspiration to keep themselves going.
+01:21:30 [Speaker 10]
+So what are they inspired by?
+01:21:32 [Speaker 10]
+Is that sources from other startups or what have you?
+
+01:21:35 [Speaker 10]
+Or is it their garden at home?
+01:21:37 [Speaker 10]
+Dig into that and get that right, and I think you'll hire somebody who's great.
+01:21:40 [Speaker 10]
+And then last but not least, if you can find a a second time founder or somebody who has, operated a business, that will always yield dividends long term.
+01:21:49 [Speaker 10]
+But a first time founder, as long as they're hungry and they have the willingness to really go through it over and over and over again, they'll be a good fit too.
+01:21:57 [Speaker 10]
+Thanks for taking this video.
+
+01:21:58 [Speaker 10]
+I appreciate your time
+
+01:22:00 [Speaker 2]
+today.
+01:22:01 [Speaker 2]
+Joe, we appreciate your time.
+01:22:02 [Speaker 2]
+Yeah.
+
+01:22:02 [Speaker 5]
+That was great.
+
+01:22:03 [Speaker 2]
+Take, clearly from someone who's been in the trenches, and has had some meaningful work there.
+01:22:10 [Speaker 2]
+Holding it intention.
+01:22:12 [Speaker 2]
+So the the concept of tension, I really appreciated that call out.
+01:22:16 [Speaker 2]
+And then the theme that keeps coming back up, and I've heard you talk a lot about this, is that ability to just zoom out and then zoom in to, like, the ground level is something that, at least, I've found myself having to do just almost daily in those positions.
+
+01:22:32 [Speaker 6]
+Yeah.
+01:22:32 [Speaker 6]
+And and trying to figure out where the lines of your role stop and start to because they're much, much bigger than a traditional design role.
+01:22:40 [Speaker 6]
+Like, it's something that was I was thinking about while I was talking is I almost kinda forgot this, but in the early days, I was in the Twitter DMs of all of our early users, all of them.
+01:22:53 [Speaker 6]
+Just trying to make friends.
+01:22:54 [Speaker 6]
+You know?
+
+01:22:54 [Speaker 6]
+Just try like, come on.
+01:22:55 [Speaker 6]
+Like, you wanna you could talk to me.
+01:22:57 [Speaker 6]
+Let's talk.
+01:22:57 [Speaker 6]
+You know?
+01:22:58 [Speaker 6]
+Like, send me ideas.
+
+01:22:59 [Speaker 6]
+Send me prototypes.
+01:23:00 [Speaker 6]
+That was one of the better investments I made too.
+01:23:02 [Speaker 6]
+It was just having kind of my bench of people that I could brainstorm with because you don't always have that many conversations to be had in when it seems really small.
+01:23:10 [Speaker 6]
+Right?
+01:23:10 [Speaker 6]
+Like, you you need those sometimes those are the best thought partners.
+
+01:23:14 [Speaker 6]
+It's like, who are your early users and how close can you get to them?
+
+01:23:17 [Speaker 2]
+Joe's in the chat here.
+01:23:18 [Speaker 2]
+Says, when I first started, I felt like a lowly contributor since I didn't own, the build or the sell.
+01:23:25 [Speaker 2]
+By the end, I realized the value in just how essential the design founder role is to a startup to succeed.
+01:23:31 [Speaker 2]
+I love that.
+01:23:31 [Speaker 2]
+And, by the way No.
+
+01:23:32 [Speaker 2]
+Joe, if you start another business, that is the kind of founder you do want to be a design founder for because they they totally get the full spectrum of it.
+01:23:40 [Speaker 2]
+Hey, Rid.
+01:23:40 [Speaker 2]
+What, outside of the design role, where do you feel like you're spiky as this, like, cross functional generalist?
+
+01:23:49 [Speaker 6]
+So when the very first time I did the founder journey okay.
+01:23:54 [Speaker 6]
+So I identified as a founder before I identified as a designer.
+01:23:57 [Speaker 6]
+I was a founder who designed.
+01:24:00 [Speaker 6]
+And to be honest, I don't have this, like, really glamorous backstory of how
+
+01:24:04 [Speaker 1]
+I just love the the I
+
+01:24:05 [Speaker 6]
+just love design.
+01:24:06 [Speaker 6]
+You know?
+01:24:06 [Speaker 6]
+It's like, no.
+01:24:07 [Speaker 6]
+I just failed at coding, but I didn't wanna be relegated to a pure idea guy.
+
+01:24:11 [Speaker 2]
+So I was like, well,
+
+01:24:12 [Speaker 6]
+I guess I'll see what this Adobe Illustrator product is all about, and I just started making things.
+01:24:17 [Speaker 6]
+And and so I I fell in love with it through almost without a a choice.
+01:24:21 [Speaker 6]
+But I was the only nontechnical person, which by definitions means you do all the support and you do all the sales.
+01:24:28 [Speaker 6]
+And I definitely got a lot of reps in as a salesman in my early and mid twenties, which I'm super grateful for because, one, I think it's applicable in a lot of life, but that's kind of where I would be able to, you know, bounce back and forth between, like like, selling and pitching ideas, but also, like, listening and trying to figure out, like, what the feedback is that is actionable to work on.
+01:24:55 [Speaker 6]
+And so I would probably consider that circle my spike.
+
+01:24:58 [Speaker 6]
+Curious what you would say.
+
+01:24:59 [Speaker 2]
+I love that.
+01:25:00 [Speaker 2]
+I'm somebody who's just been chronically online since I was a wee lad.
+01:25:04 [Speaker 2]
+And I've just been I've been plugged into online communities.
+01:25:07 [Speaker 2]
+I've always found my way from from, like, newsletters and emails to marketing forums.
+01:25:13 [Speaker 2]
+You name it.
+
+01:25:14 [Speaker 2]
+And that has made me just, almost organically, interested in how do you pitch ideas and market broadly, whether it's through content or landing page or whatever the case is, through, you know, pay per click stuff.
+01:25:30 [Speaker 2]
+I've love that.
+01:25:30 [Speaker 2]
+In fact, that's where I first got started was kind of like Internet marketing forums and all of these SEO world in the 2010 era.
+01:25:38 [Speaker 2]
+And and sales, I I I've always liked just having to talk to people and yap.
+01:25:43 [Speaker 2]
+I've run a show here where I just yap all day.
+
+01:25:45 [Speaker 2]
+You know?
+01:25:46 [Speaker 2]
+And so I I enjoy that piece of it as well.
+01:25:48 [Speaker 2]
+Yeah.
+01:25:50 [Speaker 2]
+Fun times.
+01:25:50 [Speaker 2]
+But on the other side of this, the full founder side.
+
+01:25:53 [Speaker 2]
+Now we're gonna hear from someone who I know you're hanging out with out there, Alex Danilowicz, who, is the founder, cofounder of MagicPatterns.
+01:26:01 [Speaker 2]
+On just real quick, what does that founder role require for anyone who's maybe sitting in a founding designer position and is kinda thinking about it?
+
+01:26:09 [Speaker 16]
+My advice is being a founder in general is just going for it and, like, what it takes to be a founder.
+01:26:15 [Speaker 16]
+Well, anyone can be a founder.
+01:26:17 [Speaker 16]
+That's what I love about YC as an example.
+01:26:20 [Speaker 16]
+It really encourages folks to just apply and you learn along the way and you take, you know, the risk.
+01:26:28 [Speaker 16]
+That's the biggest thing.
+
+01:26:29 [Speaker 16]
+Right?
+01:26:29 [Speaker 16]
+Is taking that jump from working somewhere full time and then deciding to become a founder.
+01:26:35 [Speaker 16]
+But I highly recommend it.
+01:26:36 [Speaker 16]
+And specifically why I think design founders are so needed is, what does it mean to be a founder?
+01:26:41 [Speaker 16]
+Well, it's understanding the customer.
+
+01:26:43 [Speaker 16]
+It's championing the product.
+01:26:46 [Speaker 16]
+And that's what designers do every single day.
+01:26:48 [Speaker 16]
+Right?
+01:26:48 [Speaker 16]
+Understanding the problem at hand.
+01:26:50 [Speaker 16]
+Understanding how do I solve this problem for my users.
+
+01:26:54 [Speaker 16]
+It always starts with the user problem.
+01:26:56 [Speaker 16]
+Sometimes people think that being a founder starts with the solution.
+01:26:59 [Speaker 16]
+It starts with the what you're gonna make money on.
+01:27:01 [Speaker 16]
+And no.
+01:27:01 [Speaker 16]
+It starts with the problem.
+
+01:27:03 [Speaker 16]
+What is the user's problem?
+01:27:05 [Speaker 16]
+What is the customer's problem?
+01:27:06 [Speaker 16]
+I can't recommend being a founder enough.
+01:27:08 [Speaker 16]
+I mean, it's changed me in so many ways and been an amazing experience.
+01:27:12 [Speaker 16]
+And so I just highly recommend if you're watching this, take the leap.
+
+01:27:17 [Speaker 16]
+You can do it.
+01:27:17 [Speaker 16]
+You can do anything.
+01:27:19 [Speaker 16]
+For example, I had never done sales before, but through being a founder, I learned how to do sales and what that all looks like.
+01:27:26 [Speaker 16]
+And probably make a lot of folks think, oh, well, I've been a designer my whole life or I've been an engineer my whole life.
+01:27:32 [Speaker 16]
+I can't do sales.
+
+01:27:33 [Speaker 16]
+I don't know anything about that.
+01:27:34 [Speaker 16]
+Yes.
+01:27:34 [Speaker 16]
+You can.
+01:27:35 [Speaker 16]
+Like, you can do it.
+01:27:36 [Speaker 16]
+Just believe.
+
+01:27:37 [Speaker 16]
+Believe in yourself.
+01:27:39 [Speaker 16]
+Take the leap.
+
+01:27:40 [Speaker 2]
+Love it.
+01:27:41 [Speaker 2]
+Just believe.
+
+01:27:42 [Speaker 6]
+Yeah.
+01:27:43 [Speaker 6]
+I got to listen to Alex on a panel yesterday.
+01:27:45 [Speaker 6]
+He he was on a panel about the future of design at ValleyCon to close it out.
+01:27:48 [Speaker 6]
+So it's definitely definitely a fun I mean, they're just in a fun spot.
+01:27:53 [Speaker 6]
+It's it's it's cool and exciting
+
+01:27:54 [Speaker 1]
+to hear from.
+
+01:27:55 [Speaker 2]
+I love that.
+01:27:56 [Speaker 2]
+I love that.
+01:27:56 [Speaker 2]
+Designer Fund in the chat.
+01:27:57 [Speaker 2]
+Good to see you.
+01:27:58 [Speaker 2]
+Another, incredible, foundation for those of us who are designers and wanna build our own companies.
+
+01:28:05 [Speaker 2]
+We've talked a little bit now about, you know, what is the role?
+01:28:09 [Speaker 2]
+Who is this maybe more suited for?
+01:28:12 [Speaker 2]
+And we've heard a lot of the job inside of that.
+01:28:14 [Speaker 2]
+But let's get very specific about doing this job.
+01:28:17 [Speaker 2]
+What does it look like?
+
+01:28:18 [Speaker 2]
+What does it mean?
+01:28:19 [Speaker 2]
+We're gonna start that with Jacob, who is the currently head of the design of Ingredient AI.
+
+01:28:24 [Speaker 17]
+What's What's up, guys?
+01:28:25 [Speaker 17]
+I'm Jacob.
+01:28:26 [Speaker 17]
+I've been the founding designer at the last two companies I've been at.
+01:28:29 [Speaker 17]
+Today, I wanna chat about what the difference is between being a founding designer at a startup versus being on a more established team.
+01:28:35 [Speaker 17]
+In a startup, it is all hands on deck to make sure that the company doesn't die.
+
+01:28:39 [Speaker 17]
+And that means you have to love problem solving and figuring out what the next thing is that needs to be done for the company to survive another day.
+01:28:48 [Speaker 17]
+If you love shaping a product from the ground up, literally touching every single piece of it, you will love being the founding designer.
+01:28:57 [Speaker 17]
+It is very different than being on an established team team, though.
+01:29:02 [Speaker 17]
+First, there is no process.
+01:29:03 [Speaker 17]
+You will have insane levels of autonomy to simply do the work that needs to be done.
+
+01:29:08 [Speaker 17]
+And to me, that is so much fun.
+01:29:10 [Speaker 17]
+I would rather have autonomy to get things out the door quickly than have to jump through a bunch of hoops and a bunch of reviews and wait weeks upon weeks just to see something get in the hands of users.
+01:29:20 [Speaker 17]
+Two, there's no accurate job description.
+01:29:23 [Speaker 17]
+Of course, you're gonna do design work, but it's probably not only going to be design work.
+01:29:28 [Speaker 17]
+You're gonna do brand design, product design, web design, deck design, ad design, set design.
+
+01:29:33 [Speaker 17]
+And just from my experience, you'll even be giving stuff that isn't design related at all.
+01:29:40 [Speaker 17]
+You will be treated more like a cofounder than an employee, and that's just part of the job description.
+01:29:45 [Speaker 17]
+The positive part of this is you get to be a jack of all trades.
+01:29:49 [Speaker 17]
+You get to explore what's under the hood of building a company, and you get to touch all those little pieces of it.
+01:29:54 [Speaker 17]
+And it's genuinely fun getting to hone those skills and watch how, you know, the stuff that you learn over here about finance and stuff you learn over here about product all come together to help you be a better designer.
+
+01:30:07 [Speaker 17]
+Number three, there's no priority other than urgent.
+01:30:10 [Speaker 17]
+If you go into my linear right now, the stuff that we are currently working on is all marked urgent.
+01:30:16 [Speaker 17]
+The flip side is that you get to see your work in the hands of users so fast.
+01:30:21 [Speaker 17]
+Like, sometimes same day.
+01:30:22 [Speaker 17]
+I can put something in my user's hands, watch them give me feedback, iterate on it, and push something out that same day.
+
+01:30:29 [Speaker 17]
+And to me, as a designer, being able to shape the product in such fast iteration cycles is something that I don't think I could ever get away from.
+01:30:39 [Speaker 17]
+It's almost addicting to watch how quickly that feedback comes back to you.
+01:30:43 [Speaker 17]
+The last thing I wanted to say to wrap up is that the quality bar has not changed.
+01:30:48 [Speaker 17]
+Good is good no matter if you're in an established company or at a startup that's being scrappy.
+01:30:54 [Speaker 17]
+What changes is simply the amount of time and resources that you have to devote to making something good, which simply means that as a designer, you have to be absolutely cracked.
+
+01:31:03 [Speaker 17]
+You have to have the fundamentals of design ingrained into your brain so deeply that your creative expression is spent on breaking rules rather than reinventing the wheel.
+01:31:15 [Speaker 17]
+I personally love being a founding designer.
+01:31:17 [Speaker 17]
+If you enjoy working fast, having complete autonomy to see something end to end, and you like the fast iteration cycles, I think you would love it too.
+01:31:27 [Speaker 17]
+Always feel free to reach out to me.
+01:31:28 [Speaker 17]
+I'm more than happy to chat with you.
+
+01:31:30 [Speaker 17]
+But, yeah, that's it.
+01:31:31 [Speaker 17]
+Thanks.
+
+01:31:33 [Speaker 2]
+Jacob, that that that resonated.
+01:31:36 [Speaker 2]
+The everything is urgent.
+01:31:37 [Speaker 2]
+Everything.
+
+01:31:39 [Speaker 6]
+Yeah.
+01:31:39 [Speaker 6]
+And I think the founding designer having really compressed feedback loops and timelines has always been true.
+01:31:46 [Speaker 6]
+But now that as the final designer, you also can just build the ideas too.
+01:31:50 [Speaker 6]
+Like, people are gonna people are gonna celebrate you building it in the code base and being in the code base, I promise you, in the final designer role, unless you're, like, dealing with some incredibly, you know, robust enterprise security product maybe.
+01:32:02 [Speaker 6]
+And being able to literally ship something on your own after, you know, finding some little insight, you could just have it live in, like, two hours.
+
+01:32:13 [Speaker 6]
+It's so addicting.
+01:32:14 [Speaker 6]
+I that is the word, man.
+01:32:15 [Speaker 6]
+He he he said it.
+01:32:16 [Speaker 6]
+I will echo it.
+01:32:17 [Speaker 6]
+It is addicting.
+
+01:32:18 [Speaker 2]
+It is hard to move slow when you have lived in an environment like that for so long, which can sometimes be to your detriment depending on where you're trying to work.
+01:32:26 [Speaker 2]
+But, there is something quite rewarding about getting to those, I call it oxygen, that when you can ship something and see it get feedback in the marketplace, that is this oxygen.
+01:32:37 [Speaker 2]
+And for, I think, a lot of designers, burnout comes from sitting too long with ideas that don't actually see the light of day.
+01:32:44 [Speaker 2]
+And then, eventually, you're like, what what are we even doing any of this for?
+01:32:47 [Speaker 2]
+And I will say there's no lack of oxygen in those environments.
+
+01:32:50 [Speaker 2]
+No.
+01:32:51 [Speaker 2]
+Dan Taes, founding designer at LiftOff, has this to say.
+
+01:32:55 [Speaker 4]
+Hey, guys.
+01:32:57 [Speaker 4]
+Here are some thoughts on the founding designer journey.
+01:32:59 [Speaker 4]
+The first one is around the design process.
+01:33:02 [Speaker 4]
+Something that's very different about the founding designer is not only the speed at which they're designing things, but the speed at which they're validating or dismissing things too.
+01:33:11 [Speaker 4]
+For example, in large org, you might design something that's then spent weeks validating it during customer interviews, gathering data, and so on.
+
+01:33:19 [Speaker 4]
+But in a very small start up, you could use so much work that you simply need to move faster.
+01:33:25 [Speaker 4]
+You don't have the luxury to interview customers on a daily basis.
+01:33:29 [Speaker 4]
+So a lot of the times the way you're dismissing things is through guts, intuition, taste, and so on.
+01:33:34 [Speaker 4]
+And I think a lot of designers are uncomfortable with that especially based on all the things we've been taught in school about this ideal design process.
+01:33:42 [Speaker 4]
+But most of that gets thrown out the window in a in an early stage startup.
+
+01:33:46 [Speaker 4]
+There's no way to move that fast while following these quick linear steps.
+01:33:51 [Speaker 4]
+You just need to follow your intuition way more than a traditional design job.
+01:33:55 [Speaker 4]
+The second thing I wanna share is around who thrives in this kind of environment.
+01:34:00 [Speaker 4]
+And this is not only relevant for designers, but startup employees in general.
+01:34:04 [Speaker 4]
+There's an emotional component that I haven't heard people talk about too frequently, which is that startups are super hard.
+
+01:34:10 [Speaker 4]
+You're doing long hours.
+01:34:11 [Speaker 4]
+You have difficult conversations.
+01:34:13 [Speaker 4]
+It's very high risk and very high pressure.
+01:34:16 [Speaker 4]
+And it's easier to cruise in a job where you don't love it as much, but you have like 20 other designers around you in a big tech company.
+01:34:25 [Speaker 4]
+But it's impossible to do that in a team of three people when it's just you and maybe two founders, right?
+
+01:34:31 [Speaker 4]
+So the thing that makes it worthwhile is excitement.
+01:34:33 [Speaker 4]
+You really need to love what you're building on a daily basis for this to be manageable.
+01:34:38 [Speaker 4]
+That's why it's important to love the space you're in, to really care about the users you're designing for, and to enjoy spending time with the people you're working with daily.
+01:34:47 [Speaker 4]
+At this stage the product and the team fit is the difference between a great job and an awful one.
+01:34:53 [Speaker 4]
+And third thing I wanna go through is kind of this mix of disciplines that you have to do as a founding designer.
+
+01:35:00 [Speaker 4]
+Like, of course, you are gonna define and design the product and you might naturally gravitate towards designing the brand too, depending on your skill set.
+01:35:09 [Speaker 4]
+But for the past few years, I found myself doing so much more beyond what I thought I was good at.
+01:35:14 [Speaker 4]
+I've done marketing work and I'm not just talking about designing a social media asset and talking about real marketing work.
+01:35:21 [Speaker 4]
+I got better at motion design because someone had to do it.
+01:35:24 [Speaker 4]
+I even did the go to market and sales, not because I was asked to do it, but because I liked it.
+
+01:35:30 [Speaker 4]
+And I was, it was an easy way for me to get closer to our customers.
+01:35:34 [Speaker 4]
+So I think when you're in a startup, there's this desire to do whatever it takes to see the startup succeed.
+01:35:40 [Speaker 4]
+And you learn so much throughout that process becoming not only a better designer, but a more knowledgeable person and honestly, a more employable one in the end too.
+
+01:35:50 [Speaker 2]
+I think that employable piece is is I'll tell you this.
+01:35:53 [Speaker 2]
+I've gone from a founding designer or just like the the absolute couple year sprint of trying to make something work and the the kind of trauma that sometimes those experiences can leave on you, and then you go to a company that's a little bit more mature.
+01:36:09 [Speaker 2]
+And, it is there's a night and day to it where you get to take a lot of skills and lessons to that that mature team, and you get to breathe a little bit too.
+01:36:19 [Speaker 2]
+And it feels really good to be able to be like, hey, it doesn't seem like I need to employ this skill over here, but it's really nice in those little moments where, I can.
+01:36:29 [Speaker 2]
+You know?
+
+01:36:29 [Speaker 6]
+In baseball, when you're on deck, oftentimes, you'll see people slide what you call, like, a doughnut over the bat, which is just a weight.
+01:36:37 [Speaker 6]
+And then you'll watch the pitcher, and you're taking practice swings with the weight on your bat.
+01:36:42 [Speaker 6]
+And then when you walk up to the plate, you take it off, and everything kind of feels in slow motion a little bit as a result.
+01:36:49 [Speaker 6]
+And in a sense, I I I think that's maybe one of the reasons why, from what I can tell, founding designers are one of the most employable archetypes out there because it kinda feels like the last few years that you've been in that role, you've been playing with the doughnut on because you're just moving so fast, and everything's on this insane treadmill turned up to 20.
+01:37:08 [Speaker 6]
+And then if you step into, like, a normal operating org, you can kinda breathe and be a little bit more strategic and intentional.
+
+01:37:16 [Speaker 6]
+And, also, another thing I wanna say too is a lot of people don't know some of the companies that we're talking about because it's it's startups.
+01:37:23 [Speaker 6]
+Right?
+01:37:23 [Speaker 6]
+They're all so young.
+01:37:24 [Speaker 6]
+But both Jacob and Dan, I mean, this they're doing incredible work.
+01:37:28 [Speaker 6]
+These are really good products.
+
+01:37:29 [Speaker 6]
+Lift off is so well designed.
+01:37:31 [Speaker 6]
+I have multiple screenshots from Dan before I even knew it was Dan.
+01:37:34 [Speaker 6]
+Multiple screenshots saved in, paper as I as inspiration.
+01:37:38 [Speaker 6]
+I I think he's doing great work, and I wanna say one more thing that his talk sparked, which talked about kinda like the cross discipline thing.
+01:37:48 [Speaker 6]
+And another thing that came to mind is, like, the role that the founding designer can and honestly probably should play as a copywriter.
+
+01:37:57 [Speaker 6]
+You're not gonna have a damn UX writer as a founding designer.
+01:38:01 [Speaker 6]
+You better be able to write a lot of really good copy and have that be a reflection of your understanding of the value propositions, the positioning, the company brand.
+01:38:09 [Speaker 6]
+You're probably shaping the voice.
+01:38:11 [Speaker 6]
+You're gonna be like the first one that's writing so much of this.
+01:38:15 [Speaker 6]
+I would write the marketing pages and, like, yeah, they kinda get, like, tweaked and edited, but you're throwing the ball pretty damn far as the founding designer.
+
+01:38:22 [Speaker 6]
+And one thing that I didn't do in a previous role and then I wished I had done, and I made a point to do at Maven, was I became the keeper of the customer testimonials.
+01:38:32 [Speaker 6]
+So if somebody said something, I'm like, hey.
+01:38:34 [Speaker 6]
+Can I can I use that as a testimonial?
+01:38:35 [Speaker 6]
+I throw it into a Notion database without having any idea what that might be used for.
+01:38:40 [Speaker 6]
+And it's just an incredible asset that you can build up as a designer because you don't have anybody else that you can rely on.
+
+01:38:47 [Speaker 6]
+And all of a sudden, you're gonna be in this copywriting environment.
+01:38:50 [Speaker 6]
+And if you can reach for those, it's just another way to really move the needle in an early stage environment where you kinda can just create value in any direction that you want.
+
+01:39:00 [Speaker 2]
+That's why I always love that Amazon exercise where they would, you know, Bezos would create the PR first, the press release, and say, like, before the product's even done, this is how we would, you know, frame this to the market.
+01:39:11 [Speaker 2]
+And I think a designer version of that is, like, what would the landing page be?
+01:39:14 [Speaker 2]
+Even before you have the product, like, what would your landing page say?
+01:39:17 [Speaker 2]
+You know?
+01:39:18 [Speaker 2]
+I think there's a lot to to be said there.
+
+01:39:20 [Speaker 2]
+We have a you know, we've gotten so many submissions, that, unfortunately, we're not gonna be able to get to all of them today.
+01:39:26 [Speaker 2]
+And I've reached out to those folks and, I've apologized because we appreciate your time.
+01:39:30 [Speaker 2]
+We're gonna make good somehow, but a lot of good takes.
+01:39:33 [Speaker 2]
+And, we have a really great one from Andres, the founding designer over at FlowGlad, a friend of mine, a friend of ours.
+01:39:39 [Speaker 2]
+Let's see what he had to say.
+
+01:39:41 [Speaker 2]
+And, by the way, this is also, maybe something to say.
+01:39:44 [Speaker 2]
+We have a comment here that says, are there ways to suss out a good founder?
+01:39:48 [Speaker 2]
+And I think it's an important question.
+01:39:50 [Speaker 2]
+One thing I'll add is people that you get along with that you can, you know, that you feel like are kind.
+01:39:57 [Speaker 2]
+People underestimate kindness in these collaborations.
+
+01:40:00 [Speaker 2]
+Things are so turbulent.
+01:40:02 [Speaker 2]
+You're fighting through so many challenges that if you're miserable, when you're doing it with people, it really it's not you're not gonna last long.
+01:40:11 [Speaker 2]
+And so kindness actually does go a long way in these situations.
+01:40:14 [Speaker 2]
+And
+
+01:40:15 [Speaker 6]
+I'll I'll add one line to that too.
+01:40:17 [Speaker 6]
+I always ask founders, what's the riskiest part about this business?
+
+01:40:22 [Speaker 1]
+And if
+
+01:40:22 [Speaker 6]
+they don't have a good answer and they haven't thought through the potential failure states, that's a red flag for me, and I think you see it more in first time founders than second time founders.
+
+01:40:29 [Speaker 2]
+Yeah.
+01:40:29 [Speaker 2]
+I love that.
+01:40:31 [Speaker 2]
+Here's what Andres says.
+
+01:40:32 [Speaker 18]
+What's up, y'all?
+01:40:33 [Speaker 18]
+My name is Andres Gonzalez.
+01:40:34 [Speaker 18]
+I've been the founding designer at FlowGlide over a little over twelve months now.
+01:40:38 [Speaker 18]
+We've gone through three pivots.
+01:40:40 [Speaker 18]
+I personally gone through plenty of existential crises.
+
+01:40:44 [Speaker 18]
+We're so back.
+01:40:45 [Speaker 18]
+It's so over.
+01:40:46 [Speaker 18]
+Questioning myself for personal and professional growth.
+01:40:50 [Speaker 18]
+What the fuck are we doing?
+01:40:51 [Speaker 18]
+Also deepening my friendships because I work with some of my best friends, and sometimes even having a really difficult conversations with them as well.
+
+01:40:57 [Speaker 18]
+I think one of the hardest things that I had to go through as a founding designer was one, all the growing design debt that was accumulated because we decided to move really fast and all the AI slop that I'm now having to clean up.
+01:41:10 [Speaker 18]
+And two, the expectation that AI should have the same level of productivity gain on design that engineering has had.
+01:41:18 [Speaker 18]
+And so I can't count the number of times that we've actually changed the sidebar, added, removed, and then readded pages, workflows based on just pure instinct and early customer conversations.
+01:41:29 [Speaker 18]
+I made design decisions quickly because we had to move fast, but then those decisions came to haunt me later when I had to figure out why our page headers were always so inconsistent and why certain user flows just really appear to be broken because they hadn't really been a first class experience when we shifted our product.
+01:41:48 [Speaker 18]
+Why certain modal copy didn't really make sense because AI is notoriously horrible at concisely writing copy.
+
+01:41:56 [Speaker 18]
+And so the reality was that our product, its features, and our target customer had changed multiple times in the past twelve months.
+01:42:03 [Speaker 18]
+But AI.
+01:42:04 [Speaker 18]
+Right?
+01:42:05 [Speaker 18]
+Yeah.
+01:42:05 [Speaker 18]
+Can't we just have AI?
+
+01:42:06 [Speaker 18]
+Just throw AI at this problem.
+01:42:08 [Speaker 18]
+It should solve it for us.
+01:42:09 [Speaker 18]
+Right?
+01:42:10 [Speaker 18]
+Well, not really because AI can help, but it can't do some of that critical design thinking for you.
+01:42:16 [Speaker 18]
+AI can help create more consistent components, but you still have to determine what components are worth making more consistent.
+
+01:42:23 [Speaker 18]
+You can use AI to help create new pages, but you have to still figure out if that page even needs to exist and ask, does it actually solve the customer problem?
+01:42:33 [Speaker 18]
+AI can help you ship UI faster, but you still have to figure out if the direction that you're building in is the right one for your customer.
+01:42:41 [Speaker 18]
+Overall, I'm super lucky though because I'm working my best friends in a really high trust environment, and I trust my cofounders to make really difficult strategic decisions to get us closer to product market fit even if it means pivoting again, even if it means completely destroying all the designs that I've made and I've shipped.
+01:42:59 [Speaker 18]
+And they trust me to make difficult design decisions quickly while giving me grace when sometimes the product breaks or doesn't really make sense because I had to make these decisions really fast.
+01:43:09 [Speaker 18]
+So I don't really think you can have a great founding designer without a great founding team.
+
+01:43:14 [Speaker 18]
+So I'm lucky to be working with some of the most talented people I've ever met.
+01:43:18 [Speaker 18]
+I really don't know how
+
+01:43:19 [Speaker 1]
+it could work without them.
+
+01:43:23 [Speaker 6]
+Two thoughts really quickly.
+01:43:24 [Speaker 6]
+A fantastic response.
+01:43:26 [Speaker 6]
+One is you have to be okay with being wrong.
+01:43:31 [Speaker 6]
+Being wrong isn't bad.
+01:43:32 [Speaker 6]
+In fact, being wrong is the path to being decisive and fast.
+
+01:43:38 [Speaker 6]
+And so if you operate out of this, like, oh, I don't wanna be wrong.
+01:43:40 [Speaker 6]
+I don't wanna be wrong.
+01:43:41 [Speaker 6]
+You will be slow, and you will be bad at your job.
+01:43:44 [Speaker 6]
+Feel like you're gonna be wrong a bunch.
+01:43:46 [Speaker 6]
+And as a result, it reminds me of one of my favorite quotes that Soleil said when I interviewed him a couple years ago, and he talked about being a founding designer is a lot like making sand castles.
+
+01:43:55 [Speaker 6]
+The expectation is just that most of them will get washed away, and you have to be okay with that.
+
+01:43:59 [Speaker 2]
+I love that so much.
+01:44:00 [Speaker 2]
+And I'll say this, you know, going back to what Joe said about holding things intention, well, one of the things on the meta that our intention is that you need to earn trust, and you also need to be you have the the self actualization that, like, hey, the self awareness rather that I was wrong here.
+01:44:15 [Speaker 2]
+And, I I get that that's gonna you know, I need to earn some goodwill from that.
+01:44:19 [Speaker 2]
+Let's move forward, and I will, you know, I will I will find ways to collaborate and and make sure I'm not wrong the next time around.
+01:44:25 [Speaker 2]
+And you've that that is a hard thing, I think, for some people to navigate.
+
+01:44:29 [Speaker 2]
+Also, you know, as a team, it's it's helpful to be able to have the room to be wrong, occasionally.
+01:44:34 [Speaker 2]
+And and you do have some room, I think, that's that's worthwhile.
+01:44:36 [Speaker 2]
+So that's something to say.
+
+01:44:38 [Speaker 6]
+Thirty thirty seconds thirty second touch on this comment right here
+
+01:44:41 [Speaker 1]
+Yeah.
+
+01:44:41 [Speaker 6]
+Which is, okay.
+01:44:42 [Speaker 6]
+I'm, like, a design lead of UX team, whatever.
+01:44:46 [Speaker 6]
+You know, they have the generalist experience, but but, like, you gotta kinda be able to demonstrate zero to one experience.
+01:44:52 [Speaker 6]
+And sometimes there's this chicken in the egg.
+01:44:54 [Speaker 6]
+It's like, well, I don't wanna hire you as a founding designer because
+
+01:44:56 [Speaker 1]
+you haven't done it before.
+
+01:44:56 [Speaker 6]
+I was like, well, I wanna do it.
+01:44:58 [Speaker 6]
+Let me do it.
+01:44:58 [Speaker 6]
+You know?
+01:44:59 [Speaker 6]
+Make a product, launch it, bring it to market, launch it on Product Hunt, make a little marketing campaign about it, do your best to put a real thing out into the market and see how people respond.
+01:45:11 [Speaker 6]
+And even if it doesn't work, have some things that you learned.
+
+01:45:14 [Speaker 6]
+And if you can point to, like, hey.
+01:45:15 [Speaker 6]
+I operated as a mini founder for this season for three months.
+01:45:18 [Speaker 6]
+I tried to build a business.
+01:45:20 [Speaker 6]
+I tried to I tried to build a project and market it.
+01:45:22 [Speaker 6]
+I think that's going to be a a really, not easy, but surefire way to separate yourself from people who have just never done anything zero to one before.
+
+01:45:31 [Speaker 2]
+And that would have sounded like an extremely expensive long Yep.
+01:45:36 [Speaker 2]
+Long horizon task in the past.
+01:45:37 [Speaker 2]
+Obviously, we know that it is not today.
+01:45:39 [Speaker 2]
+You could do that with something relatively small, and that thing could be an info product.
+01:45:43 [Speaker 2]
+It could be a software product.
+
+01:45:44 [Speaker 2]
+It could be a number of things.
+01:45:45 [Speaker 2]
+Totally.
+01:45:46 [Speaker 2]
+Yeah.
+01:45:46 [Speaker 2]
+Absolutely.
+01:45:47 [Speaker 2]
+I'm excited to hear this take.
+
+01:45:49 [Speaker 2]
+This is Jared, sorry.
+01:45:50 [Speaker 2]
+This is Jared Arandu, who is currently the head of design at Span, but formerly a founding designer at Lattice.
+01:45:56 [Speaker 2]
+And here is what he had to share.
+01:45:58 [Speaker 2]
+Yeah.
+01:45:58 [Speaker 2]
+Very cool perspective on this.
+
+01:46:00 [Speaker 19]
+Hi.
+01:46:00 [Speaker 19]
+I'm Jared, and I am a founding designer at a startup called Spam.
+01:46:04 [Speaker 19]
+Now I've done the founding designer role a number of times in my career now.
+01:46:07 [Speaker 19]
+And, there are a lot of lessons I learned along the way, but one through line I would say is that the biggest mindset shift I'd encourage in a founding designer is to think like a founder.
+01:46:17 [Speaker 19]
+Everything is your problem, but everything can't be your priority.
+
+01:46:20 [Speaker 19]
+A huge part of the job is figuring out what deserves your attention, creating leverage so that you can do those things, and executing as quickly as possible because startups are in constant survival mode.
+01:46:30 [Speaker 19]
+A few things to consider.
+01:46:31 [Speaker 19]
+The first I would say is to become a student of your customer.
+01:46:33 [Speaker 19]
+That understanding helps you spot op opportunities the business hasn't yet articulated and gives you a clear anchor for anything you might end up proposing.
+01:46:42 [Speaker 19]
+If you are currently a founding designer, one thing I challenge you on right now is to talk to more customers.
+
+01:46:46 [Speaker 19]
+If it's been more than, I don't know, let's say five business days since the last time you did, I would absolutely fix that.
+01:46:52 [Speaker 19]
+The second thing is knowing how to choose what matters now.
+01:46:56 [Speaker 19]
+Always, always, always start with the business' top priority and translate that into your work.
+01:47:00 [Speaker 19]
+I also think it's important to consider viability.
+01:47:03 [Speaker 19]
+As a designer, you're naturally going to notice everything that can be improved with your product, but not everything is actually worth addressing.
+
+01:47:09 [Speaker 19]
+I would say that the earlier stage the company is, it's actually more likely than not that a problem today simply disappears tomorrow because something has changed, whether it's the strategy, the market, or your ICP.
+01:47:22 [Speaker 19]
+So it's on you to be thoughtful about where it's actually worth spending your calories.
+01:47:25 [Speaker 19]
+One of my former managers used to say something that has stuck with me for years, which is the right thing at the wrong time is the wrong thing.
+01:47:32 [Speaker 19]
+So write that.
+01:47:34 [Speaker 19]
+Dude,
+
+01:47:35 [Speaker 2]
+I heard that line.
+01:47:36 [Speaker 2]
+I just I just wanna freeze frame that because that is probably my favorite thing to come out of this episode.
+01:47:41 [Speaker 2]
+The right thing at the wrong time is the wrong thing.
+
+01:47:44 [Speaker 1]
+Yeah.
+
+01:47:45 [Speaker 2]
+And that hit hard for me.
+
+01:47:47 [Speaker 6]
+Let's keep going.
+
+01:47:48 [Speaker 2]
+Put
+
+01:47:48 [Speaker 19]
+that down.
+01:47:48 [Speaker 19]
+The third thing I would say is you and the founders need to have a shared definition of what good looks like.
+01:47:53 [Speaker 19]
+Founder trust and executive trust for that matter is actually a very simple equation.
+01:47:57 [Speaker 19]
+It's just alignment plus execution.
+01:47:59 [Speaker 19]
+The execution is straightforward.
+
+01:48:01 [Speaker 19]
+Right?
+01:48:01 [Speaker 19]
+Just do what you say you're gonna do.
+01:48:02 [Speaker 19]
+But the alignment side is the one that takes a bit more unpacking.
+01:48:05 [Speaker 19]
+And I would say where it starts with is understanding what the bar in your founder's mind actually is.
+01:48:10 [Speaker 19]
+And then once you have that understanding, it's now on you to decide if you agree with that bar or not.
+
+01:48:15 [Speaker 19]
+If you agree, awesome.
+01:48:16 [Speaker 19]
+It's all about execution.
+01:48:17 [Speaker 19]
+If you don't, you need to paint that vision of, like, hey.
+01:48:21 [Speaker 19]
+You believe we should be here.
+01:48:23 [Speaker 19]
+I believe we should be here, but you need to articulate that delta in a way that translates back to customer and business outcomes because that's ultimately the language that the founder understands.
+
+01:48:33 [Speaker 19]
+Once you have that understanding, there's now alignment and then you just need to deliver constantly against that bar.
+01:48:38 [Speaker 19]
+That's how trust builds.
+01:48:40 [Speaker 19]
+The last thought I will share is startups have one clear advantage, which is speed.
+01:48:44 [Speaker 19]
+And I like to think that AI is a lever for increasing speed and pushing the bar by raising the floor and ceiling of your experience.
+01:48:51 [Speaker 19]
+But all of this starts by investing in your design system.
+
+01:48:54 [Speaker 19]
+The space is evolving quickly, so I think it's less about convincing your peers to adopt very specific tools and workflows.
+01:49:00 [Speaker 19]
+And it's more about pushing the adoption and belief in a mindset that focuses on an outcome we all want, which is faster and better.
+01:49:07 [Speaker 19]
+If there's alignment on that outcome, then there's more openness to the conversation that AI can play in helping you achieve that outcome.
+01:49:13 [Speaker 19]
+In closing, everything is your problem, but everything can't be your priority.
+01:49:16 [Speaker 19]
+Know your customer, agree on what matters, and follow through.
+
+01:49:19 [Speaker 19]
+That's how you earn trust, and that's how you help the company earn the right to keep building.
+01:49:22 [Speaker 19]
+Those are
+
+01:49:22 [Speaker 1]
+my thoughts.
+
+01:49:24 [Speaker 2]
+That is a that is a precise thinker.
+
+01:49:27 [Speaker 6]
+Yeah.
+01:49:28 [Speaker 6]
+That is.
+01:49:28 [Speaker 6]
+He's just banger banger banger.
+01:49:30 [Speaker 6]
+One moment.
+01:49:30 [Speaker 6]
+One moment.
+
+01:49:31 [Speaker 6]
+I wrote down even before he repeated it.
+01:49:32 [Speaker 6]
+Everything is your problem, but not everything can be your priority.
+01:49:35 [Speaker 6]
+And it takes me back to this very specific moment, probably within three weeks of working at Maven.
+01:49:40 [Speaker 6]
+And I was I was working very closely with this guy named Shreyans, who's amazing, and he was, he was the first engineer at Venmo.
+01:49:45 [Speaker 6]
+And he told me he's like, Rit, every day, you're gonna wake up with more high priority things to do than you can do.
+
+01:49:55 [Speaker 6]
+And the most difficult and important part of your job is going to be able to figure out which high priority things do I not do today.
+01:50:02 [Speaker 6]
+And he was right.
+
+01:50:04 [Speaker 2]
+Yep.
+01:50:04 [Speaker 2]
+You've got a 100 decisions to make and enough time for 10 of them.
+01:50:08 [Speaker 2]
+Yep.
+01:50:08 [Speaker 2]
+And, that is the that is the challenge that is tough.
+01:50:10 [Speaker 2]
+We're gonna hear from one more take on doing the job.
+
+01:50:13 [Speaker 2]
+We're gonna close the episode out here shortly and, announce the designer of the week.
+01:50:16 [Speaker 2]
+But I did wanna hear from Chris Davis, the founding designer at Type.
+
+01:50:20 [Speaker 20]
+Hi, everyone.
+01:50:21 [Speaker 20]
+I'm Chris Davis, and I'm a designer.
+01:50:23 [Speaker 20]
+And I wanted to share some of my experiences with transitioning from being an in house designer at larger companies to working as a founding designer for the first time in my life.
+01:50:33 [Speaker 20]
+It's been an exciting transition.
+01:50:34 [Speaker 20]
+But one that I think is summed up really well by this great statement from our dear friend, Matthew McConaughey, champion of the design industry, where he says in his book, Green Lights, that people should be less impressed and more involved.
+
+01:50:48 [Speaker 20]
+I think it's a good lesson for us to hold in our heads across the board that is applicable directly to the life of a founding designer in 2020, '6.
+01:50:56 [Speaker 20]
+I cut my teeth working at Trello before I got the chance to join Stripe and work on the connect product there.
+01:51:01 [Speaker 20]
+And then I got to join Atlassian, where I had the opportunity to lead design across a whole bunch of products.
+01:51:06 [Speaker 20]
+I left Atlassian back in March to join a team that some of my friends were starting called type.com.
+01:51:12 [Speaker 20]
+I'm the founding designer and only designer at type.com and, it's been a true learning opportunity.
+
+01:51:17 [Speaker 20]
+Now, one of the first things that I wanna share with you is that your designs don't need to be viral on Twitter.
+
+01:51:23 [Speaker 19]
+So, I
+
+01:51:23 [Speaker 20]
+think that a lot of the discourse on Twitter makes it feel like if your motion isn't as dialed in as this person's, if you don't have the follower count of this person, you may not have the impact that you should be having.
+01:51:34 [Speaker 20]
+And so, I want to start off by saying, it's okay for you to take the time building the aesthetic and the experience and the design taste and everything that you want to create.
+01:51:43 [Speaker 20]
+And it doesn't have to be something that draws thousands of designers to follow you.
+01:51:47 [Speaker 20]
+That's okay.
+01:51:48 [Speaker 20]
+The second thing is that small things compound.
+
+01:51:51 [Speaker 20]
+Now, this is a good thing and a bad thing.
+01:51:53 [Speaker 20]
+If you let small things fester, they can turn into big things in a product quite quickly.
+01:51:58 [Speaker 20]
+In the opposite vein, if you do 1% better every day, it's amazing the impact that you can have.
+01:52:04 [Speaker 20]
+You could make small tweaks to the accessibility of a product and suddenly make it much more navigable and usable for your users.
+01:52:11 [Speaker 20]
+1% tweaks compound.
+
+01:52:14 [Speaker 20]
+And so don't be hesitant about making small changes all of the time to sharpen your product as you're building it.
+01:52:21 [Speaker 20]
+You don't always have to be doing huge things.
+01:52:23 [Speaker 20]
+But in regards to huge things, you can scale yourself enormously by learning how to use skills really really well with your agents.
+01:52:32 [Speaker 20]
+I've built this insane skill that allows all of my five engineers who I work with at Type to ship UI or web pages, to the product and they often don't need that much of my attention because the skill infrastructure that I built make sure that everything is accessible and beautiful and follows our design system and has good writing and all of this stuff and all of that happens through a very very complex skill.
+01:52:58 [Speaker 20]
+And then finally, I would say, find joy in the journey.
+
+01:53:02 [Speaker 20]
+It can be very exhausting and taxing working as the only designer on the team or the founding designer in AI.
+01:53:08 [Speaker 20]
+Don't be hesitant to take the time to find the joy in the work and hold to it.
+01:53:14 [Speaker 20]
+Those are times where it could feel defeating.
+01:53:16 [Speaker 20]
+Those are my biggest takeaways.
+01:53:17 [Speaker 20]
+I'm excited to see what all of us make as founding designers.
+
+01:53:22 [Speaker 20]
+In the great words of Soleil, there's never been a better time to be a designer who builds.
+01:53:26 [Speaker 20]
+Thank you.
+01:53:27 [Speaker 20]
+You got this.
+
+01:53:30 [Speaker 2]
+Love that.
+01:53:30 [Speaker 2]
+I wonder how much type.com costs.
+01:53:32 [Speaker 2]
+What does Bangalore
+
+01:53:33 [Speaker 6]
+So it's actually the I'm, like, buddies with the founder.
+01:53:37 [Speaker 6]
+We used to play Spikeball together in Denver, and then he sold his company to Atlanta and then,
+
+01:53:42 [Speaker 2]
+and then bought Typedav.
+01:53:43 [Speaker 2]
+Yeah.
+01:53:44 [Speaker 2]
+Yeah.
+01:53:45 [Speaker 2]
+I love that.
+01:53:46 [Speaker 2]
+That was great, Chris.
+
+01:53:47 [Speaker 2]
+Really appreciate that.
+01:53:48 [Speaker 2]
+And, said something inside of there, how this is a taxing position.
+01:53:53 [Speaker 2]
+And it is.
+01:53:53 [Speaker 2]
+There's a lot of I I know a lot of founding former founding designers who burnt out.
+01:53:59 [Speaker 2]
+But not everybody leaves the role, and even Kevin Tuohy kind of talked about this, how sometimes after that two year cliff, you've done the job, and the job has changed.
+
+01:54:08 [Speaker 2]
+And we're gonna hear one last take about when is it maybe ready when are you ready to leave?
+01:54:15 [Speaker 2]
+When is that the the decision to make?
+01:54:17 [Speaker 2]
+And, you know, Jess Rosenberg was leading brand at Air Ops.
+01:54:23 [Speaker 2]
+She wasn't necessarily the first designer at Air Ops, but she was definitely the first person on the brand team.
+01:54:29 [Speaker 2]
+And she just recently made that decision to leave.
+
+01:54:32 [Speaker 2]
+And this is what she said on how she made that decision.
+
+01:54:34 [Speaker 3]
+Hi.
+01:54:35 [Speaker 3]
+I'm Jess Rosenberg, and I am here to talk about why I decided to leave my very awesome job at Air Ops recently.
+01:54:42 [Speaker 3]
+So I loved working at Air Ops.
+01:54:44 [Speaker 3]
+The people, the ambition, the amount I learned in a really short period of time was honestly incredible.
+01:54:49 [Speaker 3]
+I was there for about a year, and I incredible.
+
+01:54:50 [Speaker 3]
+I was there for about a year, and I still decided to leave.
+01:54:54 [Speaker 3]
+Why?
+01:54:56 [Speaker 3]
+First, I will say that can feel super weird to explain.
+01:54:59 [Speaker 3]
+People often want a clean reason.
+01:55:02 [Speaker 3]
+Maybe you had a bad boss, a bad culture, something broke, you're running away from something.
+
+01:55:06 [Speaker 3]
+But in my case, none of those things were true.
+01:55:08 [Speaker 3]
+I had basically done what I came to do, and being there had helped me see a version of myself that I wanted to become next.
+01:55:15 [Speaker 3]
+I joined right before the series b, and there really wasn't a brand yet.
+01:55:19 [Speaker 3]
+There was an okay looking web but they needed an opinionated brand that can help tell their stories to marketers.
+01:55:24 [Speaker 3]
+And we built that.
+
+01:55:25 [Speaker 3]
+I built a team, hired ridiculously talented people, and together, we shipped some of the biggest, most ambitious work of my career.
+01:55:33 [Speaker 3]
+Over time, I started to feel this sense of resolution.
+01:55:36 [Speaker 3]
+I built what I came to build.
+01:55:38 [Speaker 3]
+The team was in place to carry the vision forward.
+01:55:41 [Speaker 3]
+And at the same time, I was learning a lot about myself.
+
+01:55:44 [Speaker 3]
+I was experimenting deeply with AI using Cloud Code, codex, all of these different libraries, building React apps, completely rethinking how I make things.
+01:55:53 [Speaker 3]
+And I was thinking to myself, oh, I want more of this.
+01:55:56 [Speaker 3]
+And I've always loved making.
+01:55:57 [Speaker 3]
+I'm a designer at heart.
+01:55:59 [Speaker 3]
+I became a leader, and suddenly, I was discovering all of these new things I could make myself.
+
+01:56:03 [Speaker 3]
+I want to build teams and be hands on.
+01:56:06 [Speaker 3]
+I wanna make things, share how I'm making them, and inspire other people to do that too.
+01:56:10 [Speaker 3]
+And the more clearly I could see that role for myself, the harder it became to ignore.
+01:56:15 [Speaker 3]
+I think what also helped was taking time away.
+01:56:17 [Speaker 3]
+I took two weeks off after a very long stretch of sprinting, some burnout.
+
+01:56:22 [Speaker 3]
+Having that space really helped me recognize that the constant sprint I was in also wasn't sustainable for me, and it actually helped me think about what I wanted my days to look like.
+01:56:32 [Speaker 3]
+I also talked to what I called my board of advisors, the people I trust for honest advice, mentors, past managers, friends.
+01:56:39 [Speaker 3]
+Those conversations helped me clarify what I was feeling.
+01:56:42 [Speaker 3]
+I kept coming back to a few questions.
+01:56:45 [Speaker 3]
+One, am I energized by how I spend most of my days?
+
+01:56:48 [Speaker 3]
+Two, am I still learning the direction I want to grow?
+01:56:51 [Speaker 3]
+Three, am I staying because I want to or because I feel like I should?
+01:56:55 [Speaker 3]
+Should?
+01:56:55 [Speaker 3]
+This idea that you have to stay at a company for some prescribed amount of time is absolute horseshit.
+01:57:00 [Speaker 3]
+I want to stay somewhere because I'm contributing, learning, doing work I'm proud of, continuing to raise the bar for both myself and the company.
+
+01:57:09 [Speaker 3]
+Those things matter to me.
+01:57:10 [Speaker 3]
+Ultimately, the hardest part was leaving the people.
+01:57:12 [Speaker 3]
+But I think what you realize is those relationships don't end because you leave.
+01:57:17 [Speaker 3]
+I think the other special thing was that my leaving also created an opportunity for my lead brand designer to step up.
+01:57:23 [Speaker 3]
+He was ready to step into a more of a leadership role, and so being able to hand him the baton was another part of what made this feel resolved for me.
+
+01:57:31 [Speaker 3]
+So I think sometimes you have to ask yourself, have I done what I came here to do, and have I actually given myself the permission to be finished?
+
+01:57:39 [Speaker 2]
+The permission to be finished.
+01:57:40 [Speaker 2]
+That is therapeutic.
+01:57:42 [Speaker 2]
+Yeah.
+01:57:42 [Speaker 2]
+That's That is that is actually a real concept I talk with my therapist about.
+01:57:47 [Speaker 2]
+Therapy Tuesdays.
+
+01:57:49 [Speaker 2]
+Jess, that was a that was a wonderful, share.
+01:57:52 [Speaker 2]
+Really appreciate that.
+01:57:53 [Speaker 2]
+Yeah.
+01:57:54 [Speaker 2]
+Definitely.
+01:57:55 [Speaker 2]
+Wow.
+
+01:57:56 [Speaker 2]
+Lot of takes on this.
+01:57:58 [Speaker 2]
+I think I might reduce some number of takes in the future, but I really, really enjoy just hearing and platforming the number of experiences.
+01:58:09 [Speaker 2]
+And to it seems like in chat, you guys are really getting a lot out of this.
+01:58:13 [Speaker 2]
+I'm I'm sitting here getting a lot out of this.
+
+01:58:16 [Speaker 6]
+Yeah.
+01:58:16 [Speaker 6]
+I would be curious.
+01:58:17 [Speaker 6]
+Like, if if you if you're still in here, you should let us know about length, number of takes.
+01:58:22 [Speaker 6]
+Yeah.
+01:58:22 [Speaker 6]
+Feedback on that would be pretty interesting because I don't watch these ahead of time.
+
+01:58:26 [Speaker 6]
+I have the easy job of just showing up and smiling, and I maybe I should.
+01:58:31 [Speaker 6]
+But, actually, I think it's so fun.
+01:58:32 [Speaker 6]
+It's more fun to not know what is coming.
+01:58:34 [Speaker 6]
+And it kinda just I mean, dude, it's, like, two hours just flew by.
+01:58:38 [Speaker 6]
+Yeah.
+
+01:58:38 [Speaker 6]
+Yeah.
+
+01:58:39 [Speaker 2]
+That was good.
+01:58:40 [Speaker 2]
+I I really like this.
+01:58:42 [Speaker 2]
+We have all kinds of topics planned every Thursday at 1PM Pacific.
+01:58:45 [Speaker 2]
+Next week, I think we're looking at, some very specific prototyping workflows.
+01:58:50 [Speaker 2]
+We've talked about the role the last two weeks.
+
+01:58:51 [Speaker 2]
+We're gonna talk a little bit about the work next week.
+01:58:54 [Speaker 2]
+But I do wanna tune into the, current, woah, and this is what I was talking about.
+
+01:59:00 [Speaker 6]
+Woah.
+01:59:00 [Speaker 6]
+Alright.
+
+01:59:01 [Speaker 2]
+This is what I was talking about.
+01:59:02 [Speaker 2]
+When we started the show, and I've been starting the voting and promoting it, in the mornings of Thursdays.
+01:59:09 [Speaker 2]
+So the voting gets a head start.
+01:59:11 [Speaker 2]
+We saw Thomas and Charlotta both kind of head to head, well in the lead.
+01:59:17 [Speaker 2]
+Y'all had 0%.
+
+01:59:19 [Speaker 2]
+And now we see that that is not the case.
+01:59:22 [Speaker 2]
+And that is, in fact, who is today's designer of the week.
+01:59:26 [Speaker 2]
+Congratulations.
+01:59:28 [Speaker 2]
+Hey.
+01:59:28 [Speaker 2]
+I'm happy about that.
+
+01:59:30 [Speaker 2]
+That is cool.
+01:59:31 [Speaker 2]
+Thank you for participating.
+01:59:33 [Speaker 2]
+If you have interest, would love to hear yell your designer of the week next week.
+01:59:38 [Speaker 2]
+We will be happy to showcase that.
+01:59:43 [Speaker 2]
+There we go, man.
+
+01:59:45 [Speaker 2]
+You still got some Vallecon left.
+
+01:59:47 [Speaker 6]
+Yeah, man.
+01:59:47 [Speaker 6]
+I'm about to I'm about to head back to the venue.
+
+01:59:51 [Speaker 2]
+What's, what's on the agenda right now?
+
+01:59:53 [Speaker 6]
+I'll be totally honest.
+01:59:54 [Speaker 6]
+I don't know, man.
+
+01:59:55 [Speaker 1]
+I'm a sheep.
+
+01:59:55 [Speaker 6]
+When I go to these things, I'm a sheep.
+01:59:58 [Speaker 6]
+I just follow whoever wants to lead me to either food or a general good time, and that is what I shall do next.
+
+02:00:05 [Speaker 2]
+Well, that sounds like a good time.
+02:00:07 [Speaker 2]
+Yeah.
+02:00:08 [Speaker 2]
+If you've, been watching us this whole time, thank you for tuning in.
+02:00:12 [Speaker 2]
+We really appreciate you.
+02:00:13 [Speaker 2]
+If you have feedback on anything, we always wanna hear it.
+
+02:00:16 [Speaker 2]
+We are listening, and we appreciate any of you who have submitted your, perspectives here and allowed us to kind of chop those up and to show them and react to them.
+02:00:26 [Speaker 2]
+We're just a couple of guys trying to make sense of it all.
+02:00:29 [Speaker 2]
+So Yep.
+02:00:30 [Speaker 2]
+Awesome.
+02:00:31 [Speaker 2]
+Well, that's the the show for today.
+
+02:00:33 [Speaker 2]
+I hope everyone has a great weekend.
+02:00:34 [Speaker 2]
+What do we have here?
+02:00:35 [Speaker 2]
+I don't understand English, but I like your content.
+
+02:00:37 [Speaker 6]
+I just wanna leave it on that one.
+02:00:38 [Speaker 6]
+I'm gonna ride off into the sunset on that one.
+02:00:40 [Speaker 6]
+I don't know
+
+02:00:41 [Speaker 2]
+what to do with it.
+02:00:42 [Speaker 2]
+We need a we need a closing
+
+02:00:44 [Speaker 7]
+song, you
+
+02:00:45 [Speaker 1]
+know, just some yeah.
+
+02:00:46 [Speaker 2]
+We do.
+02:00:47 [Speaker 2]
+We do.
+02:00:47 [Speaker 2]
+We do.
+02:00:48 [Speaker 2]
+That's that's
+
+02:00:48 [Speaker 6]
+the 1% coming up soon.
+
+02:00:50 [Speaker 1]
+We do need a closing song.
+
+02:00:51 [Speaker 6]
+We need a closing dance.
+
+02:00:53 [Speaker 2]
+We that I'll let you do that.
+02:00:55 [Speaker 2]
+That'll be your We're
+
+02:00:56 [Speaker 6]
+gonna agree, and then you're like, you we no.
+02:00:58 [Speaker 6]
+We we don't.
+02:00:59 [Speaker 6]
+We don't need a closing dance.
+
+02:01:01 [Speaker 2]
+A little jig.
+02:01:02 [Speaker 2]
+Alright.
+02:01:03 [Speaker 2]
+Well, we will see you all next Thursday, same time.
+02:01:07 [Speaker 2]
+Have a good weekend.
+
+02:01:08 [Speaker 6]
+Thanks, everyone.

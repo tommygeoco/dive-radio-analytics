@@ -43,11 +43,23 @@
         "pulledAt": "2026-09-11T14:01:49.338Z",
         "state": "ready"
       }
+    },
+    "967caedf-e753-4917-b2f6-0ab25deb0440": {
+      "status": "ingested",
+      "ingestedAt": "2026-09-19T16:21:35.243Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "restream",
+        "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "objectId": "967caedf-e753-4917-b2f6-0ab25deb0440",
+        "pulledAt": "2026-09-19T16:21:35.243Z",
+        "state": "ready"
+      }
     }
   },
-  "checkedAt": "2026-09-17T08:44:57.188Z",
+  "checkedAt": "2026-09-19T16:34:51.560Z",
   "capture": {
-    "checkedAt": "2026-09-17T08:44:57.188Z",
+    "checkedAt": "2026-09-19T16:34:51.560Z",
     "state": "ready",
     "pendingEvents": [],
     "errors": []

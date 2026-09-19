@@ -1,8 +1,8 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-11T17:08:17.383Z",
-  "provider": "anthropic",
+  "updatedAt": "2026-09-19T16:36:07.455Z",
+  "provider": "openai",
   "model": null,
   "entries": {
     "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
@@ -742,6 +742,88 @@
       "promptVersion": 1,
       "model": "claude-fable-5",
       "writtenAt": "2026-09-11T17:08:17.383Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
+      "sha256": "a19cf438587011ecbae8427d5a4ee0376573316e5a11f52999fa9884edc144c3",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:17",
+          "seconds": 197,
+          "title": "Opening thoughts and a conference catch up",
+          "gist": "The hosts open with thoughts on AI tools, introduce the show, and share a conference travel story.",
+          "quote": "Tooling kind of increases our capacity in the day."
+        },
+        {
+          "start": "00:10:02",
+          "seconds": 602,
+          "title": "Designer of the week nominees",
+          "gist": "The hosts and community contributors showcase designers, personal projects, and tools before opening the vote.",
+          "quote": "So I want to pay it forward"
+        },
+        {
+          "start": "00:19:49",
+          "seconds": 1189,
+          "title": "Design tool news and faster AI",
+          "gist": "The hosts discuss Elex, Common Knowledge joining Figma, fast AI models, and vector image tools.",
+          "quote": "We're gonna do some reacts to the news."
+        },
+        {
+          "start": "00:27:43",
+          "seconds": 1663,
+          "title": "Pitching your help and building useful skills",
+          "gist": "The hosts review outreach advice, show a community plugin, and demonstrate a Notion job search skill.",
+          "quote": "You know what came across my feed?"
+        },
+        {
+          "start": "00:39:57",
+          "seconds": 2397,
+          "title": "What a founding designer actually does",
+          "gist": "The hosts and guests distinguish founding roles from first hires and discuss founder fit, listening, and trust.",
+          "quote": "So a founding designer."
+        },
+        {
+          "start": "01:01:00",
+          "seconds": 3660,
+          "title": "Who should become a founding designer",
+          "gist": "Guests Josh, Flora, and Claire join the hosts in discussing experience, initiative, decisions, and relationships.",
+          "quote": "who make for the best founding designers."
+        },
+        {
+          "start": "01:18:10",
+          "seconds": 4690,
+          "title": "From founding designer to design founder",
+          "gist": "Guests Joe and Alex and the hosts discuss starting companies, customer needs, sales, and broad business skills.",
+          "quote": "you may actually be suited to be a design founder."
+        },
+        {
+          "start": "01:28:14",
+          "seconds": 5294,
+          "title": "Doing the job amid urgency and changing plans",
+          "gist": "The hosts and guests discuss fast shipping, intuition, design debt, customer contact, priorities, and AI skills.",
+          "quote": "But let's get very specific about doing this job."
+        },
+        {
+          "start": "01:53:48",
+          "seconds": 6828,
+          "title": "Knowing when to leave",
+          "gist": "Guest Jess explains leaving after building a brand team, finding new interests, and reflecting on burnout.",
+          "quote": "how sometimes after that two year cliff"
+        },
+        {
+          "start": "01:58:54",
+          "seconds": 7134,
+          "title": "The winning designer and closing thanks",
+          "gist": "The hosts announce the designer of the week, thank viewers, request feedback, and sign off.",
+          "quote": "And that is, in fact, who is today's designer"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "gpt-6-astra",
+      "writtenAt": "2026-09-19T16:36:07.454Z"
     }
   }
 }

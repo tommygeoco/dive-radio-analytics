@@ -109,7 +109,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 637,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -121,8 +121,8 @@
           "broadcastId": "1yxBeeoanDOJN",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 1180,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1181,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         }
@@ -172,8 +172,8 @@
           "broadcastId": "1nGnRRMEPDkGO",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1467,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1468,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -186,8 +186,8 @@
           "broadcastId": "1nGeLLpzNAQKX",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 2821,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 2825,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         }
@@ -237,8 +237,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1360,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1362,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -251,7 +251,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 547,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         }
@@ -301,8 +301,8 @@
           "broadcastId": "1pKdRDDymlnJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1170,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1178,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -315,8 +315,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1079,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1095,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         }
@@ -365,8 +365,8 @@
           "broadcastId": "1DGleVBNBVjJL",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 843,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 844,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -379,7 +379,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 342,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -438,8 +438,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1102,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1105,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -472,8 +472,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1868,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1905,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         }
@@ -544,8 +544,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1486,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1498,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -558,8 +558,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2592,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 2619,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         }
@@ -603,8 +603,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1756,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 1775,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -617,8 +617,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2080,
-            "asOf": "2026-09-17T08:44:12.464Z"
+            "value": 2105,
+            "asOf": "2026-09-19T16:27:24.583Z"
           },
           "playsStatus": "ok"
         },
@@ -658,6 +658,74 @@
         "eventId": "41f9c60f-9c49-4be6-8349-50d74f96d929",
         "source": "restream",
         "discoveredAt": "2026-09-11T14:01:49.338Z"
+      }
+    },
+    {
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "title": "Dive Radio: How To Become a Founding Designer",
+      "date": "2026-09-17",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "x05zZ90lY28",
+          "url": "https://www.youtube.com/watch?v=x05zZ90lY28",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: How To Become a Founding Designer"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "0xL0XtpH_og",
+          "url": "https://www.youtube.com/watch?v=0xL0XtpH_og",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: How To Become a Founding Designer"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2100498374315176187",
+          "url": "https://x.com/ridd_design/status/2100498374315176187",
+          "broadcastId": "1nKOLQVVpZZGR",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 589,
+            "asOf": "2026-09-19T16:27:24.583Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2100602309743104482",
+          "url": "https://x.com/designertom/status/2100602309743104482",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2100498375346950179",
+          "url": "https://x.com/designertom/status/2100498375346950179",
+          "broadcastId": "1lKQRWYYmaDGE",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 628,
+            "asOf": "2026-09-19T16:27:24.583Z"
+          },
+          "playsStatus": "ok"
+        }
+      ],
+      "linkedin": {
+        "urn": "urn:li:ugcPost:7506264059403620354",
+        "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7506264059403620354/",
+        "account": "michaelriddering",
+        "channelId": "17403676",
+        "eventId": "967caedf-e753-4917-b2f6-0ab25deb0440",
+        "source": "restream",
+        "discoveredAt": "2026-09-19T16:21:35.243Z"
       }
     }
   ]

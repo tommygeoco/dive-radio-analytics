@@ -1,9 +1,9 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-13T14:08:53.905Z",
-  "provider": "anthropic",
-  "model": "claude-fable-5",
+  "updatedAt": "2026-09-19T16:35:44.468Z",
+  "provider": "openai",
+  "model": "gpt-6-astra",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
   "entries": {
     "2026-07-17-dive-radio-bumpy-takeoff|drop|0.06": {
@@ -221,6 +221,22 @@
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|drop|0.21": {
       "summary": "Hosts react to backlash over a Google design post, recall recorded critique videos for a design course, and debate whether the mockery would differ if an individual designer had shared it.",
       "writtenAt": "2026-09-13T14:08:53.905Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.05": {
+      "summary": "The hosts greet viewers, preview their discussion of design hiring, and announce Tommy joining Inflight as a cofounder.",
+      "writtenAt": "2026-09-19T16:35:44.467Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.12": {
+      "summary": "The hosts preview hiring insights from companies, then play designer nomination videos highlighting Jonas's brand work and prototypes and Frank Bach's pick, Anika.",
+      "writtenAt": "2026-09-19T16:35:44.468Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|hold|0.55": {
+      "summary": "The hosts discuss targeted prototypes, networking, and online posts as hiring signals; Ethan shares a recorded story about finding work through a conference.",
+      "writtenAt": "2026-09-19T16:35:44.468Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.66": {
+      "summary": "Jared discusses portfolio first impressions, prototypes, and design hiring at Shopify; the hosts question whether big tech experience alone helps applicants.",
+      "writtenAt": "2026-09-19T16:35:44.468Z"
     }
   }
 }

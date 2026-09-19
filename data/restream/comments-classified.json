@@ -1,10 +1,10 @@
 {
   "version": 1,
   "method": "model-v1",
-  "promptVersion": 1,
-  "promptHash": "a9729606ba985802a9ab6892b2c191c560d7c18fc1680e4f13d7761bd8df5f45",
-  "configHash": "b62b6ab71cae8f9572b568fc2da5d988875fbed648acd63b2e31ade1291dcfbe",
-  "model": "claude-fable-5",
+  "promptVersion": 2,
+  "promptHash": "a25e50437d865444014d555d18eee4abe4660c51b053910fae7e8ece9c85b8ed",
+  "configHash": "f7df88c2c2de5820f56d895499d282a79ec49e99d95a7ef19a12497b773ca424",
+  "model": "gpt-6-astra",
   "vocabulary": [
     "call-in segment",
     "host chemistry",
@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-17T08:44:53.339Z",
+  "updatedAt": "2026-09-19T16:28:25.475Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1120,12 +1120,150 @@
         ],
         "confidence": 0.75
       }
+    },
+    "yt:UgzOBdTwn2z3lTXSy-14AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.87,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "yt:UgzOBdTwn2z3lTXSy-14AaABAg.AaiaG1NtOaSAajJtQc7Awt": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.72,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z",
+      "audit": {
+        "at": "2026-09-19T16:28:25.475Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.7
+      }
+    },
+    "yt:UgwkqGyjQMLZNdlaE5h4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "neutral",
+      "themes": [
+        "topic choice"
+      ],
+      "confidence": 0.98,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "yt:Ugwo3RNivyT3aGB15FV4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "negative",
+      "themes": [
+        "topic choice"
+      ],
+      "confidence": 0.98,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "yt:Ugy6RHppQWH02ApNQRV4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.99,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "yt:Ugw03Q5-jNVCuytHte94AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.96,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "yt:Ugy7h3-WyCAbkdDGh7F4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.99,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z",
+      "audit": {
+        "at": "2026-09-19T16:28:25.475Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.99
+      }
+    },
+    "yt:Ugzfl3LWGPssn4gJYaR4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.95,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "yt:UgypX-pczYc9SlPWz_94AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.99,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
+    },
+    "x:2100676710039707653": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.96,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-19T16:28:25.475Z"
     }
   },
   "golden": {
-    "at": "2026-08-22T23:14:26.114Z",
+    "at": "2026-09-19T16:28:25.475Z",
     "passed": true,
-    "configHash": "b62b6ab71cae8f9572b568fc2da5d988875fbed648acd63b2e31ade1291dcfbe",
+    "configHash": "f7df88c2c2de5820f56d895499d282a79ec49e99d95a7ef19a12497b773ca424",
     "cases": 40,
     "relevance": {
       "correct": 40,
@@ -1140,18 +1278,11 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-17T08:44:53.339Z",
-    "status": "pending",
-    "added": 0,
+    "at": "2026-09-19T16:28:25.475Z",
+    "status": "complete",
+    "added": 10,
     "reviewed": 0,
-    "pendingIds": [
-      "yt:UgzOBdTwn2z3lTXSy-14AaABAg",
-      "yt:UgzOBdTwn2z3lTXSy-14AaABAg.AaiaG1NtOaSAajJtQc7Awt",
-      "yt:UgwkqGyjQMLZNdlaE5h4AaABAg",
-      "yt:Ugwo3RNivyT3aGB15FV4AaABAg",
-      "yt:Ugy6RHppQWH02ApNQRV4AaABAg"
-    ],
-    "error": "model call failed after 2 attempts: comment classifier Anthropic returned HTTP 400 after 1 attempt(s)"
+    "pendingIds": []
   },
-  "provider": "anthropic"
+  "provider": "openai"
 }
