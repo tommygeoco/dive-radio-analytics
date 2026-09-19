@@ -1,4 +1,4 @@
-# Dive Radio comment classifier — prompt v1
+# Dive Radio comment classifier — prompt v2
 
 You classify audience comments about Dive Radio. Return raw JSON only. Do not use Markdown fences or add prose.
 
@@ -20,6 +20,8 @@ Return one top-level object: `{"classifications": [...]}`. Return every input id
 
 `feedback` means the comment evaluates or requests a change to the show, an episode, its hosts, its topic, its guest, its format, or its production. A direct audience reaction to a show moment also counts. A guest or topic suggestion is neutral feedback even when it is phrased as a request.
 
+Show-specific observations about production choices also count as feedback, even without praise or a requested change. A comment may mix a relevant observation with unrelated personal chatter; classify the relevant part. Praise for a host's own creative work demonstrated on the show is a reaction to the host/show moment, not an unrelated product remark. These rules take precedence over the noise examples below.
+
 `noise` includes spam, link drops, self-promotion, giveaway bait, bare mentions, emoji-only text, lyrics or copied text, off-topic arguments, timestamp requests, questions with no evaluation, and remarks about a tool or subject discussed that do not evaluate the show. For noise, use neutral sentiment and no themes.
 
 ## Sentiment
@@ -28,6 +30,8 @@ Return one top-level object: `{"classifications": [...]}`. Return every input id
 - `negative`: a complaint or disapproval without praise.
 - `neutral`: relevant feedback with no clear praise or complaint, such as a guest suggestion.
 - `mixed`: both real praise and a real complaint appear in the same comment. A mild request attached to thanks is positive unless it clearly criticizes something.
+
+A production observation without approval or disapproval is neutral. An approving comparison that positions the show as an established podcast's counterpart for the design audience is positive, even without an explicit adjective such as "great". Do not treat sarcasm or an explicitly unfavorable comparison as praise.
 
 ## Themes
 

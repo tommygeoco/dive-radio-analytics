@@ -24,7 +24,7 @@ const GOLDEN_PATH = join(ROOT, "tools", "dive-analytics", "audit", "golden-comme
 const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 const MAX_TOKENS = 16000;
 export const CLASSIFIER_VERSION = 1;
-export const PROMPT_VERSION = 1;
+export const PROMPT_VERSION = 2;
 export const THEME_VOCABULARY = [
   "call-in segment", "host chemistry", "topic choice", "guest",
   "audio quality", "video quality", "episode length", "pacing", "format",
