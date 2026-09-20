@@ -109,7 +109,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 637,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -122,7 +122,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 1181,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         }
@@ -173,7 +173,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1468,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -187,7 +187,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 2825,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         }
@@ -237,8 +237,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1362,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1363,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -251,7 +251,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 547,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         }
@@ -301,8 +301,8 @@
           "broadcastId": "1pKdRDDymlnJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1178,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1179,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -315,8 +315,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1095,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1101,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         }
@@ -365,8 +365,8 @@
           "broadcastId": "1DGleVBNBVjJL",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 844,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 845,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -379,7 +379,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 342,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -438,8 +438,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1105,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1106,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -472,8 +472,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1905,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1907,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         }
@@ -544,8 +544,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1498,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1500,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -558,8 +558,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2619,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 2620,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         }
@@ -603,8 +603,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1775,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 1778,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -617,8 +617,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2105,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 2111,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -689,8 +689,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 589,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 610,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
         },
@@ -712,10 +712,28 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 628,
-            "asOf": "2026-09-19T16:27:24.583Z"
+            "value": 762,
+            "asOf": "2026-09-20T14:00:31.794Z"
           },
           "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2101374107443224621",
+          "url": "https://x.com/ridd_design/status/2101374107443224621",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2101373630894751998",
+          "url": "https://x.com/ridd_design/status/2101373630894751998",
+          "broadcastResolved": true,
+          "playsStatus": "none",
+          "role": "promo"
         }
       ],
       "linkedin": {

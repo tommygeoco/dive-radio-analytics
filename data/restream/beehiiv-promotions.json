@@ -4,10 +4,10 @@
     "id": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
     "name": "UX Tools"
   },
-  "updatedAt": "2026-09-19T16:27:21.128Z",
-  "lastSuccessfulAt": "2026-09-19T16:27:21.128Z",
+  "updatedAt": "2026-09-20T14:00:24.151Z",
+  "lastSuccessfulAt": "2026-09-20T14:00:24.151Z",
   "capture": {
-    "checkedAt": "2026-09-19T16:27:21.128Z",
+    "checkedAt": "2026-09-20T14:00:24.151Z",
     "state": "ready"
   },
   "episodes": {
@@ -18,14 +18,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-07-17-dive-radio-bumpy-takeoff",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -38,14 +38,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -58,14 +58,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -78,14 +78,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -98,14 +98,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -118,14 +118,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -138,14 +138,14 @@
       "totals": null,
       "snapshots": [],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -196,7 +196,7 @@
             "source": "beehiiv",
             "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
             "objectId": "post_179faf55-d19b-4399-b9f2-e2d892de4820",
-            "pulledAt": "2026-09-19T16:27:21.128Z",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
             "state": "ready"
           }
         }
@@ -409,17 +409,31 @@
             "pulledAt": "2026-09-19T16:27:21.128Z",
             "state": "ready"
           }
+        },
+        {
+          "date": "2026-09-20",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
+          "emailClicks": 149,
+          "verifiedEmailClicks": 67,
+          "reading": {
+            "schemaVersion": 1,
+            "source": "beehiiv",
+            "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+            "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
+            "state": "ready"
+          }
         }
       ],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -479,7 +493,7 @@
             "source": "beehiiv",
             "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
             "objectId": "post_01d2c5b8-39cf-48e4-ae9c-c945b1b3c728",
-            "pulledAt": "2026-09-19T16:27:21.128Z",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
             "state": "ready"
           }
         },
@@ -499,13 +513,13 @@
               "url": "https://www.youtube.com/live/OZG115v6TTg?si=2nz7dmzvOWEZHZgI&utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=design-s-hardest-role-has-a-two-year-clock",
               "baseUrl": "https://www.youtube.com/live/OZG115v6TTg",
               "target": "youtube:OZG115v6TTg",
-              "emailClicks": 15,
+              "emailClicks": 16,
               "verifiedEmailClicks": 5,
               "uniqueClicksForThisLink": 11,
               "uniqueVerifiedClicksForThisLink": 5
             }
           ],
-          "emailClicks": 15,
+          "emailClicks": 16,
           "verifiedEmailClicks": 5,
           "clicksReason": null,
           "combinedUniqueReaders": null,
@@ -515,13 +529,13 @@
             "source": "beehiiv",
             "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
             "objectId": "post_d7dfe66a-6988-4ba4-be24-d3df909cf39f",
-            "pulledAt": "2026-09-19T16:27:21.128Z",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
             "state": "ready"
           }
         }
       ],
       "totals": {
-        "emailClicks": 305,
+        "emailClicks": 306,
         "verifiedEmailClicks": 203,
         "combinedUniqueReaders": null,
         "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
@@ -624,17 +638,31 @@
             "pulledAt": "2026-09-19T16:27:21.128Z",
             "state": "ready"
           }
+        },
+        {
+          "date": "2026-09-20",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
+          "emailClicks": 306,
+          "verifiedEmailClicks": 203,
+          "reading": {
+            "schemaVersion": 1,
+            "source": "beehiiv",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
+            "state": "ready"
+          }
         }
       ],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null
@@ -660,14 +688,14 @@
               "url": "https://www.youtube.com/live/0xL0XtpH_og?si=3ABzfIqQcUmpZexc&utm_source=uxtools.beehiiv.com&utm_medium=newsletter&utm_campaign=design-s-hardest-role-has-a-two-year-clock",
               "baseUrl": "https://www.youtube.com/live/0xL0XtpH_og",
               "target": "youtube:0xL0XtpH_og",
-              "emailClicks": 81,
-              "verifiedEmailClicks": 33,
-              "uniqueClicksForThisLink": 40,
-              "uniqueVerifiedClicksForThisLink": 31
+              "emailClicks": 85,
+              "verifiedEmailClicks": 35,
+              "uniqueClicksForThisLink": 42,
+              "uniqueVerifiedClicksForThisLink": 33
             }
           ],
-          "emailClicks": 81,
-          "verifiedEmailClicks": 33,
+          "emailClicks": 85,
+          "verifiedEmailClicks": 35,
           "clicksReason": null,
           "combinedUniqueReaders": null,
           "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links.",
@@ -676,14 +704,14 @@
             "source": "beehiiv",
             "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
             "objectId": "post_d7dfe66a-6988-4ba4-be24-d3df909cf39f",
-            "pulledAt": "2026-09-19T16:27:21.128Z",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
             "state": "ready"
           }
         }
       ],
       "totals": {
-        "emailClicks": 81,
-        "verifiedEmailClicks": 33,
+        "emailClicks": 85,
+        "verifiedEmailClicks": 35,
         "combinedUniqueReaders": null,
         "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links."
       },
@@ -701,17 +729,31 @@
             "pulledAt": "2026-09-19T16:27:21.128Z",
             "state": "ready"
           }
+        },
+        {
+          "date": "2026-09-20",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
+          "emailClicks": 85,
+          "verifiedEmailClicks": 35,
+          "reading": {
+            "schemaVersion": 1,
+            "source": "beehiiv",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
+            "pulledAt": "2026-09-20T14:00:24.151Z",
+            "state": "ready"
+          }
         }
       ],
       "capture": {
-        "checkedAt": "2026-09-19T16:27:21.128Z",
+        "checkedAt": "2026-09-20T14:00:24.151Z",
         "state": "ready",
         "reading": {
           "schemaVersion": 1,
           "source": "beehiiv",
           "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
           "objectId": "pub_b43b31ae-c4fc-46ab-a61b-f164a693180d",
-          "pulledAt": "2026-09-19T16:27:21.128Z",
+          "pulledAt": "2026-09-20T14:00:24.151Z",
           "state": "ready"
         },
         "reason": null

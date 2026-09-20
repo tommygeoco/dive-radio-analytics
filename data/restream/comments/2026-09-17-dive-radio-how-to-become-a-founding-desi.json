@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugw03Q5-jNVCuytHte94AaABAg",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugy7h3-WyCAbkdDGh7F4AaABAg",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugzfl3LWGPssn4gJYaR4AaABAg",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready"
       }
     },
@@ -95,7 +95,7 @@
       "author": "ivodamjanovski7567",
       "authorId": "UC8mKlyFCJgrGYiPjVImByxA",
       "text": "If possible, timestamps would be great!",
-      "likes": 2,
+      "likes": 3,
       "publishedAt": "2026-09-18T10:53:32Z",
       "reading": {
         "schemaVersion": 1,
@@ -111,7 +111,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "UgypX-pczYc9SlPWz_94AaABAg",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready"
       }
     },
@@ -139,13 +139,33 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2100676710039707653",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready"
       }
+    },
+    {
+      "id": "x:2101392679082860786",
+      "source": "x",
+      "channel": "x:designertom",
+      "sourceObjectId": "2100498375346950179",
+      "author": "@gentlycarved",
+      "authorId": "1090148972583374850",
+      "text": "as a prev junior who went into a founding role myself, I think it’s a really great opportunity to learn a lot by throwing yourself into the deep end, so I wouldn’t advise against it for everyone. you will learn so much navigating that role that you will excel in any other design",
+      "likes": 2,
+      "publishedAt": "2026-09-19T19:27:11.000Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "objectId": "2101392679082860786",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-20T14:01:12.642Z"
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-19T16:28:21.466Z",
+    "checkedAt": "2026-09-20T14:01:12.642Z",
     "state": "ready",
     "sources": [
       {
@@ -153,7 +173,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready",
         "count": 2
       },
@@ -162,7 +182,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready",
         "count": 2
       },
@@ -171,7 +191,7 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2100498374315176187",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready",
         "count": 1
       },
@@ -180,12 +200,12 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2100498375346950179",
-        "pulledAt": "2026-09-19T16:28:21.466Z",
+        "pulledAt": "2026-09-20T14:01:12.642Z",
         "state": "ready",
-        "count": 0
+        "count": 1
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-09-19T16:28:21.466Z"
+  "updatedAt": "2026-09-20T14:01:12.642Z"
 }

@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "njOU7GKZcvc",
-      "pulledAt": "2026-09-19T16:27:44.517Z",
+      "pulledAt": "2026-09-20T14:00:52.046Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "njOU7GKZcvc",
-        "pulledAt": "2026-09-19T16:27:44.517Z",
+        "pulledAt": "2026-09-20T14:00:52.046Z",
         "state": "ready"
       },
       "totals": {
-        "views": 737,
+        "views": 736,
         "estimatedMinutesWatched": 9219,
         "averageViewDuration": 794,
         "averageViewPercentage": 13.930000000000001,
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "G2_F3dd3RkA",
-      "pulledAt": "2026-09-19T16:27:44.517Z",
+      "pulledAt": "2026-09-20T14:00:52.046Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "G2_F3dd3RkA",
-        "pulledAt": "2026-09-19T16:27:44.517Z",
+        "pulledAt": "2026-09-20T14:00:52.046Z",
         "state": "ready"
       },
       "totals": {
@@ -959,18 +959,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-19T16:27:44.517Z",
+  "updatedAt": "2026-09-20T14:00:52.046Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "pulledAt": "2026-09-19T16:27:44.517Z",
+    "pulledAt": "2026-09-20T14:00:52.046Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-19T16:27:44.517Z",
+    "checkedAt": "2026-09-20T14:00:52.046Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:G2_F3dd3RkA|yt:joindiveclub:njOU7GKZcvc",
@@ -980,7 +980,7 @@
         "videoId": "njOU7GKZcvc",
         "result": "ready",
         "observed": {
-          "views": 737,
+          "views": 736,
           "averageViewPercentage": 13.930000000000001
         }
       },

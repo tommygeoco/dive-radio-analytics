@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-19T16:35:44.468Z",
+  "updatedAt": "2026-09-20T14:07:30.972Z",
   "provider": "openai",
   "model": "gpt-6-astra",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -237,6 +237,10 @@
     "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.66": {
       "summary": "Jared discusses portfolio first impressions, prototypes, and design hiring at Shopify; the hosts question whether big tech experience alone helps applicants.",
       "writtenAt": "2026-09-19T16:35:44.468Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.52": {
+      "summary": "A designer shares how prototypes and a college contact lead to interviews and a job offer; hosts discuss direct outreach and the limits of standard applications.",
+      "writtenAt": "2026-09-20T14:07:30.972Z"
     }
   }
 }

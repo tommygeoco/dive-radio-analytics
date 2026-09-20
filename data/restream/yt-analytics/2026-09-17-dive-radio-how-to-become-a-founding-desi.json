@@ -2,30 +2,180 @@
   "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
   "title": "Dive Radio: How To Become a Founding Designer",
   "premiere": "2026-09-17",
-  "channels": {},
+  "channels": {
+    "yt:joindiveclub": {
+      "videoId": "x05zZ90lY28",
+      "pulledAt": "2026-09-20T14:00:52.046Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "objectId": "x05zZ90lY28",
+        "pulledAt": "2026-09-20T14:00:52.046Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 2089,
+        "estimatedMinutesWatched": 9115,
+        "averageViewDuration": 861,
+        "averageViewPercentage": 11.85,
+        "subscribersGained": 3,
+        "likes": 36,
+        "comments": 1
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 1887,
+          "estimatedMinutesWatched": 6142
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 68,
+          "estimatedMinutesWatched": 1068
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 31,
+          "estimatedMinutesWatched": 427
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 29,
+          "estimatedMinutesWatched": 239
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 28,
+          "estimatedMinutesWatched": 596
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 21,
+          "estimatedMinutesWatched": 328
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 14,
+          "estimatedMinutesWatched": 246
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 10,
+          "estimatedMinutesWatched": 65
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 1,
+          "estimatedMinutesWatched": 0
+        }
+      ],
+      "retention": []
+    },
+    "yt:designertom": {
+      "videoId": "0xL0XtpH_og",
+      "pulledAt": "2026-09-20T14:00:52.046Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "objectId": "0xL0XtpH_og",
+        "pulledAt": "2026-09-20T14:00:52.046Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1378,
+        "estimatedMinutesWatched": 4745,
+        "averageViewDuration": 793,
+        "averageViewPercentage": 10.92,
+        "subscribersGained": 2,
+        "likes": 30,
+        "comments": 0
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 1254,
+          "estimatedMinutesWatched": 2544
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 38,
+          "estimatedMinutesWatched": 787
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 22,
+          "estimatedMinutesWatched": 288
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 18,
+          "estimatedMinutesWatched": 432
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 17,
+          "estimatedMinutesWatched": 219
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 10,
+          "estimatedMinutesWatched": 85
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 8,
+          "estimatedMinutesWatched": 219
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 8,
+          "estimatedMinutesWatched": 167
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 3,
+          "estimatedMinutesWatched": 1
+        }
+      ],
+      "retention": []
+    }
+  },
   "watchReport": {
-    "state": "pending",
-    "checkedAt": "2026-09-19T16:27:44.517Z",
-    "missingChannels": [
-      "yt:joindiveclub",
-      "yt:designertom"
-    ],
-    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "state": "ready",
+    "checkedAt": "2026-09-20T14:00:52.046Z",
+    "missingChannels": [],
+    "reason": null,
     "targetFingerprint": "yt:designertom:0xL0XtpH_og|yt:joindiveclub:x05zZ90lY28",
     "probes": [
       {
         "key": "yt:joindiveclub",
         "videoId": "x05zZ90lY28",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 2089,
+          "averageViewPercentage": 11.85
+        }
       },
       {
         "key": "yt:designertom",
         "videoId": "0xL0XtpH_og",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1378,
+          "averageViewPercentage": 10.92
+        }
       }
-    ],
-    "pendingSince": "2026-09-19T16:20:28.526Z"
-  }
+    ]
+  },
+  "reading": {
+    "schemaVersion": 1,
+    "source": "youtube-analytics",
+    "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+    "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+    "pulledAt": "2026-09-20T14:00:52.046Z",
+    "state": "ready"
+  },
+  "updatedAt": "2026-09-20T14:00:52.046Z"
 }
