@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-20T14:07:30.972Z",
+  "updatedAt": "2026-09-20T19:22:28.965Z",
   "provider": "openai",
   "model": "gpt-6-astra",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -241,6 +241,26 @@
     "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.52": {
       "summary": "A designer shares how prototypes and a college contact lead to interviews and a job offer; hosts discuss direct outreach and the limits of standard applications.",
       "writtenAt": "2026-09-20T14:07:30.972Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.13": {
+      "summary": "Hosts highlight Sharlota Blunarova’s design experiments and tools, then discuss Nathan’s Flinto and how prototyping with it shaped a host’s career.",
+      "writtenAt": "2026-09-20T19:22:28.964Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.44": {
+      "summary": "Hosts discuss founders’ involvement in design, and Ridd contrasts executing a sports betting startup’s ideas with shaping product strategy at Maven.",
+      "writtenAt": "2026-09-20T19:22:28.965Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|hold|0.55": {
+      "summary": "Hosts discuss building trust across teams, then Flora explains in a recorded clip why founding designer roles can be difficult for junior designers.",
+      "writtenAt": "2026-09-20T19:22:28.965Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|hold|0.76": {
+      "summary": "Jacob and the hosts discuss urgent work and fast user feedback; Dan Taes explains how startup designers rely on intuition when time for research is limited.",
+      "writtenAt": "2026-09-20T19:22:28.965Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.89": {
+      "summary": "In a recorded clip, Jared advises founding designers to understand customers, choose business priorities, align with founders and build trust through delivery.",
+      "writtenAt": "2026-09-20T19:22:28.965Z"
     }
   }
 }

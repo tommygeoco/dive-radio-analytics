@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "njOU7GKZcvc",
-      "pulledAt": "2026-09-20T14:00:52.046Z",
+      "pulledAt": "2026-09-20T19:15:52.111Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "njOU7GKZcvc",
-        "pulledAt": "2026-09-20T14:00:52.046Z",
+        "pulledAt": "2026-09-20T19:15:52.111Z",
         "state": "ready"
       },
       "totals": {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "G2_F3dd3RkA",
-      "pulledAt": "2026-09-20T14:00:52.046Z",
+      "pulledAt": "2026-09-20T19:15:52.111Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "G2_F3dd3RkA",
-        "pulledAt": "2026-09-20T14:00:52.046Z",
+        "pulledAt": "2026-09-20T19:15:52.111Z",
         "state": "ready"
       },
       "totals": {
@@ -959,18 +959,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-20T14:00:52.046Z",
+  "updatedAt": "2026-09-20T19:15:52.111Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "pulledAt": "2026-09-20T14:00:52.046Z",
+    "pulledAt": "2026-09-20T19:15:52.111Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-20T14:00:52.046Z",
+    "checkedAt": "2026-09-20T19:15:52.111Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:G2_F3dd3RkA|yt:joindiveclub:njOU7GKZcvc",

@@ -18,7 +18,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "UgwxQM1P37Fvu-uQMsZ4AaABAg",
-        "pulledAt": "2026-09-20T14:01:12.642Z",
+        "pulledAt": "2026-09-20T19:16:10.306Z",
         "state": "ready"
       }
     },
@@ -37,15 +37,15 @@
         "source": "youtube-comments",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "UgzVits6pK6eIXQLIeN4AaABAg",
-        "pulledAt": "2026-09-20T14:01:12.642Z",
+        "pulledAt": "2026-09-20T19:16:10.306Z",
         "state": "ready"
       }
     }
   ],
-  "updatedAt": "2026-09-20T14:01:12.642Z",
+  "updatedAt": "2026-09-20T19:16:10.306Z",
   "xCoverage": "missed",
   "capture": {
-    "checkedAt": "2026-09-20T14:01:12.642Z",
+    "checkedAt": "2026-09-20T19:16:10.306Z",
     "state": "ready",
     "sources": [
       {
@@ -53,7 +53,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "9HYGZgaHdlw",
-        "pulledAt": "2026-09-20T14:01:12.642Z",
+        "pulledAt": "2026-09-20T19:16:10.306Z",
         "state": "ready",
         "count": 2
       },
@@ -62,7 +62,7 @@
         "source": "youtube-comments",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "szvTFybWfK4",
-        "pulledAt": "2026-09-20T14:01:12.642Z",
+        "pulledAt": "2026-09-20T19:16:10.306Z",
         "state": "ready",
         "count": 0
       }
