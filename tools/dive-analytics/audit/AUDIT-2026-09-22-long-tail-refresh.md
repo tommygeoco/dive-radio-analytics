@@ -115,3 +115,38 @@ release. Preserve current publisher-generated stores and any concurrent work.
 Rollback: revert only this code commit through the same protected source path;
 never roll back or erase newly captured history. That restores the older
 60-day behavior and strict counter block, so it is not a freshness solution.
+
+## Main release evidence — 2026-09-22
+
+Owner approved the repair and publication in Slack at 09:15 Phoenix
+(message 1790093733.834919). Independent isolated review passed the code and
+11 focused tests, plus 42 malformed-provenance probes. A fresh remote fetch
+proved both previously described classifier commits were already on origin/main;
+only this repair was rebased onto current production history.
+
+- Adopted repair: 24a41c5 (same repair source bytes as 630b369).
+- Source gate: `node tools/dive-analytics/release-gate.mjs --source-only` exited 0:
+  57 audit files, 117 script syntax checks, two page scripts.
+- Guarded source push: `DIVE_SOURCE_ONLY_PUSH=1 git push origin HEAD:main` exited 0.
+- Protected recovery: `node tools/dive-analytics/run-daily.mjs --operator-repair --reason='Tommy approved all-episode refresh and verified YouTube revision repair in Slack on 2026-09-22'`
+  exited 0. Both earlier failed attempts were preserved; no attempt state was reset.
+- Released data: 5c86586e; generated 2026-09-22T16:36:00.532Z.
+- Strict gate: 0 failures, 53 warnings, 0 drift; the warnings retain historical
+  gaps and source corrections, rather than fabricating missing history.
+- First Vercel CLI attempt failed; its one permitted retry completed.
+- Production proof: all 19 public files match byte-for-byte; chain ended `done`.
+- Live read: all ten episodes have ready YouTube, X, watch, and comment sources.
+  Replay counters read at 2026-09-22T16:33:40.610Z. EP1: YouTube 2,144,
+  X broadcast plays 1,784, combined views 3,928; X reach 5,503 kept separate.
+- SHA-256 checks confirmed all ten pre-repair snapshot prefixes unchanged,
+  exactly one new snapshot each, and all ten Restream event files unchanged.
+  Episode ratings changed only their update timestamp; frozen scores stayed intact.
+- No scheduler changes were needed: its existing versioned chain now captures
+  every active aired episode. Gateway-wide scheduler inventory was unavailable
+  from this Slack session; actual morning and recovery executions were read from
+  the durable daily ledger and logs.
+- LinkedIn remains explicitly awaiting analytics access; its existing owner-import
+  workflow was not replaced or reported as automatically current.
+
+The separate one-sentence dashboard cadence correction is UI-only. It does not
+change counters or recapture data, and uses the normal strict pre-push gate.
