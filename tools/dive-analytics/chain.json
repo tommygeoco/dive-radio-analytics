@@ -50,14 +50,14 @@
   },
   {
    "step": "snapshot",
-   "script": "scripts/restream/postlive-track.mjs snapshot",
+   "script": "scripts/restream/postlive-track.mjs snapshot --all",
    "writes": [
     "data/restream/postlive/*.json",
     "data/restream/source-receipts.json"
    ],
    "freshnessKey": "snapshots[-1].ts",
    "required": true,
-   "scope": "episodes-within-60d"
+   "scope": "active-episodes"
   },
   {
    "step": "yt-analytics",

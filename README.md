@@ -94,7 +94,12 @@ and all audit tests and syntax checks. It adopts code without certifying or
 deploying the old dataset. Normal data publication always runs the full strict
 release gate against the current clock before pushing and deploying.
 
-Data is exported daily at 07:00 America/Phoenix. The OpenClaw job enters
+Data is exported daily at 07:00 America/Phoenix. YouTube totals, X reach and
+resolved X broadcast plays refresh for every aired active episode indefinitely,
+not just the first 60 days. Future and inactive episodes stay excluded; missing
+source data is never invented. LinkedIn still requires the owner's import.
+Restream air-night readings and frozen episode-health scores do not change.
+The OpenClaw job enters
 through `run-daily.mjs`, which prepares a clean `main` clone under
 `~/Library/Application Support/Dive Radio Analytics/publisher-main`, prevents
 overlap, records every invocation before checkout checks, and allows the

@@ -99,6 +99,54 @@ export function monotonicDrops(snapshots, { keys = null } = {}) {
   return drops;
 }
 
+// The public projection omits per-object provenance. Accept a YouTube decrease
+// only when BOTH raw readings prove the same registered upload and reproduce
+// the displayed counts. Full store integrity and rebuild checks still apply.
+export function verifiedYoutubeRevision(show, snapshots, drop, now = Date.now()) {
+  if (!Number.isFinite(now) || !drop.key.startsWith('yt:')) return false;
+  const targets = (show?.targets || []).filter(t => t.kind === 'youtube' && `yt:${t.account}` === drop.key);
+  if (targets.length !== 1 || !targets[0].videoId) return false;
+  const videoId = targets[0].videoId;
+  const at = snapshots.findIndex(s => s.ts === drop.ts);
+  if (at < 1 || snapshots.filter(s => s.ts === drop.ts).length !== 1) return false;
+  const prior = snapshots.slice(0, at).findLast(s => Number.isFinite(s.metrics?.[drop.key]?.views));
+  const current = snapshots[at];
+  if (!prior || Date.parse(prior.ts) >= Date.parse(current.ts)) return false;
+  const ready = (reading, source, objectId, ts) => reading?.state === 'ready'
+    && reading.pulledAt === ts
+    && validateReadingEnvelope(reading, { source, episode: show.slug, objectId, now }).length === 0;
+  return [[prior, drop.before], [current, drop.after]].every(([snapshot, count]) => {
+    const metric = snapshot.metrics?.[drop.key];
+    const item = metric?.sources?.[0];
+    return Number.isSafeInteger(count) && count >= 0 && metric?.views === count
+      && ready(snapshot.reading, 'postlive', show.slug, snapshot.ts)
+      && ready(metric.reading, 'youtube-data', videoId, snapshot.ts)
+      && Array.isArray(metric.sources) && metric.sources.length === 1
+      && item?.objectId === videoId && item.views === count
+      && ready(item.reading, 'youtube-data', videoId, snapshot.ts)
+      && metric.detail?.views === count && item.detail?.views === count;
+  });
+}
+
+// Follow the registry, not the rendered episode list: an old or never-captured
+// episode must not disappear from the required snapshot cohort.
+export function activeSnapshotFreshnessErrors(shows, readHistory, now = Date.now()) {
+  const errors = [];
+  const today = new Date(now - 7 * 3600000).toISOString().slice(0, 10);
+  for (const show of shows || []) {
+    if (show.active === false || show.date > today) continue;
+    if (!/dive.?radio/i.test(show.title || '') && !/dive-radio/.test(show.slug || '')) continue;
+    try {
+      const history = readHistory(show.slug);
+      // A fresh failed/pending attempt is honest absence, not fake new counts.
+      const stamp = ['pending', 'failed'].includes(history?.capture?.state)
+        ? history.capture.checkedAt : history?.snapshots?.at(-1)?.ts;
+      checkedTime(stamp, { now, maxAge: FRESH_MS, label: `${show.slug} snapshot check` });
+    } catch (error) { errors.push(error.message); }
+  }
+  return errors;
+}
+
 // Every unstamped historical row must be an unchanged member of the audited
 // baseline. New data never inherits provenance merely by resembling old data.
 export function validateHistoryRows(rows, { baselineRows = [], episode, premiere = null, expectedTargets = [], now = Date.now() } = {}) {

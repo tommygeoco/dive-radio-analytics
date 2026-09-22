@@ -600,14 +600,18 @@ export function metricViewsTotal(metrics, prefix) {
     : null;
 }
 
+export function snapshotShows(shows, { includeAll = false, now = Date.now() } = {}) {
+  const cutoff = now - TRACK_WINDOW_DAYS * 86400000;
+  return shows.filter(
+    (s) => s.active !== false && typeof s.date === "string" && Number.isFinite(Date.parse(s.date))
+      && s.date <= phoenixDateKey(now) && (includeAll || Date.parse(s.date) >= cutoff)
+  );
+}
+
 async function snapshot(args) {
   const startedAt = new Date().toISOString();
   const registry = loadJson(REGISTRY_PATH, { shows: [] });
-  const includeAll = args.includes("--all");
-  const cutoff = Date.now() - TRACK_WINDOW_DAYS * 86400000;
-  const shows = registry.shows.filter(
-    (s) => s.active !== false && typeof s.date === "string" && s.date <= phoenixDateKey() && (includeAll || Date.parse(s.date) >= cutoff)
-  );
+  const shows = snapshotShows(registry.shows, { includeAll: args.includes("--all") });
   if (!shows.length) {
     const error = "no active shows registered";
     appendSourceReceipt("snapshot", {

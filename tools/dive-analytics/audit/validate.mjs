@@ -12,7 +12,7 @@
 //   1. unit sanity        — X plays require resolved-broadcast provenance;
 //                           native tweet media and impressions can never enter plays,
 //                           no plays on YT, and absence is never stored as zero
-//   2. monotonic views    — cumulative views never decrease per destination
+//   2. counter integrity  — material drops need same-upload YouTube provenance
 //   3. late-reg flags     — partialHistory starts at the first positive YouTube
 //                            read on a later Phoenix date; air date is current only
 //                           reading after premiere (>5d); pre-air and startup-zero
@@ -35,7 +35,7 @@ import { fileURLToPath } from "node:url";
 import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric, youtubeTargetFingerprint, youtubeWatchReport } from "../youtube-readiness.mjs";
 import { discoveryShareOf, subsPer1kOf } from "../baselines.mjs";
 
-import { assertFrozenRatingsUnchanged, FROZEN_BASELINE, checkedTime, currentAnalyticsCohort, monotonicDrops, sourceStoreIntegrityErrors } from "../source-integrity.mjs";
+import { assertFrozenRatingsUnchanged, FROZEN_BASELINE, checkedTime, currentAnalyticsCohort, monotonicDrops, verifiedYoutubeRevision, activeSnapshotFreshnessErrors, sourceStoreIntegrityErrors } from "../source-integrity.mjs";
 import { readLinkedinSources, validateLinkedinStore, projectLinkedin, LINKEDIN_KEY } from "../linkedin.mjs";
 import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
 
@@ -219,16 +219,21 @@ try {
   if (!bad) ok("plays schema: broadcast-only fixture green; statuses, resolved IDs, provenance, and high-water marks agree");
 }
 
-// --- 2. monotonic cumulative views ---
+// --- 2. counter integrity: observed YouTube revisions retain their evidence ---
 {
   let bad = 0;
   for (const e of eps) {
+    const show = registry.shows.find(show => show.slug === e.slug);
+    const path = join(HISTORY, `${e.slug}.json`);
+    const raw = existsSync(path) ? JSON.parse(readFileSync(path, "utf8")).snapshots || [] : [];
     for (const drop of monotonicDrops(e.snapshots)) {
-      if (drop.before - drop.after > Math.max(50, drop.before * 0.02)) { bad++; fail(`${e.slug} ${drop.key}: views dropped ${drop.before} -> ${drop.after} at ${drop.ts}`); }
+      if (verifiedYoutubeRevision(show, raw, drop, Date.parse(data.generatedAt))) {
+        warn(`${e.slug} ${drop.key}: verified YouTube source revision ${drop.before} -> ${drop.after} at ${drop.ts}; original readings retained`);
+      } else if (drop.before - drop.after > Math.max(50, drop.before * 0.02)) { bad++; fail(`${e.slug} ${drop.key}: views dropped ${drop.before} -> ${drop.after} at ${drop.ts}`); }
       else warn(`${e.slug} ${drop.key}: small views dip ${drop.before} -> ${drop.after} at ${drop.ts} (API jitter?)`);
     }
   }
-  if (!bad) ok("monotonic: cumulative views never materially decrease");
+  if (!bad) ok("counter integrity: no unexplained material views drops; verified YouTube revisions remain source readings");
 }
 
 // --- 3. late-reg flags present and honored ---
@@ -2839,15 +2844,17 @@ try {
     if (!newsletterStep?.required || newsletterStep.freshnessKey !== "lastSuccessfulAt" || JSON.stringify(newsletterStep.writes) !== JSON.stringify(["data/restream/beehiiv-promotions.json"]) || order.indexOf("newsletter-promotion") > firstBuild) {
       bad++; drift("chain: newsletter promotion capture must be required, current, and run before build-data");
     }
-    // Same calendar rule as the snapshot tracker (postlive-track.mjs
-    // TRACK_WINDOW_DAYS): an episode leaves the window 60 days after its
-    // premiere date. `ageDays` cannot be used here — it is measured to the
-    // last snapshot, so it freezes below 60 once snapshots stop.
-    const within60d = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e && Date.parse(e.premiere) >= builtAt - 60 * DAY; };
-    const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e; };
-    const inScope = (scope, slug) => scope === "all" || (scope === "episodes-within-60d" ? within60d(slug) : active(slug));
+    const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e && e.active !== false; };
+    const inScope = (scope, slug) => scope === "all" || active(slug);
     for (const step of chain.steps) {
       if (!step.freshnessKey) continue;
+      if (step.step === "snapshot") {
+        // Check every aired active registry entry, including missing histories.
+        for (const error of activeSnapshotFreshnessErrors(registry.shows, slug => {
+          const path = join(HISTORY, `${slug}.json`);
+          return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null;
+        }, builtAt)) { bad++; fail(`chain: ${error}`); }
+      }
       for (const pattern of step.freshnessWrites || step.writes) {
         if (!pattern.includes("*")) {
           const path = join(ROOT, pattern);
@@ -3012,6 +3019,9 @@ try {
       || discoverStep.freshnessKey !== "lastSuccessfulDiscoveryAt"
       || !snapshotStep?.writes?.includes("data/restream/source-receipts.json")) {
       bad++; drift("chain: discovery and snapshot must leave current proof that YouTube and X were reached");
+    }
+    if (snapshotStep?.script !== "scripts/restream/postlive-track.mjs snapshot --all" || snapshotStep?.scope !== "active-episodes" || !snapshotStep?.required) {
+      bad++; drift("chain: daily snapshots must capture and check every active aired episode without an age cutoff");
     }
     const runtimeQueue = "~/Library/Application Support/Dive Radio Analytics/alerts-pending.json";
     if (alertsStep.writes?.includes("data/restream/alerts-pending.json") || freshnessStep.writes?.includes("data/restream/alerts-pending.json")
