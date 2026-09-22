@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "TJqSfnadiGM",
-      "pulledAt": "2026-09-20T19:15:52.111Z",
+      "pulledAt": "2026-09-22T16:34:14.868Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "TJqSfnadiGM",
-        "pulledAt": "2026-09-20T19:15:52.111Z",
+        "pulledAt": "2026-09-22T16:34:14.868Z",
         "state": "ready"
       },
       "totals": {
-        "views": 1244,
-        "estimatedMinutesWatched": 17534,
-        "averageViewDuration": 869,
-        "averageViewPercentage": 12.11,
+        "views": 1246,
+        "estimatedMinutesWatched": 17535,
+        "averageViewDuration": 871,
+        "averageViewPercentage": 12.13,
         "subscribersGained": 5,
         "likes": 39,
         "comments": 2
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 521,
+          "views": 522,
           "estimatedMinutesWatched": 5933
         },
         {
@@ -41,7 +41,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 131,
+          "views": 132,
           "estimatedMinutesWatched": 1577
         },
         {
@@ -480,20 +480,20 @@
     },
     "yt:designertom": {
       "videoId": "Pn6U5nWgD-g",
-      "pulledAt": "2026-09-20T19:15:52.111Z",
+      "pulledAt": "2026-09-22T16:34:14.868Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Pn6U5nWgD-g",
-        "pulledAt": "2026-09-20T19:15:52.111Z",
+        "pulledAt": "2026-09-22T16:34:14.868Z",
         "state": "ready"
       },
       "totals": {
         "views": 934,
         "estimatedMinutesWatched": 10799,
-        "averageViewDuration": 699,
-        "averageViewPercentage": 9.75,
+        "averageViewDuration": 698,
+        "averageViewPercentage": 9.74,
         "subscribersGained": 1,
         "likes": 39,
         "comments": 4
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-20T19:15:52.111Z",
+  "updatedAt": "2026-09-22T16:34:14.868Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-    "pulledAt": "2026-09-20T19:15:52.111Z",
+    "pulledAt": "2026-09-22T16:34:14.868Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-20T19:15:52.111Z",
+    "checkedAt": "2026-09-22T16:34:14.868Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Pn6U5nWgD-g|yt:joindiveclub:TJqSfnadiGM",
@@ -975,8 +975,8 @@
         "videoId": "TJqSfnadiGM",
         "result": "ready",
         "observed": {
-          "views": 1244,
-          "averageViewPercentage": 12.11
+          "views": 1246,
+          "averageViewPercentage": 12.13
         }
       },
       {
@@ -985,7 +985,7 @@
         "result": "ready",
         "observed": {
           "views": 934,
-          "averageViewPercentage": 9.75
+          "averageViewPercentage": 9.74
         }
       }
     ]

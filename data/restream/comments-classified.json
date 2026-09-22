@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-20T19:16:14.828Z",
+  "updatedAt": "2026-09-22T16:34:45.219Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1277,6 +1277,25 @@
         "themes": [],
         "confidence": 0.88
       }
+    },
+    "yt:Ugym2q7ICLt2MSrGLaF4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.97,
+      "classifierVersion": 1,
+      "promptVersion": 2,
+      "model": "gpt-6-astra",
+      "classifiedAt": "2026-09-21T14:01:42.624Z",
+      "audit": {
+        "at": "2026-09-21T14:01:42.624Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.97
+      }
     }
   },
   "golden": {
@@ -1297,7 +1316,7 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-20T19:16:14.828Z",
+    "at": "2026-09-22T16:34:45.219Z",
     "status": "complete",
     "added": 0,
     "reviewed": 0,

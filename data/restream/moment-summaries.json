@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-20T19:22:28.965Z",
+  "updatedAt": "2026-09-22T16:35:43.377Z",
   "provider": "openai",
   "model": "gpt-6-astra",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -261,6 +261,14 @@
     "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.89": {
       "summary": "In a recorded clip, Jared advises founding designers to understand customers, choose business priorities, align with founders and build trust through delivery.",
       "writtenAt": "2026-09-20T19:22:28.965Z"
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive|drop|0.5": {
+      "summary": "Playground’s creator demonstrates small tools for making brand assets, then the hosts discuss designers building tools with Claude and emerging brand engineer jobs.",
+      "writtenAt": "2026-09-22T16:35:43.376Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.21": {
+      "summary": "The hosts discuss Type Safe AI for fast task routing and email sorting, the demand for cheaper AI, and Quiver AI for generating vector assets.",
+      "writtenAt": "2026-09-22T16:35:43.377Z"
     }
   }
 }

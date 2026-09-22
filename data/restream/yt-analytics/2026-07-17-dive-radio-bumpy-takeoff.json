@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "VcLm0kAGCck",
-      "pulledAt": "2026-09-20T19:15:52.111Z",
+      "pulledAt": "2026-09-22T16:34:14.868Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "VcLm0kAGCck",
-        "pulledAt": "2026-09-20T19:15:52.111Z",
+        "pulledAt": "2026-09-22T16:34:14.868Z",
         "state": "ready"
       },
       "totals": {
         "views": 760,
         "estimatedMinutesWatched": 10294,
-        "averageViewDuration": 839,
-        "averageViewPercentage": 11.37,
+        "averageViewDuration": 840,
+        "averageViewPercentage": 11.38,
         "subscribersGained": 4,
         "likes": 19,
         "comments": 6
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "FqsXWbfKmGw",
-      "pulledAt": "2026-09-20T19:15:52.111Z",
+      "pulledAt": "2026-09-22T16:34:14.868Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "FqsXWbfKmGw",
-        "pulledAt": "2026-09-20T19:15:52.111Z",
+        "pulledAt": "2026-09-22T16:34:14.868Z",
         "state": "ready"
       },
       "totals": {
@@ -949,18 +949,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-20T19:15:52.111Z",
+  "updatedAt": "2026-09-22T16:34:14.868Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-17-dive-radio-bumpy-takeoff",
     "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
-    "pulledAt": "2026-09-20T19:15:52.111Z",
+    "pulledAt": "2026-09-22T16:34:14.868Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-20T19:15:52.111Z",
+    "checkedAt": "2026-09-22T16:34:14.868Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:FqsXWbfKmGw|yt:joindiveclub:VcLm0kAGCck",
@@ -971,7 +971,7 @@
         "result": "ready",
         "observed": {
           "views": 760,
-          "averageViewPercentage": 11.37
+          "averageViewPercentage": 11.38
         }
       },
       {

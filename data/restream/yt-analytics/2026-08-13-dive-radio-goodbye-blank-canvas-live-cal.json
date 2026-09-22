@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "njOU7GKZcvc",
-      "pulledAt": "2026-09-20T19:15:52.111Z",
+      "pulledAt": "2026-09-22T16:34:14.868Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "njOU7GKZcvc",
-        "pulledAt": "2026-09-20T19:15:52.111Z",
+        "pulledAt": "2026-09-22T16:34:14.868Z",
         "state": "ready"
       },
       "totals": {
-        "views": 736,
+        "views": 737,
         "estimatedMinutesWatched": 9219,
-        "averageViewDuration": 794,
-        "averageViewPercentage": 13.930000000000001,
+        "averageViewDuration": 809,
+        "averageViewPercentage": 14.19,
         "subscribersGained": 1,
         "likes": 20,
         "comments": 3
@@ -36,8 +36,8 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 57,
-          "estimatedMinutesWatched": 555
+          "views": 58,
+          "estimatedMinutesWatched": 556
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -480,20 +480,20 @@
     },
     "yt:designertom": {
       "videoId": "G2_F3dd3RkA",
-      "pulledAt": "2026-09-20T19:15:52.111Z",
+      "pulledAt": "2026-09-22T16:34:14.868Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "G2_F3dd3RkA",
-        "pulledAt": "2026-09-20T19:15:52.111Z",
+        "pulledAt": "2026-09-22T16:34:14.868Z",
         "state": "ready"
       },
       "totals": {
         "views": 560,
         "estimatedMinutesWatched": 6258,
-        "averageViewDuration": 691,
-        "averageViewPercentage": 12.13,
+        "averageViewDuration": 695,
+        "averageViewPercentage": 12.2,
         "subscribersGained": 0,
         "likes": 18,
         "comments": 2
@@ -959,18 +959,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-20T19:15:52.111Z",
+  "updatedAt": "2026-09-22T16:34:14.868Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "pulledAt": "2026-09-20T19:15:52.111Z",
+    "pulledAt": "2026-09-22T16:34:14.868Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-20T19:15:52.111Z",
+    "checkedAt": "2026-09-22T16:34:14.868Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:G2_F3dd3RkA|yt:joindiveclub:njOU7GKZcvc",
@@ -980,8 +980,8 @@
         "videoId": "njOU7GKZcvc",
         "result": "ready",
         "observed": {
-          "views": 736,
-          "averageViewPercentage": 13.930000000000001
+          "views": 737,
+          "averageViewPercentage": 14.19
         }
       },
       {
@@ -990,7 +990,7 @@
         "result": "ready",
         "observed": {
           "views": 560,
-          "averageViewPercentage": 12.13
+          "averageViewPercentage": 12.2
         }
       }
     ]

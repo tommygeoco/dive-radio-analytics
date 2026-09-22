@@ -10389,10 +10389,1065 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-21T14:00:57.211Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "pulledAt": "2026-09-21T14:00:57.211Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 738,
+          "detail": {
+            "views": 738,
+            "likes": 19,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "njOU7GKZcvc",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "njOU7GKZcvc",
+                "pulledAt": "2026-09-21T14:00:57.211Z",
+                "state": "ready"
+              },
+              "views": 738,
+              "detail": {
+                "views": 738,
+                "likes": 19,
+                "comments": 3,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "njOU7GKZcvc",
+            "pulledAt": "2026-09-21T14:00:57.211Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 560,
+          "detail": {
+            "views": 560,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "G2_F3dd3RkA",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "G2_F3dd3RkA",
+                "pulledAt": "2026-09-21T14:00:57.211Z",
+                "state": "ready"
+              },
+              "views": 560,
+              "detail": {
+                "views": 560,
+                "likes": 17,
+                "comments": 2,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "G2_F3dd3RkA",
+            "pulledAt": "2026-09-21T14:00:57.211Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3015,
+          "detail": {
+            "views": 3015,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1179,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 415,
+          "sources": [
+            {
+              "objectId": "2087992765372375435",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765372375435",
+                "pulledAt": "2026-09-21T14:00:57.211Z",
+                "state": "ready"
+              },
+              "views": 3015,
+              "detail": {
+                "views": 3015,
+                "likes": 12,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765372375435",
+            "pulledAt": "2026-09-21T14:00:57.211Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1pKdRDDymlnJW",
+            "pulledAt": "2026-09-21T14:00:57.211Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1pKdRDDymlnJW",
+              "views": 1179,
+              "peakConcurrent": 415,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 6398,
+          "detail": {
+            "views": 6398,
+            "likes": 9,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 1102,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 131,
+          "sources": [
+            {
+              "objectId": "2087992765942837550",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765942837550",
+                "pulledAt": "2026-09-21T14:00:57.211Z",
+                "state": "ready"
+              },
+              "views": 6398,
+              "detail": {
+                "views": 6398,
+                "likes": 9,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 5,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765942837550",
+            "pulledAt": "2026-09-21T14:00:57.211Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1AxRnZZeVNzxl",
+            "pulledAt": "2026-09-21T14:00:57.211Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnZZeVNzxl",
+              "views": 1102,
+              "peakConcurrent": 131,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-21T15:15:37.203Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "pulledAt": "2026-09-21T15:15:37.203Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 738,
+          "detail": {
+            "views": 738,
+            "likes": 19,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "njOU7GKZcvc",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "njOU7GKZcvc",
+                "pulledAt": "2026-09-21T15:15:37.203Z",
+                "state": "ready"
+              },
+              "views": 738,
+              "detail": {
+                "views": 738,
+                "likes": 19,
+                "comments": 3,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "njOU7GKZcvc",
+            "pulledAt": "2026-09-21T15:15:37.203Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 560,
+          "detail": {
+            "views": 560,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "G2_F3dd3RkA",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "G2_F3dd3RkA",
+                "pulledAt": "2026-09-21T15:15:37.203Z",
+                "state": "ready"
+              },
+              "views": 560,
+              "detail": {
+                "views": 560,
+                "likes": 17,
+                "comments": 2,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "G2_F3dd3RkA",
+            "pulledAt": "2026-09-21T15:15:37.203Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3015,
+          "detail": {
+            "views": 3015,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1179,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 415,
+          "sources": [
+            {
+              "objectId": "2087992765372375435",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765372375435",
+                "pulledAt": "2026-09-21T15:15:37.203Z",
+                "state": "ready"
+              },
+              "views": 3015,
+              "detail": {
+                "views": 3015,
+                "likes": 12,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765372375435",
+            "pulledAt": "2026-09-21T15:15:37.203Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1pKdRDDymlnJW",
+            "pulledAt": "2026-09-21T15:15:37.203Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1pKdRDDymlnJW",
+              "views": 1179,
+              "peakConcurrent": 415,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 6398,
+          "detail": {
+            "views": 6398,
+            "likes": 9,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 1102,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 131,
+          "sources": [
+            {
+              "objectId": "2087992765942837550",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765942837550",
+                "pulledAt": "2026-09-21T15:15:37.203Z",
+                "state": "ready"
+              },
+              "views": 6398,
+              "detail": {
+                "views": 6398,
+                "likes": 9,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 5,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765942837550",
+            "pulledAt": "2026-09-21T15:15:37.203Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1AxRnZZeVNzxl",
+            "pulledAt": "2026-09-21T15:15:37.203Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnZZeVNzxl",
+              "views": 1102,
+              "peakConcurrent": 131,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-22T14:02:21.266Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "pulledAt": "2026-09-22T14:02:21.266Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 738,
+          "detail": {
+            "views": 738,
+            "likes": 19,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "njOU7GKZcvc",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "njOU7GKZcvc",
+                "pulledAt": "2026-09-22T14:02:21.266Z",
+                "state": "ready"
+              },
+              "views": 738,
+              "detail": {
+                "views": 738,
+                "likes": 19,
+                "comments": 3,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "njOU7GKZcvc",
+            "pulledAt": "2026-09-22T14:02:21.266Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 560,
+          "detail": {
+            "views": 560,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "G2_F3dd3RkA",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "G2_F3dd3RkA",
+                "pulledAt": "2026-09-22T14:02:21.266Z",
+                "state": "ready"
+              },
+              "views": 560,
+              "detail": {
+                "views": 560,
+                "likes": 17,
+                "comments": 2,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "G2_F3dd3RkA",
+            "pulledAt": "2026-09-22T14:02:21.266Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3016,
+          "detail": {
+            "views": 3016,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1180,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 415,
+          "sources": [
+            {
+              "objectId": "2087992765372375435",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765372375435",
+                "pulledAt": "2026-09-22T14:02:21.266Z",
+                "state": "ready"
+              },
+              "views": 3016,
+              "detail": {
+                "views": 3016,
+                "likes": 12,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765372375435",
+            "pulledAt": "2026-09-22T14:02:21.266Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1pKdRDDymlnJW",
+            "pulledAt": "2026-09-22T14:02:21.266Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1pKdRDDymlnJW",
+              "views": 1180,
+              "peakConcurrent": 415,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 6401,
+          "detail": {
+            "views": 6401,
+            "likes": 9,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 1103,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 131,
+          "sources": [
+            {
+              "objectId": "2087992765942837550",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765942837550",
+                "pulledAt": "2026-09-22T14:02:21.266Z",
+                "state": "ready"
+              },
+              "views": 6401,
+              "detail": {
+                "views": 6401,
+                "likes": 9,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 5,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765942837550",
+            "pulledAt": "2026-09-22T14:02:21.266Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1AxRnZZeVNzxl",
+            "pulledAt": "2026-09-22T14:02:21.266Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnZZeVNzxl",
+              "views": 1103,
+              "peakConcurrent": 131,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-22T15:15:52.677Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "pulledAt": "2026-09-22T15:15:52.677Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 738,
+          "detail": {
+            "views": 738,
+            "likes": 19,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "njOU7GKZcvc",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "njOU7GKZcvc",
+                "pulledAt": "2026-09-22T15:15:52.677Z",
+                "state": "ready"
+              },
+              "views": 738,
+              "detail": {
+                "views": 738,
+                "likes": 19,
+                "comments": 3,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "njOU7GKZcvc",
+            "pulledAt": "2026-09-22T15:15:52.677Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 560,
+          "detail": {
+            "views": 560,
+            "likes": 17,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "G2_F3dd3RkA",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "G2_F3dd3RkA",
+                "pulledAt": "2026-09-22T15:15:52.677Z",
+                "state": "ready"
+              },
+              "views": 560,
+              "detail": {
+                "views": 560,
+                "likes": 17,
+                "comments": 2,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "G2_F3dd3RkA",
+            "pulledAt": "2026-09-22T15:15:52.677Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3016,
+          "detail": {
+            "views": 3016,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1180,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 415,
+          "sources": [
+            {
+              "objectId": "2087992765372375435",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765372375435",
+                "pulledAt": "2026-09-22T15:15:52.677Z",
+                "state": "ready"
+              },
+              "views": 3016,
+              "detail": {
+                "views": 3016,
+                "likes": 12,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765372375435",
+            "pulledAt": "2026-09-22T15:15:52.677Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1pKdRDDymlnJW",
+            "pulledAt": "2026-09-22T15:15:52.677Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1pKdRDDymlnJW",
+              "views": 1180,
+              "peakConcurrent": 415,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 6401,
+          "detail": {
+            "views": 6401,
+            "likes": 9,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 1103,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 131,
+          "sources": [
+            {
+              "objectId": "2087992765942837550",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765942837550",
+                "pulledAt": "2026-09-22T15:15:52.677Z",
+                "state": "ready"
+              },
+              "views": 6401,
+              "detail": {
+                "views": 6401,
+                "likes": 9,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 5,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765942837550",
+            "pulledAt": "2026-09-22T15:15:52.677Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1AxRnZZeVNzxl",
+            "pulledAt": "2026-09-22T15:15:52.677Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnZZeVNzxl",
+              "views": 1103,
+              "peakConcurrent": 131,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-22T16:33:40.610Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "pulledAt": "2026-09-22T16:33:40.610Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 738,
+          "detail": {
+            "views": 738,
+            "likes": 19,
+            "comments": 3,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "njOU7GKZcvc",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "njOU7GKZcvc",
+                "pulledAt": "2026-09-22T16:33:40.610Z",
+                "state": "ready"
+              },
+              "views": 738,
+              "detail": {
+                "views": 738,
+                "likes": 19,
+                "comments": 3,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "njOU7GKZcvc",
+            "pulledAt": "2026-09-22T16:33:40.610Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 560,
+          "detail": {
+            "views": 560,
+            "likes": 18,
+            "comments": 2,
+            "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "G2_F3dd3RkA",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "G2_F3dd3RkA",
+                "pulledAt": "2026-09-22T16:33:40.610Z",
+                "state": "ready"
+              },
+              "views": 560,
+              "detail": {
+                "views": 560,
+                "likes": 18,
+                "comments": 2,
+                "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "G2_F3dd3RkA",
+            "pulledAt": "2026-09-22T16:33:40.610Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 3016,
+          "detail": {
+            "views": 3016,
+            "likes": 12,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 3,
+            "quotes": 0
+          },
+          "plays": 1180,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 415,
+          "sources": [
+            {
+              "objectId": "2087992765372375435",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765372375435",
+                "pulledAt": "2026-09-22T16:33:40.610Z",
+                "state": "ready"
+              },
+              "views": 3016,
+              "detail": {
+                "views": 3016,
+                "likes": 12,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765372375435",
+            "pulledAt": "2026-09-22T16:33:40.610Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1pKdRDDymlnJW",
+            "pulledAt": "2026-09-22T16:33:40.610Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1pKdRDDymlnJW",
+              "views": 1180,
+              "peakConcurrent": 415,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 6401,
+          "detail": {
+            "views": 6401,
+            "likes": 9,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 1
+          },
+          "plays": 1103,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 131,
+          "sources": [
+            {
+              "objectId": "2087992765942837550",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+                "objectId": "2087992765942837550",
+                "pulledAt": "2026-09-22T16:33:40.610Z",
+                "state": "ready"
+              },
+              "views": 6401,
+              "detail": {
+                "views": 6401,
+                "likes": 9,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 5,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "2087992765942837550",
+            "pulledAt": "2026-09-22T16:33:40.610Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+            "objectId": "1AxRnZZeVNzxl",
+            "pulledAt": "2026-09-22T16:33:40.610Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1AxRnZZeVNzxl",
+              "views": 1103,
+              "peakConcurrent": 131,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-20T19:15:32.002Z",
+    "checkedAt": "2026-09-22T16:33:40.610Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -10400,7 +11455,7 @@
       "source": "postlive",
       "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-      "pulledAt": "2026-09-20T19:15:32.002Z",
+      "pulledAt": "2026-09-22T16:33:40.610Z",
       "state": "ready"
     }
   }
