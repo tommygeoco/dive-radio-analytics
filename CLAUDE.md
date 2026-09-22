@@ -186,7 +186,9 @@ to certify missing production proof or to erase a failed capture.
 ## Model authentication (2026-09-19)
 
 All six L3 model callers now default to the local Hinterlands OpenClaw gateway's
-frontier tier (Astra through ChatGPT OAuth). Audience feedback inherits the comment
+frontier tier through ChatGPT OAuth. Each gateway call explicitly
+requests `ultra` thinking through the shared native client; the frontier alias
+still selects the model centrally. Audience feedback inherits the comment
 classifier route and its configuration-specific golden gate. Numeric synthesis,
 grounding rules, frozen stores, and publishing ownership are unchanged.
 

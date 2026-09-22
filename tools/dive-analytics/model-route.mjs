@@ -25,5 +25,5 @@ export function gatewayConfig() {
 }
 export async function gatewayModel(system, messages, { timeoutMs = 180000, maxTokens = 16000 } = {}) {
   const { completeModel } = await loadClient();
-  return completeModel({ system, messages, tier: 'frontier', timeoutMs, maxTokens });
+  return completeModel({ system, messages, tier: 'frontier', thinking: 'ultra', timeoutMs, maxTokens });
 }
