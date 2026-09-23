@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-22T16:35:43.377Z",
+  "updatedAt": "2026-09-23T14:02:31.716Z",
   "provider": "openai",
   "model": "gpt-6-astra",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -269,6 +269,10 @@
     "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.21": {
       "summary": "The hosts discuss Type Safe AI for fast task routing and email sorting, the demand for cheaper AI, and Quiver AI for generating vector assets.",
       "writtenAt": "2026-09-22T16:35:43.377Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.12": {
+      "summary": "Hosts share designer nominations, highlighting Sharlota Blunarova's design experiments and tools, then Nathan's work on Flinto and its role in one host's path into design.",
+      "writtenAt": "2026-09-23T14:02:31.716Z"
     }
   }
 }

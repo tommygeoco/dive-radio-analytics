@@ -2361,10 +2361,281 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-23T14:00:47.571Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "pulledAt": "2026-09-23T14:00:47.571Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 4764,
+          "detail": {
+            "views": 4764,
+            "likes": 56,
+            "comments": 2,
+            "title": "Dive Radio: How To Become a Founding Designer",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "x05zZ90lY28",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "x05zZ90lY28",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 4764,
+              "detail": {
+                "views": 4764,
+                "likes": 56,
+                "comments": 2,
+                "title": "Dive Radio: How To Become a Founding Designer",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "x05zZ90lY28",
+            "pulledAt": "2026-09-23T14:00:47.571Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2735,
+          "detail": {
+            "views": 2735,
+            "likes": 48,
+            "comments": 3,
+            "title": "Dive Radio: How To Become a Founding Designer",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "0xL0XtpH_og",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "0xL0XtpH_og",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 2735,
+              "detail": {
+                "views": 2735,
+                "likes": 48,
+                "comments": 3,
+                "title": "Dive Radio: How To Become a Founding Designer",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "0xL0XtpH_og",
+            "pulledAt": "2026-09-23T14:00:47.571Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 14028,
+          "detail": {
+            "views": 14028,
+            "likes": 57,
+            "replies": 5,
+            "reposts": 1,
+            "bookmarks": 23,
+            "quotes": 2
+          },
+          "plays": 660,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 211,
+          "sources": [
+            {
+              "objectId": "2100498374315176187",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "2100498374315176187",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 2651,
+              "detail": {
+                "views": 2651,
+                "likes": 8,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2101374107443224621",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "2101374107443224621",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 6441,
+              "detail": {
+                "views": 6441,
+                "likes": 36,
+                "replies": 3,
+                "reposts": 0,
+                "bookmarks": 11,
+                "quotes": 1
+              }
+            },
+            {
+              "objectId": "2101373630894751998",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "2101373630894751998",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 4936,
+              "detail": {
+                "views": 4936,
+                "likes": 13,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 8,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "2100498374315176187,2101373630894751998,2101374107443224621",
+            "pulledAt": "2026-09-23T14:00:47.571Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "1nKOLQVVpZZGR",
+            "pulledAt": "2026-09-23T14:00:47.571Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1nKOLQVVpZZGR",
+              "views": 660,
+              "peakConcurrent": 211,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4996,
+          "detail": {
+            "views": 4996,
+            "likes": 13,
+            "replies": 2,
+            "reposts": 2,
+            "bookmarks": 6,
+            "quotes": 3
+          },
+          "plays": 1020,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 89,
+          "sources": [
+            {
+              "objectId": "2100602309743104482",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "2100602309743104482",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 250,
+              "detail": {
+                "views": 250,
+                "likes": 0,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2100498375346950179",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+                "objectId": "2100498375346950179",
+                "pulledAt": "2026-09-23T14:00:47.571Z",
+                "state": "ready"
+              },
+              "views": 4746,
+              "detail": {
+                "views": 4746,
+                "likes": 13,
+                "replies": 2,
+                "reposts": 2,
+                "bookmarks": 6,
+                "quotes": 3
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "2100498375346950179,2100602309743104482",
+            "pulledAt": "2026-09-23T14:00:47.571Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+            "objectId": "1lKQRWYYmaDGE",
+            "pulledAt": "2026-09-23T14:00:47.571Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1lKQRWYYmaDGE",
+              "views": 1020,
+              "peakConcurrent": 89,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-22T16:33:40.610Z",
+    "checkedAt": "2026-09-23T14:00:47.571Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -2372,7 +2643,7 @@
       "source": "postlive",
       "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-      "pulledAt": "2026-09-22T16:33:40.610Z",
+      "pulledAt": "2026-09-23T14:00:47.571Z",
       "state": "ready"
     }
   }
