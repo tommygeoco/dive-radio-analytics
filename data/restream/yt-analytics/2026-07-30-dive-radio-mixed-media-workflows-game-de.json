@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "9HYGZgaHdlw",
-      "pulledAt": "2026-09-23T14:01:09.335Z",
+      "pulledAt": "2026-09-24T14:01:05.569Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "9HYGZgaHdlw",
-        "pulledAt": "2026-09-23T14:01:09.335Z",
+        "pulledAt": "2026-09-24T14:01:05.569Z",
         "state": "ready"
       },
       "totals": {
         "views": 971,
         "estimatedMinutesWatched": 10046,
-        "averageViewDuration": 626,
-        "averageViewPercentage": 9.25,
+        "averageViewDuration": 627,
+        "averageViewPercentage": 9.26,
         "subscribersGained": 0,
         "likes": 22,
         "comments": 3
@@ -480,20 +480,20 @@
     },
     "yt:designertom": {
       "videoId": "szvTFybWfK4",
-      "pulledAt": "2026-09-23T14:01:09.335Z",
+      "pulledAt": "2026-09-24T14:01:05.569Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "szvTFybWfK4",
-        "pulledAt": "2026-09-23T14:01:09.335Z",
+        "pulledAt": "2026-09-24T14:01:05.569Z",
         "state": "ready"
       },
       "totals": {
         "views": 681,
         "estimatedMinutesWatched": 6830,
-        "averageViewDuration": 608,
-        "averageViewPercentage": 8.99,
+        "averageViewDuration": 606,
+        "averageViewPercentage": 8.95,
         "subscribersGained": 0,
         "likes": 24,
         "comments": 0
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-23T14:01:09.335Z",
+  "updatedAt": "2026-09-24T14:01:05.569Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "pulledAt": "2026-09-23T14:01:09.335Z",
+    "pulledAt": "2026-09-24T14:01:05.569Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-23T14:01:09.335Z",
+    "checkedAt": "2026-09-24T14:01:05.569Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:szvTFybWfK4|yt:joindiveclub:9HYGZgaHdlw",
@@ -976,7 +976,7 @@
         "result": "ready",
         "observed": {
           "views": 971,
-          "averageViewPercentage": 9.25
+          "averageViewPercentage": 9.26
         }
       },
       {
@@ -985,7 +985,7 @@
         "result": "ready",
         "observed": {
           "views": 681,
-          "averageViewPercentage": 8.99
+          "averageViewPercentage": 8.95
         }
       }
     ]

@@ -1,4 +1,4 @@
-# Show-health verification — 2026-09-23
+# Show-health verification — 2026-09-24
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
@@ -13,11 +13,12 @@ Score 51 (weighted mean 50.8, health-v9, prompt v7); reads How To Become a Found
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
 | Next first week inside the expected range | 0 | 0 | 0 | 2 | 2 |
-| Direction word confirmed by the next episode | 12 | 11 | 8 | 5 | 10 |
+| Direction word confirmed by the next episode | 13 | 11 | 8 | 5 | 10 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
 
+- 2026-09-24 · HIT · exposureWeekOne: E10 moved +37.6% (building) against the word building.
 - 2026-09-19 · VOID · 2026-09-10-dive-radio-how-designers-are-getting-hir: promo-driven first week — not a clean test.
 - 2026-09-19 · VOID · exposureWeekOne: E8 never entered the series; the next reading is E9.
 - 2026-09-19 · VOID · announceToPlay: E8 never entered the series; the next reading is E9.
@@ -29,7 +30,6 @@ Most recent resolutions:
 - 2026-09-19 · MISS · minutesWatched: E10 moved -42.7% (softening) against the word building.
 - 2026-09-19 · NEUTRAL · chattersPer100: E10 moved -11.7% (softening) against the word holding.
 - 2026-09-19 · MISS · messagesPerHour: E10 moved -54.2% (softening) against the word building.
-- 2026-09-19 · HIT · minutesPerViewer: E10 moved +29.6% (building) against the word building.
 
 ### Owner feel against the read
 
@@ -61,7 +61,6 @@ Carried share of scored checks: 43% (at full weight the mean would move -1.1) ·
 
 - 2026-09-11 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E9.
 - 2026-09-19 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E10.
-- 2026-09-19 · exposureWeekOne building (+14.5% per episode) — waits for the episode after E9.
 - 2026-09-19 · announceToPlay softening (-7.1% per episode) — waits for the episode after E9.
 - 2026-09-19 · liveAverage building (+14.3% per episode) — waits for the episode after E10.
 - 2026-09-19 · livePeak building (+13.9% per episode) — waits for the episode after E10.
@@ -71,4 +70,5 @@ Carried share of scored checks: 43% (at full weight the mean would move -1.1) ·
 - 2026-09-19 · messagesPerHour holding (-2.9% per episode) — waits for the episode after E10.
 - 2026-09-19 · minutesPerViewer building (+22.5% per episode) — waits for the episode after E10.
 - 2026-09-19 · holdRate holding (-0.6% per episode) — waits for the episode after E10.
+- 2026-09-23 · exposureWeekOne building (+17.1% per episode) — waits for the episode after E10.
 

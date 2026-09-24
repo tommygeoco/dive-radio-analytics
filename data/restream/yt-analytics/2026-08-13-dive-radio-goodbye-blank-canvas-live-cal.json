@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "njOU7GKZcvc",
-      "pulledAt": "2026-09-23T14:01:09.335Z",
+      "pulledAt": "2026-09-24T14:01:05.569Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "njOU7GKZcvc",
-        "pulledAt": "2026-09-23T14:01:09.335Z",
+        "pulledAt": "2026-09-24T14:01:05.569Z",
         "state": "ready"
       },
       "totals": {
         "views": 738,
         "estimatedMinutesWatched": 9276,
-        "averageViewDuration": 813,
-        "averageViewPercentage": 14.27,
+        "averageViewDuration": 798,
+        "averageViewPercentage": 14.000000000000002,
         "subscribersGained": 1,
         "likes": 20,
         "comments": 3
@@ -480,20 +480,20 @@
     },
     "yt:designertom": {
       "videoId": "G2_F3dd3RkA",
-      "pulledAt": "2026-09-23T14:01:09.335Z",
+      "pulledAt": "2026-09-24T14:01:05.569Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "G2_F3dd3RkA",
-        "pulledAt": "2026-09-23T14:01:09.335Z",
+        "pulledAt": "2026-09-24T14:01:05.569Z",
         "state": "ready"
       },
       "totals": {
         "views": 560,
         "estimatedMinutesWatched": 6258,
-        "averageViewDuration": 695,
-        "averageViewPercentage": 12.2,
+        "averageViewDuration": 691,
+        "averageViewPercentage": 12.13,
         "subscribersGained": 0,
         "likes": 18,
         "comments": 2
@@ -959,18 +959,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-23T14:01:09.335Z",
+  "updatedAt": "2026-09-24T14:01:05.569Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "pulledAt": "2026-09-23T14:01:09.335Z",
+    "pulledAt": "2026-09-24T14:01:05.569Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-23T14:01:09.335Z",
+    "checkedAt": "2026-09-24T14:01:05.569Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:G2_F3dd3RkA|yt:joindiveclub:njOU7GKZcvc",
@@ -981,7 +981,7 @@
         "result": "ready",
         "observed": {
           "views": 738,
-          "averageViewPercentage": 14.27
+          "averageViewPercentage": 14.000000000000002
         }
       },
       {
@@ -990,7 +990,7 @@
         "result": "ready",
         "observed": {
           "views": 560,
-          "averageViewPercentage": 12.2
+          "averageViewPercentage": 12.13
         }
       }
     ]
