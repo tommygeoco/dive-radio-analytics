@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugw03Q5-jNVCuytHte94AaABAg",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugy7h3-WyCAbkdDGh7F4AaABAg",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugzfl3LWGPssn4gJYaR4AaABAg",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     },
@@ -111,7 +111,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "UgypX-pczYc9SlPWz_94AaABAg",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     },
@@ -139,7 +139,7 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2100676710039707653",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     },
@@ -167,7 +167,7 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2101392679082860786",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     },
@@ -195,13 +195,13 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "Ugym2q7ICLt2MSrGLaF4AaABAg",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready"
       }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-24T14:01:25.932Z",
+    "checkedAt": "2026-09-24T15:16:30.588Z",
     "state": "ready",
     "sources": [
       {
@@ -209,7 +209,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready",
         "count": 2
       },
@@ -218,7 +218,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready",
         "count": 3
       },
@@ -227,7 +227,7 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2100498374315176187",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready",
         "count": 1
       },
@@ -236,12 +236,12 @@
         "source": "x-replies",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "2100498375346950179",
-        "pulledAt": "2026-09-24T14:01:25.932Z",
+        "pulledAt": "2026-09-24T15:16:30.588Z",
         "state": "ready",
         "count": 1
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-09-24T14:01:25.932Z"
+  "updatedAt": "2026-09-24T15:16:30.588Z"
 }

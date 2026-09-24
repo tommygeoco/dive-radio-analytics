@@ -1,10 +1,10 @@
 {
   "version": 1,
   "promptVersion": 5,
-  "updatedAt": "2026-09-24T14:02:00.109Z",
+  "updatedAt": "2026-09-24T15:17:05.022Z",
   "provider": "openai",
   "model": "gpt-6-astra",
-  "factsGeneratedAt": "2026-09-24T14:01:39.301Z",
+  "factsGeneratedAt": "2026-09-24T15:16:43.234Z",
   "facts": [
     {
       "id": "open-start-E1",
@@ -2296,11 +2296,11 @@
     },
     {
       "id": "views-yt-all",
-      "value": 41997
+      "value": 42018
     },
     {
       "id": "views-x-all",
-      "value": 26141
+      "value": 26145
     },
     {
       "id": "share-x-all",
@@ -2308,7 +2308,7 @@
     },
     {
       "id": "views-total-all",
-      "value": 68138
+      "value": 68163
     }
   ],
   "attempts": 1,
@@ -2355,5 +2355,6 @@
   "prunedIds": [
     "rewrite-launch-announcement",
     "test-result-first-opening"
-  ]
+  ],
+  "regroundedAt": "2026-09-24T15:17:05.022Z"
 }

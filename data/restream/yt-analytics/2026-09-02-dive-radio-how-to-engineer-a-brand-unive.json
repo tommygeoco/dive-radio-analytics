@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "Vh8ogFIE8CA",
-      "pulledAt": "2026-09-24T14:01:05.569Z",
+      "pulledAt": "2026-09-24T15:16:09.175Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "Vh8ogFIE8CA",
-        "pulledAt": "2026-09-24T14:01:05.569Z",
+        "pulledAt": "2026-09-24T15:16:09.175Z",
         "state": "ready"
       },
       "totals": {
@@ -475,13 +475,13 @@
     },
     "yt:designertom": {
       "videoId": "lnAecYrKYos",
-      "pulledAt": "2026-09-24T14:01:05.569Z",
+      "pulledAt": "2026-09-24T15:16:09.175Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "lnAecYrKYos",
-        "pulledAt": "2026-09-24T14:01:05.569Z",
+        "pulledAt": "2026-09-24T15:16:09.175Z",
         "state": "ready"
       },
       "totals": {
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T14:01:05.569Z",
+    "checkedAt": "2026-09-24T15:16:09.175Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:lnAecYrKYos|yt:joindiveclub:Vh8ogFIE8CA",
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
     "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-    "pulledAt": "2026-09-24T14:01:05.569Z",
+    "pulledAt": "2026-09-24T15:16:09.175Z",
     "state": "ready"
   },
-  "updatedAt": "2026-09-24T14:01:05.569Z"
+  "updatedAt": "2026-09-24T15:16:09.175Z"
 }

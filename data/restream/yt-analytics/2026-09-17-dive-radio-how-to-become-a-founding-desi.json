@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "x05zZ90lY28",
-      "pulledAt": "2026-09-24T14:01:05.569Z",
+      "pulledAt": "2026-09-24T15:16:09.175Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-09-24T14:01:05.569Z",
+        "pulledAt": "2026-09-24T15:16:09.175Z",
         "state": "ready"
       },
       "totals": {
@@ -475,13 +475,13 @@
     },
     "yt:designertom": {
       "videoId": "0xL0XtpH_og",
-      "pulledAt": "2026-09-24T14:01:05.569Z",
+      "pulledAt": "2026-09-24T15:16:09.175Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-09-24T14:01:05.569Z",
+        "pulledAt": "2026-09-24T15:16:09.175Z",
         "state": "ready"
       },
       "totals": {
@@ -946,7 +946,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T14:01:05.569Z",
+    "checkedAt": "2026-09-24T15:16:09.175Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:0xL0XtpH_og|yt:joindiveclub:x05zZ90lY28",
@@ -976,8 +976,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
     "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-    "pulledAt": "2026-09-24T14:01:05.569Z",
+    "pulledAt": "2026-09-24T15:16:09.175Z",
     "state": "ready"
   },
-  "updatedAt": "2026-09-24T14:01:05.569Z"
+  "updatedAt": "2026-09-24T15:16:09.175Z"
 }
