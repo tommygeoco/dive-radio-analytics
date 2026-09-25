@@ -11,7 +11,15 @@ import { buildBrief } from "../agent-brief.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const data = JSON.parse(readFileSync(join(root, "data.json"), "utf8"));
-const episode = data.episodes.find(e => e.ep === 4);
+// The Markdown brief keeps a bounded recent window. Choose a complete watch
+// fixture that is actually in that window, so the Markdown assertion keeps
+// testing a displayed episode as the catalog grows.
+const included = new Set(buildBrief(data).digest.markdown.includedSlugs);
+const episode = [...data.episodes].reverse().find((e) => included.has(e.slug)
+  && e.watch?.curve?.length === 100
+  && e.watch.moments?.some((m) => m.kind === "drop" && m.summary)
+  && e.watch.moments?.some((m) => m.kind === "hold" && m.summary));
+assert.ok(episode, "the brief needs a recent episode with a complete watch curve and grounded moments");
 const source = JSON.parse(readFileSync(join(root, "data/restream/yt-analytics", `${episode.slug}.json`), "utf8"));
 const now = Date.parse(source.updatedAt) + 1;
 const dir = mkdtempSync(join(tmpdir(), "dive-watch-curve-"));
