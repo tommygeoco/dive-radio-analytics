@@ -40,8 +40,6 @@ changing `health-v9` scoring weights or the public data schema.
   request, JSON, and grounding failures through the real health CLI in
   isolated clones; they prove a stamped append, intact earlier entries, and
   a strict model probe that writes nothing.
-- The September 25 data release and a fresh live health read still require
-  the separate source-mapping gate, a full chain, and production parity proof.
-  The About paragraph in the served `index.html` still describes the older
-  keep-previous behavior and needs a later served-artifact release to match
-  the restored fallback policy.
+- The first source-only adoption did not release September 25 data or update
+  the About paragraph. The corrected About wording follows the data release
+  as a separate served-artifact change, with its own gate and parity proof.
