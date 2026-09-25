@@ -12,6 +12,7 @@ import {
 import {
   buildLatest,
   compactSnap,
+  xPlaysSummary,
 } from "../build-data.mjs";
 
 const poison = {
@@ -104,6 +105,35 @@ assert.deepEqual(parseBroadcastStatsLine("was_live|700|80"), {
   assert.equal(result.value, 650);
   assert.equal(result.stale, true);
   assert.equal(result.asOf, "2026-09-02T20:00:00.000Z");
+}
+
+// Two posts from one account can point to one broadcast. A failed fresh pull
+// must reuse that broadcast's high-water count once in both projections.
+{
+  const show = { targets: [
+    { kind: "x", account: "ridd_design", postId: "r", broadcastId: "r1", playsStatus: "stale-high-water", playsHighWater: { value: 993, asOf: "2026-09-25T15:15:00.000Z" } },
+    { kind: "x", account: "designertom", postId: "t1", broadcastId: "t1", playsStatus: "stale-high-water", playsHighWater: { value: 777, asOf: "2026-09-25T15:15:00.000Z" } },
+    { kind: "x", account: "designertom", postId: "t2", broadcastId: "t1", playsStatus: "stale-high-water", playsHighWater: { value: 777, asOf: "2026-09-25T15:15:00.000Z" } },
+  ] };
+  const expected = { value: 1770, have: 2, total: 2, partial: false, stale: true, asOf: "2026-09-25T15:15:00.000Z" };
+  assert.deepEqual(playsSummary(show, {}), expected);
+  assert.deepEqual(xPlaysSummary(show, {}), expected);
+  assert.equal(buildShowMetrics(show, {}, { r: poison, t1: poison, t2: poison }, {
+    r1: { views: 993, peakConcurrent: 50 }, t1: { views: 777, peakConcurrent: 40 },
+  })["x:designertom"].plays, 777);
+
+  show.targets[2].playsHighWater = { value: 700, asOf: "2026-09-24T15:15:00.000Z" };
+  assert.deepEqual(playsSummary(show, {}), expected, "the strongest observed reading wins for a shared broadcast");
+  assert.deepEqual(xPlaysSummary(show, {}), expected);
+
+  // Another actual broadcast without a high-water reading is incomplete.
+  show.targets.push({ kind: "x", account: "designertom", postId: "t3", broadcastId: "t2", playsStatus: "unresolved" });
+  assert.deepEqual(playsSummary(show, {}), { value: 993, have: 1, total: 2, partial: true, stale: true, asOf: "2026-09-25T15:15:00.000Z" });
+  assert.deepEqual(xPlaysSummary(show, {}), { value: 993, have: 1, total: 2, partial: true, stale: true, asOf: "2026-09-25T15:15:00.000Z" });
+
+  const observedZero = { targets: [{ kind: "x", account: "designertom", broadcastId: "zero", playsStatus: "stale-high-water", playsHighWater: { value: 0, asOf: "2026-09-25T15:15:00.000Z" } }] };
+  assert.equal(playsSummary(observedZero, {}).value, 0, "a measured zero is present, not missing");
+  assert.equal(xPlaysSummary(observedZero, {}).value, 0);
 }
 
 console.log("x-broadcast-plays: broadcast-only source and export fixtures passed");

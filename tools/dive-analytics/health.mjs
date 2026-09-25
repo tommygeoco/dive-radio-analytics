@@ -61,10 +61,11 @@ import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // that set changed since the last saved read the drivers must name the check
 // that joined or left (prompt v4 — unconditional; under v3 only when the
 // score also moved by more than 5). One immutable entry per Phoenix calendar day.
-// A failed model read never advances the saved day. After one retry the CLI
-// fails and preserves the prior entry so the scheduler can record the failure.
-// The deterministic synthesis remains an explicit diagnostic (--probe-fallback)
-// and historical deterministic entries keep their original provider label.
+// After one failed model retry, the checked deterministic synthesis writes
+// today's entry (PRD v10 W34). If that synthesis fails validation too, the
+// prior entry stays untouched and the scheduler records the failure.
+// --probe-model remains a strict model-route diagnostic; --probe-fallback
+// checks the deterministic synthesis without writing an entry.
 // After seven days without any fresh entry the projection withholds the score.
 //
 // v8 W20 staleness audit (2026-08-23): this store CANNOT go stale the way
@@ -72,8 +73,8 @@ import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 // validator judges each against its own stamped formula/prompt versions and
 // against the committed bytes at HEAD, never against the current fact
 // sheet, and the page shows every entry under its saved date. Keep-previous
-// is correct here BY DESIGN; do not port the prune-or-regenerate pattern to
-// this store.
+// applies when neither model nor checked fallback can write; do not port the
+// prune-or-regenerate pattern to this store.
 //
 // Run:
 //   node tools/dive-analytics/health.mjs --dry          # math only, no model/write
@@ -882,12 +883,12 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
 // --- the deterministic fallback (PRD v10 W34) --------------------------------
 //
 // Same contract as the model: score inside the allowed range (here the mean
-// itself), two pros and two cons that each copy one cited fact's display
-// value, a digit-free headline under 101 characters, one to three digit-free
-// drivers, and — when the check set changed — the names of the checks that
+// itself), two pros and two cons that each copy one cited fact and any needed
+// standing qualification, a digit-free headline under 101 characters, one to
+// three digit-free drivers, and — when the check set changed — its names in
 // joined or left. Everything comes from the fact sheet and the check words.
 const BAND_WORDS = (score) => (score >= 55 ? "above its usual level" : score >= 45 ? "near its usual level" : "below its usual level");
-function fallbackSynthesis(inputs) {
+export function fallbackSynthesis(inputs) {
   const facts = inputs.facts || [];
   const byId = new Map(facts.map((f) => [f.id, f]));
   // a scored measure's own "latest-*" fact, ranked by the measure's score;
@@ -916,11 +917,16 @@ function fallbackSynthesis(inputs) {
   // show's own swing), never a fixed cut-off
   const wordFor = (score, part) => part?.state ?? stateOf(score);
   const bullet = (row, side) => {
-    const phrase = row.fact.requiredPhrase ? ` — ${row.fact.requiredPhrase}` : "";
-    const tail = side === "up" ? "ahead of the show’s usual level" : "under the show’s usual level";
-    // the fact sentence already carries its one number; keep it verbatim and add the standing
-    const text = `${row.fact.text.replace(/\.$/, "")}, ${tail}${phrase}.`;
-    return { text: text.length > 140 ? `${row.fact.text.replace(/\.$/, "")}${phrase}.`.slice(0, 140) : text, factId: row.fact.id };
+    // The lowest available scored facts can still be above the show's usual
+    // level (and the highest can still be below it). Say so explicitly when
+    // filling the required two bullets under Helping or Needs work.
+    const base = row.fact.text.replace(/\.$/, "");
+    const phrase = row.fact.requiredPhrase;
+    const factText = phrase && !base.toLowerCase().includes(phrase.toLowerCase()) ? `${base} — ${phrase}.` : row.fact.text;
+    const qualification = side === "up" && row.measure.score < 50 ? " Still below usual."
+      : side === "down" && row.measure.score >= 50 ? " Still above usual." : "";
+    const text = `${factText}${qualification}`;
+    return { text, factId: row.fact.id };
   };
   const pros = scored.filter((r) => r.measure.score >= 50).slice(0, 2).map((r) => bullet(r, "up"));
   const cons = [...scored].reverse().filter((r) => r.measure.score < 50).slice(0, 2).map((r) => bullet(r, "down"));
@@ -1064,6 +1070,25 @@ export function validateSynthesis(value, inputs) {
   return value;
 }
 
+// Fixed fallback entries can be reconstructed exactly from their immutable
+// scoring inputs. The validator uses this for fallback-v2; earlier fallback
+// entries remain judged under the rules and template they were saved with.
+export function fixedFallbackMatchesEntry(entry) {
+  const inputs = {
+    weightedMean: entry.weightedMean,
+    allowedScore: { min: Math.max(0, Math.ceil(entry.weightedMean - 8)), max: Math.min(100, Math.floor(entry.weightedMean + 8)) },
+    subScores: entry.subScores,
+    facts: entry.facts,
+    direction: entry.direction,
+    asOf: entry.asOf,
+    checkSetChange: entry.checkSetChange,
+    promptVersion: entry.promptVersion,
+  };
+  const expected = validateSynthesis(fallbackSynthesis(inputs), inputs);
+  const saved = { score: entry.score, headline: entry.headline, pros: entry.pros, cons: entry.cons, drivers: entry.drivers };
+  return JSON.stringify(saved) === JSON.stringify(expected);
+}
+
 // Public projection used by build-data.mjs. It contains only saved model copy,
 // its citation IDs, the saved per-check results, and real history points. No
 // score or trend is recomputed in the browser, and gaps in history remain gaps.
@@ -1165,8 +1190,17 @@ export function projectHealth(store, { now = Date.now() } = {}) {
   };
 }
 
-async function synthesize(inputs) {
-  if (!useGateway() && !process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) throw new Error("health model credential is unavailable; previous saved score kept");
+function checkedFallback(inputs, reason) {
+  const synthesis = validateSynthesis(fallbackSynthesis(inputs), inputs);
+  console.warn(`WARN health: ${reason}; using the checked deterministic fallback for today's read`);
+  return { synthesis, provider: "deterministic", model: "fallback-v2" };
+}
+
+async function synthesize(inputs, { allowFallback = true } = {}) {
+  if (!useGateway() && !process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) {
+    if (allowFallback) return checkedFallback(inputs, "model credential is unavailable");
+    throw new Error("health model credential is unavailable");
+  }
   const system = readFileSync(PROMPT_PATH, "utf8");
   const payload = {
     task: "Write today's Dive Radio show-health summary.",
@@ -1194,6 +1228,7 @@ async function synthesize(inputs) {
       lastError = error;
     }
   }
+  if (allowFallback) return checkedFallback(inputs, `model synthesis failed after two attempts: ${lastError.message}`);
   throw new Error(`health model synthesis failed after two attempts: ${lastError.message}; previous saved score kept`);
 }
 
@@ -1232,7 +1267,7 @@ async function main() {
     return;
   }
   if (process.argv.includes("--probe-model")) {
-    const result = await synthesize(inputs);
+    const result = await synthesize(inputs, { allowFallback: false });
     console.log(`health probe: ${result.provider}/${result.model} returned valid grounded JSON with score ${result.synthesis.score}`);
     return;
   }

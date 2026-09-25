@@ -38,6 +38,7 @@ import { discoveryShareOf, subsPer1kOf } from "../baselines.mjs";
 import { assertFrozenRatingsUnchanged, FROZEN_BASELINE, checkedTime, currentAnalyticsCohort, monotonicDrops, verifiedYoutubeRevision, activeSnapshotFreshnessErrors, sourceStoreIntegrityErrors } from "../source-integrity.mjs";
 import { readLinkedinSources, validateLinkedinStore, projectLinkedin, LINKEDIN_KEY } from "../linkedin.mjs";
 import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
+import { matchRestreamDestination } from "./restream-destination.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url)); // tools/dive-analytics/audit
 const TOOL = join(HERE, "..");
@@ -296,18 +297,6 @@ try {
   }
 
   const showBySlug = new Map(registry.shows.map((show) => [show.slug, show]));
-  const targetIdentity = (target) => {
-    if (target.kind === "youtube" && target.videoId) return `youtube:${target.videoId}`;
-    if (target.kind === "x" && target.role !== "promo" && target.broadcastId) return `x:${target.broadcastId}`;
-    return null;
-  };
-  const urlIdentity = (url) => {
-    const yt = String(url || "").match(/(?:youtube\.com\/(?:watch\?v=|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
-    if (yt) return `youtube:${yt[1]}`;
-    const x = String(url || "").match(/(?:x|twitter)\.com\/i\/broadcasts\/([A-Za-z0-9_-]+)/);
-    if (x) return `x:${x[1]}`;
-    return null;
-  };
   const candidatesFor = (episode) => archive.filter(({ event }) => {
     try { return liveBuild?.liveEventSlug(event, registry) === episode.slug; }
     catch (error) { bad++; fail(`live sessions: ${event.event.id} has an ambiguous registry match — ${error.message}`); return false; }
@@ -380,12 +369,10 @@ try {
     }
 
     const descriptorFor = (destination) => {
-      const identity = urlIdentity(destination.externalUrl);
-      const matchingTargets = (show?.targets || []).filter((target) => targetIdentity(target) === identity);
-      if (identity && matchingTargets.length !== 1) {
-        bad++; fail(`${episode.slug}: Restream channel ${destination.channelId} maps to ${matchingTargets.length} registry targets`);
+      const { identity, target, matchingCount } = matchRestreamDestination(destination, show?.targets || []);
+      if (identity && !target) {
+        bad++; fail(`${episode.slug}: Restream channel ${destination.channelId} maps to ${matchingCount} registry targets without one account identity`);
       }
-      const target = matchingTargets[0];
       if (identity?.startsWith("youtube:")) {
         const label = target?.account === "joindiveclub" ? "YT Dive Club" : target?.account === "designertom" ? "YT DesignerTom" : "YouTube";
         return { key: target ? `yt:${target.account}` : null, label };
@@ -2037,6 +2024,18 @@ try {
           );
         } catch (error) {
           bad++; fail(`health: ${entry.date} model copy/grounding is invalid — ${error.message}`);
+        }
+        // A fallback-v2 entry is wholly determined by its saved scoring
+        // inputs. Rebuild its prose and score exactly; ordinary grounding
+        // checks alone cannot detect a plausible but altered fixed headline.
+        if (entry.provider === "deterministic" && entry.model === "fallback-v2") {
+          try {
+            if (!health.fixedFallbackMatchesEntry(entry)) {
+              bad++; fail(`health: ${entry.date} fixed fallback differs from its saved scoring inputs`);
+            }
+          } catch (error) {
+            bad++; fail(`health: ${entry.date} fixed fallback cannot re-derive — ${error.message}`);
+          }
         }
       }
 

@@ -85,7 +85,7 @@ L5 page        index.html reads data.js only. It never fetches, never recomputes
 Rules that follow from the shape:
 
 - **L2 is the only place a comparison is computed.** If you need a new "typical", "pace", "vs", or "trend", it is computed through `baselines.mjs` (windows, reading rule, peers, median) inside `build-data.mjs` / `ratings.mjs` / `health.mjs` and shipped in `data.json` (`data.baselines` for page-side comparisons). The page formats; it does not derive — validator 1j fails on in-page medians or thresholds.
-- **L3 scripts receive a deterministic fact sheet and may only use numbers from it.** Every number token in saved prose is validated against the facts (`health.mjs` `validateSynthesis`, `recommendations.mjs` `validateItems`). On model failure the previous store stays the public truth — every L3 step is safe to skip, and the validator checks the store, not the run.
+- **L3 scripts receive a deterministic fact sheet and may only use numbers from it.** Every number token in saved prose is validated against the facts (`health.mjs` `validateSynthesis`, `recommendations.mjs` `validateItems`). Show health follows PRD v10 W34: after two model failures, or when no model credential is available, it saves a validated deterministic read with `provider: "deterministic"`; a failed fallback preserves the previous entry. Other model steps keep their previous stores on failure. The validator checks the store, not the run.
 - **L1 stores have different time semantics.** Snapshots (`postlive/`) are append-only time series. YouTube analytics (`yt-analytics/`) is an overwrite of one complete lifetime-to-date two-channel cohort: all registered current video ids share `pulledAt === updatedAt`, or channels is empty. Future shows are skipped; an incomplete air-date check stays internally idle and begins waiting on the next Phoenix date. Partial checks live only in internal `watchReport.probes`. `yt-analytics-history/<slug>.jsonl` (since 2026-08-23) uses a locked atomic append and keeps one line per episode per day only when every registered channel has positive views and a real watched-share value — no backfill, so same-age readings for those two measures exist only for episodes from E7 on. Comments are append-only by id; a label is never re-read without a classifier version bump. Live events are frozen at first ingest. Read `ARCHITECTURE.md` §2 before comparing two numbers from different stores.
 - **`build-data.mjs` must be reproducible.** Validator check 7 recomputes `data.json` byte-for-byte from the stores with `generatedAt` pinned. Anything non-deterministic (time, randomness, network, a model) breaks publish.
 
@@ -196,7 +196,8 @@ The shared native client is at
 the installed OpenClaw executable. These are code paths, never credentials.
 The local gateway owns OAuth renewal and the provider adapter. No API key is
 required in these model scripts when using the gateway. Gateway failures fail
-the step; they never fall back to paid API calls.
+the other model steps; show health writes a validated deterministic read after
+two failed calls. None of these failures falls back to paid API calls.
 
 Switch the entire OpenAI fleet (including these gateway calls) from Hinterlands:
 `npm run model:auth -- api --restart`; return with

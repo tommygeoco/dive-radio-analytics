@@ -22,6 +22,7 @@ import { buildBrief } from "./agent-brief.mjs";
 import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
 import { currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
 import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric } from "./youtube-readiness.mjs";
+import { accountPlaysHighWater } from "./x-plays-high-water.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
@@ -146,13 +147,12 @@ export function xPlaysSummary(show, byDest) {
       out.have += 1;
       continue;
     }
-    const hwTargets = targets.filter((t) => `x:${t.account}` === k && t.playsHighWater?.value != null);
-    if (hwTargets.length) {
-      out.value = (out.value ?? 0) + hwTargets.reduce((a, t) => a + t.playsHighWater.value, 0);
+    const highWater = accountPlaysHighWater(targets, k.slice(2));
+    if (highWater) {
+      out.value = (out.value ?? 0) + highWater.value;
       out.have += 1;
       out.stale = true;
-      const asOf = hwTargets.map((t) => t.playsHighWater.asOf).sort()[0];
-      if (asOf && (!out.asOf || asOf < out.asOf)) out.asOf = asOf;
+      if (!out.asOf || highWater.asOf < out.asOf) out.asOf = highWater.asOf;
     }
   }
   out.partial = out.have < out.total;

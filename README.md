@@ -156,12 +156,15 @@ rebuild so today's saved entry reaches the public artifact:
 ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → chapters → critic (Mondays) → build-data → validate → publish → alerts → freshness
 ```
 
-(`recommendations` and `moment-summaries` need ANTHROPIC_API_KEY like
-`health`. On any model or grounding failure `recommendations` prunes its
+(`recommendations`, `moment-summaries`, and `health` use the local OpenClaw
+gateway by default; direct API credentials apply only in explicit direct-API
+mode. On any model or grounding failure `recommendations` prunes its
 saved store to the items that still ground in the current facts — below
 three survivors the store is removed and the page falls back to the
 deterministic insights — so a stale store can never block a publish. For
-`health` and `moment-summaries` the previous store stays the public truth.
+`health` saves a validated deterministic read after two failed model attempts
+or when no direct-API credential is available. If that fallback fails, and for
+`moment-summaries` failures, the previous store stays the public truth.
 `freshness` requires a production build from today in Phoenix and keeps the
 26-hour age check as a second guard.)
 

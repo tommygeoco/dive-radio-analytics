@@ -9,7 +9,7 @@
 import assert from "node:assert/strict";
 import * as B from "../baselines.mjs";
 import { scoreEpisode, readAgeOf, WEIGHTS, MIN_WEIGHT } from "../ratings.mjs";
-import { computeHealthInputs, deterministicMean, checkScoreOf, checkBandsOf, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
+import { computeHealthInputs, deterministicMean, checkScoreOf, checkBandsOf, fallbackSynthesis, projectHealth, validateSynthesis, FORMULA_VERSION, STALE_WITHHOLD_DAYS } from "../health.mjs";
 import { mergeHealthStores } from "../chain-heal.mjs";
 
 const DAY = 86400000;
@@ -404,6 +404,44 @@ assert.equal(B.trueMedian([]), null);
   assert.throws(() => validateSynthesis(ok, { ...inputs, checkSetChange: { joined: ["futureCheck"], left: [], previousScore: 50 } }), /missing: futureCheck/, "v4: an unlabeled check key still must be named (raw key)");
   assert.doesNotThrow(() => validateSynthesis({ ...ok, score: 44, drivers: ["Live turnout carried it."] }, { ...inputs, promptVersion: 3 }), "v3 entries keep the old rule: a move of 4 needs no naming");
   assert.doesNotThrow(() => validateSynthesis(ok, { ...twoLeft, promptVersion: 3, checkSetChange: { ...twoLeft.checkSetChange, previousScore: 40 } }), "v3 entries need only one changed check named");
+}
+
+// The fixed fallback must not turn the weakest of four above-usual readings
+// into an invented below-usual claim (or the reverse when all four are low).
+{
+  const facts = [
+    { id: "latest-same-age-youtube", display: "14", text: "The latest episode has 14 YouTube views at this age." },
+    { id: "latest-live-peak", display: "25", text: "The latest show peaked at 25 live viewers." },
+    { id: "latest-live-average", display: "18", text: "The latest show averaged 18 live viewers." },
+    { id: "latest-chatters-per-100", display: "9", text: "The latest show drew 9 chatters for every hundred people at its peak." },
+  ];
+  for (const score of [30, 70]) {
+    const measure = (id) => ({ id, score });
+    const inputs = {
+      weightedMean: score,
+      allowedScore: { min: score - 8, max: score + 8 },
+      facts,
+      direction: { overall: "holding" },
+      asOf: { carried: [] },
+      checkSetChange: null,
+      subScores: {
+        growth: { score, state: score < 50 ? "fragile" : "healthy", measures: { sameAge: measure("sameAge") } },
+        livePull: { score, state: score < 50 ? "fragile" : "healthy", measures: { peak: measure("peak"), average: measure("average") } },
+        participation: { score, state: score < 50 ? "fragile" : "healthy", measures: { chattersPer100: measure("chattersPer100") } },
+      },
+    };
+    const result = fallbackSynthesis(inputs);
+    assert.doesNotThrow(() => validateSynthesis(result, inputs));
+    const copied = [...result.pros, ...result.cons].map((bullet) => bullet.text.replace(/ Still (?:above|below) usual\.$/, "")).sort();
+    assert.deepEqual(copied, facts.map((fact) => fact.text).sort(), "fallback bullets copy only grounded facts and their standing qualification");
+    const contrary = score < 50 ? result.pros : result.cons;
+    assert.ok(contrary.every((bullet) => bullet.text.endsWith(score < 50 ? "Still below usual." : "Still above usual.")), "the ranked bucket names a contrary standing explicitly");
+    if (score === 70) {
+      const long = structuredClone(inputs);
+      long.facts[2].text = `The latest show averaged 18 live viewers ${"during its full session ".repeat(6).trim()}.`;
+      assert.throws(() => validateSynthesis(fallbackSynthesis(long), long), /bullet is empty or too long/, "a qualification that exceeds the bullet limit fails closed");
+    }
+  }
 }
 
 console.log("baselines.test: ok");

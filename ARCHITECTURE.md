@@ -35,7 +35,7 @@ lives on the owner machine).
 | ratings | `tools/dive-analytics/ratings.mjs` | `data/restream/episode-ratings.json` (frozen, rebuildable entries) | no | — |
 | build-data | `tools/dive-analytics/build-data.mjs` | `data.json`, `data.js` (incl. `data.baselines`, `data.insightsStale`) | no (imports `baselines.mjs`, `watch-moments.mjs`, `recommendations.validateItem`) | — |
 | validate | `tools/dive-analytics/audit/validate.mjs` | — | no | **no publish** |
-| health | `tools/dive-analytics/health.mjs` | `data/restream/health-history.json` (append, one/Phoenix day) | **yes** | previous entry stays public |
+| health | `tools/dive-analytics/health.mjs` | `data/restream/health-history.json` (append, one/Phoenix day) | **yes** | validated deterministic fallback after two failed model calls or no direct-API credential; previous entry stays public only if fallback fails |
 | recommendations | `tools/dive-analytics/recommendations.mjs` | `data/restream/recommendations.json` | **yes** | previous store stays |
 | moment-summaries | `tools/dive-analytics/moment-summaries.mjs` | `data/restream/moment-summaries.json` | **yes** | moments render without context |
 | build-data → validate | (again, so today's health entry is in the artifact) | | | |
@@ -177,15 +177,15 @@ Both read `baselines.trueMedian`; nothing else in the repo defines a median.
 
 ## 5. Model steps and their grounding contracts
 
-Every model step follows the same shape: a **deterministic bundle** is built
-from stores → one model call (fetch only, no SDK) → strict JSON → a validator
-that rejects anything not traceable to the bundle → atomic write → on any
-failure the previous store remains the public truth.
+Model steps build a **deterministic bundle** from stores, validate generated
+output against that bundle, and write atomically. On failure, the previous
+store remains public, except show health can save a validated deterministic
+fallback from the same facts after two failed model attempts.
 
 | Step | Bundle | Output contract | Enforced by |
 |---|---|---|---|
 | classify | new comments only (never re-labels) | relevance → sentiment → ≤2 themes from a controlled vocabulary; confidence; low-confidence + 10 % sample self-audited; disagreements → `review` (never surfaced) | golden-set gate; schema; `CLASSIFIER_VERSION` + prompt hash stamps; validator 1e recomputes every rollup |
-| health | sub-scores + facts (each with `display`, `sources`, optional `requiredPhrase`) + compact context + `allowedScore` | `{score, headline (no digits, ≤100 chars), pros[2], cons[2], drivers[1–3]}`; each bullet copies exactly one fact's display value and cites its `factId`; banned words; no markup | `validateSynthesis` (two attempts, then skip); validator 1h re-checks the saved entry and, for today's entry under the current formula, re-derives the bundle from stores |
+| health | sub-scores + facts (each with `display`, `sources`, optional `requiredPhrase`) + compact context + `allowedScore` | `{score, headline (no digits, ≤100 chars), pros[2], cons[2], drivers[1–3]}`; each bullet copies exactly one fact's display value and cites its `factId`; banned words; no markup | `validateSynthesis` (two model attempts, then validated deterministic fallback); validator 1h re-checks the saved entry and, for today's entry under the current formula, re-derives the bundle from stores and exact fallback text |
 | recommendations | ~108-fact sheet (watch curves, sources, per-channel subs/watch, episode health, live, platform split, moments) | 4–7 `{id, category, text, recommendation}`; every number token exact-matches a fact; banned words | `validateItems`; validator 1n re-grounds the store each run and locks `data.insights` to it |
 | moment-summaries | moment excerpts + shape facts | one sentence per moment; no quotes | validator 1m2 (store validated, verbatim into page, no orphan summaries) |
 | critic | `data.json` + `index.html` (compact bundle; `coverage` and `live.chatters` preserved after two false positives) | five-lens markdown, ≤12 findings, one recommendation | never blocks; "Builder triage" section records fix / reject-with-evidence / queue |

@@ -19,6 +19,7 @@
 //       Public X requests use native xurl app auth; credentials stay in xurl.
 
 import { xPublicGet } from "./x-public-get.mjs";
+import { accountPlaysHighWater } from "../../tools/dive-analytics/x-plays-high-water.mjs";
 import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock, fetchJson, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
@@ -401,18 +402,12 @@ export function playsSummary(show, metrics) {
       out.have += 1;
       continue;
     }
-    const highWater = targets
-      .filter((t) => `x:${t.account}` === key && t.playsHighWater?.value != null)
-      .reduce((sum, t) => sum + t.playsHighWater.value, 0);
-    if (highWater > 0) {
-      out.value = (out.value ?? 0) + highWater;
+    const highWater = accountPlaysHighWater(targets, key.slice(2));
+    if (highWater) {
+      out.value = (out.value ?? 0) + highWater.value;
       out.have += 1;
       out.stale = true;
-      const asOf = targets
-        .filter((t) => `x:${t.account}` === key && t.playsHighWater?.asOf)
-        .map((t) => t.playsHighWater.asOf)
-        .sort()[0];
-      if (asOf && (!out.asOf || asOf < out.asOf)) out.asOf = asOf;
+      if (!out.asOf || highWater.asOf < out.asOf) out.asOf = highWater.asOf;
     }
   }
   out.partial = out.have < out.total;
