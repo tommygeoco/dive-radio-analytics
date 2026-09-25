@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "9HYGZgaHdlw",
-      "pulledAt": "2026-09-24T15:16:09.175Z",
+      "pulledAt": "2026-09-25T17:34:00.055Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "9HYGZgaHdlw",
-        "pulledAt": "2026-09-24T15:16:09.175Z",
+        "pulledAt": "2026-09-25T17:34:00.055Z",
         "state": "ready"
       },
       "totals": {
-        "views": 971,
+        "views": 972,
         "estimatedMinutesWatched": 10046,
         "averageViewDuration": 627,
         "averageViewPercentage": 9.26,
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 419,
+          "views": 420,
           "estimatedMinutesWatched": 3369
         },
         {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "szvTFybWfK4",
-      "pulledAt": "2026-09-24T15:16:09.175Z",
+      "pulledAt": "2026-09-25T17:34:00.055Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "szvTFybWfK4",
-        "pulledAt": "2026-09-24T15:16:09.175Z",
+        "pulledAt": "2026-09-25T17:34:00.055Z",
         "state": "ready"
       },
       "totals": {
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-24T15:16:09.175Z",
+  "updatedAt": "2026-09-25T17:34:00.055Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "pulledAt": "2026-09-24T15:16:09.175Z",
+    "pulledAt": "2026-09-25T17:34:00.055Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:szvTFybWfK4|yt:joindiveclub:9HYGZgaHdlw",
@@ -975,7 +975,7 @@
         "videoId": "9HYGZgaHdlw",
         "result": "ready",
         "observed": {
-          "views": 971,
+          "views": 972,
           "averageViewPercentage": 9.26
         }
       },

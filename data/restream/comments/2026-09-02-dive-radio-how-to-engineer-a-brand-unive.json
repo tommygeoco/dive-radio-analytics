@@ -97,7 +97,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "UgxdqR-E60y0zauSZLp4AaABAg",
-        "pulledAt": "2026-09-24T15:16:30.588Z",
+        "pulledAt": "2026-09-25T17:34:22.100Z",
         "state": "ready"
       }
     },
@@ -201,15 +201,15 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "Ugz2VLFIYF5xuP7CLp14AaABAg",
-        "pulledAt": "2026-09-24T15:16:30.588Z",
+        "pulledAt": "2026-09-25T17:34:22.100Z",
         "state": "ready"
       }
     }
   ],
   "xCoverage": "covered",
-  "updatedAt": "2026-09-24T15:16:30.588Z",
+  "updatedAt": "2026-09-25T17:34:22.100Z",
   "capture": {
-    "checkedAt": "2026-09-24T15:16:30.588Z",
+    "checkedAt": "2026-09-25T17:34:22.100Z",
     "state": "ready",
     "sources": [
       {
@@ -217,7 +217,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "Vh8ogFIE8CA",
-        "pulledAt": "2026-09-24T15:16:30.588Z",
+        "pulledAt": "2026-09-25T17:34:22.100Z",
         "state": "ready",
         "count": 2
       },
@@ -226,7 +226,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "lnAecYrKYos",
-        "pulledAt": "2026-09-24T15:16:30.588Z",
+        "pulledAt": "2026-09-25T17:34:22.100Z",
         "state": "ready",
         "count": 0
       }

@@ -55,11 +55,23 @@
         "pulledAt": "2026-09-19T16:21:35.243Z",
         "state": "ready"
       }
+    },
+    "1245f864-b423-48d3-ab9e-a063e2f18d98": {
+      "status": "ingested",
+      "ingestedAt": "2026-09-25T14:01:16.351Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "restream",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "1245f864-b423-48d3-ab9e-a063e2f18d98",
+        "pulledAt": "2026-09-25T14:01:16.351Z",
+        "state": "ready"
+      }
     }
   },
-  "checkedAt": "2026-09-24T15:16:41.477Z",
+  "checkedAt": "2026-09-25T17:34:34.926Z",
   "capture": {
-    "checkedAt": "2026-09-24T15:16:41.477Z",
+    "checkedAt": "2026-09-25T17:34:34.926Z",
     "state": "ready",
     "pendingEvents": [],
     "errors": []

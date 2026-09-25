@@ -1,0 +1,4893 @@
+{
+  "event": {
+    "id": "1245f864-b423-48d3-ab9e-a063e2f18d98",
+    "showId": "3b78e908-8eb4-4018-8cd2-08984ea3caa3",
+    "status": "finished",
+    "title": "Dive Radio: Just-in-Time Interfaces",
+    "description": "New episodes live every week. Drop a comment or call in. The best takes make the show.",
+    "isInstant": false,
+    "isRecordOnly": false,
+    "coverUrl": "https://events-images.restream.io/58/76/99/4/1245f864-b423-48d3-ab9e-a063e2f18d98/cover-232165f534ba4c108bae0e966408abdd.png",
+    "scheduledFor": 1790280000,
+    "startedAt": 1790280039,
+    "finishedAt": 1790287115,
+    "destinations": [
+      {
+        "id": "a9e18321-4895-4bc5-8e3a-8bd27b754143",
+        "channelId": 17403675,
+        "streamingPlatformId": 71,
+        "externalUrl": "https://x.com/i/broadcasts/1qKDzWQmenBJV"
+      },
+      {
+        "id": "b7947a61-9931-45b0-9392-524f2de9ae70",
+        "channelId": 17403682,
+        "streamingPlatformId": 5,
+        "externalUrl": "https://www.youtube.com/watch?v=Cjv-0MKQ4GU"
+      },
+      {
+        "id": "87b03792-46aa-4e49-870c-fa04a528482d",
+        "channelId": 17404029,
+        "streamingPlatformId": 5,
+        "externalUrl": "https://www.youtube.com/watch?v=2EAAU-knqRE"
+      },
+      {
+        "id": "a48a8614-0a91-489d-84bd-bb2ca588f8c6",
+        "channelId": 17404025,
+        "streamingPlatformId": 71,
+        "externalUrl": "https://x.com/i/broadcasts/1qxvveXzoggxB"
+      }
+    ]
+  },
+  "viewers": {
+    "total": {
+      "mean": 80,
+      "max": 109,
+      "viewsTotal": 877,
+      "peakTime": 1790283600000,
+      "watchedTime": 9440,
+      "viewersPerMinute": [
+        {
+          "timestamp": 1790280000000,
+          "viewers": 10
+        },
+        {
+          "timestamp": 1790280060000,
+          "viewers": 12
+        },
+        {
+          "timestamp": 1790280120000,
+          "viewers": 19
+        },
+        {
+          "timestamp": 1790280180000,
+          "viewers": 33
+        },
+        {
+          "timestamp": 1790280240000,
+          "viewers": 38
+        },
+        {
+          "timestamp": 1790280300000,
+          "viewers": 42
+        },
+        {
+          "timestamp": 1790280360000,
+          "viewers": 52
+        },
+        {
+          "timestamp": 1790280420000,
+          "viewers": 57
+        },
+        {
+          "timestamp": 1790280480000,
+          "viewers": 56
+        },
+        {
+          "timestamp": 1790280540000,
+          "viewers": 62
+        },
+        {
+          "timestamp": 1790280600000,
+          "viewers": 69
+        },
+        {
+          "timestamp": 1790280660000,
+          "viewers": 69
+        },
+        {
+          "timestamp": 1790280720000,
+          "viewers": 64
+        },
+        {
+          "timestamp": 1790280780000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790280840000,
+          "viewers": 84
+        },
+        {
+          "timestamp": 1790280900000,
+          "viewers": 81
+        },
+        {
+          "timestamp": 1790280960000,
+          "viewers": 86
+        },
+        {
+          "timestamp": 1790281020000,
+          "viewers": 86
+        },
+        {
+          "timestamp": 1790281080000,
+          "viewers": 85
+        },
+        {
+          "timestamp": 1790281140000,
+          "viewers": 91
+        },
+        {
+          "timestamp": 1790281200000,
+          "viewers": 82
+        },
+        {
+          "timestamp": 1790281260000,
+          "viewers": 92
+        },
+        {
+          "timestamp": 1790281320000,
+          "viewers": 89
+        },
+        {
+          "timestamp": 1790281380000,
+          "viewers": 96
+        },
+        {
+          "timestamp": 1790281440000,
+          "viewers": 95
+        },
+        {
+          "timestamp": 1790281500000,
+          "viewers": 85
+        },
+        {
+          "timestamp": 1790281560000,
+          "viewers": 86
+        },
+        {
+          "timestamp": 1790281620000,
+          "viewers": 88
+        },
+        {
+          "timestamp": 1790281680000,
+          "viewers": 92
+        },
+        {
+          "timestamp": 1790281740000,
+          "viewers": 89
+        },
+        {
+          "timestamp": 1790281800000,
+          "viewers": 85
+        },
+        {
+          "timestamp": 1790281860000,
+          "viewers": 82
+        },
+        {
+          "timestamp": 1790281920000,
+          "viewers": 86
+        },
+        {
+          "timestamp": 1790281980000,
+          "viewers": 95
+        },
+        {
+          "timestamp": 1790282040000,
+          "viewers": 98
+        },
+        {
+          "timestamp": 1790282100000,
+          "viewers": 94
+        },
+        {
+          "timestamp": 1790282160000,
+          "viewers": 90
+        },
+        {
+          "timestamp": 1790282220000,
+          "viewers": 87
+        },
+        {
+          "timestamp": 1790282280000,
+          "viewers": 87
+        },
+        {
+          "timestamp": 1790282340000,
+          "viewers": 99
+        },
+        {
+          "timestamp": 1790282400000,
+          "viewers": 95
+        },
+        {
+          "timestamp": 1790282460000,
+          "viewers": 89
+        },
+        {
+          "timestamp": 1790282520000,
+          "viewers": 92
+        },
+        {
+          "timestamp": 1790282580000,
+          "viewers": 85
+        },
+        {
+          "timestamp": 1790282640000,
+          "viewers": 90
+        },
+        {
+          "timestamp": 1790282700000,
+          "viewers": 89
+        },
+        {
+          "timestamp": 1790282760000,
+          "viewers": 88
+        },
+        {
+          "timestamp": 1790282820000,
+          "viewers": 91
+        },
+        {
+          "timestamp": 1790282880000,
+          "viewers": 94
+        },
+        {
+          "timestamp": 1790282940000,
+          "viewers": 90
+        },
+        {
+          "timestamp": 1790283000000,
+          "viewers": 88
+        },
+        {
+          "timestamp": 1790283060000,
+          "viewers": 91
+        },
+        {
+          "timestamp": 1790283120000,
+          "viewers": 95
+        },
+        {
+          "timestamp": 1790283180000,
+          "viewers": 97
+        },
+        {
+          "timestamp": 1790283240000,
+          "viewers": 93
+        },
+        {
+          "timestamp": 1790283300000,
+          "viewers": 93
+        },
+        {
+          "timestamp": 1790283360000,
+          "viewers": 97
+        },
+        {
+          "timestamp": 1790283420000,
+          "viewers": 100
+        },
+        {
+          "timestamp": 1790283480000,
+          "viewers": 97
+        },
+        {
+          "timestamp": 1790283540000,
+          "viewers": 100
+        },
+        {
+          "timestamp": 1790283600000,
+          "viewers": 109
+        },
+        {
+          "timestamp": 1790283660000,
+          "viewers": 93
+        },
+        {
+          "timestamp": 1790283720000,
+          "viewers": 92
+        },
+        {
+          "timestamp": 1790283780000,
+          "viewers": 92
+        },
+        {
+          "timestamp": 1790283840000,
+          "viewers": 91
+        },
+        {
+          "timestamp": 1790283900000,
+          "viewers": 91
+        },
+        {
+          "timestamp": 1790283960000,
+          "viewers": 91
+        },
+        {
+          "timestamp": 1790284020000,
+          "viewers": 92
+        },
+        {
+          "timestamp": 1790284080000,
+          "viewers": 93
+        },
+        {
+          "timestamp": 1790284140000,
+          "viewers": 94
+        },
+        {
+          "timestamp": 1790284200000,
+          "viewers": 95
+        },
+        {
+          "timestamp": 1790284260000,
+          "viewers": 96
+        },
+        {
+          "timestamp": 1790284320000,
+          "viewers": 98
+        },
+        {
+          "timestamp": 1790284380000,
+          "viewers": 93
+        },
+        {
+          "timestamp": 1790284440000,
+          "viewers": 89
+        },
+        {
+          "timestamp": 1790284500000,
+          "viewers": 85
+        },
+        {
+          "timestamp": 1790284560000,
+          "viewers": 80
+        },
+        {
+          "timestamp": 1790284620000,
+          "viewers": 76
+        },
+        {
+          "timestamp": 1790284680000,
+          "viewers": 72
+        },
+        {
+          "timestamp": 1790284740000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790284800000,
+          "viewers": 74
+        },
+        {
+          "timestamp": 1790284860000,
+          "viewers": 75
+        },
+        {
+          "timestamp": 1790284920000,
+          "viewers": 76
+        },
+        {
+          "timestamp": 1790284980000,
+          "viewers": 77
+        },
+        {
+          "timestamp": 1790285040000,
+          "viewers": 77
+        },
+        {
+          "timestamp": 1790285100000,
+          "viewers": 77
+        },
+        {
+          "timestamp": 1790285160000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285220000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285280000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285340000,
+          "viewers": 79
+        },
+        {
+          "timestamp": 1790285400000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285460000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285520000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285580000,
+          "viewers": 77
+        },
+        {
+          "timestamp": 1790285640000,
+          "viewers": 77
+        },
+        {
+          "timestamp": 1790285700000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790285760000,
+          "viewers": 80
+        },
+        {
+          "timestamp": 1790285820000,
+          "viewers": 81
+        },
+        {
+          "timestamp": 1790285880000,
+          "viewers": 83
+        },
+        {
+          "timestamp": 1790285940000,
+          "viewers": 84
+        },
+        {
+          "timestamp": 1790286000000,
+          "viewers": 86
+        },
+        {
+          "timestamp": 1790286060000,
+          "viewers": 84
+        },
+        {
+          "timestamp": 1790286120000,
+          "viewers": 82
+        },
+        {
+          "timestamp": 1790286180000,
+          "viewers": 80
+        },
+        {
+          "timestamp": 1790286240000,
+          "viewers": 78
+        },
+        {
+          "timestamp": 1790286300000,
+          "viewers": 76
+        },
+        {
+          "timestamp": 1790286360000,
+          "viewers": 74
+        },
+        {
+          "timestamp": 1790286420000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286480000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286540000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286600000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286660000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286720000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286780000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286840000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286900000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790286960000,
+          "viewers": 73
+        },
+        {
+          "timestamp": 1790287020000,
+          "viewers": 74
+        },
+        {
+          "timestamp": 1790287080000,
+          "viewers": 74
+        }
+      ]
+    },
+    "byChannel": {
+      "17403675": {
+        "mean": 8,
+        "max": 17,
+        "viewsTotal": 272,
+        "peakTime": 1790281260000,
+        "watchedTime": 944,
+        "viewersPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "viewers": 0
+          },
+          {
+            "timestamp": 1790280060000,
+            "viewers": 1
+          },
+          {
+            "timestamp": 1790280120000,
+            "viewers": 3
+          },
+          {
+            "timestamp": 1790280180000,
+            "viewers": 5
+          },
+          {
+            "timestamp": 1790280240000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790280300000,
+            "viewers": 5
+          },
+          {
+            "timestamp": 1790280360000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790280420000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790280480000,
+            "viewers": 5
+          },
+          {
+            "timestamp": 1790280540000,
+            "viewers": 5
+          },
+          {
+            "timestamp": 1790280600000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790280660000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790280720000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790280780000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790280840000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790280900000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790280960000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281020000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790281080000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790281140000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281200000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790281260000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790281320000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790281380000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790281440000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281500000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790281560000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281620000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790281680000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281740000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790281800000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790281860000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790281920000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790281980000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282040000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282100000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790282160000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282220000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282280000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790282340000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282400000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790282460000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282520000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282580000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790282640000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282700000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790282760000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282820000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282880000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282940000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790283000000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283060000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283120000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283180000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790283240000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283300000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283360000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790283420000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283480000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283540000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790283600000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283660000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790283720000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790283780000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790283840000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790283900000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790283960000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790284020000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790284080000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790284140000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790284200000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790284260000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284320000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790284380000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284440000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790284500000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790284560000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790284620000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790284680000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790284740000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790284800000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790284860000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790284920000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790284980000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790285040000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790285100000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285160000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285220000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285280000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790285340000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790285400000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790285460000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285520000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285580000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790285640000,
+            "viewers": 5
+          },
+          {
+            "timestamp": 1790285700000,
+            "viewers": 5
+          },
+          {
+            "timestamp": 1790285760000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790285820000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790285880000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285940000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790286000000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286060000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790286120000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790286180000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790286240000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790286300000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790286360000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790286420000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790286480000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790286540000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790286600000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286660000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790286720000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286780000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286840000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286900000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286960000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790287020000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790287080000,
+            "viewers": 8
+          }
+        ]
+      },
+      "17403682": {
+        "mean": 39,
+        "max": 49,
+        "viewsTotal": 216,
+        "peakTime": 1790283420000,
+        "watchedTime": 4602,
+        "viewersPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790280060000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790280120000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790280180000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790280240000,
+            "viewers": 20
+          },
+          {
+            "timestamp": 1790280300000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790280360000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790280420000,
+            "viewers": 30
+          },
+          {
+            "timestamp": 1790280480000,
+            "viewers": 32
+          },
+          {
+            "timestamp": 1790280540000,
+            "viewers": 33
+          },
+          {
+            "timestamp": 1790280600000,
+            "viewers": 36
+          },
+          {
+            "timestamp": 1790280660000,
+            "viewers": 36
+          },
+          {
+            "timestamp": 1790280720000,
+            "viewers": 34
+          },
+          {
+            "timestamp": 1790280780000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790280840000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790280900000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790280960000,
+            "viewers": 42
+          },
+          {
+            "timestamp": 1790281020000,
+            "viewers": 42
+          },
+          {
+            "timestamp": 1790281080000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790281140000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790281200000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790281260000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790281320000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790281380000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790281440000,
+            "viewers": 46
+          },
+          {
+            "timestamp": 1790281500000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790281560000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790281620000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790281680000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790281740000,
+            "viewers": 42
+          },
+          {
+            "timestamp": 1790281800000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790281860000,
+            "viewers": 42
+          },
+          {
+            "timestamp": 1790281920000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790281980000,
+            "viewers": 45
+          },
+          {
+            "timestamp": 1790282040000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790282100000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790282160000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790282220000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790282280000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790282340000,
+            "viewers": 47
+          },
+          {
+            "timestamp": 1790282400000,
+            "viewers": 46
+          },
+          {
+            "timestamp": 1790282460000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790282520000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790282580000,
+            "viewers": 42
+          },
+          {
+            "timestamp": 1790282640000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790282700000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790282760000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790282820000,
+            "viewers": 42
+          },
+          {
+            "timestamp": 1790282880000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790282940000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790283000000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790283060000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790283120000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790283180000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790283240000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790283300000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790283360000,
+            "viewers": 46
+          },
+          {
+            "timestamp": 1790283420000,
+            "viewers": 49
+          },
+          {
+            "timestamp": 1790283480000,
+            "viewers": 46
+          },
+          {
+            "timestamp": 1790283540000,
+            "viewers": 45
+          },
+          {
+            "timestamp": 1790283600000,
+            "viewers": 48
+          },
+          {
+            "timestamp": 1790283660000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790283720000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790283780000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790283840000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790283900000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790283960000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790284020000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790284080000,
+            "viewers": 44
+          },
+          {
+            "timestamp": 1790284140000,
+            "viewers": 45
+          },
+          {
+            "timestamp": 1790284200000,
+            "viewers": 46
+          },
+          {
+            "timestamp": 1790284260000,
+            "viewers": 47
+          },
+          {
+            "timestamp": 1790284320000,
+            "viewers": 48
+          },
+          {
+            "timestamp": 1790284380000,
+            "viewers": 45
+          },
+          {
+            "timestamp": 1790284440000,
+            "viewers": 43
+          },
+          {
+            "timestamp": 1790284500000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790284560000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790284620000,
+            "viewers": 35
+          },
+          {
+            "timestamp": 1790284680000,
+            "viewers": 33
+          },
+          {
+            "timestamp": 1790284740000,
+            "viewers": 34
+          },
+          {
+            "timestamp": 1790284800000,
+            "viewers": 35
+          },
+          {
+            "timestamp": 1790284860000,
+            "viewers": 36
+          },
+          {
+            "timestamp": 1790284920000,
+            "viewers": 37
+          },
+          {
+            "timestamp": 1790284980000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790285040000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790285100000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790285160000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790285220000,
+            "viewers": 37
+          },
+          {
+            "timestamp": 1790285280000,
+            "viewers": 37
+          },
+          {
+            "timestamp": 1790285340000,
+            "viewers": 37
+          },
+          {
+            "timestamp": 1790285400000,
+            "viewers": 37
+          },
+          {
+            "timestamp": 1790285460000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790285520000,
+            "viewers": 38
+          },
+          {
+            "timestamp": 1790285580000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790285640000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790285700000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790285760000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790285820000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790285880000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790285940000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286000000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790286060000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286120000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286180000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286240000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286300000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286360000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286420000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286480000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286540000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286600000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286660000,
+            "viewers": 41
+          },
+          {
+            "timestamp": 1790286720000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286780000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286840000,
+            "viewers": 40
+          },
+          {
+            "timestamp": 1790286900000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790286960000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790287020000,
+            "viewers": 39
+          },
+          {
+            "timestamp": 1790287080000,
+            "viewers": 39
+          }
+        ]
+      },
+      "17404025": {
+        "mean": 10,
+        "max": 25,
+        "viewsTotal": 242,
+        "peakTime": 1790283600000,
+        "watchedTime": 1180,
+        "viewersPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "viewers": 0
+          },
+          {
+            "timestamp": 1790280060000,
+            "viewers": 1
+          },
+          {
+            "timestamp": 1790280120000,
+            "viewers": 1
+          },
+          {
+            "timestamp": 1790280180000,
+            "viewers": 1
+          },
+          {
+            "timestamp": 1790280240000,
+            "viewers": 2
+          },
+          {
+            "timestamp": 1790280300000,
+            "viewers": 4
+          },
+          {
+            "timestamp": 1790280360000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790280420000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790280480000,
+            "viewers": 6
+          },
+          {
+            "timestamp": 1790280540000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790280600000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790280660000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790280720000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790280780000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790280840000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790280900000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790280960000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790281020000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790281080000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790281140000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790281200000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790281260000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790281320000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790281380000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790281440000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281500000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790281560000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790281620000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790281680000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790281740000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790281800000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790281860000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790281920000,
+            "viewers": 17
+          },
+          {
+            "timestamp": 1790281980000,
+            "viewers": 18
+          },
+          {
+            "timestamp": 1790282040000,
+            "viewers": 19
+          },
+          {
+            "timestamp": 1790282100000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790282160000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790282220000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790282280000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790282340000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790282400000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282460000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790282520000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790282580000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790282640000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790282700000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790282760000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790282820000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790282880000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790282940000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790283000000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790283060000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790283120000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790283180000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790283240000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790283300000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790283360000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790283420000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790283480000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790283540000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790283600000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790283660000,
+            "viewers": 16
+          },
+          {
+            "timestamp": 1790283720000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790283780000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790283840000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790283900000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790283960000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284020000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284080000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284140000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284200000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284260000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284320000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284380000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284440000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284500000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284560000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284620000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284680000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790284740000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790284800000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790284860000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790284920000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790284980000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285040000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285100000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285160000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285220000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285280000,
+            "viewers": 7
+          },
+          {
+            "timestamp": 1790285340000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285400000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285460000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285520000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285580000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285640000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285700000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285760000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790285820000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790285880000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790285940000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790286000000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790286060000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790286120000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790286180000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790286240000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790286300000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790286360000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790286420000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286480000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286540000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286600000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286660000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286720000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286780000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286840000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286900000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790286960000,
+            "viewers": 8
+          },
+          {
+            "timestamp": 1790287020000,
+            "viewers": 9
+          },
+          {
+            "timestamp": 1790287080000,
+            "viewers": 9
+          }
+        ]
+      },
+      "17404029": {
+        "mean": 22,
+        "max": 32,
+        "viewsTotal": 147,
+        "peakTime": 1790283540000,
+        "watchedTime": 2596,
+        "viewersPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "viewers": 4
+          },
+          {
+            "timestamp": 1790280060000,
+            "viewers": 3
+          },
+          {
+            "timestamp": 1790280120000,
+            "viewers": 4
+          },
+          {
+            "timestamp": 1790280180000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790280240000,
+            "viewers": 10
+          },
+          {
+            "timestamp": 1790280300000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790280360000,
+            "viewers": 11
+          },
+          {
+            "timestamp": 1790280420000,
+            "viewers": 12
+          },
+          {
+            "timestamp": 1790280480000,
+            "viewers": 13
+          },
+          {
+            "timestamp": 1790280540000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790280600000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790280660000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790280720000,
+            "viewers": 14
+          },
+          {
+            "timestamp": 1790280780000,
+            "viewers": 16
+          },
+          {
+            "timestamp": 1790280840000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790280900000,
+            "viewers": 19
+          },
+          {
+            "timestamp": 1790280960000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790281020000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790281080000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790281140000,
+            "viewers": 28
+          },
+          {
+            "timestamp": 1790281200000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790281260000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790281320000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790281380000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790281440000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790281500000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790281560000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790281620000,
+            "viewers": 21
+          },
+          {
+            "timestamp": 1790281680000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790281740000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790281800000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790281860000,
+            "viewers": 19
+          },
+          {
+            "timestamp": 1790281920000,
+            "viewers": 19
+          },
+          {
+            "timestamp": 1790281980000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790282040000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790282100000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790282160000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790282220000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790282280000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790282340000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790282400000,
+            "viewers": 30
+          },
+          {
+            "timestamp": 1790282460000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790282520000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790282580000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790282640000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790282700000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790282760000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790282820000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790282880000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790282940000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790283000000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790283060000,
+            "viewers": 29
+          },
+          {
+            "timestamp": 1790283120000,
+            "viewers": 29
+          },
+          {
+            "timestamp": 1790283180000,
+            "viewers": 31
+          },
+          {
+            "timestamp": 1790283240000,
+            "viewers": 30
+          },
+          {
+            "timestamp": 1790283300000,
+            "viewers": 29
+          },
+          {
+            "timestamp": 1790283360000,
+            "viewers": 29
+          },
+          {
+            "timestamp": 1790283420000,
+            "viewers": 30
+          },
+          {
+            "timestamp": 1790283480000,
+            "viewers": 29
+          },
+          {
+            "timestamp": 1790283540000,
+            "viewers": 32
+          },
+          {
+            "timestamp": 1790283600000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790283660000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790283720000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790283780000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790283840000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790283900000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790283960000,
+            "viewers": 29
+          },
+          {
+            "timestamp": 1790284020000,
+            "viewers": 28
+          },
+          {
+            "timestamp": 1790284080000,
+            "viewers": 28
+          },
+          {
+            "timestamp": 1790284140000,
+            "viewers": 28
+          },
+          {
+            "timestamp": 1790284200000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790284260000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790284320000,
+            "viewers": 27
+          },
+          {
+            "timestamp": 1790284380000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790284440000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790284500000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790284560000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790284620000,
+            "viewers": 21
+          },
+          {
+            "timestamp": 1790284680000,
+            "viewers": 20
+          },
+          {
+            "timestamp": 1790284740000,
+            "viewers": 21
+          },
+          {
+            "timestamp": 1790284800000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790284860000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790284920000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790284980000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790285040000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285100000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285160000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285220000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285280000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285340000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285400000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285460000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285520000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285580000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285640000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790285700000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790285760000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790285820000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790285880000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790285940000,
+            "viewers": 25
+          },
+          {
+            "timestamp": 1790286000000,
+            "viewers": 26
+          },
+          {
+            "timestamp": 1790286060000,
+            "viewers": 24
+          },
+          {
+            "timestamp": 1790286120000,
+            "viewers": 23
+          },
+          {
+            "timestamp": 1790286180000,
+            "viewers": 22
+          },
+          {
+            "timestamp": 1790286240000,
+            "viewers": 21
+          },
+          {
+            "timestamp": 1790286300000,
+            "viewers": 20
+          },
+          {
+            "timestamp": 1790286360000,
+            "viewers": 19
+          },
+          {
+            "timestamp": 1790286420000,
+            "viewers": 18
+          },
+          {
+            "timestamp": 1790286480000,
+            "viewers": 17
+          },
+          {
+            "timestamp": 1790286540000,
+            "viewers": 16
+          },
+          {
+            "timestamp": 1790286600000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790286660000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790286720000,
+            "viewers": 15
+          },
+          {
+            "timestamp": 1790286780000,
+            "viewers": 16
+          },
+          {
+            "timestamp": 1790286840000,
+            "viewers": 16
+          },
+          {
+            "timestamp": 1790286900000,
+            "viewers": 17
+          },
+          {
+            "timestamp": 1790286960000,
+            "viewers": 17
+          },
+          {
+            "timestamp": 1790287020000,
+            "viewers": 18
+          },
+          {
+            "timestamp": 1790287080000,
+            "viewers": 18
+          }
+        ]
+      }
+    }
+  },
+  "messages": {
+    "total": {
+      "messagesTotal": 184,
+      "chattersTotal": 67,
+      "messagesPerMinute": [
+        {
+          "timestamp": 1790280000000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790280060000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790280120000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790280180000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790280240000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790280300000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790280360000,
+          "messages": 11
+        },
+        {
+          "timestamp": 1790280420000,
+          "messages": 4
+        },
+        {
+          "timestamp": 1790280480000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790280540000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790280600000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790280660000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790280720000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790280780000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790280840000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790280900000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790280960000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790281020000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790281080000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281140000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281200000,
+          "messages": 6
+        },
+        {
+          "timestamp": 1790281260000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790281320000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790281380000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281440000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790281500000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790281560000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790281620000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281680000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790281740000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281800000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281860000,
+          "messages": 7
+        },
+        {
+          "timestamp": 1790281920000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790281980000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282040000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282100000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282160000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790282220000,
+          "messages": 7
+        },
+        {
+          "timestamp": 1790282280000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282340000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790282400000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282460000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790282520000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790282580000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790282640000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282700000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790282760000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790282820000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790282880000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790282940000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283000000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790283060000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283120000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283180000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790283240000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283300000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790283360000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790283420000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283480000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790283540000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790283600000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790283660000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790283720000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790283780000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283840000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283900000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790283960000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790284020000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790284080000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790284140000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790284200000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790284260000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790284320000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790284380000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790284440000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790284500000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790284560000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790284620000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790284680000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790284740000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790284800000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790284860000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790284920000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790284980000,
+          "messages": 4
+        },
+        {
+          "timestamp": 1790285040000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790285100000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790285160000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790285220000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790285280000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790285340000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790285400000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790285460000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790285520000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790285580000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790285640000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790285700000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790285760000,
+          "messages": 5
+        },
+        {
+          "timestamp": 1790285820000,
+          "messages": 4
+        },
+        {
+          "timestamp": 1790285880000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790285940000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790286000000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790286060000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790286120000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790286180000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790286240000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790286300000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790286360000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790286420000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790286480000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790286540000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790286600000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790286660000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790286720000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790286780000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790286840000,
+          "messages": 1
+        },
+        {
+          "timestamp": 1790286900000,
+          "messages": 0
+        },
+        {
+          "timestamp": 1790286960000,
+          "messages": 3
+        },
+        {
+          "timestamp": 1790287020000,
+          "messages": 2
+        },
+        {
+          "timestamp": 1790287080000,
+          "messages": 2
+        }
+      ]
+    },
+    "byChannel": {
+      "17403675": {
+        "messagesTotal": 20,
+        "chattersTotal": 19,
+        "messagesPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280060000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280360000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280900000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280960000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281020000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281080000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281140000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281200000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281260000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281320000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281380000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281500000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281560000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281620000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281680000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281740000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281800000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281860000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281980000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282040000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282100000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282220000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282400000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282460000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282580000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282640000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282700000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282760000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282820000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282940000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283120000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283180000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283480000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283840000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283960000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284080000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284140000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284200000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284260000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284320000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284380000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284500000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284560000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284620000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284680000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284740000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284800000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284860000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284980000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285040000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285100000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285220000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285400000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285460000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285580000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285640000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285700000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285760000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285820000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285940000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286300000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286960000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790287020000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790287080000,
+            "messages": 1
+          }
+        ]
+      },
+      "17403682": {
+        "messagesTotal": 90,
+        "chattersTotal": 19,
+        "messagesPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280120000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280360000,
+            "messages": 5
+          },
+          {
+            "timestamp": 1790280420000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790280480000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790280540000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280600000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280660000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280840000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280960000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281020000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281080000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281140000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281200000,
+            "messages": 3
+          },
+          {
+            "timestamp": 1790281260000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281320000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790281380000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281500000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790281560000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281620000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281680000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281740000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281800000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281860000,
+            "messages": 3
+          },
+          {
+            "timestamp": 1790281920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281980000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282040000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282100000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282220000,
+            "messages": 4
+          },
+          {
+            "timestamp": 1790282280000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790282340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282400000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282460000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282580000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282640000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790282700000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282760000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282820000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282940000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283060000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283300000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790283360000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790283420000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283480000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283960000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790284020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284080000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284140000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284200000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284260000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790284320000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284380000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284500000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284560000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790284620000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284680000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284740000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790284800000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284860000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284980000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285040000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285100000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285220000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285400000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285460000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285520000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285580000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285640000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285700000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285760000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285820000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285940000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286060000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286180000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286240000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286300000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286420000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790286480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286540000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790286600000,
+            "messages": 3
+          },
+          {
+            "timestamp": 1790286660000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286840000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286960000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790287020000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790287080000,
+            "messages": 1
+          }
+        ]
+      },
+      "17404025": {
+        "messagesTotal": 44,
+        "chattersTotal": 16,
+        "messagesPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280360000,
+            "messages": 3
+          },
+          {
+            "timestamp": 1790280420000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790280480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280600000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790280660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280960000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281080000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281140000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281200000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790281260000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790281320000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281380000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281500000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281560000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281620000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281680000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281740000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281800000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281860000,
+            "messages": 3
+          },
+          {
+            "timestamp": 1790281920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281980000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282040000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282100000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282220000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282400000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282460000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282580000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282640000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282700000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282760000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282820000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282940000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283180000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283480000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283780000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283900000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283960000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284020000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284080000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284140000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284200000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284260000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284320000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284380000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284500000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284560000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284620000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284680000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284740000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284800000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284860000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284980000,
+            "messages": 3
+          },
+          {
+            "timestamp": 1790285040000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285100000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285160000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285220000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285400000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285460000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285580000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285640000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285700000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285760000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790285820000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285940000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286120000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790286180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286240000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286300000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286660000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286720000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286960000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790287020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790287080000,
+            "messages": 0
+          }
+        ]
+      },
+      "17404029": {
+        "messagesTotal": 30,
+        "chattersTotal": 13,
+        "messagesPerMinute": [
+          {
+            "timestamp": 1790280000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280240000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790280300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280360000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790280420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790280900000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790280960000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281080000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281140000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281200000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281260000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281320000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281380000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281440000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790281500000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281560000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281620000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281680000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281740000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281800000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281860000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281920000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790281980000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282040000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790282100000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282220000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790282280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282400000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282460000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282580000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790282640000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282700000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282760000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282820000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790282940000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283120000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283180000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283240000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790283300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790283960000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284080000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284140000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284200000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284260000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284320000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284380000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284440000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284500000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284560000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284620000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284680000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284740000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284800000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790284860000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284920000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790284980000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285040000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285100000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285160000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285220000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285280000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285340000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285400000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285460000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285520000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285580000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285640000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285700000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790285760000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790285820000,
+            "messages": 2
+          },
+          {
+            "timestamp": 1790285880000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790285940000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286000000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286060000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286120000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790286180000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286240000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286300000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286360000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286420000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286480000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286540000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286600000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286660000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286720000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286780000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286840000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286900000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790286960000,
+            "messages": 1
+          },
+          {
+            "timestamp": 1790287020000,
+            "messages": 0
+          },
+          {
+            "timestamp": 1790287080000,
+            "messages": 0
+          }
+        ]
+      }
+    }
+  },
+  "fetchedAt": "2026-09-25T14:01:16.351Z",
+  "reading": {
+    "schemaVersion": 1,
+    "source": "restream",
+    "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+    "objectId": "1245f864-b423-48d3-ab9e-a063e2f18d98",
+    "pulledAt": "2026-09-25T14:01:16.351Z",
+    "state": "ready"
+  }
+}

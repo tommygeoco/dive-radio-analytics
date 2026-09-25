@@ -12,7 +12,7 @@
   "readDays": 21,
   "windowN": 8,
   "minPeers": 3,
-  "updatedAt": "2026-09-24T15:17:22.655Z",
+  "updatedAt": "2026-09-25T17:35:18.862Z",
   "scores": [
     {
       "ep": 1,
@@ -1624,6 +1624,376 @@
       "reproducible": false,
       "computedAt": "2026-09-19T16:21:37.177Z",
       "frozenAt": "2026-09-19T16:21:37.177Z"
+    },
+    {
+      "ep": 8,
+      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "premiere": "2026-09-03",
+      "algorithm": "health21-v2",
+      "windowIds": [
+        "2026-07-17-dive-radio-bumpy-takeoff",
+        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+      ],
+      "excluded": [
+        {
+          "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+          "why": "promo outlier"
+        },
+        {
+          "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+          "why": "promo outlier"
+        }
+      ],
+      "readDays": 21,
+      "atDay": 21,
+      "frozenAtDay": 21.8,
+      "readCompleteOn": "2026-09-24",
+      "score": 70,
+      "checks": {
+        "watch": {
+          "value": 6067,
+          "typical": 1923,
+          "ratio": 3.155,
+          "score": 100,
+          "sample": 5,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 2015,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-07"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 2034,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-13"
+            },
+            {
+              "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+              "value": 1923,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-27"
+            },
+            {
+              "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+              "value": 1257,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-09-03"
+            },
+            {
+              "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "value": 1543,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-09-10"
+            }
+          ],
+          "reason": null,
+          "atDay": 21,
+          "ageBasis": "sameAge",
+          "note": "compared at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            },
+            {
+              "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0.3889
+        },
+        "engagement": {
+          "value": 14.7,
+          "typical": 34.2,
+          "ratio": 0.43,
+          "score": 21,
+          "sample": 5,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 50.1,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-07"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 40.3,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-13"
+            },
+            {
+              "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+              "value": 33.8,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-08-27"
+            },
+            {
+              "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+              "value": 34.2,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-09-03"
+            },
+            {
+              "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "value": 27.9,
+              "atDay": 21,
+              "source": "snapshot",
+              "readDate": "2026-09-10"
+            }
+          ],
+          "reason": null,
+          "atDay": 21,
+          "ageBasis": "sameAge",
+          "note": "compared at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            },
+            {
+              "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0.1667
+        },
+        "retention": {
+          "value": 9.39,
+          "typical": 11.1,
+          "ratio": 0.846,
+          "score": 42,
+          "sample": 5,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 10.58,
+              "atDay": 69.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 11.1,
+              "atDay": 63.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+              "value": 8.86,
+              "atDay": 49.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+              "value": 13.19,
+              "atDay": 42.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "value": 11.28,
+              "atDay": 35.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            }
+          ],
+          "reason": null,
+          "ageBasis": "mature",
+          "note": "compared with earlier episodes as they stand now, not at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            },
+            {
+              "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "why": "promo outlier"
+            }
+          ],
+          "channels": [
+            "yt:joindiveclub",
+            "yt:designertom"
+          ],
+          "weight": 0.1667
+        },
+        "live": {
+          "value": {
+            "peak": 98,
+            "chat": 137
+          },
+          "typical": {
+            "peak": 71,
+            "chat": 167
+          },
+          "ratio": 1.1,
+          "score": 55,
+          "sample": 5,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": {
+                "peak": 90,
+                "chat": 383
+              },
+              "atDay": null,
+              "source": "live-event",
+              "readDate": null
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": {
+                "peak": 71,
+                "chat": 310
+              },
+              "atDay": null,
+              "source": "live-event",
+              "readDate": null
+            },
+            {
+              "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+              "value": {
+                "peak": 63,
+                "chat": 167
+              },
+              "atDay": null,
+              "source": "live-event",
+              "readDate": null
+            },
+            {
+              "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+              "value": {
+                "peak": 64,
+                "chat": 100
+              },
+              "atDay": null,
+              "source": "live-event",
+              "readDate": null
+            },
+            {
+              "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "value": {
+                "peak": 71,
+                "chat": 127
+              },
+              "atDay": null,
+              "source": "live-event",
+              "readDate": null
+            }
+          ],
+          "reason": null,
+          "ageBasis": "ageFree",
+          "note": null,
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            },
+            {
+              "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0.1667
+        },
+        "conversion": {
+          "value": 6.3,
+          "typical": 2.7,
+          "ratio": 2.333,
+          "score": 100,
+          "sample": 5,
+          "peers": [
+            {
+              "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+              "value": 8.4,
+              "atDay": 69.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+              "value": 2.7,
+              "atDay": 63.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+              "value": 3.5,
+              "atDay": 49.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+              "value": 0.8,
+              "atDay": 42.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            },
+            {
+              "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+              "value": 0.6,
+              "atDay": 35.8,
+              "source": "analytics-file",
+              "readDate": "2026-09-25"
+            }
+          ],
+          "reason": null,
+          "ageBasis": "mature",
+          "note": "compared with earlier episodes as they stand now, not at the same age",
+          "excluded": [
+            {
+              "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+              "why": "promo outlier"
+            },
+            {
+              "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+              "why": "promo outlier"
+            }
+          ],
+          "weight": 0.1111
+        },
+        "sentiment": {
+          "value": null,
+          "typical": null,
+          "ratio": null,
+          "score": null,
+          "weight": 0,
+          "sample": 0,
+          "peers": [],
+          "reason": "Fewer than three earlier episodes to compare with.",
+          "ageBasis": null,
+          "note": null,
+          "excluded": []
+        }
+      },
+      "missingChecks": [
+        "sentiment"
+      ],
+      "reason": null,
+      "reproducible": false,
+      "computedAt": "2026-09-25T14:02:07.707Z",
+      "frozenAt": "2026-09-25T14:02:07.707Z"
     }
   ],
   "rederivedFrom": "health21-v1",

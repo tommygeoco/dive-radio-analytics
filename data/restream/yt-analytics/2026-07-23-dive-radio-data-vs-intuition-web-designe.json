@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "TJqSfnadiGM",
-      "pulledAt": "2026-09-24T15:16:09.175Z",
+      "pulledAt": "2026-09-25T17:34:00.055Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "TJqSfnadiGM",
-        "pulledAt": "2026-09-24T15:16:09.175Z",
+        "pulledAt": "2026-09-25T17:34:00.055Z",
         "state": "ready"
       },
       "totals": {
-        "views": 1246,
+        "views": 1247,
         "estimatedMinutesWatched": 17535,
         "averageViewDuration": 870,
         "averageViewPercentage": 12.12,
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 522,
+          "views": 523,
           "estimatedMinutesWatched": 5933
         },
         {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "Pn6U5nWgD-g",
-      "pulledAt": "2026-09-24T15:16:09.175Z",
+      "pulledAt": "2026-09-25T17:34:00.055Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Pn6U5nWgD-g",
-        "pulledAt": "2026-09-24T15:16:09.175Z",
+        "pulledAt": "2026-09-25T17:34:00.055Z",
         "state": "ready"
       },
       "totals": {
@@ -569,7 +569,7 @@
         },
         {
           "elapsedVideoTimeRatio": 0.05,
-          "audienceWatchRatio": 0.3071
+          "audienceWatchRatio": 0.309
         },
         {
           "elapsedVideoTimeRatio": 0.06,
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-09-24T15:16:09.175Z",
+  "updatedAt": "2026-09-25T17:34:00.055Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-    "pulledAt": "2026-09-24T15:16:09.175Z",
+    "pulledAt": "2026-09-25T17:34:00.055Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Pn6U5nWgD-g|yt:joindiveclub:TJqSfnadiGM",
@@ -975,7 +975,7 @@
         "videoId": "TJqSfnadiGM",
         "result": "ready",
         "observed": {
-          "views": 1246,
+          "views": 1247,
           "averageViewPercentage": 12.12
         }
       },

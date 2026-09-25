@@ -1,6 +1,6 @@
 # Dive Radio analytics
 
-> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-09-24T15:17:23.399Z).
+> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-09-25T17:35:19.524Z).
 
 ## Read first
 - [Agent brief](https://dive-radio-analytics.vercel.app/agent.md): the current read and recent episodes — start with its first section for the archive boundary
@@ -21,6 +21,7 @@
 - [E8 — How to Engineer a Brand Universe](https://dive-radio-analytics.vercel.app/transcripts/2026-09-02-dive-radio-how-to-engineer-a-brand-unive.txt)
 - [E9 — How Designers Are Getting Hired in 2026](https://dive-radio-analytics.vercel.app/transcripts/2026-09-10-dive-radio-how-designers-are-getting-hir.txt)
 - [E10 — How To Become a Founding Designer](https://dive-radio-analytics.vercel.app/transcripts/2026-09-17-dive-radio-how-to-become-a-founding-desi.txt)
+- [E11 — Just-in-Time Interfaces](https://dive-radio-analytics.vercel.app/transcripts/2026-09-24-dive-radio-just-in-time-interfaces.txt)
 
 ## The dashboard
 - [Dive Radio dashboard](https://dive-radio-analytics.vercel.app): the human view; "About this data" holds the methodology

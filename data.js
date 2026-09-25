@@ -1,7 +1,7 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-09-24T15:17:23.399Z",
+ "generatedAt": "2026-09-25T17:35:19.524Z",
  "chaptersUpdatedAt": "2026-09-19T16:36:07.455Z",
- "promotionUpdatedAt": "2026-09-24T15:15:37.577Z",
+ "promotionUpdatedAt": "2026-09-25T17:33:26.928Z",
  "dests": [
   {
    "key": "linkedin:michaelriddering",
@@ -4971,6 +4971,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1288,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 857,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1531,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3996,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 286
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+      "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1288,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 857,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1531,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3996,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 286
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+      "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1288,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 857,
+       "likes": 45,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1531,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1024,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 3996,
+       "likes": 26,
+       "comments": 3,
+       "plays": 760,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 286
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+      "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -5240,10 +5357,10 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1287,
+      "views": 1288,
       "likes": 49,
       "comments": 7
      },
@@ -5261,7 +5378,7 @@ window.DIVE_DATA = {
       "peakConcurrent": 466
      },
      "x:designertom": {
-      "views": 3989,
+      "views": 3996,
       "likes": 26,
       "comments": 3,
       "plays": 760,
@@ -5269,10 +5386,10 @@ window.DIVE_DATA = {
       "peakConcurrent": 286
      }
     },
-    "ytTotal": 2144,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 2145,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 5520,
+    "xImpressions": 5527,
     "xPlays": 1784,
     "xPlaysInfo": {
      "value": 1784,
@@ -5282,12 +5399,12 @@ window.DIVE_DATA = {
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3928,
+    "totalViews": 3929,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -5302,17 +5419,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -5327,12 +5444,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -5349,7 +5466,7 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/"
    },
    "transcript": true,
-   "ageDays": 68.8,
+   "ageDays": 69.9,
    "metrics": {
     "week1Velocity": 1830,
     "week1Note": null,
@@ -8618,7 +8735,7 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
@@ -8632,9 +8749,9 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 762,
-      "avgPercent": 11.35,
-      "avgDurationSec": 838,
+      "views": 763,
+      "avgPercent": 11.42,
+      "avgDurationSec": 843,
       "subs": 4,
       "subsPer1k": 5.2
      },
@@ -8647,13 +8764,13 @@ window.DIVE_DATA = {
       "subsPer1k": 13
      }
     ],
-    "avgPercent": 10.54,
-    "avgDurationSec": 778,
-    "minutesWatched": 16521,
+    "avgPercent": 10.58,
+    "avgDurationSec": 781,
+    "minutesWatched": 16597,
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.666
+      "watching": 0.665
      },
      {
       "at": 0.02,
@@ -8661,7 +8778,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.03,
-      "watching": 0.126
+      "watching": 0.125
      },
      {
       "at": 0.04,
@@ -8677,11 +8794,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.07,
-      "watching": 0.211
+      "watching": 0.21
      },
      {
       "at": 0.08,
-      "watching": 0.209
+      "watching": 0.208
      },
      {
       "at": 0.09,
@@ -8689,11 +8806,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.1,
-      "watching": 0.2
+      "watching": 0.201
      },
      {
       "at": 0.11,
-      "watching": 0.181
+      "watching": 0.182
      },
      {
       "at": 0.12,
@@ -8701,7 +8818,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.13,
-      "watching": 0.175
+      "watching": 0.176
      },
      {
       "at": 0.14,
@@ -8709,31 +8826,31 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.15,
-      "watching": 0.161
+      "watching": 0.162
      },
      {
       "at": 0.16,
-      "watching": 0.161
+      "watching": 0.162
      },
      {
       "at": 0.17,
-      "watching": 0.164
+      "watching": 0.167
      },
      {
       "at": 0.18,
-      "watching": 0.152
+      "watching": 0.153
      },
      {
       "at": 0.19,
-      "watching": 0.158
+      "watching": 0.162
      },
      {
       "at": 0.2,
-      "watching": 0.165
+      "watching": 0.167
      },
      {
       "at": 0.21,
-      "watching": 0.171
+      "watching": 0.173
      },
      {
       "at": 0.22,
@@ -8741,11 +8858,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.23,
-      "watching": 0.147
+      "watching": 0.148
      },
      {
       "at": 0.24,
-      "watching": 0.155
+      "watching": 0.156
      },
      {
       "at": 0.25,
@@ -8753,55 +8870,55 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.26,
-      "watching": 0.17
+      "watching": 0.173
      },
      {
       "at": 0.27,
-      "watching": 0.151
+      "watching": 0.153
      },
      {
       "at": 0.28,
-      "watching": 0.143
+      "watching": 0.144
      },
      {
       "at": 0.29,
-      "watching": 0.138
+      "watching": 0.139
      },
      {
       "at": 0.3,
-      "watching": 0.143
+      "watching": 0.144
      },
      {
       "at": 0.31,
-      "watching": 0.133
-     },
-     {
-      "at": 0.32,
-      "watching": 0.141
-     },
-     {
-      "at": 0.33,
       "watching": 0.134
      },
      {
-      "at": 0.34,
+      "at": 0.32,
       "watching": 0.142
      },
      {
+      "at": 0.33,
+      "watching": 0.135
+     },
+     {
+      "at": 0.34,
+      "watching": 0.143
+     },
+     {
       "at": 0.35,
-      "watching": 0.146
+      "watching": 0.147
      },
      {
       "at": 0.36,
-      "watching": 0.149
+      "watching": 0.15
      },
      {
       "at": 0.37,
-      "watching": 0.149
+      "watching": 0.15
      },
      {
       "at": 0.38,
-      "watching": 0.145
+      "watching": 0.146
      },
      {
       "at": 0.39,
@@ -8809,7 +8926,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.4,
-      "watching": 0.16
+      "watching": 0.161
      },
      {
       "at": 0.41,
@@ -8817,63 +8934,63 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.42,
-      "watching": 0.163
+      "watching": 0.165
      },
      {
       "at": 0.43,
-      "watching": 0.152
+      "watching": 0.153
      },
      {
       "at": 0.44,
-      "watching": 0.139
-     },
-     {
-      "at": 0.45,
-      "watching": 0.138
-     },
-     {
-      "at": 0.46,
-      "watching": 0.141
-     },
-     {
-      "at": 0.47,
-      "watching": 0.152
-     },
-     {
-      "at": 0.48,
-      "watching": 0.149
-     },
-     {
-      "at": 0.49,
-      "watching": 0.135
-     },
-     {
-      "at": 0.5,
-      "watching": 0.134
-     },
-     {
-      "at": 0.51,
-      "watching": 0.146
-     },
-     {
-      "at": 0.52,
-      "watching": 0.134
-     },
-     {
-      "at": 0.53,
       "watching": 0.14
      },
      {
+      "at": 0.45,
+      "watching": 0.139
+     },
+     {
+      "at": 0.46,
+      "watching": 0.143
+     },
+     {
+      "at": 0.47,
+      "watching": 0.153
+     },
+     {
+      "at": 0.48,
+      "watching": 0.15
+     },
+     {
+      "at": 0.49,
+      "watching": 0.136
+     },
+     {
+      "at": 0.5,
+      "watching": 0.135
+     },
+     {
+      "at": 0.51,
+      "watching": 0.147
+     },
+     {
+      "at": 0.52,
+      "watching": 0.136
+     },
+     {
+      "at": 0.53,
+      "watching": 0.141
+     },
+     {
       "at": 0.54,
-      "watching": 0.134
+      "watching": 0.135
      },
      {
       "at": 0.55,
-      "watching": 0.134
+      "watching": 0.135
      },
      {
       "at": 0.56,
-      "watching": 0.144
+      "watching": 0.145
      },
      {
       "at": 0.57,
@@ -8881,47 +8998,47 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.58,
-      "watching": 0.143
+      "watching": 0.144
      },
      {
       "at": 0.59,
-      "watching": 0.146
+      "watching": 0.147
      },
      {
       "at": 0.6,
-      "watching": 0.138
-     },
-     {
-      "at": 0.61,
-      "watching": 0.143
-     },
-     {
-      "at": 0.62,
       "watching": 0.139
      },
      {
+      "at": 0.61,
+      "watching": 0.144
+     },
+     {
+      "at": 0.62,
+      "watching": 0.14
+     },
+     {
       "at": 0.63,
-      "watching": 0.145
-     },
-     {
-      "at": 0.64,
-      "watching": 0.151
-     },
-     {
-      "at": 0.65,
       "watching": 0.146
      },
      {
+      "at": 0.64,
+      "watching": 0.152
+     },
+     {
+      "at": 0.65,
+      "watching": 0.147
+     },
+     {
       "at": 0.66,
-      "watching": 0.142
+      "watching": 0.143
      },
      {
       "at": 0.67,
-      "watching": 0.137
+      "watching": 0.138
      },
      {
       "at": 0.68,
-      "watching": 0.131
+      "watching": 0.132
      },
      {
       "at": 0.69,
@@ -8929,7 +9046,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.7,
-      "watching": 0.139
+      "watching": 0.14
      },
      {
       "at": 0.71,
@@ -8937,35 +9054,35 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.72,
-      "watching": 0.143
+      "watching": 0.144
      },
      {
       "at": 0.73,
-      "watching": 0.135
+      "watching": 0.136
      },
      {
       "at": 0.74,
-      "watching": 0.128
-     },
-     {
-      "at": 0.75,
       "watching": 0.129
      },
      {
-      "at": 0.76,
-      "watching": 0.117
+      "at": 0.75,
+      "watching": 0.131
      },
      {
-      "at": 0.77,
+      "at": 0.76,
       "watching": 0.118
      },
      {
+      "at": 0.77,
+      "watching": 0.119
+     },
+     {
       "at": 0.78,
-      "watching": 0.117
+      "watching": 0.119
      },
      {
       "at": 0.79,
-      "watching": 0.116
+      "watching": 0.117
      },
      {
       "at": 0.8,
@@ -8973,11 +9090,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.81,
-      "watching": 0.116
+      "watching": 0.117
      },
      {
       "at": 0.82,
-      "watching": 0.109
+      "watching": 0.11
      },
      {
       "at": 0.83,
@@ -8985,7 +9102,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.84,
-      "watching": 0.113
+      "watching": 0.114
      },
      {
       "at": 0.85,
@@ -9025,7 +9142,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.94,
-      "watching": 0.095
+      "watching": 0.094
      },
      {
       "at": 0.95,
@@ -9037,7 +9154,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.97,
-      "watching": 0.098
+      "watching": 0.097
      },
      {
       "at": 0.98,
@@ -9056,7 +9173,7 @@ window.DIVE_DATA = {
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 541,
+      "views": 542,
       "share": 41.6
      },
      {
@@ -9085,20 +9202,20 @@ window.DIVE_DATA = {
       "share": 13.4
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
-     "openStart": 66.6,
+     "openStart": 66.5,
      "openFloor": 11.9,
      "recoveryPeak": 28.7,
      "recoveryAt": 0.05,
-     "midHold": 14.3,
+     "midHold": 14.4,
      "endHold": 10
     },
     "moments": [
      {
       "kind": "drop",
       "at": 0.06,
-      "points": 7.6,
+      "points": 7.7,
       "estSec": 443,
       "approx": false,
       "excerpt": "like we have a bunch figured out. We're\n00:07:20  going to try some stuff, but also so\n00:07:24  much is is like in progress and we're\n00:07:25  actually having a blast working on it\n00:07:27  and thinking about it. And so we're kind\n00:07:28  of just going to pull back the curtain",
@@ -9108,7 +9225,7 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.27,
-      "points": 2.7,
+      "points": 2.9,
       "estSec": 1993,
       "approx": false,
       "excerpt": "Crazy crazy comeback art.\n00:33:08  >> Now, you're not a cursor user, right?\n00:33:10  >> I'm not. I'm I'm I'm still team\n00:33:12  conductor.\n00:33:13  conductor.\n00:33:13  >> Cursor is a big uh tool in our\n00:33:15  household. My teens love cursor. It's\n00:33:18  really like it's a really accessible",
@@ -9119,9 +9236,9 @@ window.DIVE_DATA = {
       "kind": "drop",
       "at": 0.99,
       "points": 3.5,
-      "estSec": 7308,
+      "estSec": 7307,
       "approx": false,
-      "excerpt": "questionable.\" Um so yeah, guys, thank\n02:01:45  you for joining us on our uh rough\n02:01:47  start. Uh I promise pretty much most of\n02:01:50  the same next week with uh one or two%\n02:01:53  better. That's how we do. And we really\n02:01:56  appreciate you coming and hanging out",
+      "excerpt": "bunch of stuff that, you know, was\n02:01:40  questionable.\" Um so yeah, guys, thank\n02:01:45  you for joining us on our uh rough\n02:01:47  start. Uh I promise pretty much most of\n02:01:50  the same next week with uh one or two%\n02:01:53  better. That's how we do. And we really",
       "speaker": null,
       "summary": "Wind-down talk at the very end: the hosts trade late-night work-habit confessions — chasing an idea until early morning — and joke that none of it should be taken as advice."
      }
@@ -14143,6 +14260,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1247,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 936,
+       "likes": 40,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2252,
+       "likes": 1,
+       "comments": 1,
+       "plays": 637,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3907,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1183,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 599
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1247,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 936,
+       "likes": 40,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2252,
+       "likes": 1,
+       "comments": 1,
+       "plays": 637,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3907,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1183,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 599
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1247,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 936,
+       "likes": 40,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2252,
+       "likes": 1,
+       "comments": 1,
+       "plays": 637,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3907,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1183,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 599
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -14412,7 +14646,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1247,
@@ -14442,7 +14676,7 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 2183,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
     "xImpressions": 6159,
     "xPlays": 1820,
@@ -14459,7 +14693,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -14474,17 +14708,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -14499,12 +14733,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -14521,7 +14755,7 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/"
    },
    "transcript": true,
-   "ageDays": 62.8,
+   "ageDays": 63.9,
    "metrics": {
     "week1Velocity": 1751,
     "week1Note": null,
@@ -17360,11 +17594,11 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
-   "subsPer1k": 2.8,
+   "subsPer1k": 2.7,
    "discoveryShare": 20.2,
    "watch": {
     "channels": [
@@ -17374,7 +17608,7 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 1246,
+      "views": 1247,
       "avgPercent": 12.12,
       "avgDurationSec": 870,
       "subs": 5,
@@ -17411,7 +17645,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.05,
-      "watching": 0.293
+      "watching": 0.294
      },
      {
       "at": 0.06,
@@ -17575,11 +17809,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.46,
-      "watching": 0.128
+      "watching": 0.129
      },
      {
       "at": 0.47,
-      "watching": 0.135
+      "watching": 0.136
      },
      {
       "at": 0.48,
@@ -17751,7 +17985,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.9,
-      "watching": 0.094
+      "watching": 0.095
      },
      {
       "at": 0.91,
@@ -17798,7 +18032,7 @@ window.DIVE_DATA = {
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 1119,
+      "views": 1120,
       "share": 51.3
      },
      {
@@ -17827,7 +18061,7 @@ window.DIVE_DATA = {
       "share": 11
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
      "openStart": 66.6,
      "openFloor": 14.1,
@@ -22225,6 +22459,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 972,
+       "likes": 22,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 681,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3260,
+       "likes": 11,
+       "comments": 1,
+       "plays": 1470,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16750,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2829,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 399
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 972,
+       "likes": 22,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 681,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3260,
+       "likes": 11,
+       "comments": 1,
+       "plays": 1470,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16750,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2829,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 399
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 972,
+       "likes": 22,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 681,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3260,
+       "likes": 11,
+       "comments": 1,
+       "plays": 1470,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16751,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2829,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 399
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -22390,7 +22741,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 972,
@@ -22411,7 +22762,7 @@ window.DIVE_DATA = {
       "peakConcurrent": 562
      },
      "x:designertom": {
-      "views": 16746,
+      "views": 16751,
       "likes": 12,
       "comments": 2,
       "plays": 2829,
@@ -22420,9 +22771,9 @@ window.DIVE_DATA = {
      }
     },
     "ytTotal": 1653,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 20006,
+    "xImpressions": 20011,
     "xPlays": 4299,
     "xPlaysInfo": {
      "value": 4299,
@@ -22437,7 +22788,7 @@ window.DIVE_DATA = {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -22452,17 +22803,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -22477,12 +22828,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -22499,13 +22850,13 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488682639726583808/"
    },
    "transcript": true,
-   "ageDays": 55.8,
+   "ageDays": 56.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 29.6,
-    "anomaly": "more than double what a typical episode gets (4,299 X plays vs a typical 2,100; 19,596 X reach vs a typical 9,047) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,299 X plays vs a typical 2,101; 19,596 X reach vs a typical 9,047) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -24868,7 +25219,7 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
@@ -24882,7 +25233,7 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 971,
+      "views": 972,
       "avgPercent": 9.26,
       "avgDurationSec": 627,
       "subs": 0,
@@ -25306,7 +25657,7 @@ window.DIVE_DATA = {
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 874,
+      "views": 875,
       "share": 52.9
      },
      {
@@ -25335,7 +25686,7 @@ window.DIVE_DATA = {
       "share": 12.3
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
      "openStart": 73.4,
      "openFloor": 11.2,
@@ -29756,6 +30107,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1284,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 21,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3552,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1366,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1149,
+       "likes": 11,
+       "comments": 1,
+       "plays": 548,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 216
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1284,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 734,
+       "likes": 21,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3552,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1366,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1149,
+       "likes": 11,
+       "comments": 1,
+       "plays": 548,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 216
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1284,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 735,
+       "likes": 21,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3552,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1366,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1149,
+       "likes": 11,
+       "comments": 1,
+       "plays": 548,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 216
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -29921,23 +30389,23 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1283,
+      "views": 1284,
       "likes": 36,
       "comments": 5
      },
      "yt:designertom": {
-      "views": 734,
+      "views": 735,
       "likes": 21,
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 3551,
+      "views": 3552,
       "likes": 20,
       "comments": 0,
-      "plays": 1365,
+      "plays": 1366,
       "playsSource": "x-broadcast",
       "peakConcurrent": 680
      },
@@ -29950,25 +30418,25 @@ window.DIVE_DATA = {
       "peakConcurrent": 216
      }
     },
-    "ytTotal": 2017,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 2019,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 4700,
-    "xPlays": 1913,
+    "xImpressions": 4701,
+    "xPlays": 1914,
     "xPlaysInfo": {
-     "value": 1913,
+     "value": 1914,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3930,
+    "totalViews": 3933,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -29983,17 +30451,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -30008,12 +30476,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -30030,7 +30498,7 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491221759405338624/"
    },
    "transcript": true,
-   "ageDays": 48.8,
+   "ageDays": 49.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -32485,7 +32953,7 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
@@ -32499,9 +32967,9 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 1277,
-      "avgPercent": 8.9,
-      "avgDurationSec": 659,
+      "views": 1280,
+      "avgPercent": 8.93,
+      "avgDurationSec": 661,
       "subs": 7,
       "subsPer1k": 5.5
      },
@@ -32514,13 +32982,13 @@ window.DIVE_DATA = {
       "subsPer1k": 0
      }
     ],
-    "avgPercent": 8.84,
-    "avgDurationSec": 655,
-    "minutesWatched": 21627,
+    "avgPercent": 8.86,
+    "avgDurationSec": 656,
+    "minutesWatched": 21694,
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.701
+      "watching": 0.7
      },
      {
       "at": 0.02,
@@ -32532,19 +33000,19 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.04,
-      "watching": 0.183
+      "watching": 0.184
      },
      {
       "at": 0.05,
-      "watching": 0.223
+      "watching": 0.225
      },
      {
       "at": 0.06,
-      "watching": 0.21
+      "watching": 0.211
      },
      {
       "at": 0.07,
-      "watching": 0.189
+      "watching": 0.19
      },
      {
       "at": 0.08,
@@ -32560,7 +33028,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.11,
-      "watching": 0.165
+      "watching": 0.164
      },
      {
       "at": 0.12,
@@ -32580,7 +33048,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.16,
-      "watching": 0.158
+      "watching": 0.157
      },
      {
       "at": 0.17,
@@ -32592,15 +33060,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.19,
-      "watching": 0.14
+      "watching": 0.141
      },
      {
       "at": 0.2,
-      "watching": 0.139
+      "watching": 0.142
      },
      {
       "at": 0.21,
-      "watching": 0.138
+      "watching": 0.14
      },
      {
       "at": 0.22,
@@ -32608,11 +33076,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.23,
-      "watching": 0.122
+      "watching": 0.123
      },
      {
       "at": 0.24,
-      "watching": 0.128
+      "watching": 0.129
      },
      {
       "at": 0.25,
@@ -32620,7 +33088,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.26,
-      "watching": 0.118
+      "watching": 0.119
      },
      {
       "at": 0.27,
@@ -32628,11 +33096,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.28,
-      "watching": 0.115
+      "watching": 0.116
      },
      {
       "at": 0.29,
-      "watching": 0.114
+      "watching": 0.115
      },
      {
       "at": 0.3,
@@ -32640,23 +33108,23 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.31,
-      "watching": 0.112
+      "watching": 0.113
      },
      {
       "at": 0.32,
-      "watching": 0.131
+      "watching": 0.132
      },
      {
       "at": 0.33,
-      "watching": 0.12
+      "watching": 0.121
      },
      {
       "at": 0.34,
-      "watching": 0.127
+      "watching": 0.128
      },
      {
       "at": 0.35,
-      "watching": 0.129
+      "watching": 0.13
      },
      {
       "at": 0.36,
@@ -32664,7 +33132,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.37,
-      "watching": 0.124
+      "watching": 0.125
      },
      {
       "at": 0.38,
@@ -32672,7 +33140,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.39,
-      "watching": 0.154
+      "watching": 0.155
      },
      {
       "at": 0.4,
@@ -32684,7 +33152,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.42,
-      "watching": 0.128
+      "watching": 0.129
      },
      {
       "at": 0.43,
@@ -32692,7 +33160,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.44,
-      "watching": 0.127
+      "watching": 0.128
      },
      {
       "at": 0.45,
@@ -32700,7 +33168,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.46,
-      "watching": 0.115
+      "watching": 0.116
      },
      {
       "at": 0.47,
@@ -32708,19 +33176,19 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.48,
-      "watching": 0.116
+      "watching": 0.117
      },
      {
       "at": 0.49,
-      "watching": 0.115
+      "watching": 0.116
      },
      {
       "at": 0.5,
-      "watching": 0.114
+      "watching": 0.115
      },
      {
       "at": 0.51,
-      "watching": 0.102
+      "watching": 0.103
      },
      {
       "at": 0.52,
@@ -32736,35 +33204,35 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.55,
-      "watching": 0.107
+      "watching": 0.108
      },
      {
       "at": 0.56,
-      "watching": 0.114
+      "watching": 0.115
      },
      {
       "at": 0.57,
-      "watching": 0.102
-     },
-     {
-      "at": 0.58,
-      "watching": 0.097
-     },
-     {
-      "at": 0.59,
-      "watching": 0.097
-     },
-     {
-      "at": 0.6,
       "watching": 0.103
      },
      {
+      "at": 0.58,
+      "watching": 0.098
+     },
+     {
+      "at": 0.59,
+      "watching": 0.098
+     },
+     {
+      "at": 0.6,
+      "watching": 0.104
+     },
+     {
       "at": 0.61,
-      "watching": 0.096
+      "watching": 0.097
      },
      {
       "at": 0.62,
-      "watching": 0.1
+      "watching": 0.101
      },
      {
       "at": 0.63,
@@ -32776,11 +33244,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.65,
-      "watching": 0.095
+      "watching": 0.096
      },
      {
       "at": 0.66,
-      "watching": 0.092
+      "watching": 0.093
      },
      {
       "at": 0.67,
@@ -32788,19 +33256,19 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.68,
-      "watching": 0.108
+      "watching": 0.109
      },
      {
       "at": 0.69,
-      "watching": 0.101
+      "watching": 0.102
      },
      {
       "at": 0.7,
-      "watching": 0.104
+      "watching": 0.103
      },
      {
       "at": 0.71,
-      "watching": 0.099
+      "watching": 0.098
      },
      {
       "at": 0.72,
@@ -32832,11 +33300,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.79,
-      "watching": 0.089
+      "watching": 0.088
      },
      {
       "at": 0.8,
-      "watching": 0.083
+      "watching": 0.082
      },
      {
       "at": 0.81,
@@ -32860,7 +33328,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.86,
-      "watching": 0.099
+      "watching": 0.098
      },
      {
       "at": 0.87,
@@ -32880,7 +33348,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.91,
-      "watching": 0.078
+      "watching": 0.077
      },
      {
       "at": 0.92,
@@ -32924,16 +33392,16 @@ window.DIVE_DATA = {
      {
       "source": "SUBSCRIBER",
       "views": 1091,
-      "share": 54.3
+      "share": 54.2
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 242,
-      "share": 12
+      "views": 243,
+      "share": 12.1
      },
      {
       "source": "RELATED_VIDEO",
-      "views": 180,
+      "views": 181,
       "share": 9
      },
      {
@@ -32948,17 +33416,17 @@ window.DIVE_DATA = {
      },
      {
       "source": "OTHER_COMBINED",
-      "views": 235,
+      "views": 236,
       "share": 11.7
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
-     "openStart": 70.1,
+     "openStart": 70,
      "openFloor": 11.3,
-     "recoveryPeak": 22.3,
+     "recoveryPeak": 22.5,
      "recoveryAt": 0.05,
-     "midHold": 11.4,
+     "midHold": 11.5,
      "endHold": 6.4
     },
     "moments": [
@@ -32966,7 +33434,7 @@ window.DIVE_DATA = {
       "kind": "drop",
       "at": 0.09,
       "points": 4.6,
-      "estSec": 667,
+      "estSec": 666,
       "approx": false,
       "excerpt": "We're doing a piece on Zuck.\n00:11:04 [Speaker 2]\nWe need something that just, like, encapsulates these these eras that Zuck has been through.\n00:11:10 [Speaker 2]\nDude, this this is the kind of thing, like, when I was pirating Photoshop as a a wee lad, this is the kind of work that I would just, like, geek out.",
       "speaker": "Speaker 2",
@@ -32975,7 +33443,7 @@ window.DIVE_DATA = {
      {
       "kind": "hold",
       "at": 0.31,
-      "points": 2,
+      "points": 2.1,
       "estSec": 2296,
       "approx": false,
       "excerpt": "What is, you know, what are you looking at here?\n\n00:38:14 [Speaker 3]\nFor me, it was I can't remember how I found it, but the the time on-site was wild.\n00:38:21 [Speaker 3]\nPeople have, like it's super common for people to have an engaged hour long session, which, again, not the intent at all.",
@@ -32986,7 +33454,7 @@ window.DIVE_DATA = {
       "kind": "drop",
       "at": 0.39,
       "points": 5.9,
-      "estSec": 2889,
+      "estSec": 2888,
       "approx": false,
       "excerpt": "And I'm just rambling at this point, and I'm pasting in images that I can find from from the world of backyard baseball.\n00:48:06 [Speaker 3]\nAnd we're going back and forth, and I'm like, okay.\n\n00:48:08 [Speaker 3]\nCan I make Flora as a backyard baseball character?",
       "speaker": "Speaker 3",
@@ -37357,6 +37825,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 738,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 560,
+       "likes": 18,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 3017,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1181,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6410,
+       "likes": 9,
+       "comments": 0,
+       "plays": 1105,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 131
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 738,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 560,
+       "likes": 18,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 3017,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1181,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6411,
+       "likes": 9,
+       "comments": 0,
+       "plays": 1106,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 131
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 738,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 560,
+       "likes": 18,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 3017,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1181,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6414,
+       "likes": 9,
+       "comments": 0,
+       "plays": 1107,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 131
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -37522,7 +38107,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 738,
@@ -37543,33 +38128,33 @@ window.DIVE_DATA = {
       "peakConcurrent": 415
      },
      "x:designertom": {
-      "views": 6408,
+      "views": 6414,
       "likes": 9,
       "comments": 0,
-      "plays": 1105,
+      "plays": 1107,
       "playsSource": "x-broadcast",
       "peakConcurrent": 131
      }
     },
     "ytTotal": 1298,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 9425,
-    "xPlays": 2286,
+    "xImpressions": 9431,
+    "xPlays": 2288,
     "xPlaysInfo": {
-     "value": 2286,
+     "value": 2288,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3584,
+    "totalViews": 3586,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -37584,17 +38169,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -37609,12 +38194,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -37631,7 +38216,7 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7493743714008485888/"
    },
    "transcript": true,
-   "ageDays": 41.8,
+   "ageDays": 42.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -39568,7 +40153,7 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
@@ -40035,7 +40620,7 @@ window.DIVE_DATA = {
       "share": 12.7
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
      "openStart": 68.8,
      "openFloor": 10,
@@ -44465,6 +45050,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 955,
+       "likes": 21,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 723,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7835,
+       "likes": 11,
+       "comments": 0,
+       "plays": 848,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1308,
+       "likes": 12,
+       "comments": 1,
+       "plays": 344,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 125
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 955,
+       "likes": 21,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 723,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7836,
+       "likes": 11,
+       "comments": 0,
+       "plays": 848,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1308,
+       "likes": 12,
+       "comments": 1,
+       "plays": 344,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 125
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 955,
+       "likes": 22,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 723,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7836,
+       "likes": 11,
+       "comments": 0,
+       "plays": 848,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 1308,
+       "likes": 12,
+       "comments": 1,
+       "plays": 344,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 125
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -44630,20 +45332,20 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 955,
-      "likes": 21,
+      "likes": 22,
       "comments": 7
      },
      "yt:designertom": {
-      "views": 722,
+      "views": 723,
       "likes": 14,
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 7833,
+      "views": 7836,
       "likes": 11,
       "comments": 0,
       "plays": 848,
@@ -44651,7 +45353,7 @@ window.DIVE_DATA = {
       "peakConcurrent": 201
      },
      "x:designertom": {
-      "views": 1305,
+      "views": 1308,
       "likes": 12,
       "comments": 1,
       "plays": 344,
@@ -44659,10 +45361,10 @@ window.DIVE_DATA = {
       "peakConcurrent": 125
      }
     },
-    "ytTotal": 1677,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 1678,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 9138,
+    "xImpressions": 9144,
     "xPlays": 1192,
     "xPlaysInfo": {
      "value": 1192,
@@ -44672,12 +45374,12 @@ window.DIVE_DATA = {
      "stale": false,
      "asOf": null
     },
-    "totalViews": 2869,
+    "totalViews": 2870,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -44692,17 +45394,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -44717,12 +45419,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -44739,12 +45441,12 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/"
    },
    "transcript": true,
-   "ageDays": 34.8,
+   "ageDays": 35.9,
    "metrics": {
     "week1Velocity": 1189,
     "week1Note": null,
     "flatlineWeek": null,
-    "engagementPer1k": 25.6,
+    "engagementPer1k": 26.2,
     "anomaly": null
    },
    "ep": 6,
@@ -46991,7 +47693,7 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
@@ -47005,28 +47707,28 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 951,
+      "views": 953,
       "avgPercent": 13.3,
       "avgDurationSec": 759,
       "subs": 1,
-      "subsPer1k": 1.1
+      "subsPer1k": 1
      },
      {
       "key": "yt:designertom",
-      "views": 717,
-      "avgPercent": 8.61,
-      "avgDurationSec": 491,
+      "views": 721,
+      "avgPercent": 8.6,
+      "avgDurationSec": 490,
       "subs": 0,
       "subsPer1k": 0
      }
     ],
     "avgPercent": 11.28,
-    "avgDurationSec": 644,
-    "minutesWatched": 14519,
+    "avgDurationSec": 643,
+    "minutesWatched": 14520,
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.634
+      "watching": 0.635
      },
      {
       "at": 0.02,
@@ -47038,11 +47740,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.04,
-      "watching": 0.114
+      "watching": 0.113
      },
      {
       "at": 0.05,
-      "watching": 0.162
+      "watching": 0.161
      },
      {
       "at": 0.06,
@@ -47054,11 +47756,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.08,
-      "watching": 0.215
+      "watching": 0.214
      },
      {
       "at": 0.09,
-      "watching": 0.246
+      "watching": 0.245
      },
      {
       "at": 0.1,
@@ -47074,11 +47776,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.13,
-      "watching": 0.247
+      "watching": 0.246
      },
      {
       "at": 0.14,
-      "watching": 0.246
+      "watching": 0.245
      },
      {
       "at": 0.15,
@@ -47094,7 +47796,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.18,
-      "watching": 0.193
+      "watching": 0.192
      },
      {
       "at": 0.19,
@@ -47102,7 +47804,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.2,
-      "watching": 0.189
+      "watching": 0.188
      },
      {
       "at": 0.21,
@@ -47146,11 +47848,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.31,
-      "watching": 0.177
+      "watching": 0.176
      },
      {
       "at": 0.32,
-      "watching": 0.164
+      "watching": 0.163
      },
      {
       "at": 0.33,
@@ -47166,11 +47868,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.36,
-      "watching": 0.163
+      "watching": 0.162
      },
      {
       "at": 0.37,
-      "watching": 0.157
+      "watching": 0.156
      },
      {
       "at": 0.38,
@@ -47182,7 +47884,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.4,
-      "watching": 0.18
+      "watching": 0.179
      },
      {
       "at": 0.41,
@@ -47194,7 +47896,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.43,
-      "watching": 0.168
+      "watching": 0.167
      },
      {
       "at": 0.44,
@@ -47206,7 +47908,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.46,
-      "watching": 0.142
+      "watching": 0.141
      },
      {
       "at": 0.47,
@@ -47222,11 +47924,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.5,
-      "watching": 0.147
+      "watching": 0.146
      },
      {
       "at": 0.51,
-      "watching": 0.172
+      "watching": 0.171
      },
      {
       "at": 0.52,
@@ -47234,7 +47936,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.53,
-      "watching": 0.152
+      "watching": 0.151
      },
      {
       "at": 0.54,
@@ -47246,7 +47948,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.56,
-      "watching": 0.148
+      "watching": 0.147
      },
      {
       "at": 0.57,
@@ -47254,7 +47956,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.58,
-      "watching": 0.137
+      "watching": 0.136
      },
      {
       "at": 0.59,
@@ -47270,7 +47972,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.62,
-      "watching": 0.14
+      "watching": 0.139
      },
      {
       "at": 0.63,
@@ -47290,15 +47992,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.67,
-      "watching": 0.134
+      "watching": 0.133
      },
      {
       "at": 0.68,
-      "watching": 0.148
+      "watching": 0.147
      },
      {
       "at": 0.69,
-      "watching": 0.14
+      "watching": 0.139
      },
      {
       "at": 0.7,
@@ -47306,11 +48008,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.71,
-      "watching": 0.164
+      "watching": 0.163
      },
      {
       "at": 0.72,
-      "watching": 0.138
+      "watching": 0.137
      },
      {
       "at": 0.73,
@@ -47354,7 +48056,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.83,
-      "watching": 0.108
+      "watching": 0.107
      },
      {
       "at": 0.84,
@@ -47414,7 +48116,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.98,
-      "watching": 0.078
+      "watching": 0.077
      },
      {
       "at": 0.99,
@@ -47429,8 +48131,8 @@ window.DIVE_DATA = {
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 1000,
-      "share": 60
+      "views": 1005,
+      "share": 60.1
      },
      {
       "source": "NO_LINK_OTHER",
@@ -47445,7 +48147,7 @@ window.DIVE_DATA = {
      {
       "source": "RELATED_VIDEO",
       "views": 101,
-      "share": 6.1
+      "share": 6
      },
      {
       "source": "YT_CHANNEL",
@@ -47458,20 +48160,20 @@ window.DIVE_DATA = {
       "share": 11.4
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
-     "openStart": 63.4,
-     "openFloor": 11.4,
+     "openStart": 63.5,
+     "openFloor": 11.3,
      "recoveryPeak": 24.7,
      "recoveryAt": 0.12,
-     "midHold": 15.8,
+     "midHold": 15.7,
      "endHold": 9.1
     },
     "moments": [
      {
       "kind": "drop",
       "at": 0.07,
-      "points": 2.2,
+      "points": 2.3,
       "estSec": 399,
       "approx": false,
       "excerpt": "Rid actually does have a job.\n00:06:41 [Speaker 3]\nAnd\n\n00:06:41 [Speaker 2]\nI do have\n\n00:06:41 [Speaker 3]\na job.\n00:06:42 [Speaker 3]\nYeah.\n00:06:43 [Speaker 3]\nExtremely busy.\n00:06:43 [Speaker 3]\nHeads down on that this week.\n00:06:45 [Speaker 3]\nMeanwhile, I have been, I've got a job too.",
@@ -47482,17 +48184,17 @@ window.DIVE_DATA = {
       "kind": "drop",
       "at": 0.16,
       "points": 4.8,
-      "estSec": 913,
+      "estSec": 912,
       "approx": false,
-      "excerpt": "This is gonna be really hard.\n\n00:15:10 [Speaker 3]\nAnd if you head on over to dive.radio/vote,\n\n00:15:14 [Speaker 2]\nlike, talk to them.\n00:15:15 [Speaker 2]\nLead.\n\n00:15:16 [Speaker 3]\nOh, wait a second.\n00:15:16 [Speaker 3]\nThere we go.\n00:15:17 [Speaker 3]\nWe got avatars.",
-      "speaker": "Speaker 2",
+      "excerpt": "Alright.\n\n00:15:08 [Speaker 2]\nThis is gonna be tight.\n00:15:08 [Speaker 2]\nThis is gonna be really hard.\n\n00:15:10 [Speaker 3]\nAnd if you head on over to dive.radio/vote,\n\n00:15:14 [Speaker 2]\nlike, talk to them.\n00:15:15 [Speaker 2]\nLead.\n\n00:15:16 [Speaker 3]\nOh, wait a second.\n00:15:16 [Speaker 3]\nThere we go.",
+      "speaker": "Speaker 3",
       "summary": "Hosts chat about tinkering with shaders, then one nominates Rive animator Bartek, showing his flaming sentiment slider, before urging listeners to vote for designer of the week."
      },
      {
       "kind": "drop",
       "at": 0.36,
-      "points": 2.7,
-      "estSec": 2054,
+      "points": 2.8,
+      "estSec": 2053,
       "approx": false,
       "excerpt": "Let's let's give these bots personality.\n\n00:34:14 [Speaker 2]\nAnd how cool is it?\n00:34:15 [Speaker 2]\nI mean, it just makes a lot of sense too because, like, when you when you strip that away, the agent UX that we've arrived at is just about as simple as it gets.\n00:34:24 [Speaker 2]\nYou know?",
       "speaker": "Speaker 2",
@@ -47501,8 +48203,8 @@ window.DIVE_DATA = {
      {
       "kind": "hold",
       "at": 0.5,
-      "points": 3.1,
-      "estSec": 2853,
+      "points": 3,
+      "estSec": 2852,
       "approx": false,
       "excerpt": "We got a little little otter or seal.\n00:47:33 [Speaker 3]\nI always I don't know.\n\n00:47:35 [Speaker 3]\nWalrus, one of the three, sitting here at the bottom.\n00:47:37 [Speaker 3]\nI was like, okay.\n00:47:38 [Speaker 3]\nAlright.\n00:47:39 [Speaker 3]\nWe're gonna go friendly.",
       "speaker": "Speaker 3",
@@ -47512,7 +48214,7 @@ window.DIVE_DATA = {
       "kind": "hold",
       "at": 0.7,
       "points": 2.4,
-      "estSec": 3993,
+      "estSec": 3992,
       "approx": false,
       "excerpt": "Sorry, DJ.\n01:06:29 [Speaker 6]\nCreate different pose variation.\n01:06:31 [Speaker 6]\nHey, Tommy.\n01:06:32 [Speaker 6]\nI just wanna say thank you so much for featuring me.\n01:06:34 [Speaker 6]\nThis is how to create any type of animation that you want in any type of style and have a lot of control, while doing it.",
       "speaker": "Speaker 6",
@@ -51060,6 +51762,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3151,
+       "likes": 31,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 2952,
+       "likes": 20,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5723,
+       "likes": 44,
+       "comments": 2,
+       "plays": 1115,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 10064,
+       "likes": 36,
+       "comments": 3,
+       "plays": 1929,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 320
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3151,
+       "likes": 31,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 2952,
+       "likes": 20,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5723,
+       "likes": 44,
+       "comments": 2,
+       "plays": 1115,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 10064,
+       "likes": 36,
+       "comments": 3,
+       "plays": 1929,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 320
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3151,
+       "likes": 31,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 2952,
+       "likes": 20,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 5723,
+       "likes": 44,
+       "comments": 2,
+       "plays": 1115,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 10064,
+       "likes": 36,
+       "comments": 3,
+       "plays": 1931,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 320
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -51193,7 +52012,7 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 3151,
@@ -51201,46 +52020,46 @@ window.DIVE_DATA = {
       "comments": 3
      },
      "yt:designertom": {
-      "views": 2948,
+      "views": 2952,
       "likes": 20,
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 5721,
+      "views": 5723,
       "likes": 44,
       "comments": 2,
-      "plays": 1114,
+      "plays": 1115,
       "playsSource": "x-broadcast",
       "peakConcurrent": 408
      },
      "x:designertom": {
-      "views": 10055,
+      "views": 10064,
       "likes": 36,
       "comments": 3,
-      "plays": 1928,
+      "plays": 1931,
       "playsSource": "x-broadcast",
       "peakConcurrent": 320
      }
     },
-    "ytTotal": 6099,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 6103,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 15776,
-    "xPlays": 3042,
+    "xImpressions": 15787,
+    "xPlays": 3046,
     "xPlaysInfo": {
-     "value": 3042,
+     "value": 3046,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 9141,
+    "totalViews": 9149,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -51255,17 +52074,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -51280,12 +52099,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -51302,13 +52121,13 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/"
    },
    "transcript": true,
-   "ageDays": 27.8,
+   "ageDays": 28.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": 3,
     "engagementPer1k": 9,
-    "anomaly": "more than double what a typical episode gets (6,003 YT views vs a typical 1,762) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (6,003 YT views vs a typical 1,601) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 7,
    "live": {
@@ -53132,11 +53951,11 @@ window.DIVE_DATA = {
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      }
     },
     "notices": [
@@ -53491,12 +54310,12 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
    "subsPer1k": 0.7,
-   "discoveryShare": 7.2,
+   "discoveryShare": 7.3,
    "watch": {
     "channels": [
      "yt:joindiveclub",
@@ -53505,28 +54324,28 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 3139,
-      "avgPercent": 11.96,
-      "avgDurationSec": 786,
+      "views": 3145,
+      "avgPercent": 12.02,
+      "avgDurationSec": 790,
       "subs": 3,
       "subsPer1k": 1
      },
      {
       "key": "yt:designertom",
-      "views": 2939,
-      "avgPercent": 10.01,
-      "avgDurationSec": 658,
+      "views": 2943,
+      "avgPercent": 9.99,
+      "avgDurationSec": 657,
       "subs": 1,
       "subsPer1k": 0.3
      }
     ],
-    "avgPercent": 11.02,
-    "avgDurationSec": 724,
-    "minutesWatched": 28101,
+    "avgPercent": 11.04,
+    "avgDurationSec": 726,
+    "minutesWatched": 28266,
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.656
+      "watching": 0.657
      },
      {
       "at": 0.02,
@@ -53534,47 +54353,47 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.03,
-      "watching": 0.108
+      "watching": 0.109
      },
      {
       "at": 0.04,
-      "watching": 0.127
+      "watching": 0.129
      },
      {
       "at": 0.05,
-      "watching": 0.218
-     },
-     {
-      "at": 0.06,
-      "watching": 0.227
-     },
-     {
-      "at": 0.07,
-      "watching": 0.22
-     },
-     {
-      "at": 0.08,
-      "watching": 0.201
-     },
-     {
-      "at": 0.09,
-      "watching": 0.209
-     },
-     {
-      "at": 0.1,
       "watching": 0.219
      },
      {
+      "at": 0.06,
+      "watching": 0.228
+     },
+     {
+      "at": 0.07,
+      "watching": 0.221
+     },
+     {
+      "at": 0.08,
+      "watching": 0.203
+     },
+     {
+      "at": 0.09,
+      "watching": 0.21
+     },
+     {
+      "at": 0.1,
+      "watching": 0.22
+     },
+     {
       "at": 0.11,
-      "watching": 0.259
+      "watching": 0.26
      },
      {
       "at": 0.12,
-      "watching": 0.238
+      "watching": 0.24
      },
      {
       "at": 0.13,
-      "watching": 0.242
+      "watching": 0.244
      },
      {
       "at": 0.14,
@@ -53582,51 +54401,51 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.15,
-      "watching": 0.207
+      "watching": 0.208
      },
      {
       "at": 0.16,
-      "watching": 0.216
+      "watching": 0.217
      },
      {
       "at": 0.17,
-      "watching": 0.234
+      "watching": 0.235
      },
      {
       "at": 0.18,
-      "watching": 0.195
+      "watching": 0.196
      },
      {
       "at": 0.19,
-      "watching": 0.184
+      "watching": 0.185
      },
      {
       "at": 0.2,
-      "watching": 0.188
+      "watching": 0.189
      },
      {
       "at": 0.21,
-      "watching": 0.181
+      "watching": 0.182
      },
      {
       "at": 0.22,
-      "watching": 0.186
+      "watching": 0.187
      },
      {
       "at": 0.23,
-      "watching": 0.176
+      "watching": 0.177
      },
      {
       "at": 0.24,
-      "watching": 0.176
+      "watching": 0.177
      },
      {
       "at": 0.25,
-      "watching": 0.167
+      "watching": 0.168
      },
      {
       "at": 0.26,
-      "watching": 0.184
+      "watching": 0.185
      },
      {
       "at": 0.27,
@@ -53634,7 +54453,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.28,
-      "watching": 0.169
+      "watching": 0.17
      },
      {
       "at": 0.29,
@@ -53646,15 +54465,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.31,
-      "watching": 0.161
+      "watching": 0.162
      },
      {
       "at": 0.32,
-      "watching": 0.154
+      "watching": 0.155
      },
      {
       "at": 0.33,
-      "watching": 0.166
+      "watching": 0.167
      },
      {
       "at": 0.34,
@@ -53662,11 +54481,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.35,
-      "watching": 0.175
+      "watching": 0.174
      },
      {
       "at": 0.36,
-      "watching": 0.169
+      "watching": 0.17
      },
      {
       "at": 0.37,
@@ -53678,11 +54497,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.39,
-      "watching": 0.201
+      "watching": 0.2
      },
      {
       "at": 0.4,
-      "watching": 0.196
+      "watching": 0.195
      },
      {
       "at": 0.41,
@@ -53702,7 +54521,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.45,
-      "watching": 0.158
+      "watching": 0.159
      },
      {
       "at": 0.46,
@@ -53710,7 +54529,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.47,
-      "watching": 0.163
+      "watching": 0.162
      },
      {
       "at": 0.48,
@@ -53718,11 +54537,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.49,
-      "watching": 0.162
+      "watching": 0.163
      },
      {
       "at": 0.5,
-      "watching": 0.152
+      "watching": 0.153
      },
      {
       "at": 0.51,
@@ -53734,7 +54553,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.53,
-      "watching": 0.154
+      "watching": 0.155
      },
      {
       "at": 0.54,
@@ -53742,11 +54561,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.55,
-      "watching": 0.146
+      "watching": 0.147
      },
      {
       "at": 0.56,
-      "watching": 0.152
+      "watching": 0.154
      },
      {
       "at": 0.57,
@@ -53754,7 +54573,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.58,
-      "watching": 0.144
+      "watching": 0.143
      },
      {
       "at": 0.59,
@@ -53810,7 +54629,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.72,
-      "watching": 0.125
+      "watching": 0.124
      },
      {
       "at": 0.73,
@@ -53826,7 +54645,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.76,
-      "watching": 0.115
+      "watching": 0.116
      },
      {
       "at": 0.77,
@@ -53870,23 +54689,23 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.87,
-      "watching": 0.092
+      "watching": 0.091
      },
      {
       "at": 0.88,
-      "watching": 0.093
+      "watching": 0.092
      },
      {
       "at": 0.89,
-      "watching": 0.088
+      "watching": 0.087
      },
      {
       "at": 0.9,
-      "watching": 0.089
+      "watching": 0.088
      },
      {
       "at": 0.91,
-      "watching": 0.086
+      "watching": 0.085
      },
      {
       "at": 0.92,
@@ -53894,15 +54713,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.93,
-      "watching": 0.088
+      "watching": 0.087
      },
      {
       "at": 0.94,
-      "watching": 0.086
+      "watching": 0.085
      },
      {
       "at": 0.95,
-      "watching": 0.089
+      "watching": 0.088
      },
      {
       "at": 0.96,
@@ -53918,7 +54737,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.99,
-      "watching": 0.062
+      "watching": 0.061
      },
      {
       "at": 1,
@@ -53929,43 +54748,43 @@ window.DIVE_DATA = {
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 4811,
-      "share": 79.2
+      "views": 4812,
+      "share": 79
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 293,
+      "views": 295,
       "share": 4.8
      },
      {
       "source": "YT_SEARCH",
-      "views": 256,
+      "views": 258,
       "share": 4.2
      },
      {
       "source": "RELATED_VIDEO",
-      "views": 184,
-      "share": 3
+      "views": 186,
+      "share": 3.1
      },
      {
       "source": "YT_OTHER_PAGE",
-      "views": 170,
+      "views": 171,
       "share": 2.8
      },
      {
       "source": "OTHER_COMBINED",
-      "views": 364,
+      "views": 366,
       "share": 6
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
-     "openStart": 65.6,
-     "openFloor": 10.8,
-     "recoveryPeak": 25.9,
+     "openStart": 65.7,
+     "openFloor": 10.9,
+     "recoveryPeak": 26,
      "recoveryAt": 0.11,
      "midHold": 15.5,
-     "endHold": 8.9
+     "endHold": 8.8
     },
     "moments": [
      {
@@ -53981,7 +54800,7 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.31,
-      "points": 3,
+      "points": 2.9,
       "estSec": 2038,
       "approx": false,
       "excerpt": "Kits is even, like, remember Outbid?\n00:33:56 [Speaker 3]\nYou know?\n00:33:57 [Speaker 3]\nAnd it's like, yeah.\n00:33:58 [Speaker 3]\nThat's how fast it seems like this stuff is going.\n00:34:01 [Speaker 3]\nNow he says this is still popping off.",
@@ -53991,8 +54810,8 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.4,
-      "points": 4.2,
-      "estSec": 2629,
+      "points": 4.1,
+      "estSec": 2630,
       "approx": false,
       "excerpt": "it.\n00:43:43 [Speaker 3]\nThat's a cool I I love, like, four week sprint blocks of something.\n00:43:49 [Speaker 3]\nLike, hey.\n00:43:49 [Speaker 3]\nWe're about to have a Carmack month, or we're about to just have, like, a sprint week or two.\n00:43:54 [Speaker 3]\nFour weeks for a dope brand sprint to yield that much.",
       "speaker": "Speaker 3",
@@ -55612,6 +56431,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3292,
+       "likes": 46,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2791,
+       "likes": 40,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 23636,
+       "likes": 149,
+       "comments": 10,
+       "plays": 1514,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 359
+      },
+      "x:designertom": {
+       "views": 13864,
+       "likes": 31,
+       "comments": 3,
+       "plays": 2625,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 575
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3292,
+       "likes": 46,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2791,
+       "likes": 40,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 23639,
+       "likes": 149,
+       "comments": 10,
+       "plays": 1514,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 359
+      },
+      "x:designertom": {
+       "views": 13864,
+       "likes": 31,
+       "comments": 3,
+       "plays": 2625,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 575
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3292,
+       "likes": 46,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2791,
+       "likes": 40,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 23645,
+       "likes": 149,
+       "comments": 10,
+       "plays": 1514,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 359
+      },
+      "x:designertom": {
+       "views": 13864,
+       "likes": 31,
+       "comments": 3,
+       "plays": 2625,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 575
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -55713,28 +56649,28 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 3287,
+      "views": 3292,
       "likes": 46,
       "comments": 2
      },
      "yt:designertom": {
-      "views": 2780,
-      "likes": 41,
+      "views": 2791,
+      "likes": 40,
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 23598,
+      "views": 23645,
       "likes": 149,
       "comments": 10,
-      "plays": 1513,
+      "plays": 1514,
       "playsSource": "x-broadcast",
       "peakConcurrent": 359
      },
      "x:designertom": {
-      "views": 13855,
+      "views": 13864,
       "likes": 31,
       "comments": 3,
       "plays": 2625,
@@ -55742,25 +56678,25 @@ window.DIVE_DATA = {
       "peakConcurrent": 575
      }
     },
-    "ytTotal": 6067,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 6083,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 37453,
-    "xPlays": 4138,
+    "xImpressions": 37509,
+    "xPlays": 4139,
     "xPlaysInfo": {
-     "value": 4138,
+     "value": 4139,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 10205,
+    "totalViews": 10222,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -55775,17 +56711,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": null
     },
     "live": {
@@ -55800,12 +56736,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -55822,19 +56758,19 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7501031584624717824/"
    },
    "transcript": true,
-   "ageDays": 20.8,
+   "ageDays": 21.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": null,
-    "engagementPer1k": 14.7,
-    "anomaly": "UX Tools email linked the YouTube upload; more than double what a typical episode gets (4,138 X plays vs a typical 2,023; 37,453 X reach vs a typical 9,047) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "engagementPer1k": 14.5,
+    "anomaly": "UX Tools email linked the YouTube upload; more than double what a typical episode gets (4,138 X plays vs a typical 2,023; 37,453 X reach vs a typical 9,144) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 8,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-09-24T15:15:37.577Z",
+    "updatedAt": "2026-09-25T17:33:26.928Z",
     "emailClicks": 150,
     "verifiedEmailClicks": 67,
     "clicksReason": null,
@@ -55974,6 +56910,12 @@ window.DIVE_DATA = {
      {
       "date": "2026-09-24",
       "pulledAt": "2026-09-24T15:15:37.577Z",
+      "emailClicks": 150,
+      "verifiedEmailClicks": 67
+     },
+     {
+      "date": "2026-09-25",
+      "pulledAt": "2026-09-25T17:33:26.928Z",
       "emailClicks": 150,
       "verifiedEmailClicks": 67
      }
@@ -58089,11 +59031,11 @@ window.DIVE_DATA = {
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      }
     },
     "notices": [
@@ -58102,17 +59044,383 @@ window.DIVE_DATA = {
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
    },
    "health": {
-    "pending": true,
-    "readCompleteOn": "2026-09-24"
+    "ep": 8,
+    "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+    "premiere": "2026-09-03",
+    "algorithm": "health21-v2",
+    "windowIds": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+     "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "promo outlier"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     }
+    ],
+    "readDays": 21,
+    "atDay": 21,
+    "frozenAtDay": 21.8,
+    "readCompleteOn": "2026-09-24",
+    "score": 70,
+    "checks": {
+     "watch": {
+      "value": 6067,
+      "typical": 1923,
+      "ratio": 3.155,
+      "score": 100,
+      "sample": 5,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 2015,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-07"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 2034,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-13"
+       },
+       {
+        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "value": 1923,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-27"
+       },
+       {
+        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "value": 1257,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-09-03"
+       },
+       {
+        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "value": 1543,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-09-10"
+       }
+      ],
+      "reason": null,
+      "atDay": 21,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [
+       {
+        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "why": "promo outlier"
+       },
+       {
+        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "why": "promo outlier"
+       }
+      ],
+      "weight": 0.3889
+     },
+     "engagement": {
+      "value": 14.7,
+      "typical": 34.2,
+      "ratio": 0.43,
+      "score": 21,
+      "sample": 5,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 50.1,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-07"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 40.3,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-13"
+       },
+       {
+        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "value": 33.8,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-08-27"
+       },
+       {
+        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "value": 34.2,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-09-03"
+       },
+       {
+        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "value": 27.9,
+        "atDay": 21,
+        "source": "snapshot",
+        "readDate": "2026-09-10"
+       }
+      ],
+      "reason": null,
+      "atDay": 21,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "excluded": [
+       {
+        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "why": "promo outlier"
+       },
+       {
+        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "why": "promo outlier"
+       }
+      ],
+      "weight": 0.1667
+     },
+     "retention": {
+      "value": 9.39,
+      "typical": 11.1,
+      "ratio": 0.846,
+      "score": 42,
+      "sample": 5,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 10.58,
+        "atDay": 69.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 11.1,
+        "atDay": 63.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "value": 8.86,
+        "atDay": 49.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "value": 13.19,
+        "atDay": 42.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "value": 11.28,
+        "atDay": 35.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       }
+      ],
+      "reason": null,
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [
+       {
+        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "why": "promo outlier"
+       },
+       {
+        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "why": "promo outlier"
+       }
+      ],
+      "channels": [
+       "yt:joindiveclub",
+       "yt:designertom"
+      ],
+      "weight": 0.1667
+     },
+     "live": {
+      "value": {
+       "peak": 98,
+       "chat": 137
+      },
+      "typical": {
+       "peak": 71,
+       "chat": 167
+      },
+      "ratio": 1.1,
+      "score": 55,
+      "sample": 5,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": {
+         "peak": 90,
+         "chat": 383
+        },
+        "atDay": null,
+        "source": "live-event",
+        "readDate": null
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": {
+         "peak": 71,
+         "chat": 310
+        },
+        "atDay": null,
+        "source": "live-event",
+        "readDate": null
+       },
+       {
+        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "value": {
+         "peak": 63,
+         "chat": 167
+        },
+        "atDay": null,
+        "source": "live-event",
+        "readDate": null
+       },
+       {
+        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "value": {
+         "peak": 64,
+         "chat": 100
+        },
+        "atDay": null,
+        "source": "live-event",
+        "readDate": null
+       },
+       {
+        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "value": {
+         "peak": 71,
+         "chat": 127
+        },
+        "atDay": null,
+        "source": "live-event",
+        "readDate": null
+       }
+      ],
+      "reason": null,
+      "ageBasis": "ageFree",
+      "note": null,
+      "excluded": [
+       {
+        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "why": "promo outlier"
+       },
+       {
+        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "why": "promo outlier"
+       }
+      ],
+      "weight": 0.1667
+     },
+     "conversion": {
+      "value": 6.3,
+      "typical": 2.7,
+      "ratio": 2.333,
+      "score": 100,
+      "sample": 5,
+      "peers": [
+       {
+        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+        "value": 8.4,
+        "atDay": 69.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "value": 2.7,
+        "atDay": 63.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "value": 3.5,
+        "atDay": 49.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "value": 0.8,
+        "atDay": 42.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       },
+       {
+        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "value": 0.6,
+        "atDay": 35.8,
+        "source": "analytics-file",
+        "readDate": "2026-09-25"
+       }
+      ],
+      "reason": null,
+      "ageBasis": "mature",
+      "note": "compared with earlier episodes as they stand now, not at the same age",
+      "excluded": [
+       {
+        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "why": "promo outlier"
+       },
+       {
+        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "why": "promo outlier"
+       }
+      ],
+      "weight": 0.1111
+     },
+     "sentiment": {
+      "value": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "weight": 0,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three earlier episodes to compare with.",
+      "ageBasis": null,
+      "note": null,
+      "excluded": []
+     }
+    },
+    "missingChecks": [
+     "sentiment"
+    ],
+    "reason": null,
+    "reproducible": false,
+    "computedAt": "2026-09-25T14:02:07.707Z",
+    "frozenAt": "2026-09-25T14:02:07.707Z"
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
    "subsPer1k": 6.3,
-   "discoveryShare": 9.2,
+   "discoveryShare": 9.3,
    "watch": {
     "channels": [
      "yt:joindiveclub",
@@ -58121,28 +59429,28 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 3261,
-      "avgPercent": 10.65,
-      "avgDurationSec": 733,
+      "views": 3267,
+      "avgPercent": 10.67,
+      "avgDurationSec": 734,
       "subs": 12,
       "subsPer1k": 3.7
      },
      {
       "key": "yt:designertom",
-      "views": 2753,
-      "avgPercent": 7.9,
-      "avgDurationSec": 543,
+      "views": 2764,
+      "avgPercent": 7.88,
+      "avgDurationSec": 542,
       "subs": 26,
       "subsPer1k": 9.4
      }
     ],
     "avgPercent": 9.39,
     "avgDurationSec": 646,
-    "minutesWatched": 27619,
+    "minutesWatched": 27755,
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.661
+      "watching": 0.665
      },
      {
       "at": 0.02,
@@ -58154,7 +59462,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.04,
-      "watching": 0.13
+      "watching": 0.129
      },
      {
       "at": 0.05,
@@ -58162,7 +59470,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.06,
-      "watching": 0.199
+      "watching": 0.198
      },
      {
       "at": 0.07,
@@ -58170,7 +59478,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.08,
-      "watching": 0.24
+      "watching": 0.239
      },
      {
       "at": 0.09,
@@ -58178,11 +59486,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.1,
-      "watching": 0.219
+      "watching": 0.22
      },
      {
       "at": 0.11,
-      "watching": 0.206
+      "watching": 0.205
      },
      {
       "at": 0.12,
@@ -58190,23 +59498,23 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.13,
-      "watching": 0.19
+      "watching": 0.189
      },
      {
       "at": 0.14,
-      "watching": 0.179
+      "watching": 0.178
      },
      {
       "at": 0.15,
-      "watching": 0.179
+      "watching": 0.178
      },
      {
       "at": 0.16,
-      "watching": 0.167
+      "watching": 0.166
      },
      {
       "at": 0.17,
-      "watching": 0.17
+      "watching": 0.169
      },
      {
       "at": 0.18,
@@ -58214,7 +59522,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.19,
-      "watching": 0.167
+      "watching": 0.168
      },
      {
       "at": 0.2,
@@ -58230,7 +59538,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.23,
-      "watching": 0.158
+      "watching": 0.159
      },
      {
       "at": 0.24,
@@ -58238,43 +59546,43 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.25,
-      "watching": 0.158
+      "watching": 0.16
      },
      {
       "at": 0.26,
-      "watching": 0.157
-     },
-     {
-      "at": 0.27,
-      "watching": 0.145
-     },
-     {
-      "at": 0.28,
-      "watching": 0.147
-     },
-     {
-      "at": 0.29,
-      "watching": 0.155
-     },
-     {
-      "at": 0.3,
-      "watching": 0.167
-     },
-     {
-      "at": 0.31,
-      "watching": 0.165
-     },
-     {
-      "at": 0.32,
       "watching": 0.159
      },
      {
+      "at": 0.27,
+      "watching": 0.147
+     },
+     {
+      "at": 0.28,
+      "watching": 0.148
+     },
+     {
+      "at": 0.29,
+      "watching": 0.158
+     },
+     {
+      "at": 0.3,
+      "watching": 0.17
+     },
+     {
+      "at": 0.31,
+      "watching": 0.168
+     },
+     {
+      "at": 0.32,
+      "watching": 0.16
+     },
+     {
       "at": 0.33,
-      "watching": 0.15
+      "watching": 0.151
      },
      {
       "at": 0.34,
-      "watching": 0.156
+      "watching": 0.157
      },
      {
       "at": 0.35,
@@ -58282,15 +59590,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.36,
-      "watching": 0.218
+      "watching": 0.219
      },
      {
       "at": 0.37,
-      "watching": 0.247
+      "watching": 0.248
      },
      {
       "at": 0.38,
-      "watching": 0.208
+      "watching": 0.209
      },
      {
       "at": 0.39,
@@ -58302,7 +59610,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.41,
-      "watching": 0.188
+      "watching": 0.187
      },
      {
       "at": 0.42,
@@ -58330,7 +59638,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.48,
-      "watching": 0.149
+      "watching": 0.15
      },
      {
       "at": 0.49,
@@ -58350,11 +59658,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.53,
-      "watching": 0.129
+      "watching": 0.13
      },
      {
       "at": 0.54,
-      "watching": 0.137
+      "watching": 0.138
      },
      {
       "at": 0.55,
@@ -58374,31 +59682,31 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.59,
-      "watching": 0.127
+      "watching": 0.132
      },
      {
       "at": 0.6,
-      "watching": 0.118
+      "watching": 0.12
      },
      {
       "at": 0.61,
-      "watching": 0.115
+      "watching": 0.116
      },
      {
       "at": 0.62,
-      "watching": 0.109
+      "watching": 0.11
      },
      {
       "at": 0.63,
-      "watching": 0.103
+      "watching": 0.102
      },
      {
       "at": 0.64,
-      "watching": 0.104
+      "watching": 0.105
      },
      {
       "at": 0.65,
-      "watching": 0.108
+      "watching": 0.11
      },
      {
       "at": 0.66,
@@ -58406,31 +59714,31 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.67,
-      "watching": 0.103
-     },
-     {
-      "at": 0.68,
-      "watching": 0.106
-     },
-     {
-      "at": 0.69,
-      "watching": 0.096
-     },
-     {
-      "at": 0.7,
-      "watching": 0.097
-     },
-     {
-      "at": 0.71,
       "watching": 0.102
      },
      {
+      "at": 0.68,
+      "watching": 0.105
+     },
+     {
+      "at": 0.69,
+      "watching": 0.095
+     },
+     {
+      "at": 0.7,
+      "watching": 0.096
+     },
+     {
+      "at": 0.71,
+      "watching": 0.104
+     },
+     {
       "at": 0.72,
-      "watching": 0.12
+      "watching": 0.119
      },
      {
       "at": 0.73,
-      "watching": 0.119
+      "watching": 0.118
      },
      {
       "at": 0.74,
@@ -58438,35 +59746,35 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.75,
-      "watching": 0.102
+      "watching": 0.101
      },
      {
       "at": 0.76,
-      "watching": 0.098
+      "watching": 0.097
      },
      {
       "at": 0.77,
-      "watching": 0.106
+      "watching": 0.105
      },
      {
       "at": 0.78,
-      "watching": 0.102
+      "watching": 0.101
      },
      {
       "at": 0.79,
-      "watching": 0.099
+      "watching": 0.098
      },
      {
       "at": 0.8,
-      "watching": 0.098
+      "watching": 0.097
      },
      {
       "at": 0.81,
-      "watching": 0.099
+      "watching": 0.098
      },
      {
       "at": 0.82,
-      "watching": 0.098
+      "watching": 0.097
      },
      {
       "at": 0.83,
@@ -58474,7 +59782,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.84,
-      "watching": 0.094
+      "watching": 0.093
      },
      {
       "at": 0.85,
@@ -58494,7 +59802,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.89,
-      "watching": 0.075
+      "watching": 0.074
      },
      {
       "at": 0.9,
@@ -58502,15 +59810,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.91,
-      "watching": 0.085
+      "watching": 0.084
      },
      {
       "at": 0.92,
-      "watching": 0.079
+      "watching": 0.078
      },
      {
       "at": 0.93,
-      "watching": 0.076
+      "watching": 0.077
      },
      {
       "at": 0.94,
@@ -58522,7 +59830,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.96,
-      "watching": 0.062
+      "watching": 0.061
      },
      {
       "at": 0.97,
@@ -58534,7 +59842,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.99,
-      "watching": 0.047
+      "watching": 0.046
      },
      {
       "at": 1,
@@ -58545,49 +59853,49 @@ window.DIVE_DATA = {
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 4197,
-      "share": 69.8
+      "views": 4201,
+      "share": 69.7
      },
      {
       "source": "EXT_URL",
-      "views": 483,
-      "share": 8
+      "views": 491,
+      "share": 8.1
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 356,
+      "views": 357,
       "share": 5.9
      },
      {
       "source": "YT_SEARCH",
-      "views": 341,
+      "views": 343,
       "share": 5.7
      },
      {
       "source": "RELATED_VIDEO",
-      "views": 213,
+      "views": 214,
       "share": 3.5
      },
      {
       "source": "OTHER_COMBINED",
-      "views": 424,
-      "share": 7.1
+      "views": 425,
+      "share": 7
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
-     "openStart": 66.1,
+     "openStart": 66.5,
      "openFloor": 10,
-     "recoveryPeak": 24,
+     "recoveryPeak": 23.9,
      "recoveryAt": 0.08,
-     "midHold": 14.2,
+     "midHold": 14.3,
      "endHold": 6.7
     },
     "moments": [
      {
       "kind": "drop",
       "at": 0.1,
-      "points": 3.3,
+      "points": 3.4,
       "estSec": 688,
       "approx": false,
       "excerpt": "She is so dope on the thing she we'll get we'll get into her portfolio in a second.\n\n00:11:25 [Speaker 2]\nI I do wanna show you this, Substack article down here that she put together.\n00:11:30 [Speaker 2]\nAnd and real quick, as we kind of look through her feed, the same way Sam Dape Sam Pates.",
@@ -58597,7 +59905,7 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.38,
-      "points": 4.9,
+      "points": 5,
       "estSec": 2614,
       "approx": false,
       "excerpt": "And what we could do is we can have all of these different artboards.\n00:43:31 [Speaker 13]\nWe can have these different settings.\n\n00:43:32 [Speaker 13]\nSo we could come in and say, actually, we want a nine by 16 asset, and we wanna change the kind of, like, slight size of this.",
@@ -58608,10 +59916,10 @@ window.DIVE_DATA = {
       "kind": "drop",
       "at": 0.5,
       "points": 2.5,
-      "estSec": 3439,
+      "estSec": 3440,
       "approx": false,
-      "excerpt": "And the dude just started messing around with Claude, like, single digit months ago.\n\n00:57:15 [Speaker 5]\nHe was he was quote, unquote late to the game, and now he's pulling this off where it's like, maybe the word engineer just doesn't mean anything anymore.",
-      "speaker": "Speaker 5",
+      "excerpt": "He told me in a voice note that he was cons he he was like, you know, I started with a left panel, kind of the typical dial kit, levers and controls, and he said, I wanted to do something a little unconventional.\n00:57:37 [Speaker 2]\nI don't know if it works.\n00:57:38 [Speaker 2]\nHe goes, but I I like how unique it is.",
+      "speaker": "Speaker 2",
       "summary": "Playground’s creator demonstrates small tools for making brand assets, then the hosts discuss designers building tools with Claude and emerging brand engineer jobs."
      },
      {
@@ -58628,9 +59936,9 @@ window.DIVE_DATA = {
       "kind": "hold",
       "at": 0.71,
       "points": 2.3,
-      "estSec": 4883,
+      "estSec": 4884,
       "approx": false,
-      "excerpt": "And there's even, like and we saw Versace ship.\n01:21:18 [Speaker 2]\nThey did the badge thing.\n01:21:19 [Speaker 2]\nI brought this up, I think, with in our Slack channel, Hatch Conference, which, Damien Martone hosting in, the EU.\n01:21:27 [Speaker 2]\nGo check this out if you are over in that area.",
+      "excerpt": "They did the badge thing.\n01:21:19 [Speaker 2]\nI brought this up, I think, with in our Slack channel, Hatch Conference, which, Damien Martone hosting in, the EU.\n01:21:27 [Speaker 2]\nGo check this out if you are over in that area.\n01:21:30 [Speaker 2]\nAnd I love this.",
       "speaker": "Speaker 2",
       "summary": "Hosts discuss rising demand and pay for brand designers and expanding brand universes, then play a clip of Mike Smith comparing brand world building to the immersive feeling of Disneyland."
      }
@@ -59692,6 +61000,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 6809,
+       "likes": 111,
+       "comments": 8
+      },
+      "yt:designertom": {
+       "views": 4506,
+       "likes": 72,
+       "comments": 9
+      },
+      "x:ridd_design": {
+       "views": 2743,
+       "likes": 40,
+       "comments": 0,
+       "plays": 1800,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 693
+      },
+      "x:designertom": {
+       "views": 11703,
+       "likes": 37,
+       "comments": 3,
+       "plays": 2126,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 250
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 6814,
+       "likes": 111,
+       "comments": 8
+      },
+      "yt:designertom": {
+       "views": 4506,
+       "likes": 72,
+       "comments": 9
+      },
+      "x:ridd_design": {
+       "views": 2744,
+       "likes": 40,
+       "comments": 0,
+       "plays": 1801,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 693
+      },
+      "x:designertom": {
+       "views": 11703,
+       "likes": 37,
+       "comments": 3,
+       "plays": 2126,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 250
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 6814,
+       "likes": 111,
+       "comments": 8
+      },
+      "yt:designertom": {
+       "views": 4508,
+       "likes": 72,
+       "comments": 9
+      },
+      "x:ridd_design": {
+       "views": 2745,
+       "likes": 40,
+       "comments": 0,
+       "plays": 1801,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 693
+      },
+      "x:designertom": {
+       "views": 11703,
+       "likes": 37,
+       "comments": 3,
+       "plays": 2126,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 250
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -59761,54 +61186,54 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 6738,
+      "views": 6814,
       "likes": 111,
       "comments": 8
      },
      "yt:designertom": {
-      "views": 4477,
+      "views": 4508,
       "likes": 72,
       "comments": 9
      },
      "x:ridd_design": {
-      "views": 2740,
+      "views": 2745,
       "likes": 40,
       "comments": 0,
-      "plays": 1800,
+      "plays": 1801,
       "playsSource": "x-broadcast",
       "peakConcurrent": 693
      },
      "x:designertom": {
-      "views": 11691,
+      "views": 11703,
       "likes": 37,
       "comments": 3,
-      "plays": 2125,
+      "plays": 2126,
       "playsSource": "x-broadcast",
       "peakConcurrent": 250
      }
     },
-    "ytTotal": 11215,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 11322,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 14431,
-    "xPlays": 3925,
+    "xImpressions": 14448,
+    "xPlays": 3927,
     "xPlaysInfo": {
-     "value": 3925,
+     "value": 3927,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 15140,
+    "totalViews": 15249,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -59823,17 +61248,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": null
     },
     "live": {
@@ -59848,12 +61273,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -59870,20 +61295,20 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/"
    },
    "transcript": true,
-   "ageDays": 13.8,
+   "ageDays": 14.9,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": null,
-    "engagementPer1k": 17.8,
+    "engagementPer1k": 17.7,
     "anomaly": "UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 9,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-09-24T15:15:37.577Z",
-    "emailClicks": 314,
+    "updatedAt": "2026-09-25T17:33:26.928Z",
+    "emailClicks": 316,
     "verifiedEmailClicks": 206,
     "clicksReason": null,
     "combinedUniqueReaders": null,
@@ -59900,7 +61325,7 @@ window.DIVE_DATA = {
       "title": "How Linear hires designers",
       "publishedAt": "2026-09-10T13:00:00.000Z",
       "url": "https://uxtools.beehiiv.com/p/how-linear-hires-designers",
-      "emailClicks": 296,
+      "emailClicks": 298,
       "verifiedEmailClicks": 200
      },
      {
@@ -59983,6 +61408,12 @@ window.DIVE_DATA = {
       "date": "2026-09-24",
       "pulledAt": "2026-09-24T15:15:37.577Z",
       "emailClicks": 314,
+      "verifiedEmailClicks": 206
+     },
+     {
+      "date": "2026-09-25",
+      "pulledAt": "2026-09-25T17:33:26.928Z",
+      "emailClicks": 316,
       "verifiedEmailClicks": 206
      }
     ]
@@ -63246,11 +64677,11 @@ window.DIVE_DATA = {
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      }
     },
     "notices": [
@@ -63264,11 +64695,11 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
-   "subsPer1k": 2.6,
+   "subsPer1k": 2.5,
    "discoveryShare": 8.5,
    "watch": {
     "channels": [
@@ -63278,24 +64709,24 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 6481,
-      "avgPercent": 9.5,
-      "avgDurationSec": 857,
+      "views": 6612,
+      "avgPercent": 9.39,
+      "avgDurationSec": 847,
       "subs": 12,
-      "subsPer1k": 1.9
+      "subsPer1k": 1.8
      },
      {
       "key": "yt:designertom",
-      "views": 4405,
-      "avgPercent": 8.81,
-      "avgDurationSec": 794,
+      "views": 4441,
+      "avgPercent": 8.83,
+      "avgDurationSec": 797,
       "subs": 16,
       "subsPer1k": 3.6
      }
     ],
-    "avgPercent": 9.22,
-    "avgDurationSec": 832,
-    "minutesWatched": 65405,
+    "avgPercent": 9.16,
+    "avgDurationSec": 827,
+    "minutesWatched": 66484,
     "curve": [
      {
       "at": 0.01,
@@ -63303,15 +64734,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.02,
-      "watching": 0.127
+      "watching": 0.128
      },
      {
       "at": 0.03,
-      "watching": 0.144
+      "watching": 0.146
      },
      {
       "at": 0.04,
-      "watching": 0.252
+      "watching": 0.251
      },
      {
       "at": 0.05,
@@ -63319,11 +64750,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.06,
-      "watching": 0.215
+      "watching": 0.216
      },
      {
       "at": 0.07,
-      "watching": 0.223
+      "watching": 0.222
      },
      {
       "at": 0.08,
@@ -63339,15 +64770,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.11,
-      "watching": 0.233
+      "watching": 0.232
      },
      {
       "at": 0.12,
-      "watching": 0.201
+      "watching": 0.2
      },
      {
       "at": 0.13,
-      "watching": 0.182
+      "watching": 0.183
      },
      {
       "at": 0.14,
@@ -63359,7 +64790,7 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.16,
-      "watching": 0.181
+      "watching": 0.18
      },
      {
       "at": 0.17,
@@ -63367,23 +64798,23 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.18,
-      "watching": 0.157
-     },
-     {
-      "at": 0.19,
-      "watching": 0.157
-     },
-     {
-      "at": 0.2,
       "watching": 0.158
      },
      {
+      "at": 0.19,
+      "watching": 0.156
+     },
+     {
+      "at": 0.2,
+      "watching": 0.157
+     },
+     {
       "at": 0.21,
-      "watching": 0.16
+      "watching": 0.159
      },
      {
       "at": 0.22,
-      "watching": 0.162
+      "watching": 0.161
      },
      {
       "at": 0.23,
@@ -63395,11 +64826,11 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.25,
-      "watching": 0.141
+      "watching": 0.14
      },
      {
       "at": 0.26,
-      "watching": 0.137
+      "watching": 0.136
      },
      {
       "at": 0.27,
@@ -63411,15 +64842,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.29,
-      "watching": 0.156
+      "watching": 0.157
      },
      {
       "at": 0.3,
-      "watching": 0.148
+      "watching": 0.15
      },
      {
       "at": 0.31,
-      "watching": 0.139
+      "watching": 0.14
      },
      {
       "at": 0.32,
@@ -63435,15 +64866,15 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.35,
-      "watching": 0.139
+      "watching": 0.14
      },
      {
       "at": 0.36,
-      "watching": 0.149
+      "watching": 0.15
      },
      {
       "at": 0.37,
-      "watching": 0.145
+      "watching": 0.146
      },
      {
       "at": 0.38,
@@ -63459,79 +64890,79 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.41,
-      "watching": 0.146
+      "watching": 0.145
      },
      {
       "at": 0.42,
-      "watching": 0.141
+      "watching": 0.14
      },
      {
       "at": 0.43,
-      "watching": 0.153
+      "watching": 0.15
      },
      {
       "at": 0.44,
-      "watching": 0.157
+      "watching": 0.155
      },
      {
       "at": 0.45,
-      "watching": 0.143
+      "watching": 0.14
      },
      {
       "at": 0.46,
-      "watching": 0.133
-     },
-     {
-      "at": 0.47,
       "watching": 0.131
      },
      {
-      "at": 0.48,
-      "watching": 0.135
+      "at": 0.47,
+      "watching": 0.129
      },
      {
-      "at": 0.49,
+      "at": 0.48,
       "watching": 0.133
      },
      {
+      "at": 0.49,
+      "watching": 0.131
+     },
+     {
       "at": 0.5,
-      "watching": 0.128
+      "watching": 0.126
      },
      {
       "at": 0.51,
-      "watching": 0.143
+      "watching": 0.141
      },
      {
       "at": 0.52,
-      "watching": 0.124
+      "watching": 0.123
      },
      {
       "at": 0.53,
-      "watching": 0.119
+      "watching": 0.118
      },
      {
       "at": 0.54,
-      "watching": 0.117
+      "watching": 0.116
      },
      {
       "at": 0.55,
-      "watching": 0.138
+      "watching": 0.136
      },
      {
       "at": 0.56,
-      "watching": 0.142
+      "watching": 0.14
      },
      {
       "at": 0.57,
-      "watching": 0.128
+      "watching": 0.127
      },
      {
       "at": 0.58,
-      "watching": 0.125
+      "watching": 0.123
      },
      {
       "at": 0.59,
-      "watching": 0.127
+      "watching": 0.126
      },
      {
       "at": 0.6,
@@ -63539,95 +64970,95 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.61,
-      "watching": 0.119
-     },
-     {
-      "at": 0.62,
-      "watching": 0.115
-     },
-     {
-      "at": 0.63,
-      "watching": 0.111
-     },
-     {
-      "at": 0.64,
       "watching": 0.118
      },
      {
-      "at": 0.65,
-      "watching": 0.125
+      "at": 0.62,
+      "watching": 0.114
      },
      {
-      "at": 0.66,
+      "at": 0.63,
+      "watching": 0.11
+     },
+     {
+      "at": 0.64,
       "watching": 0.117
      },
      {
+      "at": 0.65,
+      "watching": 0.123
+     },
+     {
+      "at": 0.66,
+      "watching": 0.115
+     },
+     {
       "at": 0.67,
-      "watching": 0.098
-     },
-     {
-      "at": 0.68,
-      "watching": 0.103
-     },
-     {
-      "at": 0.69,
       "watching": 0.097
      },
      {
+      "at": 0.68,
+      "watching": 0.102
+     },
+     {
+      "at": 0.69,
+      "watching": 0.095
+     },
+     {
       "at": 0.7,
-      "watching": 0.093
-     },
-     {
-      "at": 0.71,
-      "watching": 0.092
-     },
-     {
-      "at": 0.72,
-      "watching": 0.088
-     },
-     {
-      "at": 0.73,
-      "watching": 0.098
-     },
-     {
-      "at": 0.74,
-      "watching": 0.094
-     },
-     {
-      "at": 0.75,
-      "watching": 0.087
-     },
-     {
-      "at": 0.76,
-      "watching": 0.087
-     },
-     {
-      "at": 0.77,
-      "watching": 0.086
-     },
-     {
-      "at": 0.78,
-      "watching": 0.088
-     },
-     {
-      "at": 0.79,
       "watching": 0.091
      },
      {
-      "at": 0.8,
-      "watching": 0.088
+      "at": 0.71,
+      "watching": 0.091
      },
      {
-      "at": 0.81,
-      "watching": 0.094
+      "at": 0.72,
+      "watching": 0.087
      },
      {
-      "at": 0.82,
+      "at": 0.73,
+      "watching": 0.097
+     },
+     {
+      "at": 0.74,
+      "watching": 0.093
+     },
+     {
+      "at": 0.75,
+      "watching": 0.086
+     },
+     {
+      "at": 0.76,
+      "watching": 0.086
+     },
+     {
+      "at": 0.77,
       "watching": 0.085
      },
      {
+      "at": 0.78,
+      "watching": 0.087
+     },
+     {
+      "at": 0.79,
+      "watching": 0.089
+     },
+     {
+      "at": 0.8,
+      "watching": 0.086
+     },
+     {
+      "at": 0.81,
+      "watching": 0.092
+     },
+     {
+      "at": 0.82,
+      "watching": 0.084
+     },
+     {
       "at": 0.83,
-      "watching": 0.077
+      "watching": 0.075
      },
      {
       "at": 0.84,
@@ -63635,35 +65066,35 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.85,
-      "watching": 0.075
+      "watching": 0.074
      },
      {
       "at": 0.86,
-      "watching": 0.074
+      "watching": 0.073
      },
      {
       "at": 0.87,
-      "watching": 0.08
+      "watching": 0.079
      },
      {
       "at": 0.88,
-      "watching": 0.078
+      "watching": 0.076
      },
      {
       "at": 0.89,
-      "watching": 0.074
+      "watching": 0.072
      },
      {
       "at": 0.9,
-      "watching": 0.075
+      "watching": 0.073
      },
      {
       "at": 0.91,
-      "watching": 0.074
+      "watching": 0.072
      },
      {
       "at": 0.92,
-      "watching": 0.075
+      "watching": 0.074
      },
      {
       "at": 0.93,
@@ -63671,80 +65102,80 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.94,
-      "watching": 0.062
+      "watching": 0.061
      },
      {
       "at": 0.95,
-      "watching": 0.062
+      "watching": 0.061
      },
      {
       "at": 0.96,
-      "watching": 0.066
+      "watching": 0.064
      },
      {
       "at": 0.97,
-      "watching": 0.068
+      "watching": 0.066
      },
      {
       "at": 0.98,
-      "watching": 0.063
+      "watching": 0.061
      },
      {
       "at": 0.99,
-      "watching": 0.052
+      "watching": 0.051
      },
      {
       "at": 1,
-      "watching": 0.045
+      "watching": 0.044
      }
     ],
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 8216,
-      "share": 75.5
+      "views": 8289,
+      "share": 75
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 740,
-      "share": 6.8
-     },
-     {
-      "source": "YT_SEARCH",
-      "views": 462,
-      "share": 4.2
+      "views": 784,
+      "share": 7.1
      },
      {
       "source": "RELATED_VIDEO",
-      "views": 462,
+      "views": 472,
+      "share": 4.3
+     },
+     {
+      "source": "YT_SEARCH",
+      "views": 469,
       "share": 4.2
      },
      {
       "source": "YT_OTHER_PAGE",
-      "views": 373,
-      "share": 3.4
+      "views": 384,
+      "share": 3.5
      },
      {
       "source": "OTHER_COMBINED",
-      "views": 633,
-      "share": 5.8
+      "views": 653,
+      "share": 5.9
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
      "openStart": 68.7,
-     "openFloor": 12.7,
-     "recoveryPeak": 25.2,
+     "openFloor": 12.8,
+     "recoveryPeak": 25.1,
      "recoveryAt": 0.04,
-     "midHold": 12.9,
-     "endHold": 6.2
+     "midHold": 12.8,
+     "endHold": 6.1
     },
     "moments": [
      {
       "kind": "drop",
       "at": 0.05,
-      "points": 3.7,
+      "points": 3.5,
       "estSec": 451,
       "approx": false,
       "excerpt": "So with everybody, you know, trying to hire you, why?\n00:07:32 [Speaker 1]\nWhy why is this something that you're interested in?\n00:07:34 [Speaker 1]\nOutside of, you know, getting to to hang with me all day.\n\n00:07:37 [Speaker 3]\nYeah.\n00:07:37 [Speaker 3]\nI mean, well, that's, like, the number one, dude.",
@@ -63754,8 +65185,8 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.12,
-      "points": 5.1,
-      "estSec": 1082,
+      "points": 4.9,
+      "estSec": 1083,
       "approx": false,
       "excerpt": "Good at articulating why these people are dope.\n00:18:04 [Speaker 3]\nI'm like, I need to get better at that.\n\n00:18:06 [Speaker 1]\nI was about to say, I feel like we almost do a disservice in our own nominations because\n\n00:18:10 [Speaker 10]\nYeah.\n\n00:18:11 [Speaker 1]\nPrerecorded ones are so good.",
       "speaker": "Speaker 3",
@@ -63764,8 +65195,8 @@ window.DIVE_DATA = {
      {
       "kind": "hold",
       "at": 0.55,
-      "points": 2.5,
-      "estSec": 4960,
+      "points": 2.4,
+      "estSec": 4963,
       "approx": false,
       "excerpt": "Welcome to Dive Radio with DJ T Bone and the Ridla.\n\n01:22:46 [Speaker 3]\nSo the we're gonna get a soundboard, and those are the first two that's the first one going on there.\n01:22:51 [Speaker 3]\nThat's the first one going on there.\n\n01:22:53 [Speaker 1]\nI haven't seen this.\n01:22:54 [Speaker 1]\nThanks.",
       "speaker": "Speaker 18",
@@ -63774,8 +65205,8 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.66,
-      "points": 2.7,
-      "estSec": 5952,
+      "points": 2.6,
+      "estSec": 5955,
       "approx": false,
       "excerpt": "And we kind of just generally look for people who are gonna be joining the team to be bringing something special to the group, something that they can teach us or that inspires us that's gonna help us to be better.",
       "speaker": "Speaker 12",
@@ -64377,6 +65808,123 @@ window.DIVE_DATA = {
       "pulledAt": "2026-09-24T15:15:40.950Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4915,
+       "likes": 57,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2851,
+       "likes": 50,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 14191,
+       "likes": 58,
+       "comments": 5,
+       "plays": 673,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 211
+      },
+      "x:designertom": {
+       "views": 5458,
+       "likes": 14,
+       "comments": 2,
+       "plays": 1086,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 89
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4922,
+       "likes": 57,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2851,
+       "likes": 50,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 14200,
+       "likes": 58,
+       "comments": 5,
+       "plays": 673,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 211
+      },
+      "x:designertom": {
+       "views": 5464,
+       "likes": 14,
+       "comments": 2,
+       "plays": 1086,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 89
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4931,
+       "likes": 57,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2854,
+       "likes": 50,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 14205,
+       "likes": 58,
+       "comments": 5,
+       "plays": 673,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 211
+      },
+      "x:designertom": {
+       "views": 5466,
+       "likes": 14,
+       "comments": 2,
+       "plays": 1086,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 89
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -64414,54 +65962,54 @@ window.DIVE_DATA = {
     }
    ],
    "latest": {
-    "ts": "2026-09-24T15:15:40.950Z",
+    "ts": "2026-09-25T17:33:29.965Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 4864,
+      "views": 4931,
       "likes": 57,
       "comments": 2
      },
      "yt:designertom": {
-      "views": 2801,
-      "likes": 49,
+      "views": 2854,
+      "likes": 50,
       "comments": 3
      },
      "x:ridd_design": {
-      "views": 14119,
+      "views": 14205,
       "likes": 58,
       "comments": 5,
-      "plays": 672,
+      "plays": 673,
       "playsSource": "x-broadcast",
       "peakConcurrent": 211
      },
      "x:designertom": {
-      "views": 5387,
+      "views": 5466,
       "likes": 14,
       "comments": 2,
-      "plays": 1074,
+      "plays": 1086,
       "playsSource": "x-broadcast",
       "peakConcurrent": 89
      }
     },
-    "ytTotal": 7665,
-    "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+    "ytTotal": 7785,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
     "youtubeStale": false,
-    "xImpressions": 19506,
-    "xPlays": 1746,
+    "xImpressions": 19671,
+    "xPlays": 1759,
     "xPlaysInfo": {
-     "value": 1746,
+     "value": 1759,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 9411,
+    "totalViews": 9544,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-09-24T15:15:40.950Z",
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -64476,17 +66024,17 @@ window.DIVE_DATA = {
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:40.950Z",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:15:37.577Z",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
      "reason": null
     },
     "live": {
@@ -64501,12 +66049,12 @@ window.DIVE_DATA = {
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:30.588Z",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-09-24T15:16:09.175Z",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
      "reason": null
     },
     "transcript": {
@@ -64523,19 +66071,19 @@ window.DIVE_DATA = {
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7506264059403620354/"
    },
    "transcript": true,
-   "ageDays": 6.8,
+   "ageDays": 7.9,
    "metrics": {
     "week1Velocity": null,
-    "week1Note": "pending: episode under 7 days old",
+    "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": null,
-    "engagementPer1k": 14.5,
-    "anomaly": "UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "engagementPer1k": 14.4,
+    "anomaly": "UX Tools email linked the YouTube upload; more than double what a typical episode gets (19,671 X reach vs a typical 8,841) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 10,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-09-24T15:15:37.577Z",
+    "updatedAt": "2026-09-25T17:33:26.928Z",
     "emailClicks": 94,
     "verifiedEmailClicks": 39,
     "clicksReason": null,
@@ -64591,6 +66139,12 @@ window.DIVE_DATA = {
      {
       "date": "2026-09-24",
       "pulledAt": "2026-09-24T15:15:37.577Z",
+      "emailClicks": 94,
+      "verifiedEmailClicks": 39
+     },
+     {
+      "date": "2026-09-25",
+      "pulledAt": "2026-09-25T17:33:26.928Z",
       "emailClicks": 94,
       "verifiedEmailClicks": 39
      }
@@ -66807,11 +68361,11 @@ window.DIVE_DATA = {
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-09-24T15:15:07.705Z"
+      "checkedAt": "2026-09-25T17:32:54.787Z"
      }
     },
     "notices": [
@@ -66826,12 +68380,12 @@ window.DIVE_DATA = {
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-09-24T15:16:09.175Z",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
     "missingChannels": [],
     "reason": null
    },
-   "subsPer1k": 1.7,
-   "discoveryShare": 6.5,
+   "subsPer1k": 1.6,
+   "discoveryShare": 7,
    "watch": {
     "channels": [
      "yt:joindiveclub",
@@ -66840,68 +68394,68 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "key": "yt:joindiveclub",
-      "views": 4557,
-      "avgPercent": 10.4,
-      "avgDurationSec": 755,
+      "views": 4754,
+      "avgPercent": 10.55,
+      "avgDurationSec": 766,
       "subs": 7,
       "subsPer1k": 1.5
      },
      {
       "key": "yt:designertom",
-      "views": 2643,
-      "avgPercent": 10.19,
-      "avgDurationSec": 740,
+      "views": 2727,
+      "avgPercent": 10.23,
+      "avgDurationSec": 743,
       "subs": 5,
-      "subsPer1k": 1.9
+      "subsPer1k": 1.8
      }
     ],
-    "avgPercent": 10.32,
-    "avgDurationSec": 749,
-    "minutesWatched": 31961,
+    "avgPercent": 10.43,
+    "avgDurationSec": 758,
+    "minutesWatched": 33805,
     "curve": [
      {
       "at": 0.01,
-      "watching": 0.767
+      "watching": 0.758
      },
      {
       "at": 0.02,
-      "watching": 0.124
+      "watching": 0.12
      },
      {
       "at": 0.03,
-      "watching": 0.109
+      "watching": 0.104
      },
      {
       "at": 0.04,
-      "watching": 0.153
+      "watching": 0.15
      },
      {
       "at": 0.05,
-      "watching": 0.221
+      "watching": 0.222
      },
      {
       "at": 0.06,
-      "watching": 0.227
+      "watching": 0.223
      },
      {
       "at": 0.07,
-      "watching": 0.208
+      "watching": 0.205
      },
      {
       "at": 0.08,
-      "watching": 0.207
-     },
-     {
-      "at": 0.09,
-      "watching": 0.21
-     },
-     {
-      "at": 0.1,
       "watching": 0.203
      },
      {
+      "at": 0.09,
+      "watching": 0.206
+     },
+     {
+      "at": 0.1,
+      "watching": 0.2
+     },
+     {
       "at": 0.11,
-      "watching": 0.218
+      "watching": 0.217
      },
      {
       "at": 0.12,
@@ -66909,23 +68463,23 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.13,
-      "watching": 0.185
+      "watching": 0.184
      },
      {
       "at": 0.14,
-      "watching": 0.161
+      "watching": 0.162
      },
      {
       "at": 0.15,
-      "watching": 0.169
+      "watching": 0.171
      },
      {
       "at": 0.16,
-      "watching": 0.168
+      "watching": 0.17
      },
      {
       "at": 0.17,
-      "watching": 0.164
+      "watching": 0.167
      },
      {
       "at": 0.18,
@@ -66941,47 +68495,47 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.21,
-      "watching": 0.153
+      "watching": 0.156
      },
      {
       "at": 0.22,
-      "watching": 0.15
+      "watching": 0.151
      },
      {
       "at": 0.23,
-      "watching": 0.153
+      "watching": 0.154
      },
      {
       "at": 0.24,
-      "watching": 0.142
+      "watching": 0.143
      },
      {
       "at": 0.25,
-      "watching": 0.147
+      "watching": 0.148
      },
      {
       "at": 0.26,
-      "watching": 0.151
+      "watching": 0.153
      },
      {
       "at": 0.27,
-      "watching": 0.151
+      "watching": 0.153
      },
      {
       "at": 0.28,
-      "watching": 0.144
+      "watching": 0.148
      },
      {
       "at": 0.29,
-      "watching": 0.151
+      "watching": 0.154
      },
      {
       "at": 0.3,
-      "watching": 0.149
+      "watching": 0.154
      },
      {
       "at": 0.31,
-      "watching": 0.141
+      "watching": 0.14
      },
      {
       "at": 0.32,
@@ -66989,99 +68543,99 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.33,
-      "watching": 0.145
+      "watching": 0.146
      },
      {
       "at": 0.34,
-      "watching": 0.142
+      "watching": 0.145
      },
      {
       "at": 0.35,
-      "watching": 0.149
+      "watching": 0.151
      },
      {
       "at": 0.36,
-      "watching": 0.151
+      "watching": 0.155
      },
      {
       "at": 0.37,
-      "watching": 0.147
+      "watching": 0.149
      },
      {
       "at": 0.38,
-      "watching": 0.137
+      "watching": 0.142
      },
      {
       "at": 0.39,
-      "watching": 0.137
+      "watching": 0.14
      },
      {
       "at": 0.4,
-      "watching": 0.139
+      "watching": 0.143
      },
      {
       "at": 0.41,
-      "watching": 0.141
+      "watching": 0.144
      },
      {
       "at": 0.42,
-      "watching": 0.139
+      "watching": 0.141
      },
      {
       "at": 0.43,
-      "watching": 0.154
+      "watching": 0.16
      },
      {
       "at": 0.44,
-      "watching": 0.121
-     },
-     {
-      "at": 0.45,
-      "watching": 0.127
-     },
-     {
-      "at": 0.46,
-      "watching": 0.123
-     },
-     {
-      "at": 0.47,
-      "watching": 0.121
-     },
-     {
-      "at": 0.48,
       "watching": 0.126
      },
      {
+      "at": 0.45,
+      "watching": 0.132
+     },
+     {
+      "at": 0.46,
+      "watching": 0.127
+     },
+     {
+      "at": 0.47,
+      "watching": 0.124
+     },
+     {
+      "at": 0.48,
+      "watching": 0.13
+     },
+     {
       "at": 0.49,
-      "watching": 0.123
+      "watching": 0.127
      },
      {
       "at": 0.5,
-      "watching": 0.112
+      "watching": 0.117
      },
      {
       "at": 0.51,
-      "watching": 0.116
+      "watching": 0.121
      },
      {
       "at": 0.52,
-      "watching": 0.124
-     },
-     {
-      "at": 0.53,
-      "watching": 0.124
-     },
-     {
-      "at": 0.54,
-      "watching": 0.122
-     },
-     {
-      "at": 0.55,
       "watching": 0.131
      },
      {
+      "at": 0.53,
+      "watching": 0.131
+     },
+     {
+      "at": 0.54,
+      "watching": 0.125
+     },
+     {
+      "at": 0.55,
+      "watching": 0.134
+     },
+     {
       "at": 0.56,
-      "watching": 0.151
+      "watching": 0.152
      },
      {
       "at": 0.57,
@@ -67089,218 +68643,218 @@ window.DIVE_DATA = {
      },
      {
       "at": 0.58,
-      "watching": 0.141
+      "watching": 0.142
      },
      {
       "at": 0.59,
-      "watching": 0.129
+      "watching": 0.133
      },
      {
       "at": 0.6,
-      "watching": 0.127
+      "watching": 0.128
      },
      {
       "at": 0.61,
-      "watching": 0.121
+      "watching": 0.125
      },
      {
       "at": 0.62,
-      "watching": 0.126
+      "watching": 0.129
      },
      {
       "at": 0.63,
-      "watching": 0.114
+      "watching": 0.117
      },
      {
       "at": 0.64,
-      "watching": 0.108
+      "watching": 0.113
      },
      {
       "at": 0.65,
-      "watching": 0.115
+      "watching": 0.12
      },
      {
       "at": 0.66,
-      "watching": 0.114
+      "watching": 0.117
      },
      {
       "at": 0.67,
-      "watching": 0.1
+      "watching": 0.103
      },
      {
       "at": 0.68,
-      "watching": 0.096
+      "watching": 0.1
      },
      {
       "at": 0.69,
-      "watching": 0.09
-     },
-     {
-      "at": 0.7,
-      "watching": 0.098
-     },
-     {
-      "at": 0.71,
-      "watching": 0.089
-     },
-     {
-      "at": 0.72,
-      "watching": 0.09
-     },
-     {
-      "at": 0.73,
-      "watching": 0.091
-     },
-     {
-      "at": 0.74,
-      "watching": 0.088
-     },
-     {
-      "at": 0.75,
-      "watching": 0.085
-     },
-     {
-      "at": 0.76,
-      "watching": 0.085
-     },
-     {
-      "at": 0.77,
       "watching": 0.094
      },
      {
+      "at": 0.7,
+      "watching": 0.1
+     },
+     {
+      "at": 0.71,
+      "watching": 0.094
+     },
+     {
+      "at": 0.72,
+      "watching": 0.094
+     },
+     {
+      "at": 0.73,
+      "watching": 0.096
+     },
+     {
+      "at": 0.74,
+      "watching": 0.091
+     },
+     {
+      "at": 0.75,
+      "watching": 0.09
+     },
+     {
+      "at": 0.76,
+      "watching": 0.089
+     },
+     {
+      "at": 0.77,
+      "watching": 0.099
+     },
+     {
       "at": 0.78,
-      "watching": 0.095
+      "watching": 0.099
      },
      {
       "at": 0.79,
-      "watching": 0.085
+      "watching": 0.09
      },
      {
       "at": 0.8,
-      "watching": 0.083
+      "watching": 0.087
      },
      {
       "at": 0.81,
-      "watching": 0.083
+      "watching": 0.086
      },
      {
       "at": 0.82,
-      "watching": 0.083
+      "watching": 0.086
      },
      {
       "at": 0.83,
-      "watching": 0.085
+      "watching": 0.089
      },
      {
       "at": 0.84,
-      "watching": 0.091
+      "watching": 0.096
      },
      {
       "at": 0.85,
-      "watching": 0.083
+      "watching": 0.087
      },
      {
       "at": 0.86,
-      "watching": 0.081
+      "watching": 0.088
      },
      {
       "at": 0.87,
-      "watching": 0.083
+      "watching": 0.088
      },
      {
       "at": 0.88,
-      "watching": 0.091
+      "watching": 0.097
      },
      {
       "at": 0.89,
-      "watching": 0.084
+      "watching": 0.089
      },
      {
       "at": 0.9,
-      "watching": 0.077
+      "watching": 0.084
      },
      {
       "at": 0.91,
-      "watching": 0.072
+      "watching": 0.079
      },
      {
       "at": 0.92,
-      "watching": 0.07
+      "watching": 0.076
      },
      {
       "at": 0.93,
-      "watching": 0.067
+      "watching": 0.071
      },
      {
       "at": 0.94,
-      "watching": 0.065
+      "watching": 0.069
      },
      {
       "at": 0.95,
-      "watching": 0.073
+      "watching": 0.076
      },
      {
       "at": 0.96,
-      "watching": 0.066
+      "watching": 0.069
      },
      {
       "at": 0.97,
-      "watching": 0.064
+      "watching": 0.067
      },
      {
       "at": 0.98,
-      "watching": 0.059
+      "watching": 0.063
      },
      {
       "at": 0.99,
-      "watching": 0.057
+      "watching": 0.062
      },
      {
       "at": 1,
-      "watching": 0.047
+      "watching": 0.052
      }
     ],
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 5834,
-      "share": 81
+      "views": 5997,
+      "share": 80.3
      },
      {
       "source": "EXT_URL",
-      "views": 340,
+      "views": 348,
       "share": 4.7
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 260,
-      "share": 3.6
+      "views": 283,
+      "share": 3.8
      },
      {
       "source": "RELATED_VIDEO",
-      "views": 252,
+      "views": 265,
       "share": 3.5
      },
      {
       "source": "YT_SEARCH",
-      "views": 218,
-      "share": 3
+      "views": 256,
+      "share": 3.4
      },
      {
       "source": "OTHER_COMBINED",
-      "views": 296,
-      "share": 4.1
+      "views": 318,
+      "share": 4.3
      }
     ],
-    "updatedAt": "2026-09-24T15:16:09.175Z",
+    "updatedAt": "2026-09-25T17:34:00.055Z",
     "shape": {
-     "openStart": 76.7,
-     "openFloor": 10.9,
-     "recoveryPeak": 22.7,
+     "openStart": 75.8,
+     "openFloor": 10.4,
+     "recoveryPeak": 22.3,
      "recoveryAt": 0.06,
-     "midHold": 12.6,
-     "endHold": 7.3
+     "midHold": 13,
+     "endHold": 7.6
     },
     "moments": [
      {
@@ -67316,8 +68870,8 @@ window.DIVE_DATA = {
      {
       "kind": "drop",
       "at": 0.44,
-      "points": 2.7,
-      "estSec": 3194,
+      "points": 2.8,
+      "estSec": 3195,
       "approx": false,
       "excerpt": "They were horrendous designers.\n00:53:13 [Speaker 6]\nThey had no idea.\n00:53:14 [Speaker 6]\nAnd so a big part of my role was I I actually I actually learned something along the way where I was doing a traditional, like, you know, hey.\n\n00:53:24 [Speaker 6]\nI made a thing.\n00:53:25 [Speaker 6]\nWhat do you think?",
       "speaker": "Speaker 6",
@@ -67326,10 +68880,10 @@ window.DIVE_DATA = {
      {
       "kind": "hold",
       "at": 0.55,
-      "points": 2.9,
-      "estSec": 3993,
+      "points": 2.7,
+      "estSec": 3994,
       "approx": false,
-      "excerpt": "But especially especially when you're, like, the keeper of Figma.\n01:06:33 [Speaker 6]\nLike, people don't get to look at collectively add an idea unless you make it.\n\n01:06:37 [Speaker 6]\nYou know?\n01:06:37 [Speaker 6]\nSo, like, make them all.",
+      "excerpt": "Like, people don't get to look at collectively add an idea unless you make it.\n\n01:06:37 [Speaker 6]\nYou know?\n01:06:37 [Speaker 6]\nSo, like, make them all.\n\n01:06:39 [Speaker 2]\nI would even say if you if now that everybody's prototyping, I'd be curious.",
       "speaker": "Speaker 6",
       "summary": "Hosts discuss building trust across teams, then Flora explains in a recorded clip why founding designer roles can be difficult for junior designers."
      }
@@ -67413,32 +68967,2126 @@ window.DIVE_DATA = {
      }
     ]
    }
+  },
+  {
+   "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+   "title": "Dive Radio: Just-in-Time Interfaces",
+   "premiere": "2026-09-24",
+   "show": "dive-radio",
+   "active": true,
+   "partialHistory": false,
+   "historyReady": true,
+   "historyReason": null,
+   "announces": [
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-09-24T09:33:41.278Z",
+     "url": "https://x.com/designertom/status/2103055258993721705"
+    },
+    {
+     "account": "ridd_design",
+     "role": "announce",
+     "ts": "2026-09-24T20:00:43.483Z",
+     "url": "https://x.com/ridd_design/status/2103213057958940779"
+    },
+    {
+     "account": "designertom",
+     "role": "announce",
+     "ts": "2026-09-24T20:00:43.670Z",
+     "url": "https://x.com/designertom/status/2103213058743218388"
+    }
+   ],
+   "snapshots": [
+    {
+     "ts": "2026-09-25T14:01:05.837Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1358,
+       "likes": 18,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 1185,
+       "likes": 22,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2066,
+       "likes": 16,
+       "comments": 1,
+       "plays": 970,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 438
+      },
+      "x:designertom": {
+       "views": 3930,
+       "likes": 18,
+       "comments": 2,
+       "plays": 752,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 405
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "pulledAt": "2026-09-25T14:01:05.837Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T15:15:44.897Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1427,
+       "likes": 20,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 1279,
+       "likes": 22,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2123,
+       "likes": 17,
+       "comments": 1,
+       "plays": 993,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 438
+      },
+      "x:designertom": {
+       "views": 3975,
+       "likes": 18,
+       "comments": 2,
+       "plays": 777,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 405
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "pulledAt": "2026-09-25T15:15:44.897Z",
+      "state": "ready"
+     }
+    },
+    {
+     "ts": "2026-09-25T17:33:29.965Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1469,
+       "likes": 20,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 1422,
+       "likes": 24,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 2204,
+       "likes": 17,
+       "comments": 1,
+       "plays": 1038,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 438
+      },
+      "x:designertom": {
+       "views": 4033,
+       "likes": 18,
+       "comments": 2,
+       "plays": 798,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 405
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "pulledAt": "2026-09-25T17:33:29.965Z",
+      "state": "ready"
+     }
+    }
+   ],
+   "weekly": [],
+   "latest": {
+    "ts": "2026-09-25T17:33:29.965Z",
+    "byDest": {
+     "yt:joindiveclub": {
+      "views": 1469,
+      "likes": 20,
+      "comments": 2
+     },
+     "yt:designertom": {
+      "views": 1422,
+      "likes": 24,
+      "comments": 2
+     },
+     "x:ridd_design": {
+      "views": 2204,
+      "likes": 17,
+      "comments": 1,
+      "plays": 1038,
+      "playsSource": "x-broadcast",
+      "peakConcurrent": 438
+     },
+     "x:designertom": {
+      "views": 4033,
+      "likes": 18,
+      "comments": 2,
+      "plays": 798,
+      "playsSource": "x-broadcast",
+      "peakConcurrent": 405
+     }
+    },
+    "ytTotal": 2891,
+    "youtubeAsOf": "2026-09-25T17:33:29.965Z",
+    "youtubeStale": false,
+    "xImpressions": 6237,
+    "xPlays": 1836,
+    "xPlaysInfo": {
+     "value": 1836,
+     "have": 2,
+     "total": 2,
+     "partial": false,
+     "stale": false,
+     "asOf": null
+    },
+    "totalViews": 4727,
+    "totalViewsInfo": {
+     "includesYoutube": true,
+     "includesPlays": true,
+     "youtubeMissing": false,
+     "youtubeAsOf": "2026-09-25T17:33:29.965Z",
+     "youtubeStale": false,
+     "missing": false,
+     "incomplete": false,
+     "reason": null,
+     "partial": false,
+     "stale": false,
+     "asOf": null,
+     "have": 2,
+     "total": 2
+    }
+   },
+   "sourceStates": {
+    "youtube": {
+     "state": "ready",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
+     "reason": null
+    },
+    "x": {
+     "state": "ready",
+     "checkedAt": "2026-09-25T17:33:29.965Z",
+     "reason": null
+    },
+    "promotion": {
+     "state": "ready",
+     "checkedAt": "2026-09-25T17:33:26.928Z",
+     "reason": null
+    },
+    "live": {
+     "state": "ready",
+     "checkedAt": "2026-09-25T14:01:16.351Z",
+     "reason": null
+    },
+    "comments": {
+     "state": "ready",
+     "checkedAt": "2026-09-25T17:34:22.100Z",
+     "reason": null
+    },
+    "watch": {
+     "state": "pending",
+     "checkedAt": "2026-09-25T17:34:00.055Z",
+     "reason": "YouTube Analytics has not returned this episode's watch data yet"
+    },
+    "transcript": {
+     "state": "ready",
+     "checkedAt": "2026-09-25T14:00:35.198Z",
+     "reason": null
+    }
+   },
+   "links": {
+    "yt:joindiveclub": "https://youtube.com/watch?v=Cjv-0MKQ4GU",
+    "yt:designertom": "https://youtube.com/watch?v=2EAAU-knqRE",
+    "x:ridd_design": "https://x.com/i/broadcasts/1qKDzWQmenBJV",
+    "x:designertom": "https://x.com/i/broadcasts/1qxvveXzoggxB"
+   },
+   "transcript": true,
+   "ageDays": 0.9,
+   "metrics": {
+    "week1Velocity": null,
+    "week1Note": "pending: episode under 7 days old",
+    "flatlineWeek": null,
+    "engagementPer1k": 16.6,
+    "anomaly": "UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+   },
+   "ep": 11,
+   "promotion": {
+    "status": "found",
+    "source": "UX Tools",
+    "updatedAt": "2026-09-25T17:33:26.928Z",
+    "emailClicks": 35,
+    "verifiedEmailClicks": 26,
+    "clicksReason": null,
+    "combinedUniqueReaders": null,
+    "uniqueReason": "Beehiiv does not dedupe one reader across different tracked links.",
+    "matchedTargets": [
+     "youtube:2EAAU-knqRE"
+    ],
+    "matchedUnits": [
+     "ytViews"
+    ],
+    "newsletters": [
+     {
+      "postId": "post_1909052e-83d2-47f7-9d1e-cd6ee47d0ce2",
+      "title": "Interfaces that rearrange for each user",
+      "publishedAt": "2026-09-24T13:00:00.000Z",
+      "url": "https://uxtools.beehiiv.com/p/interfaces-that-rearrange-for-each-user",
+      "emailClicks": 35,
+      "verifiedEmailClicks": 26
+     }
+    ],
+    "snapshots": [
+     {
+      "date": "2026-09-25",
+      "pulledAt": "2026-09-25T17:33:26.928Z",
+      "emailClicks": 35,
+      "verifiedEmailClicks": 26
+     }
+    ]
+   },
+   "live": {
+    "peak": 109,
+    "avg": 80,
+    "liveViews": 877,
+    "watchedMin": 9440,
+    "chatMessages": 184,
+    "chatters": 67,
+    "durationMin": 118,
+    "series": [
+     {
+      "m": 0,
+      "v": 12,
+      "c": 1,
+      "ct": 1,
+      "byChan": {
+       "X @ridd_design": 1,
+       "YT Dive Club": 7,
+       "X @designertom": 1,
+       "YT DesignerTom": 3
+      }
+     },
+     {
+      "m": 1,
+      "v": 19,
+      "c": 1,
+      "ct": 2,
+      "byChan": {
+       "X @ridd_design": 3,
+       "YT Dive Club": 11,
+       "X @designertom": 1,
+       "YT DesignerTom": 4
+      }
+     },
+     {
+      "m": 2,
+      "v": 33,
+      "c": 0,
+      "ct": 2,
+      "byChan": {
+       "X @ridd_design": 5,
+       "YT Dive Club": 15,
+       "X @designertom": 1,
+       "YT DesignerTom": 12
+      }
+     },
+     {
+      "m": 3,
+      "v": 38,
+      "c": 2,
+      "ct": 4,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 20,
+       "X @designertom": 2,
+       "YT DesignerTom": 10
+      }
+     },
+     {
+      "m": 4,
+      "v": 42,
+      "c": 0,
+      "ct": 4,
+      "byChan": {
+       "X @ridd_design": 5,
+       "YT Dive Club": 22,
+       "X @designertom": 4,
+       "YT DesignerTom": 11
+      }
+     },
+     {
+      "m": 5,
+      "v": 52,
+      "c": 11,
+      "ct": 15,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 26,
+       "X @designertom": 7,
+       "YT DesignerTom": 11
+      }
+     },
+     {
+      "m": 6,
+      "v": 57,
+      "c": 4,
+      "ct": 19,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 30,
+       "X @designertom": 7,
+       "YT DesignerTom": 12
+      }
+     },
+     {
+      "m": 7,
+      "v": 56,
+      "c": 2,
+      "ct": 21,
+      "byChan": {
+       "X @ridd_design": 5,
+       "YT Dive Club": 32,
+       "X @designertom": 6,
+       "YT DesignerTom": 13
+      }
+     },
+     {
+      "m": 8,
+      "v": 62,
+      "c": 1,
+      "ct": 22,
+      "byChan": {
+       "X @ridd_design": 5,
+       "YT Dive Club": 33,
+       "X @designertom": 9,
+       "YT DesignerTom": 15
+      }
+     },
+     {
+      "m": 9,
+      "v": 69,
+      "c": 3,
+      "ct": 25,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 36,
+       "X @designertom": 8,
+       "YT DesignerTom": 15
+      }
+     },
+     {
+      "m": 10,
+      "v": 69,
+      "c": 1,
+      "ct": 26,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 36,
+       "X @designertom": 10,
+       "YT DesignerTom": 14
+      }
+     },
+     {
+      "m": 11,
+      "v": 64,
+      "c": 0,
+      "ct": 26,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 34,
+       "X @designertom": 7,
+       "YT DesignerTom": 14
+      }
+     },
+     {
+      "m": 12,
+      "v": 73,
+      "c": 0,
+      "ct": 26,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 40,
+       "X @designertom": 7,
+       "YT DesignerTom": 16
+      }
+     },
+     {
+      "m": 13,
+      "v": 84,
+      "c": 1,
+      "ct": 27,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 41,
+       "X @designertom": 10,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 14,
+      "v": 81,
+      "c": 2,
+      "ct": 29,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 43,
+       "X @designertom": 11,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 15,
+      "v": 86,
+      "c": 2,
+      "ct": 31,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 42,
+       "X @designertom": 10,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 16,
+      "v": 86,
+      "c": 2,
+      "ct": 33,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 42,
+       "X @designertom": 10,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 17,
+      "v": 85,
+      "c": 0,
+      "ct": 33,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 41,
+       "X @designertom": 12,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 18,
+      "v": 91,
+      "c": 0,
+      "ct": 33,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 39,
+       "X @designertom": 13,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 19,
+      "v": 82,
+      "c": 6,
+      "ct": 39,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 39,
+       "X @designertom": 10,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 20,
+      "v": 92,
+      "c": 3,
+      "ct": 42,
+      "byChan": {
+       "X @ridd_design": 15,
+       "YT Dive Club": 40,
+       "X @designertom": 12,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 21,
+      "v": 89,
+      "c": 2,
+      "ct": 44,
+      "byChan": {
+       "X @ridd_design": 12,
+       "YT Dive Club": 40,
+       "X @designertom": 13,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 22,
+      "v": 96,
+      "c": 0,
+      "ct": 44,
+      "byChan": {
+       "X @ridd_design": 13,
+       "YT Dive Club": 44,
+       "X @designertom": 12,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 23,
+      "v": 95,
+      "c": 1,
+      "ct": 45,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 46,
+       "X @designertom": 11,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 24,
+      "v": 85,
+      "c": 3,
+      "ct": 48,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 43,
+       "X @designertom": 11,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 25,
+      "v": 86,
+      "c": 1,
+      "ct": 49,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 39,
+       "X @designertom": 14,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 26,
+      "v": 88,
+      "c": 0,
+      "ct": 49,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 43,
+       "X @designertom": 14,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 27,
+      "v": 92,
+      "c": 1,
+      "ct": 50,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 44,
+       "X @designertom": 15,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 28,
+      "v": 89,
+      "c": 0,
+      "ct": 50,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 42,
+       "X @designertom": 14,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 29,
+      "v": 85,
+      "c": 0,
+      "ct": 50,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 39,
+       "X @designertom": 14,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 30,
+      "v": 82,
+      "c": 7,
+      "ct": 57,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 42,
+       "X @designertom": 12,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 31,
+      "v": 86,
+      "c": 0,
+      "ct": 57,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 43,
+       "X @designertom": 17,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 32,
+      "v": 95,
+      "c": 2,
+      "ct": 59,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 45,
+       "X @designertom": 18,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 33,
+      "v": 98,
+      "c": 2,
+      "ct": 61,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 44,
+       "X @designertom": 19,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 34,
+      "v": 94,
+      "c": 2,
+      "ct": 63,
+      "byChan": {
+       "X @ridd_design": 13,
+       "YT Dive Club": 43,
+       "X @designertom": 13,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 35,
+      "v": 90,
+      "c": 0,
+      "ct": 63,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 43,
+       "X @designertom": 12,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 36,
+      "v": 87,
+      "c": 7,
+      "ct": 70,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 39,
+       "X @designertom": 12,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 37,
+      "v": 87,
+      "c": 2,
+      "ct": 72,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 41,
+       "X @designertom": 13,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 38,
+      "v": 99,
+      "c": 0,
+      "ct": 72,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 47,
+       "X @designertom": 15,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 39,
+      "v": 95,
+      "c": 2,
+      "ct": 74,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 46,
+       "X @designertom": 10,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 40,
+      "v": 89,
+      "c": 1,
+      "ct": 75,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 43,
+       "X @designertom": 10,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 41,
+      "v": 92,
+      "c": 0,
+      "ct": 75,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 44,
+       "X @designertom": 11,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 42,
+      "v": 85,
+      "c": 1,
+      "ct": 76,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 42,
+       "X @designertom": 12,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 43,
+      "v": 90,
+      "c": 2,
+      "ct": 78,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 43,
+       "X @designertom": 15,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 44,
+      "v": 89,
+      "c": 2,
+      "ct": 80,
+      "byChan": {
+       "X @ridd_design": 14,
+       "YT Dive Club": 38,
+       "X @designertom": 14,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 45,
+      "v": 88,
+      "c": 0,
+      "ct": 80,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 40,
+       "X @designertom": 14,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 46,
+      "v": 91,
+      "c": 1,
+      "ct": 81,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 42,
+       "X @designertom": 13,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 47,
+      "v": 94,
+      "c": 0,
+      "ct": 81,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 41,
+       "X @designertom": 15,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 48,
+      "v": 90,
+      "c": 1,
+      "ct": 82,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 43,
+       "X @designertom": 12,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 49,
+      "v": 88,
+      "c": 0,
+      "ct": 82,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 39,
+       "X @designertom": 13,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 50,
+      "v": 91,
+      "c": 1,
+      "ct": 83,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 40,
+       "X @designertom": 12,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 51,
+      "v": 95,
+      "c": 1,
+      "ct": 84,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 44,
+       "X @designertom": 12,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 52,
+      "v": 97,
+      "c": 3,
+      "ct": 87,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 41,
+       "X @designertom": 14,
+       "YT DesignerTom": 31
+      }
+     },
+     {
+      "m": 53,
+      "v": 93,
+      "c": 1,
+      "ct": 88,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 41,
+       "X @designertom": 12,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 54,
+      "v": 93,
+      "c": 2,
+      "ct": 90,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 41,
+       "X @designertom": 13,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 55,
+      "v": 97,
+      "c": 2,
+      "ct": 92,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 46,
+       "X @designertom": 11,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 56,
+      "v": 100,
+      "c": 1,
+      "ct": 93,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 49,
+       "X @designertom": 11,
+       "YT DesignerTom": 30
+      }
+     },
+     {
+      "m": 57,
+      "v": 97,
+      "c": 3,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 46,
+       "X @designertom": 12,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 58,
+      "v": 100,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 45,
+       "X @designertom": 14,
+       "YT DesignerTom": 32
+      }
+     },
+     {
+      "m": 59,
+      "v": 109,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 48,
+       "X @designertom": 25,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 60,
+      "v": 93,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 44,
+       "X @designertom": 16,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 61,
+      "v": 92,
+      "c": 0,
+      "ct": 96,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 43,
+       "X @designertom": 15,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 62,
+      "v": 92,
+      "c": 1,
+      "ct": 97,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 43,
+       "X @designertom": 14,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 63,
+      "v": 91,
+      "c": 1,
+      "ct": 98,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 43,
+       "X @designertom": 13,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 64,
+      "v": 91,
+      "c": 1,
+      "ct": 99,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 43,
+       "X @designertom": 12,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 65,
+      "v": 91,
+      "c": 3,
+      "ct": 102,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 43,
+       "X @designertom": 11,
+       "YT DesignerTom": 29
+      }
+     },
+     {
+      "m": 66,
+      "v": 92,
+      "c": 1,
+      "ct": 103,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 43,
+       "X @designertom": 11,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 67,
+      "v": 93,
+      "c": 2,
+      "ct": 105,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 44,
+       "X @designertom": 11,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 68,
+      "v": 94,
+      "c": 3,
+      "ct": 108,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 45,
+       "X @designertom": 11,
+       "YT DesignerTom": 28
+      }
+     },
+     {
+      "m": 69,
+      "v": 95,
+      "c": 0,
+      "ct": 108,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 46,
+       "X @designertom": 11,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 70,
+      "v": 96,
+      "c": 2,
+      "ct": 110,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 47,
+       "X @designertom": 11,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 71,
+      "v": 98,
+      "c": 1,
+      "ct": 111,
+      "byChan": {
+       "X @ridd_design": 12,
+       "YT Dive Club": 48,
+       "X @designertom": 11,
+       "YT DesignerTom": 27
+      }
+     },
+     {
+      "m": 72,
+      "v": 93,
+      "c": 2,
+      "ct": 113,
+      "byChan": {
+       "X @ridd_design": 11,
+       "YT Dive Club": 45,
+       "X @designertom": 11,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 73,
+      "v": 89,
+      "c": 0,
+      "ct": 113,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 43,
+       "X @designertom": 11,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 74,
+      "v": 85,
+      "c": 1,
+      "ct": 114,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 40,
+       "X @designertom": 11,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 75,
+      "v": 80,
+      "c": 3,
+      "ct": 117,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 38,
+       "X @designertom": 11,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 76,
+      "v": 76,
+      "c": 2,
+      "ct": 119,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 35,
+       "X @designertom": 11,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 77,
+      "v": 72,
+      "c": 1,
+      "ct": 120,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 33,
+       "X @designertom": 11,
+       "YT DesignerTom": 20
+      }
+     },
+     {
+      "m": 78,
+      "v": 73,
+      "c": 3,
+      "ct": 123,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 34,
+       "X @designertom": 10,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 79,
+      "v": 74,
+      "c": 2,
+      "ct": 125,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 35,
+       "X @designertom": 9,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 80,
+      "v": 75,
+      "c": 3,
+      "ct": 128,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 36,
+       "X @designertom": 8,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 81,
+      "v": 76,
+      "c": 1,
+      "ct": 129,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 37,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 82,
+      "v": 77,
+      "c": 4,
+      "ct": 133,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 39,
+       "X @designertom": 7,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 83,
+      "v": 77,
+      "c": 1,
+      "ct": 134,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 38,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 84,
+      "v": 77,
+      "c": 0,
+      "ct": 134,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 38,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 85,
+      "v": 78,
+      "c": 1,
+      "ct": 135,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 38,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 86,
+      "v": 78,
+      "c": 0,
+      "ct": 135,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 37,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 87,
+      "v": 78,
+      "c": 0,
+      "ct": 135,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 37,
+       "X @designertom": 7,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 88,
+      "v": 79,
+      "c": 0,
+      "ct": 135,
+      "byChan": {
+       "X @ridd_design": 10,
+       "YT Dive Club": 37,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 89,
+      "v": 78,
+      "c": 0,
+      "ct": 135,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 37,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 90,
+      "v": 78,
+      "c": 1,
+      "ct": 136,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 38,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 91,
+      "v": 78,
+      "c": 1,
+      "ct": 137,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 38,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 92,
+      "v": 77,
+      "c": 3,
+      "ct": 140,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 39,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 93,
+      "v": 77,
+      "c": 2,
+      "ct": 142,
+      "byChan": {
+       "X @ridd_design": 5,
+       "YT Dive Club": 39,
+       "X @designertom": 8,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 94,
+      "v": 78,
+      "c": 3,
+      "ct": 145,
+      "byChan": {
+       "X @ridd_design": 5,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 95,
+      "v": 80,
+      "c": 5,
+      "ct": 150,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 96,
+      "v": 81,
+      "c": 4,
+      "ct": 154,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 40,
+       "X @designertom": 9,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 97,
+      "v": 83,
+      "c": 0,
+      "ct": 154,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 9,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 98,
+      "v": 84,
+      "c": 2,
+      "ct": 156,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 10,
+       "YT DesignerTom": 25
+      }
+     },
+     {
+      "m": 99,
+      "v": 86,
+      "c": 0,
+      "ct": 156,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 41,
+       "X @designertom": 11,
+       "YT DesignerTom": 26
+      }
+     },
+     {
+      "m": 100,
+      "v": 84,
+      "c": 1,
+      "ct": 157,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 10,
+       "YT DesignerTom": 24
+      }
+     },
+     {
+      "m": 101,
+      "v": 82,
+      "c": 3,
+      "ct": 160,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 10,
+       "YT DesignerTom": 23
+      }
+     },
+     {
+      "m": 102,
+      "v": 80,
+      "c": 1,
+      "ct": 161,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 10,
+       "YT DesignerTom": 22
+      }
+     },
+     {
+      "m": 103,
+      "v": 78,
+      "c": 2,
+      "ct": 163,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 40,
+       "X @designertom": 9,
+       "YT DesignerTom": 21
+      }
+     },
+     {
+      "m": 104,
+      "v": 76,
+      "c": 3,
+      "ct": 166,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 40,
+       "X @designertom": 9,
+       "YT DesignerTom": 20
+      }
+     },
+     {
+      "m": 105,
+      "v": 74,
+      "c": 0,
+      "ct": 166,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 40,
+       "X @designertom": 9,
+       "YT DesignerTom": 19
+      }
+     },
+     {
+      "m": 106,
+      "v": 73,
+      "c": 2,
+      "ct": 168,
+      "byChan": {
+       "X @ridd_design": 6,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 18
+      }
+     },
+     {
+      "m": 107,
+      "v": 73,
+      "c": 0,
+      "ct": 168,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 17
+      }
+     },
+     {
+      "m": 108,
+      "v": 73,
+      "c": 2,
+      "ct": 170,
+      "byChan": {
+       "X @ridd_design": 7,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 16
+      }
+     },
+     {
+      "m": 109,
+      "v": 73,
+      "c": 3,
+      "ct": 173,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 15
+      }
+     },
+     {
+      "m": 110,
+      "v": 73,
+      "c": 2,
+      "ct": 175,
+      "byChan": {
+       "X @ridd_design": 9,
+       "YT Dive Club": 41,
+       "X @designertom": 8,
+       "YT DesignerTom": 15
+      }
+     },
+     {
+      "m": 111,
+      "v": 73,
+      "c": 1,
+      "ct": 176,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 15
+      }
+     },
+     {
+      "m": 112,
+      "v": 73,
+      "c": 0,
+      "ct": 176,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 16
+      }
+     },
+     {
+      "m": 113,
+      "v": 73,
+      "c": 1,
+      "ct": 177,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 40,
+       "X @designertom": 8,
+       "YT DesignerTom": 16
+      }
+     },
+     {
+      "m": 114,
+      "v": 73,
+      "c": 0,
+      "ct": 177,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 39,
+       "X @designertom": 8,
+       "YT DesignerTom": 17
+      }
+     },
+     {
+      "m": 115,
+      "v": 73,
+      "c": 3,
+      "ct": 180,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 39,
+       "X @designertom": 8,
+       "YT DesignerTom": 17
+      }
+     },
+     {
+      "m": 116,
+      "v": 74,
+      "c": 2,
+      "ct": 182,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 39,
+       "X @designertom": 9,
+       "YT DesignerTom": 18
+      }
+     },
+     {
+      "m": 117,
+      "v": 74,
+      "c": 2,
+      "ct": 184,
+      "byChan": {
+       "X @ridd_design": 8,
+       "YT Dive Club": 39,
+       "X @designertom": 9,
+       "YT DesignerTom": 18
+      }
+     }
+    ],
+    "byChannel": [
+     {
+      "label": "X @ridd_design",
+      "peak": 17,
+      "avg": 8,
+      "views": 272,
+      "watchedMin": 944,
+      "messages": 20,
+      "chatters": 19
+     },
+     {
+      "label": "X @designertom",
+      "peak": 25,
+      "avg": 10,
+      "views": 242,
+      "watchedMin": 1180,
+      "messages": 44,
+      "chatters": 16
+     },
+     {
+      "label": "YT Dive Club",
+      "peak": 49,
+      "avg": 39,
+      "views": 216,
+      "watchedMin": 4602,
+      "messages": 90,
+      "chatters": 19
+     },
+     {
+      "label": "YT DesignerTom",
+      "peak": 32,
+      "avg": 22,
+      "views": 147,
+      "watchedMin": 2596,
+      "messages": 30,
+      "chatters": 13
+     }
+    ],
+    "minutesPerViewer": 10.8,
+    "holdRate": 67.2
+   },
+   "comments": {
+    "captured": 7,
+    "feedbackCount": 0,
+    "uniqueCommenters": 0,
+    "enjoyCount": 0,
+    "complaintCount": 0,
+    "commentersPer1k": 0,
+    "commentersPer1kNote": null,
+    "enjoyThemes": [],
+    "complaintThemes": [],
+    "featured": [],
+    "list": [],
+    "xCoverage": "covered"
+   },
+   "audience": {
+    "count": 0,
+    "positiveCount": 0,
+    "negativeCount": 0,
+    "featured": [],
+    "list": [],
+    "sources": {
+     "x": {
+      "state": "ready",
+      "checkedAt": "2026-09-25T17:32:54.787Z"
+     },
+     "live-chat": {
+      "state": "ready",
+      "checkedAt": "2026-09-25T17:32:54.787Z"
+     }
+    },
+    "notices": [
+     "More captured comments are still being processed."
+    ],
+    "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream."
+   },
+   "health": {
+    "pending": true,
+    "readCompleteOn": "2026-10-15"
+   },
+   "watchReport": {
+    "state": "pending",
+    "checkedAt": "2026-09-25T17:34:00.055Z",
+    "missingChannels": [
+     "yt:joindiveclub",
+     "yt:designertom"
+    ],
+    "reason": "YouTube Analytics has not returned this episode's watch data yet"
+   },
+   "chapters": {
+    "status": "none",
+    "clock": null,
+    "format": null,
+    "writtenAt": null,
+    "list": [],
+    "reason": "chapters not written yet"
+   }
   }
  ],
  "insights": [
   {
-   "id": "test-subscribe-prompt",
-   "text": "Conversion is fragile: finished E6 gained 0.6 subscribers per 1,000 views overall, with Dive Club at 1.1 and DesignerTom at 0.",
-   "recommendation": "Test a spoken subscribe prompt on DesignerTom immediately after the opening demonstration, naming what viewers will learn next week.",
-   "category": "audience",
-   "rank": 1,
-   "serves": "conversion"
+   "id": "flatline",
+   "text": "Episodes stop growing after about 3 weeks: E1 (Bumpy Takeoff) flatlined at week 2; E2 (Data vs. Intuition) flatlined at week 3; E7 (Steal These AI Design Patterns) flatlined at week 3.",
+   "recommendation": "Spend promo inside the first 3 weeks — a push after the flatline is fighting a dead curve.",
+   "caveat": "Flatline = a week that adds under 3% of the running total; only 3 full-history episodes so far.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "delta",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   },
+   "category": "distribution"
   },
   {
-   "id": "invite-chat-decisions",
-   "text": "Live chat is below the show's usual activity: 50.1 messages per hour against 80.5.",
-   "recommendation": "During this week's live demonstration, ask viewers to choose between the designs in chat, then use their responses to guide the next edit.",
-   "category": "audience",
-   "rank": 2,
-   "serves": "participation"
+   "id": "platform-phase",
+   "text": "Launch week is nearly the whole story on both platforms: 95% of an episode's X reach and 88% of its YouTube views arrive in the first 7 days.",
+   "recommendation": "Treat launch week as the entire campaign — announce, clip, and cross-post inside it instead of drip-feeding afterward.",
+   "caveat": "Within-platform shares (units never mixed); ≥7-day-old episodes only, sample of 7.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "distribution"
   },
   {
-   "id": "test-search-led-title",
-   "text": "Discovery share is softening: the reading carried from an older finished episode is 13.6, against the show's usual 14.3.",
-   "recommendation": "Test a task-led YouTube title this week that names the design problem and tool demonstrated, rather than leading with the show name.",
-   "category": "distribution",
-   "rank": 3,
-   "serves": "reachEfficiency"
+   "id": "watch-split",
+   "text": "Among the measured YouTube and X views: 38% of measured YouTube and X viewing happens on X broadcasts (28,004 of 73,164 total views), not just YouTube with an X echo.",
+   "recommendation": "Give X broadcasts first-class treatment — real titles, thumbnails, and call-outs, not simulcast leftovers.",
+   "caveat": "Per-episode X share ranges 18% (E10 (How To Become a Founding Designer)) to 72% (E3 (Mixed Media Workflows)); only episodes with complete X play counts are included (11).",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "distribution"
+  },
+  {
+   "id": "host-plays-split",
+   "text": "People actually sit in @ridd_design's room: 62% of broadcast watching happens there (5,602 ridd vs 3,396 tom).",
+   "recommendation": "If the split holds, make @ridd_design's account the flagship broadcast and use @designertom's for clips and reposts.",
+   "caveat": "Episodes where both hosts' plays are known, with promo outliers left out (5).",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "distribution"
+  },
+  {
+   "id": "host-split",
+   "text": "@ridd_design's announce posts travel further on X — 57% of announce impressions (19,843 ridd vs 15,119 tom).",
+   "recommendation": "Lead each announcement from @ridd_design's account and have @designertom quote-post it — order the announce machine around what actually travels.",
+   "caveat": "Reach = exposure, not watching, and is never charted or summed with views. Promo outliers excluded; small sample (5 episodes) — read as tendency.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "reach-conversion",
+   "text": "Announce hooks close very differently: E4 (Backyard Designers behind-the-scenes) turned 41 of every 100 announce impressions into actual plays; E6 (The Mascot Industrial Complex) managed only 13.",
+   "recommendation": "Reuse E4 (Backyard Designers behind-the-scenes)'s announce format — more of the people who saw that post chose to watch. High reach with few plays means the post traveled but didn't sell the click.",
+   "caveat": "X broadcast plays for every 100 announce impressions; episodes at least 7 days old, with promo outliers left out, sample of 5.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "anomaly-2026-07-30-dive-radio-mixed-media-workflows-game-de",
+   "text": "E3 (Mixed Media Workflows) is a promo-driven outlier, not a topic winner: more than double what a typical episode gets (4,299 X plays vs a typical 2,101; 19,596 X reach vs a typical 9,047) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than double what nearby episodes did on that unit at the same age (an early read until three of them reach three weeks); left out of host, announce, and topic comparisons automatically.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "anomaly-2026-08-28-dive-radio-steal-these-ai-design-pattern",
+   "text": "E7 (Steal These AI Design Patterns) is a promo-driven outlier, not a topic winner: more than double what a typical episode gets (6,003 YT views vs a typical 1,601) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than double what nearby episodes did on that unit at the same age; left out of host, announce, and topic comparisons automatically.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "anomaly-2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+   "text": "E8 (How to Engineer a Brand Universe) is a promo-driven outlier, not a topic winner: UX Tools email linked the YouTube upload; more than double what a typical episode gets (4,138 X plays vs a typical 2,023; 37,453 X reach vs a typical 9,144) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than double what nearby episodes did on that unit at the same age; left out of host, announce, and topic comparisons automatically.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "anomaly-2026-09-10-dive-radio-how-designers-are-getting-hir",
+   "text": "E9 (How Designers Are Getting Hired in 2026) is a promo-driven outlier, not a topic winner: UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal.",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than double what nearby episodes did on that unit at the same age; left out of host, announce, and topic comparisons automatically.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "anomaly-2026-09-17-dive-radio-how-to-become-a-founding-desi",
+   "text": "E10 (How To Become a Founding Designer) is a promo-driven outlier, not a topic winner: UX Tools email linked the YouTube upload; more than double what a typical episode gets (19,671 X reach vs a typical 8,841) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than double what nearby episodes did on that unit at the same age (an early read until three of them reach three weeks); left out of host, announce, and topic comparisons automatically.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "anomaly-2026-09-24-dive-radio-just-in-time-interfaces",
+   "text": "E11 (Just-in-Time Interfaces) is a promo-driven outlier, not a topic winner: UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal.",
+   "recommendation": "Don't copy this episode's topic because of its numbers — separate the paid/promo lift from organic pull first.",
+   "caveat": "Outlier = more than double what nearby episodes did on that unit at the same age; left out of host, announce, and topic comparisons automatically.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": "2026-09-24-dive-radio-just-in-time-interfaces",
+    "chart": "standings"
+   },
+   "category": "promotion"
+  },
+  {
+   "id": "engagement",
+   "text": "E1 (Bumpy Takeoff) pulled the most engaged viewers — 49 likes+comments per 1,000 YouTube views; E7 (Steal These AI Design Patterns) the least at 9.",
+   "recommendation": "Mine E1 (Bumpy Takeoff)'s comments for what hooked people — that topic drove interaction, not just plays.",
+   "caveat": "YouTube only; episodes at least 7 days old because likes and comments per 1,000 views change with age, sample of 10.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null,
+    "chart": "trajectory"
+   },
+   "category": "audience"
+  },
+  {
+   "id": "live-peak",
+   "text": "Just-in-Time Interfaces drew a live peak of 109 concurrent viewers (avg 80) — #2 of 11 episodes, against a typical peak of 72.",
+   "recommendation": "Turnout held up — keep the same time slot and announce rhythm.",
+   "caveat": "Peak concurrents from Restream across all simulcast destinations; compared with the typical result from 10 prior episodes.",
+   "chartState": {
+    "view": "live"
+   },
+   "category": "audience"
+  },
+  {
+   "id": "live-chat",
+   "text": "Live chat is down from launch: 383 messages on the first show, 184 on the latest.",
+   "recommendation": "Chat is the call-in pipeline — seed prompts and questions mid-show instead of waiting for organic chat.",
+   "caveat": "Message totals from Restream chat archives, all destinations combined.",
+   "chartState": {
+    "view": "live"
+   },
+   "category": "audience"
+  },
+  {
+   "id": "partial-history",
+   "text": "E3, E4 and E5 were registered late — their early weekly history doesn't exist. Totals are right; first-week growth comparisons aren't.",
+   "recommendation": "Nothing to do — the flags are automatic. Just don't read first-week growth comparisons for these episodes.",
+   "caveat": "Tracked late: E3 (Mixed Media Workflows), E4 (Backyard Designers behind-the-scenes), E5 (Goodbye). Marked \"tracked late\" in the episode panel.",
+   "chartState": {
+    "xMode": "weeks",
+    "yMode": "cumulative",
+    "dests": [
+     "linkedin:michaelriddering",
+     "yt:joindiveclub",
+     "yt:designertom",
+     "x:ridd_design",
+     "x:designertom"
+    ],
+    "solo": null
+   },
+   "category": "data"
   }
  ],
  "insightsStale": [],
@@ -67512,6 +71160,13 @@ window.DIVE_DATA = {
     "title": "Dive Radio: How To Become a Founding Designer",
     "premiere": "2026-09-17",
     "value": null,
+    "note": "excluded: promo-driven outlier"
+   },
+   {
+    "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+    "title": "Dive Radio: Just-in-Time Interfaces",
+    "premiere": "2026-09-24",
+    "value": null,
     "note": "pending: episode under 7 days old"
    }
   ],
@@ -67565,7 +71220,7 @@ window.DIVE_DATA = {
   "paceRank": null
  },
  "commentSummary": {
-  "captured": 75,
+  "captured": 82,
   "feedbackCount": 45,
   "uniqueCommenters": 41,
   "enjoyCount": 35,
@@ -67589,21 +71244,21 @@ window.DIVE_DATA = {
   "complaintThemes": []
  },
  "health": {
-  "date": "2026-09-23",
-  "ageDays": 1,
+  "date": "2026-09-25",
+  "ageDays": 0,
   "withheld": false,
   "formulaVersion": "health-v9",
-  "provider": "openai",
-  "model": "gpt-6-astra",
-  "dataThrough": "2026-09-23T14:01:34.397Z",
+  "provider": "deterministic",
+  "model": "fallback-v2",
+  "dataThrough": "2026-09-25T17:34:00.055Z",
   "score": 51,
   "readState": "early",
-  "headline": "Live turnout is healthy, but subscribers remain fragile.",
+  "headline": "The show is near its usual level and moving in mixed directions.",
   "checks": [
    {
     "key": "growth",
     "score": 46,
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
+    "reason": "Only 1 earlier episode was tracked this early; at least three are needed.",
     "carried": false,
     "state": "steady",
     "bands": {
@@ -67630,8 +71285,8 @@ window.DIVE_DATA = {
       "key": "sameAge",
       "value": null,
       "typical": null,
-      "sample": 2,
-      "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
+      "sample": 1,
+      "reason": "Only 1 earlier episode was tracked this early; at least three are needed.",
       "ageBasis": null,
       "note": null,
       "episodeRead": null,
@@ -67644,22 +71299,22 @@ window.DIVE_DATA = {
    },
    {
     "key": "audienceQuality",
-    "score": 56,
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed. read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
+    "score": 53,
+    "reason": "Only 1 earlier episode was tracked this early; at least three are needed. read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
     "carried": true,
-    "state": "healthy",
+    "state": "steady",
     "bands": {
-     "healthy": 55.5,
-     "steady": 44.5
+     "healthy": 57,
+     "steady": 43
     },
-    "swing": 11,
+    "swing": 14,
     "measures": [
      {
       "key": "engagement",
       "value": null,
       "typical": null,
-      "sample": 2,
-      "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
+      "sample": 1,
+      "reason": "Only 1 earlier episode was tracked this early; at least three are needed.",
       "ageBasis": null,
       "note": null,
       "episodeRead": null,
@@ -67671,8 +71326,8 @@ window.DIVE_DATA = {
      {
       "key": "watching",
       "value": 11.3,
-      "typical": 10.1,
-      "sample": 4,
+      "typical": 10.6,
+      "sample": 5,
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
@@ -67680,41 +71335,41 @@ window.DIVE_DATA = {
       "qualified": false,
       "carried": true,
       "carriedNote": "carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight",
-      "swing": 11
+      "swing": 14
      }
     ]
    },
    {
     "key": "reachEfficiency",
-    "score": 47,
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed. read from How Designers Are Getting Hired in 2026, the latest finished episode read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
-    "carried": true,
-    "state": "steady",
+    "score": 40,
+    "reason": "read from How Designers Are Getting Hired in 2026, the latest finished episode read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
+    "carried": false,
+    "state": "fragile",
     "bands": {
-     "healthy": 57,
-     "steady": 43
+     "healthy": 58.5,
+     "steady": 41.5
     },
-    "swing": 14,
+    "swing": 17,
     "measures": [
      {
       "key": "exposure",
-      "value": null,
-      "typical": null,
-      "sample": 2,
-      "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
-      "ageBasis": null,
-      "note": null,
-      "episodeRead": null,
+      "value": 6237,
+      "typical": 10080,
+      "sample": 3,
+      "reason": null,
+      "ageBasis": "sameAge",
+      "note": "compared at the same age",
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": null
+      "swing": 17
      },
      {
       "key": "announceToPlay",
       "value": 27.2,
-      "typical": 29.6,
-      "sample": 5,
+      "typical": 26.9,
+      "sample": 6,
       "reason": null,
       "ageBasis": "mature",
       "note": "compared with earlier episodes as they stand now, not at the same age",
@@ -67722,11 +71377,11 @@ window.DIVE_DATA = {
       "qualified": false,
       "carried": true,
       "carriedNote": "carried from How Designers Are Getting Hired in 2026, the latest finished episode — counted at half weight",
-      "swing": 18
+      "swing": 24
      },
      {
       "key": "discoveryShare",
-      "value": 13.6,
+      "value": 13.5,
       "typical": 14.3,
       "sample": 5,
       "reason": null,
@@ -67742,147 +71397,147 @@ window.DIVE_DATA = {
    },
    {
     "key": "livePull",
-    "score": 64,
+    "score": 75,
     "reason": null,
     "carried": false,
     "state": "healthy",
     "bands": {
-     "healthy": 58,
-     "steady": 42
+     "healthy": 60.5,
+     "steady": 39.5
     },
-    "swing": 16,
+    "swing": 21,
     "measures": [
      {
       "key": "peak",
-      "value": 97,
-      "typical": 71,
+      "value": 109,
+      "typical": 71.5,
       "sample": 8,
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-      "qualified": false,
-      "carried": false,
-      "carriedNote": null,
-      "swing": 11
-     },
-     {
-      "key": "average",
-      "value": 78,
-      "typical": 53,
-      "sample": 8,
-      "reason": null,
-      "ageBasis": "ageFree",
-      "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-      "qualified": false,
-      "carried": false,
-      "carriedNote": null,
-      "swing": 11
-     },
-     {
-      "key": "liveViewers",
-      "value": 513,
-      "typical": 727,
-      "sample": 5,
-      "reason": null,
-      "ageBasis": "ageFree",
-      "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-      "qualified": false,
-      "carried": false,
-      "carriedNote": null,
-      "swing": 32
-     },
-     {
-      "key": "minutesWatched",
-      "value": 9438,
-      "typical": 6001,
-      "sample": 8,
-      "reason": null,
-      "ageBasis": "ageFree",
-      "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-      "qualified": false,
-      "carried": false,
-      "carriedNote": null,
-      "swing": 21
-     }
-    ]
-   },
-   {
-    "key": "participation",
-    "score": 56,
-    "reason": null,
-    "carried": false,
-    "state": "steady",
-    "bands": {
-     "healthy": 56.5,
-     "steady": 43.5
-    },
-    "swing": 13,
-    "measures": [
-     {
-      "key": "chattersPer100",
-      "value": 48.5,
-      "typical": 59.3,
-      "sample": 8,
-      "reason": null,
-      "ageBasis": "ageFree",
-      "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
       "swing": 19
      },
      {
-      "key": "messagesPerHour",
-      "value": 50.1,
-      "typical": 80.5,
+      "key": "average",
+      "value": 80,
+      "typical": 53,
       "sample": 8,
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 16
+      "swing": 17
      },
      {
-      "key": "minutesPerViewer",
-      "value": 18.4,
-      "typical": 9,
-      "sample": 5,
+      "key": "liveViewers",
+      "value": 877,
+      "typical": 620,
+      "sample": 6,
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 8
+      "swing": 22
+     },
+     {
+      "key": "minutesWatched",
+      "value": 9440,
+      "typical": 6001,
+      "sample": 8,
+      "reason": null,
+      "ageBasis": "ageFree",
+      "note": null,
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null,
+      "swing": 24
+     }
+    ]
+   },
+   {
+    "key": "participation",
+    "score": 55,
+    "reason": null,
+    "carried": false,
+    "state": "steady",
+    "bands": {
+     "healthy": 55.5,
+     "steady": 44.5
+    },
+    "swing": 11,
+    "measures": [
+     {
+      "key": "chattersPer100",
+      "value": 61.5,
+      "typical": 56.7,
+      "sample": 8,
+      "reason": null,
+      "ageBasis": "ageFree",
+      "note": null,
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null,
+      "swing": 11
+     },
+     {
+      "key": "messagesPerHour",
+      "value": 93.6,
+      "typical": 75.9,
+      "sample": 8,
+      "reason": null,
+      "ageBasis": "ageFree",
+      "note": null,
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null,
+      "swing": 17
+     },
+     {
+      "key": "minutesPerViewer",
+      "value": 10.8,
+      "typical": 9.6,
+      "sample": 6,
+      "reason": null,
+      "ageBasis": "ageFree",
+      "note": null,
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "qualified": false,
+      "carried": false,
+      "carriedNote": null,
+      "swing": 11
      },
      {
       "key": "holdRate",
       "value": 67.2,
-      "typical": 66.2,
+      "typical": 68.3,
       "sample": 8,
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 10
+      "swing": 9
      }
     ]
    },
    {
     "key": "conversion",
-    "score": 17,
+    "score": 10,
     "reason": "read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
     "carried": true,
     "state": "fragile",
@@ -67890,13 +71545,13 @@ window.DIVE_DATA = {
      "healthy": 65,
      "steady": 35
     },
-    "swing": 79,
+    "swing": 73,
     "measures": [
      {
       "key": "subscribers",
       "value": 0.6,
-      "typical": 1.8,
-      "sample": 4,
+      "typical": 2.9,
+      "sample": 5,
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
@@ -67904,13 +71559,13 @@ window.DIVE_DATA = {
       "qualified": false,
       "carried": true,
       "carriedNote": "carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight",
-      "swing": 79
+      "swing": 73
      }
     ]
    },
    {
     "key": "sentiment",
-    "score": 47,
+    "score": 45,
     "reason": "Only 2 episodes have complete replies and watch counts; at least four are required.",
     "carried": false,
     "state": "steady",
@@ -67922,13 +71577,13 @@ window.DIVE_DATA = {
     "measures": [
      {
       "key": "balance",
-      "value": 94.1,
+      "value": 90,
       "typical": 100,
       "sample": 3,
       "reason": null,
       "ageBasis": "mature",
       "note": "compared with earlier episodes as they stand now, not at the same age",
-      "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "episodeRead": "2026-09-24-dive-radio-just-in-time-interfaces",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
@@ -67936,13 +71591,13 @@ window.DIVE_DATA = {
      },
      {
       "key": "commentRate",
-      "value": 0.1,
+      "value": 0.8,
       "typical": null,
       "sample": 1,
       "reason": "Only 2 episodes have complete replies and watch counts; at least four are required.",
       "ageBasis": null,
       "note": null,
-      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "episodeRead": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "qualified": false,
       "carried": false,
       "carriedNote": null,
@@ -67952,13 +71607,12 @@ window.DIVE_DATA = {
    }
   ],
   "asOf": {
-   "newest": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-   "newestTitle": "How To Become a Founding Designer",
-   "ageDays": 5.8,
+   "newest": "2026-09-24-dive-radio-just-in-time-interfaces",
+   "newestTitle": "Just",
+   "ageDays": 0.9,
    "provisional": true,
    "carried": [
     "audienceQuality",
-    "reachEfficiency",
     "conversion"
    ],
    "qualified": []
@@ -67983,91 +71637,91 @@ window.DIVE_DATA = {
     {
      "key": "watching",
      "n": 5,
-     "pctPerEpisode": 3.4,
+     "pctPerEpisode": 3.2,
      "direction": "holding",
      "reason": null
     },
     {
      "key": "exposureWeekOne",
-     "n": 4,
-     "pctPerEpisode": 14.5,
+     "n": 5,
+     "pctPerEpisode": 16.2,
      "direction": "building",
      "reason": null
     },
     {
      "key": "announceToPlay",
      "n": 5,
-     "pctPerEpisode": -7.1,
+     "pctPerEpisode": -9.3,
      "direction": "softening",
      "reason": null
     },
     {
      "key": "discoveryShare",
      "n": 5,
-     "pctPerEpisode": -7.5,
+     "pctPerEpisode": -7.6,
      "direction": "softening",
      "reason": null
     },
     {
      "key": "liveAverage",
      "n": 5,
-     "pctPerEpisode": 14.3,
+     "pctPerEpisode": 8.2,
      "direction": "building",
      "reason": null
     },
     {
      "key": "livePeak",
      "n": 5,
-     "pctPerEpisode": 13.9,
+     "pctPerEpisode": 10.7,
      "direction": "building",
      "reason": null
     },
     {
      "key": "liveViewers",
      "n": 5,
-     "pctPerEpisode": 23.1,
-     "direction": "building",
+     "pctPerEpisode": 2.5,
+     "direction": "holding",
      "reason": null
     },
     {
      "key": "minutesWatched",
      "n": 5,
-     "pctPerEpisode": 27.8,
+     "pctPerEpisode": 10.8,
      "direction": "building",
      "reason": null
     },
     {
      "key": "chattersPer100",
      "n": 5,
-     "pctPerEpisode": -3.9,
+     "pctPerEpisode": 4.2,
      "direction": "holding",
      "reason": null
     },
     {
      "key": "messagesPerHour",
      "n": 5,
-     "pctPerEpisode": -2.9,
-     "direction": "holding",
+     "pctPerEpisode": 13.1,
+     "direction": "building",
      "reason": null
     },
     {
      "key": "minutesPerViewer",
      "n": 5,
-     "pctPerEpisode": 22.5,
+     "pctPerEpisode": 18.5,
      "direction": "building",
      "reason": null
     },
     {
      "key": "holdRate",
      "n": 5,
-     "pctPerEpisode": -0.6,
+     "pctPerEpisode": -2.1,
      "direction": "holding",
      "reason": null
     },
     {
      "key": "subscribers",
      "n": 5,
-     "pctPerEpisode": -37.7,
+     "pctPerEpisode": -37.3,
      "direction": "softening",
      "reason": null
     }
@@ -68082,12 +71736,7 @@ window.DIVE_DATA = {
     "direction": null,
     "reason": "Three episodes show the slope; a direction word needs four."
    },
-   "coolOff": {
-    "ageDays": 5.8,
-    "word": null,
-    "n": 2,
-    "reason": "promo-driven lift — shown, not scored"
-   }
+   "coolOff": null
   },
   "facts": [
    {
@@ -68112,8 +71761,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "typical-watch-percent",
-    "display": "10.1%",
-    "text": "Earlier episodes typically held viewers for 10.1% of their YouTube run time."
+    "display": "10.6%",
+    "text": "Earlier episodes typically held viewers for 10.6% of their YouTube run time."
    },
    {
     "id": "latest-watch-percent-joindiveclub",
@@ -68126,24 +71775,34 @@ window.DIVE_DATA = {
     "text": "Viewers watched 8.6% of that episode on DesignerTom on average."
    },
    {
+    "id": "latest-same-age-reach",
+    "display": "6,237",
+    "text": "The latest episode's X announces have been seen 6,237 times at this age."
+   },
+   {
+    "id": "typical-same-age-reach",
+    "display": "10,080",
+    "text": "Earlier episodes' announces had typically been seen 10,080 times at the same age."
+   },
+   {
     "id": "latest-finished-announce-play",
     "display": "27.2%",
     "text": "27.2% of the latest finished episode's X announce impressions became plays."
    },
    {
     "id": "typical-announce-play",
-    "display": "29.6%",
-    "text": "Earlier clean episodes typically turned 29.6% of X announce impressions into plays."
+    "display": "26.9%",
+    "text": "Earlier clean episodes typically turned 26.9% of X announce impressions into plays."
    },
    {
     "id": "latest-finished-x-share",
-    "display": "26.1%",
-    "text": "X supplied 26.1% of watching for the latest finished episode."
+    "display": "25.8%",
+    "text": "X supplied 25.8% of watching for the latest finished episode."
    },
    {
     "id": "latest-discovery-share",
-    "display": "13.6%",
-    "text": "13.6% of the latest finished episode's YouTube views came from search and suggested videos."
+    "display": "13.5%",
+    "text": "13.5% of the latest finished episode's YouTube views came from search and suggested videos."
    },
    {
     "id": "typical-discovery-share",
@@ -68152,18 +71811,18 @@ window.DIVE_DATA = {
    },
    {
     "id": "latest-live-viewers",
-    "display": "513",
-    "text": "513 people watched the latest show live."
+    "display": "877",
+    "text": "877 people watched the latest show live."
    },
    {
     "id": "typical-live-viewers",
-    "display": "727",
-    "text": "Earlier shows were typically watched live by 727 people."
+    "display": "620",
+    "text": "Earlier shows were typically watched live by 620 people."
    },
    {
     "id": "latest-live-minutes",
-    "display": "9,438",
-    "text": "People watched 9,438 minutes of the latest show live, all together."
+    "display": "9,440",
+    "text": "People watched 9,440 minutes of the latest show live, all together."
    },
    {
     "id": "typical-live-minutes",
@@ -68172,18 +71831,18 @@ window.DIVE_DATA = {
    },
    {
     "id": "latest-live-peak",
-    "display": "97",
-    "text": "The latest show peaked at 97 live viewers."
+    "display": "109",
+    "text": "The latest show peaked at 109 live viewers."
    },
    {
     "id": "typical-live-peak",
-    "display": "71",
-    "text": "Earlier shows typically peaked at 71 live viewers."
+    "display": "71.5",
+    "text": "Earlier shows typically peaked at 71.5 live viewers."
    },
    {
     "id": "latest-live-average",
-    "display": "78",
-    "text": "The latest show averaged 78 live viewers."
+    "display": "80",
+    "text": "The latest show averaged 80 live viewers."
    },
    {
     "id": "typical-live-average",
@@ -68192,13 +71851,13 @@ window.DIVE_DATA = {
    },
    {
     "id": "latest-minutes-per-viewer",
-    "display": "18.4",
-    "text": "Each person who watched the latest show live stayed 18.4 minutes on average."
+    "display": "10.8",
+    "text": "Each person who watched the latest show live stayed 10.8 minutes on average."
    },
    {
     "id": "typical-minutes-per-viewer",
-    "display": "9",
-    "text": "Earlier shows typically kept each live viewer for 9 minutes."
+    "display": "9.6",
+    "text": "Earlier shows typically kept each live viewer for 9.6 minutes."
    },
    {
     "id": "latest-hold-rate",
@@ -68207,28 +71866,28 @@ window.DIVE_DATA = {
    },
    {
     "id": "typical-hold-rate",
-    "display": "66.2%",
-    "text": "Earlier shows typically kept 66.2% of their peak audience to the end."
+    "display": "68.3%",
+    "text": "Earlier shows typically kept 68.3% of their peak audience to the end."
    },
    {
     "id": "latest-chatters-per-100",
-    "display": "48.5",
-    "text": "The latest show drew 48.5 chatters for every hundred people at its peak."
+    "display": "61.5",
+    "text": "The latest show drew 61.5 chatters for every hundred people at its peak."
    },
    {
     "id": "typical-chatters-per-100",
-    "display": "59.3",
-    "text": "Earlier shows typically drew 59.3 chatters for every hundred people at their peak."
+    "display": "56.7",
+    "text": "Earlier shows typically drew 56.7 chatters for every hundred people at their peak."
    },
    {
     "id": "latest-chat-per-hour",
-    "display": "50.1",
-    "text": "The latest show drew 50.1 chat messages an hour."
+    "display": "93.6",
+    "text": "The latest show drew 93.6 chat messages an hour."
    },
    {
     "id": "typical-chat-per-hour",
-    "display": "80.5",
-    "text": "Earlier shows typically drew 80.5 chat messages an hour."
+    "display": "75.9",
+    "text": "Earlier shows typically drew 75.9 chat messages an hour."
    },
    {
     "id": "latest-subscriber-rate",
@@ -68237,13 +71896,13 @@ window.DIVE_DATA = {
    },
    {
     "id": "typical-subscriber-rate",
-    "display": "1.8",
-    "text": "Earlier clean episodes typically added 1.8 subscribers for each thousand YouTube views."
+    "display": "2.9",
+    "text": "Earlier clean episodes typically added 2.9 subscribers for each thousand YouTube views."
    },
    {
     "id": "latest-subscriber-rate-joindiveclub",
-    "display": "1.1",
-    "text": "Dive Club added 1.1 subscribers for each thousand of its YouTube views on that episode."
+    "display": "1",
+    "text": "Dive Club added 1 subscribers for each thousand of its YouTube views on that episode."
    },
    {
     "id": "latest-subscriber-rate-designertom",
@@ -68252,8 +71911,8 @@ window.DIVE_DATA = {
    },
    {
     "id": "recent-positive-feedback",
-    "display": "16",
-    "text": "16 recent comments were clearly positive."
+    "display": "9",
+    "text": "9 recent comments were clearly positive."
    },
    {
     "id": "recent-mixed-feedback",
@@ -68262,13 +71921,13 @@ window.DIVE_DATA = {
    },
    {
     "id": "recent-feedback-people",
-    "display": "17",
-    "text": "17 people left recent directional feedback."
+    "display": "10",
+    "text": "10 people left recent directional feedback."
    },
    {
     "id": "latest-comment-rate",
-    "display": "0.1",
-    "text": "The latest comparable episode drew 0.1 commenters for each thousand watches."
+    "display": "0.8",
+    "text": "The latest comparable episode drew 0.8 commenters for each thousand watches."
    },
    {
     "id": "direction-engagementWeekOne",
@@ -68277,68 +71936,68 @@ window.DIVE_DATA = {
    },
    {
     "id": "direction-watching",
-    "display": "3.4%",
-    "text": "Over the last five clean readings, as those episodes stand now, share of the video watched rose about 3.4% each episode."
+    "display": "3.2%",
+    "text": "Over the last five clean readings, as those episodes stand now, share of the video watched rose about 3.2% each episode."
    },
    {
     "id": "direction-exposureWeekOne",
-    "display": "14.5%",
-    "text": "Over the last four clean readings, first-week X reach rose about 14.5% each episode."
+    "display": "16.2%",
+    "text": "Over the last five clean readings, first-week X reach rose about 16.2% each episode."
    },
    {
     "id": "direction-announceToPlay",
-    "display": "7.1%",
-    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 7.1% each episode."
+    "display": "9.3%",
+    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X fell about 9.3% each episode."
    },
    {
     "id": "direction-discoveryShare",
-    "display": "7.5%",
-    "text": "Over the last five clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 7.5% each episode."
+    "display": "7.6%",
+    "text": "Over the last five clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 7.6% each episode."
    },
    {
     "id": "direction-liveAverage",
-    "display": "14.3%",
-    "text": "Over the last five clean readings, average live viewers rose about 14.3% each episode."
+    "display": "8.2%",
+    "text": "Over the last five clean readings, average live viewers rose about 8.2% each episode."
    },
    {
     "id": "direction-livePeak",
-    "display": "13.9%",
-    "text": "Over the last five clean readings, peak live viewers rose about 13.9% each episode."
+    "display": "10.7%",
+    "text": "Over the last five clean readings, peak live viewers rose about 10.7% each episode."
    },
    {
     "id": "direction-liveViewers",
-    "display": "23.1%",
-    "text": "Over the last five clean readings, unique live viewers rose about 23.1% each episode."
+    "display": "2.5%",
+    "text": "Over the last five clean readings, unique live viewers rose about 2.5% each episode."
    },
    {
     "id": "direction-minutesWatched",
-    "display": "27.8%",
-    "text": "Over the last five clean readings, minutes watched live rose about 27.8% each episode."
+    "display": "10.8%",
+    "text": "Over the last five clean readings, minutes watched live rose about 10.8% each episode."
    },
    {
     "id": "direction-chattersPer100",
-    "display": "3.9%",
-    "text": "Over the last five clean readings, chatters per hundred at the peak fell about 3.9% each episode."
+    "display": "4.2%",
+    "text": "Over the last five clean readings, chatters per hundred at the peak rose about 4.2% each episode."
    },
    {
     "id": "direction-messagesPerHour",
-    "display": "2.9%",
-    "text": "Over the last five clean readings, chat messages an hour fell about 2.9% each episode."
+    "display": "13.1%",
+    "text": "Over the last five clean readings, chat messages an hour rose about 13.1% each episode."
    },
    {
     "id": "direction-minutesPerViewer",
-    "display": "22.5%",
-    "text": "Over the last five clean readings, minutes each live viewer stayed rose about 22.5% each episode."
+    "display": "18.5%",
+    "text": "Over the last five clean readings, minutes each live viewer stayed rose about 18.5% each episode."
    },
    {
     "id": "direction-holdRate",
-    "display": "0.6%",
-    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 0.6% each episode."
+    "display": "2.1%",
+    "text": "Over the last five clean readings, the share of the peak still watching at the end fell about 2.1% each episode."
    },
    {
     "id": "direction-subscribers",
-    "display": "37.7%",
-    "text": "Over the last five clean readings, as those episodes stand now, subscribers per thousand views fell about 37.7% each episode."
+    "display": "37.3%",
+    "text": "Over the last five clean readings, as those episodes stand now, subscribers per thousand views fell about 37.3% each episode."
    },
    {
     "id": "outlook-first-week-low",
@@ -68358,28 +72017,27 @@ window.DIVE_DATA = {
   ],
   "pros": [
    {
-    "text": "The latest show peaked at 97 live viewers, above typical.",
-    "factId": "latest-live-peak"
+    "text": "People watched 9,440 minutes of the latest show live, all together.",
+    "factId": "latest-live-minutes"
    },
    {
-    "text": "Each live viewer stayed 18.4 minutes on average, above typical.",
-    "factId": "latest-minutes-per-viewer"
+    "text": "The latest show peaked at 109 live viewers.",
+    "factId": "latest-live-peak"
    }
   ],
   "cons": [
    {
-    "text": "The latest finished episode added just 0.6 subscribers for each thousand YouTube views.",
+    "text": "The latest finished episode added 0.6 subscribers for each thousand YouTube views.",
     "factId": "latest-subscriber-rate"
    },
    {
-    "text": "The latest show drew 50.1 chat messages an hour, below typical.",
-    "factId": "latest-chat-per-hour"
+    "text": "The latest episode's X announces have been seen 6,237 times at this age.",
+    "factId": "latest-same-age-reach"
    }
   ],
   "drivers": [
-   "The score stays near the weighted mean: healthy live turnout offsets fragile subscribers, while growth and participation are steady.",
-   "This read is provisional. Audience quality, reach and subscribers use older, latest finished readings counted at half weight.",
-   "Some early comparisons and replies are incomplete, not weaknesses. Promo-driven lift does not affect the score."
+   "A deterministic read: the score is the weighted middle of the checks that could be measured today, with promo-driven lifts shown but not scored.",
+   "audience quality and subscribers read the latest finished episode at half weight because the newest is too young for them."
   ],
   "checkSetChange": null,
   "trend": {
@@ -68438,6 +72096,10 @@ window.DIVE_DATA = {
     },
     {
      "date": "2026-09-23",
+     "score": 51
+    },
+    {
+     "date": "2026-09-25",
      "score": 51
     }
    ]
@@ -68500,7 +72162,7 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1784,
-      "typical": 2664,
+      "typical": 2667,
       "n": 8,
       "window": [
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -68555,7 +72217,7 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 1820,
-      "typical": 2664,
+      "typical": 2667,
       "n": 8,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -68610,7 +72272,7 @@ window.DIVE_DATA = {
      "xPlays": {
       "tier": 3,
       "value": 4299,
-      "typical": 2099.5,
+      "typical": 2101,
       "n": 8,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -68797,10 +72459,9 @@ window.DIVE_DATA = {
      "ytViews": {
       "tier": 1,
       "value": 6003,
-      "typical": 1762,
-      "n": 6,
+      "typical": 1601,
+      "n": 5,
       "window": [
-       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -68825,10 +72486,9 @@ window.DIVE_DATA = {
      "xImpressions": {
       "tier": 1,
       "value": 15636,
-      "typical": 9047,
-      "n": 5,
+      "typical": 9143.5,
+      "n": 4,
       "window": [
-       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
@@ -68840,11 +72500,11 @@ window.DIVE_DATA = {
    },
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
     "flagged": true,
-    "provisional": true,
+    "provisional": false,
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 6067,
+      "value": 6083,
       "typical": null,
       "n": 0,
       "window": [],
@@ -68852,7 +72512,7 @@ window.DIVE_DATA = {
       "source": "newsletter"
      },
      "xPlays": {
-      "tier": 2,
+      "tier": 1,
       "value": 4138,
       "typical": 2023,
       "n": 4,
@@ -68865,12 +72525,11 @@ window.DIVE_DATA = {
       "flag": true
      },
      "xImpressions": {
-      "tier": 2,
+      "tier": 1,
       "value": 37453,
-      "typical": 9047,
-      "n": 5,
+      "typical": 9143.5,
+      "n": 4,
       "window": [
-       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
@@ -68886,7 +72545,7 @@ window.DIVE_DATA = {
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 11215,
+      "value": 11322,
       "typical": null,
       "n": 0,
       "window": [],
@@ -68895,8 +72554,8 @@ window.DIVE_DATA = {
      },
      "xPlays": {
       "tier": 2,
-      "value": 3925,
-      "typical": 2078,
+      "value": 3927,
+      "typical": 2087,
       "n": 3,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -68907,11 +72566,11 @@ window.DIVE_DATA = {
      },
      "xImpressions": {
       "tier": 2,
-      "value": 14431,
-      "typical": 9007,
+      "value": 14448,
+      "typical": 9041.5,
       "n": 4,
       "window": [
-       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern"
@@ -68922,11 +72581,11 @@ window.DIVE_DATA = {
    },
    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
     "flagged": true,
-    "provisional": false,
+    "provisional": true,
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 7665,
+      "value": 7785,
       "typical": null,
       "n": 0,
       "window": [],
@@ -68934,24 +72593,68 @@ window.DIVE_DATA = {
       "source": "newsletter"
      },
      "xPlays": {
-      "tier": 2,
-      "value": 1746,
-      "typical": 2478,
-      "n": 3,
+      "tier": 3,
+      "value": 1759,
+      "typical": 2101,
+      "n": 6,
       "window": [
+       "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-10-dive-radio-how-designers-are-getting-hir"
+       "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      },
      "xImpressions": {
       "tier": 2,
-      "value": 19506,
-      "typical": 11174.5,
-      "n": 4,
+      "value": 19671,
+      "typical": 8841,
+      "n": 3,
       "window": [
-       "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern"
+      ],
+      "flag": true
+     }
+    }
+   },
+   "2026-09-24-dive-radio-just-in-time-interfaces": {
+    "flagged": true,
+    "provisional": false,
+    "units": {
+     "ytViews": {
+      "tier": "known-promotion",
+      "value": 2891,
+      "typical": null,
+      "n": 0,
+      "window": [],
+      "flag": true,
+      "source": "newsletter"
+     },
+     "xPlays": {
+      "tier": 3,
+      "value": 1836,
+      "typical": 2101,
+      "n": 6,
+      "window": [
+       "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+      ],
+      "flag": false
+     },
+     "xImpressions": {
+      "tier": 2,
+      "value": 6237,
+      "typical": 10080,
+      "n": 3,
+      "window": [
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-10-dive-radio-how-designers-are-getting-hir"
@@ -68988,7 +72691,7 @@ window.DIVE_DATA = {
     "ageBasis": "mature"
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "typical": 10.5,
+    "typical": 10.6,
     "n": 5,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
@@ -69024,7 +72727,7 @@ window.DIVE_DATA = {
     "ageBasis": "mature"
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "typical": 10.5,
+    "typical": 10.6,
     "n": 5,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
@@ -69036,7 +72739,7 @@ window.DIVE_DATA = {
     "ageBasis": "mature"
    },
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-    "typical": 10.5,
+    "typical": 10.6,
     "n": 5,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
@@ -69098,6 +72801,19 @@ window.DIVE_DATA = {
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
     "ageBasis": "mature"
+   },
+   "2026-09-24-dive-radio-just-in-time-interfaces": {
+    "typical": 10.8,
+    "n": 6,
+    "window": [
+     "2026-07-17-dive-radio-bumpy-takeoff",
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "ageBasis": "mature"
    }
   },
   "typicalCurve": {
@@ -69120,7 +72836,7 @@ window.DIVE_DATA = {
     },
     {
      "at": 0.05,
-     "watching": 0.23
+     "watching": 0.24
     },
     {
      "at": 0.06,
@@ -69272,7 +72988,7 @@ window.DIVE_DATA = {
     },
     {
      "at": 0.43,
-     "watching": 0.14
+     "watching": 0.15
     },
     {
      "at": 0.44,
@@ -69515,8 +73231,8 @@ window.DIVE_DATA = {
   },
   "pace": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
-    "ageDays": 68.8,
-    "value": 2144,
+    "ageDays": 69.9,
+    "value": 2145,
     "typical": null,
     "n": 0,
     "rank": null,
@@ -69560,7 +73276,7 @@ window.DIVE_DATA = {
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "ageDays": 62.8,
+    "ageDays": 63.9,
     "value": 2183,
     "typical": null,
     "n": 0,
@@ -69605,18 +73321,21 @@ window.DIVE_DATA = {
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
-    "ageDays": 55.8,
+    "ageDays": 56.9,
     "value": 1653,
     "typical": null,
-    "n": 2,
+    "n": 1,
     "rank": null,
     "of": null,
     "pct": null,
     "peers": [
-     "2026-07-17-dive-radio-bumpy-takeoff",
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
+     "2026-07-17-dive-radio-bumpy-takeoff"
     ],
     "excluded": [
+     {
+      "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "why": "no reading at this age"
+     },
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
       "why": "no reading at this age"
@@ -69642,22 +73361,25 @@ window.DIVE_DATA = {
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
    },
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-    "ageDays": 48.8,
-    "value": 2017,
-    "typical": 2106,
-    "n": 3,
-    "rank": 3,
-    "of": 4,
-    "pct": -4,
+    "ageDays": 49.9,
+    "value": 2019,
+    "typical": null,
+    "n": 2,
+    "rank": null,
+    "of": null,
+    "pct": null,
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-07-30-dive-radio-mixed-media-workflows-game-de"
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe"
     ],
     "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
      {
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "why": "no reading at this age"
@@ -69679,23 +73401,26 @@ window.DIVE_DATA = {
       "why": "known newsletter promotion"
      }
     ],
-    "reason": null
+    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "ageDays": 41.8,
+    "ageDays": 42.9,
     "value": 1298,
-    "typical": 2044,
-    "n": 4,
-    "rank": 5,
-    "of": 5,
-    "pct": -36,
+    "typical": 2085,
+    "n": 3,
+    "rank": 4,
+    "of": 4,
+    "pct": -38,
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-     "2026-08-06-dive-radio-backyard-designers-behind-the"
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de"
     ],
     "excluded": [
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
      {
       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
       "why": "no reading at this age"
@@ -69716,20 +73441,23 @@ window.DIVE_DATA = {
     "reason": null
    },
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-    "ageDays": 34.8,
-    "value": 1677,
-    "typical": 1805.5,
-    "n": 4,
+    "ageDays": 35.9,
+    "value": 1678,
+    "typical": 1994,
+    "n": 3,
     "rank": 3,
-    "of": 5,
-    "pct": -7,
+    "of": 4,
+    "pct": -16,
     "peers": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-     "2026-08-06-dive-radio-backyard-designers-behind-the",
-     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+     "2026-08-06-dive-radio-backyard-designers-behind-the"
     ],
     "excluded": [
+     {
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "why": "no reading at this age"
+     },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "why": "promo outlier"
@@ -69750,21 +73478,23 @@ window.DIVE_DATA = {
     "reason": null
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
-    "ageDays": 27.8,
-    "value": 6099,
-    "typical": 1644,
-    "n": 5,
+    "ageDays": 28.9,
+    "value": 6103,
+    "typical": 1610,
+    "n": 3,
     "rank": 1,
-    "of": 6,
-    "pct": 271,
+    "of": 4,
+    "pct": 279,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
-     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
     "excluded": [
+     {
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "why": "no reading at this age"
+     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -69776,20 +73506,57 @@ window.DIVE_DATA = {
      {
       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
      }
     ],
     "reason": null
    },
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
-    "ageDays": 20.8,
-    "value": 6067,
-    "typical": 1733,
+    "ageDays": 21.9,
+    "value": 6083,
+    "typical": 1585.5,
     "n": 4,
     "rank": 1,
     "of": 5,
-    "pct": 250,
+    "pct": 284,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     },
+     {
+      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
+     }
+    ],
+    "reason": null
+   },
+   "2026-09-10-dive-radio-how-designers-are-getting-hir": {
+    "ageDays": 14.9,
+    "value": 11322,
+    "typical": 1463,
+    "n": 3,
+    "rank": 1,
+    "of": 4,
+    "pct": 674,
+    "peers": [
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
@@ -69804,26 +73571,29 @@ window.DIVE_DATA = {
       "why": "promo outlier"
      },
      {
-      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
      },
      {
       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
      }
     ],
     "reason": null
    },
-   "2026-09-10-dive-radio-how-designers-are-getting-hir": {
-    "ageDays": 13.8,
-    "value": 11215,
-    "typical": 1435,
-    "n": 3,
-    "rank": 1,
-    "of": 4,
-    "pct": 682,
+   "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
+    "ageDays": 7.9,
+    "value": 7785,
+    "typical": null,
+    "n": 2,
+    "rank": null,
+    "of": null,
+    "pct": null,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
@@ -69845,22 +73615,25 @@ window.DIVE_DATA = {
       "why": "known newsletter promotion"
      },
      {
-      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
       "why": "known newsletter promotion"
      }
     ],
-    "reason": null
+    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
-   "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
-    "ageDays": 6.8,
-    "value": 7665,
+   "2026-09-24-dive-radio-just-in-time-interfaces": {
+    "ageDays": 0.9,
+    "value": 2891,
     "typical": null,
-    "n": 2,
+    "n": 1,
     "rank": null,
     "of": null,
     "pct": null,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
     "excluded": [
@@ -69887,9 +73660,13 @@ window.DIVE_DATA = {
      {
       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
    }
   },
   "launch": {
@@ -70124,15 +73901,14 @@ window.DIVE_DATA = {
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
     "ageDays": 7,
     "value": 5188,
-    "typical": 1189,
-    "n": 3,
-    "pct": 336,
-    "word": "strong",
+    "typical": null,
+    "n": 2,
+    "pct": null,
+    "word": null,
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
@@ -70156,22 +73932,25 @@ window.DIVE_DATA = {
      {
       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
      }
     ],
-    "reason": null
+    "reason": "Fewer than three earlier episodes to compare with."
    },
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
     "ageDays": 7,
     "value": 5432,
-    "typical": 1189,
-    "n": 3,
-    "pct": 357,
-    "word": "strong",
+    "typical": null,
+    "n": 2,
+    "pct": null,
+    "word": null,
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
@@ -70195,22 +73974,25 @@ window.DIVE_DATA = {
      {
       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
      }
     ],
-    "reason": null
+    "reason": "Fewer than three earlier episodes to compare with."
    },
    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
     "ageDays": 7,
     "value": 9937,
-    "typical": 1189,
-    "n": 3,
-    "pct": 736,
-    "word": "strong",
+    "typical": null,
+    "n": 2,
+    "pct": null,
+    "word": null,
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
@@ -70234,22 +74016,67 @@ window.DIVE_DATA = {
      {
       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
      }
     ],
-    "reason": null
+    "reason": "Fewer than three earlier episodes to compare with."
    },
    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
-    "ageDays": 6.8,
+    "ageDays": 7,
     "value": 7665,
     "typical": null,
     "n": 2,
     "pct": null,
     "word": null,
     "promoDriven": true,
+    "provisional": false,
+    "late": false,
+    "peers": [
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    ],
+    "excluded": [
+     {
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "why": "no reading at this age"
+     },
+     {
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "why": "promo outlier"
+     },
+     {
+      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "why": "known newsletter promotion"
+     }
+    ],
+    "reason": "Fewer than three earlier episodes to compare with."
+   },
+   "2026-09-24-dive-radio-just-in-time-interfaces": {
+    "ageDays": 0.9,
+    "value": 2891,
+    "typical": null,
+    "n": 1,
+    "pct": null,
+    "word": null,
+    "promoDriven": true,
     "provisional": true,
     "late": false,
     "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
     "excluded": [
@@ -70276,25 +74103,29 @@ window.DIVE_DATA = {
      {
       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
       "why": "known newsletter promotion"
+     },
+     {
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "why": "known newsletter promotion"
      }
     ],
     "reason": "Fewer than three earlier episodes to compare with."
    }
   },
   "newestVsPrevious": {
-   "newest": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-   "previous": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-   "ageDays": 6.8,
+   "newest": "2026-09-24-dive-radio-just-in-time-interfaces",
+   "previous": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+   "ageDays": 0.9,
    "reach": {
-    "pct": 38,
-    "ageBasis": "sameAge"
+    "pct": null,
+    "reason": "Too young to compare with the episode before it at the same age."
    },
    "watched": {
-    "pct": -5,
-    "ageBasis": "sameAge"
+    "pct": null,
+    "reason": "Too young to compare with the episode before it at the same age."
    },
    "live": {
-    "pct": -27,
+    "pct": 12,
     "ageBasis": "ageFree"
    }
   },
@@ -70376,7 +74207,7 @@ window.DIVE_DATA = {
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
        "ep": 4,
-       "value": 8.8
+       "value": 8.9
       },
       {
        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -70395,11 +74226,16 @@ window.DIVE_DATA = {
      "key": "exposureWeekOne",
      "check": "reachEfficiency",
      "n": 5,
-     "pctPerEpisode": 17.1,
+     "pctPerEpisode": 16.2,
      "direction": "building",
      "ageBasis": "sameAge",
      "note": "compared at the same age",
      "points": [
+      {
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "ep": 1,
+       "value": 4641
+      },
       {
        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "ep": 2,
@@ -70419,11 +74255,6 @@ window.DIVE_DATA = {
        "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "ep": 9,
        "value": 14166
-      },
-      {
-       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-       "ep": 10,
-       "value": 19506
       }
      ],
      "reason": null
@@ -70506,16 +74337,11 @@ window.DIVE_DATA = {
      "key": "liveAverage",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 14.3,
+     "pctPerEpisode": 8.2,
      "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 50
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70535,6 +74361,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 78
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 80
       }
      ],
      "reason": null
@@ -70543,16 +74374,11 @@ window.DIVE_DATA = {
      "key": "livePeak",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 13.9,
+     "pctPerEpisode": 10.7,
      "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 71
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70572,6 +74398,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 97
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 109
       }
      ],
      "reason": null
@@ -70580,16 +74411,11 @@ window.DIVE_DATA = {
      "key": "liveViewers",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 23.1,
-     "direction": "building",
+     "pctPerEpisode": 2.5,
+     "direction": "holding",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 467
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70609,6 +74435,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 513
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 877
       }
      ],
      "reason": null
@@ -70617,16 +74448,11 @@ window.DIVE_DATA = {
      "key": "minutesWatched",
      "check": "livePull",
      "n": 5,
-     "pctPerEpisode": 27.8,
+     "pctPerEpisode": 10.8,
      "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 4750
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70646,6 +74472,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 9438
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 9440
       }
      ],
      "reason": null
@@ -70654,16 +74485,11 @@ window.DIVE_DATA = {
      "key": "chattersPer100",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": -3.9,
+     "pctPerEpisode": 4.2,
      "direction": "holding",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 57.7
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70683,6 +74509,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 48.5
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 61.5
       }
      ],
      "reason": null
@@ -70691,16 +74522,11 @@ window.DIVE_DATA = {
      "key": "messagesPerHour",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": -2.9,
-     "direction": "holding",
+     "pctPerEpisode": 13.1,
+     "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 80.2
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70720,6 +74546,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 50.1
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 93.6
       }
      ],
      "reason": null
@@ -70728,16 +74559,11 @@ window.DIVE_DATA = {
      "key": "minutesPerViewer",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": 22.5,
+     "pctPerEpisode": 18.5,
      "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 10.2
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70757,6 +74583,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 18.4
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 10.8
       }
      ],
      "reason": null
@@ -70765,16 +74596,11 @@ window.DIVE_DATA = {
      "key": "holdRate",
      "check": "participation",
      "n": 5,
-     "pctPerEpisode": -0.6,
+     "pctPerEpisode": -2.1,
      "direction": "holding",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
-      {
-       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-       "ep": 6,
-       "value": 62.3
-      },
       {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "ep": 7,
@@ -70794,6 +74620,11 @@ window.DIVE_DATA = {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "ep": 10,
        "value": 67.2
+      },
+      {
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "ep": 11,
+       "value": 67.2
       }
      ],
      "reason": null
@@ -70802,7 +74633,7 @@ window.DIVE_DATA = {
      "key": "subscribers",
      "check": "conversion",
      "n": 5,
-     "pctPerEpisode": -37.7,
+     "pctPerEpisode": -37.3,
      "direction": "softening",
      "ageBasis": "mature",
      "note": "compared with earlier episodes as they stand now, not at the same age",
@@ -70815,7 +74646,7 @@ window.DIVE_DATA = {
       {
        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "ep": 2,
-       "value": 2.8
+       "value": 2.7
       },
       {
        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -70880,46 +74711,7 @@ window.DIVE_DATA = {
     "direction": null,
     "reason": "Three episodes show the slope; a direction word needs four."
    },
-   "coolOff": {
-    "ageDays": 6.8,
-    "span": 2,
-    "value": 1.057,
-    "typical": null,
-    "n": 2,
-    "word": null,
-    "promoDriven": true,
-    "peers": [
-     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
-    ],
-    "excluded": [
-     {
-      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-      "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-      "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
-     {
-      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-      "why": "known newsletter promotion"
-     },
-     {
-      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-      "why": "known newsletter promotion"
-     }
-    ],
-    "reason": "promo-driven lift — shown, not scored"
-   }
+   "coolOff": null
   },
   "knownBreaks": [
    {

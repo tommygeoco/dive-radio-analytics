@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T15:17:02.996Z",
+  "updatedAt": "2026-09-25T17:34:53.366Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -465,7 +465,11 @@
       "typical": 1751,
       "direction": null,
       "pctPerEpisode": -8.3,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "void",
+        "detail": "2026-09-17-dive-radio-how-to-become-a-founding-desi: promo-driven first week — not a clean test."
+      }
     },
     {
       "id": "direction:watching:E6:holding",
@@ -697,7 +701,13 @@
       "pctPerEpisode": 14.3,
       "lastEp": 10,
       "lastValue": 78,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "neutral",
+        "actual": 80,
+        "realizedPct": 2.6,
+        "detail": "liveAverage: E11 moved +2.6% (holding) against the word building."
+      }
     },
     {
       "id": "direction:livePeak:E10:building",
@@ -708,7 +718,13 @@
       "pctPerEpisode": 13.9,
       "lastEp": 10,
       "lastValue": 97,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "hit",
+        "actual": 109,
+        "realizedPct": 12.4,
+        "detail": "livePeak: E11 moved +12.4% (building) against the word building."
+      }
     },
     {
       "id": "direction:liveViewers:E10:building",
@@ -719,7 +735,13 @@
       "pctPerEpisode": 23.1,
       "lastEp": 10,
       "lastValue": 513,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "hit",
+        "actual": 877,
+        "realizedPct": 71,
+        "detail": "liveViewers: E11 moved +71% (building) against the word building."
+      }
     },
     {
       "id": "direction:minutesWatched:E10:building",
@@ -730,7 +752,13 @@
       "pctPerEpisode": 27.8,
       "lastEp": 10,
       "lastValue": 9438,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "neutral",
+        "actual": 9440,
+        "realizedPct": 0,
+        "detail": "minutesWatched: E11 moved +0% (holding) against the word building."
+      }
     },
     {
       "id": "direction:chattersPer100:E10:holding",
@@ -741,7 +769,13 @@
       "pctPerEpisode": -3.9,
       "lastEp": 10,
       "lastValue": 48.5,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "neutral",
+        "actual": 61.5,
+        "realizedPct": 26.8,
+        "detail": "chattersPer100: E11 moved +26.8% (building) against the word holding."
+      }
     },
     {
       "id": "direction:messagesPerHour:E10:holding",
@@ -752,7 +786,13 @@
       "pctPerEpisode": -2.9,
       "lastEp": 10,
       "lastValue": 50.1,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "neutral",
+        "actual": 93.6,
+        "realizedPct": 86.8,
+        "detail": "messagesPerHour: E11 moved +86.8% (building) against the word holding."
+      }
     },
     {
       "id": "direction:minutesPerViewer:E10:building",
@@ -763,7 +803,13 @@
       "pctPerEpisode": 22.5,
       "lastEp": 10,
       "lastValue": 18.4,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "miss",
+        "actual": 10.8,
+        "realizedPct": -41.3,
+        "detail": "minutesPerViewer: E11 moved -41.3% (softening) against the word building."
+      }
     },
     {
       "id": "direction:holdRate:E10:holding",
@@ -774,7 +820,13 @@
       "pctPerEpisode": -0.6,
       "lastEp": 10,
       "lastValue": 67.2,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-25",
+        "outcome": "hit",
+        "actual": 67.2,
+        "realizedPct": 0,
+        "detail": "holdRate: E11 moved 0% (holding) against the word holding."
+      }
     },
     {
       "id": "direction:exposureWeekOne:E10:building",
@@ -785,6 +837,106 @@
       "pctPerEpisode": 17.1,
       "lastEp": 10,
       "lastValue": 19491,
+      "resolution": null
+    },
+    {
+      "id": "range:after-E11:1189-1830",
+      "kind": "first-week-range",
+      "madeOn": "2026-09-25",
+      "afterEp": 11,
+      "low": 1189,
+      "high": 1830,
+      "typical": 1751,
+      "direction": null,
+      "pctPerEpisode": -8.3,
+      "resolution": null
+    },
+    {
+      "id": "direction:liveAverage:E11:building",
+      "kind": "direction",
+      "key": "liveAverage",
+      "madeOn": "2026-09-25",
+      "word": "building",
+      "pctPerEpisode": 8.2,
+      "lastEp": 11,
+      "lastValue": 80,
+      "resolution": null
+    },
+    {
+      "id": "direction:livePeak:E11:building",
+      "kind": "direction",
+      "key": "livePeak",
+      "madeOn": "2026-09-25",
+      "word": "building",
+      "pctPerEpisode": 10.7,
+      "lastEp": 11,
+      "lastValue": 109,
+      "resolution": null
+    },
+    {
+      "id": "direction:liveViewers:E11:holding",
+      "kind": "direction",
+      "key": "liveViewers",
+      "madeOn": "2026-09-25",
+      "word": "holding",
+      "pctPerEpisode": 2.5,
+      "lastEp": 11,
+      "lastValue": 877,
+      "resolution": null
+    },
+    {
+      "id": "direction:minutesWatched:E11:building",
+      "kind": "direction",
+      "key": "minutesWatched",
+      "madeOn": "2026-09-25",
+      "word": "building",
+      "pctPerEpisode": 10.8,
+      "lastEp": 11,
+      "lastValue": 9440,
+      "resolution": null
+    },
+    {
+      "id": "direction:chattersPer100:E11:holding",
+      "kind": "direction",
+      "key": "chattersPer100",
+      "madeOn": "2026-09-25",
+      "word": "holding",
+      "pctPerEpisode": 4.2,
+      "lastEp": 11,
+      "lastValue": 61.5,
+      "resolution": null
+    },
+    {
+      "id": "direction:messagesPerHour:E11:building",
+      "kind": "direction",
+      "key": "messagesPerHour",
+      "madeOn": "2026-09-25",
+      "word": "building",
+      "pctPerEpisode": 13.1,
+      "lastEp": 11,
+      "lastValue": 93.6,
+      "resolution": null
+    },
+    {
+      "id": "direction:minutesPerViewer:E11:building",
+      "kind": "direction",
+      "key": "minutesPerViewer",
+      "madeOn": "2026-09-25",
+      "word": "building",
+      "pctPerEpisode": 18.5,
+      "lastEp": 11,
+      "lastValue": 10.8,
+      "resolution": null
+    },
+    {
+      "id": "direction:holdRate:E11:holding",
+      "kind": "direction",
+      "key": "holdRate",
+      "madeOn": "2026-09-25",
+      "word": "holding",
+      "pctPerEpisode": -2.1,
+      "lastEp": 11,
+      "lastValue": 67.2,
       "resolution": null
     }
   ]
