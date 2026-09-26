@@ -45,7 +45,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1024,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -59,7 +59,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 760,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -109,7 +109,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 637,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -121,8 +121,8 @@
           "broadcastId": "1yxBeeoanDOJN",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 1183,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1184,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -172,8 +172,8 @@
           "broadcastId": "1nGnRRMEPDkGO",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1470,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1471,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -186,8 +186,8 @@
           "broadcastId": "1nGeLLpzNAQKX",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 2829,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 2830,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -237,8 +237,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1366,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1368,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -251,7 +251,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 548,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -301,8 +301,8 @@
           "broadcastId": "1pKdRDDymlnJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1181,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1182,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -315,8 +315,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1107,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1109,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -365,8 +365,8 @@
           "broadcastId": "1DGleVBNBVjJL",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 848,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 849,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -379,7 +379,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 344,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -438,8 +438,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1115,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1116,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -473,7 +473,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1931,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -544,8 +544,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1514,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1515,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -559,7 +559,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 2625,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }
@@ -603,8 +603,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1801,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1802,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -618,7 +618,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 2126,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -689,8 +689,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 673,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 675,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -712,8 +712,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1086,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1088,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -784,8 +784,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1038,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 1117,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -798,8 +798,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 798,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 881,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         },
@@ -812,8 +812,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 798,
-            "asOf": "2026-09-25T17:33:29.965Z"
+            "value": 881,
+            "asOf": "2026-09-26T14:00:38.088Z"
           },
           "playsStatus": "ok"
         }

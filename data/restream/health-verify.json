@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T17:34:53.366Z",
+  "updatedAt": "2026-09-26T14:02:00.036Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -690,7 +690,13 @@
       "pctPerEpisode": -7.1,
       "lastEp": 9,
       "lastValue": 27.1,
-      "resolution": null
+      "resolution": {
+        "on": "2026-09-26",
+        "outcome": "hit",
+        "actual": 8.9,
+        "realizedPct": -67.2,
+        "detail": "announceToPlay: E10 moved -67.2% (softening) against the word softening."
+      }
     },
     {
       "id": "direction:liveAverage:E10:building",
@@ -937,6 +943,17 @@
       "pctPerEpisode": -2.1,
       "lastEp": 11,
       "lastValue": 67.2,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E10:softening",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-09-26",
+      "word": "softening",
+      "pctPerEpisode": -10,
+      "lastEp": 10,
+      "lastValue": 8.9,
       "resolution": null
     }
   ]

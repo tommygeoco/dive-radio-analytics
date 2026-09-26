@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgzBVuIlBCm2jQnrZFd4AaABAg",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgwdYatoecWLcSw4z1Z4AaABAg",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgxCtEvaS4QidyWinX94AaABAg",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready"
       }
     },
@@ -139,7 +139,7 @@
         "source": "x-replies",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2103318948972515625",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready"
       }
     },
@@ -167,7 +167,7 @@
         "source": "x-replies",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2103233008115609737",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready"
       }
     },
@@ -195,13 +195,33 @@
         "source": "x-replies",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2103229677246566885",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready"
       }
+    },
+    {
+      "id": "yt:UgxCtEvaS4QidyWinX94AaABAg.AbAygOxkSWwAbBeNBmCWag",
+      "source": "yt",
+      "channel": "yt:designertom",
+      "sourceObjectId": "2EAAU-knqRE",
+      "author": "jacobpjohnson",
+      "authorId": "UCwFSrA6wO3m2_QH55IV0MBg",
+      "text": "@designertom can we get a hunter segment? we need an update from that guy!",
+      "likes": 0,
+      "publishedAt": "2026-09-25T18:53:14Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "UgxCtEvaS4QidyWinX94AaABAg.AbAygOxkSWwAbBeNBmCWag",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-09-26T14:01:28.037Z"
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-25T17:34:22.100Z",
+    "checkedAt": "2026-09-26T14:01:28.037Z",
     "state": "ready",
     "sources": [
       {
@@ -209,7 +229,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "Cjv-0MKQ4GU",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready",
         "count": 2
       },
@@ -218,16 +238,16 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2EAAU-knqRE",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready",
-        "count": 1
+        "count": 2
       },
       {
         "schemaVersion": 1,
         "source": "x-replies",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2103213057958940779",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready",
         "count": 1
       },
@@ -236,7 +256,7 @@
         "source": "x-replies",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2103213058743218388",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready",
         "count": 0
       },
@@ -245,12 +265,12 @@
         "source": "x-replies",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2103055258993721705",
-        "pulledAt": "2026-09-25T17:34:22.100Z",
+        "pulledAt": "2026-09-26T14:01:28.037Z",
         "state": "ready",
         "count": 2
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-09-25T17:34:22.100Z"
+  "updatedAt": "2026-09-26T14:01:28.037Z"
 }
