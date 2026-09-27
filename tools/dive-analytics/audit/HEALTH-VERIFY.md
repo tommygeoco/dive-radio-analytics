@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-26
+# Show-health verification — 2026-09-27
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-09-26 read
+## Accuracy — the 2026-09-27 read
 
-Score 53 (weighted mean 53, health-v9, prompt v7); reads Just at 1.8 days; carried: audience quality, subscribers.
+Score 53 (weighted mean 53.4, health-v9, prompt v7); reads Just at 2.8 days; carried: audience quality, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
