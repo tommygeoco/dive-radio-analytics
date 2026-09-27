@@ -1452,9 +1452,9 @@
       }
     ]
   },
-  "updatedAt": "2026-09-27T14:01:52.913Z",
+  "updatedAt": "2026-09-27T15:16:30.093Z",
   "capture": {
-    "checkedAt": "2026-09-27T14:01:52.913Z",
+    "checkedAt": "2026-09-27T15:16:30.093Z",
     "state": "ready",
     "sources": [
       {
@@ -1462,7 +1462,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       },
       {
@@ -1470,7 +1470,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       },
       {
@@ -1478,7 +1478,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       },
       {
@@ -1486,7 +1486,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       }
     ],
@@ -1503,7 +1503,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       }
     },
@@ -1517,20 +1517,20 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       }
     },
     "x:ridd_design": {
       "date": "2026-09-27",
-      "followers": 76345,
+      "followers": 76346,
       "tweets": 20916,
       "reading": {
         "schemaVersion": 1,
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       }
     },
@@ -1543,7 +1543,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-09-27T14:01:52.913Z",
+        "pulledAt": "2026-09-27T15:16:30.093Z",
         "state": "ready"
       }
     }

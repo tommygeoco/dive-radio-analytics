@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-09-27T14:02:33.532Z · data through 2026-09-27 · health read 2026-09-27 (data through 2026-09-27) · chapters written 2026-09-19 · brief v1
+Built 2026-09-27T15:17:08.823Z · data through 2026-09-27 · health read 2026-09-27 (data through 2026-09-27) · chapters written 2026-09-19 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 11 episodes in https://dive-radio-analytics.vercel.app/agent.json; 7 included here, 4 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-09-27T14:02:33.532Z); the show-health read (2026-09-27, over data through 2026-09-27 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-19).
+Three clocks: the data build (2026-09-27T15:17:08.823Z); the show-health read (2026-09-27, over data through 2026-09-27 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-09-19).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -24,7 +24,7 @@ Not here: the raw daily series, the per-minute live audience, the hundred-point 
 
 - Episodes: 11 (E1 on 2026-07-17 → E11 on 2026-09-24, "Just-in-Time Interfaces"), a weekly live show with call-ins.
 - Channels: LinkedIn · Ridd (linkedin:michaelriddering); YT Dive Club (yt:joindiveclub); YT DesignerTom (yt:designertom); X @ridd_design (x:ridd_design); X @designertom (x:designertom).
-- Views so far: 74,816 total = 46,552 YouTube + 28,264 X plays. X reach so far: 149,336 (exposure, kept apart).
+- Views so far: 74,826 total = 46,559 YouTube + 28,267 X plays. X reach so far: 149,354 (exposure, kept apart).
 - Audience feedback captured: 83 comments, 45 with a clear lean from 41 people (35 enjoyed, 4 raised a concern). Enjoyed: other (26), format (3), topic choice (3).
 - Dashboard: https://dive-radio-analytics.vercel.app
 
@@ -180,11 +180,11 @@ Views as of 2026-09-27; first week, launch, and pace at the same age; episode he
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | E5 | 2026-08-13 | Goodbye, Blank Canvas + Live Call-Ins | 1,304 | 2,291 | 9,436 | 3,595 | —¹ | soft | #5 of 5 (-36%) | 36 | 64 / 46 / 495 / 4,370 | 8.8 | 63% | 13.2% | 0.8 | 11.6% | 1 / 0 | — |
 | E6 | 2026-08-20 | The Mascot Industrial Complex + Live Call-Ins | 1,687 | 1,193 | 9,149 | 2,880 | 1,189 | — | #3 of 5 (-7%) | 38 | 71 / 50 / 467 / 4,750 | 10.2 | 62% | 11.3% | 0.6 | 13.5% | 6 / 0 | — |
-| E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 6,117 | 3,049 | 15,804 | 9,166 | —¹ | — | #1 of 5 (+273%) | 57 | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.0% | 0.7 | 7.3% | 1 / 0 | outlier |
-| E8 | 2026-09-03 | How to Engineer a Brand Universe | 6,115 | 4,142 | 37,549 | 10,257 | —¹ | — | #1 of 5 (+282%) | 70 | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 9.4% | 6.3 | 9.4% | 7 / 0 | UX Tools |
-| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 11,428 | 3,933 | 14,490 | 15,361 | —¹ | — | #1 of 4 (+672%) | —² | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | 9.2% | 2.5 | 8.7% | 8 / 1 | UX Tools |
-| E10 | 2026-09-17 | How To Become a Founding Designer | 7,901 | 1,774 | 19,775 | 9,675 | —¹ | — | — | —² | 97 / 78 / 513 / 9,438 | 18.4 | 67% | 10.4% | 1.7 | 7.5% | 1 / 0 | UX Tools |
-| E11 | 2026-09-24 | Just-in-Time Interfaces | 3,986 | 2,058 | 6,732 | 6,044 | —¹ | — | — | —² | 109 / 80 / 877 / 9,440 | 10.8 | 67% | 16.3% | 1.8 | 5.3% | 0 / 0 | UX Tools |
+| E7 | 2026-08-27 | Steal These AI Design Patterns + Live Call-Ins | 6,117 | 3,050 | 15,805 | 9,167 | —¹ | — | #1 of 5 (+273%) | 57 | 72 / 56 / 727 / 6,050 | 8.3 | 75% | 11.0% | 0.7 | 7.3% | 1 / 0 | outlier |
+| E8 | 2026-09-03 | How to Engineer a Brand Universe | 6,115 | 4,142 | 37,551 | 10,257 | —¹ | — | #1 of 5 (+282%) | 70 | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 9.4% | 6.3 | 9.4% | 7 / 0 | UX Tools |
+| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 11,434 | 3,933 | 14,490 | 15,367 | —¹ | — | #1 of 4 (+672%) | —² | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | 9.2% | 2.5 | 8.7% | 8 / 1 | UX Tools |
+| E10 | 2026-09-17 | How To Become a Founding Designer | 7,902 | 1,774 | 19,777 | 9,676 | —¹ | — | — | —² | 97 / 78 / 513 / 9,438 | 18.4 | 67% | 10.4% | 1.7 | 7.5% | 1 / 0 | UX Tools |
+| E11 | 2026-09-24 | Just-in-Time Interfaces | 3,986 | 2,060 | 6,743 | 6,046 | —¹ | — | — | —² | 109 / 80 / 877 / 9,440 | 10.8 | 67% | 16.3% | 1.8 | 5.3% | 0 / 0 | UX Tools |
 
 ¹ no clean first week — each episode's own reason is in section 6. ² no finished read yet — the reason is in section 6.
 
@@ -274,7 +274,7 @@ LinkedIn broadcast: https://www.linkedin.com/feed/update/urn:li:ugcPost:74987822
 LinkedIn live chat: 3 messages; 1 participants. LinkedIn analytics access is not connected. Live chat is captured through Restream.
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace #1 of 5 at 30.8 days (+273% against the typical 1,639); first week — (excluded: promo-driven outlier); promo outlier: more than double what a typical episode gets (6,003 YT views vs a typical 1,601) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 6,117 YouTube + 3,049 X plays = 9,166; X reach 15,804; likes and comments per thousand YouTube views 9.0.
+Views: 6,117 YouTube + 3,050 X plays = 9,167; X reach 15,805; likes and comments per thousand YouTube views 9.0.
 Watching (YouTube analytics, 2026-09-27): 11.0% of the video watched on average, 12 min per view, 28,375 minutes watched in all; views came from SUBSCRIBER 79.0%, NO_LINK_OTHER 4.9%, YT_SEARCH 4.2%, RELATED_VIDEO 3.0%; subscribers per thousand views 0.7; discovery share 7.3%.
 Live session: peak 72, average 56, 727 people watched live for 6,050 minutes in all (8.3 minutes each; 75% of the peak still watching at the end); 92 chat messages from 40 people over 110 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
@@ -311,7 +311,7 @@ LinkedIn live chat: 16 messages; 3 participants. LinkedIn analytics access is no
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
 Promotion: UX Tools email linked this episode — 150 tracked email clicks; 67 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/7-changes-in-brand-world-building (7 changes in brand world-building). These clicks are not part of views.
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace #1 of 5 at 23.8 days (+282% against the typical 1,600); first week — (excluded: promo-driven outlier); promo outlier: UX Tools email linked the YouTube upload; more than double what a typical episode gets (4,138 X plays vs a typical 2,023; 37,453 X reach vs a typical 9,144) — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 6,115 YouTube + 4,142 X plays = 10,257; X reach 37,549; likes and comments per thousand YouTube views 14.4.
+Views: 6,115 YouTube + 4,142 X plays = 10,257; X reach 37,551; likes and comments per thousand YouTube views 14.4.
 Watching (YouTube analytics, 2026-09-27): 9.4% of the video watched on average, 11 min per view, 28,112 minutes watched in all; views came from SUBSCRIBER 69.2%, EXT_URL 8.3%, NO_LINK_OTHER 6.0%, YT_SEARCH 5.8%; subscribers per thousand views 6.3; discovery share 9.4%.
 Live session: peak 98, average 68, 872 people watched live for 7,820 minutes in all (9.0 minutes each; 57% of the peak still watching at the end); 137 chat messages from 37 people over 115 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
@@ -349,7 +349,7 @@ LinkedIn live chat: 20 messages; 8 participants. LinkedIn analytics access is no
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
 Promotion: UX Tools email linked this episode — 317 tracked email clicks; 207 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/design-s-hardest-role-has-a-two-year-clock (Design's hardest role has a two-year clock). These clicks are not part of views.
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace #1 of 4 at 16.8 days (+672% against the typical 1,481); first week — (excluded: promo-driven outlier); promo outlier: UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 11,428 YouTube + 3,933 X plays = 15,361; X reach 14,490; likes and comments per thousand YouTube views 17.4.
+Views: 11,434 YouTube + 3,933 X plays = 15,367; X reach 14,490; likes and comments per thousand YouTube views 17.4.
 Watching (YouTube analytics, 2026-09-27): 9.2% of the video watched on average, 14 min per view, 68,865 minutes watched in all; views came from SUBSCRIBER 74.3%, NO_LINK_OTHER 7.4%, RELATED_VIDEO 4.4%, YT_SEARCH 4.3%; subscribers per thousand views 2.5; discovery share 8.7%.
 Live session: peak 133, average 109, 1,159 people watched live for 16,459 minutes in all (14.2 minutes each; 69% of the peak still watching at the end); 275 chat messages from 73 people over 151 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
@@ -386,7 +386,7 @@ LinkedIn live chat: 2 messages; 2 participants. LinkedIn analytics access is not
 LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores.
 Promotion: UX Tools email linked this episode — 94 tracked email clicks; 39 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/design-s-hardest-role-has-a-two-year-clock (Design's hardest role has a two-year clock). These clicks are not part of views.
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 2 earlier episodes were tracked this early; at least three are needed.); first week — (excluded: promo-driven outlier); promo outlier: UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 7,901 YouTube + 1,774 X plays = 9,675; X reach 19,775; likes and comments per thousand YouTube views 14.2.
+Views: 7,902 YouTube + 1,774 X plays = 9,676; X reach 19,777; likes and comments per thousand YouTube views 14.2.
 Watching (YouTube analytics, 2026-09-27): 10.4% of the video watched on average, 13 min per view, 35,652 minutes watched in all; views came from SUBSCRIBER 79.1%, EXT_URL 4.9%, NO_LINK_OTHER 4.0%, YT_SEARCH 3.8%; subscribers per thousand views 1.7; discovery share 7.5%.
 Live session: peak 97, average 78, 513 people watched live for 9,438 minutes in all (18.4 minutes each; 67% of the peak still watching at the end); 101 chat messages from 47 people over 121 minutes. Note the live-reporting break in section 3.
 Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
@@ -419,7 +419,7 @@ Episode health: — (read completes on 2026-10-08 (day twenty-one)).
 Links: YouTube joindiveclub https://youtube.com/watch?v=Cjv-0MKQ4GU · YouTube designertom https://youtube.com/watch?v=2EAAU-knqRE · X replay @ridd_design https://x.com/i/broadcasts/1qKDzWQmenBJV · X replay @designertom https://x.com/i/broadcasts/1qxvveXzoggxB · announce @designertom https://x.com/designertom/status/2103055258993721705 · announce @ridd_design https://x.com/ridd_design/status/2103213057958940779 · announce @designertom https://x.com/designertom/status/2103213058743218388 · transcript https://dive-radio-analytics.vercel.app/transcripts/2026-09-24-dive-radio-just-in-time-interfaces.txt · dashboard https://dive-radio-analytics.vercel.app/#2026-09-24-dive-radio-just-in-time-interfaces
 Promotion: UX Tools email linked this episode — 39 tracked email clicks; 30 verified by Beehiiv. Issue: https://uxtools.beehiiv.com/p/interfaces-that-rearrange-for-each-user (Interfaces that rearrange for each user). These clicks are not part of views.
 Standing: launch — (Fewer than three earlier episodes to compare with.); pace — (Only 1 earlier episode was tracked this early; at least three are needed.); first week — (pending: episode under 7 days old); promo outlier: UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal.
-Views: 3,986 YouTube + 2,058 X plays = 6,044; X reach 6,732; likes and comments per thousand YouTube views 13.8.
+Views: 3,986 YouTube + 2,060 X plays = 6,046; X reach 6,743; likes and comments per thousand YouTube views 13.8.
 Watching (YouTube analytics, 2026-09-27): 16.3% of the video watched on average, 14 min per view, 12,050 minutes watched in all; views came from SUBSCRIBER 84.9%, RELATED_VIDEO 3.9%, NO_LINK_OTHER 3.3%, NOTIFICATION 2.0%; subscribers per thousand views 1.8; discovery share 5.3%.
 Live session: peak 109, average 80, 877 people watched live for 9,440 minutes in all (10.8 minutes each; 67% of the peak still watching at the end); 184 chat messages from 67 people over 118 minutes. Note the live-reporting break in section 3.
 Chapters: — (chapters not written yet).
@@ -443,7 +443,7 @@ First weeks in air order (YouTube views at day seven; a launch reading stands in
 | E11 | 2026-09-24 | — (pending: episode under 7 days old) | — |
 
 Newest episode's pace: — (Only 1 earlier episode was tracked this early; at least three are needed.).
-Newest against the previous episode at the same age (2.8 days): X reach -59%, share watched +42%, live +12%.
+Newest against the previous episode at the same age (2.8 days): X reach -58%, share watched +42%, live +12%.
 
 Direction as of this build (the read in section 3 may be a day behind): overall **mixed**.
 | Measure | Word | Change each episode | Readings | Compared how |
