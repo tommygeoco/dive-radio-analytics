@@ -1,10 +1,10 @@
-# Show-health verification — 2026-09-27
+# Show-health verification — 2026-09-29
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-09-27 read
+## Accuracy — the 2026-09-29 read
 
-Score 53 (weighted mean 53.4, health-v9, prompt v7); reads Just at 2.8 days; carried: audience quality, subscribers.
+Score 52 (weighted mean 52.3, health-v10, prompt v7); reads Just at 5 days; carried: audience quality, reach, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -13,7 +13,7 @@ Score 53 (weighted mean 53.4, health-v9, prompt v7); reads Just at 2.8 days; car
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
 | Next first week inside the expected range | 0 | 0 | 0 | 3 | 2 |
-| Direction word confirmed by the next episode | 17 | 12 | 12 | 5 | 10 |
+| Direction word confirmed by the next episode | 17 | 12 | 12 | 5 | 12 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
@@ -51,10 +51,10 @@ Most recent resolutions:
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 29% (at full weight the mean would move -1.8) · promo-qualified measures: none · steady-state check-set changes in 30 days: 1 · days without a read in 30: 8 · scoring-rule changes in 30 days: 2.
+Carried share of scored checks: 43% (at full weight the mean would move -2.1) · promo-qualified measures: none · steady-state check-set changes in 30 days: 1 · days without a read in 30: 9 · scoring-rule changes in 30 days: 3.
 
-- WARN — 8 day(s) in the last 30 have no saved read (2026-09-16, 2026-09-17, 2026-09-18, 2026-09-21, 2026-09-24) — the model step failed or the chain did not run.
-- INFO — The scoring rules changed 2 time(s) in the last 30 days; the daily trend restarts each time.
+- WARN — 9 day(s) in the last 30 have no saved read (2026-09-17, 2026-09-18, 2026-09-21, 2026-09-24, 2026-09-28) — the model step failed or the chain did not run.
+- INFO — The scoring rules changed 3 time(s) in the last 30 days; the daily trend restarts each time.
 - INFO — Direction measures still thin: firstWeek (3 episodes); engagementWeekOne (3 episodes).
 
 ## Open claims
@@ -71,4 +71,6 @@ Carried share of scored checks: 29% (at full weight the mean would move -1.8) ·
 - 2026-09-25 · minutesPerViewer building (+18.5% per episode) — waits for the episode after E11.
 - 2026-09-25 · holdRate holding (-2.1% per episode) — waits for the episode after E11.
 - 2026-09-26 · announceToPlay softening (-10% per episode) — waits for the episode after E10.
+- 2026-09-29 · announceToPlay building (+7.1% per episode) — waits for the episode after E10.
+- 2026-09-29 · chattersPer100 building (+7.6% per episode) — waits for the episode after E11.
 

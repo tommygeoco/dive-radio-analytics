@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-27T15:16:49.134Z",
+  "updatedAt": "2026-09-29T18:40:18.777Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -954,6 +954,28 @@
       "pctPerEpisode": -10,
       "lastEp": 10,
       "lastValue": 8.9,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E10:building",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-09-29",
+      "word": "building",
+      "pctPerEpisode": 7.1,
+      "lastEp": 10,
+      "lastValue": 23.5,
+      "resolution": null
+    },
+    {
+      "id": "direction:chattersPer100:E11:building",
+      "kind": "direction",
+      "key": "chattersPer100",
+      "madeOn": "2026-09-29",
+      "word": "building",
+      "pctPerEpisode": 7.6,
+      "lastEp": 11,
+      "lastValue": 61.5,
       "resolution": null
     }
   ]

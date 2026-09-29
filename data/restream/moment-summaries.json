@@ -1,9 +1,9 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-23T14:02:31.716Z",
-  "provider": "openai",
-  "model": "gpt-6-astra",
+  "updatedAt": "2026-09-29T18:41:03.795Z",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
   "entries": {
     "2026-07-17-dive-radio-bumpy-takeoff|drop|0.06": {
@@ -273,6 +273,34 @@
     "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.12": {
       "summary": "Hosts share designer nominations, highlighting Sharlota Blunarova's design experiments and tools, then Nathan's work on Flinto and its role in one host's path into design.",
       "writtenAt": "2026-09-23T14:02:31.716Z"
+    },
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe|drop|0.1": {
+      "summary": "A host tells the story of Sid, a designer who spent months building a playground page after near-miss interviews, then plays community nomination videos for Anna Howard and Cassandra Balbus.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.17": {
+      "summary": "Hosts cover news: Tailwind heading to Shopify, Miro's sale and other acquisitions at steep markdowns, then the Apple event and a dual-screen phone, joking about the new breakpoints designers face.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.13": {
+      "summary": "A host nominates design engineer Rebecca Farr, walking through her shipped projects, a Pokemon API, and a tool that turns UI details into adjustable variables, while a co-host reacts.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.38": {
+      "summary": "Hosts trade stories about AI speeding up building, including a cofounder who made a session replay tool for their prototype product in one afternoon, then drift into a gaming tangent.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.5": {
+      "summary": "A host reacts to a submitted Jev test on speed and cost, then plays a clip of Jonathan Moore editing a UI by voice, with components and colors changing in real time.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.56": {
+      "summary": "A host explains the limits of Jev's option sets, then plays Neil's voice-driven Speak UI demo, where spoken commands swap templates and text, and reads a chat comment about an open source alternative.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.65": {
+      "summary": "A submitted demo shows a coffee site that reshapes its content from a visitor's browsing and past orders using Jev; the host then reacts, crediting the builder and weighing a chat objection.",
+      "writtenAt": "2026-09-29T18:41:03.795Z"
     }
   }
 }

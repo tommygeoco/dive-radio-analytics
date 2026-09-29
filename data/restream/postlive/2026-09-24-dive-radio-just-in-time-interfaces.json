@@ -1619,10 +1619,1165 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-09-28T14:00:34.739Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "pulledAt": "2026-09-28T14:00:34.739Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2226,
+          "detail": {
+            "views": 2226,
+            "likes": 24,
+            "comments": 2,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "Cjv-0MKQ4GU",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "Cjv-0MKQ4GU",
+                "pulledAt": "2026-09-28T14:00:34.739Z",
+                "state": "ready"
+              },
+              "views": 2226,
+              "detail": {
+                "views": 2226,
+                "likes": 24,
+                "comments": 2,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "Cjv-0MKQ4GU",
+            "pulledAt": "2026-09-28T14:00:34.739Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2026,
+          "detail": {
+            "views": 2026,
+            "likes": 26,
+            "comments": 4,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "2EAAU-knqRE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2EAAU-knqRE",
+                "pulledAt": "2026-09-28T14:00:34.739Z",
+                "state": "ready"
+              },
+              "views": 2026,
+              "detail": {
+                "views": 2026,
+                "likes": 26,
+                "comments": 4,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2EAAU-knqRE",
+            "pulledAt": "2026-09-28T14:00:34.739Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2460,
+          "detail": {
+            "views": 2460,
+            "likes": 18,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1166,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 438,
+          "sources": [
+            {
+              "objectId": "2103213057958940779",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213057958940779",
+                "pulledAt": "2026-09-28T14:00:34.739Z",
+                "state": "ready"
+              },
+              "views": 2460,
+              "detail": {
+                "views": 2460,
+                "likes": 18,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103213057958940779",
+            "pulledAt": "2026-09-28T14:00:34.739Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qKDzWQmenBJV",
+            "pulledAt": "2026-09-28T14:00:34.739Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qKDzWQmenBJV",
+              "views": 1166,
+              "peakConcurrent": 438,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4378,
+          "detail": {
+            "views": 4378,
+            "likes": 19,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 0,
+            "quotes": 2
+          },
+          "plays": 960,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 405,
+          "sources": [
+            {
+              "objectId": "2103213058743218388",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213058743218388",
+                "pulledAt": "2026-09-28T14:00:34.739Z",
+                "state": "ready"
+              },
+              "views": 779,
+              "detail": {
+                "views": 779,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2103055258993721705",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103055258993721705",
+                "pulledAt": "2026-09-28T14:00:34.739Z",
+                "state": "ready"
+              },
+              "views": 3599,
+              "detail": {
+                "views": 3599,
+                "likes": 9,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 0,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103055258993721705,2103213058743218388",
+            "pulledAt": "2026-09-28T14:00:34.739Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qxvveXzoggxB",
+            "pulledAt": "2026-09-28T14:00:34.739Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qxvveXzoggxB",
+              "views": 960,
+              "peakConcurrent": 405,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-28T15:15:36.051Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "pulledAt": "2026-09-28T15:15:36.051Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2239,
+          "detail": {
+            "views": 2239,
+            "likes": 24,
+            "comments": 2,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "Cjv-0MKQ4GU",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "Cjv-0MKQ4GU",
+                "pulledAt": "2026-09-28T15:15:36.051Z",
+                "state": "ready"
+              },
+              "views": 2239,
+              "detail": {
+                "views": 2239,
+                "likes": 24,
+                "comments": 2,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "Cjv-0MKQ4GU",
+            "pulledAt": "2026-09-28T15:15:36.051Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2035,
+          "detail": {
+            "views": 2035,
+            "likes": 26,
+            "comments": 4,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "2EAAU-knqRE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2EAAU-knqRE",
+                "pulledAt": "2026-09-28T15:15:36.051Z",
+                "state": "ready"
+              },
+              "views": 2035,
+              "detail": {
+                "views": 2035,
+                "likes": 26,
+                "comments": 4,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2EAAU-knqRE",
+            "pulledAt": "2026-09-28T15:15:36.051Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2462,
+          "detail": {
+            "views": 2462,
+            "likes": 18,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1168,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 438,
+          "sources": [
+            {
+              "objectId": "2103213057958940779",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213057958940779",
+                "pulledAt": "2026-09-28T15:15:36.051Z",
+                "state": "ready"
+              },
+              "views": 2462,
+              "detail": {
+                "views": 2462,
+                "likes": 18,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103213057958940779",
+            "pulledAt": "2026-09-28T15:15:36.051Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qKDzWQmenBJV",
+            "pulledAt": "2026-09-28T15:15:36.051Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qKDzWQmenBJV",
+              "views": 1168,
+              "peakConcurrent": 438,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4378,
+          "detail": {
+            "views": 4378,
+            "likes": 19,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 0,
+            "quotes": 2
+          },
+          "plays": 960,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 405,
+          "sources": [
+            {
+              "objectId": "2103213058743218388",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213058743218388",
+                "pulledAt": "2026-09-28T15:15:36.051Z",
+                "state": "ready"
+              },
+              "views": 779,
+              "detail": {
+                "views": 779,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2103055258993721705",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103055258993721705",
+                "pulledAt": "2026-09-28T15:15:36.051Z",
+                "state": "ready"
+              },
+              "views": 3599,
+              "detail": {
+                "views": 3599,
+                "likes": 9,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 0,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103055258993721705,2103213058743218388",
+            "pulledAt": "2026-09-28T15:15:36.051Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qxvveXzoggxB",
+            "pulledAt": "2026-09-28T15:15:36.051Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qxvveXzoggxB",
+              "views": 960,
+              "peakConcurrent": 405,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-29T14:01:03.621Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "pulledAt": "2026-09-29T14:01:03.621Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2361,
+          "detail": {
+            "views": 2361,
+            "likes": 26,
+            "comments": 2,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "Cjv-0MKQ4GU",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "Cjv-0MKQ4GU",
+                "pulledAt": "2026-09-29T14:01:03.621Z",
+                "state": "ready"
+              },
+              "views": 2361,
+              "detail": {
+                "views": 2361,
+                "likes": 26,
+                "comments": 2,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "Cjv-0MKQ4GU",
+            "pulledAt": "2026-09-29T14:01:03.621Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2247,
+          "detail": {
+            "views": 2247,
+            "likes": 27,
+            "comments": 4,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "2EAAU-knqRE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2EAAU-knqRE",
+                "pulledAt": "2026-09-29T14:01:03.621Z",
+                "state": "ready"
+              },
+              "views": 2247,
+              "detail": {
+                "views": 2247,
+                "likes": 27,
+                "comments": 4,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2EAAU-knqRE",
+            "pulledAt": "2026-09-29T14:01:03.621Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2507,
+          "detail": {
+            "views": 2507,
+            "likes": 18,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1196,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 438,
+          "sources": [
+            {
+              "objectId": "2103213057958940779",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213057958940779",
+                "pulledAt": "2026-09-29T14:01:03.621Z",
+                "state": "ready"
+              },
+              "views": 2507,
+              "detail": {
+                "views": 2507,
+                "likes": 18,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103213057958940779",
+            "pulledAt": "2026-09-29T14:01:03.621Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qKDzWQmenBJV",
+            "pulledAt": "2026-09-29T14:01:03.621Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qKDzWQmenBJV",
+              "views": 1196,
+              "peakConcurrent": 438,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4679,
+          "detail": {
+            "views": 4679,
+            "likes": 19,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 0,
+            "quotes": 2
+          },
+          "plays": 1179,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 405,
+          "sources": [
+            {
+              "objectId": "2103213058743218388",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213058743218388",
+                "pulledAt": "2026-09-29T14:01:03.621Z",
+                "state": "ready"
+              },
+              "views": 796,
+              "detail": {
+                "views": 796,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2103055258993721705",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103055258993721705",
+                "pulledAt": "2026-09-29T14:01:03.621Z",
+                "state": "ready"
+              },
+              "views": 3883,
+              "detail": {
+                "views": 3883,
+                "likes": 9,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 0,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103055258993721705,2103213058743218388",
+            "pulledAt": "2026-09-29T14:01:03.621Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qxvveXzoggxB",
+            "pulledAt": "2026-09-29T14:01:03.621Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qxvveXzoggxB",
+              "views": 1179,
+              "peakConcurrent": 405,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-29T15:15:40.770Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "pulledAt": "2026-09-29T15:15:40.770Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2361,
+          "detail": {
+            "views": 2361,
+            "likes": 26,
+            "comments": 2,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "Cjv-0MKQ4GU",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "Cjv-0MKQ4GU",
+                "pulledAt": "2026-09-29T15:15:40.770Z",
+                "state": "ready"
+              },
+              "views": 2361,
+              "detail": {
+                "views": 2361,
+                "likes": 26,
+                "comments": 2,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "Cjv-0MKQ4GU",
+            "pulledAt": "2026-09-29T15:15:40.770Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2247,
+          "detail": {
+            "views": 2247,
+            "likes": 27,
+            "comments": 4,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "2EAAU-knqRE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2EAAU-knqRE",
+                "pulledAt": "2026-09-29T15:15:40.770Z",
+                "state": "ready"
+              },
+              "views": 2247,
+              "detail": {
+                "views": 2247,
+                "likes": 27,
+                "comments": 4,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2EAAU-knqRE",
+            "pulledAt": "2026-09-29T15:15:40.770Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2511,
+          "detail": {
+            "views": 2511,
+            "likes": 18,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1197,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 438,
+          "sources": [
+            {
+              "objectId": "2103213057958940779",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213057958940779",
+                "pulledAt": "2026-09-29T15:15:40.770Z",
+                "state": "ready"
+              },
+              "views": 2511,
+              "detail": {
+                "views": 2511,
+                "likes": 18,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103213057958940779",
+            "pulledAt": "2026-09-29T15:15:40.770Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qKDzWQmenBJV",
+            "pulledAt": "2026-09-29T15:15:40.770Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qKDzWQmenBJV",
+              "views": 1197,
+              "peakConcurrent": 438,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4689,
+          "detail": {
+            "views": 4689,
+            "likes": 19,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 0,
+            "quotes": 2
+          },
+          "plays": 1186,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 405,
+          "sources": [
+            {
+              "objectId": "2103213058743218388",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213058743218388",
+                "pulledAt": "2026-09-29T15:15:40.770Z",
+                "state": "ready"
+              },
+              "views": 796,
+              "detail": {
+                "views": 796,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2103055258993721705",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103055258993721705",
+                "pulledAt": "2026-09-29T15:15:40.770Z",
+                "state": "ready"
+              },
+              "views": 3893,
+              "detail": {
+                "views": 3893,
+                "likes": 9,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 0,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103055258993721705,2103213058743218388",
+            "pulledAt": "2026-09-29T15:15:40.770Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qxvveXzoggxB",
+            "pulledAt": "2026-09-29T15:15:40.770Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qxvveXzoggxB",
+              "views": 1186,
+              "peakConcurrent": 405,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-29T18:38:13.578Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+        "pulledAt": "2026-09-29T18:38:13.578Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2379,
+          "detail": {
+            "views": 2379,
+            "likes": 26,
+            "comments": 2,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "Cjv-0MKQ4GU",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "Cjv-0MKQ4GU",
+                "pulledAt": "2026-09-29T18:38:13.578Z",
+                "state": "ready"
+              },
+              "views": 2379,
+              "detail": {
+                "views": 2379,
+                "likes": 26,
+                "comments": 2,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "Cjv-0MKQ4GU",
+            "pulledAt": "2026-09-29T18:38:13.578Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2303,
+          "detail": {
+            "views": 2303,
+            "likes": 29,
+            "comments": 4,
+            "title": "Dive Radio: Just-in-Time Interfaces",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "2EAAU-knqRE",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2EAAU-knqRE",
+                "pulledAt": "2026-09-29T18:38:13.578Z",
+                "state": "ready"
+              },
+              "views": 2303,
+              "detail": {
+                "views": 2303,
+                "likes": 29,
+                "comments": 4,
+                "title": "Dive Radio: Just-in-Time Interfaces",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2EAAU-knqRE",
+            "pulledAt": "2026-09-29T18:38:13.578Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2513,
+          "detail": {
+            "views": 2513,
+            "likes": 18,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 4,
+            "quotes": 0
+          },
+          "plays": 1197,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 438,
+          "sources": [
+            {
+              "objectId": "2103213057958940779",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213057958940779",
+                "pulledAt": "2026-09-29T18:38:13.578Z",
+                "state": "ready"
+              },
+              "views": 2513,
+              "detail": {
+                "views": 2513,
+                "likes": 18,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103213057958940779",
+            "pulledAt": "2026-09-29T18:38:13.578Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qKDzWQmenBJV",
+            "pulledAt": "2026-09-29T18:38:13.578Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qKDzWQmenBJV",
+              "views": 1197,
+              "peakConcurrent": 438,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4972,
+          "detail": {
+            "views": 4972,
+            "likes": 19,
+            "replies": 2,
+            "reposts": 1,
+            "bookmarks": 0,
+            "quotes": 3
+          },
+          "plays": 1248,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 405,
+          "sources": [
+            {
+              "objectId": "2103213058743218388",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103213058743218388",
+                "pulledAt": "2026-09-29T18:38:13.578Z",
+                "state": "ready"
+              },
+              "views": 796,
+              "detail": {
+                "views": 796,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2103055258993721705",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+                "objectId": "2103055258993721705",
+                "pulledAt": "2026-09-29T18:38:13.578Z",
+                "state": "ready"
+              },
+              "views": 4176,
+              "detail": {
+                "views": 4176,
+                "likes": 9,
+                "replies": 2,
+                "reposts": 1,
+                "bookmarks": 0,
+                "quotes": 3
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "2103055258993721705,2103213058743218388",
+            "pulledAt": "2026-09-29T18:38:13.578Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+            "objectId": "1qxvveXzoggxB",
+            "pulledAt": "2026-09-29T18:38:13.578Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1qxvveXzoggxB",
+              "views": 1248,
+              "peakConcurrent": 405,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-09-27T15:15:34.155Z",
+    "checkedAt": "2026-09-29T18:38:13.578Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -1630,7 +2785,7 @@
       "source": "postlive",
       "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
       "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
-      "pulledAt": "2026-09-27T15:15:34.155Z",
+      "pulledAt": "2026-09-29T18:38:13.578Z",
       "state": "ready"
     }
   }

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "method": "model-v1",
-  "promptVersion": 2,
-  "promptHash": "a25e50437d865444014d555d18eee4abe4660c51b053910fae7e8ece9c85b8ed",
-  "configHash": "f7df88c2c2de5820f56d895499d282a79ec49e99d95a7ef19a12497b773ca424",
-  "model": "gpt-6-astra",
+  "promptVersion": 3,
+  "promptHash": "5598236c4e162e72cbde0bfba58f2c41af17b44c15e31b9dae15ea5a8f5bc4de",
+  "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+  "model": "claude-sonnet-5-5",
   "vocabulary": [
     "call-in segment",
     "host chemistry",
@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-09-23T14:01:34.397Z",
+  "updatedAt": "2026-09-29T18:39:07.728Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1296,12 +1296,156 @@
         "themes": [],
         "confidence": 0.97
       }
+    },
+    "yt:UgzBVuIlBCm2jQnrZFd4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "neutral",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.5,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z",
+      "audit": {
+        "at": "2026-09-29T18:39:07.728Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "neutral",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.5
+      }
+    },
+    "yt:UgwdYatoecWLcSw4z1Z4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z"
+    },
+    "yt:UgxCtEvaS4QidyWinX94AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.7,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z",
+      "audit": {
+        "at": "2026-09-29T18:39:07.728Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.75
+      }
+    },
+    "yt:Ugy_PUpy_-G2RjtfPCB4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.7,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z",
+      "audit": {
+        "at": "2026-09-29T18:39:07.728Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.7
+      }
+    },
+    "x:2103318948972515625": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z",
+      "audit": {
+        "at": "2026-09-29T18:39:07.728Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.88
+      }
+    },
+    "x:2103233008115609737": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.9,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z"
+    },
+    "x:2103229677246566885": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "other"
+      ],
+      "confidence": 0.65,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z",
+      "audit": {
+        "at": "2026-09-29T18:39:07.728Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "other"
+        ],
+        "confidence": 0.65
+      }
+    },
+    "yt:UgxCtEvaS4QidyWinX94AaABAg.AbAygOxkSWwAbBeNBmCWag": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "neutral",
+      "themes": [
+        "format"
+      ],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-09-29T18:39:07.728Z"
     }
   },
   "golden": {
-    "at": "2026-09-19T16:28:25.475Z",
+    "at": "2026-09-29T18:39:07.728Z",
     "passed": true,
-    "configHash": "f7df88c2c2de5820f56d895499d282a79ec49e99d95a7ef19a12497b773ca424",
+    "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
     "cases": 40,
     "relevance": {
       "correct": 40,
@@ -1316,11 +1460,11 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-09-23T14:01:34.397Z",
+    "at": "2026-09-29T18:39:07.728Z",
     "status": "complete",
-    "added": 0,
+    "added": 8,
     "reviewed": 0,
     "pendingIds": []
   },
-  "provider": "openai"
+  "provider": "anthropic"
 }
