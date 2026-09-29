@@ -17,10 +17,17 @@ test('new episode with no approved rows visibly reports pending capture instead 
   assert.equal(element.style.display, '');
   assert.match(element.innerHTML, /still being processed/);
   assert.doesNotMatch(element.innerHTML, /0 positive comments|0 with criticism|Read all 0/);
+  // one message, not two that contradict each other (2026-09-29)
+  assert.doesNotMatch(element.innerHTML, /not available yet|Mixed reactions|Captured audience feedback\./);
+});
+test('the preview is one surface like every other card, not a tile inside a frame', () => {
+  assert.match(html, /#audience-preview \{ margin-bottom: var\(--gap\); background: var\(--s1\); \}/);
+  assert.match(html, /#audience-preview \.fb \{ padding: 0; background: none; border-radius: 0; \}/);
 });
 test('visible quote preserves escaped source text and offers the complete feedback list', () => {
   const element = render({ count: 2, positiveCount: 2, negativeCount: 0, notices: [], featured: [{ text: '<img src=x onerror=alert(1)> Best episode', author: '@viewer', source: 'x', url: 'https://x.com/i/status/123' }] });
   assert.match(element.innerHTML, /Read all 2 comments/);
+  assert.match(element.innerHTML, /Mixed reactions appear in both groups\./);
   assert.match(element.innerHTML, /&lt;img/); assert.doesNotMatch(element.innerHTML, /<img/);
   assert.match(element.innerHTML, /https:\/\/x.com\/i\/status\/123/);
 });
