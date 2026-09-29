@@ -1840,6 +1840,9 @@ function buildPanel() {
   html += `<div class="pnum">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</div>`;
   html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
+  // promo posts ride beside reach, never inside it; nothing renders when none are registered
+  const promoReach = e.latest.xPromoReach;
+  if (promoReach) html += `<div class="row">Promo posts (${promoReach.posts}), not in reach<span class="val">${promoReach.impressions == null ? "not available" : nfmt(promoReach.impressions)}</span></div>`;
   html += `</div>`;
 
   // — newsletter promotion —
@@ -1982,11 +1985,14 @@ function buildPanel() {
     html += audienceHTML(e);
   } else if (comments) {
     const ppl = comments.uniqueCommenters;
+    // while comments are still being read the store carries no counts — the
+    // pills render nothing and the footnote says why (absence is never zero)
     html += `<div class="psec wide fb"><div class="fbhead"><div class="kicker">Audience feedback</div>
-      <div class="pills">
+      <div class="pills">${comments.pending ? `
+        <span class="pill senti-link more" data-f="all" role="button" tabindex="0">Read comments →</span>` : `
         <span class="pill senti-link" data-f="positive" role="button" tabindex="0"><i class="dot good"></i>${comments.enjoyCount} enjoyed</span>
         <span class="pill senti-link" data-f="negative" role="button" tabindex="0"><i class="dot bad"></i>${comments.complaintCount} didn’t</span>
-        <span class="pill senti-link more" data-f="all" role="button" tabindex="0">${ppl} ${ppl === 1 ? "person" : "people"} commented →</span>
+        <span class="pill senti-link more" data-f="all" role="button" tabindex="0">${ppl} ${ppl === 1 ? "person" : "people"} commented →</span>`}
       </div></div>`;
     for (const q of (comments.featured || []).slice(0, 2)) {
       html += `<blockquote class="bq"><p>“${esc(q.text.length > 160 ? q.text.slice(0, 158).trimEnd() + "…" : q.text)}”</p><footer>${esc(q.author)}${q.likes ? ` <span class="likes">♥ ${q.likes}</span>` : ""}</footer></blockquote>`;
@@ -2119,8 +2125,9 @@ function renderDrill() {
   document.getElementById("dsearch").value = drillState.query;
   document.getElementById("dsource").value = drillState.source;
   document.getElementById("dtitle").textContent = `Audience feedback — ${label(e)}`;
-  const tabs = [["all", `All feedback ${list.length}`], ["positive", `Positive ${e.audience ? view.positiveCount : view.enjoyCount}`],
-    ["negative", `With criticism ${e.audience ? view.negativeCount : view.complaintCount}`]];
+  const count = (n) => (n == null ? "" : ` ${n}`);
+  const tabs = [["all", `All feedback ${list.length}`], ["positive", `Positive${count(e.audience ? view.positiveCount : view.enjoyCount)}`],
+    ["negative", `With criticism${count(e.audience ? view.negativeCount : view.complaintCount)}`]];
   const tEl = document.getElementById("dtabs");
   tEl.innerHTML = "";
   for (const [f, lab] of tabs) {
@@ -3456,7 +3463,7 @@ function buildInsightsPanel() {
 function buildAbout() {
   document.getElementById("about").innerHTML = `
   <p><b>Total views</b> = YouTube views (both channels) + plays from resolved X broadcasts (both hosts). Native videos and teaser clips attached to posts are excluded. Both included sources count video playback — YouTube counts a qualified view (~30s), X counts a broadcast play start, so treat the sum as directional. If YouTube has not reported views yet, its startup zeros are shown as missing and do not start the episode’s history.</p>
-  <p><b>X reach</b> = impressions on the hosts' announce posts. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere.</p>
+  <p><b>X reach</b> = impressions on the hosts' announce posts — the X posts that carry the live broadcast. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere. <b>Promo posts</b> (teasers, clips, links to the upload) are listed beside reach on each episode and never added in, because how many an episode gets varies; they were not searched for before E6. X readings from before 09/04 that blend an announce and a promo post on one account cannot be split and are left out of comparisons.</p>
   <p><b>UX Tools email clicks</b> count clicks on an exact episode link in the newsletter. Beehiiv’s verified count leaves out clicks it could not confirm. These clicks show promotion and are never added to views.</p>
   <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. Views after release adds YouTube views and X broadcast plays only when every watch destination has a stored count; history begins the morning after air day. Move anywhere over a chart to compare every episode at a saved reading near that point; views after release uses the latest reading already reached. Move onto a line or bar for that episode’s channel detail. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
