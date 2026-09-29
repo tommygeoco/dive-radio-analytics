@@ -80,6 +80,8 @@ export function snapshotState(data) {
     healthCheckSet: data.health?.checks
       ? data.health.checks.filter((c) => c.score != null).map((c) => c.key)
       : null,
+    // the rules the finished episode-health scores are read under
+    episodeHealthRules: eps.find((e) => e.health?.algorithm)?.health.algorithm ?? null,
   };
 }
 
@@ -143,6 +145,17 @@ export function alertLines(prev, cur, data) {
   // Slack, not from a puzzling dashboard
   if (prev.healthFormula && cur.healthFormula && prev.healthFormula !== cur.healthFormula) {
     push(`Show health scoring rules changed (${prev.healthFormula} → ${cur.healthFormula}). Saved reads keep the rules they were written under; the score trend restarts under the new rules.`);
+  }
+  // 2d2. episode-health rules changed: finished scores are frozen, so the
+  // only way one moves is a declared re-derive (rule 9) — name every score it
+  // re-read, from the entries' own stamps. A state saved before this field
+  // existed counts as a change only when the entries carry a re-derive.
+  if (cur.episodeHealthRules && prev.episodeHealthRules !== cur.episodeHealthRules) {
+    const reread = eps.filter((e) => e.health?.algorithm === cur.episodeHealthRules && e.health.rederivedFrom);
+    const scored = reread.filter((e) => e.health.score != null || e.health.rederivedFrom.score != null);
+    if (reread.length) {
+      push(`Episode health scoring rules changed (${reread[0].health.rederivedFrom.algorithm} → ${cur.episodeHealthRules}). Each finished score was re-read from its saved inputs${scored.length ? `: ${scored.map((e) => `E${e.ep} ${e.health.rederivedFrom.score ?? "no score"} → ${e.health.score ?? "no score"}`).join(", ")}` : "; none had a score to change"}.`);
+    }
   }
   // 2e. PRD v10: the direction word turned, or the expected first-week range
   // moved — each read from the saved entry, never recomputed here

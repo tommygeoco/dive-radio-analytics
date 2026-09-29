@@ -71,6 +71,9 @@ export const NOTES = Object.freeze({
   readFromPromo: (title) => `read from ${title}, the latest finished episode — the newest episode's own read is promo-driven`,
   // rule 23: the show's usual swing on a measure, worded once for the click layer
   swing: (pct) => `the show’s usual swing on this is about ±${pct}%`,
+  // health21-v3: how episode health's live check counts chat (liveChatOf)
+  liveChat: "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
+  liveChatUnknown: "LinkedIn's chat count for this episode is unknown, so its chat cannot be compared.",
 });
 // check states (rule 23): one place, the writer stamps them, the page and the
 // verifier copy them
@@ -626,11 +629,13 @@ export function discoveryShareOf(channels) {
   return views > 0 ? round1((discovered / views) * 100) : null;
 }
 
-// LinkedIn chat is left out of both rates (health-v10). Restream never reports
-// LinkedIn viewers, so LinkedIn chatters have no place in "per 100 at the
-// peak", and LinkedIn simulcast varies by episode (E11 had none): counting its
-// chat made one episode's rate mean something different from the next (rule
-// 11). A LinkedIn row whose chat count is unknown leaves the rate absent.
+// LinkedIn chat is left out of every live chat comparison — show health's
+// rates (health-v10) and episode health's live check (health21-v3). Restream
+// never reports LinkedIn viewers, so LinkedIn chatters have no place in "per
+// 100 at the peak", and LinkedIn simulcast varies by episode (E11 had none):
+// counting its chat made one episode's number mean something different from
+// the next (rule 11). A LinkedIn row whose chat count is unknown leaves the
+// value absent.
 function withoutLinkedin(l, total, field) {
   if (!Number.isFinite(total)) return null;
   const linkedin = (l.byChannel || []).find((c) => c.label === "LinkedIn");
@@ -638,11 +643,18 @@ function withoutLinkedin(l, total, field) {
   return Number.isFinite(linkedin[field]) ? total - linkedin[field] : null;
 }
 
+// The session's chat messages as every comparison reads them: the Restream
+// total without LinkedIn's row; null when that row's count is unknown.
+export function liveChatOf(episode) {
+  const l = episode?.live;
+  return l ? withoutLinkedin(l, l.chatMessages, "messages") : null;
+}
+
 export function liveRatesOf(episode) {
   const l = episode?.live;
   if (!l || !Number.isFinite(l.peak) || l.peak <= 0) return null;
   const chatters = withoutLinkedin(l, l.chatters, "chatters");
-  const messages = withoutLinkedin(l, l.chatMessages, "messages");
+  const messages = liveChatOf(episode);
   return {
     chattersPer100: chatters != null ? round1((chatters / l.peak) * 100) : null,
     messagesPerHour: messages != null && Number.isFinite(l.durationMin) && l.durationMin > 0

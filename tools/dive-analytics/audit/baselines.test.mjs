@@ -279,7 +279,7 @@ assert.equal(B.scoreOf(10, 0), null);
 assert.equal(B.trueMedian([3, 1, 2, 4]), 2.5);
 assert.equal(B.trueMedian([]), null);
 
-// --- episode health (health21-v2) on the fixture ---
+// --- episode health (health21-v3) on the fixture ---
 {
   // live sessions, comments, and an injectable analytics/history reader
   for (const [i, e] of eps.entries()) {

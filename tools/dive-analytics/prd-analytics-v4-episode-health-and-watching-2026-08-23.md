@@ -128,3 +128,22 @@ curve ordering, and the three-curve typical gate.
   accepted debts, revisit after the card layout settles.
 - Growth-trend card gains real bars once three clean first weeks exist
   (expected 2026-08-27 when E6's first week completes).
+
+## Addendum — `health21-v3` (2026-09-29)
+
+The live check's chat leaves LinkedIn out on both sides of the comparison:
+chat is `baselines.liveChatOf` (the Restream total minus the LinkedIn row,
+absent when that row's count is unknown), the one definition show health's
+participation already reads. LinkedIn reports chat but never viewers, and its
+simulcast varies (E1–E10 had it, E11 did not), so counting it made one
+episode's chat mean something different from the next (rule 11). A peer counts
+only with both a peak and a chat reading. The stored note says how chat is
+counted and reaches the panel hover.
+
+Every frozen entry is re-derived visibly through the step `ratings.mjs`
+declares in `REDERIVES`: only the live check is rebuilt, from the entry's own
+window and outlier verdicts plus the live-event files; everything else is
+carried byte for byte; the entry names its earlier rules and score. The
+frozen-bytes guard and validator 1g replay that step and accept nothing else.
+Decision record and before/after table:
+`audit/AUDIT-2026-09-29-sonnet-comments-promo.md`, finding 12.

@@ -77,11 +77,39 @@ export function frozenRatingBytes(text) {
   return result;
 }
 
-export function assertFrozenRatingsUnchanged(previousText, currentText) {
+// The bytes a ratings entry occupies inside the store as ratings.mjs writes it
+// (two-space JSON, the entry two levels deep in `scores`).
+export function ratingEntryBytes(entry) {
+  return JSON.stringify(entry, null, 2).replace(/\n/g, '\n    ');
+}
+
+// Within one algorithm every frozen entry is byte-identical, always. Frozen
+// bytes change only on a rules change (rule 9), and then only as a declared
+// re-derive: `rederive` (ratings.mjs declaredRederive) must connect the two
+// algorithms, the new store must name the immediately previous algorithm in
+// rederivedFrom with a rederivedAt, and every old frozen entry must be
+// replaced by exactly the entry the declared steps build from its stored
+// bytes. A dropped entry, an unfrozen one, a silent edit, or a from-scratch
+// recompute still fails.
+export function assertFrozenRatingsUnchanged(previousText, currentText, { rederive = null } = {}) {
   const previous = frozenRatingBytes(previousText);
   const current = frozenRatingBytes(currentText);
+  const was = JSON.parse(previousText).algorithm, now = JSON.parse(currentText);
+  if (was === now.algorithm) {
+    for (const [slug, bytes] of previous) {
+      if (current.get(slug) !== bytes) throw new Error(`frozen rating bytes changed or vanished: ${slug}`);
+    }
+    return previous.size;
+  }
+  if (!rederive) throw new Error(`frozen rating algorithm changed (${was} → ${now.algorithm}) with no declared re-derive`);
+  const path = rederive.path(was, now.algorithm);
+  if (now.rederivedFrom !== path.at(-2) || !Number.isFinite(Date.parse(now.rederivedAt))) {
+    throw new Error(`frozen rating re-derive to ${now.algorithm} must name ${path.at(-2)} in rederivedFrom and carry rederivedAt`);
+  }
   for (const [slug, bytes] of previous) {
-    if (current.get(slug) !== bytes) throw new Error(`frozen rating bytes changed or vanished: ${slug}`);
+    if (current.get(slug) !== ratingEntryBytes(rederive.entry(JSON.parse(bytes), now.algorithm))) {
+      throw new Error(`frozen rating bytes changed outside the declared re-derive (${path.join(' → ')}): ${slug}`);
+    }
   }
   return previous.size;
 }

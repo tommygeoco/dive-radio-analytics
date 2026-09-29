@@ -38,7 +38,7 @@ chain logs `chain-2026-09-28.log`, `chain-2026-09-29.log` on the owner machine):
 | 9 | Scored X replies came from any non-promo post, so coverage differed by episode | `comments-pull.mjs` `role !== "promo"` | **Fixed for future captures** (append-only store untouched): replies are read from announce posts and posts still awaiting broadcast resolution. |
 | 10 | Agent brief dropped each post's role | `agent-brief.mjs` announces map | **Fixed.** Role carried and printed; promo reach per episode with an absence reason; X reach and promo post defined. |
 | 11 | LinkedIn chatters counted in "chatters per 100 at the peak" while LinkedIn viewers are never reported; E11 (no LinkedIn stream) compared with peers that had LinkedIn chat | per-channel rows: E9 54.9 → 48.9 without LinkedIn; E11 unchanged 61.5 | **Fixed for show health** (`liveRatesOf`, health-v10): LinkedIn chat left out of both participation rates. |
-| 12 | Ratings' live check compares chat messages including LinkedIn | `ratings.mjs` live check | **Queued — deadline 2026-10-15** (E11's read-complete day; it is the first episode without LinkedIn). Needs `health21-v3` and a visible re-derive path through the frozen-bytes guard (`assertFrozenRatingsUnchanged` accepts no re-derive today). E9 (10-01) and E10 (10-08) had LinkedIn on both sides and are unaffected. |
+| 12 | Ratings' live check compares chat messages including LinkedIn | `ratings.mjs` live check | **Fixed (code) — `health21-v3`; store re-derive released by the chain machine, before 2026-10-15.** Chat is `baselines.liveChatOf`, the one definition show health already used. Frozen entries change only through a declared re-derive the guard and validator replay. See "Finding 12" below. |
 | 13 | E11's LinkedIn absence carried no reason | no `sourceStates.linkedin` | **Fixed.** `not-streamed` when the Restream session had no LinkedIn destination; `missing` when it carried LinkedIn chat but no broadcast matched. Silent on the page, stated in the brief. |
 | 14 | LinkedIn total-views test could not fail (LinkedIn attached after totals were computed) | `linkedin.test.mjs` | **Fixed.** New test imports a LinkedIn plays reading and proves brief totals, Slack lines and page view keys are unchanged. |
 | 15 | LinkedIn viewing analytics (plays, viewers, watch time, impressions, post comments) | `docs/linkedin-setup.md`, commit 50cff5e | **Not a code defect — access boundary.** Needs LinkedIn Community Management API approval for a company Page app plus Ridd's OAuth consent. Until then only links and live chat exist; every viewing metric stays null ("awaiting access"). Owner imports remain the stopgap. |
@@ -58,3 +58,99 @@ chain logs `chain-2026-09-28.log`, `chain-2026-09-29.log` on the owner machine):
 - Show health: saved in 19 s, grounded, provider `anthropic`, model
   `claude-sonnet-5-5`. Recommendations: five ranked items, grounded on the first
   attempt (25 s). Critic: complete report on Sonnet 5.5. Chapters: see 16.
+
+## Finding 12 — episode health `health21-v3` (fixed 2026-09-29)
+
+**Definition.** The live check compares peak viewers and chat messages. Chat
+is now `baselines.liveChatOf(episode)`: the Restream session total minus the
+LinkedIn channel row, absent when that row's count is unknown — the same
+function show health's participation rates read (`liveRatesOf`, health-v10).
+Peak needs no change: Restream never reports a LinkedIn peak. A peer counts
+only with both readings, so the two typicals come from the same episodes (v2
+kept two peer sets; identical on every stored entry, since every episode has
+both). The check's stored `note` says "chat counted on YouTube and X only,
+since LinkedIn never reports its viewers", which the panel already renders in
+the row's hover (rule 17) — no page change. An episode whose own LinkedIn count
+is unknown gets the check absent with `NOTES.liveChatUnknown`.
+
+**Why it had to land before 2026-10-15.** E11 is the first episode not
+simulcast to LinkedIn. Under v2 its whole-session chat (184, no LinkedIn) would
+have been measured against peers' LinkedIn-inclusive typical (127): live check
+79. Under v3 both sides leave LinkedIn out (184 vs 119): 81. Computed on the
+09-27 stores, with today's outlier flags; E9 86 (v2 88), E10 53 (v2 53).
+
+**The re-derive path (rule 9, rule 24).** `assertFrozenRatingsUnchanged`
+accepted no change to frozen bytes, so any version bump was impossible. It
+now takes a declared re-derive and stays exactly as strict otherwise:
+
+- Same algorithm: every frozen entry byte-identical (unchanged).
+- Different algorithm: refused unless `ratings.mjs` `REDERIVES` declares a
+  chain of steps between the two, the new store's `rederivedFrom` names the
+  immediately previous algorithm and it carries `rederivedAt`, and every old
+  frozen entry is replaced by exactly — byte for byte, as `ratings.mjs` writes
+  it — the entry the declared steps build from its stored bytes.
+- The v2 → v3 step (`liveWithoutLinkedin`) rebuilds only the live check, from
+  the entry's own `windowIds` and frozen outlier verdicts (reasons kept) plus
+  the live-event files (frozen at first ingest). It first proves the entry's
+  stored v2 live values still equal those files, so a changed input cannot
+  ride in on a rules change. Every other check and field is carried byte for
+  byte; weights and score are recomputed by the same code a fresh read uses;
+  the entry gains `rederivedFrom {algorithm, score}`. An entry that froze with
+  no live session keeps that.
+- A from-scratch recompute is no longer possible: `computeRatings` throws when
+  no declared step connects the stored and running algorithms.
+- Validator 1g replays the step against `FROZEN_BASELINE` (E1–E5, forever) and
+  HEAD (E1–E8 on the release day; thereafter the byte lock), requires every
+  entry frozen before `rederivedAt` to name its earlier rules and score and no
+  later entry to claim one, re-derives every live value from the live files
+  through `liveChatOf`, and rebuilds the live score. Block 1u runs the new
+  fixture (`audit/ratings-rederive.test.mjs`, fail tier) and locks the
+  LinkedIn row to `baselines.mjs` among the scorers (drift tier — it reads
+  source).
+
+**Rejected.** (a) Recompute every entry from scratch under v3 — retention and
+conversion read `mature` from the overwritten analytics file, so E5–E8 would
+move for reasons unrelated to this finding and lose their frozen day-21 read.
+(b) Exempt frozen entries whenever the algorithm string changes — that is the
+loosening rule 5 forbids; a silent edit would pass with any version bump.
+(c) A second LinkedIn subtraction in `ratings.mjs` — rule 16.
+
+**Before → after on the real stores (09-27 data, local run).** Only the live
+check moves; every other check and field is byte-identical.
+
+| Episode | Live chat own (v2 → v3) | Typical chat (v2 → v3) | Live check | Score |
+|---|---|---|---|---|
+| E1–E4 | 383→340, 310→304, 169→169, 167→163 | not compared (fewer than three peers) | — | none (unchanged) |
+| E5 | 100 → 98 | 310 → 304 | 31 → 31 | 36 → 36 |
+| E6 | 127 → 119 | 238.5 → 233.5 | 40 → 39 | 38 → 38 |
+| E7 | 92 → 89 | 167 → 163 | 39 → 39 | 57 → 57 |
+| E8 | 137 → 121 | 167 → 163 | 55 → 53 | 70 → 69 |
+
+Visible: the Slack episode-health line reads `09-03 69`; alerts line 2d2 says
+once "Episode health scoring rules changed (health21-v2 → health21-v3). Each
+finished score was re-read from its saved inputs: E5 36 → 36, E6 38 → 38, E7 57
+→ 57, E8 70 → 69."; the brief prints the earlier score per episode and defines
+"compared live chat".
+
+**Verification (this Mac).** `ratings.mjs` wrote the v3 store through the
+guard; `build-data` + `validate` gave 49 failures against a 50-failure
+baseline on the untouched tree, the difference being the ratings store's own
+freshness — all 49 are environmental here (52-hour-old data, vault transcripts
+absent, a store-state-dependent model-failure regression). Episode health
+block green against HEAD (v2) and `FROZEN_BASELINE`. Tamper probes: a +1 on
+E6's carried watch score failed the HEAD replay; LinkedIn chat put back into
+E8's live check failed the live-file rebuild. Every refusal case in the fixture
+fails for its own reason. `youtube-zero-downstream.test.mjs` asserted frozen
+entries with a plain deep-equal, which cannot express a declared rules change
+and would have refused the source-only push (committed store still v2); it now
+asserts through the same guard — byte-identical within an algorithm, exactly
+the declared re-derive across one — and passes with the store at v2 and at v3.
+All 61 audit test files pass. The store was not committed: rule 26, the chain
+machine is its one writer.
+
+**Release.** Code only (source-only push). The next chain run re-derives the
+store in the publisher checkout, the validator replays the step against its
+HEAD, and the ordinary strict gate publishes it. `chain-heal` refuses to merge
+two ratings stores with different algorithms, so no other machine may write
+this store in the meantime.
+

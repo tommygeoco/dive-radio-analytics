@@ -1336,15 +1336,28 @@ try {
     fail("episode health: episode-ratings.json absent — health surfaces will not render (run tools/dive-analytics/ratings.mjs)");
   } else {
     const BL = await import(join(TOOL, "baselines.mjs"));
-    if (store.algorithm !== "health21-v2") { bad++; fail(`episode health: store algorithm "${store.algorithm}" — expected health21-v2 (stale store; rerun ratings.mjs)`); }
+    const ratingsMod = await import(join(TOOL, "ratings.mjs"));
+    if (store.algorithm !== "health21-v3") { bad++; fail(`episode health: store algorithm "${store.algorithm}" — expected health21-v3 (stale store; rerun ratings.mjs)`); }
     if (store.readDays !== 21) { bad++; fail(`episode health: store readDays ${store.readDays} — the read window is 21 days`); }
     if (store.windowN !== BL.WINDOW_N || store.minPeers !== BL.MIN_PEERS) { bad++; fail("episode health: store window/min-peers stamps differ from baselines.mjs"); }
+    // frozen bytes (rule 9): identical within an algorithm; across a rules
+    // change, exactly the declared re-derive of each earlier frozen entry,
+    // replayed here from the earlier bytes and the append-only live files
     const ratingPath = "data/restream/episode-ratings.json";
     for (const revision of [FROZEN_BASELINE, "HEAD"]) {
       try {
         const baselineText = execFileSync("git", ["show", `${revision}:${ratingPath}`], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-        assertFrozenRatingsUnchanged(baselineText, readFileSync(join(ROOT, ratingPath), "utf8"));
+        assertFrozenRatingsUnchanged(baselineText, readFileSync(join(ROOT, ratingPath), "utf8"), { rederive: ratingsMod.declaredRederive(eps) });
       } catch (error) { bad++; fail(`episode health: frozen byte integrity against ${revision} failed — ${error.message}`); }
+    }
+    // a re-derive is visible on every entry frozen before it — naming the
+    // earlier rules and score — and claimed by no entry frozen after it
+    for (const r of store.scores || []) {
+      if (r.algorithm !== store.algorithm) { bad++; fail(`episode health: ${r.slug} carries algorithm ${r.algorithm}, the store ${store.algorithm}`); }
+      const touched = store.rederivedAt != null && Date.parse(r.frozenAt) < Date.parse(store.rederivedAt);
+      if (touched ? r.rederivedFrom?.algorithm !== store.rederivedFrom || !("score" in r.rederivedFrom) : r.rederivedFrom != null) {
+        bad++; fail(`episode health: ${r.slug} ${touched ? `froze before the ${store.rederivedFrom} → ${store.algorithm} re-derive but does not name the earlier rules and score` : "froze after the last rules change yet claims a re-derive"}`);
+      }
     }
     const flagsNow = BL.anomalyFlags(eps);
     const bySlug = new Map((store.scores || []).map((r) => [r.slug, r]));
@@ -1404,6 +1417,23 @@ try {
           if (p.source === "analytics-file" && r.reproducible !== false) { bad++; fail(`episode health: ${e.slug} reads a current analytics file but is stamped reproducible`); }
         }
       }
+      // live (health21-v3): own and every peer value is the live file's peak
+      // and baselines.liveChatOf — chat without LinkedIn, absent when
+      // LinkedIn's count is unknown; the stored note says so; the score
+      // rebuilds from own against typical
+      const lv = r.checks?.live;
+      if (lv?.ageBasis === "ageFree") {
+        const liveOf = (x) => { const chat = BL.liveChatOf(x); return Number.isFinite(x?.live?.peak) && Number.isFinite(chat) ? { peak: x.live.peak, chat } : null; };
+        const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+        if (lv.note !== BL.NOTES.liveChat) { bad++; fail(`episode health: ${e.slug} live check does not carry the note that says how chat is counted`); }
+        if (!same(lv.value, liveOf(e))) { bad++; fail(`episode health: ${e.slug} live value ${JSON.stringify(lv.value)} is not the live file's peak and chat without LinkedIn (${JSON.stringify(liveOf(e))})`); }
+        if (lv.value == null && lv.reason !== BL.NOTES.liveChatUnknown) { bad++; fail(`episode health: ${e.slug} live check is absent without its reason`); }
+        for (const p of lv.peers || []) if (!same(p.value, liveOf(epOrder.find((x) => x.slug === p.slug)))) { bad++; fail(`episode health: ${e.slug} live peer ${p.slug} is not that episode's peak and chat without LinkedIn`); }
+        if (lv.ratio != null) {
+          const both = (BL.round3(lv.value.peak / lv.typical.peak) + BL.round3(lv.value.chat / lv.typical.chat)) / 2;
+          if (lv.ratio !== BL.round3(both) || lv.score !== Math.round(Math.min(100, Math.max(0, 50 * both)))) { bad++; fail(`episode health: ${e.slug} live score does not rebuild from its value against its typicals`); }
+        }
+      }
       if (r.score == null) {
         if (!r.reason) { bad++; fail(`episode health: ${e.slug} has no score and no reason — absence must explain itself`); }
       } else {
@@ -1434,8 +1464,7 @@ try {
       for (const x of r.excluded || []) if (x.why === "promo outlier" && !r.windowIds.includes(x.slug)) { bad++; fail(`episode health: ${r.slug} excluded ${x.slug} is not in its window`); }
     }
     try {
-      const mod = await import(join(TOOL, "ratings.mjs"));
-      const rerun = mod.computeRatings({ now: Date.parse(data.generatedAt) });
+      const rerun = ratingsMod.computeRatings({ now: Date.parse(data.generatedAt) });
       for (const r of store.scores || []) {
         const again = rerun.scores.find((x) => x.slug === r.slug);
         if (JSON.stringify(again) !== JSON.stringify(r)) { bad++; fail(`episode health: frozen entry ${r.slug} CHANGED on recompute — frozen must be immutable`); }
@@ -2786,6 +2815,7 @@ try {
     ["source-integrity.test.mjs", "source-to-screen integrity"],
     ["model-failures.test.mjs", "model failure preservation"],
     ["recommendation-bindings.test.mjs", "recommendation fact bindings"],
+    ["ratings-rederive.test.mjs", "episode-health chat definition and declared re-derive"],
     ["youtube-missing-data.test.mjs", "missing-data capture"],
     ["youtube-release-date.test.mjs", "broadcast-day discovery"],
     ["episode-date-sync.test.mjs", "episode-date store sync"],
@@ -2812,6 +2842,12 @@ try {
     } catch (err) {
       bad++; fail(`${fixture[1]} regression failed — ${String(err.stderr || err.message).split("\n").find((l) => /AssertionError|Error/.test(l)) || err.message}`);
     }
+  }
+  // one chat definition (rule 16): only baselines.liveChatOf reads the
+  // LinkedIn live row for a comparison; a scorer that finds it itself is a
+  // second definition (build-data reads the row only for LinkedIn's source state)
+  for (const name of ["ratings.mjs", "health.mjs", "recommendations.mjs", "health-verify.mjs"]) {
+    if (/\.label === "LinkedIn"/.test(readFileSync(join(TOOL, name), "utf8"))) { bad++; drift(`baselines: ${name} reads the LinkedIn live row itself — compared chat is baselines.liveChatOf`); }
   }
   let B = null;
   try { B = await import(join(TOOL, "baselines.mjs")); }
@@ -3396,7 +3432,8 @@ try {
   for (const r of ratings?.scores || []) {
     if (r.reason && BANNED.test(r.reason)) { bad++; fail(`notes: episode health ${r.slug} reason uses banned words`); }
     for (const [c, cs] of Object.entries(r.checks || {})) {
-      if (cs.note != null && !allowedNotes.has(cs.note)) { bad++; fail(`notes: episode health ${r.slug} ${c} note is not one of the fixed strings`); }
+      // the live check carries the one note on how its chat is counted (health21-v3)
+      if (cs.note != null && !(c === "live" ? cs.note === BL.NOTES.liveChat : allowedNotes.has(cs.note))) { bad++; fail(`notes: episode health ${r.slug} ${c} note is not one of the fixed strings`); }
       if (cs.reason && BANNED.test(cs.reason)) { bad++; fail(`notes: episode health ${r.slug} ${c} reason uses banned words`); }
     }
   }

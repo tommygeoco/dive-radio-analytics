@@ -154,7 +154,7 @@ function episodeDigest(e, data) {
     ? { status: e.chapters.status, clock: e.chapters.clock, writtenAt: e.chapters.writtenAt, list: e.chapters.list.slice(0, BUDGET.chaptersPerEpisode).map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote, link: uploadUrl ? `${uploadUrl}&t=${c.seconds}s` : null })) }
     : absent(e.chapters?.reason || (e.transcript ? "chapters not written yet" : "no transcript"));
   const health = e.health && e.health.score != null
-    ? { score: e.health.score, readOn: e.health.readCompleteOn ?? null, checks: e.health.checks ? Object.fromEntries(Object.entries(e.health.checks).map(([k, c]) => [k, { score: c.score ?? null, reason: c.reason ?? null }])) : null }
+    ? { score: e.health.score, readOn: e.health.readCompleteOn ?? null, checks: e.health.checks ? Object.fromEntries(Object.entries(e.health.checks).map(([k, c]) => [k, { score: c.score ?? null, reason: c.reason ?? null }])) : null, rereadFrom: e.health.rederivedFrom ? { rules: e.health.rederivedFrom.algorithm, score: e.health.rederivedFrom.score ?? null } : null }
     : absent(e.health?.reason || (e.health?.pending ? `read completes on ${day(e.health.readCompleteOn)} (day twenty-one)` : "no read"));
   const w = e.watch || {};
   const l = e.live || {};
@@ -289,7 +289,8 @@ export const DEFINITIONS = Object.freeze([
   ["swing and bands", "a measure's swing is the middle distance of its peers from their typical, as a share of the typical; a check's bands use half the middle swing of its measures either side of fifty, never narrower than five points nor wider than fifteen; the state word (healthy / steady / fragile) follows the bands."],
   ["launch word", "an episode's first-week standing in one word — strong, typical, or soft — from YouTube views at day seven (or the earliest reading, or the current age while under a week, marked provisional) against the other episodes at that age, promo outliers out, three or nothing."],
   ["first week vs launch reading", "a first week needs a clean seven-day record and feeds the growth slope; a launch reading is the same-age standing available from the first day and can exist where a first week cannot (an episode tracked late)."],
-  ["episode health", "a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline."],
+  ["episode health", "a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline. A scoring-rules change re-reads every finished score from its saved inputs and records the score it had under the earlier rules."],
+  ["compared live chat", "chat counted on YouTube and X only, in every live comparison (show health's participation, episode health's live check): LinkedIn reports its chat but never its viewers, and not every episode streamed there. Session totals include LinkedIn chat; comparisons never do. When LinkedIn's count for an episode is unknown, its compared chat is absent."],
   ["show health", "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."],
   ["direction", "each durable measure's change per episode (Theil–Sen slope) over the last five clean episodes; a word needs four; building above plus five percent, softening below minus five; the overall word is single only when every check agrees, otherwise mixed."],
   ["outlook", "where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days."],
@@ -542,7 +543,7 @@ function renderMarkdownWindow(digest, episodes, manifest) {
       if (e.feedback.note) p(e.feedback.note);
       for (const q of e.feedback.featured) p(`- "${q.text}" — ${esc(q.author)} on ${q.source === "x" ? "X" : "YouTube"}`);
     }
-    p(abs(e.health) ? `Episode health: — (${esc(e.health.reason)}).` : `Episode health: ${e.health.score} of 100, read on ${day(e.health.readOn)}${e.health.checks ? ` — ${Object.entries(e.health.checks).map(([k, v]) => `${k} ${v.score ?? `— (${esc(v.reason || "no reading")})`}`).join("; ")}` : ""}.`);
+    p(abs(e.health) ? `Episode health: — (${esc(e.health.reason)}).` : `Episode health: ${e.health.score} of 100, read on ${day(e.health.readOn)}${e.health.checks ? ` — ${Object.entries(e.health.checks).map(([k, v]) => `${k} ${v.score ?? `— (${esc(v.reason || "no reading")})`}`).join("; ")}` : ""}.${e.health.rereadFrom ? ` Re-read from its saved inputs under the current rules; under ${e.health.rereadFrom.rules} it was ${e.health.rereadFrom.score ?? "unscored"}.` : ""}`);
     p();
   });
   // 7

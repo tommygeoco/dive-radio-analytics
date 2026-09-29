@@ -10,6 +10,7 @@ import { buildLatest, partialHistoryOf } from "../build-data.mjs";
 import { computeRatings, readAgeOf, scoreEpisode } from "../ratings.mjs";
 import { anomalyFlags, premiereMs, firstYtSnapshot, latestCurrentYtSnapshot, latestYtSnapshot, snapshotAt, ytSnapshotAt, ytViewsOf } from "../baselines.mjs";
 import { collectFacts } from "../recommendations.mjs";
+import { assertFrozenRatingsUnchanged } from "../source-integrity.mjs";
 import { airDayHistoryNote, phoenixDateKey } from "../../../scripts/restream/postlive-track.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -130,11 +131,11 @@ for (const id of ["views-yt-all", "views-total-all", "share-x-all"]) {
 assert.ok(!recommendationFacts.some((fact) => fact.id.startsWith("channel-") || fact.id.startsWith("traffic-")), "incomplete analytics cannot create whole-show channel or traffic facts");
 
 // The orchestration must retain every frozen entry byte-for-byte even though
-// new eligibility rules apply to future entries.
-const stored = JSON.parse(readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8"));
-const rerun = computeRatings({ now: Date.now() });
-for (const frozen of stored.scores || []) {
-  assert.deepEqual(rerun.scores.find((entry) => entry.slug === frozen.slug), frozen, `frozen rating changed: ${frozen.slug}`);
-}
+// new eligibility rules apply to future entries. Across a scoring-rules change
+// (the committed store one algorithm behind the code until the chain machine
+// re-derives it) the only permitted change is the declared re-derive (rule 9).
+const storedText = readFileSync(join(ROOT, "data", "restream", "episode-ratings.json"), "utf8");
+const { _frozenKept, _computed, _rederive, ...rerun } = computeRatings({ now: Date.now() });
+assert.ok(assertFrozenRatingsUnchanged(storedText, JSON.stringify(rerun, null, 2) + "\n", { rederive: _rederive }) > 0, "frozen ratings exist to protect");
 
 console.log("youtube-zero-downstream.test: startup zero stays out of reads, exports, and frozen ratings");
