@@ -40,6 +40,7 @@ export const MAX_CHAPTERS = 10;   // review 2026-09-01: size budget — ten per 
 export const QUOTE_WINDOW_SEC = 90;
 export const FIRST_WITHIN_SEC = 300;
 export const MIN_GAP_SEC = 180;        // chapters at least three minutes apart (review 2026-09-01)
+export const MAX_RETRIES = 3;          // an incomplete list is retried on later mornings, at most three times
 export const END_MARGIN_SEC = 60;      // the last chapter starts at least a minute before the transcript ends (a closing segment can be short)
 // The model reasons over a whole two-hour transcript before it writes; the JSON
 // itself is small. Measured 2026-09-29 on E11: effort high barely thinks (979
@@ -163,14 +164,18 @@ async function main() {
     const parsed = readTranscript(ROOT, e.slug);
     if (!parsed || parsed.segments.length < 20) continue;
     const have = store.entries[e.slug];
-    if (have && have.sha256 === parsed.sha256 && have.promptVersion === PROMPT_VERSION) continue;
-    todo.push({ episode: e, parsed, replaces: have || null });
+    // an incomplete list under the current transcript and prompt is retried on
+    // later mornings (model output varies run to run — E11 grounded 4, 9 and 10
+    // of 10 on 2026-09-29), at most MAX_RETRIES times
+    const current = have && have.sha256 === parsed.sha256 && have.promptVersion === PROMPT_VERSION;
+    if (current && (have.status === "complete" || (have.retries || 0) >= MAX_RETRIES)) continue;
+    todo.push({ episode: e, parsed, replaces: have || null, retry: Boolean(current) });
   }
   if (!todo.length) { console.log("chapters: every transcript already has chapters under this prompt"); return; }
   if (dry) { for (const t of todo) console.log(`chapters: would write E${t.episode.ep} ${t.episode.slug} (${t.parsed.format}, ${t.parsed.segments.length} segments)`); return; }
-  let written = 0;
+  let written = 0, retried = 0;
   const failures = [];
-  for (const { episode, parsed, replaces } of todo) {
+  for (const { episode, parsed, replaces, retry } of todo) {
     let result;
     try {
       result = await callModel(`Episode: ${episode.title}\nAired: ${episode.premiere}\nTranscript clock: ${parsed.clock === "upload" ? "the YouTube upload's" : "the live stream's"}\n\nTRANSCRIPT\n${transcriptForModel(parsed)}`);
@@ -181,27 +186,37 @@ async function main() {
     let grounded;
     try { grounded = groundChapters(parsedOut.chapters, parsed); }
     catch (error) { failures.push(`E${episode.ep}: chapter grounding failed (${error.message})`); continue; }
+    const tries = retry ? (replaces.retries || 0) + 1 : 0;
+    if (retry && grounded.status !== "complete" && grounded.chapters.length <= replaces.chapters.length) {
+      // a retry that grounds no more than the saved list keeps it; only the try is counted
+      store.entries[episode.slug] = { ...replaces, retries: tries };
+      retried++;
+      console.log(`chapters: E${episode.ep} — retry ${tries} of ${MAX_RETRIES} grounded ${grounded.chapters.length}; the saved ${replaces.chapters.length} stay`);
+      continue;
+    }
     if (!grounded.chapters.length) { failures.push(`E${episode.ep}: no returned chapter grounded (${grounded.dropped[0]?.why || "empty response"})`); continue; }
     if (grounded.dropped.length || grounded.status !== "complete") failures.push(`E${episode.ep}: some required chapter grounding or completeness checks failed`);
     if (replaces) {
-      // rule 9: a changed transcript or prompt re-derives the list visibly —
-      // the older list is kept byte-identical under superseded
-      store.superseded = [...(store.superseded || []), { slug: episode.slug, supersededOn: new Date().toISOString().slice(0, 10), why: replaces.sha256 !== parsed.sha256 ? "transcript changed" : "prompt version changed", entry: replaces }];
+      // rule 9: a changed transcript or prompt, or a retry that grounds more,
+      // re-derives the list visibly — the older list is kept byte-identical under superseded
+      const why = replaces.sha256 !== parsed.sha256 ? "transcript changed" : retry ? "earlier list was incomplete" : "prompt version changed";
+      store.superseded = [...(store.superseded || []), { slug: episode.slug, supersededOn: new Date().toISOString().slice(0, 10), why, entry: replaces }];
     }
     store.entries[episode.slug] = {
       sha256: parsed.sha256, format: parsed.format, clock: parsed.clock, status: grounded.status,
       chapters: grounded.chapters, dropped: grounded.dropped.length,
       promptVersion: PROMPT_VERSION, model: result.model, writtenAt: new Date().toISOString(),
       ...(replaces ? { rederivedFrom: { sha256: replaces.sha256, promptVersion: replaces.promptVersion } } : {}),
+      ...(retry && grounded.status !== "complete" ? { retries: tries } : {}),
     };
     written++;
     console.log(`chapters: E${episode.ep} — ${grounded.chapters.length} chapter(s) kept, ${grounded.dropped.length} dropped, ${grounded.status}`);
   }
-  if (!written) throw new Error(`chapter generation failed; previous store kept: ${failures.join("; ")}`);
+  if (!written && !retried) throw new Error(`chapter generation failed; previous store kept: ${failures.join("; ")}`);
   store.version = STORE_VERSION; store.promptVersion = PROMPT_VERSION; store.updatedAt = new Date().toISOString(); store.provider = modelIdentity().provider;
   validateStore(store);
   saveAtomic(STORE_PATH, store);
-  console.log(`chapters: wrote ${written} episode(s) — rebuild data to publish`);
+  console.log(`chapters: wrote ${written} episode(s)${retried ? `, kept ${retried} saved list(s) after a retry` : ""} — rebuild data to publish`);
   if (failures.length) throw new Error(`chapter generation incomplete after saving grounded candidates: ${failures.join("; ")}`);
 }
 

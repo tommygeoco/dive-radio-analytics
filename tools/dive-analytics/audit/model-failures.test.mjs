@@ -120,6 +120,32 @@ try {
   assert.equal(mixed.status, 1, 'a mixed batch must report its failed episodes');
   const saved = JSON.parse(load('chapters.json'));
   assert.deepEqual(Object.keys(saved.entries), [success.slug], `only the grounded candidate should be promoted: ${mixed.stdout} ${mixed.stderr}`);
+  // An incomplete list is retried on later mornings: a retry that grounds more
+  // replaces it (old list superseded), one that grounds no more keeps it and
+  // counts the try, and after three tries the list is left alone.
+  const full = originalChapters.entries[success.slug];
+  const partial = { ...full, chapters: full.chapters.slice(0, 3), status: 'incomplete', dropped: 0 };
+  const setFixture = (chapters) => writeFileSync(join(temp, 'chapters-fixture.json'), JSON.stringify({ title: success.title, chapters }));
+  save('chapters.json', { ...originalChapters, entries: { [success.slug]: partial }, superseded: [] });
+  setFixture(full.chapters.slice(0, 2));
+  const kept = run('chapters.mjs', ['--only', success.slug], 'mixed-chapters');
+  assert.equal(kept.status, 0, `a retry that grounds no more is not a failure: ${kept.stdout} ${kept.stderr}`);
+  assert.equal(kept.calls, 1);
+  const afterKept = JSON.parse(load('chapters.json'));
+  assert.deepEqual(afterKept.entries[success.slug].chapters, partial.chapters, 'the saved list stays');
+  assert.equal(afterKept.entries[success.slug].retries, 1, 'the try is counted');
+  assert.equal(afterKept.superseded.length, 0);
+  setFixture(full.chapters);
+  const improved = run('chapters.mjs', ['--only', success.slug], 'mixed-chapters');
+  assert.equal(improved.status, 0, `a retry that completes the list succeeds: ${improved.stdout} ${improved.stderr}`);
+  const afterImproved = JSON.parse(load('chapters.json'));
+  assert.equal(afterImproved.entries[success.slug].status, 'complete');
+  assert.equal(afterImproved.entries[success.slug].retries, undefined, 'a complete list carries no retry count');
+  assert.equal(afterImproved.superseded.at(-1).why, 'earlier list was incomplete');
+  assert.deepEqual(afterImproved.superseded.at(-1).entry.chapters, partial.chapters, 'the incomplete list is kept byte-identical under superseded');
+  save('chapters.json', { ...originalChapters, entries: { [success.slug]: { ...partial, retries: 3 } }, superseded: [] });
+  const exhausted = run('chapters.mjs', ['--only', success.slug], 'mixed-chapters');
+  assert.equal(exhausted.status, 0); assert.equal(exhausted.calls, 0, 'three tries is the cap');
   // Explicit diagnostic and no-input paths retain their normal successful exit.
   const checked = run('moment-summaries.mjs', ['--check']);
   assert.equal(checked.status, 0); assert.equal(checked.calls, 0);
