@@ -68,6 +68,8 @@ test('source failures, staleness and pending classification remain visible with 
   assert.equal(view.notices.length, 5);
   assert(view.notices.some(note => note.includes('over a day old')));
   assert(view.notices.some(note => note.includes('still being processed')));
+  // nothing approved yet: no "more" (2026-09-29)
+  assert(view.notices.includes('Captured comments are still being processed.'));
 });
 test('unsupported old configurations are withheld and never poison the public configuration list', () => {
   const record = row('x:123'); const previous = { ...config, promptVersion: 0 };

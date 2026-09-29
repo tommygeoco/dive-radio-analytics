@@ -29,7 +29,7 @@ import {
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
   ytViewsOf, ytEngagementOf, engagementPer1kOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS, NOTES,
 } from "./baselines.mjs";
-import { collectFacts, validateItem, allowedNumbers } from "./recommendations.mjs";
+import { collectFacts, validateItem, allowedNumbers, TOP_N } from "./recommendations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -505,15 +505,12 @@ export function computeAll({ now = Date.now() } = {}) {
     }
     // W35: a ranked store ships in its own order — item one is this week's
     // biggest lever — and each item carries its rank and the check it serves
-    insights = current.map((r, i) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category, ...(recStore.ranked ? { rank: i + 1 } : {}), ...(r.serves ? { serves: r.serves } : {}) }));
+    insights = current.slice(0, TOP_N).map((r, i) => ({ id: r.id, text: r.text, recommendation: r.recommendation, ...(r.caveat ? { caveat: r.caveat } : {}), category: r.category, ...(recStore.ranked ? { rank: i + 1 } : {}), ...(r.serves ? { serves: r.serves } : {}) }));
   }
   if (!insights || !insights.length) {
     insightsStale = insights ? insightsStale : [];
-    insights = buildInsights(dive, { flags });
-    insights.push(...liveInsights(dive));
-    // Strategy-impact categories (owner directive 2026-08-22): each insight is
-    // tagged by the DECISION it informs, not the data type it reads.
-    for (const i of insights) i.category = categoryFor(i.id);
+    // no ranked store: the five most timely rule-based cards, never the whole list
+    insights = fallbackInsights(dive, flags).slice(0, TOP_N);
   } else {
     // Owner directive 2026-09-01 (W35 final): What matters is EXACTLY the
     // five ranked actions — nothing is appended to them. The newest episode's
@@ -1204,6 +1201,34 @@ function refOf(e) {
 //   data         — caveats about the data itself (coverage, partial history)
 // New insight ids MUST be added here; unknown ids fall back to "data" (a
 // caveat is the only safe default) and the validator warns on the fallback.
+// What matters holds at most TOP_N (five) cards — the five things to do this
+// week (owner directive 2026-09-01; restated 2026-09-29 after the fallback
+// shipped sixteen). With no ranked store, the rule-based list is ordered by
+// how timely each card is: the newest episode's standing first, then the
+// levers an owner can pull this week, then the show's standing facts, older
+// promo flags and data caveats; only the first TOP_N ship. They stay unranked
+// (a rank means the model's ranked store), so the page groups them by category.
+const FALLBACK_LEVERS = ["reach-conversion", "host-split", "engagement", "live-chat", "flatline", "platform-phase", "watch-split", "host-plays-split"];
+function fallbackPriority(id, newestSlug) {
+  if (id === "pace-rank") return 0;
+  if (id === "live-peak") return 1;
+  if (id === `anomaly-${newestSlug}`) return 2;
+  if (FALLBACK_LEVERS.includes(id)) return 3 + FALLBACK_LEVERS.indexOf(id);
+  return id.startsWith("anomaly-") ? 20 : 30;
+}
+// the full rule-based list in that order (build-data ships the first TOP_N;
+// the validator re-derives it)
+export function fallbackInsights(dive, flags) {
+  const all = [...buildInsights(dive, { flags }), ...liveInsights(dive)];
+  // Strategy-impact categories (owner directive 2026-08-22): each insight is
+  // tagged by the DECISION it informs, not the data type it reads.
+  for (const i of all) i.category = categoryFor(i.id);
+  const newest = [...dive].sort((a, b) => (a.premiere < b.premiere ? -1 : 1)).at(-1)?.slug;
+  return all.map((insight, at) => ({ insight, at }))
+    .sort((a, b) => fallbackPriority(a.insight.id, newest) - fallbackPriority(b.insight.id, newest) || a.at - b.at)
+    .map((x) => x.insight);
+}
+
 export function categoryFor(id) {
   if (id === "pace-rank") return "content";               // is the newest topic landing?
   if (id === "engagement") return "audience";             // resonance per view

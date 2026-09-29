@@ -1239,6 +1239,24 @@ try {
     if (!i.recommendation) { bad++; fail(`insight ${i.id}: recommendation missing — every insight ships the decision it informs`); }
     if (!i.text || i.text.length < 20) { bad++; fail(`insight ${i.id}: text missing or too short to be an insight`); }
   }
+  // What matters holds at most TOP_N cards (owner directive 2026-09-01,
+  // restated 2026-09-29): the ranked store's items, or — with no store
+  // driving — exactly the TOP_N most timely rule-based cards, re-derived here
+  // from the shipped episodes through build-data's own ordering
+  try {
+    const { TOP_N } = await import(join(TOOL, "recommendations.mjs"));
+    const build = await import(join(TOOL, "build-data.mjs"));
+    const BLf = await import(join(TOOL, "baselines.mjs"));
+    if (data.insights.length > TOP_N) { bad++; fail(`What matters: ${data.insights.length} cards shipped — at most ${TOP_N}`); }
+    const copy = structuredClone(eps);
+    const full = build.fallbackInsights(copy, BLf.anomalyFlags(copy));
+    const ruleIds = new Set(full.map((i) => i.id));
+    if (data.insights.length && data.insights.every((i) => i.rank == null && ruleIds.has(i.id))) {
+      const want = full.slice(0, TOP_N).map((i) => i.id).sort();
+      const got = data.insights.map((i) => i.id).sort();
+      if (JSON.stringify(want) !== JSON.stringify(got)) { bad++; fail(`What matters: the fallback is not the ${TOP_N} most timely rule-based cards (expected ${want.join(", ")}; shipped ${got.join(", ")})`); }
+    }
+  } catch (error) { bad++; fail(`What matters: cap check threw — ${error.message}`); }
   const liveChat = data.insights.find((i) => i.id === "live-chat");
   // The deterministic live-chat sentence is a FALLBACK contract: when the
   // recommendation engine's store drives What matters, it replaces the
@@ -1249,8 +1267,9 @@ try {
     const withLive = eps.filter((episode) => episode.live);
     const launchChat = withLive[0]?.live?.chatMessages;
     const latestChat = withLive.at(-1)?.live?.chatMessages;
-    const expectedChat = !recStorePresent && withLive.length >= 2 ? build.liveChatText(launchChat, latestChat) : null;
-    if (expectedChat && liveChat?.text !== expectedChat) {
+    // shipped only when it is among the five most timely cards (checked above)
+    const expectedChat = !recStorePresent && withLive.length >= 2 && liveChat ? build.liveChatText(launchChat, latestChat) : null;
+    if (expectedChat && liveChat.text !== expectedChat) {
       bad++; fail("insight live-chat: text does not exactly compare the stored first and latest message totals");
     }
     if (liveChat && ((liveChat.text.match(/\b\d[\d,]*\b/g) || []).length > 2 || /\bE\d+\b|→/.test(liveChat.text))) {
