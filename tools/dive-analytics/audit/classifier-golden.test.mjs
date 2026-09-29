@@ -43,6 +43,25 @@ globalThis.fetch = async (url, options) => {
     env: { ...process.env, ANTHROPIC_API_KEY: "fixture-only", DIVE_FIXTURE_MODE: mode },
   });
 
+  // Set up the scenario on the copy, independent of which model stamped the
+  // committed store (after a Sonnet 5.5 run the data already matches the code,
+  // which on 2026-09-29 made this test vacuous and failed the release gate):
+  // a different, passing configuration owns the store, and two comments that
+  // have raw text are waiting for a label.
+  {
+    const seeded = JSON.parse(readFileSync(storePath, "utf8"));
+    const dir = join(root, "data/restream/comments");
+    const rawIds = execFileSync("node", ["-e", `
+      const { readdirSync, readFileSync } = require('node:fs');
+      const dir = ${JSON.stringify(dir)};
+      console.log(JSON.stringify(readdirSync(dir).filter((f) => f.endsWith('.json')).flatMap((f) => JSON.parse(readFileSync(dir + '/' + f, 'utf8')).comments || []).map((c) => c.id)));`], { encoding: "utf8" });
+    for (const id of JSON.parse(rawIds).filter((id) => seeded.classified[id]).slice(0, 2)) delete seeded.classified[id];
+    seeded.provider = "previous-provider";
+    seeded.model = "previous-model";
+    seeded.configHash = "previous-configuration";
+    seeded.golden = { ...(seeded.golden || {}), passed: true, configHash: "previous-configuration", relevance: { correct: 40, total: 40, pct: 100 }, sentiment: { correct: 24, total: 24, pct: 100 } };
+    writeFileSync(storePath, JSON.stringify(seeded, null, 2) + "\n");
+  }
   const before = JSON.parse(readFileSync(storePath, "utf8"));
   const waiting = JSON.parse(execFileSync("node", ["-e", `
     const { readdirSync, readFileSync } = require('node:fs');
@@ -58,6 +77,7 @@ globalThis.fetch = async (url, options) => {
   const afterFail = JSON.parse(readFileSync(storePath, "utf8"));
   assert.equal(stamps(afterFail), stamps(before), "a failing configuration never replaces the last passing one");
   assert.equal(afterFail.lastRun.status, "pending");
+  assert.ok(waiting.length >= 2, "the scenario has comments waiting for a label");
   assert.deepEqual([...afterFail.lastRun.pendingIds].sort(), waiting, "the waiting comments are named");
 
   const passed = run("pass");
