@@ -170,6 +170,8 @@ to certify missing production proof or to erase a failed capture.
 - **clean** — not an anomaly, not late-registered (`partialHistory`), with the needed snapshot coverage.
 - **anomaly / promo outlier** — an episode whose YouTube views, X plays, or X reach exceed 2× the same-age typical of the nearby episodes (settled at day 21; provisional before; the window-limited lifetime test only while history is too thin). Excluded from host, announce, topic, and every typical (but included in the all-show platform split, which is descriptive). Frozen episode-health entries store the verdicts they used.
 - **partial / stale (X plays)** — `partial`: some X targets have no plays count; `stale`: this run's plays were missing and the high-water mark was substituted. Both exclude the episode from reach comparisons.
+- **announce post / promo post** (2026-09-29) — an announce post is an X post that carries the episode's broadcast (`x-posts.mjs isAnnouncePost`); X reach is impressions on announce posts only. Every other registered X post is a promo post: its impressions ride beside reach as `latest.xPromoReach` (panel and brief only), never compared, never in reach, plays or views. Readings from before 2026-09-04 that blend both on one account are absent, never estimated. Promo posts were not searched for before E6, so none registered is absence, not zero.
+- **still being read (comments)** — a captured comment with no classifier label. While any exist, the episode's comment counts and rate are `null` with `pending` and a reason; goodwill balance waits; the day-21 sentiment check reads nothing from a partial list.
 - **tracked late (`partialHistory`)** — first snapshot more than 5 days after premiere; first-week velocity and flatline are undefined for it.
 - **launch word** — an episode's first-week standing in one word (strong / typical / soft; promo-qualified; "so far" while under a week): YouTube views at day 7 — or the earliest reading, or the current age — against the other episodes at that age, outliers out, three or nothing (`baselines.launchReadFor`). A standing, never frozen, never a number at a glance.
 - **qualified / carried** — a show-health measure whose own unit is promo-flagged is *qualified*: value and typical shown, score null ("promo-driven lift — shown, not scored"); a measure read from an older episode than the newest is *carried* at half weight and names the episode it read. `entry.asOf` lists both.
@@ -183,34 +185,46 @@ to certify missing production proof or to erase a failed capture.
 - **chapters** — topics with timestamps per episode, model-written once per transcript (`chapters.mjs`, store keyed by slug with the transcript sha, superseded on change) and grounded: the timestamp exists, the quote is found within 90 seconds, chapters are three minutes apart. Deep links only when the transcript runs on the YouTube upload's clock (captions); Restream transcripts run on the live-stream clock.
 - **superseded / rederivedFrom** — on the day a formula ships, the day's older-formula read is moved byte-identical under `store.superseded[]` and the new read names it; the validator accepts exactly that shape. `chain-heal.mjs` merges the store by day when a stash pop left it conflicted.
 
-## Model authentication (2026-09-19)
+## Model (2026-09-29): Claude Sonnet 5.5 over the Anthropic API
 
-All six L3 model callers now default to the local Hinterlands OpenClaw gateway's
-frontier tier (Astra through ChatGPT OAuth). Audience feedback inherits the comment
-classifier route and its configuration-specific golden gate. Numeric synthesis,
-grounding rules, frozen stores, and publishing ownership are unchanged.
+Every L3 model step — comment classifier, audience feedback (which inherits the
+classifier's route and golden gate), show health, recommendations, moment
+summaries, chapters and the Monday critic — calls one model, `claude-sonnet-5-5`,
+through the Anthropic Messages API. `tools/dive-analytics/model-route.mjs` is the
+only place a model string, endpoint, effort or stop-reason rule lives
+(`audit/model-route.test.mjs` fails if any other script names a model or a
+provider endpoint). Owner decision 2026-09-29, after the OpenClaw gateway's
+frontier model (gpt-6-astra) failed the classifier golden gate on 09-28 and the
+gateway call failed outright on 09-29 — two mornings without a publish.
 
-The shared native client is at
-`~/Dev/2026/hinterlands/scripts/openclaw/model-completion.mjs`.
-`HINTERLANDS_MODEL_CLIENT` can select its installation path; `OPENCLAW_BIN` selects
-the installed OpenClaw executable. These are code paths, never credentials.
-The local gateway owns OAuth renewal and the provider adapter. No API key is
-required in these model scripts when using the gateway. Gateway failures fail
-the other model steps; show health writes a validated deterministic read after
-two failed calls. None of these failures falls back to paid API calls.
+- **Request shape:** adaptive thinking (the model default; never `disabled`, never
+  `budget_tokens`, no `temperature`), `output_config.effort` stated per call —
+  `high` everywhere except chapters at `xhigh` (measured 09-29: `high` grounded
+  6 of 10 E11 chapters, `xhigh` 9 of 10). Only an `end_turn` reply with text is
+  returned; `refusal`, `max_tokens`, `pause_turn` and empty replies throw before a
+  script parses anything. 429/5xx/529 get one paced retry; a timeout does not.
+  A retry that continues a conversation (recommendations' grounding correction)
+  passes the full reply back unchanged, thinking blocks included — append-only.
+- **Credential:** `ANTHROPIC_API_KEY` from the OpenClaw gateway environment on the
+  owner machine (command jobs inherit it, as they do `BEEHIIV_API_KEY`). This Mac
+  has none; test the deterministic half with `--dry` and fixtures, and live
+  behaviour in a throwaway clone on the owner machine (never the publisher tree).
+- **No refusal fallback model:** a declined request fails its step and the
+  previous store stays the public truth (health writes its checked deterministic
+  read) — so every store is stamped by the one model it names.
+- **Classifier prompt v3** (jokes carry the commenter's view of the show) passed
+  the golden gate 3/3 at 100% relevance and 100% sentiment on Sonnet 5.5; v2 missed
+  the same two joke cases on both Sonnet 5.5 and gpt-6-astra.
+- **A failing golden gate never replaces a passing configuration.** The store
+  keeps its proven stamps and labels, names the waiting comments in `lastRun`, and
+  the dashboard still publishes; waiting comments render as "still being read",
+  never as zero. The validator re-derives classifier and audience integrity from
+  each store's own stamps (fail tier); whether that is still the prompt in the code
+  is a drift check.
 
-Switch the entire OpenAI fleet (including these gateway calls) from Hinterlands:
-`npm run model:auth -- api --restart`; return with
-`npm run model:auth -- oauth --restart`. The operator must authorize any restart.
-`status` and `api --dry-run` are read-only options. API mode needs API credits.
-
-For explicit per-process rollback to the original direct API code, set
-`DIVE_MODEL_TRANSPORT=direct-api`. Existing per-script model/key environment
-variables apply only in that mode. Gateway mode follows the central frontier
-alias. Never set direct-api merely to get around a gateway outage.
-
-The gateway has no per-request output-token setting: its configured model budget
-governs generation, while the adapter bounds accepted output and requires a clean
-completion. Full prompts travel through the native SDK without shell argument
-limits. Existing JSON, golden, citation and transcript-grounding checks still gate
-writes. Test fixtures exercise both transports without using real model credentials.
+`DIVE_MODEL_TRANSPORT=gateway` is the explicit rollback to the Hinterlands OpenClaw
+frontier tier (shared native client at
+`~/Dev/2026/hinterlands/scripts/openclaw/model-completion.mjs`, selectable with
+`HINTERLANDS_MODEL_CLIENT`). It is never chosen automatically, and the old per-script
+model variables (`HEALTH_MODEL`, `COMMENTS_MODEL`, …) and the OpenAI direct path are
+gone. Test fixtures exercise both transports without real credentials.

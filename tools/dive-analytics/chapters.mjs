@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
+import { completeModel, modelIdentity } from "./model-route.mjs";
 // chapters.mjs — topics with timestamps, one list per episode (PRD v12 W43).
 //
 // The only place a model reads a transcript end to end. For every episode
@@ -41,8 +41,12 @@ export const QUOTE_WINDOW_SEC = 90;
 export const FIRST_WITHIN_SEC = 300;
 export const MIN_GAP_SEC = 180;        // chapters at least three minutes apart (review 2026-09-01)
 export const END_MARGIN_SEC = 60;      // the last chapter starts at least a minute before the transcript ends (a closing segment can be short)
-const MAX_TOKENS = 24000;   // the model reasons over a whole transcript before it writes; the JSON itself is small
-const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
+// The model reasons over a whole two-hour transcript before it writes; the JSON
+// itself is small. Measured 2026-09-29 on E11: effort high barely thinks (979
+// output tokens, 6 of 10 chapters grounded); xhigh reads properly (26k tokens,
+// 9 of 10 grounded in 164 s), so this one step runs at xhigh with room to spare.
+const MAX_TOKENS = 64000;
+const EFFORT = "xhigh";
 const MARKUP = /<\/?[a-z]|```|https?:\/\/|\[[^\]]+\]\(/i;
 
 function readJson(path, fallback = null) { return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : fallback; }
@@ -111,19 +115,7 @@ Rules:
 5. Never write: composite, percentile, pillar, ratio, velocity, coverage, basis, median, delta, or cumulative. No markup, no links.`;
 
 async function callModel(payload) {
-  if (useGateway()) return gatewayModel(SYSTEM, [{ role: "user", content: payload }], { timeoutMs: 300000, maxTokens: MAX_TOKENS });
-  const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) throw new Error("ANTHROPIC_API_KEY not set");
-  const model = process.env.CHAPTERS_MODEL || DEFAULT_ANTHROPIC_MODEL;
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages: [{ role: "user", content: payload }] }),
-    signal: AbortSignal.timeout(300000),
-  });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}`);
-  const body = await res.json();
-  return { text: (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n"), model, stopReason: body.stop_reason || null };
+  return completeModel(SYSTEM, [{ role: "user", content: payload }], { maxTokens: MAX_TOKENS, timeoutMs: 600000, effort: EFFORT, label: "chapters" });
 }
 
 // the model may wrap the object in prose or a fence; take the outermost object
@@ -206,7 +198,7 @@ async function main() {
     console.log(`chapters: E${episode.ep} — ${grounded.chapters.length} chapter(s) kept, ${grounded.dropped.length} dropped, ${grounded.status}`);
   }
   if (!written) throw new Error(`chapter generation failed; previous store kept: ${failures.join("; ")}`);
-  store.version = STORE_VERSION; store.promptVersion = PROMPT_VERSION; store.updatedAt = new Date().toISOString(); store.provider = useGateway() ? gatewayConfig().provider : "anthropic";
+  store.version = STORE_VERSION; store.promptVersion = PROMPT_VERSION; store.updatedAt = new Date().toISOString(); store.provider = modelIdentity().provider;
   validateStore(store);
   saveAtomic(STORE_PATH, store);
   console.log(`chapters: wrote ${written} episode(s) — rebuild data to publish`);

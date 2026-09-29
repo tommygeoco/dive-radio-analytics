@@ -193,6 +193,48 @@ try {
   if (!bad) ok("unit separation: totalViews uses available YouTube views and X plays; missing sources stay null and named");
 }
 
+// --- 1b2. X reach is announce posts only; promo posts counted beside it (2026-09-29) ---
+// Re-derived from the raw snapshots and the registry: every shipped X reach
+// reading is exactly the announce posts' impressions (or absent when an old
+// blended reading cannot be split), promo impressions ride separately, never
+// inside reach, plays, or views, and each announce row carries the same role.
+{
+  let bad = 0;
+  const { isAnnouncePost, postRole, splitXReading } = await import(join(TOOL, "x-posts.mjs"));
+  for (const e of eps) {
+    const show = registry.shows.find((s) => s.slug === e.slug);
+    const path = join(HISTORY, `${e.slug}.json`);
+    if (!show || !existsSync(path)) continue;
+    const raw = new Map((JSON.parse(readFileSync(path, "utf8")).snapshots || []).map((snap) => [snap.ts, snap]));
+    for (const snap of e.snapshots) {
+      const source = raw.get(snap.ts);
+      if (!source) { bad++; fail(`${e.slug} ${snap.ts}: shipped snapshot has no raw reading`); continue; }
+      for (const key of Object.keys(source.metrics || {}).filter((k) => k.startsWith("x:"))) {
+        const want = splitXReading(key.slice(2), source.metrics[key], show.targets);
+        const got = snap.byDest?.[key] || {};
+        if ((got.views ?? null) !== want.views) { bad++; fail(`${e.slug} ${snap.ts} ${key}: X reach ${got.views} is not the announce posts' impressions (${want.views})`); }
+        if ((got.promoViews ?? null) !== want.promoViews) { bad++; fail(`${e.slug} ${snap.ts} ${key}: promo impressions ${got.promoViews} do not re-derive (${want.promoViews})`); }
+      }
+    }
+    const promoPosts = (show.targets || []).filter((t) => t.kind === "x" && !isAnnouncePost(t));
+    const last = e.snapshots.at(-1)?.byDest || {};
+    const accounts = [...new Set(promoPosts.map((t) => `x:${t.account}`))];
+    const values = accounts.map((key) => last[key]?.promoViews);
+    const expectedPromo = promoPosts.length ? { posts: promoPosts.length, impressions: values.every(Number.isFinite) ? values.reduce((a, v) => a + v, 0) : null } : null;
+    if (JSON.stringify(e.latest.xPromoReach ?? null) !== JSON.stringify(expectedPromo)) { bad++; fail(`${e.slug}: promo reach does not re-derive from the registered promo posts`); }
+    const promo = e.latest.xPromoReach?.impressions;
+    if (Number.isFinite(promo) && promo > 0 && [e.latest.xImpressions, e.latest.totalViews, e.latest.xPlays].some((v) => Number.isFinite(v) && Number.isFinite(e.latest.xImpressions) && v === e.latest.xImpressions + promo)) {
+      bad++; fail(`${e.slug}: promo impressions were added into reach, plays, or views`);
+    }
+    const byPost = new Map((show.targets || []).filter((t) => t.kind === "x" && t.postId).map((t) => [t.url || `https://x.com/${t.account}/status/${t.postId}`, t]));
+    for (const a of e.announces || []) {
+      const t = byPost.get(a.url);
+      if (t && a.role !== postRole(t)) { bad++; fail(`${e.slug}: ${a.url} ships role ${a.role}, but its registry post is ${postRole(t)}`); }
+    }
+  }
+  if (!bad) ok("X reach: announce posts only, re-derived from raw readings; promo posts counted beside it and never in reach, plays or views; roles agree");
+}
+
 // --- 1c. playsStatus/high-water schema (F-4) ---
 {
   let bad = 0;
@@ -943,7 +985,7 @@ try {
 // Expanded feedback is a display cohort, independently re-derived from its
 // approved store. Raw archive records and uncertain labels must never ship.
 {
-  const { validateAudienceStore } = await import("../audience-integrity.mjs");
+  const { validateAudienceStore, currentPromptDrift } = await import("../audience-integrity.mjs");
   const { audienceView } = await import("../audience-view.mjs");
   const path = join(ROOT, "data/restream/audience-feedback.json");
   let errors = [];
@@ -952,7 +994,9 @@ try {
       const store = JSON.parse(readFileSync(path, "utf8"));
       const { createHash } = await import("node:crypto");
       const promptHash = createHash("sha256").update(readFileSync(join(ROOT, "scripts/restream/comments-classify-prompt.md"), "utf8")).digest("hex");
-      errors.push(...validateAudienceStore(store, { promptHash }));
+      errors.push(...validateAudienceStore(store));
+      const older = currentPromptDrift(store, promptHash);
+      if (older) drift(`audience feedback: ${older} stored configuration${older === 1 ? " labels" : "s label"} under an older classifier prompt — the next audience-feedback run re-reads them`);
       for (const episode of data.episodes) {
         const expected = audienceView(episode.comments, store.episodes?.[episode.slug], { now: data.generatedAt, commentState: episode.sourceStates?.comments });
         if (JSON.stringify(episode.audience || null) !== JSON.stringify(expected)) errors.push(`${episode.slug}: displayed audience feedback differs from approved source records`);
@@ -1023,10 +1067,14 @@ try {
       const vocabulary = classifier.THEME_VOCABULARY;
       const prompt = readFileSync(join(ROOT, "scripts", "restream", "comments-classify-prompt.md"), "utf8");
       const promptHash = createHash("sha256").update(prompt).digest("hex");
+      // integrity is re-derived from the store's own stamps (the configuration
+      // that labelled and passed the gate); matching the prompt in the code is
+      // the separate drift check below — a prompt change pending adoption keeps
+      // every gated label publishable (2026-09-29, after the 09-28 outage)
       const configHash = createHash("sha256").update(JSON.stringify({
         version: classifier.CLASSIFIER_VERSION,
-        promptVersion: classifier.PROMPT_VERSION,
-        promptHash,
+        promptVersion: store.promptVersion,
+        promptHash: store.promptHash,
         model: store.model,
         provider: store.provider,
         vocabulary,
@@ -1072,12 +1120,22 @@ try {
       .sort((a, b) => b.count - a.count || a.theme.localeCompare(b.theme)).slice(0, 3);
   };
   const summarize = (rows, totalViews, rateComplete) => {
+    // rule 2: an unlabelled comment holds every count and the rate absent
+    const pending = rows.filter(({ label }) => !label).length;
+    if (pending) {
+      return {
+        captured: rows.length, pending, feedbackCount: null, uniqueCommenters: null, enjoyCount: null, complaintCount: null,
+        commentersPer1k: null, commentersPer1kNote: `${pending} comment${pending === 1 ? " is" : "s are"} still being read — counts and the commenting rate wait until every comment has a label`,
+        enjoyThemes: [], complaintThemes: [],
+      };
+    }
     const feedback = rows.filter(({ label }) => label?.state === "ready" && label.relevance === "feedback");
     const enjoy = feedback.filter(({ label }) => label.sentiment === "positive" || label.sentiment === "mixed");
     const complaints = feedback.filter(({ label }) => label.sentiment === "negative" || label.sentiment === "mixed");
     const uniqueCommenters = peopleCount(feedback.map(({ comment }) => comment));
     return {
       captured: rows.length,
+      pending: 0,
       feedbackCount: feedback.length,
       uniqueCommenters,
       enjoyCount: peopleCount(enjoy.map(({ comment }) => comment)),
@@ -1110,7 +1168,7 @@ try {
       const rateComplete = raw.xCoverage === "covered" && commentState === "ready" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.incomplete && !tvi.partial && !tvi.stale;
       if (!rateComplete) showRateComplete = false;
       const expected = summarize(rows, e.latest.totalViews, rateComplete);
-      if (commentState !== "ready") expected.commentersPer1kNote = `Comments are from ${raw.updatedAt?.slice(0, 10) || "an earlier reading"}; the latest source check is ${commentState}. The commenting rate is not available.`;
+      if (commentState !== "ready" && !expected.pending) expected.commentersPer1kNote = `Comments are from ${raw.updatedAt?.slice(0, 10) || "an earlier reading"}; the latest source check is ${commentState}. The commenting rate is not available.`;
       for (const [key, value] of Object.entries(expected)) {
         if (JSON.stringify(e.comments[key]) !== JSON.stringify(value)) { bad++; fail(`${e.slug}: comments.${key} disagrees with the classified-store recompute`); }
       }
@@ -1147,7 +1205,9 @@ try {
     const build = await import(join(TOOL, "build-data.mjs"));
     const slack = build.trendsText(data);
     const newest = eps[eps.length - 1]?.comments;
-    const commenterPhrase = newest ? `${newest.uniqueCommenters} ${newest.uniqueCommenters === 1 ? "person" : "people"} commented` : "";
+    const commenterPhrase = !newest ? "" : newest.pending
+      ? `${newest.pending} ${newest.pending === 1 ? "comment is" : "comments are"} still being read`
+      : `${newest.uniqueCommenters} ${newest.uniqueCommenters === 1 ? "person" : "people"} commented`;
     if (!slack.includes("• Audience feedback:") || (newest && !slack.includes(commenterPhrase))) {
       bad++; fail("comments: Monday Slack line is missing or does not read the newest exported count");
     }
@@ -2683,16 +2743,19 @@ try {
 // --- 1r. destination links (W18): stored, recomputed from the registry, opened safely ---
 {
   let bad = 0;
+  const xPosts = await import(join(TOOL, "x-posts.mjs"));
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   for (const e of eps) {
     const show = registry.shows.find((s) => s.slug === e.slug);
     const expected = {};
     for (const t of show?.targets || []) {
       if (t.kind === "youtube" && t.videoId) expected[`yt:${t.account}`] = `https://youtube.com/watch?v=${t.videoId}`;
-      if (t.kind === "x" && t.role !== "promo") {
-        if (t.broadcastId) expected[`x:${t.account}`] = `https://x.com/i/broadcasts/${t.broadcastId}`;
-        else if (t.postId) expected[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
-      }
+      if (xPosts.isAnnouncePost(t)) expected[`x:${t.account}`] = `https://x.com/i/broadcasts/${t.broadcastId}`;
+    }
+    // a post awaiting broadcast resolution links to itself; promo and latched
+    // no-broadcast posts never stand in for the replay
+    for (const t of show?.targets || []) {
+      if (t.kind === "x" && t.postId && t.role !== "promo" && !t.broadcastResolved && !expected[`x:${t.account}`]) expected[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
     }
     if (show?.linkedin?.url) expected["linkedin:michaelriddering"] = show.linkedin.url;
     const want = Object.keys(expected).length ? expected : undefined;

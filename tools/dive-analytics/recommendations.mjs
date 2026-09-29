@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
+import { completeModel } from "./model-route.mjs";
 // recommendations.mjs — W15 tactical recommendation engine (model-backed).
 //
 // Reads EVERYTHING the pipeline stores — episode totals, the verified
@@ -48,9 +48,8 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const DATA_PATH = join(ROOT, "data.json");
 const STORE_PATH = join(ROOT, "data", "restream", "recommendations.json");
-// claude-fable-5 uses adaptive thinking from this same budget.
+// adaptive thinking draws from this same budget.
 const MAX_TOKENS = 16000;
-const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 export const STORE_VERSION = 1;
 export const PROMPT_VERSION = 5; // explicit internal fact bindings; legacy unbound items keep their prior guard
@@ -457,20 +456,7 @@ Facts marked basis "young" belong to episodes under three weeks old; their rates
 10. context carries words, not numbers: a state word, a direction word, a launch word may be quoted; numeric claims still require cited facts. A measure marked "carried from an older finished episode" describes that episode, not the newest; a "promo-driven lift" is shown, never scored, and never a reason to celebrate or to worry.`;
 
 async function callModel(messages) {
-  if (useGateway()) return gatewayModel(SYSTEM, messages, { timeoutMs: 180000, maxTokens: MAX_TOKENS });
-  const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) throw new Error("ANTHROPIC_API_KEY not set");
-  const model = process.env.RECS_MODEL || DEFAULT_ANTHROPIC_MODEL;
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages }),
-    signal: AbortSignal.timeout(180000),
-  });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}`);
-  const body = await res.json();
-  const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
-  return { text, model };
+  return completeModel(SYSTEM, messages, { maxTokens: MAX_TOKENS, timeoutMs: 180000, label: "recommendations" });
 }
 
 // v8 W20: up to two attempts; a grounding failure goes back to the model
@@ -493,14 +479,16 @@ async function regenerate(sheet) {
     try {
       parsed = JSON.parse(result.text);
       validateGeneratedItems(parsed.items, sheet.facts);
-      return { items: parsed.items, model: result.model, attempts: attempt };
+      return { items: parsed.items, provider: result.provider, model: result.model, attempts: attempt };
     } catch (error) {
       console.log(`recommendations: attempt ${attempt}/2 failed grounding — ${error.message}`);
       // the exact failure and the item it points at go back with the reply,
       // so the retry is a targeted correction (v8 W20)
       const id = /^([a-z0-9-]{3,40}): /.exec(error.message)?.[1];
       const offender = (id && Array.isArray(parsed?.items) && parsed.items.find((x) => x?.id === id)) || null;
-      messages.push({ role: "assistant", content: result.text });
+      // the full reply goes back unchanged (thinking blocks included) so the
+      // correction continues the conversation instead of editing it
+      messages.push({ role: "assistant", content: result.content || result.text });
       messages.push({ role: "user", content: `Your reply failed validation: ${error.message}.${offender ? ` The offending item was: ${JSON.stringify(offender)}.` : ""} Return the corrected full JSON now — same rules, every digit sequence copied verbatim from allowedNumbers.` });
     }
   }
@@ -527,7 +515,7 @@ async function main() {
       version: STORE_VERSION,
       promptVersion: PROMPT_VERSION,
       updatedAt: new Date().toISOString(),
-      provider: useGateway() ? gatewayConfig().provider : "anthropic",
+      provider: gen.provider,
       model: gen.model,
       factsGeneratedAt: sheet.generatedAt,
       // The identity and comparison metadata remain internal reading provenance.

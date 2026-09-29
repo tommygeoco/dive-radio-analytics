@@ -55,7 +55,8 @@ export function snapshotState(data) {
   const complaints = {}, w1v = {};
   let staleCount = 0;
   for (const e of eps) {
-    complaints[e.slug] = e.comments?.complaintCount ?? 0;
+    // null while comments are still being read: no count, so no comparison
+    complaints[e.slug] = e.comments?.complaintCount === null ? null : e.comments?.complaintCount ?? 0;
     if (e.latest?.totalViewsInfo?.stale) staleCount++;
   }
   for (const v of data.showTrend?.week1VelocityByEpisode || []) w1v[v.slug] = v.value;
@@ -160,6 +161,7 @@ export function alertLines(prev, cur, data) {
 
   // 3. new people raising concerns
   for (const [slug, n] of Object.entries(cur.complaints)) {
+    if (n == null) continue;
     const before = prev.complaints?.[slug] ?? n;
     if (n - before >= NEG_SPIKE) {
       const e = byslug(slug);

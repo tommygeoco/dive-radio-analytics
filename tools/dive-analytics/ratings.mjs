@@ -158,6 +158,8 @@ function analyticsReading(e, kind, io, { basis }) {
 // directional-feedback share on the given sources, comments posted within
 // the read window only — 3+ directional comments from 3+ people or nothing
 function sentimentOf(e, sources) {
+  // comments still being read are an incomplete reading, never a smaller one
+  if (e.comments?.pending) return null;
   const cutoff = premiereMs(e.premiere) + READ_DAYS * DAY;
   const list = (e.comments?.list || []).filter((c) => sources.has(c.source) && c.at && Date.parse(c.at) <= cutoff);
   const directional = list.filter((c) => ["positive", "negative", "mixed"].includes(c.sentiment));

@@ -17,7 +17,7 @@ export function audienceView(comments, archive, { now, commentState } = {}) {
     if (reading.state !== 'ready' || stale) notices.push(`${names[source] || source}: ${stale ? 'the last capture is over a day old' : 'the latest capture is incomplete'}. Showing saved feedback.`);
   }
   if (commentState && commentState.state !== 'ready') notices.push('YouTube comments and direct replies: the latest capture is incomplete. Showing saved feedback.');
-  if (archive.processing?.pending > 0) notices.push('More captured comments are still being processed.');
+  if (archive.processing?.pending > 0 || comments?.pending > 0) notices.push('More captured comments are still being processed.');
   if (archive.processing?.review > 0) notices.push('Some comments are awaiting review.');
   return {
     count: list.length,

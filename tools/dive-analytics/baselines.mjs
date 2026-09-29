@@ -626,13 +626,27 @@ export function discoveryShareOf(channels) {
   return views > 0 ? round1((discovered / views) * 100) : null;
 }
 
+// LinkedIn chat is left out of both rates (health-v10). Restream never reports
+// LinkedIn viewers, so LinkedIn chatters have no place in "per 100 at the
+// peak", and LinkedIn simulcast varies by episode (E11 had none): counting its
+// chat made one episode's rate mean something different from the next (rule
+// 11). A LinkedIn row whose chat count is unknown leaves the rate absent.
+function withoutLinkedin(l, total, field) {
+  if (!Number.isFinite(total)) return null;
+  const linkedin = (l.byChannel || []).find((c) => c.label === "LinkedIn");
+  if (!linkedin || linkedin[field] == null) return linkedin ? null : total;
+  return Number.isFinite(linkedin[field]) ? total - linkedin[field] : null;
+}
+
 export function liveRatesOf(episode) {
   const l = episode?.live;
   if (!l || !Number.isFinite(l.peak) || l.peak <= 0) return null;
+  const chatters = withoutLinkedin(l, l.chatters, "chatters");
+  const messages = withoutLinkedin(l, l.chatMessages, "messages");
   return {
-    chattersPer100: Number.isFinite(l.chatters) ? round1((l.chatters / l.peak) * 100) : null,
-    messagesPerHour: Number.isFinite(l.chatMessages) && Number.isFinite(l.durationMin) && l.durationMin > 0
-      ? round1((l.chatMessages / l.durationMin) * 60) : null,
+    chattersPer100: chatters != null ? round1((chatters / l.peak) * 100) : null,
+    messagesPerHour: messages != null && Number.isFinite(l.durationMin) && l.durationMin > 0
+      ? round1((messages / l.durationMin) * 60) : null,
   };
 }
 

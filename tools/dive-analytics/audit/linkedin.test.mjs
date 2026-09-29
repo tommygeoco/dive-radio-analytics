@@ -8,6 +8,7 @@ import { linkedinIdentity, discoverLinkedin, projectLinkedin, validateMetricImpo
 import { syncLinkedin } from '../../../scripts/restream/linkedin-sync.mjs';
 import { collectFacts } from '../recommendations.mjs';
 import { computeAll, trendsLines, projectLiveSession } from '../build-data.mjs';
+import { buildBrief } from '../agent-brief.mjs';
 const now = Date.parse('2026-09-13T08:00:00Z');
 const url = 'https://www.linkedin.com/feed/update/urn:li:ugcPost:123456/';
 const shows = [{ slug: '2026-09-10-dive-radio-example', targets: [{ kind: 'youtube', videoId: 'verified', account: 'joindiveclub' }] }];
@@ -77,6 +78,22 @@ test('LinkedIn reaches recommendation facts, source context and weekly text with
   assert(trendsLines(data).some(row => row.kind === 'linkedin' && row.text.includes(episode.linkedin.url)));
   const expected = episode.latest.ytTotal != null || episode.latest.xPlays != null ? (episode.latest.ytTotal ?? 0) + (episode.latest.xPlays ?? 0) : null;
   assert.equal(episode.latest.totalViews, expected);
+});
+
+test('an imported LinkedIn plays reading never enters any views total the page, brief or Slack report', () => {
+  const data = computeAll();
+  const episode = data.episodes.at(-1);
+  const digestTotals = (d) => { const g = buildBrief(d).digest; return JSON.stringify([g.show.totals, g.episodes.map((e) => e.views.total)]); };
+  episode.linkedin = projectLinkedin(source, raw, [], now);
+  const without = digestTotals(data);
+  const slackWithout = trendsLines(data).filter((row) => row.kind !== 'linkedin').map((row) => row.text).join('\n');
+  episode.linkedin = projectLinkedin(source, raw, [{ observedAt: '2026-09-12T08:00:00.000Z', source: 'linkedin-owner-reading', metrics: { plays: 5000 } }], now);
+  assert.equal(episode.linkedin.metrics.plays, 5000, 'the fixture really carries LinkedIn plays');
+  assert.equal(digestTotals(data), without, 'LinkedIn plays leave every brief views total unchanged');
+  assert.equal(trendsLines(data).filter((row) => row.kind !== 'linkedin').map((row) => row.text).join('\n'), slackWithout, 'LinkedIn plays leave every non-LinkedIn Slack line unchanged');
+  const html = readFileSync(new URL('../../../index.html', import.meta.url), 'utf8');
+  const viewKeys = html.match(/const VIEW_KEYS = [^;]+;/)?.[0] || '';
+  assert(viewKeys && !/linkedin/i.test(viewKeys), 'the page sums views over YouTube and X keys only');
 });
 
 

@@ -1,5 +1,5 @@
 import { installGatewayFixture } from "./model-gateway-fixture.mjs";
-process.env.DIVE_MODEL_TRANSPORT = "direct-api"; // These fixtures exercise the explicit API rollback path.
+process.env.DIVE_MODEL_TRANSPORT = "api"; // These fixtures exercise the Anthropic API path with an intercepted network.
 import assert from "node:assert/strict";
 import { cpSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { execFileSync, spawnSync } from "node:child_process";
@@ -80,11 +80,11 @@ try {
     const fact = payload.facts.find(f => f.id === 'peak-E1');
     if (!fact) throw new Error('fixture needs the measured E1 live peak');
     const items = Array.from({length:5}, (_, i) => ({id:'bound-fixture-'+i,category:'content',serves:'livePull',text:'E1 reached '+fact.value+' peak live viewers.',recommendation:'Test a shorter introduction.',...(process.env.DIVE_FIXTURE_BINDINGS === 'missing' ? {} : {factIds:[fact.id]})}));
-    return {ok:true,json:async()=>({content:[{type:'text',text:JSON.stringify({items})}]})};
+    return {ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify({items})}]})};
   };\n`);
   const run = (script, mode = "present") => spawnSync(process.execPath, ["--import", preload, join(root, "tools/dive-analytics", script)], {
     cwd: root, encoding: "utf8", timeout: 60_000,
-    env: { ...process.env, ANTHROPIC_API_KEY: "fixture-only", HEALTH_MODEL: "fixture-model", DIVE_FIXTURE_BINDINGS: mode },
+    env: { ...process.env, ANTHROPIC_API_KEY: "fixture-only", DIVE_FIXTURE_BINDINGS: mode },
   });
   let result = run("recommendations.mjs");
   assert.equal(result.status, 0, `${result.stdout} ${result.stderr}`);

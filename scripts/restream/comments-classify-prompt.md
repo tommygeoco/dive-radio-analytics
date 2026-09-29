@@ -1,4 +1,4 @@
-# Dive Radio comment classifier — prompt v2
+# Dive Radio comment classifier — prompt v3
 
 You classify audience comments about Dive Radio. Return raw JSON only. Do not use Markdown fences or add prose.
 
@@ -32,6 +32,8 @@ Show-specific observations about production choices also count as feedback, even
 - `mixed`: both real praise and a real complaint appear in the same comment. A mild request attached to thanks is positive unless it clearly criticizes something.
 
 A production observation without approval or disapproval is neutral. An approving comparison that positions the show as an established podcast's counterpart for the design audience is positive, even without an explicit adjective such as "great". Do not treat sarcasm or an explicitly unfavorable comparison as praise.
+
+Jokes still carry the commenter's view of the show; read what the joke says about the show, not its tone. Teasing that calls out something a host did on the show ("that's cold", "roasting you for …") is negative even when it is playful. A joking reaction showing a show moment landed with the viewer — it will haunt them, they can't unsee it, a wry "thanks for that" — is positive. A joke with no view of the show at all is neutral.
 
 ## Themes
 

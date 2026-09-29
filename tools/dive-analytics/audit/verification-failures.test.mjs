@@ -1,5 +1,5 @@
 import { installGatewayFixture } from "./model-gateway-fixture.mjs";
-process.env.DIVE_MODEL_TRANSPORT = "direct-api"; // These fixtures exercise the explicit API rollback path.
+process.env.DIVE_MODEL_TRANSPORT = "api"; // These fixtures exercise the Anthropic API path with an intercepted network.
 import assert from 'node:assert/strict';
 import { cpSync, existsSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';

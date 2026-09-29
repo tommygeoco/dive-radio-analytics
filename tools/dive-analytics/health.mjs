@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
+import { completeModel, hasModelCredential } from "./model-route.mjs";
 // health.mjs — W10 deterministic show checks + model-written health summary.
 //
 // This is the only script allowed to call a model for show health. It uses
@@ -104,7 +104,6 @@ const PROMPT_PATH = join(HERE, "health-prompt.md");
 const DAY = 86400000;
 const PHX_OFFSET = 7 * 3600000;
 const MAX_TOKENS = 16000;
-const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 
 // store v2 (PRD v9 W24): entries carry per-measure ageBasis/window/note and
 // per-entry checkSet; v1 files are accepted and upgraded in place with every
@@ -139,7 +138,11 @@ export const HEALTH_STORE_VERSION = 3;
 // health-v9 (2026-09-03): an exact UX Tools newsletter link marks only the
 // linked viewing source as promoted. Its clicks never enter the score; the
 // affected viewing number is shown but left out of clean comparisons.
-export const FORMULA_VERSION = "health-v9";
+// health-v10 (2026-09-29): X reach reads the announce posts only — the posts
+// that carry the broadcast (x-posts.mjs). Promo posts' impressions are shown
+// beside reach and never enter exposure, announce-to-play, or any typical.
+// While an episode's comments are still being read, goodwill balance waits.
+export const FORMULA_VERSION = "health-v10";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
 // the 2026-08-24 transition (two checks left, score held at 51) shipped with
@@ -185,6 +188,7 @@ export const WEIGHTS_BY_FORMULA = Object.freeze({
   "health-v7": BASE_WEIGHTS,
   "health-v8": BASE_WEIGHTS,
   "health-v9": BASE_WEIGHTS,
+  "health-v10": BASE_WEIGHTS,
 });
 export const CHECK_LABELS = Object.freeze({
   growth: "growth", audienceQuality: "audience quality", reachEfficiency: "reach", livePull: "live turnout", participation: "participation", conversion: "subscribers", sentiment: "goodwill",
@@ -723,6 +727,7 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   const recentPeople = new Set(recentFeedback.map((row) => `${row.source}:${String(row.author || "viewer").trim().toLowerCase()}`)).size;
   const balanceValue = recentDirectional > 0 ? (recentPositive + recentMixed * 0.5) / recentDirectional * 100 : null;
   const balanceOf = (e) => {
+    if (e.comments?.pending) return null;
     const rows = (e.comments?.list || []).filter((row) => commonSources.has(row.source));
     const d = rows.filter((row) => ["positive", "negative", "mixed"].includes(row.sentiment));
     const people = new Set(d.map((row) => `${row.source}:${String(row.author || "viewer").trim().toLowerCase()}`)).size;
@@ -731,7 +736,12 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   };
   const balanceWindow = windowFor(recentEpisodes[0], episodes);
   const balancePeers = peersFor({ own: recentEpisodes[0], window: balanceWindow, flags, valueOf: balanceOf });
-  const balanceMeasure = recentDirectional >= 3 && recentPeople >= 3 && Number.isFinite(balanceValue)
+  // an episode whose comments are still being read would shrink the balance
+  // silently: the measure waits for every label (absence, never a partial read)
+  const unread = recentEpisodes.filter((e) => e.comments?.pending);
+  const balanceMeasure = unread.length
+    ? measurement("balance", null, null, { reason: `Comments on ${unread.map((e) => `E${e.ep}`).join(", ")} are still being read.` })
+    : recentDirectional >= 3 && recentPeople >= 3 && Number.isFinite(balanceValue)
     ? (balancePeers.typical != null
       ? measurement("balance", balanceValue, balancePeers, { ageBasis: "mature", episodeRead: newest.slug })
       : measurement("balance", balanceValue, null, { ageBasis: "ageFree", episodeRead: newest.slug, absoluteScale: true }))
@@ -955,50 +965,8 @@ export function fallbackSynthesis(inputs) {
   return { score: Math.round(inputs.weightedMean), headline, pros, cons, drivers: drivers.slice(0, 3).map((d) => d.slice(0, 170)) };
 }
 
-function providerConfig() {
-  if (useGateway()) return gatewayConfig();
-  if (process.env.ANTHROPIC_API_KEY) {
-    return { provider: "anthropic", key: process.env.ANTHROPIC_API_KEY, model: process.env.HEALTH_MODEL || DEFAULT_ANTHROPIC_MODEL };
-  }
-  if (process.env.OPENAI_API_KEY) {
-    if (!process.env.HEALTH_MODEL) throw new Error("HEALTH_MODEL must name a live-tested OpenAI model when only OPENAI_API_KEY is set");
-    return { provider: "openai", key: process.env.OPENAI_API_KEY, model: process.env.HEALTH_MODEL };
-  }
-  throw new Error("ANTHROPIC_API_KEY or OPENAI_API_KEY is required");
-}
-
 async function callOnce(system, payload) {
-  if (useGateway()) return gatewayModel(system, [{ role: "user", content: JSON.stringify(payload) }], { timeoutMs: 180000, maxTokens: MAX_TOKENS });
-  const cfg = providerConfig();
-  if (cfg.provider === "anthropic") {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "x-api-key": cfg.key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({
-        model: cfg.model,
-        max_tokens: MAX_TOKENS,
-        system,
-        messages: [{ role: "user", content: JSON.stringify(payload) }],
-      }),
-      signal: AbortSignal.timeout(180000),
-    });
-    if (!response.ok) throw new Error(`anthropic HTTP ${response.status}`);
-    const body = await response.json();
-    const text = (body.content || []).filter((block) => block.type === "text").map((block) => block.text).join("\n");
-    if (!text.trim()) throw new Error("empty Anthropic response");
-    return { text, ...cfg };
-  }
-  const response = await fetch("https://api.openai.com/v1/responses", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${cfg.key}`, "content-type": "application/json" },
-    body: JSON.stringify({ model: cfg.model, max_output_tokens: MAX_TOKENS, instructions: system, input: JSON.stringify(payload) }),
-    signal: AbortSignal.timeout(180000),
-  });
-  if (!response.ok) throw new Error(`openai HTTP ${response.status}`);
-  const body = await response.json();
-  const text = body.output_text || (body.output || []).flatMap((item) => item.content || []).filter((item) => item.type === "output_text").map((item) => item.text).join("\n");
-  if (!text.trim()) throw new Error("empty OpenAI response");
-  return { text, ...cfg };
+  return completeModel(system, [{ role: "user", content: JSON.stringify(payload) }], { maxTokens: MAX_TOKENS, timeoutMs: 180000, label: "health" });
 }
 
 function numberTokens(text) {
@@ -1197,7 +1165,7 @@ function checkedFallback(inputs, reason) {
 }
 
 async function synthesize(inputs, { allowFallback = true } = {}) {
-  if (!useGateway() && !process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) {
+  if (!hasModelCredential()) {
     if (allowFallback) return checkedFallback(inputs, "model credential is unavailable");
     throw new Error("health model credential is unavailable");
   }

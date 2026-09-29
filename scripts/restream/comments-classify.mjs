@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { useGateway, gatewayConfig, gatewayModel } from "../../tools/dive-analytics/model-route.mjs";
+import { completeModel, modelIdentity } from "../../tools/dive-analytics/model-route.mjs";
 // comments-classify.mjs — model-backed relevance, sentiment, and theme labels.
 // Dedicated model script: no SDK dependencies, fetch only. The deterministic
 // exporter reads its persisted store; build-data.mjs never calls a model.
@@ -13,7 +13,7 @@ import {
 import { createHash } from "node:crypto";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { atomicWriteJson, withSourceLock, fetchJson } from "../../tools/dive-analytics/source-io.mjs";
+import { atomicWriteJson, withSourceLock } from "../../tools/dive-analytics/source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -21,10 +21,9 @@ const PROMPT_PATH = join(HERE, "comments-classify-prompt.md");
 const COMMENTS_DIR = join(ROOT, "data", "restream", "comments");
 const STORE_PATH = join(ROOT, "data", "restream", "comments-classified.json");
 const GOLDEN_PATH = join(ROOT, "tools", "dive-analytics", "audit", "golden-comments.json");
-const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
 const MAX_TOKENS = 16000;
 export const CLASSIFIER_VERSION = 1;
-export const PROMPT_VERSION = 2;
+export const PROMPT_VERSION = 3; // v3: jokes carry the commenter's view of the show (2026-09-29)
 export const THEME_VOCABULARY = [
   "call-in segment", "host chemistry", "topic choice", "guest",
   "audio quality", "video quality", "episode length", "pacing", "format",
@@ -79,64 +78,14 @@ export function loadClassifiedStore() {
   return loadJson(STORE_PATH, blankStore());
 }
 
+// The provider and model this run labels with. They are part of the config
+// hash, so a model change always earns its own golden gate before it labels.
 export function providerConfig() {
-  if (useGateway()) return gatewayConfig();
-  if (process.env.ANTHROPIC_API_KEY) {
-    return {
-      provider: "anthropic",
-      key: process.env.ANTHROPIC_API_KEY,
-      model: process.env.COMMENTS_MODEL || DEFAULT_ANTHROPIC_MODEL,
-    };
-  }
-  if (process.env.OPENAI_API_KEY) {
-    if (!process.env.COMMENTS_MODEL) {
-      throw new Error("COMMENTS_MODEL must name a live-tested OpenAI model when only OPENAI_API_KEY is set");
-    }
-    return { provider: "openai", key: process.env.OPENAI_API_KEY, model: process.env.COMMENTS_MODEL };
-  }
-  throw new Error("ANTHROPIC_API_KEY or OPENAI_API_KEY is required");
+  return modelIdentity();
 }
 
 async function callOnce(system, payload, { timeoutMs = 180000 } = {}) {
-  if (useGateway()) return gatewayModel(system, [{ role: "user", content: JSON.stringify(payload) }], { timeoutMs: timeoutMs, maxTokens: MAX_TOKENS });
-  const cfg = providerConfig();
-  if (cfg.provider === "anthropic") {
-    const body = await fetchJson("https://api.anthropic.com/v1/messages", {
-      label: "comment classifier Anthropic", maxAttempts: 1, timeoutMs,
-      method: "POST",
-      headers: {
-        "x-api-key": cfg.key,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: cfg.model,
-        max_tokens: MAX_TOKENS,
-        system,
-        messages: [{ role: "user", content: JSON.stringify(payload) }],
-      }),
-      signal: AbortSignal.timeout(timeoutMs),
-    });
-    const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
-    if (!text.trim()) throw new Error(`empty Anthropic response (stop_reason ${body.stop_reason}, blocks ${JSON.stringify((body.content || []).map((b) => b.type))}, output_tokens ${body.usage?.output_tokens})`);
-    return { text, ...cfg };
-  }
-
-  const body = await fetchJson("https://api.openai.com/v1/responses", {
-    label: "comment classifier OpenAI", maxAttempts: 1, timeoutMs,
-    method: "POST",
-    headers: { Authorization: `Bearer ${cfg.key}`, "content-type": "application/json" },
-    body: JSON.stringify({
-      model: cfg.model,
-      max_output_tokens: MAX_TOKENS,
-      instructions: system,
-      input: JSON.stringify(payload),
-    }),
-    signal: AbortSignal.timeout(timeoutMs),
-  });
-  const text = body.output_text || (body.output || []).flatMap((o) => o.content || []).filter((c) => c.type === "output_text").map((c) => c.text).join("\n");
-  if (!text.trim()) throw new Error("empty OpenAI response");
-  return { text, ...cfg };
+  return completeModel(system, [{ role: "user", content: JSON.stringify(payload) }], { maxTokens: MAX_TOKENS, timeoutMs, label: "comment classifier" });
 }
 
 const RETRY_DELAYS_MS = [2000];
@@ -275,6 +224,12 @@ async function runGoldenGate(store, cfg, now) {
   const relevancePct = Math.round((relevanceCorrect / cases.length) * 10000) / 100;
   const sentimentPct = sentimentTotal ? Math.round((sentimentCorrect / sentimentTotal) * 10000) / 100 : 100;
   const passed = relevanceCorrect === cases.length && sentimentPct >= 95;
+  console.log(`classifier golden: relevance ${relevanceCorrect}/${cases.length} (${relevancePct}%), sentiment ${sentimentCorrect}/${sentimentTotal} (${sentimentPct}%)`);
+  // A configuration that fails never replaces the last one that passed: the
+  // store keeps its proven stamps and labels, new comments stay pending (held
+  // off the page), and the rest of the dashboard still publishes. Stamping a
+  // failed gate onto the store blocked every publish on 2026-09-28 and 09-29.
+  if (!passed) throw new Error(`golden gate failed${misses.length ? ` — ${misses.slice(0, 5).join("; ")}` : ""}; previous classifier configuration kept`);
   stampStore(store, cfg, now);
   store.golden = {
     at: now,
@@ -286,8 +241,6 @@ async function runGoldenGate(store, cfg, now) {
     misses,
   };
   saveAtomic(STORE_PATH, store);
-  console.log(`classifier golden: relevance ${relevanceCorrect}/${cases.length} (${relevancePct}%), sentiment ${sentimentCorrect}/${sentimentTotal} (${sentimentPct}%)`);
-  if (!passed) throw new Error(`golden gate failed${misses.length ? ` — ${misses.slice(0, 5).join("; ")}` : ""}`);
   return store.golden;
 }
 
@@ -319,10 +272,17 @@ async function classifyUnlocked({ reclassify = false } = {}) {
   const store = loadClassifiedStore();
   store.classified ||= {};
   assertVersionDiscipline(store, { reclassify });
-  await ensureGolden(store, cfg, now);
-
   const source = allComments();
   const comments = reclassify ? source : source.filter((c) => !store.classified[c.id]);
+  try {
+    await ensureGolden(store, cfg, now);
+  } catch (err) {
+    // the waiting comments are named in the run record; the proven stamps and
+    // labels stay exactly as they were
+    store.lastRun = { at: now, status: "pending", added: 0, reviewed: 0, pendingIds: comments.map((c) => c.id), error: err.message };
+    saveAtomic(STORE_PATH, store);
+    throw err;
+  }
   if (!comments.length) {
     stampStore(store, cfg, now);
     store.lastRun = { at: now, status: "complete", added: 0, reviewed: 0, pendingIds: [] };

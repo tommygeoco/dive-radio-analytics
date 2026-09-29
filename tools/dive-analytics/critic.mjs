@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
+import { completeModel, modelIdentity } from "./model-route.mjs";
 // critic.mjs — standing critic for the shipped dashboard (PRD v4 Part 3).
 // Audits the ARTIFACT (data.json + index.html as a reader experiences it)
 // through five lenses: cognitive load, readability, verbosity/suppression,
@@ -15,13 +15,12 @@ import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
 import { existsSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { atomicWriteText, fetchJson, phoenixDateKey, readJsonFile, withSourceLock } from "./source-io.mjs";
+import { atomicWriteText, phoenixDateKey, readJsonFile, withSourceLock } from "./source-io.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const OUT_DIR = join(HERE, "audit");
-const MODEL = "claude-fable-5";
-const MAX_TOKENS = 16000;
+const MAX_TOKENS = 32000; // the report follows a whole-page read; thinking shares this budget
 
 // --- harvest: compact, deterministic audit bundle ---
 
@@ -101,26 +100,10 @@ function harvest() {
 
 // --- model call ---
 
-async function callModel(system, user, { fetchImpl = fetch, key = process.env.ANTHROPIC_API_KEY } = {}) {
-  if (!useGateway() && !key) throw new Error("ANTHROPIC_API_KEY not set");
-  const gateway = useGateway() ? await gatewayModel(system, [{ role: "user", content: user }], { maxTokens: MAX_TOKENS }) : null;
-  const j = gateway ? { stop_reason: gateway.stopReason, content: [{ type: "text", text: gateway.text }] } : await fetchJson("https://api.anthropic.com/v1/messages", {
-    label: "critic model", fetchImpl, timeoutMs: 180000, maxAttempts: 1,
-    method: "POST",
-    headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      // determinism note: this model rejects the temperature param; runs are
-      // near-deterministic but not byte-stable — findings are advisory anyway.
-      // adaptive thinking is always on for this model; max_tokens is sized so
-      // the report fits after the reasoning spend.
-      system,
-      messages: [{ role: "user", content: user }],
-    }),
-  });
-  if (j.stop_reason !== "end_turn" || !Array.isArray(j.content)) throw new Error("critic model returned an incomplete response");
-  const text = j.content.filter((b) => b.type === "text" && typeof b.text === "string").map((b) => b.text).join("\n");
+async function callModel(system, user, { fetchImpl = fetch } = {}) {
+  // completeModel accepts only a completed end_turn reply (refusal, cut-off or
+  // empty replies throw), so the checks below judge the report itself.
+  const { text } = await completeModel(system, [{ role: "user", content: user }], { maxTokens: MAX_TOKENS, timeoutMs: 300000, label: "critic model", fetchImpl });
   const findings = text.match(/^- (?:PASS|WARN|FAIL)\s+[—–-]\s+\S/gm) || [];
   if (![1,2,3,4,5].every((lens) => new RegExp(`^## ${lens}\\. \\S`, "m").test(text))
     || !/^## Verdict\s*\n\s*\S/m.test(text) || !/^## The one recommendation\s*\n\s*\S/m.test(text)
@@ -164,7 +147,7 @@ export async function run({ dry = false, tag = null, now = Date.now(), fetchImpl
       }
     }
 
-    const header = `# Dashboard critic — ${date}\n\nModel: ${useGateway() ? gatewayConfig().model : MODEL} · prompt: critic-prompt.md · artifact: data.json generated ${bundle.generatedAt}\n\n---\n\n`;
+    const header = `# Dashboard critic — ${date}\n\nModel: ${modelIdentity().model} · prompt: critic-prompt.md · artifact: data.json generated ${bundle.generatedAt}\n\n---\n\n`;
     atomicWriteText(outPath, header + report + "\n");
     const fails = (report.match(/^- FAIL/gm) || []).length;
     const warns = (report.match(/^- WARN/gm) || []).length;

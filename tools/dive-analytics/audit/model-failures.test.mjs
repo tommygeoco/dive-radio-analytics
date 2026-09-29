@@ -1,5 +1,5 @@
 import { installGatewayFixture } from "./model-gateway-fixture.mjs";
-process.env.DIVE_MODEL_TRANSPORT = "direct-api"; // These fixtures exercise the explicit API rollback path.
+process.env.DIVE_MODEL_TRANSPORT = "api"; // These fixtures exercise the Anthropic API path with an intercepted network.
 import assert from 'node:assert/strict';
 import { cpSync, existsSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -28,17 +28,17 @@ try {
     appendFileSync(process.env.DIVE_FIXTURE_CALLS, 'call\\n');
     if (process.env.DIVE_FIXTURE_MODE === 'mixed-chapters') {
       const fixture = JSON.parse(readFileSync(process.env.DIVE_FIXTURE_CHAPTERS, 'utf8'));
-      if (JSON.parse(options.body).messages[0].content.startsWith('Episode: ' + fixture.title + '\\n')) return { ok: true, json: async () => ({ content: [{ type: 'text', text: JSON.stringify({ chapters: fixture.chapters }) }] }) };
+      if (JSON.parse(options.body).messages[0].content.startsWith('Episode: ' + fixture.title + '\\n')) return { ok: true, json: async () => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ chapters: fixture.chapters }) }] }) };
       throw new Error('fixture model request failed for another episode');
     }
     if (process.env.DIVE_FIXTURE_MODE === 'request') throw new Error('fixture model request failed');
-    return { ok: true, json: async () => ({ content: [{ type: 'text', text: process.env.DIVE_FIXTURE_MODE === 'invalid-json' ? 'not valid JSON' : JSON.stringify({ summaries: {}, chapters: [{ start: '99:99', title: 'Fixture', gist: 'This cannot ground.', quote: 'fictional quote' }], items: [{ id: 'fixture' }] }) }] }) };
+    return { ok: true, json: async () => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: process.env.DIVE_FIXTURE_MODE === 'invalid-json' ? 'not valid JSON' : JSON.stringify({ summaries: {}, chapters: [{ start: '99:99', title: 'Fixture', gist: 'This cannot ground.', quote: 'fictional quote' }], items: [{ id: 'fixture' }] }) }] }) };
   };\n`);
   const run = (script, args = [], mode = 'request', { credential = true } = {}) => {
     writeFileSync(countPath, '');
     const result = spawnSync(process.execPath, ['--import', preload, join(root, 'tools/dive-analytics', script), ...args], {
       cwd: root, encoding: 'utf8', timeout: 60_000,
-      env: { ...process.env, ANTHROPIC_API_KEY: credential ? 'fixture-only' : '', OPENAI_API_KEY: '', HEALTH_MODEL: 'fixture-model', DIVE_FIXTURE_CALLS: countPath, DIVE_FIXTURE_MODE: mode, DIVE_FIXTURE_CHAPTERS: join(temp, 'chapters-fixture.json') },
+      env: { ...process.env, ANTHROPIC_API_KEY: credential ? 'fixture-only' : '', DIVE_FIXTURE_CALLS: countPath, DIVE_FIXTURE_MODE: mode, DIVE_FIXTURE_CHAPTERS: join(temp, 'chapters-fixture.json') },
     });
     const calls = readFileSync(countPath, 'utf8').split('\n').filter(Boolean).length;
     return { ...result, calls };

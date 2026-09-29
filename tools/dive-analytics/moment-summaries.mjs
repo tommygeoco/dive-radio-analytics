@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { useGateway, gatewayConfig, gatewayModel } from "./model-route.mjs";
+import { completeModel } from "./model-route.mjs";
 // moment-summaries.mjs — v6.1 W17: model-written context for watch moments.
 //
 // The panel pins and the Slack sharpest-exit line no longer show raw
@@ -44,8 +44,7 @@ const ROOT = join(HERE, "..", "..");
 const DATA_PATH = join(ROOT, "data.json");
 const STORE_PATH = join(ROOT, "data", "restream", "moment-summaries.json");
 const TRANSCRIPTS = join(ROOT, "transcripts");
-const MAX_TOKENS = 4000;
-const DEFAULT_ANTHROPIC_MODEL = "claude-fable-5";
+const MAX_TOKENS = 16000; // adaptive thinking shares this budget with the short JSON reply
 const WINDOW_SEC = 120; // context handed to the model, wider than the excerpt
 
 export const STORE_VERSION = 1;
@@ -118,19 +117,7 @@ Rules for every summary:
 4. Describe; never speculate about WHY people left, and never editorialize about the show's quality.`;
 
 async function callModel(payload) {
-  if (useGateway()) return gatewayModel(SYSTEM, [{ role: "user", content: JSON.stringify(payload) }], { timeoutMs: 180000, maxTokens: MAX_TOKENS });
-  const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) throw new Error("ANTHROPIC_API_KEY not set");
-  const model = process.env.SUMMARIES_MODEL || DEFAULT_ANTHROPIC_MODEL;
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model, max_tokens: MAX_TOKENS, system: SYSTEM, messages: [{ role: "user", content: JSON.stringify(payload) }] }),
-    signal: AbortSignal.timeout(180000),
-  });
-  if (!res.ok) throw new Error(`anthropic HTTP ${res.status}`);
-  const body = await res.json();
-  return { text: (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n"), model };
+  return completeModel(SYSTEM, [{ role: "user", content: JSON.stringify(payload) }], { maxTokens: MAX_TOKENS, timeoutMs: 180000, label: "moment summaries" });
 }
 
 async function main() {
@@ -161,7 +148,7 @@ async function main() {
   store.version = STORE_VERSION;
   store.promptVersion = PROMPT_VERSION;
   store.updatedAt = new Date().toISOString();
-  store.provider = useGateway() ? gatewayConfig().provider : "anthropic";
+  store.provider = result.provider;
   store.model = result.model;
   validateStore(store);
   saveAtomic(STORE_PATH, store);

@@ -19,6 +19,7 @@ import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { xPublicGet } from "./x-public-get.mjs";
 import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson, readingEnvelope, phoenixDateKey } from "../../tools/dive-analytics/source-io.mjs";
+import { announceCandidate } from "../../tools/dive-analytics/x-posts.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const X_SEARCH_WINDOW_DAYS = 7;
@@ -162,7 +163,7 @@ export async function runCommentsPull({ root = ROOT, now = new Date().toISOStrin
       if (store.slug !== show.slug || !Array.isArray(store.comments)) throw new Error("comment store identity or rows are invalid");
       const ageDays = (Date.parse(pulledAt) - Date.parse(`${show.date}T12:00:00-07:00`)) / 86400000;
       const xDue = ageDays <= X_SEARCH_WINDOW_DAYS + 1;
-      const targets = (show.targets || []).filter((target) => target.kind === "youtube" || (xDue && target.kind === "x" && target.role !== "promo"));
+      const targets = (show.targets || []).filter((target) => target.kind === "youtube" || (xDue && announceCandidate(target)));
       const sources = [];
       const staged = [];
       for (const target of targets) {

@@ -5,12 +5,17 @@ const sha = text => createHash('sha256').update(text).digest('hex');
 const fields = new Set(['id', 'source', 'author', 'text', 'platform', 'channel', 'at', 'url', 'likes', 'capturedAt', 'contentHash', 'label']);
 const labelFields = new Set(['state', 'relevance', 'sentiment', 'themes', 'confidence', 'configHash', 'classifiedAt']);
 const sentiments = new Set(['positive', 'negative', 'mixed']);
-export function validateAudienceStore(store, { promptHash } = {}) {
+// Integrity is re-derived from each stored configuration's own stamps: its key
+// is the hash of what it labelled with, and that exact configuration passed the
+// golden gate. Whether it is still the prompt in the code is a source check,
+// reported separately by currentPromptDrift (a prompt change never makes an
+// already-gated label dishonest).
+export function validateAudienceStore(store) {
   const errors = [];
   if (store?.version !== 1 || !Number.isFinite(Date.parse(store.updatedAt)) || !store.episodes || !store.configurations) return ['audience store header is invalid'];
   for (const [key, config] of Object.entries(store.configurations)) {
     const expected = sha(JSON.stringify({ version: config.classifierVersion, promptVersion: config.promptVersion, promptHash: config.promptHash, model: config.model, provider: config.provider, vocabulary: THEME_VOCABULARY }));
-    if (key !== expected || config.configHash !== key || config.classifierVersion !== CLASSIFIER_VERSION || config.promptVersion !== PROMPT_VERSION || (promptHash && promptHash !== config.promptHash)
+    if (key !== expected || config.configHash !== key || config.classifierVersion !== CLASSIFIER_VERSION
       || !config.golden?.passed || config.golden.configHash !== key || config.golden.relevance?.pct !== 100 || !(config.golden.sentiment?.pct >= 95)) errors.push('audience classifier configuration lacks its passing golden gate');
   }
   for (const [slug, episode] of Object.entries(store.episodes)) {
@@ -32,4 +37,10 @@ export function validateAudienceStore(store, { promptHash } = {}) {
     }
   }
   return errors;
+}
+
+// Source check (drift tier): configurations still labelling under an older
+// prompt than the one in the code. The next audience-feedback run re-reads them.
+export function currentPromptDrift(store, promptHash) {
+  return Object.values(store?.configurations || {}).filter((config) => config.promptVersion !== PROMPT_VERSION || config.promptHash !== promptHash).length;
 }

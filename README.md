@@ -156,14 +156,15 @@ rebuild so today's saved entry reaches the public artifact:
 ratings → build-data → validate → health → health-verify → recommendations → moment-summaries → chapters → critic (Mondays) → build-data → validate → publish → alerts → freshness
 ```
 
-(`recommendations`, `moment-summaries`, and `health` use the local OpenClaw
-gateway by default; direct API credentials apply only in explicit direct-API
-mode. On any model or grounding failure `recommendations` prunes its
+(`recommendations`, `moment-summaries`, `health`, `chapters`, the comment
+classifier and the critic all call Claude Sonnet 5.5 through the Anthropic API,
+via `tools/dive-analytics/model-route.mjs`; `DIVE_MODEL_TRANSPORT=gateway` is the
+explicit rollback to the OpenClaw gateway. On any model or grounding failure `recommendations` prunes its
 saved store to the items that still ground in the current facts — below
 three survivors the store is removed and the page falls back to the
 deterministic insights — so a stale store can never block a publish. For
 `health` saves a validated deterministic read after two failed model attempts
-or when no direct-API credential is available. If that fallback fails, and for
+or when no Anthropic credential is available. If that fallback fails, and for
 `moment-summaries` failures, the previous store stays the public truth.
 `freshness` requires a production build from today in Phoenix and keeps the
 26-hour age check as a second guard.)

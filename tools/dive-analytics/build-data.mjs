@@ -23,6 +23,7 @@ import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
 import { currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
 import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric } from "./youtube-readiness.mjs";
 import { accountPlaysHighWater } from "./x-plays-high-water.mjs";
+import { isAnnouncePost, postRole, splitXReading } from "./x-posts.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
@@ -80,7 +81,9 @@ function fmtDate(ms) {
 
 // --- snapshot access ---
 
-export function compactSnap(s) {
+// X views here are reach on the announce posts only; promo posts' impressions
+// travel beside them as promoViews (x-posts.mjs is the one definition).
+export function compactSnap(s, show = null) {
   const byDest = {};
   for (const [k, m] of Object.entries(s.metrics || {})) {
     const d = m.detail || {};
@@ -89,11 +92,13 @@ export function compactSnap(s) {
       : Number.isFinite(d.replies)
         ? d.replies
         : null;
+    const split = k.startsWith("x:") ? splitXReading(k.slice(2), m, show?.targets) : null;
     byDest[k] = {
-      views: Number.isFinite(m.views) ? m.views : null,
+      views: split ? split.views : Number.isFinite(m.views) ? m.views : null,
       likes: Number.isFinite(d.likes) ? d.likes : null,
       comments,
     };
+    if (split?.promoViews != null) byDest[k].promoViews = split.promoViews;
     // X plays are accepted only with broadcast provenance. Historical
     // snapshots predate playsSource but carry peakConcurrent exclusively from
     // the broadcast extractor; native tweet-media detail is never a fallback.
@@ -168,6 +173,32 @@ export function partialHistoryOf(snapshots, premiere) {
   return first ? Date.parse(first.ts) - premiereMs(premiere) > PARTIAL_THRESHOLD_DAYS * DAY : null;
 }
 
+// Destination links: the announce post's broadcast wins; a post still waiting
+// for broadcast resolution links to itself; a promo post or one that never
+// resolved to a broadcast never stands in for the replay (E7's teaser did).
+export function xAndYoutubeLinks(show) {
+  const links = {};
+  for (const t of show?.targets || []) {
+    if (t.kind === "youtube" && t.videoId) links[`yt:${t.account}`] = `https://youtube.com/watch?v=${t.videoId}`;
+    if (isAnnouncePost(t)) links[`x:${t.account}`] = `https://x.com/i/broadcasts/${t.broadcastId}`;
+  }
+  for (const t of show?.targets || []) {
+    if (t.kind === "x" && t.postId && t.role !== "promo" && !t.broadcastResolved && !links[`x:${t.account}`]) links[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
+  }
+  return links;
+}
+
+// Promo posts' impressions for an episode: counted beside X reach, never in it
+// and never in views. Absent (null) when no promo post is registered — E1–E5
+// were never searched for promo posts, so "none registered" is not zero.
+export function promoReachOf(show, byDest) {
+  const posts = (show?.targets || []).filter((t) => t.kind === "x" && !isAnnouncePost(t));
+  if (!posts.length) return null;
+  const accounts = [...new Set(posts.map((t) => `x:${t.account}`))];
+  const values = accounts.map((key) => byDest?.[key]?.promoViews);
+  return { posts: posts.length, impressions: values.every(Number.isFinite) ? values.reduce((a, v) => a + v, 0) : null };
+}
+
 // Per-episode latest block. totalViewsInfo mirrors xPlaysInfo so partial/
 // stale coverage markers survive from build to render (audit F-2 guard).
 export function buildLatest(show, latest, selectedYt) {
@@ -206,6 +237,7 @@ export function buildLatest(show, latest, selectedYt) {
     youtubeAsOf,
     youtubeStale,
     xImpressions: totalOrNull(latest.byDest, X_KEYS),
+    xPromoReach: promoReachOf(show, latest.byDest),
     xPlays: playsInfo.value,
     xPlaysInfo: playsInfo,
     totalViews,
@@ -240,7 +272,7 @@ export function computeAll({ now = Date.now() } = {}) {
     const hist = JSON.parse(readFileSync(histPath, "utf8"));
     if (!hist.snapshots?.length) continue;
 
-    const snaps = hist.snapshots.map(compactSnap).sort((a, b) => Date.parse(a.ts) - Date.parse(b.ts));
+    const snaps = hist.snapshots.map((snap) => compactSnap(snap, show)).sort((a, b) => Date.parse(a.ts) - Date.parse(b.ts));
     const prem = premiereMs(show.date);
     const ytSnaps = ytSnapshotsOf({ snapshots: snaps, premiere: show.date });
     const lastTs = Date.parse(snaps[snaps.length - 1].ts);
@@ -314,7 +346,7 @@ export function computeAll({ now = Date.now() } = {}) {
       .filter((t) => t.kind === "x" && t.postId)
       .map((t) => ({
         account: t.account,
-        role: t.role || "announce",
+        role: postRole(t),
         ts: new Date(Number((BigInt(t.postId) >> 22n) + 1288834974657n)).toISOString(),
         url: t.url || null,
       }))
@@ -324,14 +356,7 @@ export function computeAll({ now = Date.now() } = {}) {
     // from the registered videoIds; on X the broadcast itself when its id was
     // resolved, else the announce post. A destination with neither stores no
     // link — absence stays silent on the page.
-    const links = {};
-    for (const t of show.targets || []) {
-      if (t.kind === "youtube" && t.videoId) links[`yt:${t.account}`] = `https://youtube.com/watch?v=${t.videoId}`;
-      if (t.kind === "x" && t.role !== "promo") {
-        if (t.broadcastId) links[`x:${t.account}`] = `https://x.com/i/broadcasts/${t.broadcastId}`;
-        else if (t.postId) links[`x:${t.account}`] = `https://x.com/${t.account}/status/${t.postId}`;
-      }
-    }
+    const links = xAndYoutubeLinks(show);
 
     const latestBlock = buildLatest(show, latest, latestYt);
     const capture = hist.capture;
@@ -415,6 +440,16 @@ export function computeAll({ now = Date.now() } = {}) {
     episode.links ||= {};
     episode.links[LINKEDIN_KEY] = source.url;
     episode.sourceStates.linkedin = { state: episode.linkedin.state, checkedAt: episode.linkedin.observedAt, reason: episode.linkedin.reason };
+  }
+  // A LinkedIn absence says which kind it is: a session with no LinkedIn
+  // destination was not streamed there (E11); a session that carried LinkedIn
+  // chat but matched no broadcast is a discovery gap. Silent on the page.
+  for (const episode of dive) {
+    if (episode.linkedin || episode.sourceStates?.live?.state !== "ready" || !episode.live) continue;
+    const carried = (episode.live.byChannel || []).some((row) => row.label === "LinkedIn");
+    episode.sourceStates.linkedin = carried
+      ? { state: "missing", checkedAt: episode.sourceStates.live.checkedAt, reason: "The Restream session carried LinkedIn, but its LinkedIn broadcast was not identified." }
+      : { state: "not-streamed", checkedAt: episode.sourceStates.live.checkedAt, reason: "This episode was not streamed to LinkedIn — its Restream session had no LinkedIn destination." };
   }
   const commentSummary = attachComments(dive, now);
   const audiencePath = join(ROOT, "data", "restream", "audience-feedback.json");
@@ -789,13 +824,28 @@ function topThemes(rows) {
     .slice(0, 3);
 }
 
+// A captured comment with no classifier label is still being read. Every count
+// and the rate wait for it — a partial count would read as fewer people, and
+// absence never renders as zero (rule 2).
+export function pendingCommentsNote(unread) {
+  return `${unread} comment${unread === 1 ? " is" : "s are"} still being read — counts and the commenting rate wait until every comment has a label`;
+}
+
 function summarizeComments(rows, { totalViews = null, rateComplete = false } = {}) {
+  const pending = rows.filter(({ label }) => !label).length;
+  if (pending) {
+    return {
+      captured: rows.length, pending, feedbackCount: null, uniqueCommenters: null, enjoyCount: null, complaintCount: null,
+      commentersPer1k: null, commentersPer1kNote: pendingCommentsNote(pending), enjoyThemes: [], complaintThemes: [],
+    };
+  }
   const feedback = rows.filter(({ label }) => label?.state === "ready" && label.relevance === "feedback");
   const enjoy = feedback.filter(({ label }) => label.sentiment === "positive" || label.sentiment === "mixed");
   const complaints = feedback.filter(({ label }) => label.sentiment === "negative" || label.sentiment === "mixed");
   const uniqueCommenters = peopleCount(feedback.map(({ comment }) => comment));
   return {
     captured: rows.length,
+    pending: 0,
     feedbackCount: feedback.length,
     uniqueCommenters,
     enjoyCount: peopleCount(enjoy.map(({ comment }) => comment)),
@@ -835,7 +885,7 @@ function attachComments(dive, now = Date.now()) {
     const rateComplete = store.xCoverage === "covered" && commentState === "ready" && tvi.includesYoutube === true && tvi.includesPlays === true && !tvi.incomplete && !tvi.partial && !tvi.stale;
     if (!rateComplete) showRateComplete = false;
     const summary = summarizeComments(labeled, { totalViews: e.latest.totalViews, rateComplete });
-    if (commentState !== "ready") summary.commentersPer1kNote = `Comments are from ${store.updatedAt?.slice(0, 10) || "an earlier reading"}; the latest source check is ${commentState}. The commenting rate is not available.`;
+    if (commentState !== "ready" && !summary.pending) summary.commentersPer1kNote = `Comments are from ${store.updatedAt?.slice(0, 10) || "an earlier reading"}; the latest source check is ${commentState}. The commenting rate is not available.`;
     const featured = labeled
       .filter(({ label }) => label?.state === "ready" && label.relevance === "feedback" && label.sentiment === "positive")
       .map(({ comment }) => comment)
@@ -1492,7 +1542,8 @@ export function trendsLines(data) {
   if (audience) push(`• Captured audience feedback: ${audience.count} comments; ${audience.positiveCount} positive; ${audience.negativeCount} with criticism (mixed reactions appear in both groups).${audience.notices.length ? ` ${audience.notices.join(" ")}` : ""}`, { kind: "audience-expanded" });
   // W8: original scored-comment cohort retained for historical comparison.
   const c = newest?.comments;
-  if (c) {
+  if (c?.pending) push(`• Audience feedback: ${c.pending} ${c.pending === 1 ? "comment is" : "comments are"} still being read — counts wait until every comment has a label.`);
+  else if (c) {
     const enjoyed = c.enjoyCount ? `${c.enjoyCount} ${c.enjoyCount === 1 ? "person enjoyed" : "people enjoyed"} something` : "no praise yet";
     const concerns = c.complaintCount ? `${c.complaintCount} ${c.complaintCount === 1 ? "person raised" : "people raised"} a concern` : "no complaints";
     const rate = c.commentersPer1k != null ? `; ${c.commentersPer1k} people per 1,000 watches` : "";

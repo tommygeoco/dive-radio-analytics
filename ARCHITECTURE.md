@@ -35,7 +35,7 @@ lives on the owner machine).
 | ratings | `tools/dive-analytics/ratings.mjs` | `data/restream/episode-ratings.json` (frozen, rebuildable entries) | no | — |
 | build-data | `tools/dive-analytics/build-data.mjs` | `data.json`, `data.js` (incl. `data.baselines`, `data.insightsStale`) | no (imports `baselines.mjs`, `watch-moments.mjs`, `recommendations.validateItem`) | — |
 | validate | `tools/dive-analytics/audit/validate.mjs` | — | no | **no publish** |
-| health | `tools/dive-analytics/health.mjs` | `data/restream/health-history.json` (append, one/Phoenix day) | **yes** | validated deterministic fallback after two failed model calls or no direct-API credential; previous entry stays public only if fallback fails |
+| health | `tools/dive-analytics/health.mjs` | `data/restream/health-history.json` (append, one/Phoenix day) | **yes** | validated deterministic fallback after two failed model calls or no Anthropic credential; previous entry stays public only if fallback fails |
 | recommendations | `tools/dive-analytics/recommendations.mjs` | `data/restream/recommendations.json` | **yes** | previous store stays |
 | moment-summaries | `tools/dive-analytics/moment-summaries.mjs` | `data/restream/moment-summaries.json` | **yes** | moments render without context |
 | build-data → validate | (again, so today's health entry is in the artifact) | | | |
@@ -131,7 +131,9 @@ matchedUnits, newsletters[], snapshots[]}`.
 | Surface (page) | Field | Derived in | From | Definition / gate |
 |---|---|---|---|---|
 | Total views (hero, table, standings) | `latest.totalViews` | build-data `buildLatest` | snapshots | last positive YT reading + current resolved X broadcast plays; an absent source stays `null` and is named by `totalViewsInfo`; a later empty YT pull keeps the earlier number with `youtubeStale: true` |
-| X reach | `latest.xImpressions` | build-data | snapshots (X `views` = impressions) | exposure; never summed (rule 1) |
+| X reach | `latest.xImpressions` | build-data `compactSnap` via `x-posts.mjs` | snapshots: per-post `sources` of the announce posts (the posts carrying the broadcast) | exposure; never summed (rule 1). Promo posts are split out (validator 1b2); a pre-2026-09-04 reading that blends announce and promo on one account is `null` |
+| Promo reach (panel, brief) | `latest.xPromoReach {posts, impressions}` | build-data `promoReachOf` | the same per-post sources, non-announce posts | shown beside reach, never compared or summed; `null` when no promo post is registered |
+| Participation rates (show health) | `liveRatesOf` → chattersPer100, messagesPerHour | `baselines.mjs` | Restream session totals minus the LinkedIn channel row | LinkedIn chat left out (health-v10): its viewers are never reported and its simulcast varies (E11 had none); unknown LinkedIn chat leaves the rate absent |
 | UX Tools email promotion (episode panel, Slack, agent brief) | `episode.promotion` | build-data `attachNewsletterPromotions` | `beehiiv-promotions.json` | only an exact registered episode link creates the block; tracked and Beehiiv-verified email clicks are shown separately, never added to views; a linked viewing source is left out of clean comparisons while unrelated viewing and live measures remain eligible |
 | Pace ("#n of m at this age", ▲/▼ vs typical) | `data.baselines.pace[slug]`, `showTrend.paceRank` | `baselines.paceFor` via build-data | positive post-air YouTube readings at the same age (`ytSnapshotAt`, ±0.5 d) | no pre-air reading starts the clock; the other episodes at that age, outliers out, ≥3 or absent with a reason |
 | Saved share-watched overview | bars from `watch.avgPercent`; verdict from `data.baselines.newestVsPrevious.watched` | build-data + page | YouTube analytics history at the same age | every episode keeps its position; missing reads show `—`; the default overview does not fall back to an older episode when the newest report is not in yet |
