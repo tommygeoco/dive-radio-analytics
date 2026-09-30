@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-29T18:42:23.646Z",
+  "updatedAt": "2026-09-30T15:18:43.032Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -832,38 +832,97 @@
       "status": "incomplete",
       "chapters": [
         {
-          "start": "00:03:16",
-          "seconds": 196,
-          "title": "Cold open and welcome to the group chat",
-          "gist": "A montage of clips about experimenting with AI opens the show, then the hosts greet listeners and preview the episode.",
-          "quote": "Show up, try things, be curious."
+          "start": "00:08:38",
+          "seconds": 518,
+          "title": "Designer of the week nominations and voting",
+          "gist": "Listener video nominations and the hosts' own picks, including Rebecca Farr and John Falcone, before voting opens.",
+          "quote": "we do have some pretty dope designers of the week"
         },
         {
-          "start": "00:07:11",
-          "seconds": 431,
-          "title": "Survey call and designer of the week nominations",
-          "gist": "The hosts ask for survey responses, then submitted nominations for designer of the week play and get reactions.",
-          "quote": "we have collected hundreds of responses to this so far"
+          "start": "00:29:05",
+          "seconds": 1745,
+          "title": "Frustration with AI-driven work, authorship, and fast builds",
+          "gist": "Both hosts weigh a viral complaint against Uncle Bob's take, share build stories, and look at a few agent tools.",
+          "quote": "It's not all it's not all roses"
         },
         {
           "start": "00:42:36",
           "seconds": 2556,
-          "title": "Jev explained as a fast, cheap decision model",
-          "gist": "The hosts unpack what Jev is after a video gets struck, and a Magic Patterns builder shares tests and a chart demo.",
+          "title": "Jev, the fast decision model, explained and put to work by designers",
+          "gist": "Hosts and guest videos explain Jev and show voice-driven interface demos from Teddy Nee, Jonathan Moore, Kyle and Neil.",
           "quote": "It gets so big that there's actually a subreddit"
+        },
+        {
+          "start": "01:15:20",
+          "seconds": 4520,
+          "title": "Canvas tools used in reverse: Quiver in Paper and code as truth",
+          "gist": "A Quiver vector demo inside Paper, one host on dropping design-to-code parity, and a designer's Paper mockups from code.",
+          "quote": "the canvas layer is something in the Discord"
         },
         {
           "start": "01:56:03",
           "seconds": 6963,
-          "title": "Designer of the week reveal and sign-off",
-          "gist": "Sam Hawkes is named the winner, the submission form and next week's episode are teased, and the hosts sign off.",
-          "quote": "We're gonna head out in just a second"
+          "title": "Designer of the week winner and sign-off",
+          "gist": "The hosts reveal this week's winner, talk about the submission form, and tease next Thursday's episode.",
+          "quote": "not before we reveal this week's designer of the week"
         }
       ],
-      "dropped": 6,
+      "dropped": 5,
       "promptVersion": 1,
       "model": "claude-sonnet-5-5",
-      "writtenAt": "2026-09-29T18:42:23.646Z"
+      "writtenAt": "2026-09-30T15:18:43.032Z",
+      "rederivedFrom": {
+        "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
+        "promptVersion": 1
+      },
+      "retries": 1
     }
-  }
+  },
+  "superseded": [
+    {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "supersededOn": "2026-09-30",
+      "why": "earlier list was incomplete",
+      "entry": {
+        "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
+        "format": "speaker",
+        "clock": "stream",
+        "status": "incomplete",
+        "chapters": [
+          {
+            "start": "00:03:16",
+            "seconds": 196,
+            "title": "Cold open and welcome to the group chat",
+            "gist": "A montage of clips about experimenting with AI opens the show, then the hosts greet listeners and preview the episode.",
+            "quote": "Show up, try things, be curious."
+          },
+          {
+            "start": "00:07:11",
+            "seconds": 431,
+            "title": "Survey call and designer of the week nominations",
+            "gist": "The hosts ask for survey responses, then submitted nominations for designer of the week play and get reactions.",
+            "quote": "we have collected hundreds of responses to this so far"
+          },
+          {
+            "start": "00:42:36",
+            "seconds": 2556,
+            "title": "Jev explained as a fast, cheap decision model",
+            "gist": "The hosts unpack what Jev is after a video gets struck, and a Magic Patterns builder shares tests and a chart demo.",
+            "quote": "It gets so big that there's actually a subreddit"
+          },
+          {
+            "start": "01:56:03",
+            "seconds": 6963,
+            "title": "Designer of the week reveal and sign-off",
+            "gist": "Sam Hawkes is named the winner, the submission form and next week's episode are teased, and the hosts sign off.",
+            "quote": "We're gonna head out in just a second"
+          }
+        ],
+        "dropped": 6,
+        "promptVersion": 1,
+        "model": "claude-sonnet-5-5",
+        "writtenAt": "2026-09-29T18:42:23.646Z"
+      }
+    }
+  ]
 }
