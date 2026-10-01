@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-30T15:18:43.032Z",
+  "updatedAt": "2026-10-01T19:21:08.209Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -829,53 +829,80 @@
       "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
       "format": "speaker",
       "clock": "stream",
-      "status": "incomplete",
+      "status": "complete",
       "chapters": [
         {
-          "start": "00:08:38",
-          "seconds": 518,
-          "title": "Designer of the week nominations and voting",
-          "gist": "Listener video nominations and the hosts' own picks, including Rebecca Farr and John Falcone, before voting opens.",
-          "quote": "we do have some pretty dope designers of the week"
+          "start": "00:03:16",
+          "seconds": 196,
+          "title": "Cold open and welcome to the group chat",
+          "gist": "A clip montage opens the show, then the hosts greet viewers and preview the lineup and the live chat format.",
+          "quote": "Show up, try things, be curious."
         },
         {
-          "start": "00:29:05",
-          "seconds": 1745,
-          "title": "Frustration with AI-driven work, authorship, and fast builds",
-          "gist": "Both hosts weigh a viral complaint against Uncle Bob's take, share build stories, and look at a few agent tools.",
-          "quote": "It's not all it's not all roses"
+          "start": "00:07:11",
+          "seconds": 431,
+          "title": "Survey plug and designer of the week nominations",
+          "gist": "The hosts promote an industry survey, then viewer clips and the hosts nominate designers for the weekly vote.",
+          "quote": "we have collected hundreds of responses to this so far"
+        },
+        {
+          "start": "00:29:13",
+          "seconds": 1753,
+          "title": "Pushback on AI-heavy work and a fast build story",
+          "gist": "The hosts weigh a viral complaint about agent-driven work, authorship, and a replay tool built in hours.",
+          "quote": "people who are definitely frustrated with the state of work"
         },
         {
           "start": "00:42:36",
           "seconds": 2556,
-          "title": "Jev, the fast decision model, explained and put to work by designers",
-          "gist": "Hosts and guest videos explain Jev and show voice-driven interface demos from Teddy Nee, Jonathan Moore, Kyle and Neil.",
+          "title": "Jev explained: a copyright strike and a first test",
+          "gist": "Tommy introduces Jev, a Rick and Morty explainer gets struck mid-play, and Teddy Nee shares a Magic Patterns test.",
           "quote": "It gets so big that there's actually a subreddit"
+        },
+        {
+          "start": "00:50:31",
+          "seconds": 3031,
+          "title": "Voice-driven interface demos built on Jev",
+          "gist": "Jonathan Moore and Neil show voice-edited interface demos, alongside Kyle's sketch tool and a playground clip.",
+          "quote": "Add a card titled invite a teammate and a description"
+        },
+        {
+          "start": "01:03:41",
+          "seconds": 3821,
+          "title": "Generative websites and what Jev unlocks next",
+          "gist": "Samraj demos a site that reshapes itself per visitor, then the hosts discuss where Jev could lead.",
+          "quote": "I use JEV to make any site dynamically update itself"
         },
         {
           "start": "01:15:20",
           "seconds": 4520,
-          "title": "Canvas tools used in reverse: Quiver in Paper and code as truth",
-          "gist": "A Quiver vector demo inside Paper, one host on dropping design-to-code parity, and a designer's Paper mockups from code.",
+          "title": "Canvas tools, Quiver in Paper, and where design systems should live",
+          "gist": "Clips on Quiver in Paper and Alyx lead Ridd to argue design-code parity is dead and systems belong in code.",
           "quote": "the canvas layer is something in the Discord"
+        },
+        {
+          "start": "01:39:12",
+          "seconds": 5952,
+          "title": "Teen builders, rethinking education, and advice for new builders",
+          "gist": "Tommy shows his son's agent team, the hosts discuss young builders and school, and Soleil shares advice.",
+          "quote": "I just got back from Washington state over the weekend"
         },
         {
           "start": "01:56:03",
           "seconds": 6963,
-          "title": "Designer of the week winner and sign-off",
-          "gist": "The hosts reveal this week's winner, talk about the submission form, and tease next Thursday's episode.",
+          "title": "Designer of the week reveal and sign-off",
+          "gist": "The hosts announce the vote winner, mention the submission form and Discord plans, and say goodbye until next week.",
           "quote": "not before we reveal this week's designer of the week"
         }
       ],
-      "dropped": 5,
+      "dropped": 1,
       "promptVersion": 1,
       "model": "claude-sonnet-5-5",
-      "writtenAt": "2026-09-30T15:18:43.032Z",
+      "writtenAt": "2026-10-01T19:21:08.208Z",
       "rederivedFrom": {
         "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
         "promptVersion": 1
-      },
-      "retries": 1
+      }
     }
   },
   "superseded": [
@@ -922,6 +949,63 @@
         "promptVersion": 1,
         "model": "claude-sonnet-5-5",
         "writtenAt": "2026-09-29T18:42:23.646Z"
+      }
+    },
+    {
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "supersededOn": "2026-10-01",
+      "why": "earlier list was incomplete",
+      "entry": {
+        "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
+        "format": "speaker",
+        "clock": "stream",
+        "status": "incomplete",
+        "chapters": [
+          {
+            "start": "00:08:38",
+            "seconds": 518,
+            "title": "Designer of the week nominations and voting",
+            "gist": "Listener video nominations and the hosts' own picks, including Rebecca Farr and John Falcone, before voting opens.",
+            "quote": "we do have some pretty dope designers of the week"
+          },
+          {
+            "start": "00:29:05",
+            "seconds": 1745,
+            "title": "Frustration with AI-driven work, authorship, and fast builds",
+            "gist": "Both hosts weigh a viral complaint against Uncle Bob's take, share build stories, and look at a few agent tools.",
+            "quote": "It's not all it's not all roses"
+          },
+          {
+            "start": "00:42:36",
+            "seconds": 2556,
+            "title": "Jev, the fast decision model, explained and put to work by designers",
+            "gist": "Hosts and guest videos explain Jev and show voice-driven interface demos from Teddy Nee, Jonathan Moore, Kyle and Neil.",
+            "quote": "It gets so big that there's actually a subreddit"
+          },
+          {
+            "start": "01:15:20",
+            "seconds": 4520,
+            "title": "Canvas tools used in reverse: Quiver in Paper and code as truth",
+            "gist": "A Quiver vector demo inside Paper, one host on dropping design-to-code parity, and a designer's Paper mockups from code.",
+            "quote": "the canvas layer is something in the Discord"
+          },
+          {
+            "start": "01:56:03",
+            "seconds": 6963,
+            "title": "Designer of the week winner and sign-off",
+            "gist": "The hosts reveal this week's winner, talk about the submission form, and tease next Thursday's episode.",
+            "quote": "not before we reveal this week's designer of the week"
+          }
+        ],
+        "dropped": 5,
+        "promptVersion": 1,
+        "model": "claude-sonnet-5-5",
+        "writtenAt": "2026-09-30T15:18:43.032Z",
+        "rederivedFrom": {
+          "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
+          "promptVersion": 1
+        },
+        "retries": 1
       }
     }
   ]

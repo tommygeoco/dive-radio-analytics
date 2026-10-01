@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-09-29T18:41:03.795Z",
+  "updatedAt": "2026-10-01T19:18:24.924Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -301,6 +301,22 @@
     "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.65": {
       "summary": "A submitted demo shows a coffee site that reshapes its content from a visitor's browsing and past orders using Jev; the host then reacts, crediting the builder and weighing a chat objection.",
       "writtenAt": "2026-09-29T18:41:03.795Z"
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir|drop|0.45": {
+      "summary": "A guest in a submitted video recounts cold emailing a hiring manager with a prototype, reaching final interviews, then landing a job through a friend; the hosts then react on ATS funnels and standing out.",
+      "writtenAt": "2026-10-01T19:18:24.924Z"
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi|drop|0.63": {
+      "summary": "A founding designer in a recorded video shares lessons on building founder trust, translating vague goals, and self-check questions for startups; hosts then praise her work and discuss her background.",
+      "writtenAt": "2026-10-01T19:18:24.924Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.37": {
+      "summary": "Hosts react to community projects, joke about a subreddit takeover, then play a Rick and Morty explainer on Jev that gets cut by a copyright strike, and they recap what Jev does.",
+      "writtenAt": "2026-10-01T19:18:24.924Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.45": {
+      "summary": "A designer in a recorded demo shows voice and typed commands changing a UI live with Jev inside a design system; hosts then discuss a friend's sketch-to-wireframe variation and what could be added.",
+      "writtenAt": "2026-10-01T19:18:24.924Z"
     }
   }
 }

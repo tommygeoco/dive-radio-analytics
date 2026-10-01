@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T15:17:10.019Z",
+  "updatedAt": "2026-10-01T19:17:36.164Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -662,7 +662,11 @@
       "typical": 1751,
       "direction": null,
       "pctPerEpisode": -8.3,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-01",
+        "outcome": "void",
+        "detail": "2026-09-24-dive-radio-just-in-time-interfaces: promo-driven first week — not a clean test."
+      }
     },
     {
       "id": "direction:exposureWeekOne:E9:building",
@@ -843,7 +847,13 @@
       "pctPerEpisode": 17.1,
       "lastEp": 10,
       "lastValue": 19491,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-01",
+        "outcome": "miss",
+        "actual": 7902,
+        "realizedPct": -59.5,
+        "detail": "exposureWeekOne: E11 moved -59.5% (softening) against the word building."
+      }
     },
     {
       "id": "range:after-E11:1189-1830",
@@ -954,7 +964,13 @@
       "pctPerEpisode": -10,
       "lastEp": 10,
       "lastValue": 8.9,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-01",
+        "outcome": "miss",
+        "actual": 34,
+        "realizedPct": 282,
+        "detail": "announceToPlay: E11 moved +282% (building) against the word softening."
+      }
     },
     {
       "id": "direction:announceToPlay:E10:building",
@@ -965,7 +981,13 @@
       "pctPerEpisode": 7.1,
       "lastEp": 10,
       "lastValue": 23.5,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-01",
+        "outcome": "hit",
+        "actual": 34,
+        "realizedPct": 44.7,
+        "detail": "announceToPlay: E11 moved +44.7% (building) against the word building."
+      }
     },
     {
       "id": "direction:chattersPer100:E11:building",
@@ -976,6 +998,28 @@
       "pctPerEpisode": 7.6,
       "lastEp": 11,
       "lastValue": 61.5,
+      "resolution": null
+    },
+    {
+      "id": "direction:exposureWeekOne:E11:building",
+      "kind": "direction",
+      "key": "exposureWeekOne",
+      "madeOn": "2026-10-01",
+      "word": "building",
+      "pctPerEpisode": 5.3,
+      "lastEp": 11,
+      "lastValue": 7902,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E11:building",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-10-01",
+      "word": "building",
+      "pctPerEpisode": 10.5,
+      "lastEp": 11,
+      "lastValue": 34,
       "resolution": null
     }
   ]
