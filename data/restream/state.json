@@ -67,11 +67,23 @@
         "pulledAt": "2026-09-25T14:01:16.351Z",
         "state": "ready"
       }
+    },
+    "6c44d163-2284-408c-91db-fd5d644c8fa6": {
+      "status": "ingested",
+      "ingestedAt": "2026-10-02T14:04:25.005Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "restream",
+        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+        "objectId": "6c44d163-2284-408c-91db-fd5d644c8fa6",
+        "pulledAt": "2026-10-02T14:04:25.005Z",
+        "state": "ready"
+      }
     }
   },
-  "checkedAt": "2026-10-01T19:17:01.205Z",
+  "checkedAt": "2026-10-02T14:05:07.098Z",
   "capture": {
-    "checkedAt": "2026-10-01T19:17:01.205Z",
+    "checkedAt": "2026-10-02T14:05:07.098Z",
     "state": "ready",
     "pendingEvents": [],
     "errors": []

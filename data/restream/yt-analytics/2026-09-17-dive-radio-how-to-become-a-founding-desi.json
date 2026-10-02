@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "x05zZ90lY28",
-      "pulledAt": "2026-10-01T19:16:28.050Z",
+      "pulledAt": "2026-10-02T14:03:22.238Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-10-01T19:16:28.050Z",
+        "pulledAt": "2026-10-02T14:03:22.238Z",
         "state": "ready"
       },
       "totals": {
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 3877,
+          "views": 3874,
           "estimatedMinutesWatched": 13030
         },
         {
@@ -37,11 +37,11 @@
         {
           "insightTrafficSourceType": "YT_SEARCH",
           "views": 282,
-          "estimatedMinutesWatched": 1794
+          "estimatedMinutesWatched": 1795
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
-          "views": 222,
+          "views": 221,
           "estimatedMinutesWatched": 3037
         },
         {
@@ -269,7 +269,7 @@
         },
         {
           "elapsedVideoTimeRatio": 0.5,
-          "audienceWatchRatio": 0.1209
+          "audienceWatchRatio": 0.1216
         },
         {
           "elapsedVideoTimeRatio": 0.51,
@@ -475,13 +475,13 @@
     },
     "yt:designertom": {
       "videoId": "0xL0XtpH_og",
-      "pulledAt": "2026-10-01T19:16:28.050Z",
+      "pulledAt": "2026-10-02T14:03:22.238Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-10-01T19:16:28.050Z",
+        "pulledAt": "2026-10-02T14:03:22.238Z",
         "state": "ready"
       },
       "totals": {
@@ -951,7 +951,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-01T19:16:28.050Z",
+    "checkedAt": "2026-10-02T14:03:22.238Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:0xL0XtpH_og|yt:joindiveclub:x05zZ90lY28",
@@ -981,8 +981,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
     "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-    "pulledAt": "2026-10-01T19:16:28.050Z",
+    "pulledAt": "2026-10-02T14:03:22.238Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-01T19:16:28.050Z"
+  "updatedAt": "2026-10-02T14:03:22.238Z"
 }

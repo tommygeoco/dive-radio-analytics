@@ -1,0 +1,5249 @@
+Dive Radio E12 — Anyone Can Animate Now (and How)
+Aired: 2026-10-01 · YouTube: https://youtube.com/watch?v=bBF1yPACap0
+Source: Restream speaker transcript (vault e12-transcript-2026-10-01.txt). Speaker labels are automatic — verify quotes against video.
+
+00:03:16 [Speaker 1]
+And desire for people to just see what flows and 100 people, the different experiments that people are running and the different learnings that others have.
+
+00:03:25 [Speaker 2]
+Cooling kind of increases our capacity in the day.
+
+00:03:28 [Speaker 1]
+We have more things we can
+
+00:03:29 [Speaker 2]
+do now because the tooling makes those kind of rogue things easier.
+00:03:35 [Speaker 2]
+I'm able to go through,
+
+00:03:37 [Speaker 1]
+you know, a spectrum of exploration that is so much larger than I could do in a day, and I can do it in minutes.
+
+00:03:44 [Speaker 2]
+Agents are using tools.
+00:03:47 [Speaker 2]
+What does that look like and
+
+00:03:49 [Speaker 1]
+what does that mean?
+00:03:51 [Speaker 1]
+Show up, try things, be curious.
+
+00:03:54 [Speaker 2]
+I think the view is bright, but it has to be built.
+
+00:03:57 [Speaker 1]
+I always see things that I didn't plan on seeing.
+00:04:00 [Speaker 1]
+I'm making micro decisions that I didn't have a grid for a year ago, and it's only because of the ability that I can support.
+00:04:07 [Speaker 1]
+I feel like there's this binary thinking
+
+00:04:09 [Speaker 2]
+that, like, AI means fully automated.
+00:04:10 [Speaker 2]
+Like, no.
+00:04:11 [Speaker 2]
+In fact,
+
+00:04:11 [Speaker 1]
+I think some of the
+
+00:04:12 [Speaker 2]
+better workflows are the ones that aren't fully automated.
+
+00:04:15 [Speaker 1]
+The ability to effectively multitask at a really high level is one of the core skills of operating in this, like, AI world.
+
+00:04:24 [Speaker 2]
+No, no preconceived notions about how things should be done.
+
+00:04:29 [Speaker 1]
+This is the moment in time right now to create the rewards of the public reach books.
+
+00:04:35 [Speaker 2]
+What do you do with the question what if?
+
+00:04:37 [Speaker 3]
+Hey, guys.
+00:04:38 [Speaker 3]
+Hi.
+
+00:04:38 [Speaker 1]
+What's up, design fam?
+
+00:04:39 [Speaker 3]
+This is Chloe Park.
+00:04:40 [Speaker 3]
+Jenny Wen.
+
+00:04:41 [Speaker 1]
+This is Soleil, and you're listening.
+
+00:04:43 [Speaker 3]
+And you're listening to the dive
+
+00:04:44 [Speaker 2]
+Dive.
+
+00:04:44 [Speaker 3]
+Dive radio show.
+
+00:04:53 [Speaker 2]
+Yo.
+00:04:55 [Speaker 2]
+Hey.
+00:04:55 [Speaker 2]
+Welcome.
+
+00:04:57 [Speaker 1]
+Good to see you, my friend.
+
+00:04:58 [Speaker 2]
+Good to see you too.
+00:04:59 [Speaker 2]
+Scenery is always looking different.
+00:05:00 [Speaker 2]
+And if you were tuning in with us, you are tuning in to Dive Radio, the Internet's group chat for curious designers brought to you by Lovable, actually, who we'll be hearing more about later.
+00:05:13 [Speaker 2]
+Where are you at, dude?
+
+00:05:15 [Speaker 1]
+Chasing a toddler around Disney World.
+00:05:18 [Speaker 1]
+I've been aggressively swimming in the pool for the last two hours so that I could get her to pass out for two hours during this show, and it worked.
+
+00:05:24 [Speaker 2]
+What what is what is aggressive?
+00:05:26 [Speaker 2]
+So I try to, like...
+00:05:27 [Speaker 2]
+I'll just walk around with her, and I'll go back and forth, and I'll try to, like, swim and crawl around the deep end of the pool.
+00:05:34 [Speaker 2]
+What does that look like for you?
+
+00:05:35 [Speaker 1]
+We've hit an inflection point today.
+00:05:37 [Speaker 1]
+Like, yesterday, we weren't doing it.
+00:05:38 [Speaker 1]
+And today, we are now jumping off the edge.
+00:05:41 [Speaker 1]
+And if it's in the shallow and she can kind of hit the ground and propel herself back up, and then I catch her.
+00:05:47 [Speaker 1]
+I don't know.
+
+00:05:47 [Speaker 1]
+She probably jumped off 630 times in the last two hours.
+
+00:05:52 [Speaker 2]
+Did it work?
+
+00:05:53 [Speaker 1]
+It was fun.
+00:05:54 [Speaker 1]
+Oh, dude.
+00:05:54 [Speaker 1]
+It works.
+00:05:54 [Speaker 1]
+She's out.
+00:05:55 [Speaker 1]
+She's out.
+
+00:05:56 [Speaker 1]
+Out.
+00:05:56 [Speaker 1]
+And then I just, like, I scurried over.
+00:05:58 [Speaker 1]
+I I locked myself out of the room that I was gonna record in, and it was raining.
+00:06:01 [Speaker 1]
+So there was a moment in time where I was, like, panicking.
+00:06:03 [Speaker 1]
+So I had fifteen minutes to get back into this room where my laptop was standing in the rain.
+
+00:06:09 [Speaker 1]
+Everything just worked.
+00:06:10 [Speaker 1]
+I don't know how it just worked, but here I am, man.
+00:06:12 [Speaker 1]
+And it's a perfect timing for an episode because I feel like you can't leave town for a week.
+00:06:19 [Speaker 1]
+The world moves too quickly.
+00:06:20 [Speaker 1]
+You can miss out on too many things.
+
+00:06:22 [Speaker 1]
+So I'm kind of like, man, there's a lot of news happening.
+00:06:25 [Speaker 1]
+I'm actually kind of grateful to have this moment in time where I get to take a deep breath and be brought up to speed.
+
+00:06:31 [Speaker 2]
+There is a lot of stuff happening, actually.
+00:06:34 [Speaker 2]
+And it's like every time I go to sleep, someone in our Discord posted a meme and they're like, it's the rotatings wheel.
+00:06:40 [Speaker 2]
+It's like, I go to bed.
+00:06:41 [Speaker 2]
+I wake up, new technological advancement.
+00:06:44 [Speaker 2]
+Yeah.
+
+00:06:44 [Speaker 2]
+Just going and going.
+
+00:06:47 [Speaker 1]
+That
+
+00:06:47 [Speaker 2]
+that makes me tired, man.
+00:06:49 [Speaker 2]
+But I'm happy to hear you getting some time off getting some time to chill.
+00:06:52 [Speaker 2]
+Did you do you actually get some time off?
+00:06:53 [Speaker 2]
+You have a little unlock...
+00:06:55 [Speaker 2]
+Unwind?
+
+00:06:56 [Speaker 1]
+I sleep a little bit less than other people on vacation.
+00:06:59 [Speaker 1]
+Everybody kinda goes to bed, and then I get my laptop out, and I
+
+00:07:01 [Speaker 2]
+Like, okay.
+00:07:02 [Speaker 2]
+Tired.
+00:07:02 [Speaker 2]
+For a few hours.
+
+00:07:03 [Speaker 3]
+Time to check.
+
+00:07:04 [Speaker 1]
+Yeah.
+00:07:05 [Speaker 1]
+Yeah.
+00:07:05 [Speaker 1]
+There's the thing is when you, like, when you work for yourself, you know, it doesn't...
+00:07:10 [Speaker 1]
+Like, vacation isn't quite the same.
+00:07:11 [Speaker 1]
+You know, I've I've effectively made myself the bottleneck on three different fronts.
+
+00:07:15 [Speaker 1]
+Like, you do your best.
+00:07:16 [Speaker 1]
+You know?
+
+00:07:16 [Speaker 2]
+Yeah.
+00:07:17 [Speaker 2]
+Yeah.
+00:07:17 [Speaker 2]
+I I definitely relate to that.
+00:07:20 [Speaker 2]
+Well, I could use a vacay.
+00:07:21 [Speaker 2]
+We have holidays coming up, by the way.
+
+00:07:22 [Speaker 2]
+What are we doing for the holidays?
+00:07:24 [Speaker 2]
+I think...
+00:07:25 [Speaker 2]
+Actually, so just for everyone paying attention, and I see chat popping off.
+00:07:29 [Speaker 2]
+Good morning, everybody.
+00:07:30 [Speaker 2]
+Good to see you.
+
+00:07:30 [Speaker 2]
+Good afternoon, and and good evening if you're over there elsewhere.
+00:07:35 [Speaker 2]
+What are we thinking?
+00:07:35 [Speaker 2]
+Well, I mean, the holidays we celebrate here, Thanksgiving, we've got Christmas coming out.
+
+00:07:39 [Speaker 1]
+On a Thursday.
+00:07:39 [Speaker 1]
+Like, I...
+
+00:07:40 [Speaker 4]
+That's what I
+
+00:07:40 [Speaker 2]
+I mean, I think it's probably safe to say Thanksgiving, guys, we're gonna be hanging out with family.
+
+00:07:45 [Speaker 1]
+Yeah.
+00:07:45 [Speaker 1]
+We're gonna So
+
+00:07:45 [Speaker 2]
+we'll set that we'll set that extra
+
+00:07:47 [Speaker 1]
+when Christmas falls.
+00:07:48 [Speaker 1]
+Kinda just depends on the day.
+
+00:07:50 [Speaker 2]
+Do you, I always try to get everything done so I can get a strong week and a half of just...
+
+00:07:58 [Speaker 1]
+Like a recharge?
+
+00:07:59 [Speaker 2]
+In December.
+00:08:00 [Speaker 2]
+Yeah.
+
+00:08:01 [Speaker 1]
+Like a psychopath.
+
+00:08:02 [Speaker 2]
+I I I need it.
+00:08:03 [Speaker 2]
+And then I just...
+00:08:04 [Speaker 2]
+I usually will just go hard into, like, a game with the kids or, like, my my series of Christmas
+
+00:08:10 [Speaker 1]
+You have kids, though.
+00:08:10 [Speaker 1]
+It's different.
+00:08:11 [Speaker 1]
+Like, I'm now kind of figuring out what holidays look like with kids.
+00:08:15 [Speaker 1]
+They're a lot
+
+00:08:16 [Speaker 4]
+more fun.
+
+00:08:17 [Speaker 1]
+I will say beef...
+00:08:18 [Speaker 1]
+Up before I had kids, I feel like I would always just take on some audacious, like, creative project over Christmas break.
+00:08:28 [Speaker 1]
+Always.
+00:08:28 [Speaker 1]
+I would always go.
+00:08:29 [Speaker 1]
+Like, nobody like a website.
+
+00:08:30 [Speaker 1]
+I'd save some website.
+00:08:33 [Speaker 1]
+Yeah.
+00:08:33 [Speaker 1]
+Or, like, even just random things.
+00:08:34 [Speaker 1]
+Like, I remember one Christmas, I just decided, oh, I'll just make my church a new website because why not?
+00:08:40 [Speaker 1]
+You know?
+
+00:08:40 [Speaker 1]
+Like, just, like, give myself something to do, something to go zero to one on.
+00:08:44 [Speaker 1]
+That's historically been my jam.
+00:08:46 [Speaker 1]
+I do think it changes once you have kids.
+00:08:47 [Speaker 1]
+I'll probably hang more with the with the kid and roughhouse.
+
+00:08:52 [Speaker 2]
+I love that.
+00:08:53 [Speaker 2]
+I, I wanna get into this.
+00:08:55 [Speaker 2]
+We've got we've got a pretty cool show today because I wanted to talk about motion.
+00:09:00 [Speaker 2]
+And what everyone needs to understand is we prepare these episodes five days in advance.
+00:09:05 [Speaker 2]
+Right?
+
+00:09:06 [Speaker 2]
+We always, like, we always continue to quote the six days to air or whatever the South Park documentary was.
+00:09:12 [Speaker 2]
+That's very much what it is.
+00:09:14 [Speaker 2]
+Like...
+00:09:14 [Speaker 2]
+And what is going on?
+00:09:15 [Speaker 2]
+So to that end, all of this technological innovation happening every day is very beneficial.
+
+00:09:20 [Speaker 2]
+We have we have no end of things to talk about.
+00:09:24 [Speaker 2]
+Yeah.
+00:09:25 [Speaker 2]
+And the things that were really popping on my radar, since last Thursday is the amount of motion and video Mhmm.
+00:09:32 [Speaker 2]
+And animation that is happening.
+00:09:35 [Speaker 2]
+And not just, like, in the video editing space, but actually what's happening with designers using it.
+
+00:09:41 [Speaker 2]
+And then we got...
+
+00:09:41 [Speaker 1]
+I'll give you credit too.
+00:09:42 [Speaker 1]
+I'm gonna give you credit in front of everybody too because you pitched that as an episode title.
+00:09:46 [Speaker 1]
+And I had a little bit of hesitation where I was like, I I kinda get it, but, like, why now?
+00:09:50 [Speaker 1]
+And then we agreed.
+00:09:51 [Speaker 1]
+And then the next three days, Opus five five just had this inflection point of video just hitting the timelines everywhere where I was like, dang.
+
+00:09:59 [Speaker 1]
+He really called it.
+
+00:10:00 [Speaker 2]
+I I...
+00:10:01 [Speaker 2]
+Yeah.
+00:10:02 [Speaker 2]
+But we're gonna see some stuff today because it's really interesting.
+00:10:04 [Speaker 2]
+It's not a complete picture, but it's definitely showing me that more and more designers are getting into motion.
+00:10:10 [Speaker 2]
+They're getting even into video.
+
+00:10:12 [Speaker 2]
+And the ways that people are pushing it, we're we're gonna hear from them today.
+00:10:15 [Speaker 2]
+But then we had OpenAI's dev day, which we're gonna get into there.
+00:10:20 [Speaker 2]
+And, obviously, there's, like, a couple of the main things that everybody's talking about.
+00:10:24 [Speaker 2]
+There's a couple of things that I think people aren't talking enough about that I wanted to highlight.
+00:10:28 [Speaker 2]
+Okay.
+
+00:10:28 [Speaker 2]
+Okay.
+00:10:30 [Speaker 2]
+And and their their presentation went about as well as you would expect, I guess.
+00:10:33 [Speaker 2]
+It wasn't great, but, someone who did have a a really great presentation, I thought was the america.gov.
+00:10:39 [Speaker 2]
+I wanna take a look at it.
+00:10:40 [Speaker 2]
+I know this is kinda controversial because it's politic, it's politics adjacent, But there is something that is very interesting to me because of a conversation I had with a family member two days before they shipped that, an older family member.
+
+00:10:53 [Speaker 2]
+And and then we're gonna get into, we're gonna talk a little bit about something we got going on.
+00:10:58 [Speaker 2]
+Little little dive dive club Discord opening up today.
+00:11:02 [Speaker 2]
+And, we'll talk about what what the what the goal is there.
+00:11:05 [Speaker 2]
+I was floating.
+00:11:06 [Speaker 2]
+I asked people...
+
+00:11:07 [Speaker 2]
+We've had this community, little private thing for a while.
+00:11:09 [Speaker 2]
+And I asked people, I said, hey.
+00:11:11 [Speaker 2]
+What is a good name for this?
+00:11:13 [Speaker 2]
+Because you and I were like, dive club just makes sense, but, like Yeah.
+00:11:17 [Speaker 2]
+I think we were like, it's kinda boring.
+
+00:11:18 [Speaker 2]
+Like, what what...
+00:11:19 [Speaker 2]
+Could we could we add on to that?
+00:11:21 [Speaker 2]
+And I called it dive club group chat.
+00:11:23 [Speaker 2]
+It's not a better solution, but it just was very obvious.
+00:11:26 [Speaker 2]
+And someone said, well, it's a dive discord.
+
+00:11:28 [Speaker 2]
+You should just call it dive cord.
+00:11:30 [Speaker 2]
+And I was like, wait.
+00:11:32 [Speaker 2]
+That's actually kinda nice.
+00:11:35 [Speaker 2]
+I don't know.
+00:11:36 [Speaker 2]
+I don't know.
+
+00:11:36 [Speaker 2]
+We'll see how it goes.
+00:11:37 [Speaker 2]
+Everything we're doing is happening in twenty four hours, guys.
+00:11:40 [Speaker 2]
+So, but with that said, we're gonna get into the designer of the week.
+00:11:46 [Speaker 2]
+And I I do wanna say, I appreciate Notion for sponsoring the segment of designer of the week.
+00:11:52 [Speaker 2]
+The amount of people who have submitted really dope designers who have showed us who's inspiring you, I love this.
+
+00:11:59 [Speaker 2]
+Now what I love is when I hear from, you know, these designers who are big in the industry, who we are all familiar with, when they show love and and platform people who, you know, maybe aren't big followings or whatever.
+00:12:10 [Speaker 2]
+I love that.
+00:12:11 [Speaker 2]
+But I also love hearing from people just in our community who's like, who's inspiring you right now?
+00:12:16 [Speaker 2]
+Who are you learning from?
+00:12:18 [Speaker 2]
+And, just putting it out there.
+
+00:12:20 [Speaker 2]
+If you join our Discord, you are welcome to submit a designer of the week.
+00:12:23 [Speaker 2]
+I wanna hear it.
+00:12:24 [Speaker 2]
+I wanna see who's out there, because there are a lot of people who deserve their flowers.
+00:12:29 [Speaker 2]
+And we're gonna start that off with...
+00:12:31 [Speaker 2]
+Good friend.
+
+00:12:32 [Speaker 2]
+Oh, I didn't start my screen share.
+00:12:35 [Speaker 2]
+Red.
+00:12:37 [Speaker 2]
+This is your fault.
+00:12:40 [Speaker 2]
+Everything's your fault.
+00:12:43 [Speaker 2]
+Good buddy.
+
+00:12:45 [Speaker 1]
+Uh-huh.
+00:12:45 [Speaker 1]
+David.
+
+00:12:46 [Speaker 2]
+Yep.
+00:12:46 [Speaker 2]
+See see what you got.
+
+00:12:48 [Speaker 5]
+Hey, Tommy.
+00:12:48 [Speaker 5]
+Hey, Red.
+00:12:49 [Speaker 5]
+This is David Hong here.
+00:12:50 [Speaker 5]
+My nomination designer of the week is Jade Fransen.
+00:12:54 [Speaker 5]
+Jade is a designer at Perplexity.
+
+00:12:57 [Speaker 5]
+Previously, she was at Duolingo and also BC.
+00:13:01 [Speaker 5]
+All in all, super talented designer and highly recommend her.
+
+00:13:06 [Speaker 2]
+Easy day.
+00:13:07 [Speaker 2]
+Like it.
+00:13:08 [Speaker 2]
+Thank you, David.
+00:13:10 [Speaker 2]
+Appreciate that, man.
+00:13:12 [Speaker 2]
+Another friend of the show.
+
+00:13:15 [Speaker 2]
+You know, like, Tom Johnson has regularly inspired me.
+00:13:18 [Speaker 2]
+We've heard from him in the past.
+00:13:20 [Speaker 2]
+Who the hell inspires Tom?
+00:13:22 [Speaker 2]
+You know?
+00:13:23 [Speaker 2]
+That's one of those things I wanna
+
+00:13:23 [Speaker 1]
+know.
+00:13:24 [Speaker 1]
+Question.
+
+00:13:24 [Speaker 6]
+I wanted to nominate Eduard.
+00:13:26 [Speaker 6]
+I just discovered his profile yesterday.
+00:13:28 [Speaker 6]
+I had made What The Port a couple weeks ago, an app for, like, monitoring ports, and, someone else mentioned it.
+00:13:33 [Speaker 6]
+And I discovered that he had built the same thing or a very close version of it just a couple months ago.
+00:13:39 [Speaker 6]
+And so I stumbled upon it, looked at the landing pages, then discovered his work.
+
+00:13:43 [Speaker 6]
+And I just spent the day yesterday just kinda scrolling through his content.
+00:13:46 [Speaker 6]
+And it's really, really good design work.
+00:13:48 [Speaker 6]
+So I wanted to give him a shout out because he had the idea before I did for, for port monitoring.
+00:13:53 [Speaker 6]
+So kudos for that.
+00:13:54 [Speaker 6]
+The landing page on his is is great.
+
+00:13:56 [Speaker 6]
+I really, really loved it.
+00:13:57 [Speaker 6]
+It was, called portmenuportmenu.dev.
+00:14:00 [Speaker 6]
+Check that out.
+00:14:00 [Speaker 6]
+But, like, really, really great work.
+00:14:01 [Speaker 6]
+So I wanted to give him a shout out as a designer that I just just came across.
+
+00:14:05 [Speaker 6]
+And, I am definitely gonna follow his work going forward.
+
+00:14:09 [Speaker 2]
+Tom, not to take away from Edward.
+00:14:12 [Speaker 2]
+That's awesome, by the way.
+00:14:14 [Speaker 2]
+Love hearing that.
+00:14:15 [Speaker 2]
+I see Tom's background who is in an RV, sold home, just traversing the world with family
+
+00:14:22 [Speaker 1]
+Mhmm.
+
+00:14:23 [Speaker 2]
+And designing.
+00:14:23 [Speaker 2]
+Like, that is the no no.
+00:14:25 [Speaker 2]
+Like, little little little, satellite Wi Fi.
+00:14:28 [Speaker 2]
+You know?
+
+00:14:29 [Speaker 1]
+I'm on portmenu.dev.
+00:14:31 [Speaker 1]
+It actually is really cool.
+00:14:32 [Speaker 1]
+I'm such a sucker for, like, single viewport web page.
+00:14:36 [Speaker 1]
+Show it show it real quick.
+00:14:38 [Speaker 1]
+Yeah.
+
+00:14:38 [Speaker 1]
+Is that...
+00:14:38 [Speaker 1]
+Okay.
+
+00:14:39 [Speaker 2]
+Who is this?
+
+00:14:41 [Speaker 1]
+I'm gonna have to refresh here.
+00:14:43 [Speaker 1]
+Guys, I did I did, Dia instead of Arc.
+00:14:50 [Speaker 1]
+It's just a little harder to do everything.
+00:14:53 [Speaker 1]
+Okay.
+00:14:54 [Speaker 1]
+Watch this.
+
+00:14:54 [Speaker 1]
+Watch this.
+00:14:55 [Speaker 1]
+Refresh.
+00:14:55 [Speaker 1]
+Watch this.
+00:14:55 [Speaker 1]
+Refresh.
+00:14:57 [Speaker 1]
+Yeah.
+
+00:14:57 [Speaker 1]
+Like, I didn't realize, like, what he was showing.
+00:14:59 [Speaker 1]
+Like, this is the whole site.
+00:15:00 [Speaker 1]
+And then there's nothing there's nothing to scroll.
+00:15:02 [Speaker 1]
+That's it.
+
+00:15:02 [Speaker 2]
+Dude, I love when it's just, like, viewport size simplicity.
+
+00:15:06 [Speaker 1]
+It's great.
+00:15:07 [Speaker 1]
+But, like, there's just...
+00:15:08 [Speaker 1]
+There's that one thing that makes it actually cool.
+00:15:11 [Speaker 1]
+You know?
+00:15:13 [Speaker 1]
+Like, that's that's really great.
+
+00:15:14 [Speaker 1]
+The way it all animates in.
+00:15:15 [Speaker 1]
+It's simple.
+00:15:16 [Speaker 1]
+I get it.
+
+00:15:16 [Speaker 2]
+And I and I wanna call out, like, a small...
+00:15:19 [Speaker 2]
+Yeah.
+00:15:20 [Speaker 2]
+The the tilt is cool, but I I...
+00:15:22 [Speaker 2]
+But, again, it's such a small feature.
+00:15:24 [Speaker 2]
+It's animated and then sucked in, and then it creates the component.
+
+00:15:29 [Speaker 2]
+That's like a small example of how motion...
+00:15:32 [Speaker 2]
+I'm seeing motion used in all these creative ways.
+00:15:35 [Speaker 2]
+And it's a small little use of it.
+00:15:36 [Speaker 2]
+It's not like you're going over the top with it.
+
+00:15:39 [Speaker 1]
+I might steal this for in flight because we show the the, like, widget on the home page.
+
+00:15:46 [Speaker 2]
+Mhmm.
+
+00:15:46 [Speaker 1]
+Having it be fully interactive, but then adding just, like, the subtle three d tilt is great.
+00:15:52 [Speaker 1]
+It's great.
+00:15:53 [Speaker 1]
+It's really well done.
+00:15:54 [Speaker 1]
+Nice job.
+
+00:15:55 [Speaker 2]
+I like it.
+00:15:56 [Speaker 2]
+Thank you, Tom.
+00:15:57 [Speaker 2]
+Appreciate you.
+00:15:58 [Speaker 2]
+I'm gonna go next with Hugo Duprees, Dupris, design and engineering at Crayon AI.
+00:16:08 [Speaker 2]
+I have recently...
+
+00:16:09 [Speaker 2]
+I've seen some of Hugo's work in the past.
+00:16:13 [Speaker 2]
+I love how experimental Hugo is.
+00:16:16 [Speaker 2]
+Alright?
+00:16:17 [Speaker 2]
+Now I'll I'll I'll quickly...
+00:16:18 [Speaker 2]
+You know, Crayon is this tool that I've never used.
+
+00:16:20 [Speaker 2]
+I've heard of it.
+00:16:21 [Speaker 2]
+It's it's this AI art creator tool.
+00:16:24 [Speaker 2]
+So this is a space that he is just having a field day in, and I think it's really cool.
+00:16:28 [Speaker 2]
+But on top of that, you can just see the kinds of projects that Hugo's been working on.
+00:16:35 [Speaker 2]
+This is the kind of stuff that I imagine Steve Rees is sitting at home just, like, loving life building, and and Hugo is just another, person who who just has this breadth of creativity and the engineering chops to put it together, really recommend, at least, whoops, giving Hugo a follow on this.
+
+00:16:54 [Speaker 2]
+But I I wanna call out one specific project that put this on my radar this week.
+00:17:00 [Speaker 2]
+Look what he made.
+
+00:17:02 [Speaker 1]
+Oh, no way.
+00:17:04 [Speaker 1]
+Oh my goodness.
+
+00:17:06 [Speaker 2]
+It is fun.
+00:17:07 [Speaker 2]
+And we're gonna hear from Hugo today, actually, on how he made this because, yes.
+00:17:14 [Speaker 2]
+This is awesome.
+00:17:15 [Speaker 2]
+He's controlling the phone.
+
+00:17:16 [Speaker 1]
+Like, could you even take a guess at how that was made?
+00:17:18 [Speaker 1]
+Like, looking at it?
+00:17:19 [Speaker 1]
+No.
+00:17:19 [Speaker 1]
+I couldn't even take a guess.
+
+00:17:21 [Speaker 2]
+Do you know what I mean?
+
+00:17:22 [Speaker 1]
+I would be embarrassed to to audibleize any idea of how you would make something like that.
+00:17:26 [Speaker 1]
+So the fact that he's coming on is pretty sick.
+
+00:17:28 [Speaker 2]
+It is it is cool.
+00:17:29 [Speaker 2]
+Someone says Meng two is by far pushing the bounds every week.
+00:17:32 [Speaker 2]
+And and it's funny you say that, because I agree.
+00:17:36 [Speaker 2]
+I think I've got a Meng two reference almost every episode because I think he was just shipping something, a spectacle every week.
+00:17:44 [Speaker 2]
+But that's Hugo DuPreeze.
+
+00:17:47 [Speaker 2]
+Let's go ahead and hear your, your nominees at Rid.
+
+00:17:50 [Speaker 1]
+Alright.
+00:17:51 [Speaker 1]
+So I wanna I wanna shout out Jordan Amblin.
+00:17:55 [Speaker 1]
+Super, super talented.
+00:17:59 [Speaker 1]
+He...
+00:18:00 [Speaker 1]
+He's done a a few things.
+
+00:18:01 [Speaker 1]
+One, he was he was at MetaLab, and I feel like the MetaLab people, like, when...
+00:18:04 [Speaker 1]
+Every time you see MetaLab on someone's background, you know they have incredible visual and interaction skills.
+00:18:09 [Speaker 1]
+Then he was also at Pitch, which I think is one of the most beautiful design products ever.
+00:18:14 [Speaker 1]
+I wanna go to this media here.
+00:18:17 [Speaker 1]
+I mean, just scrolling through his page is so good.
+
+00:18:21 [Speaker 1]
+He's right now leading all of the mobile design for Raycast, which I don't know if you've used their mobile app, but it's just full of
+
+00:18:29 [Speaker 2]
+that's satisfying, dude.
+00:18:30 [Speaker 2]
+What are you doing?
+
+00:18:31 [Speaker 1]
+There's, like, 50 different interactions in here that are Just
+
+00:18:35 [Speaker 2]
+given the way all those elements came landing on the page that in the very first frame there.
+
+00:18:41 [Speaker 1]
+Can we talk about the presentation of everything too?
+00:18:43 [Speaker 1]
+Like, look at, like, with the hands and, like, the incredible...
+00:18:46 [Speaker 1]
+Like, I mean, it's...
+00:18:47 [Speaker 1]
+This is just well done.
+00:18:49 [Speaker 1]
+Definitely follow Jordan if you're not already.
+
+00:18:52 [Speaker 1]
+His entire feed is just, like, really, really, really good interactions like this.
+00:18:58 [Speaker 1]
+Everybody at Raycast is cracked.
+00:19:00 [Speaker 1]
+That team is awesome.
+00:19:01 [Speaker 1]
+So wanted to shine a light on Jordan.
+00:19:02 [Speaker 1]
+I got a opportunity to hang with him in person.
+
+00:19:06 [Speaker 1]
+We did a a Raycast deep dive interview at Config London last year, which was super fun.
+00:19:12 [Speaker 1]
+It's, like, two hours long and broken up by all of the different, chunks of the team.
+00:19:17 [Speaker 1]
+And they're all just super talented.
+00:19:19 [Speaker 1]
+So that is, Jordan Hamlet.
+
+00:19:22 [Speaker 2]
+Jordan, let's go.
+00:19:23 [Speaker 2]
+That is awesome.
+00:19:23 [Speaker 2]
+I need to hang out with the Raycast team.
+00:19:25 [Speaker 2]
+They seem like a cool group.
+
+00:19:26 [Speaker 1]
+Yeah.
+00:19:26 [Speaker 1]
+They're really, really
+
+00:19:27 [Speaker 2]
+cool.
+00:19:27 [Speaker 2]
+So we had this live since, late last night I put it up.
+00:19:31 [Speaker 2]
+I'm trying to get these out sooner.
+00:19:35 [Speaker 2]
+This...
+00:19:35 [Speaker 2]
+I've seen this thing fluctuate now.
+
+00:19:38 [Speaker 2]
+And right now, Edward is winning.
+00:19:41 [Speaker 2]
+But I am not going to be fooled three weeks in a row, Rhett.
+
+00:19:45 [Speaker 1]
+Yeah.
+
+00:19:46 [Speaker 2]
+I I don't know.
+00:19:47 [Speaker 2]
+I think Jade might see some love here.
+00:19:49 [Speaker 2]
+I don't...
+00:19:50 [Speaker 2]
+Who knows what's gonna happen?
+00:19:51 [Speaker 2]
+But we will announce the winner by the end of the show.
+
+00:19:53 [Speaker 2]
+Please go vote at dive.radio/vote.
+00:19:58 [Speaker 2]
+What does it what does it lead to?
+00:20:00 [Speaker 2]
+What do the winners get?
+00:20:02 [Speaker 2]
+Nothing.
+00:20:02 [Speaker 2]
+We can get anything.
+
+00:20:03 [Speaker 1]
+Figure it out.
+
+00:20:04 [Speaker 2]
+Yeah.
+00:20:04 [Speaker 2]
+We'll use this something in the future.
+00:20:06 [Speaker 2]
+But at least for now, just a little bit of love and, an avatar.
+00:20:10 [Speaker 2]
+There you go.
+00:20:12 [Speaker 2]
+Cool.
+
+00:20:13 [Speaker 2]
+I'm gonna get into the topics, but I I do wanna call out that something just showed up here.
+00:20:17 [Speaker 2]
+I wasn't sure if it was gonna happen.
+00:20:18 [Speaker 2]
+So we saw this, and I want some opinions on this.
+00:20:23 [Speaker 2]
+I want your opinion on it.
+00:20:25 [Speaker 2]
+Brett leads...
+
+00:20:27 [Speaker 2]
+I think this was a week ago.
+00:20:29 [Speaker 2]
+Yeah.
+00:20:30 [Speaker 2]
+Comes out and says, hey.
+00:20:32 [Speaker 2]
+You know, I rebranded this idea of design retainers and made it a subscription agency.
+00:20:41 [Speaker 2]
+And I...
+
+00:20:42 [Speaker 2]
+Genuinely, Brett changed the industry by doing that.
+
+00:20:46 [Speaker 1]
+He did.
+00:20:46 [Speaker 1]
+He did.
+
+00:20:47 [Speaker 2]
+And it really...
+00:20:47 [Speaker 2]
+There wasn't a lot of mechanical changes to it, just one or two that made all the difference, and specifically the way he packaged it.
+00:20:55 [Speaker 2]
+Did the same thing right now, and I think this is brilliant.
+00:20:58 [Speaker 2]
+I really do.
+00:20:59 [Speaker 2]
+Brand in a box.
+
+00:21:01 [Speaker 2]
+And I'm I'm I'm not gonna give away all the things.
+00:21:04 [Speaker 2]
+You kinda see he he prebuilds a brand, sells them.
+00:21:08 [Speaker 2]
+But, let's let's hear from him what this is and, the reveal of the next brand in a box.
+
+00:21:15 [Speaker 1]
+Oh, nice.
+00:21:16 [Speaker 1]
+Good clip.
+
+00:21:16 [Speaker 2]
+Yeah.
+00:21:17 [Speaker 2]
+Yeah.
+
+00:21:17 [Speaker 5]
+Hey, guys.
+00:21:18 [Speaker 5]
+Thanks so much for having me on to highlight something I'm working on.
+00:21:20 [Speaker 5]
+What you see on here is part two of a larger experiment.
+00:21:23 [Speaker 5]
+This next year will mark ten years since I helped usher in the design subscription model.
+00:21:29 [Speaker 5]
+And at its core, what it really sought to do was reduce the time that it was required to get really good design work.
+
+00:21:34 [Speaker 5]
+So this next concept off market really pushes that idea to its maximum length.
+00:21:40 [Speaker 5]
+I'm not building these brands for clients.
+00:21:42 [Speaker 5]
+There's no brief.
+00:21:42 [Speaker 5]
+There's no discovery call or anything for that matter.
+00:21:45 [Speaker 5]
+I'm essentially designing the brands that I want others to hire me to create, which is the really cool part.
+
+00:21:50 [Speaker 5]
+I created the name, the identity, the visual system, the mock ups, everything there before there's ever an owner.
+00:21:55 [Speaker 5]
+Then someone come in and acquire the entire system for one fixed price.
+00:22:00 [Speaker 5]
+Then once that happens, it's off the market, hence hence the name.
+00:22:03 [Speaker 5]
+And so it's not a template, you know, that can be sold 500 times.
+00:22:06 [Speaker 5]
+Once it's purchased, it is it is literally gone forever.
+
+00:22:08 [Speaker 5]
+I released one of these brands last week on Twitter as an experiment.
+00:22:12 [Speaker 5]
+It went really, really well.
+00:22:13 [Speaker 5]
+It really enforced the idea that maybe the future of branding isn't build a company then hire a designer to brand it.
+00:22:20 [Speaker 5]
+Maybe it's something that you discover a brand that you like, and then you build a company around it much like we do with Domains.
+00:22:25 [Speaker 5]
+So there's obviously a lot more to this that I cannot share today.
+
+00:22:28 [Speaker 5]
+I have a lot of really cool things up my sleeve.
+00:22:29 [Speaker 5]
+This will not be your typical local marketplace as many folks are suggesting.
+00:22:33 [Speaker 5]
+So this next concept here is called Stoa.
+00:22:36 [Speaker 5]
+It's available for purchase now as part two of my experiment.
+00:22:39 [Speaker 5]
+You can find a link at my my Twitter account.
+
+00:22:42 [Speaker 5]
+And thanks for having me on.
+00:22:43 [Speaker 5]
+Appreciate it.
+
+00:22:46 [Speaker 1]
+What do you think, man?
+
+00:22:48 [Speaker 2]
+I I mean, I have I have known Brett now for a handful of years.
+00:22:52 [Speaker 2]
+I have always been impressed by the different ways he...
+00:22:56 [Speaker 2]
+He is a product thinker.
+00:22:58 [Speaker 2]
+Like, he's very good.
+00:22:59 [Speaker 2]
+Yeah.
+
+00:23:00 [Speaker 2]
+Like, it...
+00:23:00 [Speaker 2]
+Just never mind how quickly he sits there and, like, just can create banger designs.
+00:23:06 [Speaker 2]
+The dude is very good at product thinking, product positioning.
+00:23:10 [Speaker 2]
+And I think this is another example of that.
+
+00:23:12 [Speaker 1]
+Packaging.
+00:23:12 [Speaker 1]
+I mean, this is a packaging mastermind.
+00:23:15 [Speaker 1]
+I I think this is gonna change a lot of things.
+00:23:18 [Speaker 1]
+It makes so much sense.
+00:23:19 [Speaker 1]
+We love we love to think that it's all about the meaning that is, you know, intertwined into the very fabric of the identity and, like, yes.
+
+00:23:30 [Speaker 1]
+There's always gonna be a space for that.
+00:23:32 [Speaker 1]
+I think there's also...
+00:23:34 [Speaker 1]
+Especially just given the explosion of new ideas and new projects, the price point that this is going to enable and the quality that Brett is gonna be able to create, this is gonna be a big freaking deal, man.
+00:23:45 [Speaker 1]
+I think it's genius.
+00:23:46 [Speaker 1]
+I think it's absolutely genius.
+
+00:23:48 [Speaker 2]
+It's it's smart.
+00:23:49 [Speaker 2]
+And, I mean, some people are gonna come and be cynical to Brett and be like, this is...
+00:23:52 [Speaker 2]
+It's just a template.
+00:23:53 [Speaker 2]
+And then, you you know, it's like, well, yeah.
+00:23:56 [Speaker 2]
+But, like, he does just a couple things.
+
+00:23:58 [Speaker 2]
+This is the Pareto principle.
+00:24:00 [Speaker 2]
+He just...
+00:24:00 [Speaker 2]
+He affects just an additional 20% of how it's packaged.
+00:24:04 [Speaker 2]
+He adds just the right little details that go beyond what we're used to from sort of templated things.
+00:24:10 [Speaker 2]
+And boom.
+
+00:24:10 [Speaker 2]
+This thing feels robust enough that it's like, yeah.
+00:24:13 [Speaker 2]
+I'll buy that for $5 Yeah.
+00:24:15 [Speaker 2]
+$10.
+00:24:15 [Speaker 2]
+You know what I mean?
+
+00:24:16 [Speaker 1]
+You know that it's...
+00:24:17 [Speaker 1]
+Like, there are gonna be so many copycats of this when he actually rolls it out.
+00:24:23 [Speaker 1]
+And it's gonna be the exact same thing.
+00:24:25 [Speaker 1]
+Like, I...
+00:24:25 [Speaker 1]
+This literally could be design subscription level category defining.
+
+00:24:30 [Speaker 1]
+Like, I I
+
+00:24:30 [Speaker 2]
+I really...
+00:24:31 [Speaker 2]
+And and I and I feel like he should, like, build the marketplace for it.
+00:24:35 [Speaker 2]
+You know what I mean?
+
+00:24:37 [Speaker 1]
+Tastefully, it's gonna be a a tricky thing to navigate.
+00:24:40 [Speaker 1]
+Right?
+
+00:24:40 [Speaker 2]
+Oh, because then you get into the fiber conversation of...
+
+00:24:43 [Speaker 1]
+Yeah.
+00:24:43 [Speaker 1]
+Totally.
+00:24:44 [Speaker 1]
+Like, you can't create a race to the bottom.
+00:24:45 [Speaker 1]
+You you have to, like, balance the right levels of...
+
+00:24:48 [Speaker 4]
+Maybe you gotta, like,
+
+00:24:49 [Speaker 2]
+vet vet the marketplace.
+00:24:50 [Speaker 2]
+So it's a high...
+00:24:51 [Speaker 2]
+You think
+
+00:24:51 [Speaker 1]
+how much fun brand...
+00:24:52 [Speaker 1]
+Like, I'm sure Brett is doing all of this by himself right now.
+00:24:57 [Speaker 1]
+Like, he hasn't really scaled himself for DesignJoy even.
+
+00:25:02 [Speaker 2]
+He doesn't want to model.
+
+00:25:04 [Speaker 1]
+Do this.
+00:25:04 [Speaker 1]
+Well, the thing is, like, this model wouldn't even work.
+00:25:06 [Speaker 1]
+It wouldn't have worked like a year ago.
+00:25:08 [Speaker 1]
+Definitely not two years ago.
+00:25:10 [Speaker 1]
+Like, it...
+
+00:25:11 [Speaker 1]
+You have to be able to just see ideas and bring them to life in a very cost effective way in order to hit this type of price points.
+00:25:18 [Speaker 1]
+It's like how...
+00:25:18 [Speaker 1]
+I mean, he...
+00:25:19 [Speaker 1]
+I think he I think he probably just created, like, the most fun job ever for himself, and I think it's gonna crush.
+
+00:25:24 [Speaker 2]
+Yeah.
+00:25:25 [Speaker 2]
+Yeah.
+00:25:25 [Speaker 2]
+Super cool, Brett.
+00:25:26 [Speaker 2]
+I love...
+00:25:26 [Speaker 2]
+I just love watching the way it works.
+
+00:25:28 [Speaker 2]
+And and little positioning tweaks, I think, are really important.
+00:25:31 [Speaker 2]
+And I'll give an example of that with a shameless plug.
+00:25:34 [Speaker 2]
+You just saw me drop the link to the Discord, the dive club group chat that we have open for the next seven days, which sounds arbitrary.
+00:25:45 [Speaker 2]
+We've...
+00:25:45 [Speaker 2]
+We only open the doors to this community once a quarter, very intentionally.
+
+00:25:49 [Speaker 2]
+Why do we do that?
+00:25:51 [Speaker 2]
+Well, let me show you for a second here.
+00:25:53 [Speaker 2]
+Okay?
+00:25:53 [Speaker 2]
+Because everyone who rocks with us in this little discord that we've had for a while now...
+00:25:59 [Speaker 2]
+And and we are getting...
+
+00:26:00 [Speaker 2]
+Dude, we are getting a lot of joins right now, which is cool.
+00:26:03 [Speaker 2]
+And introductions.
+00:26:05 [Speaker 2]
+And this is really just a place for the conversations we have here on the show to continue.
+00:26:11 [Speaker 2]
+Everything from advice to in real life to staying up to date with the tools or what's happening in AI.
+00:26:16 [Speaker 2]
+It's it's all here.
+
+00:26:18 [Speaker 2]
+And I love this place, But the problem is is anytime way in the past where I used to join communities, they would turn into these, like, monetization machines, and you...
+00:26:28 [Speaker 2]
+Then it'd be, like, a fee, and then it was, like, meant to be some big...
+00:26:31 [Speaker 2]
+It was, like, the creator play.
+00:26:33 [Speaker 2]
+You go create a community.
+00:26:34 [Speaker 2]
+And I was, like, dude, I I...
+
+00:26:36 [Speaker 2]
+And and those places became ghost yards.
+00:26:38 [Speaker 2]
+They became, or graveyards rather.
+00:26:40 [Speaker 2]
+Like, the the activity stops.
+00:26:42 [Speaker 2]
+They just...
+00:26:42 [Speaker 2]
+There wasn't...
+
+00:26:43 [Speaker 2]
+It didn't feel like an authentic hang with friends.
+00:26:47 [Speaker 2]
+And so for the last handful of years, I built two different communities for friends.
+00:26:52 [Speaker 2]
+We have a private Slack group for designers who are, essentially influencers.
+00:26:57 [Speaker 2]
+And then we have this Discord for designers who are like builders.
+00:27:00 [Speaker 2]
+And I...
+
+00:27:01 [Speaker 2]
+These aren't things that, like, I had any desire to turn into money making machines.
+00:27:05 [Speaker 2]
+I I I work from home.
+00:27:07 [Speaker 2]
+This is a lonely job if I don't have interfacing with people.
+00:27:10 [Speaker 2]
+You know?
+00:27:11 [Speaker 2]
+And these places have become that for me in spades.
+
+00:27:15 [Speaker 2]
+And so Ridd and I were talking about, like, well, should we open this up and make this more of, like, the dive community place to hang?
+00:27:22 [Speaker 2]
+And it was like, yeah.
+00:27:24 [Speaker 2]
+But this this isn't like a money thing.
+00:27:27 [Speaker 2]
+It shouldn't be on top of that.
+00:27:30 [Speaker 2]
+It's not gonna become a spam factory for us or for anyone involved.
+
+00:27:34 [Speaker 2]
+And the biggest thing is this.
+00:27:35 [Speaker 2]
+This is the part that's super important to me, and I've been doing this for years.
+00:27:38 [Speaker 2]
+I kick people out who are inactive.
+00:27:41 [Speaker 2]
+We do a purge every quarter.
+00:27:44 [Speaker 2]
+And I'm not kidding.
+
+00:27:45 [Speaker 2]
+I look and see who has been active.
+00:27:47 [Speaker 2]
+We have a way for you to indicate if you wanna stay in the group.
+00:27:50 [Speaker 2]
+And if you do not indicate, you have seven days.
+00:27:52 [Speaker 2]
+I don't care if you're on vacation.
+00:27:54 [Speaker 2]
+I don't care if...
+
+00:27:54 [Speaker 2]
+What's going on.
+00:27:55 [Speaker 2]
+If you don't indicate, you get purged.
+00:27:57 [Speaker 2]
+It doesn't mean you're not allowed back in at the next opening.
+00:27:59 [Speaker 2]
+Everyone's always welcome back in.
+00:28:01 [Speaker 2]
+But if you don't indicate that you're currently active, we...
+
+00:28:04 [Speaker 2]
+I don't...
+00:28:04 [Speaker 2]
+You know, it's like, great.
+00:28:05 [Speaker 2]
+Maybe this isn't the place for you right now, and that's okay.
+00:28:08 [Speaker 2]
+But we are not trying to make number go up.
+00:28:10 [Speaker 2]
+We're just trying to make conversations stay Yeah.
+
+00:28:13 [Speaker 2]
+Good.
+00:28:14 [Speaker 2]
+You know?
+00:28:15 [Speaker 2]
+So the other thing I'll say is, I've had a lot of people say, hey, how...
+00:28:18 [Speaker 2]
+You know, I have a workflow I wanna feature or a designer I'd like to nominate.
+00:28:21 [Speaker 2]
+How do I do that?
+
+00:28:23 [Speaker 2]
+It's really hard for me to chase DMs around all over the Internet, and that's how I've been doing it.
+00:28:28 [Speaker 2]
+One of the ways I'm trying to make it a little bit easier is that if you do wanna share a workflow or you wanna share something that you want us to react to on the show, I create a little submissions channel here.
+00:28:39 [Speaker 2]
+And we're gonna do some call for submissions, and I would love to hear from anybody who just wants to take a stab at sharing something dope.
+00:28:46 [Speaker 2]
+I can't promise we'll show everything, but I can promise that I am gonna be locked in paying attention to this.
+00:28:51 [Speaker 2]
+And right now, I just started it.
+
+00:28:53 [Speaker 2]
+It has nothing in it, which means that you have a great opportunity for your stuff to get seen by us.
+00:28:58 [Speaker 2]
+So, join up the Discord.
+00:29:00 [Speaker 2]
+Come check it out.
+00:29:00 [Speaker 2]
+Introduce yourself next Friday at closes until twenty twenty seven.
+00:29:05 [Speaker 2]
+Good times.
+
+00:29:06 [Speaker 1]
+You can also promise that no one is above the purge too because I have, in fact, already been purged once.
+
+00:29:13 [Speaker 2]
+He was purged in the last purge.
+00:29:17 [Speaker 2]
+I didn't even tell him either.
+00:29:18 [Speaker 2]
+I didn't even, like, DM him.
+00:29:20 [Speaker 2]
+I didn't text him and say, hey.
+00:29:22 [Speaker 2]
+Go open.
+
+00:29:22 [Speaker 2]
+I was like, no.
+00:29:23 [Speaker 2]
+Rid's gonna get it too.
+00:29:24 [Speaker 2]
+No one's safe.
+00:29:25 [Speaker 2]
+I think I posted it too.
+00:29:26 [Speaker 2]
+I said, no one is safe.
+
+00:29:29 [Speaker 2]
+So, Rid will be back, post Purge.
+00:29:32 [Speaker 2]
+He's coming back, but that's funny.
+00:29:36 [Speaker 2]
+I like it.
+00:29:37 [Speaker 2]
+And it's a good time.
+00:29:38 [Speaker 2]
+And by the way, I do have a tag in here for the king memer.
+
+00:29:41 [Speaker 2]
+If we get a good meme ster in here.
+00:29:43 [Speaker 2]
+It's currently owned, but, there is room for the the meme culture to to thrive.
+00:29:47 [Speaker 2]
+So...
+00:29:48 [Speaker 2]
+Yeah.
+00:29:50 [Speaker 2]
+Moving on.
+
+00:29:51 [Speaker 2]
+Another thing I wanna call out.
+00:29:52 [Speaker 2]
+I wanna give some love.
+00:29:53 [Speaker 2]
+So we talked briefly about this last week.
+00:29:56 [Speaker 2]
+Lovable, a lot of the tooling...
+00:29:58 [Speaker 2]
+I have I have a big conversation I wanna have about Lovable as a tool, the things they've done, the challenges that I see in front for them, and and the things that, like, I'm finding in our workflow.
+
+00:30:07 [Speaker 2]
+We'll get to that conversation on another day, not far from now.
+00:30:10 [Speaker 2]
+But in the meantime, what's crazy is that last week, I said, we have all these submissions from people.
+00:30:17 [Speaker 2]
+I get so many people saying, hey.
+00:30:19 [Speaker 2]
+Where can I see the episode notes?
+00:30:21 [Speaker 2]
+Well, now you can see the episode notes in the episode notes Discord channel.
+
+00:30:25 [Speaker 2]
+That's that's gonna be awesome.
+00:30:27 [Speaker 2]
+But the thing that we have is we have a Dropbox full of all the submissions that people have submitted that some people just wanna rewatch.
+00:30:34 [Speaker 2]
+And they're really good, actually.
+00:30:37 [Speaker 2]
+We're not trying to sell content.
+00:30:38 [Speaker 2]
+We're just...
+
+00:30:39 [Speaker 2]
+How can I make that stuff so you guys can rewatch it again in a in a faster way?
+00:30:43 [Speaker 2]
+And so with Lovable, I just had it connect up to the Dropbox, connect up to our show transcript, and it's pulling this in in a library that you can now just immediately come and see.
+00:30:53 [Speaker 2]
+It's tagging things.
+00:30:54 [Speaker 2]
+There's a little bit of love here.
+00:30:56 [Speaker 2]
+Like, I want these thumbnails to load faster.
+
+00:30:59 [Speaker 2]
+But this is...
+00:31:00 [Speaker 2]
+There's something here.
+00:31:01 [Speaker 2]
+And this design will probably change over time because we are in the middle of doing, like, an actual intentional rebrand...
+00:31:07 [Speaker 2]
+Or redesign of dive club.
+00:31:09 [Speaker 2]
+But for now, it's just like, okay.
+
+00:31:10 [Speaker 2]
+Where's a place that people can see these episodes?
+00:31:13 [Speaker 2]
+Where is a place that they can submit them?
+00:31:15 [Speaker 2]
+So you can submit your own or in the Discord, you can do it there too.
+00:31:19 [Speaker 2]
+And then just for fun, I was like, cool.
+00:31:21 [Speaker 2]
+Let's go ahead and ask Jeff, and I can quickly, like, how do I animate a...
+
+00:31:27 [Speaker 2]
+An interaction?
+00:31:28 [Speaker 2]
+You know?
+00:31:29 [Speaker 2]
+And it'll...
+00:31:29 [Speaker 2]
+Ideally, look how quickly it can pull some stuff up.
+
+00:31:32 [Speaker 1]
+Okay.
+00:31:32 [Speaker 1]
+That's kinda cool.
+
+00:31:32 [Speaker 2]
+Yeah.
+00:31:33 [Speaker 2]
+Having having some fun with it.
+00:31:34 [Speaker 2]
+You know?
+00:31:34 [Speaker 2]
+Like, in in Yeah.
+00:31:35 [Speaker 2]
+These little things are kinda playgroundy.
+
+00:31:37 [Speaker 2]
+And so, I really liked it because in the past, I used to have to build my plans inside of, like, Claude or one of my agents.
+00:31:47 [Speaker 2]
+Lovable has a plan mode, like, the ability to just talk through your entire plans before you do it.
+00:31:52 [Speaker 2]
+Lovable can also be worked with your agent directly.
+00:31:54 [Speaker 2]
+There's a lot of things that I have been making a lot of use of here.
+00:31:57 [Speaker 2]
+You can check this out at dive.radio/submit.
+
+00:32:02 [Speaker 2]
+That is one way that you can access these submissions.
+00:32:07 [Speaker 2]
+Alright.
+00:32:09 [Speaker 2]
+Speaking of Jev, OpenAI's Dev Day kicks off.
+00:32:14 [Speaker 2]
+They announce a lot of things.
+00:32:15 [Speaker 2]
+I'm not gonna get to the biggest one yet.
+
+00:32:17 [Speaker 2]
+We'll get to that at the end.
+00:32:19 [Speaker 2]
+But the immediate thing that caught my attention was them announcing the decisions API.
+00:32:28 [Speaker 2]
+A quick way to use OpenAI models to make fast, snappy, in under a millisecond decisions for cheap.
+00:32:36 [Speaker 2]
+So, Jeff, it was a nice run.
+00:32:40 [Speaker 2]
+Open it.
+
+00:32:41 [Speaker 2]
+I said, hold my beer.
+00:32:43 [Speaker 2]
+We got you.
+00:32:45 [Speaker 2]
+I love a free market, you know, and I love that these things exist.
+00:32:50 [Speaker 2]
+But, yeah, powered by GPT six Luna, we now have that value prop that Jeff gave us inside of OpenAI's API.
+00:32:58 [Speaker 2]
+Wow.
+
+00:32:59 [Speaker 2]
+Pretty crazy.
+00:33:00 [Speaker 2]
+Pretty cool.
+
+00:33:01 [Speaker 1]
+If that's not a microcosm of the state of software, I don't know what
+
+00:33:05 [Speaker 2]
+is.
+00:33:06 [Speaker 2]
+It's gonna be nuts, you know.
+00:33:08 [Speaker 2]
+The thing that I'm kind of a fan of right now, and I think a lot of people who aren't building tools meant for, like, mass consumption maybe don't appreciate this.
+00:33:16 [Speaker 2]
+But I actually think this is one of the most consequential things they announced on dev day.
+00:33:20 [Speaker 2]
+Peter Yang says, wow.
+
+00:33:21 [Speaker 2]
+Sign in with Chat g b t, and letting people use their plus, plan or their plan inside of your app is a game changer.
+00:33:28 [Speaker 2]
+And it is.
+00:33:29 [Speaker 2]
+Like, the the...
+00:33:32 [Speaker 2]
+I don't have a...
+00:33:32 [Speaker 2]
+Like, we have in flight.
+
+00:33:34 [Speaker 2]
+We have, I built this little World of Warcraft tool that helps you with your quest.
+00:33:38 [Speaker 2]
+And it's like, what am I gonna do?
+00:33:39 [Speaker 2]
+Tell a gamer to go and get their API key and come and set it up.
+00:33:43 [Speaker 2]
+It's like, no.
+00:33:44 [Speaker 2]
+One click sign up through ChatGPT.
+
+00:33:46 [Speaker 2]
+Now it's using my subscription.
+00:33:48 [Speaker 2]
+I don't have to know any of this other stuff.
+00:33:50 [Speaker 2]
+I can just use your product.
+00:33:53 [Speaker 2]
+And I really think a lot of the friction, especially for, like, consumer or prosumer tools, that comes from the fact that they have to go and set up their API key, and they have to learn that an API key is not the same as their subscription, and they have to kind of start playing that game.
+00:34:08 [Speaker 2]
+That creates more friction than I think a lot of us in this bubble recognize.
+
+00:34:12 [Speaker 2]
+I think this, assuming anthropic and other labs follow suit, is going to immediately remove so much barrier to entry for people.
+
+00:34:21 [Speaker 1]
+Yeah.
+00:34:21 [Speaker 1]
+I'm super happy to see it, like, head this direction because there was a moment in time where it was a little bit dicey.
+00:34:26 [Speaker 1]
+Do you remember when Conductor had their announcement that you couldn't even use your subscription?
+00:34:32 [Speaker 1]
+Even, like, manually connected, like, you couldn't use your subscription inside of Conductor and you had to go through the API and it was like,
+
+00:34:37 [Speaker 2]
+no.
+
+00:34:38 [Speaker 1]
+Is that where the industry is headed?
+00:34:39 [Speaker 1]
+Like, are we all gonna be on APIs?
+00:34:40 [Speaker 1]
+Like, that's ridiculous.
+00:34:42 [Speaker 1]
+This feels like a huge step forward in the direction that at the time felt inevitable, but I'm just grateful that this is gonna be the way.
+
+00:34:49 [Speaker 2]
+Yeah.
+00:34:49 [Speaker 2]
+This is a
+
+00:34:50 [Speaker 1]
+mass adoption tool too.
+00:34:51 [Speaker 1]
+Like, the amount of people that are going to get off of the fence because of the ease of use is gonna be a big deal.
+
+00:34:59 [Speaker 2]
+It's gonna be a huge deal.
+00:35:00 [Speaker 2]
+I I really think it's gonna be huge, especially as we see everybody releasing...
+00:35:04 [Speaker 2]
+We'll talk about DOTS.
+00:35:05 [Speaker 2]
+Everybody releasing their kind of consumer agent products.
+00:35:08 [Speaker 2]
+We'll talk about a number of those in a second here.
+
+00:35:10 [Speaker 2]
+But in addition to that, like, really, the the entire bets being made by OpenAI right now are all about making the ecosystem accessible from all these different entry points.
+00:35:22 [Speaker 2]
+Plug ins coming out in a big way.
+00:35:24 [Speaker 2]
+Sivuiz and TL draw saying, look at this.
+00:35:27 [Speaker 2]
+We just announced the TL draw plugin for chat GPT.
+00:35:30 [Speaker 2]
+So a real time multiplayer canvas is now available inside the chat GPT app.
+
+00:35:36 [Speaker 2]
+That's pretty cool.
+00:35:37 [Speaker 2]
+This gives me ideas.
+00:35:38 [Speaker 2]
+This is...
+00:35:39 [Speaker 2]
+I'm like, hey.
+00:35:39 [Speaker 2]
+What what...
+
+00:35:40 [Speaker 2]
+How are we thinking about it at in flight?
+00:35:42 [Speaker 2]
+I know it immediately spurred conversation with us.
+00:35:45 [Speaker 2]
+And on top of that, Pietro Serrano Pietro Serrano, you know, the the founder of MagicPath here, says stop what you're doing and build a plug in extension for ChatGPT.
+00:35:55 [Speaker 2]
+We've grown over 2000% since the announcement.
+00:35:59 [Speaker 2]
+This went super viral.
+
+00:36:01 [Speaker 2]
+And, I...
+00:36:03 [Speaker 2]
+I'm fairly certain this post instigated, entire road map shifts inside of organizations.
+
+00:36:09 [Speaker 1]
+Yeah.
+00:36:10 [Speaker 1]
+We we shared it and started building the plug in immediately.
+00:36:12 [Speaker 1]
+Yeah.
+00:36:13 [Speaker 1]
+Yeah.
+00:36:13 [Speaker 1]
+I'm sure everybody else did too.
+
+00:36:15 [Speaker 2]
+Yeah.
+00:36:16 [Speaker 2]
+And and I I think that's...
+00:36:17 [Speaker 2]
+I think it's pretty fascinating.
+00:36:18 [Speaker 2]
+But the big one, the big staple of the day had to come from
+
+00:36:45 [Speaker 1]
+I haven't seen this.
+00:36:46 [Speaker 1]
+This is pretty good.
+
+00:36:49 [Speaker 2]
+Dots.
+00:36:49 [Speaker 2]
+Do you
+
+00:36:50 [Speaker 1]
+think that they were fuzzy before Muse?
+00:36:52 [Speaker 1]
+That's my question.
+00:36:53 [Speaker 1]
+Were they fuzzy before Muse?
+
+00:36:55 [Speaker 2]
+Can I?
+00:36:56 [Speaker 2]
+I...
+00:36:56 [Speaker 2]
+Before we get into that part, I just wanna say, I I think there was a little design show about three, four weeks ago that called the the personification trend of mascots and AI.
+00:37:07 [Speaker 2]
+I don't know what...
+00:37:07 [Speaker 2]
+It might have been called something like dive radio.
+
+00:37:10 [Speaker 2]
+I do know that big.
+00:37:11 [Speaker 2]
+We started...
+00:37:12 [Speaker 2]
+You know, it might ring a bell, but, we...
+00:37:15 [Speaker 2]
+This is coming everywhere.
+00:37:17 [Speaker 2]
+Right?
+
+00:37:17 [Speaker 2]
+And in fact, we were getting flack for our thumbnails, probably still will.
+00:37:21 [Speaker 2]
+It kinda went in a different direction at one point.
+00:37:23 [Speaker 2]
+I was like, no, dude.
+00:37:24 [Speaker 2]
+The the Tommy and Rid backyard design avatars, I'm I'm...
+00:37:30 [Speaker 2]
+I've fallen in love with them, Rid.
+
+00:37:31 [Speaker 2]
+I'm sorry.
+00:37:32 [Speaker 2]
+It's part of the brand.
+00:37:33 [Speaker 2]
+I don't know if I wanna give it up yet, but but we'll see this mascot play that a lot of labs, a lot of companies are leaning into.
+00:37:41 [Speaker 2]
+I like it.
+00:37:42 [Speaker 2]
+It might be a dying trend.
+
+00:37:43 [Speaker 2]
+I don't know, but I like it right now.
+00:37:45 [Speaker 2]
+It's kind of fun.
+00:37:46 [Speaker 2]
+It's playful.
+00:37:46 [Speaker 2]
+What do you think about it?
+
+00:37:48 [Speaker 1]
+Yeah.
+00:37:48 [Speaker 1]
+I love it.
+00:37:49 [Speaker 1]
+I mean, everybody points at it in almost as if there's, like, a lack of creativity, but there's not that many ways that you wanna do a mascot.
+00:37:57 [Speaker 1]
+It has to be low fidelity almost so that your mind can kinda make it what you want.
+00:38:03 [Speaker 1]
+You know?
+
+00:38:03 [Speaker 1]
+Like, you you can't get into too much detail because then it's not gonna have the mass market appeal that you need.
+00:38:09 [Speaker 1]
+This has to work for somebody on the opposite side of the world, and that does.
+00:38:13 [Speaker 1]
+And there's...
+00:38:14 [Speaker 1]
+And given those constraints, I just don't think that there are that many unique directions, and it's clear.
+00:38:20 [Speaker 1]
+Like, they're the the later movers.
+
+00:38:22 [Speaker 1]
+You know?
+00:38:22 [Speaker 1]
+It's clear the market loves cute.
+00:38:24 [Speaker 1]
+The cuter you make it, the more people like it.
+00:38:26 [Speaker 1]
+So I think they kinda nailed it.
+
+00:38:27 [Speaker 2]
+Lucas Crespo says, welcome to the new era of cutemorphism.
+00:38:32 [Speaker 2]
+And that that might stick.
+00:38:34 [Speaker 2]
+That might stick because that is certainly what we are seeing.
+00:38:37 [Speaker 2]
+But in addition to this trend of mascotting and personification, I...
+00:38:44 [Speaker 2]
+This started a really interesting thought process for me.
+
+00:38:49 [Speaker 2]
+And it's something I've been thinking about, and I talked with you and Kyle a little bit about it.
+00:38:52 [Speaker 2]
+But Tyler says, especially after tomorrow, if you are wondering why every tech company is building the same thing, I've been asked to blow these up a little bit, It's because the personal agent is the final product.
+00:39:05 [Speaker 2]
+The final product that you interact with to get you all future products and services, first in the digital world and then in the physical world.
+00:39:12 [Speaker 2]
+I I think this is true.
+00:39:15 [Speaker 2]
+I think, basically, what's happening is if you start down the slippery slope of saying, we're gonna build an MCP.
+
+00:39:23 [Speaker 2]
+We're gonna build, we're gonna have a little bit of, some agentic...
+00:39:25 [Speaker 2]
+We're just gonna support some agentic stuff.
+00:39:28 [Speaker 2]
+And you open that up, and you go, wait a second.
+00:39:31 [Speaker 2]
+There...
+00:39:31 [Speaker 2]
+I think there are through ways to value that immediately make sense.
+
+00:39:37 [Speaker 2]
+You open it, and you go, well, we built an MCP, but, of course, we have to make it...
+00:39:40 [Speaker 2]
+Be able to interact in this way and that way, unless maybe you're Figma and decide you only wanna let a few partners use your MCP.
+00:39:46 [Speaker 2]
+We'll talk about that.
+00:39:47 [Speaker 2]
+But the thing that the thing...
+00:39:49 [Speaker 2]
+There's little things that start to become obvious to you.
+
+00:39:52 [Speaker 2]
+And I think what's happening is the companies that are starting to build towards this future of agent first software or just agent hybrid software are seeing the obvious points of least resistance, and that...
+00:40:06 [Speaker 2]
+And it and it seems like everyone's building towards the same thing.
+00:40:10 [Speaker 2]
+What do you think about this?
+00:40:11 [Speaker 2]
+How how...
+00:40:12 [Speaker 2]
+You know, we've talked a little bit about the future of software.
+
+00:40:15 [Speaker 2]
+What do you think about this?
+
+00:40:16 [Speaker 1]
+I think where my brain goes is I'm feeling a lot of pressure to choose correctly, because it does feel like right now you have to buy into an ecosystem.
+00:40:27 [Speaker 1]
+Like, you just gotta pick.
+00:40:29 [Speaker 1]
+Like, it's a silly example, but when you have a kid, you kinda have to buy into an ecosystem because everything is modular and everything plays together.
+00:40:37 [Speaker 1]
+So it's like you have to buy your stroller in the same way that you buy your car seat, in the same way you...
+00:40:42 [Speaker 1]
+Yada yada yada.
+
+00:40:43 [Speaker 1]
+You know?
+00:40:43 [Speaker 1]
+It all just fits together.
+00:40:45 [Speaker 1]
+I'm, like, feeling some of those same feelings where I'm like, oh my gosh.
+00:40:48 [Speaker 1]
+I'm I'm currently in Grokbot.
+00:40:50 [Speaker 1]
+I love Grokbot.
+
+00:40:51 [Speaker 1]
+Do I actually love Grokbot, or do I love this method of interaction with agents and this type of product?
+
+00:40:59 [Speaker 2]
+Mhmm.
+
+00:40:59 [Speaker 1]
+My gut is it's actually probably the latter, and GrokBot was the first one to nail it.
+00:41:04 [Speaker 1]
+I already am feeling a ton of pull to, you know, codecs, ChatcherBT even before this.
+00:41:12 [Speaker 1]
+I think it's probably the best made app.
+00:41:14 [Speaker 1]
+Like, it's it's amazing.
+00:41:15 [Speaker 1]
+Like, ChatcherBT is amazing.
+
+00:41:17 [Speaker 1]
+Their voice mode is such a big deal to me.
+
+00:41:19 [Speaker 2]
+Like It's it's just
+
+00:41:21 [Speaker 1]
+launched voice mode, but I'm like, oh my gosh.
+00:41:24 [Speaker 1]
+If everything is equal, that would get me to go back to Chatubuty.
+00:41:28 [Speaker 1]
+And I I...
+00:41:29 [Speaker 1]
+I'm...
+00:41:29 [Speaker 1]
+I don't know.
+
+00:41:30 [Speaker 1]
+Like, how do you think about that?
+00:41:31 [Speaker 1]
+Are you...
+00:41:32 [Speaker 1]
+Because I feel kinda a little bit scattered right now.
+00:41:33 [Speaker 1]
+I I will say one humongous pro to Grokbot is that because it pairs so well with cursor, I get access to all the models.
+
+00:41:43 [Speaker 2]
+Right.
+
+00:41:43 [Speaker 1]
+So it's like there's so many different pros and cons, and and it's just Not all
+
+00:41:47 [Speaker 2]
+the models.
+00:41:47 [Speaker 2]
+Not all the models.
+00:41:48 [Speaker 2]
+Not OpenAI.
+
+00:41:50 [Speaker 1]
+Oh, you're right.
+
+00:41:52 [Speaker 2]
+Yeah.
+00:41:52 [Speaker 2]
+There's there's beef there.
+
+00:41:53 [Speaker 1]
+They just they just changed.
+
+00:41:55 [Speaker 2]
+They discontinued it.
+
+00:41:56 [Speaker 1]
+That's what I'm getting at.
+00:41:57 [Speaker 1]
+It's like, oh, man.
+00:41:58 [Speaker 1]
+Everything was kinda, like, fun and games, and now I'm...
+00:42:01 [Speaker 1]
+I need to actually pick my ecosystem.
+00:42:04 [Speaker 1]
+And I'm still in the process of thinking through how how I...
+
+00:42:07 [Speaker 1]
+Do you feel that at all?
+00:42:08 [Speaker 1]
+Like...
+00:42:08 [Speaker 1]
+Oh, yeah.
+
+00:42:08 [Speaker 2]
+And and I'm gonna call out Josh Armantraut's comment here in just a second because this this relates.
+00:42:13 [Speaker 2]
+But, Josh Armantraut says, I don't know, man.
+00:42:15 [Speaker 2]
+You could also take a page out of Chris Puckett's playbook and just build our own personal agents, which Chris built ShadowFax.
+00:42:22 [Speaker 2]
+I don't know if I have a video from him.
+00:42:24 [Speaker 2]
+I think I asked how he built something there.
+
+00:42:26 [Speaker 2]
+But, but that's what I did originally.
+00:42:29 [Speaker 2]
+Right?
+00:42:29 [Speaker 2]
+I went the OpenClaw route, which is still very much like...
+00:42:31 [Speaker 2]
+OpenClaw feels like, the equivalent of, maybe like a Linux kind of setup or something, at this point, because everything else is more, like, relegated to the labs, products, or whatever they have.
+00:42:42 [Speaker 2]
+And even to that degree, I'm over here talking with chatgpt.
+
+00:42:48 [Speaker 2]
+Trying to set it up, and the first thing I always ask, GrokBot or dot or whoever, like, hey.
+00:42:53 [Speaker 2]
+Go look at my OpenClaw setup and and rebuild everything, but keep the same source of truth, is essentially the TLDR.
+00:43:01 [Speaker 2]
+And I haven't had the perfect translation for that, but it makes me go, am I...
+00:43:07 [Speaker 2]
+If I continue using OpenClaw, you know, if we go the shadow facts route like Chris Puckett here, am I potentially screwing myself out of when these other bots, these other agents get really, really good and really, really smart, and I don't have to do all this manual labor to make them work the way I want?
+
+00:43:26 [Speaker 1]
+We're getting close, man.
+00:43:28 [Speaker 1]
+The next level too is we think about the final product.
+00:43:32 [Speaker 1]
+It feels like all of these companies are gonna have to make a really good hardware play soon.
+00:43:38 [Speaker 1]
+And I think once that line is crossed, it gets really difficult to compete.
+00:43:42 [Speaker 1]
+Really, really, really difficult.
+
+00:43:43 [Speaker 2]
+Dude, hardware is gonna be hardware robotics next year.
+00:43:46 [Speaker 2]
+It's gonna be Did you
+
+00:43:47 [Speaker 1]
+see this tweet?
+00:43:48 [Speaker 1]
+Can I show you my favorite tweet that I saw?
+00:43:49 [Speaker 1]
+Because I I missed the dev day.
+00:43:51 [Speaker 1]
+I was I was, at the pool.
+00:43:52 [Speaker 1]
+But, my my favorite tweet is this one, and it's just Jason just taking a shot to open it by launching dot.
+
+00:44:05 [Speaker 1]
+I I think Josh had a...
+00:44:08 [Speaker 1]
+Or is this...
+00:44:09 [Speaker 1]
+Yeah.
+00:44:10 [Speaker 1]
+Josh said, Jason never beating the always too early allegations.
+
+00:44:15 [Speaker 2]
+Yeah.
+00:44:16 [Speaker 2]
+Yeah.
+00:44:16 [Speaker 2]
+That's funny.
+00:44:19 [Speaker 2]
+I wonder what it was.
+00:44:20 [Speaker 2]
+What was it, Jason?
+
+00:44:21 [Speaker 2]
+Tell us.
+00:44:21 [Speaker 2]
+The people wanna know.
+00:44:24 [Speaker 2]
+But but here's here's a question I have.
+00:44:25 [Speaker 2]
+So on the...
+00:44:26 [Speaker 2]
+Putting our product builder hats on for a second, does it feel like choosing how you respond to this agentic adoption cycle happening right now, does that feel like a speedliner decision or, like, an o...
+
+00:44:41 [Speaker 2]
+A speedboat decision or an ocean liner decision in terms of being able to reverse out of it?
+
+00:44:48 [Speaker 1]
+I think that's...
+00:44:49 [Speaker 1]
+I mean, it feels a little bit ocean liner y to me.
+
+00:44:53 [Speaker 2]
+Yeah.
+00:44:53 [Speaker 2]
+How about why I'm feeling some
+
+00:44:54 [Speaker 1]
+of the pressure.
+00:44:58 [Speaker 1]
+Give me give me a little bit give me a little bit more context or
+
+00:45:01 [Speaker 2]
+So so, you know, like, if we're gonna...
+00:45:03 [Speaker 2]
+Like, setting up an MCP feels light, but maybe what's not light about it is, like, then you have to go and message around that.
+00:45:13 [Speaker 2]
+And how deep into the messaging.
+00:45:14 [Speaker 2]
+Like, we are an agent first company.
+00:45:17 [Speaker 2]
+We believe this is the future.
+
+00:45:18 [Speaker 2]
+Or it's like, no.
+00:45:19 [Speaker 2]
+No.
+00:45:19 [Speaker 2]
+No.
+00:45:20 [Speaker 2]
+We're on both sides.
+00:45:21 [Speaker 2]
+Like, we humans here.
+
+00:45:22 [Speaker 2]
+But, like, if you wanna use agents here, like...
+00:45:25 [Speaker 2]
+And and and...
+00:45:26 [Speaker 2]
+So messaging is one big part of this.
+00:45:28 [Speaker 2]
+Like, how easy is it to reverse messaging?
+00:45:31 [Speaker 2]
+Technically, where do you start to lean into?
+
+00:45:34 [Speaker 2]
+Like, the fact, like, you know, can you...
+00:45:35 [Speaker 2]
+You can think of the companies who are like, okay.
+00:45:37 [Speaker 2]
+Fine.
+00:45:38 [Speaker 2]
+If ChatGPT, Anthropic, all the labs aren't gonna allow us users to use their subscriptions, we're gonna build a bunch of infrastructure.
+00:45:45 [Speaker 2]
+We're gonna use open router.
+
+00:45:46 [Speaker 2]
+We're gonna make these decisions.
+00:45:48 [Speaker 2]
+And someone might say, depending on how far down that path you went, that was an expensive decision.
+00:45:53 [Speaker 2]
+And then all of a sudden, they just decide to make, you know, login and OAuth easy.
+00:45:58 [Speaker 2]
+It's it's it's hard to try and keep up and to try to, like, see where the puck is going.
+00:46:01 [Speaker 2]
+So I'm curious, Did...
+
+00:46:03 [Speaker 2]
+Where do you sit on any of that?
+00:46:04 [Speaker 2]
+Does anything come to mind?
+
+00:46:05 [Speaker 1]
+Yeah.
+00:46:05 [Speaker 1]
+I I was...
+00:46:06 [Speaker 1]
+Who was, like, just asking about this?
+00:46:08 [Speaker 1]
+I think it was I think it was the head of private design for ChargebeeT work, actually.
+00:46:14 [Speaker 1]
+Yeah.
+
+00:46:14 [Speaker 1]
+I think it was Ed Baze, and I was talking to him about how people should think about building different types of evals and scaffolding around what they get out of the box because it felt like you could almost limit the ceiling of the future advancements in the model.
+00:46:33 [Speaker 1]
+And I was talking about how he thought about that tension and where the right intersection point was.
+00:46:37 [Speaker 1]
+And his answer was...
+00:46:38 [Speaker 1]
+It it made sense but actually kinda surprised me at first because I thought he was gonna say, like, restrain yourself.
+00:46:43 [Speaker 1]
+And he was basically like, no.
+
+00:46:45 [Speaker 1]
+Build any amount of scaffolding and custom setup that you need, but you just have to recognize that all of that will be deleted.
+00:46:52 [Speaker 1]
+And basically, quarterly, you just have to delete and rebuild everything Yeah.
+00:46:56 [Speaker 1]
+Based off of the next model that comes.
+00:46:59 [Speaker 1]
+And he said it, and I was like, yeah.
+00:47:01 [Speaker 1]
+I mean, shoot.
+
+00:47:01 [Speaker 1]
+I guess that makes sense.
+00:47:03 [Speaker 1]
+But I think maybe it's like an old mindset that we have where we're so afraid of, you know, sunk cost of software Right.
+00:47:11 [Speaker 1]
+Where the sunk cost is diminishing so rapidly that that way of thinking doesn't even feel relevant anymore.
+
+00:47:17 [Speaker 2]
+There's a there's a benchmark
+
+00:47:19 [Speaker 1]
+rebuild everything.
+
+00:47:20 [Speaker 2]
+There's, like, a benchmark in here of, like, change cost.
+00:47:23 [Speaker 2]
+And it's, like, okay.
+00:47:25 [Speaker 2]
+Like, I invested so much money and time into my OpenClaw setup, and then I go and try to, like, adopt dot.
+00:47:32 [Speaker 2]
+And it's like, what's the change cost in that?
+00:47:35 [Speaker 2]
+Yeah.
+
+00:47:35 [Speaker 2]
+And every time I do this, it's, like, getting better.
+00:47:37 [Speaker 2]
+It's getting faster.
+00:47:38 [Speaker 2]
+It's getting less complicated.
+00:47:40 [Speaker 2]
+And, eventually, I'm kind of not too concerned on the OpenClaw side anymore because I'm like, eventually, when the absolute standout version of this is made, it's gonna probably be so simple to onboard because it's slowly getting better.
+00:47:53 [Speaker 2]
+But then on the other side of this, I hear about companies.
+
+00:47:56 [Speaker 2]
+We had someone in the Discord talking about this.
+00:47:58 [Speaker 2]
+But I also hear about companies like on x where there's...
+00:48:00 [Speaker 2]
+They say, some companies were like, alright.
+00:48:03 [Speaker 2]
+We're done using lab models.
+00:48:04 [Speaker 2]
+Quen is good enough.
+
+00:48:06 [Speaker 2]
+Everyone were using QEN in the organization.
+00:48:08 [Speaker 2]
+And someone said to that, they're like, the the amount of crippling you're doing to your company by not using lab models or at least having the access to do it, you you...
+00:48:17 [Speaker 2]
+It just doesn't compete.
+00:48:18 [Speaker 2]
+Especially if, like, you made the Quinn decision before summer or right as Fable five one five came out, and you were like, yeah, it's too expensive.
+00:48:26 [Speaker 2]
+We're going to Quinn.
+
+00:48:27 [Speaker 2]
+And now you're not getting the benefits of, like, Opus five five.
+00:48:30 [Speaker 2]
+That that is a that is seems like a really big decision if you're a huge company to mandate.
+00:48:35 [Speaker 2]
+The other one being in the Discord, someone said, my...
+00:48:38 [Speaker 2]
+Our employer is giving us $15, per employee a day of token credits for a...
+00:48:46 [Speaker 2]
+Anthropic.
+
+00:48:47 [Speaker 2]
+So they're making them pay ticket price for tokens, and you get $15 a day.
+00:48:53 [Speaker 2]
+I'm like, what kind of performative allotment is that?
+00:48:57 [Speaker 2]
+That is...
+00:48:57 [Speaker 2]
+That will not get anyone anywhere meaningful from my experience.
+00:49:04 [Speaker 2]
+And those seems those seem like big decisions to implement.
+
+00:49:07 [Speaker 2]
+Maybe the $15 one is easy to increase.
+00:49:10 [Speaker 2]
+Mandating a model seems like it might be a little hairier.
+00:49:12 [Speaker 2]
+You know?
+00:49:13 [Speaker 2]
+These are these are the questions that I think, that are tough to navigate.
+00:49:17 [Speaker 2]
+I can't...
+
+00:49:17 [Speaker 2]
+You know, it's...
+00:49:18 [Speaker 2]
+We we are a small team.
+
+00:49:19 [Speaker 1]
+Yeah.
+00:49:19 [Speaker 1]
+It makes me grateful to work for myself.
+00:49:21 [Speaker 1]
+When you say something like that, I'm like, god.
+00:49:23 [Speaker 1]
+Thank you.
+
+00:49:25 [Speaker 2]
+Yeah.
+00:49:25 [Speaker 2]
+You know?
+00:49:26 [Speaker 2]
+So lot lot of stuff there.
+00:49:28 [Speaker 2]
+Anyway, that's a...
+00:49:29 [Speaker 2]
+It's a topic I think we'll continue to come back to.
+
+00:49:31 [Speaker 2]
+But in the in the world of agents, and especially in this consumer side, a lot of these consumer agents are just a little too simple for me, because my my world of agent use blurs so heavily between work and play that I can't have a single thread type of agent, or I can't have...
+00:49:49 [Speaker 2]
+But Wabi, I'm curious.
+00:49:51 [Speaker 2]
+You know, Wabi came out with their first version.
+00:49:53 [Speaker 2]
+It was cute.
+00:49:54 [Speaker 2]
+I saw potential.
+
+00:49:56 [Speaker 2]
+I stopped using it after a day.
+00:49:58 [Speaker 2]
+Right?
+00:49:58 [Speaker 2]
+It was more of like a toy.
+00:49:59 [Speaker 2]
+I went and tinkered, and then I was done.
+00:50:01 [Speaker 2]
+They just released, what was it?
+
+00:50:03 [Speaker 2]
+Wabi two point o.
+
+00:50:11 [Speaker 1]
+Full screen me.
+
+00:51:21 [Speaker 2]
+Man, launch videos and messaging around this stuff is a is a tough gig.
+00:51:26 [Speaker 2]
+It's a tough gig.
+
+00:51:27 [Speaker 1]
+It's cool.
+00:51:28 [Speaker 1]
+I like it.
+00:51:28 [Speaker 1]
+I don't like the key change at the end there.
+00:51:29 [Speaker 1]
+But...
+
+00:51:30 [Speaker 2]
+No.
+00:51:30 [Speaker 2]
+I didn't like that either.
+00:51:31 [Speaker 2]
+But I I...
+00:51:32 [Speaker 2]
+So, you you know, like, I look at this, and I wanna call out to you that Henry just announced, by the way, Modisette.
+00:51:38 [Speaker 2]
+Yeah.
+
+00:51:39 [Speaker 2]
+That, he's working with Bobby.
+00:51:41 [Speaker 2]
+I feel
+
+00:51:42 [Speaker 1]
+like the entire industry was like, wait, what's Henry about
+
+00:51:44 [Speaker 4]
+to do?
+
+00:51:44 [Speaker 2]
+Yeah.
+00:51:44 [Speaker 2]
+This is this is huge.
+00:51:46 [Speaker 2]
+So I don't know if he had a hand in this one, but very cool, excited to see.
+00:51:51 [Speaker 2]
+Like, anytime someone like Henry joins a team, I'm like, okay.
+00:51:55 [Speaker 2]
+Well, immediately, I'm paying attention.
+
+00:51:58 [Speaker 2]
+So...
+00:51:58 [Speaker 2]
+But I I see product like Wabi, and I'm like, yeah.
+00:52:01 [Speaker 2]
+Like, this is what I expect Apple to eventually do with their operating system at some point if they ever decide to poke them with a stick and they do something.
+00:52:10 [Speaker 2]
+You know?
+
+00:52:11 [Speaker 1]
+Yeah.
+00:52:12 [Speaker 1]
+Yeah.
+00:52:14 [Speaker 1]
+I love Wabi.
+00:52:14 [Speaker 1]
+I think the team is amazing.
+00:52:17 [Speaker 1]
+I used the first version of the product.
+
+00:52:19 [Speaker 1]
+I built some pretty cool stuff, actually, that I was proud of.
+00:52:21 [Speaker 1]
+It was very fun to do so, like, the entire...
+00:52:23 [Speaker 1]
+It's almost like what play should have been, you know, like, it's like AI play in a way.
+00:52:29 [Speaker 1]
+Like, it's really, really well done.
+00:52:31 [Speaker 1]
+Absurdly talented.
+
+00:52:32 [Speaker 1]
+I think their visual language is incredible.
+00:52:34 [Speaker 1]
+I think it ties very well back to the previous conversation.
+00:52:38 [Speaker 1]
+I don't know how intentionally you sequenced it, but I just have a hard time right now buying into basically anything other than, like, the big three.
+00:52:49 [Speaker 1]
+Yeah.
+00:52:50 [Speaker 1]
+Or...
+
+00:52:50 [Speaker 1]
+Yes.
+00:52:50 [Speaker 1]
+I I just think the opportunity cost of getting it wrong is is pretty significant.
+00:52:54 [Speaker 1]
+And I I will say that the idea of, like, dynamic widgets on my home screen that are all, like, custom mini apps that I'm making for myself, that is sick.
+00:53:04 [Speaker 1]
+I want that.
+00:53:04 [Speaker 1]
+I could see that.
+
+00:53:05 [Speaker 1]
+I could lean really far into that.
+00:53:07 [Speaker 1]
+I just have so I just have some hesitation on trusting a startup to, like, that level and of just, like, really valuable context.
+00:53:17 [Speaker 1]
+You know?
+00:53:18 [Speaker 1]
+Not from a privacy standpoint just because I just wanna...
+00:53:21 [Speaker 1]
+I don't wanna I just...
+
+00:53:22 [Speaker 1]
+I don't know.
+00:53:23 [Speaker 1]
+I'm feeling so much pressure to pick the right ecosystem, and this doesn't currently exist in my decision making matrix.
+
+00:53:31 [Speaker 2]
+That's why I think it's so important.
+00:53:33 [Speaker 2]
+If you are a start up, and maybe it's something we think about, how well do we cover our ass in in...
+00:53:40 [Speaker 2]
+With the ecosystem, the plug and plays.
+00:53:42 [Speaker 2]
+I don't know.
+00:53:43 [Speaker 2]
+You know?
+
+00:53:43 [Speaker 2]
+Yeah.
+00:53:44 [Speaker 2]
+Because on on one hand, like, you wanna make sure you play well.
+00:53:46 [Speaker 2]
+On the other, everybody is going towards, the same thing, which is like they realize the interface slice is just...
+00:53:55 [Speaker 2]
+And and and here, what's said is the amount of companies making and releasing the same features and products at the same time seems to be an indicator that they're all asking AIs what to build next.
+00:54:05 [Speaker 2]
+Very funny comment.
+
+00:54:06 [Speaker 2]
+That's not what I think is happening.
+00:54:08 [Speaker 2]
+What's happening is, as I said earlier, everybody's just realizing where everything is going.
+00:54:13 [Speaker 2]
+As they're building, no one sees more clearly as you watch your users use things, as you're paying attention to the market, more than anybody else is, you start to realize, oh, the context layer is going to be...
+00:54:25 [Speaker 2]
+Is king.
+00:54:27 [Speaker 2]
+And where do you fit inside of that?
+
+00:54:29 [Speaker 2]
+And the the...
+00:54:30 [Speaker 2]
+And so I don't know.
+00:54:32 [Speaker 2]
+I do not know what the answer is.
+00:54:34 [Speaker 2]
+It is terrifying.
+00:54:35 [Speaker 2]
+So
+
+00:54:35 [Speaker 1]
+I I think the biggest thing that...
+00:54:37 [Speaker 1]
+Maybe I'll touch on that.
+00:54:38 [Speaker 1]
+I...
+00:54:38 [Speaker 1]
+So does me about the OpenAI Dev Day was what the plugins unlock inside of chat, I think, is really, really interesting because Yeah.
+
+00:54:47 [Speaker 7]
+For a
+
+00:54:47 [Speaker 1]
+while now, it's felt obvious that if you're building a tech product, you know, like, I only really use in flight through the MCP.
+00:54:55 [Speaker 1]
+We have a whole web dashboard, and some people use it exclusively.
+00:54:57 [Speaker 1]
+I don't even use it anymore, which is so weird as a designer to make a product that you don't actually really use because you're just using the MCP.
+00:55:05 [Speaker 1]
+Yeah.
+00:55:06 [Speaker 1]
+But the MCP was so limiting.
+
+00:55:08 [Speaker 1]
+Right?
+00:55:08 [Speaker 1]
+Like, it's just text responses.
+00:55:11 [Speaker 1]
+And now you can basically break up any part of your app and embed these interactive experiences that are all rooted in your database and your AI...
+00:55:21 [Speaker 1]
+Your UI inside of ChatChippity, that feels like an app store level moment that is going to totally change the way that we think about building software in a way that...
+00:55:33 [Speaker 1]
+And and I think maybe that's the thing that I'm most excited about right now.
+
+00:55:37 [Speaker 1]
+And so, yeah, everything looks and feels the same right now, but the experiences that you're having inside of these products, I think are gonna actually expand quite drastically because it's becoming more of a playground for non frontier models to actually dictate core parts of the experience, if that makes sense.
+
+00:55:54 [Speaker 2]
+Give a call out.
+00:55:55 [Speaker 2]
+Yeah.
+00:55:58 [Speaker 2]
+We'll see.
+00:55:59 [Speaker 2]
+And then meanwhile...
+00:56:01 [Speaker 2]
+And we'll we'll we'll move on from this, but I I will say, so Google DeepMind, this is not released to the public yet, but they announced that Gemini four argon is beating on a lot of coding benchmarks, six Astra, Fable 5.1, which the rumors on 5.5 are pretty crazy, but 5.1, obviously, we know what that's like.
+
+00:56:21 [Speaker 2]
+We know what, Opus five point five is doing.
+00:56:24 [Speaker 2]
+So if this is true and they've they've given it to a select few of trusted testers in their Fairwind program, then this would be something, really compelling.
+00:56:33 [Speaker 2]
+It's like, finally, Google did something.
+00:56:35 [Speaker 2]
+But Yeah.
+00:56:37 [Speaker 2]
+I think a lot of us are.
+
+00:56:38 [Speaker 2]
+We're skeptical of these benchmarks.
+00:56:40 [Speaker 2]
+I actually feel like it's time to do a video about how to read these benchmark reports.
+00:56:45 [Speaker 2]
+Because a lot has happened in benchmarking.
+00:56:48 [Speaker 2]
+There have been some winners that kind of bubbled to the surface who do really good work, but it's worth understanding why you...
+00:56:55 [Speaker 2]
+How you interpret a benchmark.
+
+00:56:57 [Speaker 2]
+I don't know.
+00:56:57 [Speaker 2]
+Would that be interesting to you guys to do, like, a proper deep dive into, like, what exactly...
+00:57:02 [Speaker 2]
+Because benchmarks can be indicative of something you wanna know.
+00:57:06 [Speaker 2]
+They're not the full picture.
+00:57:07 [Speaker 2]
+We all know that where we've seen, like, high benchmarks equate to the experience of driving it at feel worse for some reason.
+
+00:57:15 [Speaker 2]
+But I I I feel like we should talk about this.
+00:57:17 [Speaker 2]
+But I I will say Bloomberg, apparently, someone was reporting that it's okay.
+00:57:23 [Speaker 2]
+You know?
+00:57:24 [Speaker 2]
+That it does less well when employees actually put it to work.
+00:57:27 [Speaker 2]
+The model struggles to handle certain coding tasks.
+
+00:57:31 [Speaker 2]
+As Alphabet Inc's Google prepares for the upcoming launch, it's grappling with internal skepticism over how well the flagship AI model performs in areas like coding.
+00:57:40 [Speaker 2]
+So, again, it's like you don't know what to believe.
+00:57:43 [Speaker 2]
+More of the same.
+00:57:45 [Speaker 2]
+See what happens.
+00:57:46 [Speaker 2]
+Yeah.
+
+00:57:48 [Speaker 2]
+More of the same.
+00:57:49 [Speaker 2]
+Well, we got a lot of signatures.
+00:57:50 [Speaker 2]
+This is gonna segue into this.
+00:57:52 [Speaker 2]
+But this is...
+00:57:53 [Speaker 2]
+So, you know, this week too, we had a lot of the the lab founders and CEOs, and we had the US government get together.
+
+00:58:00 [Speaker 2]
+And they did a big pony show about how, hey, we're all working together, and we want safety.
+00:58:05 [Speaker 2]
+And then the government said, alright.
+00:58:07 [Speaker 2]
+We're all signing a doc that says the labs promise to police themselves, is essentially what that came down to.
+00:58:13 [Speaker 2]
+And we can look into that all day.
+00:58:14 [Speaker 2]
+But the main thing I wanted to see here, of of course, the most important bits, was look at Greg Brockman's signature on this.
+
+00:58:24 [Speaker 2]
+I I, I thought I had a pretty bad signature, and I do.
+00:58:29 [Speaker 2]
+But, g d b is pretty impressive.
+00:58:34 [Speaker 2]
+That looks like, my 14 old wrote it.
+
+00:58:37 [Speaker 1]
+The g is is really a work of art.
+
+00:58:39 [Speaker 8]
+I I respect that.
+
+00:58:40 [Speaker 1]
+It's almost as good as them misspelling united.
+
+00:58:45 [Speaker 2]
+They did...
+00:58:46 [Speaker 2]
+You...
+00:58:47 [Speaker 2]
+The unites states?
+00:58:49 [Speaker 2]
+Yeah.
+00:58:49 [Speaker 2]
+Yeah.
+
+00:58:50 [Speaker 2]
+Yeah.
+00:58:50 [Speaker 2]
+So we we...
+
+00:58:50 [Speaker 1]
+I still...
+00:58:51 [Speaker 1]
+I don't believe anything.
+00:58:52 [Speaker 1]
+I still think that we're maybe just circulating an AI altered photo everywhere.
+00:58:58 [Speaker 1]
+If that really happened, golly.
+
+00:59:05 [Speaker 2]
+I don't know.
+00:59:07 [Speaker 2]
+I'm getting a little beach balling on my browser.
+00:59:09 [Speaker 2]
+I can't switch the tab, so give me just a second here.
+
+00:59:16 [Speaker 1]
+Don't you kinda wanna be a fly in the wall for that room, though, all of those personalities together?
+
+00:59:22 [Speaker 2]
+I was watching I was watching so much of, the, like, meme reactions to things and seeing, like...
+00:59:29 [Speaker 2]
+It's just interesting to see what's happening amongst the the CEOs and founders in charge of the labs.
+00:59:35 [Speaker 2]
+You see Zuck snickering with Trump as, Dario's making his big proclamation.
+
+00:59:41 [Speaker 1]
+That was the one I saw too.
+
+00:59:44 [Speaker 2]
+It's like, man, what is going on?
+00:59:46 [Speaker 2]
+You know?
+00:59:47 [Speaker 2]
+Yeah.
+00:59:48 [Speaker 2]
+But, go ahead.
+00:59:50 [Speaker 2]
+There...
+
+00:59:50 [Speaker 2]
+There's a
+
+00:59:50 [Speaker 1]
+lot of people there's a lot of people trashing the handwriting here.
+00:59:54 [Speaker 1]
+I will say I had to write a letter for a birthday card recently.
+00:59:59 [Speaker 1]
+And, dude, my hand starts cramping after, like, two lines.
+01:00:03 [Speaker 1]
+Like, I just don't write anymore.
+01:00:05 [Speaker 1]
+Like, my handwriting was horrible.
+
+01:00:07 [Speaker 1]
+It was horrible.
+01:00:08 [Speaker 1]
+So I'm also cutting the guy a little bit of slack.
+
+01:00:11 [Speaker 2]
+Yeah.
+01:00:11 [Speaker 2]
+The the...
+01:00:12 [Speaker 2]
+Antoine's here.
+01:00:13 [Speaker 2]
+He said, I judge people by their handwriting, bros 38.
+01:00:15 [Speaker 2]
+Brother, I'm gonna be so honest with you.
+
+01:00:18 [Speaker 2]
+You would hate me as a human if you saw my handwriting.
+01:00:21 [Speaker 2]
+It's Yeah.
+01:00:22 [Speaker 2]
+Absolute garbage.
+01:00:23 [Speaker 2]
+It might actually go...
+01:00:24 [Speaker 2]
+You might be a bad person if you see how bad my handwriting is.
+
+01:00:28 [Speaker 2]
+But let's let's get into this for a quick second, and then we're gonna move on to the motion stuff because I have a lot of stuff I wanna go over.
+01:00:33 [Speaker 2]
+But the MD studio...
+01:00:35 [Speaker 2]
+Listen.
+01:00:35 [Speaker 2]
+I get it.
+01:00:36 [Speaker 2]
+A lot of controversy around the the kind of this administration and, like, do we need this national design studio?
+
+01:00:42 [Speaker 2]
+I think there was, like...
+01:00:42 [Speaker 2]
+They've released the food pyramid, and then people are just being so critical of everything coming out of the indie studio, especially after, I think, what was it, Doge came in and made a bunch of cuts and whatever whatever.
+01:00:54 [Speaker 2]
+So I I get all of it.
+01:00:56 [Speaker 2]
+In an isolation, I do wanna shower a little bit of praise on what just happened with america.gov.
+01:01:02 [Speaker 2]
+So I've got my, essentially, my stepdad, who is, like, 80 years old.
+
+01:01:07 [Speaker 2]
+Right?
+01:01:08 [Speaker 2]
+And he just says...
+01:01:09 [Speaker 2]
+76.
+01:01:10 [Speaker 2]
+Sorry.
+01:01:11 [Speaker 2]
+But says, I wish...
+
+01:01:12 [Speaker 2]
+He's like, I really wish someone would make a thing that just taught, you know, us how to use technology and how to use these websites.
+01:01:20 [Speaker 2]
+And it's like, it was a reminder of things that we all know, that, older generations struggle to use tech.
+01:01:29 [Speaker 2]
+And even all...
+01:01:30 [Speaker 2]
+Those of us in tech have struggled for years to make sense of just the kind of fragmented government websites.
+01:01:38 [Speaker 2]
+And if there's ever times where, you know, the argument about, intuition versus research come up and the time I'm on the side of research and dumbing things down to make them better experiences, it's when it comes to things like government websites or transit apps or infrastructure.
+
+01:01:55 [Speaker 2]
+Things like that, I think, are the areas where you really need to come in and, unfortunately, make things a little bit boring.
+01:02:03 [Speaker 2]
+What I love that NDS Studio is doing or ND Studio is doing is that the same way Slack came on to market, shout out MetaLab, and showed us that b to b software could also be joyful, I think they're doing that too.
+01:02:18 [Speaker 2]
+And it's not just visually joyful.
+01:02:20 [Speaker 2]
+I didn't like the scroll jacking of the food pyramid.
+01:02:23 [Speaker 2]
+They just...
+
+01:02:24 [Speaker 2]
+The initiative to come out with america.gov and make this essentially one, website to rule them all.
+01:02:32 [Speaker 2]
+Right?
+01:02:33 [Speaker 2]
+You've got some AI access in here.
+01:02:35 [Speaker 2]
+Not all the features are available.
+01:02:37 [Speaker 2]
+But in 2027, what we're about to get...
+
+01:02:39 [Speaker 2]
+That's 29,000 websites rolled into one.
+01:02:42 [Speaker 2]
+This is the ability to come in and do things like order your first passport.
+01:02:47 [Speaker 2]
+Huge.
+01:02:48 [Speaker 2]
+Hey.
+01:02:48 [Speaker 2]
+You just got married.
+
+01:02:50 [Speaker 2]
+Now if you've ever had to change your name when you got married across all the government agencies in The US Yeah.
+01:02:55 [Speaker 2]
+It's crazy.
+01:02:56 [Speaker 2]
+You can now do that in one fell swoop according to what's coming in 2027.
+01:02:59 [Speaker 2]
+There are a lot of little quality of life things that many of us were like, why did this take so long to happen?
+01:03:07 [Speaker 2]
+Well, it's because they didn't have anybody overseeing the macro process of how processes got done.
+
+01:03:13 [Speaker 2]
+And I think what n d Studio is doing is is solving for a lot of that.
+
+01:03:17 [Speaker 1]
+So Or any real incentive.
+01:03:19 [Speaker 1]
+There's just been no incentive to make
+
+01:03:21 [Speaker 2]
+anything better.
+
+01:03:22 [Speaker 1]
+No.
+01:03:22 [Speaker 1]
+Even no incentive.
+01:03:23 [Speaker 1]
+Like, I have so come to terms with the fact that every single government website experience is gonna be horrible.
+01:03:28 [Speaker 1]
+This is dope.
+01:03:29 [Speaker 1]
+I I mean Yeah.
+
+01:03:31 [Speaker 1]
+I think it's awesome.
+
+01:03:32 [Speaker 2]
+Yeah.
+01:03:32 [Speaker 2]
+I I am...
+01:03:33 [Speaker 2]
+I'm a big fan, super super proud to see this finally happening.
+01:03:38 [Speaker 2]
+Other people in the industry, obviously, like, they've had some call outs.
+01:03:41 [Speaker 2]
+People said, hey, they used a trial font, which is not a damning thing to me yet because I have a lot of websites where I use trial fonts, then I buy the license and I keep the word trial in the font.
+
+01:03:51 [Speaker 2]
+I I don't know.
+01:03:52 [Speaker 2]
+It's bad practice, maybe.
+01:03:54 [Speaker 2]
+But people like Ben Bloomerau saying, hey.
+01:03:56 [Speaker 2]
+Like, we went from make it work, which we we essentially got things to work, to make it best in class.
+01:04:02 [Speaker 2]
+Is it best in class yet?
+
+01:04:03 [Speaker 2]
+I'm not sure.
+01:04:03 [Speaker 2]
+Is it much better than make it work?
+01:04:06 [Speaker 2]
+Yeah.
+01:04:06 [Speaker 2]
+For sure.
+01:04:07 [Speaker 2]
+So very happy to see that.
+
+01:04:09 [Speaker 2]
+Excited to see what's to come.
+01:04:13 [Speaker 2]
+As a design studio founder, I hate to admit it, but Opus five five is insanely good at motion design launch videos.
+01:04:21 [Speaker 2]
+I've been doing a lot of work.
+01:04:23 [Speaker 2]
+I have been really resistant to video editing with AI because we have a team of video editors.
+01:04:30 [Speaker 2]
+It's kind of been my precious area of things that I'm like, no.
+
+01:04:33 [Speaker 2]
+No.
+01:04:33 [Speaker 2]
+No.
+01:04:34 [Speaker 2]
+I gotta cut correctly.
+01:04:35 [Speaker 2]
+There's a lot of stuff that goes into storytelling when I edit videos, and I never trusted AI to do that very well.
+01:04:41 [Speaker 2]
+We are in the six finger phase of AI video editing.
+
+01:04:46 [Speaker 2]
+We're probably a little past that, and that's the worst it's ever gonna be.
+01:04:51 [Speaker 2]
+It's clear that this is gonna get solved the same way coding got solved, the same way that design is on the same trajectory.
+01:04:58 [Speaker 2]
+And we're seeing stuff.
+01:05:15 [Speaker 2]
+It's cool.
+01:05:15 [Speaker 2]
+You know, it's like okay.
+
+01:05:16 [Speaker 1]
+Sound design is terrible though.
+01:05:17 [Speaker 1]
+Now I'm just gonna be so good.
+01:05:19 [Speaker 1]
+The sound design drives me crazy because it gave me that exact same sound when I was tinkering with it too.
+
+01:05:24 [Speaker 2]
+The exact same, like, whole nightmares.
+01:05:28 [Speaker 2]
+And and and, again, I am not saying...
+01:05:31 [Speaker 2]
+And then so Miles says, yep.
+01:05:32 [Speaker 2]
+It's over.
+01:05:33 [Speaker 2]
+We're no longer hiring motion designers.
+
+01:05:35 [Speaker 2]
+I'm not on that that path yet.
+01:05:37 [Speaker 2]
+But, again, we are a lot further than we were four months ago.
+
+01:05:44 [Speaker 1]
+Alright.
+01:05:44 [Speaker 1]
+This one's cool.
+01:05:47 [Speaker 1]
+This is actually a really unique concept.
+01:05:48 [Speaker 1]
+This is the part that I'm mostly paying attention to.
+01:05:51 [Speaker 1]
+Like, we're clearly at a point where it can do really, really nice demo time.
+
+01:05:56 [Speaker 1]
+God.
+01:05:57 [Speaker 1]
+The sound is exactly the same.
+
+01:05:58 [Speaker 2]
+So I know.
+01:05:59 [Speaker 2]
+But but The sound is
+
+01:06:01 [Speaker 1]
+like creative.
+01:06:02 [Speaker 1]
+This is this is creative.
+01:06:03 [Speaker 1]
+Sound design will get solved.
+01:06:04 [Speaker 1]
+This is the video that stands out to me because I'm like, shoot.
+01:06:07 [Speaker 1]
+That's that's conceptually interesting.
+
+01:06:10 [Speaker 1]
+You know?
+
+01:06:11 [Speaker 2]
+I I think so too.
+01:06:12 [Speaker 2]
+And and it's like, I...
+01:06:14 [Speaker 2]
+You know, we watched, Wabi's video earlier, and I wanted to ask you this.
+01:06:18 [Speaker 2]
+It's like, are you...
+01:06:18 [Speaker 2]
+Do you have blinders on UI only launch videos?
+
+01:06:22 [Speaker 1]
+Yeah.
+
+01:06:23 [Speaker 2]
+I do.
+01:06:24 [Speaker 2]
+Yeah.
+01:06:24 [Speaker 2]
+I do.
+
+01:06:24 [Speaker 1]
+I do.
+01:06:25 [Speaker 1]
+Totally.
+01:06:25 [Speaker 1]
+And it's like so fast too.
+
+01:06:28 [Speaker 2]
+It it really did.
+01:06:28 [Speaker 2]
+It was, like, at first, it was, like, oh, these are really clever and cool.
+01:06:31 [Speaker 2]
+And now I'm, like, hold on.
+01:06:34 [Speaker 2]
+Is Ollie here says...
+01:06:35 [Speaker 2]
+Ollie here says, animated product launch videos are dead now.
+
+01:06:37 [Speaker 2]
+Better get used to showing your face on camera ASAP.
+01:06:39 [Speaker 2]
+Yeah.
+01:06:40 [Speaker 2]
+And we've been doing some research on this.
+01:06:42 [Speaker 2]
+And launch videos that show a face upfront have, like, astronomically better watch retention rates, which is interesting.
+01:06:52 [Speaker 2]
+I don't...
+
+01:06:52 [Speaker 2]
+I think I probably would have guessed that, but it was interesting to see the data across a lot of that.
+01:06:57 [Speaker 2]
+And even Peter Lovell says, I think every time AI can do something equally good or better than humans, it stops being valuable or special.
+01:07:04 [Speaker 2]
+And he's referring now to marketing videos that used to take a ton of work and a lot of motion graphics and these big budgets, and they still do.
+01:07:12 [Speaker 2]
+I I don't think it's safe to say yet that you can get, like, creme de la creme motion graphics.
+01:07:20 [Speaker 2]
+Go look at the documentaries we're producing.
+
+01:07:22 [Speaker 2]
+You're not gonna get that with AI.
+01:07:23 [Speaker 2]
+We've tried it.
+01:07:24 [Speaker 2]
+But I don't think we're gonna have that problem for a very long time.
+01:07:29 [Speaker 2]
+I don't think that's gonna be here, an issue much longer.
+
+01:07:33 [Speaker 1]
+And we're running out of reasons for why going from an eight out of 10 to a 10 out of 10 matters.
+01:07:40 [Speaker 1]
+Like, how often does that matter?
+01:07:41 [Speaker 1]
+You know?
+01:07:42 [Speaker 1]
+Like, going from a a four out of 10 to a 10 out of 10 is noticeable to the average person, but I wonder what percentage of people viewing these videos can actually notice the gap between what AI can do and what humans can do really well, which is what has been happening for a lot of other industries.
+01:07:57 [Speaker 1]
+And I don't know, man.
+
+01:07:59 [Speaker 1]
+It's it's it's happening quick.
+01:08:00 [Speaker 1]
+Like, the curve just started going like this.
+
+01:08:03 [Speaker 2]
+It's it's gonna it's gonna happen quick.
+01:08:05 [Speaker 2]
+And, you know, the the big thing too for us is we're seeing...
+01:08:09 [Speaker 2]
+You know, when you're on Twitter, we we are in a bubble.
+01:08:12 [Speaker 2]
+We are, well ahead of where the mainstream is in terms of what's hitting the market, a lot of tinkering.
+01:08:19 [Speaker 2]
+And I think I think both the people who are getting hyped on stuff forget that.
+
+01:08:22 [Speaker 2]
+I think the people who are getting cynical about stuff also forget that.
+01:08:25 [Speaker 2]
+Am I am I blocked...
+01:08:26 [Speaker 2]
+Am I cutting out here?
+
+01:08:28 [Speaker 1]
+No.
+01:08:28 [Speaker 1]
+You're good.
+
+01:08:29 [Speaker 2]
+Okay.
+01:08:31 [Speaker 2]
+I'm getting a lot of beach balling on my browser here.
+01:08:33 [Speaker 2]
+But let's open this up because, you know, we're gonna talk about portfolios next week, and there are gonna be a couple examples I really wanna show.
+01:08:44 [Speaker 2]
+See if I can do this here.
+01:08:45 [Speaker 2]
+Getting a little bit of performance issue.
+
+01:08:50 [Speaker 2]
+And there's a...
+01:08:51 [Speaker 2]
+So much video and motion.
+
+01:08:53 [Speaker 9]
+Ian, at the edge of the Internet, says a small website.
+01:08:58 [Speaker 9]
+It belongs to a man named Felix Reisaberg.
+01:09:03 [Speaker 9]
+At Entropic, he works on Claude, a machine that thinks and dreams.
+01:09:09 [Speaker 9]
+He's also a maintainer of Electron and of other smaller projects, each one a small rebellion against the chaos of software.
+
+01:09:19 [Speaker 2]
+So we're we're gonna look at Felix's portfolio more in-depth next week.
+01:09:23 [Speaker 2]
+There's a couple fun ones.
+01:09:24 [Speaker 2]
+Tom, I hope yours is ready because I really wanna show that off.
+01:09:27 [Speaker 2]
+My son has been obsessed with it.
+01:09:29 [Speaker 2]
+Tom Johnson.
+
+01:09:31 [Speaker 2]
+But I show that just as a quick reminder that, like, it starts in these experimental areas that seemingly aren't for money making and aren't scalable.
+01:09:39 [Speaker 2]
+And then it's gonna leak over into a couple launch videos and marketing videos, where it's finally a somewhat consequential use case.
+01:09:46 [Speaker 2]
+And then it's gonna continue to go into micro animations and these other motion things that are happening.
+01:09:51 [Speaker 2]
+And it just seems like that's becoming this trajectory.
+01:09:54 [Speaker 2]
+It's like you get the playgrounders, and then you get the low consequence users, and then you get the high consequence.
+
+01:09:58 [Speaker 2]
+And then it's like, how do we do it at scale across the org?
+01:10:02 [Speaker 2]
+And one of the ways that I'm seeing that happen is because there are tools.
+01:10:08 [Speaker 2]
+Do I not have the ability to show this?
+01:10:10 [Speaker 2]
+Hold on.
+01:10:12 [Speaker 2]
+I have an issue here.
+
+01:10:15 [Speaker 2]
+And I really wanted to get a video from someone from Rive.
+01:10:17 [Speaker 2]
+I didn't get the opportunity.
+01:10:20 [Speaker 2]
+Oh, bud.
+01:10:21 [Speaker 2]
+This thing's giving me a big pain in the butt here.
+01:10:26 [Speaker 2]
+I'm getting a lot of tool usage or a lot of tool creation.
+
+01:10:29 [Speaker 2]
+There's a lot of people...
+01:10:30 [Speaker 2]
+Have you used Rive yet?
+
+01:10:33 [Speaker 1]
+I...
+01:10:34 [Speaker 1]
+Used is a strong word.
+01:10:36 [Speaker 1]
+I have paid Bartek to make Rive files for me that I then go in and maybe I'll tweak something too.
+01:10:43 [Speaker 1]
+That's about it.
+01:10:45 [Speaker 1]
+Mhmm.
+
+01:10:45 [Speaker 1]
+Mhmm.
+01:10:46 [Speaker 1]
+Yeah.
+01:10:46 [Speaker 1]
+Enough to...
+01:10:47 [Speaker 1]
+I understand it.
+01:10:49 [Speaker 1]
+Like, I understand how it works, and I can navigate my way around the product, but I haven't chunked out the time to actually dive in.
+
+01:10:56 [Speaker 1]
+That being said, they just released their CLI, though.
+01:10:58 [Speaker 1]
+Yeah.
+01:11:00 [Speaker 1]
+That to me is like, okay.
+01:11:02 [Speaker 1]
+Huge.
+01:11:03 [Speaker 1]
+That's probably a very big deal
+
+01:11:05 [Speaker 2]
+Yeah.
+
+01:11:06 [Speaker 1]
+And would be the perfect thing to get somebody to, like, be office online where I believe so...
+01:11:11 [Speaker 1]
+I have so much conviction around the file format of Rive.
+01:11:14 [Speaker 1]
+I just don't really have the skills or the time to to, like, dive in, but that...
+01:11:20 [Speaker 1]
+I I got it circled.
+
+01:11:22 [Speaker 2]
+I like it.
+01:11:22 [Speaker 2]
+I like it.
+01:11:24 [Speaker 2]
+I'm gonna I'm gonna have to I'm gonna have to command queue it and come right back, man.
+
+01:11:28 [Speaker 8]
+I'm gonna
+
+01:11:29 [Speaker 1]
+do it.
+01:11:29 [Speaker 1]
+I'm gonna I'm gonna share my I'll share my screen.
+01:11:31 [Speaker 1]
+I got I got a little thing that I'll share.
+
+01:11:33 [Speaker 2]
+Let me see what I can do here.
+
+01:11:36 [Speaker 1]
+So I've been, you gonna bounce?
+01:11:41 [Speaker 1]
+Because I'll I'll just give a little mini demo.
+01:11:43 [Speaker 1]
+I'll spur the moment here.
+01:11:45 [Speaker 1]
+Yeah.
+01:11:45 [Speaker 1]
+He's gone.
+
+01:11:46 [Speaker 1]
+He's gone.
+01:11:46 [Speaker 1]
+I'm taking over.
+01:11:47 [Speaker 1]
+Taking over, baby.
+01:11:48 [Speaker 1]
+So look at this tool I've been using.
+01:11:51 [Speaker 1]
+It's called mixture dot dev, and it's from the people that make Supercut.
+
+01:11:58 [Speaker 1]
+I don't know if anybody...
+01:11:59 [Speaker 1]
+If any of you in here use Supercut.
+01:12:01 [Speaker 1]
+I haven't used Loom in a long time.
+01:12:03 [Speaker 1]
+I think this is really, really relevant to all of the video stuff because it's basically creating a UI for your agents to use to make video.
+01:12:12 [Speaker 1]
+So all of these all of these are video.
+
+01:12:16 [Speaker 1]
+They all do things, and it's like storyboarding ideas for me.
+01:12:20 [Speaker 1]
+Look, dude.
+01:12:21 [Speaker 1]
+This is the freaking invite UI.
+01:12:22 [Speaker 1]
+I literally just, like...
+01:12:25 [Speaker 1]
+Does it do things?
+
+01:12:26 [Speaker 1]
+I don't know.
+01:12:27 [Speaker 1]
+I had it I had it just, like, run for a little bit.
+01:12:29 [Speaker 1]
+Here.
+01:12:30 [Speaker 1]
+Let's see.
+01:12:30 [Speaker 1]
+Let's see what this does.
+
+01:12:35 [Speaker 1]
+Like, this is kinda...
+01:12:36 [Speaker 1]
+That's kinda cool.
+01:12:36 [Speaker 1]
+Right?
+01:12:37 [Speaker 1]
+Yeah.
+01:12:37 [Speaker 1]
+Little bit of little bit of a a perspective tilt for everything.
+
+01:12:42 [Speaker 1]
+This is all Opus five five.
+01:12:44 [Speaker 1]
+Oh, sick.
+01:12:48 [Speaker 1]
+A little little little laggy.
+01:12:49 [Speaker 1]
+Okay.
+01:12:50 [Speaker 1]
+So here's the cool thing.
+
+01:12:51 [Speaker 1]
+Right?
+01:12:51 [Speaker 1]
+So at at any given point, I can stop this, and then this is...
+01:12:56 [Speaker 1]
+It actually gives me, like, a UI for it.
+01:12:58 [Speaker 1]
+So, like, if I wanna drill in and change stuff, I have a timeline for everything that Opus is generating.
+01:13:06 [Speaker 1]
+And if there's, like, text, I can just...
+
+01:13:11 [Speaker 1]
+Oh, in selection.
+01:13:13 [Speaker 1]
+I can just change it, and then it's live in the video.
+01:13:17 [Speaker 1]
+This is the next, like, category of innovation, I think, that we're gonna see for video is not just the models being really good, but then giving the models the right scaffolding so that you can make changes more quickly.
+01:13:30 [Speaker 1]
+Really, really excited about the space.
+01:13:31 [Speaker 1]
+I've just started playing with this tool.
+
+01:13:33 [Speaker 1]
+I think it's still in private beta, but it...
+01:13:35 [Speaker 1]
+It's pretty dope.
+01:13:36 [Speaker 1]
+Mixture.dev, if you wanna hop on the the way.
+
+01:13:39 [Speaker 2]
+I I love hearing you say that.
+01:13:41 [Speaker 2]
+We're gonna get to some some workflows on on this.
+01:13:44 [Speaker 2]
+Let me see if I can find it because it was a great call out to your point.
+01:13:53 [Speaker 2]
+There we go.
+01:13:57 [Speaker 2]
+I'll have to find it later, but it is.
+
+01:13:58 [Speaker 2]
+It's all these tools
+
+01:13:59 [Speaker 1]
+I know I kinda went out of order a little bit.
+01:14:00 [Speaker 1]
+I was I was improvising because I didn't know how long you're gonna be gone.
+01:14:03 [Speaker 1]
+No.
+
+01:14:03 [Speaker 2]
+No.
+01:14:03 [Speaker 2]
+No.
+01:14:03 [Speaker 2]
+No.
+01:14:04 [Speaker 2]
+It it actually...
+01:14:04 [Speaker 2]
+It was actually perfect because...
+
+01:14:09 [Speaker 2]
+So we do have we have the Rive CLI.
+01:14:11 [Speaker 2]
+Right?
+01:14:11 [Speaker 2]
+It's tools
+
+01:14:13 [Speaker 1]
+for motion
+
+01:14:15 [Speaker 2]
+that are just making this more and more accessible with your agents, with the ways that we're prompting.
+01:14:23 [Speaker 2]
+I mean, when do we get the the chat g p t plugins?
+01:14:27 [Speaker 2]
+I'm not sure.
+01:14:30 [Speaker 2]
+And again, like, oh, man.
+01:14:31 [Speaker 2]
+I I would love to have just a whole segment on Arrive.
+
+01:14:34 [Speaker 2]
+I think we're gonna...
+01:14:34 [Speaker 2]
+I'm gonna be able to plan for something like that because I really...
+01:14:36 [Speaker 2]
+They should.
+
+01:14:36 [Speaker 1]
+They would they would do it.
+01:14:37 [Speaker 1]
+They would hook us up.
+01:14:38 [Speaker 1]
+Because it's it's like it's still misunderstood, I feel like, in the industry.
+01:14:41 [Speaker 1]
+Like, we don't actually understand how Core Rive is.
+
+01:14:43 [Speaker 2]
+I I I wanna call up their CLI because they're doing stuff.
+01:14:45 [Speaker 2]
+I can't speak intelligently about it beyond that.
+01:14:47 [Speaker 2]
+So I'm not gonna try to.
+01:14:48 [Speaker 2]
+But, you know, there's...
+01:14:49 [Speaker 2]
+We we see the same thing happening.
+
+01:14:51 [Speaker 2]
+In case you missed it, Figma Motion updates.
+01:14:53 [Speaker 2]
+Like, the the more things they're doing to allow this to play into things like Lottie, feels a little like they are slower in some of this, maybe.
+01:15:00 [Speaker 2]
+I don't know.
+01:15:01 [Speaker 2]
+Maybe because we're just so tapped into everything else that's happening.
+01:15:04 [Speaker 2]
+But then I see, that what I was trying to find was, come on.
+
+01:15:10 [Speaker 2]
+I put this up.
+01:15:14 [Speaker 2]
+Yeah.
+01:15:14 [Speaker 2]
+Here we go.
+01:15:15 [Speaker 2]
+I don't know why I put this in the wrong spot.
+01:15:17 [Speaker 2]
+But even Jess Rosenberg, who we had on the show just a week or so ago, she was talking about, guys, Astra plus Screen Studio.
+
+01:15:24 [Speaker 2]
+You know?
+01:15:24 [Speaker 2]
+And I'm like, oh, I'm like, oh my god.
+01:15:26 [Speaker 2]
+Like, of course, if if you happen to find yourself tucked into one of these spaces, and you're kind of a lightweight tool that does something very specific, you suddenly have a really killer use case to just come in and make yourself, an agentic first tool.
+01:15:43 [Speaker 2]
+And now you become the working surface area for, like, continuing to crush in that specific use case.
+01:15:49 [Speaker 2]
+Yeah.
+
+01:15:49 [Speaker 2]
+And that's what I got from super, from Supercut as well.
+01:15:52 [Speaker 2]
+You know?
+01:15:53 [Speaker 2]
+It's interesting stuff, man.
+01:15:54 [Speaker 2]
+Very interesting stuff.
+01:15:55 [Speaker 2]
+So let's let's get to some of this a little bit.
+
+01:15:57 [Speaker 2]
+Alright?
+01:15:58 [Speaker 2]
+I wanna talk about motion design first.
+01:16:00 [Speaker 2]
+We're gonna get into some of the video editing and micro animations, but let's hear what some people are doing.
+01:16:05 [Speaker 2]
+Let's let's contextualize some of this with real workflows.
+
+01:16:07 [Speaker 9]
+Hi, Tommy.
+01:16:08 [Speaker 9]
+I hope you're doing well.
+01:16:10 [Speaker 9]
+I'm Xavier from France, and I wanted to to to share to you a quick process that I've created when it comes to motion design.
+01:16:17 [Speaker 9]
+So for context, I'm not a motion designer at all.
+01:16:21 [Speaker 9]
+To be really honest, I suck at it.
+
+01:16:23 [Speaker 9]
+But what I've created is a simple skill based on what Julingo is doing right now because they're they're the best when it comes to micro interaction, motion design, and character animation.
+01:16:35 [Speaker 9]
+So this is my skill.
+01:16:36 [Speaker 9]
+I just have to send an asset to this skill, whether it's an object, character, or an illustration.
+01:16:43 [Speaker 9]
+And they would put I'm waiting for is a prompt.
+01:16:46 [Speaker 9]
+Because with that prompt, I'm able to paste it inside XField, use a very cheap model like sedans two point o.
+
+01:16:53 [Speaker 9]
+You see it's only 15 token for a six second video.
+01:16:56 [Speaker 9]
+The idea is not to have something high quality.
+01:16:59 [Speaker 9]
+I just want to have a sense of what a good motion could look like.
+01:17:02 [Speaker 9]
+You see?
+01:17:03 [Speaker 9]
+And then I'm gonna have my result.
+
+01:17:06 [Speaker 9]
+And, yes, of course, not everything is perfect.
+01:17:09 [Speaker 9]
+Okay?
+01:17:09 [Speaker 9]
+As I...
+01:17:10 [Speaker 9]
+I'm a newbie about motion design, I can start to understand what could work.
+01:17:15 [Speaker 9]
+You know, the squeezing of the eyes is okay.
+
+01:17:17 [Speaker 9]
+The tilting can be okay.
+01:17:18 [Speaker 9]
+And going frame by frame, I I can reproduce that inside the tool like Figma Motion, after.
+01:17:26 [Speaker 9]
+So here you go.
+01:17:28 [Speaker 9]
+I've reproduced, you know, the moving of the eyes.
+01:17:30 [Speaker 9]
+It's very lightweight because it's inside Figma, but I could do it inside Jitter.
+
+01:17:35 [Speaker 9]
+It...
+01:17:36 [Speaker 9]
+It's only vectors.
+01:17:38 [Speaker 9]
+So, so here you go.
+01:17:39 [Speaker 9]
+It's, it's my tiny process about motion design.
+01:17:42 [Speaker 9]
+I'm pretty sure a lot of designers are doing that right now.
+
+01:17:45 [Speaker 9]
+I wish you the best.
+01:17:46 [Speaker 9]
+Have a good day, and, see you around.
+
+01:17:50 [Speaker 1]
+As soon as he says he sucks at motion design, I kinda lean forward, you know.
+01:17:53 [Speaker 1]
+Like, this is our time.
+01:17:54 [Speaker 1]
+This is our time.
+
+01:17:56 [Speaker 2]
+Yeah.
+01:17:56 [Speaker 2]
+And it's actually...
+01:17:57 [Speaker 2]
+I I, you know, I...
+01:17:57 [Speaker 2]
+It's like, okay.
+01:17:58 [Speaker 2]
+Let's find all the people who are cracked at at motion and video.
+
+01:18:01 [Speaker 2]
+And there are some people who are like, I'm still doing it the old way.
+01:18:03 [Speaker 2]
+And I'm like, that's actually interesting.
+01:18:05 [Speaker 2]
+I'd love to see that.
+01:18:06 [Speaker 2]
+And then...
+01:18:06 [Speaker 2]
+But then I'm realizing the more people who don't have this breadth of experience in it, and they're sharing how they're kind of exploring into it, I'm like, that's also really interesting to me.
+
+01:18:17 [Speaker 1]
+It's a it's a feature, not a bug in the same way that...
+01:18:20 [Speaker 1]
+Like, this coding, same thing happened to coding.
+01:18:23 [Speaker 1]
+Dude, the best engineers were the slowest to release the grip on their process where the people that just dove right in became AI build, they just...
+01:18:32 [Speaker 1]
+They had no preconceived notions.
+01:18:33 [Speaker 1]
+They just went for it.
+
+01:18:34 [Speaker 1]
+And I feel like there's gonna be an entirely new crop of video animators and designers that are kind of working the same way.
+01:18:41 [Speaker 1]
+It's exciting.
+
+01:18:42 [Speaker 2]
+Well, a lot of people think video gen and video or video...
+01:18:45 [Speaker 2]
+Using video in motion into some of your interactions is all about a seed dance model, a video model.
+01:18:51 [Speaker 2]
+But people like Colby are are actually not...
+01:18:54 [Speaker 2]
+They're skipping the video model.
+01:18:55 [Speaker 2]
+And this was interesting to me.
+
+01:18:57 [Speaker 10]
+Hi.
+01:18:57 [Speaker 10]
+My name is Colby.
+01:18:58 [Speaker 10]
+I do software and design at a company called Laminar.
+01:19:01 [Speaker 10]
+And this week, I was working on some concepts for a launch video that we're trying to make, and I have, this workflow I kinda put together with mainly Figma and then Josh Buckets, Dalkit, Remotion.
+01:19:11 [Speaker 10]
+And for my coding agents I use GPT Seoul and Py.
+
+01:19:15 [Speaker 10]
+So this is a video that I was working on earlier this week.
+01:19:20 [Speaker 10]
+So this is...
+01:19:22 [Speaker 10]
+You know, just showing in browser.
+01:19:24 [Speaker 10]
+I've set up all these dolls with DialKit that allow me to manipulate the animation.
+
+01:19:28 [Speaker 1]
+Yeah.
+01:19:28 [Speaker 1]
+I like it a lot.
+
+01:19:29 [Speaker 10]
+And where this process all starts is in Figma.
+01:19:32 [Speaker 10]
+So this is the frame that this animation was based on.
+01:19:35 [Speaker 10]
+So I'll just create this by hand in Figma.
+01:19:37 [Speaker 10]
+In Figma, I've also created, this little custom plug in that I use.
+01:19:42 [Speaker 10]
+I do lots of programming.
+
+01:19:43 [Speaker 10]
+I'm used to really quick, keyboard shortcuts.
+01:19:46 [Speaker 10]
+So I've created this to allow me to do different cool keyboard shortcuts.
+01:19:50 [Speaker 10]
+So here's one that does gap zero.
+01:19:52 [Speaker 10]
+Could do a gap 20.
+
+01:19:54 [Speaker 1]
+This is crazy.
+01:19:55 [Speaker 1]
+I've never seen a
+
+01:19:57 [Speaker 10]
+flex column.
+01:19:59 [Speaker 10]
+So mostly like working with auto layouts that aren't really great shortcuts in Figma.
+01:20:02 [Speaker 10]
+So I've created this to help me out a little bit.
+01:20:04 [Speaker 10]
+So once I have this frame, I'll copy the link.
+01:20:06 [Speaker 10]
+And I'll take it to my coding agent.
+
+01:20:08 [Speaker 10]
+And I'll say something like, please look at this frame and make a new animation.
+01:20:14 [Speaker 10]
+And then I'll describe...
+01:20:15 [Speaker 10]
+I'll probably spend, like, twenty minutes describing, like, all the different elements, how I want them to be organized, and how I want them to be moving, and the different parameters that I want to be exposed to me when I tune.
+01:20:25 [Speaker 10]
+And when I come back, I'll have some dials that look like this.
+01:20:31 [Speaker 10]
+So I can show you a different example.
+
+01:20:33 [Speaker 10]
+So there's a different animation.
+01:20:34 [Speaker 10]
+You can see the different dials that I've exposed for myself here and here's like a really easy one that you can see exactly what's happening.
+01:20:42 [Speaker 10]
+Animates in real time and when I'm happy with the tuning, I'll be able to just press this button and copy it back to the coding agent so it can reflect all the parameters that I've chosen And then it can render the whole thing as an m p four with Remotion.
+01:20:54 [Speaker 10]
+So this is kind of a little workflow I put together for myself for making these little videos.
+01:20:58 [Speaker 10]
+Please let me know what you think.
+
+01:21:00 [Speaker 2]
+That's one you're gonna wanna
+
+01:21:01 [Speaker 1]
+a little bit.
+
+01:21:01 [Speaker 2]
+That's one you're gonna wanna sit and watch again, which you can do at dive.radio/submit.
+01:21:06 [Speaker 2]
+You'll see the library of the submissions we've had.
+
+01:21:09 [Speaker 1]
+Colby, that's the......
+01:21:10 [Speaker 1]
+Segway machine.
+
+01:21:11 [Speaker 2]
+Yeah.
+01:21:12 [Speaker 2]
+Yeah.
+01:21:13 [Speaker 2]
+The Segway machine.
+01:21:14 [Speaker 2]
+But that was that was so nice.
+
+01:21:16 [Speaker 1]
+Dude, that was cool.
+
+01:21:18 [Speaker 2]
+Now, you know, it's what's cool and someone we know.
+01:21:21 [Speaker 2]
+Right?
+01:21:21 [Speaker 2]
+The team over at Destin and especially Nim, always goes in so experimentally.
+01:21:27 [Speaker 2]
+Didn't actually plan a workflow.
+01:21:29 [Speaker 2]
+And I thought found something kind of interesting that we asked them to share.
+
+01:21:33 [Speaker 4]
+Hey, guys.
+01:21:33 [Speaker 4]
+Okay.
+01:21:33 [Speaker 4]
+So I'm gonna show you how I made this video.
+01:21:36 [Speaker 4]
+This started when Astro Fest came out and is apparently a little bit of computer use.
+01:21:40 [Speaker 4]
+I wanted to see how good it would be at After Effects.
+
+01:21:43 [Speaker 4]
+So I started experimenting with different videos.
+01:21:45 [Speaker 4]
+So I don't have, like, a specific workflow, but I just have a lot of random chat threads across codecs and across cloud code.
+01:21:50 [Speaker 4]
+And, you know, I just kind of maintain these long chat threads, and I just go back to them when I wanna work on something new.
+01:21:56 [Speaker 4]
+So when it first came out, I kinda just wanted to make a launch video for Destin.
+01:21:59 [Speaker 4]
+You know, I was like, use Adobe After Effects to make an amazing launch video.
+
+01:22:02 [Speaker 4]
+Go all out with transitions and clear stuff in AE.
+01:22:05 [Speaker 4]
+There's a kind of a random prompt that I wanted to see what the other one could do.
+01:22:08 [Speaker 4]
+And you'll see that it starts kind of making these videos.
+01:22:10 [Speaker 4]
+They are really shit.
+01:22:11 [Speaker 4]
+They're not that good.
+
+01:22:12 [Speaker 4]
+And I just do a lot of back and forth.
+01:22:15 [Speaker 4]
+I'm like, no.
+01:22:15 [Speaker 4]
+Try this.
+01:22:16 [Speaker 4]
+No.
+01:22:16 [Speaker 4]
+Try that.
+
+01:22:16 [Speaker 4]
+You know?
+01:22:17 [Speaker 4]
+I did this thing and that was kind of ugly.
+01:22:19 [Speaker 4]
+It did this thing and that's really bad.
+01:22:20 [Speaker 4]
+One thing I realized while making this video is it's that I think it's very important to be in a play mode because, for example, if I had a deadline, I would have just kind of given up at this point.
+01:22:28 [Speaker 4]
+I'm like, AI is shit.
+
+01:22:29 [Speaker 4]
+It's not able to do anything.
+01:22:31 [Speaker 4]
+You know, it's just a waste of my time.
+01:22:32 [Speaker 4]
+But since it's the kind of new model and I was just playing with it, I just kept on going.
+01:22:36 [Speaker 4]
+And I think that's the most important thing when you use these models.
+01:22:39 [Speaker 4]
+And then, you know, it's all about not quitting.
+
+01:22:41 [Speaker 4]
+So it's just literally me going forever and ever, you know, going back and forth.
+01:22:44 [Speaker 4]
+I'm like, can you try this?
+01:22:45 [Speaker 4]
+Can you try I think at this point, Asha started using Blender to animate these flyers, and it kind of blew my mind that this was actually possible.
+01:22:51 [Speaker 4]
+And this wasn't what I had in my head when I started this project, but I kind of got here.
+01:22:56 [Speaker 4]
+Right?
+
+01:22:56 [Speaker 4]
+So I think this is just because I'm playing with it.
+01:22:59 [Speaker 4]
+I don't really care what the what the destination is.
+01:23:01 [Speaker 4]
+At one point, I did this thing, which I think is really, really cool.
+01:23:04 [Speaker 4]
+And, I mean, this is, like, so inspirational.
+01:23:06 [Speaker 4]
+I'm like, oh, I can do a lot more.
+
+01:23:08 [Speaker 4]
+I think once I knew that this is possible, then everything I saw on Twitter, I'm like, can I make this into a video?
+01:23:13 [Speaker 4]
+And this is how I made the next video.
+01:23:15 [Speaker 4]
+Right?
+01:23:15 [Speaker 4]
+So the next thing that we had is, so this Ayush, Hacks, they are working on a leap and he posted this.
+01:23:21 [Speaker 4]
+And I was like, this is so fucking cool.
+
+01:23:23 [Speaker 4]
+And my first reaction is, like, I'm just gonna go back to the thread that I had and and tell the AI to do something with it.
+01:23:28 [Speaker 4]
+This should the prompt was, check this tweet.
+01:23:30 [Speaker 4]
+I want to think of animating stuff.
+01:23:32 [Speaker 4]
+This is so cool.
+01:23:33 [Speaker 4]
+So can we animate this?
+
+01:23:34 [Speaker 4]
+You don't need to be prompting very well to do this kind of things.
+01:23:37 [Speaker 4]
+You just need to not quit and keep going.
+01:23:39 [Speaker 4]
+So this is the first thing it is.
+01:23:40 [Speaker 4]
+It's really bad.
+01:23:40 [Speaker 4]
+Right?
+
+01:23:41 [Speaker 4]
+I was like, I don't love it.
+01:23:42 [Speaker 4]
+Use image model to do some storyboarding first.
+01:23:44 [Speaker 4]
+So this is a technique that I use the most is like use image model to do storyboarding.
+01:23:48 [Speaker 4]
+It really, really helps a lot.
+01:23:49 [Speaker 4]
+And then you'll see that the LLM did few storyboards, and I didn't like any of them.
+
+01:23:53 [Speaker 4]
+And I just didn't feel that good.
+01:23:55 [Speaker 4]
+And I was like, no, I want to do more explorations.
+01:23:57 [Speaker 4]
+And after a few, I found this one, this kind of wax pouring.
+01:24:00 [Speaker 4]
+And this is what gave me the idea.
+01:24:02 [Speaker 4]
+I'm like, oh, I can just animate the wax.
+
+01:24:03 [Speaker 4]
+And then you can see LLM just starts building this stuff out.
+01:24:07 [Speaker 4]
+It's really...
+01:24:08 [Speaker 4]
+It kinda doesn't look that good yet.
+01:24:09 [Speaker 4]
+And then it was just me being like, this needs more work.
+01:24:11 [Speaker 4]
+You know, the wax can look better.
+
+01:24:12 [Speaker 4]
+It was just me being do better, do better, do better.
+01:24:15 [Speaker 4]
+And another thing that I did is like use UltraCode where then you have another...
+01:24:18 [Speaker 4]
+Instead of me telling it do better, you have another agent looking at the work and be like, you can do better.
+01:24:22 [Speaker 4]
+So from this point on, it was just me saying do better.
+01:24:25 [Speaker 4]
+I'm not even giving it specific instructions.
+
+01:24:27 [Speaker 4]
+This is how it was done.
+01:24:28 [Speaker 4]
+And I'm sure if I threw a lot more tokens at it, the quality would increase.
+01:24:32 [Speaker 4]
+There is a correlation between the amount of tokens you throw and how good the result is.
+01:24:36 [Speaker 4]
+So, yeah, it was just that.
+01:24:36 [Speaker 4]
+It was nothing special.
+
+01:24:37 [Speaker 4]
+It was just me telling the LLM to keep going.
+01:24:40 [Speaker 4]
+Hopefully, this was helpful.
+
+01:24:41 [Speaker 2]
+I love that.
+01:24:42 [Speaker 2]
+And by the way, he just talks about the ralping, creating...
+01:24:45 [Speaker 2]
+I mean, I do this for every consequential project now.
+01:24:48 [Speaker 2]
+I create an adversarial agent, which is like, hey, I'm working with main agent.
+01:24:54 [Speaker 2]
+We're gonna continue to go through our things.
+
+01:24:56 [Speaker 2]
+Everything you output, I don't even wanna see it until you and adversarial agent, who's gonna sit here and make sure it gets up to a nine out of 10, a 10 out of 10.
+01:25:05 [Speaker 2]
+I don't even wanna review the work until you get through this automated gate of make it better, fix this, fix that.
+01:25:12 [Speaker 2]
+And then I'll review, and then I'll send it back through the loop.
+01:25:15 [Speaker 2]
+That's become...
+01:25:16 [Speaker 2]
+It's it's a longer way to
+
+01:25:17 [Speaker 1]
+do it.
+01:25:18 [Speaker 1]
+Where are you doing that?
+
+01:25:19 [Speaker 2]
+I'm...
+01:25:20 [Speaker 2]
+It depend...
+01:25:20 [Speaker 2]
+Anywhere.
+01:25:21 [Speaker 2]
+You can do that in your codex tool.
+01:25:22 [Speaker 2]
+You can do that in Claude.
+
+01:25:23 [Speaker 2]
+You...
+01:25:24 [Speaker 2]
+I do it with, my open cloth setup.
+01:25:26 [Speaker 2]
+I have it running right now, actually, with the hype video I'm making for my son's football performance last night.
+
+01:25:31 [Speaker 1]
+Sick.
+
+01:25:31 [Speaker 2]
+And it's it's it's pulling some pretty cool stuff, actually.
+01:25:34 [Speaker 2]
+It it takes
+
+01:25:35 [Speaker 4]
+a minute.
+
+01:25:35 [Speaker 2]
+It takes a minute.
+01:25:37 [Speaker 2]
+And I love
+
+01:25:38 [Speaker 1]
+that video because it just is so clear that prompt engineering is dead.
+01:25:44 [Speaker 1]
+Like, it just doesn't even matter anymore.
+01:25:47 [Speaker 1]
+No.
+01:25:47 [Speaker 1]
+It doesn't even matter.
+01:25:48 [Speaker 1]
+Like, I had no idea what the background was.
+
+01:25:50 [Speaker 1]
+This was...
+01:25:51 [Speaker 1]
+I had one video.
+01:25:52 [Speaker 1]
+Like, you do most of the work sourcing the videos.
+01:25:53 [Speaker 1]
+This was the one video where I messaged him, and I was like, tell me how you made that thing because I thought it was incredible.
+01:25:59 [Speaker 1]
+And it's like this universal problem where as founders or even, like, first designers, you're handed this brand guide, and it's your job to kind of extrapolate it.
+
+01:26:09 [Speaker 1]
+And, historically, that's been...
+01:26:11 [Speaker 1]
+You know, you can only do so much.
+01:26:12 [Speaker 1]
+You can only push it so far.
+01:26:14 [Speaker 1]
+And so then I saw him, a nondesigner.
+01:26:16 [Speaker 1]
+He's an engineer.
+
+01:26:18 [Speaker 1]
+Get the Destin rebrand and go from a static rebrand to that.
+01:26:22 [Speaker 1]
+And I thought it was it was just so compelling to me.
+01:26:24 [Speaker 1]
+So I'm like, man, I don't know.
+01:26:26 [Speaker 1]
+I'm glad I'm glad that, like, we got that video.
+01:26:28 [Speaker 1]
+That was that was very inspiring.
+
+01:26:30 [Speaker 2]
+There's there's a lot...
+01:26:31 [Speaker 2]
+I mean, the rumors of five five...
+01:26:32 [Speaker 2]
+Fable five five coming out are like, you don't have to give context anymore.
+01:26:36 [Speaker 2]
+Like, you just tell it a small thing, do better, and it's just like...
+01:26:39 [Speaker 2]
+It just gets it, which is, if true, very interesting.
+
+01:26:43 [Speaker 2]
+And, yeah.
+01:26:45 [Speaker 2]
+I need...
+01:26:45 [Speaker 2]
+I can't wait to run these new workflows on our intro.
+01:26:48 [Speaker 2]
+You know, our intro feels like a relic at this point.
+01:26:50 [Speaker 2]
+Like, that thing was printed two months ago.
+
+01:26:53 [Speaker 2]
+Do you know how much has changed in two months?
+01:26:55 [Speaker 2]
+I know.
+
+01:26:56 [Speaker 1]
+I know.
+
+01:26:56 [Speaker 2]
+You know?
+01:26:57 [Speaker 2]
+But, people are doing this for all sorts of use cases, and I I wanted to see kind of one where maybe portfolio promo is coming into it.
+01:27:05 [Speaker 2]
+Oh, didn't change it.
+01:27:07 [Speaker 2]
+I thought this was a really interesting way to showcase work, for Marriott that he did.
+01:27:12 [Speaker 2]
+So Stephane's gonna tell us a little bit about that.
+
+01:27:14 [Speaker 8]
+So I recently created this little portfolio promo video, and I thought I would share what worked, best for me and what didn't work so well.
+01:27:26 [Speaker 8]
+I tried a number of tools and approaches with this, including Krigsfield, CDance 2.5, Remotion, Opus, Astra, you you know, you name it.
+01:27:39 [Speaker 8]
+And I think the secret to my success was creating a storyboard in Figma, connecting Claude to the storyboard using Figma MCP.
+01:27:51 [Speaker 8]
+And and, basically, Claude was my little animator, and it and it did the work.
+01:27:56 [Speaker 8]
+And I I got the...
+
+01:27:58 [Speaker 8]
+I got pretty close to this in one...
+
+01:28:01 [Speaker 2]
+This is a video, in case it's not clear what we're looking at, of a project that Stefan had worked on that he made as a showcase video of all the work that went into that one particular project to share on social media and to put in his portfolio.
+
+01:28:17 [Speaker 8]
+And this......
+01:28:18 [Speaker 8]
+Shot.
+01:28:19 [Speaker 8]
+And with just a few rounds of feedback, I got to to kind of the final video here.
+01:28:24 [Speaker 8]
+A little bit on kinda what went into this, I started with a stylescape design that I already had.
+01:28:31 [Speaker 8]
+This is the design language for Marriott.
+
+01:28:35 [Speaker 8]
+It's intended to be a horizontal scrolling presentation, you know, with a talk track.
+01:28:41 [Speaker 8]
+And it works great for a presentation, but not so well for a video.
+01:28:46 [Speaker 8]
+You know, it's a little too complex.
+01:28:48 [Speaker 8]
+And so what I did was I storyboarded it in Figma, and I thought about this the same way that I would if I were working with a real animator.
+01:28:57 [Speaker 8]
+I thought about the story that I wanted to tell, the key moments in in the motion, and I let it do the hard parts of doing some really sophisticated transitions and in betweens to go from kinda one thing to another without making this look like, you know, just a cheesy keynote slideshow, so ultimately that was the key to making this work because connecting to the Figma MCP meant that it's connecting to code, real typography, real vector elements, everything was crisp whereas with CDance it felt like it was reinventing everything every time based on an image, and it was horrible typography, and that was really important for me to show with this video.
+
+01:29:39 [Speaker 8]
+So, in summary, my recommendation would be to storyboard keyframes in Figma.
+01:29:44 [Speaker 8]
+Think about your he...
+01:29:45 [Speaker 8]
+The hero moments.
+01:29:46 [Speaker 8]
+Let AI fill in the kind of transitions.
+01:29:49 [Speaker 8]
+Use Figma MCP.
+
+01:29:51 [Speaker 8]
+When you give feedback, time stamp it.
+01:29:53 [Speaker 8]
+This was really easy just to sit...
+01:29:55 [Speaker 8]
+You know, to give it what you like and what you didn't like and and why.
+01:30:00 [Speaker 8]
+Share reference tracks, whether it be animation or music that you like.
+01:30:04 [Speaker 8]
+Think about sound and music and and sound effects and how you can time things to what's happening in the video.
+
+01:30:13 [Speaker 8]
+And lastly, I would say simplify.
+01:30:15 [Speaker 8]
+I I felt like I had sort of a really eager little animator who was trying every kind of trick in the book to start with, and I had to tell it to show restraint.
+01:30:27 [Speaker 8]
+I was going for sophistication here.
+01:30:29 [Speaker 8]
+And, ultimately, that's what kinda got me the best result.
+01:30:32 [Speaker 8]
+So, anyway, I wanna keep experimenting with this, but, hopefully, this helps.
+
+01:30:37 [Speaker 2]
+Yeah.
+01:30:38 [Speaker 2]
+Very...
+01:30:39 [Speaker 2]
+Lot of valuable stuff inside of this.
+01:30:41 [Speaker 2]
+We've touched a lot on little adjacent portfolio things, and I just wanna remind people that Rit and I are going to review your portfolios next week.
+01:30:50 [Speaker 2]
+We will have more instructions on how to do that.
+
+01:30:52 [Speaker 2]
+But first and foremost, please join the Discord, which is only open until next Friday.
+01:30:57 [Speaker 2]
+We close doors, we close doors.
+01:30:59 [Speaker 2]
+We only do one week per quarter.
+01:31:02 [Speaker 2]
+And inside of there, we have a channel called submissions.
+01:31:05 [Speaker 2]
+And I would like you to put your portfolio inside of the portfolio thread.
+
+01:31:09 [Speaker 2]
+We would...
+01:31:09 [Speaker 2]
+We're gonna try to get to as many as we can.
+01:31:12 [Speaker 2]
+Okay.
+01:31:12 [Speaker 2]
+And we'll give you we'll give you some more stuff.
+01:31:14 [Speaker 2]
+But showing off work like this, very, very cool.
+
+01:31:18 [Speaker 2]
+We have a lot of examples of ways that people, and designers specifically, are using video, to create all these different things.
+01:31:26 [Speaker 2]
+And so, you know, everyone's kind of...
+01:31:28 [Speaker 2]
+The the first thing we keep hearing is, oh my god.
+01:31:30 [Speaker 2]
+I connected codex to DaVinci Resolve Studio, which which is what I'm using right now.
+01:31:35 [Speaker 2]
+Because DaVinci Resolve has an MCP that works really well, and I'm using it on the side here to to cut a video, as we speak.
+
+01:31:42 [Speaker 2]
+And people are talking about all the different ways that they're using these to do it.
+01:31:46 [Speaker 2]
+So I said, well, how are you cutting video realistically?
+01:31:50 [Speaker 2]
+And, so I asked a couple of people.
+01:31:52 [Speaker 2]
+We're gonna hear from Bruno who made some killer stuff.
+
+01:31:55 [Speaker 3]
+Okay.
+01:31:55 [Speaker 3]
+So you can see that I just sent a prompt.
+01:31:57 [Speaker 3]
+And on this, we're asking Claude to start the video out of running.
+01:32:03 [Speaker 3]
+It's going to eventually create a project in DaVinci Resolve.
+01:32:06 [Speaker 3]
+It's going to transcribe the video.
+
+01:32:09 [Speaker 3]
+And you can see there's a skill that I built here for editing, like, interviews with screen share, resolve editing.
+01:32:15 [Speaker 3]
+It's using my libraries here.
+01:32:17 [Speaker 3]
+That's basically the the official API, but enhanced with the follow-up, like, workarounds that we figured out together.
+01:32:24 [Speaker 3]
+And the good thing is we just also have access to, like, my Notion.
+01:32:28 [Speaker 3]
+So can I get a script for the video as well, which is there?
+
+01:32:33 [Speaker 3]
+For some things, I kinda have to either abuse here or just leave a computer alone, which is quite annoying because I can't, like, be doing other things while it's editing.
+01:32:43 [Speaker 3]
+Right?
+01:32:43 [Speaker 3]
+So I think right now, it's it seems like it's looking up the transcriptions.
+01:32:48 [Speaker 3]
+It's not reading the script, and then after that, I assume it's going to, like, build a Python script with the time colors.
+01:32:56 [Speaker 3]
+It's testing whether it can switch the angle of the multicam.
+
+01:33:00 [Speaker 3]
+I didn't ask it to do that, though.
+01:33:02 [Speaker 3]
+So I'm gonna try and steer the conversation a bit.
+01:33:05 [Speaker 3]
+Please don't worry.
+01:33:06 [Speaker 3]
+I don't know what to campaign those.
+01:33:08 [Speaker 3]
+I'm gonna steer the conversation up very well.
+
+01:33:14 [Speaker 3]
+It's insane.
+01:33:16 [Speaker 3]
+That is crazy.
+01:33:17 [Speaker 3]
+And the DaVinci Resolve API really struggles because, like, it can't really add, like, split the clip.
+01:33:24 [Speaker 3]
+There's there's just a lot of that command when we create graph.
+01:33:28 [Speaker 3]
+And so the workaround that we came up with yesterday was it can basically add a dummy clip into the timeline.
+
+01:33:35 [Speaker 3]
+And so if you do that in the middle of the clip, it's going to basically split the clip.
+01:33:39 [Speaker 3]
+Right?
+01:33:39 [Speaker 3]
+So you insert a dummy clip of, like, one frame and then you delete it.
+01:33:43 [Speaker 3]
+And that is basically splitting everything in a little split.
+01:33:46 [Speaker 3]
+It's kind of funky, but it works.
+
+01:33:48 [Speaker 3]
+Oh, that's crazy.
+01:33:49 [Speaker 3]
+Okay.
+01:33:50 [Speaker 3]
+So this is so funny because v two ruthless is usually how I do it.
+01:33:57 [Speaker 3]
+I don't know where it picked that up from.
+01:33:59 [Speaker 3]
+When I edit these very long interviews, I usually do a v two version where I call it ruthless, where I just delete everything that I'm like, oh, I think this doesn't need to be here.
+
+01:34:08 [Speaker 3]
+So I just do this ruthless version as a way to tell me, like, it's fine.
+01:34:12 [Speaker 3]
+I have a backup.
+01:34:13 [Speaker 3]
+I have a duplicate, so I can't be ruthless, and I can't cut everything.
+01:34:16 [Speaker 3]
+And if I need to do that, like, it's all there.
+01:34:18 [Speaker 3]
+And it kinda picked up on this habit, which is crazy.
+
+01:34:21 [Speaker 3]
+Let me ask you to save this report to a warehouse note.
+01:34:26 [Speaker 3]
+Okay.
+01:34:26 [Speaker 3]
+That's cool.
+01:34:27 [Speaker 3]
+So here, it got me a seventeen minutes hard.
+01:34:30 [Speaker 3]
+And, yeah, I'll just have a look now and then keep keep it prompting until it hits it right.
+
+01:34:37 [Speaker 2]
+So Samraj Samraj Bhat sent me a YouTube video that he recorded real quickly.
+01:34:41 [Speaker 2]
+It was completely cut.
+01:34:42 [Speaker 2]
+It was perfect.
+01:34:43 [Speaker 2]
+Made by Opus.
+01:34:44 [Speaker 2]
+It was great.
+
+01:34:45 [Speaker 2]
+Riley Brown, big AI creator, runs, I can't remember the name of his company.
+01:34:50 [Speaker 2]
+Started a brand new YouTube channel where he's just talking head at a camera, feeds the footage into Opus.
+01:34:56 [Speaker 2]
+It just edits it for him, publishes.
+01:34:58 [Speaker 2]
+And I'm like, wow.
+01:35:00 [Speaker 2]
+This is, this is an interesting workload.
+
+01:35:02 [Speaker 2]
+How can...
+01:35:02 [Speaker 2]
+As designers, how can we think about these workflows in showing our work, demonstrating an idea, making something for the actual product or or landing page we're creating?
+01:35:14 [Speaker 2]
+And, obviously, Bruno from Raycast, very talented.
+01:35:20 [Speaker 2]
+But one of the most talented people I know in this whole Andy.
+01:35:23 [Speaker 2]
+Manipulating the world here is is Andy Orso from Framer.
+
+01:35:28 [Speaker 2]
+The dude has just been a tinkering pro, and I wanted to hear how he's messing around with some things.
+
+01:35:34 [Speaker 7]
+I mean, he...
+01:35:35 [Speaker 7]
+I work with Framer.
+01:35:35 [Speaker 7]
+I make the AI spots that you see, and I've been making videos professionally for software companies for a long time.
+01:35:42 [Speaker 7]
+The main thing we're gonna talk about is this model right here, Mini Max h three Max turbo on fall.ai.
+01:35:51 [Speaker 7]
+We're gonna make some premium slop for you guys for, you know, maybe a new intro for the show.
+
+01:35:56 [Speaker 7]
+I don't know.
+01:35:57 [Speaker 7]
+I'm just gonna hit run.
+01:35:58 [Speaker 7]
+And as I'm talking in probably, like, two seconds from now, it's gonna be done, and it's a ten second video intro for dive radio.
+01:36:09 [Speaker 7]
+And, here you guys are talking.
+01:36:11 [Speaker 7]
+There's no image reference or anything.
+
+01:36:13 [Speaker 7]
+I just gave your photos to Chad GPT and was like, okay.
+01:36:16 [Speaker 7]
+So obviously, now this isn't cool.
+01:36:18 [Speaker 7]
+This isn't great.
+01:36:18 [Speaker 7]
+But could it be helpful in certain contexts?
+01:36:21 [Speaker 7]
+Yes.
+
+01:36:21 [Speaker 7]
+And that is what we're talking
+
+01:36:23 [Speaker 11]
+about today.
+
+01:36:23 [Speaker 7]
+Further context, this past week, we launched a new little kind of humorous spot for Framer talking about, our new skills release and showing them, like, you know, sometimes a prompt isn't really enough, and that's why skills are beneficial.
+01:36:38 [Speaker 7]
+This was made with CDance 2.5.
+01:36:40 [Speaker 7]
+It's a really expensive video model.
+01:36:42 [Speaker 7]
+It's super capable, but it's expensive.
+01:36:45 [Speaker 7]
+And the thing about AI video is that no matter how much you prompt and plan, you're not gonna nail it the first go.
+
+01:36:52 [Speaker 7]
+And so I'm finding that it's really helpful to use cheaper, dumber, way faster models like Mini Max h three Max turbo, which is just over 1¢ per second of generation.
+01:37:04 [Speaker 7]
+So I'm, like, putting together really rough, ugly looking, terrible things like this that help me figure out the shots and the blocking and the timing and is the prompt that I'm putting in actually going to give me the shot that I'm looking for?
+01:37:19 [Speaker 7]
+And so I'll go through this and kind of iterate until I feel like things are feeling good and then send it to the expensive video model.
+01:37:25 [Speaker 7]
+This is crazy useful in a lot of different contexts.
+01:37:28 [Speaker 7]
+Doesn't matter if you're actually making AI video.
+
+01:37:31 [Speaker 7]
+You can do this for pre production planning for real video.
+01:37:35 [Speaker 7]
+Really useful.
+01:37:35 [Speaker 7]
+I encourage everyone to just kinda like play around.
+01:37:38 [Speaker 7]
+It's super cheap.
+01:37:39 [Speaker 7]
+Then the next thing is that pre AI, when I was doing like just mostly after effects work, I would spend many hours putting together just complete throw away artifacts.
+
+01:37:49 [Speaker 7]
+I would do like a lo fi just kinda sketched out animatic along with voiceover and music and just kinda give people a little bit of something to sink their teeth into.
+01:37:57 [Speaker 7]
+And so now I can give that to ChatGPT and say convert this to a CDance 2.5 script and then we get something like this, which wound up being the foundation for the final version of this.
+01:38:11 [Speaker 7]
+It was very helpful to me just for planning and kinda getting things out there and not spiraling once I got into After Effects.
+01:38:19 [Speaker 7]
+The main arc of me sharing this is all the tools are getting better and they're getting cheaper, some of them.
+01:38:24 [Speaker 7]
+And the cheap ones can be really useful for fast iterative stuff that was never possible before and can save you a lot of time just by the nature of getting the idea out of your head and into something that's moving, and then you can have your own reaction to, and then you can run some cycles on it before you even show it to anybody else.
+
+01:38:42 [Speaker 7]
+That's it.
+01:38:42 [Speaker 7]
+Thanks.
+
+01:38:44 [Speaker 1]
+It's cool.
+
+01:38:45 [Speaker 2]
+I hope...
+01:38:46 [Speaker 2]
+I don't know.
+01:38:46 [Speaker 2]
+I know some designers
+
+01:38:47 [Speaker 4]
+are like, I'm never gonna
+
+01:38:48 [Speaker 2]
+touch video editing stuff.
+01:38:50 [Speaker 2]
+Like, the motion interaction stuff is kind of in my wheelhouse, but we're getting into the...
+01:38:54 [Speaker 2]
+I hope you guys are feeling...
+01:38:55 [Speaker 2]
+Because I am jazzed watching some of these people talk about their video editing workflows.
+01:38:59 [Speaker 2]
+And you open up DaVinci Resolve, you open up After Effects, Premiere Pro, and it feels overwhelming.
+
+01:39:05 [Speaker 1]
+Totally.
+
+01:39:06 [Speaker 2]
+It shouldn't anymore.
+01:39:07 [Speaker 2]
+Like, it should not anymore.
+01:39:08 [Speaker 2]
+And you should maybe consider dabbling around with a little video stuff.
+
+01:39:13 [Speaker 1]
+I remember ten years ago, I released a mobile app, and I wanted...
+01:39:17 [Speaker 1]
+It was right when iOS, released the ability to have a video preview as the first thumbnail slot.
+01:39:23 [Speaker 1]
+Mhmm.
+01:39:23 [Speaker 1]
+And so that that came back...
+01:39:25 [Speaker 1]
+Came out, and then I just dove into After Effects and tried to learn it.
+
+01:39:29 [Speaker 1]
+And, man, it took me...
+01:39:32 [Speaker 1]
+I mean, it probably took me fifty hours to make something that was fine.
+
+01:39:38 [Speaker 2]
+Exactly.
+01:39:39 [Speaker 2]
+Yeah.
+01:39:39 [Speaker 2]
+Yeah.
+
+01:39:40 [Speaker 1]
+You know, like, all night, every single night for over a week, I worked on that video.
+01:39:44 [Speaker 1]
+And I'll never forget how hard it was.
+01:39:46 [Speaker 1]
+It was just so incredibly hard, and you
+
+01:39:48 [Speaker 8]
+would just run after bug after bug and,
+
+01:39:51 [Speaker 2]
+man, honestly, you just see
+
+01:39:52 [Speaker 1]
+what people are doing here.
+
+01:39:54 [Speaker 2]
+It's tedious frame by frame.
+01:39:56 [Speaker 2]
+There's a tool that probably can do something.
+01:39:59 [Speaker 2]
+So you're...
+01:39:59 [Speaker 2]
+Then you go over to Google, and you're trying to figure out how do I do this?
+01:40:02 [Speaker 2]
+And there's...
+
+01:40:03 [Speaker 8]
+You have to lock down a
+
+01:40:04 [Speaker 2]
+giant tutorial for, like, a small thing.
+
+01:40:07 [Speaker 1]
+Yeah.
+01:40:07 [Speaker 1]
+And...
+01:40:08 [Speaker 1]
+Yeah.
+01:40:08 [Speaker 1]
+You're right.
+
+01:40:09 [Speaker 2]
+You know, like, yeah.
+01:40:10 [Speaker 2]
+I mean, it is.
+01:40:10 [Speaker 2]
+It's a it's a headache trying to learn that.
+01:40:12 [Speaker 2]
+And so, you know, people like like Finn Finn McKenzie does all kinds of mixed media work.
+01:40:18 [Speaker 2]
+This guy has been, he's a friend of mine.
+
+01:40:20 [Speaker 2]
+He's somebody who I think has just been doing killer experiments lately.
+01:40:23 [Speaker 2]
+And I asked him, hey, how are you kind of messing with this?
+01:40:25 [Speaker 2]
+And he showed us a little thing.
+
+01:40:27 [Speaker 12]
+If you've seen those demos where someone takes real life footage of them and then restyles it to look like something else, I'm gonna show you how to do that.
+01:40:33 [Speaker 12]
+It's actually pretty easy.
+01:40:35 [Speaker 12]
+This is the entire workflow in Flora and it's actually pretty simple.
+01:40:39 [Speaker 12]
+So first thing is the reference video.
+01:40:42 [Speaker 12]
+I just had my wife shoot this on my phone in our hallway for, like, literally ten seconds.
+
+01:40:47 [Speaker 12]
+Nothing fancy.
+01:40:48 [Speaker 12]
+The next thing is to extract the first frame of this video as an image.
+01:40:52 [Speaker 12]
+You can do that with this extract video frame node here.
+01:40:56 [Speaker 12]
+Save that as an image.
+01:40:57 [Speaker 12]
+Then you're gonna restyle that frame in whatever different aesthetic you want.
+
+01:41:03 [Speaker 12]
+In this case, I'm using GPT image 2.5 with this cartoon kind of look.
+01:41:08 [Speaker 12]
+Super simple prompt just says, use this image as a reference for overall composition and create a new image in the style of a vintage nineteen seventies cartoon like Scooby Doo in the new image.
+01:41:19 [Speaker 12]
+A police officer is walking down the hallway of a dusty haunted house with skulls, bones, spider webs, and other appropriate objects replacing the ones in the reference image.
+01:41:29 [Speaker 12]
+Nothing fancy.
+01:41:29 [Speaker 12]
+You can see it pretty much matches the geometry of our hallway almost exactly.
+
+01:41:36 [Speaker 12]
+Like, instead of the shoes and stuff over here, we've got the skulls and spider webs.
+01:41:40 [Speaker 12]
+Posters over here have been replaced with paintings.
+01:41:44 [Speaker 12]
+Looks good to me.
+01:41:45 [Speaker 12]
+This is gonna be your reference for the visual style.
+01:41:49 [Speaker 12]
+So now you're gonna take the video that you shot, the reference video that you shot, and the new visual style and connect that to an instance of the video model.
+
+01:41:59 [Speaker 12]
+In this case, I'm using one called Minimax h three max, but CDance 2.5 is also a good option for this.
+01:42:06 [Speaker 12]
+You're gonna connect the image and the video to this.
+01:42:09 [Speaker 12]
+And then for the prompt, here's what I recommend doing.
+01:42:12 [Speaker 12]
+There's an actual official CDance 2.5 prompt guide and it has a Claude skill that you can download and install.
+01:42:19 [Speaker 12]
+So I would recommend doing that and then call that skill right here in Claude with all your references and it will write a new prompt for you in the CDance 2.5 format.
+
+01:42:30 [Speaker 12]
+And even though I'm not using CDance 2.5, that format works pretty well for pretty much all models.
+01:42:36 [Speaker 12]
+So that's what I would go with.
+01:42:37 [Speaker 12]
+Then you just generate it, and that's that.
+01:42:41 [Speaker 12]
+As you can see, it matches the timing and content of the reference video pretty much one to one.
+01:42:49 [Speaker 12]
+I think it did a really good job of using the visual style too.
+
+01:42:52 [Speaker 12]
+Once you have all this set up, you can experiment with different visual styles.
+01:42:56 [Speaker 12]
+For example, this is like a PS1 game in this, like, weird creepy fun house.
+01:43:02 [Speaker 12]
+Same idea, but just with different references and now you get this.
+01:43:05 [Speaker 12]
+One thing that might be helpful is to create a character sheet like this.
+01:43:09 [Speaker 12]
+Like, if you notice that the character is drifting or just in general that it's not following your prompt, that character guide can help a lot but, you know, technically have to have it.
+
+01:43:18 [Speaker 12]
+But that's really about all there is to it.
+01:43:20 [Speaker 12]
+You take your reference video, pull a frame out, restyle the frame however you want, and then use that as an input to your video model, and that's that.
+
+01:43:30 [Speaker 2]
+So think about you wanna create a landing page.
+01:43:32 [Speaker 2]
+Alright?
+01:43:33 [Speaker 2]
+And we've seen some of these, like, scroll landing pages where, like, the Renaissance, the hand came out and a tree...
+01:43:38 [Speaker 2]
+And a apple plopped into and it pulled back.
+01:43:41 [Speaker 2]
+Imagine filming what you intended the motion to look like, taking a screen cap from what you filmed, generating a few artistic versions of, like, a Renaissance visual there, Putting them together in Flora and having it create based on the motion that you filmed and then the aesthetic that matches at least a couple screens from your filming and have it build a video that creates that entire effect.
+
+01:44:06 [Speaker 2]
+You take it over to, Claude Coder, you know, and you say, hey, now I want this effect to happen on certain triggers or interactions that happen on the landing page.
+01:44:15 [Speaker 2]
+You've just created something that would have taken an entire studio a month to do in potentially a weekend.
+
+01:44:23 [Speaker 1]
+It goes back to the drum that I didn't anticipate banging as often as I do, but just having really good looking clean design isn't enough anymore.
+01:44:32 [Speaker 1]
+You know, when I go...
+01:44:33 [Speaker 1]
+Web design is the perfect application for this because web design is just storytelling.
+01:44:37 [Speaker 1]
+It's packaging.
+01:44:38 [Speaker 1]
+And all of a sudden, we can do things that are so far outside of the box of what we thought about for web design.
+
+01:44:45 [Speaker 1]
+And, like Yep.
+01:44:47 [Speaker 1]
+Like, this is incredible.
+01:44:48 [Speaker 1]
+It's incredible what you can do, and it's it's the only real limitation is just ideas and creativity.
+01:44:55 [Speaker 1]
+Once you get a basic understanding of how to wield the tools and every time...
+01:44:58 [Speaker 1]
+Like, I I don't use Flora.
+
+01:45:00 [Speaker 1]
+I should.
+01:45:00 [Speaker 1]
+I watch these videos, and I'm like, well, I should totally be doing that.
+01:45:02 [Speaker 1]
+I just...
+01:45:03 [Speaker 1]
+I don't know.
+01:45:03 [Speaker 1]
+There's a million things that I feel like I should totally be doing.
+
+01:45:06 [Speaker 1]
+Right.
+01:45:06 [Speaker 1]
+I'm sure other people feel that way too.
+01:45:08 [Speaker 1]
+But every single time I try a new tool, like, you know, Mixture was the example I showed earlier today.
+01:45:14 [Speaker 1]
+Every single time I try a new tool, it's always easier than I think it's gonna be.
+01:45:18 [Speaker 1]
+Always.
+
+01:45:19 [Speaker 1]
+Like, when you're just wielding tools through agents, it's just not that hard, man.
+01:45:24 [Speaker 1]
+It's, like, not that hard, which is a mindset I'm trying to almost train myself on.
+01:45:29 [Speaker 1]
+Like, really, like, the...
+01:45:30 [Speaker 1]
+It reminds me of, Kevin Tuohy.
+01:45:32 [Speaker 1]
+He talked about how he was making the board.
+
+01:45:34 [Speaker 1]
+I think it's called board.com or board.fun, actually, is the website.
+01:45:37 [Speaker 1]
+My whole family is obsessed with this thing.
+01:45:39 [Speaker 1]
+It's so ridiculously cool.
+01:45:41 [Speaker 1]
+And he did everything.
+01:45:43 [Speaker 1]
+He did all the packaging.
+
+01:45:44 [Speaker 1]
+He did all the set design.
+01:45:45 [Speaker 1]
+He did the photoshoot design.
+01:45:46 [Speaker 1]
+He did every little piece of it.
+01:45:48 [Speaker 1]
+And he talked about this, I know, yeah, this thing.
+01:45:51 [Speaker 1]
+Unbelievable.
+
+01:45:51 [Speaker 1]
+It's one of my favorite things I bought in the last few years.
+01:45:53 [Speaker 1]
+And he he...
+01:45:56 [Speaker 1]
+I was asking him about, like, you know, how'd you do this kind of stuff?
+01:45:59 [Speaker 1]
+Like, you don't know anything about setting up a photoshoot.
+01:46:01 [Speaker 1]
+You know?
+
+01:46:02 [Speaker 1]
+And he just talked about how you have to have this I know kung fu mentality and point that at AI tools.
+01:46:09 [Speaker 1]
+And it's just matrix style.
+01:46:10 [Speaker 1]
+I know kung fu.
+01:46:11 [Speaker 1]
+You can literally do anything.
+01:46:12 [Speaker 1]
+Just figure it out, you know, with an attitude of play, maybe like Nim was talking about.
+
+01:46:16 [Speaker 1]
+But everything that I'm seeing here is just like that...
+01:46:18 [Speaker 1]
+That's that's the thing that's in my head.
+01:46:20 [Speaker 1]
+Like, I know I know kung fu.
+01:46:21 [Speaker 1]
+I know kung fu.
+01:46:22 [Speaker 1]
+You know?
+
+01:46:23 [Speaker 2]
+I know kung fu.
+01:46:24 [Speaker 2]
+I love...
+01:46:25 [Speaker 2]
+I I know kung fu mentality.
+01:46:27 [Speaker 2]
+Oh, that's a that's a whole x article.
+
+01:46:30 [Speaker 1]
+Yeah.
+01:46:30 [Speaker 1]
+Probably.
+01:46:30 [Speaker 1]
+That's a good
+
+01:46:32 [Speaker 2]
+one.
+01:46:32 [Speaker 2]
+That's a good one.
+01:46:33 [Speaker 2]
+I like it a lot.
+01:46:34 [Speaker 2]
+Well...
+01:46:34 [Speaker 2]
+And to your point about the tools getting easier, I mean, they are.
+
+01:46:38 [Speaker 2]
+And I think it goes back to what we talked about in the beginning of the episode.
+01:46:42 [Speaker 2]
+Everybody trying to figure out where am I placing my bets on MCPs?
+01:46:45 [Speaker 2]
+Where am I placing my bets on on creating a CLI, where my play...
+01:46:48 [Speaker 2]
+Like, how can I make this tool easier to use for the intelligence stack?
+01:46:54 [Speaker 2]
+Right?
+
+01:46:54 [Speaker 2]
+The thing that is making tools easier to use.
+01:46:57 [Speaker 2]
+And Mhmm.
+01:46:58 [Speaker 2]
+George Hastings, who runs Unicorn Studio and friend of the program, we've talked to him a couple of times, he finally came around to this idea that, wait, an MCP is actually really powerful.
+01:47:10 [Speaker 2]
+And so he's got something in beta right now...
+01:47:12 [Speaker 2]
+Beta beta?
+
+01:47:13 [Speaker 2]
+I always say beta.
+01:47:14 [Speaker 2]
+In beta right now that he wants to talk about that he's kinda showing off.
+01:47:17 [Speaker 2]
+And I thought this was interesting when it comes to how do we get these motion and visuals inside of our products.
+
+01:47:23 [Speaker 11]
+So not too long ago, I made this little interactive promo to do a little giveaway for 50 credits in Unicorn AI.
+01:47:31 [Speaker 11]
+And, I thought it was cool.
+01:47:33 [Speaker 11]
+You have this really kind of complex hover animation.
+01:47:35 [Speaker 11]
+However, in the first day or two, the amount of people who just dismissed it right away, it was, like, 90 something percent.
+01:47:42 [Speaker 11]
+I was trying to rethink how I could do more interesting, more engaging in product announcements.
+
+01:47:48 [Speaker 11]
+And seeing some of the stuff that Opus five point five was doing gave me the idea to really try to amp it up, make something more cinematic, more impactful rather than a traditional sort of very markety looking interaction.
+01:48:04 [Speaker 11]
+So I plugged in the Unicorn MCP, which is going to launch soon.
+01:48:08 [Speaker 11]
+This is a little preview.
+01:48:09 [Speaker 11]
+And the thought was Unicorn Studio has this very, like, celestial brand.
+01:48:15 [Speaker 11]
+We have our Nebula here.
+
+01:48:17 [Speaker 11]
+There is, like, this kind of horizon thing.
+01:48:20 [Speaker 11]
+So I felt like it would be on brand to have a sort of a planet animation.
+01:48:24 [Speaker 11]
+And I prompted Opus for a realistic planet with a direct sunlight on one side, an umbra that we can control the color of.
+01:48:34 [Speaker 11]
+And the first result was not impressive.
+01:48:36 [Speaker 11]
+So the second result was this, much better.
+
+01:48:39 [Speaker 11]
+So that put us in the ballpark for the planet.
+01:48:41 [Speaker 11]
+Next, I wanted to think about, you know, what are these cinematic elements that could really make this stand out, but I'm so fascinated by this video as code concept.
+01:48:49 [Speaker 11]
+I want this to be shaders, and I want to art direct it and fine tune every little detail rather than just prompting and waiting on a video.
+01:48:58 [Speaker 11]
+Here, I love these very long, like, full width blooms that you see sometimes, and I never really had an answer for that.
+01:49:04 [Speaker 11]
+So I was playing around with this.
+
+01:49:06 [Speaker 11]
+This is a new effect, pixel stretch.
+01:49:08 [Speaker 11]
+It will sample and stretch out those pixels.
+01:49:11 [Speaker 11]
+I thought that, you know, if I could maybe just make that a little softer, it would get that effect, and and right off the bat, it was pretty good.
+01:49:19 [Speaker 11]
+Then it was ready to start to see what sort of time based interactions we could get.
+01:49:24 [Speaker 11]
+I asked for Claude.
+
+01:49:25 [Speaker 11]
+I said, I want only crescent angles, but please play with the position in the camera to create a five cut scene about twenty seconds long.
+01:49:35 [Speaker 11]
+And it did a pretty good job just creating these cuts right here using the timeline animations.
+01:49:40 [Speaker 11]
+And, yeah, I had this cool text entrance animation that I prompted as well.
+01:49:44 [Speaker 11]
+Cool.
+01:49:44 [Speaker 11]
+And so the thinking was...
+
+01:49:46 [Speaker 11]
+I mean, I don't know if I'm gonna do this or not.
+01:49:48 [Speaker 11]
+What if you had this immersive in product announcement video?
+01:49:52 [Speaker 11]
+It's definitely not gonna read as market y, sales y little pop up.
+01:49:56 [Speaker 11]
+It's, like, in fact, full hard turn in the other direction.
+01:49:59 [Speaker 11]
+I'm always up for experimenting, so we'll see what happens.
+
+01:50:02 [Speaker 11]
+Oh, bonus, actually.
+01:50:04 [Speaker 11]
+I do think there's an opportunity when we have...
+01:50:06 [Speaker 11]
+We're actually running the code rather than the video to add some interactivity.
+01:50:10 [Speaker 11]
+Let's make the mouse movement slightly change the light direction.
+01:50:15 [Speaker 11]
+Okay.
+
+01:50:16 [Speaker 11]
+Let's get a little momentum on that.
+01:50:21 [Speaker 11]
+I'm gonna just publish that update.
+01:50:23 [Speaker 11]
+You can see how Interactive is really really reactable.
+01:50:26 [Speaker 11]
+Yeah.
+01:50:26 [Speaker 11]
+No.
+
+01:50:27 [Speaker 11]
+Interactive, cinematic, in product experiences.
+01:50:30 [Speaker 11]
+Is it gonna be a thing?
+01:50:31 [Speaker 11]
+I don't know.
+01:50:31 [Speaker 11]
+But it sure is fun
+
+01:50:32 [Speaker 1]
+though.
+01:50:33 [Speaker 1]
+Code, man.
+01:50:33 [Speaker 1]
+Video is code is
+
+01:50:34 [Speaker 2]
+Video is code, and and I think that's gonna get a lot of love.
+01:50:38 [Speaker 2]
+But, also, video as product?
+01:50:43 [Speaker 2]
+I don't I don't know.
+01:50:45 [Speaker 2]
+I asked rep...
+01:50:45 [Speaker 2]
+I asked Rebecca.
+
+01:50:46 [Speaker 2]
+So Rebecca Farr last week, who was my nominee for designer of the week, She had built some cool stuff, and I was like, hey.
+01:50:52 [Speaker 2]
+I wanna see this.
+01:50:54 [Speaker 2]
+She didn't get time to get it in last week, but she got it in this week, and it's actually more relevant.
+01:50:58 [Speaker 2]
+And this will probably be our last video before we, we chat it out.
+01:51:02 [Speaker 2]
+But
+
+01:51:02 [Speaker 13]
+hey, guys.
+01:51:03 [Speaker 13]
+I wanna show you something I've been working on.
+01:51:04 [Speaker 13]
+About a month ago, Fall came out with a new video model, a generative video model called h three max turbo.
+01:51:10 [Speaker 13]
+It's notable because it is super fast.
+01:51:13 [Speaker 13]
+It can generate five to fifteen seconds of video in between three and five seconds just based off a text prompt or photo, which means if you continually send prompts at it, it can keep sending you back video faster than you can watch it forever.
+
+01:51:26 [Speaker 13]
+People have been using it to make infinite streams like TV shows that never end or choose your own adventures, mostly entertainment.
+01:51:33 [Speaker 13]
+But I wanted to see if it would be possible to use it as a rendering engine for a traditional app just without any of the traditional stuff we use to to build a UI.
+01:51:42 [Speaker 13]
+So I got it set up a few weeks ago and started testing it.
+01:51:44 [Speaker 13]
+I'm gonna show you how it works.
+01:51:45 [Speaker 13]
+I have this toy concept for an app which is marketplace for exotic alien plants, and it's showing you a couple of them right here.
+
+01:51:52 [Speaker 13]
+I'm gonna go ahead and click on this one over on the right, and then we're gonna see okay cool.
+01:51:57 [Speaker 13]
+It's treating that as me digging in to learn more about this plant, showing me some basic information about it, like how much it costs, it's giving me a brief description, showing me how many are in stock.
+01:52:07 [Speaker 13]
+This is all video, so that first stage was just video, the second stage is just video, and I just added a layer in the middle that looks at your clicks, and looks at the picture, and says if somebody clicks here what do we think that would do?
+01:52:19 [Speaker 13]
+And then passes that very generic description about the change in state over to the h3 max model, and says this is what's happening.
+01:52:27 [Speaker 13]
+What would that look like?
+
+01:52:28 [Speaker 13]
+And then the model comes up with its best guess of what that would look like, and what you just saw is what its best guess was.
+01:52:33 [Speaker 13]
+This is like very proof of concept, you could not use this to create an actual app yet.
+01:52:38 [Speaker 13]
+There's obviously also a lot of drift when it comes to the visuals, but you can string a lot of this stuff together and build surprisingly complex experiences that are driven by real consistent data on the back end, and this generative video model on the front end figuring out what it looks like to move between different states.
+01:52:55 [Speaker 13]
+It's really weird, very unusual way to work, but it's a very interesting direction.
+01:52:59 [Speaker 13]
+And I think as this technology keeps improving, there's a very good chance that we're going to wind up with a class of software that doesn't use traditional rendering and all, and also probably doesn't use world models, but uses something like this, streams of video that are constantly responding to your input.
+
+01:53:14 [Speaker 13]
+Anyway, I thought it was cool.
+01:53:15 [Speaker 13]
+I hope you guys like it.
+
+01:53:17 [Speaker 1]
+Remember when we were doing backyard designers and we gave the behind the scenes?
+01:53:20 [Speaker 1]
+And I used claw design to make that deck, and it had all the interactive prototypes.
+01:53:24 [Speaker 1]
+And it was kind of...
+01:53:25 [Speaker 1]
+We were talking about the middle ground between, like, what is a presentation and what is a website and what is a prototype?
+01:53:30 [Speaker 1]
+And, like, we're, like, right in between the three where we almost don't even have language to talk about or to classify what this is.
+
+01:53:38 [Speaker 1]
+This reminds me of that too.
+01:53:39 [Speaker 1]
+We're...
+01:53:40 [Speaker 1]
+I don't know.
+01:53:40 [Speaker 1]
+AI is unlocking all of these really weird blurry middle grounds that don't neatly fit into how we've defined mediums.
+01:53:48 [Speaker 1]
+Yeah.
+
+01:53:48 [Speaker 1]
+You know what I mean?
+
+01:53:49 [Speaker 2]
+Mhmm.
+01:53:50 [Speaker 2]
+Yeah.
+01:53:50 [Speaker 2]
+We're calling it, like, mixed media right now, but it's like...
+01:53:53 [Speaker 2]
+That feels...
+01:53:54 [Speaker 2]
+I don't know if that I don't know if that covers it.
+
+01:53:57 [Speaker 2]
+I also wanna call out Exobotanica, a marketplace for exotic alien plants.
+01:54:03 [Speaker 2]
+We gotta step up our game, Tinder for cats.
+01:54:06 [Speaker 2]
+You know?
+01:54:07 [Speaker 2]
+Amraj Bhatt was making coffee for his...
+01:54:10 [Speaker 2]
+We we need to come up...
+
+01:54:11 [Speaker 4]
+Guys, we
+
+01:54:11 [Speaker 2]
+need to start using some pretty, like, dope, you know, scenarios for our spec ideas here.
+
+01:54:20 [Speaker 1]
+Yeah.
+01:54:20 [Speaker 1]
+It's cool.
+
+01:54:21 [Speaker 2]
+Yeah.
+01:54:21 [Speaker 2]
+It's cool.
+01:54:22 [Speaker 2]
+This this
+
+01:54:22 [Speaker 1]
+episode stretched me in ways that I appreciate.
+01:54:25 [Speaker 1]
+Even the mini max thing.
+01:54:26 [Speaker 1]
+Like, I don't...
+01:54:27 [Speaker 1]
+I didn't even know about that.
+01:54:28 [Speaker 1]
+Like, I'm like, oh, geez.
+
+01:54:28 [Speaker 2]
+Yeah.
+01:54:29 [Speaker 2]
+I was getting a lot of love on the mini max stuff.
+01:54:31 [Speaker 2]
+Yeah.
+01:54:31 [Speaker 2]
+And, you know, and and, again, there's, like, all kinds...
+01:54:34 [Speaker 2]
+This Algora too.
+
+01:54:35 [Speaker 2]
+What is this?
+01:54:36 [Speaker 2]
+I don't know.
+01:54:37 [Speaker 2]
+Our next generation multi agent world model.
+01:54:40 [Speaker 2]
+So much to keep up with.
+01:54:42 [Speaker 2]
+Like, you know what I mean?
+
+01:54:44 [Speaker 2]
+I'm, like, looking at my...
+01:54:45 [Speaker 2]
+Yeah.
+01:54:45 [Speaker 2]
+This is incredible.
+01:54:47 [Speaker 2]
+What am I supposed to do with myself right now?
+01:54:50 [Speaker 2]
+I have work to do.
+
+01:54:51 [Speaker 2]
+Like, I don't...
+01:54:52 [Speaker 2]
+Yeah.
+01:54:52 [Speaker 2]
+This is wild.
+
+01:54:54 [Speaker 1]
+We gotta make time for play, Tommy.
+
+01:54:56 [Speaker 2]
+We gotta make time for...
+01:55:01 [Speaker 2]
+Let's go look at our designer of the week results here.
+01:55:05 [Speaker 2]
+Alright.
+01:55:05 [Speaker 2]
+This is your last sixty seconds.
+01:55:07 [Speaker 2]
+This is your last ten seconds to get designer of the week, and I'm calling it.
+
+01:55:11 [Speaker 2]
+I'm calling it.
+01:55:12 [Speaker 2]
+Close one.
+
+01:55:13 [Speaker 1]
+I'm calling it.
+
+01:55:13 [Speaker 4]
+Anyway, it
+
+01:55:14 [Speaker 2]
+was a close one.
+01:55:14 [Speaker 2]
+So Jordan Jordan had a good comeback.
+01:55:18 [Speaker 2]
+Couldn't top Edward.
+01:55:20 [Speaker 2]
+Edward won.
+01:55:20 [Speaker 2]
+So...
+
+01:55:21 [Speaker 2]
+Alright.
+01:55:21 [Speaker 2]
+Not to be, three in a row of an upset.
+01:55:26 [Speaker 2]
+The Yeah.
+01:55:28 [Speaker 2]
+The line took it.
+01:55:29 [Speaker 2]
+There it is.
+
+01:55:30 [Speaker 2]
+Congratulations, Edward.
+01:55:32 [Speaker 2]
+Sick work.
+
+01:55:33 [Speaker 1]
+Prize is yours.
+
+01:55:36 [Speaker 2]
+I, I like this a lot.
+01:55:39 [Speaker 2]
+Well, I'll tell you what, Red.
+01:55:41 [Speaker 2]
+You, you give me a little bit me some ideas here.
+01:55:44 [Speaker 2]
+How did this episode stretch you?
+01:55:45 [Speaker 2]
+What's up?
+
+01:55:48 [Speaker 1]
+Outro music.
+01:55:49 [Speaker 1]
+Let's go.
+01:55:50 [Speaker 1]
+1% better, baby.
+01:55:52 [Speaker 1]
+I think this is just a set of skills that I previously didn't identify with.
+01:55:57 [Speaker 1]
+I didn't think that I had any skill set in.
+
+01:55:59 [Speaker 1]
+I didn't have any time to learn any of the tools required to create this type of output.
+01:56:04 [Speaker 1]
+And all of a sudden, everything in this world feels not only attainable, but it feels relevant to my job because what it means to be as a designer is expanding so rapidly.
+01:56:16 [Speaker 1]
+And you can kinda bring to the table anything that you want, any way that you wanna move the needle.
+01:56:21 [Speaker 1]
+And at the end of the day, designers are creatives, and we're typically employed by companies that are asking us to do things to move the needle.
+01:56:30 [Speaker 1]
+You know?
+
+01:56:31 [Speaker 1]
+And it used to be so defined, and everything is undefined now.
+01:56:35 [Speaker 1]
+And I think there's a lot of value in getting off the beaten path, and I think we saw a lot of examples of what that looks like today.
+01:56:41 [Speaker 1]
+So I'm personally inspired to make a thing.
+01:56:45 [Speaker 1]
+You know?
+01:56:46 [Speaker 1]
+I don't know what that looks like.
+
+01:56:47 [Speaker 1]
+I...
+01:56:47 [Speaker 1]
+Make...
+01:56:48 [Speaker 1]
+Like, I feel like we should just, like, make a thing even even for inflight.
+01:56:51 [Speaker 1]
+I'm like, how do I...
+01:56:52 [Speaker 1]
+What do I make?
+
+01:56:53 [Speaker 1]
+How do I tell the story?
+01:56:54 [Speaker 1]
+How do I, yeah.
+01:56:55 [Speaker 1]
+I just gotta think a little bit more expansive in terms of what outputs I could be asked to make.
+
+01:57:04 [Speaker 2]
+It's gonna be a fun exercise.
+01:57:05 [Speaker 2]
+Yeah.
+01:57:06 [Speaker 2]
+If this describes you and you're like, I wanna make stuff.
+01:57:09 [Speaker 2]
+I wanna be around people who make stuff.
+01:57:11 [Speaker 2]
+Please come join the dive club group chat.
+
+01:57:13 [Speaker 2]
+It is our Discord.
+01:57:14 [Speaker 2]
+It is open till next Friday for seven days.
+01:57:17 [Speaker 2]
+We only let people in.
+01:57:18 [Speaker 2]
+It's not a paid thing, but we only let people in once per quarter.
+01:57:22 [Speaker 2]
+We kick them out if they're not active.
+
+01:57:24 [Speaker 2]
+Pretty cool little place.
+01:57:25 [Speaker 2]
+We don't have music like this, but we do have cool people.
+01:57:28 [Speaker 2]
+And we do have a lot of questions.
+01:57:30 [Speaker 2]
+We stay up on top of them.
+01:57:31 [Speaker 2]
+So thanks for joining us this week.
+
+01:57:34 [Speaker 2]
+Next week, we will be reviewing your portfolios.
+01:57:37 [Speaker 2]
+We have a big portfolio week and maybe a couple other things to announce next week.
+01:57:40 [Speaker 2]
+We'll see how it goes.
+
+01:57:43 [Speaker 1]
+Can't wait.
+
+01:57:44 [Speaker 2]
+See you then.

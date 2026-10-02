@@ -45,7 +45,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1025,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -58,8 +58,8 @@
           "broadcastId": "1pKdRRwpkaQJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 760,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 762,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -108,8 +108,8 @@
           "broadcastId": "1kKzDDbmjWqJv",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 637,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 641,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -121,8 +121,8 @@
           "broadcastId": "1yxBeeoanDOJN",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 1185,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1187,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -173,7 +173,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1471,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -186,8 +186,8 @@
           "broadcastId": "1nGeLLpzNAQKX",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 2834,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 2837,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -237,8 +237,8 @@
           "broadcastId": "1vJpPPMgdDoJE",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1369,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1371,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -250,8 +250,8 @@
           "broadcastId": "1rGmqqBdNVkGy",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 548,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 549,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -301,8 +301,8 @@
           "broadcastId": "1pKdRDDymlnJW",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1182,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1183,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -315,8 +315,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1118,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1131,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -365,8 +365,8 @@
           "broadcastId": "1DGleVBNBVjJL",
           "broadcastResolved": true,
           "playsHighWater": {
-            "value": 851,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 852,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -379,7 +379,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 344,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -438,8 +438,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1120,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1121,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -472,8 +472,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1945,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1949,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -544,8 +544,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1522,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1524,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -558,8 +558,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2630,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 2633,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }
@@ -603,8 +603,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1817,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1818,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -617,8 +617,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 2161,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 2163,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -689,8 +689,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 710,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 718,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -712,8 +712,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1099,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1105,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -784,8 +784,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1224,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1233,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -798,8 +798,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1466,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1482,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         },
@@ -812,8 +812,86 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1466,
-            "asOf": "2026-10-01T19:15:57.030Z"
+            "value": 1482,
+            "asOf": "2026-10-02T14:02:50.836Z"
+          },
+          "playsStatus": "ok"
+        }
+      ]
+    },
+    {
+      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "title": "Dive Radio: Anyone Can Animate Now (and How)",
+      "date": "2026-10-01",
+      "active": true,
+      "targets": [
+        {
+          "kind": "youtube",
+          "videoId": "bBF1yPACap0",
+          "url": "https://www.youtube.com/watch?v=bBF1yPACap0",
+          "account": "joindiveclub",
+          "videoTitle": "Dive Radio: Anyone Can Animate Now (and How)"
+        },
+        {
+          "kind": "youtube",
+          "videoId": "bwJB9EBQNSQ",
+          "url": "https://www.youtube.com/watch?v=bwJB9EBQNSQ",
+          "account": "designertom",
+          "videoTitle": "Dive Radio: Anyone Can Animate Now (and How)"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2105749637537972524",
+          "url": "https://x.com/ridd_design/status/2105749637537972524",
+          "broadcastId": "1OxwbnqQZygJB",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 1003,
+            "asOf": "2026-10-02T14:02:50.836Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "ridd_design",
+          "postId": "2105408888287776998",
+          "url": "https://x.com/ridd_design/status/2105408888287776998",
+          "broadcastId": "1OxwbnqQZygJB",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 1003,
+            "asOf": "2026-10-02T14:02:50.836Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2105749637835718688",
+          "url": "https://x.com/designertom/status/2105749637835718688",
+          "broadcastId": "1XxygwNQaDyGM",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 741,
+            "asOf": "2026-10-02T14:02:50.836Z"
+          },
+          "playsStatus": "ok"
+        },
+        {
+          "kind": "x",
+          "account": "designertom",
+          "postId": "2105408888400965674",
+          "url": "https://x.com/designertom/status/2105408888400965674",
+          "broadcastId": "1XxygwNQaDyGM",
+          "broadcastResolved": true,
+          "broadcastIdSource": "entities.urls",
+          "playsHighWater": {
+            "value": 741,
+            "asOf": "2026-10-02T14:02:50.836Z"
           },
           "playsStatus": "ok"
         }

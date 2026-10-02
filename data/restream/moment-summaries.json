@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-01T19:18:24.924Z",
+  "updatedAt": "2026-10-02T14:06:31.401Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -317,6 +317,10 @@
     "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.45": {
       "summary": "A designer in a recorded demo shows voice and typed commands changing a UI live with Jev inside a design system; hosts then discuss a friend's sketch-to-wireframe variation and what could be added.",
       "writtenAt": "2026-10-01T19:18:24.924Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.36": {
+      "summary": "Hosts riff on a World of Warcraft-style terminal for agents, praise a community member's new multi-agent terminal, then joke about a subreddit takeover and start a Rick and Morty clip explaining a type-safe AI tool.",
+      "writtenAt": "2026-10-02T14:06:31.401Z"
     }
   }
 }

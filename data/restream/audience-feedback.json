@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-01T19:17:00.355Z",
+  "updatedAt": "2026-10-02T14:04:03.909Z",
   "configurations": {
     "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39": {
       "classifierVersion": 1,
@@ -29,15 +29,249 @@
     }
   },
   "episodes": {
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
+      "sources": {
+        "x": {
+          "state": "ready",
+          "checkedAt": "2026-10-02T14:00:06.055Z"
+        },
+        "live-chat": {
+          "state": "ready",
+          "checkedAt": "2026-10-02T14:00:06.055Z"
+        }
+      },
+      "processing": {
+        "pending": 0,
+        "review": 39
+      },
+      "list": [
+        {
+          "id": "x:2105888650248724863",
+          "source": "x",
+          "author": "@seansmithworks",
+          "text": "@ridd_design Another great episode! \n\nCurious I’ve been meaning to build a good story boarding skill/plugin to really help agents along the process for design and motion. Has anyone made a great one?",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-02T05:12:34.000Z",
+          "url": "https://x.com/i/status/2105888650248724863",
+          "likes": 0,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "ec0a72b9ba2a436c032050c2b51f5a54874b9b039377cc310acd974d7a425c01",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.9,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "x:2105706605560119308",
+          "source": "x",
+          "author": "@JustinPerea",
+          "text": "@designertom @brunocbreis @bekhovsgun I look forward to stream every week 💪",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-01T17:09:11.000Z",
+          "url": "https://x.com/i/status/2105706605560119308",
+          "likes": 1,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "ff47c58a96a324f9f065cc0766e6de5699365de557c603ee9fde262229d13856",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:44daee87201694d214bf4eee2f4975e16a660ad41daa396a9cb98910c8139ff5:1",
+          "source": "live-chat",
+          "author": "Person 5",
+          "text": "background music is so good!!",
+          "platform": "X",
+          "channel": "ridd_design",
+          "at": "2026-10-01T20:04:09Z",
+          "url": "https://x.com/ridd_design/status/2105749637537972524",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "88952ef1d6ae1dffce73e9091dcf7a802a26057a30eb56aa3200048b72d7eb1a",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "audio quality"
+            ],
+            "confidence": 0.93,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:e0cf7f17dc2dee7322da2450fd5711a7a18b5a7560f4cf8b314d962c4a9dec83:1",
+          "source": "live-chat",
+          "author": "Person 3",
+          "text": "I love the intro page its so fun",
+          "platform": "YouTube",
+          "channel": "Dive Club ?",
+          "at": "2026-10-01T20:05:11Z",
+          "url": "https://www.youtube.com/watch?v=bBF1yPACap0",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "9329e283bb7320ca8acdbbb0979d08e5842f96926a8719f94274dab4e412cb60",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.88,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:f9237269b1d38035e2ba91616ef1c74b57893682257dfbc55677904b2ee0f611:1",
+          "source": "live-chat",
+          "author": "Person 8",
+          "text": "sheesh super polished",
+          "platform": "X",
+          "channel": "designertom",
+          "at": "2026-10-01T20:05:15Z",
+          "url": "https://x.com/designertom/status/2105749637835718688",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "55ff1a7b6755c95a78fc41b7b29cb75287ccb1eda59c5e445ba0eec48651e68b",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:bf75b91fef7c99200c7ff549dc2e8010441ce27abe0a40e783f22eff07fc7c09:1",
+          "source": "live-chat",
+          "author": "Person 24",
+          "text": "OOOOOO EXCITED FOR NEXT WEEK!!",
+          "platform": "YouTube",
+          "channel": "Dive Club ?",
+          "at": "2026-10-01T21:09:25Z",
+          "url": "https://www.youtube.com/watch?v=bBF1yPACap0",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "42fa8964f1a432a7292d209c465f145a732bef925f1320ebd87370a8ff205dc1",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:b04d166a11e827ec1b8a03f4f2592a87b378a714768317f07b4e737090ba8997:1",
+          "source": "live-chat",
+          "author": "Person 29",
+          "text": "crazyy, thanks for sharing!!",
+          "platform": "YouTube",
+          "channel": "Dive Club ?",
+          "at": "2026-10-01T21:16:39Z",
+          "url": "https://www.youtube.com/watch?v=bBF1yPACap0",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "bef44598d4b86d1a0358d1f393d6a3be6cdcc39cbc9504cbbf457cdfb7c38c69",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.8,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:c929fc812725b7ae0ae7ec0d72c52596565484ee79d6485afb1470f26763d7dc:1",
+          "source": "live-chat",
+          "author": "Person 54",
+          "text": "Love his realistic take... non-pg and just saying he was playing around with shit.",
+          "platform": "YouTube",
+          "channel": "Tommy Geoco",
+          "at": "2026-10-01T21:24:37Z",
+          "url": "https://www.youtube.com/watch?v=bwJB9EBQNSQ",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "de8319e2950d961802e8f6a2b8c77fc1e86ace3b5a443feb3e55844f16a119d6",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "guest"
+            ],
+            "confidence": 0.88,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        },
+        {
+          "id": "chat:b9b23fe9eb0064ce19159b14211cdbfab9c3fb6f4df54f2ab9e18a56cb25167d:1",
+          "source": "live-chat",
+          "author": "Person 4",
+          "text": "awesome show guys!",
+          "platform": "YouTube",
+          "channel": "Tommy Geoco",
+          "at": "2026-10-01T21:57:52Z",
+          "url": "https://www.youtube.com/watch?v=bwJB9EBQNSQ",
+          "likes": null,
+          "capturedAt": "2026-10-02T14:00:06.055Z",
+          "contentHash": "a2f269881423193d86109bde1172e1bc5365900b0390e9d7c3e1f6cbe6672790",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.96,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-02T14:04:03.909Z"
+          }
+        }
+      ]
+    },
     "2026-09-24-dive-radio-just-in-time-interfaces": {
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         }
       },
       "processing": {
@@ -436,11 +670,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         }
       },
       "processing": {
@@ -1056,11 +1290,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         }
       },
       "processing": {
@@ -2277,11 +2511,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-01T19:15:07.022Z"
+          "checkedAt": "2026-10-02T14:00:06.055Z"
         }
       },
       "processing": {

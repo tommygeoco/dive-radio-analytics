@@ -1,10 +1,10 @@
-# Show-health verification — 2026-10-01
+# Show-health verification — 2026-10-02
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-10-01 read
+## Accuracy — the 2026-10-02 read
 
-Score 55 (weighted mean 53, health-v10, prompt v7); reads Just at 7 days; carried: audience quality, subscribers.
+Score 56 (weighted mean 56.2, health-v10, prompt v7); reads Anyone Can Animate Now (and How) at 0.8 days; carried: audience quality, reach, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -12,24 +12,24 @@ Score 55 (weighted mean 53, health-v10, prompt v7); reads Just at 7 days; carrie
 
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
-| Next first week inside the expected range | 0 | 0 | 0 | 4 | 1 |
-| Direction word confirmed by the next episode | 18 | 14 | 12 | 5 | 11 |
+| Next first week inside the expected range | 0 | 0 | 0 | 4 | 2 |
+| Direction word confirmed by the next episode | 23 | 15 | 15 | 5 | 10 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
 
+- 2026-10-02 · HIT · liveAverage: E12 moved +7.5% (building) against the word building.
+- 2026-10-02 · NEUTRAL · livePeak: E12 moved +1.8% (holding) against the word building.
+- 2026-10-02 · NEUTRAL · liveViewers: E12 moved -5.1% (softening) against the word holding.
+- 2026-10-02 · HIT · minutesWatched: E12 moved +6.6% (building) against the word building.
+- 2026-10-02 · HIT · chattersPer100: E12 moved -3.3% (holding) against the word holding.
+- 2026-10-02 · MISS · messagesPerHour: E12 moved -26.1% (softening) against the word building.
+- 2026-10-02 · HIT · minutesPerViewer: E12 moved +12% (building) against the word building.
+- 2026-10-02 · HIT · holdRate: E12 moved -2.5% (holding) against the word holding.
+- 2026-10-02 · NEUTRAL · chattersPer100: E12 moved -3.3% (holding) against the word building.
 - 2026-10-01 · VOID · 2026-09-24-dive-radio-just-in-time-interfaces: promo-driven first week — not a clean test.
 - 2026-10-01 · MISS · exposureWeekOne: E11 moved -59.5% (softening) against the word building.
 - 2026-10-01 · MISS · announceToPlay: E11 moved +282% (building) against the word softening.
-- 2026-10-01 · HIT · announceToPlay: E11 moved +44.7% (building) against the word building.
-- 2026-09-26 · HIT · announceToPlay: E10 moved -67.2% (softening) against the word softening.
-- 2026-09-25 · VOID · 2026-09-17-dive-radio-how-to-become-a-founding-desi: promo-driven first week — not a clean test.
-- 2026-09-25 · NEUTRAL · liveAverage: E11 moved +2.6% (holding) against the word building.
-- 2026-09-25 · HIT · livePeak: E11 moved +12.4% (building) against the word building.
-- 2026-09-25 · HIT · liveViewers: E11 moved +71% (building) against the word building.
-- 2026-09-25 · NEUTRAL · minutesWatched: E11 moved +0% (holding) against the word building.
-- 2026-09-25 · NEUTRAL · chattersPer100: E11 moved +26.8% (building) against the word holding.
-- 2026-09-25 · NEUTRAL · messagesPerHour: E11 moved +86.8% (building) against the word holding.
 
 ### Owner feel against the read
 
@@ -51,7 +51,7 @@ Most recent resolutions:
 | subscribers | 0 |
 | goodwill | 0 |
 
-Carried share of scored checks: 29% (at full weight the mean would move -1.7) · promo-qualified measures: none · steady-state check-set changes in 30 days: 0 · days without a read in 30: 9 · scoring-rule changes in 30 days: 2.
+Carried share of scored checks: 43% (at full weight the mean would move -1.3) · promo-qualified measures: none · steady-state check-set changes in 30 days: 0 · days without a read in 30: 9 · scoring-rule changes in 30 days: 2.
 
 - WARN — 9 day(s) in the last 30 have no saved read (2026-09-17, 2026-09-18, 2026-09-21, 2026-09-24, 2026-09-28) — the model step failed or the chain did not run.
 - INFO — The scoring rules changed 2 time(s) in the last 30 days; the daily trend restarts each time.
@@ -60,15 +60,15 @@ Carried share of scored checks: 29% (at full weight the mean would move -1.7) ·
 ## Open claims
 
 - 2026-09-25 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E11.
-- 2026-09-25 · liveAverage building (+8.2% per episode) — waits for the episode after E11.
-- 2026-09-25 · livePeak building (+10.7% per episode) — waits for the episode after E11.
-- 2026-09-25 · liveViewers holding (+2.5% per episode) — waits for the episode after E11.
-- 2026-09-25 · minutesWatched building (+10.8% per episode) — waits for the episode after E11.
-- 2026-09-25 · chattersPer100 holding (+4.2% per episode) — waits for the episode after E11.
-- 2026-09-25 · messagesPerHour building (+13.1% per episode) — waits for the episode after E11.
-- 2026-09-25 · minutesPerViewer building (+18.5% per episode) — waits for the episode after E11.
-- 2026-09-25 · holdRate holding (-2.1% per episode) — waits for the episode after E11.
-- 2026-09-29 · chattersPer100 building (+7.6% per episode) — waits for the episode after E11.
 - 2026-10-01 · exposureWeekOne building (+5.3% per episode) — waits for the episode after E11.
 - 2026-10-01 · announceToPlay building (+10.5% per episode) — waits for the episode after E11.
+- 2026-10-02 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E12.
+- 2026-10-02 · liveAverage building (+5.3% per episode) — waits for the episode after E12.
+- 2026-10-02 · livePeak holding (+2.5% per episode) — waits for the episode after E12.
+- 2026-10-02 · liveViewers holding (-3.2% per episode) — waits for the episode after E12.
+- 2026-10-02 · minutesWatched holding (+4.9% per episode) — waits for the episode after E12.
+- 2026-10-02 · chattersPer100 building (+13.8% per episode) — waits for the episode after E12.
+- 2026-10-02 · messagesPerHour holding (-0.8% per episode) — waits for the episode after E12.
+- 2026-10-02 · minutesPerViewer building (+7% per episode) — waits for the episode after E12.
+- 2026-10-02 · holdRate holding (-0.6% per episode) — waits for the episode after E12.
 
