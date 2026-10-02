@@ -12,6 +12,7 @@ import { acquireLock, appendQueueLines, resolveOperationalAlerts } from "./alert
 import { checkProductionFreshness, phoenixDay, phoenixHour } from "./freshness.mjs";
 import { checkLiveParity, SITE } from "./live-parity.mjs";
 import { ensureIsolatedCheckout, markYoutubeWatchAlert, MAX_DAILY_ATTEMPTS, PUBLISHER_ROOT, queueDailyFailure, readAttemptState, RUN_LOCK_MAX_AGE_MS, saveAttemptState, STATE_PATH } from "./run-daily.mjs";
+import { exitForScheduler, watchSchedulerQuietly } from "./scheduler-watch.mjs";
 import { isYoutubeWatchPendingStatus } from "./youtube-readiness.mjs";
 import { ADVISORY_PENDING_STATUS, pendingSourceStates, readPublishEvidence, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
 import { RECOVERY_PROOF_PATH } from "./runtime-paths.mjs";
@@ -283,7 +284,11 @@ export async function recoverPublish({
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
-if (isMain) recoverPublish({ proofOnly: process.argv.includes("--proof-only") }).then((status) => process.exit(status)).catch((error) => {
-  console.error(`recovery: ${error.message}`);
-  process.exit(1);
-});
+if (isMain) {
+  const scheduled = !process.argv.includes("--proof-only");
+  if (scheduled) watchSchedulerQuietly("recovery");
+  recoverPublish({ proofOnly: process.argv.includes("--proof-only") }).then((status) => process.exit(scheduled ? exitForScheduler(status, "recovery") : status)).catch((error) => {
+    console.error(`recovery: ${error.message}`);
+    process.exit(1);
+  });
+}

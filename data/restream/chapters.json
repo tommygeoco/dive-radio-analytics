@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-01T19:21:08.209Z",
+  "updatedAt": "2026-10-02T14:09:54.578Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -903,6 +903,88 @@
         "sha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
         "promptVersion": 1
       }
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
+      "sha256": "78533c2f023b853399115cfabaeb7d2f4ecaddb38004ec8e12729db0961cee88",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:16",
+          "seconds": 196,
+          "title": "Cold open, welcome, and a preview of the motion theme",
+          "gist": "Both hosts open with a highlight reel, swap vacation and holiday chat, and set up an episode about motion.",
+          "quote": "I think the view is bright, but it has to be built"
+        },
+        {
+          "start": "00:11:46",
+          "seconds": 706,
+          "title": "Designer of the week nominations and voting",
+          "gist": "Hosts and community members nominate designers, and a single-screen site gets a quick look.",
+          "quote": "I appreciate Notion for sponsoring the segment of designer of the week"
+        },
+        {
+          "start": "00:20:13",
+          "seconds": 1213,
+          "title": "Brand in a box, the Discord opening, and a Lovable library",
+          "gist": "Brett's clip on prebuilt brands, then a host explains the quarterly Discord and a Lovable submissions library.",
+          "quote": "wanna call out that something just showed up here"
+        },
+        {
+          "start": "00:32:09",
+          "seconds": 1929,
+          "title": "OpenAI Dev Day news, sign-in with ChatGPT, and plugins",
+          "gist": "Hosts react to Dev Day announcements, the rush to build chat plugins, and cute mascot trends in agent products.",
+          "quote": "OpenAI's Dev Day kicks off"
+        },
+        {
+          "start": "00:40:16",
+          "seconds": 2416,
+          "title": "Picking an agent ecosystem and what it costs to switch",
+          "gist": "Hosts weigh which agent platform to commit to, rebuilding setups, model mandates, and a consumer app launch.",
+          "quote": "I'm feeling a lot of pressure to choose correctly"
+        },
+        {
+          "start": "01:00:28",
+          "seconds": 3628,
+          "title": "america.gov and the national design studio",
+          "gist": "A host praises the single government site that folds many agency sites into one, with the other agreeing.",
+          "quote": "get into this for a quick second"
+        },
+        {
+          "start": "01:04:13",
+          "seconds": 3853,
+          "title": "Opus and AI launch videos, plus Mixture and Rive tools",
+          "gist": "Hosts watch AI-made launch videos, debate where they fall short, and one host demos an agent video editor.",
+          "quote": "Opus five five is insanely good at motion design launch videos"
+        },
+        {
+          "start": "01:16:07",
+          "seconds": 4567,
+          "title": "Designers share motion workflows from skills to code",
+          "gist": "Viewers show how they animate with cheap video models, tunable dials, After Effects, and Figma storyboards.",
+          "quote": "I'm Xavier from France, and I wanted to"
+        },
+        {
+          "start": "01:31:55",
+          "seconds": 5515,
+          "title": "Editing and generating video with agents",
+          "gist": "Guests demo DaVinci edits by Claude, cheap draft video models, footage restyling, shader scenes, and video as app UI.",
+          "quote": "So you can see that I just sent a prompt"
+        },
+        {
+          "start": "01:55:01",
+          "seconds": 6901,
+          "title": "Winner announced and closing thoughts",
+          "gist": "Edward wins designer of the week, then both hosts reflect on the episode and point to the Discord and next week.",
+          "quote": "Let's go look at our designer of the week results here"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-sonnet-5-5",
+      "writtenAt": "2026-10-02T14:09:54.578Z"
     }
   },
   "superseded": [

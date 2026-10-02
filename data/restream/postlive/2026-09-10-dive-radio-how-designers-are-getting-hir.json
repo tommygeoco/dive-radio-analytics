@@ -10140,10 +10140,552 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-10-02T14:02:50.836Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "pulledAt": "2026-10-02T14:02:50.836Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 7124,
+          "detail": {
+            "views": 7124,
+            "likes": 113,
+            "comments": 8,
+            "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "DUejFPtYll0",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "DUejFPtYll0",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 7124,
+              "detail": {
+                "views": 7124,
+                "likes": 113,
+                "comments": 8,
+                "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "DUejFPtYll0",
+            "pulledAt": "2026-10-02T14:02:50.836Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 4598,
+          "detail": {
+            "views": 4598,
+            "likes": 74,
+            "comments": 9,
+            "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "OZG115v6TTg",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "OZG115v6TTg",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 4598,
+              "detail": {
+                "views": 4598,
+                "likes": 74,
+                "comments": 9,
+                "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "OZG115v6TTg",
+            "pulledAt": "2026-10-02T14:02:50.836Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2781,
+          "detail": {
+            "views": 2781,
+            "likes": 39,
+            "replies": 0,
+            "reposts": 1,
+            "bookmarks": 27,
+            "quotes": 0
+          },
+          "plays": 1818,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 693,
+          "sources": [
+            {
+              "objectId": "2098139616511721866",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2098139616511721866",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 2781,
+              "detail": {
+                "views": 2781,
+                "likes": 39,
+                "replies": 0,
+                "reposts": 1,
+                "bookmarks": 27,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "2098139616511721866",
+            "pulledAt": "2026-10-02T14:02:50.836Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "1dxYlagOpBMJX",
+            "pulledAt": "2026-10-02T14:02:50.836Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1dxYlagOpBMJX",
+              "views": 1818,
+              "peakConcurrent": 693,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 11793,
+          "detail": {
+            "views": 11793,
+            "likes": 37,
+            "replies": 3,
+            "reposts": 1,
+            "bookmarks": 42,
+            "quotes": 2
+          },
+          "plays": 2163,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 250,
+          "sources": [
+            {
+              "objectId": "2098139617082155260",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2098139617082155260",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 9414,
+              "detail": {
+                "views": 9414,
+                "likes": 28,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 26,
+                "quotes": 2
+              }
+            },
+            {
+              "objectId": "2098103520344052221",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2098103520344052221",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 627,
+              "detail": {
+                "views": 627,
+                "likes": 2,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2097727992290288031",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2097727992290288031",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 1255,
+              "detail": {
+                "views": 1255,
+                "likes": 7,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 15,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2099589183283323029",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2099589183283323029",
+                "pulledAt": "2026-10-02T14:02:50.836Z",
+                "state": "ready"
+              },
+              "views": 497,
+              "detail": {
+                "views": 497,
+                "likes": 0,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "2097727992290288031,2098103520344052221,2098139617082155260,2099589183283323029",
+            "pulledAt": "2026-10-02T14:02:50.836Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "1dJrPreRalpKX",
+            "pulledAt": "2026-10-02T14:02:50.836Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1dJrPreRalpKX",
+              "views": 2163,
+              "peakConcurrent": 250,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-10-02T19:15:41.262Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "pulledAt": "2026-10-02T19:15:41.262Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 7129,
+          "detail": {
+            "views": 7129,
+            "likes": 113,
+            "comments": 8,
+            "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "DUejFPtYll0",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "DUejFPtYll0",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 7129,
+              "detail": {
+                "views": 7129,
+                "likes": 113,
+                "comments": 8,
+                "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "DUejFPtYll0",
+            "pulledAt": "2026-10-02T19:15:41.262Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 4599,
+          "detail": {
+            "views": 4599,
+            "likes": 74,
+            "comments": 9,
+            "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "OZG115v6TTg",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "OZG115v6TTg",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 4599,
+              "detail": {
+                "views": 4599,
+                "likes": 74,
+                "comments": 9,
+                "title": "Dive Radio: How Designers Are Getting Hired in 2026",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "OZG115v6TTg",
+            "pulledAt": "2026-10-02T19:15:41.262Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 2781,
+          "detail": {
+            "views": 2781,
+            "likes": 39,
+            "replies": 0,
+            "reposts": 1,
+            "bookmarks": 27,
+            "quotes": 0
+          },
+          "plays": 1818,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 693,
+          "sources": [
+            {
+              "objectId": "2098139616511721866",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2098139616511721866",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 2781,
+              "detail": {
+                "views": 2781,
+                "likes": 39,
+                "replies": 0,
+                "reposts": 1,
+                "bookmarks": 27,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "2098139616511721866",
+            "pulledAt": "2026-10-02T19:15:41.262Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "1dxYlagOpBMJX",
+            "pulledAt": "2026-10-02T19:15:41.262Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1dxYlagOpBMJX",
+              "views": 1818,
+              "peakConcurrent": 693,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 11794,
+          "detail": {
+            "views": 11794,
+            "likes": 37,
+            "replies": 3,
+            "reposts": 1,
+            "bookmarks": 42,
+            "quotes": 2
+          },
+          "plays": 2163,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 250,
+          "sources": [
+            {
+              "objectId": "2098139617082155260",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2098139617082155260",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 9414,
+              "detail": {
+                "views": 9414,
+                "likes": 28,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 26,
+                "quotes": 2
+              }
+            },
+            {
+              "objectId": "2098103520344052221",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2098103520344052221",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 627,
+              "detail": {
+                "views": 627,
+                "likes": 2,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2097727992290288031",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2097727992290288031",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 1255,
+              "detail": {
+                "views": 1255,
+                "likes": 7,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 15,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2099589183283323029",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+                "objectId": "2099589183283323029",
+                "pulledAt": "2026-10-02T19:15:41.262Z",
+                "state": "ready"
+              },
+              "views": 498,
+              "detail": {
+                "views": 498,
+                "likes": 0,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "2097727992290288031,2098103520344052221,2098139617082155260,2099589183283323029",
+            "pulledAt": "2026-10-02T19:15:41.262Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+            "objectId": "1dJrPreRalpKX",
+            "pulledAt": "2026-10-02T19:15:41.262Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1dJrPreRalpKX",
+              "views": 2163,
+              "peakConcurrent": 250,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-01T19:15:57.030Z",
+    "checkedAt": "2026-10-02T19:15:41.262Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -10151,7 +10693,7 @@
       "source": "postlive",
       "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
       "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-      "pulledAt": "2026-10-01T19:15:57.030Z",
+      "pulledAt": "2026-10-02T19:15:41.262Z",
       "state": "ready"
     }
   }
