@@ -811,6 +811,21 @@
 <script src="chart.umd.js"></script>
 <script src="data.js"></script>
 <script>
+// A tab left open keeps the day it loaded. Coming back to it after half an
+// hour away reloads the page, so the morning publish shows up on its own.
+// data.js is revalidated on every load (max-age=0), so a reload is always current.
+(function () {
+  var loadedAt = Date.now();
+  var STALE_MS = 30 * 60 * 1000;
+  function refreshIfOld() {
+    if (document.visibilityState === "visible" && Date.now() - loadedAt > STALE_MS) location.reload();
+  }
+  document.addEventListener("visibilitychange", refreshIfOld);
+  window.addEventListener("focus", refreshIfOld);
+  window.addEventListener("pageshow", function (event) { if (event.persisted) refreshIfOld(); });
+})();
+</script>
+<script>
 const DATA = window.DIVE_DATA;
 const EPS = DATA.episodes;
 const DAY = 86400000, WEEK = 7 * DAY, PHX = 7 * 3600000;
