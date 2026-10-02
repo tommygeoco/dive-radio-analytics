@@ -15,6 +15,7 @@ import { healLeftovers } from "./chain-heal.mjs";
 import { phoenixDay } from "./freshness.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { DAILY_STATE_PATH, ISOLATED_PUBLISHER_ROOT } from "./runtime-paths.mjs";
+import { exitForScheduler, watchSchedulerQuietly } from "./scheduler-watch.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "./youtube-readiness.mjs";
 import { ADVISORY_PENDING_EXIT, ADVISORY_PENDING_STATUS, lastProductionProof, pendingSourceStates, publicSourceStates, readPublishEvidence, receiptForAttempt, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
 import { randomUUID } from "node:crypto";
@@ -620,7 +621,11 @@ if (isMain) {
       const day = phoenixDay(Date.now());
       console.log(`daily-run: dry run — ${state.days[day]?.length || 0} of ${MAX_DAILY_ATTEMPTS} attempts recorded for ${day}; isolated publisher ${PUBLISHER_ROOT}; no work started.`);
     } else {
-      runDaily({ mode: modeFromArgs(process.argv.slice(2)), reason: process.argv.find(arg => arg.startsWith("--reason="))?.slice(9) }).then((status) => process.exit(status)).catch((error) => {
+      const mode = modeFromArgs(process.argv.slice(2));
+      // The scheduler, not this run, is what OpenClaw can switch off; check it
+      // first. The recovery child keeps its true exit for recover-publish.
+      if (mode === "primary") watchSchedulerQuietly("daily-run");
+      runDaily({ mode, reason: process.argv.find(arg => arg.startsWith("--reason="))?.slice(9) }).then((status) => process.exit(mode === "primary" ? exitForScheduler(status, "daily-run") : status)).catch((error) => {
         console.error(`daily-run: ${error.message}`);
         process.exit(1);
       });

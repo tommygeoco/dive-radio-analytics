@@ -31,6 +31,7 @@ import { ALERT_STATE_PATH, DAILY_STATE_PATH } from "./runtime-paths.mjs";
 import { saveReceipt } from "./run-receipt.mjs";
 import { createHash, randomUUID } from "node:crypto";
 import { phoenixDay } from "./freshness.mjs";
+import { watchSchedulerQuietly } from "./scheduler-watch.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -461,6 +462,9 @@ if (isMain) {
     try {
       // A publishing lock is an expected pause; the next scheduled run retries.
       // Only actual delivery errors should trigger the scheduler's failure alert.
+      // Every five minutes: keep the publishing automations switched on, and
+      // queue a line (delivered just below) for anything that needs a person.
+      watchSchedulerQuietly("dive-alerts");
       deliverPending({ channel: arg("--channel", "slack"), account: arg("--account", "default"), target: arg("--target") });
     } catch (error) {
       console.error(`dive-alerts: ${error.message}; pending lines were kept.`);
