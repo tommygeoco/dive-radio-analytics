@@ -229,3 +229,21 @@ frontier tier (shared native client at
 `HINTERLANDS_MODEL_CLIENT`). It is never chosen automatically, and the old per-script
 model variables (`HEALTH_MODEL`, `COMMENTS_MODEL`, …) and the OpenAI direct path are
 gone. Test fixtures exercise both transports without real credentials.
+
+## Inflight (previews and feedback)
+
+The Inflight MCP server (`inflight`, `https://mcp.inflight.co/mcp`) shares work
+for review without leaving the agent:
+
+- **Preview link or sharing deployed work:** `share_preview` with the repo from
+  the git remote, the full HEAD sha, and the branch, plus a `starting_route`,
+  `overview` and `title` drawn from the work. Follow its returned next steps.
+  Share Vercel preview deployments of feature branches only, never production.
+- **A standalone HTML prototype:** `share_html`.
+- **Review comments or next steps:** `get_feedback`, then `complete_next_step`
+  as each step is done.
+
+The widget tag (`https://inflight.co/widget.js`, `data-org="nxoh87ky"`) sits in
+the `<head>` of `index.html` and `agents.html` on the `inflight-setup` branch. It
+is a third-party runtime script, an exception to rule 10, so it stays off `main`
+until the owners decide otherwise.
