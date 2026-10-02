@@ -243,7 +243,7 @@ for review without leaving the agent:
 - **Review comments or next steps:** `get_feedback`, then `complete_next_step`
   as each step is done.
 
-The widget tag (`https://inflight.co/widget.js`, `data-org="nxoh87ky"`) sits in
+The widget tag (`https://inflight.co/widget.js`, `data-org="y9oleiy4"`) sits in
 the `<head>` of `index.html` and `agents.html` on the `inflight-setup` branch. It
 is a third-party runtime script, an exception to rule 10, so it stays off `main`
 until the owners decide otherwise.
