@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "Cjv-0MKQ4GU",
-      "pulledAt": "2026-10-02T19:16:13.049Z",
+      "pulledAt": "2026-10-03T14:01:07.450Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "Cjv-0MKQ4GU",
-        "pulledAt": "2026-10-02T19:16:13.049Z",
+        "pulledAt": "2026-10-03T14:01:07.450Z",
         "state": "ready"
       },
       "totals": {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "2EAAU-knqRE",
-      "pulledAt": "2026-10-02T19:16:13.049Z",
+      "pulledAt": "2026-10-03T14:01:07.450Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2EAAU-knqRE",
-        "pulledAt": "2026-10-02T19:16:13.049Z",
+        "pulledAt": "2026-10-03T14:01:07.450Z",
         "state": "ready"
       },
       "totals": {
@@ -961,7 +961,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-02T19:16:13.049Z",
+    "checkedAt": "2026-10-03T14:01:07.450Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:2EAAU-knqRE|yt:joindiveclub:Cjv-0MKQ4GU",
@@ -991,8 +991,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
     "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
-    "pulledAt": "2026-10-02T19:16:13.049Z",
+    "pulledAt": "2026-10-03T14:01:07.450Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-02T19:16:13.049Z"
+  "updatedAt": "2026-10-03T14:01:07.450Z"
 }
