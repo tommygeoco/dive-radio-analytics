@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "njOU7GKZcvc",
-      "pulledAt": "2026-10-03T14:01:07.450Z",
+      "pulledAt": "2026-10-03T19:16:11.089Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "njOU7GKZcvc",
-        "pulledAt": "2026-10-03T14:01:07.450Z",
+        "pulledAt": "2026-10-03T19:16:11.089Z",
         "state": "ready"
       },
       "totals": {
@@ -480,17 +480,17 @@
     },
     "yt:designertom": {
       "videoId": "G2_F3dd3RkA",
-      "pulledAt": "2026-10-03T14:01:07.450Z",
+      "pulledAt": "2026-10-03T19:16:11.089Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
         "objectId": "G2_F3dd3RkA",
-        "pulledAt": "2026-10-03T14:01:07.450Z",
+        "pulledAt": "2026-10-03T19:16:11.089Z",
         "state": "ready"
       },
       "totals": {
-        "views": 564,
+        "views": 565,
         "estimatedMinutesWatched": 6265,
         "averageViewDuration": 688,
         "averageViewPercentage": 12.07,
@@ -536,7 +536,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 9,
+          "views": 10,
           "estimatedMinutesWatched": 53
         },
         {
@@ -959,18 +959,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-03T14:01:07.450Z",
+  "updatedAt": "2026-10-03T19:16:11.089Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "pulledAt": "2026-10-03T14:01:07.450Z",
+    "pulledAt": "2026-10-03T19:16:11.089Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-03T14:01:07.450Z",
+    "checkedAt": "2026-10-03T19:16:11.089Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:G2_F3dd3RkA|yt:joindiveclub:njOU7GKZcvc",
@@ -989,7 +989,7 @@
         "videoId": "G2_F3dd3RkA",
         "result": "ready",
         "observed": {
-          "views": 564,
+          "views": 565,
           "averageViewPercentage": 12.07
         }
       }

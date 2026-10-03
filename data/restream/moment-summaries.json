@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-02T19:17:51.635Z",
+  "updatedAt": "2026-10-03T19:18:01.165Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -329,6 +329,10 @@
     "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.43": {
       "summary": "A submitted video demos a fast, cheap code model, then a host explains it as a transport layer rather than a UI, and a second creator shows voice-driven interface edits made in real time.",
       "writtenAt": "2026-10-02T19:17:51.635Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.14": {
+      "summary": "Hosts give shout-outs in a community voting segment: one cheers an experimental designer, the other praises a New York design community organizer and his live event series, then they joke about an algorithm.",
+      "writtenAt": "2026-10-03T19:18:01.165Z"
     }
   }
 }
