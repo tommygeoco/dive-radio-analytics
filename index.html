@@ -39,6 +39,15 @@
   .stamp i { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
     margin-right: 7px; vertical-align: 1px; background: var(--good); }
   .stamp i.old { background: var(--amber); }
+  /* A copy that is not the live site (a one-off build, a branch preview) whose
+     data is from an earlier day says so and links to the live dashboard. */
+  .livecopy { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap; margin: 0 0 var(--gap);
+    padding: 6px 6px 6px 16px; border-radius: 12px; font-size: 14px; color: var(--t1);
+    background: rgba(217,162,74,.12); box-shadow: inset 0 0 0 1px rgba(217,162,74,.45); }
+  .livecopy[hidden] { display: none; }
+  .livecopy a { margin-left: auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+    color: var(--accent); font-weight: 600; text-decoration: none; border-radius: 8px; }
+  .livecopy a:hover, .livecopy a:focus-visible { text-decoration: underline; }
 
   .plogo { width: 13px; height: 13px; vertical-align: -2px; }
   button:focus-visible, summary:focus-visible, .hs:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -759,6 +768,7 @@
     <div class="stamp" id="stamp"></div>
     <a class="agentslink" href="agents.html">Agents</a>
   </header>
+  <div class="livecopy" id="livecopy" role="status" hidden></div>
 
   <section class="healthrow" id="health" aria-label="Show health"></section>
   <div class="overview" id="overview">
@@ -3621,6 +3631,16 @@ const stamp = document.getElementById("stamp");
   const behind = h && Number.isFinite(h.ageDays) && h.ageDays >= 1;
   stamp.innerHTML = `<i class="${when === "today" && !behind ? "" : "old"}" aria-hidden="true"></i>Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}`;
   stamp.title = `Exact refresh: ${DATA.generatedAt}${h?.date ? ` · health read saved ${h.date}` : ""}`;
+  // Every Vercel build keeps its own address and its own data forever. Only the
+  // live addresses move to each morning's publish; any other copy holding an
+  // earlier day's data says so and links to the live dashboard.
+  const LIVE = "https://dive-radio-analytics.vercel.app";
+  const LIVE_HOSTS = ["dive-radio-analytics.vercel.app", "dive-radio-analytics-toolbenders.vercel.app", "dive-radio-analytics-git-main-toolbenders.vercel.app"];
+  if (/\.vercel\.app$/.test(location.hostname) && !LIVE_HOSTS.includes(location.hostname) && when !== "today") {
+    const note = document.getElementById("livecopy");
+    note.innerHTML = `<span>This copy is not the live dashboard. Its data is from ${esc(when)}.</span><a href="${LIVE}${esc(location.pathname)}">Open the live dashboard</a>`;
+    note.hidden = false;
+  }
 }
 
 buildAbout();
