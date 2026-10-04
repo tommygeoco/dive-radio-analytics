@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-03T19:18:01.165Z",
+  "updatedAt": "2026-10-04T19:17:35.192Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -333,6 +333,22 @@
     "2026-09-24-dive-radio-just-in-time-interfaces|drop|0.14": {
       "summary": "Hosts give shout-outs in a community voting segment: one cheers an experimental designer, the other praises a New York design community organizer and his live event series, then they joke about an algorithm.",
       "writtenAt": "2026-10-03T19:18:01.165Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|drop|0.06": {
+      "summary": "Opening banter: one host calls in from a family trip, talking toddler pool time and working on vacation, then both chat about holiday plans and upcoming show topics.",
+      "writtenAt": "2026-10-04T19:17:35.192Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|drop|0.2": {
+      "summary": "A recorded designer pitches a concept where he makes finished brand identities with no client, sold once at a fixed price. The hosts then react, praising his product thinking and discussing marketplace ideas.",
+      "writtenAt": "2026-10-04T19:17:35.192Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|drop|0.76": {
+      "summary": "A recorded designer explains making a project showcase video by storyboarding in Figma and having Claude animate it through Figma MCP, then gives tips. The host follows with a Discord and portfolio review reminder.",
+      "writtenAt": "2026-10-04T19:17:35.192Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.99": {
+      "summary": "Closing stretch: hosts reveal the designer of the week winner, reflect on how the episode stretched them, and invite listeners to the Discord group and next week's portfolio reviews.",
+      "writtenAt": "2026-10-04T19:17:35.192Z"
     }
   }
 }

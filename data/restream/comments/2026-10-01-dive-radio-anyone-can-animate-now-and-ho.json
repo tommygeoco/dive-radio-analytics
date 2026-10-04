@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugx56kxtF8a6y0iZYm14AaABAg",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugwgy_NUSkk2ZGwIlOx4AaABAg",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105888650248724863",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -111,7 +111,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105778417878671733",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -139,7 +139,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105754715997036764",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -167,7 +167,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105470129261687036",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -195,7 +195,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "UgyuRGx5wzJPSQ3eD854AaABAg",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -223,7 +223,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugzyc8p2TMvSACMuu8t4AaABAg",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready"
       }
     },
@@ -245,11 +245,19 @@
         "pulledAt": "2026-10-04T14:02:07.136Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-04T14:02:07.136Z"
+      "firstSeenAt": "2026-10-04T14:02:07.136Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+        "objectId": "UgxbGCXXloc3tdbHWt14AaABAg",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
+        "state": "ready"
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-04T14:02:07.136Z",
+    "checkedAt": "2026-10-04T19:16:28.200Z",
     "state": "ready",
     "sources": [
       {
@@ -257,7 +265,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready",
         "count": 1
       },
@@ -266,7 +274,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready",
         "count": 4
       },
@@ -275,7 +283,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105749637537972524",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready",
         "count": 3
       },
@@ -284,7 +292,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105408888287776998",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready",
         "count": 1
       },
@@ -293,7 +301,7 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105749637835718688",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready",
         "count": 0
       },
@@ -302,12 +310,12 @@
         "source": "x-replies",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "2105408888400965674",
-        "pulledAt": "2026-10-04T14:02:07.136Z",
+        "pulledAt": "2026-10-04T19:16:28.200Z",
         "state": "ready",
         "count": 0
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-04T14:02:07.136Z"
+  "updatedAt": "2026-10-04T19:16:28.200Z"
 }

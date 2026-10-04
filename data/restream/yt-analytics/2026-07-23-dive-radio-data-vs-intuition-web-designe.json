@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "TJqSfnadiGM",
-      "pulledAt": "2026-10-04T14:01:40.996Z",
+      "pulledAt": "2026-10-04T19:16:04.157Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "TJqSfnadiGM",
-        "pulledAt": "2026-10-04T14:01:40.996Z",
+        "pulledAt": "2026-10-04T19:16:04.157Z",
         "state": "ready"
       },
       "totals": {
-        "views": 1261,
+        "views": 1263,
         "estimatedMinutesWatched": 17721,
         "averageViewDuration": 874,
         "averageViewPercentage": 12.18,
@@ -41,7 +41,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 135,
+          "views": 137,
           "estimatedMinutesWatched": 1577
         },
         {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "Pn6U5nWgD-g",
-      "pulledAt": "2026-10-04T14:01:40.996Z",
+      "pulledAt": "2026-10-04T19:16:04.157Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Pn6U5nWgD-g",
-        "pulledAt": "2026-10-04T14:01:40.996Z",
+        "pulledAt": "2026-10-04T19:16:04.157Z",
         "state": "ready"
       },
       "totals": {
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-04T14:01:40.996Z",
+  "updatedAt": "2026-10-04T19:16:04.157Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-    "pulledAt": "2026-10-04T14:01:40.996Z",
+    "pulledAt": "2026-10-04T19:16:04.157Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-04T14:01:40.996Z",
+    "checkedAt": "2026-10-04T19:16:04.157Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Pn6U5nWgD-g|yt:joindiveclub:TJqSfnadiGM",
@@ -975,7 +975,7 @@
         "videoId": "TJqSfnadiGM",
         "result": "ready",
         "observed": {
-          "views": 1261,
+          "views": 1263,
           "averageViewPercentage": 12.18
         }
       },
