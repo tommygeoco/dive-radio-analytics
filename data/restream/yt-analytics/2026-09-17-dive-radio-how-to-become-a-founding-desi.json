@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "x05zZ90lY28",
-      "pulledAt": "2026-10-03T19:16:11.089Z",
+      "pulledAt": "2026-10-04T14:01:40.996Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-10-03T19:16:11.089Z",
+        "pulledAt": "2026-10-04T14:01:40.996Z",
         "state": "ready"
       },
       "totals": {
-        "views": 5230,
-        "estimatedMinutesWatched": 26298,
+        "views": 5226,
+        "estimatedMinutesWatched": 26299,
         "averageViewDuration": 753,
         "averageViewPercentage": 10.37,
         "subscribersGained": 9,
@@ -42,7 +42,7 @@
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
           "views": 232,
-          "estimatedMinutesWatched": 3093
+          "estimatedMinutesWatched": 3095
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
@@ -121,7 +121,7 @@
         },
         {
           "elapsedVideoTimeRatio": 0.13,
-          "audienceWatchRatio": 0.18350000000000002
+          "audienceWatchRatio": 0.1843
         },
         {
           "elapsedVideoTimeRatio": 0.14,
@@ -181,11 +181,11 @@
         },
         {
           "elapsedVideoTimeRatio": 0.28,
-          "audienceWatchRatio": 0.1573
+          "audienceWatchRatio": 0.158
         },
         {
           "elapsedVideoTimeRatio": 0.29,
-          "audienceWatchRatio": 0.1602
+          "audienceWatchRatio": 0.161
         },
         {
           "elapsedVideoTimeRatio": 0.3,
@@ -475,18 +475,18 @@
     },
     "yt:designertom": {
       "videoId": "0xL0XtpH_og",
-      "pulledAt": "2026-10-03T19:16:11.089Z",
+      "pulledAt": "2026-10-04T14:01:40.996Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-10-03T19:16:11.089Z",
+        "pulledAt": "2026-10-04T14:01:40.996Z",
         "state": "ready"
       },
       "totals": {
-        "views": 2992,
-        "estimatedMinutesWatched": 11529,
+        "views": 2991,
+        "estimatedMinutesWatched": 11503,
         "averageViewDuration": 722,
         "averageViewPercentage": 9.94,
         "subscribersGained": 5,
@@ -502,7 +502,7 @@
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
           "views": 122,
-          "estimatedMinutesWatched": 1677
+          "estimatedMinutesWatched": 1678
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
@@ -620,7 +620,7 @@
         },
         {
           "elapsedVideoTimeRatio": 0.19,
-          "audienceWatchRatio": 0.1575
+          "audienceWatchRatio": 0.1593
         },
         {
           "elapsedVideoTimeRatio": 0.2,
@@ -951,7 +951,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-03T19:16:11.089Z",
+    "checkedAt": "2026-10-04T14:01:40.996Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:0xL0XtpH_og|yt:joindiveclub:x05zZ90lY28",
@@ -961,7 +961,7 @@
         "videoId": "x05zZ90lY28",
         "result": "ready",
         "observed": {
-          "views": 5230,
+          "views": 5226,
           "averageViewPercentage": 10.37
         }
       },
@@ -970,7 +970,7 @@
         "videoId": "0xL0XtpH_og",
         "result": "ready",
         "observed": {
-          "views": 2992,
+          "views": 2991,
           "averageViewPercentage": 9.94
         }
       }
@@ -981,8 +981,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
     "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-    "pulledAt": "2026-10-03T19:16:11.089Z",
+    "pulledAt": "2026-10-04T14:01:40.996Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-03T19:16:11.089Z"
+  "updatedAt": "2026-10-04T14:01:40.996Z"
 }

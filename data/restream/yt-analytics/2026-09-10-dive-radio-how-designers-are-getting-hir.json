@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "DUejFPtYll0",
-      "pulledAt": "2026-10-03T19:16:11.089Z",
+      "pulledAt": "2026-10-04T14:01:40.996Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "DUejFPtYll0",
-        "pulledAt": "2026-10-03T19:16:11.089Z",
+        "pulledAt": "2026-10-04T14:01:40.996Z",
         "state": "ready"
       },
       "totals": {
-        "views": 7122,
+        "views": 7120,
         "estimatedMinutesWatched": 48665,
         "averageViewDuration": 851,
         "averageViewPercentage": 9.44,
@@ -475,13 +475,13 @@
     },
     "yt:designertom": {
       "videoId": "OZG115v6TTg",
-      "pulledAt": "2026-10-03T19:16:11.089Z",
+      "pulledAt": "2026-10-04T14:01:40.996Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "OZG115v6TTg",
-        "pulledAt": "2026-10-03T19:16:11.089Z",
+        "pulledAt": "2026-10-04T14:01:40.996Z",
         "state": "ready"
       },
       "totals": {
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-03T19:16:11.089Z",
+    "checkedAt": "2026-10-04T14:01:40.996Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:OZG115v6TTg|yt:joindiveclub:DUejFPtYll0",
@@ -966,7 +966,7 @@
         "videoId": "DUejFPtYll0",
         "result": "ready",
         "observed": {
-          "views": 7122,
+          "views": 7120,
           "averageViewPercentage": 9.44
         }
       },
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
     "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-    "pulledAt": "2026-10-03T19:16:11.089Z",
+    "pulledAt": "2026-10-04T14:01:40.996Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-03T19:16:11.089Z"
+  "updatedAt": "2026-10-04T14:01:40.996Z"
 }

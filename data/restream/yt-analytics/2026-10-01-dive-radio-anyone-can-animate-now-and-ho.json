@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "bBF1yPACap0",
-      "pulledAt": "2026-10-03T19:16:11.089Z",
+      "pulledAt": "2026-10-04T14:01:40.996Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-03T19:16:11.089Z",
+        "pulledAt": "2026-10-04T14:01:40.996Z",
         "state": "ready"
       },
       "totals": {
@@ -74,13 +74,13 @@
     },
     "yt:designertom": {
       "videoId": "bwJB9EBQNSQ",
-      "pulledAt": "2026-10-03T19:16:11.089Z",
+      "pulledAt": "2026-10-04T14:01:40.996Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-03T19:16:11.089Z",
+        "pulledAt": "2026-10-04T14:01:40.996Z",
         "state": "ready"
       },
       "totals": {
@@ -139,7 +139,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-03T19:16:11.089Z",
+    "checkedAt": "2026-10-04T14:01:40.996Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:bwJB9EBQNSQ|yt:joindiveclub:bBF1yPACap0",
@@ -169,8 +169,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
     "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-    "pulledAt": "2026-10-03T19:16:11.089Z",
+    "pulledAt": "2026-10-04T14:01:40.996Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-03T19:16:11.089Z"
+  "updatedAt": "2026-10-04T14:01:40.996Z"
 }

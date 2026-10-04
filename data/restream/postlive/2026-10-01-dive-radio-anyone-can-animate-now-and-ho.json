@@ -1006,10 +1006,261 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-10-04T14:01:11.005Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+        "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+        "pulledAt": "2026-10-04T14:01:11.005Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 3157,
+          "detail": {
+            "views": 3157,
+            "likes": 30,
+            "comments": 1,
+            "title": "Dive Radio: Anyone Can Animate Now (and How)",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "bBF1yPACap0",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+                "objectId": "bBF1yPACap0",
+                "pulledAt": "2026-10-04T14:01:11.005Z",
+                "state": "ready"
+              },
+              "views": 3157,
+              "detail": {
+                "views": 3157,
+                "likes": 30,
+                "comments": 1,
+                "title": "Dive Radio: Anyone Can Animate Now (and How)",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+            "objectId": "bBF1yPACap0",
+            "pulledAt": "2026-10-04T14:01:11.005Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 2279,
+          "detail": {
+            "views": 2279,
+            "likes": 29,
+            "comments": 4,
+            "title": "Dive Radio: Anyone Can Animate Now (and How)",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "bwJB9EBQNSQ",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+                "objectId": "bwJB9EBQNSQ",
+                "pulledAt": "2026-10-04T14:01:11.005Z",
+                "state": "ready"
+              },
+              "views": 2279,
+              "detail": {
+                "views": 2279,
+                "likes": 29,
+                "comments": 4,
+                "title": "Dive Radio: Anyone Can Animate Now (and How)",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+            "objectId": "bwJB9EBQNSQ",
+            "pulledAt": "2026-10-04T14:01:11.005Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 5626,
+          "detail": {
+            "views": 5626,
+            "likes": 42,
+            "replies": 4,
+            "reposts": 0,
+            "bookmarks": 22,
+            "quotes": 1
+          },
+          "plays": 1394,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 416,
+          "sources": [
+            {
+              "objectId": "2105749637537972524",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+                "objectId": "2105749637537972524",
+                "pulledAt": "2026-10-04T14:01:11.005Z",
+                "state": "ready"
+              },
+              "views": 2812,
+              "detail": {
+                "views": 2812,
+                "likes": 25,
+                "replies": 3,
+                "reposts": 0,
+                "bookmarks": 13,
+                "quotes": 1
+              }
+            },
+            {
+              "objectId": "2105408888287776998",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+                "objectId": "2105408888287776998",
+                "pulledAt": "2026-10-04T14:01:11.005Z",
+                "state": "ready"
+              },
+              "views": 2814,
+              "detail": {
+                "views": 2814,
+                "likes": 17,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 9,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+            "objectId": "2105408888287776998,2105749637537972524",
+            "pulledAt": "2026-10-04T14:01:11.005Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+            "objectId": "1OxwbnqQZygJB",
+            "pulledAt": "2026-10-04T14:01:11.005Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1OxwbnqQZygJB",
+              "views": 1394,
+              "peakConcurrent": 416,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4934,
+          "detail": {
+            "views": 4934,
+            "likes": 23,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 10,
+            "quotes": 1
+          },
+          "plays": 1165,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 365,
+          "sources": [
+            {
+              "objectId": "2105749637835718688",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+                "objectId": "2105749637835718688",
+                "pulledAt": "2026-10-04T14:01:11.005Z",
+                "state": "ready"
+              },
+              "views": 969,
+              "detail": {
+                "views": 969,
+                "likes": 13,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 6,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2105408888400965674",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+                "objectId": "2105408888400965674",
+                "pulledAt": "2026-10-04T14:01:11.005Z",
+                "state": "ready"
+              },
+              "views": 3965,
+              "detail": {
+                "views": 3965,
+                "likes": 10,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+            "objectId": "2105408888400965674,2105749637835718688",
+            "pulledAt": "2026-10-04T14:01:11.005Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+            "objectId": "1XxygwNQaDyGM",
+            "pulledAt": "2026-10-04T14:01:11.005Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1XxygwNQaDyGM",
+              "views": 1165,
+              "peakConcurrent": 365,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-03T19:15:41.646Z",
+    "checkedAt": "2026-10-04T14:01:11.005Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -1017,7 +1268,7 @@
       "source": "postlive",
       "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
       "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-      "pulledAt": "2026-10-03T19:15:41.646Z",
+      "pulledAt": "2026-10-04T14:01:11.005Z",
       "state": "ready"
     }
   }
