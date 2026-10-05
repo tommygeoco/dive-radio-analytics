@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "bBF1yPACap0",
-      "pulledAt": "2026-10-04T19:16:04.157Z",
+      "pulledAt": "2026-10-05T14:01:31.022Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-04T19:16:04.157Z",
+        "pulledAt": "2026-10-05T14:01:31.022Z",
         "state": "ready"
       },
       "totals": {
         "views": 2640,
         "estimatedMinutesWatched": 14316,
-        "averageViewDuration": 827,
-        "averageViewPercentage": 11.72,
+        "averageViewDuration": 832,
+        "averageViewPercentage": 11.79,
         "subscribersGained": 1,
         "likes": 28,
         "comments": 1
@@ -26,23 +26,23 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 2292,
-          "estimatedMinutesWatched": 8353
+          "views": 2288,
+          "estimatedMinutesWatched": 8375
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
           "views": 122,
-          "estimatedMinutesWatched": 1752
+          "estimatedMinutesWatched": 1762
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
           "views": 63,
-          "estimatedMinutesWatched": 1098
+          "estimatedMinutesWatched": 1099
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
           "views": 61,
-          "estimatedMinutesWatched": 1047
+          "estimatedMinutesWatched": 1090
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
@@ -62,7 +62,7 @@
         {
           "insightTrafficSourceType": "PLAYLIST",
           "views": 7,
-          "estimatedMinutesWatched": 273
+          "estimatedMinutesWatched": 277
         },
         {
           "insightTrafficSourceType": "EXT_URL",
@@ -475,20 +475,20 @@
     },
     "yt:designertom": {
       "videoId": "bwJB9EBQNSQ",
-      "pulledAt": "2026-10-04T19:16:04.157Z",
+      "pulledAt": "2026-10-05T14:01:31.022Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-04T19:16:04.157Z",
+        "pulledAt": "2026-10-05T14:01:31.022Z",
         "state": "ready"
       },
       "totals": {
         "views": 2023,
         "estimatedMinutesWatched": 8141,
-        "averageViewDuration": 740,
-        "averageViewPercentage": 10.5,
+        "averageViewDuration": 742,
+        "averageViewPercentage": 10.52,
         "subscribersGained": 5,
         "likes": 28,
         "comments": 3
@@ -496,8 +496,8 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 1795,
-          "estimatedMinutesWatched": 4708
+          "views": 1793,
+          "estimatedMinutesWatched": 4726
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
@@ -517,7 +517,7 @@
         {
           "insightTrafficSourceType": "EXT_URL",
           "views": 28,
-          "estimatedMinutesWatched": 190
+          "estimatedMinutesWatched": 191
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -946,7 +946,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-04T19:16:04.157Z",
+    "checkedAt": "2026-10-05T14:01:31.022Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:bwJB9EBQNSQ|yt:joindiveclub:bBF1yPACap0",
@@ -957,7 +957,7 @@
         "result": "ready",
         "observed": {
           "views": 2640,
-          "averageViewPercentage": 11.72
+          "averageViewPercentage": 11.79
         }
       },
       {
@@ -966,7 +966,7 @@
         "result": "ready",
         "observed": {
           "views": 2023,
-          "averageViewPercentage": 10.5
+          "averageViewPercentage": 10.52
         }
       }
     ]
@@ -976,8 +976,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
     "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-    "pulledAt": "2026-10-04T19:16:04.157Z",
+    "pulledAt": "2026-10-05T14:01:31.022Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-04T19:16:04.157Z"
+  "updatedAt": "2026-10-05T14:01:31.022Z"
 }

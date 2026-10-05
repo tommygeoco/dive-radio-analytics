@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "x05zZ90lY28",
-      "pulledAt": "2026-10-04T19:16:04.157Z",
+      "pulledAt": "2026-10-05T14:01:31.022Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-10-04T19:16:04.157Z",
+        "pulledAt": "2026-10-05T14:01:31.022Z",
         "state": "ready"
       },
       "totals": {
         "views": 5250,
-        "estimatedMinutesWatched": 26474,
+        "estimatedMinutesWatched": 26475,
         "averageViewDuration": 754,
         "averageViewPercentage": 10.38,
         "subscribersGained": 9,
@@ -475,18 +475,18 @@
     },
     "yt:designertom": {
       "videoId": "0xL0XtpH_og",
-      "pulledAt": "2026-10-04T19:16:04.157Z",
+      "pulledAt": "2026-10-05T14:01:31.022Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-10-04T19:16:04.157Z",
+        "pulledAt": "2026-10-05T14:01:31.022Z",
         "state": "ready"
       },
       "totals": {
         "views": 3004,
-        "estimatedMinutesWatched": 11616,
+        "estimatedMinutesWatched": 11617,
         "averageViewDuration": 724,
         "averageViewPercentage": 9.96,
         "subscribersGained": 5,
@@ -951,7 +951,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-04T19:16:04.157Z",
+    "checkedAt": "2026-10-05T14:01:31.022Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:0xL0XtpH_og|yt:joindiveclub:x05zZ90lY28",
@@ -981,8 +981,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
     "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-    "pulledAt": "2026-10-04T19:16:04.157Z",
+    "pulledAt": "2026-10-05T14:01:31.022Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-04T19:16:04.157Z"
+  "updatedAt": "2026-10-05T14:01:31.022Z"
 }

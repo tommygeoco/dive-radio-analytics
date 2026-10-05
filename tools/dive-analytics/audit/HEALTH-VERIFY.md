@@ -1,10 +1,10 @@
-# Show-health verification — 2026-10-04
+# Show-health verification — 2026-10-05
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-10-04 read
+## Accuracy — the 2026-10-05 read
 
-Score 57 (weighted mean 56.6, health-v10, prompt v7); reads Anyone Can Animate Now (and How) at 2.8 days; carried: audience quality, subscribers.
+Score 57 (weighted mean 56.6, health-v10, prompt v7); reads Anyone Can Animate Now (and How) at 3.8 days; carried: audience quality, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 

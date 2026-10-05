@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "Cjv-0MKQ4GU",
-      "pulledAt": "2026-10-04T19:16:04.157Z",
+      "pulledAt": "2026-10-05T14:01:31.022Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "Cjv-0MKQ4GU",
-        "pulledAt": "2026-10-04T19:16:04.157Z",
+        "pulledAt": "2026-10-05T14:01:31.022Z",
         "state": "ready"
       },
       "totals": {
-        "views": 2578,
-        "estimatedMinutesWatched": 16222,
+        "views": 2577,
+        "estimatedMinutesWatched": 16218,
         "averageViewDuration": 880,
         "averageViewPercentage": 12.46,
         "subscribersGained": 4,
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "2EAAU-knqRE",
-      "pulledAt": "2026-10-04T19:16:04.157Z",
+      "pulledAt": "2026-10-05T14:01:31.022Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2EAAU-knqRE",
-        "pulledAt": "2026-10-04T19:16:04.157Z",
+        "pulledAt": "2026-10-05T14:01:31.022Z",
         "state": "ready"
       },
       "totals": {
@@ -961,7 +961,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-04T19:16:04.157Z",
+    "checkedAt": "2026-10-05T14:01:31.022Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:2EAAU-knqRE|yt:joindiveclub:Cjv-0MKQ4GU",
@@ -971,7 +971,7 @@
         "videoId": "Cjv-0MKQ4GU",
         "result": "ready",
         "observed": {
-          "views": 2578,
+          "views": 2577,
           "averageViewPercentage": 12.46
         }
       },
@@ -991,8 +991,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
     "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
-    "pulledAt": "2026-10-04T19:16:04.157Z",
+    "pulledAt": "2026-10-05T14:01:31.022Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-04T19:16:04.157Z"
+  "updatedAt": "2026-10-05T14:01:31.022Z"
 }
