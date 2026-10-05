@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-04T19:17:35.192Z",
+  "updatedAt": "2026-10-05T19:17:57.440Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -349,6 +349,14 @@
     "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.99": {
       "summary": "Closing stretch: hosts reveal the designer of the week winner, reflect on how the episode stretched them, and invite listeners to the Discord group and next week's portfolio reviews.",
       "writtenAt": "2026-10-04T19:17:35.192Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|drop|0.13": {
+      "summary": "A recorded nominator praises a designer's port-monitoring app and landing page; the hosts react to its single-screen design and subtle tilt, then one host introduces another designer's experimental AI art work.",
+      "writtenAt": "2026-10-05T19:17:57.439Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.68": {
+      "summary": "Hosts compare old and new animation workflows, then a submitted video walks through making launch videos with Figma, tuning dials, a coding agent and Remotion, before a second submission on After Effects begins.",
+      "writtenAt": "2026-10-05T19:17:57.440Z"
     }
   }
 }

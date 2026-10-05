@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "VcLm0kAGCck",
-      "pulledAt": "2026-10-05T14:01:31.022Z",
+      "pulledAt": "2026-10-05T19:16:10.524Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "VcLm0kAGCck",
-        "pulledAt": "2026-10-05T14:01:31.022Z",
+        "pulledAt": "2026-10-05T19:16:10.524Z",
         "state": "ready"
       },
       "totals": {
@@ -480,17 +480,17 @@
     },
     "yt:designertom": {
       "videoId": "FqsXWbfKmGw",
-      "pulledAt": "2026-10-05T14:01:31.022Z",
+      "pulledAt": "2026-10-05T19:16:10.524Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "FqsXWbfKmGw",
-        "pulledAt": "2026-10-05T14:01:31.022Z",
+        "pulledAt": "2026-10-05T19:16:10.524Z",
         "state": "ready"
       },
       "totals": {
-        "views": 554,
+        "views": 555,
         "estimatedMinutesWatched": 6272,
         "averageViewDuration": 690,
         "averageViewPercentage": 9.35,
@@ -501,7 +501,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 269,
+          "views": 270,
           "estimatedMinutesWatched": 3034
         },
         {
@@ -949,18 +949,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-05T14:01:31.022Z",
+  "updatedAt": "2026-10-05T19:16:10.524Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-17-dive-radio-bumpy-takeoff",
     "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
-    "pulledAt": "2026-10-05T14:01:31.022Z",
+    "pulledAt": "2026-10-05T19:16:10.524Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-05T14:01:31.022Z",
+    "checkedAt": "2026-10-05T19:16:10.524Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:FqsXWbfKmGw|yt:joindiveclub:VcLm0kAGCck",
@@ -979,7 +979,7 @@
         "videoId": "FqsXWbfKmGw",
         "result": "ready",
         "observed": {
-          "views": 554,
+          "views": 555,
           "averageViewPercentage": 9.35
         }
       }
