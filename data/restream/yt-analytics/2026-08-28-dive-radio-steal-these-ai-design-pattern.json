@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "sC3Wvi1Whm4",
-      "pulledAt": "2026-10-05T19:16:10.524Z",
+      "pulledAt": "2026-10-06T14:01:49.575Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "sC3Wvi1Whm4",
-        "pulledAt": "2026-10-05T19:16:10.524Z",
+        "pulledAt": "2026-10-06T14:01:49.575Z",
         "state": "ready"
       },
       "totals": {
@@ -480,18 +480,18 @@
     },
     "yt:designertom": {
       "videoId": "qPAPUmg_qZE",
-      "pulledAt": "2026-10-05T19:16:10.524Z",
+      "pulledAt": "2026-10-06T14:01:49.575Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "objectId": "qPAPUmg_qZE",
-        "pulledAt": "2026-10-05T19:16:10.524Z",
+        "pulledAt": "2026-10-06T14:01:49.575Z",
         "state": "ready"
       },
       "totals": {
         "views": 2979,
-        "estimatedMinutesWatched": 11666,
+        "estimatedMinutesWatched": 11667,
         "averageViewDuration": 666,
         "averageViewPercentage": 10.13,
         "subscribersGained": 2,
@@ -964,18 +964,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-05T19:16:10.524Z",
+  "updatedAt": "2026-10-06T14:01:49.575Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
     "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-    "pulledAt": "2026-10-05T19:16:10.524Z",
+    "pulledAt": "2026-10-06T14:01:49.575Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-05T19:16:10.524Z",
+    "checkedAt": "2026-10-06T14:01:49.575Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:qPAPUmg_qZE|yt:joindiveclub:sC3Wvi1Whm4",

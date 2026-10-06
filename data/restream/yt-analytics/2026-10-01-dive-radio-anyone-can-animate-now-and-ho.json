@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "bBF1yPACap0",
-      "pulledAt": "2026-10-05T19:16:10.524Z",
+      "pulledAt": "2026-10-06T14:01:49.575Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-05T19:16:10.524Z",
+        "pulledAt": "2026-10-06T14:01:49.575Z",
         "state": "ready"
       },
       "totals": {
-        "views": 3133,
-        "estimatedMinutesWatched": 15674,
+        "views": 3129,
+        "estimatedMinutesWatched": 15755,
         "averageViewDuration": 795,
         "averageViewPercentage": 11.27,
         "subscribersGained": 1,
@@ -480,18 +480,18 @@
     },
     "yt:designertom": {
       "videoId": "bwJB9EBQNSQ",
-      "pulledAt": "2026-10-05T19:16:10.524Z",
+      "pulledAt": "2026-10-06T14:01:49.575Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-05T19:16:10.524Z",
+        "pulledAt": "2026-10-06T14:01:49.575Z",
         "state": "ready"
       },
       "totals": {
-        "views": 2264,
-        "estimatedMinutesWatched": 8792,
+        "views": 2262,
+        "estimatedMinutesWatched": 8810,
         "averageViewDuration": 717,
         "averageViewPercentage": 10.16,
         "subscribersGained": 6,
@@ -951,7 +951,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-05T19:16:10.524Z",
+    "checkedAt": "2026-10-06T14:01:49.575Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:bwJB9EBQNSQ|yt:joindiveclub:bBF1yPACap0",
@@ -961,7 +961,7 @@
         "videoId": "bBF1yPACap0",
         "result": "ready",
         "observed": {
-          "views": 3133,
+          "views": 3129,
           "averageViewPercentage": 11.27
         }
       },
@@ -970,7 +970,7 @@
         "videoId": "bwJB9EBQNSQ",
         "result": "ready",
         "observed": {
-          "views": 2264,
+          "views": 2262,
           "averageViewPercentage": 10.16
         }
       }
@@ -981,8 +981,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
     "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-    "pulledAt": "2026-10-05T19:16:10.524Z",
+    "pulledAt": "2026-10-06T14:01:49.575Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-05T19:16:10.524Z"
+  "updatedAt": "2026-10-06T14:01:49.575Z"
 }

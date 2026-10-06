@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "x05zZ90lY28",
-      "pulledAt": "2026-10-05T19:16:10.524Z",
+      "pulledAt": "2026-10-06T14:01:49.575Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "x05zZ90lY28",
-        "pulledAt": "2026-10-05T19:16:10.524Z",
+        "pulledAt": "2026-10-06T14:01:49.575Z",
         "state": "ready"
       },
       "totals": {
         "views": 5269,
         "estimatedMinutesWatched": 26584,
-        "averageViewDuration": 754,
-        "averageViewPercentage": 10.38,
+        "averageViewDuration": 753,
+        "averageViewPercentage": 10.36,
         "subscribersGained": 9,
         "likes": 59,
         "comments": 2
@@ -475,20 +475,20 @@
     },
     "yt:designertom": {
       "videoId": "0xL0XtpH_og",
-      "pulledAt": "2026-10-05T19:16:10.524Z",
+      "pulledAt": "2026-10-06T14:01:49.575Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
         "objectId": "0xL0XtpH_og",
-        "pulledAt": "2026-10-05T19:16:10.524Z",
+        "pulledAt": "2026-10-06T14:01:49.575Z",
         "state": "ready"
       },
       "totals": {
         "views": 3058,
         "estimatedMinutesWatched": 11719,
-        "averageViewDuration": 698,
-        "averageViewPercentage": 9.61,
+        "averageViewDuration": 697,
+        "averageViewPercentage": 9.6,
         "subscribersGained": 5,
         "likes": 50,
         "comments": 3
@@ -951,7 +951,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-05T19:16:10.524Z",
+    "checkedAt": "2026-10-06T14:01:49.575Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:0xL0XtpH_og|yt:joindiveclub:x05zZ90lY28",
@@ -962,7 +962,7 @@
         "result": "ready",
         "observed": {
           "views": 5269,
-          "averageViewPercentage": 10.38
+          "averageViewPercentage": 10.36
         }
       },
       {
@@ -971,7 +971,7 @@
         "result": "ready",
         "observed": {
           "views": 3058,
-          "averageViewPercentage": 9.61
+          "averageViewPercentage": 9.6
         }
       }
     ]
@@ -981,8 +981,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
     "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-    "pulledAt": "2026-10-05T19:16:10.524Z",
+    "pulledAt": "2026-10-06T14:01:49.575Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-05T19:16:10.524Z"
+  "updatedAt": "2026-10-06T14:01:49.575Z"
 }
