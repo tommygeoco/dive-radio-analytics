@@ -346,7 +346,12 @@
   .hc-dir .outlook + .outlook { box-shadow: none; padding-top: 0; margin-top: 8px; }
   /* Do next: the top actions, each led by a quiet decorative ordinal */
   .hc-meta .donext { display: grid; gap: 12px; }
-  .hc-meta .dnrow { display: flex; gap: 12px; color: var(--fg-1); font-size: var(--text-body-sm); line-height: 1.5; }
+  .hc-meta .dnrow { display: flex; gap: 12px; color: var(--fg-1); font-size: var(--text-body-sm); line-height: 1.5; text-decoration: none; border-radius: var(--radius-md); }
+  /* each row opens its card on the Actions page */
+  .hc-meta .dnrow .dntext { flex: 1; min-width: 0; }
+  .hc-meta .dnrow .dnchev { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--fg-3); }
+  .hc-meta .dnrow:hover .dntext { text-decoration: underline; text-decoration-color: var(--fg-4); text-underline-offset: 4px; }
+  .hc-meta .dnrow:hover .dnchev { color: var(--fg-1); }
   .hc-meta .dnnum { flex: none; width: 20px; height: 20px; border-radius: var(--radius-md); background: var(--surface-2);
     box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--fg-2); font-family: var(--font-mono); font-size: var(--text-caption);
     font-weight: 600; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
@@ -787,6 +792,8 @@
      comparison popup. Shrinking below this clips the very comparison the
      reader asked for and lets the popup spill into the detail card. */
   #chartbox.mini { height: 340px; }
+  /* a selection that arrives with the page (a deep link, Back) lands without the resize animation */
+  #chartbox.still { transition: none; }
   #tablebox { display: none; }
   /* the columns scroll; the caption under them stays put */
   #tablebox .tscroll { overflow-x: auto; }
@@ -857,6 +864,8 @@
     box-shadow: inset 0 0 0 1px var(--line-strong); }
   .insight .ic svg { width: 14px; height: 14px; }
   .insight .ic .rk { font-style: normal; font-family: var(--font-mono); font-weight: 700; font-size: var(--text-body-sm); color: var(--fg-1); font-variant-numeric: tabular-nums; }
+  .insight.landed { box-shadow: inset 0 0 0 1.5px var(--selection-ring); }
+  .insight:focus { outline: none; }
   .insight .body { flex: 1; min-width: 0; }
   .insight .cat { font-size: var(--text-meta); line-height: 24px; color: var(--fg-3); margin: 0 0 4px; }
   .insight .lead { margin: 0; color: var(--fg-1); font-weight: 500; line-height: 1.5; }
@@ -942,15 +951,31 @@
   .about p { margin: 0 0 12px; }
   .about p:last-child { margin-bottom: 0; }
   .about b { color: var(--fg-1); font-weight: 600; }
-  .aboutnav { display: none; }
-  @media (min-width: 64rem) { .aboutnav { display: block; position: sticky; top: calc(var(--topbar-h) + 24px); } }
-  .aboutnav h2 { margin: 0 0 8px; padding: 0 12px; font-size: var(--text-meta); line-height: 1.34; font-weight: 500; color: var(--fg-3); }
-  .aboutnav button { display: flex; align-items: center; width: 100%; min-height: 32px; padding: 4px 12px; border: 0; border-radius: var(--radius-md);
-    background: none; color: var(--fg-2); font: inherit; font-size: var(--text-body-sm); text-align: left; cursor: pointer;
+  /* the index: the system's chip row above the prose below 64rem; a sticky list beside it from 64rem */
+  .aboutnav { order: -1; display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none;
+    margin: -8px calc(var(--d-gutter) * -1); padding: 8px var(--d-gutter);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent); mask-image: linear-gradient(to right, black calc(100% - 24px), transparent); }
+  .aboutnav::-webkit-scrollbar { display: none; }
+  .aboutnav h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
+  .aboutnav button { position: relative; flex: none; display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 0;
+    border-radius: var(--radius-full); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line-strong);
+    color: var(--fg-2); font: inherit; font-size: var(--text-body-sm); font-weight: 500; white-space: nowrap; cursor: pointer;
     transition: background 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart); }
-  .aboutnav button:hover { background: var(--surface-1); color: var(--fg-1); }
-  .aboutnav button[aria-current="true"] { background: var(--surface-2); color: var(--fg-1); }
-  @media (pointer: coarse) { .aboutnav button { min-height: 44px; } }
+  .aboutnav button::after { content: ""; position: absolute; inset: -4px 0; }
+  .aboutnav button:hover { background: var(--surface-2); color: var(--fg-1); }
+  @media (min-width: 48rem) { .aboutnav button { height: 32px; padding: 0 12px; } }
+  @media (min-width: 64rem) {
+    .aboutnav { order: 0; display: block; position: sticky; top: calc(var(--topbar-h) + 24px); margin: 0; padding: 0; overflow: visible;
+      -webkit-mask-image: none; mask-image: none; }
+    .aboutnav h2 { position: static; width: auto; height: auto; overflow: visible; clip-path: none; margin: 0 0 8px; padding: 0 12px;
+      font-size: var(--text-meta); line-height: 1.34; font-weight: 500; color: var(--fg-3); }
+    .aboutnav button { display: flex; width: 100%; height: auto; min-height: 32px; padding: 4px 12px; border-radius: var(--radius-md);
+      background: none; box-shadow: none; font-weight: 400; white-space: normal; text-align: left; }
+    .aboutnav button::after { content: none; }
+    .aboutnav button:hover { background: var(--surface-1); }
+    .aboutnav button[aria-current="true"] { background: var(--surface-2); color: var(--fg-1); }
+  }
+  @media (min-width: 64rem) and (pointer: coarse) { .aboutnav button { min-height: 44px; } }
   footer { color: var(--fg-3); font-size: var(--text-meta); margin-top: 20px; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -993,6 +1018,8 @@
     #tablebox .tscroll.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
     /* 44 px rows for everything tappable inside the pane and the health details */
     .panel .trow { min-height: 44px; }
+    .panel .irow { min-height: 44px; }
+    .hc-meta .dnrow { min-height: 44px; }
     .hc-dir .dirrow { min-height: 44px; }
     .panel .pdisc summary, .panel .psec .plink { min-height: 44px; display: inline-flex; align-items: center; }
     .panel .dest { grid-template-columns: 1fr; }
@@ -1430,7 +1457,7 @@ const BANDS = BASE_CONST.BANDS || { healthy: 55, steady: 45 };
 function deltaBadge(ratio) {
   if (ratio == null) return "";
   const pct = Math.round(Math.abs(ratio - 1) * 100);
-  if (pct <= QUIET_ZONE) return `<span class="db mid" data-tip="right at the show’s typical level" tabindex="0">typical</span>`;
+  if (pct <= QUIET_ZONE) return `<span class="db mid">typical</span>`;
   return ratio > 1
     ? `<span class="db up">+${pct}%</span>`
     : `<span class="db down">−${pct}%</span>`;
@@ -1816,7 +1843,7 @@ function buildHealth() {
             ${trend}
           </div>
           ${headingColumn}
-          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div><a class="herolink alllink" href="#actions">All actions${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a></div>` : ""}
+          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<a class="dnrow" href="#actions/${encodeURIComponent(r.id || "")}"><span class="dnnum" aria-hidden="true">${i + 1}</span><span class="dntext">${esc(r.recommendation)}</span>${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>', "dnchev")}</a>`).join("")}</div><a class="herolink alllink" href="#actions">All actions${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a></div>` : ""}
         </div>
       </div>
     </div>
@@ -2209,14 +2236,16 @@ function buildPanel() {
       // the stored note says how the comparison was made (same age, or as
       // the earlier episodes stand now) — click layer only, never recomputed
       const rowTip = c.note ? `${tip} — ${c.note}` : tip;
-      html += `<div class="irow" data-tip="${esc(rowTip)}" tabindex="0">${ICONS[icon]}<span class="lb">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
+      // the "typical" tag is a word, not a second target: its meaning rides in the row's tooltip
+      const rowTipTypical = Math.round(Math.abs(c.ratio - 1) * 100) <= QUIET_ZONE ? `${rowTip} · typical means right at the show’s usual level` : rowTip;
+      html += `<div class="irow" data-tip="${esc(rowTipTypical)}" tabindex="0">${ICONS[icon]}<span class="lb">${lab}</span><b>${fmtV(c.value)}</b>${deltaBadge(c.ratio)}</div>`;
     }
     if (notCompared.length) html += `<div class="hint">Not compared: ${notCompared.join(", ")} — fewer than three earlier episodes had a reading.</div>`;
     if (pace) {
-      const paceTip = "YouTube views at the same age as the other episodes, promo outliers left out — appears after three of them have real data at that age.";
+      const paceTip = `YouTube views at the same age as the other episodes, promo outliers left out — appears after three of them have real data at that age.${Math.abs(pace.pct) <= QUIET_ZONE ? " Typical means right at the usual level." : ""}`;
       html += `<div class="irow" data-tip="${esc(paceTip)}" tabindex="0">${ICONS.gauge}<span class="lb">Same-age pace</span>${
         Math.abs(pace.pct) <= QUIET_ZONE
-          ? `<span class="db mid" data-tip="right at the typical level" tabindex="0">typical</span>`
+          ? `<span class="db mid">typical</span>`
           : pace.pct > 0 ? `<span class="db up">+${Math.abs(pace.pct)}%</span>` : `<span class="db down">−${Math.abs(pace.pct)}%</span>`}</div>`;
     }
     html += `</div>`;
@@ -4047,6 +4076,8 @@ function buildInsightsPanel() {
     const cat = CATS[ins.cat];
     const div = document.createElement("div");
     div.className = "insight";
+    // Today's Do next rows land here (#actions/<id>); the card takes focus when they do
+    if (ins.id) { div.id = `act-${ins.id}`; div.tabIndex = -1; }
     // The Actions page leads with the action (PRODUCT.md: lead with the
     // decision, then reveal the evidence): the recommendation first, the
     // finding under it as its reason, how it is counted one tap away.
@@ -4070,11 +4101,11 @@ function buildInsightsPanel() {
   for (const ins of all) add(ins);
   const ranked = all.some((i) => i.rank);
   document.getElementById("insightsmeta").textContent = ranked
-    ? "This week’s actions from today’s read, biggest lever first."
-    : "The most timely actions from the fixed rules while no written list is current.";
+    ? "What to do this week, biggest lever first."
+    : "What to do this week, most timely first.";
   document.getElementById("actionsmeta").textContent = ranked
     ? `${all.length} action${all.length === 1 ? "" : "s"} for this week, biggest lever first`
-    : "The most timely actions from the fixed rules";
+    : "What to do this week";
 }
 
 /* ================= about ================= */
@@ -4321,6 +4352,19 @@ render();
    route, so the browser never scrolls to one on its own. */
 const PAGES = { today: "Today", episodes: "Episodes", actions: "Actions", about: "About" };
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+// The Episodes page owns the chart's view and the selected episode. Every other
+// page reads the newest episode on the default measure, so Today never changes
+// with a choice made on another page; leaving Episodes keeps its state aside
+// and coming back restores it.
+const EPISODE_KEYS = ["solo", "panel", "mode", "metric", "byDate", "table"];
+const EPISODE_DEFAULTS = Object.fromEntries(EPISODE_KEYS.map((k) => [k, state[k]]));
+let episodesKept = null;
+// layout settles after fonts and the chart, so a scroll aimed at the pane or
+// a remembered position is applied again once it has
+function settleScroll(apply) {
+  apply();
+  document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(apply)));
+}
 function rememberScroll() {
   // a browser that rate-limits history writes only costs the restore
   try { history.replaceState({ ...(history.state || {}), y: Math.round(window.scrollY) }, ""); } catch { /* keep going */ }
@@ -4352,13 +4396,26 @@ function route({ focus = false } = {}) {
   document.title = `${PAGES[page]} — Dive Radio`;
   document.body.dataset.page = page;
   closeViewMenu();
+  if (current === "episodes" && page !== "episodes") episodesKept = Object.fromEntries(EPISODE_KEYS.map((k) => [k, state[k]]));
   let opened = null;
+  let landed = null;
+  for (const card of document.querySelectorAll(".insight.landed")) card.classList.remove("landed");
+  if (page !== "episodes" && EPISODE_KEYS.some((k) => state[k] !== EPISODE_DEFAULTS[k])) { Object.assign(state, EPISODE_DEFAULTS); render(); }
+  if (page === "actions" && arg) {
+    landed = document.getElementById(`act-${decodeURIComponent(arg)}`);
+    if (landed) landed.classList.add("landed");
+  }
   if (page === "episodes") {
+    if (episodesKept) { Object.assign(state, episodesKept); episodesKept = null; }
     const ep = /^e(\d+)$/i.exec(arg || "");
     opened = ep ? EPS.find((e) => String(e.ep) === ep[1]) || null : null;
     if (opened) { state.solo = opened.slug; state.panel = opened.slug; }
-    // measured while hidden, the row, the chart and the pane re-measure now
+    // measured while hidden, the row, the chart and the pane re-measure now;
+    // a selection that comes with the page lands without the chart's resize animation
+    const box = document.getElementById("chartbox");
+    box.classList.add("still");
     render();
+    requestAnimationFrame(() => requestAnimationFrame(() => box.classList.remove("still")));
     const strip = document.getElementById("strip");
     if (!strip.dataset.landed) { strip.scrollLeft = strip.scrollWidth; strip.dataset.landed = "1"; }
     strip.dispatchEvent(new Event("scroll"));
@@ -4367,12 +4424,15 @@ function route({ focus = false } = {}) {
     syncRouteParam();
   }
   const y = history.state?.y;
-  if (Number.isFinite(y)) window.scrollTo(0, y);
-  else if (opened) document.getElementById("panel").scrollIntoView({ block: "start" });
+  if (Number.isFinite(y)) settleScroll(() => window.scrollTo(0, y));
+  else if (opened) settleScroll(() => document.getElementById("panel").scrollIntoView({ block: "start" }));
+  else if (landed) settleScroll(() => landed.scrollIntoView({ block: "start" }));
   else window.scrollTo(0, 0);
   if (page === "about") window.dispatchEvent(new Event("scroll"));
-  // the page's name takes focus, so a screen reader announces where it landed
-  if (focus) title.focus({ preventScroll: true });
+  // the page's name takes focus, so a screen reader announces where it landed;
+  // a Do next row hands focus to the action it opened
+  if (landed) landed.focus({ preventScroll: true });
+  else if (focus) title.focus({ preventScroll: true });
 }
 let scrollMemo = 0;
 window.addEventListener("scroll", () => { clearTimeout(scrollMemo); scrollMemo = setTimeout(rememberScroll, 150); }, { passive: true });
