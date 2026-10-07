@@ -21,7 +21,8 @@ test('new episode with no approved rows visibly reports pending capture instead 
   assert.doesNotMatch(element.innerHTML, /not available yet|Mixed reactions|Captured audience feedback\./);
 });
 test('the preview is one surface like every other card, not a tile inside a frame', () => {
-  assert.match(html, /#audience-preview \{ margin-bottom: var\(--gap\); background: var\(--s1\); \}/);
+  // design system (2026-10-06): the card's own fill and inset hairline, like every other card
+  assert.match(html, /#audience-preview \{ margin-bottom: var\(--gap\); background: var\(--surface-1\); border-radius: var\(--radius-2xl\);\s*box-shadow: inset 0 0 0 1px var\(--line\);/);
   assert.match(html, /#audience-preview \.fb \{ padding: 0; background: none; border-radius: 0; \}/);
 });
 test('visible quote preserves escaped source text and offers the complete feedback list', () => {
