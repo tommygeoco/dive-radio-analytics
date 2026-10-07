@@ -44,7 +44,10 @@
     --chart-grid: rgb(255 255 255 / 0.055); --chart-axis: var(--fg-3); --chart-gap: var(--surface-1);
     --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-2xl: 20px; --radius-full: 999px;
     --d-gutter: 16px; --d-card: 16px; --d-inner: 12px; --d-section: 24px; --d-row: 12px;
-    --topbar-h: 48px; --content-max: 1240px;
+    --topbar-h: 48px; --content-max: 1240px; --rail-w: 76px; --tabbar-h: 64px;
+    --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --tab-active-bg: rgb(255 255 255 / 0.1); --tab-active-ring: rgb(255 255 255 / 0.08);
+    --shadow-tabbar: inset 0 0 0 1px var(--line-strong), 0 16px 40px -12px rgb(0 0 0 / 0.9);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     /* one gutter for every card, column, and row (owner directive 2026-08-23) —
        the design system's stack step on the 4 px grid */
@@ -57,6 +60,7 @@
   /* scroll targets (a selected episode brings the chart into view) clear the sticky top bar */
   html { background: var(--canvas); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
     scrollbar-color: var(--surface-3) transparent; scrollbar-width: thin; scroll-padding-top: calc(var(--topbar-h) + 16px); }
+  html:has(#trust:not([hidden])) { scroll-padding-top: calc(var(--topbar-h) + 56px); }
   body { margin: 0; background: var(--canvas); color: var(--fg-1); font-family: var(--font-sans);
     font-size: var(--text-body); line-height: 1.42; font-feature-settings: "cv11";
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-wrap: break-word; }
@@ -64,7 +68,59 @@
   :focus-visible { outline: 2px solid var(--tint); outline-offset: 2px; }
   button { font-family: inherit; font-size: inherit; color: inherit; }
   h1, h2, h3 { text-wrap: balance; }
-  .wrap { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--d-gutter) 56px; }
+  .wrap { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--d-gutter) 56px; outline: none; }
+
+  /* ---- the system's app shell: a 76 px rail on desktop, a floating tab bar on phones ---- */
+  .skip { position: fixed; top: 12px; left: 12px; z-index: 100; padding: 8px 12px; border-radius: var(--radius-lg);
+    background: var(--surface-2); color: var(--fg-1); font-size: var(--text-body-sm); transform: translateY(-200%); }
+  .skip:focus-visible { transform: none; }
+  .rail { display: none; }
+  .tabbar { position: fixed; inset: auto 0 0 0; z-index: 40; padding: 0 12px calc(var(--safe-bottom) + 8px); pointer-events: none; }
+  .tabpill { pointer-events: auto; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); height: var(--tabbar-h);
+    max-width: 440px; padding: 4px; border-radius: var(--radius-full); background: color-mix(in oklab, var(--surface-2) 85%, transparent);
+    box-shadow: var(--shadow-tabbar); -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px); }
+  .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: var(--radius-full);
+    color: var(--fg-2); font-size: var(--text-caption); font-weight: 500; text-decoration: none;
+    transition: color 150ms var(--ease-out-quart), background 150ms var(--ease-out-quart), transform 150ms var(--ease-out-quart); }
+  .tab:active { transform: scale(0.95); }
+  .tab svg { width: 22px; height: 22px; stroke-width: 1.75; }
+  .tab[aria-current="page"] { color: var(--fg-1); background: var(--tab-active-bg); box-shadow: inset 0 0 0 1px var(--tab-active-ring); }
+  .tab[aria-current="page"] svg { stroke-width: 2.25; }
+  .tab:focus-visible { outline-offset: -2px; }
+  @media (max-width: 47.99rem) { .wrap { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 32px); } }
+  @media (min-width: 48rem) {
+    body { padding-left: var(--rail-w); }
+    .tabbar { display: none; }
+    .rail { position: fixed; inset: 0 auto 0 0; z-index: 50; width: var(--rail-w); display: flex; flex-direction: column; align-items: center;
+      padding: 12px 0; background: var(--canvas); box-shadow: inset -1px 0 0 var(--line); }
+    .rail-home { width: 44px; height: 44px; margin-bottom: 12px; border-radius: var(--radius-xl); display: flex; align-items: center;
+      justify-content: center; color: var(--fg-1); }
+    .rail-home:hover { background: var(--surface-2); }
+    .rail-home svg { width: 28px; height: 28px; }
+    .rail-list { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .rail-list:first-of-type { flex: 1; }
+    .rail-item { position: relative; width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0;
+      border-radius: var(--radius-xl); color: var(--fg-3); font-size: var(--text-caption); font-weight: 500; text-decoration: none;
+      transition: color 150ms var(--ease-out-quart), background 150ms var(--ease-out-quart); }
+    .rail-item:hover { background: var(--surface-1); color: var(--fg-1); }
+    .rail-item[aria-current="page"] { background: var(--surface-2); color: var(--fg-1); }
+    .rail-item svg { width: 18px; height: 18px; stroke-width: 1.75; }
+    .rail-item[aria-current="page"] svg { stroke-width: 2.25; }
+  }
+  .view[hidden] { display: none; }
+  .sechead.first { margin-top: 8px; }
+  /* Today's link to the Actions page: the system's disclosure row, navigating */
+  .nextrow { display: flex; align-items: center; gap: 12px; min-height: 56px; margin-top: var(--gap); padding: var(--d-row) var(--d-card);
+    border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line-strong); color: inherit; text-decoration: none;
+    transition: background 150ms var(--ease-out-quart); }
+  .nextrow:hover { background: var(--surface-1); }
+  .nextrow .sumic { width: 16px; height: 16px; color: var(--fg-3); display: flex; flex: none; }
+  .nextrow .sumic svg, .nextrow > svg { width: 16px; height: 16px; flex: none; }
+  .nextrow > svg { color: var(--fg-3); }
+  .nextrow .sumt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .nextrow .sumt b { font-weight: 500; color: var(--fg-1); font-size: var(--text-body); line-height: 1.42; }
+  .nextrow .sumt span { color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
+  @media (min-width: 48rem) { .nextrow .sumt b { font-size: var(--text-body-sm); } .nextrow .sumt span { font-size: var(--text-meta); } }
   /* every number on the page: Geist Mono, tabular figures, never broken */
   /* every figure on the page: Geist Mono, tabular, never broken. monoFigures()
      wraps the figures inside mixed text; words around them stay sans */
@@ -79,7 +135,7 @@
     display: flex; align-items: center; gap: 8px; }
   .brand { display: inline-flex; align-items: center; gap: 8px; flex: none; }
   .brand svg { width: 20px; height: 20px; flex: none; color: var(--fg-1); }
-  h1 { margin: 0; font-size: var(--text-num-lg); line-height: 1.2; font-weight: 600; letter-spacing: -0.025em; white-space: nowrap; }
+  h1 { margin: 0; flex: none; font-size: var(--text-num-lg); line-height: 1.2; font-weight: 600; letter-spacing: -0.025em; white-space: nowrap; }
   @media (min-width: 48rem) { h1 { font-size: var(--text-title); line-height: 1.3; } }
   /* freshness: the system's status dot — gray when current, amber when behind; never green, never blue */
   .stamp { margin-left: auto; flex: 0 1 auto; display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 0 4px;
@@ -88,6 +144,7 @@
   .stamp .sshort { display: none; }
   /* the system's trust bar: phones move a not-current freshness sentence under the top bar */
   .trust { display: none; }
+  #audience-preview { margin-top: var(--gap); }
   .stamp i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--fg-3); }
   .stamp i.old { background: var(--warn); }
   /* the Agents page: the top bar's pill (outline, no fill) */
@@ -217,6 +274,10 @@
   .hcard[data-open="true"] .hdbody { opacity: 1; transition: opacity 200ms var(--ease-out-quart); }
   /* the grid follows the columns actually rendered — never an empty track */
   .hdbody.cols-2 { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  .hdbody.cols-3 { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-areas: "ev dir" "meta dir"; align-items: start; }
+  .hdbody.cols-3 .health-evidence { grid-area: ev; }
+  .hdbody.cols-3 .hc-dir { grid-area: dir; }
+  .hdbody.cols-3 .hc-meta { grid-area: meta; }
   .hdbody.cols-1 { grid-template-columns: minmax(0, 1fr); }
   .hdcol { min-width: 0; }
   .hdcol .kicker { margin-bottom: 12px; }
@@ -260,8 +321,10 @@
   .hc-dir .dirrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: var(--text-body-sm); line-height: 1.3; }
   .hc-dir .dirrow + .dirrow { box-shadow: inset 0 1px 0 var(--line); }
   .hc-dir .dirrow .dl { color: var(--fg-2); min-width: 0; }
-  .hc-dir .dirrow .dl[data-tip] { position: relative; cursor: pointer; }
-  .hc-dir .dirrow .dl[data-tip]::after { content: ""; position: absolute; inset: -16px -4px; }
+  /* the whole row is the definition's target */
+  .hc-dir .dirrow { position: relative; }
+  .hc-dir .dirrow .dl[data-tip] { cursor: pointer; }
+  .hc-dir .dirrow .dl[data-tip]::after { content: ""; position: absolute; inset: 0; }
   .hc-dir .dirrow .dw { font-weight: 500; white-space: nowrap; color: var(--fg-1); }
   .hc-dir .dirrow .dw.building { color: var(--pos); }
   .hc-dir .dirrow .dw.softening { color: var(--neg); }
@@ -462,7 +525,7 @@
   .panel .h .hmeta { flex-basis: 100%; order: 5; justify-content: flex-start; row-gap: 8px; }
   .panel .h .htitle { flex: 1 1 0; min-width: 0; margin: 0; font-size: var(--text-title); line-height: 1.3; font-weight: 600; letter-spacing: -0.015em; }
   .panel .h .hmeta { color: var(--fg-3); font-size: var(--text-meta);
-    display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .panel .h .pdate { margin-right: 4px; }
   /* destination links: the system's outline pill — tappable, quiet */
   .panel .plink { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: var(--radius-full);
@@ -525,7 +588,8 @@
   .db.none { color: var(--fg-3); background: none; box-shadow: inset 0 0 0 1px var(--line-strong); }
   .gline { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; color: var(--fg-2);
     font-size: var(--text-body-sm); padding: 4px 0 0; }
-  .gline .g { display: inline-flex; align-items: center; gap: 8px; }
+  .gline .g { position: relative; display: inline-flex; align-items: center; gap: 8px; }
+  .gline .g::after { content: ""; position: absolute; inset: -16px -4px; }
   .gline .g b { color: var(--fg-1); font-weight: 600; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .gline .g .gl { color: var(--fg-3); font-size: var(--text-meta); }
   .panel .row.head { font-weight: 600; color: var(--fg-1); }
@@ -708,6 +772,7 @@
   #tablebox td.t { color: var(--fg-1); }
   #tablebox td.gap { text-align: left; color: var(--fg-3); font-family: var(--font-sans); }
   #tablebox td.t .tid, #tablebox td.t .ttl { color: var(--fg-1); }
+  #tablebox .tcap { margin: 12px 0 0; font-size: var(--text-meta); color: var(--fg-3); }
   #tablebox tr:hover td { background: var(--surface-2); }
   #tablebox .mk { color: var(--warn); font-size: var(--text-meta); font-family: var(--font-sans); }
   .st-good { color: var(--pos); } .st-bad { color: var(--neg); } .st-mid { color: var(--fg-2); }
@@ -769,11 +834,11 @@
   .insight .txt b, .insight .rec b { font-weight: 600; color: var(--fg-1); font-variant-numeric: tabular-nums; }
   .insight .cav { color: var(--fg-3); font-size: var(--text-meta); line-height: 1.45; margin-top: 8px; }
   /* Recommendation: the system's link button with a disclosure chevron */
-  .insight .reveal { position: relative; display: flex; align-items: center; gap: 4px; margin-top: 8px; height: 28px; padding: 0;
+  .insight .rec-toggle { position: relative; display: flex; align-items: center; gap: 4px; margin-top: 8px; height: 28px; padding: 0;
     background: none; border: 0; color: var(--tint-fg); font-size: var(--text-body-sm); font-weight: 500; cursor: pointer; }
-  .insight .reveal::after { content: ""; position: absolute; inset: -8px -4px; }
-  .insight .reveal:hover { text-decoration: underline; text-underline-offset: 4px; }
-  .insight .reveal svg { width: 16px; height: 16px; transition: transform 150ms var(--ease-out-quart); }
+  .insight .rec-toggle::after { content: ""; position: absolute; inset: -8px -4px; }
+  .insight .rec-toggle:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .insight .rec-toggle svg { width: 16px; height: 16px; transition: transform 150ms var(--ease-out-quart); }
   .insight.open .reveal svg { transform: rotate(180deg); }
   /* the recommendation opens as a hairline strip in the card (the system's Reveal), never a box */
   .insight .more { display: grid; grid-template-rows: 0fr; opacity: 0;
@@ -837,28 +902,11 @@
   .dempty { color: var(--fg-3); padding: 20px 0; text-align: center; font-size: var(--text-body-sm); }
   .dempty.dnote { padding: 8px 0 4px; font-size: var(--text-meta); }
 
-  /* ---- About this data: the system's disclosure row (a button) and Reveal ---- */
-  .about { margin-top: var(--d-section); }
-  .aboutbtn { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: var(--d-row) var(--d-card);
-    border: 0; border-radius: var(--radius-2xl); background: none; color: inherit; text-align: left; cursor: pointer;
-    box-shadow: inset 0 0 0 1px var(--line-strong); transition: background 150ms var(--ease-out-quart); }
-  .aboutbtn:hover { background: var(--surface-1); }
-  .aboutbtn .sumic { width: 16px; height: 16px; color: var(--fg-3); display: flex; flex: none; }
-  .aboutbtn .sumic svg { width: 16px; height: 16px; }
-  .aboutbtn .sumt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  .aboutbtn .sumtitle { margin: 0; font-weight: 500; color: var(--fg-1); font-size: var(--text-body); line-height: 1.42; letter-spacing: 0; }
-  .aboutbtn .sumt > span { color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
-  .aboutbtn .chev { width: 16px; height: 16px; color: var(--fg-3); flex: none; transition: transform 150ms var(--ease-out-quart); }
-  .aboutbtn[aria-expanded="true"] .chev { transform: rotate(180deg); }
-  @media (min-width: 48rem) { .aboutbtn .sumtitle { font-size: var(--text-body-sm); } .aboutbtn .sumt > span { font-size: var(--text-meta); } }
-  .reveal { display: grid; grid-template-rows: 0fr; opacity: 0;
-    transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms cubic-bezier(0.5, 0, 0.75, 0); }
-  .reveal[data-open="true"] { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms var(--ease-out-quart); }
-  .reveal > div { min-height: 0; overflow: hidden; }
-  /* long-form methodology: 72ch, body-sm on desktop, generous leading */
-  .about .inner { padding: 12px var(--d-card) 0 44px; max-width: calc(72ch + 60px); color: var(--fg-2); font-size: var(--text-body); line-height: 1.625; }
-  @media (min-width: 48rem) { .about .inner { font-size: var(--text-body-sm); } }
+  /* ---- About: long-form methodology on its own page — 72ch, generous leading ---- */
+  .about .inner { max-width: 72ch; color: var(--fg-2); font-size: var(--text-body); line-height: 1.625; }
+  @media (min-width: 48rem) { .about { padding: 24px; } .about .inner { font-size: var(--text-body-sm); } }
   .about p { margin: 0 0 12px; }
+  .about p:last-child { margin-bottom: 0; }
   .about b { color: var(--fg-1); font-weight: 600; }
   footer { color: var(--fg-3); font-size: var(--text-meta); margin-top: 20px; }
 
@@ -875,6 +923,7 @@
     .hz-checks { grid-row: 2; grid-column: 1 / -1; margin-top: 16px; padding-top: 16px; box-shadow: inset 0 1px 0 var(--line); }
     .health-evidence .evidence { grid-template-columns: 1fr; gap: 16px; }
     .hdbody, .hdbody.cols-2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .hdbody.cols-3 { grid-template-areas: "ev ev" "meta dir"; }
     .hdbody.cols-1 { grid-template-columns: minmax(0, 1fr); }
     .hdbody .health-evidence { grid-column: 1 / -1; }
   }
@@ -888,14 +937,15 @@
     /* not current: the bar keeps the dot and one word; the sentence moves to the trust bar */
     .stamp.behind .sfull { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
     .stamp.behind .sshort { display: inline; }
-    .trust:not([hidden]) { display: flex; position: sticky; top: var(--topbar-h); z-index: 29; height: 40px; margin-bottom: var(--gap);
+    .trust:not([hidden]) { display: flex; position: sticky; top: var(--topbar-h); z-index: 29; min-height: 40px; padding-block: 8px; margin-bottom: var(--gap);
       align-items: center; gap: 12px; padding: 0 var(--d-gutter); font-size: var(--text-body-sm); color: var(--fg-1);
       background: color-mix(in oklab, var(--warn) 11%, var(--canvas)); box-shadow: inset 0 -1px 0 var(--warn-ring); }
     .trust svg { width: 16px; height: 16px; flex: none; color: var(--warn); }
-    .trust span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .trust span { min-width: 0; line-height: 1.39; }
     header:has(+ .trust:not([hidden])) { margin-bottom: 0; }
     /* the phone table: the episode id column stays put while the numbers scroll */
-    #tablebox th:first-child, #tablebox td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-1); padding-right: 12px; }
+    #tablebox th:first-child, #tablebox td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-1); padding-right: 12px;
+      box-shadow: inset -1px 0 0 var(--line), inset 0 -1px 0 var(--line); }
     #tablebox td.t .ttl { display: none; }
     #tablebox.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
     /* 44 px rows for everything tappable inside the pane and the health details */
@@ -903,6 +953,14 @@
     .hc-dir .dirrow { min-height: 44px; }
     .panel .pdisc summary, .panel .psec .plink { min-height: 44px; display: inline-flex; align-items: center; }
     .panel .dest { grid-template-columns: 1fr; }
+    .panel .psec .kicker { flex-wrap: wrap; }
+    .panel .kicker .kh { flex-basis: 100%; margin-left: 0; }
+    .panel .lkpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .panel .lk:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .panel .h .hmeta { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--d-gutter) * -1); padding: 8px var(--d-gutter);
+      -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent); mask-image: linear-gradient(to right, black calc(100% - 24px), transparent); }
+    .panel .h .hmeta::-webkit-scrollbar { display: none; }
+    .panel .h .hmeta > * { flex: none; }
     .overview { grid-template-columns: 1fr; }
     .kicker { margin-bottom: 8px; }
     /* the strip stacks: the score with the Expand button beside it, then the
@@ -915,7 +973,8 @@
     .hz-read { display: contents; }
     .hz-readbody { grid-area: read; margin-top: 16px; padding-top: 16px; box-shadow: inset 0 1px 0 var(--line); }
     .hz-read .hxbtn, .hxbtn { grid-area: btn; align-self: center; margin-top: 0; }
-    .hdbody, .hdbody.cols-2, .hdbody.cols-1 { grid-template-columns: 1fr; gap: 24px; }
+    .hdbody, .hdbody.cols-2, .hdbody.cols-1, .hdbody.cols-3 { grid-template-columns: 1fr; grid-template-areas: none; gap: 24px; }
+    .hdbody.cols-3 .health-evidence, .hdbody.cols-3 .hc-dir, .hdbody.cols-3 .hc-meta { grid-area: auto; }
     .hdbody .hc-meta { order: -2; }
     .hdbody .hc-dir { order: -1; }
     /* a card whose only content is a one-line wait note keeps its words but not a tall frame */
@@ -949,60 +1008,86 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="rail" aria-label="Primary">
+  <a class="rail-home" href="#today" aria-label="Dive Radio — today"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="currentColor"/></svg></a>
+  <div class="rail-list">
+    <a class="rail-item" href="#today" data-nav="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Today</span></a><a class="rail-item" href="#episodes" data-nav="episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/></svg><span>Episodes</span></a><a class="rail-item" href="#actions" data-nav="actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg><span>Actions</span></a>
+  </div>
+  <div class="rail-list rail-bottom">
+    <a class="rail-item" href="#about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg><span>About</span></a>
+  </div>
+</nav>
 <header>
   <div class="topin">
-    <span class="brand"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="currentColor"/></svg><h1>Dive Radio</h1></span>
+    <h1 id="pagetitle">Today</h1>
     <div class="stamp" id="stamp"></div>
     <a class="agentslink" href="agents.html">Agents</a>
   </div>
 </header>
 <div class="trust" id="trust" aria-hidden="true" hidden></div>
-<main class="wrap" id="main">
+<main class="wrap" id="main" tabindex="-1">
   <div class="livecopy" id="livecopy" role="status" hidden></div>
 
-  <section class="healthrow" id="health" aria-label="Show health"></section>
-  <div class="overview" id="overview">
-    <div class="card hero" id="hero"></div>
-    <div class="card compound" id="compound" style="display:none"></div>
-  </div>
-
-  <div class="sechead"><h2>Episodes</h2><span>Oldest to newest · select one to focus the chart</span></div>
-  <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
-
-  <section id="chartcard" class="card" aria-labelledby="ctitle">
-    <div class="chead">
-      <div class="chart-copy">
-        <div class="ctsel">
-          <button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="viewmenu">
-            <span id="ctitle"></span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
-          </button>
-          <div class="viewmenu" id="viewmenu" role="listbox" aria-label="What the chart shows" hidden></div>
-        </div>
-        <span class="cs" id="cscope"></span></div>
-      <div class="controls">
-        <button type="button" class="toggle" id="astable" aria-pressed="false">Table</button>
-        <button type="button" class="toggle traj-only" id="bydate">Dates</button>
-        <button type="button" class="reset" id="reset">Reset</button>
-      </div>
+  <!-- Today: is the show compounding, and how did the newest episode do -->
+  <section class="view" id="today" data-view="today" aria-label="Today">
+    <section class="healthrow" id="health" aria-label="Show health"></section>
+    <div class="overview" id="overview">
+      <div class="card hero" id="hero"></div>
+      <div class="card compound" id="compound" style="display:none"></div>
     </div>
-    <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt" aria-hidden="true"></div></div>
-    <div id="tablebox"></div>
-    <div class="emptynote" id="emptynote" style="display:none"></div>
-    <p class="chint" id="chint"></p>
-  </section>
-  <section class="panel" id="panel" aria-labelledby="ptitle" style="display:none"></section>
-  <section class="panel" id="audience-preview" aria-label="Audience feedback" style="display:none"></section>
-
-  <div class="sechead"><h2>What matters</h2></div>
-  <div class="insights" id="insights" aria-label="What matters"></div>
-
-  <section class="about" aria-labelledby="abouttitle">
-    <button type="button" class="aboutbtn" id="aboutbtn" aria-expanded="false" aria-controls="aboutreg"><span class="sumic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg></span><span class="sumt"><h2 class="sumtitle" id="abouttitle">About this data</h2><span>How every number is counted, compared and checked</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></button>
-    <div class="reveal" id="aboutreg" data-open="false"><div><div class="inner" id="about" inert></div></div></div>
+    <section class="panel" id="audience-preview" aria-label="Audience feedback" style="display:none"></section>
+    <a class="nextrow" href="#actions"><span class="sumic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg></span><span class="sumt"><b>What matters</b><span id="actionsmeta">This week’s actions, biggest lever first</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></svg></a>
   </section>
 
+  <!-- Episodes: every episode side by side, the chart, and the selected one in full -->
+  <section class="view" id="episodes" data-view="episodes" aria-label="Episodes" hidden>
+    <div class="sechead first"><h2>All episodes</h2><span>Oldest to newest · select one to focus the chart and open it below</span></div>
+    <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
+
+    <section id="chartcard" class="card" aria-labelledby="ctitle">
+      <div class="chead">
+        <div class="chart-copy">
+          <div class="ctsel">
+            <button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="viewmenu">
+              <span id="ctitle"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+            </button>
+            <div class="viewmenu" id="viewmenu" role="listbox" aria-label="What the chart shows" hidden></div>
+          </div>
+          <span class="cs" id="cscope"></span></div>
+        <div class="controls">
+          <button type="button" class="toggle" id="astable" aria-pressed="false">Table</button>
+          <button type="button" class="toggle traj-only" id="bydate">Dates</button>
+          <button type="button" class="reset" id="reset">Reset</button>
+        </div>
+      </div>
+      <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt" aria-hidden="true"></div></div>
+      <div id="tablebox"></div>
+      <div class="emptynote" id="emptynote" style="display:none"></div>
+      <p class="chint" id="chint"></p>
+    </section>
+    <section class="panel" id="panel" aria-labelledby="ptitle" style="display:none"></section>
+  </section>
+
+  <!-- Actions: where marketing effort should go this week -->
+  <section class="view" id="actions" data-view="actions" aria-label="Actions" hidden>
+    <div class="sechead first"><h2>What matters</h2><span id="insightsmeta"></span></div>
+    <div class="insights" id="insights" aria-label="What matters"></div>
+  </section>
+
+  <!-- About: the methodology, in full -->
+  <section class="view" id="about-view" data-view="about" aria-label="About this data" hidden>
+    <div class="sechead first"><h2>About this data</h2><span>How every number is counted, compared and checked</span></div>
+    <div class="card about"><div class="inner" id="about"></div></div>
+  </section>
 </main>
+
+<nav class="tabbar" aria-label="Primary">
+  <div class="tabpill">
+    <a class="tab" href="#today" data-nav="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Today</span></a><a class="tab" href="#episodes" data-nav="episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/></svg><span>Episodes</span></a><a class="tab" href="#actions" data-nav="actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg><span>Actions</span></a><a class="tab" href="#about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg><span>About</span></a>
+  </div>
+</nav>
 
 <div id="drill"><div class="dcard" role="dialog" aria-modal="true" aria-labelledby="dtitle">
   <div class="dhead"><h2 class="h" id="dtitle" tabindex="-1"></h2><button type="button" class="x" id="dclose" aria-label="Close feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
@@ -1226,11 +1311,17 @@ function monoFigures(root = document) {
         return m;
       });
       if (last < t.nodeValue.length) frag.append(t.nodeValue.slice(last));
-      t.replaceWith(frag);
+      // in a flex or grid parent each node would become its own item and pick up
+      // the gap ("Read all  12  comments"): keep the run together in one span
+      if (/flex|grid/.test(getComputedStyle(t.parentElement).display)) {
+        const run = document.createElement("span");
+        run.append(frag);
+        t.replaceWith(run);
+      } else t.replaceWith(frag);
     }
   }
 }
-function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Call-?Ins?$/i, "").replace(/[,\s]+$/, ""); }
+function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Cal(?:l(?:-?Ins?)?)?$/i, "").replace(/[,\s]+$/, ""); }
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 function heroMarker(e) {
   const tvi = e.latest.totalViewsInfo || {};
@@ -1414,7 +1505,7 @@ const CHECK_LABELS = {
 // PRD v10: the direction lens's measure names, and the launch-word tooltip —
 // words only; every number they show comes from the stored read
 const DIRECTION_LABELS = {
-  firstWeek: "Clean first weeks", liveAverage: "Average live viewers", livePeak: "Peak live viewers",
+  firstWeek: "First weeks without a promo spike", liveAverage: "Average live viewers", livePeak: "Peak live viewers",
   chattersPer100: "Chatters per hundred at the peak", messagesPerHour: "Chat messages an hour",
   engagementWeekOne: "First-week likes and comments", exposureWeekOne: "First-week X reach",
   announceToPlay: "Announce-to-play on X", watching: "Share of the video watched", subscribers: "Subscribers per thousand views",
@@ -1430,7 +1521,8 @@ function chaptersHTML(e) {
   if (!ch || !ch.list || !ch.list.length) return "";
   const yt = Object.entries(e.links || {}).find(([k]) => k.startsWith("yt:"))?.[1] || null;
   const linkable = ch.clock === "upload" && yt;
-  const rows = ch.list.map((c) => `<div class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener">${esc(c.start)}</a>` : esc(c.start)}</span><span class="chb"><b>${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></div>`).join("");
+  const clock = (t) => String(t).replace(/^00:/, "").replace(/^0(\d)/, "$1");
+  const rows = ch.list.map((c) => `<div class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener">${esc(clock(c.start))}</a>` : esc(clock(c.start))}</span><span class="chb"><b>${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></div>`).join("");
   const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording, which starts a few minutes before the upload — read them as approximate.";
   return `<div class="chapters"><h3 class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></h3>${rows}<div class="mut chnote">${note}</div></div>`;
 }
@@ -1548,6 +1640,9 @@ function buildHealth() {
     const note = c.score != null
       ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${bandNote}${c.reason ? ` ${c.reason.charAt(0).toUpperCase() + c.reason.slice(1)}` : ""}`
       : (drill.length ? "" : (c.reason || ""));
+    // say each fact once: when the footer already says the check was carried
+    // from an older episode, the measure rows don't repeat it
+    if (/carried/i.test(note)) for (const r of drill) delete r.cn;
     const rest = `data-state="${esc(word)}" data-stcls="${cls}"${drill.length ? ` data-mrows="${esc(JSON.stringify(drill))}"` : ""}${note ? ` data-note="${esc(note)}"` : ""}`;
     return { label, shortName, cls, word, rest };
   });
@@ -1652,7 +1747,7 @@ function buildHealth() {
       </div>
       <div class="hz hz-checks"><h3 class="kicker">Health diagnosis</h3><div class="hgroups" role="group" aria-label="Health checks">${groups}</div></div>
       <div class="hz hz-read">
-        <div class="hz-readbody"><h3 class="kicker">${Number.isFinite(h.ageDays) && h.ageDays >= 1 ? "Latest read" : "Today’s read"}</h3><p class="headline${open ? "" : " clamped"}"${open ? ` style="max-height:none"` : ""}>${esc(h.headline)}</p></div>
+        <div class="hz-readbody"><h3 class="kicker">${h.date === phoenixDateKey() ? "Today’s read" : "Latest read"}</h3><p class="headline${open ? "" : " clamped"}"${open ? ` style="max-height:none"` : ""}>${esc(h.headline)}</p></div>
         <button type="button" class="hxbtn" id="whyscore" aria-expanded="${open ? "true" : "false"}" aria-controls="hdetails">${ICONS.chevdown}<span class="hxlabel">${open ? "Hide details" : "Why this score"}</span></button>
       </div>
     </div>
@@ -1966,7 +2061,8 @@ function buildStrip() {
   }
   // the strip scrolls when episodes outgrow the row; land it on the NEWEST
   // episode (far right) — the locked order rule keeps its value on any width
-  if (keepLeft == null) { strip.scrollLeft = strip.scrollWidth; strip.dataset.landed = "1"; }
+  // (a row rendered on a hidden page has no width yet: it lands when first shown)
+  if (keepLeft == null) { strip.scrollLeft = strip.scrollWidth; if (strip.offsetParent) strip.dataset.landed = "1"; }
   else strip.scrollLeft = keepLeft;
   // a selected card is always in view
   const picked = strip.querySelector(`.sitem[data-slug="${CSS.escape(state.solo || "")}"]`);
@@ -2202,7 +2298,7 @@ function buildPanel() {
       for (const t of w.traffic) {
         const tname = TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "));
         const ttip = TRAFFIC_TIPS[t.source];
-        html += `<div class="trow" tabindex="0" aria-label="${tname} — ${esc(nfmt(t.views))} views, ${t.share}% of views">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl"${ttip ? ` data-tip="${esc(ttip)}" tabindex="0"` : ""}>${tname}</span>
+        html += `<div class="trow" tabindex="0" role="button"${ttip ? ` data-tip="${esc(`${tname}: ${ttip}`)}"` : ""} aria-label="${tname} — ${esc(nfmt(t.views))} views, ${t.share}% of views">${ICONS[TRAFFIC_ICONS[t.source] || "dots"]}<span class="tl"${ttip ? ` data-tip="${esc(ttip)}"` : ""}>${tname}</span>
           <span class="tb" aria-hidden="true"><span style="width:${topShare > 0 ? Math.max(2, Math.round((t.share / topShare) * 100)) : 0}%"></span></span>
           <span class="tbv" aria-hidden="true">${esc(nfmt(t.views))} views</span>
           <span class="tv">${t.share}%</span></div>`;
@@ -2241,14 +2337,23 @@ function buildPanel() {
       for (const channel of e.live.byChannel) {
         const watched = channel.views == null ? "viewers not available" : `${nfmt(channel.views)} watched`;
         const minutes = channel.watchedMin == null ? "minutes not available" : `${nfmt(channel.watchedMin)} min`;
-        html += `<div class="row">${chan(channel.label)}<span class="val">${watched} · ${minutes}</span></div>`;
+        const liChat = /^LinkedIn\b/.test(channel.label) && e.linkedin && channel.views == null && channel.watchedMin == null
+          && Number.isFinite(e.linkedin.liveChat?.messages)
+          ? `${nfmt(e.linkedin.liveChat.messages)} chat ${e.linkedin.liveChat.messages === 1 ? "message" : "messages"}${Number.isFinite(e.linkedin.liveChat.chatters) ? ` · ${nfmt(e.linkedin.liveChat.chatters)} chatting` : ""}` : null;
+        html += `<div class="row">${chan(channel.label)}<span class="val">${liChat || `${watched} · ${minutes}`}</span></div>`;
       }
-      html += `</div></div>`;
+      html += `</div>`;
+      const li = e.linkedin;
+      if (li && !Object.values(li.metrics || {}).some(Number.isFinite) && (li.reason || li.note)) {
+        html += `<p class="hint">${esc(li.reason || "")}</p>${li.note ? `<details class="pdisc"><summary>About the LinkedIn numbers${ICONS.chevdown}</summary><div class="hint">${esc(li.note)}</div></details>` : ""}`;
+      }
+      html += `</div>`;
     }
     html += `</div>`;
   }
 
-  if (e.linkedin) {
+  const liMetrics = e.linkedin ? Object.values(e.linkedin.metrics || {}).some(Number.isFinite) : false;
+  if (e.linkedin && !(liMetrics === false && e.live?.byChannel?.some((c) => /^LinkedIn\b/.test(c.label)))) {
     const li = e.linkedin;
     const rows = [['Live chat messages', li.liveChat.messages], ['Live chat participants', li.liveChat.chatters],
       ['Video plays', li.metrics.plays], ['Unique video viewers', li.metrics.uniqueViewers], ['Minutes watched', li.metrics.watchTimeMinutes],
@@ -2300,11 +2405,33 @@ function buildPanel() {
   html += `</div>`;
   el.innerHTML = html;
   el.style.display = "";
+  fillGridRows(el.querySelector(".pgrid"));
   el.querySelector("#panelx").addEventListener("click", () => { state.panel = null; state.solo = null; render(); });
   el.querySelectorAll(".senti-link").forEach(a =>
     a.addEventListener("click", () => openDrill(e.slug, a.dataset.f)));
 }
 
+// The pane's sections are one hairline grid (1 px gaps over the line color). A
+// row the cells do not fill would show that color as an empty slot, so the
+// rightmost cell of a short row spans the columns that are left.
+function fillGridRows(grid) {
+  if (!grid || !grid.offsetParent) return;
+  const cells = [...grid.children];
+  for (const c of cells) c.style.removeProperty("grid-column");
+  const tracks = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length;
+  if (tracks < 2) return;
+  const rows = new Map();
+  for (const c of cells) rows.set(c.offsetTop, [...(rows.get(c.offsetTop) || []), c]);
+  for (const row of rows.values()) {
+    if (row.some((c) => c.classList.contains("wide"))) continue;
+    const width = row.reduce((w, c) => w + c.offsetWidth, 0) + row.length - 1;
+    if (width >= grid.clientWidth - 2) continue;
+    const used = row.reduce((n, c) => n + Math.max(1, Math.round((c.offsetWidth + 1) / ((grid.clientWidth + 1) / tracks))), 0);
+    const right = row.reduce((a, b) => (b.offsetLeft > a.offsetLeft ? b : a));
+    right.style.gridColumn = `span ${Math.max(1, tracks - used + 1)}`;
+  }
+}
+window.addEventListener("resize", () => fillGridRows(document.querySelector("#panel .pgrid")));
 function feedbackSource(comment) {
   return comment.source === "live-chat" ? `${comment.platform || "Stream"} live chat` : comment.source === "yt" ? "YouTube" : "X";
 }
@@ -2348,8 +2475,7 @@ function openDrill(slug, filter) {
   drillState.opener = document.activeElement;
   renderDrill();
   document.getElementById("drill").classList.add("on");
-  for (const id of ["main"]) document.getElementById(id)?.setAttribute("inert", "");
-  document.querySelector("header")?.setAttribute("inert", "");
+  for (const n of document.querySelectorAll("main, header, .rail, .tabbar")) n.setAttribute("inert", "");
   document.getElementById("dtitle").focus();
 }
 document.getElementById("dsearch").addEventListener("input", event => { drillState.query = event.target.value; renderDrill(); });
@@ -2358,8 +2484,7 @@ function closeDrill() {
   const drill = document.getElementById("drill");
   if (!drill.classList.contains("on")) return;
   drill.classList.remove("on");
-  document.getElementById("main")?.removeAttribute("inert");
-  document.querySelector("header")?.removeAttribute("inert");
+  for (const n of document.querySelectorAll("main, header, .rail, .tabbar")) n.removeAttribute("inert");
   const back = drillState.opener;
   drillState.opener = null;
   if (back && back.isConnected) back.focus();
@@ -2814,6 +2939,7 @@ document.getElementById("chartbox").addEventListener("mouseleave", () => {
 // health-chip tooltip: delegated so it survives every re-render
 const rtt = document.createElement("div");
 rtt.id = "rtt";
+rtt.setAttribute("role", "tooltip");
 document.body.appendChild(rtt);
 function showRtt(badge) {
   let html = null;
@@ -2853,6 +2979,8 @@ function showRtt(badge) {
   if (!html) return;
   rtt.innerHTML = html;
   monoFigures(rtt);
+  for (const n of document.querySelectorAll('[aria-describedby="rtt"]')) if (n !== badge) n.removeAttribute("aria-describedby");
+  if (!badge.getAttribute("aria-describedby")) badge.setAttribute("aria-describedby", "rtt");
   const b = badge.getBoundingClientRect();
   rtt.style.opacity = 1;
   // measure after content is set; clamp inside the viewport, flip above if low
@@ -2863,7 +2991,16 @@ function showRtt(badge) {
   rtt.style.left = x + "px";
   rtt.style.top = y + "px";
 }
-function hideRtt() { rtt.style.opacity = 0; }
+function hideRtt() {
+  rtt.style.opacity = 0;
+  for (const n of document.querySelectorAll('[aria-describedby="rtt"]')) n.removeAttribute("aria-describedby");
+}
+// every focusable tooltip trigger that is not a native control is announced as one
+function tooltipTriggers(root = document) {
+  for (const n of root.querySelectorAll('[data-tip][tabindex="0"], [data-stat][tabindex="0"]')) {
+    if (!/^(BUTTON|A)$/.test(n.tagName) && !n.getAttribute("role")) n.setAttribute("role", "button");
+  }
+}
 // A tap pins its tooltip: touch synthesis fires a stray mouseout right after
 // the gesture (hover is not sticky on touch), which must not dismiss what the
 // tap just opened. Unpin on outside click or when keyboard focus moves on.
@@ -3024,7 +3161,12 @@ const barTotals = {
     const visible = chart.data.datasets
       .map((_, di) => chart.getDatasetMeta(di))
       .filter((meta) => !meta.hidden && chart.isDatasetVisible(meta.index));
+    // focus + context (data-viz rule 2): only the focus bar — the selected
+    // episode, else the newest — carries its total; every other value is one
+    // hover, one arrow key, or the Table away
+    const focusSlug = state.solo || NEWEST.slug;
     eps.forEach((e, i) => {
+      if (e.slug !== focusSlug) return;
       const bars = visible.map((meta) => meta.data[i]).filter(Boolean);
       if (!bars.length) return;
       const endX = Math.max(...bars.map((b) => b.x));
@@ -3383,12 +3525,13 @@ function render() {
   buildTable();
   buildEmptyNote();
   syncUI();
+  tooltipTriggers();
   {
     const touch = matchMedia("(hover: none)").matches;
     const sel = EPS.find((e) => e.slug === state.solo);
     document.getElementById("chint").textContent = state.table ? ""
       : touch ? "Tap a bar or line to open that episode · Table lists every value"
-      : "Point at the chart for its numbers · click a bar or line to open that episode · ← → step through episodes";
+      : "Point at the chart for its numbers · click a bar or line to open that episode · the arrow keys step through episodes";
     document.getElementById("chart").setAttribute("aria-label", `${t}${sel ? `, ${label(sel)} selected` : ""}. Use the arrow keys to step through episodes; the Table button lists every value.`);
   }
   monoFigures();
@@ -3607,11 +3750,13 @@ function render() {
               return Number.isInteger(v) ? "week " + (v + 1) : "";
             },
             maxTicksLimit: isCal ? 9 : matchMedia("(max-width: 720px)").matches ? 5 : 24,
+            ...(isRace && matchMedia("(max-width: 720px)").matches ? { stepSize: 28 } : {}),
             maxRotation: 0, autoSkip: true,
           },
           grid: { color: GRID, drawTicks: false },
           border: { display: false },
           offset: isDelta,
+          max: isRace ? Math.max(7, ...datasets.filter((d) => !d.isAnnounce).flatMap((d) => (d.data || []).map((p) => p.x)).filter(Number.isFinite)) : undefined,
           title: { display: isLive, text: "Minutes into the show", color: FG3, font: { family: FONT, size: 12 } },
         },
         y: {
@@ -3676,7 +3821,7 @@ function buildTable() {
       html += "</tr>";
     }
   } else if (kind === "watched") {
-    html += `<th>Episode</th><th>Watched vs typical</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>Avg time</th><th>Total time</th></tr>`;
+    html += `<th>Episode</th><th>Watched</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>Avg time</th><th>Total time</th></tr>`;
     for (const e of [...EPS].reverse()) {
       html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
       if (!hasYoutubeReading(e) || !e.watch) {
@@ -3709,7 +3854,7 @@ function buildTable() {
       html += `<td>${metricText(e.latest.xPlays)}</td></tr>`;
     }
   } else {
-    html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched vs typical</th><th>${PLOGO.yt} Pace vs typical</th></tr>`;
+    html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>${PLOGO.yt} Pace vs typical</th></tr>`;
     // episode scores are each against a different set of earlier episodes —
     // one neutral colour, never the show-health bands (PRD v9 F17)
     for (const e of [...EPS].reverse()) {
@@ -3730,6 +3875,7 @@ function buildTable() {
     }
   }
   html += "</table>";
+  if (kind === "watched" || kind === "views") html += `<p class="tcap">↑ ↓ mark a share watched above or below the typical episode</p>`;
   box.innerHTML = html;
   box.style.display = "block"; // stylesheet default is none — must set explicitly
   const fade = () => box.classList.toggle("more-right", box.scrollLeft + box.clientWidth < box.scrollWidth - 1);
@@ -3808,12 +3954,12 @@ function buildInsightsPanel() {
     div.innerHTML = `<span class="ic">${ins.rank ? `<b class="rk">${ins.rank}</b>` : cat.svg}</span>
       <span class="body"><div class="cat">${cat.name}</div>
       <span class="txt">${emphasize(ins.text)}</span>
-      ${ins.recommendation ? `<button type="button" class="reveal" aria-expanded="false">Recommendation${IC('<path d="M6.5 9.5 12 15l5.5-5.5"/>', "rchev")}</button>` : ""}
+      ${ins.recommendation ? `<button type="button" class="rec-toggle" aria-expanded="false">Recommendation${IC('<path d="M6.5 9.5 12 15l5.5-5.5"/>', "rchev")}</button>` : ""}
       ${hasMore ? `<div class="more" inert><div>${ins.recommendation ? `<div class="rec">${emphasize(ins.recommendation)}</div>` : ""}${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}</div></div>` : ""}</span>`;
     if (hasMore) div.addEventListener("click", (ev) => {
       if (ev.target.closest("a")) return;
       const open = div.classList.toggle("open");
-      div.querySelector(".reveal")?.setAttribute("aria-expanded", String(open));
+      div.querySelector(".rec-toggle")?.setAttribute("aria-expanded", String(open));
       const more = div.querySelector(".more");
       if (open) more.removeAttribute("inert"); else more.setAttribute("inert", "");
     });
@@ -3821,6 +3967,13 @@ function buildInsightsPanel() {
   };
 
   for (const ins of all) add(ins);
+  const ranked = all.some((i) => i.rank);
+  document.getElementById("insightsmeta").textContent = ranked
+    ? "This week’s actions from today’s read, biggest lever first"
+    : "The most timely findings while no written list is current";
+  document.getElementById("actionsmeta").textContent = ranked
+    ? `${all.length} action${all.length === 1 ? "" : "s"} for this week, biggest lever first`
+    : "The most timely findings";
 }
 
 /* ================= about ================= */
@@ -3984,14 +4137,21 @@ const stamp = document.getElementById("stamp");
   // lives in the hover title, so no digit is added above the fold)
   const h = DATA.health;
   const behind = h && Number.isFinite(h.ageDays) && h.ageDays >= 1;
-  const current = when === "today" && !behind;
-  stamp.innerHTML = `<i class="${current ? "" : "old"}" aria-hidden="true"></i><span class="sfull">Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span><span class="sshort" aria-hidden="true">${current ? "Today" : "Behind"}</span>`;
+  // Data is current until the next scheduled publish is missed: the morning
+  // run lands by about 07:05 Phoenix and the recovery check retries at 08:15,
+  // so yesterday's data is on time until 08:45 Phoenix (UTC−7) today. Only a
+  // missed publish or a health read behind the data turns the dot amber.
+  const [gy, gm, gd] = phoenixDateKey(DATA.generatedAt).split("-").map(Number);
+  const late = Date.now() > Date.UTC(gy, gm - 1, gd + 1, 15, 45);
+  const current = !late && !behind;
+  stamp.innerHTML = `<i class="${current ? "" : "old"}" aria-hidden="true"></i><span class="sfull">Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span><span class="sshort" aria-hidden="true">${current ? esc(cap(when)) : "Behind"}</span>`;
   stamp.classList.toggle("behind", !current);
-  // the system's trust bar: on phones the freshness sentence moves under the
-  // top bar when the data or the read is not current (the bar keeps one word)
+  // the system's trust bar: on phones a not-current statement moves under the
+  // top bar in short words (the bar keeps the dot and one word)
   const trust = document.getElementById("trust");
   if (!current) {
-    trust.innerHTML = `${ICONS.clock}<span>Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span>`;
+    const parts = [late ? `No new data since ${esc(when)}` : "", behind ? `health read ${h.withheld ? "withheld" : "behind the data"}` : ""].filter(Boolean);
+    trust.innerHTML = `${ICONS.clock}<span>${cap(parts.join(" · "))}</span>`;
     trust.hidden = false;
   }
   stamp.title = `Exact refresh: ${DATA.generatedAt}${h?.date ? ` · health read saved ${h.date}` : ""}`;
@@ -4008,17 +4168,36 @@ const stamp = document.getElementById("stamp");
 }
 
 buildAbout();
-{
-  const btn = document.getElementById("aboutbtn"), reg = document.getElementById("aboutreg"), inner = document.getElementById("about");
-  btn.addEventListener("click", () => {
-    const open = btn.getAttribute("aria-expanded") !== "true";
-    btn.setAttribute("aria-expanded", String(open));
-    reg.dataset.open = String(open);
-    if (open) inner.removeAttribute("inert"); else inner.setAttribute("inert", "");
-  });
-}
 buildInsightsPanel();
 render();
+
+/* ================= pages: the system's app shell (rail on desktop, tab bar on phones) =================
+   One file, four views behind hash routes. Every surface still renders on
+   every state change; the route only decides which view is on screen, so a
+   number never differs between pages. */
+const PAGES = { today: "Today", episodes: "Episodes", actions: "Actions", about: "About" };
+function route({ focus = false } = {}) {
+  const key = location.hash.slice(1).split("/")[0];
+  const page = PAGES[key] ? key : "today";
+  for (const view of document.querySelectorAll(".view")) view.hidden = view.dataset.view !== page;
+  for (const link of document.querySelectorAll("[data-nav]")) {
+    if (link.dataset.nav === page) link.setAttribute("aria-current", "page"); else link.removeAttribute("aria-current");
+  }
+  document.getElementById("pagetitle").textContent = PAGES[page];
+  document.title = page === "today" ? "Dive Radio — Episode Analytics" : `${PAGES[page]} — Dive Radio`;
+  document.body.dataset.page = page;
+  closeViewMenu();
+  if (page === "episodes") {
+    const strip = document.getElementById("strip");
+    if (!strip.dataset.landed) { strip.scrollLeft = strip.scrollWidth; strip.dataset.landed = "1"; }
+    strip.dispatchEvent(new Event("scroll"));
+    fillGridRows(document.querySelector("#panel .pgrid"));
+    if (chart) chart.resize();
+  }
+  if (focus) document.getElementById("main").focus({ preventScroll: true });
+}
+window.addEventListener("hashchange", () => { window.scrollTo(0, 0); route({ focus: true }); });
+route();
 </script>
 </body>
 </html>
