@@ -234,7 +234,7 @@ gone. Test fixtures exercise both transports without real credentials.
 ## Inflight (previews and feedback)
 
 The Inflight MCP server (`inflight`, `https://mcp.inflight.co/mcp`) shares work
-for review without leaving the agent:
+for review without leaving the agent (no page widget):
 
 - **Preview link or sharing deployed work:** `share_preview` with the repo from
   the git remote, the full HEAD sha, and the branch, plus a `starting_route`,
@@ -244,7 +244,21 @@ for review without leaving the agent:
 - **Review comments or next steps:** `get_feedback`, then `complete_next_step`
   as each step is done.
 
-The widget tag (`https://inflight.co/widget.js`, `data-org="y9oleiy4"`) sits in
-the `<head>` of `index.html` and `agents.html` on the `inflight-setup` branch. It
-is a third-party runtime script, an exception to rule 10, so it stays off `main`
-until the owners decide otherwise.
+The widget tag (`https://inflight.co/widget.js`) is gone from `index.html` and
+`agents.html` (owner decision 2026-10-06, with the design-system retrofit). It
+was a third-party runtime script, an exception to rule 10; do not add it back.
+Inflight review still works through the MCP tools above, without the widget.
+
+## Design system (2026-10-06)
+
+Both pages are built on the Smart Sharps design system — the skill at
+`~/.claude/skills/smart-sharps-design-system/` (tokens, components, data-viz
+extension, `scripts/ds-audit.mjs` linter, `scripts/shoot.mjs` census). The
+tokens and the Geist / Geist Mono Latin subsets are inlined in each page, so
+the pages still fetch nothing at runtime. A page change must keep
+`node ~/.claude/skills/smart-sharps-design-system/scripts/ds-audit.mjs index.html agents.html`
+at zero findings and pass the `design-system-critic` agent at 10/10 on every
+dimension before it ships. Color means one thing each: blue only for what you
+can tap, green/red for above/below the show's typical, amber for fragile or a
+warning; episodes are told apart by focus (white) against context (gray), not
+by a rainbow; YouTube is the rose series pair, X the neutral pair.

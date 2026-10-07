@@ -102,10 +102,10 @@ test('feedback renderer exposes exact LinkedIn original links without allowing a
   const functionText = html.match(/function feedbackOriginal\(comment\) \{[\s\S]*?\n\}/)?.[0];
   assert(functionText);
   const render = vm.runInNewContext(`(${functionText})`, { esc: value => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') });
-  assert.match(render({ url }), /Original ↗/);
+  assert.match(render({ url }), /href="https:\/\/www\.linkedin\.com\/feed\/update\/urn:li:ugcPost:123456\/"[^>]*>Original<svg class="ext"[^>]*aria-hidden="true"/);
   assert.match(render({ url }), /rel="noopener noreferrer"/);
   assert.equal(render({ url: 'https://www.linkedin.com/in/michaelriddering/' }), '');
   assert.equal(render({ url: 'https://www.linkedin.com.evil.test/feed/update/urn:li:ugcPost:123456/' }), '');
   assert.equal(render({ url: 'javascript:alert(1)' }), '');
-  assert.match(render({ url: 'https://x.com/i/status/123456' }), /Original ↗/);
+  assert.match(render({ url: 'https://x.com/i/status/123456' }), />Original<svg class="ext"/);
 });

@@ -2593,7 +2593,7 @@ try {
     bad++; drift("chart metrics: the hero split bar's segments and labels must share one tooltip definition and stay keyboard-reachable");
   }
   // one text edge inside the chart tooltip: chips hang in a fixed gutter
-  if (!/\.tt \{ --chip: 15px; \}/.test(html)
+  if (!/\.tt \{ --chip: 16px; \}/.test(html)
     || !/\.tt \.meta, \.tt \.big, \.tt \.chg, \.tt \.note \{ padding-left: var\(--chip\); \}/.test(html)) {
     bad++; drift("chart metrics: the chart tooltip's title, number, and rows must share one left text edge");
   }
@@ -2725,16 +2725,21 @@ try {
   if (!bad) ok("chart metrics: measure picker unit-scoped with silent absence, live lowest/highest on the tooltip, platform marks accessibly named");
 }
 
-// --- 1q. one page gutter (owner directive 2026-08-23) ---
+// --- 1q. one page gutter on the design system (owner directives 2026-08-23, 2026-10-06) ---
 // Every card, column, and row on the page grid shares a single spacing token,
-// and any container inset (scroll padding, borders) is compensated so the
-// PAINTED card edges land on the same grid. Measured in a browser at both
-// widths on 2026-08-23: all edges flush, every gap identical.
+// on the Smart Sharps design system's 4 px grid (16 px desktop, 12 px phone),
+// and any container inset (scroll padding) is compensated so the PAINTED card
+// edges land on the same grid. Cards are surface-1 fills whose outline is an
+// inset hairline — never a border, so nothing eats the gutter. The episode
+// detail pane is one container: its header sits on the page and its sections
+// are one hairline grid (1 px gaps over the line color), never a card in a card.
+// Re-locked 2026-10-06 with the design-system retrofit (audit/DESIGN-2026-10-06.md);
+// the 2026-08-23 contract locked the same rules at 14 / 10 px and the old fills.
 {
   let bad = 0;
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
-  if (!/--gap: 14px;/.test(html) || !/:root \{ --gap: 10px; \}/.test(html)) {
-    bad++; drift("page gutter: the spacing token must be defined once for desktop and once for the phone cut");
+  if (!/--gap: 16px;/.test(html) || !/:root \{ --gap: 12px; \}/.test(html)) {
+    bad++; drift("page gutter: the spacing token must be defined once for desktop (16 px) and once for the phone cut (12 px) on the 4 px grid");
   }
   const GUTTERED = [
     // the health row is one card since 2026-09-01 (no inner grid to gap);
@@ -2743,28 +2748,57 @@ try {
     [".overview", /\.overview \{[^}]*gap: var\(--gap\); margin-bottom: var\(--gap\);/],
     [".carousel", /\.carousel \{ display: flex; gap: var\(--gap\);/],
     ["#chartcard", /#chartcard \{[^}]*margin-bottom: var\(--gap\);/],
-    [".panel", /\.panel \{[^}]*padding: var\(--gap\); margin: var\(--gap\) 0;/],
-    [".pgrid", /\.panel \.pgrid \{[^}]*gap: var\(--gap\); margin-top: var\(--gap\);/],
+    [".panel", /\.panel \{[^}]*padding: 0; margin: var\(--gap\) 0;/],
     [".insights", /\.insights \{ display: grid; gap: var\(--gap\); \}/],
     ["header", /header \{[^}]*margin-bottom: var\(--gap\);/],
   ];
   for (const [name, re] of GUTTERED) {
     if (!re.test(html)) { bad++; drift(`page gutter: ${name} does not use the shared spacing token`); }
   }
-  // page cards carry no border: the fill is the whole edge, so nothing eats
-  // into the gutter (the panel's inset is the token exactly)
-  for (const [name, re] of [[".card", /\.card \{ background: var\(--s1\); border: 0;/],
-    ["#chartcard", /#chartcard \{ background: var\(--s1\); border: 0;/],
-    [".sitem", /\.sitem \{[^}]*border: 0;/], [".insight", /\.insight \{ background: var\(--s1\); border: 0;/],
-    [".panel", /\.panel \{ background: var\(--s2\); border: 0;/]]) {
-    if (!re.test(html)) { bad++; drift(`page gutter: ${name} still draws a border — cards are fill only`); }
+  // page cards carry no border: the fill is the edge and the hairline is an
+  // inset shadow, so nothing eats into the gutter
+  for (const [name, re] of [[".card", /\.card \{ background: var\(--surface-1\); border: 0;[^}]*box-shadow: inset 0 0 0 1px var\(--line\);/],
+    ["#chartcard", /#chartcard \{ background: var\(--surface-1\); border: 0;[^}]*box-shadow: inset 0 0 0 1px var\(--line\);/],
+    [".sitem", /\.sitem \{[^}]*border: 0;[^}]*box-shadow: inset 0 0 0 1px var\(--line\);/],
+    [".insight", /\.insight \{ background: var\(--surface-1\); border: 0;[^}]*box-shadow: inset 0 0 0 1px var\(--line\);/],
+    [".panel", /\.panel \{ background: transparent; border: 0;/]]) {
+    if (!re.test(html)) { bad++; drift(`page gutter: ${name} still draws a border or lost its inset hairline — cards are fill plus an inset hairline`); }
   }
-  // the carousel's focus-ring inset must be pulled back out, or its cards sit
-  // off the grid every other row lands on
-  if (!/\.carousel \{[^}]*padding: 2px;\s*\n\s*margin: -2px -2px calc\(var\(--gap\) - 2px\);/.test(html)) {
+  // the detail pane's sections: one hairline grid, cells on the card surface
+  if (!/\.panel \.pgrid \{[^}]*gap: 1px; margin-top: 12px;[^}]*background: var\(--line\);/.test(html)
+    || !/\.panel \.psec \{ min-width: 0; background: var\(--surface-1\);/.test(html)) {
+    bad++; drift("page gutter: the episode pane's sections must be one hairline grid (1 px gaps over the line color), never filled cards inside a card");
+  }
+  // the carousel's scroll inset (the system's chip-row room for focus rings
+  // and hit areas) must be pulled back out, or its cards sit off the grid
+  if (!/\.carousel \{[^}]*padding: 8px;\s*\n\s*margin: -8px -8px calc\(var\(--gap\) - 8px\);/.test(html)) {
     bad++; drift("page gutter: the carousel's scroll inset is not compensated — its painted card edges would sit inside the page grid");
   }
-  if (!bad) ok("page gutter: one spacing token drives every card, column, and row; container insets compensated so painted edges align");
+  if (!bad) ok("page gutter: one spacing token on the 4 px grid drives every card, column, and row; insets compensated; cards are fill plus inset hairline; the episode pane is one hairline grid");
+}
+
+// --- 1q2. design system (owner directive 2026-10-06) ---
+// Both pages are built on the Smart Sharps design system: every color, type
+// size, spacing, radius, font, weight, and case comes from its tokens, checked
+// by the system's own linter (vendored at audit/ds-audit.mjs). A page change
+// that adds a raw color or an off-scale value is drift until it uses a token.
+{
+  let bad = 0;
+  const { auditSource } = await import(join(TOOL, "audit", "ds-audit.mjs"));
+  for (const page of ["index.html", "agents.html"]) {
+    const { findings } = auditSource(readFileSync(join(ROOT, page), "utf8"), page);
+    for (const f of findings.slice(0, 5)) { bad++; drift(`design system: ${page}:${f.line} [${f.rule}] ${f.detail}`); }
+    if (findings.length > 5) { bad++; drift(`design system: ${page} has ${findings.length - 5} more off-system value(s)`); }
+  }
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  // charts read the tokens at runtime — no palette is pasted into the script
+  if (!/const TOK = \(name\) => ROOT_CSS\.getPropertyValue\(name\)\.trim\(\);/.test(html) || /const PALETTE = \[/.test(html)) {
+    bad++; drift("design system: chart colors must be read from the stylesheet tokens, never a pasted palette");
+  }
+  if (/inflight\.co\/widget/.test(html) || /inflight\.co\/widget/.test(readFileSync(join(ROOT, "agents.html"), "utf8"))) {
+    bad++; drift("design system: the Inflight widget is back — removed 2026-10-06; it was a third-party runtime script (rule 10)");
+  }
+  if (!bad) ok("design system: both pages use only design-system tokens; charts read them at runtime; no third-party runtime script");
 }
 
 // LinkedIn identity, evidence and absence contract, independently rebuilt from source records.
