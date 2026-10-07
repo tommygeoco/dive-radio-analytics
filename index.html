@@ -116,7 +116,9 @@
   .pagelead { margin: 8px 0 16px; max-width: 62ch; color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
   @media (min-width: 48rem) { .pagelead { margin-top: 4px; font-size: var(--text-meta); } }
   /* Today's link to the Actions page: the system's disclosure row, navigating */
-  .herolink { position: relative; display: inline-flex; align-items: center; gap: 4px; margin-top: 24px; height: 28px;
+  .epihero:not(:empty) { margin-bottom: var(--gap); }
+  .herolink { position: relative; display: inline-flex; align-items: center; gap: 4px; margin-top: 24px; height: 28px; padding: 0; border: 0;
+    background: none; font-family: inherit; cursor: pointer;
     color: var(--tint-fg); font-size: var(--text-body-sm); font-weight: 500; text-decoration: none; }
   .herolink::after { content: ""; position: absolute; inset: -8px -4px; }
   .herolink:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -1113,7 +1115,9 @@
 
   <!-- Episodes: every episode side by side, the chart, and the selected one in full -->
   <section class="view" id="view-episodes" data-view="episodes" aria-label="Episodes" hidden>
-    <p class="pagelead">Every episode, oldest to newest. Select one to focus the chart and open it in full below.</p>
+    <p class="pagelead">Every episode, oldest to newest. Select one to see its numbers here, focus the chart on it, and open it in full below.</p>
+    <!-- the latest/selected episode card lives here while Episodes is on screen (route() moves it) -->
+    <div class="epihero" id="epihero"></div>
     <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
 
     <section id="chartcard" class="card" aria-labelledby="ctitle">
@@ -1361,7 +1365,7 @@ function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").
 // Figures in mono, words in sans (design system): inside containers that can
 // hold both, every figure — counts, percentages, times, dates, episode ids —
 // is wrapped in .n after render. Text only; markup and attributes are untouched.
-const FIGURE_HOSTS = ".pnum, .panel .row, .panel .trow .tbv, .panel .hint, .panel .note, .panel .pill, .panel .htitle, .panel .pdate, .lkv, .fbhead .kicker, .tt .big, .tt .row .val, .tt .meta, .tt .chg, .tt .row .when, #tablebox td, #tablebox th, .sitem .r1 .num, .insight .lead, .insight .why, .insight .cav, .herolink, .hero .state, .chead .cs, .drow .m, .compound .cv2, .health-evidence .readson, .health-evidence .setchange, .hc-dir .outlook, .trendwrap .cap, #rtt, .fbfoot, .chnote, .wmlist, #aboutbody, #dtitle, .dtabs button, .chint";
+const FIGURE_HOSTS = ".pnum, .panel .row, .panel .trow .tbv, .panel .hint, .panel .note, .panel .pill, .panel .htitle, .panel .pdate, .lkv, .fbhead .kicker, .tt .big, .tt .row .val, .tt .meta, .tt .chg, .tt .row .when, #tablebox td, #tablebox th, .sitem .r1 .num, .insight .lead, .insight .why, .insight .cav, .herolink, .hc-meta .dntext, #actionsmeta, .hero .state, .chead .cs, .drow .m, .compound .cv2, .health-evidence .readson, .health-evidence .setchange, .hc-dir .outlook, .trendwrap .cap, #rtt, .fbfoot, .chnote, .wmlist, #aboutbody, #dtitle, .dtabs button, .chint";
 const FIGURE_RE = /\bE\d+\b|\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?|[+−]?\d+(?:,\d{3})*(?:[.:]\d+)*%?/g;
 function monoFigures(root = document) {
   const hosts = root.matches?.(FIGURE_HOSTS) ? [root, ...root.querySelectorAll(FIGURE_HOSTS)] : [...root.querySelectorAll(FIGURE_HOSTS)];
@@ -2046,8 +2050,11 @@ function buildHero() {
   }
   // No health chip here (owner directive 2026-08-23): the hero states one
   // measure. Episode health lives on the episode cards and in the panel.
-  // One tap opens this episode in full on the Episodes page.
-  html += `<a class="herolink" href="#episodes/e${e.ep}">E${e.ep} in detail${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a>`;
+  // One tap opens this episode in full: from Today it goes to the Episodes
+  // page; on Episodes the card sits above the row and opens the pane below.
+  html += document.body.dataset.page === "episodes"
+    ? `<button type="button" class="herolink" data-topane="${esc(e.slug)}">E${e.ep} in detail${IC('<path d="M6.5 9.5 12 15l5.5-5.5"/>')}</button>`
+    : `<a class="herolink" href="#episodes/e${e.ep}">E${e.ep} in detail${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a>`;
   html += `</div>`;
   // The per-minute sparkline rides the live measure only. Other measures have
   // no honest per-episode series to draw (X plays have no week-1 history
@@ -2131,9 +2138,10 @@ function buildStrip() {
       if (opening) { state.panel = e.slug; state.solo = e.slug; }
       else { state.panel = null; state.solo = null; }
       render();
-      // the click's answer is the soloed chart — bring it into view; the
-      // detail panel waits directly beneath it
-      if (opening) document.getElementById("chartcard").scrollIntoView({
+      // the click's answer is the episode card above the row (its numbers for
+      // the chart's measure) — keep it in view; the chart focuses on the episode
+      // below it and the pane waits beneath the chart
+      if (opening) document.getElementById("hero").scrollIntoView({
         block: "nearest",
         behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
       });
@@ -3153,7 +3161,7 @@ document.addEventListener("click", (ev) => {
   // expanders) is detached by the time this bubble arrives — closest() can't
   // see its old ancestors, so a detached target is always an INSIDE click
   if (!(ev.target instanceof Element) || !ev.target.isConnected) return;
-  if (ev.target.closest('.panel, .sitem, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .dcard, .rail, .tabbar, header, .skip, a[href^="#"]')) return;
+  if (ev.target.closest('.panel, .sitem, .hero, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .dcard, .rail, .tabbar, header, .skip, a[href^="#"]')) return;
   state.panel = null; state.solo = null; render();
 });
 
@@ -4401,7 +4409,13 @@ function route({ focus = false } = {}) {
   let opened = null;
   let landed = null;
   for (const card of document.querySelectorAll(".insight.landed")) card.classList.remove("landed");
-  if (page !== "episodes" && EPISODE_KEYS.some((k) => state[k] !== EPISODE_DEFAULTS[k])) { Object.assign(state, EPISODE_DEFAULTS); render(); }
+  // one episode card: on Today it leads the overview (always the newest);
+  // on Episodes it sits above the row and follows the selection
+  const hero = document.getElementById("hero");
+  const heroHome = document.getElementById(page === "episodes" ? "epihero" : "overview");
+  const heroMoved = hero.parentElement !== heroHome;
+  if (heroMoved) heroHome.prepend(hero);
+  if (page !== "episodes" && (heroMoved || EPISODE_KEYS.some((k) => state[k] !== EPISODE_DEFAULTS[k]))) { Object.assign(state, EPISODE_DEFAULTS); render(); }
   if (page === "actions" && arg) {
     landed = document.getElementById(`act-${decodeURIComponent(arg)}`);
     if (landed) landed.classList.add("landed");
@@ -4441,6 +4455,14 @@ window.addEventListener("scroll", () => { clearTimeout(scrollMemo); scrollMemo =
 document.addEventListener("click", (ev) => {
   if (ev.target instanceof Element && ev.target.closest('a[href^="#"]')) { clearTimeout(scrollMemo); rememberScroll(); }
 }, true);
+// on Episodes the episode card's link opens that episode's pane below the chart
+document.addEventListener("click", (ev) => {
+  const link = ev.target instanceof Element && ev.target.closest("[data-topane]");
+  if (!link) return;
+  state.solo = link.dataset.topane; state.panel = link.dataset.topane;
+  render();
+  document.getElementById("panel").scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+});
 // the skip link moves focus past the navigation without changing the page
 document.querySelector(".skip").addEventListener("click", (ev) => { ev.preventDefault(); document.getElementById("main").focus(); });
 window.addEventListener("hashchange", () => route({ focus: true }));
