@@ -39,7 +39,7 @@
     --chart-grid: rgb(255 255 255 / 0.055); --chart-axis: var(--fg-3); --chart-gap: var(--surface-1);
     --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-2xl: 20px; --radius-full: 999px;
     --d-gutter: 16px; --d-card: 16px; --d-inner: 12px; --d-section: 24px; --d-row: 12px;
-    --topbar-h: 48px; --content-max: 1200px;
+    --topbar-h: 48px; --content-max: 1240px;
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --gap: 16px;
   }
@@ -92,10 +92,13 @@
   @media (min-width: 48rem) { button { height: 36px; font-size: var(--text-body-sm); } }
   /* addresses: hairline-divided rows inside the card */
   .urls { display: grid; }
-  .urls div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 12px 0; color: var(--fg-3); font-size: var(--text-body-sm); }
+  .host { margin: 0 0 4px; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .host .n { font-family: var(--font-mono); color: var(--fg-2); overflow-wrap: anywhere; white-space: normal; }
+  .urls div { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-height: 44px; padding: 8px 0; color: var(--fg-3); font-size: var(--text-body-sm); }
   .urls div + div { box-shadow: inset 0 1px 0 var(--line); }
   .urls div:last-child { padding-bottom: 0; }
-  .urls a { color: var(--tint-fg); font-family: var(--font-mono); font-size: var(--text-body-sm); text-decoration: none; overflow-wrap: anywhere; }
+  .urls a { display: inline-flex; align-items: center; min-height: 28px; color: var(--tint-fg); font-family: var(--font-mono); font-size: var(--text-body-sm); text-decoration: none; }
+  .urls span { flex: 1; min-width: 0; }
   .urls a:hover { text-decoration: underline; text-underline-offset: 4px; }
   /* the list: the system's "Why" bullets */
   ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--fg-1); }
@@ -107,7 +110,8 @@
   .runtime:nth-child(n+3) { box-shadow: inset 0 1px 0 var(--line); }
   .runtime:nth-child(-n+2) { padding-top: 4px; }
   .runtime b { display: block; margin-bottom: 4px; color: var(--fg-1); font-weight: 500; font-size: var(--text-body); }
-  .runtime a { color: var(--tint-fg); text-decoration: none; }
+  .runtime a { color: var(--tint-fg); text-decoration: none; display: inline-flex; align-items: center; min-height: 28px; position: relative; }
+  .runtime a::after { content: ""; position: absolute; inset: -8px -4px; }
   .runtime a:hover { text-decoration: underline; text-underline-offset: 4px; }
   .runtime code { font-family: var(--font-mono); font-size: var(--text-meta); color: var(--fg-1); }
   /* freshness: the system's status dot, gray when current */
@@ -146,18 +150,19 @@
     </section>
 
     <section class="card">
-      <h3>Addresses</h3>
+      <h2>Addresses</h2>
+      <p class="host">Every file lives at <span class="n">https://dive-radio-analytics.vercel.app/</span></p>
       <div class="urls">
-        <div><a href="agent.md">https://dive-radio-analytics.vercel.app/agent.md</a> — the brief, for reading</div>
-        <div><a href="agent.json">https://dive-radio-analytics.vercel.app/agent.json</a> — the same brief, as data</div>
-        <div><a href="llms.txt">https://dive-radio-analytics.vercel.app/llms.txt</a> — the file index</div>
-        <div><a href="agent-skill.md">https://dive-radio-analytics.vercel.app/agent-skill.md</a> — a ready-made agent skill</div>
-        <div><a href="data.json">https://dive-radio-analytics.vercel.app/data.json</a> — the dashboard data</div>
+        <div><a href="agent.md">agent.md</a><span>the brief, for reading</span></div>
+        <div><a href="agent.json">agent.json</a><span>the same brief, as data</span></div>
+        <div><a href="llms.txt">llms.txt</a><span>the file index</span></div>
+        <div><a href="agent-skill.md">agent-skill.md</a><span>a ready-made agent skill</span></div>
+        <div><a href="data.json">data.json</a><span>the dashboard data</span></div>
       </div>
     </section>
 
     <section class="card">
-      <h3>What it gets</h3>
+      <h2>What it gets</h2>
       <ul>
         <li>The show health read and the checked facts behind it</li>
         <li>The five ranked actions for the week</li>
@@ -168,7 +173,7 @@
     </section>
 
     <section class="card">
-      <h3>Works with</h3>
+      <h2>Works with</h2>
       <div class="runtimes">
         <div class="runtime"><b>Claude Code</b>Paste the prompt, or add <a href="agent-skill.md">agent-skill.md</a> to your skills folder.</div>
         <div class="runtime"><b>ChatGPT, Claude, or Gemini</b>Paste the prompt into any chat that can open a link.</div>

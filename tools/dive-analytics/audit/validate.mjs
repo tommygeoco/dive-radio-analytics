@@ -2606,7 +2606,7 @@ try {
     || !/const whole = visible\.length === chart\.data\.datasets\.length;/.test(totalsPlugin)
     || !/const available = showing\.filter\(Number\.isFinite\);/.test(totalsPlugin)
     || !/const total = whole \? displayedTotal\(e\) : drawn;/.test(totalsPlugin)
-    || !/info\.partial \? " ◐ · X only" : info\.stale \? " · old X only"/.test(totalsPlugin)
+    || !/info\.partial \? " · partial X only" : info\.stale \? " · old X only"/.test(totalsPlugin)
     || /getDatasetMeta\(chart\.data\.datasets\.length - 1\)/.test(totalsPlugin)
     || !/const segVis = chart\.data\.datasets\.map\(\(_, di\) => chart\.isDatasetVisible\(di\)\);/.test(html)
     || !/across shown destinations/.test(html)

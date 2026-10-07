@@ -54,8 +54,9 @@
     :root { --body-size: 0.875rem; --hero-size: 2.5rem; --topbar-h: 56px; --d-gutter: 24px; }
   }
   * { box-sizing: border-box; }
+  /* scroll targets (a selected episode brings the chart into view) clear the sticky top bar */
   html { background: var(--canvas); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
-    scrollbar-color: var(--surface-3) transparent; scrollbar-width: thin; }
+    scrollbar-color: var(--surface-3) transparent; scrollbar-width: thin; scroll-padding-top: calc(var(--topbar-h) + 16px); }
   body { margin: 0; background: var(--canvas); color: var(--fg-1); font-family: var(--font-sans);
     font-size: var(--text-body); line-height: 1.42; font-feature-settings: "cv11";
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-wrap: break-word; }
@@ -76,13 +77,17 @@
   @supports (backdrop-filter: blur(1px)) { header { background: color-mix(in oklab, var(--canvas) 70%, transparent); } }
   .topin { max-width: var(--content-max); height: 100%; margin: 0 auto; padding: 0 var(--d-gutter);
     display: flex; align-items: center; gap: 8px; }
-  .brand { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+  .brand { display: inline-flex; align-items: center; gap: 8px; flex: none; }
   .brand svg { width: 20px; height: 20px; flex: none; color: var(--fg-1); }
   h1 { margin: 0; font-size: var(--text-num-lg); line-height: 1.2; font-weight: 600; letter-spacing: -0.025em; white-space: nowrap; }
   @media (min-width: 48rem) { h1 { font-size: var(--text-title); line-height: 1.3; } }
   /* freshness: the system's status dot — gray when current, amber when behind; never green, never blue */
-  .stamp { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 0 4px;
-    color: var(--fg-2); font-size: var(--text-body-sm); line-height: 1.39; white-space: nowrap; overflow: hidden; }
+  .stamp { margin-left: auto; flex: 0 1 auto; display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 0 4px;
+    color: var(--fg-2); font-size: var(--text-meta); line-height: 1.34; white-space: nowrap; }
+  .stamp .sfull { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .stamp .sshort { display: none; }
+  /* the system's trust bar: phones move a not-current freshness sentence under the top bar */
+  .trust { display: none; }
   .stamp i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--fg-3); }
   .stamp i.old { background: var(--warn); }
   /* the Agents page: the top bar's pill (outline, no fill) */
@@ -92,7 +97,7 @@
     transition: background 150ms var(--ease-out-quart); }
   .agentslink::after { content: ""; position: absolute; inset: -4px 0; }
   .agentslink:hover { background: var(--surface-2); }
-  @media (min-width: 48rem) { .stamp { font-size: var(--text-meta); } .agentslink { height: 32px; font-size: var(--text-meta); } }
+  @media (min-width: 48rem) { .agentslink { height: 32px; font-size: var(--text-meta); } }
   /* A copy that is not the live site (a one-off build, a branch preview) whose
      data is from an earlier day says so and links to the live dashboard —
      the system's warning banner. */
@@ -101,6 +106,7 @@
     background: var(--warn-soft); box-shadow: inset 0 0 0 1px var(--warn-ring); }
   @media (min-width: 48rem) { .livecopy { font-size: var(--text-body-sm); } }
   .livecopy[hidden] { display: none; }
+  .livecopy .lcic { width: 16px; height: 16px; flex: none; color: var(--warn); }
   .livecopy a { margin-left: auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
     color: var(--tint-fg); font-weight: 500; text-decoration: none; border-radius: var(--radius-md); }
   .livecopy a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -121,7 +127,7 @@
   .card { background: var(--surface-1); border: 0; border-radius: var(--radius-2xl);
     box-shadow: inset 0 0 0 1px var(--line); padding: var(--d-card); min-width: 0; }
   /* a label over a block (the system's metric label): sentence case, meta, tertiary */
-  .kicker { font-size: var(--text-meta); line-height: 1.34; font-weight: 400; color: var(--fg-3); margin-bottom: 8px; }
+  .kicker { font-size: var(--text-meta); line-height: 1.34; font-weight: 400; color: var(--fg-3); margin: 0 0 8px; letter-spacing: 0; }
   .kicker .kh { color: var(--fg-3); margin-left: 4px; }
   /* a card's own title (the section header inside a panel): title on phones, body from md */
   .compound > .kicker, #audience-preview .fbhead .kicker { font-size: var(--text-title); line-height: 1.3; font-weight: 600;
@@ -186,7 +192,7 @@
      once the motion has ended (a clamp can't animate) */
   .hz-read .headline { margin: 0; color: var(--fg-1); font-size: var(--text-title); font-weight: 500; line-height: 1.3;
     letter-spacing: -0.01em; text-wrap: pretty; overflow: hidden; max-height: calc(3 * 1.3em);
-    transition: max-height 320ms var(--ease-out-expo); }
+    transition: max-height 200ms var(--ease-out-quart); }
   .hz-read .headline.clamped { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
   /* Expand: the system's secondary button, small (44 on phones, 32 from md) */
   .hxbtn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: none; height: 44px; border: 0;
@@ -202,13 +208,13 @@
   @media (min-width: 48rem) { .hxbtn { height: 32px; padding: 0 12px 0 8px; font-size: var(--text-body-sm); } }
   /* the details region: a 0fr → 1fr grid row, so the card grows with what it
      reveals; the body fades and settles a beat after the row opens */
-  .hdetails { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 320ms var(--ease-out-expo); }
+  .hdetails { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 200ms var(--ease-out-quart); }
   .hcard[data-open="true"] .hdetails { grid-template-rows: 1fr; }
   .hdinner { min-height: 0; overflow: hidden; }
   .hdbody { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); gap: 24px 32px;
     margin-top: 20px; padding-top: 20px; box-shadow: inset 0 1px 0 var(--line);
-    opacity: 0; transform: translateY(-4px); transition: opacity 160ms ease-out, transform 320ms var(--ease-out-expo); }
-  .hcard[data-open="true"] .hdbody { opacity: 1; transform: none; transition-delay: 60ms; }
+    opacity: 0; transition: opacity 200ms cubic-bezier(0.5, 0, 0.75, 0); }
+  .hcard[data-open="true"] .hdbody { opacity: 1; transition: opacity 200ms var(--ease-out-quart); }
   /* the grid follows the columns actually rendered — never an empty track */
   .hdbody.cols-2 { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
   .hdbody.cols-1 { grid-template-columns: minmax(0, 1fr); }
@@ -218,10 +224,10 @@
   .health-evidence .readson { margin: -4px 0 12px; color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
   .health-evidence .readson b { color: var(--fg-2); font-weight: 500; }
   .health-evidence .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
-  .health-evidence h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: var(--text-meta); font-weight: 500; color: var(--fg-2); }
-  .health-evidence h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none; }
-  .health-evidence h3.up::before { background: var(--pos); }
-  .health-evidence h3.down::before { background: var(--neg); }
+  .health-evidence h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: var(--text-meta); font-weight: 500; color: var(--fg-2); }
+  .health-evidence h4::before { content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .health-evidence h4.up::before { background: var(--pos); }
+  .health-evidence h4.down::before { background: var(--neg); }
   .health-evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
   .health-evidence li { display: flex; gap: 12px; color: var(--fg-2); font-size: var(--text-body-sm); line-height: 1.45; }
   .health-evidence li i { width: 4px; align-self: stretch; border-radius: var(--radius-full); flex: none; }
@@ -246,11 +252,10 @@
   .health-evidence .trendwrap .tv.now { color: var(--fg-1); }
   .health-evidence .trendwrap .cap { color: var(--fg-3); font-size: var(--text-meta); }
   /* PRD v10: where it's heading — one word per durable measure */
-  .hc-dir .dirlede { margin: 0 0 8px; color: var(--fg-2); font-size: var(--text-body-sm); line-height: 1.45; }
+  .hc-dir .dirlede { margin: 0 0 12px; color: var(--fg-2); font-size: var(--text-body-sm); line-height: 1.45; }
   .hc-dir .dirlede b { font-weight: 600; color: var(--fg-1); }
   .hc-dir .dirlede b.building { color: var(--pos); }
   .hc-dir .dirlede b.softening { color: var(--neg); }
-  .hc-dir .votes { margin: 0 0 12px; color: var(--fg-3); font-size: var(--text-meta); line-height: 1.45; }
   .hc-dir .dirrows { display: grid; }
   .hc-dir .dirrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: var(--text-body-sm); line-height: 1.3; }
   .hc-dir .dirrow + .dirrow { box-shadow: inset 0 1px 0 var(--line); }
@@ -270,7 +275,13 @@
   .hc-meta .dnnum { flex: none; width: 20px; height: 20px; border-radius: var(--radius-md); background: var(--surface-2);
     box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--fg-2); font-family: var(--font-mono); font-size: var(--text-caption);
     font-weight: 600; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
-  .healthrow.empty { display: block; color: var(--fg-2); }
+  .healthrow.empty { display: block; }
+  .hempty { display: flex; align-items: flex-start; gap: 16px; }
+  .hempty-ic { width: 40px; height: 40px; flex: none; border-radius: var(--radius-full); background: var(--surface-2);
+    box-shadow: inset 0 0 0 1px var(--line); color: var(--fg-2); display: flex; align-items: center; justify-content: center; }
+  .hempty-ic svg { width: 20px; height: 20px; color: inherit; }
+  .hempty-t { margin: 8px 0 0; font-size: var(--text-title); line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; }
+  .hempty-b { margin: 4px 0 0; max-width: 60ch; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-2); }
 
   /* ---- Primary answers: latest episode + share-watched cards ---- */
   .overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -300,8 +311,7 @@
   .hero .hs { max-width: 300px; }
 
   .compound .cv2 { color: var(--fg-2); font-size: var(--text-body-sm); font-weight: 500; line-height: 1.39; margin: 0; }
-  .compound .cv2.up { color: var(--pos); }
-  .compound .cv2.down { color: var(--neg); }
+  .compound .cv2 .db { margin: 0 2px; vertical-align: 1px; }
   /* slim neutral columns from a shared baseline; ONE bar — the selected
      episode, else the newest — is the focus white; each bar names its value
      above and its episode below */
@@ -309,6 +319,13 @@
   .compound .cbar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
   .compound .cbar .bnum { font-family: var(--font-mono); font-size: var(--text-caption); color: var(--fg-3); font-variant-numeric: tabular-nums; white-space: nowrap; letter-spacing: -0.02em; }
   .compound .cbar .bnum .bs { display: none; }
+  /* twelve labelled bars need ~44 px each for the full value; a narrower card
+     (phone, tablet, a squeezed column) shows whole numbers — the title carries the unit */
+  .compound { container-type: inline-size; }
+  @container (max-width: 560px) {
+    .compound .cbar .bnum .bl { display: none; }
+    .compound .cbar .bnum .bs { display: inline; }
+  }
   .compound .cbar.pending .bnum { color: var(--fg-2); font-family: var(--font-sans); }
   .compound .cbar.hot .bnum { color: var(--fg-1); font-weight: 600; }
   .compound .cbar .bwrap { height: 72px; width: 100%; display: flex; align-items: flex-end; justify-content: center;
@@ -325,7 +342,9 @@
   .compound .skelgrid i { display: block; border-top: 1px dashed var(--line-strong); }
   .compound .skelcenter { position: relative; display: flex; flex-direction: column; align-items: center;
     gap: 12px; padding: 24px 0 28px; text-align: center; }
-  .compound .skelicon { width: 44px; height: 44px; color: var(--fg-3); flex: none; }
+  .compound .skelicon { width: 44px; height: 44px; flex: none; border-radius: var(--radius-full); background: var(--surface-2);
+    box-shadow: inset 0 0 0 1px var(--line); color: var(--fg-2); display: flex; align-items: center; justify-content: center; }
+  .compound .skelicon svg { width: 20px; height: 20px; }
   .compound .skelplot .waitline { color: var(--fg-1); font-weight: 600; font-size: var(--text-body); }
   .compound .waitsub { color: var(--fg-3); font-size: var(--text-body-sm); margin-top: -4px; }
   .compound .skelaxis { position: relative; box-shadow: inset 0 1px 0 var(--line-strong);
@@ -345,24 +364,36 @@
   .carousel.more-left { -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px); mask-image: linear-gradient(to right, transparent 0, black 32px); }
   .carousel.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
   .carousel.more-left.more-right { -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); }
-  .sitem { flex: 1 0 168px; min-width: 168px; scroll-snap-align: end; background: var(--surface-1);
+  .sitem { flex: 0 0 200px; min-width: 200px; scroll-snap-align: end; background: var(--surface-1);
     border: 0; border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line); padding: 12px 16px; cursor: pointer;
-    position: relative; transition: background 120ms var(--ease-out-quart), box-shadow 120ms var(--ease-out-quart), opacity 160ms ease-out;
+    position: relative; transition: background 150ms var(--ease-out-quart), box-shadow 150ms var(--ease-out-quart);
     color: inherit; text-align: left; display: flex; flex-direction: column; }
+  /* the full-card button (the system's card overlay) — the ring hugs the card */
+  .sitem-hit { position: absolute; inset: 0; z-index: 0; margin: 0; padding: 0; border: 0; border-radius: inherit;
+    background: transparent; cursor: pointer; }
+  .sitem-hit:focus-visible { outline-offset: 0; }
+  .sitem > .r1, .sitem > .t { position: relative; pointer-events: none; }
+  /* the title takes the slack, so every card's third row sits on one baseline */
+  .sitem > .t { flex: 1 0 auto; }
+  .sitem > .hs { position: relative; z-index: 1; }
   .sitem:hover { background: var(--surface-2); }
   /* the current card: the system's white ring */
   .sitem.solo { background: var(--surface-2); box-shadow: inset 0 0 0 1.5px var(--selection-ring); }
-  .sitem.dim { opacity: 0.4; }
+  /* context cards stay legible: their figures step down a token, never an opacity */
+  .sitem.dim .num { color: var(--fg-2); }
+  .sitem.dim .t, .sitem.dim .epk { color: var(--fg-3); }
   .sitem .r1 { display: flex; align-items: baseline; gap: 8px; }
   .sitem .r1 .epk { font-family: var(--font-mono); font-size: var(--text-meta); font-weight: 500; color: var(--fg-3); }
   .sitem.newest .r1 .epk { color: var(--fg-1); }
   .sitem .r1 .num { font-size: var(--text-title); font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); font-variant-numeric: tabular-nums; }
   .sitem .r1 .mk { font-size: var(--text-meta); font-weight: 500; color: var(--warn); margin-left: auto; }
-  .sitem .t { font-size: var(--text-body-sm); color: var(--fg-2); white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis; margin: 4px 0 0; display: block; }
+  .sitem .t { font-size: var(--text-body-sm); color: var(--fg-2); overflow: hidden; margin: 4px 0 12px;
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-height: 1.39; }
   /* three-week health read: number + meter, present ONLY once the read is done */
-  .hs { display: flex; align-items: center; gap: 8px; min-height: 20px; font-size: var(--text-meta); color: var(--fg-3); }
-  .sitem .hs { margin-top: 12px; }
+  .hs { display: flex; align-items: center; gap: 8px; min-height: 20px; font-size: var(--text-meta); color: var(--fg-3);
+    border: 0; background: none; padding: 0; margin: 0; font-family: inherit; text-align: left; cursor: pointer; }
+  button.hs[data-hslug] { width: 100%; }
+  button.hs[data-hslug]::after { content: ""; position: absolute; inset: -12px -4px; }
   .hs b { font-family: var(--font-mono); font-size: var(--text-body-sm); font-weight: 600; color: var(--fg-1); font-variant-numeric: tabular-nums; }
   .hs .mk { color: var(--warn); font-weight: 500; }
   .hs .htrack { flex: 1; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); position: relative; overflow: hidden; }
@@ -370,9 +401,11 @@
   .hs .ic { width: 12px; height: 12px; }
   .hero .state .n, .gline .n { color: var(--fg-2); }
   /* the launch word: a word, never a number; dotted = there is a tooltip here */
-  .hs.launch { color: var(--fg-2); font-size: var(--text-meta); cursor: pointer; white-space: nowrap; max-width: 100%;
-    overflow: hidden; text-overflow: ellipsis; text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; align-self: flex-start;
-    position: relative; padding: 12px 0; margin: -12px 0; line-height: 20px; }
+  .hs.launch { display: inline-block; color: var(--fg-2); font-size: var(--text-meta); line-height: 20px; white-space: nowrap; max-width: 100%;
+    overflow: hidden; text-overflow: ellipsis; text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; align-self: flex-start; }
+  /* the hit area reaches 44 px without moving the focus ring off the word */
+  .sitem > .hs.launch::after { content: ""; position: absolute; inset: -12px -4px; }
+  .sitem > .hs.launch { overflow: visible; }
   .hs.launch:focus-visible { border-radius: var(--radius-sm); }
   .sitem .hs.quiet { cursor: default; }
 
@@ -424,11 +457,13 @@
   .panel .pnum .hint { font-size: var(--text-body-sm); font-weight: 400; letter-spacing: 0; color: var(--fg-3); }
   .panel .pnum .mk { color: var(--warn); font-weight: 600; margin-left: 4px; }
   /* header: title · date · destination chips · transcript · close, one centerline */
-  .panel .h { display: flex; align-items: center; gap: 12px; min-height: 36px; }
-  .panel .h .htitle { flex: 1 1 0; min-width: 0; font-size: var(--text-title); line-height: 1.3; font-weight: 600; letter-spacing: -0.015em; }
+  /* the pane header: the title and close on one line, the destinations under them */
+  .panel .h { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; min-height: 36px; }
+  .panel .h .hmeta { flex-basis: 100%; order: 5; justify-content: flex-start; row-gap: 8px; }
+  .panel .h .htitle { flex: 1 1 0; min-width: 0; margin: 0; font-size: var(--text-title); line-height: 1.3; font-weight: 600; letter-spacing: -0.015em; }
   .panel .h .hmeta { color: var(--fg-3); font-size: var(--text-meta);
     display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-  .panel .h .pdate { font-family: var(--font-mono); margin-right: 4px; }
+  .panel .h .pdate { margin-right: 4px; }
   /* destination links: the system's outline pill — tappable, quiet */
   .panel .plink { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: var(--radius-full);
     box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--fg-1);
@@ -452,6 +487,7 @@
     background: none; border: 0; color: var(--fg-3); font-size: var(--text-num-lg); line-height: 1; cursor: pointer;
     transition: background 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart); }
   .panel .x:hover { color: var(--fg-1); background: var(--surface-2); }
+  .panel .x svg, .dhead .x svg { width: 16px; height: 16px; }
   @media (min-width: 48rem) { .panel .x { width: 32px; height: 32px; } }
   .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .panel .frate { color: var(--fg-3); font-size: var(--text-meta); margin-top: 4px; font-variant-numeric: tabular-nums; }
@@ -471,6 +507,8 @@
   /* W14 glyph grammar: icons carry identity, badges carry direction */
   .ic { width: 16px; height: 16px; flex: none; color: var(--fg-3); }
   .ki { width: 14px; height: 14px; color: var(--fg-3); vertical-align: -2px; }
+  .kicker [data-tip] { position: relative; display: inline-flex; }
+  .kicker [data-tip]::after { content: ""; position: absolute; inset: -16px; }
   /* four fixed columns so every row's icon, label, value, and badge share edges */
   .panel .irow { display: grid; grid-template-columns: 16px minmax(0, 1fr) 76px 64px; align-items: center;
     column-gap: 8px; padding: 4px 0; color: var(--fg-2); font-size: var(--text-body-sm); }
@@ -489,6 +527,7 @@
     font-size: var(--text-body-sm); padding: 4px 0 0; }
   .gline .g { display: inline-flex; align-items: center; gap: 8px; }
   .gline .g b { color: var(--fg-1); font-weight: 600; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .gline .g .gl { color: var(--fg-3); font-size: var(--text-meta); }
   .panel .row.head { font-weight: 600; color: var(--fg-1); }
   .panel .val.big { font-size: var(--text-title); }
   .panel .hint { color: var(--fg-3); font-size: var(--text-meta); font-weight: 400; line-height: 1.45; margin-top: 4px; }
@@ -498,12 +537,27 @@
   .panel .row { display: flex; align-items: center; gap: 8px; padding: 4px 0; color: var(--fg-2); }
   .panel .row .sq { width: 8px; height: 8px; border-radius: 50%; flex: none; }
   .panel .row .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--fg-1); text-align: right; }
-  .panel .sect { box-shadow: inset 0 1px 0 var(--line); margin-top: 12px; padding-top: 8px; }
+  .panel .sect { box-shadow: inset 0 1px 0 var(--line); margin-top: 16px; padding-top: 12px; }
+  .panel .sect h4.mut { margin: 0 0 4px; font-weight: 400; }
+  /* the live session's numbers: a KPI strip, label over value */
+  .panel .lkpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(136px, 1fr)); gap: 16px 24px; }
+  .panel .lk { min-width: 0; }
+  .panel .lkl { font-size: var(--text-meta); line-height: 1.34; color: var(--fg-3); }
+  .panel .lkv { margin-top: 4px; font-size: var(--text-num-lg); line-height: 1.25; font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); font-variant-numeric: tabular-nums; }
+  .panel .lkv small { font-size: var(--text-body-sm); font-weight: 400; letter-spacing: 0; color: var(--fg-3); }
+  .panel .lkv .na { font-size: var(--text-body-sm); font-weight: 400; letter-spacing: 0; color: var(--fg-3); }
+  .panel .dest { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+  .panel .dest .row .plogo { width: 14px; height: 14px; }
+  /* a disclosure inside a cell: chevron, no native triangle */
+  .panel .pdisc summary { display: inline-flex; align-items: center; gap: 4px; list-style: none; min-height: 28px; cursor: pointer; color: var(--fg-2); }
+  .panel .pdisc summary::-webkit-details-marker { display: none; }
+  .panel .pdisc summary .ic { width: 16px; height: 16px; color: var(--fg-3); transition: transform 150ms var(--ease-out-quart); }
+  .panel .pdisc[open] summary .ic { transform: rotate(180deg); }
+  .chapters .chg { max-width: 72ch; }
   .panel .note { color: var(--warn); font-size: var(--text-meta); margin-top: 8px; line-height: 1.45; }
   .panel .mut { color: var(--fg-3); font-size: var(--text-meta); margin-top: 4px; }
   .panel .unavailable { color: var(--fg-3); font-size: var(--text-body-sm); margin-top: 8px; }
   .panel details { margin-top: 8px; color: var(--fg-3); font-size: var(--text-meta); }
-  .panel details summary { cursor: pointer; color: var(--fg-2); }
   .panel .q { color: var(--fg-2); font-size: var(--text-body-sm); margin: 8px 0; }
   .panel .q .by { color: var(--fg-3); }
   .panel .senti-link { cursor: pointer; }
@@ -526,7 +580,7 @@
   .wmark::before { content: ""; position: absolute; left: 50%; width: 1px; background: var(--line-strong); }
   .wmark.drop::before { bottom: 100%; height: var(--tick, 6px); }
   .wmark.hold::before { top: 100%; height: var(--tick, 6px); }
-  .wmark::after { content: ""; position: absolute; inset: -12px; }
+  .wmark::after { content: ""; position: absolute; inset: -16px; }
   .wmark.drop { color: var(--neg); }
   .wmark.hold { color: var(--pos); }
   .wmark:hover { background: var(--surface-3); box-shadow: inset 0 0 0 1px currentColor; }
@@ -624,6 +678,7 @@
   @keyframes popIn { from { opacity: 0; transform: scale(0.95) translateY(-8px); } to { opacity: 1; transform: none; } }
   .viewmenu .vgroup { color: var(--fg-3); font-size: var(--text-meta); padding: 8px 8px 4px 32px; }
   .viewmenu .vsep { height: 1px; background: var(--line); margin: 4px -4px; }
+  .viewmenu .vsep + .vgroup { padding-top: 4px; }
   .viewmenu .vopt { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; background: none;
     border: 0; border-radius: var(--radius-md); padding: 4px 8px; cursor: pointer; text-align: left;
     color: var(--fg-1); font-size: var(--text-body); }
@@ -651,10 +706,17 @@
   #tablebox td { height: 44px; padding: 0 12px; box-shadow: inset 0 -1px 0 var(--line); text-align: right;
     color: var(--fg-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
   #tablebox td.t { color: var(--fg-1); }
+  #tablebox td.gap { text-align: left; color: var(--fg-3); font-family: var(--font-sans); }
+  #tablebox td.t .tid, #tablebox td.t .ttl { color: var(--fg-1); }
   #tablebox tr:hover td { background: var(--surface-2); }
   #tablebox .mk { color: var(--warn); font-size: var(--text-meta); font-family: var(--font-sans); }
   .st-good { color: var(--pos); } .st-bad { color: var(--neg); } .st-mid { color: var(--fg-2); }
   .emptynote { color: var(--fg-3); font-size: var(--text-body-sm); margin: 8px 0 0; }
+  /* the readout line under the plot: how to get at the numbers on this device */
+  .chint { margin: 8px 0 0; font-size: var(--text-meta); color: var(--fg-3); }
+  .chint:empty { display: none; }
+  #chart:focus-visible { outline: 2px solid var(--tint); outline-offset: 4px; border-radius: var(--radius-sm); }
+  .chead .cs .tri { width: 8px; height: 8px; fill: var(--fg-3); vertical-align: 0; }
 
   /* chart popup: the system tooltip, following the cursor */
   .tt { position: absolute; box-sizing: border-box; pointer-events: none; background: var(--popover); box-shadow: var(--shadow-pop);
@@ -689,6 +751,7 @@
 
   /* ---- What matters: readable claim up front, recommendation one tap away ---- */
   .insights { display: grid; gap: var(--gap); }
+  @media (min-width: 64rem) { .insights { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
   .insight { background: var(--surface-1); border: 0; border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line);
     padding: var(--d-card); font-size: var(--text-body); display: flex; align-items: flex-start; gap: 12px;
     cursor: pointer; transition: background 200ms var(--ease-out-quart); }
@@ -704,7 +767,7 @@
   .insight .cat { font-size: var(--text-meta); line-height: 24px; color: var(--fg-3); margin: 0 0 4px; }
   .insight .txt { color: var(--fg-1); line-height: 1.5; }
   .insight .txt b, .insight .rec b { font-weight: 600; color: var(--fg-1); font-variant-numeric: tabular-nums; }
-  .insight .cav { display: none; color: var(--fg-3); font-size: var(--text-meta); margin-top: 8px; }
+  .insight .cav { color: var(--fg-3); font-size: var(--text-meta); line-height: 1.45; margin-top: 8px; }
   /* Recommendation: the system's link button with a disclosure chevron */
   .insight .reveal { position: relative; display: flex; align-items: center; gap: 4px; margin-top: 8px; height: 28px; padding: 0;
     background: none; border: 0; color: var(--tint-fg); font-size: var(--text-body-sm); font-weight: 500; cursor: pointer; }
@@ -712,11 +775,13 @@
   .insight .reveal:hover { text-decoration: underline; text-underline-offset: 4px; }
   .insight .reveal svg { width: 16px; height: 16px; transition: transform 150ms var(--ease-out-quart); }
   .insight.open .reveal svg { transform: rotate(180deg); }
-  /* the recommendation opens as a hairline strip in the card, never a box */
-  .insight .rec { display: none; margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line);
+  /* the recommendation opens as a hairline strip in the card (the system's Reveal), never a box */
+  .insight .more { display: grid; grid-template-rows: 0fr; opacity: 0;
+    transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms cubic-bezier(0.5, 0, 0.75, 0); }
+  .insight .more > div { min-height: 0; overflow: hidden; }
+  .insight.open .more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms var(--ease-out-quart); }
+  .insight .rec { margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line);
     color: var(--fg-2); font-size: var(--text-body); line-height: 1.5; }
-  .insight.open .rec, .insight.open .cav { display: block; }
-  .insight.open .rec { animation: panelIn 320ms var(--ease-out-expo); }
   @media (min-width: 48rem) { .insight .rec { font-size: var(--text-body-sm); } }
 
   /* ---- drilldown: a dialog on desktop, a bottom sheet on phones ---- */
@@ -730,7 +795,7 @@
     max-width: 640px; width: 100%; max-height: min(88vh, 820px); display: flex; flex-direction: column; overflow: hidden;
     animation: dlgIn 150ms ease; }
   .dhead { position: relative; display: flex; align-items: center; gap: 12px; padding: 16px 56px 16px 20px; box-shadow: inset 0 -1px 0 var(--line); }
-  .dhead .h { font-weight: 600; font-size: var(--text-title); line-height: 1.3; letter-spacing: -0.01em; flex: 1; min-width: 0; }
+  .dhead .h { margin: 0; font-weight: 600; font-size: var(--text-title); line-height: 1.3; letter-spacing: -0.01em; flex: 1; min-width: 0; outline: none; }
   .dhead .x { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
     background: none; border: 0; border-radius: var(--radius-lg); color: var(--fg-3); font-size: var(--text-num-lg); cursor: pointer;
     transition: background 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart); }
@@ -744,6 +809,7 @@
   .dtabs button::after { content: ""; position: absolute; inset: -4px 0; }
   .dtabs button:hover { color: var(--fg-1); }
   .dtabs button.on { background: var(--surface-3); color: var(--fg-1); box-shadow: var(--shadow-thumb); }
+  .dtabs button .cnt { font-family: var(--font-mono); font-size: var(--text-meta); font-weight: 400; color: var(--fg-3); }
   /* fields: surface-2 wells with a hairline; focus is a 1.5 px blue inset ring */
   .dtools { display: flex; gap: 8px; padding: 0 20px 16px; }
   .dtools input, .dtools select { min-width: 0; height: 44px; padding: 0 12px; background: var(--surface-2); border: 0;
@@ -752,7 +818,9 @@
   .dtools input::placeholder { color: var(--fg-3); opacity: 1; }
   .dtools input:focus-visible, .dtools select:focus-visible, .dtools input:focus, .dtools select:focus { box-shadow: inset 0 0 0 1.5px var(--tint); }
   .dtools input { flex: 1; width: 50%; }
-  .dtools select { max-width: 42%; }
+  .dtools .dsel { position: relative; display: block; max-width: 42%; }
+  .dtools .dsel select { appearance: none; -webkit-appearance: none; width: 100%; padding-right: 36px; }
+  .dtools .dsel svg { pointer-events: none; position: absolute; top: 50%; right: 12px; width: 16px; height: 16px; transform: translateY(-50%); color: var(--fg-3); }
   @media (min-width: 48rem) { .dtabs button { height: 28px; font-size: var(--text-body-sm); } .dtools input, .dtools select { height: 36px; } }
   .dlist { overflow-y: auto; overscroll-behavior: contain; box-shadow: inset 0 1px 0 var(--line); padding: 4px 20px 16px; }
   .drow { padding: 12px 0; box-shadow: inset 0 -1px 0 var(--line); }
@@ -763,32 +831,35 @@
     background: var(--surface-2); color: var(--fg-2); font-size: var(--text-caption); font-weight: 600; line-height: 1; }
   .drow .m .senti { margin-left: auto; font-size: var(--text-meta); font-weight: 500; }
   .drow .m .senti.positive { color: var(--pos); } .drow .m .senti.negative { color: var(--neg); }
-  .drow .m .senti.mixed { color: var(--warn); }
+  .drow .m .senti.mixed { color: var(--fg-2); }
   .drow .m time { font-size: var(--text-meta); font-variant-numeric: tabular-nums; }
   .drow .txt { color: var(--fg-1); font-size: var(--text-body); line-height: 1.5; margin: 8px 0 4px; white-space: pre-wrap; word-wrap: break-word; }
   .dempty { color: var(--fg-3); padding: 20px 0; text-align: center; font-size: var(--text-body-sm); }
+  .dempty.dnote { padding: 8px 0 4px; font-size: var(--text-meta); }
 
-  /* ---- About this data: the system's disclosure row ---- */
-  details.about { margin-top: var(--d-section); }
-  details.about summary { list-style: none; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: var(--d-row) var(--d-card);
-    cursor: pointer; border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line-strong);
-    transition: background 150ms var(--ease-out-quart); }
-  details.about summary::-webkit-details-marker { display: none; }
-  details.about summary:hover { background: var(--surface-1); }
-  details.about summary .sumic { width: 16px; height: 16px; color: var(--fg-3); display: flex; align-items: center; justify-content: center; flex: none; }
-  details.about summary .sumic svg { width: 16px; height: 16px; }
-  details.about summary .sumt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  details.about summary .sumt b { font-weight: 500; color: var(--fg-1); font-size: var(--text-body); line-height: 1.42; }
-  details.about summary .sumt span { color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
-  details.about summary .chev { width: 16px; height: 16px; color: var(--fg-3); flex: none; transition: transform 150ms var(--ease-out-quart); }
-  details.about[open] summary .chev { transform: rotate(180deg); }
-  @media (min-width: 48rem) { details.about summary .sumt b { font-size: var(--text-body-sm); } details.about summary .sumt span { font-size: var(--text-meta); } }
+  /* ---- About this data: the system's disclosure row (a button) and Reveal ---- */
+  .about { margin-top: var(--d-section); }
+  .aboutbtn { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: var(--d-row) var(--d-card);
+    border: 0; border-radius: var(--radius-2xl); background: none; color: inherit; text-align: left; cursor: pointer;
+    box-shadow: inset 0 0 0 1px var(--line-strong); transition: background 150ms var(--ease-out-quart); }
+  .aboutbtn:hover { background: var(--surface-1); }
+  .aboutbtn .sumic { width: 16px; height: 16px; color: var(--fg-3); display: flex; flex: none; }
+  .aboutbtn .sumic svg { width: 16px; height: 16px; }
+  .aboutbtn .sumt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .aboutbtn .sumtitle { margin: 0; font-weight: 500; color: var(--fg-1); font-size: var(--text-body); line-height: 1.42; letter-spacing: 0; }
+  .aboutbtn .sumt > span { color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
+  .aboutbtn .chev { width: 16px; height: 16px; color: var(--fg-3); flex: none; transition: transform 150ms var(--ease-out-quart); }
+  .aboutbtn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  @media (min-width: 48rem) { .aboutbtn .sumtitle { font-size: var(--text-body-sm); } .aboutbtn .sumt > span { font-size: var(--text-meta); } }
+  .reveal { display: grid; grid-template-rows: 0fr; opacity: 0;
+    transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms cubic-bezier(0.5, 0, 0.75, 0); }
+  .reveal[data-open="true"] { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms var(--ease-out-quart); }
+  .reveal > div { min-height: 0; overflow: hidden; }
   /* long-form methodology: 72ch, body-sm on desktop, generous leading */
-  details.about .inner { margin-top: var(--d-stack, 12px); padding: 0 var(--d-card) 0 44px; max-width: calc(72ch + 60px); color: var(--fg-2);
-    font-size: var(--text-body); line-height: 1.625; }
-  @media (min-width: 48rem) { details.about .inner { font-size: var(--text-body-sm); } }
-  details.about p { margin: 0 0 12px; }
-  details.about b { color: var(--fg-1); font-weight: 600; }
+  .about .inner { padding: 12px var(--d-card) 0 44px; max-width: calc(72ch + 60px); color: var(--fg-2); font-size: var(--text-body); line-height: 1.625; }
+  @media (min-width: 48rem) { .about .inner { font-size: var(--text-body-sm); } }
+  .about p { margin: 0 0 12px; }
+  .about b { color: var(--fg-1); font-weight: 600; }
   footer { color: var(--fg-3); font-size: var(--text-meta); margin-top: 20px; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -814,12 +885,25 @@
     /* Phones: the same system, the phone steps — body 15, gutters 16, stack
        12, every control at least 44 px to the thumb. */
     :root { --gap: 12px; }
-    .stamp { font-size: var(--text-meta); }
-    .stamp .why { display: none; }
+    /* not current: the bar keeps the dot and one word; the sentence moves to the trust bar */
+    .stamp.behind .sfull { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .stamp.behind .sshort { display: inline; }
+    .trust:not([hidden]) { display: flex; position: sticky; top: var(--topbar-h); z-index: 29; height: 40px; margin-bottom: var(--gap);
+      align-items: center; gap: 12px; padding: 0 var(--d-gutter); font-size: var(--text-body-sm); color: var(--fg-1);
+      background: color-mix(in oklab, var(--warn) 11%, var(--canvas)); box-shadow: inset 0 -1px 0 var(--warn-ring); }
+    .trust svg { width: 16px; height: 16px; flex: none; color: var(--warn); }
+    .trust span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    header:has(+ .trust:not([hidden])) { margin-bottom: 0; }
+    /* the phone table: the episode id column stays put while the numbers scroll */
+    #tablebox th:first-child, #tablebox td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-1); padding-right: 12px; }
+    #tablebox td.t .ttl { display: none; }
+    #tablebox.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
+    /* 44 px rows for everything tappable inside the pane and the health details */
+    .panel .trow { min-height: 44px; }
+    .hc-dir .dirrow { min-height: 44px; }
+    .panel .pdisc summary, .panel .psec .plink { min-height: 44px; display: inline-flex; align-items: center; }
+    .panel .dest { grid-template-columns: 1fr; }
     .overview { grid-template-columns: 1fr; }
-    /* twelve labelled bars at phone width: whole numbers; the card title carries the unit */
-    .compound .cbar .bnum .bl { display: none; }
-    .compound .cbar .bnum .bs { display: inline; }
     .kicker { margin-bottom: 8px; }
     /* the strip stacks: the score with the Expand button beside it, then the
        headline, then the checks — the one disclosure stays on the first line */
@@ -839,15 +923,18 @@
     .hero { flex-direction: column; gap: 12px; }
     .hero .spark { width: 100%; }
     .chead { gap: 8px; }
-    .controls { width: 100%; margin-left: 0; }
-    .sitem { flex: 0 0 160px; padding: 12px; }
+    /* the view button and its toggles share the first row; the scope line wraps under them */
+    .chart-copy { display: contents; }
+    .ctsel { order: 0; }
+    .controls { order: 1; margin-left: auto; }
+    .chead .cs { order: 2; flex-basis: 100%; }
+    .sitem { flex: 0 0 168px; min-width: 168px; padding: 12px; }
     #chartbox { height: 340px; }
     .panel .themegrid { grid-template-columns: 1fr; }
     .panel .pgrid { grid-template-columns: 1fr; }
     /* the destination links leave the title row on phones and take a wrapped
        row of their own under it; the close button stays on the title line */
-    .panel .h { flex-wrap: wrap; }
-    .panel .h .hmeta { flex-basis: 100%; order: 5; justify-content: flex-start; row-gap: 8px; }
+
     details.about .inner { padding: 0 var(--d-card); }
     /* the drilldown is the system's bottom sheet with its grab handle */
     #drill { align-items: flex-end; padding: 0; background: var(--scrim-sheet); }
@@ -869,7 +956,8 @@
     <a class="agentslink" href="agents.html">Agents</a>
   </div>
 </header>
-<div class="wrap">
+<div class="trust" id="trust" aria-hidden="true" hidden></div>
+<main class="wrap" id="main">
   <div class="livecopy" id="livecopy" role="status" hidden></div>
 
   <section class="healthrow" id="health" aria-label="Show health"></section>
@@ -881,7 +969,7 @@
   <div class="sechead"><h2>Episodes</h2><span>Oldest to newest · select one to focus the chart</span></div>
   <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
 
-  <div id="chartcard" class="card">
+  <section id="chartcard" class="card" aria-labelledby="ctitle">
     <div class="chead">
       <div class="chart-copy">
         <div class="ctsel">
@@ -901,24 +989,25 @@
     <div id="chartbox"><canvas id="chart"></canvas><div class="tt" id="tt" aria-hidden="true"></div></div>
     <div id="tablebox"></div>
     <div class="emptynote" id="emptynote" style="display:none"></div>
-  </div>
-  <div class="panel" id="panel" style="display:none"></div>
+    <p class="chint" id="chint"></p>
+  </section>
+  <section class="panel" id="panel" aria-labelledby="ptitle" style="display:none"></section>
   <section class="panel" id="audience-preview" aria-label="Audience feedback" style="display:none"></section>
 
   <div class="sechead"><h2>What matters</h2></div>
   <div class="insights" id="insights" aria-label="What matters"></div>
 
-  <details class="about">
-    <summary><span class="sumic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg></span><span class="sumt"><b>About this data</b><span>How every number is counted, compared and checked</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></summary>
-    <div class="inner" id="about"></div>
-  </details>
+  <section class="about" aria-labelledby="abouttitle">
+    <button type="button" class="aboutbtn" id="aboutbtn" aria-expanded="false" aria-controls="aboutreg"><span class="sumic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg></span><span class="sumt"><h2 class="sumtitle" id="abouttitle">About this data</h2><span>How every number is counted, compared and checked</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></button>
+    <div class="reveal" id="aboutreg" data-open="false"><div><div class="inner" id="about" inert></div></div></div>
+  </section>
 
-</div>
+</main>
 
-<div id="drill"><div class="dcard">
-  <div class="dhead"><span class="h" id="dtitle"></span><button type="button" class="x" id="dclose" aria-label="Close feedback">×</button></div>
+<div id="drill"><div class="dcard" role="dialog" aria-modal="true" aria-labelledby="dtitle">
+  <div class="dhead"><h2 class="h" id="dtitle" tabindex="-1"></h2><button type="button" class="x" id="dclose" aria-label="Close feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
   <div class="dtabs" id="dtabs"></div>
-  <div class="dtools"><input id="dsearch" type="search" placeholder="Search comments" aria-label="Search comments"><select id="dsource" aria-label="Comment source"><option value="all">All sources</option><option value="yt">YouTube comments</option><option value="x">X threads</option><option value="live-chat">Live chat</option></select></div>
+  <div class="dtools"><input id="dsearch" type="search" placeholder="Search comments" aria-label="Search comments"><span class="dsel"><select id="dsource" aria-label="Comment source"><option value="all">All sources</option><option value="yt">YouTube comments</option><option value="x">X threads</option><option value="live-chat">Live chat</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></span></div>
   <div class="dlist" id="dlist"></div>
 </div></div>
 
@@ -1108,13 +1197,15 @@ function relativeDayWords(dateKey) {
 }
 function kfmt(n) { if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) >= 10000 ? 0 : 1).replace(/\.0$/,"") + "k"; return String(Math.round(n)); }
 function nfmt(n) { return n.toLocaleString("en-US"); }
+// share-of-video figures read at one decimal everywhere a column compares them
+function pct1(v) { return `${(Math.round(v * 10) / 10).toFixed(1)}%`; }
 function metricText(value, missing = "–") { return value == null ? missing : nfmt(value); }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 // Figures in mono, words in sans (design system): inside containers that can
 // hold both, every figure — counts, percentages, times, dates, episode ids —
 // is wrapped in .n after render. Text only; markup and attributes are untouched.
-const FIGURE_HOSTS = ".pnum, .panel .row .val, .panel .trow .tbv, .panel .hint, .panel .note, .tt .big, .tt .row .val, .tt .meta, .tt .chg, .tt .row .when, #tablebox td, .sitem .r1 .num, .insight .txt, .insight .rec, .hero .state, .chead .cs, .drow .m, .compound .cv2, .health-evidence .readson, .health-evidence .setchange, #rtt, .fbfoot, .chnote, .hc-dir .votes";
-const FIGURE_RE = /\bE\d+\b|\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?|[+−]?\d[\d,]*(?:[.:]\d+)*%?/g;
+const FIGURE_HOSTS = ".pnum, .panel .row, .panel .trow .tbv, .panel .hint, .panel .note, .panel .pill, .panel .htitle, .panel .pdate, .lkv, .fbhead .kicker, .tt .big, .tt .row .val, .tt .meta, .tt .chg, .tt .row .when, #tablebox td, #tablebox th, .sitem .r1 .num, .insight .txt, .insight .rec, .insight .cav, .hero .state, .chead .cs, .drow .m, .compound .cv2, .health-evidence .readson, .health-evidence .setchange, .hc-dir .outlook, .trendwrap .cap, #rtt, .fbfoot, .chnote, #about, #dtitle, .dtabs button, .chint";
+const FIGURE_RE = /\bE\d+\b|\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?|[+−]?\d+(?:,\d{3})*(?:[.:]\d+)*%?/g;
 function monoFigures(root = document) {
   const hosts = root.matches?.(FIGURE_HOSTS) ? [root, ...root.querySelectorAll(FIGURE_HOSTS)] : [...root.querySelectorAll(FIGURE_HOSTS)];
   for (const host of hosts) {
@@ -1209,6 +1300,7 @@ function deltaBadge(ratio) {
 // Platform marks (owner directive 2026-08-23): the YouTube and X logos stand
 // in for the platform words on tight surfaces. Every use keeps its text name
 // via role="img" + aria-label; About spells the words out.
+const LI_MARK = `<svg class="plogo" viewBox="0 0 24 24" role="img" aria-label="LinkedIn"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.55 4.77 5.87v5.58h-4v-4.95c0-1.18-.02-2.7-1.7-2.7-1.7 0-1.95 1.28-1.95 2.6v5.05h-4z"/></svg>`;
 const PLOGO = {
   // monochrome like the X mark — YouTube red would read as a loss or as LIVE
   // on this page — with the play triangle punched out (evenodd) so the mark
@@ -1266,7 +1358,7 @@ function healthOf(e) { return e.health && !e.health.pending && e.health.score !=
 function healthChip(e) {
   const h = healthOf(e);
   if (!h) return "";
-  return `<span class="hs" data-hslug="${esc(e.slug)}" aria-label="Episode health ${h.score} out of 100; 50 is typical.">${ICONS.pulse}<b data-fold-number>${h.score}</b><span class="htrack" aria-hidden="true"><span style="width:${h.score}%"></span></span></span>`;
+  return `<button type="button" class="hs" data-hslug="${esc(e.slug)}" aria-label="Episode health ${h.score} out of 100; 50 is typical.">${ICONS.pulse}<b data-fold-number>${h.score}</b><span class="htrack" aria-hidden="true"><span style="width:${h.score}%"></span></span></button>`;
 }
 
 /* health tooltip (owner request 2026-08-22): every chip explains itself on
@@ -1340,7 +1432,7 @@ function chaptersHTML(e) {
   const linkable = ch.clock === "upload" && yt;
   const rows = ch.list.map((c) => `<div class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener">${esc(c.start)}</a>` : esc(c.start)}</span><span class="chb"><b>${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></div>`).join("");
   const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording, which starts a few minutes before the upload — read them as approximate.";
-  return `<div class="chapters"><div class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></div>${rows}<div class="mut chnote">${note}</div></div>`;
+  return `<div class="chapters"><h3 class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></h3>${rows}<div class="mut chnote">${note}</div></div>`;
 }
 function launchNote(l) {
   const when = l.provisional ? `${Math.round(l.ageDays)} days in` : l.late ? `at its earliest reading, day ${Math.round(l.ageDays)}` : "at the end of its first week";
@@ -1373,8 +1465,14 @@ function buildHealth() {
   const el = document.getElementById("health");
   const h = DATA.health;
   if (!h || !Number.isFinite(h.score) || !h.headline || !Array.isArray(h.pros) || !Array.isArray(h.cons)) {
+    // rule 15: after a week behind, the score is withheld — the card says so and
+    // what happens next; no gauge, no zero
     el.className = "healthrow empty";
-    el.innerHTML = `<div class="card">Health update is not available yet.</div>`;
+    const title = h?.withheld ? "Show health read withheld" : "Show health read not saved yet";
+    const body = h?.withheld
+      ? "The last saved read is more than a week behind the data, so its score is held back. The next morning run saves a fresh one."
+      : "The first morning run that can read the show saves it here.";
+    el.innerHTML = `<div class="card hempty"><span class="hempty-ic" aria-hidden="true">${ICONS.clock}</span><div><h2 class="hempty-t">${title}</h2><p class="hempty-b">${body}</p></div></div>`;
     return;
   }
   // No saved-age or early-read line here (owner directive 2026-08-23): the
@@ -1441,7 +1539,7 @@ function buildHealth() {
       if (m.carriedNote) row.cn = m.carriedNote;
       // rule 23: how much this measure normally swings, so a reader can see
       // why a dip reads steady on a noisy measure and fragile on a quiet one
-      if (Number.isFinite(m.swing)) row.sw = `the show’s usual swing on this is about ±${m.swing}%`;
+      if (Number.isFinite(m.swing) && m.swing !== c.swing) row.sw = `the show’s usual swing on this is about ±${m.swing}%`;
       return row;
     }).filter(Boolean);
     // an unscored check's stored reason is the measure reasons joined — when
@@ -1525,18 +1623,16 @@ function buildHealth() {
       const word = t.direction ? `<span class="dw ${esc(t.direction)}">${esc(t.direction)}</span>` : `<span class="dw thin">too few to call</span>`;
       return `<div class="dirrow"><span class="dl"${tip ? ` data-tip="${esc(tip)}" tabindex="0"` : ""}>${esc(DIRECTION_LABELS[t.key] || t.key)}</span>${word}</div>`;
     }).join("");
-    const votes = (lens.votes || []).map((v) => `${(CHECK_LABELS[v.check] || [v.check])[0].toLowerCase()} ${v.direction}`).join(" · ");
     const nfw = out?.nextFirstWeek;
-    const slope = nfw && nfw.pctPerEpisode != null ? ` The slope over them runs ${nfw.pctPerEpisode >= 0 ? "up" : "down"} about ${nfmt(Math.abs(nfw.pctPerEpisode))}% each episode${nfw.direction ? "" : " — too few weeks for a direction word"}.` : "";
+    const slope = nfw && nfw.pctPerEpisode != null ? ` Across them, first weeks ${nfw.pctPerEpisode >= 0 ? "grow" : "shrink"} about ${nfmt(Math.abs(nfw.pctPerEpisode))}% an episode${nfw.direction ? "" : " — too few weeks for a direction word"}.` : "";
     const outlook = nfw && nfw.low != null
-      ? `<p class="outlook">The last three clean launches’ first weeks ran <b>${nfmt(nfw.low)}</b>–<b>${nfmt(nfw.high)}</b> YouTube views (typical <b>${nfmt(nfw.typical)}</b>) — where the next one lands if it follows them.${esc(slope)}</p>`
+      ? `<p class="outlook">The last three launches without a promo spike drew <b>${nfmt(nfw.low)}</b>–<b>${nfmt(nfw.high)}</b> YouTube views in their first week (typical <b>${nfmt(nfw.typical)}</b>) — where the next one lands if it follows them.${esc(slope)}</p>`
       : (nfw?.reason ? `<p class="outlook">${esc(nfw.reason)}</p>` : "");
     const co = out?.coolOff;
     const cool = co?.word ? `<p class="outlook">The newest episode is ${esc(co.word)} at day ${nfmt(Math.round(co.ageDays))}.</p>`
       : (co?.promoDriven ? `<p class="outlook">The newest episode’s cool-off is promo-driven — shown on the chart, not judged.</p>` : "");
-    return `<div class="hdcol hc-dir"><div class="kicker">Where it’s heading</div>
-      <p class="dirlede">Over the last few clean episodes: <b class="${esc(lens.overall || "holding")}">${esc(lens.overall || "too few to call")}</b></p>
-      ${votes ? `<p class="votes">${esc(votes)}</p>` : ""}
+    return `<div class="hdcol hc-dir"><h3 class="kicker">Where it’s heading</h3>
+      <p class="dirlede">Over the last few episodes without a promo spike: <b class="${esc(lens.overall || "holding")}">${esc(lens.overall || "too few to call")}</b></p>
       <div class="dirrows">${rows}</div>${outlook}${cool}</div>`;
   })();
   const open = !!state.evidenceOpen;
@@ -1552,28 +1648,28 @@ function buildHealth() {
           </svg>
           <div class="num"><b data-fold-number>${h.score}</b></div>
         </div>
-        <div class="hz-words"><div class="kicker">Show health</div><div class="hband">${scoreBandWords(h.score)}</div>${lens?.overall ? `<div class="hband hdir ${esc(lens.overall)}">${esc(lens.overall)}</div>` : ""}</div>
+        <div class="hz-words"><h2 class="kicker">Show health</h2><div class="hband">${scoreBandWords(h.score)}</div>${lens?.overall ? `<div class="hband hdir ${esc(lens.overall)}">${esc(lens.overall)}</div>` : ""}</div>
       </div>
-      <div class="hz hz-checks"><div class="kicker">Health diagnosis</div><div class="hgroups" role="group" aria-label="Health checks">${groups}</div></div>
+      <div class="hz hz-checks"><h3 class="kicker">Health diagnosis</h3><div class="hgroups" role="group" aria-label="Health checks">${groups}</div></div>
       <div class="hz hz-read">
-        <div class="hz-readbody"><div class="kicker">Today’s read</div><p class="headline${open ? "" : " clamped"}"${open ? ` style="max-height:none"` : ""}>${esc(h.headline)}</p></div>
-        <button type="button" class="hxbtn" id="whyscore" aria-expanded="${open ? "true" : "false"}" aria-controls="hdetails">${ICONS.chevdown}<span class="hxlabel">${open ? "Collapse" : "Expand"}</span></button>
+        <div class="hz-readbody"><h3 class="kicker">${Number.isFinite(h.ageDays) && h.ageDays >= 1 ? "Latest read" : "Today’s read"}</h3><p class="headline${open ? "" : " clamped"}"${open ? ` style="max-height:none"` : ""}>${esc(h.headline)}</p></div>
+        <button type="button" class="hxbtn" id="whyscore" aria-expanded="${open ? "true" : "false"}" aria-controls="hdetails">${ICONS.chevdown}<span class="hxlabel">${open ? "Hide details" : "Why this score"}</span></button>
       </div>
     </div>
     <div class="hdetails" id="hdetails">
       <div class="hdinner"${open ? "" : " inert"}>
         <div class="hdbody cols-${1 + (headingColumn ? 1 : 0) + (topRecs.length ? 1 : 0)}">
           <div class="hdcol health-evidence">
-            <div class="kicker">Why this score</div>
+            <h3 class="kicker">Why this score</h3>
             ${readsOn}
-            <div class="evidence"><div><h3 class="up">Helping</h3><ul>${bullets(h.pros, "up")}</ul></div>
-            <div><h3 class="down">Needs work</h3><ul>${bullets(h.cons, "down")}</ul></div></div>
+            <div class="evidence"><div><h4 class="up">Helping</h4><ul>${bullets(h.pros, "up")}</ul></div>
+            <div><h4 class="down">Needs work</h4><ul>${bullets(h.cons, "down")}</ul></div></div>
             ${changeNote}
-            ${h.drivers?.length ? `<div class="drivers">${h.drivers.map((d) => `<p>${esc(d)}</p>`).join("")}</div>` : ""}
+            ${(() => { const ds = (h.drivers || []).filter((d) => !(headingColumn && /^direction\b/i.test(d))); return ds.length ? `<div class="drivers">${ds.map((d) => `<p>${esc(d)}</p>`).join("")}</div>` : ""; })()}
             ${trend}
           </div>
           ${headingColumn}
-          ${topRecs.length ? `<div class="hdcol hc-meta"><div class="kicker">Do next</div><div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div></div>` : ""}
+          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div></div>` : ""}
         </div>
       </div>
     </div>
@@ -1598,7 +1694,7 @@ function buildHealth() {
     state.evidenceOpen = next;
     card.dataset.open = String(next);
     btn.setAttribute("aria-expanded", String(next));
-    btn.querySelector(".hxlabel").textContent = next ? "Collapse" : "Expand";
+    btn.querySelector(".hxlabel").textContent = next ? "Hide details" : "Why this score";
     // closed details are inert: nothing inside can take focus or be read
     if (next) inner.removeAttribute("inert"); else inner.setAttribute("inert", "");
     if (next) {
@@ -1708,7 +1804,7 @@ function buildHero() {
   const e = (sel && EPS.find(x => x.slug === sel)) || NEWEST;
   const metric = heroMetricKey();
   const c = color(e);
-  let html = `<div class="main"><div class="kicker">${sel && e.slug === sel ? "Selected episode" : "Latest episode"}</div><h2>${esc(short(e.title))}</h2>`;
+  let html = `<div class="main"><p class="kicker">${sel && e.slug === sel ? "Selected episode" : "Latest episode"}</p><h2>${esc(short(e.title))}</h2>`;
 
   if (metric === "live") {
     if (e.live) {
@@ -1728,7 +1824,7 @@ function buildHero() {
       html += `<div class="metricline"><div class="big"><span data-fold-number>${e.watch.avgPercent}%</span> <small>of the video watched on average</small></div></div>`;
       const chans = (e.watch.byChannel || []).filter(ch => ch.avgPercent != null);
       // multi-number chips get the structured tooltip, never a prose wrap
-      if (chans.length) html += `<div class="gline">${chans.map(ch => `<span class="g" data-stat="${esc(TT_NAME[ch.key] || ch.key)}" data-dot="${esc(PLAT_COLORS[ch.key] || FG3)}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${ch.avgPercent}%` }, { n: "YouTube views", v: nfmt(ch.views) }]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[ch.key] || FG3}"></i><b>${ch.avgPercent}%</b></span>`).join("")}</div>`;
+      if (chans.length) html += `<div class="gline">${chans.map(ch => `<span class="g" data-stat="${esc(TT_NAME[ch.key] || ch.key)}" data-dot="${esc(PLAT_COLORS[ch.key] || FG3)}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${ch.avgPercent}%` }, { n: "YouTube views", v: nfmt(ch.views) }]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[ch.key] || FG3}"></i><span class="gl">${TT_HTML[ch.key] || TT_NAME[ch.key] || ch.key}</span><b>${ch.avgPercent}%</b></span>`).join("")}</div>`;
       const pending = pendingWatchMessage(e, NEWEST.slug);
       if (pending) html += `<div class="unavailable">${esc(pending)}</div>`;
     } else {
@@ -1770,15 +1866,8 @@ function buildHero() {
     } else if (tv != null) {
       html += `<div class="unavailable">The YouTube and X split is not available.</div>`;
     }
-    if (e.live) {
-      const liveNow = [
-        e.live.peak == null ? null : `<span class="n">${nfmt(e.live.peak)}</span> peak`,
-        e.live.avg == null ? null : `<span class="n">${nfmt(e.live.avg)}</span> average`,
-        e.live.liveViews == null ? null : `<span class="n">${nfmt(e.live.liveViews)}</span> watched live`,
-        e.live.watchedMin == null ? null : `<span class="n">${nfmt(e.live.watchedMin)}</span> minutes watched`,
-      ].filter(Boolean);
-      if (liveNow.length) html += `<div class="state">Live session · ${liveNow.join(" · ")}</div>`;
-    }
+    // the live session's peak, average, people and minutes live in the
+    // Live view of this card and in the episode panel (glance budget, rule 8)
   }
   // No health chip here (owner directive 2026-08-23): the hero states one
   // measure. Episode health lives on the episode cards and in the panel.
@@ -1812,16 +1901,24 @@ function buildHero() {
 function buildStrip() {
   const isLive = state.mode === "live";
   const strip = document.getElementById("strip");
+  // keep where the reader scrolled: the row lands on the newest episode once,
+  // and a re-render (a selection, a view change) never yanks it back
+  const keepLeft = strip.dataset.landed ? strip.scrollLeft : null;
   strip.innerHTML = "";
   // oldest → newest, left → right: the latest episode is always far right
   // (locked rule) — read in order, the finished health scores ARE the
   // trajectory of the show.
   for (const e of EPS) {
+    // the card is a container; ONE full-card overlay button selects the
+    // episode, and the drill words (health score, launch word) are sibling
+    // buttons above it — no control nested inside another (design system)
+    const card = document.createElement("div");
+    card.className = "sitem" + (e.slug === NEWEST.slug ? " newest" : "");
+    card.setAttribute("role", "listitem");
+    card.dataset.slug = e.slug;
     const it = document.createElement("button");
     it.type = "button";
-    it.className = "sitem" + (e.slug === NEWEST.slug ? " newest" : "");
-    it.setAttribute("role", "listitem");
-    it.dataset.slug = e.slug;
+    it.className = "sitem-hit";
     // This row is the chart's stable episode legend. Its number never changes
     // meaning as the view changes: it is always stored YouTube views plus
     // resolved X broadcast plays. The selected chart measure stays in the
@@ -1844,11 +1941,12 @@ function buildStrip() {
     // ("Promo launch · so far"); the tooltip carries the full promo-driven sentence
     const launchWord = launch?.word ? (launch.promoDriven ? "Promo launch" : `${cap(launch.word)} launch`) + (launch.provisional ? " · so far" : "") : "";
     const hs = healthOf(e) ? healthChip(e) : (launch?.word
-      ? `<span class="hs launch ${launch.promoDriven ? "promo" : esc(launch.word)}" data-stat="${esc(launchWord)}" data-note="${esc(launchNote(launch))}" tabindex="0" aria-label="${esc(`${launchWord}. ${launchNote(launch)}`)}">${esc(launchWord)}</span>`
+      ? `<button type="button" class="hs launch ${launch.promoDriven ? "promo" : esc(launch.word)}" data-stat="${esc(launchWord)}" data-note="${esc(launchNote(launch))}" aria-label="${esc(`${launchWord}. ${launchNote(launch)}`)}">${esc(launchWord)}</button>`
       : `<span class="hs quiet" aria-hidden="true"></span>`);
-    it.innerHTML = `<span class="r1"><span class="epk">E${e.ep}</span>${num}</span>
-      <span class="t">${esc(short(e.title))}</span>${hs}`;
     it.setAttribute("aria-label", `${label(e)}. ${spokenValue}`);
+    card.innerHTML = `<span class="r1" aria-hidden="true"><span class="epk">E${e.ep}</span>${num}</span>
+      <span class="t" aria-hidden="true">${esc(short(e.title))}</span>${hs}`;
+    card.prepend(it);
     it.addEventListener("click", (ev) => {
       // a tap on the health chip is the tooltip's, not the panel's — one tap,
       // one disclosure (critic 2026-08-23 F9)
@@ -1864,11 +1962,19 @@ function buildStrip() {
         behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
       });
     });
-    strip.appendChild(it);
+    strip.appendChild(card);
   }
   // the strip scrolls when episodes outgrow the row; land it on the NEWEST
   // episode (far right) — the locked order rule keeps its value on any width
-  strip.scrollLeft = strip.scrollWidth;
+  if (keepLeft == null) { strip.scrollLeft = strip.scrollWidth; strip.dataset.landed = "1"; }
+  else strip.scrollLeft = keepLeft;
+  // a selected card is always in view
+  const picked = strip.querySelector(`.sitem[data-slug="${CSS.escape(state.solo || "")}"]`);
+  if (picked) {
+    const r = picked.getBoundingClientRect(), b = strip.getBoundingClientRect();
+    if (r.left < b.left + 8) strip.scrollLeft -= b.left + 8 - r.left;
+    else if (r.right > b.right - 8) strip.scrollLeft += r.right - (b.right - 8);
+  }
   const edges = () => {
     strip.classList.toggle("more-left", strip.scrollLeft > 1);
     strip.classList.toggle("more-right", strip.scrollLeft + strip.clientWidth < strip.scrollWidth - 1);
@@ -1895,31 +2001,19 @@ function buildPanel() {
   // transcript chip, the row's one emphasized action · the close button,
   // in-row so everything shares a centerline. Rendered ONLY from stored
   // e.links — a destination without a stored link renders nothing.
-  let hmeta = `<span class="pdate">${e.premiere.slice(5).replace("-", "/")}</span>`;
+  let hmeta = `<span class="pdate">${fmtDate(premiereMs(e.premiere))}</span>`;
   for (const d of DATA.dests) {
     const url = e.links?.[d.key];
     if (!url) continue;
-    hmeta += `<a class="plink" href="${esc(url)}" target="_blank" rel="noopener">${d.platform === "linkedin" ? "" : d.key.startsWith("yt:") ? PLOGO.yt : PLOGO.x}${TT_HTML[d.key] || TT_NAME[d.key]}</a>`;
+    hmeta += `<a class="plink" href="${esc(url)}" target="_blank" rel="noopener">${d.platform === "linkedin" ? LI_MARK : d.key.startsWith("yt:") ? PLOGO.yt : PLOGO.x}${TT_HTML[d.key] || TT_NAME[d.key]}</a>`;
   }
   if (e.transcript) {
-    hmeta += `<a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}transcript</a>`;
+    hmeta += `<a class="tlink" href="transcripts/${esc(e.slug)}.txt" download="${esc(short(e.title))} transcript.txt">${ICONS.download}Transcript</a>`;
   }
   // no leading dot: the span had no size rule, so it drew nothing and only
   // pushed the title off the left edge the wrapped meta rows share on mobile
-  html += `<div class="h"><span class="htitle">${esc(label(e))}</span><span class="hmeta">${hmeta}</span><button type="button" class="x" id="panelx" aria-label="Close episode details">×</button></div>`;
+  html += `<div class="h"><h2 class="htitle" id="ptitle">${esc(label(e))}</h2><span class="hmeta">${hmeta}</span><button type="button" class="x" id="panelx" aria-label="Close episode details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>`;
   html += `<div class="pgrid">`;
-  if (e.linkedin) {
-    const li = e.linkedin;
-    const rows = [['Live chat messages', li.liveChat.messages], ['Live chat participants', li.liveChat.chatters],
-      ['Video plays', li.metrics.plays], ['Unique video viewers', li.metrics.uniqueViewers], ['Minutes watched', li.metrics.watchTimeMinutes],
-      ['Post impressions', li.metrics.impressions], ['Reactions', li.metrics.reactions], ['Post comments', li.metrics.comments], ['Reposts', li.metrics.reposts]];
-    html += `<div class="psec" id="linkedin-episode"><div class="kicker">LinkedIn · Ridd</div>`;
-    for (const [name, value] of rows) if (Number.isFinite(value)) html += `<div class="row">${name}<span class="val">${nfmt(value)}</span></div>`;
-    if (li.observedAt) html += `<div class="hint">Analytics observed ${esc(li.observedAt.slice(0, 10))}</div>`;
-    if (li.reason) html += `<div class="hint">${esc(li.reason)}</div>`;
-    html += `<details><summary>About these numbers</summary><div class="hint">${esc(li.note)}</div></details></div>`;
-  }
-
   // Bento IA (owner readability pass 2026-08-23 r2): contrasted tiles on a
   // tight 6px grid. Row one answers "how did it do" (verdict, views, reach),
   // row two "how the session and watching went" (live, watch, sources), and
@@ -1937,7 +2031,7 @@ function buildPanel() {
   // PRD v10: the launch read behind the card word, same store
   const launch = launchOf(e);
   if (launch?.word) {
-    html += `<div class="psec"><div class="kicker">Launch<span data-tip="YouTube views at the end of the first week — or at the earliest reading for episodes tracked late, or at the current age while under a week old — against the other episodes at that same age, promo outliers left out, three or nothing" tabindex="0">${ICONS.info}</span></div>
+    html += `<div class="psec"><h3 class="kicker">Launch<span data-tip="YouTube views at the end of the first week — or at the earliest reading for episodes tracked late, or at the current age while under a week old — against the other episodes at that same age, promo outliers left out, three or nothing" tabindex="0">${ICONS.info}</span></h3>
       <div class="pnum">${launch.promoDriven ? "Promo-driven" : cap(launch.word)}${launch.provisional ? " · so far" : ""}</div>
       <div class="hint">${esc(launchNote(launch))}</div></div>`;
   }
@@ -1945,7 +2039,7 @@ function buildPanel() {
     const excludedN = (h.excluded || []).length;
     const peers = Math.max(0, (h.windowIds || []).length - 1 - excludedN);
     const basisTip = `Its first three weeks against the ${peers === 1 ? "episode" : `${peers} episodes`} before it${excludedN ? ` (${excludedN} promo outlier${excludedN === 1 ? "" : "s"} left out)` : ""} — newer episodes never change this score.`;
-    html += `<div class="psec"><div class="kicker">Episode health<span data-tip="${esc(basisTip)}" tabindex="0">${ICONS.info}</span></div>`;
+    html += `<div class="psec"><h3 class="kicker">Episode health<span data-tip="${esc(basisTip)}" tabindex="0">${ICONS.info}</span></h3>`;
     const bc = Object.fromEntries((e.watch?.byChannel || []).map((c) => [c.key, c]));
     const subsSplit = bc["yt:joindiveclub"]?.subsPer1k != null && bc["yt:designertom"]?.subsPer1k != null
       ? ` — Dive Club ${bc["yt:joindiveclub"].subsPer1k} · DesignerTom ${bc["yt:designertom"].subsPer1k}` : "";
@@ -1980,14 +2074,14 @@ function buildPanel() {
   } else if (h && !h.pending && h.reason) {
     // finished read with no score (D7): the chip stays silent; the reason
     // lives here, at the click layer, in the stored plain words
-    html += `<div class="psec"><div class="kicker">Episode health</div><div class="hint">${esc(h.reason.charAt(0).toUpperCase() + h.reason.slice(1))}</div></div>`;
+    html += `<div class="psec"><h3 class="kicker">Episode health</h3><div class="hint">${esc(h.reason.charAt(0).toUpperCase() + h.reason.slice(1))}</div></div>`;
   }
 
   // — total views —
   const hasYoutube = hasYoutubeReading(e);
   const panelTotal = displayedTotal(e);
   const panelHeading = panelTotal == null ? "Views" : hasYoutube ? "Total views" : "X plays";
-  html += `<div class="psec"><div class="kicker">${panelHeading}</div>`;
+  html += `<div class="psec"><h3 class="kicker">${panelHeading}</h3>`;
   html += `<div class="pnum">${panelTotal == null ? "not available" : nfmt(panelTotal)}</div>`;
   const rows = [
     ["yt:joindiveclub", youtubeValue(e, bd["yt:joindiveclub"]?.views)],
@@ -2001,7 +2095,7 @@ function buildPanel() {
   if (!hasYoutube && !tvi.includesPlays) html += `<div class="note">YouTube views and X plays are not available yet.</div>`;
   else if (!hasYoutube) html += `<div class="note">YouTube views are not available yet.</div>`;
   else if (tvi.youtubeStale) html += `<div class="note">YouTube views are from an older reading.</div>`;
-  else if (tvi.partial) html += `<div class="note">◐ ${tvi.have} of ${tvi.total} broadcasts — true total higher</div>`;
+  else if (tvi.partial) html += `<div class="note">Partial: plays from ${tvi.have} of ${tvi.total} broadcasts — the true total is higher</div>`;
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
   else if (!tvi.includesPlays) html += `<div class="note">${PLOGO.yt} only — ${PLOGO.x} plays unavailable</div>`;
   // Unavailable source checks use the existing notes in the episode view.
@@ -2012,13 +2106,13 @@ function buildPanel() {
   html += `</div>`;
 
   // — X reach —
-  html += `<div class="psec"><div class="kicker">${PLOGO.x} reach <span class="kh">not in total</span></div>`;
+  html += `<div class="psec"><h3 class="kicker">${PLOGO.x} reach <span class="kh">not in total</span></h3>`;
   html += `<div class="pnum">${e.latest.xImpressions == null ? "not available" : nfmt(e.latest.xImpressions)}</div>`;
   html += `<div class="row">@ridd_design<span class="val">${bd["x:ridd_design"]?.views == null ? "not available" : nfmt(bd["x:ridd_design"].views)}</span></div>`;
   html += `<div class="row">@designertom<span class="val">${bd["x:designertom"]?.views == null ? "not available" : nfmt(bd["x:designertom"].views)}</span></div>`;
   // promo posts ride beside reach, never inside it; nothing renders when none are registered
   const promoReach = e.latest.xPromoReach;
-  if (promoReach) html += `<div class="row">Promo posts (${promoReach.posts}), not in reach<span class="val">${promoReach.impressions == null ? "not available" : nfmt(promoReach.impressions)}</span></div>`;
+  if (promoReach) html += `<div class="row">${promoReach.posts} promo ${promoReach.posts === 1 ? "post" : "posts"}, not in reach<span class="val">${promoReach.impressions == null ? "not available" : nfmt(promoReach.impressions)}</span></div>`;
   html += `</div>`;
 
   // — newsletter promotion —
@@ -2035,39 +2129,11 @@ function buildPanel() {
       : promotion.verifiedEmailClicks === 0
         ? "No clicks verified yet"
         : `${nfmt(promotion.verifiedEmailClicks)} verified by Beehiiv`;
-    html += `<div class="psec"><div class="kicker">UX Tools email <span class="kh">not in views</span></div>`;
+    html += `<div class="psec"><h3 class="kicker">UX Tools email <span class="kh">not in views</span></h3>`;
     html += `<div class="pnum${promotion.emailClicks == null ? " hint" : ""}">${trackedClicks}</div>`;
     html += `<div class="row">${verifiedClicks}</div>`;
     if (promotion.emailClicks == null && promotion.clicksReason) html += `<div class="note">${esc(promotion.clicksReason)}</div>`;
     if (issue?.url && issue?.title) html += `<div class="row"><a class="plink" href="${esc(issue.url)}" target="_blank" rel="noopener">${esc(issue.title)}</a></div>`;
-    html += `</div>`;
-  }
-
-  // — live —
-  if (e.live) {
-    html += `<div class="psec wide"><div class="kicker">Live session</div>`;
-    html += `<div class="pnum">${metricText(e.live.peak, "not available")} <span class="hint">peak viewers</span></div>`;
-    const liveRows = [
-      ["Average viewers", e.live.avg],
-      ["People who watched live", e.live.liveViews],
-      ["Minutes watched live", e.live.watchedMin],
-      ["Chat messages", e.live.chatMessages],
-      ["People who chatted", e.live.chatters],
-      ["Show length", e.live.durationMin],
-    ];
-    for (const [name, value] of liveRows) {
-      const suffix = name === "Minutes watched live" || name === "Show length" ? " min" : "";
-      html += `<div class="row">${name}<span class="val">${value == null ? "not available" : nfmt(value) + suffix}</span></div>`;
-    }
-    if (e.live.byChannel?.length) {
-      html += `<div class="sect"><div class="mut">By destination</div>`;
-      for (const channel of e.live.byChannel) {
-        const watched = channel.views == null ? "viewers not available" : `${nfmt(channel.views)} watched`;
-        const minutes = channel.watchedMin == null ? "minutes not available" : `${nfmt(channel.watchedMin)} min`;
-        html += `<div class="row">${esc(channel.label)}<span class="val">${watched} · ${minutes}</span></div>`;
-      }
-      html += `</div>`;
-    }
     html += `</div>`;
   }
 
@@ -2076,15 +2142,15 @@ function buildPanel() {
   const w = e.watch;
   if (hasYoutube && w) {
     const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
-    html += `<div class="psec"><div class="kicker">How people watch <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
+    html += `<div class="psec"><h3 class="kicker">How people watch <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></h3>`;
     html += `<div class="pnum">${w.avgPercent == null ? "not available" : `${w.avgPercent}% <span class="hint">of the video on average</span>`}</div>`;
     const wparts = [];
-    if (w.avgDurationSec != null) wparts.push(`<span class="g" data-tip="average time watched" tabindex="0">${ICONS.clock}<b>${fmtDur(w.avgDurationSec)}</b></span>`);
-    if (w.minutesWatched != null) wparts.push(`<span class="g" data-tip="total watch time across both channels" tabindex="0">${ICONS.stack}<b>${nfmt(Math.round(w.minutesWatched / 60))} h</b></span>`);
+    if (w.avgDurationSec != null) wparts.push(`<span class="g" data-tip="average time watched" tabindex="0">${ICONS.clock}<b>${fmtDur(w.avgDurationSec)}</b><span class="gl">average watch</span></span>`);
+    if (w.minutesWatched != null) wparts.push(`<span class="g" data-tip="total watch time across both channels" tabindex="0">${ICONS.stack}<b>${nfmt(Math.round(w.minutesWatched / 60))} h</b><span class="gl">watched</span></span>`);
     // per-channel split rides beside the blend — same colors as everywhere
     for (const c of w.byChannel || []) {
       if (c.avgPercent == null) continue;
-      wparts.push(`<span class="g" data-stat="${esc(TT_NAME[c.key] || c.key)}" data-dot="${esc(PLAT_COLORS[c.key] || FG3)}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${c.avgPercent}%` }, { n: "YouTube views", v: nfmt(c.views) }, ...(c.subsPer1k != null ? [{ n: "Subscribers per 1,000 views", v: String(c.subsPer1k) }] : [])]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[c.key] || FG3}"></i><b>${c.avgPercent}%</b></span>`);
+      wparts.push(`<span class="g" data-stat="${esc(TT_NAME[c.key] || c.key)}" data-dot="${esc(PLAT_COLORS[c.key] || FG3)}" data-mrows="${esc(JSON.stringify([{ n: "Share of the video watched", v: `${c.avgPercent}%` }, { n: "YouTube views", v: nfmt(c.views) }, ...(c.subsPer1k != null ? [{ n: "Subscribers per 1,000 views", v: String(c.subsPer1k) }] : [])]))}" tabindex="0"><i class="cdot" style="background:${PLAT_COLORS[c.key] || FG3}"></i><span class="gl">${TT_HTML[c.key] || TT_NAME[c.key] || c.key}</span><b>${c.avgPercent}%</b></span>`);
     }
     if (wparts.length) html += `<div class="gline">${wparts.join("")}</div>`;
     const pending = pendingWatchMessage(e, NEWEST.slug);
@@ -2132,7 +2198,7 @@ function buildPanel() {
     // — where views came from: share bars, scaled to the top source —
     if (w.traffic) {
       const topShare = Math.max(...w.traffic.map((t) => t.share));
-      html += `<div class="psec"><div class="kicker">Where views came from <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
+      html += `<div class="psec"><h3 class="kicker">Where views came from <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></h3>`;
       for (const t of w.traffic) {
         const tname = TRAFFIC_NAMES[t.source] || esc(t.source.toLowerCase().replace(/_/g, " "));
         const ttip = TRAFFIC_TIPS[t.source];
@@ -2146,9 +2212,52 @@ function buildPanel() {
   } else {
     const pending = pendingWatchMessage(e, NEWEST.slug);
     if (pending) {
-      html += `<div class="psec"><div class="kicker">How people watch <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></div>`;
+      html += `<div class="psec"><h3 class="kicker">How people watch <span class="kh" data-tip="YouTube analytics only" tabindex="0">${PLOGO.yt}</span></h3>`;
       html += `<div class="pnum hint">${esc(pending)}</div></div>`;
     }
+  }
+
+  // — live —
+  if (e.live) {
+    // a KPI strip: label over value, so nothing stretches across the pane
+    html += `<div class="psec wide"><h3 class="kicker">Live session</h3><div class="lkpis">`;
+    const liveCells = [
+      ["Peak viewers", e.live.peak, ""],
+      ["Average viewers", e.live.avg, ""],
+      ["People who watched live", e.live.liveViews, ""],
+      ["Minutes watched live", e.live.watchedMin, "min"],
+      ["Chat messages", e.live.chatMessages, ""],
+      ["People who chatted", e.live.chatters, ""],
+      ["Show length", e.live.durationMin, "min"],
+    ];
+    for (const [name, value, unit] of liveCells) {
+      html += `<div class="lk"><div class="lkl">${name}</div><div class="lkv">${value == null ? `<span class="na">not available</span>` : `${nfmt(value)}${unit ? ` <small>${unit}</small>` : ""}`}</div></div>`;
+    }
+    html += `</div>`;
+    if (e.live.byChannel?.length) {
+      // destinations by their marks, like every other surface
+      const chan = (l) => esc(l).replace(/^YT /, `${PLOGO.yt} `).replace(/^X\b/, PLOGO.x).replace(/^LinkedIn\b/, `${LI_MARK} LinkedIn`);
+      html += `<div class="sect"><h4 class="mut">By destination</h4><div class="dest">`;
+      for (const channel of e.live.byChannel) {
+        const watched = channel.views == null ? "viewers not available" : `${nfmt(channel.views)} watched`;
+        const minutes = channel.watchedMin == null ? "minutes not available" : `${nfmt(channel.watchedMin)} min`;
+        html += `<div class="row">${chan(channel.label)}<span class="val">${watched} · ${minutes}</span></div>`;
+      }
+      html += `</div></div>`;
+    }
+    html += `</div>`;
+  }
+
+  if (e.linkedin) {
+    const li = e.linkedin;
+    const rows = [['Live chat messages', li.liveChat.messages], ['Live chat participants', li.liveChat.chatters],
+      ['Video plays', li.metrics.plays], ['Unique video viewers', li.metrics.uniqueViewers], ['Minutes watched', li.metrics.watchTimeMinutes],
+      ['Post impressions', li.metrics.impressions], ['Reactions', li.metrics.reactions], ['Post comments', li.metrics.comments], ['Reposts', li.metrics.reposts]];
+    html += `<div class="psec" id="linkedin-episode"><h3 class="kicker">LinkedIn · Ridd</h3>`;
+    for (const [name, value] of rows) if (Number.isFinite(value)) html += `<div class="row">${name}<span class="val">${nfmt(value)}</span></div>`;
+    if (li.observedAt) html += `<div class="hint">Analytics observed ${esc(li.observedAt.slice(0, 10))}</div>`;
+    if (li.reason) html += `<div class="hint">${esc(li.reason)}</div>`;
+    html += `<details class="pdisc"><summary>About these numbers${ICONS.chevdown}</summary><div class="hint">${esc(li.note)}</div></details></div>`;
   }
 
   // — audience feedback — (redesigned 2026-08-23, owner directive: one quiet
@@ -2163,7 +2272,7 @@ function buildPanel() {
     const ppl = comments.uniqueCommenters;
     // while comments are still being read the store carries no counts — the
     // pills render nothing and the footnote says why (absence is never zero)
-    html += `<div class="psec wide fb"><div class="fbhead"><div class="kicker">Audience feedback</div>
+    html += `<div class="psec wide fb"><div class="fbhead"><h3 class="kicker">Audience feedback</h3>
       <div class="pills">${comments.pending ? `
         <span class="pill senti-link more" data-f="all" role="button" tabindex="0">Read comments</span>` : `
         <span class="pill senti-link" data-f="positive" role="button" tabindex="0"><i class="dot good"></i>${comments.enjoyCount} enjoyed</span>
@@ -2210,10 +2319,10 @@ function audienceHTML(episode) {
   // nothing approved yet: one line, the stored notices saying why (still being
   // processed, capture incomplete) — no pills, no counts, no group wording
   if (!audience.count) {
-    return `<div class="psec wide fb"><div class="fbhead"><div class="kicker">Audience feedback · E${episode.ep}</div></div>
+    return `<div class="psec wide fb"><div class="fbhead"><h2 class="kicker">Audience feedback · E${episode.ep}</h2></div>
     <div class="fbfoot">${notices}</div></div>`;
   }
-  return `<div class="psec wide fb"><div class="fbhead"><div class="kicker">Audience feedback · E${episode.ep}</div>
+  return `<div class="psec wide fb"><div class="fbhead"><h2 class="kicker">Audience feedback · E${episode.ep}</h2>
     <div class="pills"><button type="button" class="pill senti-link" data-f="positive"><i class="dot good"></i>${audience.positiveCount} positive comments</button>
     <button type="button" class="pill senti-link" data-f="negative"><i class="dot bad"></i>${audience.negativeCount} with criticism</button>
     <button type="button" class="pill senti-link more" data-f="all">Read all ${audience.count} comments</button></div></div>
@@ -2236,12 +2345,35 @@ function openDrill(slug, filter) {
   drillState.slug = slug;
   drillState.filter = filter || "all";
   drillState.query = ""; drillState.source = "all";
+  drillState.opener = document.activeElement;
   renderDrill();
   document.getElementById("drill").classList.add("on");
+  for (const id of ["main"]) document.getElementById(id)?.setAttribute("inert", "");
+  document.querySelector("header")?.setAttribute("inert", "");
+  document.getElementById("dtitle").focus();
 }
 document.getElementById("dsearch").addEventListener("input", event => { drillState.query = event.target.value; renderDrill(); });
 document.getElementById("dsource").addEventListener("change", event => { drillState.source = event.target.value; renderDrill(); });
-function closeDrill() { document.getElementById("drill").classList.remove("on"); }
+function closeDrill() {
+  const drill = document.getElementById("drill");
+  if (!drill.classList.contains("on")) return;
+  drill.classList.remove("on");
+  document.getElementById("main")?.removeAttribute("inert");
+  document.querySelector("header")?.removeAttribute("inert");
+  const back = drillState.opener;
+  drillState.opener = null;
+  if (back && back.isConnected) back.focus();
+  else document.querySelector("#audience-preview .pill.more, .panel .pill.more")?.focus();
+}
+// Tab and Shift+Tab cycle inside the open dialog
+document.getElementById("drill").addEventListener("keydown", (ev) => {
+  if (ev.key !== "Tab") return;
+  const items = [...document.querySelectorAll("#drill .dcard button, #drill .dcard input, #drill .dcard select, #drill .dcard a[href]")].filter((n) => n.offsetParent !== null);
+  if (!items.length) return;
+  const first = items[0], last = items[items.length - 1];
+  if (ev.shiftKey && (document.activeElement === first || document.activeElement.id === "dtitle")) { ev.preventDefault(); last.focus(); }
+  else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+});
 /* ================= growth-trend card: is the show growing? (PRD v2 W2) ================= */
 function buildCompound() {
   const el = document.getElementById("compound");
@@ -2256,7 +2388,7 @@ function buildCompound() {
   const skelChart = (line, sub) => `<div class="skelplot">
       <div class="skelgrid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       <div class="skelcenter">
-        <svg class="skelicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="21.5"/><path d="M14.5 30.5l6.5-6.5 4 4 8.5-9.5"/><path d="M28.5 18.5h5v5"/></svg>
+        <span class="skelicon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l5-5 3.5 3.5L20 7"/><path d="M15 7h5v5"/></svg></span>
         <div class="waitline">${line}</div>${sub ? `<div class="waitsub">${sub}</div>` : ""}
       </div>
       <div class="skelaxis" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -2265,7 +2397,7 @@ function buildCompound() {
   const rows = EPS.map((e) => ({ e, v: M.get(e) }));
   const have = rows.filter((r) => r.v != null);
   if (have.length < 3) {
-    el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div>${skelChart("Not enough episodes to call a direction yet.")}`;
+    el.innerHTML = `<h2 class="kicker">${esc(METRIC_TREND_TITLE[metric])}</h2>${skelChart("Not enough episodes to call a direction yet.")}`;
     el.style.display = "";
     return;
   }
@@ -2277,10 +2409,11 @@ function buildCompound() {
   const pct = cmp && Number.isFinite(cmp.pct) ? cmp.pct : null;
   const cls = pct == null || Math.abs(pct) <= QUIET_ZONE ? "" : pct > 0 ? "up" : "down";
   const pendingNewest = metric === "watched" ? pendingWatchMessage(NEWEST, NEWEST.slug) : null;
+  const delta = (p) => `<span class="db ${p > 0 ? "up" : "down"}">${p > 0 ? "+" : "−"}${Math.abs(p)}%</span>`;
   const verdict = pendingNewest && heroMetricKey() === "watched" ? ""
-    : pendingNewest || (pct == null ? (cmp?.reason || "Too young to compare with the episode before it at the same age.")
-    : Math.abs(pct) <= QUIET_ZONE ? "Holding steady episode to episode."
-    : pct > 0 ? `The newest episode is up ${pct}% on the one before it.` : `The newest episode is down ${Math.abs(pct)}% on the one before it.`);
+    : pendingNewest ? esc(pendingNewest) : (pct == null ? esc(cmp?.reason || "Too young to compare with the episode before it at the same age.")
+    : Math.abs(pct) <= QUIET_ZONE ? "At the same age, the newest episode is holding level with the one before it."
+    : `At the same age, the newest episode is ${pct > 0 ? "up" : "down"} ${delta(pct)} on the one before it.`);
   const bars = rows.map((r) => {
     const hot = r.e.slug === hotSlug;
     if (r.v == null) {
@@ -2294,7 +2427,7 @@ function buildCompound() {
       <div class="bwrap"><div class="b" style="height:${Math.max(8, Math.round((r.v / maxV) * 100))}%"></div></div>
       <span class="bep" aria-hidden="true">E${r.e.ep}</span></div>`;
   }).join("");
-  el.innerHTML = `<div class="kicker">${esc(METRIC_TREND_TITLE[metric])}</div><div class="bars">${bars}</div>${verdict
+  el.innerHTML = `<h2 class="kicker">${esc(METRIC_TREND_TITLE[metric])}</h2><div class="bars">${bars}</div>${verdict
     ? `<div class="cv2 ${cls}">${verdict}</div>`
     : ""}`;
   el.style.display = "";
@@ -2313,11 +2446,26 @@ function renderDrill() {
     ["negative", `With criticism${count(e.audience ? view.negativeCount : view.complaintCount)}`]];
   const tEl = document.getElementById("dtabs");
   tEl.innerHTML = "";
+  tEl.setAttribute("role", "radiogroup");
+  tEl.setAttribute("aria-label", "Which feedback");
   for (const [f, lab] of tabs) {
     const b = document.createElement("button");
-    b.textContent = lab;
+    b.type = "button";
+    const m = lab.match(/^(.*?)\s(\d+)$/);
+    b.innerHTML = m ? `${esc(m[1])} <span class="cnt">${m[2]}</span>` : esc(lab);
     b.className = drillState.filter === f ? "on" : "";
-    b.addEventListener("click", () => { drillState.filter = f; renderDrill(); });
+    b.setAttribute("role", "radio");
+    b.setAttribute("aria-checked", String(drillState.filter === f));
+    b.tabIndex = drillState.filter === f ? 0 : -1;
+    b.addEventListener("click", () => { drillState.filter = f; renderDrill(); tEl.querySelector('[aria-checked="true"]')?.focus(); });
+    b.addEventListener("keydown", (ev) => {
+      const order = tabs.map(([k]) => k);
+      const i = order.indexOf(drillState.filter);
+      const to = ev.key === "ArrowRight" || ev.key === "ArrowDown" ? order[(i + 1) % order.length]
+        : ev.key === "ArrowLeft" || ev.key === "ArrowUp" ? order[(i + order.length - 1) % order.length] : null;
+      if (!to) return;
+      ev.preventDefault(); drillState.filter = to; renderDrill(); tEl.querySelector('[aria-checked="true"]')?.focus();
+    });
     tEl.appendChild(b);
   }
   const rows = list.filter(c => drillState.filter === "all" ? true :
@@ -2328,7 +2476,7 @@ function renderDrill() {
   const lEl = document.getElementById("dlist");
   const refreshNote = !e.audience && e.sourceStates?.comments?.state && e.sourceStates.comments.state !== "ready" ? `<div class="dempty">${esc(e.comments.commentersPer1kNote)}</div>` : "";
   const missedNote = !e.audience && e.comments?.xCoverage === "missed"
-    ? `<div class="dempty" style="padding:8px 0 4px;font-size:12px">X replies missing for this episode — it aired before comment tracking started (X search reaches back 7 days). YouTube comments only.</div>` : "";
+    ? `<div class="dempty dnote">X replies missing for this episode — it aired before comment tracking started (X search reaches back 7 days). YouTube comments only.</div>` : "";
   const audienceNotices = (e.audience?.notices || []).map(note => `<div class="dempty">${esc(note)}</div>`).join("");
   lEl.innerHTML = audienceNotices + (rows.length ? "" : `<div class="dempty">No feedback in this group.</div>`) + missedNote + refreshNote;
   for (const c of rows) {
@@ -2338,7 +2486,7 @@ function renderDrill() {
       <span class="src">${esc(feedbackSource(c))}</span>
       ${c.likes ? `<span>${c.likes} ${c.likes === 1 ? "like" : "likes"}</span>` : ""}
       <span class="senti ${c.sentiment}">${c.sentiment === "mixed" ? "± both" : c.sentiment === "positive" ? "enjoyed" : "didn’t"}</span></div>
-      <div class="txt">${esc(c.text)}</div><div class="m">${feedbackOriginal(c)}${c.at ? `<time datetime="${esc(c.at)}">${esc(c.at.replace("T", " ").replace(/\.000Z$/, " UTC").replace(/Z$/, " UTC"))}</time>` : ""}</div>`;
+      <div class="txt">${esc(c.text)}</div><div class="m">${feedbackOriginal(c)}${c.at ? `<time datetime="${esc(c.at)}">${esc(new Date(c.at).toLocaleString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }))}</time>` : ""}</div>`;
     lEl.appendChild(d);
   }
   monoFigures(document.getElementById("drill"));
@@ -2568,7 +2716,7 @@ function chartSummaryHTML(ch, point) {
           ? pendingWatchMessage(e, NEWEST.slug, { compact: true }) || "not available"
           : state.mode === "race" && !e.historyReady ? "after air day" : "not available";
         if (!found) return [e, missing, ""];
-        const value = state.mode === "watch" ? `${found.point.y}%` : nfmt(found.point.y);
+        const value = state.mode === "watch" ? pct1(found.point.y) : nfmt(found.point.y);
         const when = state.mode !== "race" ? ""
           : state.byDate ? fmtDate(found.point.x) : `day ${Math.round(found.point.x)}`;
         return [e, value, when];
@@ -2777,7 +2925,7 @@ function chartTitle() {
   if (state.mode === "race") {
     const hasAnnounce = EPS.some(e => (e.announces || []).length);
     const waiting = historyWaitScope();
-    return [currentView().title, `YouTube + X · complete reads only${state.byDate ? " · by date" : ""}${hasAnnounce && !state.byDate ? " · \u25b2 X posts" : ""}${waiting ? ` · ${esc(waiting)}` : ""}`];
+    return [currentView().title, `YouTube + X · complete reads only${state.byDate ? " · by date" : ""}${hasAnnounce && !state.byDate ? ` · <svg class="tri" viewBox="0 0 8 8" aria-hidden="true"><path d="M4 1 7.5 7h-7z"/></svg> X posts` : ""}${waiting ? ` · ${esc(waiting)}` : ""}`];
   }
   const waiting = historyWaitScope();
   return ["Weekly total views", `YouTube + X · complete reads only${waiting ? ` · ${esc(waiting)}` : ""}`];
@@ -2821,33 +2969,39 @@ function seriesFor(e) {
 
 const endLabels = {
   id: "endLabels",
+  // Labels sit at each line's end. No leader lines (a stroke from the line to a
+  // displaced label reads as the data dropping): the focused line's label always
+  // draws, the typical line's next, and a context label that would collide with
+  // one already placed is left out — hover names any line.
   afterDatasetsDraw(chart) {
     if (chart.config.type !== "line") return;
     const { ctx, chartArea } = chart;
-    const placed = [];
     const items = [];
     chart.data.datasets.forEach((ds, i) => {
       const meta = chart.getDatasetMeta(i);
       if (meta.hidden || ds.hidden || !meta.data.length || ds.spark || ds.isAnnounce || ds.noEndLabel) return;
       const pt = meta.data[meta.data.length - 1];
-      items.push({ x: pt.x, y: pt.y, text: ds.isTypical ? "typical" : "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
+      const rank = ds.isTypical ? 1 : (ds.order ?? 1) <= 0 ? 0 : 2;
+      items.push({ x: pt.x, y: pt.y, rank, typical: !!ds.isTypical, text: ds.isTypical ? "typical" : "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
     });
-    items.sort((a, b) => a.y - b.y);
+    items.sort((a, b) => a.rank - b.rank || a.y - b.y);
+    const placed = [];
     ctx.save();
-    ctx.font = `600 12px ${MONO}`;
+    ctx.textBaseline = "middle";
     for (const it of items) {
+      ctx.font = it.typical ? `500 12px ${FONT}` : `600 12px ${MONO}`;
+      const w = ctx.measureText(it.text).width;
+      const x = Math.min(it.x + 8, chartArea.right + 4);
+      const clash = (y) => placed.some((p) => Math.abs(p.y - y) < 14 && x < p.x + p.w + 4 && p.x < x + w + 4);
       let y = it.y;
-      for (const p of placed) if (Math.abs(y - p) < 15) y = p + 15;
-      placed.push(y);
-      const lx = Math.min(it.x + 8, chartArea.right + 4);
-      if (Math.abs(y - it.y) > 6) {
-        // leader line: keep a displaced label attached to its series
-        ctx.strokeStyle = it.color; ctx.lineWidth = 1; ctx.globalAlpha = 0.6;
-        ctx.beginPath(); ctx.moveTo(it.x + 2, it.y); ctx.lineTo(lx - 2, y - 4); ctx.stroke();
-        ctx.globalAlpha = 1;
+      if (clash(y)) {
+        const up = [-4, 4, -8, 8].map((d) => it.y + d).find((c) => !clash(c));
+        if (up != null) y = up;
+        else if (it.rank === 2) continue;
       }
+      placed.push({ x, y, w });
       ctx.fillStyle = it.color;
-      ctx.fillText(it.text, lx, y + 4);
+      ctx.fillText(it.text, x, y);
     }
     ctx.restore();
   }
@@ -2897,12 +3051,12 @@ const barTotals = {
       const drawn = available.length ? available.reduce((a, v) => a + v, 0) : null;
       const whole = visible.length === chart.data.datasets.length;
       const total = whole ? displayedTotal(e) : drawn;
-      // the ◐ coverage mark is about X plays — it only means anything while
+      // the "partial" coverage word is about X plays — it only means anything while
       // every destination is on screen
       const info = e.latest.totalViewsInfo || {};
       const mark = whole && !hasYoutubeReading(e) && total != null
-        ? info.partial ? " ◐ · X only" : info.stale ? " · old X only" : " · X only"
-        : whole && info.partial ? " ◐" : whole && info.stale ? " · old X" : "";
+        ? info.partial ? " · partial X only" : info.stale ? " · old X only" : " · X only"
+        : whole && info.partial ? " · partial" : whole && info.stale ? " · old X" : "";
       ctx.fillText(total == null ? "not available" : nfmt(total) + mark, endX + 8, y);
     });
     ctx.restore();
@@ -3014,9 +3168,9 @@ function externalTooltip(context) {
     if (isWatch) {
       const at = p.x <= 0 ? "the start" : p.x >= 100 ? "the end" : `${Math.round(p.x)}% through`;
       if (ds.isTypical) {
-        html = `<div class="h">Typical episode</div><div class="meta">At ${at}</div><div class="big">${p.y}% still watching</div><div class="chg">The middle value across episodes with watch curves</div>`;
+        html = `<div class="h">Typical episode</div><div class="meta">At ${at}</div><div class="big">${pct1(p.y)} <small>still watching</small></div><div class="chg">The middle value across episodes with watch curves</div>`;
       } else {
-        html = `<div class="h">${esc(label(e))}</div><div class="meta">At ${at}</div><div class="big">${p.y}% still watching</div>`;
+        html = `<div class="h">${esc(label(e))}</div><div class="meta">At ${at}</div><div class="big">${pct1(p.y)} <small>still watching</small></div>`;
         if (e.watch?.avgPercent != null) html += `<div class="chg">${e.watch.avgPercent}% of the video watched on average</div>`;
         const channels = YT_KEYS.filter((key) => e.links?.[key]);
         if (channels.length) {
@@ -3090,7 +3244,7 @@ let chart;
 // no label (absence stays silent, never zero).
 const CHART_METRICS = {
   watched: { get: (e) => hasYoutubeReading(e) ? e.watch?.avgPercent ?? null : null, text: (v) => `${v}%`, tick: (v) => `${v}%`,
-    card: (v) => `${v}%`, short: (v) => String(Math.round(v)), spoken: (v) => `${v}% of the video watched on average` },
+    card: (v) => `${v}%`, short: (v) => `${Math.round(v)}%`, spoken: (v) => `${v}% of the video watched on average` },
   live: { get: (e) => e.live?.avg ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v),
     card: (v) => nfmt(v), short: (v) => kfmt(v), spoken: (v) => `${nfmt(v)} average live viewers` },
   reach: { get: (e) => e.latest?.xImpressions ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v),
@@ -3119,7 +3273,7 @@ function renderMetricBars(all, ordered, soloed) {
       layout: { padding: { right: 64 } },
       interaction: { mode: "index", axis: "y", intersect: false },
       scales: {
-        x: { beginAtZero: true,
+        x: { beginAtZero: true, bounds: "data", grace: "4%",
           suggestedMax: soloed ? Math.max(...all.map(e => M.get(e) ?? 0)) : undefined,
           ticks: { padding: 8, callback: v => M.tick(v) }, grid: { color: GRID, drawTicks: false }, border: { display: false } },
         y: { ticks: { color: FG2, padding: 8, font: { size: 12, weight: 500 } }, grid: { display: false }, border: { display: false } },
@@ -3135,7 +3289,7 @@ function renderMetricBars(all, ordered, soloed) {
         const same = state.solo === e.slug;
         state.solo = same ? null : e.slug;
         state.panel = same ? null : e.slug;
-        render();
+        requestAnimationFrame(render); // never rebuild the chart inside its own event
       },
     },
     plugins: [barTotals, comparisonHover],
@@ -3149,11 +3303,12 @@ function renderMetricBars(all, ordered, soloed) {
 }
 function renderStandings() {
   const all = [...EPS].reverse(); // newest bar on top — the anchor position
-  // solo collapse (owner request 2026-08-23): with an episode selected, the
-  // totals chart shrinks to that one bar so the open panel shares the
-  // viewport; clearing the selection restores the full standings
+  // a selection is focus + context (design system data-viz rule 2, 2026-10-06;
+  // it replaced the 2026-08-23 one-bar collapse): every episode stays on the
+  // scale, the selected one keeps its colors and the rest drop to context,
+  // while the shorter box (#chartbox.mini) lets the open panel share the viewport
   const soloRows = state.solo ? all.filter(e => e.slug === state.solo) : [];
-  const ordered = soloRows.length ? soloRows : all;
+  const ordered = all;
   if (state.metric !== "views" && CHART_METRICS[state.metric]) return renderMetricBars(all, ordered, soloRows.length > 0);
   const SEGS = [
     ["yt:joindiveclub", (e) => youtubeValue(e, e.latest.byDest["yt:joindiveclub"]?.views)],
@@ -3186,7 +3341,7 @@ function renderStandings() {
       scales: {
         // solo keeps the full-standings scale: the selected bar holds its
         // length while the others leave, and nothing reads as growth
-        x: { stacked: true, beginAtZero: true,
+        x: { stacked: true, beginAtZero: true, bounds: "data", grace: "4%",
           suggestedMax: soloRows.length ? Math.max(...all.map(e => displayedTotal(e) || 0)) : undefined,
           ticks: { padding: 8, callback: v => kfmt(v) }, grid: { color: GRID, drawTicks: false }, border: { display: false } },
         y: { stacked: true, ticks: { color: FG2, padding: 8, font: { size: 12, weight: 500 } }, grid: { display: false }, border: { display: false } },
@@ -3202,7 +3357,7 @@ function renderStandings() {
         const same = state.solo === e.slug;
         state.solo = same ? null : e.slug;
         state.panel = same ? null : e.slug;
-        render();
+        requestAnimationFrame(render); // never rebuild the chart inside its own event
       },
     },
     plugins: [barTotals, comparisonHover],
@@ -3228,6 +3383,14 @@ function render() {
   buildTable();
   buildEmptyNote();
   syncUI();
+  {
+    const touch = matchMedia("(hover: none)").matches;
+    const sel = EPS.find((e) => e.slug === state.solo);
+    document.getElementById("chint").textContent = state.table ? ""
+      : touch ? "Tap a bar or line to open that episode · Table lists every value"
+      : "Point at the chart for its numbers · click a bar or line to open that episode · ← → step through episodes";
+    document.getElementById("chart").setAttribute("aria-label", `${t}${sel ? `, ${label(sel)} selected` : ""}. Use the arrow keys to step through episodes; the Table button lists every value.`);
+  }
   monoFigures();
 
   if (state.table) { if (chart) { chart.destroy(); chart = null; } return; }
@@ -3255,7 +3418,7 @@ function render() {
     const same = state.solo === ds.slug;
     state.solo = same ? null : ds.slug;
     state.panel = same ? null : ds.slug;
-    render();
+    requestAnimationFrame(render); // never rebuild the chart inside its own event
   };
 
   // W13 Watching: every finished drop-off curve overlaid, newest in color,
@@ -3267,9 +3430,10 @@ function render() {
     const datasets = withCurve.map((e) => {
       const isRef = e.slug === refSlug;
       const soloed = state.solo === e.slug;
-      const hidden = state.solo !== null && !soloed;
-      const deemph = !isRef && !soloed;
-      const base = { border: deemph ? DIMLINE : color(e), lab: deemph ? FG3 : color(e), width: soloed || isRef ? 2 : 1.5, ord: isRef ? 0 : 1 };
+      const hidden = false; // a selection is focus + context: the others stay as gray context
+      // one focus: the selected episode, else the newest with a curve
+      const deemph = state.solo ? !soloed : !isRef;
+      const base = { border: deemph ? DIMLINE : color(e), lab: deemph ? FG3 : color(e), width: deemph ? 1.5 : 2, ord: deemph ? 1 : 0 };
       return {
         label: label(e), epNum: e.ep, slug: e.slug,
         data: e.watch.curve.map(p => ({ x: Math.round(p.at * 100), y: Math.round(p.watching * 1000) / 10 })),
@@ -3326,7 +3490,7 @@ function render() {
     const labels = Array.from({ length: maxWeek }, (_, i) => "week " + (i + 1));
     const datasets = source.map((e) => {
       const soloed = state.solo === e.slug;
-      const hidden = state.solo !== null && !soloed;
+      const hidden = false; // a selection is focus + context: the others stay as gray context
       const weekly = weeklyWithViews(e);
       const byWeek = new Map(weekly.map((w, i) => [w.week, i]));
       const data = [], metas = [];
@@ -3372,12 +3536,13 @@ function render() {
   const datasets = source.map((e) => {
     const isNewest = e.slug === newestSeriesSlug;
     const soloed = state.solo === e.slug;
-    const hidden = state.solo !== null && !soloed;
+    const hidden = false; // a selection is focus + context: the others stay as gray context
     // emphasis form (live AND pacing race): the newest episode keeps its
     // color, priors recede to one context gray until soloed — the question
     // both views answer is "newest vs typical", not "six equal series"
-    const deemph = (isLive || state.mode === "race") && !isNewest && !soloed;
-    const base = { border: deemph ? DIMLINE : color(e), lab: deemph ? FG3 : color(e), width: soloed || isNewest ? 2 : 1.5, ord: isNewest ? 0 : 1 };
+    // one focus: the selected episode, else the newest with history
+    const deemph = state.solo ? !soloed : !isNewest;
+    const base = { border: deemph ? DIMLINE : color(e), lab: deemph ? FG3 : color(e), width: deemph ? 1.5 : 2, ord: deemph ? 1 : 0 };
     return {
       label: label(e),
       epNum: e.ep,
@@ -3441,7 +3606,8 @@ function render() {
               if (isRace) return v === 0 ? "premiere" : (v % 7 === 0 && v > 0 ? `${v/7} wk${v/7 > 1 ? "s" : ""}` : "");
               return Number.isInteger(v) ? "week " + (v + 1) : "";
             },
-            maxTicksLimit: isCal ? 9 : 24,
+            maxTicksLimit: isCal ? 9 : matchMedia("(max-width: 720px)").matches ? 5 : 24,
+            maxRotation: 0, autoSkip: true,
           },
           grid: { color: GRID, drawTicks: false },
           border: { display: false },
@@ -3493,9 +3659,9 @@ function buildTable() {
     const v = e.watch.avgPercent;
     const wTypical = DATA.baselines?.watchPctBySlug?.[e.slug]?.typical ?? null;
     if (wTypical != null && wTypical > 0 && Math.abs(v - wTypical) / wTypical * 100 > QUIET_ZONE) {
-      return v > wTypical ? `<span class="st-good">↑${v}%</span>` : `<span class="st-bad">↓${v}%</span>`;
+      return v > wTypical ? `<span class="st-good">↑${pct1(v)}</span>` : `<span class="st-bad">↓${pct1(v)}</span>`;
     }
-    return `<span class="st-mid">${v}%</span>`;
+    return `<span class="st-mid">${pct1(v)}</span>`;
   };
   // same shape the panel uses for time watched
   const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
@@ -3503,24 +3669,24 @@ function buildTable() {
   if (kind === "live") {
     html += "<th>Episode</th><th>Peak</th><th>Average</th><th>Watched live</th><th>Minutes watched</th><th>Chat messages</th><th>Chatters</th><th>Length</th></tr>";
     for (const e of [...EPS].reverse()) {
-      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
       html += e.live
         ? `<td class="t">${metricText(e.live.peak)}</td><td>${metricText(e.live.avg)}</td><td>${metricText(e.live.liveViews)}</td><td>${metricText(e.live.watchedMin)}</td><td>${metricText(e.live.chatMessages)}</td><td>${metricText(e.live.chatters)}</td><td>${e.live.durationMin == null ? "–" : nfmt(e.live.durationMin) + " min"}</td>`
         : `<td colspan="7" class="gap">live data is not available</td>`;
       html += "</tr>";
     }
   } else if (kind === "watched") {
-    html += `<th>Episode</th><th>Watched</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>Avg time</th><th>Total time</th></tr>`;
+    html += `<th>Episode</th><th>Watched vs typical</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>Avg time</th><th>Total time</th></tr>`;
     for (const e of [...EPS].reverse()) {
-      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
       if (!hasYoutubeReading(e) || !e.watch) {
         html += `<td colspan="5" class="gap">${esc(pendingWatchMessage(e, NEWEST.slug) || "Watch report not available.")}</td></tr>`;
         continue;
       }
       const by = (key) => e.watch.byChannel?.find((c) => c.key === key)?.avgPercent;
       html += `<td class="t">${watchedCellFor(e)}</td>`;
-      html += `<td>${by("yt:joindiveclub") == null ? "–" : by("yt:joindiveclub") + "%"}</td>`;
-      html += `<td>${by("yt:designertom") == null ? "–" : by("yt:designertom") + "%"}</td>`;
+      html += `<td>${by("yt:joindiveclub") == null ? "–" : pct1(by("yt:joindiveclub"))}</td>`;
+      html += `<td>${by("yt:designertom") == null ? "–" : pct1(by("yt:designertom"))}</td>`;
       html += `<td>${e.watch.avgDurationSec == null ? "–" : fmtDur(e.watch.avgDurationSec)}</td>`;
       html += `<td>${e.watch.minutesWatched == null ? "–" : nfmt(Math.round(e.watch.minutesWatched / 60)) + " h"}</td></tr>`;
     }
@@ -3528,7 +3694,7 @@ function buildTable() {
     html += `<th>Episode</th><th>${PLOGO.x} @ridd_design</th><th>${PLOGO.x} @designertom</th><th>Total reach</th></tr>`;
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
-      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
       html += `<td class="t">${bd["x:ridd_design"]?.views == null ? "–" : nfmt(bd["x:ridd_design"].views)}</td>`;
       html += `<td>${bd["x:designertom"]?.views == null ? "–" : nfmt(bd["x:designertom"].views)}</td>`;
       html += `<td>${e.latest.xImpressions == null ? "–" : nfmt(e.latest.xImpressions)}</td></tr>`;
@@ -3536,14 +3702,14 @@ function buildTable() {
   } else if (kind === "race") {
     html += `<th>Episode</th><th>History</th><th>Total views now</th><th>${PLOGO.yt} now</th><th>${PLOGO.x} plays now</th></tr>`;
     for (const e of [...EPS].reverse()) {
-      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
       html += `<td class="t">${e.historyReady ? "ready" : "waiting for full-day read"}</td>`;
       html += `<td>${metricText(displayedTotal(e))}</td>`;
       html += `<td>${metricText(youtubeValue(e, e.latest.ytTotal))}</td>`;
       html += `<td>${metricText(e.latest.xPlays)}</td></tr>`;
     }
   } else {
-    html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>Pace ${PLOGO.yt}</th></tr>`;
+    html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched vs typical</th><th>${PLOGO.yt} Pace vs typical</th></tr>`;
     // episode scores are each against a different set of earlier episodes —
     // one neutral colour, never the show-health bands (PRD v9 F17)
     for (const e of [...EPS].reverse()) {
@@ -3553,7 +3719,7 @@ function buildTable() {
       const healthCell = healthOf(e)
         ? `<span class="st-mid">${healthOf(e).score}</span>`
         : "–";
-      html += `<tr><td class="t">${esc(label(e))}</td>`;
+      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
       html += `<td class="t">${healthCell}</td>`;
       html += `<td class="t">${metricText(displayedTotal(e))}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
       html += `<td>${metricText(youtubeValue(e, bd["yt:joindiveclub"]?.views))}</td><td>${metricText(youtubeValue(e, bd["yt:designertom"]?.views))}</td>`;
@@ -3566,6 +3732,9 @@ function buildTable() {
   html += "</table>";
   box.innerHTML = html;
   box.style.display = "block"; // stylesheet default is none — must set explicitly
+  const fade = () => box.classList.toggle("more-right", box.scrollLeft + box.clientWidth < box.scrollWidth - 1);
+  fade();
+  if (!box.dataset.fade) { box.dataset.fade = "1"; box.addEventListener("scroll", fade, { passive: true }); window.addEventListener("resize", fade); }
 }
 
 /* M-1: the per-week view silently rendered nothing for episodes first tracked
@@ -3606,7 +3775,7 @@ function applyChartState(cs) {
   state.solo = cs.solo || null;
   state.panel = null;
   render();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 }
 function buildInsightsPanel() {
   const panel = document.getElementById("insights");
@@ -3640,11 +3809,13 @@ function buildInsightsPanel() {
       <span class="body"><div class="cat">${cat.name}</div>
       <span class="txt">${emphasize(ins.text)}</span>
       ${ins.recommendation ? `<button type="button" class="reveal" aria-expanded="false">Recommendation${IC('<path d="M6.5 9.5 12 15l5.5-5.5"/>', "rchev")}</button>` : ""}
-      ${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}
-      ${ins.recommendation ? `<div class="rec">${emphasize(ins.recommendation)}</div>` : ""}</span>`;
-    if (hasMore) div.addEventListener("click", () => {
-      div.classList.toggle("open");
-      div.querySelector(".reveal")?.setAttribute("aria-expanded", String(div.classList.contains("open")));
+      ${hasMore ? `<div class="more" inert><div>${ins.recommendation ? `<div class="rec">${emphasize(ins.recommendation)}</div>` : ""}${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}</div></div>` : ""}</span>`;
+    if (hasMore) div.addEventListener("click", (ev) => {
+      if (ev.target.closest("a")) return;
+      const open = div.classList.toggle("open");
+      div.querySelector(".reveal")?.setAttribute("aria-expanded", String(open));
+      const more = div.querySelector(".more");
+      if (open) more.removeAttribute("inert"); else more.setAttribute("inert", "");
     });
     panel.appendChild(div);
   };
@@ -3658,7 +3829,7 @@ function buildAbout() {
   <p><b>Total views</b> = YouTube views (both channels) + plays from resolved X broadcasts (both hosts). Native videos and teaser clips attached to posts are excluded. Both included sources count video playback — YouTube counts a qualified view (~30s), X counts a broadcast play start, so treat the sum as directional. If YouTube has not reported views yet, its startup zeros are shown as missing and do not start the episode’s history.</p>
   <p><b>X reach</b> = impressions on the hosts' announce posts — the X posts that carry the live broadcast. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere. <b>Promo posts</b> (teasers, clips, links to the upload) are listed beside reach on each episode and never added in, because how many an episode gets varies; they were not searched for before E6. X readings from before 09/04 that blend an announce and a promo post on one account cannot be split and are left out of comparisons.</p>
   <p><b>UX Tools email clicks</b> count clicks on an exact episode link in the newsletter. Beehiiv’s verified count leaves out clicks it could not confirm. These clicks show promotion and are never added to views.</p>
-  <p><b>◐ n/m</b> on a total = plays recovered from n of m broadcasts (the true total is higher). <b>→date</b> = X plays last confirmed on that date (broadcast no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
+  <p><b>partial</b> beside a total = X plays recovered from only some of the episode’s broadcasts (the true total is higher). <b>old</b> = X plays last confirmed on an earlier date (the broadcast is no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
   <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. Views after release adds YouTube views and X broadcast plays only when every watch destination has a stored count; history begins the morning after air day. Move anywhere over a chart to compare every episode at a saved reading near that point; views after release uses the latest reading already reached. Move onto a line or bar for that episode’s channel detail. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
   <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
   <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
@@ -3706,6 +3877,29 @@ function syncUI() {
 }
 
 document.getElementById("bydate").addEventListener("click", () => { state.byDate = !state.byDate; render(); });
+// the chart is reachable without a pointer: Tab focuses it, ← → step through the
+// episodes (each step selects one and opens its panel), Escape clears; touch
+// selects with a tap. The readout line under the plot says which applies.
+{
+  const canvas = document.getElementById("chart");
+  canvas.tabIndex = 0;
+  canvas.setAttribute("role", "img");
+  canvas.addEventListener("keydown", (ev) => {
+    const order = state.mode === "live" ? EPS.filter((e) => e.live) : EPS;
+    if (!order.length) return;
+    const at = order.findIndex((e) => e.slug === state.solo);
+    let next = null;
+    if (ev.key === "ArrowRight" || ev.key === "ArrowDown") next = order[at < 0 ? order.length - 1 : Math.min(order.length - 1, at + 1)];
+    else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") next = order[at < 0 ? order.length - 1 : Math.max(0, at - 1)];
+    else if (ev.key === "Home") next = order[0];
+    else if (ev.key === "End") next = order[order.length - 1];
+    if (!next) return;
+    ev.preventDefault();
+    state.solo = next.slug; state.panel = next.slug;
+    render();
+    canvas.focus();
+  });
+}
 document.getElementById("astable").addEventListener("click", () => { state.table = !state.table; render(); });
 
 /* ---- view dropdown: the heading is the control (listbox pattern) ---- */
@@ -3715,6 +3909,11 @@ const viewMenu = document.getElementById("viewmenu");
   let lastGroup = null;
   for (const v of VIEW_DEFS) {
     if (v.group !== lastGroup) {
+      if (lastGroup !== null) {
+        const sep = document.createElement("div");
+        sep.className = "vsep"; sep.setAttribute("role", "separator");
+        viewMenu.appendChild(sep);
+      }
       const g = document.createElement("div");
       g.className = v.group ? "vgroup" : "vsep";
       if (v.group) g.textContent = v.group;
@@ -3785,7 +3984,16 @@ const stamp = document.getElementById("stamp");
   // lives in the hover title, so no digit is added above the fold)
   const h = DATA.health;
   const behind = h && Number.isFinite(h.ageDays) && h.ageDays >= 1;
-  stamp.innerHTML = `<i class="${when === "today" && !behind ? "" : "old"}" aria-hidden="true"></i>Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}`;
+  const current = when === "today" && !behind;
+  stamp.innerHTML = `<i class="${current ? "" : "old"}" aria-hidden="true"></i><span class="sfull">Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span><span class="sshort" aria-hidden="true">${current ? "Today" : "Behind"}</span>`;
+  stamp.classList.toggle("behind", !current);
+  // the system's trust bar: on phones the freshness sentence moves under the
+  // top bar when the data or the read is not current (the bar keeps one word)
+  const trust = document.getElementById("trust");
+  if (!current) {
+    trust.innerHTML = `${ICONS.clock}<span>Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span>`;
+    trust.hidden = false;
+  }
   stamp.title = `Exact refresh: ${DATA.generatedAt}${h?.date ? ` · health read saved ${h.date}` : ""}`;
   // Every Vercel build keeps its own address and its own data forever. Only the
   // live addresses move to each morning's publish; any other copy holding an
@@ -3794,12 +4002,21 @@ const stamp = document.getElementById("stamp");
   const LIVE_HOSTS = ["dive-radio-analytics.vercel.app", "dive-radio-analytics-toolbenders.vercel.app", "dive-radio-analytics-git-main-toolbenders.vercel.app"];
   if (/\.vercel\.app$/.test(location.hostname) && !LIVE_HOSTS.includes(location.hostname) && when !== "today") {
     const note = document.getElementById("livecopy");
-    note.innerHTML = `<span>This copy is not the live dashboard. Its data is from ${esc(when)}.</span><a href="${LIVE}${esc(location.pathname)}">Open the live dashboard</a>`;
+    note.innerHTML = `<svg class="lcic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span>This copy is not the live dashboard. Its data is from ${esc(when)}.</span><a href="${LIVE}${esc(location.pathname)}">Open the live dashboard</a>`;
     note.hidden = false;
   }
 }
 
 buildAbout();
+{
+  const btn = document.getElementById("aboutbtn"), reg = document.getElementById("aboutreg"), inner = document.getElementById("about");
+  btn.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") !== "true";
+    btn.setAttribute("aria-expanded", String(open));
+    reg.dataset.open = String(open);
+    if (open) inner.removeAttribute("inert"); else inner.setAttribute("inert", "");
+  });
+}
 buildInsightsPanel();
 render();
 </script>
