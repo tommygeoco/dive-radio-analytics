@@ -258,7 +258,13 @@ tokens and the Geist / Geist Mono Latin subsets are inlined in each page, so
 the pages still fetch nothing at runtime. A page change must keep
 `node ~/.claude/skills/smart-sharps-design-system/scripts/ds-audit.mjs index.html agents.html`
 at zero findings and pass the `design-system-critic` agent at 10/10 on every
-dimension before it ships. Color means one thing each: blue only for what you
+dimension before it ships. The page uses the system's app shell inside
+the one file: a rail on desktop and a floating tab bar on phones over four
+hash-routed views — `#today` (show health, latest episode, share watched,
+latest feedback), `#episodes` (the episode row, the chart, the selected
+episode's pane — in the order validator block 1k locks), `#actions` (What
+matters) and `#about`. Every surface renders on each state change; a route
+only chooses which view is on screen. Color means one thing each: blue only for what you
 can tap, green/red for above/below the show's typical, amber for fragile or a
 warning; episodes are told apart by focus (white) against context (gray), not
 by a rainbow; YouTube is the rose series pair, X the neutral pair.
