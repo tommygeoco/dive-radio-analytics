@@ -74,9 +74,13 @@
   .skip { position: fixed; top: 12px; left: 12px; z-index: 100; padding: 8px 12px; border-radius: var(--radius-lg);
     background: var(--surface-2); color: var(--fg-1); font-size: var(--text-body-sm); transform: translateY(-200%); }
   .skip:focus-visible { transform: none; }
+  #pagetitle:focus, #main:focus { outline: none; }
   .rail { display: none; }
   .tabbar { position: fixed; inset: auto 0 0 0; z-index: 40; padding: 0 12px calc(var(--safe-bottom) + 8px); pointer-events: none; }
-  .tabpill { pointer-events: auto; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); height: var(--tabbar-h);
+  /* scroll-edge fade under the pill (components.md §1.3): page text never reads through the tab labels */
+  .tabfade { position: absolute; inset: auto 0 0 0; height: calc(var(--tabbar-h) + var(--safe-bottom) + 32px); background: var(--canvas);
+    -webkit-mask-image: linear-gradient(to top, black 35%, transparent); mask-image: linear-gradient(to top, black 35%, transparent); }
+  .tabpill { pointer-events: auto; position: relative; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); height: var(--tabbar-h);
     max-width: 440px; padding: 4px; border-radius: var(--radius-full); background: color-mix(in oklab, var(--surface-2) 85%, transparent);
     box-shadow: var(--shadow-tabbar); -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px); }
   .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: var(--radius-full);
@@ -109,7 +113,15 @@
   }
   .view[hidden] { display: none; }
   .sechead.first { margin-top: 8px; }
+  .pagelead { margin: 8px 0 16px; max-width: 62ch; color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.39; }
+  @media (min-width: 48rem) { .pagelead { margin-top: 4px; font-size: var(--text-meta); } }
   /* Today's link to the Actions page: the system's disclosure row, navigating */
+  .herolink { position: relative; display: inline-flex; align-items: center; gap: 4px; margin-top: 24px; height: 28px;
+    color: var(--tint-fg); font-size: var(--text-body-sm); font-weight: 500; text-decoration: none; }
+  .herolink::after { content: ""; position: absolute; inset: -8px -4px; }
+  .herolink:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .herolink svg { width: 16px; height: 16px; }
+  .donext + .alllink { margin-top: 12px; }
   .nextrow { display: flex; align-items: center; gap: 12px; min-height: 56px; margin-top: var(--gap); padding: var(--d-row) var(--d-card);
     border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line-strong); color: inherit; text-decoration: none;
     transition: background 150ms var(--ease-out-quart); }
@@ -274,7 +286,7 @@
   .hcard[data-open="true"] .hdbody { opacity: 1; transition: opacity 200ms var(--ease-out-quart); }
   /* the grid follows the columns actually rendered — never an empty track */
   .hdbody.cols-2 { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
-  .hdbody.cols-3 { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-areas: "ev dir" "meta dir"; align-items: start; }
+  .hdbody.cols-3 { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-areas: "ev dir" "meta dir"; grid-template-rows: auto 1fr; align-items: start; }
   .hdbody.cols-3 .health-evidence { grid-area: ev; }
   .hdbody.cols-3 .hc-dir { grid-area: dir; }
   .hdbody.cols-3 .hc-meta { grid-area: meta; }
@@ -558,10 +570,10 @@
   /* distribution rows: icon · label · meter · value */
   .panel .trow { display: flex; align-items: center; gap: 8px; padding: 4px 0; color: var(--fg-2); font-size: var(--text-body-sm); }
   .panel .trow .tl { width: 120px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .panel .trow .tb { flex: 1; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
+  .panel .trow .tb { flex: 1; max-width: 320px; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
   .panel .trow .tb span { display: block; height: 100%; background: var(--fg-2); border-radius: inherit; }
   /* the detail swaps in WHERE the bar was, so the row answers in place */
-  .panel .trow .tbv { flex: 1; display: none; text-align: right; color: var(--fg-3);
+  .panel .trow .tbv { flex: 1; max-width: 320px; display: none; text-align: right; color: var(--fg-3);
     font-size: var(--text-meta); font-variant-numeric: tabular-nums; }
   .panel .trow:hover .tb, .panel .trow:focus-visible .tb { display: none; }
   .panel .trow:hover .tbv, .panel .trow:focus-visible .tbv { display: block; }
@@ -586,10 +598,10 @@
   .db.down { color: var(--neg); background: var(--neg-soft); }
   .db.mid { color: var(--fg-2); background: var(--surface-3); font-family: var(--font-sans); }
   .db.none { color: var(--fg-3); background: none; box-shadow: inset 0 0 0 1px var(--line-strong); }
-  .gline { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; color: var(--fg-2);
+  .gline { display: flex; gap: 24px 16px; align-items: center; flex-wrap: wrap; color: var(--fg-2);
     font-size: var(--text-body-sm); padding: 4px 0 0; }
-  .gline .g { position: relative; display: inline-flex; align-items: center; gap: 8px; }
-  .gline .g::after { content: ""; position: absolute; inset: -16px -4px; }
+  .gline .g { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 20px; }
+  .gline .g::after { content: ""; position: absolute; inset: -12px -4px; }
   .gline .g b { color: var(--fg-1); font-weight: 600; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .gline .g .gl { color: var(--fg-3); font-size: var(--text-meta); }
   .panel .row.head { font-weight: 600; color: var(--fg-1); }
@@ -629,7 +641,7 @@
   /* padding gives the moment pins their own band so no disc ever covers the
      curve; drops hang below their curve point, holds sit above it */
   .panel .wcurve .wplot { position: relative; padding: 4px 0 28px; }
-  .panel .wcurve svg { display: block; width: 100%; height: 64px; }
+  .panel .wcurve .wplot > svg { display: block; width: 100%; height: 64px; }
   .panel .wcurve line { stroke: var(--line); stroke-width: 0.4; }
   .panel .wcurve polyline { fill: none; stroke: var(--fg-1); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
   .panel .wcap { display: flex; justify-content: space-between; color: var(--fg-3); font-size: var(--text-meta); margin-top: 4px; }
@@ -640,21 +652,38 @@
   .wmark { position: absolute; width: 12px; height: 12px; border-radius: 50%; transform: translate(-50%, -50%);
     display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer;
     background: var(--surface-2); border: 0; box-shadow: inset 0 0 0 1px var(--line-strong); }
-  .wmark .ic { width: 8px; height: 8px; color: inherit; }
+  .wmark .ic { width: 8px; height: 8px; color: inherit; pointer-events: none; }
   .wmark::before { content: ""; position: absolute; left: 50%; width: 1px; background: var(--line-strong); }
   .wmark.drop::before { bottom: 100%; height: var(--tick, 6px); }
   .wmark.hold::before { top: 100%; height: var(--tick, 6px); }
-  .wmark::after { content: ""; position: absolute; inset: -16px; }
+  /* a 44 px tap area; spaceMoments() splits the space between two pins whose areas would cover each other */
+  .wmark::after { content: ""; position: absolute;
+    inset: calc(var(--hit-t, 16px) * -1) calc(var(--hit-r, 16px) * -1) calc(var(--hit-b, 16px) * -1) calc(var(--hit-l, 16px) * -1); }
   .wmark.drop { color: var(--neg); }
   .wmark.hold { color: var(--pos); }
   .wmark:hover { background: var(--surface-3); box-shadow: inset 0 0 0 1px currentColor; }
+  /* touch screens: the moments as rows under the curve (a disc like the pin, the claim, where, what was said) */
+  .panel .wmdisc { margin-top: 8px; }
+  .wmlist { margin: 4px 0 0; padding: 0; list-style: none; }
+  .wmlist li { display: flex; gap: 12px; padding: 12px 0; box-shadow: inset 0 1px 0 var(--line); font-size: var(--text-body-sm); line-height: 1.45; }
+  .wmlist li:first-child { box-shadow: none; }
+  .wmlist .wmi { flex: none; width: 16px; height: 16px; margin-top: 2px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
+  .wmlist .wmi .ic { width: 10px; height: 10px; color: inherit; }
+  .wmlist .drop .wmi { color: var(--neg); }
+  .wmlist .hold .wmi { color: var(--pos); }
+  .wmlist .wmb { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .wmlist .wmb b { color: var(--fg-1); font-weight: 500; }
+  .wmlist .wmm { color: var(--fg-3); font-size: var(--text-meta); }
+  .wmlist .wmn { color: var(--fg-2); }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .panel .themegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
   /* PRD v12 W43: chapters in the episode panel */
   .chapters .chrow { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 8px 0; box-shadow: inset 0 1px 0 var(--line); font-size: var(--text-body-sm); line-height: 1.45; }
   .chapters .chrow:first-of-type { box-shadow: none; }
   .chapters .cht { color: var(--fg-3); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
-  .chapters .cht a { color: var(--tint-fg); text-decoration: none; }
+  .chapters .cht a { position: relative; display: inline-block; color: var(--tint-fg); text-decoration: none; }
+  .chapters .cht a::after { content: ""; position: absolute; inset: -16px -12px; }
   .chapters .cht a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .chapters .chb b { display: block; color: var(--fg-1); font-weight: 500; }
   .chapters .chg { color: var(--fg-2); }
@@ -758,10 +787,12 @@
      comparison popup. Shrinking below this clips the very comparison the
      reader asked for and lets the popup spill into the detail card. */
   #chartbox.mini { height: 340px; }
-  #tablebox { overflow-x: auto; display: none; }
-  #tablebox::-webkit-scrollbar { height: 8px; }
-  #tablebox::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: var(--radius-full); }
-  #tablebox::-webkit-scrollbar-track { background: transparent; }
+  #tablebox { display: none; }
+  /* the columns scroll; the caption under them stays put */
+  #tablebox .tscroll { overflow-x: auto; }
+  #tablebox .tscroll::-webkit-scrollbar { height: 8px; }
+  #tablebox .tscroll::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: var(--radius-full); }
+  #tablebox .tscroll::-webkit-scrollbar-track { background: transparent; }
   #tablebox table { border-collapse: collapse; width: 100%; font-size: var(--text-body-sm); }
   #tablebox th { text-align: right; color: var(--fg-3); font-size: var(--text-meta); font-weight: 400;
     padding: 8px 12px; box-shadow: inset 0 -1px 0 var(--line); white-space: nowrap; }
@@ -778,7 +809,7 @@
   .st-good { color: var(--pos); } .st-bad { color: var(--neg); } .st-mid { color: var(--fg-2); }
   .emptynote { color: var(--fg-3); font-size: var(--text-body-sm); margin: 8px 0 0; }
   /* the readout line under the plot: how to get at the numbers on this device */
-  .chint { margin: 8px 0 0; font-size: var(--text-meta); color: var(--fg-3); }
+  .chint { margin: 8px 0 0; font-size: var(--text-meta); color: var(--fg-3); text-wrap: balance; }
   .chint:empty { display: none; }
   #chart:focus-visible { outline: 2px solid var(--tint); outline-offset: 4px; border-radius: var(--radius-sm); }
   .chead .cs .tri { width: 8px; height: 8px; fill: var(--fg-3); vertical-align: 0; }
@@ -814,13 +845,11 @@
   .tt .sub { color: var(--fg-3); font-size: var(--text-meta); font-weight: 500; margin: 8px 0 4px; }
   .tt .note { color: var(--warn); font-size: var(--text-meta); margin-top: 8px; }
 
-  /* ---- What matters: readable claim up front, recommendation one tap away ---- */
+  /* ---- Actions: the action leads, the finding under it is the reason, how it is counted is one tap away ---- */
   .insights { display: grid; gap: var(--gap); }
   @media (min-width: 64rem) { .insights { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
   .insight { background: var(--surface-1); border: 0; border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line);
-    padding: var(--d-card); font-size: var(--text-body); display: flex; align-items: flex-start; gap: 12px;
-    cursor: pointer; transition: background 200ms var(--ease-out-quart); }
-  .insight:hover { background: var(--surface-2); }
+    padding: var(--d-card); font-size: var(--text-body); display: flex; align-items: flex-start; gap: 12px; }
   /* the rank (or the category glyph) in the system's muted grade badge — a
      priority that is neither money green nor tap blue; the category is a word */
   .insight .ic { width: 24px; height: 24px; border-radius: var(--radius-md); flex: none; display: flex;
@@ -830,24 +859,24 @@
   .insight .ic .rk { font-style: normal; font-family: var(--font-mono); font-weight: 700; font-size: var(--text-body-sm); color: var(--fg-1); font-variant-numeric: tabular-nums; }
   .insight .body { flex: 1; min-width: 0; }
   .insight .cat { font-size: var(--text-meta); line-height: 24px; color: var(--fg-3); margin: 0 0 4px; }
-  .insight .txt { color: var(--fg-1); line-height: 1.5; }
-  .insight .txt b, .insight .rec b { font-weight: 600; color: var(--fg-1); font-variant-numeric: tabular-nums; }
-  .insight .cav { color: var(--fg-3); font-size: var(--text-meta); line-height: 1.45; margin-top: 8px; }
-  /* Recommendation: the system's link button with a disclosure chevron */
+  .insight .lead { margin: 0; color: var(--fg-1); font-weight: 500; line-height: 1.5; }
+  .insight .why { margin: 8px 0 0; color: var(--fg-2); font-size: var(--text-body-sm); line-height: 1.5; }
+  .insight .lead b, .insight .why b { font-weight: 600; color: var(--fg-1); font-variant-numeric: tabular-nums; }
+  /* How this is counted: the system's link button with a disclosure chevron */
   .insight .rec-toggle { position: relative; display: flex; align-items: center; gap: 4px; margin-top: 8px; height: 28px; padding: 0;
     background: none; border: 0; color: var(--tint-fg); font-size: var(--text-body-sm); font-weight: 500; cursor: pointer; }
   .insight .rec-toggle::after { content: ""; position: absolute; inset: -8px -4px; }
   .insight .rec-toggle:hover { text-decoration: underline; text-underline-offset: 4px; }
   .insight .rec-toggle svg { width: 16px; height: 16px; transition: transform 150ms var(--ease-out-quart); }
-  .insight.open .reveal svg { transform: rotate(180deg); }
-  /* the recommendation opens as a hairline strip in the card (the system's Reveal), never a box */
+  .insight.open .rec-toggle svg { transform: rotate(180deg); }
+  /* the note opens as a hairline strip in the card (the system's Reveal), never a box */
   .insight .more { display: grid; grid-template-rows: 0fr; opacity: 0;
     transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms cubic-bezier(0.5, 0, 0.75, 0); }
   .insight .more > div { min-height: 0; overflow: hidden; }
   .insight.open .more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms var(--ease-out-quart); }
-  .insight .rec { margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line);
-    color: var(--fg-2); font-size: var(--text-body); line-height: 1.5; }
-  @media (min-width: 48rem) { .insight .rec { font-size: var(--text-body-sm); } }
+  .insight .cav { margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line);
+    color: var(--fg-3); font-size: var(--text-body-sm); line-height: 1.5; }
+  @media (min-width: 48rem) { .insight .cav { font-size: var(--text-meta); } }
 
   /* ---- drilldown: a dialog on desktop, a bottom sheet on phones ---- */
   /* the system's dialog on desktop; a bottom sheet on phones (below) */
@@ -902,12 +931,26 @@
   .dempty { color: var(--fg-3); padding: 20px 0; text-align: center; font-size: var(--text-body-sm); }
   .dempty.dnote { padding: 8px 0 4px; font-size: var(--text-meta); }
 
-  /* ---- About: long-form methodology on its own page — 72ch, generous leading ---- */
+  /* ---- About: the methodology as prose on the canvas (.ss-x-prose, 72ch) with an in-page index from 64rem ---- */
+  .aboutgrid { display: grid; gap: 24px; }
+  @media (min-width: 64rem) { .aboutgrid { grid-template-columns: minmax(0, 72ch) 220px; gap: 48px; align-items: start; } }
   .about .inner { max-width: 72ch; color: var(--fg-2); font-size: var(--text-body); line-height: 1.625; }
-  @media (min-width: 48rem) { .about { padding: 24px; } .about .inner { font-size: var(--text-body-sm); } }
+  @media (min-width: 48rem) { .about .inner { font-size: var(--text-body-sm); } }
+  .about h3 { margin: 32px 0 8px; font-size: var(--text-body); line-height: 1.42; font-weight: 600; color: var(--fg-1);
+    scroll-margin-top: calc(var(--topbar-h) + 24px); }
+  .about h3:first-child { margin-top: 0; }
   .about p { margin: 0 0 12px; }
   .about p:last-child { margin-bottom: 0; }
   .about b { color: var(--fg-1); font-weight: 600; }
+  .aboutnav { display: none; }
+  @media (min-width: 64rem) { .aboutnav { display: block; position: sticky; top: calc(var(--topbar-h) + 24px); } }
+  .aboutnav h2 { margin: 0 0 8px; padding: 0 12px; font-size: var(--text-meta); line-height: 1.34; font-weight: 500; color: var(--fg-3); }
+  .aboutnav button { display: flex; align-items: center; width: 100%; min-height: 32px; padding: 4px 12px; border: 0; border-radius: var(--radius-md);
+    background: none; color: var(--fg-2); font: inherit; font-size: var(--text-body-sm); text-align: left; cursor: pointer;
+    transition: background 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart); }
+  .aboutnav button:hover { background: var(--surface-1); color: var(--fg-1); }
+  .aboutnav button[aria-current="true"] { background: var(--surface-2); color: var(--fg-1); }
+  @media (pointer: coarse) { .aboutnav button { min-height: 44px; } }
   footer { color: var(--fg-3); font-size: var(--text-meta); margin-top: 20px; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -947,14 +990,14 @@
     #tablebox th:first-child, #tablebox td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-1); padding-right: 12px;
       box-shadow: inset -1px 0 0 var(--line), inset 0 -1px 0 var(--line); }
     #tablebox td.t .ttl { display: none; }
-    #tablebox.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
+    #tablebox .tscroll.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
     /* 44 px rows for everything tappable inside the pane and the health details */
     .panel .trow { min-height: 44px; }
     .hc-dir .dirrow { min-height: 44px; }
     .panel .pdisc summary, .panel .psec .plink { min-height: 44px; display: inline-flex; align-items: center; }
     .panel .dest { grid-template-columns: 1fr; }
     .panel .psec .kicker { flex-wrap: wrap; }
-    .panel .kicker .kh { flex-basis: 100%; margin-left: 0; }
+    .panel .chapters .kicker .kh { flex-basis: 100%; margin-left: 0; }
     .panel .lkpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .panel .lk:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .panel .h .hmeta { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--d-gutter) * -1); padding: 8px var(--d-gutter);
@@ -1020,7 +1063,7 @@
 </nav>
 <header>
   <div class="topin">
-    <h1 id="pagetitle">Today</h1>
+    <h1 id="pagetitle" tabindex="-1">Today</h1>
     <div class="stamp" id="stamp"></div>
     <a class="agentslink" href="agents.html">Agents</a>
   </div>
@@ -1030,19 +1073,19 @@
   <div class="livecopy" id="livecopy" role="status" hidden></div>
 
   <!-- Today: is the show compounding, and how did the newest episode do -->
-  <section class="view" id="today" data-view="today" aria-label="Today">
+  <section class="view" id="view-today" data-view="today" aria-label="Today">
     <section class="healthrow" id="health" aria-label="Show health"></section>
     <div class="overview" id="overview">
       <div class="card hero" id="hero"></div>
       <div class="card compound" id="compound" style="display:none"></div>
     </div>
     <section class="panel" id="audience-preview" aria-label="Audience feedback" style="display:none"></section>
-    <a class="nextrow" href="#actions"><span class="sumic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg></span><span class="sumt"><b>What matters</b><span id="actionsmeta">This week’s actions, biggest lever first</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></svg></a>
+    <a class="nextrow" href="#actions"><span class="sumic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg></span><span class="sumt"><b>Actions</b><span id="actionsmeta">This week’s actions, biggest lever first</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></svg></a>
   </section>
 
   <!-- Episodes: every episode side by side, the chart, and the selected one in full -->
-  <section class="view" id="episodes" data-view="episodes" aria-label="Episodes" hidden>
-    <div class="sechead first"><h2>All episodes</h2><span>Oldest to newest · select one to focus the chart and open it below</span></div>
+  <section class="view" id="view-episodes" data-view="episodes" aria-label="Episodes" hidden>
+    <p class="pagelead">Every episode, oldest to newest. Select one to focus the chart and open it in full below.</p>
     <div class="carousel" id="strip" role="list" aria-label="Episodes, oldest to newest"></div>
 
     <section id="chartcard" class="card" aria-labelledby="ctitle">
@@ -1071,19 +1114,20 @@
   </section>
 
   <!-- Actions: where marketing effort should go this week -->
-  <section class="view" id="actions" data-view="actions" aria-label="Actions" hidden>
-    <div class="sechead first"><h2>What matters</h2><span id="insightsmeta"></span></div>
-    <div class="insights" id="insights" aria-label="What matters"></div>
+  <section class="view" id="view-actions" data-view="actions" aria-label="Actions" hidden>
+    <p class="pagelead" id="insightsmeta"></p>
+    <div class="insights" id="insights" aria-label="Actions"></div>
   </section>
 
   <!-- About: the methodology, in full -->
-  <section class="view" id="about-view" data-view="about" aria-label="About this data" hidden>
-    <div class="sechead first"><h2>About this data</h2><span>How every number is counted, compared and checked</span></div>
-    <div class="card about"><div class="inner" id="about"></div></div>
+  <section class="view about" id="view-about" data-view="about" aria-label="About this data" hidden>
+    <p class="pagelead">How every number is counted, compared and checked.</p>
+    <div class="aboutgrid"><div class="inner" id="aboutbody"></div><nav class="aboutnav" id="aboutnav" aria-label="On this page"></nav></div>
   </section>
 </main>
 
 <nav class="tabbar" aria-label="Primary">
+  <div class="tabfade" aria-hidden="true"></div>
   <div class="tabpill">
     <a class="tab" href="#today" data-nav="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Today</span></a><a class="tab" href="#episodes" data-nav="episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/></svg><span>Episodes</span></a><a class="tab" href="#actions" data-nav="actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg><span>Actions</span></a><a class="tab" href="#about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg><span>About</span></a>
   </div>
@@ -1289,7 +1333,7 @@ function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").
 // Figures in mono, words in sans (design system): inside containers that can
 // hold both, every figure — counts, percentages, times, dates, episode ids —
 // is wrapped in .n after render. Text only; markup and attributes are untouched.
-const FIGURE_HOSTS = ".pnum, .panel .row, .panel .trow .tbv, .panel .hint, .panel .note, .panel .pill, .panel .htitle, .panel .pdate, .lkv, .fbhead .kicker, .tt .big, .tt .row .val, .tt .meta, .tt .chg, .tt .row .when, #tablebox td, #tablebox th, .sitem .r1 .num, .insight .txt, .insight .rec, .insight .cav, .hero .state, .chead .cs, .drow .m, .compound .cv2, .health-evidence .readson, .health-evidence .setchange, .hc-dir .outlook, .trendwrap .cap, #rtt, .fbfoot, .chnote, #about, #dtitle, .dtabs button, .chint";
+const FIGURE_HOSTS = ".pnum, .panel .row, .panel .trow .tbv, .panel .hint, .panel .note, .panel .pill, .panel .htitle, .panel .pdate, .lkv, .fbhead .kicker, .tt .big, .tt .row .val, .tt .meta, .tt .chg, .tt .row .when, #tablebox td, #tablebox th, .sitem .r1 .num, .insight .lead, .insight .why, .insight .cav, .herolink, .hero .state, .chead .cs, .drow .m, .compound .cv2, .health-evidence .readson, .health-evidence .setchange, .hc-dir .outlook, .trendwrap .cap, #rtt, .fbfoot, .chnote, .wmlist, #aboutbody, #dtitle, .dtabs button, .chint";
 const FIGURE_RE = /\bE\d+\b|\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?|[+−]?\d+(?:,\d{3})*(?:[.:]\d+)*%?/g;
 function monoFigures(root = document) {
   const hosts = root.matches?.(FIGURE_HOSTS) ? [root, ...root.querySelectorAll(FIGURE_HOSTS)] : [...root.querySelectorAll(FIGURE_HOSTS)];
@@ -1321,6 +1365,9 @@ function monoFigures(root = document) {
     }
   }
 }
+// stored notes name an episode by its upload title, sometimes cut short
+// ("… + Live Cal"); inside a sentence the page uses the short title
+function tidyTitles(t) { return String(t).replace(/Dive Radio:\s*/g, "").replace(/,?\s*\+\s*(?:Live\s+)?Cal(?:l(?:-?Ins?)?)?(?![a-z])/gi, ""); }
 function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Cal(?:l(?:-?Ins?)?)?$/i, "").replace(/[,\s]+$/, ""); }
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
 function heroMarker(e) {
@@ -1628,7 +1675,7 @@ function buildHealth() {
       // PRD v10: a promo-qualified lift says so under its numbers; a carried
       // read says which episode it came from and that it counts half
       if (m.qualified && m.reason) row.q = m.reason;
-      if (m.carriedNote) row.cn = m.carriedNote;
+      if (m.carriedNote) row.cn = tidyTitles(m.carriedNote);
       // rule 23: how much this measure normally swings, so a reader can see
       // why a dip reads steady on a noisy measure and fragile on a quiet one
       if (Number.isFinite(m.swing) && m.swing !== c.swing) row.sw = `the show’s usual swing on this is about ±${m.swing}%`;
@@ -1637,9 +1684,14 @@ function buildHealth() {
     // an unscored check's stored reason is the measure reasons joined — when
     // the measure rows already say it, a footer repeating them is noise
     const bandNote = c.bands && Number.isFinite(c.bands.healthy) ? ` Healthy from ${c.bands.healthy}, fragile under ${c.bands.steady}${Number.isFinite(c.swing) ? `, because this check usually swings about ±${c.swing}%` : ""}.` : "";
+    // stored reasons name episodes by their upload titles; the page says each
+    // title the short way, and when a measure row already says which episode
+    // it was carried from, the footer doesn't repeat it
+    const carried = drill.some((r) => r.cn);
+    const reasonText = tidyTitles(c.reason || "").replace(carried ? /\s*read from [^.]*?the latest finished episode\.?/i : /$^/, "").trim();
     const note = c.score != null
-      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${bandNote}${c.reason ? ` ${c.reason.charAt(0).toUpperCase() + c.reason.slice(1)}` : ""}`
-      : (drill.length ? "" : (c.reason || ""));
+      ? `This check scored ${c.score} of 100 — 50 is the show’s usual level.${bandNote}${reasonText ? ` ${reasonText.charAt(0).toUpperCase() + reasonText.slice(1)}` : ""}`
+      : (drill.length ? "" : reasonText);
     // say each fact once: when the footer already says the check was carried
     // from an older episode, the measure rows don't repeat it
     if (/carried/i.test(note)) for (const r of drill) delete r.cn;
@@ -1764,7 +1816,7 @@ function buildHealth() {
             ${trend}
           </div>
           ${headingColumn}
-          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div></div>` : ""}
+          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<div class="dnrow"><span class="dnnum" aria-hidden="true">${i + 1}</span><span>${esc(r.recommendation)}</span></div>`).join("")}</div><a class="herolink alllink" href="#actions">All actions${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a></div>` : ""}
         </div>
       </div>
     </div>
@@ -1899,7 +1951,7 @@ function buildHero() {
   const e = (sel && EPS.find(x => x.slug === sel)) || NEWEST;
   const metric = heroMetricKey();
   const c = color(e);
-  let html = `<div class="main"><p class="kicker">${sel && e.slug === sel ? "Selected episode" : "Latest episode"}</p><h2>${esc(short(e.title))}</h2>`;
+  let html = `<div class="main"><p class="kicker">${sel && e.slug === sel && e.slug !== NEWEST.slug ? "Selected episode" : "Latest episode"}</p><h2>${esc(short(e.title))}</h2>`;
 
   if (metric === "live") {
     if (e.live) {
@@ -1966,7 +2018,8 @@ function buildHero() {
   }
   // No health chip here (owner directive 2026-08-23): the hero states one
   // measure. Episode health lives on the episode cards and in the panel.
-
+  // One tap opens this episode in full on the Episodes page.
+  html += `<a class="herolink" href="#episodes/e${e.ep}">E${e.ep} in detail${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a>`;
   html += `</div>`;
   // The per-minute sparkline rides the live measure only. Other measures have
   // no honest per-episode series to draw (X plays have no week-1 history
@@ -2267,6 +2320,11 @@ function buildPanel() {
         return `${approx ? "roughly" : "about"} ${t}`;
       };
       let marks = "";
+      // on a touch screen two moments can sit closer than a fingertip, so the
+      // pins there are markers only (inert) and the same moments read as rows
+      // under the curve; a pointer and a keyboard keep the pins' tooltips
+      const touchList = matchMedia("(hover: none)").matches;
+      const momentRows = [];
       const lastAt = { drop: -1, hold: -1 };
       const deepPin = { drop: false, hold: false };
       (w.moments || []).forEach((mo, i) => {
@@ -2282,12 +2340,17 @@ function buildPanel() {
         const meta = `${Math.round(mo.at * 100)}% through · ${timeWords(mo.estSec, mo.approx)}`;
         // context is the stored model-written summary of what was happening —
         // never the raw transcript; no summary in the store, no context line
-        marks += `<button type="button" class="wmark ${mo.kind}" style="left:clamp(7px, ${(mo.at * 100).toFixed(1)}%, calc(100% - 7px));top:${top.toFixed(1)}px;--tick:${hang - 6}px" data-stat="${esc(stat)}" data-meta="${esc(meta)}"${mo.summary ? ` data-note="${esc(mo.summary)}" aria-describedby="wmq${i}"` : ""} aria-label="${esc(`${stat}, ${meta}`)}">${mo.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</button>${mo.summary ? `<span class="sr" id="wmq${i}">${esc(mo.summary)}</span>` : ""}`;
+        marks += `<button type="button" class="wmark ${mo.kind}" style="left:clamp(7px, ${(mo.at * 100).toFixed(1)}%, calc(100% - 7px));top:${top.toFixed(1)}px;--tick:${hang - 6}px" data-stat="${esc(stat)}" data-meta="${esc(meta)}"${mo.summary ? ` data-note="${esc(mo.summary)}" aria-describedby="wmq${i}"` : ""} aria-label="${esc(`${stat}, ${meta}`)}"${touchList ? " inert" : ""}>${mo.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</button>${mo.summary ? `<span class="sr" id="wmq${i}">${esc(mo.summary)}</span>` : ""}`;
+        momentRows.push({ at: mo.at, kind: mo.kind, stat, meta, summary: mo.summary });
       });
       html += `<div class="wcurve"><div class="wplot"><svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Share of the audience still watching across the video: ${Math.round(w.curve[0].watching * 100)}% near the start, ${Math.round(w.curve[w.curve.length - 1].watching * 100)}% at the end.">
         <line x1="25" y1="0" x2="25" y2="40"></line><line x1="50" y1="0" x2="50" y2="40"></line><line x1="75" y1="0" x2="75" y2="40"></line>
         <polyline points="${pts}"></polyline></svg>${marks}</div>
       <div class="wcap" aria-hidden="true"><span>start</span><span>still watching, through the video</span><span>end</span></div></div>`;
+      if (touchList && momentRows.length) {
+        const rows = momentRows.sort((a, b) => a.at - b.at).map((r) => `<li class="${r.kind}"><span class="wmi" aria-hidden="true">${r.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</span><span class="wmb"><b>${esc(r.stat)}</b><span class="wmm">${esc(r.meta)}</span>${r.summary ? `<span class="wmn">${esc(r.summary)}</span>` : ""}</span></li>`).join("");
+        html += `<details class="pdisc wmdisc"><summary>What moved the audience${ICONS.chevdown}</summary><ol class="wmlist">${rows}</ol></details>`;
+      }
     }
     html += `</div>`;
 
@@ -2326,8 +2389,10 @@ function buildPanel() {
       ["People who chatted", e.live.chatters, ""],
       ["Show length", e.live.durationMin, "min"],
     ];
+    // a reading the source never gave renders nothing (absence is silent)
     for (const [name, value, unit] of liveCells) {
-      html += `<div class="lk"><div class="lkl">${name}</div><div class="lkv">${value == null ? `<span class="na">not available</span>` : `${nfmt(value)}${unit ? ` <small>${unit}</small>` : ""}`}</div></div>`;
+      if (value == null) continue;
+      html += `<div class="lk"><div class="lkl">${name}</div><div class="lkv">${nfmt(value)}${unit ? ` <small>${unit}</small>` : ""}</div></div>`;
     }
     html += `</div>`;
     if (e.live.byChannel?.length) {
@@ -2335,12 +2400,13 @@ function buildPanel() {
       const chan = (l) => esc(l).replace(/^YT /, `${PLOGO.yt} `).replace(/^X\b/, PLOGO.x).replace(/^LinkedIn\b/, `${LI_MARK} LinkedIn`);
       html += `<div class="sect"><h4 class="mut">By destination</h4><div class="dest">`;
       for (const channel of e.live.byChannel) {
-        const watched = channel.views == null ? "viewers not available" : `${nfmt(channel.views)} watched`;
-        const minutes = channel.watchedMin == null ? "minutes not available" : `${nfmt(channel.watchedMin)} min`;
+        const watched = channel.views == null ? "" : `${nfmt(channel.views)} watched`;
+        const minutes = channel.watchedMin == null ? "" : `${nfmt(channel.watchedMin)} min`;
         const liChat = /^LinkedIn\b/.test(channel.label) && e.linkedin && channel.views == null && channel.watchedMin == null
           && Number.isFinite(e.linkedin.liveChat?.messages)
           ? `${nfmt(e.linkedin.liveChat.messages)} chat ${e.linkedin.liveChat.messages === 1 ? "message" : "messages"}${Number.isFinite(e.linkedin.liveChat.chatters) ? ` · ${nfmt(e.linkedin.liveChat.chatters)} chatting` : ""}` : null;
-        html += `<div class="row">${chan(channel.label)}<span class="val">${liChat || `${watched} · ${minutes}`}</span></div>`;
+        const val = liChat || [watched, minutes].filter(Boolean).join(" · ");
+        if (val) html += `<div class="row">${chan(channel.label)}<span class="val">${val}</span></div>`;
       }
       html += `</div>`;
       const li = e.linkedin;
@@ -2406,6 +2472,7 @@ function buildPanel() {
   el.innerHTML = html;
   el.style.display = "";
   fillGridRows(el.querySelector(".pgrid"));
+  spaceMoments();
   el.querySelector("#panelx").addEventListener("click", () => { state.panel = null; state.solo = null; render(); });
   el.querySelectorAll(".senti-link").forEach(a =>
     a.addEventListener("click", () => openDrill(e.slug, a.dataset.f)));
@@ -2414,6 +2481,31 @@ function buildPanel() {
 // The pane's sections are one hairline grid (1 px gaps over the line color). A
 // row the cells do not fill would show that color as an empty slot, so the
 // rightmost cell of a short row spans the columns that are left.
+// moment pins: each has a 44 px tap area; where a neighbour's area would cover
+// one of its own (a pin on the same level within 44 px, or one straight above
+// or below), the two split the space between them
+function spaceMoments() {
+  const groups = new Map();
+  for (const pin of document.querySelectorAll("#panel .wmark")) {
+    if (!pin.offsetParent) return;
+    for (const side of ["t", "r", "b", "l"]) pin.style.setProperty(`--hit-${side}`, "16px");
+    groups.set(pin.parentElement, [...(groups.get(pin.parentElement) || []), pin]);
+  }
+  const half = (gap) => `${Math.max(0, Math.floor(gap / 2) - 6)}px`;
+  for (const pins of groups.values()) {
+    for (let i = 0; i < pins.length; i++) for (let j = i + 1; j < pins.length; j++) {
+      const a = pins[i], b = pins[j];
+      const dx = b.offsetLeft - a.offsetLeft, dy = b.offsetTop - a.offsetTop;
+      if (Math.abs(dy) < 22 && Math.abs(dx) < 44) {
+        const [left, right] = dx >= 0 ? [a, b] : [b, a];
+        left.style.setProperty("--hit-r", half(Math.abs(dx))); right.style.setProperty("--hit-l", half(Math.abs(dx)));
+      } else if (Math.abs(dx) < 22 && Math.abs(dy) < 44) {
+        const [upper, lower] = dy >= 0 ? [a, b] : [b, a];
+        upper.style.setProperty("--hit-b", half(Math.abs(dy))); lower.style.setProperty("--hit-t", half(Math.abs(dy)));
+      }
+    }
+  }
+}
 function fillGridRows(grid) {
   if (!grid || !grid.offsetParent) return;
   const cells = [...grid.children];
@@ -2431,7 +2523,7 @@ function fillGridRows(grid) {
     right.style.gridColumn = `span ${Math.max(1, tracks - used + 1)}`;
   }
 }
-window.addEventListener("resize", () => fillGridRows(document.querySelector("#panel .pgrid")));
+window.addEventListener("resize", () => { fillGridRows(document.querySelector("#panel .pgrid")); spaceMoments(); });
 function feedbackSource(comment) {
   return comment.source === "live-chat" ? `${comment.platform || "Stream"} live chat` : comment.source === "yt" ? "YouTube" : "X";
 }
@@ -3024,11 +3116,14 @@ document.addEventListener("keydown", (ev) => {
 // solo emphasis — closing must never strand the page in a dimmed state
 document.addEventListener("click", (ev) => {
   if (!state.panel && !state.solo) return;
+  // only a click on the Episodes page itself clears it: moving between pages
+  // (rail, tab bar, any in-page link) keeps the reader's selection
+  if (document.body.dataset.page !== "episodes") return;
   // a control whose own handler re-rendered it (drill pills, insight
   // expanders) is detached by the time this bubble arrives — closest() can't
   // see its old ancestors, so a detached target is always an INSIDE click
   if (!(ev.target instanceof Element) || !ev.target.isConnected) return;
-  if (ev.target.closest(".panel, .sitem, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .dcard")) return;
+  if (ev.target.closest('.panel, .sitem, #chartbox, #tablebox, .controls, .chead, #drill, .chip, .insight, .dcard, .rail, .tabbar, header, .skip, a[href^="#"]')) return;
   state.panel = null; state.solo = null; render();
 });
 
@@ -3415,7 +3510,7 @@ function renderMetricBars(all, ordered, soloed) {
       layout: { padding: { right: 64 } },
       interaction: { mode: "index", axis: "y", intersect: false },
       scales: {
-        x: { beginAtZero: true, bounds: "data", grace: "4%",
+        x: { beginAtZero: true, grace: "4%",
           suggestedMax: soloed ? Math.max(...all.map(e => M.get(e) ?? 0)) : undefined,
           ticks: { padding: 8, callback: v => M.tick(v) }, grid: { color: GRID, drawTicks: false }, border: { display: false } },
         y: { ticks: { color: FG2, padding: 8, font: { size: 12, weight: 500 } }, grid: { display: false }, border: { display: false } },
@@ -3483,7 +3578,7 @@ function renderStandings() {
       scales: {
         // solo keeps the full-standings scale: the selected bar holds its
         // length while the others leave, and nothing reads as growth
-        x: { stacked: true, beginAtZero: true, bounds: "data", grace: "4%",
+        x: { stacked: true, beginAtZero: true, grace: "4%",
           suggestedMax: soloRows.length ? Math.max(...all.map(e => displayedTotal(e) || 0)) : undefined,
           ticks: { padding: 8, callback: v => kfmt(v) }, grid: { color: GRID, drawTicks: false }, border: { display: false } },
         y: { stacked: true, ticks: { color: FG2, padding: 8, font: { size: 12, weight: 500 } }, grid: { display: false }, border: { display: false } },
@@ -3535,6 +3630,7 @@ function render() {
     document.getElementById("chart").setAttribute("aria-label", `${t}${sel ? `, ${label(sel)} selected` : ""}. Use the arrow keys to step through episodes; the Table button lists every value.`);
   }
   monoFigures();
+  syncRouteParam();
 
   if (state.table) { if (chart) { chart.destroy(); chart = null; } return; }
 
@@ -3810,7 +3906,7 @@ function buildTable() {
   };
   // same shape the panel uses for time watched
   const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
-  let html = "<table><tr>";
+  let html = `<div class="tscroll"><table><tr>`;
   if (kind === "live") {
     html += "<th>Episode</th><th>Peak</th><th>Average</th><th>Watched live</th><th>Minutes watched</th><th>Chat messages</th><th>Chatters</th><th>Length</th></tr>";
     for (const e of [...EPS].reverse()) {
@@ -3874,13 +3970,15 @@ function buildTable() {
       html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= QUIET_ZONE ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "+" : "−") + Math.abs(pace.pct) + "%"}</span>` : "–"}</td></tr>`;
     }
   }
-  html += "</table>";
+  html += "</table></div>";
   if (kind === "watched" || kind === "views") html += `<p class="tcap">↑ ↓ mark a share watched above or below the typical episode</p>`;
   box.innerHTML = html;
   box.style.display = "block"; // stylesheet default is none — must set explicitly
-  const fade = () => box.classList.toggle("more-right", box.scrollLeft + box.clientWidth < box.scrollWidth - 1);
+  // the columns scroll inside .tscroll; its right edge fades while more columns wait
+  const fade = () => { const sc = box.querySelector(".tscroll"); if (sc) sc.classList.toggle("more-right", sc.scrollLeft + sc.clientWidth < sc.scrollWidth - 1); };
   fade();
-  if (!box.dataset.fade) { box.dataset.fade = "1"; box.addEventListener("scroll", fade, { passive: true }); window.addEventListener("resize", fade); }
+  box.querySelector(".tscroll").addEventListener("scroll", fade, { passive: true });
+  if (!box.dataset.fade) { box.dataset.fade = "1"; window.addEventListener("resize", fade); }
 }
 
 /* M-1: the per-week view silently rendered nothing for episodes first tracked
@@ -3949,17 +4047,20 @@ function buildInsightsPanel() {
     const cat = CATS[ins.cat];
     const div = document.createElement("div");
     div.className = "insight";
-    const hasMore = !!(ins.recommendation || ins.caveat);
+    // The Actions page leads with the action (PRODUCT.md: lead with the
+    // decision, then reveal the evidence): the recommendation first, the
+    // finding under it as its reason, how it is counted one tap away.
     // owner directive 2026-09-01: the category alone — no "helps <check>" eyebrow
+    const lead = ins.recommendation || ins.text;
+    const why = ins.recommendation ? ins.text : "";
     div.innerHTML = `<span class="ic">${ins.rank ? `<b class="rk">${ins.rank}</b>` : cat.svg}</span>
       <span class="body"><div class="cat">${cat.name}</div>
-      <span class="txt">${emphasize(ins.text)}</span>
-      ${ins.recommendation ? `<button type="button" class="rec-toggle" aria-expanded="false">Recommendation${IC('<path d="M6.5 9.5 12 15l5.5-5.5"/>', "rchev")}</button>` : ""}
-      ${hasMore ? `<div class="more" inert><div>${ins.recommendation ? `<div class="rec">${emphasize(ins.recommendation)}</div>` : ""}${ins.caveat ? `<div class="cav">${esc(ins.caveat)}</div>` : ""}</div></div>` : ""}</span>`;
-    if (hasMore) div.addEventListener("click", (ev) => {
-      if (ev.target.closest("a")) return;
+      <p class="lead">${emphasize(lead)}</p>
+      ${why ? `<p class="why">${emphasize(why)}</p>` : ""}
+      ${ins.caveat ? `<button type="button" class="rec-toggle" aria-expanded="false">How this is counted${IC('<path d="M6.5 9.5 12 15l5.5-5.5"/>', "rchev")}</button><div class="more" inert><div><div class="cav">${esc(ins.caveat)}</div></div></div>` : ""}</span>`;
+    div.querySelector(".rec-toggle")?.addEventListener("click", (ev) => {
       const open = div.classList.toggle("open");
-      div.querySelector(".rec-toggle")?.setAttribute("aria-expanded", String(open));
+      ev.currentTarget.setAttribute("aria-expanded", String(open));
       const more = div.querySelector(".more");
       if (open) more.removeAttribute("inert"); else more.setAttribute("inert", "");
     });
@@ -3969,31 +4070,70 @@ function buildInsightsPanel() {
   for (const ins of all) add(ins);
   const ranked = all.some((i) => i.rank);
   document.getElementById("insightsmeta").textContent = ranked
-    ? "This week’s actions from today’s read, biggest lever first"
-    : "The most timely findings while no written list is current";
+    ? "This week’s actions from today’s read, biggest lever first."
+    : "The most timely actions from the fixed rules while no written list is current.";
   document.getElementById("actionsmeta").textContent = ranked
     ? `${all.length} action${all.length === 1 ? "" : "s"} for this week, biggest lever first`
-    : "The most timely findings";
+    : "The most timely actions from the fixed rules";
 }
 
 /* ================= about ================= */
 function buildAbout() {
-  document.getElementById("about").innerHTML = `
+  document.getElementById("aboutbody").innerHTML = `
+  <h3 id="ab-show">Show health</h3>
+  <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The score and checks come from the day’s checked facts. The headline and evidence use model wording when available; when it is unavailable, validated fixed wording uses the same facts for that day’s read. If neither wording path passes validation, the previous dated read remains and the refresh reports a failure.</p>
+  <p>Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — amber fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read.</p>
+  <p>Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos.</p>
+  <p>Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result.</p>
+  <p>Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>
+  <p>Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions, in order, with All actions leading to the full list and the finding behind each one.</p>
+  <p>The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <h3 id="ab-views">Views and reach</h3>
   <p><b>Total views</b> = YouTube views (both channels) + plays from resolved X broadcasts (both hosts). Native videos and teaser clips attached to posts are excluded. Both included sources count video playback — YouTube counts a qualified view (~30s), X counts a broadcast play start, so treat the sum as directional. If YouTube has not reported views yet, its startup zeros are shown as missing and do not start the episode’s history.</p>
-  <p><b>X reach</b> = impressions on the hosts' announce posts — the X posts that carry the live broadcast. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere. <b>Promo posts</b> (teasers, clips, links to the upload) are listed beside reach on each episode and never added in, because how many an episode gets varies; they were not searched for before E6. X readings from before 09/04 that blend an announce and a promo post on one account cannot be split and are left out of comparisons.</p>
+  <p><b>X reach</b> = impressions on the hosts' announce posts — the X posts that carry the live broadcast. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere. <b>Promo posts</b> (teasers, clips, links to the upload) are listed beside reach on each episode and never added in, because how many an episode gets varies; they were not searched for before E6. X readings from before Sep 4 that blend an announce and a promo post on one account cannot be split and are left out of comparisons.</p>
   <p><b>UX Tools email clicks</b> count clicks on an exact episode link in the newsletter. Beehiiv’s verified count leaves out clicks it could not confirm. These clicks show promotion and are never added to views.</p>
   <p><b>partial</b> beside a total = X plays recovered from only some of the episode’s broadcasts (the true total is higher). <b>old</b> = X plays last confirmed on an earlier date (the broadcast is no longer reachable; the highest confirmed figure is kept — absence is never shown as zero). <b>tracked late</b> = tracking began after the episode aired: all-time totals are right, early weekly history doesn't exist, and the episode stays out of early-growth comparisons.</p>
+  <h3 id="ab-charts">Charts and comparisons</h3>
   <p><b>Chart measures</b>: the Totals view can chart total views, share watched (YouTube only), average live viewers (hover a bar for that episode’s lowest and highest), or X reach — each in its own unit, and never added together. Views after release adds YouTube views and X broadcast plays only when every watch destination has a stored count; history begins the morning after air day. Move anywhere over a chart to compare every episode at a saved reading near that point; views after release uses the latest reading already reached. Move onto a line or bar for that episode’s channel detail. The small YouTube and X marks stand for the platforms wherever space is tight; hover any mark for its meaning.</p>
-  <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before 08/21, so mixing them into pace would invent a disadvantage for older episodes.</p><p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
+  <p><b>Pace</b> compares YouTube views at the same age across episodes, with promo outliers left out. It appears only after three other episodes have real data at that age. X plays have no history before Aug 21, so mixing them into pace would invent a disadvantage for older episodes.</p>
+  <p><b>Promo outliers</b> are episodes where YouTube views, X plays, or X reach came in at more than double what nearby episodes did at the same age (read at three weeks; earlier than that the test is an early read). They are left out of host, announce, topic, and typical comparisons — but they stay in the all-show totals, because those count every real watch.</p>
   <p><b>Launch</b> is each episode’s first-week standing in one word: its YouTube views at the end of its first week — or at its earliest reading for episodes tracked late, or at its current age while it is under a week old, marked "so far" — against the other episodes at that same age, promo outliers left out, and only with three others to compare; strong means more than a tenth above the typical, soft more than a tenth below. A promo-driven launch keeps its word and says so. It is a standing, not a score: it can move while an episode is young and it never replaces the three-week read.</p>
-  <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it. Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score. In the episode panel, a green <b>+</b> or red <b>−</b> percentage says how far above or below the show’s typical level the episode landed, and <b>typical</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
+  <h3 id="ab-episode">Episode health</h3>
+  <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it.</p>
+  <p>Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score.</p>
+  <p>In the episode panel, a green <b>+</b> or red <b>−</b> percentage says how far above or below the show’s typical level the episode landed, and <b>typical</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
+  <h3 id="ab-watching">Watching</h3>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says Waiting for YouTube instead of showing a zero.</p>
+  <h3 id="ab-feedback">Audience feedback</h3>
   <p><b>Live chat and X threads</b> are captured alongside YouTube feedback. Their displayed totals count messages, not distinct people; mixed reactions appear in both positive and criticism lists. Live-chat names are supplied by Restream, which may anonymize them. Only confidently classified feedback is shown; the full source archive is retained privately. Expanded conversation and chat feedback does not change historical health scores or commenting rates.</p>
   <p><b>Scored audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
+  <h3 id="ab-chapters">Chapters</h3>
   <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
-  <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The score and checks come from the day’s checked facts. The headline and evidence use model wording when available; when it is unavailable, validated fixed wording uses the same facts for that day’s read. If neither wording path passes validation, the previous dated read remains and the refresh reports a failure. Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — amber fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read. Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos. Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result. Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in. Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions from the recommendation list, in order; the full finding behind each one is in the list below the chart. The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
-  <p><b>What matters</b> lists at most five current actions for this week, in order — written by a model over the day’s show-health read (each check’s state, which way every measure is heading, the outlook, each launch word) and the full fact sheet, with the biggest lever first. Every number in an item is copied from a stored fact; an item whose numbers move out from under it is held back rather than shown. The category on each item is the decision it informs. The same-age pace of the newest episode stays on its card and in the chart standings. The first two current actions also appear in the health card’s Do next area. When no written list is current, it shows the five most timely fixed-rule findings instead — the newest episode’s own standing first — grouped by the decision they inform.</p>
+  <h3 id="ab-actions">Actions</h3>
+  <p><b>Actions</b> lists at most five current actions for this week, in order — written by a model over the day’s show-health read (each check’s state, which way every measure is heading, the outlook, each launch word) and the full fact sheet, with the biggest lever first. Every number in an item is copied from a stored fact; an item whose numbers move out from under it is held back rather than shown. Each card leads with the action, the finding under it is the reason, and How this is counted opens the note on how its numbers were read. The category on each item is the decision it informs. The same-age pace of the newest episode stays on its card and in the chart standings. The first two current actions also appear in the health card’s Do next area. When no written list is current, it shows the five most timely fixed-rule findings instead — the newest episode’s own standing first — grouped by the decision they inform.</p>
+  <h3 id="ab-cadence">When numbers update</h3>
   <p><b>Cadence</b>: snapshots every morning at 7:00 Phoenix, full refresh Mondays; new episodes are discovered and registered automatically. Every active episode keeps receiving fresh replay counters, including episodes older than 60 days. Historical readings and air-night live totals stay unchanged. YouTube’s analytics arrive two to three days late for every episode alike, so “three weeks in” means the numbers as they stood about then.</p>`;
+}
+
+// About's in-page index (from 64rem): one button per section — buttons, not
+// hash links, so the page router never sees them; the section in view is marked
+function buildAboutNav() {
+  const nav = document.getElementById("aboutnav");
+  const heads = [...document.querySelectorAll("#aboutbody h3")];
+  nav.innerHTML = `<h2>On this page</h2>${heads.map((h) => `<button type="button" data-to="${h.id}">${esc(h.textContent)}</button>`).join("")}`;
+  nav.addEventListener("click", (ev) => {
+    const b = ev.target.closest("button[data-to]");
+    if (b) document.getElementById(b.dataset.to).scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  });
+  const mark = () => {
+    let current = heads[0];
+    for (const h of heads) if (h.getBoundingClientRect().top < window.innerHeight * 0.35) current = h;
+    for (const b of nav.querySelectorAll("button")) {
+      if (b.dataset.to === current?.id) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+    }
+  };
+  window.addEventListener("scroll", () => { if (document.body.dataset.page === "about") mark(); }, { passive: true });
+  mark();
 }
 
 /* ================= sync / events ================= */
@@ -4168,35 +4308,81 @@ const stamp = document.getElementById("stamp");
 }
 
 buildAbout();
+buildAboutNav();
 buildInsightsPanel();
 render();
 
 /* ================= pages: the system's app shell (rail on desktop, tab bar on phones) =================
    One file, four views behind hash routes. Every surface still renders on
    every state change; the route only decides which view is on screen, so a
-   number never differs between pages. */
+   number never differs between pages. #episodes/e12 opens that episode in
+   full; the selection survives moving between pages; Back returns the reader
+   to where they were on the page they come back to. No element id equals a
+   route, so the browser never scrolls to one on its own. */
 const PAGES = { today: "Today", episodes: "Episodes", actions: "Actions", about: "About" };
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+function rememberScroll() {
+  // a browser that rate-limits history writes only costs the restore
+  try { history.replaceState({ ...(history.state || {}), y: Math.round(window.scrollY) }, ""); } catch { /* keep going */ }
+}
+// the open episode rides in the address, so Back, a reload or a shared link
+// return to it; replacing the entry never adds one to the history
+function syncRouteParam() {
+  if (document.body.dataset.page !== "episodes") return;
+  const open = EPS.find((e) => e.slug === state.panel);
+  const want = open ? `#episodes/e${open.ep}` : "#episodes";
+  if (location.hash !== want) { try { history.replaceState(history.state, "", want); } catch { /* keep going */ } }
+}
 function route({ focus = false } = {}) {
-  const key = location.hash.slice(1).split("/")[0];
+  const [key, arg] = location.hash.slice(1).split("/");
+  const current = document.body.dataset.page;
+  // a hash that names no page never moves the reader off the page they are on
+  if (!PAGES[key] && current) {
+    try { history.replaceState(history.state, "", `#${current}`); } catch { /* keep going */ }
+    syncRouteParam();
+    return;
+  }
   const page = PAGES[key] ? key : "today";
   for (const view of document.querySelectorAll(".view")) view.hidden = view.dataset.view !== page;
   for (const link of document.querySelectorAll("[data-nav]")) {
     if (link.dataset.nav === page) link.setAttribute("aria-current", "page"); else link.removeAttribute("aria-current");
   }
-  document.getElementById("pagetitle").textContent = PAGES[page];
-  document.title = page === "today" ? "Dive Radio — Episode Analytics" : `${PAGES[page]} — Dive Radio`;
+  const title = document.getElementById("pagetitle");
+  title.textContent = PAGES[page];
+  document.title = `${PAGES[page]} — Dive Radio`;
   document.body.dataset.page = page;
   closeViewMenu();
+  let opened = null;
   if (page === "episodes") {
+    const ep = /^e(\d+)$/i.exec(arg || "");
+    opened = ep ? EPS.find((e) => String(e.ep) === ep[1]) || null : null;
+    if (opened) { state.solo = opened.slug; state.panel = opened.slug; }
+    // measured while hidden, the row, the chart and the pane re-measure now
+    render();
     const strip = document.getElementById("strip");
     if (!strip.dataset.landed) { strip.scrollLeft = strip.scrollWidth; strip.dataset.landed = "1"; }
     strip.dispatchEvent(new Event("scroll"));
     fillGridRows(document.querySelector("#panel .pgrid"));
-    if (chart) chart.resize();
+    spaceMoments();
+    syncRouteParam();
   }
-  if (focus) document.getElementById("main").focus({ preventScroll: true });
+  const y = history.state?.y;
+  if (Number.isFinite(y)) window.scrollTo(0, y);
+  else if (opened) document.getElementById("panel").scrollIntoView({ block: "start" });
+  else window.scrollTo(0, 0);
+  if (page === "about") window.dispatchEvent(new Event("scroll"));
+  // the page's name takes focus, so a screen reader announces where it landed
+  if (focus) title.focus({ preventScroll: true });
 }
-window.addEventListener("hashchange", () => { window.scrollTo(0, 0); route({ focus: true }); });
+let scrollMemo = 0;
+window.addEventListener("scroll", () => { clearTimeout(scrollMemo); scrollMemo = setTimeout(rememberScroll, 150); }, { passive: true });
+// the entry being left keeps its scroll position before the address changes
+document.addEventListener("click", (ev) => {
+  if (ev.target instanceof Element && ev.target.closest('a[href^="#"]')) { clearTimeout(scrollMemo); rememberScroll(); }
+}, true);
+// the skip link moves focus past the navigation without changing the page
+document.querySelector(".skip").addEventListener("click", (ev) => { ev.preventDefault(); document.getElementById("main").focus(); });
+window.addEventListener("hashchange", () => route({ focus: true }));
 route();
 </script>
 </body>
