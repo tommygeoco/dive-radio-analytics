@@ -12,13 +12,15 @@ Score 56 (weighted mean 55.2, health-v10, prompt v8); reads Anyone Can Animate N
 
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
-| Next first week inside the expected range | 0 | 0 | 0 | 4 | 2 |
-| Direction word confirmed by the next episode | 24 | 15 | 15 | 5 | 10 |
+| Next first week inside the expected range | 0 | 0 | 0 | 5 | 1 |
+| Direction word confirmed by the next episode | 24 | 16 | 15 | 5 | 10 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
 
+- 2026-10-08 · VOID · 2026-10-01-dive-radio-anyone-can-animate-now-and-ho: promo-driven first week — not a clean test.
 - 2026-10-08 · HIT · exposureWeekOne: E12 moved +43.8% (building) against the word building.
+- 2026-10-08 · MISS · announceToPlay: E12 moved -22.4% (softening) against the word building.
 - 2026-10-02 · HIT · liveAverage: E12 moved +7.5% (building) against the word building.
 - 2026-10-02 · NEUTRAL · livePeak: E12 moved +1.8% (holding) against the word building.
 - 2026-10-02 · NEUTRAL · liveViewers: E12 moved -5.1% (softening) against the word holding.
@@ -28,8 +30,6 @@ Most recent resolutions:
 - 2026-10-02 · HIT · minutesPerViewer: E12 moved +12% (building) against the word building.
 - 2026-10-02 · HIT · holdRate: E12 moved -2.5% (holding) against the word holding.
 - 2026-10-02 · NEUTRAL · chattersPer100: E12 moved -3.3% (holding) against the word building.
-- 2026-10-01 · VOID · 2026-09-24-dive-radio-just-in-time-interfaces: promo-driven first week — not a clean test.
-- 2026-10-01 · MISS · exposureWeekOne: E11 moved -59.5% (softening) against the word building.
 
 ### Owner feel against the read
 
@@ -59,8 +59,6 @@ Carried share of scored checks: 43% (at full weight the mean would move -1) · p
 
 ## Open claims
 
-- 2026-09-25 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E11.
-- 2026-10-01 · announceToPlay building (+10.5% per episode) — waits for the episode after E11.
 - 2026-10-02 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E12.
 - 2026-10-02 · liveAverage building (+5.3% per episode) — waits for the episode after E12.
 - 2026-10-02 · livePeak holding (+2.5% per episode) — waits for the episode after E12.
@@ -71,4 +69,5 @@ Carried share of scored checks: 43% (at full weight the mean would move -1) · p
 - 2026-10-02 · minutesPerViewer building (+7% per episode) — waits for the episode after E12.
 - 2026-10-02 · holdRate holding (-0.6% per episode) — waits for the episode after E12.
 - 2026-10-08 · exposureWeekOne building (+6.4% per episode) — waits for the episode after E12.
+- 2026-10-08 · announceToPlay building (+8.3% per episode) — waits for the episode after E12.
 

@@ -1,6 +1,6 @@
 # Dive Radio analytics
 
-> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-10-08T14:03:46.638Z).
+> The complete performance read of the Dive Radio live show — views by platform, like-for-like comparisons, show and episode health, the direction of every measure, current ranked actions, every episode's chapters with timestamps, the audience's words, and the definitions behind each number. Rebuilt on every data refresh (2026-10-08T19:18:32.880Z).
 
 ## Read first
 - [Agent brief](https://dive-radio-analytics.vercel.app/agent.md): the current read and recent episodes — start with its first section for the archive boundary

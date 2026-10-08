@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T14:02:48.394Z",
+  "updatedAt": "2026-10-08T19:17:02.826Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -865,7 +865,11 @@
       "typical": 1751,
       "direction": null,
       "pctPerEpisode": -8.3,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-08",
+        "outcome": "void",
+        "detail": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho: promo-driven first week — not a clean test."
+      }
     },
     {
       "id": "direction:liveAverage:E11:building",
@@ -1080,7 +1084,13 @@
       "pctPerEpisode": 10.5,
       "lastEp": 11,
       "lastValue": 34,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-08",
+        "outcome": "miss",
+        "actual": 26.4,
+        "realizedPct": -22.4,
+        "detail": "announceToPlay: E12 moved -22.4% (softening) against the word building."
+      }
     },
     {
       "id": "range:after-E12:1189-1830",
@@ -1191,6 +1201,17 @@
       "pctPerEpisode": 6.4,
       "lastEp": 12,
       "lastValue": 11365,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E12:building",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-10-08",
+      "word": "building",
+      "pctPerEpisode": 8.3,
+      "lastEp": 12,
+      "lastValue": 26.4,
       "resolution": null
     }
   ]
