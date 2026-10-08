@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T19:17:01.485Z",
+  "updatedAt": "2026-10-08T14:02:48.394Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -1063,7 +1063,13 @@
       "pctPerEpisode": 5.3,
       "lastEp": 11,
       "lastValue": 7902,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-08",
+        "outcome": "hit",
+        "actual": 11365,
+        "realizedPct": 43.8,
+        "detail": "exposureWeekOne: E12 moved +43.8% (building) against the word building."
+      }
     },
     {
       "id": "direction:announceToPlay:E11:building",
@@ -1174,6 +1180,17 @@
       "pctPerEpisode": -0.6,
       "lastEp": 12,
       "lastValue": 65.5,
+      "resolution": null
+    },
+    {
+      "id": "direction:exposureWeekOne:E12:building",
+      "kind": "direction",
+      "key": "exposureWeekOne",
+      "madeOn": "2026-10-08",
+      "word": "building",
+      "pctPerEpisode": 6.4,
+      "lastEp": 12,
+      "lastValue": 11365,
       "resolution": null
     }
   ]
