@@ -159,7 +159,12 @@ export const FORMULA_VERSION = "health-v10";
 // prompt v7 (2026-09-01 evening, rule 23): check states come from bands that
 // follow the show's own swing, so the model reads each check's `state` word
 // instead of fixed 45 / 55 cut-offs; the live and reach checks gained measures.
-export const PROMPT_VERSION = 7;
+// prompt v8 (2026-10-07, design-system critic m9, owner decision): "mean",
+// "weighted mean" and "weighted average" join the plain-words list, and drivers
+// explain a move away from where the checks put the score instead of naming the
+// weighted mean. v7 echoed "the weighted mean" into 19 saved reads; those keep
+// their stamp and are judged by the v7 rule (validateSynthesis below).
+export const PROMPT_VERSION = 8;
 const V3_WEIGHTS = Object.freeze({
   growth: 0.25,
   audienceQuality: 0.20,
@@ -197,6 +202,9 @@ export const STALE_WITHHOLD_DAYS = 7;
 
 const BANNED = /\b(composite|percentile|pillar|ratio|velocity|coverage|basis|median|delta|cumulative)\b|\d+(?:\.\d+)?×|\b\d+(?:\.\d+)?\s+times?\s+(?:better|worse|higher|lower|more|less)\b/i;
 const MARKUP = /<\/?[a-z]|```|https?:\/\/|\[[^\]]+\]\(/i;
+// prompt v8+: the averaging behind the score is method, not reading — "the mean"
+// as a statistic (not the verb "means") stays out of every saved sentence
+const AVERAGING = /\bweighted\s+(?:mean|average)\b|\b(?:the|a|its|their)\s+mean\b/i;
 
 function readJson(path, fallback = null) {
   if (!existsSync(path)) return fallback;
@@ -1010,6 +1018,11 @@ export function validateSynthesis(value, inputs) {
   // every shipped number must trace to a cited fact, and drivers cite none
   if (promptVersion >= 4 && value.drivers.some((driver) => numberTokens(driver).length)) {
     throw new Error("drivers must contain no numbers — the judgment in words, the numbers in cited bullets");
+  }
+  // prompt v8+: no averaging words in any saved sentence (v7 and earlier keep their rule)
+  if (promptVersion >= 8) {
+    const texts = [value.headline, ...value.pros.map((b) => b.text), ...value.cons.map((b) => b.text), ...value.drivers];
+    if (texts.some((t) => AVERAGING.test(t))) throw new Error("say where the checks put the score — never the mean, weighted mean or weighted average");
   }
   // check-set guard (PRD v9 §3.1, W27): when the set of scored checks changed
   // since the previous entry, a driver must name a check that joined or left —
