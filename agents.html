@@ -362,9 +362,12 @@ if (!data || !data.generatedAt) {
   freshness.textContent = "Freshness dates are unavailable.";
 } else {
   const num = (text) => `<span class="n">${String(text).replace(/[&<>"]/g, "")}</span>`;
-  const dates = [`Data refreshed ${num(data.generatedAt.slice(0, 10))}`];
-  if (data.health?.date) dates.push(`health read ${num(data.health.date)}`);
-  if (data.chaptersUpdatedAt) dates.push(`chapters ${num(data.chaptersUpdatedAt.slice(0, 10))}`);
+  // "Oct 8", as the dashboard writes dates: the month is a word, only the day is a figure
+  // (Inter's tabular forms would widen an ISO date's hyphens)
+  const day = (iso) => { const d = new Date(`${String(iso).slice(0, 10)}T12:00:00Z`); return `${d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })} ${num(d.getUTCDate())}`; };
+  const dates = [`Data refreshed ${day(data.generatedAt)}`];
+  if (data.health?.date) dates.push(`health read ${day(data.health.date)}`);
+  if (data.chaptersUpdatedAt) dates.push(`chapters ${day(data.chaptersUpdatedAt)}`);
   freshness.innerHTML = dates.join(" · ");
 }
 </script>
