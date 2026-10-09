@@ -194,6 +194,21 @@
   transform: translateY(-200%); }
 .ss-skip:focus-visible { transform: none; }
 
+/* status dot: gray when current, amber when behind — never green, never blue */
+.ss-conn { position: relative; height: 36px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0 12px; border-radius: var(--radius-full); font-size: var(--text-body-sm); color: var(--fg-2); }
+.ss-conn::after { content: ""; position: absolute; inset: -4px 0; }
+.ss-conn:hover { background: var(--surface-2); color: var(--fg-1); }
+.ss-conn__dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--fg-3); }
+.ss-conn__dot--lag { background: var(--warn); }
+/* the words ("Updated 5s ago") sit in one label, so the pill's flex gap never lands between a word and its figure (3.1);
+   below 40rem the label is for screen readers only and the dot speaks for the bar, so the page title never yields.
+   Below 40rem a lagging conn (.ss-conn__dot--lag) must be paired with the trust bar (.ss-trust), which carries the
+   words: an amber dot alone is a color without a word. */
+.ss-conn__label { white-space: nowrap; }
+@media (max-width: 39.99rem) { .ss-conn__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
+@media (min-width: 48rem) { .ss-conn { height: 32px; font-size: var(--text-meta); } }
+
 /* desktop rail (md+) */
 .ss-rail { position: fixed; inset: 0 auto 0 0; z-index: 50; width: var(--rail-w); display: none; flex-direction: column;
   align-items: center; border-right: 1px solid var(--line); background: var(--canvas); padding: 12px 0; }
@@ -411,17 +426,14 @@
   h1 { margin: 0; flex: none; font-size: var(--text-num-lg); line-height: 1.2; font-weight: 600; letter-spacing: -0.025em; white-space: nowrap; }
   @media (min-width: 48rem) { h1 { font-size: var(--text-title); line-height: 1.3; } }
   /* freshness: the system's status dot — gray when current, amber when behind; never green, never blue */
-  .stamp { margin-left: auto; flex: 0 1 auto; display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 0 4px;
-    color: var(--fg-2); font-size: var(--text-meta); line-height: 1.34; white-space: nowrap; }
-  .stamp[tabindex] { cursor: default; border-radius: var(--radius-sm); }
-  @media (max-width: 47.99rem) { .stamp { min-height: 44px; } }   /* the tap target for its exact times */
-  .stamp .sfull { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  /* the status is the system's .ss-conn button (recipe above): it opens the exact times in the
+     page's one tooltip; the page places it and lets its words ellipsize before the title yields */
+  .stamp { margin-left: auto; flex: 0 1 auto; border: 0; background: none; cursor: pointer; }   /* a <button>: no UA fill or border; .ss-conn:hover still wins */
+  .stamp .ss-conn__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .stamp .sshort { display: none; }
   /* the system's trust bar: phones move a not-current freshness sentence under the top bar */
   .trust { display: none; }
   #audience-preview { margin-top: var(--gap); }
-  .stamp i { width: 8px; height: 8px; border-radius: var(--radius-full); flex: none; background: var(--fg-3); }
-  .stamp i.old { background: var(--warn); }
   /* the Agents page: the top bar's pill (outline, no fill) */
   .agentslink { position: relative; display: inline-flex; align-items: center; height: 36px; padding: 0 12px; flex: none;
     border-radius: var(--radius-full); box-shadow: inset 0 0 0 1px var(--line-strong);
@@ -1316,7 +1328,7 @@
 <header>
   <div class="topin">
     <h1 id="pagetitle" tabindex="-1">Today</h1>
-    <div class="stamp" id="stamp"></div>
+    <button type="button" class="ss-conn stamp" id="stamp"></button>
     <a class="agentslink" href="agents.html">Agents</a>
   </div>
 </header>
@@ -1433,6 +1445,10 @@ const FONT = TOK("--font-sans"), NUM = TOK("--font-num");
 if (window.Chart) {
   Chart.defaults.font.family = NUM; Chart.defaults.font.size = 11; Chart.defaults.color = TOK("--chart-axis");
   Chart.defaults.borderColor = TOK("--chart-grid"); Chart.defaults.animation.duration = 160;
+  // a hovered mark keeps its token colour — Chart.js would otherwise saturate and darken it
+  // into an off-system hue (critic 2026-10-08); focus is shown by the tooltip and the white bar
+  Chart.defaults.hoverBackgroundColor = (ctx, options) => options.backgroundColor;
+  Chart.defaults.hoverBorderColor = (ctx, options) => options.borderColor;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) Chart.defaults.animation = false;
 }
 
@@ -2454,7 +2470,7 @@ function buildPanel() {
   // PRD v10: the launch read behind the card word, same store
   const launch = launchOf(e);
   if (launch?.word) {
-    html += `<div class="psec"><h3 class="kicker">Launch<span data-tip="YouTube views at the end of the first week — or at the earliest reading for episodes tracked late, or at the current age while under a week old — against the other episodes at that same age, promo outliers left out, three or nothing" tabindex="0">${ICONS.info}</span></h3>
+    html += `<div class="psec"><h3 class="kicker">Launch<span aria-label="How launch is read" data-tip="YouTube views at the end of the first week — or at the earliest reading for episodes tracked late, or at the current age while under a week old — against the other episodes at that same age, promo outliers left out, three or nothing" tabindex="0">${ICONS.info}</span></h3>
       <div class="pnum">${launch.promoDriven ? "Promo-driven" : cap(launch.word)}${launch.provisional ? " · so far" : ""}</div>
       <div class="hint">${esc(launchNote(launch))}</div></div>`;
   }
@@ -2462,7 +2478,7 @@ function buildPanel() {
     const excludedN = (h.excluded || []).length;
     const peers = Math.max(0, (h.windowIds || []).length - 1 - excludedN);
     const basisTip = `Its first three weeks against the ${peers === 1 ? "episode" : `${peers} episodes`} before it${excludedN ? ` (${excludedN} promo outlier${excludedN === 1 ? "" : "s"} left out)` : ""} — newer episodes never change this score.`;
-    html += `<div class="psec"><h3 class="kicker">Episode health<span data-tip="${esc(basisTip)}" tabindex="0">${ICONS.info}</span></h3>`;
+    html += `<div class="psec"><h3 class="kicker">Episode health<span aria-label="How episode health is scored" data-tip="${esc(basisTip)}" tabindex="0">${ICONS.info}</span></h3>`;
     const bc = Object.fromEntries((e.watch?.byChannel || []).map((c) => [c.key, c]));
     const subsSplit = bc["yt:joindiveclub"]?.subsPer1k != null && bc["yt:designertom"]?.subsPer1k != null
       ? ` — Dive Club ${bc["yt:joindiveclub"].subsPer1k} · DesignerTom ${bc["yt:designertom"].subsPer1k}` : "";
@@ -2834,6 +2850,9 @@ function buildAudiencePreview() {
 
 /* ================= drilldown modal (Layer 3) ================= */
 const drillState = { slug: null, filter: "all", query: "", source: "all" };
+// everything outside the open dialog leaves the accessibility tree and the tab order
+// (layout.md); matched by position, so renaming the shell can't drop it out again
+const DRILL_INERT = "body > :not(#drill):not(script)";
 function openDrill(slug, filter) {
   const e = EPS.find(x => x.slug === slug);
   if (!e?.audience?.list && !e?.comments?.list) return;
@@ -2843,7 +2862,7 @@ function openDrill(slug, filter) {
   drillState.opener = document.activeElement;
   renderDrill();
   document.getElementById("drill").classList.add("on");
-  for (const n of document.querySelectorAll("main, header, .rail, .tabbar")) n.setAttribute("inert", "");
+  for (const n of document.querySelectorAll(DRILL_INERT)) n.setAttribute("inert", "");
   document.getElementById("dtitle").focus();
 }
 document.getElementById("dsearch").addEventListener("input", event => { drillState.query = event.target.value; renderDrill(); });
@@ -2852,7 +2871,7 @@ function closeDrill() {
   const drill = document.getElementById("drill");
   if (!drill.classList.contains("on")) return;
   drill.classList.remove("on");
-  for (const n of document.querySelectorAll("main, header, .rail, .tabbar")) n.removeAttribute("inert");
+  for (const n of document.querySelectorAll(DRILL_INERT)) n.removeAttribute("inert");
   const back = drillState.opener;
   drillState.opener = null;
   if (back && back.isConnected) back.focus();
@@ -3490,7 +3509,7 @@ const endLabels = {
       if (meta.hidden || ds.hidden || !meta.data.length || ds.spark || ds.isAnnounce || ds.noEndLabel) return;
       const pt = meta.data[meta.data.length - 1];
       const rank = ds.isTypical ? 1 : (ds.order ?? 1) <= 0 ? 0 : 2;
-      items.push({ x: pt.x, y: pt.y, rank, typical: !!ds.isTypical, text: ds.isTypical ? "typical" : "E" + ds.epNum, color: ds.labelColor || ds.borderColor });
+      items.push({ x: pt.x, y: pt.y, rank, typical: !!ds.isTypical, text: ds.isTypical ? "typical" : "E" + ds.epNum, color: ds.labelColor || ds.borderColor, start: meta.data[0] });
     });
     items.sort((a, b) => a.rank - b.rank || a.y - b.y);
     const placed = [];
@@ -3499,13 +3518,18 @@ const endLabels = {
     for (const it of items) {
       ctx.font = it.typical ? `500 12px ${FONT}` : `600 12px ${NUM}`;
       const w = ctx.measureText(it.text).width;
-      const x = Math.min(it.x + 8, chartArea.right + 4);
-      const clash = (y) => placed.some((p) => Math.abs(p.y - y) < 14 && x < p.x + p.w + 4 && p.x < x + w + 4);
+      // two labels never sit within 14 px of each other (critic 2026-10-08)
+      const clash = (x, y) => placed.some((p) => Math.abs(p.y - y) < 14 && x < p.x + p.w + 4 && p.x < x + w + 4);
+      let x = Math.min(it.x + 8, chartArea.right + 4);
       let y = it.y;
-      if (clash(y)) {
-        const up = [-4, 4, -8, 8].map((d) => it.y + d).find((c) => !clash(c));
-        if (up != null) y = up;
-        else if (it.rank === 2) continue;
+      if (clash(x, y)) {
+        const nudged = [-8, 8, -12, 12, -16, 16].map((d) => it.y + d).find((c) => !clash(x, c) && c > chartArea.top + 6 && c < chartArea.bottom - 6);
+        if (nudged != null) y = nudged;
+        else if (it.typical && it.start) {
+          // "typical" moves to its own line's left end, just above the dashed line
+          x = chartArea.left + 8; y = it.start.y - 10;
+          if (clash(x, y)) continue;
+        } else continue;
       }
       placed.push({ x, y, w });
       ctx.fillStyle = it.color;
@@ -3775,8 +3799,8 @@ function renderMetricBars(all, ordered, soloed) {
       labels: ordered.map(e => "E" + e.ep),
       datasets: [{
         data: ordered.map(M.get),
-        backgroundColor: ordered.map(fill),
-        borderColor: TOK("--chart-gap"), borderWidth: 2, borderSkipped: false, borderRadius: 4,
+        backgroundColor: ordered.map(fill), hoverBackgroundColor: ordered.map(fill),
+        borderColor: TOK("--chart-gap"), hoverBorderColor: TOK("--chart-gap"), borderWidth: 2, hoverBorderWidth: 2, borderSkipped: false, borderRadius: 4,
         barThickness: 20,
       }],
     },
@@ -3840,8 +3864,8 @@ function renderStandings() {
         label: TT_NAME[key],
         key,
         data: ordered.map(val),
-        backgroundColor: ordered.map(e => dim(PLAT_COLORS[key], e)),
-        borderColor: TOK("--chart-gap"), borderWidth: 2, // surface gap between segments
+        backgroundColor: ordered.map(e => dim(PLAT_COLORS[key], e)), hoverBackgroundColor: ordered.map(e => dim(PLAT_COLORS[key], e)),
+        borderColor: TOK("--chart-gap"), hoverBorderColor: TOK("--chart-gap"), borderWidth: 2, hoverBorderWidth: 2, // surface gap between segments
         borderSkipped: false, borderRadius: 4,
         barThickness: 20,
       })),
@@ -4025,6 +4049,7 @@ function render() {
       }
       return { label: label(e), epNum: e.ep, slug: e.slug, data, metas,
         backgroundColor: state.solo && !soloed ? CONTEXT : e.slug === NEWEST.slug ? FOCUS : FG3,
+        hoverBackgroundColor: state.solo && !soloed ? CONTEXT : e.slug === NEWEST.slug ? FOCUS : FG3,
         borderRadius: 4, hidden, episode: e, categoryPercentage: 0.74, barPercentage: 0.9 };
     });
     const cfg = {
@@ -4070,6 +4095,7 @@ function render() {
       borderColor: base.border,
       labelColor: base.lab,
       backgroundColor: isDelta ? (deemph ? CONTEXT : FOCUS) : "transparent",
+      hoverBackgroundColor: isDelta ? (deemph ? CONTEXT : FOCUS) : "transparent",
       borderWidth: base.width,
       pointRadius: 0,
       pointHoverRadius: 5,
@@ -4571,7 +4597,7 @@ const stamp = document.getElementById("stamp");
   const [gy, gm, gd] = phoenixDateKey(DATA.generatedAt).split("-").map(Number);
   const late = Date.now() > Date.UTC(gy, gm - 1, gd + 1, 15, 45);
   const current = !late && !behind;
-  stamp.innerHTML = `<i class="${current ? "" : "old"}" aria-hidden="true"></i><span class="sfull">Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span><span class="sshort" aria-hidden="true">${current ? esc(cap(when)) : "Behind"}</span>`;
+  stamp.innerHTML = `<i class="ss-conn__dot${current ? "" : " ss-conn__dot--lag"}" aria-hidden="true"></i><span class="ss-conn__label"><span class="sfull">Data refreshed ${esc(when)}${behind ? ` · health read is ${h.withheld ? "withheld" : "behind"}` : ""}</span><span class="sshort" aria-hidden="true">${current ? esc(cap(when)) : "Behind"}</span></span>`;
   stamp.classList.toggle("behind", !current);
   // the system's trust bar: on phones a not-current statement moves under the
   // top bar in short words (the bar keeps the dot and one word)
@@ -4585,8 +4611,6 @@ const stamp = document.getElementById("stamp");
   const exact = new Date(DATA.generatedAt).toLocaleString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
   stamp.dataset.stat = "Data refreshed";
   stamp.dataset.rows = [`${exact} Phoenix time`, h?.date ? `Health read saved ${new Date(`${h.date}T12:00:00Z`).toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric" })}` : ""].filter(Boolean).join("||");
-  stamp.tabIndex = 0;
-  stamp.setAttribute("role", "button");
   // Every Vercel build keeps its own address and its own data forever. Only the
   // live addresses move to each morning's publish; any other copy holding an
   // earlier day's data says so and links to the live dashboard.

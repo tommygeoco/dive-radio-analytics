@@ -2829,6 +2829,23 @@ try {
     }
   }
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  // critic round 1 (2026-10-08, audit/DESIGN-2026-10-08.md): the dialog inerts the
+  // whole page around it by position; a hovered chart mark keeps its token colour;
+  // the status is the system's conn button; an icon-only info trigger has a name
+  if (!/const DRILL_INERT = "body > :not\(#drill\):not\(script\)";/.test(html)
+    || (html.match(/document\.querySelectorAll\(DRILL_INERT\)/g) || []).length !== 2 || /"main, header, \.rail, \.tabbar"/.test(html)) {
+    bad++; drift("design system: the feedback dialog must make everything outside it inert (DRILL_INERT, both on open and on close)");
+  }
+  if (!/Chart\.defaults\.hoverBackgroundColor = \(ctx, options\) => options\.backgroundColor;/.test(html)
+    || !/Chart\.defaults\.hoverBorderColor = \(ctx, options\) => options\.borderColor;/.test(html)) {
+    bad++; drift("design system: chart hover must keep each mark's token colour (Chart.js derives off-system hover colours)");
+  }
+  if (!/<button type="button" class="ss-conn stamp" id="stamp"><\/button>/.test(html) || !/ss-conn__dot/.test(html)) {
+    bad++; drift("design system: the header status must be the system's ss-conn button");
+  }
+  if (/<span data-tip="[^"]*" tabindex="0">\$\{ICONS\.info\}/.test(html)) {
+    bad++; drift("design system: an icon-only info trigger has no accessible name (aria-label)");
+  }
   // charts read the tokens at runtime — no palette is pasted into the script
   if (!/const TOK = \(name\) => ROOT_CSS\.getPropertyValue\(name\)\.trim\(\);/.test(html) || /const PALETTE = \[/.test(html)) {
     bad++; drift("design system: chart colors must be read from the stylesheet tokens, never a pasted palette");
