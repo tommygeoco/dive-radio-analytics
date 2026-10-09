@@ -397,6 +397,9 @@
   .epihero:not(:empty) { margin-bottom: var(--gap); }
   /* the episode card's way into its pane: the system's link button at body-sm */
   .herolink { gap: 4px; margin-top: 24px; font-size: var(--text-body-sm); }
+  /* under the hero's facts the link sits 28 down: its 44 px area reaches 12.75 px above its line and each
+     fact's reaches 12 below, so 28 keeps both whole (24 would let the link take the facts' last 2 px) */
+  .hero .gline + .herolink { margin-top: 28px; }
   .donext + .alllink { margin-top: 12px; }
   .nextrow { display: flex; align-items: center; gap: 12px; min-height: 56px; margin-top: var(--gap); padding: var(--d-row) var(--d-card);
     border-radius: var(--radius-2xl); box-shadow: inset 0 0 0 1px var(--line-strong); color: inherit; text-decoration: none;
@@ -1335,7 +1338,12 @@
     .chart-copy { display: contents; }
     .ctsel { order: 0; }
     .controls { order: 1; margin-left: auto; }
-    .chead .cs { order: 2; flex-basis: 100%; }
+    .chead .cs { order: 2; flex-basis: 100%; margin-top: 4px; line-height: 20px; }
+    /* the platform mark is a tooltip trigger: a 16 px glyph with a centred 44 px hit area (the system link
+       button's pattern). The scope line's 20 px line box sits 12 under the view button (8 gap + 4) and 16 over
+       the chart, so the area meets the button's edge and stops short of the chart; it overlaps no other control */
+    .chead .cs .scopepill { position: relative; }
+    .chead .cs .scopepill::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); }
     .sitem { flex: 0 0 168px; min-width: 168px; padding: 12px; }
     #chartbox { height: 340px; }
     .panel .themegrid { grid-template-columns: 1fr; }
