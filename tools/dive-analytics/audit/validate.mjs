@@ -2790,6 +2790,29 @@ try {
     for (const f of findings.slice(0, 5)) { bad++; drift(`design system: ${page}:${f.line} [${f.rule}] ${f.detail}`); }
     if (findings.length > 5) { bad++; drift(`design system: ${page} has ${findings.length - 5} more off-system value(s)`); }
   }
+  // Design system 3.1.1 (re-locked 2026-10-08, audit/DESIGN-2026-10-08.md): each
+  // page inlines the system's tokens.css byte for byte (vendored at
+  // audit/ds-tokens.css), sets words and figures in Inter (one typeface since
+  // 3.0; no Geist, and no rule names the deprecated --font-mono), and every rule
+  // that sets the figure font also sets tabular figures (the system's check.mjs
+  // rule 4: plain Inter figures are proportional, so columns would jiggle).
+  const dsTokens = readFileSync(join(TOOL, "audit", "ds-tokens.css"), "utf8");
+  for (const page of ["index.html", "agents.html"]) {
+    const src = readFileSync(join(ROOT, page), "utf8");
+    if (!src.includes(dsTokens)) { bad++; drift(`design system: ${page} does not inline the system's tokens.css verbatim (audit/ds-tokens.css)`); continue; }
+    const own = src.replace(dsTokens, "");
+    if (!/@font-face \{ font-family: "Inter"; font-style: normal; font-weight: 100 900;/.test(own) || /Geist|var\(--font-mono\)/.test(own)) {
+      bad++; drift(`design system: ${page} must set words and figures in the inlined Inter, never Geist or the deprecated --font-mono`);
+    }
+    for (const style of own.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
+      const css = style[1].replace(/\/\*[\s\S]*?\*\//g, "");
+      for (const rule of css.matchAll(/([^{}]*)\{([^{}]*)\}/g)) {
+        if (/(?:^|[;{\s])font(?:-family)?\s*:[^;]*var\(--font-num\)/.test(rule[2]) && !/tabular-nums|["']tnum["']/.test(rule[2])) {
+          bad++; drift(`design system: ${page} ${rule[1].trim().split("\n").pop().trim()} sets the figure font without tabular figures`);
+        }
+      }
+    }
+  }
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
   // charts read the tokens at runtime — no palette is pasted into the script
   if (!/const TOK = \(name\) => ROOT_CSS\.getPropertyValue\(name\)\.trim\(\);/.test(html) || /const PALETTE = \[/.test(html)) {
@@ -2798,7 +2821,7 @@ try {
   if (/inflight\.co\/widget/.test(html) || /inflight\.co\/widget/.test(readFileSync(join(ROOT, "agents.html"), "utf8"))) {
     bad++; drift("design system: the Inflight widget is back — removed 2026-10-06; it was a third-party runtime script (rule 10)");
   }
-  if (!bad) ok("design system: both pages use only design-system tokens; charts read them at runtime; no third-party runtime script");
+  if (!bad) ok("design system: both pages inline the 3.1.1 tokens verbatim, set Inter with tabular figures, use only design-system tokens; charts read them at runtime; no third-party runtime script");
 }
 
 // LinkedIn identity, evidence and absence contract, independently rebuilt from source records.

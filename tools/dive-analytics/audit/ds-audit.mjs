@@ -2,9 +2,9 @@
 // ds-audit.mjs — static conformance check against the Smart Sharps design system.
 //
 // VENDORED from ~/.claude/skills/smart-sharps-design-system/scripts/ds-audit.mjs
-// (2026-10-06) so the validator can lock the pages' design-system conformance on
-// any machine. Change the skill's copy first, then copy it here byte-for-byte
-// below this note.
+// (2026-10-06; re-vendored at design system 3.1.1 on 2026-10-08) so the validator can
+// lock the pages' design-system conformance on any machine. Change the skill's copy
+// first, then copy it here byte-for-byte below this note.
 //
 //   node ds-audit.mjs <file.html|file.css> [more files…] [--json] [--quiet]
 //
@@ -23,7 +23,7 @@
 //              else off-grid is a finding.
 //   radius     border-radius not in {0, 4, 8, 12, 16, 20, 24, 28 px, 999px, 50%}
 //              and not a var(--radius-*) token.
-//   font       a font-family that is not var(--font-sans) / var(--font-mono) /
+//   font       a font-family that is not var(--font-sans) / var(--font-num) / var(--font-mono) /
 //              inherit (system stacks belong only in the token block).
 //   weight     font-weight outside {400, 500, 600, 700}.
 //   case       text-transform: uppercase (the system is sentence case; the LIVE
@@ -140,10 +140,10 @@ function auditDeclarations(file, text, segStart, segText, skip) {
       }
     }
     if (prop === "font-family") {
-      if (!/^(var\(--font-(sans|mono|heading)\)|inherit)$/.test(value)) report(file, text, at, "font", `${prop}: ${value}`);
+      if (!/^(var\(--font-(sans|num|mono|heading)\)|inherit)$/.test(value)) report(file, text, at, "font", `${prop}: ${value}`);
     }
     if (prop === "font") {
-      if (!/var\(--font-(sans|mono)\)|inherit/.test(value)) report(file, text, at, "font", `${prop}: ${value}`);
+      if (!/var\(--font-(sans|num|mono)\)|inherit/.test(value)) report(file, text, at, "font", `${prop}: ${value}`);
     }
     if (prop === "font-weight" && !WEIGHTS.has(value)) report(file, text, at, "weight", `${prop}: ${value}`);
     if (prop === "text-transform" && /uppercase/.test(value)) report(file, text, at, "case", `${prop}: ${value}`);

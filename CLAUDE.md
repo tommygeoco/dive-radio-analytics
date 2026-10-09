@@ -253,9 +253,17 @@ Inflight review still works through the MCP tools above, without the widget.
 
 Both pages are built on the Smart Sharps design system — the skill at
 `~/.claude/skills/smart-sharps-design-system/` (tokens, components, data-viz
-extension, `scripts/ds-audit.mjs` linter, `scripts/shoot.mjs` census). The
-tokens and the Geist / Geist Mono Latin subsets are inlined in each page, so
-the pages still fetch nothing at runtime. A page change must keep
+extension, `scripts/ds-audit.mjs` linter, `scripts/shoot.mjs` census). Since
+2026-10-08 they run on **3.1.1**: the system's `tokens.css` is inlined verbatim
+(validator 1q2 locks it byte for byte against the vendored
+`tools/dive-analytics/audit/ds-tokens.css`) with the Inter Latin subset from
+`scripts/inline-fonts.mjs`, so the pages still fetch nothing at runtime. One
+typeface: Inter for words and figures; every figure is `.n` (the system's
+`.ss-num`: `--font-num` with tabular figures) and every rule that sets
+`--font-num` also sets tabular figures (1q2 checks it). To move to a later
+version: re-vendor `ds-tokens.css` and `audit/ds-audit.mjs`, re-inline both
+blocks in both pages, and record the move in an `audit/DESIGN-*.md` ledger
+(see `DESIGN-2026-10-08.md`). A page change must keep
 `node ~/.claude/skills/smart-sharps-design-system/scripts/ds-audit.mjs index.html agents.html`
 at zero findings and pass the `design-system-critic` agent at 10/10 on every
 dimension before it ships. The page uses the system's app shell inside
