@@ -172,6 +172,29 @@
 }
 @media (min-width: 48rem) { :root[data-density="compact"] { --d-gutter: 16px; } }
   :root { --gap: 16px; }
+  /* ===== components.css 3.1.1: the system recipes the Agents page uses, copied verbatim =====
+     Each group below (groups are separated by a blank line) is a run of whole lines of the
+     system's components.css; validator 1q2 checks every group against the vendored copy,
+     tools/dive-analytics/audit/ds-components.css. Markup uses these ss- classes as they are;
+     the page's own rules after this block only add what the system leaves to a product. */
+/* v3.1.1: a link's ring takes the link buttons' 4 px corners. Zero specificity, so anything that sets its own radius
+   keeps it, and rows that draw their ring inside themselves keep their own square shape. */
+:where(a:focus-visible:not(.ss-focus-inset, .ss-panel--list .ss-row--link)) { border-radius: var(--radius-sm); }
+
+.ss-back { margin-left: -8px; height: 44px; display: inline-flex; align-items: center; gap: 4px; padding: 0 8px 0 4px;
+  border-radius: var(--radius-lg); font-size: var(--text-body); font-weight: 500; color: var(--tint-fg); text-decoration: none; }
+.ss-back:hover { background: var(--surface-2); }
+.ss-back svg { width: 20px; height: 20px; }
+@media (min-width: 48rem) { .ss-back { height: 32px; font-size: var(--text-body-sm); } .ss-back svg { width: 16px; height: 16px; } }
+
+/* "Why" bullets (components.md §9.2; recipe v3.1): a 4 px fg-3 dot centred on the first line, the words 16 px in,
+   items 8 px apart. The dot is absolute, so any inline markup (.ss-num figures, b) flows as ordinary text. The list keeps
+   role="list" (list-style: none drops list semantics in Safari). */
+.ss-bullets { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ss-bullets > li { position: relative; padding-left: 16px; font-size: var(--text-body); line-height: 1.5; color: var(--fg-1); text-wrap: pretty; }
+.ss-bullets > li::before { content: ""; position: absolute; left: 0; top: calc(0.75em - 2px); width: 4px; height: 4px; border-radius: var(--radius-full); background: var(--fg-3); }
+@media (min-width: 48rem) { .ss-bullets > li { font-size: var(--text-body-sm); } }
+  /* ===== end of the system recipes ===== */
   * { box-sizing: border-box; }
   html { background: var(--canvas); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
   body { margin: 0; background: var(--canvas); color: var(--fg-1); font-family: var(--font-sans);
@@ -186,13 +209,6 @@
   @supports (backdrop-filter: blur(1px)) { header { background: color-mix(in oklab, var(--canvas) 70%, transparent); } }
   .topin { max-width: calc(880px + 2 * var(--d-gutter)); height: 100%; margin: 0 auto; padding: 0 var(--d-gutter);
     display: flex; align-items: center; gap: 8px; }
-  .back { display: inline-flex; align-items: center; gap: 8px; height: 44px; margin-left: -8px; padding: 0 8px 0 4px;
-    border-radius: var(--radius-lg); color: var(--tint-fg); font-size: var(--text-body); font-weight: 500; text-decoration: none;
-    transition: background 150ms var(--ease-out-quart); }
-  .back::before { content: ""; width: 8px; height: 8px; margin: 0 4px 0 8px; border-left: 2px solid currentColor;
-    border-bottom: 2px solid currentColor; transform: rotate(45deg); }
-  .back:hover { background: var(--surface-2); }
-  @media (min-width: 48rem) { .back { height: 32px; font-size: var(--text-body-sm); } }
   .wrap { max-width: calc(880px + 2 * var(--d-gutter)); margin: 0 auto; padding: var(--d-section) var(--d-gutter) 56px; }
   h1 { margin: 0 0 var(--d-section); font-size: var(--text-display); line-height: 1.16; font-weight: 600; letter-spacing: -0.025em; }
   main { display: grid; gap: 12px; }
@@ -229,11 +245,6 @@
   .urls span { flex: 1; min-width: 0; }
   .urls a::after { content: ""; position: absolute; inset: -8px -4px; }
   .urls a:hover { text-decoration: underline; text-underline-offset: 4px; }
-  /* the list: the system's "Why" bullets */
-  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--fg-1); }
-  li { display: flex; gap: 12px; line-height: 1.5; }
-  li::before { content: ""; width: 4px; height: 4px; margin-top: 8px; border-radius: var(--radius-full); background: var(--fg-3); flex: none; }
-  @media (min-width: 48rem) { li { font-size: var(--text-body-sm); } li::before { margin-top: 8px; } }
   .runtimes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
   .runtime { padding: 12px 0; color: var(--fg-2); font-size: var(--text-body-sm); line-height: 1.5; }
   .runtime:nth-child(n+3) { box-shadow: inset 0 1px 0 var(--line); }
@@ -245,7 +256,7 @@
   .runtime code { font-family: inherit; font-size: var(--text-meta); color: var(--fg-1); }
   /* freshness: the system's status dot, gray when current */
   .fresh { display: flex; align-items: center; gap: 12px; }
-  .fresh i { width: 8px; height: 8px; border-radius: 50%; background: var(--fg-3); flex: none; }
+  .fresh i { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--fg-3); flex: none; }
   .fresh p { font-size: var(--text-body-sm); color: var(--fg-2); }
   .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; color: var(--fg-1); white-space: nowrap; overflow-wrap: normal; }
   @media (max-width: 640px) {
@@ -262,7 +273,7 @@
 <body>
 <header>
   <div class="topin">
-    <a class="back" href="./">Dashboard</a>
+    <a class="ss-back" href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Dashboard</a>
   </div>
 </header>
 <div class="wrap">
@@ -292,7 +303,7 @@
 
     <section class="card">
       <h2>What it gets</h2>
-      <ul>
+      <ul class="ss-bullets" role="list">
         <li>The show health read and the checked facts behind it</li>
         <li>The five ranked actions for the week</li>
         <li>Every episode’s views, launch, live turnout, watching, subscribers, discovery, and feedback</li>

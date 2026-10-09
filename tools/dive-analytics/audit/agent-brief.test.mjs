@@ -19,7 +19,7 @@ const ROOT = join(HERE, "..", "..", "..");
   assert.match(dashboard, /<a class="agentslink" href="agents\.html">Agents<\/a>/);
   assert.doesNotMatch(dashboard, /#agents|id="agents"|function buildAgents|function syncAgentsView|AGENT_PROMPT/);
   assert.match(agentsPage, /Read https:\/\/dive-radio-analytics\.vercel\.app\/agent\.md in full/);
-  assert.match(agentsPage, /<a class="back" href="\.\/">Dashboard<\/a>/);
+  assert.match(agentsPage, /<a class="ss-back" href="\.\/"><svg [^>]*aria-hidden="true">[\s\S]*?<\/svg>Dashboard<\/a>/);
 }
 
 // 1. the census grammar: arrays as [], slug maps as {slug}, dest maps as {dest}, depth ≤ 4

@@ -2383,7 +2383,7 @@ try {
     if (/id="view"/.test(html) || /class="tabs"/.test(html)) {
       bad++; drift("card layout: the retired Growth/Live page tabs are back");
     }
-    if (!/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html) || !/mode: "live"/.test(html)) {
+    if (!/<div class="ss-menu ss-menu--checks viewmenu" id="viewmenu" role="listbox"/.test(html) || !/mode: "live"/.test(html)) {
       bad++; drift("card layout: the chart view switch must be the one dropdown and must carry the live per-minute view");
     }
     if ((chipSource.match(/data-fold-number/g) || []).length !== 1) {
@@ -2412,7 +2412,7 @@ try {
     // the do-next actions are plain ranked rows: no tooltips, no rules, and
     // the leading ordinal is decorative only (owner directive 2026-08-23)
     if (/class="dnrow"[^`]*data-tip/.test(healthSource) || /\.dnrow \+ \.dnrow \{ border-top/.test(html)
-      || !/<span class="dnnum" aria-hidden="true">\$\{i \+ 1\}<\/span>/.test(healthSource)) {
+      || !/<span class="ss-grade ss-grade--sm ss-grade--muted" aria-hidden="true">\$\{i \+ 1\}<\/span>/.test(healthSource)) {
       bad++; drift("card layout: Today's read actions must be plain ranked rows — decorative ordinal, no tooltip, no dividing rule");
     }
     // the hero states one measure: episode health rides the cards and panel
@@ -2568,7 +2568,7 @@ try {
     bad++; drift("chart metrics: the retired tab strip or native measure select is back — one dropdown owns this decision");
   }
   if (!/<button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox"/.test(html)
-    || !/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html)
+    || !/<div class="ss-menu ss-menu--checks viewmenu" id="viewmenu" role="listbox"/.test(html)
     || !/o\.setAttribute\("role", "option"\)/.test(html)
     || !/o\.setAttribute\("aria-selected", String\(selected\)\)/.test(html)
     || !/ev\.key === "Escape"/.test(html) || !/ev\.key === "ArrowDown"/.test(html)) {
@@ -2593,8 +2593,12 @@ try {
     bad++; drift("chart metrics: the hero split bar's segments and labels must share one tooltip definition and stay keyboard-reachable");
   }
   // one text edge inside the chart tooltip: chips hang in a fixed gutter
-  if (!/\.tt \{ --chip: 16px; \}/.test(html)
-    || !/\.tt \.meta, \.tt \.big, \.tt \.chg, \.tt \.note \{ padding-left: var\(--chip\); \}/.test(html)) {
+  // (re-locked 2026-10-08 on the system's card, audit/DESIGN-2026-10-08.md: the
+  // title, meta, value and note take the recipe's 16 px gutter; the page's own
+  // change line and sub-heading take the same; the plain summary closes all of it)
+  if (!/\.ss-x-chart-tip__title, \.ss-x-chart-tip__meta, \.ss-x-chart-tip__value, \.ss-x-chart-tip__note \{ padding-left: 16px; \}/.test(html)
+    || !/\.tt \.chg, \.tt \.sub \{ padding-left: 16px; \}/.test(html)
+    || !/\.tt\.ss-x-chart-tip--plain \.chg, \.tt\.ss-x-chart-tip--plain \.sub \{ padding-left: 0; \}/.test(html)) {
     bad++; drift("chart metrics: the chart tooltip's title, number, and rows must share one left text edge");
   }
   // bar totals anchor to the rightmost VISIBLE segment and count only what is
@@ -2686,10 +2690,10 @@ try {
     || !/storedCategoryReading\(bySlug\.get\(e\.slug\), categoryIndex\)/.test(html)
     || !/trendHighlightSlug\(rows, state\.solo\)/.test(html)
     || !/const episodes = \[\.\.\.EPS\]\.reverse\(\);/.test(html)
-    || !/return `<div class="h">All episodes<\/div>/.test(html)) {
+    || !/return `<div class="ss-x-chart-tip__title">All episodes<\/div>/.test(html)) {
     bad++; drift("chart hover: summaries must use real saved readings, never future points or zero-filled absence");
   }
-  if (!/<div class="tt" id="tt" aria-hidden="true"><\/div>/.test(html)
+  if (!/<div class="ss-x-chart-tip tt" id="tt" aria-hidden="true"><\/div>/.test(html)
     || !/\.tt \{ position: absolute; box-sizing: border-box; pointer-events: none;/.test(html)
     || !/#chartbox\.mini \{ height: 340px; \}/.test(html)) {
     bad++; drift("chart hover: the cursor-following popup must stay visual-only and must not block pointer movement");
@@ -2796,9 +2800,19 @@ try {
   // 3.0; no Geist, and no rule names the deprecated --font-mono), and every rule
   // that sets the figure font also sets tabular figures (the system's check.mjs
   // rule 4: plain Inter figures are proportional, so columns would jiggle).
+  // The system recipes a page uses (USE-SYSTEM, 2026-10-08) are copied into one
+  // marked block as runs of whole lines of the system's components.css; every
+  // run (runs are separated by a blank line) must appear verbatim in the
+  // vendored copy, so a recipe can't drift from the system inside a page.
+  const dsComponents = readFileSync(join(TOOL, "audit", "ds-components.css"), "utf8");
   const dsTokens = readFileSync(join(TOOL, "audit", "ds-tokens.css"), "utf8");
   for (const page of ["index.html", "agents.html"]) {
     const src = readFileSync(join(ROOT, page), "utf8");
+    const recipes = src.match(/\/\* ===== components\.css 3\.1\.1:[^*]*\*\/\n([\s\S]*?)\n  \/\* ===== end of the system recipes ===== \*\//);
+    if (!recipes) { bad++; drift(`design system: ${page} has no marked block of system recipes (components.css 3.1.1)`); }
+    else for (const run of recipes[1].split(/\n\s*\n/).map((r) => r.trim()).filter(Boolean)) {
+      if (!dsComponents.includes(run)) { bad++; drift(`design system: ${page} changes a system recipe: ${run.split("\n")[0].slice(0, 80)}`); }
+    }
     if (!src.includes(dsTokens)) { bad++; drift(`design system: ${page} does not inline the system's tokens.css verbatim (audit/ds-tokens.css)`); continue; }
     const own = src.replace(dsTokens, "");
     if (!/@font-face \{ font-family: "Inter"; font-style: normal; font-weight: 100 900;/.test(own) || /Geist|var\(--font-mono\)/.test(own)) {
@@ -3370,7 +3384,7 @@ try {
       if (!/<a class="agentslink" href="agents\.html">Agents<\/a>/.test(html)) { bad++; drift("agent: the dashboard header does not link to the separate Agents page"); }
       if (/#agents|id="agents"|function buildAgents|function syncAgentsView|AGENT_PROMPT/.test(html)) { bad++; drift("agent: agent details still live inside the dashboard page"); }
       if (!agentsHtml.includes(`Read ${AB.SITE}/agent.md in full`)) { bad++; drift("agent: the Agents page prompt does not name the live brief address"); }
-      if (!/<a class="back" href="\.\/">Dashboard<\/a>/.test(agentsHtml)) { bad++; drift("agent: the Agents page does not link back to the dashboard"); }
+      if (!/<a class="ss-back" href="\.\/"><svg [^>]*aria-hidden="true">[\s\S]*?<\/svg>Dashboard<\/a>/.test(agentsHtml)) { bad++; drift("agent: the Agents page does not link back to the dashboard"); }
       for (const file of ["data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md", "data.json"]) {
         if (!agentsHtml.includes(file)) { bad++; drift(`agent: the Agents page does not name ${file}`); }
       }
