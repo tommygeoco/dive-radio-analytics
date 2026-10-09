@@ -655,7 +655,12 @@
      2026-08-23: the hero states one measure); nothing to draw, one column. Narrower, and on
      Today, the card is as it was. */
   .hero .hcurve { display: none; }
+  .hero .hcurve .hplot { position: absolute; inset: 4px 4px 0 0; }
   .hero .hcurve svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  /* the sparkline end dot, drawn as the spec's SVG circle draws it (r 2.25 with a 1.5 px surface-1 stroke centred
+     on its edge, so a 3 px fill inside a ring reaching r 3) — the same dot Chart.js draws on the live sparkline */
+  .hero .hcurve .hend { position: absolute; left: 100%; width: 3px; height: 3px; border-radius: var(--radius-full);
+    background: var(--series-focus); box-shadow: 0 0 0 1.5px var(--surface-1); transform: translate(-50%, -50%); }
   .hero .hcurve polyline { fill: none; stroke: var(--series-focus); stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
   .hero .hcurve polyline.typ { stroke: var(--series-typical); stroke-width: 1.5; stroke-dasharray: 4 4; }
   @media (min-width: 64rem) {
@@ -2370,9 +2375,14 @@ function buildHero() {
           g.addColorStop(0, top); g.addColorStop(1, top.replace(/[\d.]+\)$/, "0)"));
           return g;
         },
-        pointRadius: 0, fill: true, tension: 0.3 }] },
+        // the sparkline's end dot (dataviz.md, components.md §11.2): r 2.25 with a surface-1 ring, last point only
+        pointRadius: (p) => p.dataIndex === pts.length - 1 ? 2.25 : 0, pointHoverRadius: 0,
+        pointBackgroundColor: c, pointBorderColor: TOK("--surface-1"), pointBorderWidth: 1.5,
+        fill: true, tension: 0.3, clip: 4 }] },
       options: { responsive: true, maintainAspectRatio: false, animation: false,
-        scales: { x: { type: "linear", display: false }, y: { display: false, beginAtZero: true } },
+        // the line spans its own data edge to edge (no rounded axis end); 4 px keeps the dot whole
+        layout: { autoPadding: false, padding: { top: 4, right: 4 } },
+        scales: { x: { type: "linear", display: false, min: pts[0].x, max: pts.at(-1).x }, y: { display: false, beginAtZero: true } },
         plugins: { legend: { display: false }, tooltip: { enabled: false } }, events: [] },
     });
   }
@@ -2387,7 +2397,11 @@ function heroCurve(e) {
   const typical = DATA.baselines?.typicalCurve?.points || [];
   const top = Math.max(0.01, ...curve.map((p) => p.watching), ...typical.map((p) => p.watching));
   const line = (pts) => pts.map((p) => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching / top) * 38).toFixed(1)}`).join(" ");
-  return `<div class="spark hcurve" aria-hidden="true"><div class="cv"><svg viewBox="0 0 100 40" preserveAspectRatio="none">${typical.length ? `<polyline class="typ" points="${line(typical)}"></polyline>` : ""}<polyline points="${line(curve)}"></polyline></svg></div><div class="cap">share still watching, start to end${typical.length ? " · dashed: typical" : ""}</div></div>`;
+  // the end dot sits in an HTML layer over the stretched SVG, so it stays round (r 2.25, surface-1 ring);
+  // the plot is inset 4 px top and right like the live sparkline, so the dot is never clipped
+  const last = curve[curve.length - 1];
+  const lastY = (40 - Math.min(1, last.watching / top) * 38) / 40 * 100;
+  return `<div class="spark hcurve" aria-hidden="true"><div class="cv"><div class="hplot"><svg viewBox="0 0 100 40" preserveAspectRatio="none">${typical.length ? `<polyline class="typ" points="${line(typical)}"></polyline>` : ""}<polyline points="${line(curve)}"></polyline></svg><span class="hend" style="top:${lastY.toFixed(2)}%"></span></div></div><div class="cap">share still watching, start to end${typical.length ? " · dashed: typical" : ""}</div></div>`;
 }
 
 /* ================= episode carousel (above the chart) ================= */
