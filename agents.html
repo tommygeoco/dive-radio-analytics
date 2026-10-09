@@ -259,6 +259,7 @@
   .fresh { display: flex; align-items: center; gap: 12px; }
   .fresh i { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--fg-3); flex: none; }
   .fresh p { font-size: var(--text-body-sm); color: var(--fg-2); }
+  .fresh .d { color: var(--fg-1); }   /* one date reads as one value: the month word and the day figure share a colour */
   .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; color: var(--fg-1); white-space: nowrap; overflow-wrap: normal; }
   @media (max-width: 640px) {
     .prompt, .runtimes { grid-template-columns: 1fr; }
@@ -364,7 +365,7 @@ if (!data || !data.generatedAt) {
   const num = (text) => `<span class="n">${String(text).replace(/[&<>"]/g, "")}</span>`;
   // "Oct 8", as the dashboard writes dates: the month is a word, only the day is a figure
   // (Inter's tabular forms would widen an ISO date's hyphens)
-  const day = (iso) => { const d = new Date(`${String(iso).slice(0, 10)}T12:00:00Z`); return `${d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })} ${num(d.getUTCDate())}`; };
+  const day = (iso) => { const d = new Date(`${String(iso).slice(0, 10)}T12:00:00Z`); return `<span class="d">${d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })} ${num(d.getUTCDate())}</span>`; };
   const dates = [`Data refreshed ${day(data.generatedAt)}`];
   if (data.health?.date) dates.push(`health read ${day(data.health.date)}`);
   if (data.chaptersUpdatedAt) dates.push(`chapters ${day(data.chaptersUpdatedAt)}`);

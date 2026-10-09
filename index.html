@@ -282,20 +282,6 @@
 /* small grade (components.md §6.2; recipe v3.1). A rank in a list is ss-grade ss-grade--sm ss-grade--muted. */
 .ss-grade--sm { width: 20px; height: 20px; font-size: var(--text-caption); }
 
-/* KPI strip: 1 px gaps show the line color = the dividers */
-.ss-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border-radius: var(--radius-2xl);
-  background: var(--line); box-shadow: inset 0 0 0 1px var(--line); }
-@media (min-width: 48rem) { .ss-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.ss-kpi { min-width: 0; background: var(--surface-1); padding: var(--d-card); }
-.ss-kpi__label { font-size: var(--text-meta); color: var(--fg-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ss-kpi__value { margin-top: 4px; font-family: var(--font-num); font-size: var(--text-num-lg); line-height: 1.25; font-weight: 600;
-  letter-spacing: -0.02em; white-space: nowrap; color: var(--fg-1); font-variant-numeric: tabular-nums; }
-.ss-kpi__sub { margin-top: 4px; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: balance; }
-@media (min-width: 48rem) { .ss-kpi__sub { font-size: var(--text-meta); } }
-
-.ss-meter { height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
-.ss-meter > span { display: block; height: 100%; min-width: 2%; border-radius: inherit; background: var(--fg-2); }
-
 .ss-menu { min-width: 192px; padding: 4px; border-radius: var(--radius-lg); background: var(--popover); color: var(--fg-1);
   box-shadow: var(--shadow-pop); animation: ss-pop-in 100ms ease; }
 .ss-menu__item { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 4px 8px; border: 0; border-radius: var(--radius-md);
@@ -630,7 +616,8 @@
   .hc-meta .dnrow { display: flex; gap: 12px; color: var(--fg-1); font-size: var(--text-body-sm); line-height: 1.5; text-decoration: none; border-radius: var(--radius-md); }
   /* each row opens its card on the Actions page */
   .hc-meta .dnrow .dntext { flex: 1; min-width: 0; }
-  .hc-meta .dnrow .dnchev { flex: none; width: 16px; height: 16px; margin-top: calc((1lh - 16px) / 2); color: var(--fg-3); }   /* centred on the first line */
+  .hc-meta .dnrow .dnchevw { flex: none; height: 1lh; display: flex; align-items: center; }   /* the chevron sits on the first line's centre */
+  .hc-meta .dnrow .dnchev { flex: none; width: 16px; height: 16px; color: var(--fg-3); }
   .hc-meta .dnrow:hover .dntext { text-decoration: underline; text-decoration-color: var(--fg-4); text-underline-offset: 4px; }
   .hc-meta .dnrow:hover .dnchev { color: var(--fg-1); }
   .healthrow.empty { display: block; }
@@ -661,20 +648,25 @@
   .hero .spark .cv { position: relative; height: 88px; width: 100%; }
   .hero .spark .cap { font-size: var(--text-meta); color: var(--fg-3); text-align: right; }
   .hero .hs { max-width: 300px; }
-  /* Episodes from 64rem (critic 2026-10-08): the selected episode's card is two columns, and
-     its right half carries the episode's own facts as a hairline 2 × 2 — the system's KPI block
-     inside the card (radius xl, a block inside a card); the live view keeps its sparkline there.
-     Narrower, and on Today, the card is as it was: the facts are not rendered or not shown. */
-  .hfacts { display: none; }
-  .hfacts .ss-kpi__value small { font-family: var(--font-sans); font-variant-numeric: normal; font-size: var(--text-body-sm); font-weight: 400;
-    letter-spacing: 0; color: var(--fg-3); }
-  .hfacts .ss-kpi__value.word { font-family: var(--font-sans); font-variant-numeric: normal; letter-spacing: -0.01em; }
-  .hfacts .ss-meter { margin-top: 8px; }
+  /* Episodes from 64rem (critic rounds 1–2): the card's right half draws the card's own
+     measure, with no figures — the YouTube / X split (or the per-account reach split) moved
+     out of the left column at full width, the episode's retention curve for share watched,
+     the per-minute sparkline for live. The left column keeps the one number (owner directive
+     2026-08-23: the hero states one measure); nothing to draw, one column. Narrower, and on
+     Today, the card is as it was. */
+  .hero .hcurve { display: none; }
+  .hero .hcurve svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .hero .hcurve polyline { fill: none; stroke: var(--series-focus); stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .hero .hcurve polyline.typ { stroke: var(--series-typical); stroke-width: 1.5; stroke-dasharray: 4 4; }
   @media (min-width: 64rem) {
-    .epihero .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-    .epihero .hero .spark { width: auto; }
-    .epihero .hfacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: var(--radius-xl); }
-    .epihero .hfacts > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .epihero .hero .hcurve { display: flex; }
+    .epihero .hero:has(> .main > .hsplit, > .spark) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 32px; }
+    .epihero .hero:has(> .main > .hsplit, > .spark) > .main { display: contents; }
+    .epihero .hero:has(> .main > .hsplit, > .spark) > .main > * { grid-column: 1; justify-self: start; }
+    .epihero .hero:has(> .main > .hsplit, > .spark) > .main > .hsplit,
+    .epihero .hero:has(> .main > .hsplit, > .spark) > .spark { grid-column: 2; grid-row: 1 / span 8; align-self: center; justify-self: stretch; width: auto; }
+    .epihero .hero .hsplit .platform-bar, .epihero .hero .hsplit .splitlabels { width: 100%; }
+    .epihero .hero .hsplit .platform-bar { margin-top: 0; }
   }
 
   .compound .cv2 { color: var(--fg-2); font-size: var(--text-body-sm); font-weight: 500; line-height: 1.39; margin: 0; }
@@ -976,7 +968,8 @@
   .wmlist { margin: 4px 0 0; padding: 0; list-style: none; }
   .wmlist li { display: flex; gap: 12px; padding: 12px 0; box-shadow: inset 0 1px 0 var(--line); font-size: var(--text-body-sm); line-height: 1.45; }
   .wmlist li:first-child { box-shadow: none; }
-  .wmlist .wmi { flex: none; width: 16px; height: 16px; margin-top: calc((1lh - 16px) / 2); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;
+  .wmlist .wmiw { flex: none; height: 1lh; display: flex; align-items: center; }   /* the disc sits on the first line's centre */
+  .wmlist .wmi { flex: none; width: 16px; height: 16px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;
     background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
   .wmlist .wmi .ic { width: 12px; height: 12px; color: inherit; }
   .wmlist .drop .wmi { color: var(--neg); }
@@ -2146,7 +2139,7 @@ function buildHealth() {
             ${trend}
           </div>
           ${headingColumn}
-          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<a class="dnrow" href="#actions/${encodeURIComponent(r.id || "")}"><span class="ss-grade ss-grade--sm ss-grade--muted" aria-hidden="true">${i + 1}</span><span class="dntext">${esc(r.recommendation)}</span>${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>', "dnchev")}</a>`).join("")}</div><a class="ss-btn ss-btn--link herolink alllink" href="#actions">All actions${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a></div>` : ""}
+          ${topRecs.length ? `<div class="hdcol hc-meta"><h3 class="kicker">Do next</h3><div class="donext">${topRecs.map((r, i) => `<a class="dnrow" href="#actions/${encodeURIComponent(r.id || "")}"><span class="ss-grade ss-grade--sm ss-grade--muted" aria-hidden="true">${i + 1}</span><span class="dntext">${esc(r.recommendation)}</span><span class="dnchevw" aria-hidden="true">${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>', "dnchev")}</span></a>`).join("")}</div><a class="ss-btn ss-btn--link herolink alllink" href="#actions">All actions${IC('<path d="m9.5 6.5 5.5 5.5-5.5 5.5"/>')}</a></div>` : ""}
         </div>
       </div>
     </div>
@@ -2241,10 +2234,10 @@ function splitBar(segments, wholeWords) {
     const tip = `data-stat="${esc(stat)}"${rows.length ? ` data-rows="${esc(rows.join("||"))}"` : ""} data-note="${esc(`${share}% of ${wholeWords}`)}"`;
     return { s, stat, share, tip };
   });
-  return `<div class="platform-bar" aria-hidden="true">${parts.map(({ s, tip }) =>
+  return `<div class="hsplit"><div class="platform-bar" aria-hidden="true">${parts.map(({ s, tip }) =>
       `<span class="pseg" style="flex:${s.value};background:${s.color}" ${tip}></span>`).join("")}</div>
     <div class="splitlabels">${parts.map(({ s, stat, share, tip }) =>
-      `<span class="sl" ${tip} tabindex="0" aria-label="${esc(`${s.label}: ${stat}, ${share}% of ${wholeWords}`)}"><i style="background:${s.color}" aria-hidden="true"></i>${esc(s.label)}</span>`).join("")}</div>`;
+      `<span class="sl" ${tip} tabindex="0" aria-label="${esc(`${s.label}: ${stat}, ${share}% of ${wholeWords}`)}"><i style="background:${s.color}" aria-hidden="true"></i>${esc(s.label)}</span>`).join("")}</div></div>`;
 }
 // Every chart this dashboard draws, in ONE list (owner directive
 // 2026-08-23): the view tabs and the measure picker were two controls for one
@@ -2274,23 +2267,6 @@ const METRIC_TREND_TITLE = {
   live: "Live viewers — by episode",
   reach: "X reach — by episode",
 };
-// The selected episode's own glance facts for the desktop Episodes card's right half: health
-// (score and meter), launch (a word), then total views, share watched and average live viewers
-// minus the one the card already states — four at most. Read from the same
-// stores as the card row and the pane — nothing computed here; a missing fact renders nothing,
-// and the measure the card already states is not repeated.
-function heroFacts(e, metric) {
-  const cells = [];
-  const h = healthOf(e);
-  if (h) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Episode health</div><div class="ss-kpi__value">${h.score}<small> of 100</small></div><div class="ss-meter" aria-hidden="true"><span style="width:${h.score}%"></span></div></div>`);
-  const launch = launchOf(e);
-  if (launch?.word) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Launch</div><div class="ss-kpi__value word">${launch.promoDriven ? "Promo-driven" : cap(launch.word)}${launch.provisional ? "<small> so far</small>" : ""}</div></div>`);
-  const total = displayedTotal(e);
-  if (metric !== "views" && hasYoutubeReading(e) && total != null) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Total views</div><div class="ss-kpi__value">${nfmt(total)}</div></div>`);
-  if (metric !== "watched" && hasYoutubeReading(e) && e.watch?.avgPercent != null) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Share watched</div><div class="ss-kpi__value">${pct1(e.watch.avgPercent)}</div></div>`);
-  if (metric !== "live" && e.live?.avg != null) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Average live viewers</div><div class="ss-kpi__value">${nfmt(e.live.avg)}</div></div>`);
-  return cells.length >= 2 ? `<div class="ss-kpis hfacts">${cells.slice(0, 4).join("")}</div>` : "";
-}
 function buildHero() {
   const el = document.getElementById("hero");
   const sel = state.solo || state.panel;
@@ -2374,7 +2350,7 @@ function buildHero() {
   // no honest per-episode series to draw (X plays have no week-1 history
   // before 8/21, and we never fabricate history).
   const isLive = metric === "live";
-  if (!isLive && document.body.dataset.page === "episodes") html += heroFacts(e, metric);
+  if (metric === "watched" && document.body.dataset.page === "episodes") html += heroCurve(e);
   if (isLive) html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">concurrent viewers by minute</div></div>`;
   el.innerHTML = html;
 
@@ -2400,6 +2376,18 @@ function buildHero() {
         plugins: { legend: { display: false }, tooltip: { enabled: false } }, events: [] },
     });
   }
+}
+
+// For share watched the card's right half draws this episode's retention curve (2 px, the focus
+// white) over the stored typical (dashed, once three finished curves exist) — no figures and no
+// axis numbers: the share stays the card's one number, the detail stays in the pane
+function heroCurve(e) {
+  const curve = hasYoutubeReading(e) ? e.watch?.curve : null;
+  if (!curve || curve.length < 2) return "";
+  const typical = DATA.baselines?.typicalCurve?.points || [];
+  const top = Math.max(0.01, ...curve.map((p) => p.watching), ...typical.map((p) => p.watching));
+  const line = (pts) => pts.map((p) => `${(p.at * 100).toFixed(1)},${(40 - Math.min(1, p.watching / top) * 38).toFixed(1)}`).join(" ");
+  return `<div class="spark hcurve" aria-hidden="true"><div class="cv"><svg viewBox="0 0 100 40" preserveAspectRatio="none">${typical.length ? `<polyline class="typ" points="${line(typical)}"></polyline>` : ""}<polyline points="${line(curve)}"></polyline></svg></div><div class="cap">share still watching, start to end${typical.length ? " · dashed: typical" : ""}</div></div>`;
 }
 
 /* ================= episode carousel (above the chart) ================= */
@@ -2718,7 +2706,7 @@ function buildPanel() {
         <polyline points="${pts}"></polyline></svg>${marks}</div>
       <div class="wcap" aria-hidden="true"><span>start</span><span>still watching, through the video</span><span>end</span></div></div>`;
       if (touchList && momentRows.length) {
-        const rows = momentRows.sort((a, b) => a.at - b.at).map((r) => `<li class="${r.kind}"><span class="wmi" aria-hidden="true">${r.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</span><span class="wmb"><b>${esc(r.stat)}</b><span class="wmm">${esc(r.meta)}</span>${r.summary ? `<span class="wmn">${esc(r.summary)}</span>` : ""}</span></li>`).join("");
+        const rows = momentRows.sort((a, b) => a.at - b.at).map((r) => `<li class="${r.kind}"><span class="wmiw" aria-hidden="true"><span class="wmi">${r.kind === "drop" ? ICONS.chevdown : ICONS.chevup}</span></span><span class="wmb"><b>${esc(r.stat)}</b><span class="wmm">${esc(r.meta)}</span>${r.summary ? `<span class="wmn">${esc(r.summary)}</span>` : ""}</span></li>`).join("");
         html += `<details class="pdisc wmdisc"><summary>What moved the audience${ICONS.chevdown}</summary><ol class="wmlist">${rows}</ol></details>`;
       }
     }
@@ -3622,6 +3610,9 @@ const endLabels = {
         } else continue;
       }
       placed.push({ x, y, w });
+      // a knockout in the card's surface, so another series' line never runs through the label
+      ctx.lineWidth = 4; ctx.lineJoin = "round"; ctx.strokeStyle = TOK("--chart-gap");
+      ctx.strokeText(it.text, x, y);
       ctx.fillStyle = it.color;
       ctx.fillText(it.text, x, y);
     }
@@ -3871,7 +3862,7 @@ let chart;
 // no label (absence stays silent, never zero).
 const CHART_METRICS = {
   watched: { get: (e) => hasYoutubeReading(e) ? e.watch?.avgPercent ?? null : null, text: (v) => pct1(v), tick: (v) => `${v}%`,
-    card: (v) => pct1(v), short: (v) => `${Math.round(v)}<span class="bu">%</span>`, spoken: (v) => `${v}% of the video watched on average` },
+    card: (v) => pct1(v), short: (v) => `${Math.round(v)}<span class="bu">%</span>`, spoken: (v) => `${pct1(v)} of the video watched on average` },
   live: { get: (e) => e.live?.avg ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v),
     card: (v) => nfmt(v), short: (v) => kfmt(v), spoken: (v) => `${nfmt(v)} average live viewers` },
   reach: { get: (e) => e.latest?.xImpressions ?? null, text: (v) => nfmt(v), tick: (v) => kfmt(v),
@@ -4486,8 +4477,8 @@ function buildAbout() {
   <p>Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos.</p>
   <p>Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result.</p>
   <p>Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>
-  <p>Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Expand opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions, in order, with All actions leading to the full list and the finding behind each one.</p>
-  <p>The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Expand says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
+  <p>Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Why this score opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions, in order, with All actions leading to the full list and the finding behind each one.</p>
+  <p>The set of checks feeding the score can itself change between saved reads — a scoring rule ships, or a check gains or loses the history it needs — and when that happens the evidence under Why this score says so, because a number resting on different checks is a different read even when it lands in the same place. Saved reads keep the scoring-rule version they were written under, and the trend only ever connects reads written under the same rules. The episode cards answer the longer question: each finished three-week score is permanent, so reading them left to right shows whether episodes keep clearing the show’s own bar.</p>
   <h2 id="ab-views">Views and reach</h2>
   <p><b>Total views</b> = YouTube views (both channels) + plays from resolved X broadcasts (both hosts). Native videos and teaser clips attached to posts are excluded. Both included sources count video playback — YouTube counts a qualified view (~30s), X counts a broadcast play start, so treat the sum as directional. If YouTube has not reported views yet, its startup zeros are shown as missing and do not start the episode’s history.</p>
   <p><b>X reach</b> = impressions on the hosts' announce posts — the X posts that carry the live broadcast. An impression is one appearance on a timeline — exposure, not watching. Reach is <b>never</b> added into any views number, anywhere. <b>Promo posts</b> (teasers, clips, links to the upload) are listed beside reach on each episode and never added in, because how many an episode gets varies; they were not searched for before E6. X readings from before Sep 4 that blend an announce and a promo post on one account cannot be split and are left out of comparisons.</p>
@@ -4501,7 +4492,7 @@ function buildAbout() {
   <h2 id="ab-episode">Episode health</h2>
   <p><b>Episode health</b> (0–100) is each episode’s own three-week report card. It is written once the episode’s first 21 days — the point where growth flattens — are over, and it never changes after that: an episode is judged against the eight episodes that aired before it, promo outliers left out, and only when at least three of them can be compared — so later episodes never rewrite an old score. Two episodes’ scores were measured against different earlier episodes, so a higher score means it beat its own bar by more, not that it was the better episode. 50 means it landed right where the show usually did; higher beat that bar, lower missed it.</p>
   <p>Six checks share the score: YouTube views at three weeks against earlier episodes at the same age (35%), likes and comments per 1,000 views (15%), how much of the video people watch (15%), live turnout (15%), subscribers gained per 1,000 views (10%), and how positive the feedback reads (10%). A check with no honest number drops out and the others share its weight — nothing is guessed or filled with zero, and such a check simply does not appear on the page. Views use YouTube only because older X play history does not exist. Nothing shows for an episode until its three weeks are complete, and the first episode sets the bar rather than receiving a score.</p>
-  <p>In the episode panel, a green <b>+</b> or red <b>−</b> percentage says how far above or below the show’s typical level the episode landed, and <b>typical</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, in the channel’s color.</p>
+  <p>In the episode panel, a green <b>+</b> or red <b>−</b> percentage says how far above or below the show’s typical level the episode landed, and <b>typical</b> means right at it; hover or tap any label or mark for its definition. Watch and subscriber numbers exist per channel as well as blended — the panel shows each channel’s share watched beside the blend, each under its channel’s name and YouTube mark.</p>
   <h2 id="ab-watching">Watching</h2>
   <p><b>Watching</b> comes from the verified YouTube analytics both hosts signed in to — not public counters. The share watched averages the two channels together, weighted by their views. The watch curve shows how much of the audience is still watching at each point of the video, blended the same way; the dashed line in the Watching view is a typical episode, drawn only once three episodes have real curves. Small pins on the panel’s curve are the moments the audience moved most — below the line where the most people left, above it where extra people were watching (a spot people skip to). Hover, tap, or tab to one for a short written note on what was being discussed at that stretch of the show; a model writes the note from the transcript, and moment timing comes from the live recording, so read both as close, not exact. Watch data is YouTube only — X does not report it — and an episode whose report has not arrived says Waiting for YouTube instead of showing a zero.</p>
   <h2 id="ab-feedback">Audience feedback</h2>

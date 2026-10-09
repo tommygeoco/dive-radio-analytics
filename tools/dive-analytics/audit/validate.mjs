@@ -2343,6 +2343,9 @@ try {
   };
   const healthSource = between("function buildHealth()", "/* ================= hero");
   const heroSource = between("function buildHero()", "/* ================= episode carousel");
+  // the hero's figure formatters, counted (lock below): the four measure branches' primary
+  // numbers and their secondary figures (live peak / watched live / minutes; per-channel shares)
+  const HERO_FIGURES = 10;
   const stripSource = between("function buildStrip()", "/* ================= detail panel");
   const panelSource = between("function buildPanel()", "/* ================= drilldown modal");
   const compoundSource = between("function buildCompound()", "function renderDrill()");
@@ -2419,6 +2422,14 @@ try {
     // the hero states one measure: episode health rides the cards and panel
     if (/healthChip\(/.test(heroSource)) {
       bad++; drift("card layout: the hero must not carry the episode-health chip");
+    }
+    // ...and nothing else either (re-locked 2026-10-08 after critic round 2, audit/DESIGN-2026-10-08.md):
+    // no episode health or launch read, no meter or metric block, no facts grid anywhere on the
+    // page, and no figure beyond the card's own — the hero's figure formatters are counted, so an
+    // added number (tagged or not) is drift until the owner rules otherwise
+    const heroFigures = (heroSource.match(/\b(?:nfmt|kfmt|pct1|metricText|toLocaleString)\(/g) || []).length;
+    if (/healthOf\(|launchOf\(|\.score\b|ss-kpi|ss-meter|htrack/.test(heroSource) || /heroFacts|class="ss-kpis|\.hfacts/.test(html) || heroFigures !== HERO_FIGURES) {
+      bad++; drift(`card layout: the hero must state one measure — no episode health, launch word, meter, facts grid or added figure (figure formatters: ${heroFigures}, locked at ${HERO_FIGURES})`);
     }
     // One strip, one disclosure (2026-09-01, round 2 the same day; owner
     // directive later that day): the glance row carries the gauge with its
@@ -2845,6 +2856,19 @@ try {
   }
   if (/<span data-tip="[^"]*" tabindex="0">\$\{ICONS\.info\}/.test(html)) {
     bad++; drift("design system: an icon-only info trigger has no accessible name (aria-label)");
+  }
+  // the feedback footnote merges the stored "last capture is over a day old" notices by their
+  // wording (critic round 2): the producer's own sentence for two stale sources must still match
+  // the page's pattern, or the long repeated footnote would come back without a sound
+  {
+    const { audienceView } = await import(join(TOOL, "audience-view.mjs"));
+    const old = "2026-01-01T00:00:00Z";
+    const made = audienceView({ list: [] }, { list: [], sources: { x: { state: "ready", checkedAt: old }, "live-chat": { state: "ready", checkedAt: old } } }, { now: "2026-01-03T00:00:00Z" })?.notices || [];
+    const pattern = html.match(/const STALE = \/(.+)\/;/)?.[1];
+    const stored = (data.episodes || []).flatMap((e) => e.audience?.notices || []).filter((n) => /over a day old/.test(n));
+    if (!pattern || made.length !== 2 || [...made, ...stored].some((n) => !new RegExp(pattern).test(n))) {
+      bad++; drift("design system: the feedback footnote's notice merge (noticeText STALE) no longer matches the stored stale-capture wording (audience-view.mjs)");
+    }
   }
   // charts read the tokens at runtime — no palette is pasted into the script
   if (!/const TOK = \(name\) => ROOT_CSS\.getPropertyValue\(name\)\.trim\(\);/.test(html) || /const PALETTE = \[/.test(html)) {
