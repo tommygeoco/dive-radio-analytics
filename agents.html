@@ -171,7 +171,6 @@
   --d-card: 12px; --d-inner: 8px; --d-stack: 8px; --d-section: 16px; --d-row: 8px; --d-pane: 24px;
 }
 @media (min-width: 48rem) { :root[data-density="compact"] { --d-gutter: 16px; } }
-  :root { --gap: 16px; }
   /* ===== components.css 3.1.1: the system recipes the Agents page uses, copied verbatim =====
      Each group below (groups are separated by a blank line) is a run of whole lines of the
      system's components.css; validator 1q2 checks every group against the vendored copy,
@@ -223,6 +222,8 @@
     background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line);
     color: var(--fg-1); font-family: inherit; font-size: var(--text-body-sm); line-height: 1.5;
     white-space: pre-wrap; overflow-wrap: anywhere; }
+  .copystatus { margin: 8px 0 0; font-size: var(--text-body-sm); color: var(--fg-2); }
+  .copystatus:empty { margin: 0; }
   /* Copy: the system's secondary button */
   button { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px;
     border: 0; border-radius: var(--radius-lg); padding: 0 16px; background: var(--surface-3); box-shadow: inset 0 0 0 1px var(--line-strong);
@@ -285,8 +286,9 @@
       <p>One address carries the current read, the five actions for the week, every episode, chapters, audience feedback, definitions, and a reason wherever data is missing.</p>
       <div class="prompt">
         <code id="agentprompt">Read https://dive-radio-analytics.vercel.app/agent.md in full, then answer as the show's analyst; treat its definitions as binding and cite its fact ids.</code>
-        <button type="button" id="agentcopy" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span id="agentcopylabel">Copy</span></button>
+        <button type="button" id="agentcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span id="agentcopylabel">Copy</span></button>
       </div>
+      <p class="copystatus" id="agentcopystatus" role="status"></p>
     </section>
 
     <section class="card">
@@ -334,14 +336,24 @@
 const AGENT_PROMPT = document.getElementById("agentprompt").textContent;
 const copy = document.getElementById("agentcopy");
 const copyLabel = document.getElementById("agentcopylabel");
+// the result is announced by a status line under the well (steward F15); the button keeps its name
+const copyStatus = document.getElementById("agentcopystatus");
+let copyTimer = 0;
 copy.addEventListener("click", async () => {
+  clearTimeout(copyTimer);
   try {
     await navigator.clipboard.writeText(AGENT_PROMPT);
     copyLabel.textContent = "Copied";
+    copyStatus.textContent = "Copied to the clipboard.";
   } catch {
-    copyLabel.textContent = "Select and copy";
+    // no clipboard here: select the prompt so one keystroke copies it
+    const range = document.createRange();
+    range.selectNodeContents(document.getElementById("agentprompt"));
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    copyLabel.textContent = "Copy";
+    copyStatus.textContent = "Couldn’t copy here. The prompt is selected: press Command-C or Ctrl+C.";
   }
-  setTimeout(() => { copyLabel.textContent = "Copy"; }, 1800);
+  copyTimer = setTimeout(() => { copyLabel.textContent = "Copy"; copyStatus.textContent = ""; }, 4000);
 });
 
 const data = window.DIVE_DATA;

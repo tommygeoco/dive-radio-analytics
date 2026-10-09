@@ -171,8 +171,9 @@
   --d-card: 12px; --d-inner: 8px; --d-stack: 8px; --d-section: 16px; --d-row: 8px; --d-pane: 24px;
 }
 @media (min-width: 48rem) { :root[data-density="compact"] { --d-gutter: 16px; } }
-  /* product token: one gutter for every card, column, and row (owner directive
-     2026-08-23) — the design system's stack step on the 4 px grid */
+  /* product token: one gutter for every card, column and row (owner directive
+     2026-08-23): 16 px from 721 px, 12 px on phones — a local reinterpretation of
+     the system's --d-stack (12), on the 4 px grid */
   :root { --gap: 16px; }
   /* ===== components.css 3.1.1: the system recipes this page uses, copied verbatim =====
      Each group below (groups are separated by a blank line) is a run of whole lines of the
@@ -412,6 +413,8 @@
   /* freshness: the system's status dot — gray when current, amber when behind; never green, never blue */
   .stamp { margin-left: auto; flex: 0 1 auto; display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 0 4px;
     color: var(--fg-2); font-size: var(--text-meta); line-height: 1.34; white-space: nowrap; }
+  .stamp[tabindex] { cursor: default; border-radius: var(--radius-sm); }
+  @media (max-width: 47.99rem) { .stamp { min-height: 44px; } }   /* the tap target for its exact times */
   .stamp .sfull { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .stamp .sshort { display: none; }
   /* the system's trust bar: phones move a not-current freshness sentence under the top bar */
@@ -676,6 +679,9 @@
   .compound .skelicon svg { width: 20px; height: 20px; }
   .compound .skelplot .waitline { color: var(--fg-1); font-weight: 600; font-size: var(--text-body); }
   .compound .waitsub { color: var(--fg-3); font-size: var(--text-body-sm); margin-top: -4px; }
+  /* the dashed grid stops 8 px short of the words: a knockout in the card's own surface,
+     pulled out into the card's padding so it never narrows the sentence */
+  .compound .skelcenter .waitline, .compound .skelcenter .waitsub { padding: 0 8px; margin-inline: -8px; background: var(--chart-gap); }
   .compound .skelaxis { position: relative; box-shadow: inset 0 1px 0 var(--line-strong);
     height: 8px; display: flex; justify-content: space-between; padding: 0 8px; }
   .compound .skelaxis i { width: 1px; height: 8px; background: var(--line-strong); display: block; }
@@ -703,7 +709,7 @@
   .sitem > .hs { position: relative; z-index: 1; }
   .sitem:hover { background: var(--surface-2); }
   /* the current card: the system's white ring */
-  .sitem.solo { background: var(--surface-2); box-shadow: inset 0 0 0 1.5px var(--selection-ring); }
+  .sitem[aria-current="true"] { background: var(--surface-2); box-shadow: inset 0 0 0 1.5px var(--selection-ring); }
   /* context cards stay legible: their figures step down a token, never an opacity */
   .sitem.dim .num { color: var(--fg-2); }
   .sitem.dim .t, .sitem.dim .epk { color: var(--fg-3); }
@@ -847,7 +853,6 @@
   .db.up { color: var(--pos); background: var(--pos-soft); }
   .db.down { color: var(--neg); background: var(--neg-soft); }
   .db.mid { color: var(--fg-2); background: var(--surface-3); font-family: var(--font-sans); }
-  .db.none { color: var(--fg-3); background: none; box-shadow: inset 0 0 0 1px var(--line-strong); }
   .gline { display: flex; gap: 24px 16px; align-items: center; flex-wrap: wrap; color: var(--fg-2);
     font-size: var(--text-body-sm); padding: 4px 0 0; }
   .gline .g { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 20px; }
@@ -929,6 +934,7 @@
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .panel .themegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
   /* PRD v12 W43: chapters in the episode panel */
+  .chapters .chlist { margin: 0; padding: 0; list-style: none; }
   .chapters .chrow { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 8px 0; box-shadow: inset 0 1px 0 var(--line); font-size: var(--text-body-sm); line-height: 1.45; }
   .chapters .chrow:first-of-type { box-shadow: none; }
   .chapters .cht { color: var(--fg-3); font-family: var(--font-num); font-variant-numeric: tabular-nums; }
@@ -989,7 +995,7 @@
     transition: background 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart); }
   .toggle::after { content: ""; position: absolute; inset: -4px 0; }
   .toggle:hover { background: var(--surface-2); color: var(--fg-1); }
-  .toggle.on { color: var(--selected-fg); background: var(--selected-bg); box-shadow: none; }
+  .toggle[aria-pressed="true"] { color: var(--selected-fg); background: var(--selected-bg); box-shadow: none; }
   /* Reset: the system's link button at body-sm */
   .reset { font-size: var(--text-body-sm); }
   @media (min-width: 48rem) { .toggle { height: 32px; padding: 0 12px; } }
@@ -1030,19 +1036,20 @@
   #tablebox .tscroll::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: var(--radius-full); }
   #tablebox .tscroll::-webkit-scrollbar-track { background: transparent; }
   #tablebox table { border-collapse: collapse; width: 100%; font-size: var(--text-body-sm); }
-  #tablebox th { text-align: right; color: var(--fg-3); font-size: var(--text-meta); font-weight: 400;
+  #tablebox thead th { text-align: right; color: var(--fg-3); font-size: var(--text-meta); font-weight: 400;
     padding: 8px 12px; box-shadow: inset 0 -1px 0 var(--line); white-space: nowrap; }
-  #tablebox th .plogo { width: 12px; height: 12px; margin-right: 4px; }
+  #tablebox thead th .plogo { width: 12px; height: 12px; margin-right: 4px; }
   #tablebox th:first-child, #tablebox td:first-child { text-align: left; padding-left: 0; }
-  #tablebox td { height: 44px; padding: 0 12px; box-shadow: inset 0 -1px 0 var(--line); text-align: right;
+  #tablebox td, #tablebox tbody th { height: 44px; padding: 0 12px; font-weight: 400; box-shadow: inset 0 -1px 0 var(--line); text-align: right;
     color: var(--fg-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
   /* word cells: Inter's tabular forms also widen hyphens, parentheses and
      spaces, so tabular figures ride only on the figures (.n), never on a title */
-  #tablebox td.t { color: var(--fg-1); font-variant-numeric: normal; }
+  #tablebox .t { color: var(--fg-1); font-variant-numeric: normal; }
   #tablebox td.gap { text-align: left; color: var(--fg-3); font-family: var(--font-sans); font-variant-numeric: normal; }
-  #tablebox td.t .tid, #tablebox td.t .ttl { color: var(--fg-1); }
+  #tablebox .t .tid, #tablebox .t .ttl { color: var(--fg-1); }
   #tablebox .tcap { margin: 12px 0 0; font-size: var(--text-meta); color: var(--fg-3); }
-  #tablebox tr:hover td { background: var(--surface-2); }
+  #tablebox tbody tr:hover > * { background: var(--surface-2); }
+  #tablebox .tscroll:focus-visible { outline-offset: -2px; border-radius: var(--radius-sm); }
   #tablebox .mk { color: var(--warn); font-size: var(--text-meta); font-family: var(--font-sans); }
   .st-good { color: var(--pos); } .st-bad { color: var(--neg); } .st-mid { color: var(--fg-2); }
   .emptynote { color: var(--fg-3); font-size: var(--text-body-sm); margin: 8px 0 0; }
@@ -1161,6 +1168,7 @@
   .about h3 { margin: 32px 0 8px; font-size: var(--text-body); line-height: 1.42; font-weight: 600; color: var(--fg-1);
     scroll-margin-top: calc(var(--topbar-h) + 24px); }
   .about h3:first-child { margin-top: 0; }
+  .about h3:focus { outline: none; }   /* a jump target, not a control: the index entry shows where you are */
   .about p { margin: 0 0 12px; }
   .about p:last-child { margin-bottom: 0; }
   .about b { color: var(--fg-1); font-weight: 600; }
@@ -1187,7 +1195,7 @@
       background: none; box-shadow: none; font-weight: 400; white-space: normal; text-align: left; }
     .aboutnav button::after { content: none; }
     .aboutnav button:hover { background: var(--surface-1); }
-    .aboutnav button[aria-current="true"] { background: var(--surface-2); color: var(--fg-1); }
+    .aboutnav button[aria-current="location"] { background: var(--surface-2); color: var(--fg-1); }
   }
   @media (min-width: 64rem) and (pointer: coarse) { .aboutnav button { min-height: 44px; } }
   footer { color: var(--fg-3); font-size: var(--text-meta); margin-top: 20px; }
@@ -1209,6 +1217,19 @@
     .hdbody.cols-1 { grid-template-columns: minmax(0, 1fr); }
     .hdbody .health-evidence { grid-column: 1 / -1; }
   }
+  /* status on phones switches with the shell (48rem, as the tab bar does), not with the
+     content's 720 px: not current, the bar keeps the dot and one word and the sentence moves
+     to the trust bar, which wraps rather than overflows (8 px above and below its words) */
+  @media (max-width: 47.99rem) {
+    .stamp.behind .sfull { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .stamp.behind .sshort { display: inline; }
+    .trust:not([hidden]) { display: flex; position: sticky; top: var(--topbar-h); z-index: 29; min-height: 40px; margin-bottom: var(--gap);
+      align-items: center; gap: 12px; padding: 8px var(--d-gutter); font-size: var(--text-body-sm); color: var(--fg-1);
+      background: color-mix(in oklab, var(--warn) 11%, var(--canvas)); box-shadow: inset 0 -1px 0 var(--warn-ring); }
+    .trust svg { width: 16px; height: 16px; flex: none; color: var(--warn); }
+    .trust span { min-width: 0; line-height: 1.39; }
+    header:has(+ .trust:not([hidden])) { margin-bottom: 0; }
+  }
   @media (max-width: 1020px) {
     .panel .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
@@ -1216,19 +1237,10 @@
     /* Phones: the same system, the phone steps — body 15, gutters 16, stack
        12, every control at least 44 px to the thumb. */
     :root { --gap: 12px; }
-    /* not current: the bar keeps the dot and one word; the sentence moves to the trust bar */
-    .stamp.behind .sfull { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-    .stamp.behind .sshort { display: inline; }
-    .trust:not([hidden]) { display: flex; position: sticky; top: var(--topbar-h); z-index: 29; min-height: 40px; padding-block: 8px; margin-bottom: var(--gap);
-      align-items: center; gap: 12px; padding: 0 var(--d-gutter); font-size: var(--text-body-sm); color: var(--fg-1);
-      background: color-mix(in oklab, var(--warn) 11%, var(--canvas)); box-shadow: inset 0 -1px 0 var(--warn-ring); }
-    .trust svg { width: 16px; height: 16px; flex: none; color: var(--warn); }
-    .trust span { min-width: 0; line-height: 1.39; }
-    header:has(+ .trust:not([hidden])) { margin-bottom: 0; }
     /* the phone table: the episode id column stays put while the numbers scroll */
     #tablebox th:first-child, #tablebox td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-1); padding-right: 12px;
       box-shadow: inset -1px 0 0 var(--line), inset 0 -1px 0 var(--line); }
-    #tablebox td.t .ttl { display: none; }
+    #tablebox .t .ttl { display: none; }
     #tablebox .tscroll.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
     /* 44 px rows for everything tappable inside the pane and the health details */
     .panel .trow { min-height: 44px; }
@@ -1343,7 +1355,7 @@
           <span class="cs" id="cscope"></span></div>
         <div class="controls">
           <button type="button" class="toggle" id="astable" aria-pressed="false">Table</button>
-          <button type="button" class="toggle traj-only" id="bydate">Dates</button>
+          <button type="button" class="toggle traj-only" id="bydate" aria-pressed="false">Dates</button>
           <button type="button" class="ss-btn ss-btn--link reset" id="reset">Reset</button>
         </div>
       </div>
@@ -1421,6 +1433,7 @@ const FONT = TOK("--font-sans"), NUM = TOK("--font-num");
 if (window.Chart) {
   Chart.defaults.font.family = NUM; Chart.defaults.font.size = 11; Chart.defaults.color = TOK("--chart-axis");
   Chart.defaults.borderColor = TOK("--chart-grid"); Chart.defaults.animation.duration = 160;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) Chart.defaults.animation = false;
 }
 
 // Destinations are the page's four named series: YouTube is the rose pair,
@@ -1439,6 +1452,17 @@ const YT_KEYS = ["yt:joindiveclub", "yt:designertom"];
 const X_KEYS = ["x:ridd_design", "x:designertom"];
 const VIEW_KEYS = [...YT_KEYS, ...X_KEYS];
 const GRID = TOK("--chart-grid"), DIMLINE = CONTEXT;
+// A token's color at a share of its strength — color-mix(in oklab, <token> N%,
+// transparent) resolved by a 1 px canvas into rgba() that Chart.js can parse,
+// whatever notation the token uses (steward F1, 2026-10-08)
+const FADE_CTX = Object.assign(document.createElement("canvas"), { width: 1, height: 1 }).getContext("2d", { willReadFrequently: true });
+function fade(color, share) {
+  FADE_CTX.clearRect(0, 0, 1, 1);
+  FADE_CTX.fillStyle = `color-mix(in oklab, ${color} ${Math.round(share * 100)}%, transparent)`;
+  FADE_CTX.fillRect(0, 0, 1, 1);
+  const [r, g, b, a] = FADE_CTX.getImageData(0, 0, 1, 1).data;
+  return `rgba(${r}, ${g}, ${b}, ${(a / 255).toFixed(3)})`;
+}
 
 // Strategy-impact categories: a name and a glyph, no hue — color means one
 // thing each on this page (design system), so a category is told by its word
@@ -1571,7 +1595,7 @@ function kfmt(n) { if (Math.abs(n) >= 1000) return (n/1000).toFixed(Math.abs(n) 
 function nfmt(n) { return n.toLocaleString("en-US"); }
 // share-of-video figures read at one decimal everywhere a column compares them
 function pct1(v) { return `${(Math.round(v * 10) / 10).toFixed(1)}%`; }
-function metricText(value, missing = "–") { return value == null ? missing : nfmt(value); }
+function metricText(value, missing = "—") { return value == null ? missing : nfmt(value); }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 // Figures in .n (Inter, tabular, never broken), words around them as they are: inside containers that can
 // hold both, every figure — counts, percentages, times, dates, episode ids —
@@ -1812,9 +1836,9 @@ function chaptersHTML(e) {
   const yt = Object.entries(e.links || {}).find(([k]) => k.startsWith("yt:"))?.[1] || null;
   const linkable = ch.clock === "upload" && yt;
   const clock = (t) => String(t).replace(/^00:/, "").replace(/^0(\d)/, "$1");
-  const rows = ch.list.map((c) => `<div class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener">${esc(clock(c.start))}</a>` : esc(clock(c.start))}</span><span class="chb"><b>${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></div>`).join("");
+  const rows = ch.list.map((c, i) => `<li class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener" aria-describedby="ch-${esc(e.slug)}-${i}"><span class="sr">Play from </span>${esc(clock(c.start))}</a>` : esc(clock(c.start))}</span><span class="chb"><b id="ch-${esc(e.slug)}-${i}">${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></li>`).join("");
   const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording, which starts a few minutes before the upload — read them as approximate.";
-  return `<div class="chapters"><h3 class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></h3>${rows}<div class="mut chnote">${note}</div></div>`;
+  return `<div class="chapters"><h3 class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></h3><ol class="chlist" role="list">${rows}</ol><div class="mut chnote">${note}</div></div>`;
 }
 function launchNote(l) {
   const when = l.provisional ? `${Math.round(l.ageDays)} days in` : l.late ? `at its earliest reading, day ${Math.round(l.ageDays)}` : "at the end of its first week";
@@ -2313,6 +2337,9 @@ function buildStrip() {
     const it = document.createElement("button");
     it.type = "button";
     it.className = "sitem-hit";
+    it.setAttribute("aria-controls", "panel");
+    it.setAttribute("aria-pressed", String(state.solo === e.slug));
+    if (state.solo === e.slug) card.setAttribute("aria-current", "true");
     // This row is the chart's stable episode legend. Its number never changes
     // meaning as the view changes: it is always stored YouTube views plus
     // resolved X broadcast plays. The selected chart measure stays in the
@@ -2488,7 +2515,7 @@ function buildPanel() {
     ["x:designertom", bd["x:designertom"]?.plays],
   ];
   for (const [k, v] of rows) {
-    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "–" : nfmt(v)}</span></div>`;
+    html += `<div class="row"><span class="sq" style="background:${PLAT_COLORS[k]}"></span>${TT_HTML[k] || TT_NAME[k]}<span class="val">${v == null ? "—" : nfmt(v)}</span></div>`;
   }
   if (!hasYoutube && !tvi.includesPlays) html += `<div class="note">YouTube views and X plays are not available yet.</div>`;
   else if (!hasYoutube) html += `<div class="note">YouTube views are not available yet.</div>`;
@@ -2702,7 +2729,7 @@ function buildPanel() {
     for (const q of (comments.featured || []).slice(0, 2)) {
       html += `<blockquote class="bq"><p>“${esc(q.text.length > 160 ? q.text.slice(0, 158).trimEnd() + "…" : q.text)}”</p><footer>${esc(q.author)}${q.likes ? ` <span class="likes">· ${q.likes} ${q.likes === 1 ? "like" : "likes"}</span>` : ""}</footer></blockquote>`;
     }
-    const chips = (themes, cls) => themes.map((t) => `<span class="chip ${cls}">${esc(t.theme)} <b>${t.count}</b></span>`).join("");
+    const chips = (themes, cls) => themes.map((t) => `<span class="chip ${cls}">${cls === "good" ? "Enjoyed" : "Didn’t"}: ${esc(t.theme)} <b>${t.count}</b></span>`).join("");
     // the classifier's catch-all theme carries no decision — chips name real themes only
     const enjoy = (comments.enjoyThemes || []).filter((t) => t.theme !== "other");
     const complaint = (comments.complaintThemes || []).filter((t) => t.theme !== "other");
@@ -3804,7 +3831,7 @@ function renderStandings() {
   ];
   // full-strength series fills separated by 2 px gaps in the card's own
   // surface; a selection dims every other episode's stack to a quarter
-  const dim = (hex, e) => state.solo && state.solo !== e.slug ? hex + "40" : hex;
+  const dim = (color, e) => state.solo && state.solo !== e.slug ? fade(color, 0.25) : color;
   const cfg = {
     type: "bar",
     data: {
@@ -3833,7 +3860,11 @@ function renderStandings() {
         y: { stacked: true, ticks: { color: FG2, padding: 8, font: { size: 12, weight: 500 } }, grid: { display: false }, border: { display: false } },
       },
       plugins: {
-        legend: { display: true, position: "top", align: "start", labels: { color: FG2, font: { family: FONT, size: 12, weight: 500 }, usePointStyle: true, pointStyle: "circle", boxWidth: 8, boxHeight: 8, padding: 16 } },
+        // the keys name the series, so they keep full strength whatever is selected
+        // (Chart.js would take each key's color from the first bar, a context one)
+        legend: { display: true, position: "top", align: "start", labels: { color: FG2, font: { family: FONT, size: 12, weight: 500 }, usePointStyle: true, pointStyle: "circle", boxWidth: 8, boxHeight: 8, padding: 16,
+          generateLabels: (ch) => ch.data.datasets.map((d, i) => ({ text: d.label, fillStyle: PLAT_COLORS[d.key], strokeStyle: PLAT_COLORS[d.key], lineWidth: 0,
+            pointStyle: "circle", hidden: !ch.isDatasetVisible(i), datasetIndex: i, fontColor: FG2 })) } },
         tooltip: { enabled: false, external: externalTooltip },
       },
       onClick: (event, _, ch) => {
@@ -4144,7 +4175,7 @@ function buildTable() {
   // nothing is computed here (PRD v9 F16)
   const watchedCellFor = (e) => {
     if (!hasYoutubeReading(e) || e.watch?.avgPercent == null) {
-      return pendingWatchMessage(e, NEWEST.slug, { compact: true }) || "–";
+      return pendingWatchMessage(e, NEWEST.slug, { compact: true }) || "—";
     }
     const v = e.watch.avgPercent;
     const wTypical = DATA.baselines?.watchPctBySlug?.[e.slug]?.typical ?? null;
@@ -4155,51 +4186,52 @@ function buildTable() {
   };
   // same shape the panel uses for time watched
   const fmtDur = (sec) => sec >= 3600 ? `${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m` : `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
-  let html = `<div class="tscroll"><table><tr>`;
+  // a labelled scroll region a keyboard can scroll, with real column and row headers (steward F17)
+  let html = `<div class="tscroll" tabindex="0" role="region" aria-label="${esc(chartTitle()[0])}, as a table"><table><thead><tr>`;
   if (kind === "live") {
-    html += "<th>Episode</th><th>Peak</th><th>Average</th><th>Watched live</th><th>Minutes watched</th><th>Chat messages</th><th>Chatters</th><th>Length</th></tr>";
+    html += `<th scope="col">Episode</th><th scope="col">Peak</th><th scope="col">Average</th><th scope="col">Watched live</th><th scope="col">Minutes watched</th><th scope="col">Chat messages</th><th scope="col">Chatters</th><th scope="col">Length</th></tr></thead><tbody>`;
     for (const e of [...EPS].reverse()) {
-      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
+      html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
       html += e.live
-        ? `<td class="t">${metricText(e.live.peak)}</td><td>${metricText(e.live.avg)}</td><td>${metricText(e.live.liveViews)}</td><td>${metricText(e.live.watchedMin)}</td><td>${metricText(e.live.chatMessages)}</td><td>${metricText(e.live.chatters)}</td><td>${e.live.durationMin == null ? "–" : nfmt(e.live.durationMin) + " min"}</td>`
+        ? `<td class="t">${metricText(e.live.peak)}</td><td>${metricText(e.live.avg)}</td><td>${metricText(e.live.liveViews)}</td><td>${metricText(e.live.watchedMin)}</td><td>${metricText(e.live.chatMessages)}</td><td>${metricText(e.live.chatters)}</td><td>${e.live.durationMin == null ? "—" : nfmt(e.live.durationMin) + " min"}</td>`
         : `<td colspan="7" class="gap">live data is not available</td>`;
       html += "</tr>";
     }
   } else if (kind === "watched") {
-    html += `<th>Episode</th><th>Watched</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>Avg time</th><th>Total time</th></tr>`;
+    html += `<th scope="col">Episode</th><th scope="col">Watched</th><th scope="col">${PLOGO.yt} Dive Club</th><th scope="col">${PLOGO.yt} DesignerTom</th><th scope="col">Avg time</th><th scope="col">Total time</th></tr></thead><tbody>`;
     for (const e of [...EPS].reverse()) {
-      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
+      html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
       if (!hasYoutubeReading(e) || !e.watch) {
         html += `<td colspan="5" class="gap">${esc(pendingWatchMessage(e, NEWEST.slug) || "Watch report not available.")}</td></tr>`;
         continue;
       }
       const by = (key) => e.watch.byChannel?.find((c) => c.key === key)?.avgPercent;
       html += `<td class="t">${watchedCellFor(e)}</td>`;
-      html += `<td>${by("yt:joindiveclub") == null ? "–" : pct1(by("yt:joindiveclub"))}</td>`;
-      html += `<td>${by("yt:designertom") == null ? "–" : pct1(by("yt:designertom"))}</td>`;
-      html += `<td>${e.watch.avgDurationSec == null ? "–" : fmtDur(e.watch.avgDurationSec)}</td>`;
-      html += `<td>${e.watch.minutesWatched == null ? "–" : nfmt(Math.round(e.watch.minutesWatched / 60)) + " h"}</td></tr>`;
+      html += `<td>${by("yt:joindiveclub") == null ? "—" : pct1(by("yt:joindiveclub"))}</td>`;
+      html += `<td>${by("yt:designertom") == null ? "—" : pct1(by("yt:designertom"))}</td>`;
+      html += `<td>${e.watch.avgDurationSec == null ? "—" : fmtDur(e.watch.avgDurationSec)}</td>`;
+      html += `<td>${e.watch.minutesWatched == null ? "—" : nfmt(Math.round(e.watch.minutesWatched / 60)) + " h"}</td></tr>`;
     }
   } else if (kind === "reach") {
-    html += `<th>Episode</th><th>${PLOGO.x} @ridd_design</th><th>${PLOGO.x} @designertom</th><th>Total reach</th></tr>`;
+    html += `<th scope="col">Episode</th><th scope="col">${PLOGO.x} @ridd_design</th><th scope="col">${PLOGO.x} @designertom</th><th scope="col">Total reach</th></tr></thead><tbody>`;
     for (const e of [...EPS].reverse()) {
       const bd = e.latest.byDest || {};
-      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
-      html += `<td class="t">${bd["x:ridd_design"]?.views == null ? "–" : nfmt(bd["x:ridd_design"].views)}</td>`;
-      html += `<td>${bd["x:designertom"]?.views == null ? "–" : nfmt(bd["x:designertom"].views)}</td>`;
-      html += `<td>${e.latest.xImpressions == null ? "–" : nfmt(e.latest.xImpressions)}</td></tr>`;
+      html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
+      html += `<td class="t">${bd["x:ridd_design"]?.views == null ? "—" : nfmt(bd["x:ridd_design"].views)}</td>`;
+      html += `<td>${bd["x:designertom"]?.views == null ? "—" : nfmt(bd["x:designertom"].views)}</td>`;
+      html += `<td>${e.latest.xImpressions == null ? "—" : nfmt(e.latest.xImpressions)}</td></tr>`;
     }
   } else if (kind === "race") {
-    html += `<th>Episode</th><th>History</th><th>Total views now</th><th>${PLOGO.yt} now</th><th>${PLOGO.x} plays now</th></tr>`;
+    html += `<th scope="col">Episode</th><th scope="col">History</th><th scope="col">Total views now</th><th scope="col">${PLOGO.yt} now</th><th scope="col">${PLOGO.x} plays now</th></tr></thead><tbody>`;
     for (const e of [...EPS].reverse()) {
-      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
+      html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
       html += `<td class="t">${e.historyReady ? "ready" : "waiting for full-day read"}</td>`;
       html += `<td>${metricText(displayedTotal(e))}</td>`;
       html += `<td>${metricText(youtubeValue(e, e.latest.ytTotal))}</td>`;
       html += `<td>${metricText(e.latest.xPlays)}</td></tr>`;
     }
   } else {
-    html += `<th>Episode</th><th>Health</th><th>Total views</th><th>${PLOGO.yt} Dive Club</th><th>${PLOGO.yt} DesignerTom</th><th>${PLOGO.x} ridd plays</th><th>${PLOGO.x} tom plays</th><th>Watched</th><th>${PLOGO.yt} Pace vs typical</th></tr>`;
+    html += `<th scope="col">Episode</th><th scope="col">Health</th><th scope="col">Total views</th><th scope="col">${PLOGO.yt} Dive Club</th><th scope="col">${PLOGO.yt} DesignerTom</th><th scope="col">${PLOGO.x} ridd plays</th><th scope="col">${PLOGO.x} tom plays</th><th scope="col">Watched</th><th scope="col">${PLOGO.yt} Pace vs typical</th></tr></thead><tbody>`;
     // episode scores are each against a different set of earlier episodes —
     // one neutral colour, never the show-health bands (PRD v9 F17)
     for (const e of [...EPS].reverse()) {
@@ -4208,18 +4240,18 @@ function buildTable() {
       const pace = sameAgeSub(e);
       const healthCell = healthOf(e)
         ? `<span class="st-mid">${healthOf(e).score}</span>`
-        : "–";
-      html += `<tr><td class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></td>`;
+        : "—";
+      html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
       html += `<td class="t">${healthCell}</td>`;
       html += `<td class="t">${metricText(displayedTotal(e))}${mk ? ` <span class="mk">${mk}</span>` : ""}</td>`;
       html += `<td>${metricText(youtubeValue(e, bd["yt:joindiveclub"]?.views))}</td><td>${metricText(youtubeValue(e, bd["yt:designertom"]?.views))}</td>`;
-      html += `<td>${bd["x:ridd_design"]?.plays == null ? "–" : nfmt(bd["x:ridd_design"].plays)}</td>`;
-      html += `<td>${bd["x:designertom"]?.plays == null ? "–" : nfmt(bd["x:designertom"].plays)}</td>`;
+      html += `<td>${bd["x:ridd_design"]?.plays == null ? "—" : nfmt(bd["x:ridd_design"].plays)}</td>`;
+      html += `<td>${bd["x:designertom"]?.plays == null ? "—" : nfmt(bd["x:designertom"].plays)}</td>`;
       html += `<td>${watchedCellFor(e)}</td>`;
-      html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= QUIET_ZONE ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "+" : "−") + Math.abs(pace.pct) + "%"}</span>` : "–"}</td></tr>`;
+      html += `<td>${pace ? `<span class="${Math.abs(pace.pct) <= QUIET_ZONE ? "st-mid" : pace.pct > 0 ? "st-good" : "st-bad"}">${(pace.pct >= 0 ? "+" : "−") + Math.abs(pace.pct) + "%"}</span>` : "—"}</td></tr>`;
     }
   }
-  html += "</table></div>";
+  html += "</tbody></table></div>";
   if (kind === "watched" || kind === "views") html += `<p class="tcap">↑ ↓ mark a share watched above or below the typical episode</p>`;
   box.innerHTML = html;
   box.style.display = "block"; // stylesheet default is none — must set explicitly
@@ -4374,13 +4406,18 @@ function buildAboutNav() {
   nav.innerHTML = `<h2>On this page</h2>${heads.map((h) => `<button type="button" data-to="${h.id}">${esc(h.textContent)}</button>`).join("")}`;
   nav.addEventListener("click", (ev) => {
     const b = ev.target.closest("button[data-to]");
-    if (b) document.getElementById(b.dataset.to).scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    if (!b) return;
+    const h = document.getElementById(b.dataset.to);
+    h.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    // keyboard and screen-reader users land where the page went (steward F4)
+    h.tabIndex = -1;
+    h.focus({ preventScroll: true });
   });
   const mark = () => {
     let current = heads[0];
     for (const h of heads) if (h.getBoundingClientRect().top < window.innerHeight * 0.35) current = h;
     for (const b of nav.querySelectorAll("button")) {
-      if (b.dataset.to === current?.id) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+      if (b.dataset.to === current?.id) b.setAttribute("aria-current", "location"); else b.removeAttribute("aria-current");
     }
   };
   window.addEventListener("scroll", () => { if (document.body.dataset.page === "about") mark(); }, { passive: true });
@@ -4398,9 +4435,8 @@ function syncUI() {
   }
   const bd = document.getElementById("bydate");
   bd.style.display = isTraj ? "" : "none";
-  bd.classList.toggle("on", state.byDate);
+  bd.setAttribute("aria-pressed", String(state.byDate));
   const at = document.getElementById("astable");
-  at.classList.toggle("on", state.table);
   at.setAttribute("aria-pressed", String(state.table));
   // the heading always IS the picker, and it always names the data — the
   // Table toggle only swaps the drawing for the numbers. The menu is closed
@@ -4414,7 +4450,8 @@ function syncUI() {
   const changed = state.table || state.panel || state.solo || (!isLive && (state.mode !== "standings" || state.metric !== "views" || state.byDate));
   document.getElementById("reset").style.display = changed ? "" : "none";
   for (const c of document.querySelectorAll(".sitem")) {
-    c.classList.toggle("solo", state.solo === c.dataset.slug);
+    if (state.solo === c.dataset.slug) c.setAttribute("aria-current", "true"); else c.removeAttribute("aria-current");
+    c.querySelector(".sitem-hit")?.setAttribute("aria-pressed", String(state.solo === c.dataset.slug));
     c.classList.toggle("dim", state.solo !== null && state.solo !== c.dataset.slug);
   }
 }
@@ -4544,7 +4581,12 @@ const stamp = document.getElementById("stamp");
     trust.innerHTML = `${ICONS.clock}<span>${cap(parts.join(" · "))}</span>`;
     trust.hidden = false;
   }
-  stamp.title = `Exact refresh: ${DATA.generatedAt}${h?.date ? ` · health read saved ${h.date}` : ""}`;
+  // the exact times ride the page's one tooltip (hover, focus, tap), never a hover-only title (steward F8)
+  const exact = new Date(DATA.generatedAt).toLocaleString("en-US", { timeZone: "America/Phoenix", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  stamp.dataset.stat = "Data refreshed";
+  stamp.dataset.rows = [`${exact} Phoenix time`, h?.date ? `Health read saved ${new Date(`${h.date}T12:00:00Z`).toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric" })}` : ""].filter(Boolean).join("||");
+  stamp.tabIndex = 0;
+  stamp.setAttribute("role", "button");
   // Every Vercel build keeps its own address and its own data forever. Only the
   // live addresses move to each morning's publish; any other copy holding an
   // earlier day's data says so and links to the live dashboard.

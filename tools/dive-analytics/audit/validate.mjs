@@ -2312,7 +2312,8 @@ try {
   } else if (/\?\?\s*0/.test(tooltipSource + tableSource)) {
     bad++; fail("dashboard absence: a tooltip or table can turn a missing value into zero");
   }
-  if (!/function metricText\(value, missing = "–"\) \{ return value == null \? missing : nfmt\(value\); \}/.test(html)) {
+  // re-locked 2026-10-08 to the system's absence glyph, the em dash (steward F12, audit/DESIGN-2026-10-08.md)
+  if (!/function metricText\(value, missing = "—"\) \{ return value == null \? missing : nfmt\(value\); \}/.test(html) || /"–"/.test(tableSource)) {
     bad++; fail("dashboard absence: the shared missing-value formatter could hide a real zero or lacks a plain missing state");
   }
   if (!/function hasYoutubeReading\(e\) \{ return e\?\.latest\?\.totalViewsInfo\?\.includesYoutube === true; \}/.test(html)

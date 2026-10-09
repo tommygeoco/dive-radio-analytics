@@ -20,7 +20,7 @@ Calm, candid, decisive. The product should feel like a trusted producer who has 
 
 - KPI walls, control-room dashboards, and grids of equally weighted cards.
 - Dense research reports with labels on every line and explanations competing with the finding.
-- Badge clutter, symbol legends, hover-only meaning, or UI that requires the PRD to decode. (One small-caps kicker per card is the sanctioned exception — owner direction 2026-08-23.)
+- Badge clutter, symbol legends, hover-only meaning, or UI that requires the PRD to decode. (Each card may carry one quiet label — sentence case, meta size, tertiary — never an uppercase kicker; design system 2026-10-06.)
 - Decorative dashboard styling that makes weak or missing data look more certain than it is.
 - Text-heavy layouts that narrate the same fact in several places.
 
