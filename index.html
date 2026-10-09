@@ -282,6 +282,20 @@
 /* small grade (components.md §6.2; recipe v3.1). A rank in a list is ss-grade ss-grade--sm ss-grade--muted. */
 .ss-grade--sm { width: 20px; height: 20px; font-size: var(--text-caption); }
 
+/* KPI strip: 1 px gaps show the line color = the dividers */
+.ss-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border-radius: var(--radius-2xl);
+  background: var(--line); box-shadow: inset 0 0 0 1px var(--line); }
+@media (min-width: 48rem) { .ss-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ss-kpi { min-width: 0; background: var(--surface-1); padding: var(--d-card); }
+.ss-kpi__label { font-size: var(--text-meta); color: var(--fg-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ss-kpi__value { margin-top: 4px; font-family: var(--font-num); font-size: var(--text-num-lg); line-height: 1.25; font-weight: 600;
+  letter-spacing: -0.02em; white-space: nowrap; color: var(--fg-1); font-variant-numeric: tabular-nums; }
+.ss-kpi__sub { margin-top: 4px; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: balance; }
+@media (min-width: 48rem) { .ss-kpi__sub { font-size: var(--text-meta); } }
+
+.ss-meter { height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
+.ss-meter > span { display: block; height: 100%; min-width: 2%; border-radius: inherit; background: var(--fg-2); }
+
 .ss-menu { min-width: 192px; padding: 4px; border-radius: var(--radius-lg); background: var(--popover); color: var(--fg-1);
   box-shadow: var(--shadow-pop); animation: ss-pop-in 100ms ease; }
 .ss-menu__item { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 4px 8px; border: 0; border-radius: var(--radius-md);
@@ -648,6 +662,21 @@
   .hero .spark .cv { position: relative; height: 88px; width: 100%; }
   .hero .spark .cap { font-size: var(--text-meta); color: var(--fg-3); text-align: right; }
   .hero .hs { max-width: 300px; }
+  /* Episodes from 64rem (critic 2026-10-08): the selected episode's card is two columns, and
+     its right half carries the episode's own facts as a hairline 2 × 2 — the system's KPI block
+     inside the card (radius xl, a block inside a card); the live view keeps its sparkline there.
+     Narrower, and on Today, the card is as it was: the facts are not rendered or not shown. */
+  .hfacts { display: none; }
+  .hfacts .ss-kpi__value small { font-family: var(--font-sans); font-variant-numeric: normal; font-size: var(--text-body-sm); font-weight: 400;
+    letter-spacing: 0; color: var(--fg-3); }
+  .hfacts .ss-kpi__value.word { font-family: var(--font-sans); font-variant-numeric: normal; letter-spacing: -0.01em; }
+  .hfacts .ss-meter { margin-top: 8px; }
+  @media (min-width: 64rem) {
+    .epihero .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+    .epihero .hero .spark { width: auto; }
+    .epihero .hfacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: var(--radius-xl); }
+    .epihero .hfacts > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  }
 
   .compound .cv2 { color: var(--fg-2); font-size: var(--text-body-sm); font-weight: 500; line-height: 1.39; margin: 0; }
   .compound .cv2 .db { margin: 0 2px; vertical-align: 1px; }
@@ -2228,6 +2257,23 @@ const METRIC_TREND_TITLE = {
   live: "Live viewers — by episode",
   reach: "X reach — by episode",
 };
+// The selected episode's own glance facts for the desktop Episodes card's right half: health
+// (score and meter), launch (a word), then total views, share watched and average live viewers
+// minus the one the card already states — four at most. Read from the same
+// stores as the card row and the pane — nothing computed here; a missing fact renders nothing,
+// and the measure the card already states is not repeated.
+function heroFacts(e, metric) {
+  const cells = [];
+  const h = healthOf(e);
+  if (h) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Episode health</div><div class="ss-kpi__value">${h.score}<small> of 100</small></div><div class="ss-meter" aria-hidden="true"><span style="width:${h.score}%"></span></div></div>`);
+  const launch = launchOf(e);
+  if (launch?.word) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Launch</div><div class="ss-kpi__value word">${launch.promoDriven ? "Promo-driven" : cap(launch.word)}${launch.provisional ? "<small> so far</small>" : ""}</div></div>`);
+  const total = displayedTotal(e);
+  if (metric !== "views" && hasYoutubeReading(e) && total != null) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Total views</div><div class="ss-kpi__value">${nfmt(total)}</div></div>`);
+  if (metric !== "watched" && hasYoutubeReading(e) && e.watch?.avgPercent != null) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Share watched</div><div class="ss-kpi__value">${pct1(e.watch.avgPercent)}</div></div>`);
+  if (metric !== "live" && e.live?.avg != null) cells.push(`<div class="ss-kpi"><div class="ss-kpi__label">Average live viewers</div><div class="ss-kpi__value">${nfmt(e.live.avg)}</div></div>`);
+  return cells.length >= 2 ? `<div class="ss-kpis hfacts">${cells.slice(0, 4).join("")}</div>` : "";
+}
 function buildHero() {
   const el = document.getElementById("hero");
   const sel = state.solo || state.panel;
@@ -2311,6 +2357,7 @@ function buildHero() {
   // no honest per-episode series to draw (X plays have no week-1 history
   // before 8/21, and we never fabricate history).
   const isLive = metric === "live";
+  if (!isLive && document.body.dataset.page === "episodes") html += heroFacts(e, metric);
   if (isLive) html += `<div class="spark"><div class="cv"><canvas id="spark"></canvas></div><div class="cap">concurrent viewers by minute</div></div>`;
   el.innerHTML = html;
 
