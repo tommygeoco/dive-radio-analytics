@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgzBVuIlBCm2jQnrZFd4AaABAg",
-        "pulledAt": "2026-10-08T19:16:34.176Z",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgwdYatoecWLcSw4z1Z4AaABAg",
-        "pulledAt": "2026-10-08T19:16:34.176Z",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgxCtEvaS4QidyWinX94AaABAg",
-        "pulledAt": "2026-10-08T19:16:34.176Z",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
         "state": "ready"
       }
     },
@@ -223,13 +223,13 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "UgxCtEvaS4QidyWinX94AaABAg.AbAygOxkSWwAbBeNBmCWag",
-        "pulledAt": "2026-10-08T19:16:34.176Z",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
         "state": "ready"
       }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-08T19:16:34.176Z",
+    "checkedAt": "2026-10-09T14:02:01.685Z",
     "state": "ready",
     "sources": [
       {
@@ -237,7 +237,7 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "Cjv-0MKQ4GU",
-        "pulledAt": "2026-10-08T19:16:34.176Z",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
         "state": "ready",
         "count": 2
       },
@@ -246,12 +246,12 @@
         "source": "youtube-comments",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2EAAU-knqRE",
-        "pulledAt": "2026-10-08T19:16:34.176Z",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
         "state": "ready",
         "count": 2
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-08T19:16:34.176Z"
+  "updatedAt": "2026-10-09T14:02:01.685Z"
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T19:16:39.932Z",
+  "updatedAt": "2026-10-09T14:02:12.426Z",
   "configurations": {
     "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39": {
       "classifierVersion": 1,
@@ -29,15 +29,32 @@
     }
   },
   "episodes": {
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
+      "sources": {
+        "x": {
+          "state": "ready",
+          "checkedAt": "2026-10-09T14:00:19.320Z"
+        },
+        "live-chat": {
+          "state": "ready",
+          "checkedAt": "2026-10-09T14:00:19.320Z"
+        }
+      },
+      "processing": {
+        "pending": 209,
+        "review": 0
+      },
+      "list": []
+    },
     "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         }
       },
       "processing": {
@@ -267,11 +284,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         }
       },
       "processing": {
@@ -670,11 +687,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         }
       },
       "processing": {
@@ -1290,11 +1307,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-08T19:15:08.754Z"
+          "checkedAt": "2026-10-09T14:00:19.320Z"
         }
       },
       "processing": {

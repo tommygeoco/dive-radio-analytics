@@ -79,11 +79,23 @@
         "pulledAt": "2026-10-02T14:04:25.005Z",
         "state": "ready"
       }
+    },
+    "c9274a9d-b121-4774-bfc4-b9c03f178975": {
+      "status": "ingested",
+      "ingestedAt": "2026-10-09T14:02:13.420Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "restream",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "c9274a9d-b121-4774-bfc4-b9c03f178975",
+        "pulledAt": "2026-10-09T14:02:13.420Z",
+        "state": "ready"
+      }
     }
   },
-  "checkedAt": "2026-10-08T19:16:40.608Z",
+  "checkedAt": "2026-10-09T14:02:13.420Z",
   "capture": {
-    "checkedAt": "2026-10-08T19:16:40.608Z",
+    "checkedAt": "2026-10-09T14:02:13.420Z",
     "state": "ready",
     "pendingEvents": [],
     "errors": []

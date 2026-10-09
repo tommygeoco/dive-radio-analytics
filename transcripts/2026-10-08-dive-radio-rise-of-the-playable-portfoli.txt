@@ -1,0 +1,5447 @@
+Dive Radio E13 — Rise of the Playable Portfolio
+Aired: 2026-10-08 · YouTube: https://youtube.com/watch?v=YI1Kx5U6fQc
+Source: Restream speaker transcript (vault e13-transcript-2026-10-08.txt). Speaker labels are automatic — verify quotes against video.
+
+00:03:14 [Speaker 1]
+And desire for people to just see what flows and 100 people, the different experiments that people are running and the different learnings that others have.
+
+00:03:25 [Speaker 2]
+The tooling kind of increases our capacity in the day.
+00:03:28 [Speaker 2]
+We have more things we can do now because the tooling makes those kind of rogue things easier.
+00:03:34 [Speaker 2]
+But I'm able to go through the spectrum of explorations that are so much larger than I could do in a day, and
+
+00:03:41 [Speaker 1]
+I can do it in minutes.
+00:03:44 [Speaker 1]
+Agents
+
+00:03:44 [Speaker 2]
+are using tools.
+00:03:47 [Speaker 2]
+What does that look like and what
+
+00:03:48 [Speaker 1]
+does that mean?
+00:03:51 [Speaker 1]
+Show up, try things, be curious.
+
+00:03:53 [Speaker 2]
+I think the future is bright, but it has to be built.
+00:03:57 [Speaker 2]
+I always see things that
+
+00:03:58 [Speaker 1]
+I didn't plan on seeing.
+00:04:00 [Speaker 1]
+I'm making micro positions that I didn't have a
+
+00:04:02 [Speaker 2]
+grid for a year ago, and it's only because of the ability that I consume.
+00:04:07 [Speaker 2]
+I feel like there's this binary thinking that, like, AI means fully automated and quick.
+
+00:04:11 [Speaker 3]
+In fact,
+
+00:04:11 [Speaker 2]
+I think some of the better workflows are the ones that aren't fully automated.
+00:04:15 [Speaker 2]
+The ability to effectively multitask at
+
+00:04:18 [Speaker 1]
+a really high level is one
+
+00:04:19 [Speaker 2]
+of the core skills of
+
+00:04:21 [Speaker 1]
+operating in this, like, AI world.
+
+00:04:24 [Speaker 2]
+No, no preconceived
+
+00:04:33 [Speaker 1]
+achievements.
+
+00:04:35 [Speaker 3]
+What do you do with the question what if?
+
+00:04:37 [Speaker 4]
+Hey, guys.
+00:04:37 [Speaker 4]
+Hi.
+
+00:04:38 [Speaker 5]
+What's up, design fam?
+00:04:39 [Speaker 5]
+Fam?
+
+00:04:39 [Speaker 4]
+This is Chloe Park.
+00:04:40 [Speaker 4]
+Jenny Wen.
+
+00:04:41 [Speaker 5]
+This is Soleil, and you're listening.
+
+00:04:42 [Speaker 4]
+And you're listening to the dive Dive.
+00:04:44 [Speaker 4]
+Dive radio show.
+
+00:04:55 [Speaker 2]
+Hey.
+
+00:04:57 [Speaker 3]
+Hello.
+00:04:57 [Speaker 3]
+Hello, Ed.
+00:04:59 [Speaker 3]
+Good to see you, man.
+
+00:05:00 [Speaker 2]
+Good to see you too.
+
+00:05:01 [Speaker 3]
+This will be
+
+00:05:01 [Speaker 2]
+a fun one.
+00:05:02 [Speaker 2]
+I got I got a lot of links ready ready to go.
+
+00:05:05 [Speaker 3]
+Lot of links.
+00:05:06 [Speaker 3]
+Thanks for tuning in today, Thursday, 1PM Pacific.
+00:05:10 [Speaker 3]
+This is Dive Radio.
+00:05:11 [Speaker 3]
+The Internet's group chat for designers who like to build, and we have a Discord, which just closed membership.
+00:05:16 [Speaker 3]
+And if you're in it, you can certainly submit your portfolio to us for review.
+
+00:05:20 [Speaker 3]
+This is gonna be a two parter.
+00:05:22 [Speaker 3]
+Today, we're gonna go through a lot of topics unrelated to portfolios.
+00:05:25 [Speaker 3]
+We'll get into it at the end.
+00:05:26 [Speaker 3]
+And then next week is a full episode where we are just gonna one by one go through everybody's portfolio.
+00:05:35 [Speaker 3]
+Even if you're not in the discord, by the way, which opens once per week.
+
+00:05:39 [Speaker 3]
+I'm sorry.
+00:05:40 [Speaker 3]
+One week per quarter.
+00:05:43 [Speaker 3]
+We open that up the door.
+00:05:44 [Speaker 3]
+So January 2027 will be the next time.
+00:05:46 [Speaker 3]
+We've got, like, 600 of you.
+
+00:05:48 [Speaker 3]
+It's fantastic.
+00:05:48 [Speaker 3]
+But you can still get on to the show.
+00:05:50 [Speaker 3]
+We will review your portfolio by checking out in flight.co/portfolio.
+00:06:00 [Speaker 3]
+We'll pop it in the chat here.
+00:06:01 [Speaker 3]
+I'll pop
+
+00:06:01 [Speaker 2]
+it in the chat here.
+00:06:01 [Speaker 2]
+I'll pop it in there.
+
+00:06:02 [Speaker 3]
+So here's what we we were thinking about this.
+00:06:05 [Speaker 3]
+Portfolios is this topic.
+00:06:07 [Speaker 3]
+It's it's a it's a tough topic.
+00:06:08 [Speaker 3]
+There's a...
+00:06:09 [Speaker 3]
+I go back and forth on how valuable are portfolio reviews from, you know, just anybody on the Internet.
+
+00:06:17 [Speaker 3]
+And, there's a spectrum of, I think, usefulness, and then there are ways to make them more useful.
+00:06:22 [Speaker 3]
+We're gonna go over some portfolios today which are fantastic.
+00:06:24 [Speaker 3]
+We'll give some great advice for people at different levels of their career.
+00:06:29 [Speaker 3]
+But things that might work for somebody on one side might not work for somebody on the other side of that that career spectrum.
+00:06:35 [Speaker 3]
+And so, Rid and I were kinda thinking about it.
+
+00:06:37 [Speaker 3]
+We're like, how do we give the most useful feedback to people?
+00:06:41 [Speaker 3]
+You know, there's there's certainly the things he and I like personally.
+00:06:45 [Speaker 3]
+But I think what'll be most helpful is if we had a way for people to let us know what specifically they want feedback on because it allows us to kind of go through a lot of portfolios over one episode and actually answer the questions you're specifically looking to get answers on.
+00:07:02 [Speaker 3]
+And as it turns out, Rit and I are building a tool that does that for prototypes, and it kinda works perfectly for portfolios.
+00:07:11 [Speaker 3]
+Like, wait.
+
+00:07:12 [Speaker 3]
+Why don't we just have people use inflight?
+00:07:15 [Speaker 3]
+Yeah.
+00:07:15 [Speaker 3]
+And, so the gist of it is you check out the widget.
+00:07:18 [Speaker 3]
+It's a one click install, a one one prompt install.
+00:07:22 [Speaker 3]
+It adds a little question widget to your website.
+
+00:07:26 [Speaker 3]
+And what we'll do is when you install that, share the link with us.
+00:07:30 [Speaker 3]
+If it's in the Discord...
+00:07:32 [Speaker 3]
+If you are currently in the Discord, the way you would share that link is come on over here to the submissions channel, drop it here in the portfolio reviews thread, and we will pull them from there.
+00:07:44 [Speaker 3]
+I think the other way is just send us a DM.
+00:07:47 [Speaker 3]
+I think that's a little messy, but we'll we'll make sure that those get into some list somehow.
+
+00:07:52 [Speaker 3]
+And we'll just go through things.
+00:07:54 [Speaker 3]
+First come, first served.
+00:07:58 [Speaker 3]
+Think you guys are gonna dig the in flight tool.
+00:07:59 [Speaker 3]
+It's pretty cool.
+00:08:00 [Speaker 3]
+It can be used for a lot
+
+00:08:01 [Speaker 2]
+of things.
+00:08:02 [Speaker 2]
+It's good.
+00:08:02 [Speaker 2]
+I think what we should do is take the portfolio links and drop them into chat too.
+00:08:06 [Speaker 2]
+And that way everybody can pop in, and we could actually, like, see different people leaving comments too and almost even react to other people's feedback.
+00:08:12 [Speaker 2]
+It's gonna get it's gonna get weird.
+
+00:08:14 [Speaker 2]
+I think it'd be fun.
+00:08:14 [Speaker 2]
+Be like, it'll it'll giant...
+00:08:16 [Speaker 2]
+The world's biggest design crit live.
+
+00:08:18 [Speaker 3]
+A 100%.
+00:08:19 [Speaker 3]
+Because the other piece of this is when you install the widget on your portfolio, we're gonna give...
+00:08:24 [Speaker 3]
+We're gonna answer questions on it and we'll give live feedback here.
+00:08:27 [Speaker 3]
+But anybody else who does the same to that that link, all that feedback goes into a place where you can just pull that into your next prompt.
+00:08:36 [Speaker 3]
+So that's the other part of that is hopefully, it's helpful for you and you can immediately start banging on that feedback without doing much work.
+
+00:08:43 [Speaker 3]
+So,
+
+00:08:44 [Speaker 2]
+that's kinda what we got.
+
+00:08:45 [Speaker 3]
+We'll see how we're going.
+00:08:46 [Speaker 3]
+But we're gonna get into some other stuff first starting with our designer of the week, and we got some good ones today.
+00:08:52 [Speaker 3]
+I'm actually kind of excited about this because I'm looking at the voting already.
+00:08:58 [Speaker 3]
+And it always happens this way, dude.
+00:09:01 [Speaker 3]
+It always happens where there are two strong leaders.
+
+00:09:05 [Speaker 3]
+Last week, the the leader at the beginning maintained their position towards the end, but that's not that's not how it usually happens.
+00:09:12 [Speaker 3]
+And, we're gonna hear about it.
+
+00:09:15 [Speaker 2]
+Oh.
+00:09:15 [Speaker 2]
+Oh.
+00:09:16 [Speaker 2]
+Early leader.
+00:09:16 [Speaker 2]
+I'm, I might get a dub this week.
+
+00:09:19 [Speaker 3]
+You might.
+00:09:19 [Speaker 3]
+It's
+
+00:09:19 [Speaker 2]
+been a little bit.
+00:09:20 [Speaker 2]
+It's been a little bit.
+
+00:09:21 [Speaker 3]
+I've got some things I wanna say about old Petter Nauls.
+00:09:23 [Speaker 3]
+So Alright.
+00:09:24 [Speaker 3]
+We'll see what we got starting with, our first nominee.
+
+00:09:28 [Speaker 4]
+Hi.
+00:09:28 [Speaker 4]
+My name is Tareem, and the designer that I wanna highlight this week, her name is Laura Sinistero.
+00:09:34 [Speaker 4]
+And the reason I wanna highlight her work is because of the diligent research practice that she puts behind everything she creates.
+00:09:42 [Speaker 4]
+I specifically wanna highlight her tracing paper tool where she describes it as tracing paper as a metaphor and an operation for introducing depth into an otherwise flat surface.
+00:09:54 [Speaker 4]
+And basically it's a tool where you can arrange elements on plates and stack translucent sheets over them and it looks very realistic and very beautiful and can be used for so many different things.
+
+00:10:08 [Speaker 4]
+And the reason I love this so much is because if you look at her arena, she puts so much research into everything that she creates.
+00:10:17 [Speaker 4]
+She studies material.
+00:10:18 [Speaker 4]
+She reads literature, and it's all out in the open.
+00:10:20 [Speaker 4]
+If you go to her website, you can see all of the process that she puts behind everything that she creates, and it's very, very admirable.
+00:10:28 [Speaker 4]
+And it really reflects on the craft of her work.
+
+00:10:33 [Speaker 3]
+Tareem, that was a fantastic nomination and and well articulated.
+00:10:38 [Speaker 3]
+Thank you for the submission on that.
+00:10:41 [Speaker 3]
+I am now put on game.
+00:10:43 [Speaker 3]
+I love that.
+
+00:10:44 [Speaker 2]
+Yeah.
+00:10:45 [Speaker 2]
+I'm kidding.
+00:10:45 [Speaker 2]
+I love the material focus too.
+00:10:47 [Speaker 2]
+Some of those images were really unique.
+00:10:48 [Speaker 2]
+Like the...
+
+00:10:48 [Speaker 2]
+I think it's called vellum.
+00:10:49 [Speaker 2]
+Is that what it's called maybe?
+00:10:51 [Speaker 2]
+Like the almost transparent kind of like frosty overlay paper style.
+00:10:54 [Speaker 2]
+What did you call it?
+00:10:56 [Speaker 2]
+Man, I don't wanna say this now.
+
+00:10:57 [Speaker 2]
+I'm like, is it wrong?
+00:10:59 [Speaker 2]
+Is it like Vellum or Vellum paper?
+
+00:11:02 [Speaker 3]
+I'm not sure.
+
+00:11:03 [Speaker 2]
+I'm right.
+00:11:03 [Speaker 2]
+I'm right.
+00:11:03 [Speaker 2]
+It's like the parchment paper, the fine parchment paper.
+00:11:06 [Speaker 2]
+I did a whole way early, design exploration where I thought Vellum was gonna be, like, a big part of the in flight design language, and I couldn't crack it, but she did.
+
+00:11:16 [Speaker 3]
+I like that.
+00:11:16 [Speaker 3]
+By the way, you're talking to the guy who regularly gets words wrong, so you're you're in good company.
+
+00:11:21 [Speaker 2]
+I I I had it right, and I should've just stuck it with confidence and
+
+00:11:23 [Speaker 3]
+instead you're
+
+00:11:24 [Speaker 2]
+even nervous, and I backed on.
+
+00:11:27 [Speaker 3]
+I got a story about that one day.
+00:11:29 [Speaker 3]
+We'll talk about it.
+00:11:29 [Speaker 3]
+But, moving on.
+00:11:31 [Speaker 3]
+Moving on.
+00:11:31 [Speaker 3]
+Now it's funny because I try really hard to find the names if somebody has kind of an anonymous account.
+
+00:11:38 [Speaker 3]
+And I'm like, oh, no.
+00:11:38 [Speaker 3]
+No.
+00:11:39 [Speaker 3]
+We'll we'll find out who they are so we could properly credit them.
+00:11:42 [Speaker 3]
+Could not.
+00:11:43 [Speaker 3]
+Could not.
+
+00:11:44 [Speaker 3]
+And, kind of fun.
+00:11:46 [Speaker 3]
+We'll see.
+
+00:11:46 [Speaker 5]
+Sup Dive Radio.
+00:11:47 [Speaker 5]
+I wanted to nominate instance 11.
+00:11:49 [Speaker 5]
+I don't really...
+00:11:50 [Speaker 5]
+I don't know the name, very mysterious, but very slick work, extremely cool procedural art and honestly like very, very inspiring for me.
+00:11:59 [Speaker 5]
+I've been like looking at a lot of his stuff for Inspo.
+
+00:12:01 [Speaker 5]
+I just love how he like combines a procedural code based art but completely fresh perspective on execution.
+00:12:09 [Speaker 5]
+And I love how he merges the physical world with digital.
+00:12:12 [Speaker 5]
+Some incredible videos honestly, this is a profile I just like dive deep into all the time.
+00:12:17 [Speaker 5]
+There's just so much craft and taste and you can just like scroll all the way back and find just some interesting stuff.
+00:12:22 [Speaker 5]
+Even stuff like the writing is just incredible and like this guy's fucking sick.
+
+00:12:26 [Speaker 5]
+And on the website, I think we're selling like these rings and these rings are like also procedural based on like your birthday and they kind of like, change shape and form.
+00:12:34 [Speaker 5]
+But, yeah, I think it's just, like, a really fresh perspective on using code to create art and and it still feels extremely human.
+00:12:42 [Speaker 5]
+So very safe.
+
+00:12:44 [Speaker 3]
+Yeah.
+00:12:45 [Speaker 3]
+Let's go.
+
+00:12:46 [Speaker 2]
+Some fun aesthetics going on today.
+
+00:12:48 [Speaker 3]
+Yeah.
+00:12:48 [Speaker 3]
+Yeah.
+00:12:48 [Speaker 3]
+And so I had to I had to make I had to make his avatar, and I'm like, I don't know what to turn you into.
+00:12:55 [Speaker 3]
+I have no idea what you would like.
+
+00:12:56 [Speaker 2]
+It looks...
+00:12:57 [Speaker 2]
+Is that the is that the latest season of Stranger Things?
+
+00:12:59 [Speaker 3]
+I think so.
+00:13:00 [Speaker 3]
+It is.
+00:13:01 [Speaker 3]
+The Demogorgon.
+00:13:02 [Speaker 3]
+You know?
+00:13:02 [Speaker 3]
+Yeah.
+
+00:13:02 [Speaker 3]
+There we go.
+00:13:05 [Speaker 3]
+But someone who does have a face but is not well known is Petter Knowles.
+00:13:10 [Speaker 3]
+So I I wanna be clear about Petter Knowles.
+00:13:13 [Speaker 3]
+Alright?
+00:13:13 [Speaker 3]
+I met him.
+
+00:13:14 [Speaker 3]
+He is he is one of the creative, brainiacs over there at Off Menu with Hunter Hammond.
+00:13:21 [Speaker 3]
+Some of you may be familiar.
+00:13:23 [Speaker 3]
+And I had an opportunity to work with him to see him work, and and that alone was incredible.
+00:13:30 [Speaker 3]
+There are just some designers who are end to end from brand to product, from motion, just the creative direction, that just can do it.
+00:13:39 [Speaker 3]
+They can do it all, and they can do it fast.
+
+00:13:42 [Speaker 3]
+And those people, you just have to kind of admire.
+00:13:45 [Speaker 3]
+I don't know how you do it, but it's a powerhouse type of thing.
+00:13:49 [Speaker 3]
+And that is Petter Knoll with 3,000 followers.
+00:13:51 [Speaker 3]
+Not active on social media too often.
+00:13:53 [Speaker 3]
+We'll share some work here and there, like, cold cans and hot brands.
+
+00:13:58 [Speaker 3]
+Right?
+00:13:58 [Speaker 3]
+Just little things that he'll show off, little product little product design.
+00:14:03 [Speaker 3]
+This is, the logo and with some motion design for Remy, little product that their studio was working on.
+00:14:09 [Speaker 3]
+They do all kinds of things, little interactions that they'll put together, whether it's in the the website itself.
+00:14:14 [Speaker 3]
+They create, like, the new off menu designs.
+
+00:14:16 [Speaker 3]
+Petternoel is always doing some sort of interaction over there, the creative direction.
+00:14:21 [Speaker 3]
+The ideas that he comes up with...
+00:14:23 [Speaker 3]
+Because I know Hunter Hammonds himself is just an absolute shotgun with great product ideas.
+00:14:30 [Speaker 3]
+He goes over to Petter and says, hey.
+00:14:31 [Speaker 3]
+Here's what I'm thinking.
+
+00:14:32 [Speaker 3]
+Petter says, I got you.
+00:14:34 [Speaker 3]
+And he just comes up with what I think are the things that we would see go viral from these, like, Silicon Valley launch videos, you know, from branding to motion.
+00:14:44 [Speaker 3]
+I I love it.
+00:14:45 [Speaker 3]
+I...
+00:14:45 [Speaker 3]
+I'm, like, genuinely humbled when I watch Pedernull work, and I think more people should know about him.
+
+00:14:52 [Speaker 2]
+Also a Pedernull fan, and I feel like we all...
+00:14:55 [Speaker 2]
+We we see Hunter.
+00:14:56 [Speaker 2]
+You know?
+00:14:56 [Speaker 2]
+Hunter is often the one that's, like, tweeting the words.
+00:14:58 [Speaker 2]
+It's, like, it's pretty clear Pedder's the the secret weapon behind
+
+00:15:01 [Speaker 6]
+the scene.
+
+00:15:01 [Speaker 3]
+Oh, hot take.
+00:15:02 [Speaker 3]
+Hot take.
+00:15:03 [Speaker 3]
+I don't know that.
+
+00:15:03 [Speaker 2]
+I don't even think it's that hot take.
+00:15:04 [Speaker 2]
+I don't even think Hunter would think that it was hot.
+
+00:15:07 [Speaker 3]
+Yeah.
+00:15:07 [Speaker 3]
+Yeah.
+00:15:07 [Speaker 3]
+Fedder's good.
+00:15:08 [Speaker 3]
+He's probably gonna text me.
+00:15:08 [Speaker 3]
+Why'd you give away?
+
+00:15:09 [Speaker 3]
+Why'd you tell?
+
+00:15:11 [Speaker 2]
+Yeah.
+00:15:11 [Speaker 2]
+Yeah.
+
+00:15:11 [Speaker 3]
+But it's but it's good.
+00:15:12 [Speaker 3]
+Fedder.
+00:15:13 [Speaker 3]
+Yeah.
+00:15:13 [Speaker 3]
+Let's go.
+00:15:13 [Speaker 3]
+Hey.
+
+00:15:14 [Speaker 3]
+Petter needs a little more love over here, guys.
+00:15:15 [Speaker 3]
+Like, I'm, this is atrocious.
+00:15:17 [Speaker 3]
+But although I will say we've got some we've got some hitters.
+
+00:15:19 [Speaker 2]
+It's kind of a stacked deck today.
+
+00:15:21 [Speaker 3]
+It's a stacked deck including yours.
+
+00:15:23 [Speaker 2]
+I'm gonna raise it even more.
+
+00:15:25 [Speaker 3]
+Okay.
+
+00:15:26 [Speaker 2]
+Let's let's, so this is this is somebody I just found.
+00:15:32 [Speaker 2]
+Hold on.
+00:15:33 [Speaker 2]
+How do I get my little show?
+00:15:36 [Speaker 2]
+There we go.
+00:15:36 [Speaker 2]
+Alright.
+
+00:15:37 [Speaker 2]
+I literally just found Isaiah, I think, like, thirty six hours ago.
+00:15:41 [Speaker 2]
+And, dude, his work's crazy.
+00:15:43 [Speaker 2]
+I just tweeted it out today.
+00:15:44 [Speaker 2]
+I'm, like, rooting for him to get a bunch of followers.
+00:15:46 [Speaker 2]
+He had, like, 400 at the beginning of the day.
+
+00:15:48 [Speaker 2]
+And he's obviously working on some kind of a creative tool.
+00:15:52 [Speaker 2]
+Like, look at what he's doing with gradients.
+00:15:55 [Speaker 2]
+I've never actually seen anybody create this effect where it's like, look at look at the motion come in.
+00:16:01 [Speaker 2]
+Really, really interesting stuff.
+00:16:03 [Speaker 2]
+Yeah.
+
+00:16:04 [Speaker 2]
+And then you you just drill in and all of the tiny design details are so dialed in.
+00:16:12 [Speaker 2]
+They're so dialed in these sliders.
+00:16:14 [Speaker 2]
+There's more Aurora gradient stuff down here too.
+00:16:17 [Speaker 2]
+I I kinda just wanna know what he's cooking.
+00:16:21 [Speaker 2]
+It sounds like something's coming out next week, but I I was just getting ready for bed a couple nights ago and found this feed and ended up just scrolling top to bottom through the entire thing and was really just blown away by some of these visuals.
+
+00:16:35 [Speaker 2]
+And it takes a special type of designer to create really, really good creative tools.
+00:16:42 [Speaker 2]
+I'm not talking about, like, the quick, like, vibe coding, quick jig to solve a very specific problem, but, like, a tool, you know, like a unicorn studio type tool where it can actually really do a lot of different things.
+00:16:52 [Speaker 2]
+And I I just find this dude deeply impressive, and I think there's a reason why he's, currently number one in the rankings.
+
+00:17:02 [Speaker 3]
+That is fair.
+00:17:03 [Speaker 3]
+That is fair.
+00:17:04 [Speaker 3]
+Well done.
+00:17:04 [Speaker 3]
+Please go vote at dive.radio/vote.
+00:17:07 [Speaker 3]
+We will announce the winners at the end of the show.
+
+00:17:10 [Speaker 3]
+Thank you for Notion for sponsoring this segment.
+00:17:15 [Speaker 3]
+On that note, you said something there a second ago.
+00:17:18 [Speaker 3]
+You said, yeah, you're getting ready for bed, and then you just got caught scrolling.
+00:17:20 [Speaker 3]
+And is is that what you do?
+00:17:21 [Speaker 3]
+Is is that what catches you before you go to bed?
+
+00:17:23 [Speaker 3]
+You're like, awesome, beautiful design work, and you just kinda ASMR design yourself to sleep?
+
+00:17:28 [Speaker 2]
+I mean, yeah.
+00:17:29 [Speaker 2]
+Yeah.
+00:17:29 [Speaker 2]
+I I want to not be that cliche, but, yeah, 100%.
+
+00:17:33 [Speaker 3]
+Yeah.
+00:17:33 [Speaker 3]
+That's...
+00:17:33 [Speaker 3]
+I mean, it's way healthier than what I do.
+00:17:35 [Speaker 3]
+I sit here and I just start trash talking all my critics on my wow add on that
+
+00:17:38 [Speaker 2]
+I I...
+00:17:39 [Speaker 2]
+I've had a hunch.
+00:17:40 [Speaker 2]
+I had to have a hunch.
+
+00:17:43 [Speaker 3]
+Yeah.
+00:17:43 [Speaker 3]
+Only...
+00:17:44 [Speaker 3]
+The only demographic more fickle than designers are gamers, and,
+
+00:17:48 [Speaker 2]
+I've learned
+
+00:17:48 [Speaker 3]
+a lesson in the past.
+00:17:51 [Speaker 3]
+Speaking of, us fickle designers.
+00:17:53 [Speaker 3]
+Alright?
+00:17:53 [Speaker 3]
+There's something to be said.
+00:17:56 [Speaker 3]
+Alright?
+
+00:17:57 [Speaker 2]
+I don't know
+
+00:17:59 [Speaker 3]
+what I think about it yet because I haven't clicked
+
+00:18:01 [Speaker 5]
+with it.
+
+00:18:02 [Speaker 3]
+But OpenAI announced intelligent UI.
+
+00:18:05 [Speaker 2]
+Mhmm.
+
+00:18:05 [Speaker 1]
+V p
+
+00:18:06 [Speaker 3]
+six can now compose responses using text visuals, interaction elements, and choose how they fit together based on your question.
+00:18:14 [Speaker 3]
+What does it all mean?
+00:18:15 [Speaker 3]
+Well, I mean, we'll we'll look at some examples.
+00:18:17 [Speaker 3]
+But, essentially, we started talking about this...
+00:18:19 [Speaker 3]
+Was it last week, week before?
+
+00:18:21 [Speaker 3]
+About Jev.
+00:18:23 [Speaker 3]
+And everyone, I think, immediately in...
+00:18:26 [Speaker 3]
+At least in the design space went towards the same question.
+00:18:29 [Speaker 3]
+How can I quickly define a bunch of components and instantly, assent?
+00:18:35 [Speaker 3]
+Visualize a bunch of different assemblies of those components?
+
+00:18:38 [Speaker 3]
+And we saw examples.
+00:18:39 [Speaker 3]
+I know we were in a group chat with Kyle about it.
+00:18:42 [Speaker 3]
+We were in a group chat where I was talking with Samraj who shared about it.
+00:18:45 [Speaker 3]
+So everybody's kind of immediately had a similar idea, and then OpenAI said, cool.
+00:18:49 [Speaker 3]
+We're gonna ship the decisions API.
+
+00:18:51 [Speaker 3]
+And then a week later, they ship intelligent UI, which I think follows that essential theme.
+00:18:58 [Speaker 3]
+And some of those examples...
+00:18:59 [Speaker 3]
+So Lucas Crespo, formerly at Every, was just like, hey.
+00:19:03 [Speaker 3]
+Here are just some ways.
+00:19:04 [Speaker 3]
+So he said, hey.
+
+00:19:04 [Speaker 3]
+Reply to me in a Windows 95 visual style.
+00:19:07 [Speaker 3]
+And it did.
+00:19:08 [Speaker 3]
+This is the response inside of a chat gbt prompt in a Windows modal.
+00:19:14 [Speaker 3]
+And then quickly said, make me a stopwatch, and it did.
+00:19:16 [Speaker 3]
+So these are just these are just quick quick assemblies.
+
+00:19:19 [Speaker 3]
+I'm curious to see what the time was bef...
+00:19:23 [Speaker 3]
+Between let me play the piano and an interface.
+00:19:26 [Speaker 3]
+Was that milliseconds?
+00:19:28 [Speaker 3]
+Because I think that's supposed to be part of the appeal here is how quickly it'll assemble some of these things.
+00:19:34 [Speaker 3]
+Learn with highly interactive examples.
+
+00:19:36 [Speaker 3]
+Boom.
+00:19:37 [Speaker 3]
+Solar system.
+00:19:41 [Speaker 3]
+Practice games and chat.
+00:19:42 [Speaker 3]
+Boom.
+00:19:42 [Speaker 3]
+So, it's it's an interesting thing here.
+
+00:19:45 [Speaker 3]
+I think there still remains to be seen, like, all of the interesting ways we might be able to implement something like this.
+
+00:19:53 [Speaker 2]
+Yeah.
+00:19:54 [Speaker 2]
+It's it's another...
+00:19:55 [Speaker 2]
+It just feels so obvious to me that more and more of our product experiences are gonna move into the agent chats, and those are gonna look less and less like walls of text.
+00:20:04 [Speaker 2]
+Like, to me...
+00:20:05 [Speaker 2]
+And we talked about that last week with some of the plug in stuff that OpenAI released at dev day.
+
+00:20:10 [Speaker 2]
+This is another big step in that direction.
+00:20:12 [Speaker 2]
+Like, in terms of even how I think about in flight product strategy, it's like, it's all just gonna be atomized inside of a chat, and that's kinda like what it looks like to design a product today, which is weird.
+00:20:24 [Speaker 2]
+It's weird, man.
+00:20:24 [Speaker 2]
+You know?
+00:20:25 [Speaker 2]
+It's weird to put so much love and care into, like, a traditional dashboard, and it just feels like the dashboards don't do anything.
+
+00:20:33 [Speaker 2]
+Even down to today, man, I was...
+00:20:35 [Speaker 2]
+A quick aside, I just thought it was so fascinating today where I was in Conductor using Cloud.
+00:20:40 [Speaker 2]
+I was trying to send an email out to, like, a couple different segments of in flight users, and I had it pull the list for me.
+00:20:46 [Speaker 2]
+And then I was like, can you actually just create an audience for me and resend?
+00:20:49 [Speaker 2]
+I just assumed that it can do that now.
+
+00:20:51 [Speaker 2]
+It did.
+00:20:52 [Speaker 2]
+It created the audience and then sent me a link, and I just clicked on the link.
+00:20:55 [Speaker 2]
+And now I'm just typing an email and hitting send to the exact group of users that I wanna email.
+00:20:59 [Speaker 2]
+That's crazy, man.
+00:21:00 [Speaker 2]
+But it's now becoming my assumption that, like, of course, the agent can do that.
+
+00:21:04 [Speaker 2]
+And I I think we're just still the first inning on that that entire trend of product strategy.
+
+00:21:09 [Speaker 3]
+I have so much to say about the level of competence models like Opus five five have brought to the table with these interfaces, with the ability to create these internal tools that just work really well now, how much how much confidence I have in my own tasks.
+00:21:27 [Speaker 3]
+Maybe we'll dive into that in an episode or or two away because I gotta show you some of the internal tools I'm working on, and they're bangers.
+00:21:33 [Speaker 3]
+Like, they are...
+00:21:34 [Speaker 3]
+We're we're genuinely at the place where it's like, yeah, all the three JS stuff is great.
+00:21:38 [Speaker 3]
+But I'm actually seeing, like, I'm I'm truly seeing undeniable speed, and it's it's pretty wild.
+
+00:21:47 [Speaker 3]
+But speaking of this kind of graphical, this component, these atoms, Josh Puckett, who we talk about at this point pretty regularly because he's constantly, he's somebody who...
+00:22:00 [Speaker 3]
+What I really love about Josh is aside from how much he contributes to the community, he's really good at coming up with an idea, something that solves a pretty simple but precise problem, and then building a full product and launching that to the market.
+00:22:20 [Speaker 3]
+And I've...
+00:22:21 [Speaker 3]
+I don't know what his count is this year.
+00:22:23 [Speaker 3]
+I think it's three, four maybe that he has launched.
+
+00:22:26 [Speaker 3]
+They've been beautiful.
+00:22:28 [Speaker 3]
+They've been, really effective at what they're trying to solve for.
+00:22:32 [Speaker 3]
+And his recent, just this week was with Graphical or Graphical.
+00:22:37 [Speaker 3]
+And the entire concept is for React components is my understanding.
+00:22:41 [Speaker 3]
+You can come in.
+
+00:22:42 [Speaker 3]
+I think you have to have Shad c n installed, but you can basically build out any sort of reusable components you want and build...
+00:22:49 [Speaker 3]
+And and have them usable for your agent workflows.
+00:22:53 [Speaker 3]
+He would describe this a bit better.
+00:22:54 [Speaker 3]
+I have not yet played with this.
+00:22:55 [Speaker 3]
+We'll give this launch video some quick love, which, by the way, he talked about how he built this, which was, a pretty easy process.
+
+00:23:04 [Speaker 3]
+We talked a lot about the video last week.
+00:23:06 [Speaker 3]
+But look at this.
+00:23:07 [Speaker 3]
+Look at this launch video.
+00:23:08 [Speaker 3]
+Just real quick, bunch of graphical components.
+00:23:10 [Speaker 3]
+You can come over to, with Graphical and check this out.
+
+00:23:16 [Speaker 3]
+Does he have posts on here?
+00:23:17 [Speaker 3]
+We don't.
+00:23:17 [Speaker 3]
+Okay.
+00:23:18 [Speaker 3]
+So there's not a lot to see here yet, but if you go to graphicalui.com, this is what we It's
+
+00:23:23 [Speaker 2]
+a beautiful website.
+00:23:23 [Speaker 2]
+It's worth a scroll.
+00:23:24 [Speaker 2]
+Just...
+00:23:24 [Speaker 2]
+I mean, it's a really good designer making a nice website.
+00:23:27 [Speaker 2]
+It's so simple, but it's all very interactive in a way that's fun.
+
+00:23:30 [Speaker 3]
+This is actually a great landing page.
+00:23:31 [Speaker 3]
+I love this.
+
+00:23:32 [Speaker 2]
+It's really good.
+00:23:32 [Speaker 2]
+Yeah.
+00:23:33 [Speaker 2]
+Yeah.
+00:23:33 [Speaker 2]
+It's really good.
+
+00:23:34 [Speaker 3]
+Yeah.
+00:23:34 [Speaker 3]
+Super simple.
+00:23:35 [Speaker 3]
+So...
+00:23:35 [Speaker 3]
+Yep.
+00:23:36 [Speaker 3]
+Shout out to, Josh on that, which, by the way, to that point in the community, we will be having Josh on the Halloween Friday, hence our costumes and the thumb, for an hour in the dive club group chat to talk about how do you think about shipping your own products, as a designer.
+
+00:23:55 [Speaker 3]
+Right?
+00:23:56 [Speaker 3]
+Your own tools.
+00:23:56 [Speaker 3]
+How do you take something from, like, a cute little idea, and let's go ahead and ship this thing.
+00:24:00 [Speaker 3]
+Let's make it.
+00:24:01 [Speaker 3]
+Let's go to market with it.
+
+00:24:02 [Speaker 3]
+We're gonna talk about it, and I'm excited for that one because we've got a lot of questions.
+00:24:06 [Speaker 3]
+Also, one quick love shout out is, paper.
+00:24:10 [Speaker 3]
+You need a Oh, god.
+00:24:12 [Speaker 3]
+Typeface here.
+00:24:13 [Speaker 3]
+Mono.
+
+00:24:14 [Speaker 3]
+Let's go, paper.
+00:24:16 [Speaker 3]
+I didn't know this.
+
+00:24:17 [Speaker 2]
+No.
+00:24:17 [Speaker 2]
+They didn't tell me this.
+00:24:18 [Speaker 2]
+I knew it was out.
+00:24:20 [Speaker 2]
+I know.
+00:24:22 [Speaker 2]
+Yeah.
+
+00:24:22 [Speaker 2]
+I'll play with this.
+00:24:23 [Speaker 2]
+I like to play with a good one on space.
+00:24:25 [Speaker 2]
+I'm I'm, proudly repping my paper shirt that I just got.
+00:24:29 [Speaker 2]
+Elite swag.
+
+00:24:30 [Speaker 3]
+Hey.
+00:24:31 [Speaker 3]
+You got some swag on?
+00:24:31 [Speaker 3]
+Yeah.
+
+00:24:32 [Speaker 2]
+I had to add on.
+00:24:32 [Speaker 2]
+Elite swag.
+
+00:24:33 [Speaker 3]
+Here we go.
+00:24:34 [Speaker 3]
+Hey.
+00:24:37 [Speaker 3]
+I love this.
+00:24:37 [Speaker 3]
+This is cool.
+00:24:38 [Speaker 3]
+So you could check this out at paper.design/mono, showing people, a little bit of love.
+
+00:24:42 [Speaker 3]
+Cool work here, Vlad.
+00:24:43 [Speaker 3]
+Nice share.
+00:24:44 [Speaker 3]
+Thank you.
+00:24:45 [Speaker 3]
+Thank you.
+00:24:45 [Speaker 3]
+Alright.
+
+00:24:46 [Speaker 3]
+Speaking of work, and this will take us into our next topic because I do wanna talk about agents.
+00:24:50 [Speaker 3]
+I wish we had a whole episode to talk about agents today.
+00:24:53 [Speaker 3]
+We're not going to, but we're gonna just talk briefly on a couple things that came out.
+00:24:57 [Speaker 3]
+So Figma just launched Figma Agent.
+00:25:00 [Speaker 3]
+Now I haven't played with it.
+
+00:25:01 [Speaker 3]
+I don't know a lot about it.
+00:25:03 [Speaker 3]
+But what I noticed is this is just a continuous trend as we went from wrappers to agent harnesses to what I think will next be a redefining of what operating systems mean on a more micro level.
+00:25:15 [Speaker 3]
+We'll get into that in a second.
+00:25:17 [Speaker 3]
+But first, our friend Soren Iverson, I just wanna show some love on this launch video.
+00:25:23 [Speaker 3]
+This thing is killer.
+
+00:25:24 [Speaker 3]
+Look at this choreography.
+00:25:26 [Speaker 3]
+Look at the concept.
+00:25:27 [Speaker 3]
+We're gonna watch this.
+
+00:25:30 [Speaker 2]
+I haven't actually seen this yet.
+
+00:26:33 [Speaker 3]
+I love it, man.
+00:26:34 [Speaker 3]
+I think it's cool.
+00:26:36 [Speaker 3]
+And someone asked, do you think Soren was out there dancing and conducting the choreography at six foot four?
+00:26:42 [Speaker 3]
+For sure.
+00:26:43 [Speaker 3]
+Soren will be the first person to to give all the credit to his team and that incredible studio that he has built, so not to take away from anyone on that team.
+
+00:26:52 [Speaker 3]
+But definitely calling a shout out to Soren Iverson in the studio.
+00:26:55 [Speaker 3]
+They're they're behind the gamma, video that just launched yesterday too or day before or whenever that was.
+00:27:00 [Speaker 3]
+Oh, cool.
+00:27:00 [Speaker 3]
+Yeah.
+00:27:01 [Speaker 3]
+So They're crushing it.
+
+00:27:02 [Speaker 3]
+They they're, like, genuinely, I don't think people realize just how much Soren's studio is putting out bangers.
+00:27:09 [Speaker 3]
+And, I just wanna give them some love.
+00:27:10 [Speaker 3]
+So super cool.
+00:27:12 [Speaker 3]
+Interesting, the Figma agent.
+00:27:14 [Speaker 3]
+Curious to hear if anybody's tried this yet.
+
+00:27:16 [Speaker 3]
+It is now out of beta beta.
+00:27:19 [Speaker 3]
+I say beta all the time.
+00:27:21 [Speaker 3]
+Interesting stuff.
+00:27:23 [Speaker 3]
+And meanwhile, the...
+00:27:24 [Speaker 3]
+This is just like an ongoing trend, man.
+
+00:27:26 [Speaker 3]
+I'm seeing all these agents coming out, and they're really specific in this design space too.
+00:27:31 [Speaker 3]
+Air, which is an interesting name because I was thinking about this tool called Air a while ago that was a very similar concept for creative tasks.
+00:27:40 [Speaker 3]
+Right?
+00:27:40 [Speaker 3]
+For years, we've built tools to help you do the work.
+00:27:43 [Speaker 3]
+Now let us get it done for you.
+
+00:27:47 [Speaker 3]
+Short.
+00:27:48 [Speaker 3]
+Done.
+00:27:49 [Speaker 3]
+Yeah.
+00:27:50 [Speaker 3]
+Air, it's not chaos.
+00:27:51 [Speaker 3]
+It's context to get you past.
+
+00:27:54 [Speaker 2]
+Oh, I did go to this website.
+00:27:56 [Speaker 2]
+Did you?
+00:27:56 [Speaker 2]
+You can check this out.
+00:27:57 [Speaker 2]
+Yeah.
+
+00:27:58 [Speaker 3]
+Yeah.
+00:27:58 [Speaker 3]
+So, like, you know, just continuously capitulating towards this mean of where agent work in context And I I just think it's...
+00:28:17 [Speaker 3]
+I think I think to some degree, most tools in every...
+00:28:21 [Speaker 3]
+In their own industries are all kind of competing with each other.
+00:28:24 [Speaker 3]
+They just don't know it yet.
+
+00:28:26 [Speaker 3]
+I think a lot of the source of truth, everyone's gonna try to figure out how do we become the beholders of this.
+00:28:31 [Speaker 3]
+And others might try to figure out how do we not have to play that game.
+00:28:35 [Speaker 3]
+But it's clear that more and more people are moving towards, well, we we need a wrapper.
+00:28:39 [Speaker 3]
+Okay.
+00:28:39 [Speaker 3]
+Well, let's build that out a little bit more robust with tools and memory.
+
+00:28:43 [Speaker 3]
+Alright.
+00:28:43 [Speaker 3]
+Let's go ahead and give you an agent around that harness.
+00:28:45 [Speaker 3]
+Okay.
+00:28:45 [Speaker 3]
+And then what's next?
+00:28:47 [Speaker 3]
+And I think everyone is trying to figure this out.
+
+00:28:50 [Speaker 3]
+Like, how do we make this so there's this hybrid agent human workflow?
+00:28:55 [Speaker 3]
+Even people like Elon are realizing, hey.
+00:28:57 [Speaker 3]
+Hold on a second.
+00:28:59 [Speaker 3]
+Maybe it was a bad idea to try and wall off Grok just to use the Grok models.
+00:29:05 [Speaker 3]
+We're gonna go ahead and open up Grok so that it'll use Opus, MidJourney, Suno, whenever the task calls for it.
+
+00:29:13 [Speaker 3]
+So it might not necessarily give you the control to choose, but it's no longer just like we're gonna be the only model contributor to Grok.
+00:29:22 [Speaker 3]
+And I think more companies are just realizing, like, either you're gonna open up your tools to everything else to be able to run through them, or I think if you close yourself off, you're gonna play a really hard game in the near future.
+00:29:38 [Speaker 3]
+And
+
+00:29:38 [Speaker 2]
+Yeah.
+
+00:29:39 [Speaker 3]
+I think this is an indicator of that.
+
+00:29:41 [Speaker 2]
+Yeah.
+00:29:42 [Speaker 2]
+I agree.
+
+00:29:44 [Speaker 3]
+Now, of course, there are risks in using and becoming reliant on agents the way that I do.
+00:29:51 [Speaker 3]
+And I am extremely reliant on agents.
+00:29:54 [Speaker 3]
+I've got one inside of our Discord.
+00:29:56 [Speaker 3]
+I'm I'm still waiting to wake up to this nightmare, which was the CEO, the founder.
+00:30:03 [Speaker 3]
+Jane says, I'm embarrassed to share this, but it scared the shit out of me.
+
+00:30:07 [Speaker 3]
+And he woke up, and his agent, his bot, had dropped all the details of his personal bank account into the work Slack channel.
+00:30:18 [Speaker 3]
+And he was like, why did this happen?
+00:30:21 [Speaker 3]
+He went through and he kind of broke down a forensic, and it was like, agent was essentially, you're right to be pissed.
+00:30:27 [Speaker 3]
+That never should have gone to the company's Slack.
+00:30:31 [Speaker 3]
+And and I appreciate I deleted it.
+
+00:30:33 [Speaker 3]
+How the hell could this...
+00:30:35 [Speaker 3]
+Could you get this wrong?
+00:30:36 [Speaker 3]
+Right.
+00:30:38 [Speaker 3]
+I understand the frustration here.
+00:30:40 [Speaker 3]
+That's the reality of it.
+
+00:30:41 [Speaker 3]
+You know?
+00:30:42 [Speaker 3]
+The reality is that we're gonna run into a lot of these awkward instances.
+00:30:47 [Speaker 3]
+I'm building a lot of my upcoming documentary shoot with dScout using a production assistant that is a Gentic, and it has been really reliable.
+00:30:57 [Speaker 3]
+I am I am waiting for the other shoe to drop on that, for something to just go completely haywire.
+
+00:31:02 [Speaker 2]
+That wouldn't that wouldn't happen
+
+00:31:03 [Speaker 3]
+to you.
+00:31:04 [Speaker 3]
+No.
+00:31:05 [Speaker 3]
+Never.
+00:31:05 [Speaker 3]
+Never.
+00:31:08 [Speaker 3]
+But all of this again, it's like, why are we playing these games?
+
+00:31:11 [Speaker 3]
+Well, it's because we're seeing use cases.
+00:31:14 [Speaker 3]
+We're playing the agentic game.
+00:31:16 [Speaker 3]
+We're plugging into these installation frameworks is extremely beneficial to some products.
+00:31:22 [Speaker 3]
+And we look at Pietro Serrano, who has been sharing how successful the outcome has been by making MagicPath available on the ChatGPT marketplace.
+00:31:34 [Speaker 3]
+I think this post or the one that that led up to this post inspired a lot of companies to prioritize creating a plug in for the marketplace.
+
+00:31:43 [Speaker 3]
+And he says it just hasn't stopped.
+00:31:45 [Speaker 3]
+I've never seen anything like it.
+00:31:46 [Speaker 3]
+We have added 500,000 in annual revenue revenue this week only, which is crazy.
+00:31:52 [Speaker 3]
+So I was like, dude, can you can you tell me?
+00:31:55 [Speaker 3]
+Like, I I...
+
+00:31:57 [Speaker 3]
+I'm a big fan of Pietro's product vision.
+00:32:00 [Speaker 3]
+I I I know him very well.
+00:32:01 [Speaker 3]
+I've had a lot of conversations about it.
+00:32:03 [Speaker 3]
+And I'm curious, like, how does this change how he thinks about product?
+00:32:07 [Speaker 3]
+And this is what he had to say.
+
+00:32:09 [Speaker 7]
+Basically, I think, like, the era of build your own agent is over.
+00:32:12 [Speaker 7]
+People just wanna use their models.
+00:32:13 [Speaker 7]
+Right?
+00:32:14 [Speaker 7]
+It's kinda like your case where, like, you have your own open claw.
+00:32:16 [Speaker 7]
+You really like what you have because it's your skills, your MCP, or your context.
+
+00:32:21 [Speaker 7]
+So that type of flow, it's really hard to win back again.
+00:32:26 [Speaker 7]
+Right?
+00:32:27 [Speaker 7]
+And so we just provide basically a better way now to deal with that.
+00:32:30 [Speaker 7]
+And then it's not just discoverability.
+00:32:32 [Speaker 7]
+It's like...
+
+00:32:32 [Speaker 7]
+It's kinda what I was saying before where it's basically zero friction.
+00:32:39 [Speaker 7]
+Compass, and they do want agent in a compass that act like magic path where it's interactive and it's, you know, you can just, like, see different prototypes at the same time.
+00:32:47 [Speaker 7]
+You can try all your all your ideas, all those things.
+00:32:50 [Speaker 7]
+What unlocks is basically, like, just zero friction.
+00:32:53 [Speaker 7]
+Right?
+
+00:32:54 [Speaker 7]
+Because, like, you try to use LBT and then the canvas is right there.
+00:32:56 [Speaker 7]
+So you know how to use LBT already.
+00:32:58 [Speaker 7]
+You basically learn how to use MagicPath.
+00:33:00 [Speaker 7]
+To me, this is, like, kinda, like, the first example of what I think about, like, an agent OS or, like, a chat OS where we're moving to a place where software and apps are just gonna be more, like, add ons for agents than just, you know, the place to go and do the thing.
+00:33:16 [Speaker 7]
+And so I think, like like, we're seeing that, and and I I think the success of of MagicPath speaks for itself.
+
+00:33:22 [Speaker 7]
+We had another 600,000 error.
+00:33:25 [Speaker 7]
+It's it's just crazy.
+00:33:27 [Speaker 7]
+But...
+00:33:27 [Speaker 7]
+Yeah.
+00:33:27 [Speaker 7]
+And then, of course, like, it it it does shake up the landscape...
+
+00:33:30 [Speaker 7]
+The competitive landscape a lot, I think.
+
+00:33:34 [Speaker 3]
+Someone says here, I'm stuck in the review with my plug in.
+00:33:38 [Speaker 3]
+I don't think I'm gonna ever hear back.
+00:33:40 [Speaker 3]
+Many such cases.
+
+00:33:41 [Speaker 2]
+Right there with you, Justin.
+00:33:42 [Speaker 2]
+Right there with you.
+00:33:43 [Speaker 2]
+Let me let me tell you.
+00:33:47 [Speaker 2]
+You and the 10,000 other people that applied immediately after seeing Pietro's tweet.
+
+00:33:52 [Speaker 3]
+Yeah.
+00:33:53 [Speaker 3]
+Yeah.
+00:33:53 [Speaker 3]
+So we'll we'll see.
+00:33:55 [Speaker 3]
+Fingers crossed for for all of us.
+00:33:57 [Speaker 3]
+But,
+
+00:33:59 [Speaker 2]
+you know That's my thesis on the world, though.
+00:34:00 [Speaker 2]
+Like, what he just said, I didn't even know that clip was coming.
+00:34:03 [Speaker 2]
+Yeah.
+00:34:03 [Speaker 2]
+That's that's basically where I'm at, man.
+00:34:05 [Speaker 2]
+And and I I think Figma has enough power and grip on the market and enough walk in, especially at the enterprise where people are gonna use their agent, and I'm sure it's very good.
+
+00:34:15 [Speaker 2]
+But I just don't...
+00:34:17 [Speaker 2]
+I think I'm done adding agents to my life.
+00:34:20 [Speaker 2]
+I have my agents, and I want your tools to work with my agents.
+
+00:34:23 [Speaker 3]
+100%, man.
+00:34:24 [Speaker 3]
+And and that's why, to me, I I really think, you know, this...
+00:34:29 [Speaker 3]
+I have not heard a lot of people say the word operating system.
+00:34:34 [Speaker 3]
+I have heard a couple, and it's this framing where we think of operating systems as, like, a couple incumbents, this large infrastructure that's like, you you opt in, and that's like a permanent decision.
+00:34:50 [Speaker 3]
+I do think this wrappers to harnesses to, blank.
+
+00:34:56 [Speaker 3]
+I think the next thing is something around this idea of, like, industry specific operating systems that you plug in and out of, that your agents move through.
+00:35:08 [Speaker 3]
+Because I think, like, we're not gonna create...
+00:35:10 [Speaker 3]
+Recreate the agent, but we will create the highways your agents can move through to get certain things done in certain contexts.
+
+00:35:16 [Speaker 2]
+Makes a lot more
+
+00:35:17 [Speaker 3]
+sense.
+00:35:17 [Speaker 3]
+It makes a lot more sense to me.
+00:35:19 [Speaker 3]
+Somebody thinking about it that way, Ryan, Steven over at Continuum, he kinda shared a a new operating system designed from the ground up for real time video interfaces.
+00:35:28 [Speaker 3]
+Works at Runway Labs.
+00:35:30 [Speaker 3]
+They're doing a lot of interesting things.
+
+00:35:32 [Speaker 3]
+And so I thought this was cool.
+00:35:34 [Speaker 3]
+I didn't understand the...
+00:35:35 [Speaker 3]
+What the concept was from this video, so I asked Ryan to maybe break it down for us a little bit.
+00:35:40 [Speaker 3]
+And that's what...
+
+00:35:41 [Speaker 6]
+This is
+
+00:35:41 [Speaker 3]
+what he had to say about this.
+
+00:35:43 [Speaker 8]
+Hello.
+00:35:43 [Speaker 8]
+My name is Ryan.
+00:35:44 [Speaker 8]
+I'm a designer and prototyper here at Runway Labs, and we wanted to share an early look at a new research application we're working on called Continuum.
+00:35:52 [Speaker 8]
+The idea here is that as real time video models become available, we've been exploring how they might live beyond the browser and in an operating system that you use every day.
+00:36:00 [Speaker 8]
+So I wanna give a quick demo.
+
+00:36:02 [Speaker 8]
+You'll notice along the bottom, you have a familiar prompt bar where you can ask anything to AI, and along the top, I have tabs of things I've been working on that I can jump back into.
+00:36:11 [Speaker 8]
+So here's an article I was reading earlier, and Continuum has context and memory of the types of tasks that I've been working on.
+00:36:17 [Speaker 8]
+And so as I'm reading through this, I can always have Continuum help me dive deeper on a topic.
+00:36:23 [Speaker 8]
+So at the bottom here, I can select and then select anything on screen that I'm looking at and continuum generates a real time video portal.
+00:36:31 [Speaker 8]
+This portal can be three d visualizations.
+
+00:36:34 [Speaker 8]
+It can be other content.
+00:36:36 [Speaker 8]
+Really anything that helps me dive deeper on a topic in a visual way.
+00:36:39 [Speaker 8]
+And what's really awesome is these portals come with you throughout the experience.
+00:36:43 [Speaker 8]
+So as I'm browsing on the web, for example, I can always scroll over to this right hand drawer and expand and view portals that I've previously generated.
+00:36:53 [Speaker 8]
+They have blurry or fuzzy edges, kind of dreamlike, to help distinguish between generated and fixed content that you're looking at on screen.
+
+00:37:01 [Speaker 8]
+What else is awesome about portals is they're fully interactive experiences.
+00:37:06 [Speaker 8]
+For example, I'll jump into one that I was looking at earlier.
+00:37:09 [Speaker 8]
+This is all about photosynthesis and plant biology and just like a traditional window, you can resize them to get a better look.
+00:37:17 [Speaker 8]
+And I can also click anywhere to interact with this video and get really rich experiences.
+00:37:23 [Speaker 8]
+We also have an info tool tip to expose some of the prompt behind the scenes so that you can really create and tailor these custom experiences.
+
+00:37:31 [Speaker 8]
+They're super personal to you.
+00:37:33 [Speaker 8]
+Another thing Continuum is awesome at is working with agents.
+00:37:36 [Speaker 8]
+I'm gonna say, can you make a three d print model or a mount for my bike?
+00:37:42 [Speaker 8]
+And you'll notice that Continuum is automatically selecting the correct mode to use, so the type of intent that I'm trying to experience.
+00:37:50 [Speaker 8]
+And it opens an agent chat window with a new paradigm we're calling visual thinking.
+
+00:37:54 [Speaker 8]
+The coding model can actually use the real time video interface to be able to create these three d visualizations of what it's reasoning through.
+00:38:02 [Speaker 8]
+Really awesome and so much more rich than just a wall of text.
+00:38:06 [Speaker 8]
+These interfaces and generative video moments can be created proactively within Continuum.
+00:38:13 [Speaker 8]
+You'll notice at the bottom that Continuum actually generates suggestions for real time video interfaces based on what I have open or what I'm looking at.
+00:38:22 [Speaker 8]
+Let's jump into a Mars outpost, for example.
+
+00:38:25 [Speaker 8]
+And so here, this is a real time video that's a whole world that I can step into.
+00:38:30 [Speaker 8]
+So I can actually full screen this, and just like you'd expect, I can click anywhere and interact with the video.
+00:38:35 [Speaker 8]
+So here I can zoom into the outpost itself.
+00:38:39 [Speaker 8]
+That's just an early look at some of the new capabilities and features that we've been exploring in Continuum.
+00:38:45 [Speaker 8]
+We're excited to share more soon and keep building towards generative video interfaces.
+
+00:38:52 [Speaker 3]
+So much so much in there, but I just wanna call something out to you is, like, I love the variation suggestions.
+00:38:59 [Speaker 3]
+Yeah.
+00:39:00 [Speaker 3]
+And, you know, when we think about...
+00:39:02 [Speaker 3]
+They're they're calling it operating system, you still have a chat interface in there where you're, like, working.
+00:39:07 [Speaker 3]
+You're communicating with their kind of operating system.
+
+00:39:10 [Speaker 3]
+But I I I still think there's gonna be this thing where I wanna be able to chat in your operating system's interface, but I wanna be able to bring my own agent into it and let that...
+00:39:22 [Speaker 3]
+My agent have access to all of the benefits of your operating system.
+
+00:39:27 [Speaker 2]
+You know
+
+00:39:27 [Speaker 9]
+what I mean?
+
+00:39:28 [Speaker 3]
+And I don't
+
+00:39:29 [Speaker 2]
+I don't know how to
+
+00:39:29 [Speaker 3]
+frame that, but that's that's something...
+00:39:31 [Speaker 3]
+Bring your own agent feels like it's something we may hear more of in the future.
+
+00:39:35 [Speaker 2]
+That video was dope, dude.
+
+00:39:37 [Speaker 1]
+Yeah.
+00:39:38 [Speaker 1]
+Yeah.
+
+00:39:38 [Speaker 2]
+I I actually forgot that Ryan was at Runway Labs.
+00:39:41 [Speaker 2]
+I'm so happy.
+00:39:43 [Speaker 2]
+Because I interviewed him at the beginning of the year because I think he's some of his...
+00:39:46 [Speaker 2]
+I mean, forever...
+00:39:47 [Speaker 2]
+I'm gonna put his Twitter into, the chat.
+
+00:39:49 [Speaker 2]
+Oh my gosh.
+00:39:50 [Speaker 2]
+One of the s tier creative Twitters in the whole game.
+00:39:55 [Speaker 2]
+He's just...
+00:39:55 [Speaker 2]
+He's so freaking good.
+00:39:57 [Speaker 2]
+Yeah.
+
+00:39:57 [Speaker 2]
+And...
+00:39:57 [Speaker 2]
+But he's...
+00:39:58 [Speaker 2]
+He was working at Microsoft.
+00:39:59 [Speaker 2]
+So, like, I would look at the guy and be like, man, this is like this crazy disconnect between the work he was getting paid to do and then the work he was doing on his own, where it feels like those two worlds just now became so beautifully one.
+00:40:11 [Speaker 2]
+And he is gonna he is gonna be one of the people that definitely pioneers the future.
+
+00:40:14 [Speaker 2]
+But I...
+00:40:15 [Speaker 2]
+Can I admit something?
+00:40:16 [Speaker 2]
+I'm gonna get...
+00:40:16 [Speaker 2]
+I'll get vulnerable for a second.
+00:40:17 [Speaker 2]
+I look at real time video, and I simultaneously think, one, this feels kind of inevitable as things get cheaper, faster, better.
+
+00:40:26 [Speaker 2]
+Two, dude, it makes me, like, nervous.
+00:40:30 [Speaker 2]
+It it feels like a whole different type of designing and thinking and measuring stick for what it looks like to even be good at your job where I'm like, man.
+00:40:40 [Speaker 2]
+Do I really have what it takes to cross that chasm?
+00:40:42 [Speaker 2]
+Because it feels like a big chasm, but you're gonna experience it.
+00:40:44 [Speaker 2]
+When when something launches and it makes use of this, it's going to be night and day compared to what we're used to.
+
+00:40:50 [Speaker 2]
+I don't know, man.
+00:40:51 [Speaker 2]
+That's, like, one of those ones that's, like, beautifully intimidating to me.
+
+00:40:54 [Speaker 3]
+I had the same thought.
+00:40:55 [Speaker 3]
+I was watching this, and I remember thinking myself, you know, we're about the same age.
+00:41:00 [Speaker 3]
+For those who don't know, I think Ridd and I are both approaching 40 here.
+00:41:03 [Speaker 3]
+I'm about a...
+00:41:03 [Speaker 3]
+I'm a couple months away.
+
+00:41:06 [Speaker 2]
+Don't loop me in there.
+00:41:07 [Speaker 2]
+I'm I'm still on my...
+00:41:08 [Speaker 2]
+I'm still closer to 30.
+
+00:41:09 [Speaker 3]
+Are you?
+00:41:10 [Speaker 3]
+I got a
+
+00:41:10 [Speaker 2]
+few months I got a few months turn...
+00:41:12 [Speaker 2]
+Before I turn 35.
+
+00:41:13 [Speaker 3]
+Oh, yeah.
+00:41:14 [Speaker 3]
+You're still on the other side.
+00:41:14 [Speaker 3]
+Okay.
+00:41:15 [Speaker 3]
+Get out of here.
+00:41:15 [Speaker 3]
+I'm I'm the one.
+
+00:41:16 [Speaker 3]
+I'm dealing with the the back pains.
+00:41:18 [Speaker 3]
+So this is how I think about it.
+00:41:20 [Speaker 3]
+You know, like, athletes, they grow older and they have to reconcile with, like, my body's just not the same.
+00:41:26 [Speaker 3]
+Like, I...
+00:41:27 [Speaker 3]
+My mind and spirit are one way, but my body's not.
+
+00:41:30 [Speaker 3]
+And always a kind of a sad story.
+00:41:33 [Speaker 3]
+And I look at this and I go, man, my version of that is gonna be the day I cognitively feel like I don't have the faculties to cross the...
+00:41:42 [Speaker 3]
+To cross that gap of, like, this entire new paradigm.
+
+00:41:46 [Speaker 2]
+Yeah.
+
+00:41:46 [Speaker 3]
+And I would be extremely sad.
+00:41:47 [Speaker 3]
+That day is not today, ladies and gentlemen.
+00:41:49 [Speaker 3]
+That's the good news.
+00:41:51 [Speaker 3]
+But I do relate with looking at this and going, how do I even concept...
+00:41:56 [Speaker 3]
+How do I contextualize this into the day to day stuff that I'm so used to?
+
+00:41:59 [Speaker 3]
+I don't.
+00:42:00 [Speaker 3]
+I don't know.
+
+00:42:01 [Speaker 2]
+Yeah.
+00:42:01 [Speaker 2]
+I think there's gonna be a lot of benefits to being earlier in your career where it's a little bit easier to just play mentally outside of the lanes that we've spent so long in.
+
+00:42:13 [Speaker 3]
+I look at this and I'm like, okay.
+00:42:14 [Speaker 3]
+Let me think practically.
+00:42:16 [Speaker 3]
+Moodboarding, always a very static activity.
+
+00:42:19 [Speaker 6]
+Mhmm.
+
+00:42:19 [Speaker 3]
+Kind of dynamism...
+00:42:20 [Speaker 3]
+Dynamic.
+00:42:23 [Speaker 3]
+The most dynamic it can kinda get is when you're moving things around to maybe, you know, different columns.
+00:42:29 [Speaker 3]
+I'm like, hold on a second.
+00:42:31 [Speaker 3]
+How can I mood board in such a way where, like, drilling into moods turns them into more interactive moments?
+
+00:42:37 [Speaker 3]
+Yeah.
+00:42:37 [Speaker 3]
+Is that useful?
+00:42:38 [Speaker 3]
+Certainly in, you know, video planning, but interesting stuff there.
+00:42:43 [Speaker 3]
+But lastly, I just wanna call something out.
+00:42:45 [Speaker 3]
+I thought it was fun because this is gonna take us into our next topic here shortly, which is agents playing games happens to be this thing that's happening.
+
+00:42:54 [Speaker 3]
+We're not gonna watch this whole thing.
+00:42:58 [Speaker 3]
+Somebody built StarCraft and then made Opus five five and GPT six Astra face off over the course of thousands of matches to kinda test their, intelligence against each other.
+00:43:11 [Speaker 3]
+If I'm no...
+00:43:12 [Speaker 3]
+If I'm not mistaken, I think Astra won.
+00:43:14 [Speaker 3]
+And then they put Astra up against the most prominent StarCraft specific bot.
+
+00:43:21 [Speaker 3]
+I believe it's called Pluto, who has never lost or has some insane record, and Astra lost zero to a thousand to Pluto.
+00:43:30 [Speaker 3]
+So interesting, there's a lot of...
+00:43:32 [Speaker 3]
+Yeah.
+00:43:33 [Speaker 3]
+Yeah.
+00:43:33 [Speaker 3]
+A lot of stuff out there around, this, but but Astra smoked Opus was my understanding.
+
+00:43:39 [Speaker 3]
+I think I've got that right.
+00:43:40 [Speaker 3]
+So this is Astra versus Pluto.
+00:43:42 [Speaker 3]
+He goes through these matches.
+00:43:43 [Speaker 3]
+And and we're gonna talk about this.
+00:43:45 [Speaker 3]
+We're gonna talk about not this use case.
+
+00:43:46 [Speaker 3]
+I just thought this was an interesting segue at some point.
+00:43:49 [Speaker 3]
+We're gonna talk about the gaming.
+00:43:51 [Speaker 3]
+Now before we do real quick, because this is crazy.
+00:43:54 [Speaker 3]
+This is a lot of stuff happening in gaming.
+00:43:56 [Speaker 3]
+There's a...
+
+00:43:56 [Speaker 3]
+We talked about gaming in episode three.
+00:43:58 [Speaker 3]
+I know this.
+00:44:00 [Speaker 3]
+That was one shotting.
+00:44:01 [Speaker 3]
+Today, we are talking about what you designers are doing with this, extending it so much further than just three months ago, two months ago.
+00:44:09 [Speaker 3]
+It's it's pretty nuts because there's a lot of reverse engineering happening in gaming.
+
+00:44:14 [Speaker 3]
+There's a lot of reverse engineering happening in design.
+00:44:17 [Speaker 3]
+Do you see this?
+00:44:18 [Speaker 3]
+People are going through, and there's two different versions that got announced this week where someone went and recreated the entire Adobe Creative Suite.
+
+00:44:29 [Speaker 2]
+Oh, I did see this.
+00:44:30 [Speaker 2]
+Yeah.
+
+00:44:31 [Speaker 3]
+Alright.
+00:44:31 [Speaker 3]
+And the first one of these is getartcraft.com.
+00:44:35 [Speaker 3]
+You've got photo craft, vector craft, film craft, light craft.
+00:44:39 [Speaker 3]
+I haven't used these.
+00:44:40 [Speaker 3]
+I don't know how good they are.
+
+00:44:42 [Speaker 3]
+I'm not about to ditch our current Adobe Creative Suite workflows for these, but I wouldn't be opposed to it, you know, to try and this out.
+00:44:50 [Speaker 3]
+But it is interesting to see just
+
+00:44:54 [Speaker 2]
+They said there would be a full parity within a month.
+00:44:57 [Speaker 2]
+Yeah.
+00:44:58 [Speaker 2]
+Full parody with the Adobe Creative Suite.
+
+00:45:01 [Speaker 3]
+Well...
+00:45:01 [Speaker 3]
+And it's like another one.
+00:45:04 [Speaker 3]
+This is the doom we predicted a few days ago.
+00:45:07 [Speaker 3]
+Right?
+00:45:08 [Speaker 3]
+Photo craft.
+
+00:45:10 [Speaker 3]
+Another version of the exact same thing.
+00:45:15 [Speaker 3]
+Adobe just got nuked, he says, and closed sources is dead, dead, dead.
+00:45:18 [Speaker 3]
+Okay.
+00:45:19 [Speaker 3]
+A little hyperbolic hyperbolic, but, you know, I don't know if there's not some truth in here.
+00:45:24 [Speaker 3]
+Who knows?
+
+00:45:25 [Speaker 3]
+We'll see.
+00:45:25 [Speaker 3]
+Because as I was saying at the beginning of the show, Opus five five has enabled the internal tooling for me in a way that, like, I'm about to open source a whole bunch of things that could probably be, like, their own products.
+00:45:37 [Speaker 3]
+And I'm almost like, is it irresponsible to open source these?
+00:45:40 [Speaker 3]
+Am I leaving money on the table?
+00:45:41 [Speaker 3]
+Probably.
+
+00:45:42 [Speaker 3]
+But it's...
+00:45:43 [Speaker 3]
+There's some wild there's some wild use cases becoming, that are now possible.
+00:45:48 [Speaker 3]
+Like, what talked about here.
+00:45:51 [Speaker 3]
+Says, I think it's probably an incredible time to be a game dev content creator.
+00:45:56 [Speaker 3]
+For many people, making games is a form of having fun, and they're willing to pay for it.
+
+00:46:00 [Speaker 3]
+And I think this is true.
+00:46:02 [Speaker 3]
+And and this is gonna get us into our portfolios because, oh, man, are people turning their portfolios into games.
+00:46:09 [Speaker 3]
+But even before we get to that point, you have to see what people are doing in the gaming space right now.
+00:46:17 [Speaker 3]
+Now I made a comment and said, I think this might be one of the first times in recent memory where I genuinely believe a marketplace like Steam, which is no small feat, might have room for a competitor to come up because there are gonna be a lot of people who reject, essentially, GameSlop.
+00:46:35 [Speaker 3]
+There are gonna be a lot of people who lean heavily into it, especially when you're getting things like TweetCraft.
+
+00:46:42 [Speaker 3]
+He built Minecraft inside of Twitter.
+00:46:45 [Speaker 3]
+You could play this right now.
+00:46:47 [Speaker 3]
+These are people's worlds.
+00:46:48 [Speaker 3]
+I went and looked at this last night.
+00:46:50 [Speaker 3]
+Right now, people are probably at work.
+
+00:46:52 [Speaker 3]
+There were hundreds of users inside of these Minecraft worlds.
+00:46:56 [Speaker 3]
+I could join the server right now.
+00:46:57 [Speaker 3]
+I'm inside of Twitter right now, by the way.
+00:47:02 [Speaker 3]
+Now you just...
+00:47:03 [Speaker 3]
+I start getting in here.
+
+00:47:04 [Speaker 3]
+I start just hitting it up.
+00:47:06 [Speaker 3]
+This is crazy.
+00:47:06 [Speaker 3]
+There's a 123 players apparently in this server, so I don't know what that server count was.
+00:47:11 [Speaker 3]
+That's nuts, though.
+00:47:12 [Speaker 3]
+Right?
+
+00:47:13 [Speaker 2]
+Yeah.
+
+00:47:13 [Speaker 3]
+These are things happening here.
+00:47:15 [Speaker 3]
+At this rate, Guillermo says, we're gonna get GTA seven before we get GTA six.
+00:47:22 [Speaker 3]
+It must come out this December.
+00:47:23 [Speaker 3]
+We'll see how that goes.
+00:47:24 [Speaker 3]
+Right?
+
+00:47:25 [Speaker 3]
+Meanwhile, other things people are doing is creating versions of their favorite games and bringing them over to devices that they were never developed for.
+00:47:36 [Speaker 3]
+And I think that's a really interesting use case.
+00:47:38 [Speaker 3]
+He did it this week three.
+00:47:40 [Speaker 3]
+Great game.
+00:47:41 [Speaker 3]
+Always a big fan of the state of the game.
+
+00:47:43 [Speaker 3]
+Enough, and then even later, it came out.
+00:47:46 [Speaker 3]
+Built this all.
+00:47:46 [Speaker 3]
+You can play it in the browser.
+00:47:48 [Speaker 3]
+Fully playable.
+00:47:50 [Speaker 3]
+Just ported it all over.
+
+00:47:52 [Speaker 3]
+Right?
+00:47:53 [Speaker 3]
+Same thing happening here.
+00:47:54 [Speaker 3]
+Red Dead Redemption two, probably one of my favorite story games next to lot, The Last of Us two.
+00:48:00 [Speaker 3]
+Fully ported this over, 30 frames per second, playing it on an iPhone 18 pro.
+
+00:48:07 [Speaker 2]
+What?
+00:48:07 [Speaker 2]
+IPhone 18 pro.
+00:48:08 [Speaker 2]
+Isn't that considered, like, one of the most visually complex games ever made?
+
+00:48:12 [Speaker 3]
+I'm not sure where it stands on that scale.
+00:48:14 [Speaker 3]
+It's definitely a beautiful game, and the fact that it is rendering and playing at 30 frames per second on the iPhone is nuts.
+00:48:22 [Speaker 3]
+That's insane.
+00:48:24 [Speaker 3]
+You know?
+00:48:25 [Speaker 3]
+Wow.
+
+00:48:27 [Speaker 3]
+And and pretty cool.
+00:48:28 [Speaker 3]
+Pretty cool.
+00:48:29 [Speaker 3]
+Something that we would never would have seen happen.
+00:48:31 [Speaker 3]
+And so I asked a couple of people, and I was like, hey.
+00:48:33 [Speaker 3]
+Listen.
+
+00:48:33 [Speaker 3]
+You...
+00:48:33 [Speaker 3]
+You've made some browser games.
+00:48:35 [Speaker 3]
+You're doing some stuff.
+00:48:35 [Speaker 3]
+I wanna know, how are you getting it done?
+00:48:38 [Speaker 3]
+And Frederick Russell sent us a little little thing that he's he's cooking up inside of Unity, which we've got some news on too in a second.
+
+00:48:45 [Speaker 3]
+I want
+
+00:48:46 [Speaker 6]
+to see if I could build a game using Unity.
+00:48:48 [Speaker 6]
+It's a fairly simple game, and the process has been fairly simple as well.
+00:48:52 [Speaker 6]
+Let me just show you the game.
+00:49:02 [Speaker 6]
+I'm a product designer by day, and I always wanted to build my own games, but I've never been good good at Unity and never got the hang of it.
+00:49:08 [Speaker 6]
+So I saw a few weeks ago that Unity launched their Unity CLI.
+
+00:49:13 [Speaker 6]
+So, basically, now you can build games using agents.
+00:49:16 [Speaker 6]
+Everyone else is building with Three.
+00:49:17 [Speaker 6]
+Js, but I wanted to use Unity instead because I wanted to utilize some of the engine, capabilities, like shadows and proper lighting.
+00:49:27 [Speaker 6]
+And I knew I wanted to make a game for iOS and Android, eventually, and I figured using Unity or Godot would be a good starting point in the self building for three d s.
+00:49:36 [Speaker 6]
+The whole thing started with me seeing a screenshot of a game on X.
+
+00:49:41 [Speaker 6]
+I took a screenshot of it and gave it to ChatTBT.
+00:49:44 [Speaker 6]
+The reason why I'm using, ChatTBT instead of Claude in this case is because I wanted to use the built in image generation, which Chat g b t has and Claude doesn't.
+00:49:53 [Speaker 6]
+But I fed it directly to Chat g b t, this screen
+
+00:49:56 [Speaker 3]
+Side note.
+00:49:57 [Speaker 3]
+You can ask Claude to use Chat g b t's image 2.5.
+00:50:00 [Speaker 3]
+I do it all the time.
+
+00:50:01 [Speaker 6]
+In chat.
+00:50:01 [Speaker 6]
+And I said I wanted to build something similar to this, but make it a police chasing game instead for mobile.
+00:50:07 [Speaker 6]
+And then I asked if I should use Unity or Godot.
+00:50:09 [Speaker 6]
+TTPT suggested I'll do it...
+00:50:12 [Speaker 6]
+What's better to do in Unity.
+
+00:50:13 [Speaker 6]
+Get a lot of built in stuff with Unity that you don't get in three gs, and you have to build it yourself, like, destruction and physics and asset ecosystem, which is a huge advantage.
+00:50:23 [Speaker 6]
+After a small discussion, I just basically asked it to give me a PRD because I wanted to move straight into Claude and use Opus 5.5.
+00:50:31 [Speaker 6]
+And this is, the starting point which I gave to Claude.
+00:50:35 [Speaker 6]
+I fed it the original screenshot, and then I gave it this, PRD from ChatTBT.
+00:50:39 [Speaker 6]
+Based on that, it started and built the original.
+
+00:50:42 [Speaker 6]
+While I was working on that, I went back to ChatTBT, and it created this concept art.
+00:50:47 [Speaker 6]
+It gave me the background and the logo.
+00:50:50 [Speaker 6]
+And this was the original first draft of the UI, which I didn't like.
+00:50:54 [Speaker 6]
+So I told it if it could mock something up, and then I gave that back to Claude and said, can we fix the UI to look like this?
+00:51:00 [Speaker 6]
+I fed it this screenshot together with the concept art, screenshot from the game, and then the logo, and then it made these three suggestions.
+
+00:51:07 [Speaker 6]
+It also added the animations, which is nice.
+00:51:09 [Speaker 6]
+Then I gave it this one, and then I basically said, here's all the screens I need.
+00:51:13 [Speaker 6]
+Please redesign them.
+00:51:14 [Speaker 6]
+And then it actually just went to work and did all these together with, animations, which is pretty nice.
+00:51:20 [Speaker 6]
+So everything is just kinda on brand and follows the same art direction.
+
+00:51:24 [Speaker 6]
+Afterwards, when everything was said and done, I just gave it the project in cloud design, then it went through with the CLI, fixed a a few problems, and then it started implementing everything.
+00:51:33 [Speaker 6]
+It was a very fairly simple process, just a lot of back and forth.
+00:51:36 [Speaker 6]
+This is just the start, but for now, this is good enough for me.
+00:51:40 [Speaker 6]
+So, yeah, let's, finish off with a little bit of
+
+00:51:43 [Speaker 2]
+picking again.
+
+00:51:53 [Speaker 6]
+That was a small intro to my game.
+00:51:55 [Speaker 6]
+If you have any more questions, feel free to reach out to me on x or anything else.
+
+00:51:59 [Speaker 3]
+Thanks for the submission, Frederic.
+00:52:02 [Speaker 3]
+There's a reason I'm showing a little behind the scenes on how other designers are starting to tinker with gaming, and we're gonna get into how that impacts your portfolio in just a sec.
+00:52:11 [Speaker 3]
+But the way he so nonchalantly talked about how easy this was to create, how simple the process was, as somebody who, and I relate to this, never really got the hang of Unity, I think that's pretty telling.
+
+00:52:28 [Speaker 2]
+Dang.
+00:52:28 [Speaker 2]
+I'm so...
+00:52:30 [Speaker 2]
+I mean, it it simultaneously looks easy, but also it's deeply impressive at the same time.
+00:52:34 [Speaker 2]
+My brain's already racing.
+00:52:35 [Speaker 2]
+I...
+
+00:52:36 [Speaker 2]
+I've gotten, like, a little taste of this.
+00:52:38 [Speaker 2]
+I built a little world for my toddler.
+00:52:41 [Speaker 2]
+We went to, an IHOP and as we're walking into the IHOP, she turns to me and she says, daddy, is this Mexico?
+00:52:49 [Speaker 2]
+And I said, what?
+00:52:50 [Speaker 2]
+And she said, are we in Mexico?
+
+00:52:52 [Speaker 2]
+I was like, no.
+00:52:53 [Speaker 2]
+And then I was like, okay, we need to, we need to build a map to show you, like, where you live.
+00:52:57 [Speaker 2]
+You know?
+00:52:58 [Speaker 2]
+So I I just spoke into Grokpa and it built me this map.
+00:53:01 [Speaker 2]
+And then she's like, well, where does, you know, my grandpa and grandma live?
+
+00:53:04 [Speaker 2]
+And I was...
+00:53:04 [Speaker 2]
+So then we started building this whole world, and now we've been building this entire world for, like, two weeks.
+00:53:08 [Speaker 2]
+And there's all these little Easter eggs and mini games at each of the different houses that she goes to.
+00:53:13 [Speaker 2]
+And we just keep adding on and adding on.
+00:53:15 [Speaker 2]
+It's, like, our favorite thing to play with right now.
+
+00:53:17 [Speaker 2]
+And I'm trying to get her to be really creative and to just to, like, understand the concept of anything you can think, you can you can make it.
+00:53:23 [Speaker 2]
+You know?
+00:53:24 [Speaker 2]
+And we're like, we're getting there.
+00:53:26 [Speaker 2]
+This is the next level for that.
+00:53:27 [Speaker 2]
+It's like, man, I haven't played with Unity yet.
+
+00:53:29 [Speaker 2]
+I haven't done anything.
+00:53:30 [Speaker 2]
+And so that's where my brain immediately went.
+00:53:32 [Speaker 2]
+It was like, I just wanna build games to play with my kids even if it's for one hour.
+00:53:39 [Speaker 2]
+You know?
+00:53:39 [Speaker 2]
+I don't even care about marketing them.
+
+00:53:41 [Speaker 2]
+It's like, just build very hyper specific games.
+
+00:53:44 [Speaker 3]
+And Unity, he mentioned their CLI that came out.
+00:53:47 [Speaker 3]
+Well, they just introduced literally yesterday Unity Spark.
+00:53:51 [Speaker 3]
+It's a new way to create a game, iterate on it with others, publish and play it.
+00:53:55 [Speaker 3]
+You don't have to write code.
+00:53:56 [Speaker 3]
+This is all about prompting.
+
+00:53:57 [Speaker 3]
+It's in the web.
+00:53:58 [Speaker 3]
+You can pull in assets.
+00:54:00 [Speaker 3]
+So, you know, all the frameworks and engines are listening.
+00:54:04 [Speaker 3]
+They're building towards that future.
+00:54:07 [Speaker 3]
+Very interesting to see this.
+
+00:54:09 [Speaker 3]
+And, again,
+
+00:54:09 [Speaker 2]
+you know, there's gonna be a
+
+00:54:10 [Speaker 3]
+lot of things that we have to figure out.
+00:54:11 [Speaker 3]
+There are already some copyright strikes because in addition to all the things that we're talking about, the porting games over, the making your own games and how easy that is, people are mashing and remixing games.
+00:54:21 [Speaker 3]
+This is somebody who brought Counter Strike 1.6.
+00:54:25 [Speaker 3]
+Here we...
+00:54:32 [Speaker 3]
+Is a first person
+
+00:54:36 [Speaker 10]
+who has us
+
+00:54:45 [Speaker 2]
+on a second monitor, and they're, like, deep in Figma right now.
+00:54:47 [Speaker 2]
+And I'm like, I have really meaty problem, and then they just started getting shot at.
+
+00:54:51 [Speaker 3]
+They just...
+00:54:52 [Speaker 3]
+That's that's what is happening.
+00:54:54 [Speaker 3]
+And and it's crazy because I have so many examples of these remixes.
+00:54:58 [Speaker 3]
+People were remixing Pokemon with Bellatro.
+00:55:01 [Speaker 3]
+They were remixing League of Legends.
+
+00:55:03 [Speaker 3]
+They made, like, a whole fighter with all these different IPs, so much so that Riot Games reached out and said, no.
+00:55:12 [Speaker 3]
+No.
+00:55:12 [Speaker 3]
+Cease and desist immediately, And they had to take it down.
+00:55:15 [Speaker 3]
+So they ripped out...
+00:55:16 [Speaker 3]
+The the Vibe Coder ripped out all the League assets and then replaced them with custom assets, and he's like, here.
+
+00:55:22 [Speaker 3]
+Now it's better.
+00:55:23 [Speaker 3]
+And I'm just like, that's insane to me.
+00:55:26 [Speaker 3]
+That is absolutely insane.
+00:55:27 [Speaker 3]
+You know?
+00:55:29 [Speaker 3]
+Now, speaking of Warcraft, I did make a little plugin.
+
+00:55:33 [Speaker 3]
+It doesn't do much.
+00:55:34 [Speaker 3]
+And I I was like...
+00:55:35 [Speaker 3]
+On Sunday, I was like, oh, we're just gonna make it shareable.
+00:55:37 [Speaker 3]
+It's a free thing.
+00:55:38 [Speaker 3]
+It helps you play the the dumbest game.
+
+00:55:41 [Speaker 3]
+Wow.
+00:55:43 [Speaker 3]
+By a game I don't have time for.
+00:55:45 [Speaker 3]
+I played it for one day, made the plug in, and then opted out of the the whole thing.
+00:55:49 [Speaker 3]
+And, it...
+00:55:50 [Speaker 3]
+I woke up Monday, and this blew up, dude.
+
+00:55:53 [Speaker 2]
+I don't know why it blew up.
+
+00:55:54 [Speaker 3]
+I have no idea why this blew up.
+00:55:55 [Speaker 3]
+This is not a complex thing.
+00:55:58 [Speaker 3]
+But there was definitely an audience inside of the Wow community that was not happy about this because I had used AI to make it.
+00:56:05 [Speaker 3]
+So that's another interesting thing is the backlash coming from the gaming community, in large part, is not ready to accept these fully vibe coded things.
+00:56:15 [Speaker 3]
+It's a it's a problem and something to think about when you go to market with a lot of this stuff.
+
+00:56:20 [Speaker 3]
+Right?
+00:56:21 [Speaker 3]
+At first, I thought maybe it was just the artwork.
+00:56:23 [Speaker 3]
+None of that artwork...
+00:56:24 [Speaker 3]
+There's nothing in that add on that was generated from anything that didn't already preexist as an asset in the Wow add ons library.
+00:56:33 [Speaker 3]
+But just using AI to code it seemed to be problematic.
+
+00:56:36 [Speaker 3]
+And I thought that that was interesting because I always thought it was more art related.
+00:56:41 [Speaker 3]
+So there's some lessons to take there that people who might go to market with things like that.
+00:56:46 [Speaker 3]
+And and specifically, I thought it was really interesting because I've seen people come to their game conclusions from the opposite end.
+00:56:53 [Speaker 3]
+They kind of create the art first, and then they start to let the game unfold.
+00:56:57 [Speaker 3]
+And that's exactly, what Steven did with Umbras.
+
+00:57:01 [Speaker 3]
+And I asked him, I'm like, dude, this is really interesting.
+00:57:03 [Speaker 3]
+Can you walk me through kinda how you thought about that?
+00:57:06 [Speaker 3]
+And this is what he had to say.
+
+00:57:07 [Speaker 11]
+What's up, dive club?
+00:57:08 [Speaker 11]
+My name is Steven.
+00:57:09 [Speaker 11]
+I go by Steen or user Steen on the Internet.
+00:57:11 [Speaker 11]
+I'm pumped to talk to you about Umbras, which is apparently the first game I'm making.
+00:57:15 [Speaker 11]
+I say apparently because it started off as an art project.
+
+00:57:18 [Speaker 11]
+What you're looking at now is a prototype two d gallery experience.
+00:57:21 [Speaker 11]
+Umbra is essentially a series of diptychs or paired images, one light, one dark mode, each exploring patterns, optical illusion, negative space, and inversion.
+00:57:29 [Speaker 11]
+I'm a digital artist in the sense that I create digitally, but I also create four digital screens.
+00:57:34 [Speaker 11]
+I'm testing these on my mobile phone, my big TV screens, my desktop and I want these images to be viewable in any orientation so they're nine by 16, 16 by nine, four ks and I want this gallery experience to let you play with the images in multiple ways.
+00:57:48 [Speaker 11]
+So rotation, light and dark mode, view it as a diptych or as a single image, view these wacky tile compositions, play around with them however you want.
+
+00:57:56 [Speaker 11]
+And as I'm working on these mechanics, I'm watching folks on Twitter publish all sorts of experiments with three d using Aster and Opus.
+00:58:02 [Speaker 11]
+I've always wanted to create a game.
+00:58:03 [Speaker 11]
+I've always wanted to create a three d environment for my art and this felt like the perfect opportunity.
+00:58:08 [Speaker 11]
+So I started with some concept art.
+00:58:09 [Speaker 11]
+The key concept here being that the artwork is the seed for the environment and the environment mirrors the theme of the diptych.
+
+00:58:16 [Speaker 11]
+Had Astra create a playable demo.
+00:58:18 [Speaker 11]
+Doesn't really mirror the concept but started to show me what was possible and it was a good jumping off point.
+00:58:23 [Speaker 11]
+From there, more concept art.
+00:58:25 [Speaker 11]
+Key decision here being instead of showing the diptych in the environment, having the environment exist in light or dark mode with one of the artworks and the character existing in inverse able to invert the environment around them.
+00:58:37 [Speaker 11]
+So these are light mode concepts.
+
+00:58:38 [Speaker 11]
+The character's a dark shadow.
+00:58:40 [Speaker 11]
+They can switch that around.
+00:58:41 [Speaker 11]
+As I'm doing this, I'm thinking, who is this character?
+00:58:44 [Speaker 11]
+Why can they manipulate the environment?
+00:58:45 [Speaker 11]
+Who are they within this world?
+
+00:58:47 [Speaker 11]
+Umbra is about shadows, so came up with the shade, a living shadow.
+00:58:50 [Speaker 11]
+First model attempts were super difficult.
+00:58:52 [Speaker 11]
+The garment was kinda cool, but really hard to pull off.
+00:58:54 [Speaker 11]
+Tried to simplify it by just using a humanoid figure.
+00:58:57 [Speaker 11]
+Problem here was without the garment, any awkward movement was exposed.
+
+00:59:00 [Speaker 11]
+Also these were both pretty generic kind of mannequins so I came up with the living lantern.
+00:59:05 [Speaker 11]
+Essentially the spirit that has constructed a lantern and body around itself so that it can navigate the environment.
+00:59:11 [Speaker 11]
+Tons and tons of iteration here.
+00:59:13 [Speaker 11]
+I have this library that's a shared collaborative space for me and my agents where we can try different animations, we can create construction documents
+
+00:59:20 [Speaker 2]
+to try
+
+00:59:21 [Speaker 11]
+to make details for the process that we're working on.
+00:59:23 [Speaker 11]
+Super useful to actually make sure progress is moving forward and that we have a shared language here.
+00:59:28 [Speaker 11]
+We can talk about what was approved or rejected, what were we trying, what do we want to do next, all our learnings.
+00:59:33 [Speaker 11]
+That has resulted in a new model and a new environment which I can play through.
+00:59:38 [Speaker 11]
+Lots still to do but a big step up.
+
+00:59:40 [Speaker 11]
+You can now fly through it and invert it.
+00:59:43 [Speaker 11]
+I want to add rotation and maybe some more elements to inversion where maybe the artworks are in different places so you have to toggle between modes to find both.
+00:59:51 [Speaker 11]
+Maybe the physical environment itself inverts in some way.
+00:59:54 [Speaker 11]
+Some other stuff I wanna do is create a level for each diptych, maybe add a photography mode where the lantern is a camera and you can take pictures of the scene with or without the character.
+01:00:02 [Speaker 11]
+And then goals, what's the point?
+
+01:00:03 [Speaker 11]
+Do you find the artwork to get to the next level?
+01:00:05 [Speaker 11]
+Do you leave messages for other players?
+01:00:07 [Speaker 11]
+But, yeah, thanks for taking the time to look through this wacky, multi layered project and hopefully have some more progress to share with you guys soon.
+01:00:14 [Speaker 11]
+Cheers.
+
+01:00:18 [Speaker 3]
+Designers just making stuff.
+01:00:19 [Speaker 3]
+And I I want to take notes right now.
+01:00:22 [Speaker 3]
+Just just mental notes because I...
+01:00:25 [Speaker 3]
+All of this is going to come in in handy.
+01:00:27 [Speaker 3]
+I think the the listening...
+
+01:00:29 [Speaker 3]
+You know, game design, I I feel like sometimes you look at and you go, why why is this, like, relevant to the things that I'm working on as a product designer or brand person?
+01:00:37 [Speaker 3]
+And I think there's a lot that you can start to unpack in how designers are approaching this kind of adjacent problem space?
+
+01:00:47 [Speaker 2]
+I think for many years, I used my own inabilities as a way to mask my lack of creativity, and that's no longer an option.
+01:00:54 [Speaker 2]
+And I'm still grappling with what that means because it's so sick.
+
+01:01:00 [Speaker 3]
+Yeah.
+01:01:00 [Speaker 3]
+Yeah.
+01:01:00 [Speaker 3]
+And and someone...
+01:01:01 [Speaker 3]
+I'll call this out too.
+01:01:02 [Speaker 3]
+They said the the shared working space with your agents really stuck out to me.
+
+01:01:07 [Speaker 3]
+And I'm finding that that is so necessary as its own little slice of UI across a lot of different types of tasks, whether it's a game, creating a show.
+01:01:19 [Speaker 3]
+And and it's interesting to see how many people are just rolling their own on that, you know.
+01:01:24 [Speaker 3]
+Now I do wanna call...
+01:01:25 [Speaker 3]
+I wanna give a little love because I had posted a post and I was like, hey.
+01:01:29 [Speaker 3]
+I'm I'm trying to figure out how to create board books because I wanna create these board books.
+
+01:01:33 [Speaker 3]
+Board books are like children's books that have more of a board material and and there's different things you can do with them, separate from different types of materials used for books.
+01:01:41 [Speaker 3]
+Because children's books is a thing that I I love.
+01:01:43 [Speaker 3]
+I have such a a place in my heart for it.
+01:01:45 [Speaker 3]
+And I love hearing your project with your daughter about how to create, like, a geography and and create a world around that.
+01:01:52 [Speaker 3]
+And and I wanna just give a little love to the parents out there who are building with their children.
+
+01:01:59 [Speaker 3]
+I think that's a really special thing to do.
+01:02:02 [Speaker 3]
+In the same way, we don't just let our kids have social media and send them off into the world and say, hey, good luck.
+01:02:08 [Speaker 3]
+I I think it's important to kind of, at some point, give them the ability to see how this works side by side.
+01:02:17 [Speaker 3]
+And somebody who did that in in this space was John Saunders.
+
+01:02:21 [Speaker 12]
+Hey, guys.
+01:02:22 [Speaker 12]
+John here.
+01:02:22 [Speaker 12]
+I am the cofounder of Pigeon's Mission.
+01:02:25 [Speaker 12]
+I wish my son was here.
+01:02:26 [Speaker 12]
+He's currently in school, but we've been working together the last few years to make an amazing game called Pigeon's Mission.
+
+01:02:32 [Speaker 12]
+Created a 100% the ideas, the concepts, the story by my son, Logan, who is actually nine now.
+01:02:39 [Speaker 12]
+We started this process when he was like six years old, but we since launched our game in December on Steam.
+01:02:44 [Speaker 12]
+And so the way that we built this out is one, he started this whole concept.
+01:02:49 [Speaker 12]
+So, this all started when he had this idea for a video game.
+01:02:51 [Speaker 12]
+He's been a huge fan of video games since he was like two or three.
+
+01:02:55 [Speaker 12]
+We play a bunch on the switch together and he had just beaten Mario Odyssey.
+01:02:58 [Speaker 12]
+After that, he came back and was like, daddy, I wanna make my own video game.
+01:03:01 [Speaker 12]
+This kid was absolutely determined to make a game.
+01:03:04 [Speaker 12]
+So he actually wrote out the story.
+01:03:06 [Speaker 12]
+I was like, hey, if you write out the story some characters, we can do it.
+
+01:03:08 [Speaker 12]
+He wrote out the story.
+01:03:09 [Speaker 12]
+This was his story.
+01:03:10 [Speaker 12]
+He came up with the characters Pigeon, Bob, Meg, then Big Bob, Pigeon's mom, Pigeon's dad, and basically, this Pigeon who's flightless, he can't fly, his parents get taken by this green monster.
+01:03:21 [Speaker 12]
+He came up with the worlds, the concepts, all the ideas for this game, and I was blown away.
+01:03:26 [Speaker 12]
+I mean, this is just one of the sketches.
+
+01:03:27 [Speaker 12]
+He came up with the world map, came up with the press start screen, he came up with all the weapons.
+01:03:32 [Speaker 12]
+Every single enemy in the game was created by him and he created all the movesets y'all.
+01:03:37 [Speaker 12]
+I mean, it's insane.
+01:03:38 [Speaker 12]
+We started doing this ourselves before I realized I needed to bring in some heavy hitters, some really great folks to help us finish this out.
+01:03:45 [Speaker 12]
+So the first person we hired was this guy, Benz, he's a pixel artist.
+
+01:03:48 [Speaker 12]
+So he took all of Logan's ideas and he helped us turn them into pixel art.
+01:03:53 [Speaker 12]
+It looks kinda like this.
+01:03:54 [Speaker 12]
+I'll show you guys the trailer of what the game looks like, but ultimately, Logan sketched out all these ideas, came up with the ideas, the move set, the concepts, everything within the game and then Ben's helped us bring it to life with these pixel designs and we work together to really formulate a fun engaging platformer that would be fun for people of all ages that parents could play with their kids and just have a really great time.
+01:04:14 [Speaker 12]
+And so once we did that with Ben's, we realized, okay, we're trying to develop this and we use a platform called GameMaker to do it.
+01:04:21 [Speaker 12]
+I started development before I realized this was a little bit out of my league and so we brought in my guy, Gary.
+
+01:04:27 [Speaker 12]
+He helped us with the development of the game, and then we started to design out the levels.
+01:04:31 [Speaker 12]
+Right?
+01:04:31 [Speaker 12]
+And it was it was difficult to make these levels really, cohesive and fun before we realized, okay, now we're at a point where we need a little bit of help with level design.
+01:04:39 [Speaker 12]
+We have all the ideas and concepts, but we want someone professional to help us out.
+01:04:42 [Speaker 12]
+And that is when we brought in the last person on our team.
+
+01:04:45 [Speaker 12]
+That is Patrick.
+01:04:46 [Speaker 12]
+He's the founder of Unicellular Games.
+01:04:48 [Speaker 12]
+He's working on a game as well.
+01:04:49 [Speaker 12]
+And so once we had our super team, we were ready to rock.
+01:04:52 [Speaker 12]
+And then we started a Kickstarter campaign to raise some funds to really help finish and develop this game.
+
+01:04:57 [Speaker 12]
+We made a really detailed kick starter campaign.
+01:05:00 [Speaker 12]
+As you could see, we added in all the original artwork and we launched it and it was a success.
+01:05:04 [Speaker 12]
+We raised, 23,000 for the game.
+01:05:07 [Speaker 12]
+Just know the game cost a lot more than that, but ultimately, it helped us really get off the ground and really get this thing moving.
+01:05:12 [Speaker 12]
+It has been amazing experience out the gate.
+
+01:05:15 [Speaker 12]
+Y'all seeing kids, parents, folks enjoy the game.
+01:05:18 [Speaker 12]
+The game is on steam right now.
+01:05:19 [Speaker 12]
+IOS is literally in development about to finish up right now.
+01:05:23 [Speaker 12]
+If there's anything else you wanna know about the game, the concepts, how we came up with it, let us know.
+01:05:27 [Speaker 12]
+But I hope this is helpful.
+
+01:05:29 [Speaker 3]
+So cool.
+01:05:29 [Speaker 3]
+I didn't watch this, man.
+01:05:31 [Speaker 3]
+That's so cool.
+01:05:32 [Speaker 3]
+That's so cool.
+01:05:33 [Speaker 3]
+I love this so much.
+
+01:05:34 [Speaker 3]
+I...
+01:05:35 [Speaker 3]
+Create...
+01:05:35 [Speaker 3]
+Creating with kids is just a, it'll put everything into perspective.
+01:05:39 [Speaker 3]
+It'll put all those Twitter fights and all those disagreements on social media.
+01:05:43 [Speaker 3]
+Put them right out...
+
+01:05:44 [Speaker 3]
+Put them right out there.
+01:05:45 [Speaker 3]
+So...
+01:05:46 [Speaker 3]
+Alright.
+01:05:47 [Speaker 3]
+Fantastic stuff.
+01:05:47 [Speaker 3]
+People are making games.
+
+01:05:49 [Speaker 3]
+What does this have to do with this portfolio topic that we're getting into today?
+
+01:05:53 [Speaker 2]
+Well, I'm
+
+01:05:53 [Speaker 3]
+gonna start to steer in that direction here.
+01:05:55 [Speaker 3]
+Alright?
+01:05:55 [Speaker 3]
+Because Preston Booth is not really a game, but he's like, I wanna make a world.
+01:05:59 [Speaker 3]
+And and what I'm getting at is that more and more portfolios are starting to either become playable or they're starting to become worlds representative of the work and the person behind the work.
+01:06:11 [Speaker 3]
+And it starts with these little ideas, these experiments like Preston Booth ran when he made this Zen garden.
+
+01:06:17 [Speaker 10]
+Hey.
+01:06:17 [Speaker 10]
+My name is Preston, and I'm a product designer at Clerk.
+01:06:20 [Speaker 10]
+And this past weekend, I ended up making this interactive Zen garden experience where you can create some super satisfying lines like that.
+01:06:29 [Speaker 10]
+You can drag in all of these different three d objects and just, like, create your own zen garden here.
+01:06:35 [Speaker 10]
+And Tommy had reached out to me and asked me to share a little bit about the process of how I made this.
+
+01:06:40 [Speaker 10]
+And when I was initially thinking about it, I just kind of like chuckled to myself and was like,
+
+01:06:43 [Speaker 4]
+there really
+
+01:06:44 [Speaker 10]
+wasn't that much process.
+01:06:45 [Speaker 10]
+Like this was just me having fun on a Sunday afternoon for a couple hours and geeking out with Three.
+01:06:50 [Speaker 10]
+Js.
+01:06:50 [Speaker 10]
+But regardless, I'll show you kind of the behind the scenes of how I got to this.
+01:06:54 [Speaker 10]
+So this kind of all started out here with...
+
+01:06:58 [Speaker 10]
+I do this thing where whenever I see something that I think has an interesting texture or looks kinda cool, I will save it and put it in a Figma file and just kinda come back to it whenever.
+01:07:08 [Speaker 10]
+And one of my goals this year is to better understand shaders and just, like, make more of them and and get the reps in there.
+01:07:13 [Speaker 10]
+And so this is where this started out, where I I saw this kind of cool image where it's a mini Zen garden, but it has this black sand.
+01:07:19 [Speaker 10]
+Right?
+01:07:19 [Speaker 10]
+And so what I did was I created a shader of this, and I was, like, just playing around with this for a while, and I was like, yeah.
+
+01:07:28 [Speaker 10]
+This is really satisfying.
+01:07:30 [Speaker 10]
+And I know I wanted to take it a little bit further and make it like more immersive and stuff and I knew I was gonna hit my limit pretty quickly with shaders so I decided to port this over to Three.
+01:07:38 [Speaker 10]
+Js and my process for doing that honestly is like kind of silly but it worked super well.
+01:07:44 [Speaker 10]
+I just took a bunch of these images that I found of Zen gardens on Google and just fit a bunch of them into Claude and then just started, like, planning out.
+01:07:52 [Speaker 10]
+I was like, okay.
+
+01:07:52 [Speaker 10]
+I wanna make a three d immersive Zen garden experience.
+01:07:56 [Speaker 10]
+Help me, like, categorize the different objects that you see in these, and then, like, create a list so that we can go through and create these different three d objects.
+01:08:03 [Speaker 10]
+And so that's what I did, and we started off with, like, let's make the trees and let's make the rocks.
+01:08:08 [Speaker 10]
+And then we kinda moved on and started kind of arranging things.
+01:08:11 [Speaker 10]
+And I was just basically just using, like, DialKit to position these different things around here until it's all good.
+
+01:08:18 [Speaker 10]
+And then I created the koi pond.
+01:08:19 [Speaker 10]
+And, honestly, it was just a ton of iteration and just describing things and how I wanted it to look and feel.
+01:08:25 [Speaker 10]
+And, eventually, this is kinda where Claude landed and then I was just kind of like kept thinking like what if?
+01:08:30 [Speaker 10]
+What if we could transition from night to day and what if the music changed and we had fireflies that came in at night and the shadows kinda shifted with it.
+01:08:38 [Speaker 10]
+And it was just a ton of thinking with Claude and just being like, well, what if we did this or what if we did that?
+
+01:08:45 [Speaker 10]
+And, honestly, it was killing it at just getting whatever kind of was in my mind onto the screen.
+01:08:50 [Speaker 10]
+And so, yeah, I think this took probably around, like, three hours to get it from that initial shader to what we have here.
+01:08:56 [Speaker 10]
+And, yeah, it was just super fun.
+01:08:58 [Speaker 10]
+I was just having a good time on a Sunday afternoon.
+01:09:01 [Speaker 10]
+So, yeah, like I said, hopefully, this just inspires you to start creating something and see what it turns into.
+
+01:09:09 [Speaker 2]
+Speaking of inspiration, Preston is probably one of my favorite portfolios.
+01:09:11 [Speaker 2]
+So I dropped his link in the chat because it's definitely worth a scroll.
+01:09:15 [Speaker 2]
+Super effective.
+
+01:09:15 [Speaker 3]
+It's good.
+01:09:16 [Speaker 3]
+I think we looked at it at one point.
+01:09:18 [Speaker 3]
+But again, the the thing here that I'm getting into is these this world building, these playable portfolios like Preston's creating there, which by the way, I mean, backyard designers was very much the same thing.
+01:09:28 [Speaker 3]
+It was just like having fun, building out some stuff.
+01:09:33 [Speaker 3]
+By the way, we got costumes for everybody.
+
+01:09:37 [Speaker 2]
+I didn't know you were doing that.
+01:09:38 [Speaker 2]
+That's pretty good.
+
+01:09:39 [Speaker 3]
+I was doing this.
+01:09:40 [Speaker 3]
+I was doing a whole lot of ESRO.
+01:09:41 [Speaker 3]
+No one asked for that.
+01:09:42 [Speaker 3]
+This is totally a lesson
+
+01:09:43 [Speaker 1]
+for me.
+01:09:44 [Speaker 1]
+But
+
+01:09:44 [Speaker 3]
+you all have
+
+01:09:45 [Speaker 9]
+costumes for me.
+
+01:09:46 [Speaker 3]
+And and I don't know if you saw it a second ago, But Rit is a werewolf that looks like him.
+01:09:51 [Speaker 3]
+Yeah.
+
+01:09:53 [Speaker 2]
+Yeah.
+01:09:53 [Speaker 2]
+It's the least intimidating werewolf I've ever seen, dude.
+01:09:58 [Speaker 2]
+You couldn't...
+01:09:59 [Speaker 2]
+You could not prompt a more lame...
+01:10:00 [Speaker 2]
+Wait.
+
+01:10:02 [Speaker 3]
+There's actually a pretty great one in here.
+01:10:04 [Speaker 3]
+Where was...
+01:10:05 [Speaker 3]
+Oh, there's our guy today.
+01:10:10 [Speaker 3]
+Dude, it's pretty creative.
+01:10:11 [Speaker 3]
+Pretty creative.
+
+01:10:12 [Speaker 3]
+I just had to create some stuff.
+01:10:14 [Speaker 3]
+What do we got?
+01:10:14 [Speaker 3]
+We got...
+01:10:15 [Speaker 3]
+Yeah.
+01:10:16 [Speaker 3]
+Yeah.
+
+01:10:16 [Speaker 3]
+Anyway, fun stuff.
+01:10:18 [Speaker 3]
+World building.
+01:10:19 [Speaker 3]
+That's kind of the topic, and I I wanna get into it.
+01:10:21 [Speaker 3]
+So let's talk portfolios.
+01:10:23 [Speaker 3]
+Alright?
+
+01:10:23 [Speaker 3]
+Yeah.
+01:10:23 [Speaker 3]
+And as a reminder, we are gonna be going through all of your portfolios next week.
+01:10:29 [Speaker 3]
+Yeah.
+01:10:30 [Speaker 3]
+And, if you
+
+01:10:30 [Speaker 2]
+Let me share...
+01:10:31 [Speaker 2]
+I'm gonna share my screen really quickly on that because they've started coming in, which is kinda cool.
+
+01:10:37 [Speaker 3]
+What do we got?
+
+01:10:38 [Speaker 2]
+Oh, man.
+01:10:40 [Speaker 2]
+We we got me being unable to queue this up correctly.
+01:10:45 [Speaker 2]
+Okay.
+01:10:45 [Speaker 2]
+So...
+01:10:48 [Speaker 2]
+Oh, come on.
+
+01:10:49 [Speaker 2]
+Alright.
+01:10:49 [Speaker 2]
+Here we go.
+01:10:50 [Speaker 2]
+So this is kinda cool.
+01:10:52 [Speaker 2]
+It's actually...
+01:10:52 [Speaker 2]
+It's already coming in.
+
+01:10:53 [Speaker 2]
+So, like, this is the idea here is Oh, yeah.
+01:10:56 [Speaker 2]
+You copy that script.
+01:10:58 [Speaker 2]
+It's gonna add this.
+01:10:59 [Speaker 2]
+You can share a little bit about what you want us to look at, and then we'll drop that link into chat, and then all of us collectively can just...
+01:11:07 [Speaker 2]
+Oh, that was kind of a nice hover effect.
+
+01:11:10 [Speaker 2]
+All of us can kinda mark stuff up live, and we can do it as a little design and create.
+01:11:13 [Speaker 2]
+So this is, like, an example of...
+01:11:16 [Speaker 2]
+I think what this is gonna look like is just one big design review group chat style.
+
+01:11:23 [Speaker 3]
+And all of these comments, they live directly in the source of truth on the live prototype that you're sending.
+01:11:29 [Speaker 3]
+Yeah.
+01:11:30 [Speaker 3]
+And you can just clobber all of the stuff that we say right into an MCP prompt, a prompt that works with our MCP.
+01:11:39 [Speaker 3]
+For Dunedin?
+
+01:11:40 [Speaker 2]
+Yep.
+01:11:40 [Speaker 2]
+I learned about ninety seconds ago that I have a little bit to build for that.
+01:11:44 [Speaker 2]
+Okay.
+01:11:45 [Speaker 2]
+But
+
+01:11:45 [Speaker 3]
+we'll build it.
+01:11:46 [Speaker 3]
+Cool.
+01:11:47 [Speaker 3]
+Very cool.
+01:11:48 [Speaker 3]
+But speaking of this, where did my screens...
+01:11:51 [Speaker 3]
+My screen go here?
+
+01:11:51 [Speaker 2]
+Let me look at this.
+01:11:52 [Speaker 2]
+I'll go back.
+
+01:11:53 [Speaker 3]
+Oh, that's yours.
+01:11:55 [Speaker 3]
+Oh, it kicked me.
+01:11:56 [Speaker 3]
+Here we go.
+01:11:56 [Speaker 3]
+That makes sense.
+01:11:58 [Speaker 3]
+Speaking of all this.
+
+01:11:59 [Speaker 3]
+Alright.
+01:12:00 [Speaker 3]
+Tom Johnville.
+01:12:01 [Speaker 3]
+Alright.
+01:12:02 [Speaker 3]
+So I've been kinda playing with this.
+01:12:05 [Speaker 3]
+I don't know if you had a chance to check this out when he was working on it.
+
+01:12:08 [Speaker 3]
+He's been kinda grinding on this.
+01:12:09 [Speaker 3]
+And it started from a game he's working on.
+01:12:12 [Speaker 3]
+I think called, like, pilgrim, pilgrimage or something like that.
+01:12:16 [Speaker 3]
+And, this this is his portfolio he made.
+01:12:20 [Speaker 3]
+Alright?
+
+01:12:20 [Speaker 3]
+Now bear with me.
+01:12:21 [Speaker 3]
+We're not gonna do too much here, but, like, it's...
+01:12:24 [Speaker 3]
+I'm done.
+
+01:12:26 [Speaker 2]
+Gotcha.
+
+01:12:28 [Speaker 3]
+So he's got that thing going on where you're controlling Tom.
+01:12:31 [Speaker 3]
+And when he moves, he recorded a variation of different, like, rogering up to the commands.
+
+01:12:37 [Speaker 2]
+That looks cool.
+
+01:12:38 [Speaker 13]
+I'll check it out.
+
+01:12:40 [Speaker 2]
+It's so great.
+
+01:12:41 [Speaker 10]
+It's so great.
+
+01:12:41 [Speaker 2]
+The voice part is my favorite part, man.
+
+01:12:43 [Speaker 13]
+Come on.
+
+01:12:44 [Speaker 3]
+There's so many Easter eggs here.
+01:12:46 [Speaker 3]
+I...
+01:12:46 [Speaker 3]
+You know, we'll close this out.
+01:12:48 [Speaker 3]
+And, I mean, this is a world.
+01:12:50 [Speaker 3]
+We talk about world building.
+
+01:12:52 [Speaker 3]
+This is Tom's career built into an isometric playground.
+01:12:57 [Speaker 3]
+And you can check this out at, what is the link here?
+01:13:00 [Speaker 3]
+Tomjohn.design.
+01:13:02 [Speaker 3]
+It's pretty sweet.
+01:13:04 [Speaker 3]
+But I wanted to ask Tom, like, dude, how did you build it?
+
+01:13:08 [Speaker 3]
+Why did you build it?
+01:13:09 [Speaker 3]
+And then I'm gonna give my thoughts about this, and we're gonna get into some tips around portfolios that you guys can think about when you share this with us next week.
+
+01:13:18 [Speaker 13]
+I have had a portfolio sitting in, like, a v zero and then, like, another v zero and then another v zero for a long time.
+01:13:26 [Speaker 13]
+My site yesterday still said I was at BaseDash, and I just haven't gotten around to launching it because I I did some tests and I liked it, but it kinda felt like the same as as every other portfolio.
+01:13:36 [Speaker 13]
+And I feel like now that we have all these tools, portfolios are just an opportunity for like just do what you want.
+01:13:44 [Speaker 13]
+And so what I wanted to do was I wanted to say like, okay, what do I know how to use?
+01:13:47 [Speaker 13]
+How can I use the skills I have and the tools I'm using right now to to bring it into this?
+
+01:13:51 [Speaker 13]
+And so I wanted it to be that thing.
+01:13:53 [Speaker 13]
+I wanted it to be fun and I wanted it to be interesting and I wanted to show like who I am and what I have.
+01:14:00 [Speaker 13]
+And, I wanted people like this.
+01:14:02 [Speaker 13]
+Like this is so cool to be able to have like Tim Swamps in in the map with me.
+01:14:05 [Speaker 13]
+But every one of these is like some derivation of my name.
+
+01:14:07 [Speaker 13]
+I I thought it was hilarious the first time I saw it.
+01:14:09 [Speaker 13]
+And every single time I see a new one, Dom Donston.
+01:14:11 [Speaker 13]
+I just love it.
+01:14:12 [Speaker 13]
+I used a ton of paper.
+01:14:13 [Speaker 13]
+I used a ton of conductor.
+
+01:14:15 [Speaker 13]
+Conductor is like where I live and breathe.
+01:14:16 [Speaker 13]
+This is where I'm living here.
+01:14:18 [Speaker 13]
+I've got all these are merged pull requests.
+01:14:20 [Speaker 13]
+I've got dialogue options that I'm working through.
+01:14:22 [Speaker 13]
+I'm trying to do a new building in there.
+
+01:14:24 [Speaker 13]
+I can switch models.
+01:14:25 [Speaker 13]
+I can have Opus and Astra working here because I used Astra a ton for the image generation for like the logos of the assets in here.
+01:14:32 [Speaker 13]
+Here's where I was trying to unify the design system.
+01:14:34 [Speaker 13]
+Moving things around, working on dialogue scenes, like dialogue has been something I've been working on.
+01:14:39 [Speaker 13]
+So how do I get that right?
+
+01:14:40 [Speaker 13]
+Like where's the camera positioned and it's like screen capping all this kind of stuff and I'm just using paper a ton because it's so fast for me to be able to say like, check this out, put this in paper, give me all the different versions and, that was that was really helpful.
+01:14:51 [Speaker 13]
+I didn't know what I was doing when I set this up.
+01:14:53 [Speaker 13]
+I just started riffing.
+01:14:54 [Speaker 13]
+I said let's make it a town.
+01:14:56 [Speaker 13]
+Let's make it a town.
+
+01:14:57 [Speaker 13]
+And I I did it and I I was like, oh, why was I fighting this the whole time?
+01:15:02 [Speaker 13]
+That is so much better.
+01:15:04 [Speaker 13]
+And then I realized, like, oh, I was having a hard time grouping the work.
+01:15:07 [Speaker 13]
+What if I made the buildings?
+01:15:08 [Speaker 13]
+What if I made my work all buildings like for sale?
+
+01:15:10 [Speaker 13]
+Of course, it's a pyramid.
+01:15:11 [Speaker 13]
+And it was just really cool to, like, just give it reference photos and have it build the environment because like right here, that is what my office looked like when I lived in Nashville.
+01:15:18 [Speaker 13]
+There's that stuff on my, on my table.
+01:15:21 [Speaker 13]
+That's my bourbon bottles.
+01:15:22 [Speaker 13]
+That's my three d printer with the light on there.
+
+01:15:24 [Speaker 13]
+Like, it's just cool to be able to say like, hey, I have this, like make something out of it.
+01:15:27 [Speaker 13]
+It's just ridiculous the amount of stuff you can do in this game, because I just wanted to do it.
+01:15:34 [Speaker 13]
+And so I'm I'm I'm proud of so many different pieces of it.
+01:15:36 [Speaker 13]
+The thing that I'm I'm most proud of with this game is the interactions.
+01:15:41 [Speaker 13]
+Moving the camera around.
+
+01:15:42 [Speaker 13]
+How do you make it?
+01:15:43 [Speaker 13]
+Is it right side, left side?
+01:15:44 [Speaker 13]
+Is there sub selection?
+01:15:45 [Speaker 13]
+Getting the camera to actually lock on the character in the right way was so difficult because they also wanted you to be able to scroll away.
+01:15:52 [Speaker 13]
+And then if you start moving, it comes back.
+
+01:15:55 [Speaker 13]
+Like that level of how how does that work is really hard.
+01:15:59 [Speaker 13]
+All of these things I had to learn kind of by just making a bunch of mistakes and like, occlusion.
+01:16:04 [Speaker 13]
+Like if he goes behind a tree, what happens to the tree in this mode?
+01:16:07 [Speaker 13]
+It's different.
+
+01:16:08 [Speaker 2]
+But
+
+01:16:08 [Speaker 13]
+in this mode, if I go behind, if I have a tree behind the character, like there's a little bit of occlusion, I could probably make that bigger.
+01:16:14 [Speaker 13]
+But, like, that kind of stuff, all of those different layers, I had to learn.
+01:16:18 [Speaker 13]
+And that was so cool to go through and just learn, like, why why are cameras the way that they are?
+01:16:22 [Speaker 13]
+What what...
+01:16:22 [Speaker 13]
+What's the positioning of these things?
+
+01:16:24 [Speaker 13]
+How does that work?
+01:16:25 [Speaker 13]
+And, it was really fun.
+
+01:16:28 [Speaker 3]
+There's...
+01:16:29 [Speaker 3]
+Man, it's it's fun and it's cool.
+01:16:33 [Speaker 3]
+And, like, I genuinely mean this.
+01:16:35 [Speaker 3]
+Tom puts so much love and care into this thing.
+01:16:37 [Speaker 3]
+There's so many Easter eggs.
+
+01:16:39 [Speaker 3]
+It's truly a game.
+01:16:40 [Speaker 3]
+You can find achievements.
+01:16:41 [Speaker 3]
+You can unlock things.
+01:16:43 [Speaker 3]
+This this one has become my son's, like, favorite piece of inspiration right now.
+01:16:48 [Speaker 3]
+I wanna talk about that because we are getting inspired by games.
+
+01:16:52 [Speaker 3]
+We're getting inspired by these playable portfolios.
+01:16:56 [Speaker 3]
+Let's let's get to the point of what a portfolio does.
+01:16:59 [Speaker 3]
+It should get us a call.
+01:17:00 [Speaker 3]
+It should get us hired.
+01:17:01 [Speaker 3]
+It should get us into the door.
+
+01:17:03 [Speaker 3]
+Do these work?
+01:17:04 [Speaker 3]
+You know?
+01:17:05 [Speaker 3]
+Mhmm.
+01:17:05 [Speaker 3]
+And and and that's, like, a whole different question.
+01:17:08 [Speaker 3]
+And I did a video on this.
+
+01:17:09 [Speaker 3]
+I know you've done videos on this.
+01:17:12 [Speaker 3]
+And I and I asked some other people because there's a lot of things to consider today with the tools.
+01:17:16 [Speaker 3]
+There's one, like, what should I build?
+01:17:18 [Speaker 3]
+But there's two, how do I get discovered?
+01:17:20 [Speaker 3]
+Charlotta made a really good point.
+
+01:17:21 [Speaker 3]
+And I I think people should consider this too.
+01:17:23 [Speaker 3]
+I'm just gonna touch on this before we we get into the meat of it, which is a founder told me they found me because Claude recommended me.
+01:17:31 [Speaker 3]
+I guess, AEO, which is, I believe AI or a Gentic engine optimization of my portfolio website built in framers starts paying off.
+01:17:40 [Speaker 3]
+So one thing I think none of these examples are gonna highlight, I don't know if these examples have this, is how do you show up in claud chat g p t search results?
+01:17:53 [Speaker 3]
+That's a whole different topic, But that is something I think a lot of people maybe aren't thinking about, and it could be worth baking that into your process.
+
+01:18:02 [Speaker 3]
+So we're gonna hear from just a couple of people on some tips, and then Rit and I are gonna share some of our favorites starting with, if you didn't see, Dan Petty occasionally drops really useful thirty minute plus portfolio reviews.
+01:18:14 [Speaker 3]
+He did it the other day.
+01:18:15 [Speaker 3]
+I asked him if I could cut this and show a quick clip of it.
+01:18:18 [Speaker 3]
+He said absolutely.
+01:18:19 [Speaker 3]
+But if you want the full version, you'll probably get a ton of value out of going and watching that on his ex.
+
+01:18:24 [Speaker 3]
+This was posted just yesterday.
+01:18:26 [Speaker 3]
+But here's what Dan had to say.
+
+01:18:29 [Speaker 9]
+Alright.
+01:18:29 [Speaker 9]
+It's time for a portfolio review.
+01:18:31 [Speaker 9]
+I asked y'all to share your portfolio links, and we got over 300 comments.
+01:18:35 [Speaker 9]
+So we're gonna go over some of these.
+01:18:37 [Speaker 9]
+We're gonna see which ones stand out the most and just see what we could all learn from going over these reviews.
+
+01:18:42 [Speaker 9]
+Let's check out Fabian's work upfront.
+01:18:44 [Speaker 9]
+Great.
+01:18:44 [Speaker 9]
+Very clear designer and founder.
+01:18:46 [Speaker 9]
+Beautiful product right up front.
+01:18:49 [Speaker 9]
+I love this scrolling animation.
+
+01:18:51 [Speaker 9]
+This is great.
+01:18:52 [Speaker 9]
+I can get lost in this.
+
+01:18:54 [Speaker 2]
+Look at that.
+
+01:18:54 [Speaker 9]
+That's sweet.
+01:18:55 [Speaker 9]
+I don't even know what it is, but it's sweet.
+01:18:56 [Speaker 9]
+Love the typography here.
+01:18:57 [Speaker 9]
+Look at this.
+01:18:58 [Speaker 9]
+Work up front.
+
+01:18:59 [Speaker 9]
+Bam.
+01:19:00 [Speaker 9]
+Again, work up front.
+01:19:01 [Speaker 9]
+I can probably scroll and get lost.
+01:19:03 [Speaker 9]
+Look at this.
+01:19:04 [Speaker 9]
+Very visual.
+
+01:19:05 [Speaker 2]
+That's good.
+
+01:19:05 [Speaker 9]
+Less saying stuff
+
+01:19:08 [Speaker 2]
+that I don't wanna read.
+01:19:09 [Speaker 2]
+You know.
+
+01:19:09 [Speaker 9]
+What happens when I click...
+01:19:10 [Speaker 9]
+Actually click on something?
+01:19:13 [Speaker 9]
+So good.
+01:19:18 [Speaker 9]
+This is how you...
+01:19:18 [Speaker 9]
+This is...
+
+01:19:19 [Speaker 9]
+This...
+01:19:19 [Speaker 9]
+These are examples of how portfolio...
+
+01:19:21 [Speaker 2]
+A transition was sick.
+
+01:19:22 [Speaker 9]
+No work.
+01:19:23 [Speaker 9]
+Yeah.
+01:19:23 [Speaker 9]
+Got some tease and continuation.
+01:19:25 [Speaker 9]
+Here we go.
+01:19:26 [Speaker 9]
+Very good.
+
+01:19:26 [Speaker 3]
+Teasing continuation.
+
+01:19:28 [Speaker 2]
+Whatever you
+
+01:19:28 [Speaker 9]
+want up here.
+
+01:19:29 [Speaker 3]
+Whatever you want
+
+01:19:29 [Speaker 9]
+up here.
+01:19:30 [Speaker 9]
+As long as you're somehow showing some work and teasing a little bit of continuation.
+01:19:36 [Speaker 9]
+You can do whatever you want on portfolios by the way.
+01:19:38 [Speaker 9]
+That's why they're your portfolios.
+
+01:19:40 [Speaker 2]
+What you're
+
+01:19:40 [Speaker 9]
+saying, if you want an active portfolio and you're looking for work, I would always try to put work upfront somehow.
+01:19:47 [Speaker 9]
+Go nuts on your portfolio.
+01:19:48 [Speaker 9]
+You should.
+01:19:49 [Speaker 9]
+It's your own page.
+01:19:50 [Speaker 9]
+It's your own place to explore.
+
+01:19:51 [Speaker 9]
+They don't have to be this, these simple things, but you can have fun with it.
+01:19:54 [Speaker 9]
+Like, say like this still has like some really cool thing.
+01:19:57 [Speaker 9]
+This has a beautiful grid of work.
+01:20:00 [Speaker 9]
+I can just sit here and what am I doing?
+01:20:02 [Speaker 9]
+I'm getting lost.
+
+01:20:03 [Speaker 9]
+I'm literally getting lost in this currently at clay.
+01:20:07 [Speaker 9]
+K.
+01:20:08 [Speaker 9]
+Cool.
+01:20:08 [Speaker 9]
+Oh, got a little video here.
+01:20:10 [Speaker 9]
+Alright.
+
+01:20:12 [Speaker 9]
+I like it.
+01:20:13 [Speaker 9]
+I love stuff like this.
+01:20:14 [Speaker 9]
+Even if it does absolutely nothing.
+01:20:16 [Speaker 9]
+Huge fan of stuff no one else can do.
+01:20:20 [Speaker 9]
+I'm I'm getting a little motion sick.
+
+01:20:21 [Speaker 9]
+I have to look away.
+01:20:22 [Speaker 9]
+I literally...
+01:20:23 [Speaker 9]
+The work isn't...
+01:20:25 [Speaker 9]
+Look more now.
+01:20:26 [Speaker 9]
+Work is great.
+
+01:20:27 [Speaker 9]
+It's super cool.
+01:20:28 [Speaker 9]
+I just...
+01:20:28 [Speaker 9]
+I literally cannot look at it without getting sick.
+
+01:20:30 [Speaker 2]
+Look at this work.
+01:20:30 [Speaker 2]
+This work
+
+01:20:31 [Speaker 9]
+is really really good.
+01:20:32 [Speaker 9]
+Just get very careful with motion.
+01:20:34 [Speaker 9]
+Honestly, I don't think you need that sliding back and forth everywhere.
+01:20:37 [Speaker 9]
+Your work is too good to hide it like that.
+01:20:40 [Speaker 9]
+This is great.
+
+01:20:41 [Speaker 9]
+Very cool.
+01:20:42 [Speaker 9]
+Very creative.
+01:20:44 [Speaker 9]
+Multiple ways to use this item which I like.
+01:20:47 [Speaker 9]
+This would be a great portfolio.
+01:20:48 [Speaker 9]
+I felt like all these illustrations were here in different styles.
+
+01:20:51 [Speaker 9]
+So we're super fun.
+01:20:52 [Speaker 9]
+The main thing we're learning today is let's give us something that we can get lost in.
+01:20:57 [Speaker 9]
+Whether it's interactions, work, whatever it is.
+01:21:01 [Speaker 9]
+It's a site to explore.
+01:21:04 [Speaker 9]
+You wanna give the person on the other end something to literally get lost in.
+
+01:21:09 [Speaker 9]
+Forget what they're doing because they love going through your stuff so much.
+01:21:12 [Speaker 9]
+Work upfront.
+01:21:13 [Speaker 9]
+Great.
+01:21:14 [Speaker 9]
+Yep.
+01:21:14 [Speaker 9]
+Personality there.
+
+01:21:15 [Speaker 9]
+I mean, there's not a lot here.
+01:21:17 [Speaker 9]
+I actually really like simplicity like this if this was just a bunch of grid of work.
+01:21:21 [Speaker 9]
+I guess that's it for now.
+01:21:22 [Speaker 9]
+Thanks for letting me review your portfolios.
+01:21:24 [Speaker 9]
+Really appreciate it.
+
+01:21:25 [Speaker 9]
+Hopefully, we all kinda learn something.
+01:21:27 [Speaker 9]
+Lots of great talent out there.
+01:21:28 [Speaker 9]
+And, yeah, y'all keep it up.
+01:21:29 [Speaker 9]
+Keep up the awesome stuff, and
+
+01:21:32 [Speaker 2]
+good luck getting work.
+
+01:21:34 [Speaker 3]
+Love it.
+01:21:35 [Speaker 3]
+We have a lot of submissions of tips from people on either how their portfolio got them hired or what they look for as a hiring manager.
+01:21:43 [Speaker 3]
+We're gonna show those next week in a full dedicated portfolio review episode with your portfolios.
+01:21:49 [Speaker 3]
+I'm I'm gonna show one last thing, and then we're getting into some of our favorites here.
+01:21:54 [Speaker 3]
+Friend of the show, friend of mine, Ericsson, has been pretty public about how daunting and just kinda grueling the job hunting process has been.
+
+01:22:05 [Speaker 3]
+He's been real vulnerable about it both in our community and in public online.
+01:22:10 [Speaker 3]
+Recently just landed a staff design position at Netflix.
+01:22:15 [Speaker 3]
+Hell, yes.
+01:22:17 [Speaker 3]
+After really working for it.
+01:22:19 [Speaker 3]
+And I said, hey, man.
+
+01:22:20 [Speaker 3]
+Love to see kinda how you thought about the portfolio that got you the call.
+01:22:24 [Speaker 3]
+What did that look like?
+01:22:25 [Speaker 3]
+And he shared this.
+
+01:22:27 [Speaker 14]
+Hi.
+01:22:27 [Speaker 14]
+My name is Eric.
+01:22:29 [Speaker 14]
+I just got my dream job as a staff product designer at Netflix.
+01:22:33 [Speaker 14]
+For me, this is a really big deal.
+01:22:35 [Speaker 14]
+And so I wanted to share how I got here.
+
+01:22:38 [Speaker 14]
+This is meant to be just an encouragement.
+01:22:40 [Speaker 14]
+I I felt like it'd be a good thing to share.
+01:22:42 [Speaker 14]
+The first thing that I did and and what I recommend everyone do is kind of define the targets that you wanna apply for in regards to the roles.
+01:22:49 [Speaker 14]
+So I picked, you know, product IC, which is something that I felt more comfortable with in the last few years.
+01:22:54 [Speaker 14]
+Whatever you define to be is like the type of role that you wanna work in, I would very heavily emphasize that your portfolio aligns with that.
+
+01:23:03 [Speaker 14]
+In in the sense that, like, make it very obvious that that's the type of work that you do in your opening statement.
+01:23:09 [Speaker 14]
+Your craft on your portfolio is the first reflection of your design ability.
+01:23:13 [Speaker 14]
+High craft is expected, not an afterthought.
+01:23:15 [Speaker 14]
+With that said, I wanna jump straight into my actual deck.
+01:23:18 [Speaker 14]
+Point of emphasis, like, when you are making your decks, please just make them easy to navigate or understand.
+
+01:23:22 [Speaker 14]
+On this particular deck, I will also preface that I put a lot of text.
+01:23:26 [Speaker 14]
+If you're presenting these, you actually shouldn't do that because then they're listening to what you're saying and reading what you're saying.
+01:23:33 [Speaker 14]
+And so that's like one thing I would optimize on.
+01:23:35 [Speaker 14]
+I always start off with a glance, overview, just explaining what our company does and then what the situation was that made us think about this project, kind of set the the stage for why this problem was important.
+01:23:48 [Speaker 14]
+And I just kind of put some stats upfront, project status, what's going on with it right now, if it's shipped, if it hasn't shipped.
+
+01:23:54 [Speaker 14]
+I always want to give them something to chew on visually.
+01:23:58 [Speaker 14]
+It's just meant to be a visual teaser.
+01:23:59 [Speaker 14]
+Presentations get...
+01:24:00 [Speaker 14]
+Can get really dense, so I try to do my best of making it not boring.
+01:24:05 [Speaker 14]
+A good piece of feedback that I received when I was doing my first, crit of my case study presentations is, and I will...
+
+01:24:12 [Speaker 14]
+I took this to heart, is don't let the circumstances of where you are dictate how you tell your story.
+01:24:19 [Speaker 14]
+There's still data there.
+01:24:21 [Speaker 14]
+Like, look to to tell that story in a way that, you know, amplifies your thinking.
+01:24:27 [Speaker 14]
+I'm not saying, like, lie.
+01:24:29 [Speaker 14]
+Don't lie, but you can find ways to really, ground the way that you think as a product designer.
+
+01:24:35 [Speaker 14]
+At the end of the day, it's more to show that you are a person who is thoughtful and deliberate and that it's not just you're putting, you know, screens together.
+01:24:43 [Speaker 14]
+These considerations to make thoughtful solutions.
+01:24:46 [Speaker 14]
+And that is what I ultimately try to communicate in these presentations.
+01:24:49 [Speaker 14]
+I think it's a good mindset to actually have to try to speak as if no one knows what you're talking about, and be clear.
+01:24:55 [Speaker 14]
+Ultimately, everyone who's on the hiring side of this is just making a risk analysis decision.
+
+01:25:00 [Speaker 14]
+So every decision that you make in regards to how you present your case study or put together your portfolio, you should all be wrapping around that consideration.
+01:25:08 [Speaker 14]
+That's generally it.
+01:25:09 [Speaker 14]
+If you have any questions, always, like, feel free to leave comments or reach out to me on LinkedIn.
+01:25:13 [Speaker 14]
+Thank you for your time.
+01:25:15 [Speaker 14]
+I hope this was really valuable.
+
+01:25:19 [Speaker 3]
+It's awesome.
+
+01:25:21 [Speaker 2]
+This is...
+01:25:21 [Speaker 2]
+That's grade a content right there, you know?
+01:25:23 [Speaker 2]
+Like, this is stuff they don't really get elsewhere, which is cool.
+01:25:25 [Speaker 2]
+I...
+01:25:26 [Speaker 2]
+I'm very appreciative of him making that video.
+
+01:25:28 [Speaker 3]
+Now we've got a lot of other videos that we'll go through next week too, as well as your portfolios.
+01:25:32 [Speaker 3]
+Let's get into what Reid and I are kind of seeing in the industry.
+01:25:38 [Speaker 3]
+Rid and I make hiring decisions,
+
+01:25:41 [Speaker 2]
+not at
+
+01:25:41 [Speaker 3]
+the same scale, I think, anymore that we maybe once did.
+01:25:44 [Speaker 3]
+We see a lot in the talent network of what's kind of, like, representative of things.
+01:25:49 [Speaker 3]
+So take it with a grain of salt.
+01:25:50 [Speaker 3]
+We are not the subject experts.
+01:25:52 [Speaker 3]
+And, again, I go back and forth on how valuable portfolio reviews are.
+
+01:25:56 [Speaker 3]
+But I'm gonna tell you how I think about it.
+01:25:58 [Speaker 3]
+I kinda break this down into a couple different categories.
+01:26:01 [Speaker 3]
+But at the...
+01:26:02 [Speaker 3]
+Before I get into the categories, I always have appreciated when a portfolio, which is largely a skimming device.
+01:26:11 [Speaker 3]
+Right?
+
+01:26:11 [Speaker 3]
+Like, it's the...
+01:26:12 [Speaker 3]
+Not the place that I'm necessarily gonna go quite as deep as I might in the interview that we actually have together.
+01:26:20 [Speaker 3]
+But the portfolio to me is...
+01:26:21 [Speaker 3]
+I I like the zooming mechanism.
+01:26:24 [Speaker 3]
+Give me, at a glance, some of the work.
+
+01:26:27 [Speaker 3]
+Be visually compelling with it.
+01:26:28 [Speaker 3]
+Let me know who you are and what you're about.
+01:26:31 [Speaker 3]
+I wanna be able to see that in a snapshot, and then allow me to drill in.
+01:26:36 [Speaker 3]
+That's always been my favorite way to consume the experience of a portfolio.
+01:26:41 [Speaker 3]
+It gives me the kind of context I need, and it allows me to pick and choose which path I think I need to explore further about your work, your background.
+
+01:26:50 [Speaker 3]
+And so when I think about that, the ways I see this done are probably broken into, maybe three categories of world building, like, really simple flex type portfolios
+
+01:27:04 [Speaker 2]
+Yep.
+
+01:27:04 [Speaker 3]
+And portfolios that are just all about the work.
+01:27:07 [Speaker 3]
+And then I'd I'd say maybe there's, like, a fourth in there where I think there's actually people who balance a little bit of all really well.
+01:27:14 [Speaker 3]
+So, Ridd, I don't know how we're gonna do this exactly, but maybe I'll top level it.
+
+01:27:21 [Speaker 2]
+Kinda Yeah.
+01:27:23 [Speaker 2]
+Let's just wing it.
+01:27:23 [Speaker 2]
+I I I...
+01:27:24 [Speaker 2]
+We...
+01:27:24 [Speaker 2]
+I think we both there's a pattern matching.
+
+01:27:28 [Speaker 2]
+I think that you're seeing the same way, but, you know, I look at a ton of portfolios to the talent network, and you do kinda start to see strategies emerge.
+01:27:37 [Speaker 2]
+Mhmm.
+01:27:37 [Speaker 2]
+And I think there are certain pros and cons to different strategies depending on who you are and what you have available to to sell yourself with.
+01:27:44 [Speaker 2]
+And so even before saying, you know, I I definitely don't wanna say, like, right or wrong that much because I don't think that really exists in the world of portfolios.
+01:27:51 [Speaker 2]
+But I do think it is super helpful to understand the types of patterns that are getting hiring managers to click through and say, like, yes.
+
+01:27:59 [Speaker 2]
+I'd like to talk to this person.
+01:28:01 [Speaker 2]
+And so I would be kind of interested...
+01:28:04 [Speaker 2]
+You know, you you you mentioned some of your patterns.
+01:28:06 [Speaker 2]
+I have a lot of overlap there.
+01:28:07 [Speaker 2]
+So maybe you even just kinda start going through some of them, and and I might just, like, intercept and show a few that also resonate on some of the the angles that you're thinking about.
+
+01:28:15 [Speaker 3]
+Yeah.
+01:28:16 [Speaker 3]
+Well, let's let's dive right into, like, world building here.
+01:28:18 [Speaker 3]
+Right?
+01:28:19 [Speaker 3]
+This is Dawn who has, you land immediately.
+01:28:23 [Speaker 3]
+And I like that it's like a...
+
+01:28:24 [Speaker 3]
+Clear as day, there are two things that are apparent to me.
+01:28:27 [Speaker 3]
+I see exactly who...
+01:28:29 [Speaker 3]
+That this is a personal portfolio, what I can expect in context, senior visual and web designer, fifteen years.
+01:28:36 [Speaker 3]
+And I'm about to enter what looks like a playground.
+01:28:39 [Speaker 3]
+And immediately, the heuristic of being able to grab and move around, it's like, okay.
+
+01:28:43 [Speaker 3]
+There's there's, like, some personality and charm charm here.
+01:28:46 [Speaker 3]
+There's the ability to kinda zoom in.
+01:28:47 [Speaker 3]
+I dig it.
+01:28:49 [Speaker 3]
+I'm personally a really big fan of the ability to move between compartmentalized versions.
+01:28:55 [Speaker 3]
+I actually think it's largely a safer bet to put the playground in one tab and the, like, work in another.
+
+01:29:04 [Speaker 3]
+We'll get into some balanced examples.
+01:29:05 [Speaker 3]
+But I do think this sort of playground that he's created here is really, compelling.
+01:29:14 [Speaker 3]
+I think this is a nice way to kind of get to some of that simplicity.
+01:29:19 [Speaker 3]
+Gotta give a shout out because this is...
+01:29:20 [Speaker 3]
+Pastis is exactly that foundational stuff.
+
+01:29:23 [Speaker 3]
+Which means what's left to show...
+
+01:29:25 [Speaker 2]
+Now I know why you like this one....
+
+01:29:26 [Speaker 3]
+Judgment, curiosity, a willingness to...
+01:29:30 [Speaker 3]
+You know, so he he puts some love there.
+01:29:32 [Speaker 3]
+Hey, gotta give some love back.
+01:29:34 [Speaker 3]
+But, I did think this was cool.
+01:29:35 [Speaker 3]
+And and this is actually a scene he pulled from the portfolio episode, which I thought was kinda cool, because I think that's a little bit of where that's coming from.
+
+01:29:44 [Speaker 3]
+Meanwhile, you get, like, the Tom Johnsons.
+01:29:46 [Speaker 3]
+You get Pablo Stanley world building here.
+01:29:49 [Speaker 3]
+Right?
+01:29:49 [Speaker 3]
+And the criticism I'll give to Pablo and Tom, which these are incredible, like, how can you criticize any of them, is that the world building, at a glance, maybe there's some room to be desired, maybe not.
+01:30:01 [Speaker 3]
+I don't know.
+
+01:30:01 [Speaker 3]
+I'd have to think about that a little bit.
+01:30:03 [Speaker 3]
+Like, this this intentionally leans into learn through exploration.
+01:30:09 [Speaker 3]
+Like, that's an intentional decision.
+01:30:11 [Speaker 3]
+So it's like, yeah, I don't I don't dislike that.
+01:30:15 [Speaker 3]
+But for me as somebody skimming this stuff, like, I'm gonna play with this.
+
+01:30:18 [Speaker 3]
+This says everything I need to know about Pablo.
+01:30:20 [Speaker 3]
+Like, okay.
+01:30:21 [Speaker 3]
+Yeah.
+01:30:21 [Speaker 3]
+I get it.
+01:30:22 [Speaker 3]
+But I do like the ability to jump into these worlds and see what I'm about to get into before I get into it.
+
+01:30:29 [Speaker 3]
+And so Hangzhou, he's a friend of mine who has been exploring a lot.
+01:30:35 [Speaker 3]
+The...
+01:30:36 [Speaker 3]
+You land on his portfolio, and this is what you see.
+01:30:39 [Speaker 3]
+And this is super hard for me.
+01:30:40 [Speaker 3]
+This is really impressive on one hand.
+
+01:30:43 [Speaker 3]
+It's also hard to make sense of for a number of reasons.
+01:30:47 [Speaker 3]
+The type's hard to read.
+01:30:49 [Speaker 3]
+I don't totally understand what it is that I'm interfacing with here.
+01:30:53 [Speaker 3]
+And and I guess I should probably show when you load in on this, you get kind of this, like, initial splash screen, which almost...
+01:31:00 [Speaker 3]
+This...
+
+01:31:00 [Speaker 3]
+Listen.
+01:31:01 [Speaker 3]
+All of this brings me back to, like, 1999, 2001.
+
+01:31:04 [Speaker 2]
+Mhmm.
+
+01:31:05 [Speaker 3]
+Young teenager in me who absolutely adored the Flash era.
+01:31:08 [Speaker 3]
+So there's there's a lot of nostalgia here that I love.
+01:31:11 [Speaker 3]
+But, effectively, is this gonna work for your portfolio?
+01:31:16 [Speaker 3]
+And I'm trying to figure out there is a way to kind of...
+01:31:18 [Speaker 3]
+Oh, yeah.
+
+01:31:18 [Speaker 3]
+Here we go.
+01:31:19 [Speaker 3]
+So there's, like, I can learn about them.
+01:31:21 [Speaker 3]
+Again, super hard to comprehend, visually very interesting.
+01:31:26 [Speaker 3]
+I come out to this view sort of like the matrix console of sorts.
+01:31:32 [Speaker 3]
+It has some performance, to be desired, but that's solvable.
+
+01:31:36 [Speaker 3]
+This is a macro view.
+01:31:38 [Speaker 3]
+Right?
+01:31:39 [Speaker 3]
+This to me is something that I can sink my teeth into and then start picking and choosing how I wanna drill into.
+01:31:44 [Speaker 3]
+I would love to start from, you know, your world builds from like a view that looks a lot more like this.
+
+01:31:52 [Speaker 2]
+Let me show you
+
+01:31:53 [Speaker 3]
+an example of something that I think when we talk about playgrounds aren't necessarily...
+01:31:58 [Speaker 3]
+And then I'll kick it over to you on the world building side.
+01:32:00 [Speaker 3]
+I think maybe...
+01:32:01 [Speaker 3]
+And and I I am not trying to shit on this person.
+01:32:04 [Speaker 3]
+I think there are some things that are really interesting here.
+
+01:32:07 [Speaker 3]
+But this to me is a little bit too much noise.
+01:32:09 [Speaker 3]
+I'm not gonna play it with sound because it's, it's like a a really hype rap song.
+01:32:13 [Speaker 3]
+It's cool.
+01:32:13 [Speaker 3]
+I just don't know if we can play that here.
+01:32:15 [Speaker 3]
+So we're gonna enter muted.
+
+01:32:24 [Speaker 3]
+So the Is the sound off now?
+
+01:32:27 [Speaker 2]
+You're good now.
+01:32:28 [Speaker 2]
+Yeah, you're good now.
+01:32:29 [Speaker 2]
+That was just funny.
+01:32:33 [Speaker 2]
+Is the
+
+01:32:33 [Speaker 3]
+sound on still?
+
+01:32:35 [Speaker 2]
+Whenever you click it, it goes on.
+01:32:37 [Speaker 2]
+Yeah, it's on.
+
+01:32:38 [Speaker 3]
+Is it on now?
+01:32:39 [Speaker 3]
+No.
+01:32:40 [Speaker 3]
+Okay.
+01:32:42 [Speaker 3]
+So, it's like this is wild to me.
+01:32:46 [Speaker 3]
+I don't know that this is necessarily very effective as a portfolio.
+
+01:32:51 [Speaker 3]
+So we can kinda...
+
+01:32:52 [Speaker 12]
+What
+
+01:32:52 [Speaker 2]
+kind of person...
+01:32:52 [Speaker 2]
+What is this person's role?
+01:32:53 [Speaker 2]
+Are you able to tell...
+
+01:32:54 [Speaker 3]
+So you're gonna have a website?
+01:32:56 [Speaker 3]
+It starts it starts here.
+01:32:58 [Speaker 3]
+This is actually where it starts.
+01:33:00 [Speaker 3]
+So this is what you see.
+01:33:02 [Speaker 3]
+Okay?
+
+01:33:03 [Speaker 3]
+Yogi Surya, design motion, encode by one person.
+01:33:07 [Speaker 3]
+Right?
+01:33:07 [Speaker 3]
+And then, like, I think you can, like, you kinda...
+01:33:09 [Speaker 3]
+But then if you start to scroll into things, you get kind of this, like, you get to go through the world here.
+01:33:16 [Speaker 3]
+You can click on these things.
+
+01:33:17 [Speaker 3]
+Like, don't get me wrong.
+01:33:18 [Speaker 3]
+This is very technically impressive.
+01:33:20 [Speaker 3]
+There are visual things that are very interesting here.
+01:33:23 [Speaker 3]
+This is also, you know, Dan Petty kinda gave feedback that, like, he was getting motion sickness looking at the alternating Yeah.
+01:33:30 [Speaker 3]
+Carousels.
+
+01:33:31 [Speaker 3]
+Yeah.
+01:33:31 [Speaker 3]
+I I get a lot of that from kind of this too.
+01:33:34 [Speaker 3]
+I get a little bit of pretense.
+01:33:35 [Speaker 3]
+I get a few things that I'm like, okay.
+01:33:37 [Speaker 3]
+I don't know necessarily what to do with this, but it seems like there is some some level of, intention here that's pretty dope.
+
+01:33:45 [Speaker 3]
+You know?
+01:33:46 [Speaker 3]
+So...
+
+01:33:47 [Speaker 2]
+The reason I asked what the role is is I I can see...
+01:33:51 [Speaker 2]
+I've seen this portfolio be very effective, but only for this specific type of person.
+01:33:57 [Speaker 2]
+Like, if you are selling yourself as, hey.
+01:33:59 [Speaker 2]
+I'm this creative that is gonna come in and own web.
+01:34:04 [Speaker 2]
+Maybe I'm, like, a brand engineer.
+
+01:34:06 [Speaker 2]
+I can do, you know, three JS stuff, then the more, like, minimal portfolios actually kinda do you a disservice.
+01:34:14 [Speaker 2]
+Like, people don't care about...
+01:34:16 [Speaker 2]
+They're not gonna read a case study.
+01:34:18 [Speaker 2]
+It's less about impact.
+01:34:20 [Speaker 2]
+They don't really wanna know how you think even to a degree.
+
+01:34:23 [Speaker 2]
+It's, like, just what are you capable of?
+01:34:25 [Speaker 2]
+You know?
+01:34:26 [Speaker 2]
+Like, can you make magic happen on the Internet?
+01:34:29 [Speaker 2]
+It's risky to have this approach, but if you can pull it off, like, this this might be effective, actually.
+01:34:35 [Speaker 2]
+This might...
+
+01:34:35 [Speaker 3]
+There's there's a, like,
+
+01:34:37 [Speaker 2]
+like, very specific type of role.
+
+01:34:38 [Speaker 3]
+Look at the...
+01:34:39 [Speaker 3]
+Like, him going through this kind of wormhole portal and then distorting and then back into it.
+01:34:44 [Speaker 3]
+Like, there's a lot of intentionality happening in this.
+01:34:47 [Speaker 3]
+Right?
+01:34:49 [Speaker 3]
+So I so I I completely agree.
+
+01:34:52 [Speaker 3]
+I think, you know, yeah.
+01:34:57 [Speaker 3]
+I...
+01:34:58 [Speaker 3]
+I'm looking at the world building.
+01:34:59 [Speaker 3]
+I'm looking at the playgrounds, and I would love for this to be something I can get in and out of while kind of seeing a more...
+01:35:06 [Speaker 3]
+A a cleaner version of your portfolio.
+
+01:35:10 [Speaker 3]
+Do you have an example of something world building or playground like?
+
+01:35:15 [Speaker 2]
+Actually, the thing that I was about to bring up was Tom Johnson's because he has that button bottom left that flips it to, like, the traditional view.
+01:35:22 [Speaker 2]
+I don't know if you saw that.
+01:35:24 [Speaker 2]
+But to me, that was actually really strategic.
+01:35:26 [Speaker 2]
+And I and I think if you're gonna go...
+01:35:29 [Speaker 2]
+There's, like, a high level idea that I have, which is I think you have to be really wary of middle grounds.
+
+01:35:35 [Speaker 2]
+Like, either do something that is polished and restrained or freaking send it.
+01:35:42 [Speaker 2]
+If you send it, it better be good.
+01:35:43 [Speaker 2]
+If you get trapped in this middle ground where it's, like, kinda overdesigned, but it's not really that special, that's actually, I think, where it gets the most dangerous.
+01:35:52 [Speaker 2]
+And I think that's what I like about what he did is he gives you both extremes and nothing else.
+
+01:35:59 [Speaker 3]
+Yeah.
+01:35:59 [Speaker 3]
+Yeah.
+01:35:59 [Speaker 3]
+I think this is...
+01:36:00 [Speaker 3]
+I didn't I didn't know about this part.
+01:36:02 [Speaker 3]
+He's he's done quite a bit here that I wasn't aware of, which is pretty cool.
+
+01:36:06 [Speaker 3]
+And and that that...
+01:36:07 [Speaker 3]
+You know, you make a good point because it leads me to, like, the other category, which is, like, these simple flexes.
+01:36:12 [Speaker 3]
+Right?
+01:36:12 [Speaker 3]
+Like, Jacob Crayle here.
+01:36:14 [Speaker 3]
+It's just like, yep.
+
+01:36:15 [Speaker 3]
+Here's where I'm working.
+01:36:16 [Speaker 3]
+Here's who I am.
+01:36:17 [Speaker 3]
+Here's links to my projects.
+01:36:18 [Speaker 3]
+Here's things I've written about.
+01:36:20 [Speaker 3]
+You can get my thinking.
+
+01:36:22 [Speaker 3]
+And I call these the simple flex because this is the kind of thing that can be useful and really effective but it's not gonna work likely for like a junior designer who doesn't have a lot to put here.
+01:36:35 [Speaker 3]
+Totally.
+01:36:35 [Speaker 3]
+And especially things that like are really worth putting here.
+01:36:40 [Speaker 3]
+You know?
+01:36:41 [Speaker 3]
+You look at like a lot of people who kind of...
+
+01:36:44 [Speaker 3]
+There...
+01:36:44 [Speaker 3]
+There's...
+01:36:44 [Speaker 3]
+Like, you can you can flex when you have some pedigree behind you, when you have some projects.
+01:36:49 [Speaker 3]
+This is Charles Pattison, designer at Microsoft AI.
+01:36:52 [Speaker 3]
+He's behind on dot design.
+
+01:36:54 [Speaker 3]
+You know?
+01:36:56 [Speaker 3]
+This is kinda what you get, and it's dope.
+01:36:58 [Speaker 3]
+It's kinda all you need to know about him right now, you know, because he's in the middle of working and grinding, and you look at Benjie, same thing.
+01:37:05 [Speaker 3]
+Right?
+01:37:06 [Speaker 3]
+Same thing.
+
+01:37:08 [Speaker 3]
+It's like you don't really...
+01:37:09 [Speaker 3]
+Not not trying to so much as sell himself because they kinda don't have to.
+01:37:12 [Speaker 3]
+They're in the midst of something dope.
+01:37:15 [Speaker 3]
+Even, like, I think kind of the OG of the simple portfolio here was, hope you pulled something.
+
+01:37:21 [Speaker 2]
+I absolutely...
+01:37:22 [Speaker 2]
+I was just showing an example.
+01:37:23 [Speaker 2]
+I didn't think it was gonna replace yours, but, like, this was another example I was gonna
+
+01:37:26 [Speaker 3]
+show you....
+
+01:37:26 [Speaker 2]
+This one?
+01:37:27 [Speaker 2]
+This is Chloe Park where
+
+01:37:29 [Speaker 3]
+Yeah.
+
+01:37:29 [Speaker 2]
+You look at...
+01:37:30 [Speaker 2]
+Like, dude, none of this is even interactive.
+01:37:32 [Speaker 2]
+It just links to the website.
+01:37:33 [Speaker 2]
+There's no case studies, anything.
+01:37:35 [Speaker 2]
+But you have the pedigree so you can get by with a resume.
+
+01:37:38 [Speaker 2]
+And I think there actually is danger in looking at the best designers and copying their style one for one because the vast majority of people...
+01:37:46 [Speaker 2]
+Like, even for myself, if I would do this style of portfolio, I get tossed aside for sure because I don't have a bunch of big names that are recognizable.
+01:37:53 [Speaker 2]
+So, like, just putting my resume with my image is not gonna work.
+01:37:56 [Speaker 2]
+But for Khloe, it crushes, dude.
+01:37:58 [Speaker 2]
+Like, this is such
+
+01:37:58 [Speaker 3]
+a flex.
+
+01:37:59 [Speaker 2]
+You know?
+01:37:59 [Speaker 2]
+Like, it's almost like if she were to sell herself, it would actually do her a disservice, whereas this entire portfolio screams, I don't need to sell myself.
+
+01:38:09 [Speaker 3]
+It's the simple flex.
+01:38:10 [Speaker 3]
+You know?
+01:38:10 [Speaker 3]
+And I think I think the, I think the person who kind of was the OG on the simple flex was Paul McGregor.
+01:38:17 [Speaker 3]
+Right?
+01:38:17 [Speaker 3]
+He's over at Linear now, but Tumblr, Twitter, like, mis...
+
+01:38:21 [Speaker 3]
+Just miscellaneous.
+01:38:22 [Speaker 3]
+Don't worry about it.
+01:38:22 [Speaker 3]
+You know?
+01:38:23 [Speaker 3]
+And it's...
+01:38:24 [Speaker 3]
+There's something to be admired about, I think, being able to do this.
+
+01:38:28 [Speaker 3]
+What's cool...
+01:38:28 [Speaker 3]
+And then it has, like, one little accent sort of thing.
+01:38:30 [Speaker 3]
+You could change the theme on it.
+01:38:31 [Speaker 3]
+This, I remember, standing out
+
+01:38:33 [Speaker 2]
+to me
+
+01:38:34 [Speaker 3]
+quite a bit.
+01:38:35 [Speaker 3]
+But if this, like, simple flex concept isn't really gonna do you a whole lot of service, there's two things you can do.
+01:38:42 [Speaker 3]
+And I think one of those things that you can do is do what Tim Van Damme did at Figma and take the sort of simple flex and still add some of the personality and and the visual...
+01:38:53 [Speaker 3]
+The aesthetic that represents you.
+01:38:55 [Speaker 3]
+And I think he killed this.
+
+01:38:57 [Speaker 3]
+Right?
+01:38:57 [Speaker 3]
+Like, it's just an about section.
+01:38:58 [Speaker 3]
+This is really just a digital resume done in this comic book aesthetic, Just changes the perspective a little bit.
+01:39:04 [Speaker 3]
+And I'm like, dude, this is so good.
+01:39:06 [Speaker 3]
+It's so freaking
+
+01:39:08 [Speaker 2]
+good.
+01:39:08 [Speaker 2]
+And it's this idea that I keep coming back to where if you can just have one idea that is really creative and then pair that with simplicity, it's almost the...
+01:39:17 [Speaker 2]
+Like, that's almost like the the holy grail of portfolio.
+01:39:20 [Speaker 2]
+You know?
+01:39:21 [Speaker 2]
+Because you scroll this one time and you're like, oh, dude.
+
+01:39:23 [Speaker 2]
+Tim's so creative.
+
+01:39:25 [Speaker 3]
+Yeah.
+
+01:39:25 [Speaker 2]
+And that there's nothing else.
+01:39:26 [Speaker 2]
+He's not trying to overdo it.
+
+01:39:28 [Speaker 3]
+Yeah.
+01:39:28 [Speaker 3]
+It's it's it's I love that he's like, I'm gonna take a picture of me that shows me, like, you know, presenting at a conference or something that's got its own sort of street cred.
+01:39:36 [Speaker 3]
+And I'm gonna just, like, I'm gonna draw on it.
+01:39:38 [Speaker 3]
+You know?
+01:39:38 [Speaker 3]
+And and I'm like, that's so...
+
+01:39:40 [Speaker 3]
+That's...
+01:39:40 [Speaker 3]
+I I love that a lot.
+01:39:42 [Speaker 3]
+Now some people are like, no.
+01:39:44 [Speaker 3]
+No.
+01:39:44 [Speaker 3]
+But I'm really proud of the work, or I wanna really start with showcasing the work.
+
+01:39:49 [Speaker 2]
+Can I cut you off?
+01:39:49 [Speaker 2]
+Can I cut you off?
+01:39:50 [Speaker 2]
+I'm gonna cut you off.
+01:39:50 [Speaker 2]
+I'm gonna cut you off probably a bunch of stuff, and we'll just train wreck each other because there's gonna be things to share.
+01:39:53 [Speaker 2]
+Good.
+
+01:39:53 [Speaker 2]
+Good.
+01:39:54 [Speaker 2]
+Good.
+01:39:54 [Speaker 2]
+You're the king of segues.
+01:39:54 [Speaker 2]
+I'm gonna blow them all up.
+01:39:56 [Speaker 2]
+Cool.
+
+01:39:56 [Speaker 2]
+Another...
+01:39:56 [Speaker 2]
+I wanna show one example.
+01:39:57 [Speaker 2]
+I've showed this one other time, but I I just wanna keep coming back to it because this is...
+01:40:03 [Speaker 2]
+This was literally shared with me as an example of the type of person that they wanted to hire.
+01:40:10 [Speaker 2]
+And it's Claire Taylor, who we've...
+
+01:40:12 [Speaker 2]
+We had call in for the founding designer episode.
+01:40:14 [Speaker 2]
+You look at this page.
+01:40:16 [Speaker 2]
+I mean, this is about as minimal as it gets.
+01:40:18 [Speaker 2]
+Right?
+01:40:20 [Speaker 2]
+But she she picked her place to go above and beyond.
+
+01:40:24 [Speaker 2]
+And it was just when you click on her past work, so you have like a nice little hover state there.
+01:40:31 [Speaker 2]
+I love that.
+01:40:31 [Speaker 2]
+When you click on it.
+01:40:33 [Speaker 2]
+So this is beautiful the way that it slides in, like, yeah, you know, it's a nice case study, whatever.
+01:40:37 [Speaker 2]
+This little interaction is where she she went above and beyond.
+
+01:40:41 [Speaker 2]
+And I had a hiring manager take video and put it into Slack and said, we wanna hire somebody like Claire Taylor because of this.
+01:40:47 [Speaker 2]
+And all it is is this back transition.
+01:40:50 [Speaker 2]
+Do you see that?
+01:40:51 [Speaker 2]
+Mhmm.
+01:40:51 [Speaker 2]
+Where it peaks?
+
+01:40:52 [Speaker 2]
+It's like so simple and yet her unique angle where she demonstrated her creativity was the way that the page overlaid and then the way that you navigate back and we'll do a custom cursor and then slide it away and we'll do it.
+01:41:05 [Speaker 2]
+That's how you're going to get in and out of my work.
+01:41:07 [Speaker 2]
+And that little, and that was, that thing was enough for her to like immediately get past the portfolio stage as somebody like, yeah, we need to talk to this person.
+01:41:17 [Speaker 2]
+It's just like restrained, especially not in a way where we can do everything so easily just by prompting Claude.
+01:41:23 [Speaker 2]
+That combination of, like, restraint, but one or two really creative interactions is...
+
+01:41:27 [Speaker 2]
+That's the superpower.
+
+01:41:28 [Speaker 3]
+There are two ways you can storytell that you are a designer who designs with intentionality.
+01:41:33 [Speaker 3]
+You can say it in a bunch of words or language, or you can just show it by, hey.
+01:41:40 [Speaker 3]
+Here's what's minimal, and here are the things that are very clearly contrasting what's minimal because I intentionally made them more interesting.
+01:41:48 [Speaker 3]
+And I think that contrast is really nice.
+
+01:41:52 [Speaker 2]
+I'm gonna...
+01:41:53 [Speaker 2]
+I think...
+01:41:53 [Speaker 2]
+I don't know why I'm I'm just, like, not just keeping my screen share up because I'm gonna show one other one that I think is really interesting on this topic.
+01:42:00 [Speaker 2]
+And maybe we'll just both screen share, and we'll just grab grab it when we want.
+01:42:06 [Speaker 2]
+So this is Gwee here.
+
+01:42:07 [Speaker 2]
+He's a design director at Figma.
+01:42:09 [Speaker 2]
+And at first glance, you look at this and you're like, okay.
+01:42:12 [Speaker 2]
+Typical, minimal, no design, and it's like a leadership portfolio that doesn't do anything.
+01:42:20 [Speaker 2]
+Right.
+01:42:20 [Speaker 2]
+But then you realize, oh, it's a single view port and the cursor is a video.
+
+01:42:26 [Speaker 2]
+And when you click play, it's a show reel.
+01:42:30 [Speaker 2]
+And now the cursor is an x.
+01:42:31 [Speaker 2]
+I think this is so sick, dude.
+01:42:33 [Speaker 2]
+Are you kidding me?
+01:42:34 [Speaker 2]
+You pair this with everything that we talked about with using Opus 5.5 to animate your work, maybe it would become overdone too quickly, but there's so much alpha right now to literally just copy this strategy for a portfolio.
+
+01:42:47 [Speaker 2]
+I think it is so good.
+01:42:49 [Speaker 2]
+I think it's so good.
+
+01:42:51 [Speaker 3]
+Yeah.
+01:42:51 [Speaker 3]
+No.
+01:42:51 [Speaker 3]
+I I I love that.
+01:42:52 [Speaker 3]
+And and while we're at balance, I I wanna show something that in comparison to some of these, just much more interactive portfolios, we might say, I I still really think there's a ton of value in showing something like, I don't know how to hijack the screen like you do.
+01:43:12 [Speaker 3]
+You're you're king of hijacking.
+
+01:43:13 [Speaker 3]
+How do I do that?
+01:43:14 [Speaker 3]
+You gotta
+
+01:43:15 [Speaker 2]
+hit the hit the replace.
+01:43:16 [Speaker 2]
+Hit the three dots and then hit replace.
+
+01:43:18 [Speaker 3]
+Oh, is that what it is?
+01:43:19 [Speaker 3]
+Oh, it sure is.
+01:43:21 [Speaker 3]
+Boom.
+01:43:21 [Speaker 3]
+Got it.
+01:43:22 [Speaker 3]
+Okay.
+
+01:43:23 [Speaker 3]
+But that's not what I was replacing with.
+01:43:25 [Speaker 3]
+It's Pip Turner.
+01:43:26 [Speaker 3]
+And what I like about this and maybe, like, I just like that it's just so clearly readable for me, and that's a lot of fun.
+01:43:34 [Speaker 3]
+And it's like, okay.
+01:43:34 [Speaker 3]
+It's got some, like, shader stuff happening that we could play with.
+
+01:43:37 [Speaker 3]
+But, like, this is what I kinda dig is I don't always, especially if you're a hiring manager, you know that, like, you just came out of four meetings.
+01:43:46 [Speaker 3]
+You have thirty minutes break.
+01:43:48 [Speaker 3]
+You're probably eating lunch while you're going through 50 portfolios to determine who's gonna make it to the interview stage, and you're trying to, you know, wolf down that sandwich before you get into another meeting afterwards.
+01:43:59 [Speaker 3]
+And so you don't have necessarily the time to go through every portfolio and read the case study and learn the thinking.
+01:44:06 [Speaker 3]
+You're trying to skim a vibe.
+
+01:44:09 [Speaker 3]
+Is this person look like they've worked in the same field?
+01:44:12 [Speaker 3]
+Do they look like they have the chops for x, y, or z discipline?
+01:44:16 [Speaker 3]
+And I think a portfolio very similar to what we're seeing with Pip here who's like, hey.
+01:44:20 [Speaker 3]
+There's some work here.
+01:44:21 [Speaker 3]
+You can kinda see...
+
+01:44:22 [Speaker 3]
+Get the app.
+01:44:23 [Speaker 3]
+You know?
+01:44:23 [Speaker 3]
+You You can kinda see what some of the work is.
+01:44:25 [Speaker 3]
+Here's some, like, larger projects.
+01:44:27 [Speaker 3]
+Here are my experiments.
+
+01:44:28 [Speaker 3]
+You know?
+01:44:29 [Speaker 3]
+He's not creating necessarily the Zen garden experience to show you his experiments, but he is giving you plenty of proof that he does in fact experiment.
+01:44:38 [Speaker 3]
+And his experiments are pretty interesting, you know, that he is spending a lot of time tinkering.
+01:44:43 [Speaker 3]
+And I think the way that he has gone through this, here's some talks he has and then contact, And that's it.
+01:44:49 [Speaker 3]
+I think there's something beautiful about still doing the the simple...
+
+01:44:52 [Speaker 3]
+I mean, this is...
+01:44:53 [Speaker 3]
+There are some things on this that aren't simple, but I think the layout of information here, this is a portfolio built to clearly get through the door.
+01:45:03 [Speaker 3]
+And I think he does a good job of that with this.
+
+01:45:07 [Speaker 2]
+I think there are two types of portfolios that I'm seeing a lot right now.
+01:45:11 [Speaker 2]
+One is actually, let me say this.
+01:45:14 [Speaker 2]
+Let's imagine three types of portfolios.
+01:45:16 [Speaker 2]
+One is you show a bunch of thumbnails, and you have to click in and go to the case study.
+01:45:21 [Speaker 2]
+I think that was the old way of doing portfolios.
+
+01:45:23 [Speaker 2]
+I think it is playing on hard mode right now because you're requiring clicks.
+01:45:27 [Speaker 2]
+It kinda downplays your homepage a little bit.
+01:45:29 [Speaker 2]
+Like, the homepage is the star.
+01:45:31 [Speaker 2]
+Dan was talking about it.
+01:45:32 [Speaker 2]
+We've talked about it in the past.
+
+01:45:33 [Speaker 2]
+Like Mhmm.
+01:45:34 [Speaker 2]
+I would...
+01:45:35 [Speaker 2]
+If you are redesigning your portfolio today, I would take that historical concept of how we think about a portfolio and throw it in the trash and do something else.
+01:45:42 [Speaker 2]
+Then it's a question of, okay, how are you organizing your work?
+01:45:45 [Speaker 2]
+Is it more like marketing site style where you have a single column?
+
+01:45:50 [Speaker 2]
+I see that a lot.
+01:45:51 [Speaker 2]
+Everything's in one view.
+01:45:52 [Speaker 2]
+This is what Pip's doing here.
+01:45:53 [Speaker 2]
+Another thing that I see is more of the...
+01:45:59 [Speaker 2]
+Here.
+
+01:45:59 [Speaker 2]
+Actually, let me just show this really quickly.
+01:46:02 [Speaker 2]
+Having your...
+01:46:03 [Speaker 2]
+Almost like a combination of putting the work with the resume in one.
+01:46:13 [Speaker 2]
+Alright.
+01:46:13 [Speaker 2]
+A lot of clicks.
+
+01:46:14 [Speaker 2]
+There
+
+01:46:14 [Speaker 3]
+we go.
+
+01:46:14 [Speaker 2]
+I think this is really interesting from Moritz because at a high level, it's the simplest concept.
+
+01:46:20 [Speaker 13]
+Here is where I've worked.
+
+01:46:22 [Speaker 2]
+Here is the work.
+01:46:23 [Speaker 2]
+Right?
+01:46:24 [Speaker 2]
+And you can click on any individual thing and then it opens up in this detail view.
+01:46:30 [Speaker 2]
+Like, when you really think about the the IA, that's how...
+01:46:33 [Speaker 2]
+Oh, and there's no text, by the way.
+
+01:46:34 [Speaker 2]
+It's just, like, just nice visuals.
+01:46:36 [Speaker 2]
+When you think about the the information architecture of what's happening here, I mean, it's like...
+01:46:41 [Speaker 2]
+It's very, very simple, but it's it's it's clever.
+01:46:43 [Speaker 2]
+It's unique.
+01:46:44 [Speaker 2]
+Right?
+
+01:46:45 [Speaker 2]
+And there is another one that I'll share, which is actual...
+01:46:51 [Speaker 2]
+Oh, man.
+01:46:53 [Speaker 2]
+It's so hard to get in and out of stuff quickly.
+
+01:46:58 [Speaker 3]
+We gotta get keyboard shortcuts.
+
+01:47:00 [Speaker 2]
+Dude, it's crazy, man.
+01:47:02 [Speaker 2]
+Like, why do they make it so hard?
+01:47:06 [Speaker 2]
+Here.
+01:47:06 [Speaker 2]
+Actually, I'll show I'll show an example of another one.
+01:47:08 [Speaker 2]
+Now I'm just gonna just...
+
+01:47:09 [Speaker 2]
+I'll just bop around a little bit.
+01:47:10 [Speaker 2]
+This would be an example of one that I really like that is everything...
+01:47:13 [Speaker 2]
+Almost a little bit more like, like pips where everything's in a single view.
+01:47:19 [Speaker 2]
+This...
+01:47:20 [Speaker 2]
+I had a really positive reaction to this one here where I can just scroll.
+
+01:47:25 [Speaker 2]
+Right?
+01:47:25 [Speaker 2]
+He doesn't make me click on anything.
+01:47:27 [Speaker 2]
+There's a really unique layout.
+01:47:29 [Speaker 2]
+I actually think these cards are kinda fresh whether he's he's divvying up the work.
+01:47:33 [Speaker 2]
+If I wanna click on like,
+
+01:47:34 [Speaker 3]
+the corners grid together.
+01:47:35 [Speaker 3]
+That's fine.
+
+01:47:36 [Speaker 2]
+It's cool.
+01:47:36 [Speaker 2]
+Right?
+01:47:37 [Speaker 2]
+It's, like, it's really it's really cool.
+01:47:40 [Speaker 2]
+And then you can click on anything, and there is, like, a case study for it.
+01:47:44 [Speaker 2]
+But you don't actually have to, man.
+
+01:47:45 [Speaker 2]
+Like, I'm sold.
+
+01:47:46 [Speaker 3]
+And the case studies aren't...
+01:47:47 [Speaker 3]
+At at least the one you showed there wasn't this, like, novel of thing I have to dig into.
+01:47:51 [Speaker 3]
+It was very Yeah.
+01:47:52 [Speaker 3]
+I thought it was a a good number of characters per slide.
+
+01:47:56 [Speaker 2]
+Yeah.
+01:47:57 [Speaker 2]
+Agreed.
+01:47:58 [Speaker 2]
+I'm just gonna share my whole window.
+01:48:00 [Speaker 2]
+I don't know why I'm even doing this.
+01:48:02 [Speaker 2]
+It's ridiculous.
+
+01:48:03 [Speaker 2]
+Okay.
+01:48:03 [Speaker 2]
+This is another one I think is really interesting.
+01:48:05 [Speaker 2]
+This is John Bye.
+01:48:06 [Speaker 2]
+So you interviewed him, Cursor, now SpaceX.
+01:48:09 [Speaker 2]
+He was one of the designers behind Grokbot.
+
+01:48:12 [Speaker 2]
+And I think this is a...
+01:48:15 [Speaker 2]
+I don't know why this, focus state is...
+01:48:17 [Speaker 2]
+There we go.
+01:48:18 [Speaker 2]
+I think this is so simple and really effective, actually.
+01:48:22 [Speaker 2]
+I'm like, yeah.
+
+01:48:23 [Speaker 2]
+There's some fancy logos and it helps, but I think it's okay because right away, I'm able to see who this person is and where they've worked, and then I have a single scroll track that's just a a big thing of everything that they made.
+01:48:35 [Speaker 2]
+And I can see...
+01:48:36 [Speaker 2]
+I like how
+
+01:48:37 [Speaker 3]
+he compartmentalizes each project.
+01:48:39 [Speaker 3]
+That's...
+01:48:39 [Speaker 3]
+Sometimes is the hard part is, like, we create such uniformity across
+
+01:48:44 [Speaker 2]
+Yes.
+
+01:48:44 [Speaker 3]
+Like, the scrolling effect of projects and work that it it it can be really helpful to get...
+01:48:50 [Speaker 3]
+To be able to visually just tell, like, okay.
+01:48:52 [Speaker 3]
+That's that's one thing.
+01:48:53 [Speaker 3]
+Alright.
+01:48:53 [Speaker 3]
+That's enough.
+
+01:48:54 [Speaker 3]
+Like, these are separate things.
+
+01:48:56 [Speaker 2]
+Yeah.
+01:48:57 [Speaker 2]
+I love it.
+01:48:57 [Speaker 2]
+I almost feel like I would have played with the background color as the selected state over here to tie them...
+01:49:02 [Speaker 2]
+Make them the exact same.
+01:49:04 [Speaker 2]
+But this is so...
+
+01:49:05 [Speaker 2]
+Like, if you think about, like, the job that the hiring manager has when they're coming here, they want us to understand who you are, what's your background, and what quality of work can you do.
+01:49:13 [Speaker 2]
+I don't know if there's an easier journey to put a hiring manager on than John buys portfolio.
+01:49:17 [Speaker 2]
+This is this is really freaking good.
+01:49:19 [Speaker 2]
+And it doesn't actually require the heavy hitting logos.
+01:49:23 [Speaker 2]
+If your work's good, it's gonna be good enough, and you're gonna give people a complete
+
+01:49:26 [Speaker 3]
+picture.
+01:49:27 [Speaker 3]
+Now someone here says, I have the imposter syndrome is real.
+01:49:30 [Speaker 3]
+Everyone's portfolio is too dope.
+01:49:31 [Speaker 3]
+How am I supposed to finish mine?
+01:49:32 [Speaker 3]
+And and I wanna go back to the original disclaimer, where different portfolios work for different levels.
+
+01:49:40 [Speaker 3]
+And I think what's certainly not gonna be represented well today, which we will represent much better next week, is for that junior or that mid career level where it's like, I'm not super proud of my work yet, or for some reason, I didn't really get to create what I wanted because, you know, the the organization went a different direction, or you only have one or two projects, what do you do in that case?
+
+01:50:02 [Speaker 2]
+I got I got some ideas.
+
+01:50:03 [Speaker 3]
+Do you...
+01:50:04 [Speaker 3]
+If you have some stuff to show, I...
+01:50:05 [Speaker 3]
+I'd like to...
+01:50:06 [Speaker 3]
+Because I certainly pulled from more of the senior levels of things I liked and didn't like.
+01:50:11 [Speaker 3]
+Hey.
+
+01:50:12 [Speaker 3]
+Let me paint
+
+01:50:12 [Speaker 2]
+the edges of the of the full thing.
+
+01:50:15 [Speaker 3]
+Let's do it.
+
+01:50:15 [Speaker 2]
+This is the perfect...
+01:50:16 [Speaker 2]
+This is the opposite end of the spectrum where it's like, I'm a senior designer, and I have an unbelievable large body of work.
+01:50:22 [Speaker 2]
+This is Lauren Del Rey's portfolio.
+01:50:25 [Speaker 2]
+And it's just like...
+01:50:26 [Speaker 2]
+It's ridiculous.
+
+01:50:27 [Speaker 2]
+Right?
+01:50:27 [Speaker 2]
+You can do things like this when you have an incredible body of work.
+01:50:30 [Speaker 2]
+But if you don't have an incredible body of work, what do you do?
+01:50:32 [Speaker 2]
+I have a few early career people.
+01:50:34 [Speaker 2]
+This is, Andrea Da Silva.
+
+01:50:36 [Speaker 2]
+I got to meet her at config.
+01:50:39 [Speaker 2]
+She just got hired out of an internship at MetaLab, and I think her portfolio is phenomenal.
+01:50:45 [Speaker 2]
+And...
+01:50:46 [Speaker 2]
+But she didn't have a huge body of work.
+01:50:48 [Speaker 2]
+So what it forces you to do is, like, you can't do the minimal thing because you don't have the logos.
+
+01:50:53 [Speaker 2]
+You can't just do the resume style.
+01:50:54 [Speaker 2]
+You can't do the, I'm just gonna dump a ton of images of all of my work because maybe you only have eighteen months of work under your belt.
+01:51:02 [Speaker 2]
+So what do you do?
+01:51:03 [Speaker 2]
+Well, the portfolio experience itself has to be good.
+01:51:05 [Speaker 2]
+You you have to raise the bar of what the portfolio is.
+
+01:51:09 [Speaker 2]
+Maybe that means playground, but I don't...
+01:51:11 [Speaker 2]
+I I think I think Andrea probably would have failed if she would have tried to copy Tom John because it's very hard to do.
+01:51:16 [Speaker 2]
+So what she did is this composition is nice.
+01:51:20 [Speaker 2]
+She...
+01:51:21 [Speaker 2]
+There's, like, little hover states.
+
+01:51:23 [Speaker 2]
+Like, I remember when I scrolled this portfolio for the first time and I'm like, oh, okay.
+01:51:26 [Speaker 2]
+That's really interesting.
+01:51:27 [Speaker 2]
+Like, that feels good.
+01:51:29 [Speaker 2]
+So check one.
+01:51:29 [Speaker 2]
+Right away, we haven't made a positive first impression because I can tell that she really swept the details on this interaction.
+
+01:51:35 [Speaker 2]
+Even down to the shadows are really tastefully bad.
+01:51:38 [Speaker 2]
+So now I'm still scrolling.
+01:51:39 [Speaker 2]
+I'm a little bit hooked.
+01:51:40 [Speaker 2]
+Okay.
+01:51:40 [Speaker 2]
+Here's my experience.
+
+01:51:41 [Speaker 2]
+She knows she can't just write a resume because it's it's fine, dude.
+01:51:45 [Speaker 2]
+Like it's not that much.
+01:51:46 [Speaker 2]
+It's just a bunch of internships.
+01:51:48 [Speaker 2]
+So what she did is she thought about this really unique composition.
+01:51:52 [Speaker 2]
+She pulled, like, a nice...
+
+01:51:53 [Speaker 2]
+Oh, look at that.
+01:51:54 [Speaker 2]
+She animated the iconography.
+01:51:56 [Speaker 2]
+If you switch, look at that.
+
+01:51:58 [Speaker 3]
+That's cool, man.
+
+01:51:59 [Speaker 2]
+Kind of fun.
+01:52:00 [Speaker 2]
+Right?
+01:52:00 [Speaker 2]
+And, look, there's not even, like, the work.
+01:52:02 [Speaker 2]
+I...
+01:52:02 [Speaker 2]
+I'm not actually even seeing work under the end of the day.
+
+01:52:06 [Speaker 2]
+Is it really or does she just make up a two month internship?
+01:52:08 [Speaker 2]
+We don't know.
+01:52:10 [Speaker 2]
+But I'm still kinda getting sold because she designed this portfolio.
+01:52:16 [Speaker 2]
+Every little detail moves.
+01:52:19 [Speaker 2]
+You feel things.
+
+01:52:20 [Speaker 2]
+It feels really good.
+01:52:22 [Speaker 2]
+If you go to, even this.
+01:52:24 [Speaker 2]
+Look at this.
+01:52:25 [Speaker 2]
+You can, like, click on her, learn more about me.
+01:52:28 [Speaker 2]
+Like
+
+01:52:29 [Speaker 3]
+I love that.
+01:52:30 [Speaker 3]
+And and, again, just to call this out, because for anyone listening right now and you are making your portfolio right now as we're talking and you want us to review it next week, and whether you're junior or senior, the thing to call out is these intentional interactions and these intentional details.
+01:52:48 [Speaker 3]
+The reason they work so well aside from that, you know, in a silo, those details being executed well, is that they're contrasting against simplicity.
+01:52:58 [Speaker 3]
+Right?
+01:52:58 [Speaker 3]
+It real...
+
+01:52:59 [Speaker 3]
+Like, when you have...
+01:53:00 [Speaker 3]
+If you just...
+01:53:00 [Speaker 3]
+If you are just full screen and I look at some of the earlier world building examples where there's just a lot of noise, it is hard for me to discern where your intentionality showed up.
+01:53:12 [Speaker 3]
+And that's something that she's doing so well here.
+
+01:53:15 [Speaker 2]
+Yeah.
+01:53:16 [Speaker 2]
+Somebody brought up how a big part of the portfolio is to make it clear what AI did blindly versus what you did.
+01:53:24 [Speaker 2]
+I I think it gets a little bit easier when you do something like this because you're very intentionally sprinkling a little bit of care into, like, a corner.
+01:53:33 [Speaker 2]
+I have another...
+01:53:33 [Speaker 2]
+A couple other examples.
+
+01:53:34 [Speaker 2]
+One's Can
+
+01:53:35 [Speaker 13]
+I can I
+
+01:53:35 [Speaker 3]
+say something real quick?
+01:53:36 [Speaker 3]
+I just have an idea, and I think someone should try and, like, judge this idea a tiny bit.
+01:53:40 [Speaker 3]
+But imagine, like, you have a simple portfolio that looks maybe like this, and you have multiplayer cursor come in.
+01:53:46 [Speaker 3]
+It's an AI cursor, and it starts to judge up something.
+01:53:49 [Speaker 3]
+That AI genuinely helped you build on the cursor or on the portfolio.
+
+01:53:53 [Speaker 3]
+And then you come in on your cursor.
+01:53:55 [Speaker 3]
+And maybe, like, the actual intentionality of you has this quick exchange with the AI, and that thing turns into its final form.
+01:54:03 [Speaker 3]
+Those little details could be kind of visually interesting.
+
+01:54:07 [Speaker 2]
+Yeah.
+01:54:07 [Speaker 2]
+I think that's a perfect example of a creative nugget that is such a green flag.
+01:54:12 [Speaker 2]
+Like, that's just a creative idea, you know, where I think I would have a very positive reaction to that.
+01:54:19 [Speaker 2]
+Yeah.
+01:54:19 [Speaker 2]
+I...
+
+01:54:20 [Speaker 2]
+I've seen...
+01:54:21 [Speaker 2]
+I'm gonna show a few other examples of of early...
+01:54:25 [Speaker 2]
+Earlier career portfolios that are having some, yeah, I think they work.
+01:54:29 [Speaker 2]
+Like, I think they work.
+01:54:30 [Speaker 2]
+This is kind of interesting.
+
+01:54:31 [Speaker 2]
+This is a little bit more world building, You know?
+01:54:36 [Speaker 2]
+Where it is minimal, but, like, look.
+01:54:37 [Speaker 2]
+You can, like, click and, like, there's, like, these ripple effects in the sky.
+01:54:40 [Speaker 2]
+Look at the cursor.
+01:54:41 [Speaker 2]
+I don't know if this is showing up in the screen, grab, but there's, like, this trailing effect.
+
+01:54:46 [Speaker 2]
+I actually think it's really good.
+01:54:47 [Speaker 2]
+Most of the time, I don't like custom cursors.
+01:54:48 [Speaker 2]
+I think this is really good.
+01:54:50 [Speaker 2]
+Her resume is here.
+01:54:51 [Speaker 2]
+Look at that effect.
+
+01:54:54 [Speaker 2]
+It's it's weird in a way that's kinda cool.
+01:54:57 [Speaker 2]
+And then you get into the work like this, and you can click a portfolio, or or, yeah, click into, like, a single case study and whatnot.
+01:55:03 [Speaker 2]
+But this is an example where I think this works solely because the aesthetic is good, which is kind of interesting.
+01:55:11 [Speaker 2]
+And I think it again is emphasized in this point where if you don't have the resume and you don't have the body of work, then the portfolio itself is going to do the majority of the selling.
+01:55:22 [Speaker 2]
+And Utah's worked here.
+
+01:55:24 [Speaker 2]
+Like, everybody I've showed this portfolio to has really liked it because it's it's cool.
+01:55:29 [Speaker 2]
+Like, it's...
+01:55:30 [Speaker 2]
+The portfolio itself is aesthetically cool.
+01:55:32 [Speaker 2]
+Right?
+01:55:35 [Speaker 2]
+Will the recruiter have time to check out all of these hover states?
+
+01:55:38 [Speaker 2]
+Let's talk about this for a second.
+01:55:42 [Speaker 2]
+What company are you applying to?
+01:55:43 [Speaker 2]
+I think it's really what it comes down to.
+01:55:45 [Speaker 2]
+Mhmm.
+01:55:46 [Speaker 2]
+Because the most competitive roles right now want to see designers that care, and that is one of the easiest ways to demonstrate that.
+
+01:55:55 [Speaker 2]
+But if you're applying to a mid market accounting tech company, yeah, maybe they don't care at all.
+01:56:02 [Speaker 2]
+I think I think this goes down to, like, you gotta know who you're applying to.
+01:56:05 [Speaker 2]
+And I I think both of us probably gravitate towards maybe what a lot of other people maybe on LinkedIn or Reddit, would consider, like, the higher end of the market where people do want to see that you care.
+
+01:56:16 [Speaker 3]
+Yeah.
+01:56:17 [Speaker 3]
+And and that's so true.
+01:56:18 [Speaker 3]
+I mean, there's definitely companies who are gonna want something that's clear, that that maybe looks a little bit more what we were used to, six, seven, eight years ago.
+01:56:27 [Speaker 3]
+And and even...
+01:56:27 [Speaker 3]
+I think they'll still play today.
+
+01:56:29 [Speaker 3]
+I mean, you have to tailor this.
+01:56:30 [Speaker 3]
+But...
+01:56:30 [Speaker 3]
+So the other piece is, like, the portfolio, again, it's the it's the thing that gets you the phone call.
+01:56:36 [Speaker 3]
+And there are two people who are looking at the portfolio.
+01:56:38 [Speaker 3]
+There's the recruiter in some cases if they have a recruiting department, and you might have a recruiter who's like, the Notion recruiting team who actually know what they're looking for.
+
+01:56:48 [Speaker 3]
+Then you might have a recruiter who's, like, across four or five different functions, and they're like, this looks like they know what they're doing.
+01:56:55 [Speaker 3]
+I'm gonna collect this into the big batch that I'm then giving to the more trained eye of the next stage of hiring manager who will also then look at your portfolio.
+01:57:06 [Speaker 3]
+So that part's tough.
+01:57:08 [Speaker 3]
+That's...
+01:57:08 [Speaker 3]
+It's it's it's a...
+
+01:57:09 [Speaker 3]
+It really has to come down to, like, who do you think the company, is optimizing for.
+
+01:57:15 [Speaker 2]
+Let me just fly through a couple ones that I also saved.
+01:57:17 [Speaker 2]
+This was another early career one.
+01:57:21 [Speaker 2]
+It's an example of, I think, the single scroll track.
+01:57:25 [Speaker 2]
+Right?
+01:57:25 [Speaker 2]
+There's not a ton of it.
+
+01:57:27 [Speaker 2]
+So what did what did he do?
+01:57:28 [Speaker 2]
+Well, he made it bigger.
+01:57:31 [Speaker 2]
+Like, it's such a simple thing.
+01:57:32 [Speaker 2]
+But the people that have the massive bodies of work, the, you know, Laurent kind of thing, they're really small.
+01:57:37 [Speaker 2]
+For this, like, now I'm just gonna, like, blow this up.
+
+01:57:40 [Speaker 2]
+And I guarantee...
+01:57:42 [Speaker 2]
+Yeah.
+01:57:42 [Speaker 2]
+So, like, he built this entire thing here.
+01:57:45 [Speaker 2]
+It looks dope.
+01:57:46 [Speaker 2]
+He led with something that he made probably because the the work that maybe he's been paid to do doesn't look as sexy.
+
+01:57:51 [Speaker 2]
+You know?
+01:57:51 [Speaker 2]
+Like, that's that's the reality of what you kinda have to do too as somebody that doesn't have this massive body of work.
+01:57:56 [Speaker 2]
+Like, go make a little side project and make that the first impression of your portfolio.
+01:58:01 [Speaker 2]
+I think that is interesting.
+01:58:03 [Speaker 2]
+And then, the last one...
+
+01:58:05 [Speaker 2]
+Okay.
+01:58:05 [Speaker 2]
+This is really interesting.
+01:58:06 [Speaker 2]
+This one is, I I think, almost polarizing.
+01:58:09 [Speaker 2]
+So justice Kim, really...
+01:58:12 [Speaker 2]
+Let's see how...
+
+01:58:16 [Speaker 2]
+Okay.
+01:58:17 [Speaker 2]
+Not a lot of experience.
+01:58:20 [Speaker 2]
+Still in school.
+01:58:20 [Speaker 2]
+Okay.
+01:58:21 [Speaker 2]
+Still in school studying HCI and design.
+
+01:58:23 [Speaker 2]
+Right?
+01:58:23 [Speaker 2]
+Like, we don't have the body of work, but look what he did.
+01:58:27 [Speaker 2]
+So he said...
+01:58:28 [Speaker 2]
+He started off in 2025 with the thing that he's doing, and it's just working on the the wonder design tool, and it's under NDA.
+01:58:34 [Speaker 2]
+It's nothing.
+
+01:58:35 [Speaker 2]
+So he, like, literally has nothing to show.
+01:58:37 [Speaker 2]
+So what he did was made a timeline that goes into the future about what types of things he wants to work on.
+
+01:58:48 [Speaker 3]
+That's that's clever.
+01:58:49 [Speaker 3]
+I like it.
+
+01:58:50 [Speaker 2]
+This is really clever.
+01:58:51 [Speaker 2]
+Right?
+01:58:51 [Speaker 2]
+Like, that's like a...
+01:58:53 [Speaker 2]
+My point is, like, you don't don't give in to this feeling of, like, I don't have the work, and I I don't have, I I don't have the resume.
+01:59:02 [Speaker 2]
+Like, dude, you can figure something else out.
+
+01:59:04 [Speaker 2]
+Like, you can do something.
+01:59:05 [Speaker 2]
+Just, like, be creative, make it a space for yourself.
+01:59:07 [Speaker 2]
+If this person in school was able to make something that immediately makes a hiring manager take them seriously and maybe wanna make a bet, like, you
+
+01:59:14 [Speaker 3]
+can figure something out.
+01:59:16 [Speaker 3]
+There's so many dimensions and mediums to how to tell stories.
+01:59:19 [Speaker 3]
+That is a topic that I could dedicate a full episode to to help you guys figure out how do you tell good stories.
+01:59:27 [Speaker 3]
+It's obviously something I'm very passionate about.
+01:59:29 [Speaker 3]
+I think designers are...
+
+01:59:30 [Speaker 3]
+They're inclined to be good.
+01:59:31 [Speaker 3]
+They're good at it.
+01:59:32 [Speaker 3]
+They can be better at it than they think, I think, sometimes.
+01:59:34 [Speaker 3]
+And this is a great example of one of those ways to do that.
+
+01:59:37 [Speaker 2]
+Yeah.
+01:59:38 [Speaker 2]
+I kinda hijacked it.
+01:59:39 [Speaker 2]
+Do you have others?
+
+01:59:40 [Speaker 3]
+I have more things that we're gonna show.
+01:59:42 [Speaker 3]
+We're running low on time.
+01:59:43 [Speaker 3]
+So this is what I wanna do.
+01:59:44 [Speaker 3]
+Because next week, I mean, genuinely, we're...
+01:59:47 [Speaker 3]
+I'm I'm...
+
+01:59:48 [Speaker 3]
+I I I leave on Sunday to go film a documentary.
+01:59:51 [Speaker 3]
+I come back the day of our livestream.
+01:59:53 [Speaker 3]
+So so I will be literally right off the plane jumping into the show, which is cool because we're just gonna be talking about the the portfolios you guys submit.
+02:00:01 [Speaker 3]
+One last shout out to how to submit those portfolios at inflight.co/portfolio.
+02:00:09 [Speaker 3]
+Please install the inflight widget.
+
+02:00:11 [Speaker 3]
+This is free.
+02:00:12 [Speaker 3]
+It's not something you have to pay for.
+02:00:14 [Speaker 3]
+And enter in three to five questions that we and the community can answer for you on the portfolio, help us get specific, and we will do that both live, and we will leave the, inform...
+02:00:27 [Speaker 3]
+The data inside of that widget, which you can then take and actually apply to whatever improvements you decide to make through the MCP.
+02:00:35 [Speaker 3]
+Excited to see how that looks next week so you will have all week to do it.
+
+02:00:38 [Speaker 3]
+Someone asked, is the Discord still open?
+02:00:40 [Speaker 3]
+It's not.
+02:00:41 [Speaker 3]
+We just closed it this morning.
+02:00:42 [Speaker 3]
+It opens up next...
+02:00:43 [Speaker 3]
+The first week of January.
+
+02:00:46 [Speaker 3]
+So let's get into this.
+02:00:48 [Speaker 3]
+Next week, expect, some pretty fun portfolios.
+02:00:50 [Speaker 3]
+You do not have to be a part of the discord by the way to have your portfolio reviewed here.
+02:00:54 [Speaker 3]
+But if you are, please, in, please submit it in the submissions channel.
+02:00:59 [Speaker 3]
+Otherwise, send us a DM.
+
+02:01:02 [Speaker 3]
+Now designer of the week, I wanna take a look at this because last we saw, Isaiah took it..
+02:01:10 [Speaker 3]
+Okay.
+02:01:10 [Speaker 3]
+Congratulations on the dub, Isaiah in red.
+02:01:14 [Speaker 3]
+Very well done.
+02:01:15 [Speaker 3]
+Laura, I mean, all of you deserved it.
+
+02:01:18 [Speaker 3]
+Even m eleven, you little secret.
+
+02:01:23 [Speaker 2]
+I wonder wonder if m eleven's here.
+
+02:01:25 [Speaker 3]
+Yeah.
+02:01:25 [Speaker 3]
+Curious instance, m eleven.
+02:01:28 [Speaker 3]
+Can we opt out of that?
+02:01:29 [Speaker 3]
+Can you opt out of what?
+02:01:33 [Speaker 3]
+Let me know what you're asking there.
+
+02:01:35 [Speaker 2]
+The answer is no.
+02:01:36 [Speaker 2]
+I don't know what it is, but you can never opt out of anything there.
+
+02:01:38 [Speaker 3]
+Opt out of anything.
+02:01:39 [Speaker 3]
+You're forced to do it.
+02:01:40 [Speaker 3]
+Can you opt out of installing the in flight widget?
+02:01:43 [Speaker 3]
+So, it is your pound of flesh that you must pay.
+02:01:47 [Speaker 3]
+You must try in flight, and you must be specific about what you want feedback on through that widget if you want your portfolio reviewed.
+
+02:01:55 [Speaker 3]
+I think it's a small ask.
+02:01:57 [Speaker 3]
+We appreciate it.
+02:01:58 [Speaker 3]
+But outside of that, congratulations, Isaiah.
+02:02:03 [Speaker 3]
+That is awesome.
+02:02:04 [Speaker 3]
+We have more to come next week, and I think even more videos.
+
+02:02:10 [Speaker 3]
+There are a number of people, like I said, who submitted some stuff, that we didn't get to today that we will get to next week.
+02:02:16 [Speaker 3]
+It'll be a good time.
+02:02:18 [Speaker 3]
+Yeah.
+
+02:02:18 [Speaker 2]
+I don't know.
+02:02:20 [Speaker 2]
+Yeah.
+02:02:28 [Speaker 2]
+Never seen.
+
+02:02:29 [Speaker 3]
+What was that?
+
+02:02:29 [Speaker 9]
+Yeah.
+02:02:30 [Speaker 9]
+You...
+
+02:02:30 [Speaker 2]
+Can you
+
+02:02:30 [Speaker 10]
+say that?
+
+02:02:33 [Speaker 2]
+Like, the format.
+02:02:34 [Speaker 2]
+Like, the biggest design crit ever.
+02:02:38 [Speaker 2]
+Like, a live design crit with the most peep...
+02:02:40 [Speaker 2]
+I I don't think that the Internet has seen this before.
+02:02:43 [Speaker 2]
+We're gonna go for it.
+
+02:02:44 [Speaker 2]
+It's gonna be fun.
+
+02:02:45 [Speaker 3]
+I think it'll be cool.
+02:02:46 [Speaker 3]
+I'm excited to see it.
+02:02:47 [Speaker 3]
+I'm excited to see everybody's portfolio.
+02:02:52 [Speaker 3]
+How do we get you guys hired?
+02:02:55 [Speaker 3]
+That's the question.
+
+02:02:56 [Speaker 3]
+And it's something we take real personally.
+02:02:59 [Speaker 3]
+It is hard to give prescription advice about it, but we're gonna do our best.
+02:03:04 [Speaker 3]
+We're gonna see what we can do for you guys.
+02:03:06 [Speaker 3]
+So...
+02:03:06 [Speaker 3]
+Yeah.
+
+02:03:08 [Speaker 3]
+That said, we will see you next week, Thursday, 1PM Pacific.
+02:03:13 [Speaker 3]
+If you're in the Discord, we will see you in the Discord.
+
+02:03:17 [Speaker 2]
+Yeah.
+02:03:19 [Speaker 2]
+Peace.

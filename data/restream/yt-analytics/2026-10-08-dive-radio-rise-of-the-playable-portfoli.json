@@ -1,0 +1,31 @@
+{
+  "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+  "title": "Dive Radio: Rise of the Playable Portfolio",
+  "premiere": "2026-10-08",
+  "channels": {},
+  "watchReport": {
+    "state": "pending",
+    "checkedAt": "2026-10-09T14:01:33.779Z",
+    "missingChannels": [
+      "yt:joindiveclub",
+      "yt:designertom"
+    ],
+    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "targetFingerprint": "yt:designertom:Z1MbnYXS8ls|yt:joindiveclub:YI1Kx5U6fQc",
+    "probes": [
+      {
+        "key": "yt:joindiveclub",
+        "videoId": "YI1Kx5U6fQc",
+        "result": "no-row",
+        "observed": null
+      },
+      {
+        "key": "yt:designertom",
+        "videoId": "Z1MbnYXS8ls",
+        "result": "no-row",
+        "observed": null
+      }
+    ],
+    "pendingSince": "2026-10-09T14:01:33.779Z"
+  }
+}

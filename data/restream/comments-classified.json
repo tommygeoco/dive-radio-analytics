@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-10-08T19:16:39.832Z",
+  "updatedAt": "2026-10-09T14:02:09.580Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1653,11 +1653,15 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-10-08T19:16:39.832Z",
-    "status": "complete",
+    "at": "2026-10-09T14:02:09.580Z",
+    "status": "pending",
     "added": 0,
     "reviewed": 0,
-    "pendingIds": []
+    "pendingIds": [
+      "yt:UgwyCQYY3QfEgziaI9p4AaABAg",
+      "x:2108216689397780899"
+    ],
+    "error": "model call failed after 2 attempts: comment classifier: Anthropic HTTP 400 invalid_request_error after 1 attempt(s)"
   },
   "provider": "anthropic"
 }

@@ -1,0 +1,109 @@
+{
+  "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+  "title": "Dive Radio: Rise of the Playable Portfolio",
+  "date": "2026-10-08",
+  "comments": [
+    {
+      "id": "yt:UgwyCQYY3QfEgziaI9p4AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "YI1Kx5U6fQc",
+      "author": "Tech-heartsong",
+      "authorId": "UCdSdwk-0KoWWtPWYHEqlD5A",
+      "text": "In the meantime, I’m over here with strict skills in place, correcting my agents' mistakes, just constant hours of debugging nearly any model. It's helpful but not how I wished to live my days.",
+      "likes": 0,
+      "publishedAt": "2026-10-09T01:53:02Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "UgwyCQYY3QfEgziaI9p4AaABAg",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-09T14:02:01.685Z"
+    },
+    {
+      "id": "x:2108216689397780899",
+      "source": "x",
+      "channel": "x:ridd_design",
+      "sourceObjectId": "2108084299039678833",
+      "author": "@austinskhosana_",
+      "authorId": "1623369111483912200",
+      "text": "can’t wait! literally was thinking of turning mine into a video game but i also want to just turn into a grid of craft idk. 😭",
+      "likes": 0,
+      "publishedAt": "2026-10-08T15:23:22.000Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "2108216689397780899",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-09T14:02:01.685Z"
+    }
+  ],
+  "capture": {
+    "checkedAt": "2026-10-09T14:02:01.685Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "YI1Kx5U6fQc",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready",
+        "count": 1
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "Z1MbnYXS8ls",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "2108286408142295262",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "2108084299039678833",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready",
+        "count": 1
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "2108286406892380351",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "2108084299048063412",
+        "pulledAt": "2026-10-09T14:02:01.685Z",
+        "state": "ready",
+        "count": 0
+      }
+    ]
+  },
+  "xCoverage": "covered",
+  "updatedAt": "2026-10-09T14:02:01.685Z"
+}

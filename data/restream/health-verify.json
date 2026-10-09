@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T19:17:02.826Z",
+  "updatedAt": "2026-10-09T14:02:38.416Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -1113,7 +1113,13 @@
       "pctPerEpisode": 5.3,
       "lastEp": 12,
       "lastValue": 86,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "miss",
+        "actual": 70,
+        "realizedPct": -18.6,
+        "detail": "liveAverage: E13 moved -18.6% (softening) against the word building."
+      }
     },
     {
       "id": "direction:livePeak:E12:holding",
@@ -1124,7 +1130,13 @@
       "pctPerEpisode": 2.5,
       "lastEp": 12,
       "lastValue": 111,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "neutral",
+        "actual": 87,
+        "realizedPct": -21.6,
+        "detail": "livePeak: E13 moved -21.6% (softening) against the word holding."
+      }
     },
     {
       "id": "direction:liveViewers:E12:holding",
@@ -1135,7 +1147,13 @@
       "pctPerEpisode": -3.2,
       "lastEp": 12,
       "lastValue": 832,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "hit",
+        "actual": 843,
+        "realizedPct": 1.3,
+        "detail": "liveViewers: E13 moved +1.3% (holding) against the word holding."
+      }
     },
     {
       "id": "direction:minutesWatched:E12:holding",
@@ -1146,7 +1164,13 @@
       "pctPerEpisode": 4.9,
       "lastEp": 12,
       "lastValue": 10062,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "neutral",
+        "actual": 8610,
+        "realizedPct": -14.4,
+        "detail": "minutesWatched: E13 moved -14.4% (softening) against the word holding."
+      }
     },
     {
       "id": "direction:chattersPer100:E12:building",
@@ -1157,7 +1181,13 @@
       "pctPerEpisode": 13.8,
       "lastEp": 12,
       "lastValue": 59.5,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "hit",
+        "actual": 83.9,
+        "realizedPct": 41,
+        "detail": "chattersPer100: E13 moved +41% (building) against the word building."
+      }
     },
     {
       "id": "direction:messagesPerHour:E12:holding",
@@ -1168,7 +1198,13 @@
       "pctPerEpisode": -0.8,
       "lastEp": 12,
       "lastValue": 69.2,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "neutral",
+        "actual": 94.1,
+        "realizedPct": 36,
+        "detail": "messagesPerHour: E13 moved +36% (building) against the word holding."
+      }
     },
     {
       "id": "direction:minutesPerViewer:E12:building",
@@ -1179,7 +1215,13 @@
       "pctPerEpisode": 7,
       "lastEp": 12,
       "lastValue": 12.1,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "miss",
+        "actual": 10.2,
+        "realizedPct": -15.7,
+        "detail": "minutesPerViewer: E13 moved -15.7% (softening) against the word building."
+      }
     },
     {
       "id": "direction:holdRate:E12:holding",
@@ -1190,7 +1232,13 @@
       "pctPerEpisode": -0.6,
       "lastEp": 12,
       "lastValue": 65.5,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-09",
+        "outcome": "neutral",
+        "actual": 84.1,
+        "realizedPct": 28.4,
+        "detail": "holdRate: E13 moved +28.4% (building) against the word holding."
+      }
     },
     {
       "id": "direction:exposureWeekOne:E12:building",
@@ -1212,6 +1260,128 @@
       "pctPerEpisode": 8.3,
       "lastEp": 12,
       "lastValue": 26.4,
+      "resolution": null
+    },
+    {
+      "id": "range:after-E13:1189-1830",
+      "kind": "first-week-range",
+      "madeOn": "2026-10-09",
+      "afterEp": 13,
+      "low": 1189,
+      "high": 1830,
+      "typical": 1751,
+      "direction": null,
+      "pctPerEpisode": -8.3,
+      "resolution": null
+    },
+    {
+      "id": "direction:exposureWeekOne:E12:holding",
+      "kind": "direction",
+      "key": "exposureWeekOne",
+      "madeOn": "2026-10-09",
+      "word": "holding",
+      "pctPerEpisode": 4.5,
+      "lastEp": 12,
+      "lastValue": 11393,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E12:holding",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-10-09",
+      "word": "holding",
+      "pctPerEpisode": 0.4,
+      "lastEp": 12,
+      "lastValue": 26.5,
+      "resolution": null
+    },
+    {
+      "id": "direction:liveAverage:E13:softening",
+      "kind": "direction",
+      "key": "liveAverage",
+      "madeOn": "2026-10-09",
+      "word": "softening",
+      "pctPerEpisode": -7,
+      "lastEp": 13,
+      "lastValue": 70,
+      "resolution": null
+    },
+    {
+      "id": "direction:livePeak:E13:softening",
+      "kind": "direction",
+      "key": "livePeak",
+      "madeOn": "2026-10-09",
+      "word": "softening",
+      "pctPerEpisode": -7.7,
+      "lastEp": 13,
+      "lastValue": 87,
+      "resolution": null
+    },
+    {
+      "id": "direction:liveViewers:E13:holding",
+      "kind": "direction",
+      "key": "liveViewers",
+      "madeOn": "2026-10-09",
+      "word": "holding",
+      "pctPerEpisode": -3.6,
+      "lastEp": 13,
+      "lastValue": 843,
+      "resolution": null
+    },
+    {
+      "id": "direction:minutesWatched:E13:softening",
+      "kind": "direction",
+      "key": "minutesWatched",
+      "madeOn": "2026-10-09",
+      "word": "softening",
+      "pctPerEpisode": -9.6,
+      "lastEp": 13,
+      "lastValue": 8610,
+      "resolution": null
+    },
+    {
+      "id": "direction:chattersPer100:E13:building",
+      "kind": "direction",
+      "key": "chattersPer100",
+      "madeOn": "2026-10-09",
+      "word": "building",
+      "pctPerEpisode": 13.8,
+      "lastEp": 13,
+      "lastValue": 83.9,
+      "resolution": null
+    },
+    {
+      "id": "direction:messagesPerHour:E13:holding",
+      "kind": "direction",
+      "key": "messagesPerHour",
+      "madeOn": "2026-10-09",
+      "word": "holding",
+      "pctPerEpisode": -0.8,
+      "lastEp": 13,
+      "lastValue": 94.1,
+      "resolution": null
+    },
+    {
+      "id": "direction:minutesPerViewer:E13:softening",
+      "kind": "direction",
+      "key": "minutesPerViewer",
+      "madeOn": "2026-10-09",
+      "word": "softening",
+      "pctPerEpisode": -10.4,
+      "lastEp": 13,
+      "lastValue": 10.2,
+      "resolution": null
+    },
+    {
+      "id": "direction:holdRate:E13:holding",
+      "kind": "direction",
+      "key": "holdRate",
+      "madeOn": "2026-10-09",
+      "word": "holding",
+      "pctPerEpisode": -0.6,
+      "lastEp": 13,
+      "lastValue": 84.1,
       "resolution": null
     }
   ]
