@@ -2312,7 +2312,8 @@ try {
   } else if (/\?\?\s*0/.test(tooltipSource + tableSource)) {
     bad++; fail("dashboard absence: a tooltip or table can turn a missing value into zero");
   }
-  if (!/function metricText\(value, missing = "–"\) \{ return value == null \? missing : nfmt\(value\); \}/.test(html)) {
+  // re-locked 2026-10-08 to the system's absence glyph, the em dash (steward F12, audit/DESIGN-2026-10-08.md)
+  if (!/function metricText\(value, missing = "—"\) \{ return value == null \? missing : nfmt\(value\); \}/.test(html) || /"–"/.test(tableSource)) {
     bad++; fail("dashboard absence: the shared missing-value formatter could hide a real zero or lacks a plain missing state");
   }
   if (!/function hasYoutubeReading\(e\) \{ return e\?\.latest\?\.totalViewsInfo\?\.includesYoutube === true; \}/.test(html)
@@ -2342,6 +2343,9 @@ try {
   };
   const healthSource = between("function buildHealth()", "/* ================= hero");
   const heroSource = between("function buildHero()", "/* ================= episode carousel");
+  // the hero's figure formatters, counted (lock below): the four measure branches' primary
+  // numbers and their secondary figures (live peak / watched live / minutes; per-channel shares)
+  const HERO_FIGURES = 10;
   const stripSource = between("function buildStrip()", "/* ================= detail panel");
   const panelSource = between("function buildPanel()", "/* ================= drilldown modal");
   const compoundSource = between("function buildCompound()", "function renderDrill()");
@@ -2383,7 +2387,7 @@ try {
     if (/id="view"/.test(html) || /class="tabs"/.test(html)) {
       bad++; drift("card layout: the retired Growth/Live page tabs are back");
     }
-    if (!/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html) || !/mode: "live"/.test(html)) {
+    if (!/<div class="ss-menu ss-menu--checks viewmenu" id="viewmenu" role="listbox"/.test(html) || !/mode: "live"/.test(html)) {
       bad++; drift("card layout: the chart view switch must be the one dropdown and must carry the live per-minute view");
     }
     if ((chipSource.match(/data-fold-number/g) || []).length !== 1) {
@@ -2412,12 +2416,20 @@ try {
     // the do-next actions are plain ranked rows: no tooltips, no rules, and
     // the leading ordinal is decorative only (owner directive 2026-08-23)
     if (/class="dnrow"[^`]*data-tip/.test(healthSource) || /\.dnrow \+ \.dnrow \{ border-top/.test(html)
-      || !/<span class="dnnum" aria-hidden="true">\$\{i \+ 1\}<\/span>/.test(healthSource)) {
+      || !/<span class="ss-grade ss-grade--sm ss-grade--muted" aria-hidden="true">\$\{i \+ 1\}<\/span>/.test(healthSource)) {
       bad++; drift("card layout: Today's read actions must be plain ranked rows — decorative ordinal, no tooltip, no dividing rule");
     }
     // the hero states one measure: episode health rides the cards and panel
     if (/healthChip\(/.test(heroSource)) {
       bad++; drift("card layout: the hero must not carry the episode-health chip");
+    }
+    // ...and nothing else either (re-locked 2026-10-08 after critic round 2, audit/DESIGN-2026-10-08.md):
+    // no episode health or launch read, no meter or metric block, no facts grid anywhere on the
+    // page, and no figure beyond the card's own — the hero's figure formatters are counted, so an
+    // added number (tagged or not) is drift until the owner rules otherwise
+    const heroFigures = (heroSource.match(/\b(?:nfmt|kfmt|pct1|metricText|toLocaleString)\(/g) || []).length;
+    if (/healthOf\(|launchOf\(|\.score\b|ss-kpi|ss-meter|htrack/.test(heroSource) || /heroFacts|class="ss-kpis|\.hfacts/.test(html) || heroFigures !== HERO_FIGURES) {
+      bad++; drift(`card layout: the hero must state one measure — no episode health, launch word, meter, facts grid or added figure (figure formatters: ${heroFigures}, locked at ${HERO_FIGURES})`);
     }
     // One strip, one disclosure (2026-09-01, round 2 the same day; owner
     // directive later that day): the glance row carries the gauge with its
@@ -2568,7 +2580,7 @@ try {
     bad++; drift("chart metrics: the retired tab strip or native measure select is back — one dropdown owns this decision");
   }
   if (!/<button type="button" class="viewbtn" id="viewbtn" aria-haspopup="listbox"/.test(html)
-    || !/<div class="viewmenu" id="viewmenu" role="listbox"/.test(html)
+    || !/<div class="ss-menu ss-menu--checks viewmenu" id="viewmenu" role="listbox"/.test(html)
     || !/o\.setAttribute\("role", "option"\)/.test(html)
     || !/o\.setAttribute\("aria-selected", String\(selected\)\)/.test(html)
     || !/ev\.key === "Escape"/.test(html) || !/ev\.key === "ArrowDown"/.test(html)) {
@@ -2593,8 +2605,12 @@ try {
     bad++; drift("chart metrics: the hero split bar's segments and labels must share one tooltip definition and stay keyboard-reachable");
   }
   // one text edge inside the chart tooltip: chips hang in a fixed gutter
-  if (!/\.tt \{ --chip: 16px; \}/.test(html)
-    || !/\.tt \.meta, \.tt \.big, \.tt \.chg, \.tt \.note \{ padding-left: var\(--chip\); \}/.test(html)) {
+  // (re-locked 2026-10-08 on the system's card, audit/DESIGN-2026-10-08.md: the
+  // title, meta, value and note take the recipe's 16 px gutter; the page's own
+  // change line and sub-heading take the same; the plain summary closes all of it)
+  if (!/\.ss-x-chart-tip__title, \.ss-x-chart-tip__meta, \.ss-x-chart-tip__value, \.ss-x-chart-tip__note \{ padding-left: 16px; \}/.test(html)
+    || !/\.tt \.chg, \.tt \.sub \{ padding-left: 16px; \}/.test(html)
+    || !/\.tt\.ss-x-chart-tip--plain \.chg, \.tt\.ss-x-chart-tip--plain \.sub \{ padding-left: 0; \}/.test(html)) {
     bad++; drift("chart metrics: the chart tooltip's title, number, and rows must share one left text edge");
   }
   // bar totals anchor to the rightmost VISIBLE segment and count only what is
@@ -2686,10 +2702,10 @@ try {
     || !/storedCategoryReading\(bySlug\.get\(e\.slug\), categoryIndex\)/.test(html)
     || !/trendHighlightSlug\(rows, state\.solo\)/.test(html)
     || !/const episodes = \[\.\.\.EPS\]\.reverse\(\);/.test(html)
-    || !/return `<div class="h">All episodes<\/div>/.test(html)) {
+    || !/return `<div class="ss-x-chart-tip__title">All episodes<\/div>/.test(html)) {
     bad++; drift("chart hover: summaries must use real saved readings, never future points or zero-filled absence");
   }
-  if (!/<div class="tt" id="tt" aria-hidden="true"><\/div>/.test(html)
+  if (!/<div class="ss-x-chart-tip tt" id="tt" aria-hidden="true"><\/div>/.test(html)
     || !/\.tt \{ position: absolute; box-sizing: border-box; pointer-events: none;/.test(html)
     || !/#chartbox\.mini \{ height: 340px; \}/.test(html)) {
     bad++; drift("chart hover: the cursor-following popup must stay visual-only and must not block pointer movement");
@@ -2790,7 +2806,70 @@ try {
     for (const f of findings.slice(0, 5)) { bad++; drift(`design system: ${page}:${f.line} [${f.rule}] ${f.detail}`); }
     if (findings.length > 5) { bad++; drift(`design system: ${page} has ${findings.length - 5} more off-system value(s)`); }
   }
+  // Design system 3.1.1 (re-locked 2026-10-08, audit/DESIGN-2026-10-08.md): each
+  // page inlines the system's tokens.css byte for byte (vendored at
+  // audit/ds-tokens.css), sets words and figures in Inter (one typeface since
+  // 3.0; no Geist, and no rule names the deprecated --font-mono), and every rule
+  // that sets the figure font also sets tabular figures (the system's check.mjs
+  // rule 4: plain Inter figures are proportional, so columns would jiggle).
+  // The system recipes a page uses (USE-SYSTEM, 2026-10-08) are copied into one
+  // marked block as runs of whole lines of the system's components.css; every
+  // run (runs are separated by a blank line) must appear verbatim in the
+  // vendored copy, so a recipe can't drift from the system inside a page.
+  const dsComponents = readFileSync(join(TOOL, "audit", "ds-components.css"), "utf8");
+  const dsTokens = readFileSync(join(TOOL, "audit", "ds-tokens.css"), "utf8");
+  for (const page of ["index.html", "agents.html"]) {
+    const src = readFileSync(join(ROOT, page), "utf8");
+    const recipes = src.match(/\/\* ===== components\.css 3\.1\.1:[^*]*\*\/\n([\s\S]*?)\n  \/\* ===== end of the system recipes ===== \*\//);
+    if (!recipes) { bad++; drift(`design system: ${page} has no marked block of system recipes (components.css 3.1.1)`); }
+    else for (const run of recipes[1].split(/\n\s*\n/).map((r) => r.trim()).filter(Boolean)) {
+      if (!dsComponents.includes(run)) { bad++; drift(`design system: ${page} changes a system recipe: ${run.split("\n")[0].slice(0, 80)}`); }
+    }
+    if (!src.includes(dsTokens)) { bad++; drift(`design system: ${page} does not inline the system's tokens.css verbatim (audit/ds-tokens.css)`); continue; }
+    const own = src.replace(dsTokens, "");
+    if (!/@font-face \{ font-family: "Inter"; font-style: normal; font-weight: 100 900;/.test(own) || /Geist|var\(--font-mono\)/.test(own)) {
+      bad++; drift(`design system: ${page} must set words and figures in the inlined Inter, never Geist or the deprecated --font-mono`);
+    }
+    for (const style of own.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
+      const css = style[1].replace(/\/\*[\s\S]*?\*\//g, "");
+      for (const rule of css.matchAll(/([^{}]*)\{([^{}]*)\}/g)) {
+        if (/(?:^|[;{\s])font(?:-family)?\s*:[^;]*var\(--font-num\)/.test(rule[2]) && !/tabular-nums|["']tnum["']/.test(rule[2])) {
+          bad++; drift(`design system: ${page} ${rule[1].trim().split("\n").pop().trim()} sets the figure font without tabular figures`);
+        }
+      }
+    }
+  }
   const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  // critic round 1 (2026-10-08, audit/DESIGN-2026-10-08.md): the dialog inerts the
+  // whole page around it by position; a hovered chart mark keeps its token colour;
+  // the status is the system's conn button; an icon-only info trigger has a name
+  if (!/const DRILL_INERT = "body > :not\(#drill\):not\(script\)";/.test(html)
+    || (html.match(/document\.querySelectorAll\(DRILL_INERT\)/g) || []).length !== 2 || /"main, header, \.rail, \.tabbar"/.test(html)) {
+    bad++; drift("design system: the feedback dialog must make everything outside it inert (DRILL_INERT, both on open and on close)");
+  }
+  if (!/Chart\.defaults\.hoverBackgroundColor = \(ctx, options\) => options\.backgroundColor;/.test(html)
+    || !/Chart\.defaults\.hoverBorderColor = \(ctx, options\) => options\.borderColor;/.test(html)) {
+    bad++; drift("design system: chart hover must keep each mark's token colour (Chart.js derives off-system hover colours)");
+  }
+  if (!/<button type="button" class="ss-conn stamp" id="stamp"><\/button>/.test(html) || !/ss-conn__dot/.test(html)) {
+    bad++; drift("design system: the header status must be the system's ss-conn button");
+  }
+  if (/<span data-tip="[^"]*" tabindex="0">\$\{ICONS\.info\}/.test(html)) {
+    bad++; drift("design system: an icon-only info trigger has no accessible name (aria-label)");
+  }
+  // the feedback footnote merges the stored "last capture is over a day old" notices by their
+  // wording (critic round 2): the producer's own sentence for two stale sources must still match
+  // the page's pattern, or the long repeated footnote would come back without a sound
+  {
+    const { audienceView } = await import(join(TOOL, "audience-view.mjs"));
+    const old = "2026-01-01T00:00:00Z";
+    const made = audienceView({ list: [] }, { list: [], sources: { x: { state: "ready", checkedAt: old }, "live-chat": { state: "ready", checkedAt: old } } }, { now: "2026-01-03T00:00:00Z" })?.notices || [];
+    const pattern = html.match(/const STALE = \/(.+)\/;/)?.[1];
+    const stored = (data.episodes || []).flatMap((e) => e.audience?.notices || []).filter((n) => /over a day old/.test(n));
+    if (!pattern || made.length !== 2 || [...made, ...stored].some((n) => !new RegExp(pattern).test(n))) {
+      bad++; drift("design system: the feedback footnote's notice merge (noticeText STALE) no longer matches the stored stale-capture wording (audience-view.mjs)");
+    }
+  }
   // charts read the tokens at runtime — no palette is pasted into the script
   if (!/const TOK = \(name\) => ROOT_CSS\.getPropertyValue\(name\)\.trim\(\);/.test(html) || /const PALETTE = \[/.test(html)) {
     bad++; drift("design system: chart colors must be read from the stylesheet tokens, never a pasted palette");
@@ -2798,7 +2877,7 @@ try {
   if (/inflight\.co\/widget/.test(html) || /inflight\.co\/widget/.test(readFileSync(join(ROOT, "agents.html"), "utf8"))) {
     bad++; drift("design system: the Inflight widget is back — removed 2026-10-06; it was a third-party runtime script (rule 10)");
   }
-  if (!bad) ok("design system: both pages use only design-system tokens; charts read them at runtime; no third-party runtime script");
+  if (!bad) ok("design system: both pages inline the 3.1.1 tokens verbatim, set Inter with tabular figures, use only design-system tokens; charts read them at runtime; no third-party runtime script");
 }
 
 // LinkedIn identity, evidence and absence contract, independently rebuilt from source records.
@@ -3347,7 +3426,7 @@ try {
       if (!/<a class="agentslink" href="agents\.html">Agents<\/a>/.test(html)) { bad++; drift("agent: the dashboard header does not link to the separate Agents page"); }
       if (/#agents|id="agents"|function buildAgents|function syncAgentsView|AGENT_PROMPT/.test(html)) { bad++; drift("agent: agent details still live inside the dashboard page"); }
       if (!agentsHtml.includes(`Read ${AB.SITE}/agent.md in full`)) { bad++; drift("agent: the Agents page prompt does not name the live brief address"); }
-      if (!/<a class="back" href="\.\/">Dashboard<\/a>/.test(agentsHtml)) { bad++; drift("agent: the Agents page does not link back to the dashboard"); }
+      if (!/<a class="ss-back" href="\.\/"><svg [^>]*aria-hidden="true">[\s\S]*?<\/svg>Dashboard<\/a>/.test(agentsHtml)) { bad++; drift("agent: the Agents page does not link back to the dashboard"); }
       for (const file of ["data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md", "data.json"]) {
         if (!agentsHtml.includes(file)) { bad++; drift(`agent: the Agents page does not name ${file}`); }
       }

@@ -1,0 +1,555 @@
+/*
+ * Smart Sharps design system — components (vanilla CSS reference implementation).
+ * Requires tokens.css (and fonts.css, or next/font). Class names are ss- prefixed; a project may keep its own class names
+ * as long as the declarations match these recipes (reference/components.md has the anatomy,
+ * every state, and the source line in the Smart Sharps app). EXT = dashboard extension
+ * (reference/extensions.md). Mobile first: phone values are the defaults, `@media (min-width:
+ * 48rem)` steps down to desktop sizes (a mouse does not need the touch size).
+ */
+
+/* ===== base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--canvas); color: var(--fg-1); font-family: var(--font-sans);
+  -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
+  scrollbar-color: var(--surface-3) transparent; scrollbar-width: thin; }
+body { margin: 0; min-height: 100dvh; background: var(--canvas); color: var(--fg-1);
+  font-size: var(--text-body); line-height: var(--lh-body); -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility; overflow-wrap: break-word; overflow-x: clip; }
+::selection { background: var(--tint-soft); color: var(--fg-1); }
+:focus-visible { outline: 2px solid var(--tint); outline-offset: 2px; }
+/* v3.1.1: a link's ring takes the link buttons' 4 px corners. Zero specificity, so anything that sets its own radius
+   keeps it, and rows that draw their ring inside themselves keep their own square shape. */
+:where(a:focus-visible:not(.ss-focus-inset, .ss-panel--list .ss-row--link)) { border-radius: var(--radius-sm); }
+input, textarea { caret-color: var(--tint); }
+::placeholder { color: var(--fg-3); opacity: 1; }
+a { text-underline-offset: 3px; }
+h1, h2, h3 { text-wrap: balance; }
+button { font: inherit; color: inherit; }
+
+/* every figure: Inter with tabular figures, never broken, never truncated */
+.ss-num { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
+  white-space: nowrap; overflow-wrap: normal; }
+.ss-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.ss-hairline-t { box-shadow: inset 0 1px 0 var(--line); }
+.ss-dot { width: 8px; height: 8px; border-radius: var(--radius-full); flex: none; display: inline-block; }
+
+/* ===== shell ===== */
+.ss-container { width: 100%; max-width: var(--content-max); margin: 0 auto; padding-inline: var(--d-gutter); }
+/* skip link (components.md §1.3; recipe v3.1): the page's first Tab stop, off-screen until it has keyboard focus.
+   Keyboard-only, so the 44 px rule doesn't apply. In a hash router, activation calls preventDefault() and focuses
+   <main tabindex="-1"> (an href="#main" would route). */
+.ss-skip { position: fixed; top: 12px; left: 12px; z-index: 100; display: inline-flex; align-items: center; height: 36px; padding: 0 12px; border-radius: var(--radius-lg);
+  background: var(--surface-2); color: var(--fg-1); font-size: var(--text-body-sm); font-weight: 500; text-decoration: none;
+  transform: translateY(-200%); }
+.ss-skip:focus-visible { transform: none; }
+.ss-topbar { position: sticky; top: 0; z-index: 40; padding-top: var(--safe-top);
+  background: color-mix(in oklab, var(--canvas) 85%, transparent); box-shadow: inset 0 -1px 0 var(--line);
+  -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
+@supports (backdrop-filter: blur(1px)) { .ss-topbar { background: color-mix(in oklab, var(--canvas) 70%, transparent); } }
+.ss-topbar__row { height: var(--topbar-h); display: flex; align-items: center; gap: 8px; padding: 0 var(--d-gutter); }
+.ss-topbar__title { margin: 0; font-size: var(--text-num-lg); line-height: var(--lh-num-lg); font-weight: 600;
+  letter-spacing: -0.025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ss-topbar__actions { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+@media (min-width: 48rem) { .ss-topbar__title { font-size: var(--text-title); line-height: var(--lh-title); } .ss-topbar__actions { gap: 8px; } }
+/* back button (detail routes replace the title) */
+.ss-back { margin-left: -8px; height: 44px; display: inline-flex; align-items: center; gap: 4px; padding: 0 8px 0 4px;
+  border-radius: var(--radius-lg); font-size: var(--text-body); font-weight: 500; color: var(--tint-fg); text-decoration: none; }
+.ss-back:hover { background: var(--surface-2); }
+.ss-back svg { width: 20px; height: 20px; }
+@media (min-width: 48rem) { .ss-back { height: 32px; font-size: var(--text-body-sm); } .ss-back svg { width: 16px; height: 16px; } }
+/* status dot: gray when current, amber when behind — never green, never blue */
+.ss-conn { position: relative; height: 36px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0 12px; border-radius: var(--radius-full); font-size: var(--text-body-sm); color: var(--fg-2); }
+.ss-conn::after { content: ""; position: absolute; inset: -4px 0; }
+.ss-conn:hover { background: var(--surface-2); color: var(--fg-1); }
+.ss-conn__dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--fg-3); }
+.ss-conn__dot--lag { background: var(--warn); }
+/* the words ("Updated 5s ago") sit in one label, so the pill's flex gap never lands between a word and its figure (3.1);
+   below 40rem the label is for screen readers only and the dot speaks for the bar, so the page title never yields.
+   Below 40rem a lagging conn (.ss-conn__dot--lag) must be paired with the trust bar (.ss-trust), which carries the
+   words: an amber dot alone is a color without a word. */
+.ss-conn__label { white-space: nowrap; }
+@media (max-width: 39.99rem) { .ss-conn__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
+@media (min-width: 48rem) { .ss-conn { height: 32px; font-size: var(--text-meta); } }
+/* the top bar's pill select / outline pill */
+.ss-pill-select { position: relative; height: 36px; display: inline-flex; align-items: center; gap: 8px; padding: 0 12px;
+  border: 0; border-radius: var(--radius-full); background: none; box-shadow: inset 0 0 0 1px var(--line-strong);
+  font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-1); text-decoration: none; cursor: pointer; }
+.ss-pill-select::after { content: ""; position: absolute; inset: -4px 0; }
+.ss-pill-select:hover { background: var(--surface-2); }
+.ss-pill-select svg { width: 14px; height: 14px; color: var(--fg-3); }
+@media (min-width: 48rem) { .ss-pill-select { height: 32px; font-size: var(--text-meta); } }
+/* desktop rail (md+) */
+.ss-rail { position: fixed; inset: 0 auto 0 0; z-index: 50; width: var(--rail-w); display: none; flex-direction: column;
+  align-items: center; border-right: 1px solid var(--line); background: var(--canvas); padding: 12px 0; }
+@media (min-width: 48rem) { .ss-rail { display: flex; } }
+/* rail home mark and lists (components.md §1.1; recipe v3.1): the brand mark links home; the page items sit in a list,
+   and secondary pages (About, Settings) in a second list pinned to the bottom */
+.ss-rail__home { margin-bottom: 12px; width: 44px; height: 44px; border-radius: var(--radius-xl); display: flex; align-items: center;
+  justify-content: center; color: var(--fg-1); transition: background-color 150ms; }
+.ss-rail__home:hover { background: var(--surface-2); }
+.ss-rail__home svg { width: 28px; height: 28px; }
+.ss-rail__list { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.ss-rail__list--bottom { flex: none; }   /* the page list takes the free height, so this one sits at the bottom (Smart Sharps' flex-1) */
+.ss-rail__item { position: relative; width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0;
+  border-radius: var(--radius-xl); font-size: var(--text-caption); font-weight: 500; color: var(--fg-3); text-decoration: none;
+  transition: color 150ms, background-color 150ms; }
+.ss-rail__item:hover { background: var(--surface-1); color: var(--fg-1); }
+.ss-rail__item[aria-current="page"] { background: var(--surface-2); color: var(--fg-1); }
+.ss-rail__item svg { width: 18px; height: 18px; stroke-width: 1.75; }
+.ss-rail__item[aria-current="page"] svg { stroke-width: 2.25; }
+.ss-rail__badge { position: absolute; top: 4px; right: 8px; height: 16px; min-width: 16px; padding: 0 4px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center; font-family: var(--font-num); font-variant-numeric: tabular-nums;
+  font-size: var(--text-caption); font-weight: 600; color: var(--canvas); background: var(--fg-1); }
+/* phone tab bar (floating pill) */
+.ss-tabbar { position: fixed; inset: auto 0 0 0; z-index: 50; padding: 0 12px calc(var(--safe-bottom) + 8px); pointer-events: none; }
+@media (min-width: 48rem) { .ss-tabbar { display: none; } }
+.ss-tabbar__fade { position: absolute; inset: auto 0 0 0; height: calc(var(--tabbar-h) + var(--safe-bottom) + 32px); background: var(--canvas);
+  -webkit-mask-image: linear-gradient(to top, black 35%, transparent); mask-image: linear-gradient(to top, black 35%, transparent); }
+.ss-tabbar__pill { pointer-events: auto; position: relative; margin: 0 auto; display: grid;
+  grid-auto-flow: column; grid-auto-columns: 1fr;   /* v3.1: one column per tab (4 or 5), was repeat(5, 1fr) */
+  height: var(--tabbar-h); max-width: 440px; padding: 4px; border-radius: var(--radius-full);
+  background: color-mix(in oklab, var(--surface-2) 85%, transparent);
+  box-shadow: var(--shadow-tabbar);
+  -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px); }
+.ss-tab { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: var(--radius-full);
+  font-size: var(--text-caption); font-weight: 500; color: var(--fg-2); text-decoration: none; transition: color 150ms, transform 150ms; }
+.ss-tab:active { transform: scale(0.95); color: var(--fg-1); }
+.ss-tab[aria-current="page"] { color: var(--fg-1); background: var(--tab-active-bg); box-shadow: inset 0 0 0 1px var(--tab-active-ring); }
+.ss-tab svg { width: 22px; height: 22px; stroke-width: 1.75; }
+.ss-tab[aria-current="page"] svg { stroke-width: 2.25; }
+.ss-tab:focus-visible { outline-offset: -2px; }   /* v3.1: the ring stays inside the pill */
+
+/* ===== containers ===== */
+.ss-panel { min-width: 0; border-radius: var(--radius-2xl); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line); }
+.ss-panel--pad { padding: var(--d-card); }
+.ss-panel--list { overflow: hidden; }
+.ss-panel--list > * + * { border-top: 1px solid var(--line); }
+/* never a card in a card: a sub-block inside a panel is a hairline strip */
+.ss-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; }
+.ss-section-header { display: flex; min-height: 32px; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: var(--d-stack); }
+.ss-section-header__text { display: flex; min-width: 0; flex-wrap: wrap; align-items: baseline; column-gap: 8px; row-gap: 4px; }
+.ss-section-header__title { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
+.ss-section-header__count { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-weight: 400; color: var(--fg-3); }
+.ss-section-header__meta { font-size: var(--text-body-sm); color: var(--fg-3); flex-basis: 100%; }
+@media (min-width: 48rem) { .ss-section-header__title { font-size: var(--text-body); } .ss-section-header__meta { font-size: var(--text-meta); flex-basis: auto; } }
+.ss-panel .ss-section-header { margin-bottom: 8px; }
+.ss-row { padding: var(--d-row) var(--d-card); }
+.ss-row--link { display: flex; align-items: center; gap: 12px; min-height: 56px; transition: background-color 150ms; color: inherit; text-decoration: none; }
+.ss-row--link:hover { background: var(--surface-2); }
+.ss-row[aria-current="true"], .ss-panel[aria-current="true"] { background: var(--surface-2); box-shadow: inset 0 0 0 1.5px var(--selection-ring); }
+/* key/value list */
+.ss-kv > div { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: var(--d-row) 0; }
+.ss-kv > div + div { border-top: 1px solid var(--line); }
+.ss-kv dt { min-width: 0; font-size: var(--text-body); color: var(--fg-2); }
+.ss-kv dd { margin: 0; flex-shrink: 0; text-align: right; font-size: var(--text-body); color: var(--fg-1); }
+@media (min-width: 48rem) { .ss-kv dt, .ss-kv dd { font-size: var(--text-body-sm); } }
+/* "Why" bullets (components.md §9.2; recipe v3.1): a 4 px fg-3 dot centred on the first line, the words 16 px in,
+   items 8 px apart. The dot is absolute, so any inline markup (.ss-num figures, b) flows as ordinary text. The list keeps
+   role="list" (list-style: none drops list semantics in Safari). */
+.ss-bullets { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ss-bullets > li { position: relative; padding-left: 16px; font-size: var(--text-body); line-height: 1.5; color: var(--fg-1); text-wrap: pretty; }
+.ss-bullets > li::before { content: ""; position: absolute; left: 0; top: calc(0.75em - 2px); width: 4px; height: 4px; border-radius: var(--radius-full); background: var(--fg-3); }
+@media (min-width: 48rem) { .ss-bullets > li { font-size: var(--text-body-sm); } }
+/* KPI strip: 1 px gaps show the line color = the dividers */
+.ss-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border-radius: var(--radius-2xl);
+  background: var(--line); box-shadow: inset 0 0 0 1px var(--line); }
+@media (min-width: 48rem) { .ss-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ss-kpi { min-width: 0; background: var(--surface-1); padding: var(--d-card); }
+.ss-kpi__label { font-size: var(--text-meta); color: var(--fg-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ss-kpi__value { margin-top: 4px; font-family: var(--font-num); font-size: var(--text-num-lg); line-height: 1.25; font-weight: 600;
+  letter-spacing: -0.02em; white-space: nowrap; color: var(--fg-1); font-variant-numeric: tabular-nums; }
+.ss-kpi__sub { margin-top: 4px; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: balance; }
+@media (min-width: 48rem) { .ss-kpi__sub { font-size: var(--text-meta); } }
+/* a detail pane's metric block (the pane is the container, so the block may be a 16 px grid) */
+.ss-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border-radius: var(--radius-xl);
+  background: var(--line); box-shadow: inset 0 0 0 1px var(--line); }
+@media (min-width: 80rem) { .ss-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ss-metric { min-width: 0; background: var(--surface-1); padding: var(--d-row) var(--d-card); }
+.ss-big { display: flex; flex-direction: column-reverse; }
+.ss-big dd { margin: 0; font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: var(--text-display); line-height: 1; font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); }
+.ss-big dt { margin-top: 4px; font-size: var(--text-body-sm); color: var(--fg-3); }
+
+/* ===== buttons ===== */
+.ss-btn { position: relative; display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; gap: 8px;
+  height: 44px; padding: 0 16px; border: 0; border-radius: var(--radius-lg); font-size: var(--text-body); font-weight: 500;
+  white-space: nowrap; user-select: none; cursor: pointer; text-decoration: none;
+  transition: background-color 150ms cubic-bezier(0, 0, 0.2, 1), color 150ms cubic-bezier(0, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0, 0, 0.2, 1), transform 150ms cubic-bezier(0, 0, 0.2, 1); }
+.ss-btn:active { transform: scale(0.98); }
+.ss-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--canvas), 0 0 0 4px var(--tint); }
+.ss-btn:disabled { pointer-events: none; opacity: 0.45; }
+.ss-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+@media (min-width: 48rem) { .ss-btn { height: 36px; font-size: var(--text-body); } }
+.ss-btn--primary { background: var(--tint); color: var(--on-tint); font-weight: 600; }      /* the one action that commits */
+.ss-btn--primary:hover { background: var(--tint-hover); }
+.ss-btn--primary:active { background: var(--tint-press); }
+.ss-btn--secondary { background: var(--surface-3); color: var(--fg-1); box-shadow: inset 0 0 0 1px var(--line-strong); }  /* every other action */
+.ss-btn--secondary:hover { background: var(--surface-4); }
+.ss-btn--tonal { background: var(--tint-soft); color: var(--tint-fg); }                    /* navigation inside content */
+.ss-btn--tonal:hover { background: color-mix(in oklab, var(--tint) 20%, transparent); }
+.ss-btn--outline { background: transparent; color: var(--fg-1); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.ss-btn--outline:hover { background: var(--surface-2); }
+.ss-btn--ghost { background: transparent; color: var(--fg-2); }                           /* toolbar icons */
+.ss-btn--ghost:hover, .ss-btn--ghost[aria-expanded="true"] { background: var(--surface-2); color: var(--fg-1); }
+.ss-btn--destructive { background: var(--neg-soft); color: var(--neg); }
+.ss-btn--destructive:hover { background: color-mix(in oklab, var(--neg) 20%, transparent); }
+.ss-btn--link { height: auto; padding: 0; background: none; color: var(--tint-fg); }
+.ss-btn--link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ss-btn--link:active { transform: none; }
+/* v3.1: a link button reaches 44 px — a centred hit area works whatever the text step (13, 14 or 15 px) */
+.ss-btn--link::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
+/* its focus is the global outline, 2 px out with 4 px corners: the buttons' canvas-gap ring would cut into the first and
+   last glyphs of a padding-less label, and draw a dark band on a tinted banner */
+.ss-btn--link:focus-visible { box-shadow: none; outline: 2px solid var(--tint); outline-offset: 2px; border-radius: var(--radius-sm); }
+/* a chevron marked .ss-btn__chev turns when the button opens something; other icons never turn */
+.ss-btn--link .ss-btn__chev { transition: transform 150ms var(--ease-out-quart); }
+.ss-btn--link[aria-expanded="true"] .ss-btn__chev { transform: rotate(180deg); }
+@media (min-width: 48rem) { .ss-btn--sm { height: 32px; padding: 0 12px; font-size: var(--text-body-sm); } }
+.ss-btn--xs { height: 28px; padding: 0 8px; border-radius: var(--radius-md); font-size: var(--text-meta); }
+.ss-btn--xs::after { content: ""; position: absolute; inset: -8px; }
+.ss-btn--xs svg { width: 14px; height: 14px; }
+.ss-btn--icon { width: 44px; padding: 0; }
+@media (min-width: 48rem) { .ss-btn--icon { width: 36px; } .ss-btn--icon.ss-btn--sm { width: 32px; } }
+.ss-kbd { pointer-events: none; display: inline-flex; height: 20px; min-width: 20px; align-items: center; justify-content: center; padding: 0 4px;
+  border-radius: var(--radius-sm); background: var(--surface-2); font-family: var(--font-sans); font-size: var(--text-meta); font-weight: 500; color: var(--fg-2); }
+
+/* ===== segmented control (every view switch; no tab bars) ===== */
+.ss-seg { display: flex; padding: 4px; border-radius: var(--radius-xl); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line); }
+.ss-seg__opt { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 8px;
+  border: 0; background: none; border-radius: var(--radius-lg); font-size: var(--text-body); font-weight: 500; color: var(--fg-3); cursor: pointer;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+.ss-seg__opt::after { content: ""; position: absolute; inset: -4px 0; }
+.ss-seg__opt:hover { color: var(--fg-1); }
+.ss-seg__opt[aria-checked="true"] { background: var(--surface-3); color: var(--fg-1); box-shadow: var(--shadow-thumb); }
+.ss-seg__count { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: var(--text-meta); font-weight: 400; color: var(--fg-3); }
+@media (min-width: 48rem) { .ss-seg__opt { height: 28px; font-size: var(--text-body-sm); } }
+
+/* ===== filter chips (multi-toggle; selected = inverted white) ===== */
+.ss-chip { position: relative; display: inline-flex; height: 36px; flex-shrink: 0; align-items: center; gap: 8px; padding: 0 16px; border: 0;
+  border-radius: var(--radius-full); font-size: var(--text-body-sm); font-weight: 500; white-space: nowrap; cursor: pointer;
+  background: var(--surface-1); color: var(--fg-2); box-shadow: inset 0 0 0 1px var(--line-strong); transition: color 150ms, background-color 150ms; }
+.ss-chip::after { content: ""; position: absolute; inset: -4px 0; }
+.ss-chip:hover { background: var(--surface-2); color: var(--fg-1); }
+.ss-chip[aria-pressed="true"] { background: var(--selected-bg); color: var(--selected-fg); box-shadow: none; }
+.ss-chip__count { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: var(--text-meta); color: var(--fg-3); }
+.ss-chip[aria-pressed="true"] .ss-chip__count { color: color-mix(in oklab, var(--canvas) 60%, transparent); }
+@media (min-width: 48rem) { .ss-chip { height: 32px; padding: 0 12px; } }
+.ss-chip-row { margin: -8px calc(var(--d-gutter) * -1); padding: 8px var(--d-gutter); display: flex; align-items: center; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent); mask-image: linear-gradient(to right, black calc(100% - 24px), transparent); }
+@media (min-width: 48rem) { .ss-chip-row { margin: -8px 0; padding: 8px 0; flex-wrap: wrap; overflow: visible; -webkit-mask-image: none; mask-image: none; } }
+
+/* ===== tags (status; never blue, never an action) ===== */
+.ss-tag { display: inline-flex; flex-shrink: 0; align-items: center; gap: 4px; min-height: 24px; padding: 4px 8px; border-radius: var(--radius-full);
+  font-size: var(--text-meta); line-height: 1; font-weight: 600; white-space: nowrap; }
+.ss-tag--sm { min-height: 20px; font-size: var(--text-caption); }
+.ss-tag--lg { min-height: 32px; padding-inline: 12px; font-size: var(--text-body-sm); }
+.ss-tag svg { width: 14px; height: 14px; }
+.ss-tag--neutral { background: var(--surface-2); color: var(--fg-2); }
+.ss-tag--outline { color: var(--fg-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.ss-tag--pos { background: var(--pos-soft); color: var(--pos); }
+.ss-tag--pos-solid { background: var(--pos); color: var(--canvas); }
+.ss-tag--neg { background: var(--neg-soft); color: var(--neg); }
+.ss-tag--warn { background: var(--warn-soft); color: var(--warn); }
+.ss-tag--urgent { background: var(--urgent-soft); color: var(--urgent); }
+.ss-tag--live { background: var(--live-soft); color: var(--live); }
+.ss-grade { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: var(--radius-md);
+  font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: var(--text-body-sm); font-weight: 700; }
+.ss-grade--strong { background: var(--pos); color: var(--canvas); }
+.ss-grade--good { background: var(--pos-soft); color: var(--pos); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--pos) 30%, transparent); }
+.ss-grade--small { background: var(--warn-soft); color: var(--warn); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--warn) 25%, transparent); }
+.ss-grade--muted { background: var(--surface-2); color: var(--fg-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
+/* small grade (components.md §6.2; recipe v3.1). A rank in a list is ss-grade ss-grade--sm ss-grade--muted. */
+.ss-grade--sm { width: 20px; height: 20px; font-size: var(--text-caption); }
+.ss-live { display: inline-flex; height: 20px; align-items: center; gap: 4px; padding: 0 8px; border-radius: var(--radius-full);
+  background: var(--live-soft); font-size: var(--text-caption); font-weight: 700; letter-spacing: 0.06em; color: var(--live); }
+
+/* ===== disclosure row + reveal ===== */
+.ss-disclosure { display: flex; min-height: 56px; width: 100%; align-items: center; gap: 12px; border: 0; border-radius: var(--radius-2xl);
+  padding: var(--d-row) var(--d-card); text-align: left; background: none; color: inherit; cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--line-strong); transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+.ss-disclosure:hover { background: var(--surface-1); }
+.ss-disclosure__icon { display: flex; width: 16px; height: 16px; flex-shrink: 0; color: var(--fg-3); }
+.ss-disclosure__text { min-width: 0; flex: 1; }
+.ss-disclosure__title { display: block; font-size: var(--text-body); font-weight: 500; color: var(--fg-1); }
+.ss-disclosure__sub { display: block; font-size: var(--text-body-sm); color: var(--fg-3); }
+.ss-disclosure__chev { width: 16px; height: 16px; flex-shrink: 0; color: var(--fg-3); transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+.ss-disclosure[aria-expanded="true"] .ss-disclosure__chev { transform: rotate(180deg); }
+@media (min-width: 48rem) { .ss-disclosure__title { font-size: var(--text-body-sm); } .ss-disclosure__sub { font-size: var(--text-meta); } }
+.ss-reveal { display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms cubic-bezier(0.5, 0, 0.75, 0); }
+.ss-reveal[data-open="true"] { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows 200ms var(--ease-out-quart), opacity 200ms var(--ease-out-quart); }
+.ss-reveal > div { min-height: 0; overflow: hidden; }
+
+/* ===== popover, menu, tooltip ===== */
+.ss-popover { display: flex; flex-direction: column; gap: 12px; width: 288px; padding: 12px; border-radius: var(--radius-lg);
+  background: var(--popover); color: var(--fg-1); font-size: var(--text-body-sm); box-shadow: var(--shadow-pop); animation: ss-pop-in 100ms ease; }
+.ss-menu { min-width: 192px; padding: 4px; border-radius: var(--radius-lg); background: var(--popover); color: var(--fg-1);
+  box-shadow: var(--shadow-pop); animation: ss-pop-in 100ms ease; }
+.ss-menu__item { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 4px 8px; border: 0; border-radius: var(--radius-md);
+  background: none; color: var(--fg-1); font-size: var(--text-body); text-align: left; cursor: pointer; }
+.ss-menu__item:hover, .ss-menu__item:focus-visible { background: var(--surface-3); outline: none; }
+.ss-menu__item svg { width: 16px; height: 16px; }
+.ss-menu__label { padding: 4px 8px; font-size: var(--text-meta); color: var(--fg-3); }
+.ss-menu__sep { margin: 4px -4px; height: 1px; background: var(--line); }
+/* menu with a check slot (v3.1): every item keeps a 16 px slot before its text, the chosen item shows its check;
+   group labels inset to the same text edge (8 item padding + 16 slot + 8 gap = 32) */
+.ss-menu--checks .ss-menu__label { padding-left: 32px; }
+.ss-menu__check { width: 16px; height: 16px; flex: none; color: var(--fg-1); visibility: hidden; }
+.ss-menu__item[aria-selected="true"] .ss-menu__check, .ss-menu__item[aria-checked="true"] .ss-menu__check { visibility: visible; }
+.ss-menu__item[aria-selected="true"], .ss-menu__item[aria-checked="true"] { font-weight: 500; }
+@media (min-width: 48rem) { .ss-menu__item { min-height: 28px; } }
+/* the simple tooltip is inverted (light), for desktop chrome only; information never hides behind hover */
+.ss-tip { display: inline-flex; max-width: 320px; align-items: center; gap: 8px; padding: 8px 12px; border-radius: var(--radius-md);
+  background: var(--fg-1); color: var(--canvas); font-size: var(--text-meta); animation: ss-pop-in 150ms ease; }
+@keyframes ss-pop-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: none; } }
+
+/* ===== dialog (md+) and bottom sheet (phones) ===== */
+.ss-scrim { position: fixed; inset: 0; z-index: 50; background: var(--scrim); animation: ss-fade 150ms ease; }
+.ss-dialog { position: fixed; top: 50%; left: 50%; z-index: 50; transform: translate(-50%, -50%); width: 100%; max-width: calc(100% - 32px);
+  display: flex; flex-direction: column; overflow: hidden; max-height: min(88vh, 820px); border-radius: var(--radius-2xl);
+  background: var(--surface-1); color: var(--fg-1); box-shadow: var(--shadow-dialog); }
+@media (min-width: 40rem) { .ss-dialog { max-width: 440px; } .ss-dialog--wide { max-width: 640px; } }
+.ss-dialog__head { border-bottom: 1px solid var(--line); padding: 16px 56px 16px 20px; }
+.ss-dialog__title { margin: 0; font-size: var(--text-title); font-weight: 600; letter-spacing: -0.01em; }
+.ss-dialog__body { min-height: 0; overflow-y: auto; padding: 16px 20px; }
+.ss-dialog__foot { border-top: 1px solid var(--line); padding: 16px 20px; display: flex; gap: 8px; }
+.ss-dialog__close { position: absolute; top: 8px; right: 8px; }
+.ss-sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; flex-direction: column; max-height: 92dvh;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0; background: var(--surface-1); color: var(--fg-1);
+  box-shadow: inset 0 1px 0 var(--line-strong), var(--shadow-sheet); animation: ss-sheet-in 500ms var(--ease-sheet); }
+.ss-sheet__handle { margin: 12px auto 0; width: 40px; height: 5px; flex-shrink: 0; border-radius: var(--radius-full); background: var(--fg-4); }
+.ss-sheet__head { padding: 12px 20px 8px; }
+.ss-sheet__body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 20px 12px; }
+.ss-sheet__foot { border-top: 1px solid var(--line); padding: 12px 20px calc(var(--safe-bottom) + 12px); display: flex; gap: 8px; }
+@keyframes ss-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ss-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
+
+/* ===== fields ===== */
+.ss-label { display: block; margin-bottom: 8px; font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-2); }
+.ss-help { margin-top: 8px; font-size: var(--text-meta); color: var(--fg-3); }
+.ss-error { padding: 0 4px; font-size: var(--text-body-sm); color: var(--warn); }                 /* errors are amber */
+.ss-field { display: flex; height: 44px; width: 100%; align-items: center; padding: 0 12px; border-radius: var(--radius-xl);
+  background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+.ss-field:focus-within { box-shadow: inset 0 0 0 1.5px var(--tint); }
+.ss-field[aria-invalid="true"] { box-shadow: inset 0 0 0 1.5px var(--warn); }
+.ss-field input { height: 100%; min-width: 0; flex: 1; border: 0; background: transparent; padding-left: 4px; font-size: var(--text-body); color: var(--fg-1); outline: none; }
+.ss-select { position: relative; display: block; }
+.ss-select select { appearance: none; height: 44px; width: 100%; border: 0; border-radius: var(--radius-xl); background: var(--surface-2);
+  padding: 0 36px 0 12px; font: inherit; font-size: var(--text-body); color: var(--fg-1); box-shadow: inset 0 0 0 1px var(--line); outline: none; }
+.ss-select select:focus { box-shadow: inset 0 0 0 1.5px var(--tint); }
+.ss-select svg { pointer-events: none; position: absolute; top: 50%; right: 12px; width: 16px; height: 16px; transform: translateY(-50%); color: var(--fg-3); }
+@media (min-width: 48rem) { .ss-field, .ss-select select { height: 36px; } }
+.ss-switch { position: relative; display: inline-flex; flex-shrink: 0; align-items: center; width: 50px; height: 30px; padding: 2px; border: 0; /* ds-allow spacing: the switch thumb's 2 px track inset (iOS proportions, 50×30) */
+  border-radius: var(--radius-full); cursor: pointer; background: var(--surface-3); transition: background-color 200ms; }
+.ss-switch::after { content: ""; position: absolute; inset: -8px; }
+.ss-switch[aria-checked="true"] { background: var(--tint); }
+.ss-switch__thumb { pointer-events: none; display: block; width: 26px; height: 26px; border-radius: var(--radius-full); background: var(--fg-1);
+  box-shadow: var(--shadow-switch); transition: transform 200ms cubic-bezier(0, 0, 0.2, 1); }
+.ss-switch[aria-checked="true"] .ss-switch__thumb { transform: translateX(20px); }
+
+/* ===== meters, sparkline ===== */
+.ss-meter { height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
+.ss-meter > span { display: block; height: 100%; min-width: 2%; border-radius: inherit; background: var(--fg-2); }
+.ss-meter--over > span { background: var(--warn); }
+.ss-spark { width: 72px; height: 24px; overflow: visible; }
+.ss-spark path { fill: none; stroke: var(--fg-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ss-spark circle { fill: var(--fg-2); stroke: var(--surface-1); stroke-width: 1.5; }
+
+/* ===== empty state, banners, toast, skeleton ===== */
+.ss-empty { display: flex; flex-direction: column; align-items: center; padding: 48px 24px; text-align: center; }
+.ss-empty__icon { margin-bottom: 16px; width: 44px; height: 44px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2); color: var(--fg-2); box-shadow: inset 0 0 0 1px var(--line); }
+.ss-empty__icon svg { width: 20px; height: 20px; }
+.ss-empty__title { margin: 0; max-width: 34ch; font-size: var(--text-title); font-weight: 600; color: var(--fg-1); }
+.ss-empty__body { margin: 8px 0 0; max-width: 46ch; font-size: var(--text-body); line-height: 1.625; color: var(--fg-2); }
+/* verdict card (components.md §12.1 "No edge right now", §12.2 paused; recipe v3.1): an answer that is absent, stated as
+   a verdict inside an .ss-panel.ss-panel--pad — never an icon-centred empty state. The title is the section's heading;
+   the disc is aria-hidden; each meta item carries its own leading "·" so a wrap never strands one. */
+.ss-verdict { display: flex; align-items: flex-start; gap: 16px; }
+.ss-verdict__icon { width: 40px; height: 40px; flex: none; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2); color: var(--fg-2); box-shadow: inset 0 0 0 1px var(--line); }
+.ss-verdict__icon svg { width: 20px; height: 20px; }
+.ss-verdict--warn .ss-verdict__icon { background: var(--warn-soft); color: var(--warn); box-shadow: none; }   /* paused, limit: a warning, with its words */
+.ss-verdict__text { min-width: 0; flex: 1; }
+.ss-verdict__title { margin: 8px 0 0; font-size: var(--text-title); line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
+.ss-verdict__body { margin: 4px 0 0; max-width: 60ch; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
+/* meta: facts, not actions (an action goes in __actions). The recipe draws a centred fg-3 "·" in the 12 px before every
+   item, outside the item's box and with no accessible name, and clips it at each line start, so the dots are evenly
+   spaced and a wrapped line never opens with one (the items carry no typed separators). The clip leaves 4 px above,
+   below and right for a focus ring. */
+.ss-verdict__meta { margin-top: var(--d-inner); margin-left: -12px; clip-path: inset(-4px -4px -4px 12px); display: flex; flex-wrap: wrap; row-gap: 4px;
+  font-size: var(--text-meta); color: var(--fg-3); }
+.ss-verdict__meta > * { position: relative; margin-left: 12px; }
+.ss-verdict__meta > *::before { content: "·"; content: "·" / ""; position: absolute; right: 100%; width: 12px; text-align: center; color: var(--fg-3); }
+.ss-verdict__actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }   /* tonal to navigate, secondary for record-keeping */
+@media (max-width: 47.99rem) { .ss-verdict__actions > .ss-btn { flex: 1 1 auto; } }   /* a wrapped pair fills the column, never a staircase */
+.ss-banner { display: flex; align-items: flex-start; gap: 12px; border-radius: var(--radius-xl); padding: 12px var(--d-card); font-size: var(--text-body); }
+.ss-banner > svg { margin-top: 4px; margin-top: calc((1lh - 16px) / 2); width: 16px; height: 16px; flex-shrink: 0; color: var(--fg-2); }
+/* the banner's own icon only, never an action's. v3.1.1: centred on the first line (Inter's cap-height centre): 2.65 px
+   on phones, 1.23 px from 48rem; 4 px where the lh unit is unsupported. */
+.ss-banner--warn { background: var(--warn-soft); color: var(--fg-1); box-shadow: inset 0 0 0 1px var(--warn-ring); }
+.ss-banner--warn > svg { color: var(--warn); }
+.ss-banner--info { background: var(--surface-2); color: var(--fg-1); box-shadow: inset 0 0 0 1px var(--line-strong); }   /* never blue */
+/* banner parts (components.md §12.4; recipe v3.1) */
+.ss-banner__text { min-width: 0; flex: 1; }   /* the words: title, then body */
+.ss-banner__title { font-weight: 500; }
+.ss-banner__body { margin-top: 4px; color: var(--fg-2); text-wrap: pretty; }
+.ss-banner__action { flex-shrink: 0; align-self: center; margin-left: auto; }   /* an ss-btn--link, or ss-btn--secondary ss-btn--sm */
+.ss-banner__action.ss-btn--link { font-size: inherit; }   /* a link action reads at the banner's own size */
+@media (max-width: 47.99rem) {
+  /* phones: the action wraps under the words instead of squeezing them into a narrow column */
+  .ss-banner:has(> .ss-banner__action) { flex-wrap: wrap; row-gap: 8px; }
+  .ss-banner:has(> svg):has(> .ss-banner__action) > .ss-banner__text { flex-basis: calc(100% - 28px); }   /* 16 icon + 12 gap */
+  .ss-banner:not(:has(> svg)):has(> .ss-banner__action) > .ss-banner__text { flex-basis: 100%; }
+}
+@media (min-width: 48rem) {
+  /* a one-line banner (no body) with an action: icon, words and action share one centre line */
+  .ss-banner:has(> .ss-banner__action):not(:has(.ss-banner__body)) { align-items: center; }
+  .ss-banner:has(> .ss-banner__action):not(:has(.ss-banner__body)) > svg { margin-top: 0; }
+}
+@media (min-width: 48rem) { .ss-banner { font-size: var(--text-body-sm); } }
+.ss-trust { position: sticky; top: calc(var(--topbar-h) + var(--safe-top)); z-index: 30; display: flex; height: var(--trust-row-h); align-items: center; gap: 12px;
+  padding: 0 var(--d-gutter); font-size: var(--text-body-sm); color: var(--fg-1);
+  background: color-mix(in oklab, var(--warn) 11%, var(--canvas)); box-shadow: inset 0 -1px 0 var(--warn-ring); }
+.ss-trust svg { width: 16px; height: 16px; color: var(--warn); }   /* one row = --trust-row-h: 40, 36 from 48rem */
+.ss-toast { display: flex; align-items: center; gap: 8px; width: 356px; max-width: calc(100vw - 32px); padding: 16px; border-radius: var(--radius-lg);
+  background: var(--popover); box-shadow: var(--shadow-toast); font-size: var(--text-body); }
+.ss-skeleton { background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%); background-size: 200% 100%;
+  animation: ss-shimmer 1.6s linear infinite; border-radius: var(--radius-md); }
+@keyframes ss-shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+/* ======================================================================
+   EXT v2.1 — dashboard extensions (reference/extensions.md)
+   ====================================================================== */
+
+/* section title for a single-page dashboard (no rail): the system's section header */
+.ss-x-sechead { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: var(--d-section) 0 12px; }
+
+/* score gauge: a 64 px ring, white fill, a gray notch at the reference level */
+.ss-x-gauge { position: relative; width: 56px; height: 56px; flex: none; }
+.ss-x-gauge svg { width: 100%; height: 100%; display: block; transform: rotate(-90deg); }
+.ss-x-gauge .track { fill: none; stroke: var(--surface-3); stroke-width: 6; }
+.ss-x-gauge .fill { fill: none; stroke: var(--fg-1); stroke-width: 6; stroke-linecap: round; }
+.ss-x-gauge .tick { stroke: var(--fg-3); stroke-width: 2; }
+.ss-x-gauge b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-num);
+  font-variant-numeric: tabular-nums; font-size: var(--text-num-lg); font-weight: 600; letter-spacing: -0.02em; }
+@media (min-width: 48rem) { .ss-x-gauge { width: 64px; height: 64px; } }
+
+/* part-of-whole split bar with labels underneath */
+.ss-x-split { display: flex; gap: 4px; height: 8px; border-radius: var(--radius-full); overflow: hidden; background: var(--surface-3); }
+.ss-x-split > span { min-width: 2px; }
+.ss-x-split-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: var(--text-body-sm); color: var(--fg-2); }
+
+/* delta vs a reference: a small tag, signed, value-colored; "typical" when inside the quiet zone */
+.ss-x-delta { display: inline-flex; align-items: center; min-height: 20px; padding: 0 8px; border-radius: var(--radius-full);
+  font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: var(--text-caption); font-weight: 600; line-height: 1; }
+.ss-x-delta--up { background: var(--pos-soft); color: var(--pos); }
+.ss-x-delta--down { background: var(--neg-soft); color: var(--neg); }
+.ss-x-delta--flat { background: var(--surface-3); color: var(--fg-2); font-family: var(--font-sans); }
+
+/* state pill: a drillable check with a state dot (word in the accessible name and drill) */
+.ss-x-state { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px 0 12px; border: 0;
+  border-radius: var(--radius-full); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line-strong);
+  color: var(--fg-1); font-size: var(--text-body-sm); font-weight: 500; cursor: pointer; }
+.ss-x-state::after { content: ""; position: absolute; inset: -4px 0; }
+.ss-x-state:hover { background: var(--surface-2); }
+.ss-x-state i { width: 8px; height: 8px; border-radius: var(--radius-full); }
+.ss-x-state--good i { background: var(--pos); } .ss-x-state--steady i { background: var(--fg-3); }
+.ss-x-state--fragile i { background: var(--warn); } .ss-x-state--waiting i { box-shadow: inset 0 0 0 1.5px var(--fg-3); }
+@media (min-width: 48rem) { .ss-x-state { height: 32px; padding: 0 12px 0 8px; } }
+
+/* insight / recommendation card: priority badge (muted grade), category word, claim, a link-button reveal */
+.ss-x-insight { display: flex; align-items: flex-start; gap: 12px; padding: var(--d-card); border-radius: var(--radius-2xl);
+  background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line); }
+.ss-x-insight__cat { font-size: var(--text-meta); line-height: 24px; color: var(--fg-3); }
+.ss-x-insight__text b { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-weight: 600; }
+.ss-x-insight__more { margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line); color: var(--fg-2); }
+
+/* quote: nested content marked by a 2 px rule (the system's parlay-leg indent), never a filled box */
+.ss-x-quote { margin: 16px 0 0; padding: 0 0 0 12px; border-left: 2px solid var(--line-strong); }
+.ss-x-quote p { margin: 0; font-size: var(--text-body); line-height: 1.5; color: var(--fg-1); }
+.ss-x-quote footer { margin-top: 4px; font-size: var(--text-meta); color: var(--fg-3); }
+.ss-x-quote__link { position: relative; color: var(--tint-fg); text-decoration: none; }   /* "Original": a link in the meta line */
+.ss-x-quote__link:hover { text-decoration: underline; }
+.ss-x-quote__link::after { content: ""; position: absolute; inset: -16px -4px; }   /* reaches 44 px */
+
+/* card carousel: snap, an 8 px inset for focus rings and hit areas, compensated by margins, edge fades */
+.ss-x-carousel { display: flex; gap: var(--d-stack); overflow-x: auto; padding: 8px; margin: -8px; scrollbar-width: none; scroll-snap-type: x proximity; }
+.ss-x-carousel::-webkit-scrollbar { display: none; }
+.ss-x-carousel > * { flex: 0 0 168px; scroll-snap-align: end; }
+.ss-x-carousel.more-left { -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px); mask-image: linear-gradient(to right, transparent 0, black 32px); }
+.ss-x-carousel.more-right { -webkit-mask-image: linear-gradient(to left, transparent 0, black 32px); mask-image: linear-gradient(to left, transparent 0, black 32px); }
+
+/* chart card: legend above the plot; the tooltip card is the popover */
+.ss-x-legend { display: flex; flex-wrap: wrap; align-items: center; column-gap: 16px; row-gap: 4px; margin-bottom: 8px; font-size: var(--text-meta); color: var(--fg-2); }
+.ss-x-legend i { display: inline-block; width: 8px; height: 8px; border-radius: var(--radius-full); margin-right: 8px; }
+.ss-x-legend i.line { width: 16px; height: 2px; }
+.ss-x-chart-tip { position: absolute; pointer-events: none; min-width: 216px; max-width: 300px; padding: 12px; border-radius: var(--radius-lg);
+  background: var(--popover); box-shadow: var(--shadow-pop); font-size: var(--text-body-sm); }
+
+/* long-form methodology (About): 72ch, generous leading, bold terms in fg-1 */
+.ss-x-prose { max-width: 72ch; font-size: var(--text-body); line-height: 1.625; color: var(--fg-2); }
+.ss-x-prose p { margin: 0 0 12px; }
+.ss-x-prose b, .ss-x-prose strong { color: var(--fg-1); font-weight: 600; }
+.ss-x-prose h3 { margin: 24px 0 8px; font-size: var(--text-body); font-weight: 600; color: var(--fg-1); }
+@media (min-width: 48rem) { .ss-x-prose { font-size: var(--text-body-sm); } }
+
+/* inline drill target: a word with a tooltip says so with a dotted underline, and reaches 44 px */
+.ss-x-drill { position: relative; cursor: pointer; text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
+.ss-x-drill::after { content: ""; position: absolute; inset: -12px -4px; }
+
+/* ======================================================================
+   EXT v3.1 — promoted 2026-10-08 (reference/extensions.md rows 22–34)
+   ====================================================================== */
+
+/* carousel scrolled mid-way fades BOTH edges (the single-edge masks above replace each other) */
+.ss-x-carousel.more-left.more-right {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); }
+
+/* chart tooltip card anatomy (dataviz.md "Interaction"; the container is .ss-x-chart-tip above): one text edge, with the
+   series swatches hanging in a 16 px gutter (8 px dot + 8 px gap). --plain closes the gutter when no row has a swatch. */
+.ss-x-chart-tip__title, .ss-x-chart-tip__meta, .ss-x-chart-tip__value, .ss-x-chart-tip__note { padding-left: 16px; }
+.ss-x-chart-tip__title { font-weight: 600; color: var(--fg-1); }
+.ss-x-chart-tip__meta { margin: 4px 0 8px; font-size: var(--text-meta); color: var(--fg-3); }
+.ss-x-chart-tip__value { font-family: var(--font-num); font-size: var(--text-num-lg); line-height: 1.25; font-weight: 600; letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums; color: var(--fg-1); }
+.ss-x-chart-tip__value small { font-family: var(--font-sans); font-size: var(--text-body-sm); font-weight: 400; letter-spacing: 0; color: var(--fg-3); }
+.ss-x-chart-tip__row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: var(--text-body-sm); line-height: 1.3; color: var(--fg-2); }
+.ss-x-chart-tip__row > .ss-dot { flex: none; }
+.ss-x-chart-tip__val { margin-left: auto; font-family: var(--font-num); font-variant-numeric: tabular-nums; color: var(--fg-1); text-align: right; white-space: nowrap; }
+.ss-x-chart-tip__val--absent { color: var(--fg-3); }   /* "—": no value at this x, never 0 */
+.ss-x-chart-tip__row[aria-current="true"], .ss-x-chart-tip__row[aria-current="true"] .ss-x-chart-tip__val { color: var(--fg-1); font-weight: 600; }
+.ss-x-chart-tip__value + .ss-x-chart-tip__row { margin-top: 8px; }   /* rows straight under the value get the same 8 px as after a __sep */
+.ss-x-chart-tip__sep { height: 1px; margin: 8px 0 4px; background: var(--line); }   /* optional: parts a total from its breakdown */
+.ss-x-chart-tip__note { margin-top: 8px; font-size: var(--text-meta); color: var(--warn); }   /* a caveat about the reading, in words */
+.ss-x-chart-tip--plain .ss-x-chart-tip__title, .ss-x-chart-tip--plain .ss-x-chart-tip__meta,
+.ss-x-chart-tip--plain .ss-x-chart-tip__value, .ss-x-chart-tip--plain .ss-x-chart-tip__note { padding-left: 0; }
+
+/* the shell's trust-bar offset (components.md §12.4): the app sets --trust-rows (inline style) on the shell to the rows
+   the trust bar shows; sticky and full-height layouts under the top bar subtract var(--trust-h). --trust-h resolves on
+   the shell, where --trust-rows is set, and inherits the 40/36 step from --trust-row-h. Sideways overflow is clipped on
+   the shell and its <main> (clip, not hidden: no scroll container, so sticky still works). A <main> outside a shell is
+   left alone. */
+.ss-shell { --trust-h: calc(var(--trust-rows, 0) * var(--trust-row-h)); }
+.ss-shell, .ss-shell main { position: relative; overflow-x: clip; }
+
+/* focus inside a clipping container: a list panel is overflow:hidden, so its full-bleed rows draw the ring inside
+   themselves (rule 17, R4-6). The ring takes the row's shape, square like its hover and current states; only the first
+   row's top corners and the last row's bottom corners take the panel's 20 px radius, so no corner is clipped. On a
+   current row the 2 px ring covers the 1.5 px selection ring while focused. Tailwind: focus-inset, focus-inset-first,
+   focus-inset-last. */
+.ss-focus-inset:focus-visible, .ss-panel--list .ss-row--link:focus-visible { outline-offset: -2px; }
+.ss-focus-inset--first:focus-visible,
+.ss-panel--list > :first-child > .ss-row--link:focus-visible, .ss-panel--list > .ss-row--link:first-child:focus-visible {
+  border-top-left-radius: var(--radius-2xl); border-top-right-radius: var(--radius-2xl); }
+.ss-focus-inset--last:focus-visible,
+.ss-panel--list > :last-child > .ss-row--link:focus-visible, .ss-panel--list > .ss-row--link:last-child:focus-visible {
+  border-bottom-left-radius: var(--radius-2xl); border-bottom-right-radius: var(--radius-2xl); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  .ss-skeleton { animation: none !important; }
+}

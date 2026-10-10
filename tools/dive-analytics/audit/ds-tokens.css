@@ -1,0 +1,154 @@
+/*
+ * Smart Sharps design system — tokens (vanilla CSS). One dark world.
+ * THIS FILE IS THE SOURCE OF TRUTH for every token (design system v2, 2026-10-04, extracted from
+ * the Smart Sharps app; the data-viz and dashboard extensions, v2.1, 2026-10-06, are marked EXT
+ * and described in reference/extensions.md). Smart Sharps itself imports it through
+ * tailwind-theme.css; change a token here, never in a consuming app.
+ *
+ * Use: link it (with fonts.css) or paste it into the page's first <style> (single-file pages
+ * paste `node scripts/inline-fonts.mjs` output for the fonts). Every other rule reads these
+ * properties — no raw colors, no off-scale sizes, no off-grid spacing (scripts/ds-audit.mjs
+ * enforces it).
+ *
+ * COLOR MEANS ONE THING EACH
+ *   blue (--tint)        you can tap it: buttons, links, focus. Never decoration, data, selection or status.
+ *   white inverted       a selected toggle (filter chips, picked items) — --selected-bg / --selected-fg.
+ *   raised gray thumb    the selected option of a segmented control (surface-3 + --shadow-thumb).
+ *   white ring           the current row or card (--selection-ring, 1.5 px inset). Focus is the blue outline.
+ *   green / red          value: money won/lost; EXT in non-money products, the product's value measure
+ *                        above/below its reference ("+12% vs typical"). Green also marks good / healthy.
+ *   amber                a warning, an error, a fragile state, a small edge. Errors are amber, never red.
+ *   orange (--urgent)    act now. Rare.
+ *   live red             something happening right now — always with the word LIVE.
+ *   EXT series-*         chart identity only (≤ 4 named series). Never on text that is not a legend.
+ *   EXT white focus      the focused series in a many-series chart; everything else is context gray.
+ * A color always rides with a word, a sign or an icon — never alone.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- type: eight steps, rem × --type-scale (Dynamic Type 0.85–1.6). Nothing else is a size. ---- */
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif; /* words AND numbers */
+  --font-num: var(--font-sans);   /* figures: the same face; .num adds tabular figures so columns align */
+  --font-mono: var(--font-num);   /* deprecated alias (v2 set figures in Geist Mono); kept so old var(--font-mono) is Inter */
+  --type-scale: 1;
+  --body-size: 0.9375rem;          /* 15 on phones, 14 from 48rem */
+  --hero-size: 2.125rem;           /* 34 on phones, 40 from 48rem */
+  --text-caption: calc(0.6875rem * var(--type-scale));  --lh-caption: 1.28;   /* 11  axis labels, sm tags */
+  --text-meta:    calc(0.75rem * var(--type-scale));    --lh-meta: 1.34;      /* 12  labels, counts, meta */
+  --text-body-sm: calc(0.8125rem * var(--type-scale));  --lh-body-sm: 1.39;   /* 13  secondary text, rows */
+  --text-body:    calc(var(--body-size) * var(--type-scale)); --lh-body: 1.42; /* 15 / 14 body */
+  --text-title:   calc(1.0625rem * var(--type-scale));  --lh-title: 1.3;      /* 17  titles (section titles are body from md) */
+  --text-num-lg:  calc(1.25rem * var(--type-scale));    --lh-num-lg: 1.2;     /* 20  KPI / metric values; phone top-bar title */
+  --text-display: calc(1.625rem * var(--type-scale));   --lh-display: 1.16;   /* 26  summary figures, detail titles */
+  --text-hero:    calc(var(--hero-size) * var(--type-scale)); --lh-hero: 1.1; /* 34 / 40  EXT: a dashboard's one answer */
+
+  /* ---- surfaces: canvas → surface-1 (cards) → surface-2 (raised, wells, inputs) → surface-3 (selected / pressed, secondary buttons) ---- */
+  --canvas: #0a0a0b;
+  --surface-1: #111113;
+  --surface-2: #18181b;
+  --surface-3: #202024;
+  --surface-4: #2a2a30;            /* secondary button hover */
+  --popover: #141417;              /* menus, popovers, tooltip cards, the command palette */
+  --line: rgb(255 255 255 / 0.075);        /* hairlines: card outlines (inset), row dividers */
+  --line-strong: rgb(255 255 255 / 0.13);  /* outlines of controls: chips, pills, secondary buttons */
+  --scrim: rgb(0 0 0 / 0.6);               /* behind a dialog */
+  --scrim-sheet: rgb(0 0 0 / 0.65);        /* behind a bottom sheet */
+  --shadow-pop: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1), 0 0 0 1px rgb(242 242 244 / 0.1);
+  --shadow-dialog: 0 24px 64px -16px rgb(0 0 0 / 0.75), 0 0 0 1px var(--line-strong);
+  --shadow-sheet: 0 -24px 48px -24px rgb(0 0 0 / 0.8);
+  --shadow-thumb: 0 1px 2px rgb(0 0 0 / 0.4), inset 0 0 0 1px var(--line-strong);
+  --shadow-tabbar: inset 0 0 0 1px var(--line-strong), 0 16px 40px -12px rgb(0 0 0 / 0.9);
+  --shadow-toast: inset 0 0 0 1px var(--line-strong), 0 12px 32px -12px rgb(0 0 0 / 0.7);
+  --shadow-switch: 0 1px 3px rgb(0 0 0 / 0.4);
+  --tab-active-bg: rgb(255 255 255 / 0.1);
+  --tab-active-ring: rgb(255 255 255 / 0.08);
+
+  /* ---- text ---- */
+  --fg-1: #f2f2f4;   /* primary, every number */
+  --fg-2: #a7a7b2;   /* secondary, labels in rows */
+  --fg-3: #8a8a95;   /* tertiary, meta, metric labels (≥ 5.2:1 on every surface) */
+  --fg-4: #5f5f69;   /* decorative only — separators, empty dots, dotted underlines; never informative text */
+
+  /* ---- meaning ---- */
+  --pos: #3ad48a;  --pos-soft: rgb(58 212 138 / 0.12);  --pos-flash: rgb(58 212 138 / 0.28);
+  --neg: #ff6b6b;  --neg-soft: rgb(255 107 107 / 0.12); --neg-flash: rgb(255 107 107 / 0.26);
+  --warn: #f2b84b; --warn-soft: rgb(242 184 75 / 0.11); --warn-ring: rgb(242 184 75 / 0.18);
+  --urgent: #ff9650; --urgent-soft: rgb(255 150 80 / 0.14);
+  --live: #ff4d5e; --live-soft: rgb(255 77 94 / 0.14);
+
+  /* ---- interaction: the one blue ---- */
+  --tint: #6b93ff;  --tint-hover: #82a5ff;  --tint-press: #5a83f0;
+  --tint-soft: rgb(107 147 255 / 0.14);
+  --tint-selection: rgb(107 147 255 / 0.35);   /* selected text (::selection) */
+  --tint-fg: #9fb8ff;                 /* blue text on dark: links, tonal and link buttons */
+  --on-tint: #08090c;                 /* label on a solid blue (primary) button */
+  --selected-bg: var(--fg-1);
+  --selected-fg: var(--canvas);
+  --selection-ring: rgb(255 255 255 / 0.45);
+
+  /* ---- data viz ---- */
+  /* Smart Sharps' named series (thin lines on its price charts) */
+  --series-dk: #e8e8ec;  --series-fair: #b48cff;  --series-kalshi: #d4609a;
+  /* EXT v2.1: four categorical slots for named series in fills (bars, stacks, splits).
+     Pairs group two members of one family by lightness; each passes ≥ 3.4:1 on surface-1. */
+  --series-1: #d4609a;  --series-1-dim: #a94f7d;    /* rose pair */
+  --series-2: #b9b9c3;  --series-2-dim: #74747f;    /* neutral pair */
+  --series-3: #b48cff;                              /* violet */
+  --series-4: #5ec2cf;                              /* cyan — the fourth and last slot */
+  --series-focus: var(--fg-1);                      /* the focused series in a many-series chart */
+  --series-context: rgb(255 255 255 / 0.16);        /* every other series */
+  --series-typical: var(--fg-3);                    /* the reference line, always dashed 4 4 */
+  --chart-grid: rgb(255 255 255 / 0.055);           /* horizontal grid lines only */
+  --chart-axis: var(--fg-3);
+  --chart-crosshair: rgb(255 255 255 / 0.22);
+  --chart-gap: var(--surface-1);                    /* the gap between stacked segments = the card */
+
+  /* ---- shape: one radius per role ---- */
+  --radius-sm: 4px;    /* kbd, bar ends */
+  --radius-md: 8px;    /* menu items, grade badge, xs buttons, simple tooltip */
+  --radius-lg: 12px;   /* buttons, rows on canvas, segmented thumb, menus, popovers, toasts */
+  --radius-xl: 16px;   /* fields, segmented track, banners, a pane's metric block */
+  --radius-2xl: 20px;  /* every top-level container: cards, list panels, disclosure rows, dialogs, sheets */
+  --radius-full: 999px;/* pills, chips, tags, dots */
+
+  /* ---- density (comfortable). 4 px grid: every spacing is a multiple of 4. ---- */
+  --d-gutter: 16px;   /* page side padding (24 from 48rem) */
+  --d-card: 16px;     /* inside a card */
+  --d-inner: 12px;    /* between blocks inside a card */
+  --d-stack: 12px;    /* between cards / rows in a list */
+  --d-section: 24px;  /* between page sections */
+  --d-row: 12px;      /* a list row's vertical padding */
+  --d-pane: 32px;     /* the desktop detail pane */
+
+  /* ---- shell ---- */
+  --topbar-h: 48px;   /* 56 from 48rem */
+  --rail-w: 76px;
+  --tabbar-h: 64px;
+  --trust-row-h: 40px; /* one trust-bar row (36 from 48rem); .ss-shell multiplies it by --trust-rows (v3.1) */
+  --content-max: 1240px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* ---- motion ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --body-size: 0.875rem;
+    --hero-size: 2.5rem;
+    --topbar-h: 56px;
+    --trust-row-h: 36px;
+    --d-gutter: 24px;
+  }
+}
+
+/* Compact density: the same layouts, tighter. <html data-density="compact"> */
+:root[data-density="compact"] {
+  --d-card: 12px; --d-inner: 8px; --d-stack: 8px; --d-section: 16px; --d-row: 8px; --d-pane: 24px;
+}
+@media (min-width: 48rem) { :root[data-density="compact"] { --d-gutter: 16px; } }
