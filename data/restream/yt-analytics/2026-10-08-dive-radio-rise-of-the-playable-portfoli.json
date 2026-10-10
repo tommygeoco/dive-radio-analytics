@@ -2,30 +2,180 @@
   "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
   "title": "Dive Radio: Rise of the Playable Portfolio",
   "premiere": "2026-10-08",
-  "channels": {},
+  "channels": {
+    "yt:joindiveclub": {
+      "videoId": "YI1Kx5U6fQc",
+      "pulledAt": "2026-10-10T19:16:09.785Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "YI1Kx5U6fQc",
+        "pulledAt": "2026-10-10T19:16:09.785Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1384,
+        "estimatedMinutesWatched": 8733,
+        "averageViewDuration": 832,
+        "averageViewPercentage": 14.19,
+        "subscribersGained": 2,
+        "likes": 33,
+        "comments": 1
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 1138,
+          "estimatedMinutesWatched": 4501
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 59,
+          "estimatedMinutesWatched": 917
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 57,
+          "estimatedMinutesWatched": 554
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 35,
+          "estimatedMinutesWatched": 736
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 34,
+          "estimatedMinutesWatched": 479
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 27,
+          "estimatedMinutesWatched": 969
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 24,
+          "estimatedMinutesWatched": 394
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 8,
+          "estimatedMinutesWatched": 90
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 2,
+          "estimatedMinutesWatched": 89
+        }
+      ],
+      "retention": []
+    },
+    "yt:designertom": {
+      "videoId": "Z1MbnYXS8ls",
+      "pulledAt": "2026-10-10T19:16:09.785Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "Z1MbnYXS8ls",
+        "pulledAt": "2026-10-10T19:16:09.785Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 884,
+        "estimatedMinutesWatched": 3674,
+        "averageViewDuration": 736,
+        "averageViewPercentage": 11.69,
+        "subscribersGained": 1,
+        "likes": 18,
+        "comments": 0
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 773,
+          "estimatedMinutesWatched": 2685
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 52,
+          "estimatedMinutesWatched": 370
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 24,
+          "estimatedMinutesWatched": 219
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 12,
+          "estimatedMinutesWatched": 60
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 6,
+          "estimatedMinutesWatched": 333
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 6,
+          "estimatedMinutesWatched": 0
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 5,
+          "estimatedMinutesWatched": 0
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 5,
+          "estimatedMinutesWatched": 3
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 1,
+          "estimatedMinutesWatched": 0
+        }
+      ],
+      "retention": []
+    }
+  },
   "watchReport": {
-    "state": "pending",
-    "checkedAt": "2026-10-10T14:01:35.395Z",
-    "missingChannels": [
-      "yt:joindiveclub",
-      "yt:designertom"
-    ],
-    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "state": "ready",
+    "checkedAt": "2026-10-10T19:16:09.785Z",
+    "missingChannels": [],
+    "reason": null,
     "targetFingerprint": "yt:designertom:Z1MbnYXS8ls|yt:joindiveclub:YI1Kx5U6fQc",
     "probes": [
       {
         "key": "yt:joindiveclub",
         "videoId": "YI1Kx5U6fQc",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1384,
+          "averageViewPercentage": 14.19
+        }
       },
       {
         "key": "yt:designertom",
         "videoId": "Z1MbnYXS8ls",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 884,
+          "averageViewPercentage": 11.69
+        }
       }
-    ],
-    "pendingSince": "2026-10-09T14:01:33.779Z"
-  }
+    ]
+  },
+  "reading": {
+    "schemaVersion": 1,
+    "source": "youtube-analytics",
+    "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+    "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+    "pulledAt": "2026-10-10T19:16:09.785Z",
+    "state": "ready"
+  },
+  "updatedAt": "2026-10-10T19:16:09.785Z"
 }

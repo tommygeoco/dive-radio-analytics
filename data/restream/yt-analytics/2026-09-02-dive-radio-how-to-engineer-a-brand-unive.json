@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "Vh8ogFIE8CA",
-      "pulledAt": "2026-10-10T14:01:35.395Z",
+      "pulledAt": "2026-10-10T19:16:09.785Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "Vh8ogFIE8CA",
-        "pulledAt": "2026-10-10T14:01:35.395Z",
+        "pulledAt": "2026-10-10T19:16:09.785Z",
         "state": "ready"
       },
       "totals": {
-        "views": 3378,
-        "estimatedMinutesWatched": 17148,
-        "averageViewDuration": 730,
-        "averageViewPercentage": 10.61,
+        "views": 3385,
+        "estimatedMinutesWatched": 17160,
+        "averageViewDuration": 729,
+        "averageViewPercentage": 10.59,
         "subscribersGained": 12,
         "likes": 48,
         "comments": 3
@@ -31,7 +31,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 315,
+          "views": 321,
           "estimatedMinutesWatched": 1680
         },
         {
@@ -51,8 +51,8 @@
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 104,
-          "estimatedMinutesWatched": 1122
+          "views": 105,
+          "estimatedMinutesWatched": 1133
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -73,422 +73,422 @@
       "retention": [
         {
           "elapsedVideoTimeRatio": 0.01,
-          "audienceWatchRatio": 0.5631
+          "audienceWatchRatio": 0.5634
         },
         {
           "elapsedVideoTimeRatio": 0.02,
-          "audienceWatchRatio": 0.1159
+          "audienceWatchRatio": 0.1155
         },
         {
           "elapsedVideoTimeRatio": 0.03,
-          "audienceWatchRatio": 0.1015
+          "audienceWatchRatio": 0.1012
         },
         {
           "elapsedVideoTimeRatio": 0.04,
-          "audienceWatchRatio": 0.1323
+          "audienceWatchRatio": 0.1319
         },
         {
           "elapsedVideoTimeRatio": 0.05,
-          "audienceWatchRatio": 0.2195
+          "audienceWatchRatio": 0.2188
         },
         {
           "elapsedVideoTimeRatio": 0.06,
-          "audienceWatchRatio": 0.21030000000000001
+          "audienceWatchRatio": 0.2096
         },
         {
           "elapsedVideoTimeRatio": 0.07,
-          "audienceWatchRatio": 0.20920000000000002
+          "audienceWatchRatio": 0.2086
         },
         {
           "elapsedVideoTimeRatio": 0.08,
-          "audienceWatchRatio": 0.2564
+          "audienceWatchRatio": 0.2556
         },
         {
           "elapsedVideoTimeRatio": 0.09,
-          "audienceWatchRatio": 0.2492
+          "audienceWatchRatio": 0.24850000000000003
         },
         {
           "elapsedVideoTimeRatio": 0.1,
-          "audienceWatchRatio": 0.2297
+          "audienceWatchRatio": 0.22899999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.11,
-          "audienceWatchRatio": 0.2082
+          "audienceWatchRatio": 0.2076
         },
         {
           "elapsedVideoTimeRatio": 0.12,
-          "audienceWatchRatio": 0.2021
+          "audienceWatchRatio": 0.2014
         },
         {
           "elapsedVideoTimeRatio": 0.13,
-          "audienceWatchRatio": 0.1928
+          "audienceWatchRatio": 0.19329999999999997
         },
         {
           "elapsedVideoTimeRatio": 0.14,
-          "audienceWatchRatio": 0.1867
+          "audienceWatchRatio": 0.1861
         },
         {
           "elapsedVideoTimeRatio": 0.15,
-          "audienceWatchRatio": 0.1826
+          "audienceWatchRatio": 0.183
         },
         {
           "elapsedVideoTimeRatio": 0.16,
-          "audienceWatchRatio": 0.17129999999999998
+          "audienceWatchRatio": 0.17079999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.17,
-          "audienceWatchRatio": 0.17329999999999998
+          "audienceWatchRatio": 0.17379999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.18,
-          "audienceWatchRatio": 0.1672
+          "audienceWatchRatio": 0.16670000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.19,
-          "audienceWatchRatio": 0.1754
+          "audienceWatchRatio": 0.1759
         },
         {
           "elapsedVideoTimeRatio": 0.2,
-          "audienceWatchRatio": 0.17129999999999998
+          "audienceWatchRatio": 0.17079999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.21,
-          "audienceWatchRatio": 0.16620000000000001
+          "audienceWatchRatio": 0.16670000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.22,
-          "audienceWatchRatio": 0.1764
+          "audienceWatchRatio": 0.1759
         },
         {
           "elapsedVideoTimeRatio": 0.23,
-          "audienceWatchRatio": 0.17739999999999997
+          "audienceWatchRatio": 0.1779
         },
         {
           "elapsedVideoTimeRatio": 0.24,
-          "audienceWatchRatio": 0.1672
+          "audienceWatchRatio": 0.1677
         },
         {
           "elapsedVideoTimeRatio": 0.25,
-          "audienceWatchRatio": 0.1641
+          "audienceWatchRatio": 0.1646
         },
         {
           "elapsedVideoTimeRatio": 0.26,
-          "audienceWatchRatio": 0.1641
+          "audienceWatchRatio": 0.1636
         },
         {
           "elapsedVideoTimeRatio": 0.27,
-          "audienceWatchRatio": 0.1559
+          "audienceWatchRatio": 0.1564
         },
         {
           "elapsedVideoTimeRatio": 0.28,
-          "audienceWatchRatio": 0.1508
+          "audienceWatchRatio": 0.1503
         },
         {
           "elapsedVideoTimeRatio": 0.29,
-          "audienceWatchRatio": 0.1518
+          "audienceWatchRatio": 0.1524
         },
         {
           "elapsedVideoTimeRatio": 0.3,
-          "audienceWatchRatio": 0.16210000000000002
+          "audienceWatchRatio": 0.16260000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.31,
-          "audienceWatchRatio": 0.1744
+          "audienceWatchRatio": 0.17379999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.32,
-          "audienceWatchRatio": 0.16820000000000002
+          "audienceWatchRatio": 0.1677
         },
         {
           "elapsedVideoTimeRatio": 0.33,
-          "audienceWatchRatio": 0.1549
+          "audienceWatchRatio": 0.15439999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.34,
-          "audienceWatchRatio": 0.161
+          "audienceWatchRatio": 0.1605
         },
         {
           "elapsedVideoTimeRatio": 0.35,
-          "audienceWatchRatio": 0.1703
+          "audienceWatchRatio": 0.1697
         },
         {
           "elapsedVideoTimeRatio": 0.36,
-          "audienceWatchRatio": 0.2759
+          "audienceWatchRatio": 0.2771
         },
         {
           "elapsedVideoTimeRatio": 0.37,
-          "audienceWatchRatio": 0.319
+          "audienceWatchRatio": 0.3211
         },
         {
           "elapsedVideoTimeRatio": 0.38,
-          "audienceWatchRatio": 0.2544
+          "audienceWatchRatio": 0.2556
         },
         {
           "elapsedVideoTimeRatio": 0.39,
-          "audienceWatchRatio": 0.23079999999999998
+          "audienceWatchRatio": 0.2321
         },
         {
           "elapsedVideoTimeRatio": 0.4,
-          "audienceWatchRatio": 0.20620000000000002
+          "audienceWatchRatio": 0.2076
         },
         {
           "elapsedVideoTimeRatio": 0.41,
-          "audienceWatchRatio": 0.2072
+          "audienceWatchRatio": 0.2076
         },
         {
           "elapsedVideoTimeRatio": 0.42,
-          "audienceWatchRatio": 0.19899999999999998
+          "audienceWatchRatio": 0.19940000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.43,
-          "audienceWatchRatio": 0.1764
+          "audienceWatchRatio": 0.1769
         },
         {
           "elapsedVideoTimeRatio": 0.44,
-          "audienceWatchRatio": 0.17329999999999998
+          "audienceWatchRatio": 0.17379999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.45,
-          "audienceWatchRatio": 0.1754
+          "audienceWatchRatio": 0.1748
         },
         {
           "elapsedVideoTimeRatio": 0.46,
-          "audienceWatchRatio": 0.17129999999999998
+          "audienceWatchRatio": 0.17079999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.47,
-          "audienceWatchRatio": 0.1549
+          "audienceWatchRatio": 0.15439999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.48,
-          "audienceWatchRatio": 0.159
+          "audienceWatchRatio": 0.1585
         },
         {
           "elapsedVideoTimeRatio": 0.49,
-          "audienceWatchRatio": 0.1703
+          "audienceWatchRatio": 0.1697
         },
         {
           "elapsedVideoTimeRatio": 0.5,
-          "audienceWatchRatio": 0.1518
+          "audienceWatchRatio": 0.15130000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.51,
-          "audienceWatchRatio": 0.1251
+          "audienceWatchRatio": 0.1247
         },
         {
           "elapsedVideoTimeRatio": 0.52,
-          "audienceWatchRatio": 0.1354
+          "audienceWatchRatio": 0.135
         },
         {
           "elapsedVideoTimeRatio": 0.53,
-          "audienceWatchRatio": 0.1364
+          "audienceWatchRatio": 0.13699999999999998
         },
         {
           "elapsedVideoTimeRatio": 0.54,
-          "audienceWatchRatio": 0.1446
+          "audienceWatchRatio": 0.1442
         },
         {
           "elapsedVideoTimeRatio": 0.55,
-          "audienceWatchRatio": 0.13949999999999999
+          "audienceWatchRatio": 0.1391
         },
         {
           "elapsedVideoTimeRatio": 0.56,
-          "audienceWatchRatio": 0.1436
+          "audienceWatchRatio": 0.1431
         },
         {
           "elapsedVideoTimeRatio": 0.57,
-          "audienceWatchRatio": 0.16620000000000001
+          "audienceWatchRatio": 0.1656
         },
         {
           "elapsedVideoTimeRatio": 0.58,
-          "audienceWatchRatio": 0.13849999999999998
+          "audienceWatchRatio": 0.138
         },
         {
           "elapsedVideoTimeRatio": 0.59,
-          "audienceWatchRatio": 0.14150000000000001
+          "audienceWatchRatio": 0.1411
         },
         {
           "elapsedVideoTimeRatio": 0.6,
-          "audienceWatchRatio": 0.1364
+          "audienceWatchRatio": 0.136
         },
         {
           "elapsedVideoTimeRatio": 0.61,
-          "audienceWatchRatio": 0.12
+          "audienceWatchRatio": 0.11960000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.62,
-          "audienceWatchRatio": 0.1251
+          "audienceWatchRatio": 0.1247
         },
         {
           "elapsedVideoTimeRatio": 0.63,
-          "audienceWatchRatio": 0.1128
+          "audienceWatchRatio": 0.1125
         },
         {
           "elapsedVideoTimeRatio": 0.64,
-          "audienceWatchRatio": 0.121
+          "audienceWatchRatio": 0.1207
         },
         {
           "elapsedVideoTimeRatio": 0.65,
-          "audienceWatchRatio": 0.1241
+          "audienceWatchRatio": 0.12369999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.66,
-          "audienceWatchRatio": 0.1149
+          "audienceWatchRatio": 0.11449999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.67,
-          "audienceWatchRatio": 0.11900000000000001
+          "audienceWatchRatio": 0.1186
         },
         {
           "elapsedVideoTimeRatio": 0.68,
-          "audienceWatchRatio": 0.1272
+          "audienceWatchRatio": 0.1278
         },
         {
           "elapsedVideoTimeRatio": 0.69,
-          "audienceWatchRatio": 0.10869999999999999
+          "audienceWatchRatio": 0.1084
         },
         {
           "elapsedVideoTimeRatio": 0.7,
-          "audienceWatchRatio": 0.11380000000000001
+          "audienceWatchRatio": 0.11349999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.71,
-          "audienceWatchRatio": 0.11689999999999999
+          "audienceWatchRatio": 0.1166
         },
         {
           "elapsedVideoTimeRatio": 0.72,
-          "audienceWatchRatio": 0.1333
+          "audienceWatchRatio": 0.1329
         },
         {
           "elapsedVideoTimeRatio": 0.73,
-          "audienceWatchRatio": 0.1333
+          "audienceWatchRatio": 0.1329
         },
         {
           "elapsedVideoTimeRatio": 0.74,
-          "audienceWatchRatio": 0.1292
+          "audienceWatchRatio": 0.1288
         },
         {
           "elapsedVideoTimeRatio": 0.75,
-          "audienceWatchRatio": 0.1159
+          "audienceWatchRatio": 0.1155
         },
         {
           "elapsedVideoTimeRatio": 0.76,
-          "audienceWatchRatio": 0.11380000000000001
+          "audienceWatchRatio": 0.11349999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.77,
-          "audienceWatchRatio": 0.121
+          "audienceWatchRatio": 0.1207
         },
         {
           "elapsedVideoTimeRatio": 0.78,
-          "audienceWatchRatio": 0.1159
+          "audienceWatchRatio": 0.1155
         },
         {
           "elapsedVideoTimeRatio": 0.79,
-          "audienceWatchRatio": 0.1097
+          "audienceWatchRatio": 0.1094
         },
         {
           "elapsedVideoTimeRatio": 0.8,
-          "audienceWatchRatio": 0.1149
+          "audienceWatchRatio": 0.11449999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.81,
-          "audienceWatchRatio": 0.1118
+          "audienceWatchRatio": 0.1115
         },
         {
           "elapsedVideoTimeRatio": 0.82,
-          "audienceWatchRatio": 0.121
+          "audienceWatchRatio": 0.1207
         },
         {
           "elapsedVideoTimeRatio": 0.83,
-          "audienceWatchRatio": 0.11380000000000001
+          "audienceWatchRatio": 0.11349999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.84,
-          "audienceWatchRatio": 0.11380000000000001
+          "audienceWatchRatio": 0.11349999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.85,
-          "audienceWatchRatio": 0.1056
+          "audienceWatchRatio": 0.10529999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.86,
-          "audienceWatchRatio": 0.1036
+          "audienceWatchRatio": 0.1033
         },
         {
           "elapsedVideoTimeRatio": 0.87,
-          "audienceWatchRatio": 0.0944
+          "audienceWatchRatio": 0.0941
         },
         {
           "elapsedVideoTimeRatio": 0.88,
-          "audienceWatchRatio": 0.0944
+          "audienceWatchRatio": 0.0941
         },
         {
           "elapsedVideoTimeRatio": 0.89,
-          "audienceWatchRatio": 0.0933
+          "audienceWatchRatio": 0.09300000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.9,
-          "audienceWatchRatio": 0.09029999999999999
+          "audienceWatchRatio": 0.09
         },
         {
           "elapsedVideoTimeRatio": 0.91,
-          "audienceWatchRatio": 0.1036
+          "audienceWatchRatio": 0.1033
         },
         {
           "elapsedVideoTimeRatio": 0.92,
-          "audienceWatchRatio": 0.09230000000000001
+          "audienceWatchRatio": 0.092
         },
         {
           "elapsedVideoTimeRatio": 0.93,
-          "audienceWatchRatio": 0.0892
+          "audienceWatchRatio": 0.08900000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.94,
-          "audienceWatchRatio": 0.0862
+          "audienceWatchRatio": 0.0859
         },
         {
           "elapsedVideoTimeRatio": 0.95,
-          "audienceWatchRatio": 0.0862
+          "audienceWatchRatio": 0.0859
         },
         {
           "elapsedVideoTimeRatio": 0.96,
-          "audienceWatchRatio": 0.07490000000000001
+          "audienceWatchRatio": 0.0746
         },
         {
           "elapsedVideoTimeRatio": 0.97,
-          "audienceWatchRatio": 0.0667
+          "audienceWatchRatio": 0.0665
         },
         {
           "elapsedVideoTimeRatio": 0.98,
-          "audienceWatchRatio": 0.0636
+          "audienceWatchRatio": 0.0634
         },
         {
           "elapsedVideoTimeRatio": 0.99,
-          "audienceWatchRatio": 0.054400000000000004
+          "audienceWatchRatio": 0.0542
         },
         {
           "elapsedVideoTimeRatio": 1,
-          "audienceWatchRatio": 0.0482
+          "audienceWatchRatio": 0.0481
         }
       ]
     },
     "yt:designertom": {
       "videoId": "lnAecYrKYos",
-      "pulledAt": "2026-10-10T14:01:35.395Z",
+      "pulledAt": "2026-10-10T19:16:09.785Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
         "objectId": "lnAecYrKYos",
-        "pulledAt": "2026-10-10T14:01:35.395Z",
+        "pulledAt": "2026-10-10T19:16:09.785Z",
         "state": "ready"
       },
       "totals": {
-        "views": 2838,
-        "estimatedMinutesWatched": 11759,
-        "averageViewDuration": 535,
-        "averageViewPercentage": 7.77,
+        "views": 2841,
+        "estimatedMinutesWatched": 11768,
+        "averageViewDuration": 534,
+        "averageViewPercentage": 7.76,
         "subscribersGained": 26,
         "likes": 40,
         "comments": 0
@@ -501,13 +501,13 @@
         },
         {
           "insightTrafficSourceType": "EXT_URL",
-          "views": 359,
+          "views": 361,
           "estimatedMinutesWatched": 1354
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
-          "views": 197,
-          "estimatedMinutesWatched": 1530
+          "views": 198,
+          "estimatedMinutesWatched": 1538
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
@@ -553,410 +553,410 @@
       "retention": [
         {
           "elapsedVideoTimeRatio": 0.01,
-          "audienceWatchRatio": 0.7802
+          "audienceWatchRatio": 0.7811
         },
         {
           "elapsedVideoTimeRatio": 0.02,
-          "audienceWatchRatio": 0.10619999999999999
+          "audienceWatchRatio": 0.1058
         },
         {
           "elapsedVideoTimeRatio": 0.03,
-          "audienceWatchRatio": 0.0951
+          "audienceWatchRatio": 0.0959
         },
         {
           "elapsedVideoTimeRatio": 0.04,
-          "audienceWatchRatio": 0.1235
+          "audienceWatchRatio": 0.1242
         },
         {
           "elapsedVideoTimeRatio": 0.05,
-          "audienceWatchRatio": 0.19140000000000001
+          "audienceWatchRatio": 0.19190000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.06,
-          "audienceWatchRatio": 0.1827
+          "audienceWatchRatio": 0.1833
         },
         {
           "elapsedVideoTimeRatio": 0.07,
-          "audienceWatchRatio": 0.1877
+          "audienceWatchRatio": 0.1882
         },
         {
           "elapsedVideoTimeRatio": 0.08,
-          "audienceWatchRatio": 0.21359999999999998
+          "audienceWatchRatio": 0.214
         },
         {
           "elapsedVideoTimeRatio": 0.09,
-          "audienceWatchRatio": 0.22219999999999998
+          "audienceWatchRatio": 0.22260000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.1,
-          "audienceWatchRatio": 0.2025
+          "audienceWatchRatio": 0.203
         },
         {
           "elapsedVideoTimeRatio": 0.11,
-          "audienceWatchRatio": 0.20120000000000002
+          "audienceWatchRatio": 0.20170000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.12,
-          "audienceWatchRatio": 0.1889
+          "audienceWatchRatio": 0.1894
         },
         {
           "elapsedVideoTimeRatio": 0.13,
-          "audienceWatchRatio": 0.1815
+          "audienceWatchRatio": 0.1808
         },
         {
           "elapsedVideoTimeRatio": 0.14,
-          "audienceWatchRatio": 0.1679
+          "audienceWatchRatio": 0.1673
         },
         {
           "elapsedVideoTimeRatio": 0.15,
-          "audienceWatchRatio": 0.1728
+          "audienceWatchRatio": 0.1722
         },
         {
           "elapsedVideoTimeRatio": 0.16,
-          "audienceWatchRatio": 0.1605
+          "audienceWatchRatio": 0.15990000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.17,
-          "audienceWatchRatio": 0.163
+          "audienceWatchRatio": 0.1624
         },
         {
           "elapsedVideoTimeRatio": 0.18,
-          "audienceWatchRatio": 0.1519
+          "audienceWatchRatio": 0.15130000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.19,
-          "audienceWatchRatio": 0.1568
+          "audienceWatchRatio": 0.1562
         },
         {
           "elapsedVideoTimeRatio": 0.2,
-          "audienceWatchRatio": 0.1457
+          "audienceWatchRatio": 0.1451
         },
         {
           "elapsedVideoTimeRatio": 0.21,
-          "audienceWatchRatio": 0.1407
+          "audienceWatchRatio": 0.1402
         },
         {
           "elapsedVideoTimeRatio": 0.22,
-          "audienceWatchRatio": 0.13949999999999999
+          "audienceWatchRatio": 0.139
         },
         {
           "elapsedVideoTimeRatio": 0.23,
-          "audienceWatchRatio": 0.1346
+          "audienceWatchRatio": 0.1341
         },
         {
           "elapsedVideoTimeRatio": 0.24,
-          "audienceWatchRatio": 0.1407
+          "audienceWatchRatio": 0.1402
         },
         {
           "elapsedVideoTimeRatio": 0.25,
-          "audienceWatchRatio": 0.1506
+          "audienceWatchRatio": 0.1501
         },
         {
           "elapsedVideoTimeRatio": 0.26,
-          "audienceWatchRatio": 0.1469
+          "audienceWatchRatio": 0.1464
         },
         {
           "elapsedVideoTimeRatio": 0.27,
-          "audienceWatchRatio": 0.12960000000000002
+          "audienceWatchRatio": 0.1292
         },
         {
           "elapsedVideoTimeRatio": 0.28,
-          "audienceWatchRatio": 0.1469
+          "audienceWatchRatio": 0.1464
         },
         {
           "elapsedVideoTimeRatio": 0.29,
-          "audienceWatchRatio": 0.1543
+          "audienceWatchRatio": 0.15380000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.3,
-          "audienceWatchRatio": 0.1691
+          "audienceWatchRatio": 0.1685
         },
         {
           "elapsedVideoTimeRatio": 0.31,
-          "audienceWatchRatio": 0.1494
+          "audienceWatchRatio": 0.14880000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.32,
-          "audienceWatchRatio": 0.1432
+          "audienceWatchRatio": 0.1427
         },
         {
           "elapsedVideoTimeRatio": 0.33,
-          "audienceWatchRatio": 0.1407
+          "audienceWatchRatio": 0.1402
         },
         {
           "elapsedVideoTimeRatio": 0.34,
-          "audienceWatchRatio": 0.1469
+          "audienceWatchRatio": 0.1464
         },
         {
           "elapsedVideoTimeRatio": 0.35,
-          "audienceWatchRatio": 0.1506
+          "audienceWatchRatio": 0.1501
         },
         {
           "elapsedVideoTimeRatio": 0.36,
-          "audienceWatchRatio": 0.1457
+          "audienceWatchRatio": 0.1451
         },
         {
           "elapsedVideoTimeRatio": 0.37,
-          "audienceWatchRatio": 0.1519
+          "audienceWatchRatio": 0.15130000000000002
         },
         {
           "elapsedVideoTimeRatio": 0.38,
-          "audienceWatchRatio": 0.1481
+          "audienceWatchRatio": 0.1476
         },
         {
           "elapsedVideoTimeRatio": 0.39,
-          "audienceWatchRatio": 0.15560000000000002
+          "audienceWatchRatio": 0.155
         },
         {
           "elapsedVideoTimeRatio": 0.4,
-          "audienceWatchRatio": 0.1642
+          "audienceWatchRatio": 0.1636
         },
         {
           "elapsedVideoTimeRatio": 0.41,
-          "audienceWatchRatio": 0.1741
+          "audienceWatchRatio": 0.1734
         },
         {
           "elapsedVideoTimeRatio": 0.42,
-          "audienceWatchRatio": 0.158
+          "audienceWatchRatio": 0.1574
         },
         {
           "elapsedVideoTimeRatio": 0.43,
-          "audienceWatchRatio": 0.1383
+          "audienceWatchRatio": 0.1378
         },
         {
           "elapsedVideoTimeRatio": 0.44,
-          "audienceWatchRatio": 0.13699999999999998
+          "audienceWatchRatio": 0.1365
         },
         {
           "elapsedVideoTimeRatio": 0.45,
-          "audienceWatchRatio": 0.1309
+          "audienceWatchRatio": 0.1304
         },
         {
           "elapsedVideoTimeRatio": 0.46,
-          "audienceWatchRatio": 0.1321
+          "audienceWatchRatio": 0.1316
         },
         {
           "elapsedVideoTimeRatio": 0.47,
-          "audienceWatchRatio": 0.1235
+          "audienceWatchRatio": 0.12300000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.48,
-          "audienceWatchRatio": 0.1383
+          "audienceWatchRatio": 0.1378
         },
         {
           "elapsedVideoTimeRatio": 0.49,
-          "audienceWatchRatio": 0.1321
+          "audienceWatchRatio": 0.1316
         },
         {
           "elapsedVideoTimeRatio": 0.5,
-          "audienceWatchRatio": 0.1358
+          "audienceWatchRatio": 0.1353
         },
         {
           "elapsedVideoTimeRatio": 0.51,
-          "audienceWatchRatio": 0.12960000000000002
+          "audienceWatchRatio": 0.1292
         },
         {
           "elapsedVideoTimeRatio": 0.52,
-          "audienceWatchRatio": 0.1222
+          "audienceWatchRatio": 0.12179999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.53,
-          "audienceWatchRatio": 0.1247
+          "audienceWatchRatio": 0.1242
         },
         {
           "elapsedVideoTimeRatio": 0.54,
-          "audienceWatchRatio": 0.1272
+          "audienceWatchRatio": 0.1267
         },
         {
           "elapsedVideoTimeRatio": 0.55,
-          "audienceWatchRatio": 0.11230000000000001
+          "audienceWatchRatio": 0.1119
         },
         {
           "elapsedVideoTimeRatio": 0.56,
-          "audienceWatchRatio": 0.1198
+          "audienceWatchRatio": 0.1193
         },
         {
           "elapsedVideoTimeRatio": 0.57,
-          "audienceWatchRatio": 0.1272
+          "audienceWatchRatio": 0.1267
         },
         {
           "elapsedVideoTimeRatio": 0.58,
-          "audienceWatchRatio": 0.1099
+          "audienceWatchRatio": 0.10949999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.59,
-          "audienceWatchRatio": 0.1198
+          "audienceWatchRatio": 0.1193
         },
         {
           "elapsedVideoTimeRatio": 0.6,
-          "audienceWatchRatio": 0.10619999999999999
+          "audienceWatchRatio": 0.1058
         },
         {
           "elapsedVideoTimeRatio": 0.61,
-          "audienceWatchRatio": 0.11109999999999999
+          "audienceWatchRatio": 0.1107
         },
         {
           "elapsedVideoTimeRatio": 0.62,
-          "audienceWatchRatio": 0.09380000000000001
+          "audienceWatchRatio": 0.0935
         },
         {
           "elapsedVideoTimeRatio": 0.63,
-          "audienceWatchRatio": 0.0877
+          "audienceWatchRatio": 0.0873
         },
         {
           "elapsedVideoTimeRatio": 0.64,
-          "audienceWatchRatio": 0.0864
+          "audienceWatchRatio": 0.0861
         },
         {
           "elapsedVideoTimeRatio": 0.65,
-          "audienceWatchRatio": 0.09380000000000001
+          "audienceWatchRatio": 0.0935
         },
         {
           "elapsedVideoTimeRatio": 0.66,
-          "audienceWatchRatio": 0.0827
+          "audienceWatchRatio": 0.0824
         },
         {
           "elapsedVideoTimeRatio": 0.67,
-          "audienceWatchRatio": 0.0852
+          "audienceWatchRatio": 0.0849
         },
         {
           "elapsedVideoTimeRatio": 0.68,
-          "audienceWatchRatio": 0.07780000000000001
+          "audienceWatchRatio": 0.0775
         },
         {
           "elapsedVideoTimeRatio": 0.69,
-          "audienceWatchRatio": 0.0815
+          "audienceWatchRatio": 0.0812
         },
         {
           "elapsedVideoTimeRatio": 0.7,
-          "audienceWatchRatio": 0.07780000000000001
+          "audienceWatchRatio": 0.0775
         },
         {
           "elapsedVideoTimeRatio": 0.71,
-          "audienceWatchRatio": 0.0926
+          "audienceWatchRatio": 0.09230000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.72,
-          "audienceWatchRatio": 0.10369999999999999
+          "audienceWatchRatio": 0.1033
         },
         {
           "elapsedVideoTimeRatio": 0.73,
-          "audienceWatchRatio": 0.1
+          "audienceWatchRatio": 0.09960000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.74,
-          "audienceWatchRatio": 0.0975
+          "audienceWatchRatio": 0.09720000000000001
         },
         {
           "elapsedVideoTimeRatio": 0.75,
-          "audienceWatchRatio": 0.0864
+          "audienceWatchRatio": 0.0861
         },
         {
           "elapsedVideoTimeRatio": 0.76,
-          "audienceWatchRatio": 0.0765
+          "audienceWatchRatio": 0.07629999999999999
         },
         {
           "elapsedVideoTimeRatio": 0.77,
-          "audienceWatchRatio": 0.0827
+          "audienceWatchRatio": 0.0824
         },
         {
           "elapsedVideoTimeRatio": 0.78,
-          "audienceWatchRatio": 0.0827
+          "audienceWatchRatio": 0.0824
         },
         {
           "elapsedVideoTimeRatio": 0.79,
-          "audienceWatchRatio": 0.0827
+          "audienceWatchRatio": 0.0824
         },
         {
           "elapsedVideoTimeRatio": 0.8,
-          "audienceWatchRatio": 0.0753
+          "audienceWatchRatio": 0.075
         },
         {
           "elapsedVideoTimeRatio": 0.81,
-          "audienceWatchRatio": 0.079
+          "audienceWatchRatio": 0.0787
         },
         {
           "elapsedVideoTimeRatio": 0.82,
-          "audienceWatchRatio": 0.0679
+          "audienceWatchRatio": 0.0677
         },
         {
           "elapsedVideoTimeRatio": 0.83,
-          "audienceWatchRatio": 0.0716
+          "audienceWatchRatio": 0.0713
         },
         {
           "elapsedVideoTimeRatio": 0.84,
-          "audienceWatchRatio": 0.0691
+          "audienceWatchRatio": 0.0689
         },
         {
           "elapsedVideoTimeRatio": 0.85,
-          "audienceWatchRatio": 0.0642
+          "audienceWatchRatio": 0.064
         },
         {
           "elapsedVideoTimeRatio": 0.86,
-          "audienceWatchRatio": 0.0642
+          "audienceWatchRatio": 0.064
         },
         {
           "elapsedVideoTimeRatio": 0.87,
-          "audienceWatchRatio": 0.0617
+          "audienceWatchRatio": 0.061500000000000006
         },
         {
           "elapsedVideoTimeRatio": 0.88,
-          "audienceWatchRatio": 0.057999999999999996
+          "audienceWatchRatio": 0.057800000000000004
         },
         {
           "elapsedVideoTimeRatio": 0.89,
-          "audienceWatchRatio": 0.0519
+          "audienceWatchRatio": 0.051699999999999996
         },
         {
           "elapsedVideoTimeRatio": 0.9,
-          "audienceWatchRatio": 0.0617
+          "audienceWatchRatio": 0.061500000000000006
         },
         {
           "elapsedVideoTimeRatio": 0.91,
-          "audienceWatchRatio": 0.0593
+          "audienceWatchRatio": 0.059000000000000004
         },
         {
           "elapsedVideoTimeRatio": 0.92,
-          "audienceWatchRatio": 0.0593
+          "audienceWatchRatio": 0.059000000000000004
         },
         {
           "elapsedVideoTimeRatio": 0.93,
-          "audienceWatchRatio": 0.0593
+          "audienceWatchRatio": 0.059000000000000004
         },
         {
           "elapsedVideoTimeRatio": 0.94,
-          "audienceWatchRatio": 0.0519
+          "audienceWatchRatio": 0.051699999999999996
         },
         {
           "elapsedVideoTimeRatio": 0.95,
-          "audienceWatchRatio": 0.042
+          "audienceWatchRatio": 0.0418
         },
         {
           "elapsedVideoTimeRatio": 0.96,
-          "audienceWatchRatio": 0.0432
+          "audienceWatchRatio": 0.0431
         },
         {
           "elapsedVideoTimeRatio": 0.97,
-          "audienceWatchRatio": 0.0432
+          "audienceWatchRatio": 0.0431
         },
         {
           "elapsedVideoTimeRatio": 0.98,
-          "audienceWatchRatio": 0.0432
+          "audienceWatchRatio": 0.0431
         },
         {
           "elapsedVideoTimeRatio": 0.99,
-          "audienceWatchRatio": 0.037000000000000005
+          "audienceWatchRatio": 0.0369
         },
         {
           "elapsedVideoTimeRatio": 1,
-          "audienceWatchRatio": 0.028399999999999998
+          "audienceWatchRatio": 0.028300000000000002
         }
       ]
     }
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-10T14:01:35.395Z",
+    "checkedAt": "2026-10-10T19:16:09.785Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:lnAecYrKYos|yt:joindiveclub:Vh8ogFIE8CA",
@@ -966,8 +966,8 @@
         "videoId": "Vh8ogFIE8CA",
         "result": "ready",
         "observed": {
-          "views": 3378,
-          "averageViewPercentage": 10.61
+          "views": 3385,
+          "averageViewPercentage": 10.59
         }
       },
       {
@@ -975,8 +975,8 @@
         "videoId": "lnAecYrKYos",
         "result": "ready",
         "observed": {
-          "views": 2838,
-          "averageViewPercentage": 7.77
+          "views": 2841,
+          "averageViewPercentage": 7.76
         }
       }
     ]
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
     "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-    "pulledAt": "2026-10-10T14:01:35.395Z",
+    "pulledAt": "2026-10-10T19:16:09.785Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-10T14:01:35.395Z"
+  "updatedAt": "2026-10-10T19:16:09.785Z"
 }
