@@ -462,6 +462,8 @@ button { font: inherit; color: inherit; }
      the table rows and the pane's note): its glyph-baseline offset centres it on the words (within 0.5 px). A mark
      that is a flex item (links, kickers, chips, tooltip rows) ignores it. */
   .plogo { width: 14px; height: 14px; vertical-align: -2px; color: var(--fg-2); }
+  /* a mark inside an amber caveat is part of the warning: it takes the caveat's colour (components.md §15) */
+  .mk .plogo, .panel .note .plogo { color: inherit; }
   /* tooltip targets wear one quiet mark: a dotted underline in the decorative gray */
   .panel .irow[data-tip] .lb, .panel .trow[tabindex] .tl, .hero .splitlabels .sl[data-stat], .hc-dir .dirrow .dl[data-tip] {
     text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
@@ -774,7 +776,7 @@ button { font: inherit; color: inherit; }
   .sitem .r1 .epk { font-family: var(--font-num); font-size: var(--text-meta); font-weight: 500; color: var(--fg-3); font-variant-numeric: tabular-nums; }
   .sitem.newest .r1 .epk { color: var(--fg-1); }
   .sitem .r1 .num { font-size: var(--text-title); font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); font-variant-numeric: tabular-nums; }
-  .sitem .r1 .mk { font-size: var(--text-meta); font-weight: 500; color: var(--warn); margin-left: auto; }
+  .sitem .r1 .mk { font-size: var(--text-meta); font-weight: 500; color: var(--warn); margin-left: auto; white-space: nowrap; }
   .sitem .t { font-size: var(--text-body-sm); color: var(--fg-2); overflow: hidden; margin: 4px 0 12px;
     display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-height: 1.39; }
   /* three-week health read: number + meter, present ONLY once the read is done */
@@ -1727,18 +1729,32 @@ function monoFigures(root = document) {
 function tidyTitles(t) { return String(t).replace(/Dive Radio:\s*/g, "").replace(/,?\s*\+\s*(?:Live\s+)?Cal(?:l(?:-?Ins?)?)?(?![a-z])/gi, ""); }
 function short(t) { return t.replace(/^Dive Radio:\s*/i, "").replace(/\s*\+?\s*Live Cal(?:l(?:-?Ins?)?)?$/i, "").replace(/[,\s]+$/, ""); }
 function label(e) { return `E${e.ep} · ${short(e.title)}`; }
-function heroMarker(e) {
+// a mark stands for the platform in a scope token ("<X> only"); inside a sentence the platform is a word.
+// `m` swaps the marks for words where the marker is spoken (the list card's name)
+function heroMarker(e, m = PLOGO) {
   const tvi = e.latest.totalViewsInfo || {};
   if (!hasYoutubeReading(e)) {
     if (!tvi.includesPlays) return "";
-    if (tvi.partial) return `${PLOGO.x} only · some X plays missing`;
-    if (tvi.stale && tvi.asOf) return `${PLOGO.x} only · X plays are old`;
-    return `${PLOGO.x} only`;
+    if (tvi.partial) return `${m.x} only · some X plays missing`;
+    if (tvi.stale && tvi.asOf) return `${m.x} only · X plays are old`;
+    return `${m.x} only`;
   }
   if (tvi.youtubeStale) return "YouTube views are old";
-  if (!tvi.includesPlays) return `${PLOGO.yt} only`;
+  if (!tvi.includesPlays) return `${m.yt} only`;
   if (tvi.partial) return "some X plays missing";
   if (tvi.stale && tvi.asOf) return "X plays are old";
+  return "";
+}
+const MARK_WORDS = { x: "X", yt: "YouTube" };
+// the list card's caveat: heroMarker's cases as one short token that never wraps in the card's ~70 px
+// (critic round 9); the card's spoken name keeps heroMarker's full sentence
+function listMarker(e) {
+  const tvi = e.latest.totalViewsInfo || {};
+  if (!hasYoutubeReading(e)) return tvi.includesPlays ? `${PLOGO.x} only` : "";
+  if (tvi.youtubeStale) return `${PLOGO.yt} old`;
+  if (!tvi.includesPlays) return `${PLOGO.yt} only`;
+  if (tvi.partial) return `${PLOGO.x} partial`;
+  if (tvi.stale && tvi.asOf) return `${PLOGO.x} old`;
   return "";
 }
 
@@ -2463,10 +2479,11 @@ function buildStrip() {
     // resolved X broadcast plays. The selected chart measure stays in the
     // hero, plot, popup, and table.
     let spokenValue = "Data not available.";
-    const mk = heroMarker(e);
+    const mk = listMarker(e);
+    const mkWords = heroMarker(e, MARK_WORDS).replace(/ · /g, ", ");
     const total = displayedTotal(e);
     const num = total == null ? `<span class="num">not available</span>` : `<span class="num" data-fold-number>${kfmt(total)}</span>${mk ? `<span class="mk">${mk}</span>` : ""}`;
-    if (total != null) spokenValue = `${currentTotalSummary(e, true)}.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
+    if (total != null) spokenValue = `${currentTotalSummary(e, true)}${mkWords ? ` (${mkWords})` : ""}.${healthOf(e) ? ` Episode health ${healthOf(e).score} of 100.` : ""}`;
     // Episode health: a finished three-week read shows its score; younger
     // episodes show nothing score-like at all (their wait date lives in the
     // click panel).
@@ -2647,7 +2664,7 @@ function buildPanel() {
   else if (tvi.youtubeStale) html += `<div class="note">YouTube views are from an older reading.</div>`;
   else if (tvi.partial) html += `<div class="note">Partial: plays from ${tvi.have} of ${tvi.total} broadcasts — the true total is higher</div>`;
   else if (tvi.stale && tvi.asOf) html += `<div class="note">X plays as of ${tvi.asOf.slice(5, 10).replace("-", "/")}</div>`;
-  else if (!tvi.includesPlays) html += `<div class="note">${PLOGO.yt} only — ${PLOGO.x} plays unavailable</div>`;
+  else if (!tvi.includesPlays) html += `<div class="note">${PLOGO.yt} only — X plays unavailable</div>`;
   // Unavailable source checks use the existing notes in the episode view.
   const sourceLabels = { live: "Live session", transcript: "Transcript", promotion: "Newsletter", comments: "Comments" };
   const unavailable = Object.entries(sourceLabels).filter(([key]) => e.sourceStates?.[key]?.state && e.sourceStates[key].state !== "ready" && (key !== "comments" || !e.comments));
@@ -3563,7 +3580,7 @@ function chartTitle() {
     // tooltip states each one's unit. The coverage warning is not decoration,
     // so it stays whenever a play count is genuinely incomplete.
     const anyPartial = EPS.some(e => (e.latest.totalViewsInfo || {}).partial);
-    const notes = [youtubeWaitScope(), anyPartial ? `some ${PLOGO.x} plays missing` : ""].filter(Boolean);
+    const notes = [youtubeWaitScope(), anyPartial ? "some X plays missing" : ""].filter(Boolean);
     return [METRIC_TITLES.views, notes.join(" · ")];
   }
   if (state.mode === "watch") {
