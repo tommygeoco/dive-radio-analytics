@@ -1,10 +1,10 @@
-# Show-health verification — 2026-10-09
+# Show-health verification — 2026-10-10
 
 Standing critic loop (PRD v10 W33): today's read re-derived from what it stored, every claim it makes ledgered and scored when reality arrives, the formula's own ageing, and the owners' feel against the read. Deterministic; invalid inputs or failed accuracy checks stop promotion.
 
-## Accuracy — the 2026-10-09 read
+## Accuracy — the 2026-10-10 read
 
-Score 48 (weighted mean 47.7, health-v10, prompt v8); reads Rise of the Playable Portfolio at 0.8 days; carried: audience quality, subscribers.
+Score 52 (weighted mean 52.5, health-v10, prompt v8); reads Rise of the Playable Portfolio at 1.8 days; carried: audience quality, subscribers.
 
 - PASS — every check, weight, direction slope, and outlook range re-derives; the headline's words agree with the numbers; no pro cites a promo lift.
 
@@ -49,9 +49,9 @@ Most recent resolutions:
 | live turnout | 0 |
 | participation | 0 |
 | subscribers | 0 |
-| goodwill | 1 |
+| goodwill | 0 |
 
-Carried share of scored checks: 33% (at full weight the mean would move -1.1) · promo-qualified measures: none · steady-state check-set changes in 30 days: 0 · days without a read in 30: 8 · scoring-rule changes in 30 days: 1.
+Carried share of scored checks: 29% (at full weight the mean would move -1.1) · promo-qualified measures: none · steady-state check-set changes in 30 days: 0 · days without a read in 30: 8 · scoring-rule changes in 30 days: 1.
 
 - WARN — 8 day(s) in the last 30 have no saved read (2026-09-17, 2026-09-18, 2026-09-21, 2026-09-24, 2026-09-28) — the model step failed or the chain did not run.
 - INFO — The scoring rules changed 1 time(s) in the last 30 days; the daily trend restarts each time.

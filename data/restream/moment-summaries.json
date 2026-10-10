@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-06T19:18:11.237Z",
+  "updatedAt": "2026-10-10T14:05:09.844Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -365,6 +365,14 @@
     "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|drop|0.96": {
       "summary": "A recorded submission demos a fast generative video model acting as an app's rendering engine, using a toy alien plant marketplace; the hosts then reflect on blurry mediums and wrap up the episode.",
       "writtenAt": "2026-10-06T19:18:11.237Z"
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces|hold|0.71": {
+      "summary": "Hosts compare a canvas design tool against Figma and wish-list features, praise Claude animating SVGs, then play a viewer-submitted video from a product designer using the codebase as the source of truth.",
+      "writtenAt": "2026-10-10T14:05:09.844Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.43": {
+      "summary": "Hosts discuss employer token budgets and model mandates, then react to a consumer agent app's new version and launch video, praising its team and visual language and comparing it to what Apple might build.",
+      "writtenAt": "2026-10-10T14:05:09.844Z"
     }
   }
 }

@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-10-09T15:16:58.938Z",
+  "updatedAt": "2026-10-10T14:02:12.363Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1633,6 +1633,57 @@
         "themes": [],
         "confidence": 0.82
       }
+    },
+    "yt:UgyiblgjdPXUuPIzBEZ4AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "topic choice"
+      ],
+      "confidence": 0.88,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-10T14:02:12.363Z"
+    },
+    "yt:UgwyCQYY3QfEgziaI9p4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.8,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-10T14:02:12.363Z",
+      "audit": {
+        "at": "2026-10-10T14:02:12.363Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.8
+      }
+    },
+    "x:2108216689397780899": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.72,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-10T14:02:12.363Z",
+      "audit": {
+        "at": "2026-10-10T14:02:12.363Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.74
+      }
     }
   },
   "golden": {
@@ -1653,15 +1704,11 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-10-09T15:16:58.938Z",
-    "status": "pending",
-    "added": 0,
+    "at": "2026-10-10T14:02:12.363Z",
+    "status": "complete",
+    "added": 3,
     "reviewed": 0,
-    "pendingIds": [
-      "yt:UgwyCQYY3QfEgziaI9p4AaABAg",
-      "x:2108216689397780899"
-    ],
-    "error": "model call failed after 2 attempts: comment classifier: Anthropic HTTP 400 invalid_request_error after 1 attempt(s)"
+    "pendingIds": []
   },
   "provider": "anthropic"
 }

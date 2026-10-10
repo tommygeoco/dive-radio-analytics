@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-02T14:09:54.578Z",
+  "updatedAt": "2026-10-10T14:07:39.404Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -985,6 +985,88 @@
       "promptVersion": 1,
       "model": "claude-sonnet-5-5",
       "writtenAt": "2026-10-02T14:09:54.578Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
+      "sha256": "5fe6e41758bb6ee1f14377be4356f2df4de71223110c502ab7f3ef34b2f4f990",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:14",
+          "seconds": 194,
+          "title": "Cold open clips and welcome to Dive Radio",
+          "gist": "Guest voices play in a teaser before the hosts greet listeners and preview a two-part portfolio plan.",
+          "quote": "Show up, try things, be curious"
+        },
+        {
+          "start": "00:06:24",
+          "seconds": 384,
+          "title": "How the portfolio reviews will work with the in flight widget",
+          "gist": "The hosts explain how a question widget on each portfolio will steer targeted live feedback from them and the chat.",
+          "quote": "how do we give the most useful feedback to people"
+        },
+        {
+          "start": "00:09:28",
+          "seconds": 568,
+          "title": "Designer of the week nominees",
+          "gist": "Listener nominations for designer of the week, plus the hosts' own picks, including a rising creative tool maker.",
+          "quote": "diligent research practice that she puts behind everything she creates"
+        },
+        {
+          "start": "00:18:02",
+          "seconds": 1082,
+          "title": "OpenAI intelligent UI and a wave of component tools",
+          "gist": "Hosts react to chat replies that assemble interface pieces on the fly and cheer new design tools from friends.",
+          "quote": "OpenAI announced intelligent UI"
+        },
+        {
+          "start": "00:24:46",
+          "seconds": 1486,
+          "title": "Agents everywhere: Figma agent, MagicPath plugins and a Continuum demo",
+          "gist": "Hosts weigh new design agents, play a founder clip on chat plugins, and react to a real time video operating system.",
+          "quote": "I do wanna talk about agents"
+        },
+        {
+          "start": "00:42:43",
+          "seconds": 2563,
+          "title": "Games boom: agent matches, ported titles, and designers building their own",
+          "gist": "Hosts survey game experiments, and guests walk through a Unity build, an art-led world, and a father and son game.",
+          "quote": "agents playing games happens to be this thing"
+        },
+        {
+          "start": "01:05:53",
+          "seconds": 3953,
+          "title": "Playable portfolios: a Zen garden and a career town",
+          "gist": "A designer shows how a garden experiment came together, then the hosts tour a portfolio built as a playable town.",
+          "quote": "gonna start to steer in that direction here"
+        },
+        {
+          "start": "01:18:29",
+          "seconds": 4709,
+          "title": "Portfolio advice from a public review and a new Netflix hire",
+          "gist": "Clips of a portfolio walkthrough and a staff designer's job-hunt tips on clear targets, craft, and easy case studies.",
+          "quote": "It's time for a portfolio review"
+        },
+        {
+          "start": "01:25:38",
+          "seconds": 5138,
+          "title": "Hosts sort portfolios: world building, simple flex, balance, early career",
+          "gist": "The hosts walk through example sites by type and discuss what suits junior and senior designers and hiring managers.",
+          "quote": "Rid and I make hiring decisions"
+        },
+        {
+          "start": "02:00:48",
+          "seconds": 7248,
+          "title": "Submission reminders, next week's plan, and the designer of the week result",
+          "gist": "The hosts repeat how to submit with the widget, preview the full review episode, and congratulate the winner.",
+          "quote": "You do not have to be a part of the discord"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-sonnet-5-5",
+      "writtenAt": "2026-10-10T14:07:39.404Z"
     }
   },
   "superseded": [

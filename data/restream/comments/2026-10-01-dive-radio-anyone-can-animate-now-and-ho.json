@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugx56kxtF8a6y0iZYm14AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugwgy_NUSkk2ZGwIlOx4AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
     },
@@ -195,7 +195,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "UgyuRGx5wzJPSQ3eD854AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
     },
@@ -223,7 +223,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugzyc8p2TMvSACMuu8t4AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
     },
@@ -251,7 +251,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "UgxbGCXXloc3tdbHWt14AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
     },
@@ -279,7 +279,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "Ugwm9C2WBVEpuFdY_XF4AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
     },
@@ -307,13 +307,33 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "UgzM6tmufV6GpLSVc5l4AaABAg",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready"
       }
+    },
+    {
+      "id": "yt:UgyiblgjdPXUuPIzBEZ4AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "bBF1yPACap0",
+      "author": "kellinovotny",
+      "authorId": "UCaXZaR5uWdxJs29tsDkf_Jg",
+      "text": "Stefan’s segment on storyboarding in Figma and letting Claude animate got me unstuck  I’d been wanting to make TikTok content for my app, Rexx, and didn’t know where to start. Same day, I storyboarded six frames, had Claude build it, and posted! Thank you @StefanPoulos and thanks Dive Club for sharing these workflows 🥰",
+      "likes": 0,
+      "publishedAt": "2026-10-10T12:10:18Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+        "objectId": "UgyiblgjdPXUuPIzBEZ4AaABAg",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-10T14:02:05.683Z"
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-09T15:16:51.859Z",
+    "checkedAt": "2026-10-10T14:02:05.683Z",
     "state": "ready",
     "sources": [
       {
@@ -321,57 +341,21 @@
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready",
-        "count": 3
+        "count": 4
       },
       {
         "schemaVersion": 1,
         "source": "youtube-comments",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
+        "pulledAt": "2026-10-10T14:02:05.683Z",
         "state": "ready",
         "count": 4
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-        "objectId": "2105749637537972524",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
-        "state": "ready",
-        "count": 0
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-        "objectId": "2105408888287776998",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
-        "state": "ready",
-        "count": 0
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-        "objectId": "2105749637835718688",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
-        "state": "ready",
-        "count": 0
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-        "objectId": "2105408888400965674",
-        "pulledAt": "2026-10-09T15:16:51.859Z",
-        "state": "ready",
-        "count": 0
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-09T15:16:51.859Z"
+  "updatedAt": "2026-10-10T14:02:05.683Z"
 }

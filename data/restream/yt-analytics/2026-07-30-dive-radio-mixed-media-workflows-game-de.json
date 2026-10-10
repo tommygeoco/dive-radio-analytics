@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "9HYGZgaHdlw",
-      "pulledAt": "2026-10-09T15:16:25.473Z",
+      "pulledAt": "2026-10-10T14:01:35.395Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "9HYGZgaHdlw",
-        "pulledAt": "2026-10-09T15:16:25.473Z",
+        "pulledAt": "2026-10-10T14:01:35.395Z",
         "state": "ready"
       },
       "totals": {
@@ -480,17 +480,17 @@
     },
     "yt:designertom": {
       "videoId": "szvTFybWfK4",
-      "pulledAt": "2026-10-09T15:16:25.473Z",
+      "pulledAt": "2026-10-10T14:01:35.395Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
         "objectId": "szvTFybWfK4",
-        "pulledAt": "2026-10-09T15:16:25.473Z",
+        "pulledAt": "2026-10-10T14:01:35.395Z",
         "state": "ready"
       },
       "totals": {
-        "views": 692,
+        "views": 693,
         "estimatedMinutesWatched": 6979,
         "averageViewDuration": 611,
         "averageViewPercentage": 9.03,
@@ -520,14 +520,14 @@
           "estimatedMinutesWatched": 265
         },
         {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 22,
+          "estimatedMinutesWatched": 154
+        },
+        {
           "insightTrafficSourceType": "YT_CHANNEL",
           "views": 21,
           "estimatedMinutesWatched": 282
-        },
-        {
-          "insightTrafficSourceType": "YT_SEARCH",
-          "views": 21,
-          "estimatedMinutesWatched": 154
         },
         {
           "insightTrafficSourceType": "NOTIFICATION",
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-09T15:16:25.473Z",
+  "updatedAt": "2026-10-10T14:01:35.395Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "pulledAt": "2026-10-09T15:16:25.473Z",
+    "pulledAt": "2026-10-10T14:01:35.395Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-09T15:16:25.473Z",
+    "checkedAt": "2026-10-10T14:01:35.395Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:szvTFybWfK4|yt:joindiveclub:9HYGZgaHdlw",
@@ -984,7 +984,7 @@
         "videoId": "szvTFybWfK4",
         "result": "ready",
         "observed": {
-          "views": 692,
+          "views": 693,
           "averageViewPercentage": 9.03
         }
       }
