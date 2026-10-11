@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "YI1Kx5U6fQc",
-      "pulledAt": "2026-10-10T19:16:09.785Z",
+      "pulledAt": "2026-10-11T14:01:08.296Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "YI1Kx5U6fQc",
-        "pulledAt": "2026-10-10T19:16:09.785Z",
+        "pulledAt": "2026-10-11T14:01:08.296Z",
         "state": "ready"
       },
       "totals": {
@@ -74,13 +74,13 @@
     },
     "yt:designertom": {
       "videoId": "Z1MbnYXS8ls",
-      "pulledAt": "2026-10-10T19:16:09.785Z",
+      "pulledAt": "2026-10-11T14:01:08.296Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "Z1MbnYXS8ls",
-        "pulledAt": "2026-10-10T19:16:09.785Z",
+        "pulledAt": "2026-10-11T14:01:08.296Z",
         "state": "ready"
       },
       "totals": {
@@ -144,7 +144,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-10T19:16:09.785Z",
+    "checkedAt": "2026-10-11T14:01:08.296Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Z1MbnYXS8ls|yt:joindiveclub:YI1Kx5U6fQc",
@@ -174,8 +174,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
     "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-    "pulledAt": "2026-10-10T19:16:09.785Z",
+    "pulledAt": "2026-10-11T14:01:08.296Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-10T19:16:09.785Z"
+  "updatedAt": "2026-10-11T14:01:08.296Z"
 }

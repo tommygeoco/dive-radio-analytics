@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "Cjv-0MKQ4GU",
-      "pulledAt": "2026-10-10T19:16:09.785Z",
+      "pulledAt": "2026-10-11T14:01:08.296Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "Cjv-0MKQ4GU",
-        "pulledAt": "2026-10-10T19:16:09.785Z",
+        "pulledAt": "2026-10-11T14:01:08.296Z",
         "state": "ready"
       },
       "totals": {
@@ -480,18 +480,18 @@
     },
     "yt:designertom": {
       "videoId": "2EAAU-knqRE",
-      "pulledAt": "2026-10-10T19:16:09.785Z",
+      "pulledAt": "2026-10-11T14:01:08.296Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2EAAU-knqRE",
-        "pulledAt": "2026-10-10T19:16:09.785Z",
+        "pulledAt": "2026-10-11T14:01:08.296Z",
         "state": "ready"
       },
       "totals": {
         "views": 2619,
-        "estimatedMinutesWatched": 10010,
+        "estimatedMinutesWatched": 10011,
         "averageViewDuration": 641,
         "averageViewPercentage": 9.08,
         "subscribersGained": 7,
@@ -961,7 +961,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-10T19:16:09.785Z",
+    "checkedAt": "2026-10-11T14:01:08.296Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:2EAAU-knqRE|yt:joindiveclub:Cjv-0MKQ4GU",
@@ -991,8 +991,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
     "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
-    "pulledAt": "2026-10-10T19:16:09.785Z",
+    "pulledAt": "2026-10-11T14:01:08.296Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-10T19:16:09.785Z"
+  "updatedAt": "2026-10-11T14:01:08.296Z"
 }
