@@ -47,6 +47,7 @@ export const BRAND_TOP = 20;
 export const QUOTES_TOP = 24;
 export const QUOTE_MIN = 20;
 export const QUOTE_MAX = 220;
+export const READ_WINDOW_SEC = 15;
 export const EXCERPT_MIN = 90;
 export const EXCERPT_MAX = 220;
 
@@ -290,14 +291,19 @@ function partnersBlock(episodes, transcripts, uploads) {
       const t = transcripts[e.slug];
       const upload = uploads[e.slug];
       if (t) {
+        const picked = [];
         t.segments.forEach((s, i) => {
           if (!new RegExp(re.source).test(s.text)) return;
-          const near = [t.segments[i - 1]?.text, s.text, t.segments[i + 1]?.text].filter(Boolean).join(" ");
+          // the sponsor phrase may sit a sentence or two away ("Lovable … They're also one of our show sponsors")
+          const near = t.segments.filter((x) => Math.abs(x.seconds - s.seconds) <= READ_WINDOW_SEC).map((x) => x.text).join(" ");
           if (!SPONSOR_PHRASE.test(near) || negated.test(near)) return;
-          const m = momentOf(e, t, upload, i, re);
-          if (moments.some((x) => x.slug === e.slug && Math.abs(x.seconds - m.seconds) < 60)) return;
-          moments.push({ kind: "read", ...m });
+          // one moment a minute: the line that says the sponsor phrase itself, else the first line that qualified
+          const own = SPONSOR_PHRASE.test(s.text);
+          const clash = picked.findIndex((p) => Math.abs(p.seconds - s.seconds) < 60);
+          if (clash < 0) picked.push({ i, seconds: s.seconds, own });
+          else if (own && !picked[clash].own) picked[clash] = { i, seconds: s.seconds, own };
         });
+        for (const p of picked) moments.push({ kind: "read", ...momentOf(e, t, upload, p.i, re) });
       }
       for (const c of e.chapters?.list || []) {
         if (!new RegExp(re.source).test(`${c.title} ${c.gist}`)) continue;

@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-10-11T16:59:15.658Z",
+ "generatedAt": "2026-10-11T17:04:53.478Z",
  "chaptersUpdatedAt": "2026-10-10T14:07:39.404Z",
  "promotionUpdatedAt": "2026-10-11T14:00:29.367Z",
  "dests": [
@@ -97423,6 +97423,24 @@ window.DIVE_DATA = {
     "episodes": 10,
     "moments": [
      {
+      "kind": "read",
+      "ep": 3,
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "at": "00:05:17",
+      "seconds": 317,
+      "text": "who we'll be talking about over the next few weeks, Notion, Lovable, and Mobbin. Very, very happy uh to have tools that",
+      "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=318s"
+     },
+     {
+      "kind": "read",
+      "ep": 4,
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "at": "00:05:23",
+      "seconds": 323,
+      "text": "How you doing, mobbing, Notion? I see you. Paper, soon. Excited. Excited for all the people who support the show.",
+      "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=318s"
+     },
+     {
       "kind": "segment",
       "ep": 5,
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -97524,6 +97542,15 @@ window.DIVE_DATA = {
     "moments": [
      {
       "kind": "read",
+      "ep": 3,
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "at": "00:05:17",
+      "seconds": 317,
+      "text": "who we'll be talking about over the next few weeks, Notion, Lovable, and Mobbin. Very, very happy uh to have tools that",
+      "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=318s"
+     },
+     {
+      "kind": "read",
       "ep": 6,
       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
       "at": "00:05:57",
@@ -97558,6 +97585,15 @@ window.DIVE_DATA = {
     "episodes": 7,
     "moments": [
      {
+      "kind": "read",
+      "ep": 3,
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "at": "00:05:17",
+      "seconds": 317,
+      "text": "who we'll be talking about over the next few weeks, Notion, Lovable, and Mobbin. Very, very happy uh to have tools that",
+      "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=318s"
+     },
+     {
       "kind": "segment",
       "ep": 5,
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -97583,6 +97619,24 @@ window.DIVE_DATA = {
       "at": "00:05:57",
       "seconds": 357,
       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+      "url": null
+     },
+     {
+      "kind": "read",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:44:08",
+      "seconds": 2648,
+      "text": "You may have heard of it called Lovable. You can bring ideas to life, have people love, you know.",
+      "url": null
+     },
+     {
+      "kind": "read",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:51:23",
+      "seconds": 3083,
+      "text": "Love the work that Nick Pattison did for their logo, and then we've got Lovable. I think Fonz did Fonz or Pattison do Lovable's logo too?",
       "url": null
      },
      {
@@ -97647,6 +97701,15 @@ window.DIVE_DATA = {
     "mentions": 12,
     "episodes": 4,
     "moments": [
+     {
+      "kind": "read",
+      "ep": 4,
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "at": "00:05:26",
+      "seconds": 326,
+      "text": "Paper, soon. Excited. Excited for all the people who support the show. We'll have some segments dedicated to, their love and support and some ways that we actually do use these tools.",
+      "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=321s"
+     },
      {
       "kind": "read",
       "ep": 6,

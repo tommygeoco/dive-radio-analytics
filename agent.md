@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-10-11T16:59:15.658Z · data through 2026-10-11 · health read 2026-10-11 (data through 2026-10-11) · chapters written 2026-10-10 · brief v1
+Built 2026-10-11T17:04:53.478Z · data through 2026-10-11 · health read 2026-10-11 (data through 2026-10-11) · chapters written 2026-10-10 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 13 episodes in https://dive-radio-analytics.vercel.app/agent.json; 6 included here, 7 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-10-11T16:59:15.658Z); the show-health read (2026-10-11, over data through 2026-10-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
+Three clocks: the data build (2026-10-11T17:04:53.478Z); the show-health read (2026-10-11, over data through 2026-10-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -519,6 +519,8 @@ The numbers the sponsor page shows (https://dive-radio-analytics.vercel.app/spon
 - Audience feedback: 283 positive of 363 messages with a clear lean (YouTube comments, X threads, live chat); 24 named public quotes under sponsor.feedback.quotes.
 - Brands named on air (as said, whole words, in 13 transcripts): Figma 83 in 13; Claude 72 in 13; Notion (partner) 41 in 10; Lovable (partner) 38 in 7; Vercel 28 in 7; Cursor 21 in 7; Mobbin (partner) 21 in 6; OpenAI 20 in 7; Framer 19 in 6; Google 18 in 8; Apple 16 in 6; Rive 15 in 3; GitHub 14 in 4; Grok 13 in 4; Paper (partner) 12 in 4; Adobe 11 in 6; Anthropic 11 in 6; Shopify 11 in 4; Raycast 9 in 5; Arc 8 in 7.
 - Partner moments on air, linked where the transcript is matched to the YouTube upload (8 of 13 episodes):
+  - Notion, E3 00:05:17 — named on air (https://youtube.com/watch?v=9HYGZgaHdlw&t=318s)
+  - Notion, E4 00:05:23 — named on air (https://youtube.com/watch?v=ziyWxt6qzfM&t=318s)
   - Notion, E5 00:40:54 — Notion as code and agent friendly backends (https://youtube.com/watch?v=njOU7GKZcvc&t=2455s)
   - Notion, E5 00:47:54 — named on air (https://youtube.com/watch?v=njOU7GKZcvc&t=2875s)
   - Notion, E6 00:05:57 — named on air
@@ -529,18 +531,23 @@ The numbers the sponsor page shows (https://dive-radio-analytics.vercel.app/spon
   - Notion, E10 00:39:17 — named on air (https://youtube.com/watch?v=x05zZ90lY28&t=2358s)
   - Notion, E12 00:11:46 — named on air
   - Notion, E13 00:17:10 — named on air (https://youtube.com/watch?v=YI1Kx5U6fQc&t=1031s)
+  - Mobbin, E3 00:05:17 — named on air (https://youtube.com/watch?v=9HYGZgaHdlw&t=318s)
   - Mobbin, E6 00:05:57 — named on air
   - Mobbin, E6 00:51:19 — named on air
   - Mobbin, E7 01:34:49 — Mobbin workflows, one up picks, and the winner reveal
+  - Lovable, E3 00:05:17 — named on air (https://youtube.com/watch?v=9HYGZgaHdlw&t=318s)
   - Lovable, E5 00:26:25 — Why more designers are not becoming founders (https://youtube.com/watch?v=njOU7GKZcvc&t=1586s)
   - Lovable, E5 01:20:30 — named on air (https://youtube.com/watch?v=njOU7GKZcvc&t=4831s)
   - Lovable, E6 00:05:57 — named on air
+  - Lovable, E6 00:44:08 — named on air
+  - Lovable, E6 00:51:23 — named on air
   - Lovable, E6 01:20:44 — named on air
   - Lovable, E8 00:21:02 — named on air (https://youtube.com/watch?v=Vh8ogFIE8CA&t=1263s)
   - Lovable, E8 01:40:53 — named on air (https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s)
   - Lovable, E11 01:57:24 — named on air
   - Lovable, E12 00:05:00 — named on air
   - Lovable, E12 00:20:13 — Brand in a box, the Discord opening, and a Lovable library
+  - Paper, E4 00:05:26 — named on air (https://youtube.com/watch?v=ziyWxt6qzfM&t=321s)
   - Paper, E6 00:05:57 — named on air
   - Paper, E7 00:57:35 — Agent working states and prompting inside design canvases
   - Paper, E7 01:02:34 — named on air
