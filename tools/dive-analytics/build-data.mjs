@@ -568,6 +568,7 @@ export function computeAll({ now = Date.now() } = {}) {
     channelStats: readStore("channel-stats.json"),
     contributors: readStore("contributors.json"),
     clockChecks,
+    commentChannels: youtubeCommentChannels(dive),
     transcripts,
     generatedAt: new Date(now).toISOString(),
   });
@@ -591,6 +592,20 @@ export function computeAll({ now = Date.now() } = {}) {
 function readStore(name) {
   const path = join(ROOT, "data", "restream", name);
   return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null;
+}
+
+// the YouTube channel each stored comment was left on (comments/<slug>.json),
+// so a quoted comment links to its original on that upload
+function youtubeCommentChannels(dive) {
+  const channels = {};
+  for (const e of dive) {
+    const path = join(COMMENTS_DIR, `${e.slug}.json`);
+    if (!existsSync(path)) continue;
+    for (const c of JSON.parse(readFileSync(path, "utf8")).comments || []) {
+      if (c.source === "yt" && typeof c.channel === "string") channels[c.id] = c.channel;
+    }
+  }
+  return channels;
 }
 
 // --- UX Tools newsletter promotion -----------------------------------------

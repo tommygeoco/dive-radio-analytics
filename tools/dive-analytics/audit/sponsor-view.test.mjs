@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK_MIN_ANCHORS, CLOCK_MAX_SPREAD } from "../clock.mjs";
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
-import { sponsorView, quoteText, excerptAt, brandPattern, BRAND_MIN_MENTIONS } from "../sponsor-view.mjs";
+import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, BRAND_MIN_MENTIONS, EXAMPLES } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
 // --- clock.mjs ----------------------------------------------------------------------
@@ -166,12 +166,14 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(figma.episodes, 12);
   assert.ok(!view.brands.list.some((b) => b.mentions < BRAND_MIN_MENTIONS));
   for (const b of view.brands.list) for (const m of b.moments) {
-    assert.ok(normalize(transcripts[m.slug].segments.map((s) => s.text).join(" ")).includes(normalize(m.text.replace(/…/g, ""))), `${b.name} E${m.ep} excerpt is verbatim`);
+    const flat = (x) => normalize(x).replace(/'/g, "").replace(/\s+/g, " ").trim();
+    assert.ok(flat(cleanSpeech(transcripts[m.slug].segments.map((s) => s.text).join(" "))).includes(flat(m.text.replace(/…/g, " "))), `${b.name} E${m.ep} excerpt is the transcript's words`);
     assert.equal(m.url, null, "no clock check, no link");
   }
 
   const notion = view.partners.find((p) => p.name === "Notion");
-  assert.deepEqual(notion.moments.map((m) => [m.ep, m.kind]), [[6, "read"]], "named in a sponsor line");
+  assert.deepEqual(notion.moments.map((m) => [m.ep, m.kind]), [[6, "named"]], "named in a sponsor line — named as a partner, never called a paid read");
+  assert.equal(notion.named, 1);
   const paper = view.partners.find((p) => p.name === "Paper");
   assert.deepEqual(paper.moments.map((m) => m.ep), [6], "“not sponsored by Paper” is not a read");
   const lovable = view.partners.find((p) => p.name === "Lovable");
@@ -181,6 +183,80 @@ import { normalize } from "../transcripts.mjs";
   const long = Array.from({ length: 80 }, (_, i) => (i === 40 ? "Mobbin" : `word${i}`)).join(" ");
   const x = excerptAt([{ stamp: "00:01:00", seconds: 60, text: long }], 0, brandPattern("Mobbin"));
   assert.ok(x.text.includes("Mobbin") && x.text.startsWith("…") && x.text.endsWith("…") && x.text.length <= 222);
+  assert.equal(x.complete, false);
+
+  // speech as it reads: marks, fillers and a doubled word go; the words stay in order
+  assert.equal(cleanSpeech(">> Uh Remotion is, um, really really good. And I I do wanna say [Music] let's let's go."), "Remotion is, really good. And I do wanna say let's go.");
+  assert.equal(cleanSpeech("an umbrella, a hummingbird"), "an umbrella, a hummingbird", "a filler is a whole word, never part of one");
+  assert.equal(typographic(`it's "great" 'here'`), "it’s ‘great’ ‘here’", "inside the page's “ ” a quotation takes ‘ ’");
+  // whole sentences: a caption fragment run is read back to its sentence start; a cut says so with "…"
+  const caps = [
+    { stamp: "00:40:50", seconds: 2450, speaker: null, text: "so that's the news. >> Um" },
+    { stamp: "00:40:52", seconds: 2452, speaker: null, text: ">> Um speaking of notion, one of our" },
+    { stamp: "00:41:00", seconds: 2460, speaker: null, text: "partners, Notion, we appreciate you. They recently" },
+    { stamp: "00:41:02", seconds: 2462, speaker: null, text: "announced a thing and it is good." },
+  ];
+  const y = excerptAt(caps, 2, brandPattern("Notion"));
+  assert.equal(y.at, "00:40:52", "the excerpt starts where the sentence does (a caption >> starts one)");
+  assert.equal(y.text, "Speaking of notion, one of our partners, Notion, we appreciate you. They recently announced a thing and it is good.", "a short sentence takes the next one; the filler and the mark go");
+  assert.equal(y.complete, true);
+  const turn = [
+    { stamp: "00:00:01", seconds: 1, speaker: "S2", text: "Something else entirely." },
+    { stamp: "00:00:40", seconds: 40, speaker: "S1", text: "we had been talking about it and" },
+    { stamp: "00:00:45", seconds: 45, speaker: "S1", text: "then Figma said it would ship" },
+  ];
+  assert.equal(excerptAt(turn, 2, brandPattern("Figma")).text, "We had been talking about it and then Figma said it would ship…", "a new speaker starts a sentence; an unfinished one closes with …");
+  const turnNext = [
+    { stamp: "00:17:04", seconds: 1024, speaker: "S3", text: "We will announce the winners at the end of the show." },
+    { stamp: "00:17:10", seconds: 1030, speaker: "S3", text: "Thank you for Notion for sponsoring this segment." },
+    { stamp: "00:17:15", seconds: 1035, speaker: "S3", text: "On that note, you said something there a second ago." },
+  ];
+  assert.equal(excerptAt(turnNext, 1, brandPattern("Notion")).text, "We will announce the winners at the end of the show. Thank you for Notion for sponsoring this segment.", "a sentence that turns to the next topic is not taken in; the one before is");
+  const mid = [{ stamp: "00:00:01", seconds: 1, speaker: "S1", text: "I kept going on about the" }, { stamp: "00:00:40", seconds: 40, speaker: "S1", text: "thing and then Figma said it would ship." }];
+  assert.equal(excerptAt(mid, 1, brandPattern("Figma")).text, "…thing and then Figma said it would ship.", "a line that continues a sentence from beyond the reach opens with …");
+
+  // the newest show's curve is its stored session; the series may never reach the stored peak (no minute then)
+  const lived = eps.map((e) => ({ ...e, ageDays: 140 - e.ep * 7, live: { ...e.live, series: Array.from({ length: 121 }, (_, m) => ({ m, v: m === 60 ? e.live.peak : 10 + (m % 7) })) }, watch: { ...e.watch, curve: [{ at: 0.49, watching: 0.2 }, { at: 0.5, watching: 0.1 + e.ep / 100 }] } }));
+  lived[12] = { ...lived[12], live: { ...lived[12].live, peak: 999 } };
+  const v2 = sponsorView({ episodes: lived, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.equal(v2.live.latest.ep, 13);
+  assert.equal(v2.live.latest.peak, 999, "the stored peak, as stored");
+  assert.equal(v2.live.latest.peakMinute, null, "a series that never reaches the stored peak has no peak minute, never a guessed one");
+  assert.equal(v2.live.latest.durationMin, 120, "the stored length, never the series length");
+  assert.equal(v2.live.typical.atMiddle, (50 + 8 + 50 + 9) / 2, "the middle minute (60 of 120) of each show in the window, its middle value");
+  assert.equal(v2.live.typical.recordingAtMiddle, (18 + 19) / 2 / 1, "of every 100 YouTube views, still watching at the recording's middle");
+  assert.equal(liveAt(lived[4], { clock: "stream" }, 3601), lived[4].live.series[60].v, "a stream-clock moment reads its own minute");
+  assert.equal(liveAt(lived[4], { clock: "upload" }, 3601), null, "an upload-clock transcript has no live minute");
+
+  // quotes: originals linked; people on the show rank last and say so
+  assert.equal(quoteUrl({ source: "yt", id: "yt:Ugx1" }, { links: { "yt:designertom": "https://youtube.com/watch?v=BBB" } }, { "yt:Ugx1": "yt:designertom" }), "https://youtube.com/watch?v=BBB&lc=Ugx1");
+  assert.equal(quoteUrl({ source: "yt", id: "yt:Ugx1" }, { links: {} }, {}), null, "a comment whose upload is unknown has no link, never a guessed one");
+  const callers = callerIndex([{ ep: 9, who: "Genny Dee" }, { ep: 9, who: "Dan Tase" }, { ep: 8, who: "Charles Patterson" }, { ep: 5, who: "Nad" }]);
+  assert.equal(calledIn("@gennydee", callers)?.ep, 9);
+  assert.equal(calledIn("@tasedan", callers)?.ep, 9, "either order");
+  assert.equal(calledIn("@CharlesPattson", callers)?.ep, 8, "first name and the surname's first four letters");
+  assert.equal(calledIn("@nadia", callers), null, "a one-word name never matches");
+  const guests = eps.map((e) => (e.ep === 9 ? { ...e, audience: { list: [
+    { id: "x:7", source: "x", author: "@gennydee", text: "This was fun and in good company, thanks all!", platform: "X", url: "https://x.com/i/status/7", likes: 13, sentiment: "positive", at: "2026-09-11T00:00:00Z" },
+    { id: "x:8", source: "x", author: "@jess", text: "Loving this edit!! Thanks for including me Tommy.", platform: "X", url: "https://x.com/i/status/8", likes: 9, sentiment: "positive", at: "2026-09-11T00:00:00Z" },
+    { id: "x:9", source: "x", author: "@viewer", text: "Best show so far, watched it twice already.", platform: "X", url: "https://x.com/i/status/9", likes: 1, sentiment: "positive", at: "2026-09-11T00:00:00Z" },
+  ] } } : e));
+  const g = sponsorView({ episodes: guests, contributors: { episodes: { e9: { callIns: [{ kind: "submission", who: "Genny Dee", about: "a job at Railway" }] } } }, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(g.feedback.quotes.map((q) => [q.author, q.onShow, q.calledIn]), [["@viewer", false, null], ["@gennydee", true, 9], ["@jess", true, null]], "the audience first; a call-in or someone who says they were on the show after, marked");
+
+  // the teams the call-ins were about: only where their words put the work
+  assert.deepEqual(teamsNamed([{ about: "building an OG card tool at Vercel" }, { about: "what Shopify looks for in five seconds" }, { about: "a map built in Lovable" }, { about: "Lovable's Series C" }, { about: "Vercel's creative team builds tools" }]), ["Vercel", "Shopify"]);
+
+  // each package's example is found near the owners' recorded time, or absent with a reason
+  assert.deepEqual(EXAMPLES.map((x) => x.package), ["Mid-roll", "Segment", "Build"]);
+  const withOneUp = { ...transcripts, e5: { ...transcripts.e5, segments: [...transcripts.e5.segments, { stamp: "01:20:35", seconds: 4835, speaker: null, text: "The One Up Weekly segment, brought to you by Lovable." }] } };
+  const shown = sponsorView({ episodes: eps, transcripts: withOneUp, generatedAt: "2026-10-11T14:00:00.000Z" });
+  const ex = shown.examples.find((x) => x.package === "Segment");
+  assert.equal(ex.moment.at, "01:20:35", "Lovable is named within the window of the recorded time");
+  assert.equal(ex.moment.url, null, "no clock check, no link");
+  assert.equal(view.examples.find((x) => x.package === "Segment").moment, null, "the 40-minute line is not near the recorded time");
+  assert.equal(shown.examples.find((x) => x.package === "Mid-roll").moment, null);
+  assert.ok(shown.examples.find((x) => x.package === "Mid-roll").reason, "a record the transcript does not bear out shows nothing, with a reason");
 }
 
-console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, quotes and excerpts stay verbatim, and absent inputs stay absent");
+console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out, and absent inputs stay absent");

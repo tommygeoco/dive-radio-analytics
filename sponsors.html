@@ -10,6 +10,12 @@
 <meta property="og:title" content="Partner with Dive Radio" />
 <meta property="og:description" content="The weekly live show for designers who build. Audience, live room, call-ins, brands on air, and packages — refreshed daily." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://dive-radio-analytics.vercel.app/sponsors.html" />
+<meta property="og:image" content="https://dive-radio-analytics.vercel.app/sponsors-og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Dive Radio — partner with the live show for designers who build" />
+<meta name="twitter:card" content="summary_large_image" />
 <title>Partner with Dive Radio</title>
 <style>
   /* Inter, Latin subset, variable weight 100–900 and optical size 14–32 — © 2016 The Inter Project Authors, SIL Open Font License 1.1 */
@@ -417,212 +423,285 @@ button { font: inherit; color: inherit; }
 }
   /* ===== end of the system recipes ===== */
 
-  /* ===== the Sponsors page: a single-page shell (no rail), the system's top bar, a 1240 column ===== */
+  /* ===== the Sponsors page: one scroll, the system's top bar, the 1240 column, comfortable density =====
+     Spacing is the density tokens throughout: --d-card inside every surface, --d-stack between cards,
+     --d-section between sections (the family's rhythm, as index.html). */
   .topin { width: 100%; max-width: calc(var(--content-max) + 2 * var(--d-gutter)); margin: 0 auto; }
   .brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-left: -4px; padding: 0 4px; border-radius: var(--radius-lg);
     color: var(--fg-1); text-decoration: none; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; white-space: nowrap; }
+  .brand:hover { background: var(--surface-2); }
   .brand svg { width: 24px; height: 24px; flex: none; }
   .brand span { display: none; color: var(--fg-3); font-weight: 400; }
   @media (min-width: 48rem) { .brand span { display: inline; } }
   .toplink { display: none; }
   @media (min-width: 48rem) { .toplink { display: inline-flex; } }
-  .wrap { max-width: calc(var(--content-max) + 2 * var(--d-gutter)); margin: 0 auto; padding: 0 var(--d-gutter) 96px; }
+  /* phones: the booking button is the top bar's 36 px pill (the system's top-bar control height), its hit area 44 px */
+  @media (max-width: 47.99rem) {
+    .ss-topbar .book { height: 36px; padding: 0 12px; border-radius: var(--radius-full); font-size: var(--text-body-sm); }
+    .ss-topbar .book::after { content: ""; position: absolute; inset: -4px 0; }
+  }
+  .wrap { max-width: calc(var(--content-max) + 2 * var(--d-gutter)); margin: 0 auto; padding: 0 var(--d-gutter) calc(var(--d-section) + var(--safe-bottom)); }
   main { display: block; }
   main:focus { outline: none; }
   .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; white-space: nowrap; overflow-wrap: normal; }
-  .block { margin-top: 64px; scroll-margin-top: calc(var(--topbar-h) + var(--safe-top) + 16px); }
-  @media (min-width: 48rem) { .block { margin-top: 80px; } }
+  .block { margin-top: var(--d-section); scroll-margin-top: calc(var(--topbar-h) + var(--safe-top) + var(--d-stack)); }
+  .block[hidden] { display: none; }
   .lede { margin: 0 0 var(--d-stack); max-width: 62ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
+  .ss-section-header__meta { text-wrap: balance; }
+  /* a line of facts: the system verdict meta's "·" separators (drawn outside each item, clipped at every line start),
+     so a wrapped line never opens on a separator */
+  .dots { display: flex; flex-wrap: wrap; margin-left: -12px; clip-path: inset(-4px -4px -4px 12px); row-gap: 0; }
+  .dots > * { position: relative; margin-left: 12px; }
+  .dots > *::before { content: "·"; content: "·" / ""; position: absolute; right: 100%; width: 12px; text-align: center; color: var(--fg-4); }
 
-  /* hero: the page's one answer, the four numbers behind it, the partners */
-  .hero { padding-top: 40px; }
-  @media (min-width: 48rem) { .hero { padding-top: 64px; } }
-  .hero__meta { margin: 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  /* hero: the page's one answer, a price, the four numbers behind it (the system's big-number summary), the partners */
+  .hero { padding-top: var(--d-section); }
+  .hero__meta { margin-block: 0; font-size: var(--text-body-sm); color: var(--fg-3); }
   .hero h1 { margin: 12px 0 0; max-width: 22ch; font-size: var(--text-hero); line-height: var(--lh-hero); font-weight: 600; letter-spacing: -0.025em; color: var(--fg-1); }
   .hero__lede { margin: 16px 0 0; max-width: 60ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
   .hero__actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 47.99rem) { .hero__actions > .ss-btn { flex: 1 1 auto; } }
-  .hero .ss-kpis { margin-top: 40px; }
+  .hero__price { margin-block: 12px 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .hero__price b { font-weight: 600; color: var(--fg-1); }
+  .hero__summary { margin-top: var(--d-section); padding: var(--d-card); }
+  .summary { margin: 0; display: flex; flex-wrap: wrap; column-gap: 32px; row-gap: var(--d-section); }
+  .summary > .ss-big { flex: 1 1 calc(50% - 16px); min-width: 0; }
+  .summary .ss-big dt { text-wrap: balance; }
   @media (min-width: 64rem) {
-    .hero__split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end; }
-    .hero .ss-kpis { margin-top: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .hero .ss-kpi { padding: 24px; }
+    .hero__split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--d-section); align-items: end; }
+    .hero__summary { margin-top: 0; }
   }
-  .hero .ss-big dd { white-space: nowrap; }
-  .hero .ss-big dt { text-wrap: balance; }
   .partners { margin: 24px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; }
   .partners dt { flex-basis: 100%; font-size: var(--text-body-sm); color: var(--fg-3); }
   @media (min-width: 48rem) { .partners dt { flex-basis: auto; } }
   .partners dd { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-2); }
 
-  /* cards: the system panel; a page grid of 12 columns from 64rem */
+  /* cards: the system panel with its one inset; a two-column grid from 64rem, each card as tall as its content */
   .card { padding: var(--d-card); }
-  @media (min-width: 48rem) { .card { padding: 24px; } }
-  .grid { display: grid; gap: var(--d-stack); }
-  @media (min-width: 64rem) { .grid--2 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } .grid--2r { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+  .grid { display: grid; gap: var(--d-stack); align-items: start; }
+  @media (min-width: 64rem) { .grid--2 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .card__title { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
   @media (min-width: 48rem) { .card__title { font-size: var(--text-body); } }
-  .card__meta { margin: 4px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .card__meta { margin: 4px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
   @media (min-width: 48rem) { .card__meta { font-size: var(--text-meta); } }
-  .statement { margin: 16px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 12px; row-gap: 4px; }
+  .statement { margin: var(--d-inner) 0 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 12px; row-gap: 4px; }
+  .statement:first-child { margin-top: 0; }
   .statement b { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; font-size: var(--text-display); line-height: var(--lh-display);
     font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); white-space: nowrap; }
-  .statement > span { font-size: var(--text-body); color: var(--fg-2); }
-
-  /* ranked bars (dataviz.md: horizontal, 20 px thick, radius 4 at the value end, value right in .num 600) */
-  .bars { list-style: none; margin: 16px 0 0; padding: 0; display: grid; }
-  .bar { position: relative; display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; grid-template-areas: "ep title value" "ep track track";
-    column-gap: 12px; row-gap: 8px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); outline-offset: -2px; }
-  .bar:first-child { border-top: 0; }
-  @media (min-width: 64rem) { .bar { grid-template-columns: 32px minmax(0, 300px) minmax(0, 1fr) 72px; grid-template-areas: "ep title track value"; padding: 8px 0; } }
-  .bar__ep { grid-area: ep; font-size: var(--text-meta); color: var(--fg-3); }
-  .bar__title { grid-area: title; min-width: 0; font-size: var(--text-body-sm); line-height: 1.4; color: var(--fg-1); text-wrap: pretty; }
-  .bar__value { grid-area: value; justify-self: end; font-size: var(--text-meta); font-weight: 600; color: var(--fg-1); }
-  .bar__track { grid-area: track; display: flex; height: 20px; min-width: 0; }
-  .bar__track i + i { border-left: 2px solid var(--chart-gap); }   /* stacked segments part on the card's own surface (dataviz.md rule 5) */
-  .bar__track i { display: block; height: 100%; min-width: 2px; }
-  .bar__track i:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
-  .bar__track .yt { background: var(--series-1); }
-  .bar__track .x { background: var(--series-2); }
-  .bar__track .plain { background: var(--fg-2); }
-  .bar[tabindex] { cursor: default; }
-  .bar[tabindex]:hover .bar__title, .bar[aria-current="true"] .bar__title { color: var(--fg-1); text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
-  .bar__note { font-size: var(--text-meta); font-weight: 400; color: var(--fg-3); }
-  .chartwrap { position: relative; }
-  .ss-x-legend { margin: 16px 0 0; }
-  .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: var(--radius-full); margin-right: 8px; }
-  .card__foot { margin: 16px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .statement > span { font-size: var(--text-body); color: var(--fg-2); text-wrap: pretty; }
+  .card__foot { margin: var(--d-inner) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
   @media (min-width: 48rem) { .card__foot { font-size: var(--text-meta); } }
   .card__foot b { font-weight: 500; color: var(--fg-2); }
+  .sub { margin: 0; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
 
-  /* channels: one row per account, the platform's series colour with its word */
-  .channels .bar { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title value" "track track"; }
-  @media (min-width: 64rem) { .channels .bar { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title value" "track track"; padding: 12px 0; } }
-  .channels .bar__title { white-space: normal; }
+  /* ranked bars (dataviz.md: horizontal, 20 px, radius 4 at the value end, the value as a direct label at the bar's end) */
+  .bars { list-style: none; margin: var(--d-inner) 0 0; padding: 0; display: grid; }
+  .bars > li + li { border-top: 1px solid var(--line); }
+  .bar { position: relative; display: grid; width: 100%; grid-template-columns: 32px minmax(0, 1fr); grid-template-areas: "ep title" ". track";
+    column-gap: 12px; row-gap: 8px; align-items: start; padding: 12px 0; border: 0; background: none; color: inherit; text-align: left; font: inherit; }
+  @media (min-width: 80rem) { .bar { grid-template-columns: 32px minmax(0, 220px) minmax(0, 1fr); grid-template-areas: "ep title track"; align-items: center; padding: 8px 0; } }
+  button.bar { cursor: pointer; border-radius: var(--radius-md); }
+  button.bar:focus-visible { outline-offset: 4px; }
+  .bar__ep { grid-area: ep; font-size: var(--text-meta); line-height: var(--lh-body-sm); color: var(--fg-3); }
+  .bar__title { grid-area: title; min-width: 0; font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-1); text-wrap: pretty; }
+  .bar__track { grid-area: track; display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .bar__fill { display: flex; height: 20px; flex: none; min-width: 2px; }
+  .bar__fill i { display: block; height: 100%; min-width: 2px; }
+  .bar__fill i + i { border-left: 2px solid var(--chart-gap); }   /* stacked segments part on the card's own surface (dataviz.md rule 5) */
+  .bar__fill i:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  .bar__fill .yt { background: var(--series-1); }
+  .bar__fill .x { background: var(--series-2); }
+  .bar__value { flex: none; font-size: var(--text-meta); font-weight: 600; color: var(--fg-1); }
+  .bar__note { flex: none; font-size: var(--text-meta); color: var(--fg-3); }
+  button.bar:hover .bar__title, button.bar.is-tip .bar__title { text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
+  .chartwrap { position: relative; }
+  .ss-x-legend { margin: var(--d-inner) 0 0; }
+  .channels .bar { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "track"; }
   .channels .bar__title small { margin-left: 8px; font-size: var(--text-meta); color: var(--fg-3); }
 
-  /* live room: the system's KPI strip, then the newest show minute by minute */
-  .curve { margin-top: 16px; }
+  /* call-ins: the newest, the count by episode (focus + context: the newest white), everyone behind a disclosure */
+  .callins-top { display: grid; grid-template-areas: "stat" "chart" "rows"; row-gap: var(--d-card); }
+  .callins-top > .statement { grid-area: stat; margin: 0; }
+  .callins-top > .cols { grid-area: chart; }
+  .callins-top > .newest { grid-area: rows; }
+  @media (min-width: 64rem) {
+    .callins-top { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "stat rows" "chart rows"; grid-template-rows: auto 1fr; column-gap: var(--d-section); align-items: start; }
+  }
+  .rows { list-style: none; margin: 8px 0 0; padding: 0; }
+  .rows > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; padding: 8px 0; border-top: 1px solid var(--line);
+    font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-2); text-wrap: pretty; }
+  .rows > li b { font-weight: 500; color: var(--fg-1); }
+  .rows > li .n { color: var(--fg-3); }
+  .cols { margin: 0; }
+  .cols figcaption { font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
+  .cols ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 40px)); }
+  .cols li { display: grid; grid-template-rows: auto 64px auto; justify-items: center; }
+  .cols__value { font-size: var(--text-caption); line-height: var(--lh-caption); color: var(--fg-2); }
+  .cols__plot { width: 100%; display: flex; align-items: flex-end; justify-content: center; box-shadow: inset 0 -1px 0 var(--line-strong); }
+  .cols__plot i { display: block; width: min(100% - 8px, 28px); border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: var(--fg-3); }
+  .cols li:last-child .cols__plot i { background: var(--series-focus); }
+  .cols__ep { margin-top: 4px; font-size: var(--text-caption); line-height: var(--lh-caption); color: var(--chart-axis); }
+  .callins-ep { margin-top: var(--d-card); }
+  .callins-ep:first-child { margin-top: 0; }
+  .callins-ep h3 { margin: 0 0 4px; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
+  .more { margin-top: var(--d-inner); }
+  .more .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
+  .more .ss-reveal > div > div { padding-top: var(--d-inner); padding-bottom: 8px; }
+
+  /* the live room: the system's KPI strip, then the newest show minute by minute */
+  dl.ss-kpis { margin: 0; }
+  dl.ss-kpis[hidden] { display: none; }
+  .ss-kpis dd { margin-inline: 0; }
+  .ss-kpi__sub { margin-bottom: 0; }
+  .room-curve { margin-top: var(--d-stack); }
+  .curve { position: relative; margin-top: var(--d-inner); }
+  .curve__plot { position: relative; }
   .curve svg { display: block; width: 100%; height: 160px; overflow: visible; }
   @media (min-width: 48rem) { .curve svg { height: 200px; } }
-  .curve .grid-line { stroke: var(--chart-grid); stroke-width: 1; }
   .curve .base { stroke: var(--line-strong); stroke-width: 1; }
   .curve .line { fill: none; stroke: var(--series-focus); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-  .curve .mark { fill: var(--series-focus); stroke: var(--surface-1); stroke-width: 2; }
-  .curve .ticks { display: flex; justify-content: space-between; margin-top: 8px; font-size: var(--text-caption); color: var(--chart-axis); }
-  .curve__label { margin: 12px 0 0; font-size: var(--text-body-sm); color: var(--fg-2); }
+  .curve__mark { position: absolute; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--series-focus); box-shadow: 0 0 0 2px var(--surface-1); transform: translate(-50%, -50%); }
+  .curve__ticks { position: relative; height: calc(var(--text-caption) * var(--lh-caption)); margin-top: 8px; font-size: var(--text-caption); line-height: var(--lh-caption); color: var(--chart-axis); }
+  .curve__ticks > span { position: absolute; top: 0; translate: -50% 0; white-space: nowrap; }
+  .curve__ticks > span:first-child { left: 0; translate: none; }
+  .curve__ticks > span:last-child { left: auto; right: 0; translate: none; }
+  .curve__label { margin-block: var(--d-inner) 0; font-size: var(--text-body-sm); color: var(--fg-2); }
   @media (min-width: 48rem) { .curve__label { font-size: var(--text-meta); } }
 
-  /* call-ins: the names as a wall, what each sent in behind a disclosure */
-  .names { margin: 16px 0 0 -20px; clip-path: inset(-4px -4px -4px 20px); display: flex; flex-wrap: wrap; row-gap: 4px;
-    font-size: var(--text-body); line-height: 1.6; color: var(--fg-1); }
-  .names > span { position: relative; margin-left: 20px; white-space: nowrap; }
-  .names > span::before { content: "·"; content: "·" / ""; position: absolute; right: 100%; width: 20px; text-align: center; color: var(--fg-4); }
-  .callins { list-style: none; margin: 0; padding: 0; }
-  .callins h4 { margin: 16px 0 4px; font-size: var(--text-meta); font-weight: 500; color: var(--fg-3); }
-  .callins h4:first-child { margin-top: 0; }
-  .callins li { padding: 8px 0; border-top: 1px solid var(--line); font-size: var(--text-body-sm); color: var(--fg-2); }
-  .callins li b { font-weight: 500; color: var(--fg-1); }
-  .more { margin-top: 16px; }
-  .more .ss-reveal > div > * { padding-top: 16px; }
-
-  /* moments: a timestamp column that links into the upload when the clock is matched (extensions.md row 12) */
+  /* moments: a timestamp column that links into the upload on a matched clock (extensions.md row 12) */
   .moments { list-style: none; margin: 0; padding: 0; }
   .moment { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
-  .moment:first-child { border-top: 0; }
-  .moment__at { font-size: var(--text-body-sm); color: var(--fg-3); }
+  .moments > .moment:first-child { border-top: 0; }
+  .moment__at { font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-3); }
   .moment__at a { position: relative; display: inline-flex; align-items: center; gap: 4px; color: var(--tint-fg); text-decoration: none; }
-  .moment__at a::after { content: ""; position: absolute; inset: -12px -4px; }
+  .moment__at a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
   .moment__at a:hover { text-decoration: underline; text-underline-offset: 4px; }
   .moment__at svg { width: 12px; height: 12px; flex: none; }
   .moment__body { min-width: 0; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
-  .moment__body b { display: block; font-weight: 500; color: var(--fg-1); }
+  .moment__kind { font-size: var(--text-meta); line-height: var(--lh-meta); color: var(--fg-3); }
+  .moment__body b { font-weight: 500; color: var(--fg-1); }
   .moment__body q { color: var(--fg-1); quotes: "“" "”" "‘" "’"; }
 
-  /* brands: a ranked list; each row opens the moments it was named */
-  .brands { list-style: none; margin: 16px 0 0; padding: 0; }
+  /* brands: ranked rows (dataviz.md "Distribution row": a 4 px meter); a row opens the moments it was named */
+  .brands { list-style: none; margin: var(--d-inner) 0 0; padding: 0; }
   .brands > li { border-top: 1px solid var(--line); }
   .brands > li:first-child { border-top: 0; }
   .brow { position: relative; display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) auto 16px; grid-template-areas: "name value chev" "track track track";
-    column-gap: 12px; row-gap: 8px; align-items: center; min-height: 56px; padding: 12px 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; outline-offset: -2px; }
-  @media (min-width: 48rem) { .brow { grid-template-columns: 160px minmax(0, 1fr) 120px 16px; grid-template-areas: "name track value chev"; min-height: 44px; padding: 8px 0; } }
+    column-gap: 12px; row-gap: 8px; align-items: center; min-height: 56px; padding: 12px 0; border: 0; border-radius: var(--radius-md); background: none; color: inherit; text-align: left; cursor: pointer; }
+  .brow:focus-visible { outline-offset: 4px; }
+  @media (min-width: 48rem) { .brow { grid-template-columns: 136px minmax(0, 1fr) 120px 16px; grid-template-areas: "name track value chev"; min-height: 44px; padding: 8px 0; } }
   .brow__name { grid-area: name; display: flex; align-items: center; gap: 8px; min-width: 0; font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-1); }
-  .brow__track { grid-area: track; display: block; height: 8px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
+  .brow__track { grid-area: track; display: block; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
   .brow__track i { display: block; height: 100%; min-width: 2px; border-radius: inherit; background: var(--fg-2); }
   .brow__value { grid-area: value; justify-self: end; font-size: var(--text-meta); color: var(--fg-3); white-space: nowrap; }
   .brow__value b { font-weight: 600; color: var(--fg-1); }
   .brow svg { grid-area: chev; width: 16px; height: 16px; color: var(--fg-3); transition: transform 150ms var(--ease-out-quart); }
   .brow[aria-expanded="true"] svg { transform: rotate(180deg); }
   .brow:hover .brow__name { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--fg-4); }
-  .brands .ss-reveal .moments { padding: 0 0 12px; }
+  /* an opened brand's moments hang off a 2 px rule (the system's nested indent), inside an 8 px compensated inset */
+  .brands .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
+  .brands .ss-reveal .moments { margin: 0 0 12px; padding-left: 12px; border-left: 2px solid var(--line-strong); }
 
-  /* partner moments: the system's segmented control picks a partner */
-  .ss-seg { margin-top: 16px; }
+  /* partners: the system's segmented control picks a partner; five moments, the rest behind "more" */
+  .ss-seg { margin-top: var(--d-inner); }
   .partner-panel { margin-top: 8px; }
   .partner-panel[hidden] { display: none; }
-  .partner-sum { margin: 12px 0 4px; font-size: var(--text-body-sm); color: var(--fg-2); }
+  .partner-sum { margin: 12px 0 4px; font-size: var(--text-body-sm); color: var(--fg-2); text-wrap: pretty; }
   @media (min-width: 48rem) { .partner-sum { font-size: var(--text-meta); } }
 
-  /* quotes: the system quote, three to a row on desktop */
-  .quotes { display: grid; gap: 8px 24px; margin-top: 4px; }
+  /* quotes: the system quote, three to a row on wide screens */
+  .quotes { display: grid; gap: 24px; }
   @media (min-width: 48rem) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 80rem) { .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .quotes .ss-x-quote { margin-top: 0; }
   .quotes .ss-x-quote footer { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
   .ss-x-quote__link { display: inline-flex; align-items: center; gap: 4px; }
+  .ss-x-quote__link::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
   .ss-x-quote__link svg { width: 12px; height: 12px; }
 
-  /* packages: three cards, one price each */
+  /* packages: three cards; the three-month total is the price; one comparison under them */
   .tiers { display: grid; gap: var(--d-stack); }
   @media (min-width: 64rem) { .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .tier { display: flex; flex-direction: column; }
-  .tier__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .tier__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; min-height: 24px; }
   .tier__name { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; }
-  .tier__price { margin: 16px 0 0; display: flex; align-items: baseline; gap: 8px; }
+  .tier__fit { margin: 4px 0 0; font-size: var(--text-body-sm); color: var(--fg-2); text-wrap: pretty; }
+  .tier__price { margin: var(--d-card) 0 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; }
   .tier__price b { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; font-size: var(--text-display); line-height: var(--lh-display);
     font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); }
-  .tier__price span { font-size: var(--text-body-sm); color: var(--fg-3); }
-  .tier__total { margin: 4px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
-  @media (min-width: 48rem) { .tier__total { font-size: var(--text-meta); } }
-  .tier__what { margin: 16px 0 0; padding-top: 16px; border-top: 1px solid var(--line); font-size: var(--text-body); color: var(--fg-1); }
-  .tier .ss-bullets { margin-top: 12px; flex: 1; align-content: start; }
-  .tier .ss-btn { margin-top: 24px; width: 100%; }
-  .terms { margin: 16px 0 0; max-width: 72ch; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-3); }
+  .tier__price span { font-size: var(--text-body-sm); color: var(--fg-2); }
+  .tier__monthly { margin: 4px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
+  @media (min-width: 48rem) { .tier__monthly { font-size: var(--text-meta); } }
+  .tier .ss-bullets { margin-top: var(--d-card); padding-top: var(--d-card); border-top: 1px solid var(--line); flex: 1; align-content: start; }
+  .tier__reach, .tier__example { margin: var(--d-inner) 0 0; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
+  @media (min-width: 48rem) { .tier__reach, .tier__example { font-size: var(--text-meta); } }
+  .tier__reach b { font-weight: 600; color: var(--fg-1); }
+  .tier__example a { position: relative; display: inline-flex; align-items: center; gap: 4px; color: var(--tint-fg); text-decoration: none; }
+  .tier__example a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
+  .tier__example a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .tier__example svg { width: 12px; height: 12px; flex: none; }
+  .tier .ss-btn { margin-top: var(--d-card); width: 100%; }
+  /* the comparison: the system's inline table (components.md §9.2, "Fair price, by source") */
+  .compare { margin-top: var(--d-stack); overflow: hidden; }
+  .compare table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .compare caption { padding: var(--d-card) var(--d-card) 8px; text-align: left; font-size: var(--text-body-sm); font-weight: 600; color: var(--fg-1); }
+  .compare th, .compare td { padding: 8px 12px; text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  .compare thead th { font-size: var(--text-meta); font-weight: 400; color: var(--fg-3); }
+  .compare tbody th { font-size: var(--text-body-sm); font-weight: 400; color: var(--fg-2); }
+  .compare td { font-size: var(--text-body-sm); color: var(--fg-1); }
+  .compare td.no { color: var(--fg-4); }
+  .compare tbody tr { border-top: 1px solid var(--line); }
+  .compare th:first-child, .compare td:first-child { padding-left: var(--d-card); }
+  .compare th:last-child, .compare td:last-child { padding-right: var(--d-card); }
+  .compare col.what { width: 34%; }
+  @media (max-width: 47.99rem) { .compare th, .compare td { padding: 8px 4px; } .compare th:first-child, .compare td:first-child { padding-left: var(--d-card); } .compare th:last-child, .compare td:last-child { padding-right: var(--d-card); } .compare col.what { width: 31%; } }
+  .terms { margin: var(--d-stack) 0 0; max-width: 72ch; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-3); text-wrap: pretty; }
   .terms b { font-weight: 500; color: var(--fg-2); }
 
-  /* closing call to action */
-  .cta { display: grid; gap: 16px; }
+  /* closing call to action: the address shown, and a copy of it one tap away */
+  .cta { display: grid; gap: var(--d-card); }
   @media (min-width: 64rem) { .cta { grid-template-columns: minmax(0, 1fr) auto; align-items: center; } }
   .cta h2 { margin: 0; font-size: var(--text-display); line-height: var(--lh-display); font-weight: 600; letter-spacing: -0.025em; }
-  .cta p { margin: 8px 0 0; max-width: 60ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); }
+  .cta p { margin: 8px 0 0; max-width: 60ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
   .cta__actions { display: flex; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 47.99rem) { .cta__actions > .ss-btn { flex: 1 1 auto; } }
+  .cta__alt { margin: var(--d-inner) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .cta__alt a { position: relative; color: var(--tint-fg); text-decoration: none; }
+  .cta__alt a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
+  .cta__alt a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   /* about these numbers + freshness */
-  .about { margin-top: 48px; }
-  .about .ss-x-prose { padding: 16px 0 0; }
-  .fresh { margin: 24px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: var(--text-body-sm); color: var(--fg-3); }
-  .fresh i { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--fg-3); flex: none; }
+  .about { margin-top: var(--d-section); }
+  .about .ss-x-prose { padding: var(--d-card) 0 0; }
+  .about__more { margin: var(--d-card) 0 0; }
+  .about__more p { margin: 0 0 var(--d-inner); }
+  .fresh { margin: var(--d-section) 0 0; display: grid; grid-template-columns: 8px minmax(0, 1fr); column-gap: 12px; align-items: start; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
+  .fresh i { width: 8px; height: 8px; margin-top: calc((1lh - 8px) / 2); border-radius: var(--radius-full); background: var(--fg-3); }
+  .fresh.is-missing i { background: var(--warn); }
   .fresh a { position: relative; color: var(--tint-fg); text-decoration: none; }
-  .fresh a::after { content: ""; position: absolute; inset: -12px -4px; }
+  .fresh a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
   .fresh a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-  /* a section the data cannot fill yet says why (the system verdict) */
-  .absent { margin-top: 16px; }
+  /* a part of the page the data cannot fill yet says why (the system verdict is the card's heading) */
   .ss-x-chart-tip { z-index: 20; }
+  .ss-x-chart-tip__title { text-wrap: balance; }
+  .hero__summary[hidden] { display: none; }
   .ss-x-chart-tip[hidden] { display: none; }
+  .page-absent { margin-top: var(--d-section); }
+  .page-absent[hidden] { display: none; }
 </style>
 </head>
 <body>
 <a class="ss-skip" href="#main">Skip to content</a>
 <header class="ss-topbar">
   <div class="ss-topbar__row topin">
-    <a class="brand" href="#top" aria-label="Dive Radio, back to the top">
+    <a class="brand" href="#top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"/></svg>
       Dive Radio <span>for partners</span>
     </a>
     <div class="ss-topbar__actions">
       <a class="ss-btn ss-btn--ghost ss-btn--sm toplink" href="#packages">Packages</a>
-      <a class="ss-btn ss-btn--primary ss-btn--sm" data-book="" href="#book">Book a partnership</a>
+      <a class="ss-btn ss-btn--primary ss-btn--sm book" data-book="" href="#book">Book a partnership</a>
     </div>
   </div>
 </header>
@@ -631,16 +710,17 @@ button { font: inherit; color: inherit; }
 <main id="main" tabindex="-1">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__split">
-    <div class="hero__copy">
-    <p class="hero__meta">Live every Thursday · 1 PM Pacific</p>
-    <h1 id="hero-title">The live show for designers who build.</h1>
-    <p class="hero__lede"><span id="hero-duration">About two hours</span>, every week, with Tommy Geoco and Ridd. Designers call in with what they’re making, people from Vercel, Shopify, Linear, Notion and Netflix have called in too, and your product goes on screen in the middle of the conversation.</p>
-    <div class="hero__actions">
-      <a class="ss-btn ss-btn--primary" data-book="" href="#book">Book a partnership</a>
-      <a class="ss-btn ss-btn--secondary" href="#packages">See packages</a>
-    </div>
-    </div>
-    <dl class="ss-kpis" id="kpis" aria-label="Dive Radio at a glance"></dl>
+      <div class="hero__copy">
+        <p class="hero__meta dots"><span>Live every Thursday</span><span>1 PM Pacific</span><span>with Tommy Geoco and Ridd</span></p>
+        <h1 id="hero-title">The live show for designers who build.</h1>
+        <p class="hero__lede"><span id="hero-duration">About two hours</span> of designers calling in with what they’re making<span id="hero-teams"></span>. Your product goes on screen in the middle of the conversation.</p>
+        <div class="hero__actions">
+          <a class="ss-btn ss-btn--primary" data-book="" href="#book">Book a partnership</a>
+          <a class="ss-btn ss-btn--secondary" href="#packages">See packages</a>
+        </div>
+        <p class="hero__price dots" id="hero-price"></p>
+      </div>
+      <div class="ss-panel hero__summary" id="hero-summary"><dl class="summary" id="kpis"></dl></div>
     </div>
     <dl class="partners" id="partners"></dl>
   </section>
@@ -675,10 +755,10 @@ button { font: inherit; color: inherit; }
         <span class="ss-section-header__meta" id="room-meta"></span>
       </div>
     </div>
-    <dl class="ss-kpis" id="room-kpis" aria-label="The live room"></dl>
-    <div class="ss-panel card" id="room-curve" style="margin-top: 12px"></div>
+    <p class="lede">A room, not a feed: people stay through the show and talk back while your product is on screen.</p>
+    <dl class="ss-kpis" id="room-kpis"></dl>
+    <div class="ss-panel card room-curve" id="room-curve"></div>
   </section>
-
 
   <section class="block" id="onair" aria-labelledby="onair-title">
     <div class="ss-section-header">
@@ -703,6 +783,8 @@ button { font: inherit; color: inherit; }
     <div class="ss-panel card" id="voices-card"></div>
   </section>
 
+  <div class="ss-panel card page-absent" id="page-absent" hidden></div>
+
   <section class="block" id="packages" aria-labelledby="packages-title">
     <div class="ss-section-header">
       <div class="ss-section-header__text">
@@ -710,47 +792,9 @@ button { font: inherit; color: inherit; }
         <span class="ss-section-header__meta">Three months, paid up front, 10% off · one partner per category</span>
       </div>
     </div>
-    <div class="tiers">
-      <article class="ss-panel card tier" aria-labelledby="tier-1">
-        <div class="tier__head"><h3 class="tier__name" id="tier-1">Mid-roll</h3></div>
-        <p class="tier__price"><b>$7,500</b><span>a month</span></p>
-        <p class="tier__total"><span class="n">$20,250</span> for three months</p>
-        <p class="tier__what">Your read in the middle of the show.</p>
-        <ul class="ss-bullets" role="list">
-          <li>A 60–90 second read, live, twice a month</li>
-          <li>Your logo on the live overlay and in the show notes</li>
-          <li>The only partner in your category</li>
-        </ul>
-        <a class="ss-btn ss-btn--secondary" data-book="Mid-roll" href="#book">Book Mid-roll</a>
-      </article>
-      <article class="ss-panel card tier" aria-labelledby="tier-2">
-        <div class="tier__head"><h3 class="tier__name" id="tier-2">Segment</h3></div>
-        <p class="tier__price"><b>$12,500</b><span>a month</span></p>
-        <p class="tier__total"><span class="n">$33,750</span> for three months</p>
-        <p class="tier__what">A recurring segment with your name on it.</p>
-        <ul class="ss-bullets" role="list">
-          <li>Everything in Mid-roll</li>
-          <li>A named segment twice a month, like Designer of the Week, presented by Notion</li>
-          <li>Clips of your segment cut for shorts</li>
-        </ul>
-        <a class="ss-btn ss-btn--secondary" data-book="Segment" href="#book">Book Segment</a>
-      </article>
-      <article class="ss-panel card tier" aria-labelledby="tier-3">
-        <div class="tier__head"><h3 class="tier__name" id="tier-3">Build</h3><span class="ss-tag ss-tag--neutral">Three partners at a time</span></div>
-        <p class="tier__price"><b>$17,500</b><span>a month</span></p>
-        <p class="tier__total"><span class="n">$47,250</span> for three months</p>
-        <p class="tier__what">A live build with your product, on screen.</p>
-        <ul class="ss-bullets" role="list">
-          <li>A 10–15 minute live build with your product, once a month</li>
-          <li>Named in every episode</li>
-          <li>Your logo on the intro, the live overlay and the show notes, every episode</li>
-          <li>Paid and organic rights to use your segments</li>
-          <li>The only partner in your category</li>
-        </ul>
-        <a class="ss-btn ss-btn--secondary" data-book="Build" href="#book">Book Build</a>
-      </article>
-    </div>
-    <p class="terms"><b>Terms.</b> A three-month minimum, paid up front, with 10% off — the totals above. A campaign runs across about thirteen weekly episodes. One partner per category; categories open as campaigns end. Ask about live events, community build challenges and the UX Tools newsletter.</p>
+    <div class="tiers" id="tiers"></div>
+    <div class="ss-panel compare" id="compare"></div>
+    <p class="terms"><b>Terms.</b> A three-month minimum, paid up front, with 10% off: the totals above. A campaign is three months of weekly live episodes. One partner per category: exclusivity covers paid placements, and the hosts still talk about the tools they use, on their own terms. Ask about live events, community build challenges and the UX Tools newsletter.</p>
   </section>
 
   <section class="block" id="book" aria-labelledby="book-title">
@@ -759,9 +803,12 @@ button { font: inherit; color: inherit; }
         <h2 id="book-title">Put your product in the room</h2>
         <p>Tell us your product, your category and the month you’d like to start. We’ll come back with what’s open and an insertion order.</p>
       </div>
-      <div class="cta__actions">
-        <a class="ss-btn ss-btn--primary" data-book="" id="book-mail" href="#book">Email Tommy and Ridd</a>
-        <a class="ss-btn ss-btn--secondary" href="./">See the full analytics</a>
+      <div>
+        <div class="cta__actions">
+          <a class="ss-btn ss-btn--primary" data-book="" id="book-mail" href="#book">Email Tommy and Ridd</a>
+          <button type="button" class="ss-btn ss-btn--secondary" id="copy-addr">Copy address</button>
+        </div>
+        <p class="cta__alt">Or write to <a id="book-addr" href="#book"></a><span class="ss-sr" id="copy-status" aria-live="polite"></span></p>
       </div>
     </div>
   </section>
@@ -772,7 +819,13 @@ button { font: inherit; color: inherit; }
       <span class="ss-disclosure__text"><span class="ss-disclosure__title" id="about-title">About these numbers</span><span class="ss-disclosure__sub">Where each one comes from, and what it leaves out</span></span>
       <svg class="ss-disclosure__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
-    <div class="ss-reveal" id="about-body" data-open="false" inert aria-hidden="true"><div><div class="ss-x-prose" id="about-prose"></div></div></div>
+    <div class="ss-reveal" id="about-body" data-open="false" inert aria-hidden="true"><div><div>
+      <div class="ss-x-prose" id="about-prose"></div>
+      <div class="ss-x-prose about__more">
+        <p>The hosts run the show from the same public numbers, including what isn’t going well.</p>
+        <a class="ss-btn ss-btn--secondary" href="./">See the full analytics</a>
+      </div>
+    </div></div></div>
     <p class="fresh" id="fresh"><i aria-hidden="true"></i><span>Reading the latest numbers…</span></p>
   </section>
 </main>
@@ -782,30 +835,59 @@ button { font: inherit; color: inherit; }
 <script src="data.js"></script>
 <script>
 /* Sponsors page — renders data.sponsor and the episode rows of data.js; it never
-   recomputes a number the build stores (every total, typical, count and link is
-   data.sponsor's), and an absent value says why instead of showing a zero. */
+   recomputes a number the build stores (every total, typical, count, peak and link is
+   data.sponsor's), and a part the data cannot fill says why instead of showing a zero. */
 const CONTACT = "hello@dive.club";
 const DATA = window.DIVE_DATA || null;
 const S = DATA && DATA.sponsor ? DATA.sponsor : null;
 const EPISODES = (DATA && Array.isArray(DATA.episodes) ? DATA.episodes : []).filter((e) => e.show === "dive-radio").sort((a, b) => a.ep - b.ep);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const fmt = (v) => (v == null || !Number.isFinite(v) ? "—" : Math.round(v).toLocaleString("en-US"));
+const ok = (v) => v != null && Number.isFinite(v);
+const fmt = (v) => (ok(v) ? Math.round(v).toLocaleString("en-US") : "—");
 const num = (v) => `<span class="n">${fmt(v)}</span>`;
 const short = (t) => String(t || "").replace(/^Dive Radio:?\s*/i, "");
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-// "Oct 8": the month is a word, only the day is a figure
-const day = (iso) => { const [y, m, d] = String(iso || "").slice(0, 10).split("-").map(Number); return m ? `${MONTHS[m - 1]} <span class="n">${d}</span>` : "—"; };
+// "Oct 8": the month is a word, the day a figure, and the two never part across a line
+const day = (iso) => { const [, m, d] = String(iso || "").slice(0, 10).split("-").map(Number); return m ? `${MONTHS[m - 1]}&nbsp;<span class="n">${d}</span>` : ""; };
 const clock = (stamp) => String(stamp || "").replace(/^00:/, "").replace(/^0(\d)/, "$1");
+const list = (words) => (words.length < 2 ? words.join("") : `${words.slice(0, -1).join(", ")} and ${words[words.length - 1]}`);
 const ICON = {
-  play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>',
   out: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
   chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
   wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
 };
-function absent(title, body) {
-  return `<div class="ss-verdict absent"><span class="ss-verdict__icon" aria-hidden="true">${ICON.wait}</span><div class="ss-verdict__text"><p class="ss-verdict__title">${esc(title)}</p><p class="ss-verdict__body">${esc(body)}</p></div></div>`;
+const chev = ICON.chev.replace("<svg ", '<svg class="ss-btn__chev" ');
+// an absent part: the system verdict, its title the card's own name, the reason under it
+function absent(title, body, level = 3) {
+  return `<div class="ss-verdict"><span class="ss-verdict__icon" aria-hidden="true">${ICON.wait}</span><div class="ss-verdict__text"><h${level} class="ss-verdict__title">${esc(title)}</h${level}><p class="ss-verdict__body">${esc(body)}</p></div></div>`;
 }
+// a "more" disclosure whose label says what it does in both states
+function moreHTML(id, closedLabel, inner) {
+  return `<div class="more"><div class="ss-reveal" id="${id}" data-open="false" inert aria-hidden="true"><div><div>${inner}</div></div></div>
+    <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="${id}" data-toggle="${id}" data-closed="${esc(closedLabel)}"><span>${esc(closedLabel)}</span> ${chev}</button></div>`;
+}
+
+/* --- the packages: one source for every price on the page (the owners' terms, 2026-07-22, and the signed orders) --- */
+const PACKAGES = [
+  { name: "Mid-roll", fit: "For a launch or a steady reminder: your read, live, in the middle of the show.", total: 20250, monthly: 7500,
+    bullets: ["A 60–90 second read, live, twice a month", "Your logo on the live overlay and in the show notes", "The only partner in your category"] },
+  { name: "Segment", fit: "For owning a recurring moment: a segment with your name on it.", total: 33750, monthly: 12500,
+    bullets: ["Everything in Mid-roll", "A named segment twice a month, like Designer of the Week", "Clips of your segment cut for shorts"] },
+  { name: "Build", fit: "For a product people build with: the hosts use it live, on screen.", total: 47250, monthly: 17500, tag: "Three partners at a time",
+    bullets: ["A 10–15 minute live build with your product, once a month", "Named in every episode", "Your logo on the intro, the live overlay and the show notes, every episode", "Rights to use your segments in your own paid and organic posts", "The only partner in your category"] },
+];
+const COMPARE = [
+  ["A 60–90 second read, live", "Twice a month", "Twice a month", null],
+  ["A named segment", null, "Twice a month", null],
+  ["A 10–15 minute live build", null, null, "Once a month"],
+  ["Named on air", "In each read", "In each read and segment", "Every episode"],
+  ["Your logo", "Live overlay, show notes", "Live overlay, show notes", "Intro, live overlay, show notes"],
+  ["Clips cut for shorts", null, "Your segment", null],
+  ["Rights to use the segments in your own posts", null, null, "Paid and organic"],
+  ["The only partner in your category", "Yes", "Yes", "Yes"],
+];
+const money = (v) => `$${v.toLocaleString("en-US")}`;
 
 /* --- booking: one address, the package in the subject --------------------------------- */
 function mailto(tier) {
@@ -813,194 +895,262 @@ function mailto(tier) {
   const body = `Hi Tommy and Ridd,\n\nWe'd like to talk about ${tier ? `the ${tier} package` : "a partnership"} on Dive Radio.\n\nCompany:\nProduct and category:\nWhen we'd like to start:\n`;
   return `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
-for (const a of document.querySelectorAll("[data-book]")) a.href = mailto(a.dataset.book);
 
-/* --- hero: four numbers, the partners ---------------------------------------------------- */
+/* --- hero: the price anchor, four numbers, the partners ------------------------------------- */
 function renderHero() {
-  const v = S?.views || {}, w = S?.watch || {}, a = S?.audience || {}, t = S?.live?.typical || null;
-  const cell = (value, label) => `<div class="ss-kpi"><div class="ss-big"><dt>${label}</dt><dd>${value}</dd></div></div>`;
-  $("kpis").innerHTML = [
-    cell(num(a.total), a.total != null ? "subscribers and followers on the four channels it streams to" : esc(a.reason || "subscriber counts are not available today")),
-    cell(num(v.total), v.total != null ? `views so far across all <span class="n">${v.episodes}</span> episodes` : esc(v.reason || "views are not available yet")),
-    cell(num(w.hours), w.hours != null ? `hours watched on YouTube${w.missing?.length ? ` across <span class="n">${w.episodes}</span> episodes` : ""}` : esc(w.reason || "watch time is not available yet")),
-    cell(num(t?.people), t?.people != null ? "people watch a typical show live" : "a typical show needs three earlier shows"),
-  ].join("");
+  const from = Math.min(...PACKAGES.map((p) => p.total));
+  $("hero-price").innerHTML = `<span>Packages from <b class="n">${money(from)}</b> for three months</span><span>one partner per category</span>`;
+  const v = S?.views || {}, w = S?.watch || {}, t = S?.live?.typical || null, c = S?.callIns || {};
+  const cells = [
+    ok(v.perEpisode) && [num(v.perEpisode), "views an episode so far, on average, on YouTube and X"],
+    ok(t?.peak) && [num(t.peak), `watching at once at a typical show’s peak${ok(t.average) ? `, <span class="n">${fmt(t.average)}</span> on average` : ""}`],
+    ok(c.total) && [num(c.total), `call-ins aired in <span class="n">${c.episodes}</span> episodes`],
+    ok(w.hours) && [num(w.hours), "hours watched on YouTube"],
+  ].filter(Boolean);
+  // fewer than two numbers is not a summary: one verdict says why instead (with no data at all, the page's own verdict does)
+  $("hero-summary").hidden = !S;
+  $("hero-summary").innerHTML = cells.length >= 2
+    ? `<dl class="summary" id="kpis">${cells.map(([value, label]) => `<div class="ss-big"><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>`
+    : absent("Dive Radio at a glance", S ? "The latest readings have not arrived yet." : "The latest numbers have not loaded.", 2);
   const names = (S?.partners || []).map((p) => p.name);
   $("partners").innerHTML = names.length ? `<dt>Partners</dt>${names.map((n) => `<dd>${esc(n)}</dd>`).join("")}` : "";
-  const d = S?.live?.typical?.durationMin;
-  if (Number.isFinite(d) && d > 0) {
+  const d = t?.durationMin;
+  if (ok(d) && d > 0) {
     const hours = Math.round(d / 30) / 2;
     $("hero-duration").textContent = `About ${hours === 1 ? "an hour" : hours === 2 ? "two hours" : `${hours} hours`}`;
   }
+  const teams = S?.callIns?.teamsNamed || [];
+  $("hero-teams").textContent = teams.length ? `, and how teams at ${list(teams)} design and hire` : "";
 }
 
-/* --- reach: every episode's views, then the channels ------------------------------------- */
+/* --- who calls in: the newest, the count by episode, then everyone -------------------------- */
+function renderCallIns() {
+  const c = S?.callIns;
+  if (!c || !ok(c.total)) { $("callins-meta").textContent = ""; $("callins-card").innerHTML = absent("Who calls in", c?.reason || "The call-in list has not been imported."); return; }
+  $("callins-meta").innerHTML = `Videos the community sent in that aired, E${c.fromEp}–E${c.toEp}`;
+  const line = (x) => `<b>${esc(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${esc(x.nominee)} for Designer of the Week` : esc(x.about || "sent in a video")}`;
+  const newest = [...c.list].reverse().slice(0, 6);
+  const top = Math.max(...c.byEpisode.map((x) => x.count), 1);
+  const cols = c.byEpisode.map((x) => `<li><span class="cols__value n">${x.count}</span><span class="cols__plot"><i style="height:${((x.count / top) * 100).toFixed(1)}%"></i></span><span class="cols__ep n">E${x.ep}</span></li>`).join("");
+  const byEp = new Map();
+  for (const x of [...c.list].reverse()) { if (!byEp.has(x.ep)) byEp.set(x.ep, []); byEp.get(x.ep).push(x); }
+  const titleOf = (ep) => short(EPISODES.find((e) => e.ep === ep)?.title || "");
+  const groups = [...byEp.entries()].map(([ep, rows]) => `<section class="callins-ep"><h3>E${ep}, ${esc(titleOf(ep))}</h3><ul class="rows" role="list">${rows.map((x) => `<li><span>${line(x)}</span></li>`).join("")}</ul></section>`).join("");
+  $("callins-card").innerHTML = `<div class="callins-top">
+      <p class="statement"><b>${num(c.people)}</b><span>people have called in since E${c.fromEp}, <span class="n">${fmt(c.nominations)}</span> of them to nominate a Designer of the Week</span></p>
+      <figure class="cols" aria-label="${esc(`Call-ins by episode: ${c.byEpisode.map((x) => `E${x.ep} ${x.count}`).join(", ")}`)}">
+        <figcaption>Call-ins by episode</figcaption>
+        <ol role="list" style="--n: ${c.byEpisode.length}" aria-hidden="true">${cols}</ol>
+      </figure>
+      <div class="newest">
+        <h3 class="sub">The newest</h3>
+        <ul class="rows" role="list">${newest.map((x) => `<li><span>${line(x)}</span><span class="n">E${x.ep}</span></li>`).join("")}</ul>
+      </div>
+    </div>
+    ${moreHTML("callins-more", `All ${fmt(c.people)} people who have called in`, groups)}`;
+}
+
+/* --- reach: every episode's views, then the channels ------------------------------------------ */
 function renderReach() {
   const v = S?.views || {};
   $("reach-meta").innerHTML = S?.asOf ? `YouTube views and X broadcast plays so far · as of ${day(S.asOf)}` : "";
-  const rows = EPISODES.filter((e) => Number.isFinite(e.latest?.totalViews));
-  if (!rows.length) { $("episodes-card").innerHTML = `<h3 class="card__title">Views by episode</h3>${absent("Views are on their way", "The first episode readings have not arrived yet.")}`; }
+  const rows = EPISODES.filter((e) => ok(e.latest?.totalViews));
+  if (!rows.length) $("episodes-card").innerHTML = absent("Views by episode", "The first episode readings have not arrived yet.");
   else {
     const max = Math.max(...rows.map((e) => e.latest.totalViews));
-    const best = rows.reduce((top, e) => (e.latest.totalViews > top.latest.totalViews ? e : top), rows[0]);
     const newest = EPISODES[EPISODES.length - 1];
     const bars = EPISODES.map((e, i) => {
       const L = e.latest || {};
-      if (!Number.isFinite(L.totalViews)) return `<li class="bar"><span class="bar__ep n">E${e.ep}</span><span class="bar__title">${esc(short(e.title))}</span><span class="bar__value bar__note">not yet</span><span class="bar__track"></span></li>`;
-      const yt = Number.isFinite(L.ytTotal) ? L.ytTotal : 0, xp = Number.isFinite(L.xPlays) ? L.xPlays : 0;
-      const label = `E${e.ep}, ${short(e.title)}: ${fmt(L.totalViews)} views — ${fmt(yt)} on YouTube and ${fmt(xp)} X plays`;
-      return `<li class="bar" tabindex="0" data-tip="${i}" aria-label="${esc(label)}"><span class="bar__ep n">E${e.ep}</span><span class="bar__title">${esc(short(e.title))}</span><span class="bar__track" aria-hidden="true">${yt ? `<i class="yt" style="width:${(yt / max) * 100}%"></i>` : ""}${xp ? `<i class="x" style="width:${(xp / max) * 100}%"></i>` : ""}</span><span class="bar__value n">${fmt(L.totalViews)}</span></li>`;
+      if (!ok(L.totalViews)) return `<li><div class="bar"><span class="bar__ep n">E${e.ep}</span><span class="bar__title">${esc(short(e.title))}</span><span class="bar__track"><span class="bar__note">not counted yet</span></span></div></li>`;
+      const parts = [ok(L.ytTotal) && `${fmt(L.ytTotal)} on YouTube`, ok(L.xPlays) && `${fmt(L.xPlays)} X broadcast plays`].filter(Boolean);
+      const label = `E${e.ep}, ${short(e.title)}: ${fmt(L.totalViews)} views${parts.length ? ` — ${parts.join(" and ")}` : ""}`;
+      const segs = `${ok(L.ytTotal) && L.ytTotal > 0 ? `<i class="yt" style="flex:${L.ytTotal} 1 0"></i>` : ""}${ok(L.xPlays) && L.xPlays > 0 ? `<i class="x" style="flex:${L.xPlays} 1 0"></i>` : ""}`;
+      return `<li><button type="button" class="bar" data-tip="${i}" aria-label="${esc(label)}"><span class="bar__ep n">E${e.ep}</span><span class="bar__title">${esc(short(e.title))}</span><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="width:calc((100% - 72px) * ${(L.totalViews / max).toFixed(4)})">${segs}</span><span class="bar__value n">${fmt(L.totalViews)}</span></span></button></li>`;
     }).join("");
     $("episodes-card").innerHTML = `<h3 class="card__title">Views by episode</h3>
-      <p class="statement"><b>${num(v.perEpisode)}</b><span>${v.perEpisode != null ? "views an episode on average so far" : esc(v.reason || "")}</span></p>
-      <p class="ss-x-legend"><span><span class="legend-dot" style="background: var(--series-1)"></span>YouTube</span><span><span class="legend-dot" style="background: var(--series-2)"></span>X broadcast plays</span></p>
+      ${ok(v.total) ? `<p class="statement"><b>${num(v.total)}</b><span>views so far across all <span class="n">${v.episodes}</span> episodes</span></p>` : ""}
+      <p class="ss-x-legend"><span><i style="background: var(--series-1)"></i>YouTube</span><span><i style="background: var(--series-2)"></i>X broadcast plays</span></p>
       <div class="chartwrap"><ol class="bars" role="list" aria-label="Views by episode, oldest first">${bars}</ol></div>
-      <p class="card__foot">Most so far: <b>E${best.ep}, ${esc(short(best.title))}</b>, ${num(best.latest.totalViews)} views. Views keep arriving after air${newest ? ` — E${newest.ep} aired ${day(newest.premiere)}` : ""}.</p>`;
+      <p class="card__foot">Views keep arriving after air${newest ? ` — E${newest.ep} premiered ${day(newest.premiere)}` : ""}. Tap or hover an episode for its split.</p>`;
   }
   const a = S?.audience;
-  if (!a?.channels?.length) { $("channels-card").innerHTML = `<h3 class="card__title">Where it streams</h3>${absent("Channel counts are on their way", "The latest reading has not arrived.")}`; return; }
-  const known = a.channels.filter((c) => c.count != null).sort((x, y) => y.count - x.count);
+  if (!a?.channels?.length) { $("channels-card").innerHTML = absent("Where it streams", "The latest channel counts have not arrived."); return; }
+  const known = a.channels.filter((c) => ok(c.count)).sort((x, y) => y.count - x.count);
   const cmax = Math.max(...known.map((c) => c.count), 1);
-  const rows2 = [...known, ...a.channels.filter((c) => c.count == null)].map((c) => `<li class="bar"><span class="bar__title">${esc(c.label)}<small>${esc(c.platform)} ${esc(c.unit)}</small></span><span class="bar__value n">${c.count != null ? fmt(c.count) : "—"}</span><span class="bar__track" aria-hidden="true">${c.count != null ? `<i class="${c.platform === "YouTube" ? "yt" : "x"}" style="width:${(c.count / cmax) * 100}%"></i>` : ""}</span></li>`).join("");
+  const rows2 = [...known, ...a.channels.filter((c) => !ok(c.count))].map((c) => `<li><div class="bar"><span class="bar__title">${esc(c.label)}<small>${esc(c.platform)} ${esc(c.unit)}</small></span><span class="bar__track">${ok(c.count) ? `<span class="bar__fill" style="width:calc((100% - 72px) * ${(c.count / cmax).toFixed(4)})"><i class="${c.platform === "YouTube" ? "yt" : "x"}" style="flex:1 1 0"></i></span><span class="bar__value n">${fmt(c.count)}</span>` : `<span class="bar__note">not read today</span>`}</span></div></li>`).join("");
+  // the total is a sum of channel counts, two of them published rounded: shown to the thousand
+  const about = ok(a.total) ? `<p class="statement"><b>${(Math.round(a.total / 1000) * 1000).toLocaleString("en-US")}</b><span>subscribers and followers on the four channels, rounded</span></p>` : "";
   $("channels-card").innerHTML = `<h3 class="card__title">Where it streams</h3>
-    <p class="statement"><span>Every episode goes out live on four channels at once, and to Ridd’s LinkedIn.</span></p>
+    ${about}
+    <p class="card__meta">Every episode goes out live on these four channels at once, and to Ridd’s LinkedIn.</p>
     <ol class="bars channels" role="list">${rows2}</ol>
-    <p class="card__foot">${a.date ? `Counts on ${day(a.date)}. ` : ""}One person may follow more than one channel.</p>`;
+    <p class="card__foot">${a.date ? `Counts on ${day(a.date)}. ` : ""}One person may follow more than one channel, and YouTube publishes its subscriber counts rounded.</p>`;
 }
 
-/* --- the live room: four numbers, then the newest show minute by minute ------------------ */
+/* --- the live room: four numbers, then the newest show minute by minute --------------------- */
 function renderRoom() {
   const L = S?.live;
   const t = L?.typical;
-  $("room-meta").innerHTML = t ? `A typical show is the middle of the <span class="n">${t.shows}</span> shows before the newest (E${t.fromEp}–E${t.toEp})` : "";
-  const cell = (value, label) => `<div class="ss-kpi"><div class="ss-big"><dt>${label}</dt><dd>${value}</dd></div></div>`;
-  if (!L || !L.shows) { $("room-kpis").innerHTML = ""; $("room-curve").innerHTML = absent("The live room is on its way", L?.reason || "No live session has been read yet."); return; }
-  $("room-kpis").innerHTML = [
-    cell(num(t?.peak), "at the peak of a typical show"),
-    cell(t?.holdRate != null ? `<span class="n">${Math.round(t.holdRate)}%</span>` : "—", "of the peak still watching in the last ten minutes"),
-    cell(num(t?.chattersPer100), "of every 100 people at the peak write in the chat"),
-    cell(num(L.hours), `hours watched live across <span class="n">${L.shows}</span> shows`),
-  ].join("");
-  const newest = EPISODES.filter((e) => Array.isArray(e.live?.series) && e.live.series.length > 1).pop();
-  if (!newest) { $("room-curve").innerHTML = ""; $("room-curve").hidden = true; return; }
-  const pts = newest.live.series.map((p) => p.v).filter(Number.isFinite);
-  const W = 1000, H = 200, max = Math.max(...pts, 1);
-  const x = (i) => (i / (pts.length - 1)) * W, y = (v) => H - (v / max) * (H - 8);
-  const path = pts.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
-  const peakAt = pts.indexOf(max);
-  const mins = pts.length;
-  const hourTicks = [`<span>start</span>`];
-  for (let h = 1; h * 60 < mins; h++) hourTicks.push(`<span>${h} h</span>`);
-  hourTicks.push(`<span>end, <span class="n">${mins}</span> min</span>`);
-  const hold = newest.live.holdRate;
-  $("room-curve").innerHTML = `<h3 class="card__title">E${newest.ep}, ${esc(short(newest.title))}, minute by minute</h3>
-    <p class="card__meta">People watching live on every channel at once · aired ${day(newest.premiere)}</p>
-    <div class="curve" role="img" aria-label="${esc(`E${newest.ep} live audience over ${mins} minutes: it peaked at ${fmt(max)}${hold != null ? ` and ${Math.round(hold)}% of the peak was still watching in the last ten minutes` : ""}.`)}">
-      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
-        <line class="grid-line" x1="0" x2="${W}" y1="${y(max).toFixed(1)}" y2="${y(max).toFixed(1)}" vector-effect="non-scaling-stroke"/>
-        <line class="grid-line" x1="0" x2="${W}" y1="${y(max / 2).toFixed(1)}" y2="${y(max / 2).toFixed(1)}" vector-effect="non-scaling-stroke"/>
-        <line class="base" x1="0" x2="${W}" y1="${H}" y2="${H}" vector-effect="non-scaling-stroke"/>
-        <path class="line" d="${path}" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="ticks">${hourTicks.join("")}</div>
+  $("room-meta").innerHTML = t ? `A typical show is the middle of the <span class="n">${t.shows}</span> shows before the newest, E${t.fromEp}–E${t.toEp}` : "";
+  if (!L || !L.shows) { $("room-kpis").innerHTML = ""; $("room-curve").innerHTML = absent("The live room", L?.reason || "No live session has been read yet."); return; }
+  const cells = [
+    ok(t?.holdRate) && ["At the end", `<span class="n">${fmt(t.holdRate)}%</span>`, "of the peak still watching in the last ten minutes"],
+    ok(t?.chattersPer100) && ["In the chat", num(t.chattersPer100), "different people write for every 100 watching at the peak"],
+    ok(t?.people) && ["Live views", num(t.people), "on a typical show: each channel’s own count, added"],
+    ok(L.hours) && ["Watched live", `${num(L.hours)} hours`, `across <span class="n">${L.shows}</span> shows`],
+  ].filter(Boolean);
+  $("room-kpis").innerHTML = cells.map(([label, value, sub]) => `<div class="ss-kpi"><dt class="ss-kpi__label">${label}</dt><dd class="ss-kpi__value">${value}</dd><dd class="ss-kpi__sub">${sub}</dd></div>`).join("");
+  $("room-kpis").hidden = !cells.length;
+  const C = L.latest;
+  const pts = (C?.series || []).filter((p) => ok(p.m) && ok(p.v));
+  if (!C || pts.length < 2) { $("room-curve").innerHTML = absent("The newest show, minute by minute", "Its minute-by-minute audience has not arrived."); return; }
+  const span = pts[pts.length - 1].m;
+  const top = Math.max(...pts.map((p) => p.v), ok(C.peak) ? C.peak : 0, 1);
+  const W = 1000, H = 200;
+  const x = (m) => (m / span) * W, y = (v) => H - (v / top) * (H - 8);
+  const path = pts.map((p, k) => `${k ? "L" : "M"}${x(p.m).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
+  // hour ticks sit at their minute; one within 15 minutes of the end would collide with its label
+  const ticks = [`<span>start</span>`];
+  for (let h = 1; h * 60 <= span - 15; h++) ticks.push(`<span style="left:${((h * 60 / span) * 100).toFixed(2)}%"><span class="n">${h}</span> h</span>`);
+  ticks.push(`<span>${ok(C.durationMin) ? `end, <span class="n">${C.durationMin}</span> min` : "end"}</span>`);
+  const mark = ok(C.peakMinute) && ok(C.peak) ? `<span class="curve__mark" style="left:${((C.peakMinute / span) * 100).toFixed(2)}%; top:${((y(C.peak) / H) * 100).toFixed(2)}%" aria-hidden="true"></span>` : "";
+  const facts = [
+    ok(C.peak) && `Peak <span class="n">${fmt(C.peak)}</span>${ok(C.peakMinute) ? `, <span class="n">${C.peakMinute}</span> minutes in` : ""}`,
+    ok(C.holdRate) && `<span class="n">${fmt(C.holdRate)}%</span> of the peak still there in the last ten minutes`,
+    ok(C.chatMessages) && `<span class="n">${fmt(C.chatMessages)}</span> chat messages`,
+  ].filter(Boolean);
+  const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? ` ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
+  $("room-curve").innerHTML = `<h3 class="card__title">E${C.ep}, ${esc(short(C.title))}, minute by minute</h3>
+    <p class="card__meta">Everyone watching live, on every channel at once · premiered ${day(C.premiere)}</p>
+    <div class="curve" role="img" aria-label="${esc(said)}">
+      <div class="curve__plot">
+        <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
+          <line class="base" x1="0" x2="${W}" y1="${H}" y2="${H}" vector-effect="non-scaling-stroke"/>
+          <path class="line" d="${path}" vector-effect="non-scaling-stroke"/>
+        </svg>${mark}
+      </div>
+      <div class="curve__ticks" aria-hidden="true">${ticks.join("")}</div>
     </div>
-    <p class="curve__label">Peak ${num(max)} at minute ${num(peakAt + 1)}${hold != null ? ` · <span class="n">${Math.round(hold)}%</span> of the peak still there in the last ten minutes` : ""} · ${num(newest.live.chatMessages)} chat messages</p>`;
+    <p class="curve__label dots">${facts.map((f) => `<span>${f}</span>`).join("")}</p>`;
 }
 
-/* --- who calls in: the names, then what each sent in ------------------------------------- */
-function renderCallIns() {
-  const c = S?.callIns;
-  if (!c || c.total == null) { $("callins-card").innerHTML = absent("The call-in list is on its way", c?.reason || "The call-in list has not been imported."); return; }
-  $("callins-meta").innerHTML = `Videos the community sent in that aired, E${c.fromEp}–E${c.toEp}`;
-  const newestFirst = [...c.list].sort((a, b) => b.ep - a.ep);
-  const seen = new Set();
-  const names = newestFirst.filter((x) => { const k = x.who.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; }).map((x) => `<span>${esc(x.who)}</span>`).join("");
-  const byEp = new Map();
-  for (const x of newestFirst) { if (!byEp.has(x.ep)) byEp.set(x.ep, []); byEp.get(x.ep).push(x); }
-  const titleOf = (ep) => short(EPISODES.find((e) => e.ep === ep)?.title || "");
-  const detail = [...byEp.entries()].map(([ep, rows]) => `<h4>E${ep}, ${esc(titleOf(ep))}</h4><ul class="callins" role="list">${rows.map((x) => `<li><b>${esc(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${esc(x.nominee)} for Designer of the Week` : esc(x.about || "sent in a video")}</li>`).join("")}</ul>`).join("");
-  $("callins-card").innerHTML = `<p class="statement" style="margin-top: 0"><b>${num(c.total)}</b><span>call-ins aired in <span class="n">${c.episodes}</span> episodes, <span class="n">${c.nominations}</span> of them Designer of the Week nominations</span></p>
-    <p class="names">${names}</p>
-    <div class="more">
-      <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="callins-more" data-toggle="callins-more">What each one sent in ${ICON.chev.replace("<svg ", '<svg class="ss-btn__chev" ')}</button>
-      <div class="ss-reveal" id="callins-more" data-open="false" inert aria-hidden="true"><div><div>${detail}</div></div></div>
-    </div>`;
+/* --- on air: brands named, then each partner's moments ---------------------------------------- */
+function momentRow(m, kind) {
+  const at = `E${m.ep} · ${clock(m.at)}`;
+  const when = m.url
+    ? `<a href="${esc(m.url)}" target="_blank" rel="noopener"><span class="n">${esc(at)}</span>${ICON.out}<span class="ss-sr"> — play this moment on YouTube (opens a new tab)</span></a>`
+    : `<span class="n">${esc(at)}</span>`;
+  const live = ok(m.liveAt) ? `<span class="n">${fmt(m.liveAt)}</span> watching live` : "";
+  const facts = [kind, live].filter(Boolean);
+  const head = facts.length ? `<span class="moment__kind dots">${facts.map((f) => `<span>${f}</span>`).join("")}</span>` : "";
+  const body = m.kind === "segment" ? `<b>${esc(m.title)}</b> — ${esc(m.text)}` : `<q>${esc(m.text)}</q>`;
+  return `<li class="moment"><span class="moment__at">${when}</span><span class="moment__body">${head}${body}</span></li>`;
 }
-
-/* --- on air: brands named, then each partner's moments ----------------------------------- */
-function momentsHTML(list) {
-  return `<ol class="moments" role="list">${list.map((m) => {
-    const at = `E${m.ep} · ${clock(m.at)}`;
-    const when = m.url
-      ? `<a href="${esc(m.url)}" target="_blank" rel="noopener"><span class="n">${esc(at)}</span>${ICON.out}<span class="ss-sr"> — play this moment on YouTube (opens a new tab)</span></a>`
-      : `<span class="n">${esc(at)}</span>`;
-    const body = m.kind === "segment"
-      ? `<b>${esc(m.title)}</b>${esc(m.text)}`
-      : `<q>${esc(m.text)}</q>`;
-    return `<li class="moment"><span class="moment__at">${when}</span><span class="moment__body">${body}</span></li>`;
-  }).join("")}</ol>`;
-}
+const momentsHTML = (rows, withKind) => `<ol class="moments" role="list">${rows.map((m) => momentRow(m, withKind ? (m.kind === "segment" ? "A segment about it" : "Named as a partner") : "")).join("")}</ol>`;
 function renderOnAir() {
   const b = S?.brands;
   $("onair-meta").innerHTML = b?.episodes ? `Named in the <span class="n">${b.episodes}</span> episode transcripts, as said on air` : "";
-  if (!b?.list?.length) { $("brands-card").innerHTML = `<h3 class="card__title">Brands named on air</h3>${absent("Brand mentions are on their way", b?.reason || "No transcript has been read yet.")}`; }
+  if (!b?.list?.length) $("brands-card").innerHTML = absent("Brands named on air", b?.reason || "No transcript has been read yet.");
   else {
     const max = Math.max(...b.list.map((x) => x.mentions), 1);
-    const row = (x, i) => `<li><button type="button" class="brow" aria-expanded="false" aria-controls="brand-${i}" data-toggle="brand-${i}"><span class="brow__name">${esc(x.name)}${x.partner ? ' <span class="ss-tag ss-tag--neutral ss-tag--sm">Partner</span>' : ""}</span><span class="brow__track" aria-hidden="true"><i style="width:${(x.mentions / max) * 100}%"></i></span><span class="brow__value"><b class="n">${fmt(x.mentions)}</b> in <span class="n">${x.episodes}</span> ${x.episodes === 1 ? "episode" : "episodes"}</span>${ICON.chev}</button><div class="ss-reveal" id="brand-${i}" data-open="false" inert aria-hidden="true"><div>${momentsHTML(x.moments)}</div></div></li>`;
+    const row = (x, i) => `<li><button type="button" class="brow" aria-expanded="false" aria-controls="brand-${i}" data-toggle="brand-${i}"><span class="brow__name">${esc(x.name)}${x.partner ? ' <span class="ss-tag ss-tag--neutral ss-tag--sm">Partner</span>' : ""}</span><span class="brow__track" aria-hidden="true"><i style="width:${((x.mentions / max) * 100).toFixed(1)}%"></i></span><span class="brow__value"><b class="n">${fmt(x.mentions)}</b> in <span class="n">${x.episodes}</span> ${x.episodes === 1 ? "episode" : "episodes"}</span>${ICON.chev}</button><div class="ss-reveal" id="brand-${i}" data-open="false" inert aria-hidden="true"><div>${momentsHTML(x.moments, false)}</div></div></li>`;
     const first = b.list.slice(0, 10), rest = b.list.slice(10);
     $("brands-card").innerHTML = `<h3 class="card__title">Brands named on air</h3>
-      <p class="card__meta">Mentions in the transcripts · open a brand for the first moment in each episode</p>
-      <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? `<div class="more">
-      <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="brands-more" data-toggle="brands-more">${rest.length} more brands ${ICON.chev.replace("<svg ", '<svg class="ss-btn__chev" ')}</button>
-      <div class="ss-reveal" id="brands-more" data-open="false" inert aria-hidden="true"><div><ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul></div></div>
-    </div>` : ""}`;
+      <p class="card__meta">Mentions in the transcripts · open a brand for its first moment in each episode</p>
+      <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `${rest.length} more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`) : ""}`;
   }
   const P = (S?.partners || []).filter((p) => p.moments?.length);
-  if (!P.length) { $("partners-card").innerHTML = `<h3 class="card__title">Partners on air</h3>${absent("Partner moments are on their way", "No transcript names a partner yet.")}`; return; }
+  if (!P.length) { $("partners-card").innerHTML = absent("Partners on air", "No transcript names a partner yet."); return; }
   const seg = P.map((p, i) => `<button type="button" class="ss-seg__opt" role="radio" aria-checked="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-partner="${i}">${esc(p.name)}</button>`).join("");
-  const panels = P.map((p, i) => `<div class="partner-panel" id="partner-${i}" ${i ? "hidden" : ""}><p class="partner-sum">${esc(p.name)} came up <span class="n">${fmt(p.mentions)}</span> times in <span class="n">${p.episodes}</span> episodes. Its reads, segments and demos:</p>${momentsHTML(p.moments)}</div>`).join("");
-  $("partners-card").innerHTML = `<h3 class="card__title">What partners get on air</h3>
-    <p class="card__meta">Reads, named segments and live builds, from the transcripts · a time opens the moment on YouTube</p>
-    <div class="ss-seg" role="radiogroup" aria-label="Partner">${seg}</div>${panels}`;
+  // the moments a sponsor can play first, newest first; the rest behind "more"
+  const order = (rows) => [...rows].sort((a, z) => (a.url ? 0 : 1) - (z.url ? 0 : 1) || z.ep - a.ep || a.seconds - z.seconds);
+  const panels = P.map((p, i) => {
+    const rows = order(p.moments), shown = rows.slice(0, 5), rest = rows.slice(5);
+    const sum = `${esc(p.name)}: named as a partner <span class="n">${p.named}</span> ${p.named === 1 ? "time" : "times"}${p.segments ? `, the subject of <span class="n">${p.segments}</span> ${p.segments === 1 ? "segment" : "segments"}` : ""}, and named <span class="n">${fmt(p.mentions)}</span> times in all, in <span class="n">${p.episodes}</span> episodes.`;
+    return `<div class="partner-panel" id="partner-${i}" role="region" aria-label="${esc(p.name)} on air" ${i ? "hidden" : ""}><p class="partner-sum">${sum}</p>${momentsHTML(shown, true)}${rest.length ? moreHTML(`partner-more-${i}`, `${rest.length} more`, momentsHTML(rest, true)) : ""}</div>`;
+  }).join("");
+  const unlinked = (S?.links && S.links.exact < S.links.episodes) ? `<p class="card__foot">A time without a link follows the live recording; it links once that episode’s recording has been matched to its upload (<span class="n">${S.links.exact}</span> of <span class="n">${S.links.episodes}</span> so far).</p>` : "";
+  $("partners-card").innerHTML = `<h3 class="card__title">Partners on air</h3>
+    <p class="card__meta">Each time the hosts named a partner, from the transcripts · a linked time plays the moment on YouTube</p>
+    <div class="ss-seg" role="radiogroup" aria-label="Partner">${seg}</div>${panels}${unlinked}`;
 }
 
-/* --- what viewers say ---------------------------------------------------------------------- */
+/* --- what viewers say ------------------------------------------------------------------------- */
 function renderVoices() {
   const f = S?.feedback;
-  if (!f || !f.quotes?.length) { $("voices-card").innerHTML = absent("Viewer comments are on their way", "No public comment has been read yet."); return; }
-  $("voices-meta").innerHTML = `<span class="n">${fmt(f.positive)}</span> positive comments and chat messages so far`;
-  const quote = (q) => `<blockquote class="ss-x-quote"><p>“${esc(q.text)}”</p><footer><span>${esc(q.author)} · ${esc(q.platform)} · E${q.ep}</span>${q.url ? `<a class="ss-x-quote__link" href="${esc(q.url)}" target="_blank" rel="noopener">Original${ICON.out}<span class="ss-sr"> (opens ${esc(q.platform)} in a new tab)</span></a>` : ""}</footer></blockquote>`;
-  const first = f.quotes.slice(0, 6), rest = f.quotes.slice(6);
-  $("voices-card").innerHTML = `<div class="quotes">${first.map(quote).join("")}</div>${rest.length ? `<div class="more">
-      <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="voices-more" data-toggle="voices-more">${rest.length} more ${ICON.chev.replace("<svg ", '<svg class="ss-btn__chev" ')}</button>
-      <div class="ss-reveal" id="voices-more" data-open="false" inert aria-hidden="true"><div><div class="quotes">${rest.map(quote).join("")}</div></div></div>
-    </div>` : ""}`;
+  if (!f || !f.quotes?.length) { $("voices-meta").textContent = ""; $("voices-card").innerHTML = absent("What viewers say", "No public comment has been read yet."); return; }
+  $("voices-meta").innerHTML = `<span class="n">${fmt(f.positive)}</span> of <span class="n">${fmt(f.messages)}</span> comments and chat messages about the show were positive · the most-liked, one per person, word for word`;
+  const quote = (q) => `<blockquote class="ss-x-quote"><p>“${esc(q.text)}”</p><footer><span>${esc(q.author)} · ${esc(q.platform)} · E${q.ep}${q.onShow ? ` · ${q.calledIn != null ? `called in on E${q.calledIn}` : "on the show"}` : ""}</span>${q.url ? `<a class="ss-x-quote__link" href="${esc(q.url)}" target="_blank" rel="noopener">Original${ICON.out}<span class="ss-sr"> (opens ${esc(q.platform)} in a new tab)</span></a>` : ""}</footer></blockquote>`;
+  const first = f.quotes.slice(0, 3), rest = f.quotes.slice(3);
+  $("voices-card").innerHTML = `<div class="quotes">${first.map(quote).join("")}</div>${rest.length ? moreHTML("voices-more", `${rest.length} more`, `<div class="quotes">${rest.map(quote).join("")}</div>`) : ""}`;
 }
 
-/* --- about + freshness ---------------------------------------------------------------------- */
+/* --- packages ---------------------------------------------------------------------------------- */
+function renderPackages() {
+  const t = S?.live?.typical;
+  const reach = ok(t?.atMiddle) && ok(t?.recordingAtMiddle)
+    ? `<p class="tier__reach">At the middle of a typical show, <b class="n">${fmt(t.atMiddle)}</b> are watching live, and <b class="n">${fmt(t.recordingAtMiddle)}</b> of every 100 YouTube views are still watching there.</p>` : "";
+  const example = (name) => {
+    const x = (S?.examples || []).find((y) => y.package === name);
+    if (!x?.moment) return "";
+    const at = `E${x.ep} · ${clock(x.moment.at)}`;
+    const when = x.moment.url ? `<a href="${esc(x.moment.url)}" target="_blank" rel="noopener"><span class="n">${esc(at)}</span>${ICON.out}<span class="ss-sr"> — play it on YouTube (opens a new tab)</span></a>` : `<span class="n">${esc(at)}</span>`;
+    return `<p class="tier__example">See one on air: ${esc(x.label)} · ${when}</p>`;
+  };
+  $("tiers").innerHTML = PACKAGES.map((p, i) => `<article class="ss-panel card tier" aria-labelledby="tier-${i + 1}">
+      <div class="tier__head"><h3 class="tier__name" id="tier-${i + 1}">${p.name}</h3>${p.tag ? `<span class="ss-tag ss-tag--neutral">${p.tag}</span>` : ""}</div>
+      <p class="tier__fit">${p.fit}</p>
+      <p class="tier__price"><b>${money(p.total)}</b><span>for three months</span></p>
+      <p class="tier__monthly"><span class="n">${money(p.monthly)}</span> a month, less <span class="n">10%</span> paid up front</p>
+      <ul class="ss-bullets" role="list">${p.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>
+      ${p.name === "Mid-roll" ? reach : ""}${example(p.name)}
+      <a class="ss-btn ss-btn--secondary" data-book="${p.name}" href="#book">Book ${p.name}</a>
+    </article>`).join("");
+  $("compare").innerHTML = `<table><caption>What each package includes</caption>
+    <colgroup><col class="what"><col><col><col></colgroup>
+    <thead><tr><th scope="col"><span class="ss-sr">Item</span></th>${PACKAGES.map((p) => `<th scope="col">${p.name}</th>`).join("")}</tr></thead>
+    <tbody>${COMPARE.map(([what, ...cells]) => `<tr><th scope="row">${what}</th>${cells.map((c) => (c ? `<td>${c}</td>` : `<td class="no"><span aria-hidden="true">—</span><span class="ss-sr">Not included</span></td>`)).join("")}</tr>`).join("")}</tbody></table>`;
+}
+
+/* --- about + freshness ---------------------------------------------------------------------------- */
 function renderAbout() {
   $("about-prose").innerHTML = `
     <p><b>Views</b> are YouTube views plus resolved X broadcast plays on the two hosts’ accounts. Native tweet and teaser videos are left out, and so are impressions: they say how many times a post was seen, not watched. Views keep arriving after an episode airs, so the newest episodes are still counting.</p>
-    <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode. <b>Hours watched live</b> come from Restream, across every channel the show streams to.</p>
-    <p><b>Subscribers and followers</b> are each channel’s public count on the day shown, added together; one person can follow more than one channel.</p>
-    <p><b>A typical show</b> is the middle value of the eight shows before the newest — the same reading the show’s own dashboard uses. The share still watching compares the last ten minutes of a show with its peak.</p>
-    <p><b>Call-ins</b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one.</p>
-    <p><b>Brands named on air</b> count whole words, as said, in each episode’s transcript. Transcripts are automatic, so a misheard name is missed, never added.</p>
-    <p><b>Moments</b> link to the exact second on YouTube when the episode’s transcript has been matched to that upload’s own captions; otherwise the time is shown without a link.</p>
+    <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode. <b>Hours watched live</b> come from Restream, across every channel the show streams to. The two are never added: YouTube’s hours can include some of the live viewing on YouTube.</p>
+    <p><b>Watching at once</b> is the most people watching in the same minute, all channels together; <b>on average</b> is the same count across the whole show. <b>Live views</b> are each channel’s own count of who watched any part of the stream, added across YouTube and X, so one person on two channels counts twice.</p>
+    <p><b>At the end</b> compares the last ten minutes of a show with its peak. <b>In the chat</b> counts the different people who wrote at any point in the show on YouTube and X (LinkedIn’s count is left out), set against the most people watching at once.</p>
+    <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every 100 YouTube views of the recording, how many are still watching at its middle (YouTube’s audience curve, read once an episode is a week old).</p>
+    <p><b>A typical show</b> is the middle value of the eight shows before the newest — the same reading the show’s own dashboard uses.</p>
+    <p><b>Call-ins</b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one. The teams named are where a call-in’s own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
+    <p><b>Brands named on air</b> count whole words, as said, in each episode’s transcript. Transcripts are automatic, so a misheard name is missed, never added. Excerpts are the transcript’s words with ums, uhs and repeated words taken out; “…” marks a cut.</p>
+    <p><b>Partners on air</b> lists each time the hosts named a partner as a partner (they say “sponsor”, “partner” or “brought to you by” within fifteen seconds), and each segment about one. It is not a list of what each partner paid for; the example under each package comes from the show’s own records of what a partner received.</p>
+    <p><b>Moments</b> link to the exact second on YouTube when the episode’s transcript has been matched to that upload’s own captions; otherwise the time is shown without a link. <b>Watching live</b> beside a moment is the live audience in that minute of the stream, shown where the transcript runs on the stream’s own clock.</p>
+    <p><b>Quotes</b> are named, public comments on YouTube and X that were positive about the show, word for word: the most-liked first, one per person. Anyone who was on the show comes last and says so.</p>
     <p><b>Every number</b> on this page is rebuilt each morning from the same data as the show’s public analytics, and checked before it is published.</p>`;
   const fresh = $("fresh");
+  fresh.classList.toggle("is-missing", !S?.asOf);
   fresh.innerHTML = S?.asOf
-    ? `<i aria-hidden="true"></i><span>Numbers refreshed ${day(S.asOf)} from YouTube, X and Restream</span><a href="./">Full analytics</a>`
-    : `<i aria-hidden="true"></i><span>The latest numbers have not loaded.</span>`;
+    ? `<i aria-hidden="true"></i><span>Numbers refreshed ${day(S.asOf)} from YouTube, X and Restream · <a href="./">Full analytics</a></span>`
+    : `<i aria-hidden="true"></i><span>The latest numbers have not loaded, so the parts that need them are held back.</span>`;
 }
 
-/* --- interaction: disclosures, the partner picker, chart tips ------------------------------ */
+/* --- no data at all: one page-level verdict above the packages; the data sections step aside ----------- */
+function renderPageAbsent() {
+  const missing = !S;
+  for (const id of ["callins-section", "reach", "room", "onair", "voices"]) $(id).hidden = missing;
+  $("page-absent").hidden = !missing;
+  if (missing) $("page-absent").innerHTML = absent("The show’s numbers aren’t here right now", "This page reads the show’s daily data, and it did not load. The packages and booking below still work.", 2);
+}
+
+/* --- interaction: disclosures, the partner picker, chart tips, copy ----------------------------------- */
 function setOpen(button, open) {
   const panel = $(button.getAttribute("aria-controls"));
   button.setAttribute("aria-expanded", String(open));
   panel.dataset.open = String(open);
   if (open) { panel.removeAttribute("inert"); panel.removeAttribute("aria-hidden"); }
   else { panel.setAttribute("inert", ""); panel.setAttribute("aria-hidden", "true"); }
+  const label = button.dataset.closed;
+  if (label) button.querySelector("span").textContent = open ? "Show fewer" : label;
 }
 document.addEventListener("click", (ev) => {
   const t = ev.target.closest("[data-toggle], #about-toggle");
@@ -1028,41 +1178,59 @@ const tip = $("tip");
 let tipFor = null;
 function tipHTML(e) {
   const L = e.latest || {};
-  const row = (cls, label, value) => `<div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(${cls})"></span><span>${label}</span><span class="ss-x-chart-tip__val">${value}</span></div>`;
+  const val = (v) => (ok(v) ? `<span class="ss-x-chart-tip__val n">${fmt(v)}</span>` : `<span class="ss-x-chart-tip__val ss-x-chart-tip__val--absent">—</span>`);
   return `<div class="ss-x-chart-tip__title">E${e.ep}, ${esc(short(e.title))}</div>
-    <div class="ss-x-chart-tip__meta">Aired ${day(e.premiere)}</div>
+    <div class="ss-x-chart-tip__meta">Premiered ${day(e.premiere)}</div>
     <div class="ss-x-chart-tip__value">${num(L.totalViews)} <small>views so far</small></div>
-    ${row("--series-1", "YouTube", num(L.ytTotal))}${row("--series-2", "X broadcast plays", num(L.xPlays))}
-    ${Number.isFinite(L.xImpressions) ? `<div class="ss-x-chart-tip__sep"></div><div class="ss-x-chart-tip__row"><span class="ss-dot"></span><span>Seen on X, not counted as views</span><span class="ss-x-chart-tip__val">${num(L.xImpressions)}</span></div>` : ""}`;
+    <div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(--series-1)"></span><span>YouTube</span>${val(L.ytTotal)}</div>
+    <div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(--series-2)"></span><span>X broadcast plays</span>${val(L.xPlays)}</div>
+    ${ok(L.xImpressions) ? `<div class="ss-x-chart-tip__sep"></div><div class="ss-x-chart-tip__row"><span class="ss-dot"></span><span>Seen on X, not counted as views</span>${val(L.xImpressions)}</div>` : ""}`;
 }
+// the card sits beside the bar's end, so the bars above and below stay in view
 function showTip(el) {
   const e = EPISODES[Number(el.dataset.tip)];
   if (!e) return;
-  tipFor?.removeAttribute("aria-current");
-  tipFor = el; el.setAttribute("aria-current", "true");
+  tipFor?.classList.remove("is-tip");
+  tipFor = el; el.classList.add("is-tip");
   tip.innerHTML = tipHTML(e); tip.hidden = false;
-  const box = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
-  const left = Math.min(Math.max(16, box.left + box.width / 2 - tw / 2), innerWidth - tw - 16);
-  const above = box.top - th - 8;
+  const fill = el.querySelector(".bar__value") || el;
+  const box = fill.getBoundingClientRect(), row = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+  let left = box.right + 12;
+  if (left + tw > innerWidth - 16) left = Math.max(16, Math.min(row.right - tw, innerWidth - tw - 16));
+  let top = row.top + row.height / 2 - th / 2;
+  if (left < box.right + 12) top = row.top - th - 8 > 8 ? row.top - th - 8 : row.bottom + 8;
+  top = Math.min(Math.max(8, top), innerHeight - th - 8);
   tip.style.left = `${left + scrollX}px`;
-  tip.style.top = `${(above > 8 ? above : box.bottom + 8) + scrollY}px`;
+  tip.style.top = `${top + scrollY}px`;
 }
-function hideTip() { tip.hidden = true; tipFor?.removeAttribute("aria-current"); tipFor = null; }
-document.addEventListener("pointerover", (ev) => { const el = ev.target.closest?.(".bar[data-tip]"); if (el && ev.pointerType === "mouse") showTip(el); });
-document.addEventListener("pointerout", (ev) => { const el = ev.target.closest?.(".bar[data-tip]"); if (el && ev.pointerType === "mouse" && !el.contains(ev.relatedTarget)) hideTip(); });
-document.addEventListener("focusin", (ev) => { const el = ev.target.closest?.(".bar[data-tip]"); if (el) showTip(el); else if (tipFor) hideTip(); });
-document.addEventListener("pointerup", (ev) => {
-  if (ev.pointerType === "mouse") return;
-  const el = ev.target.closest?.(".bar[data-tip]");
-  if (el) { if (tipFor === el) hideTip(); else showTip(el); } else if (tipFor) hideTip();
+function hideTip() { tip.hidden = true; if (tipFor) { tipFor.classList.remove("is-tip"); tipFor.dataset.pinned = "false"; } tipFor = null; }
+document.addEventListener("pointerover", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse") showTip(el); });
+document.addEventListener("pointerout", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse" && !el.contains(ev.relatedTarget) && document.activeElement !== el) hideTip(); });
+document.addEventListener("focusin", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el) showTip(el); else if (tipFor) hideTip(); });
+// a tap or a click pins the card; a second tap on the same row, a tap elsewhere or Escape closes it
+document.addEventListener("click", (ev) => {
+  const el = ev.target.closest?.("button.bar[data-tip]");
+  if (el) { if (tipFor === el && el.dataset.pinned === "true") { el.dataset.pinned = "false"; hideTip(); } else { showTip(el); el.dataset.pinned = "true"; } }
+  else if (tipFor && !ev.target.closest?.("#tip")) hideTip();
 });
 addEventListener("scroll", () => { if (tipFor) showTip(tipFor); }, { passive: true });
 addEventListener("resize", () => { if (tipFor) showTip(tipFor); });
 
+// the address, shown and one tap from the clipboard
+$("book-addr").textContent = CONTACT;
+$("book-addr").href = `mailto:${CONTACT}`;
+$("copy-addr").addEventListener("click", async () => {
+  const button = $("copy-addr");
+  try { await navigator.clipboard.writeText(CONTACT); button.textContent = "Copied"; $("copy-status").textContent = `${CONTACT} copied`; }
+  catch { const range = document.createRange(); range.selectNodeContents($("book-addr")); getSelection().removeAllRanges(); getSelection().addRange(range); $("copy-status").textContent = "The address is selected; copy it from there"; }
+  setTimeout(() => { button.textContent = "Copy address"; $("copy-status").textContent = ""; }, 2000);
+});
+
 /* the skip link focuses main without moving the reader past the hero's heading */
 document.querySelector(".ss-skip").addEventListener("click", (ev) => { ev.preventDefault(); $("main").focus(); });
 
-renderHero(); renderReach(); renderRoom(); renderCallIns(); renderOnAir(); renderVoices(); renderAbout();
+renderPageAbsent(); renderHero(); renderCallIns(); renderReach(); renderRoom(); renderOnAir(); renderVoices(); renderPackages(); renderAbout();
+for (const a of document.querySelectorAll("[data-book]")) a.href = mailto(a.dataset.book);
 </script>
 </body>
 </html>

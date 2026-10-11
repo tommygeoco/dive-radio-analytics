@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "method": "6-word phrases that occur once in both the transcript and the upload's English auto-captions; offset = median(caption time − transcript time); spread = 90th − 10th percentile",
-  "updatedAt": "2026-10-11T16:59:14.711Z",
+  "updatedAt": "2026-10-11T17:44:31.620Z",
   "entries": {
     "2026-07-17-dive-radio-bumpy-takeoff": {
       "uploads": {
@@ -29,6 +29,16 @@
     },
     "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
       "uploads": {
+        "yt:designertom": {
+          "videoId": "szvTFybWfK4",
+          "transcriptSha256": "1e964bc370469d38338610427ca2b6fc7c827f42baa2600161c13c06d82bae07",
+          "checkedAt": "2026-10-11T17:44:31.620Z",
+          "state": "ready",
+          "anchors": 2157,
+          "offsetSec": 0.5,
+          "spreadSec": 0.8,
+          "reason": null
+        },
         "yt:joindiveclub": {
           "videoId": "9HYGZgaHdlw",
           "transcriptSha256": "1e964bc370469d38338610427ca2b6fc7c827f42baa2600161c13c06d82bae07",

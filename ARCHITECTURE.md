@@ -39,7 +39,7 @@ lives on the owner machine).
 | recommendations | `tools/dive-analytics/recommendations.mjs` | `data/restream/recommendations.json` | **yes** | previous store stays |
 | moment-summaries | `tools/dive-analytics/moment-summaries.mjs` | `data/restream/moment-summaries.json` | **yes** | moments render without context |
 | build-data → validate | (again, so today's health entry is in the artifact) | | | |
-| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact-byte checks for the nine core files and every transcript declared by `data.json` | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
+| publish | `scripts/restream/postlive-publish.sh` → `publish-flow.mjs` | prove dedicated `main` checkout → scoped stash + pull → rebuild + validate → exact-path commit → push `HEAD:main` → deploy → exact-byte checks for the eleven core files and every transcript declared by `data.json` | no | Git, deploy, and live proof stop after two tries; any unconfirmed result is a failure |
 | alerts | `tools/dive-analytics/alerts.mjs` | `alerts-state.json`; locked runtime alert queue outside Git | no | required after publish; delivery keeps each line until OpenClaw returns a Slack receipt |
 | freshness | `tools/dive-analytics/freshness.mjs --strict` | locked runtime alert queue outside Git only on failure | no | requires today's Phoenix build and a readable production response |
 | critic (Mon, before final build) | `tools/dive-analytics/critic.mjs` | `tools/dive-analytics/audit/CRITIC-<date>.md` | **yes** | failed request is nonzero; never changes the release after publication |
@@ -158,7 +158,7 @@ matchedUnits, newsletters[], snapshots[]}`.
 | Chapters (panel list, brief) | `episodes[].chapters` | **chapters.mjs** (L3, one model call per transcript; `data/restream/chapters.json`, keyed by slug with transcript sha, superseded on change) | `transcripts/<slug>.txt` via `transcripts.mjs` (wraps `watch-moments.parseTranscript`) | every `start` is a transcript timestamp; every quote found within 90 s; ≥ 3 min apart; first within 5 min, last ≥ 3 min before the end; no digits; a chapter's `url` exists only when `clock.mjs` says the transcript runs on that upload's clock (its own captions, or a held clock check), and `chapters.upload` names the upload and offset |
 | Live depth per episode | `episodes[].live.minutesPerViewer`, `.holdRate` | build-data via `baselines.liveDepthOf` | live events | one definition shared with the health scorer |
 | Known reporting breaks | `baselines.knownBreaks` | `baselines.KNOWN_BREAKS` | — | printed on every affected row of the brief (validator) |
-| Sponsor page (`sponsors.html`): views so far, an episode on average, hours watched on YouTube, subscribers and followers, the typical show, hours watched live, call-ins, brands named on air, partner moments, viewer quotes | `sponsor` | **sponsor-view.mjs** (pure, called by build-data) | episodes as assembled (views, watch, live, audience), `channel-stats.json` `current`, `contributors.json`, `clock-checks.json`, transcripts | views/YouTube/X plays/reach are the brief's show totals (absent unless every episode has its reading); the typical show is `baselines.windowFor` (the eight before the newest) + `trueMedian`, three or nothing, break-touched measures from the newest side; live viewers are never added across shows; brands are case-sensitive whole words; partner reads need a sponsor phrase and skip "not sponsored by"; quotes are named, positive, stored rows less addressees and trailing links; validator 1s re-derives every number, excerpt and link |
+| Sponsor page (`sponsors.html`): views so far, an episode on average, hours watched on YouTube, subscribers and followers, the typical show (peak, average, live views, hold, chat, the middle of the show live and on the recording), the newest show's curve, hours watched live, call-ins (people, the teams their words name), brands named on air, partner moments (named as a partner / a segment, with the live audience that minute), one aired example per package, viewer quotes | `sponsor` | **sponsor-view.mjs** (pure, called by build-data) | episodes as assembled (views, watch incl. the audience curve, live incl. the per-minute series, audience), `channel-stats.json` `current`, `contributors.json`, `clock-checks.json`, each YouTube comment's channel (`comments/<slug>.json`), transcripts | views/YouTube/X plays/reach are the brief's show totals (absent unless every episode has its reading); the typical show is `baselines.windowFor` (the eight before the newest) + `trueMedian`, three or nothing, break-touched measures from the newest side; the recording's middle is the audience curve's 50% point, read once an episode is seven days old; the newest curve carries its stored peak, the first minute the series reaches it (else none) and its stored length; live viewers are never added across shows; brands are case-sensitive whole words; a partner is "named as a partner" only with a sponsor phrase within 15 s and never on "not sponsored by", and nothing says a moment was paid for; excerpts are whole sentences of the transcript's words less `cleanSpeech` (speaker marks, caption tags, um/uh, a doubled word); package examples cite the owners' records and stand only where the transcript names the partner near the recorded time; quotes are named, positive, stored rows less addressees and trailing links, linked to their originals, people on the show last and marked; validator 1s re-derives every number, excerpt and link |
 | "Data refreshed today · health read is behind" stamp | `generatedAt`, `health.ageDays`, `health.withheld` | build-data / health | — | says when the saved health read is behind the data; exact date in the hover title |
 
 ---
@@ -222,7 +222,7 @@ Blocks in file order, with what each locks (line refs at `96a4f2f`):
 | 1i | banned words over every reader-facing string, including the Sponsors page's own copy |
 | 1j / 1j2 | honesty gates present in page source (3-peer, 3-curve, quiet zones, retired absence copy absent, no `?? 0`) |
 | 1k / 1p / 1q / 1r | card layout order and budgets, chart picker, page gutter, destination links |
-| 1s | sponsor page: `data.sponsor` re-derived from the stores (views as the brief's totals, watch hours, the typical show through `baselines`, channel counts, call-ins, an independent brand re-count, every excerpt verbatim at its time, every moment and chapter link by the clock rule, every quote a stored positive row); `contributors.json` and `clock-checks.json` checked against the registry; the page reads `data.js` only, keeps one booking address and computes no typical (drift) |
+| 1s | sponsor page: `data.sponsor` re-derived from the stores (views as the brief's totals, watch hours, the typical show and its middle through `baselines`, the newest show's curve as its stored session, channel counts, call-ins, the people and teams named, an independent brand re-count, every excerpt the transcript's words at its time, every moment and chapter link by the clock rule, every live count the stream's minute, each package example near the owners' recorded time, every quote a stored positive row linked to its original with people on the show last); `contributors.json` and `clock-checks.json` checked against the registry; the page reads `data.js` only, keeps one booking address, computes no typical and draws the curve only from `data.sponsor.live.latest` (drift) |
 | 1u | baselines: fixture test (`audit/baselines.test.mjs`) green; `data.baselines` re-derives; outlier windows exclude self; nothing below `MIN_PEERS`; `metrics.anomaly` matches the outlier test |
 | 1v | chain: required stores current; dedicated-main preflight, exact staging/push, final validation, two-attempt guard, recovery, exact production proof, and acknowledged alert delivery remain wired |
 | 1x / 1y / 1z | Slack/alert lines carry directions only on ≥`MIN_PEERS` samples (on data); no trend word over the episode-health sequence; every stored note is one of the fixed strings and reasons pass the plain-words ban; the page renders notes |
@@ -285,6 +285,19 @@ owner-run, like the LinkedIn imports:
 Neither import is a chain step yet: new episodes gain call-ins and exact links
 when the owner runs the two scripts (or adds them to `chain.json` as optional
 steps). Until then their moments show a time without a link and the call-in
-range says which episodes it covers. The packages and prices on the page are the
-owners' own terms, as static copy; the booking address is the page's one
-`CONTACT` constant.
+range says which episodes it covers. YouTube refuses caption downloads from cloud
+hosts, so the clock check runs from the owner machine. The packages and prices on
+the page are the owners' own terms, as static copy in one `PACKAGES` constant
+that also fills the comparison table and the hero's starting price; the booking
+address is the page's one `CONTACT` constant, shown as text and copyable.
+
+What the page says about partners is what the transcripts say: a partner is
+"named as a partner" when the hosts use a sponsor phrase within fifteen seconds,
+and a segment is a chapter about it. Neither is a record of what was paid for.
+The paid formats appear only as one aired example per package (`EXAMPLES` in
+`sponsor-view.mjs`), each citing the owners' own record of what a partner
+received (the August partner recaps, the E10 read's note) and shown only where
+the transcript names that partner near the recorded time.
+
+`sponsors-og.png` is the page's link preview: number-free, so it never goes
+stale, and part of the eleven-file production proof.

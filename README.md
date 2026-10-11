@@ -120,7 +120,7 @@ were actually reached. Restream live events remain retryable until peak,
 average, views, watch time, minute readings, chat, and destination details are
 all present. The chain pulls main before capture, retries each required platform
 pull once, validates the final files, pushes the exact checked commit, deploys
-production, and compares all ten core public files and every declared transcript byte-for-byte. An 08:15 check
+production, and compares all eleven core public files and every declared transcript byte-for-byte. An 08:15 check
 proves production against that same clean clone and starts the one recovery
 when production is not current. The 12:15 check also uses an available attempt
 if both earlier jobs were missed. If production is current and only the newest
