@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-10-11T21:25:07.616Z",
+ "generatedAt": "2026-10-11T22:51:57.484Z",
  "chaptersUpdatedAt": "2026-10-10T14:07:39.404Z",
  "promotionUpdatedAt": "2026-10-11T14:00:29.367Z",
  "dests": [
@@ -95111,6 +95111,8 @@ window.DIVE_DATA = {
   },
   "live": {
    "shows": 13,
+   "linkedInShows": 12,
+   "xFromEp": 5,
    "minutes": 102477,
    "hours": 1708,
    "chat": 2376,

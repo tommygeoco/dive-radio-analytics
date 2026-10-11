@@ -24,7 +24,7 @@
 //     transcript says (named as a partner, or a chapter about it); the paid
 //     formats are shown only through EXAMPLES, which cite the owners' records.
 
-import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, comparableAcrossBreaks } from "./baselines.mjs";
+import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, comparableAcrossBreaks, breaksFor } from "./baselines.mjs";
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
@@ -244,7 +244,7 @@ function watchBlock(episodes) {
 }
 
 // The live audience in one minute of the stream: the per-minute series counts
-// everyone watching on every channel at once. A moment reads it only when its
+// everyone watching on YouTube and X at once (LinkedIn reports no viewers). A moment reads it only when its
 // transcript runs on the stream's own clock (Restream speaker transcripts); a
 // caption transcript runs on an upload's clock, so it has no live minute.
 export function liveAt(e, t, seconds) {
@@ -286,8 +286,14 @@ function liveBlock(episodes) {
   // series reaches it (none when the series never does), the stored length
   const series = (Array.isArray(L.series) ? L.series : []).map((p) => ({ m: p.m, v: finite(p.v) ? p.v : null }));
   const peakPoint = series.find((p) => p.v === L.peak);
+  // where the shows went out, as their sessions record it: how many also went to LinkedIn (its live viewers are
+  // not reported, so it is in no live count), and the first show whose X channels report live viewing (the known
+  // reporting break) when earlier shows sit in the totals, which are YouTube's alone before it
+  const xBreak = breaksFor("liveViewers")[0];
   return {
     shows: lived.length,
+    linkedInShows: lived.filter((e) => (e.live.byChannel || []).some((row) => row.label === "LinkedIn")).length,
+    xFromEp: xBreak && lived.some((e) => e.ep < xBreak.fromEp) ? xBreak.fromEp : null,
     minutes: sum(timed, (e) => e.live.watchedMin),
     hours: Math.round(sum(timed, (e) => e.live.watchedMin) / 60),
     chat: sum(lived.filter((e) => finite(e.live.chatMessages)), (e) => e.live.chatMessages),

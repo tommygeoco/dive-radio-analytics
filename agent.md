@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-10-11T21:25:07.616Z · data through 2026-10-11 · health read 2026-10-11 (data through 2026-10-11) · chapters written 2026-10-10 · brief v1
+Built 2026-10-11T22:51:57.484Z · data through 2026-10-11 · health read 2026-10-11 (data through 2026-10-11) · chapters written 2026-10-10 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 13 episodes in https://dive-radio-analytics.vercel.app/agent.json; 6 included here, 7 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-10-11T21:25:07.616Z); the show-health read (2026-10-11, over data through 2026-10-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
+Three clocks: the data build (2026-10-11T22:51:57.484Z); the show-health read (2026-10-11, over data through 2026-10-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -514,7 +514,7 @@ The numbers the sponsor page shows (https://dive-radio-analytics.vercel.app/spon
 - Views so far: 95,122 across 13 episodes (7,317 an episode on average so far) = 60,704 YouTube + 34,418 X plays. X reach 133,517 (exposure, kept apart).
 - Watched on YouTube: 6,008 hours across 13 episodes.
 - Subscribers and followers on the four channels the show streams to: 335,141 on 2026-10-11 — DesignerTom on YouTube 170,000 subscribers, Dive Club on YouTube 68,800 subscribers, @ridd_design on X 76,565 followers, @designertom on X 19,776 followers. A sum of channel counts, not distinct people.
-- Live: 13 shows, 1,708 hours watched live, 2,376 chat messages. A typical show (the middle of the 8 shows before the newest, E5–E12): 97.5 watching at once at the peak, 73.0 on average, 779.5 live views (each channel's own count, added: one person on two channels counts twice), 66.4% of the peak still watching in the last ten minutes, 53.9 different people writing in the chat for every hundred at the peak, 66.2 chat messages an hour. At the middle of the show: 88.5 watching live, and 14.8 of every hundred YouTube views still watching at the middle of the recording. Highest peak so far: 133 (E9).
+- Live: 13 shows, 1,708 hours watched live on YouTube and X (X from E5, when Restream began reporting its live viewers), 2,376 chat messages. 12 of the shows also went to LinkedIn, whose live viewers are not reported, so it is in no live count. A typical show (the middle of the 8 shows before the newest, E5–E12): 97.5 watching at once at the peak, 73.0 on average, 779.5 live views (each channel's own count, added: one person on two channels counts twice), 66.4% of the peak still watching in the last ten minutes, 53.9 different people writing in the chat for every hundred at the peak, 66.2 chat messages an hour. At the middle of the show: 88.5 watching live, and 14.8 of every hundred YouTube views still watching at the middle of the recording. Highest peak so far: 133 (E9).
 - Call-ins aired: 100 from 93 people across E4–E13 (21 of them Designer of the Week nominations), from the published episode notes; every name is under sponsor.callIns.list. Teams the call-ins were about (named in their words as where the work happens, not where a caller works): Vercel, Perplexity, Shopify, Notion, Linear, Attio, Mercury, Netflix.
 - Audience feedback: 283 positive of 363 messages with a clear lean (YouTube comments, X threads, live chat); 24 named public quotes under sponsor.feedback.quotes, the most-liked first, one per person, people on the show last and marked.
 - Brands named on air (as said, whole words, in 13 transcripts): Figma 83 in 13; Claude 72 in 13; Notion (partner) 41 in 10; Lovable (partner) 38 in 7; Vercel 28 in 7; Cursor 21 in 7; Mobbin (partner) 21 in 6; OpenAI 20 in 7; Framer 19 in 6; Google 18 in 8; Apple 16 in 6; Rive 15 in 3; GitHub 14 in 4; Grok 13 in 4; Paper (partner) 12 in 4; Adobe 11 in 6; Anthropic 11 in 6; Shopify 11 in 4; Raycast 9 in 5; Arc 8 in 7.

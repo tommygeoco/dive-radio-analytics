@@ -1032,7 +1032,9 @@ function renderChannels() {
   const sum = ok(a?.total) && chans.length === 4 ? ` Between the four, about <span class="n">${(Math.round(a.total / 1000) * 1000).toLocaleString("en-US")}</span> subscribers and followers, though one person may follow more than one.` : "";
   // one known channel is a sentence, not a strip
   const one = chans.length === 1 ? ` ${esc(chans[0].label)} has <span class="n">${fmt(chans[0].count)}</span> ${esc(chans[0].platform)} ${esc(chans[0].unit)}.` : "";
-  $("channels-lede").innerHTML = `Every episode goes out live on four channels at once, and to Ridd’s LinkedIn.${sum}${one}`;
+  // LinkedIn as the live sessions record it: every show, most shows, or not said
+  const L = S?.live, li = ok(L?.linkedInShows) && L.shows ? (L.linkedInShows === L.shows ? ", and to LinkedIn" : L.linkedInShows * 2 > L.shows ? ", and most weeks to LinkedIn too" : "") : "";
+  $("channels-lede").innerHTML = `Every episode goes out live on four channels at once${li}.${sum}${one}`;
   $("channel-kpis").hidden = chans.length < 2;
   $("channel-kpis").style.setProperty("--cols", chans.length);
   $("channel-kpis").innerHTML = chans.length >= 2 ? chans.map((c) => `<div class="ss-kpi"><dt class="ss-kpi__label">${esc(c.label)}</dt><dd class="ss-kpi__value">${fmt(c.count)}</dd><dd class="ss-kpi__sub">${esc(c.platform)} ${esc(c.unit)}</dd></div>`).join("") : "";
@@ -1080,7 +1082,7 @@ function renderRoom() {
   ].filter(Boolean);
   const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
   $("room-curve").innerHTML = `${single}<h3 class="card__title"><span class="n">E${C.ep}</span>, ${esc(short(C.title))}, minute by minute</h3>
-    <p class="card__meta">Everyone watching live, on every channel at once · premiered ${day(C.premiere)}</p>
+    <p class="card__meta">Everyone watching live on YouTube and X at once · premiered ${day(C.premiere)}</p>
     <div class="curve" role="img" aria-label="${esc(said)}">
       <div class="curve__plot">
         <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
@@ -1179,9 +1181,9 @@ function renderPackages() {
 function renderAbout() {
   $("about-prose").innerHTML = `
     <p><b>Views</b> are YouTube views plus resolved X broadcast plays on the two hosts’ accounts. Native tweet and teaser videos are left out, and so are impressions: they say how many times a post was seen, not watched. Views keep arriving after an episode airs, so the newest episodes are still counting.</p>
-    <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode. <b>Hours watched live</b> come from Restream, across every channel the show streams to. The two are never added: YouTube’s hours can include some of the live viewing on YouTube.</p>
+    <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode. <b>Hours watched live</b> come from Restream, on YouTube and X${ok(S?.live?.xFromEp) ? ` (X’s from <span class="n">E${S.live.xFromEp}</span>, when Restream began reporting its live viewers)` : ""}. The two are never added: YouTube’s hours can include some of the live viewing on YouTube.</p>
     <p><b>Subscribers and followers</b> are each channel’s public count on the day shown. Their sum is shown to the nearest thousand, since YouTube publishes its counts rounded, and it counts channels, not people: one person can follow more than one.</p>
-    <p><b>Watching at once</b> is the most people watching in the same minute, all channels together; <b>on average</b> is the same count across the whole show. <b>Live views</b> are each channel’s own count of who watched any part of the stream, added across YouTube and X, so one person on two channels counts twice.</p>
+    <p><b>Watching at once</b> is the most people watching in the same minute, on YouTube and X together; <b>on average</b> is the same count across the whole show. <b>Live views</b> are each channel’s own count of who watched any part of the stream, added across YouTube and X, so one person on two channels counts twice.${S?.live?.linkedInShows ? " LinkedIn’s live viewers aren’t reported, so they are in none of these counts." : ""}</p>
     <p><b>At the end</b> compares the last ten minutes of a show with its peak. <b>In the chat</b> counts the different people who wrote at any point in the show on YouTube and X (LinkedIn’s count is left out), set against the most people watching at once. <b>Messages an hour</b> is every chat message on YouTube and X across the show, per hour of the show.</p>
     <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every <span class="n">100</span> YouTube views of the recording, how many reach its middle (YouTube’s audience curve, read once an episode is a week old; it counts every view at that point, including anyone who skipped ahead).</p>
     <p><b>A typical show</b> is the middle value of the eight shows before the newest — the same reading the show’s own dashboard uses.</p>

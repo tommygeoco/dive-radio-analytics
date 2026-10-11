@@ -146,6 +146,11 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(t.people, (400 + 80 + 400 + 90) / 2);
   assert.equal(view.live.best.peak.ep, 13);
   assert.equal(view.live.chat, 1300, "chat totals add up across shows");
+  assert.equal(view.live.xFromEp, 5, "shows before the X reporting break sit in the totals, so the page names where X starts");
+  assert.equal(view.live.linkedInShows, 0, "no session row says LinkedIn, so no show is counted as going there");
+  const viaLinkedIn = sponsorView({ episodes: eps.map((e) => (e.ep % 2 ? { ...e, live: { ...e.live, byChannel: [{ label: "YT Dive Club", peak: 10 }, { label: "LinkedIn", chatters: 0 }] } } : e)), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.equal(viaLinkedIn.live.linkedInShows, 7, "a LinkedIn row, even one reporting only a zero, says the show went there");
+  assert.equal(sponsorView({ episodes: eps.filter((e) => e.ep >= 5), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).live.xFromEp, null, "with every show after the break, nothing needs saying");
   const thin = sponsorView({ episodes: eps.slice(0, 3), transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.equal(thin.live.typical.peak, null, "fewer than three shows before the newest is no typical, never a guess");
 

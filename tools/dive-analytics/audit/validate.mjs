@@ -3491,6 +3491,12 @@ try {
       if (lived.length && sp.live.hours !== Math.round(lived.filter((e) => Number.isFinite(e.live.watchedMin)).reduce((a, e) => a + e.live.watchedMin, 0) / 60)) {
         bad++; fail("sponsor: hours watched live do not re-derive from the live sessions");
       }
+      // where the shows went out: the sessions that carry a LinkedIn row; X counted from the known reporting break
+      const xBreak = B.breaksFor("liveViewers")[0];
+      if (lived.length && (sp.live.linkedInShows !== lived.filter((e) => (e.live.byChannel || []).some((row) => row.label === "LinkedIn")).length
+        || sp.live.xFromEp !== (xBreak && lived.some((e) => e.ep < xBreak.fromEp) ? xBreak.fromEp : null))) {
+        bad++; fail("sponsor: where the shows went out (shows on LinkedIn, X's first reported show) does not re-derive from the live sessions");
+      }
       // the middle of a show: its middle minute live; the recording's 50% point once a week old
       const midLive = (e) => { const p = Number.isFinite(e.live?.durationMin) ? (e.live.series || []).find((x) => x.m === Math.floor(e.live.durationMin / 2)) : null; return Number.isFinite(p?.v) ? p.v : null; };
       const midRec = (e) => { if (!((e.ageDays ?? 0) >= SV.MIDDLE_MIN_AGE_DAYS)) return null; const p = (e.watch?.curve || []).find((x) => Math.abs(x.at - 0.5) < 1e-9); return Number.isFinite(p?.watching) ? Math.round(p.watching * 1000) / 10 : null; };
@@ -3633,6 +3639,12 @@ try {
     if (/trueMedian|windowFor|\bmedian\b/i.test(page)) { bad++; drift("sponsor page: a typical is computed in the page — it must come from data.sponsor"); }
     if (/\.live\??\.series|\.indexOf\(\s*max\s*\)/.test(page)) { bad++; drift("sponsor page: the live curve reads data.sponsor.live.latest (its stored peak, peak minute and length), never an episode's series"); }
     if (!/<a class="ss-btn ss-btn--secondary" href="\.\/">See the full analytics<\/a>/.test(page)) { bad++; drift("sponsor page: it must link to the full analytics"); }
+    // the page says every episode goes out live on four channels at once: every live session carries the four YouTube and X rows
+    const four = (data.dests || []).filter((d) => d.platform === "yt" || d.platform === "x").map((d) => d.label);
+    const sessions = (data.episodes || []).filter((e) => e.show === "dive-radio" && Number.isFinite(e.live?.peak) && e.live.peak > 0);
+    if (/live on four channels at once/.test(page) && (four.length !== 4 || sessions.some((e) => !four.every((label) => (e.live.byChannel || []).some((row) => row.label === label))))) {
+      bad++; drift("sponsor page: it says every episode goes out live on four channels at once, and a live session lacks one of the four");
+    }
   } catch (err) { bad++; fail(`sponsor: block threw — ${err.message}`); }
   if (!bad) ok(`sponsor: data.sponsor re-derives (views, watch, live, channels, ${data.sponsor?.callIns?.total ?? 0} call-ins, ${(data.sponsor?.brands?.list || []).length} brands, every excerpt and link); clock-checks and contributors hold; the page only formats`);
 }
