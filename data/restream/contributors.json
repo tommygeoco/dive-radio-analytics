@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 1,
+  "source": "Dive Radio episode notes (owner vault, the published #episode-notes drafts): every SUBMISSION line above “Didn't make the show”",
+  "updatedAt": "2026-10-11T16:31:49.034Z",
+  "episodes": {
+    "2026-08-06-dive-radio-backyard-designers-behind-the": {
+      "ep": 4,
+      "airDate": "2026-08-06",
+      "notes": "e4-episode-notes-2026-08-06.md",
+      "notesSha256": "32651b7ca4c1f290b094963fdab070a5f2994df6061ca1116cc03133c1ff1283",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "George Hastings",
+          "nominee": "Dmitry Kurash"
+        },
+        {
+          "kind": "nomination",
+          "who": "Daniela Muntyan",
+          "nominee": "Seungmee Lee"
+        },
+        {
+          "kind": "submission",
+          "who": "Josh Puckett",
+          "about": "making things for yourself, and leaving a way in for others"
+        },
+        {
+          "kind": "submission",
+          "who": "Lex Roman",
+          "about": "is a community about members or about the creator?"
+        },
+        {
+          "kind": "submission",
+          "who": "Drew Wilson",
+          "about": "an invite to ValioCon 2026 in Oceanside"
+        }
+      ]
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+      "ep": 5,
+      "airDate": "2026-08-13",
+      "notes": "e5-episode-notes-2026-08-13.md",
+      "notesSha256": "4c0bbaccd0d1760cf28c2b98547661c3673b445183ea57fe3dae50f99db601f3",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Dmitry Kurash",
+          "nominee": "Fay Dakrouri"
+        },
+        {
+          "kind": "nomination",
+          "who": "James McDonald",
+          "nominee": "Ana Malai"
+        },
+        {
+          "kind": "submission",
+          "who": "Nad",
+          "about": "Lovable's Series C, and why so few designers start companies"
+        },
+        {
+          "kind": "submission",
+          "who": "Charlie Deets",
+          "about": "why he hands designs to engineers instead of shipping the code himself"
+        },
+        {
+          "kind": "submission",
+          "who": "Seb Cornelius",
+          "about": "a prototype lab for trying ideas and tuning how they feel"
+        }
+      ]
+    },
+    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+      "ep": 6,
+      "airDate": "2026-08-20",
+      "notes": "e6-episode-notes-2026-08-20.md",
+      "notesSha256": "565c1b3d69d3f42efba449d952d78837691649b57c4df6e6fa9881285bd3bff9",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Taylor Palmer",
+          "nominee": "Ruchita"
+        },
+        {
+          "kind": "nomination",
+          "who": "Will King",
+          "nominee": "Adhiv"
+        },
+        {
+          "kind": "submission",
+          "who": "John Bai",
+          "about": "where Grok Bot's character came from"
+        },
+        {
+          "kind": "submission",
+          "who": "Daniel Kuntz",
+          "about": "hire a character animator"
+        },
+        {
+          "kind": "submission",
+          "who": "Kenneth Kuh",
+          "about": "how Baby Grok came together"
+        }
+      ]
+    },
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
+      "ep": 7,
+      "airDate": "2026-08-27",
+      "notes": "e7-episode-notes-2026-08-27.md",
+      "notesSha256": "34a4f9b9e43cf4d4985a450af8594f653809e7bf5e9f280474d11c3a8fb10a57",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Andy Allen",
+          "nominee": "Patricia Klein"
+        },
+        {
+          "kind": "nomination",
+          "who": "Bartek Radziejewski",
+          "nominee": "Taras"
+        },
+        {
+          "kind": "submission",
+          "who": "Lucas Martinic",
+          "about": "how he built his portfolio site"
+        },
+        {
+          "kind": "submission",
+          "who": "Ramp",
+          "about": "Paul Jun on a brand system that behaves like jazz"
+        }
+      ]
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
+      "ep": 8,
+      "airDate": "2026-09-03",
+      "notes": "e8-episode-notes-2026-09-03.md",
+      "notesSha256": "f6c6c3f8721c51874fe2c1382b218a521bfe40840162171e5d03ec7f9a785e4a",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Kris Puckett",
+          "nominee": "Laura Escobar"
+        },
+        {
+          "kind": "nomination",
+          "who": "Lucas Martinic",
+          "nominee": "Marina Budarina"
+        },
+        {
+          "kind": "submission",
+          "who": "Evil Rabbit",
+          "about": "Vercel's creative team builds tools, not just assets"
+        },
+        {
+          "kind": "submission",
+          "who": "Daniel Linthwaite",
+          "about": "building an on-brand OG card tool at Vercel"
+        },
+        {
+          "kind": "submission",
+          "who": "Myles Palmer",
+          "about": "Oodles, MetaLab's tool for building parametric tools"
+        },
+        {
+          "kind": "submission",
+          "who": "Nick Pattison",
+          "about": "a live map tool Primary built in Lovable for a client brand"
+        },
+        {
+          "kind": "submission",
+          "who": "Brett",
+          "about": "Playgrnd, 32 tiny creative tools in one place"
+        },
+        {
+          "kind": "submission",
+          "who": "Mike Smith",
+          "about": "brands should feel like Disneyland"
+        },
+        {
+          "kind": "submission",
+          "who": "Escha Vera",
+          "about": "sound design for products at Perplexity"
+        },
+        {
+          "kind": "submission",
+          "who": "Hoodzpah",
+          "about": "Jen and Amy on how brand worlds are growing"
+        }
+      ]
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
+      "ep": 9,
+      "airDate": "2026-09-10",
+      "notes": "e9-episode-notes-2026-09-10.md",
+      "notesSha256": "0f6ea8c9732ff312a5b64472012e124a8bfb78f91bca62c5d8ee0a7289b1d1b2",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Laura Escobar",
+          "nominee": "Jonas"
+        },
+        {
+          "kind": "nomination",
+          "who": "Frank Bach",
+          "nominee": "Annika"
+        },
+        {
+          "kind": "nomination",
+          "who": "Cole",
+          "nominee": "Zack Davenport"
+        },
+        {
+          "kind": "submission",
+          "who": "Carter Geoco",
+          "about": "Robots and Monsters, a D&D app he built with Grok 4.6"
+        },
+        {
+          "kind": "submission",
+          "who": "Charles Patterson",
+          "about": "only post your best, finished work"
+        },
+        {
+          "kind": "submission",
+          "who": "Brad",
+          "about": "a prototype got him to the final round without applying"
+        },
+        {
+          "kind": "submission",
+          "who": "Ethan Arredondo",
+          "about": "one conference led to four interviews and a job"
+        },
+        {
+          "kind": "submission",
+          "who": "Anjali",
+          "about": "a shortlist and a direct note to the hiring manager"
+        },
+        {
+          "kind": "submission",
+          "who": "Jared Tredly",
+          "about": "what Shopify looks for in the first five seconds"
+        },
+        {
+          "kind": "submission",
+          "who": "Danny Martinez",
+          "about": "why big company logos count for less now"
+        },
+        {
+          "kind": "submission",
+          "who": "Chris Andrews",
+          "about": "what Notion looks for in designers now"
+        },
+        {
+          "kind": "submission",
+          "who": "Conor Muirhead",
+          "about": "how Linear hires product-leaning designers"
+        },
+        {
+          "kind": "submission",
+          "who": "Dylan Widick",
+          "about": "from a fellowship to a design job at Block"
+        },
+        {
+          "kind": "submission",
+          "who": "Dan Billson",
+          "about": "moving from engineering to design engineering at Attio"
+        },
+        {
+          "kind": "submission",
+          "who": "Oscar Lozano",
+          "about": "why paid design tasks should come back"
+        },
+        {
+          "kind": "submission",
+          "who": "Lauren LoPrete",
+          "about": "conviction, communication and outside inspiration at Mercury"
+        },
+        {
+          "kind": "submission",
+          "who": "Genny Dee",
+          "about": "deep craft plus systems the whole company can use"
+        },
+        {
+          "kind": "submission",
+          "who": "Kyle Zantos",
+          "about": "the candidate side, and why teams should say what shape they need"
+        },
+        {
+          "kind": "submission",
+          "who": "Rugved Vaidya",
+          "about": "two offers, a career agent and live build tests"
+        },
+        {
+          "kind": "submission",
+          "who": "Ini Abiodun",
+          "about": "Craft Commons, a pilot for African designers"
+        }
+      ]
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
+      "ep": 10,
+      "airDate": "2026-09-17",
+      "notes": "e10-episode-notes-2026-09-17.md",
+      "notesSha256": "4f3f504df8afcb7f3b04697ffb001b9f5a866a1c562549610caef9924470044b",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Victoria",
+          "nominee": "Yael"
+        },
+        {
+          "kind": "nomination",
+          "who": "Jonas Leupe",
+          "nominee": "Thomas"
+        },
+        {
+          "kind": "submission",
+          "who": "Dan Mall and Dan Holdsworth",
+          "about": "how to pitch someone in the DMs"
+        },
+        {
+          "kind": "submission",
+          "who": "Tom Johnson",
+          "about": "a true founding role or a first-designer job"
+        },
+        {
+          "kind": "submission",
+          "who": "Kevin Twohy",
+          "about": "five things to weigh before you take the role"
+        },
+        {
+          "kind": "submission",
+          "who": "Josh Armantrout",
+          "about": "who the role suits, and who it does not"
+        },
+        {
+          "kind": "submission",
+          "who": "Flora Guo",
+          "about": "the visual design is the tip of the iceberg"
+        },
+        {
+          "kind": "submission",
+          "who": "Claire Taylor",
+          "about": "the relationship comes before the design work"
+        },
+        {
+          "kind": "submission",
+          "who": "Joe Salowitz",
+          "about": "a design founder holds many things in tension"
+        },
+        {
+          "kind": "submission",
+          "who": "Alex Danilowicz",
+          "about": "anyone can be a founder"
+        },
+        {
+          "kind": "submission",
+          "who": "Jacob Jolibois",
+          "about": "no process, and no priority other than urgent"
+        },
+        {
+          "kind": "submission",
+          "who": "Dan Tase",
+          "about": "deciding by gut when there is no time for research"
+        },
+        {
+          "kind": "submission",
+          "who": "Andres Gonzalez",
+          "about": "three pivots and the design debt fast AI work left behind"
+        },
+        {
+          "kind": "submission",
+          "who": "Jared Erondu",
+          "about": "everything is your problem, not everything is your priority"
+        },
+        {
+          "kind": "submission",
+          "who": "Chris Davis",
+          "about": "small things compound, and a skill his engineers ship with"
+        },
+        {
+          "kind": "submission",
+          "who": "Jess Rosenberg",
+          "about": "giving yourself permission to be finished"
+        }
+      ]
+    },
+    "2026-09-24-dive-radio-just-in-time-interfaces": {
+      "ep": 11,
+      "airDate": "2026-09-24",
+      "notes": "e11-episode-notes-2026-09-24.md",
+      "notesSha256": "dcf3253390cb63b6aae67c535cbd773c9be842a1019c8ca56ecc996fe505a237",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Wesley Bancroft",
+          "nominee": "Sam Hox"
+        },
+        {
+          "kind": "nomination",
+          "who": "Flora Guo",
+          "nominee": "Josephine"
+        },
+        {
+          "kind": "submission",
+          "who": "Teddy Ni",
+          "about": "Jev vs Haiku 4.5, and his search for a use"
+        },
+        {
+          "kind": "submission",
+          "who": "Jonathan Moore",
+          "about": "editing UI by voice inside a design system"
+        },
+        {
+          "kind": "submission",
+          "who": "Kyle Zantos",
+          "about": "an app idea turned into wireframes"
+        },
+        {
+          "kind": "submission",
+          "who": "Kshitij",
+          "about": "trying features from a reference video in your own app"
+        },
+        {
+          "kind": "submission",
+          "who": "Samraaj Bath",
+          "about": "a coffee site that rebuilds itself for each visitor"
+        },
+        {
+          "kind": "submission",
+          "who": "Harcourt Allen",
+          "about": "Quiver Arrow 2 inside Paper"
+        },
+        {
+          "kind": "submission",
+          "who": "Davey Heuser",
+          "about": "the codebase as the source of truth in Paper"
+        },
+        {
+          "kind": "submission",
+          "who": "Christopher Downer",
+          "about": "stress-testing designs in Elyx with two prompts"
+        },
+        {
+          "kind": "submission",
+          "who": "Carter Geoco",
+          "about": "his Grokbot team of agents"
+        },
+        {
+          "kind": "submission",
+          "who": "Soleio",
+          "about": "advice for someone new who wants to build"
+        }
+      ]
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
+      "ep": 12,
+      "airDate": "2026-10-01",
+      "notes": "e12-episode-notes-2026-10-01.md",
+      "notesSha256": "5c566c462318aa0b0d316796303b7999decf0582697b714b57ec030ff8e8b765",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Tom Johnson",
+          "nominee": "Eduard"
+        },
+        {
+          "kind": "nomination",
+          "who": "David Hoang",
+          "nominee": "Jade"
+        },
+        {
+          "kind": "submission",
+          "who": "Xavier Pothin",
+          "about": "motion design when you can't animate"
+        },
+        {
+          "kind": "submission",
+          "who": "Kolbe Yang",
+          "about": "from a Figma frame to a finished animation"
+        },
+        {
+          "kind": "submission",
+          "who": "Nim",
+          "about": "animating ideas by playing with AI"
+        },
+        {
+          "kind": "submission",
+          "who": "Stefan Poulos",
+          "about": "how he made his portfolio promo video"
+        },
+        {
+          "kind": "submission",
+          "who": "Bruno Reis",
+          "about": "an AI agent edits his interview in DaVinci Resolve"
+        },
+        {
+          "kind": "submission",
+          "who": "Andy Orsow",
+          "about": "plan shots on cheap AI video models first"
+        },
+        {
+          "kind": "submission",
+          "who": "Finn McKenty",
+          "about": "restyle real footage in Flora"
+        },
+        {
+          "kind": "submission",
+          "who": "George Hastings",
+          "about": "an in-app announcement made of code, not video"
+        },
+        {
+          "kind": "submission",
+          "who": "Rebekah Farr",
+          "about": "an app where every screen is AI video"
+        },
+        {
+          "kind": "submission",
+          "who": "Brett Williams",
+          "about": "how it works"
+        }
+      ]
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
+      "ep": 13,
+      "airDate": "2026-10-08",
+      "notes": "e13-episode-notes-2026-10-08.md",
+      "notesSha256": "9b32fc6a6c09c7ded21506cdc36f479c6fff217c3f428b98f8817719ef3e742b",
+      "callIns": [
+        {
+          "kind": "nomination",
+          "who": "Tahreem Rehman",
+          "nominee": "Laura Sinisterra"
+        },
+        {
+          "kind": "nomination",
+          "who": "Ayush Soni",
+          "nominee": "m_11"
+        },
+        {
+          "kind": "submission",
+          "who": "Pietro Schirano",
+          "about": "the era of build-your-own agents is over"
+        },
+        {
+          "kind": "submission",
+          "who": "Ryan Stephen",
+          "about": "Continuum, an OS made of real-time video"
+        },
+        {
+          "kind": "submission",
+          "who": "Frederik Roessell",
+          "about": "building Heatwave, a police chase game, in Unity"
+        },
+        {
+          "kind": "submission",
+          "who": "Steven Kawer",
+          "about": "Umbras, his art turned into his first game"
+        },
+        {
+          "kind": "submission",
+          "who": "John Saunders",
+          "about": "Pigeon's Mission, a game made with his son"
+        },
+        {
+          "kind": "submission",
+          "who": "Preston Booth",
+          "about": "an interactive Zen garden"
+        },
+        {
+          "kind": "submission",
+          "who": "Tom Johnson",
+          "about": "how and why he built Tomjohnville"
+        },
+        {
+          "kind": "submission",
+          "who": "Dann Petty",
+          "about": "a clip from his review of 300+ portfolios"
+        },
+        {
+          "kind": "submission",
+          "who": "Eric Sin",
+          "about": "how he landed a staff design job at Netflix"
+        }
+      ]
+    }
+  }
+}

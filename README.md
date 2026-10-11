@@ -25,6 +25,14 @@ viewing analytics requires owner observations or approved API access.
   (`tools/dive-analytics/health-feedback.mjs better|same|worse "…"`).
 - Launch word per episode (strong / typical / soft, promo-qualified, "so far"
   under a week) on every card from its first reading.
+- [For sponsors](https://dive-radio-analytics.vercel.app/sponsors.html): the page the owners send to brands —
+  subscribers and followers on the four channels, views so far, hours watched,
+  the typical live show (peak, the share still watching at the end, chat), every
+  community call-in that aired, brands named on air with a link to each moment,
+  what partners get on air (reads, named segments, live builds), named viewer
+  quotes, and the packages. Same data as the dashboard (`data.sponsor`), rebuilt
+  every morning; timestamps open YouTube at the exact second wherever the
+  transcript has been matched to that upload's captions.
 - [Agents](https://dive-radio-analytics.vercel.app/agents.html) (a separate page linked from the header): one address any AI agent can read —
   [`agent.md`](https://dive-radio-analytics.vercel.app/agent.md) — the whole
   show in one pull: the health read with its facts, the five actions, every
@@ -112,7 +120,7 @@ were actually reached. Restream live events remain retryable until peak,
 average, views, watch time, minute readings, chat, and destination details are
 all present. The chain pulls main before capture, retries each required platform
 pull once, validates the final files, pushes the exact checked commit, deploys
-production, and compares all nine core public files and every declared transcript byte-for-byte. An 08:15 check
+production, and compares all ten core public files and every declared transcript byte-for-byte. An 08:15 check
 proves production against that same clean clone and starts the one recovery
 when production is not current. The 12:15 check also uses an available attempt
 if both earlier jobs were missed. If production is current and only the newest

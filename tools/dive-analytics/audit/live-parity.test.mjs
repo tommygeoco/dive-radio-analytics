@@ -11,8 +11,8 @@ import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
 
-assert.deepEqual(PARITY_ARTIFACTS, ["index.html", "agents.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md", "chart.umd.js"]);
-assert.equal(PARITY_ARTIFACTS, PUBLIC_ARTIFACTS, "local assembly and live parity share one nine-file manifest");
+assert.deepEqual(PARITY_ARTIFACTS, ["index.html", "agents.html", "sponsors.html", "data.json", "data.js", "agent.md", "agent.json", "llms.txt", "agent-skill.md", "chart.umd.js"]);
+assert.equal(PARITY_ARTIFACTS, PUBLIC_ARTIFACTS, "local assembly and live parity share one ten-file manifest");
 
 const fixture = Object.fromEntries(PARITY_ARTIFACTS.map((file) => [file, Buffer.from(`${file}\n`)]));
 const transcriptSlug = "2026-09-03-dive-radio-parity-fixture";
@@ -126,4 +126,4 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
   }
 }
 
-console.log("live-parity.test: nine core artifacts and data-declared transcripts are fetched and byte-checked; missing, changed, and failed live files are rejected");
+console.log("live-parity.test: ten core artifacts and data-declared transcripts are fetched and byte-checked; missing, changed, and failed live files are rejected");

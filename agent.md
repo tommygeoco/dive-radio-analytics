@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-10-11T14:03:24.687Z · data through 2026-10-11 · health read 2026-10-11 (data through 2026-10-11) · chapters written 2026-10-10 · brief v1
+Built 2026-10-11T16:59:15.658Z · data through 2026-10-11 · health read 2026-10-11 (data through 2026-10-11) · chapters written 2026-10-10 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 13 episodes in https://dive-radio-analytics.vercel.app/agent.json; 6 included here, 7 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-10-11T14:03:24.687Z); the show-health read (2026-10-11, over data through 2026-10-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
+Three clocks: the data build (2026-10-11T16:59:15.658Z); the show-health read (2026-10-11, over data through 2026-10-11 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -208,17 +208,17 @@ Standing: launch — (Fewer than three earlier episodes to compare with.); pace 
 Views: 6,235 YouTube + 4,175 X plays = 10,410; X reach 20,485 (announce posts); promo posts 3, 17,377 impressions, kept out of reach and views; likes and comments per thousand YouTube views 14.4.
 Watching (YouTube analytics, 2026-10-11): 9.3% of the video watched on average, 11 min per view, 28,928 minutes watched in all; views came from SUBSCRIBER 68.1%, EXT_URL 8.4%, YT_SEARCH 6.4%, NO_LINK_OTHER 6.2%; subscribers per thousand views 6.1; discovery share 10.0%.
 Live session: peak 98, average 68, 872 people watched live for 7,820 minutes in all (9.0 minutes each; 57% of the peak still watching at the end); 137 chat messages from 37 people over 115 minutes. Note the live-reporting break in section 3.
-Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
-- 00:03:17 — Cold open and show intro: A montage on AI tooling opens the show before the hosts greet the chat and admit brand work isn't their forte.
-- 00:08:34 — Designer of the week nominations: Callers nominate designers for their AI craft, tools, and community spirit as voting opens.
-- 00:18:21 — Fresh model drop and AI news reactions: Hosts react to a new model release, a pricing gaffe, a multi agent interface, and a CMS launch.
-- 00:25:08 — World models and generated video and interfaces: Hosts watch world model demos, on demand video streams, and an interface that generates itself.
-- 00:33:30 — Brand engineering at Vercel: A clip from Vercel's creative lead shows a team building internal tools instead of one off assets.
-- 00:41:22 — Demos of internal brand tools: Guests demo a parametric toolkit, a client map generator, and a set of tiny creative tools.
-- 01:02:12 — Brand universes and world building the dive brand: A studio owner urges Disneyland style brands while the hosts explore underwater worlds for their own site.
-- 01:21:44 — Sound design as part of a brand: A guest designer layers product sounds and a host shows his soundboard experiments.
-- 01:33:17 — Branding trends from the Chutzpah sisters: Two guests describe in person activations, superfan communities, and micro shows as brand plays.
-- 01:40:53 — One up weekly picks, winner reveal, and closing: Hosts trade favorite finds, announce the vote winner, and preview a careers episode before signing off.
+Chapters (model-written from the transcript, complete; timestamps on the live recording's clock, matched to the YouTube upload's own captions — links jump to the moment):
+- 00:03:17 — Cold open and show intro: A montage on AI tooling opens the show before the hosts greet the chat and admit brand work isn't their forte. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=198s)
+- 00:08:34 — Designer of the week nominations: Callers nominate designers for their AI craft, tools, and community spirit as voting opens. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=515s)
+- 00:18:21 — Fresh model drop and AI news reactions: Hosts react to a new model release, a pricing gaffe, a multi agent interface, and a CMS launch. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=1102s)
+- 00:25:08 — World models and generated video and interfaces: Hosts watch world model demos, on demand video streams, and an interface that generates itself. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=1509s)
+- 00:33:30 — Brand engineering at Vercel: A clip from Vercel's creative lead shows a team building internal tools instead of one off assets. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=2011s)
+- 00:41:22 — Demos of internal brand tools: Guests demo a parametric toolkit, a client map generator, and a set of tiny creative tools. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=2483s)
+- 01:02:12 — Brand universes and world building the dive brand: A studio owner urges Disneyland style brands while the hosts explore underwater worlds for their own site. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=3733s)
+- 01:21:44 — Sound design as part of a brand: A guest designer layers product sounds and a host shows his soundboard experiments. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=4905s)
+- 01:33:17 — Branding trends from the Chutzpah sisters: Two guests describe in person activations, superfan communities, and micro shows as brand plays. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=5598s)
+- 01:40:53 — One up weekly picks, winner reveal, and closing: Hosts trade favorite finds, announce the vote winner, and preview a careers episode before signing off. (https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s)
 Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 11 min in (10% of the way): 3.2 of every hundred viewers left — Hosts move from brand work in products into the designer of the week segment, playing recorded nominations for Marina and Laura before a host shares his own pick, Jackie. — "She is so dope on the thing she we'll get we'll get into her portfolio in a second. 00:11:25 [Speaker 2] I I do wanna show you this, Substack article down here…"
 - Drop about 44 min in (38% of the way): 4.7 of every hundred viewers left — Hosts discuss generated interfaces as branding's next big shift after social media, cite designers with strong personal brands, then play a clip of Evil Rabbit describing his creative team's work at Vercel. — "We can have these different settings. 00:43:32 [Speaker 13] So we could come in and say, actually, we want a nine by 16 asset, and we wanna change the kind of,…"
@@ -248,17 +248,17 @@ Standing: launch — (Fewer than three earlier episodes to compare with.); pace 
 Views: 11,984 YouTube + 4,001 X plays = 15,985; X reach 12,243 (announce posts); promo posts 3, 2,393 impressions, kept out of reach and views; likes and comments per thousand YouTube views 17.2.
 Watching (YouTube analytics, 2026-10-11): 9.2% of the video watched on average, 14 min per view, 75,155 minutes watched in all; views came from SUBSCRIBER 71.8%, NO_LINK_OTHER 8.0%, YT_SEARCH 5.0%, RELATED_VIDEO 4.8%; subscribers per thousand views 2.5; discovery share 9.8%.
 Live session: peak 133, average 109, 1,159 people watched live for 16,459 minutes in all (14.2 minutes each; 69% of the peak still watching at the end); 275 chat messages from 73 people over 151 minutes. Note the live-reporting break in section 3.
-Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
-- 00:03:17 — Cold open teases the episode before the hosts say hello: A montage of voices opens the show before the hosts greet the live chat and tease the topic.
-- 00:06:23 — Tommy announces he is joining Inflight as cofounder: A host shares news of joining the startup and the pair discuss prototype feedback and prompting with links.
-- 00:14:55 — Designer of the week nominations from the community: Hosts play recorded nominations spotlighting community designers and open the audience vote.
-- 00:25:05 — Apple event reactions then Astra model experiments: Hosts react to the new phone lineup and folding duo, then tour demos people built with a new model.
-- 00:40:49 — What the data shows about the design job market: Hosts review economy projections, talent network findings, and pay, and invite listeners to a survey.
-- 00:52:07 — How designers actually get discovered: Hosts debate social posts, private groups, and portfolios, with a guest clip on packaging your work.
-- 01:04:07 — Going direct with prototypes and cold pitches: Designers recount pitching prototypes, working a conference, and messaging hiring managers directly.
-- 01:22:24 — Hiring managers reveal how they screen designers: Guests from Shopify, Notion, and Linear explain how they evaluate designers, followed by new hire stories.
-- 01:53:56 — What matters most when accepting an offer: Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views.
-- 02:16:59 — Closing questions, weekly picks, and the vote winner: Hosts answer chat questions on cold outreach, share finds, and announce designer of the week.
+Chapters (model-written from the transcript, complete; timestamps on the live recording's clock, matched to the YouTube upload's own captions — links jump to the moment):
+- 00:03:17 — Cold open teases the episode before the hosts say hello: A montage of voices opens the show before the hosts greet the live chat and tease the topic. (https://youtube.com/watch?v=DUejFPtYll0&t=196s)
+- 00:06:23 — Tommy announces he is joining Inflight as cofounder: A host shares news of joining the startup and the pair discuss prototype feedback and prompting with links. (https://youtube.com/watch?v=DUejFPtYll0&t=382s)
+- 00:14:55 — Designer of the week nominations from the community: Hosts play recorded nominations spotlighting community designers and open the audience vote. (https://youtube.com/watch?v=DUejFPtYll0&t=894s)
+- 00:25:05 — Apple event reactions then Astra model experiments: Hosts react to the new phone lineup and folding duo, then tour demos people built with a new model. (https://youtube.com/watch?v=DUejFPtYll0&t=1504s)
+- 00:40:49 — What the data shows about the design job market: Hosts review economy projections, talent network findings, and pay, and invite listeners to a survey. (https://youtube.com/watch?v=DUejFPtYll0&t=2448s)
+- 00:52:07 — How designers actually get discovered: Hosts debate social posts, private groups, and portfolios, with a guest clip on packaging your work. (https://youtube.com/watch?v=DUejFPtYll0&t=3126s)
+- 01:04:07 — Going direct with prototypes and cold pitches: Designers recount pitching prototypes, working a conference, and messaging hiring managers directly. (https://youtube.com/watch?v=DUejFPtYll0&t=3846s)
+- 01:22:24 — Hiring managers reveal how they screen designers: Guests from Shopify, Notion, and Linear explain how they evaluate designers, followed by new hire stories. (https://youtube.com/watch?v=DUejFPtYll0&t=4943s)
+- 01:53:56 — What matters most when accepting an offer: Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views. (https://youtube.com/watch?v=DUejFPtYll0&t=6835s)
+- 02:16:59 — Closing questions, weekly picks, and the vote winner: Hosts answer chat questions on cold outreach, share finds, and announce designer of the week. (https://youtube.com/watch?v=DUejFPtYll0&t=8218s)
 Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 8 min in (5% of the way): 3.2 of every hundred viewers left — The hosts greet viewers, preview their discussion of design hiring, and announce Tommy joining Inflight as a cofounder. — "So with everybody, you know, trying to hire you, why? 00:07:32 [Speaker 1] Why why is this something that you're interested in? 00:07:34 [Speaker 1] Outside of…"
 - Drop about 18 min in (12% of the way): 5.1 of every hundred viewers left — The hosts preview hiring insights from companies, then play designer nomination videos highlighting Jonas's brand work and prototypes and Frank Bach's pick, Anika. — "Good at articulating why these people are dope. 00:18:04 [Speaker 3] I'm like, I need to get better at that. 00:18:06 [Speaker 1] I was about to say, I feel li…"
@@ -287,17 +287,17 @@ Standing: launch — (Fewer than three earlier episodes to compare with.); pace 
 Views: 8,553 YouTube + 1,860 X plays = 10,413; X reach 7,783 (announce posts); promo posts 5, 13,032 impressions, kept out of reach and views; likes and comments per thousand YouTube views 14.0.
 Watching (YouTube analytics, 2026-10-11): 10.2% of the video watched on average, 12 min per view, 40,260 minutes watched in all; views came from SUBSCRIBER 75.6%, EXT_URL 5.7%, YT_SEARCH 4.9%, NO_LINK_OTHER 4.6%; subscribers per thousand views 1.6; discovery share 8.6%.
 Live session: peak 97, average 78, 513 people watched live for 9,438 minutes in all (18.4 minutes each; 67% of the peak still watching at the end); 101 chat messages from 47 people over 121 minutes. Note the live-reporting break in section 3.
-Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
-- 00:03:17 — Opening thoughts and a conference catch up: The hosts open with thoughts on AI tools, introduce the show, and share a conference travel story.
-- 00:10:02 — Designer of the week nominees: The hosts and community contributors showcase designers, personal projects, and tools before opening the vote.
-- 00:19:49 — Design tool news and faster AI: The hosts discuss Elex, Common Knowledge joining Figma, fast AI models, and vector image tools.
-- 00:27:43 — Pitching your help and building useful skills: The hosts review outreach advice, show a community plugin, and demonstrate a Notion job search skill.
-- 00:39:57 — What a founding designer actually does: The hosts and guests distinguish founding roles from first hires and discuss founder fit, listening, and trust.
-- 01:01:00 — Who should become a founding designer: Guests Josh, Flora, and Claire join the hosts in discussing experience, initiative, decisions, and relationships.
-- 01:18:10 — From founding designer to design founder: Guests Joe and Alex and the hosts discuss starting companies, customer needs, sales, and broad business skills.
-- 01:28:14 — Doing the job amid urgency and changing plans: The hosts and guests discuss fast shipping, intuition, design debt, customer contact, priorities, and AI skills.
-- 01:53:48 — Knowing when to leave: Guest Jess explains leaving after building a brand team, finding new interests, and reflecting on burnout.
-- 01:58:54 — The winning designer and closing thanks: The hosts announce the designer of the week, thank viewers, request feedback, and sign off.
+Chapters (model-written from the transcript, complete; timestamps on the live recording's clock, matched to the YouTube upload's own captions — links jump to the moment):
+- 00:03:17 — Opening thoughts and a conference catch up: The hosts open with thoughts on AI tools, introduce the show, and share a conference travel story. (https://youtube.com/watch?v=x05zZ90lY28&t=198s)
+- 00:10:02 — Designer of the week nominees: The hosts and community contributors showcase designers, personal projects, and tools before opening the vote. (https://youtube.com/watch?v=x05zZ90lY28&t=603s)
+- 00:19:49 — Design tool news and faster AI: The hosts discuss Elex, Common Knowledge joining Figma, fast AI models, and vector image tools. (https://youtube.com/watch?v=x05zZ90lY28&t=1190s)
+- 00:27:43 — Pitching your help and building useful skills: The hosts review outreach advice, show a community plugin, and demonstrate a Notion job search skill. (https://youtube.com/watch?v=x05zZ90lY28&t=1664s)
+- 00:39:57 — What a founding designer actually does: The hosts and guests distinguish founding roles from first hires and discuss founder fit, listening, and trust. (https://youtube.com/watch?v=x05zZ90lY28&t=2398s)
+- 01:01:00 — Who should become a founding designer: Guests Josh, Flora, and Claire join the hosts in discussing experience, initiative, decisions, and relationships. (https://youtube.com/watch?v=x05zZ90lY28&t=3661s)
+- 01:18:10 — From founding designer to design founder: Guests Joe and Alex and the hosts discuss starting companies, customer needs, sales, and broad business skills. (https://youtube.com/watch?v=x05zZ90lY28&t=4691s)
+- 01:28:14 — Doing the job amid urgency and changing plans: The hosts and guests discuss fast shipping, intuition, design debt, customer contact, priorities, and AI skills. (https://youtube.com/watch?v=x05zZ90lY28&t=5295s)
+- 01:53:48 — Knowing when to leave: Guest Jess explains leaving after building a brand team, finding new interests, and reflecting on burnout. (https://youtube.com/watch?v=x05zZ90lY28&t=6829s)
+- 01:58:54 — The winning designer and closing thanks: The hosts announce the designer of the week, thank viewers, request feedback, and sign off. (https://youtube.com/watch?v=x05zZ90lY28&t=7135s)
 Watch moments (from the YouTube retention curve; positions approximate):
 - Drop about 15 min in (12% of the way): 3.2 of every hundred viewers left — Hosts share designer nominations, highlighting Sharlota Blunarova's design experiments and tools, then Nathan's work on Flinto and its role in one host's path into design. — "She shares a lot of the output from the tools that she creates, and she like, this is one of those outputs that she was just kinda playing with. 00:14:35 [Spea…"
 - Drop about 53 min in (44% of the way): 2.9 of every hundred viewers left — Hosts discuss founders’ involvement in design, and Ridd contrasts executing a sports betting startup’s ideas with shaping product strategy at Maven. — "They were horrendous designers. 00:53:13 [Speaker 6] They had no idea. 00:53:14 [Speaker 6] And so a big part of my role was I I actually I actually learned so…"
@@ -320,7 +320,7 @@ Standing: launch — (Fewer than three earlier episodes to compare with.); pace 
 Views: 5,479 YouTube + 2,810 X plays = 8,289; X reach 8,121 (announce posts); likes and comments per thousand YouTube views 12.2.
 Watching (YouTube analytics, 2026-10-11): 10.7% of the video watched on average, 13 min per view, 27,741 minutes watched in all; views came from SUBSCRIBER 75.8%, NO_LINK_OTHER 5.9%, YT_SEARCH 4.7%, YT_OTHER_PAGE 3.6%; subscribers per thousand views 2.2; discovery share 8.2%.
 Live session: peak 109, average 80, 877 people watched live for 9,440 minutes in all (10.8 minutes each; 67% of the peak still watching at the end); 184 chat messages from 67 people over 118 minutes. Note the live-reporting break in section 3.
-Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
+Chapters (model-written from the transcript, complete; timestamps on the live recording's clock, not yet matched to a YouTube upload — no links):
 - 00:03:16 — Cold open and welcome to the group chat: A clip montage opens the show, then the hosts greet viewers and preview the lineup and the live chat format.
 - 00:07:11 — Survey plug and designer of the week nominations: The hosts promote an industry survey, then viewer clips and the hosts nominate designers for the weekly vote.
 - 00:29:13 — Pushback on AI-heavy work and a fast build story: The hosts weigh a viral complaint about agent-driven work, authorship, and a replay tool built in hours.
@@ -354,7 +354,7 @@ Standing: launch — (Fewer than three earlier episodes to compare with.); pace 
 Views: 7,006 YouTube + 3,057 X plays = 10,063; X reach 11,471 (announce posts); likes and comments per thousand YouTube views 12.0.
 Watching (YouTube analytics, 2026-10-11): 10.4% of the video watched on average, 12 min per view, 30,603 minutes watched in all; views came from SUBSCRIBER 84.3%, NO_LINK_OTHER 3.9%, RELATED_VIDEO 3.3%, YT_SEARCH 3.1%; subscribers per thousand views 1.3; discovery share 6.4%.
 Live session: peak 111, average 86, 832 people watched live for 10,062 minutes in all (12.1 minutes each; 66% of the peak still watching at the end); 138 chat messages from 67 people over 118 minutes. Note the live-reporting break in section 3.
-Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
+Chapters (model-written from the transcript, complete; timestamps on the live recording's clock, not yet matched to a YouTube upload — no links):
 - 00:03:16 — Cold open, welcome, and a preview of the motion theme: Both hosts open with a highlight reel, swap vacation and holiday chat, and set up an episode about motion.
 - 00:11:46 — Designer of the week nominations and voting: Hosts and community members nominate designers, and a single-screen site gets a quick look.
 - 00:20:13 — Brand in a box, the Discord opening, and a Lovable library: Brett's clip on prebuilt brands, then a host explains the quarterly Discord and a Lovable submissions library.
@@ -387,17 +387,17 @@ Standing: launch — (Fewer than three earlier episodes to compare with.); pace 
 Views: 4,068 YouTube + 2,009 X plays = 6,077; X reach 7,862 (announce posts); likes and comments per thousand YouTube views 19.4.
 Watching (YouTube analytics, 2026-10-11): 13.2% of the video watched on average, 13 min per view, 12,407 minutes watched in all; views came from SUBSCRIBER 84.3%, RELATED_VIDEO 4.8%, NO_LINK_OTHER 3.7%, YT_SEARCH 1.8%; subscribers per thousand views 1.3; discovery share 6.6%.
 Live session: peak 87, average 70, 843 people watched live for 8,610 minutes in all (10.2 minutes each; 84% of the peak still watching at the end); 193 chat messages from 73 people over 123 minutes. Note the live-reporting break in section 3.
-Chapters (model-written from the transcript, complete; timestamps on the live recording's clock — a few minutes off the upload, so no links):
-- 00:03:14 — Cold open clips and welcome to Dive Radio: Guest voices play in a teaser before the hosts greet listeners and preview a two-part portfolio plan.
-- 00:06:24 — How the portfolio reviews will work with the in flight widget: The hosts explain how a question widget on each portfolio will steer targeted live feedback from them and the chat.
-- 00:09:28 — Designer of the week nominees: Listener nominations for designer of the week, plus the hosts' own picks, including a rising creative tool maker.
-- 00:18:02 — OpenAI intelligent UI and a wave of component tools: Hosts react to chat replies that assemble interface pieces on the fly and cheer new design tools from friends.
-- 00:24:46 — Agents everywhere: Figma agent, MagicPath plugins and a Continuum demo: Hosts weigh new design agents, play a founder clip on chat plugins, and react to a real time video operating system.
-- 00:42:43 — Games boom: agent matches, ported titles, and designers building their own: Hosts survey game experiments, and guests walk through a Unity build, an art-led world, and a father and son game.
-- 01:05:53 — Playable portfolios: a Zen garden and a career town: A designer shows how a garden experiment came together, then the hosts tour a portfolio built as a playable town.
-- 01:18:29 — Portfolio advice from a public review and a new Netflix hire: Clips of a portfolio walkthrough and a staff designer's job-hunt tips on clear targets, craft, and easy case studies.
-- 01:25:38 — Hosts sort portfolios: world building, simple flex, balance, early career: The hosts walk through example sites by type and discuss what suits junior and senior designers and hiring managers.
-- 02:00:48 — Submission reminders, next week's plan, and the designer of the week result: The hosts repeat how to submit with the widget, preview the full review episode, and congratulate the winner.
+Chapters (model-written from the transcript, complete; timestamps on the live recording's clock, matched to the YouTube upload's own captions — links jump to the moment):
+- 00:03:14 — Cold open clips and welcome to Dive Radio: Guest voices play in a teaser before the hosts greet listeners and preview a two-part portfolio plan. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=195s)
+- 00:06:24 — How the portfolio reviews will work with the in flight widget: The hosts explain how a question widget on each portfolio will steer targeted live feedback from them and the chat. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=385s)
+- 00:09:28 — Designer of the week nominees: Listener nominations for designer of the week, plus the hosts' own picks, including a rising creative tool maker. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=569s)
+- 00:18:02 — OpenAI intelligent UI and a wave of component tools: Hosts react to chat replies that assemble interface pieces on the fly and cheer new design tools from friends. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=1083s)
+- 00:24:46 — Agents everywhere: Figma agent, MagicPath plugins and a Continuum demo: Hosts weigh new design agents, play a founder clip on chat plugins, and react to a real time video operating system. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=1487s)
+- 00:42:43 — Games boom: agent matches, ported titles, and designers building their own: Hosts survey game experiments, and guests walk through a Unity build, an art-led world, and a father and son game. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=2564s)
+- 01:05:53 — Playable portfolios: a Zen garden and a career town: A designer shows how a garden experiment came together, then the hosts tour a portfolio built as a playable town. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=3954s)
+- 01:18:29 — Portfolio advice from a public review and a new Netflix hire: Clips of a portfolio walkthrough and a staff designer's job-hunt tips on clear targets, craft, and easy case studies. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=4710s)
+- 01:25:38 — Hosts sort portfolios: world building, simple flex, balance, early career: The hosts walk through example sites by type and discuss what suits junior and senior designers and hiring managers. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=5139s)
+- 02:00:48 — Submission reminders, next week's plan, and the designer of the week result: The hosts repeat how to submit with the widget, preview the full review episode, and congratulate the winner. (https://youtube.com/watch?v=YI1Kx5U6fQc&t=7249s)
 Audience curve and topic moments aren't available from YouTube yet.
 Source checks: linkedin: missing (The Restream session carried LinkedIn, but its LinkedIn broadcast was not identified.).
 Dashboard audience feedback: 16 messages (16 positive, 0 with criticism; mixed reactions appear in both groups). These totals include live chat and expanded X threads and do not change the historical scored feedback cohort.
@@ -506,3 +506,42 @@ Left out of this brief on purpose (in data.json instead):
 - baselines.watchPctBySlug — per-episode share watched — printed in the episode table
 - baselines.typicalCurve — the typical watch curve, a chart aid
 - showTrend.cumulativeAllEpisodes — the Slack report's running total, which carries X reach and is not a views figure
+
+## 11. For sponsors
+
+The numbers the sponsor page shows (https://dive-radio-analytics.vercel.app/sponsors.html), from this build, as of 2026-10-11. The same rules hold: views are YouTube views plus resolved X broadcast plays, reach is kept apart, live viewers are never added across shows, and an absent value carries its reason. Everything below is in agent.json under sponsor.
+
+- Views so far: 95,122 across 13 episodes (7,317 an episode on average so far) = 60,704 YouTube + 34,418 X plays. X reach 133,517 (exposure, kept apart).
+- Watched on YouTube: 6,008 hours across 13 episodes.
+- Subscribers and followers on the four channels the show streams to: 335,141 on 2026-10-11 — DesignerTom on YouTube 170,000 subscribers, Dive Club on YouTube 68,800 subscribers, @ridd_design on X 76,565 followers, @designertom on X 19,776 followers. A sum of channel counts, not distinct people.
+- Live: 13 shows, 1,708 hours watched live, 2,376 chat messages. A typical show (the middle of the 8 shows before the newest, E5–E12): 97.5 at the peak, 73.0 on average, 779.5 people watched live, 66.4% of the peak still watching at the end, 53.9 chatters per hundred at the peak, 66.2 chat messages an hour. Highest peak so far: 133 (E9).
+- Call-ins aired: 100 across E4–E13 (21 of them Designer of the Week nominations), from the published episode notes; every name is under sponsor.callIns.list.
+- Audience feedback: 283 positive of 363 messages with a clear lean (YouTube comments, X threads, live chat); 24 named public quotes under sponsor.feedback.quotes.
+- Brands named on air (as said, whole words, in 13 transcripts): Figma 83 in 13; Claude 72 in 13; Notion (partner) 41 in 10; Lovable (partner) 38 in 7; Vercel 28 in 7; Cursor 21 in 7; Mobbin (partner) 21 in 6; OpenAI 20 in 7; Framer 19 in 6; Google 18 in 8; Apple 16 in 6; Rive 15 in 3; GitHub 14 in 4; Grok 13 in 4; Paper (partner) 12 in 4; Adobe 11 in 6; Anthropic 11 in 6; Shopify 11 in 4; Raycast 9 in 5; Arc 8 in 7.
+- Partner moments on air, linked where the transcript is matched to the YouTube upload (8 of 13 episodes):
+  - Notion, E5 00:40:54 — Notion as code and agent friendly backends (https://youtube.com/watch?v=njOU7GKZcvc&t=2455s)
+  - Notion, E5 00:47:54 — named on air (https://youtube.com/watch?v=njOU7GKZcvc&t=2875s)
+  - Notion, E6 00:05:57 — named on air
+  - Notion, E6 00:51:19 — named on air
+  - Notion, E9 01:22:24 — Hiring managers reveal how they screen designers (https://youtube.com/watch?v=DUejFPtYll0&t=4943s)
+  - Notion, E10 00:27:43 — Pitching your help and building useful skills (https://youtube.com/watch?v=x05zZ90lY28&t=1664s)
+  - Notion, E10 00:34:23 — named on air (https://youtube.com/watch?v=x05zZ90lY28&t=2064s)
+  - Notion, E10 00:39:17 — named on air (https://youtube.com/watch?v=x05zZ90lY28&t=2358s)
+  - Notion, E12 00:11:46 — named on air
+  - Notion, E13 00:17:10 — named on air (https://youtube.com/watch?v=YI1Kx5U6fQc&t=1031s)
+  - Mobbin, E6 00:05:57 — named on air
+  - Mobbin, E6 00:51:19 — named on air
+  - Mobbin, E7 01:34:49 — Mobbin workflows, one up picks, and the winner reveal
+  - Lovable, E5 00:26:25 — Why more designers are not becoming founders (https://youtube.com/watch?v=njOU7GKZcvc&t=1586s)
+  - Lovable, E5 01:20:30 — named on air (https://youtube.com/watch?v=njOU7GKZcvc&t=4831s)
+  - Lovable, E6 00:05:57 — named on air
+  - Lovable, E6 01:20:44 — named on air
+  - Lovable, E8 00:21:02 — named on air (https://youtube.com/watch?v=Vh8ogFIE8CA&t=1263s)
+  - Lovable, E8 01:40:53 — named on air (https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s)
+  - Lovable, E11 01:57:24 — named on air
+  - Lovable, E12 00:05:00 — named on air
+  - Lovable, E12 00:20:13 — Brand in a box, the Discord opening, and a Lovable library
+  - Paper, E6 00:05:57 — named on air
+  - Paper, E7 00:57:35 — Agent working states and prompting inside design canvases
+  - Paper, E7 01:02:34 — named on air
+  - Paper, E11 01:15:20 — Canvas tools, Quiver in Paper, and where design systems should live

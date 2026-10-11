@@ -2237,11 +2237,15 @@ try {
   const about = html.match(/function buildAbout\(\) \{[\s\S]*?innerHTML = `([\s\S]*?)`;\n\}/)?.[1];
   if (!about) { bad++; drift("plain words: About copy could not be found in index.html"); }
   else readerStrings.push(`About: ${about.replace(/<[^>]+>/g, " ")}`);
+  {
+    const sponsorPage = readFileSync(join(ROOT, "sponsors.html"), "utf8").replace(/<style\b[\s\S]*?<\/style>/gi, " ");
+    readerStrings.push(`Sponsors page: ${sponsorPage.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ")}`);
+  }
   for (const line of readerStrings) {
     const hit = line.match(BANNED);
     if (hit) { bad++; fail(`plain words: reader-facing copy contains "${hit[0]}" — ${line.slice(0, 180)}`); }
   }
-  if (!bad) ok("plain words: insights, Slack, and About avoid the banned dashboard jargon");
+  if (!bad) ok("plain words: insights, Slack, About, and the Sponsors page avoid the banned dashboard jargon");
 }
 
 // --- 1j. trend and strip honesty gates (critic follow-up) ---
@@ -2794,14 +2798,14 @@ try {
 }
 
 // --- 1q2. design system (owner directive 2026-10-06) ---
-// Both pages are built on the Smart Sharps design system: every color, type
+// Every page is built on the Smart Sharps design system: every color, type
 // size, spacing, radius, font, weight, and case comes from its tokens, checked
 // by the system's own linter (vendored at audit/ds-audit.mjs). A page change
 // that adds a raw color or an off-scale value is drift until it uses a token.
 {
   let bad = 0;
   const { auditSource } = await import(join(TOOL, "audit", "ds-audit.mjs"));
-  for (const page of ["index.html", "agents.html"]) {
+  for (const page of ["index.html", "agents.html", "sponsors.html"]) {
     const { findings } = auditSource(readFileSync(join(ROOT, page), "utf8"), page);
     for (const f of findings.slice(0, 5)) { bad++; drift(`design system: ${page}:${f.line} [${f.rule}] ${f.detail}`); }
     if (findings.length > 5) { bad++; drift(`design system: ${page} has ${findings.length - 5} more off-system value(s)`); }
@@ -2818,7 +2822,7 @@ try {
   // vendored copy, so a recipe can't drift from the system inside a page.
   const dsComponents = readFileSync(join(TOOL, "audit", "ds-components.css"), "utf8");
   const dsTokens = readFileSync(join(TOOL, "audit", "ds-tokens.css"), "utf8");
-  for (const page of ["index.html", "agents.html"]) {
+  for (const page of ["index.html", "agents.html", "sponsors.html"]) {
     const src = readFileSync(join(ROOT, page), "utf8");
     const recipes = src.match(/\/\* ===== components\.css 3\.1\.1:[^*]*\*\/\n([\s\S]*?)\n  \/\* ===== end of the system recipes ===== \*\//);
     if (!recipes) { bad++; drift(`design system: ${page} has no marked block of system recipes (components.css 3.1.1)`); }
@@ -2877,7 +2881,7 @@ try {
   if (/inflight\.co\/widget/.test(html) || /inflight\.co\/widget/.test(readFileSync(join(ROOT, "agents.html"), "utf8"))) {
     bad++; drift("design system: the Inflight widget is back — removed 2026-10-06; it was a third-party runtime script (rule 10)");
   }
-  if (!bad) ok("design system: both pages inline the 3.1.1 tokens verbatim, set Inter with tabular figures, use only design-system tokens; charts read them at runtime; no third-party runtime script");
+  if (!bad) ok("design system: all three pages inline the 3.1.1 tokens verbatim, set Inter with tabular figures, use only design-system tokens; charts read them at runtime; no third-party runtime script");
 }
 
 // LinkedIn identity, evidence and absence contract, independently rebuilt from source records.
@@ -2968,6 +2972,7 @@ try {
     ["mirror-transcripts.test.mjs", "isolated transcript mirror"],
     ["source-receipts.test.mjs", "source receipt and missing-X"],
     ["ingest-restream.test.mjs", "Restream ingest state and delayed analytics"],
+    ["sponsor-view.test.mjs", "sponsor view, call-ins and clock checks"],
   ]) {
     try {
       execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
@@ -3397,7 +3402,7 @@ try {
         if (e.chapters?.list?.length) {
           if ((d.chapters?.list || []).length !== e.chapters.list.length) { bad++; fail(`agent: E${e.ep} chapters in the brief (${(d.chapters?.list || []).length}) differ from the store (${e.chapters.list.length})`); }
           for (const c of e.chapters.list) if (inMarkdown && !section.includes(AB.chapterMarkdownPrefix(c))) { bad++; fail(`agent: E${e.ep} chapter at ${c.start} is not in agent.md`); }
-          if (inMarkdown && e.chapters.clock !== "upload" && /&t=\d+s/.test(section)) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link on the live recording's clock`); }
+          if (inMarkdown && !e.chapters.upload && /&t=\d+s/.test(section)) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link though its transcript is not matched to an upload's clock`); }
         }
       }
       // chapters store grounds against the transcripts (fail)
@@ -3435,6 +3440,135 @@ try {
       if (!bad) ok(`agent: brief reproduces, ${(data.episodes || []).length} episodes, ${ranked.length} actions, ${(data.episodes || []).filter((e) => e.chapters?.list?.length).length} episode(s) with grounded chapters, ${bytes} bytes, every data.json path covered or left out with a reason`);
     }
   } catch (err) { bad++; fail(`agent: block threw — ${err.message}`); }
+}
+
+// --- 1s. sponsor page (2026-10-11): data.sponsor re-derives from the stores; its two new stores hold; the page only formats ---
+// fail: every number, count, quote, excerpt and timestamp link the sponsor page shows is recomputed here from
+// data.json's episodes and the stores (channel-stats, contributors, clock-checks, transcripts) and compared with
+// what shipped; the two new stores are checked against the registry. drift: the page's own source (it reads data.js
+// and nothing else, keeps one booking address, computes no typical).
+{
+  let bad = 0;
+  try {
+    const SV = await import(join(TOOL, "sponsor-view.mjs"));
+    const CL = await import(join(TOOL, "clock.mjs"));
+    const TR = await import(join(TOOL, "transcripts.mjs"));
+    const B = await import(join(TOOL, "baselines.mjs"));
+    const AB = await import(join(TOOL, "agent-brief.mjs"));
+    const readStore = (name) => (existsSync(join(ROOT, "data", "restream", name)) ? JSON.parse(readFileSync(join(ROOT, "data", "restream", name), "utf8")) : null);
+    const registry = JSON.parse(readFileSync(join(ROOT, "data", "restream", "postlive-registry.json"), "utf8"));
+    const sp = data.sponsor;
+    const dive = (data.episodes || []).filter((e) => e.show === "dive-radio").sort((a, b) => a.ep - b.ep);
+    const bySlug = new Map(dive.map((e) => [e.slug, e]));
+    const parsed = new Map(dive.filter((e) => e.transcript).map((e) => [e.slug, TR.readTranscript(ROOT, e.slug)]));
+    const checks = readStore("clock-checks.json");
+    const contributors = readStore("contributors.json");
+    const channels = readStore("channel-stats.json");
+    if (!sp) { bad++; fail("sponsor: data.json carries no sponsor projection"); }
+    else {
+      // views are the brief's show totals, field by field — one definition, never a second sum
+      const totals = AB.buildDigest(data).show.totals;
+      if (sp.views.total !== totals.views || sp.views.youtube !== totals.youtube || sp.views.xPlays !== totals.xPlays || sp.views.xReach !== totals.xReach) {
+        bad++; fail(`sponsor: views (${sp.views.total}) do not re-derive as the brief's show totals (${totals.views})`);
+      }
+      if (sp.views.total != null && sp.views.perEpisode !== Math.round(sp.views.total / dive.length)) { bad++; fail("sponsor: views an episode on average do not re-derive"); }
+      const watched = dive.filter((e) => Number.isFinite(e.watch?.minutesWatched));
+      if ((sp.watch.hours ?? null) !== (watched.length ? Math.round(watched.reduce((a, e) => a + e.watch.minutesWatched, 0) / 60) : null)) {
+        bad++; fail("sponsor: hours watched on YouTube do not re-derive from the episodes' watch minutes");
+      }
+      // a typical show: the middle of the eight shows before the newest, recomputed through baselines
+      const lived = dive.filter((e) => Number.isFinite(e.live?.peak) && e.live.peak > 0);
+      const window = lived.length ? B.windowFor(lived[lived.length - 1], lived, { side: "before" }) : [];
+      const middle = (values) => { const v = values.filter(Number.isFinite); return v.length >= B.MIN_PEERS ? Math.round(B.trueMedian(v) * 10) / 10 : null; };
+      const newest = lived[lived.length - 1];
+      const people = window.filter((e) => B.comparableAcrossBreaks("liveViewers", e) || !B.comparableAcrossBreaks("liveViewers", newest));
+      const typical = sp.live?.typical;
+      if (window.length && (!typical || typical.peak !== middle(window.map((e) => e.live.peak)) || typical.average !== middle(window.map((e) => e.live.avg))
+        || typical.people !== middle(people.map((e) => e.live.liveViews)) || typical.holdRate !== middle(window.map((e) => e.live.holdRate))
+        || typical.chattersPer100 !== middle(window.map((e) => B.liveRatesOf(e)?.chattersPer100)) || typical.fromEp !== window[0].ep || typical.toEp !== window[window.length - 1].ep)) {
+        bad++; fail("sponsor: the typical show does not re-derive as the middle of the eight shows before the newest");
+      }
+      if (lived.length && sp.live.hours !== Math.round(lived.filter((e) => Number.isFinite(e.live.watchedMin)).reduce((a, e) => a + e.live.watchedMin, 0) / 60)) {
+        bad++; fail("sponsor: hours watched live do not re-derive from the live sessions");
+      }
+      // subscribers and followers: channel-stats' current readings, as stored
+      for (const c of sp.audience.channels || []) {
+        const row = channels?.current?.[c.key];
+        const want = row?.reading?.state === "ready" && Number.isSafeInteger(row[c.unit === "subscribers" ? "subscribers" : "followers"]) ? row[c.unit === "subscribers" ? "subscribers" : "followers"] : null;
+        if (want !== c.count) { bad++; fail(`sponsor: ${c.key} count (${c.count}) is not the stored reading (${want})`); }
+      }
+      const known = (sp.audience.channels || []).filter((c) => c.count != null);
+      if (sp.audience.total !== (known.length === 4 ? known.reduce((a, c) => a + c.count, 0) : null)) { bad++; fail("sponsor: subscribers and followers total does not re-derive (a missing channel must leave it absent)"); }
+      // call-ins: the imported store's aired entries, counted
+      const aired = Object.entries(contributors?.episodes || {}).filter(([slug]) => bySlug.has(slug));
+      const callIns = aired.reduce((a, [, entry]) => a + (entry.callIns || []).length, 0);
+      if ((sp.callIns.total ?? 0) !== callIns || (aired.length === 0) !== (sp.callIns.total == null)) { bad++; fail(`sponsor: call-ins (${sp.callIns.total}) do not re-derive from contributors.json (${callIns})`); }
+      // brands: an independent count of every listed brand over the transcripts (case-sensitive whole words)
+      const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      for (const b of sp.brands.list || []) {
+        const re = new RegExp(`(?<![\\w@#])${esc(b.name).replace(/ /g, "\\s+")}(?![\\w])`, "g");
+        let mentions = 0, episodes = 0;
+        for (const [, t] of parsed) { const n = t.segments.reduce((a, s) => a + (s.text.match(re) || []).length, 0); mentions += n; if (n) episodes++; }
+        if (mentions !== b.mentions || episodes !== b.episodes) { bad++; fail(`sponsor: ${b.name} mentions (${b.mentions} in ${b.episodes}) do not re-count from the transcripts (${mentions} in ${episodes})`); }
+        if (b.mentions < SV.BRAND_MIN_MENTIONS) { bad++; fail(`sponsor: ${b.name} is listed under the mention floor`); }
+      }
+      // moments: every excerpt grounds in its transcript at its time; every link is the clock rule's
+      const uploadOf = (e) => CL.linkableUpload(e, parsed.get(e.slug), checks);
+      const moments = [...(sp.brands.list || []).flatMap((b) => b.moments.map((m) => ({ ...m, kind: "mention", who: b.name }))), ...(sp.partners || []).flatMap((p) => p.moments.map((m) => ({ ...m, who: p.name })))];
+      for (const m of moments) {
+        const e = bySlug.get(m.slug);
+        const t = parsed.get(m.slug);
+        if (!e) { bad++; fail(`sponsor: a ${m.who} moment names an episode that is not in data.json (${m.slug})`); continue; }
+        if (m.kind === "segment") {
+          if (!(e.chapters?.list || []).some((c) => c.start === m.at && c.title === m.title && c.gist === m.text)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} is not one of the episode's chapters`); }
+        } else if (!t || !TR.normalize(TR.windowText(t, m.at, 60)).includes(TR.normalize(m.text.replace(/…/g, " ")))) {
+          bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} excerpt is not verbatim in the transcript at that time`);
+        }
+        const want = t ? CL.momentUrl(uploadOf(e), m.seconds) : null;
+        if (m.url !== want) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} link is not the clock rule's (${m.url} vs ${want})`); }
+        if (m.url && !Object.values(e.links || {}).includes(m.url.replace(/&t=\d+s$/, ""))) { bad++; fail(`sponsor: ${m.who} E${m.ep} links into an upload the registry does not hold`); }
+      }
+      // chapters link by the same rule (index.html and the brief render the stored url)
+      for (const e of dive) {
+        const up = e.chapters?.list?.length ? uploadOf(e) : null;
+        for (const c of e.chapters?.list || []) if (c.url !== CL.momentUrl(up, c.seconds)) { bad++; fail(`sponsor: E${e.ep} chapter ${c.start} link is not the clock rule's`); break; }
+        if (e.chapters?.list?.length && JSON.stringify(e.chapters.upload ?? null) !== JSON.stringify(up ? { key: up.key, offsetSec: up.offsetSec } : null)) { bad++; fail(`sponsor: E${e.ep} chapters name the wrong matched upload`); }
+      }
+      // quotes: each is a stored positive row, shown as stored (less addressees and an attached link)
+      for (const q of sp.feedback.quotes || []) {
+        const row = (bySlug.get(q.slug)?.audience?.list || []).find((r) => r.id === q.id);
+        if (!row || row.sentiment !== "positive" || row.author !== q.author || SV.quoteText(row.text) !== q.text) { bad++; fail(`sponsor: quote ${q.id} is not a stored positive comment shown verbatim`); }
+      }
+    }
+    // the clock-checks store: each check names the registered upload of its episode
+    const targets = new Map(registry.shows.map((s) => [s.slug, new Map((s.targets || []).filter((x) => x.kind === "youtube" && x.videoId).map((x) => [`yt:${x.account}`, x.videoId]))]));
+    for (const [slug, entry] of Object.entries(checks?.entries || {})) {
+      for (const [key, c] of Object.entries(entry.uploads || {})) {
+        if (targets.get(slug)?.get(key) !== c.videoId) { bad++; fail(`clock-checks: ${slug} ${key} is not the registered upload (${c.videoId})`); }
+        if (!/^[0-9a-f]{64}$/.test(c.transcriptSha256 || "") || !["ready", "pending", "failed"].includes(c.state)) { bad++; fail(`clock-checks: ${slug} ${key} has no transcript fingerprint or state`); }
+        if (c.state === "ready" && !(Number.isFinite(c.offsetSec) && Number.isInteger(c.anchors) && c.anchors > 0 && Number.isFinite(c.spreadSec) && c.spreadSec >= 0)) { bad++; fail(`clock-checks: ${slug} ${key} is ready without an offset, phrases and spread`); }
+        if (c.state !== "ready" && (c.offsetSec != null || !c.reason)) { bad++; fail(`clock-checks: ${slug} ${key} is ${c.state} but carries an offset or no reason`); }
+      }
+    }
+    // the contributors store: aired episodes in registry order, verbatim call-ins, no links
+    const order = registry.shows.filter((s) => (/dive.?radio/i.test(s.title || "") || /dive-radio/.test(s.slug))).sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+    for (const [slug, entry] of Object.entries(contributors?.episodes || {})) {
+      const at = order.findIndex((s) => s.slug === slug);
+      if (at < 0 || entry.ep !== at + 1 || entry.airDate !== order[at].date) { bad++; fail(`contributors: ${slug} is not the registry's E${entry.ep} aired ${entry.airDate}`); }
+      for (const c of entry.callIns || []) {
+        if (!["submission", "nomination"].includes(c.kind) || typeof c.who !== "string" || !c.who.trim() || (c.kind === "nomination" && !c.nominee)) { bad++; fail(`contributors: ${slug} has a malformed call-in`); break; }
+      }
+    }
+    if (contributors && /https?:\/\//.test(JSON.stringify(contributors.episodes))) { bad++; fail("contributors: the store carries a link — call-ins keep names and words only"); }
+    // the page: renders data.sponsor, fetches nothing, keeps one booking address, computes no typical
+    const page = readFileSync(join(ROOT, "sponsors.html"), "utf8");
+    if (/\bfetch\(|XMLHttpRequest|new WebSocket|<script[^>]*\bsrc="(?!data\.js")/.test(page) || !/<script src="data\.js"><\/script>/.test(page)) { bad++; drift("sponsor page: it must read data.js and fetch nothing else at runtime"); }
+    if (!/const S = DATA && DATA\.sponsor \? DATA\.sponsor : null;/.test(page)) { bad++; drift("sponsor page: it must render data.sponsor"); }
+    if ((page.match(/const CONTACT = "[^"\s]+@[^"\s]+";/g) || []).length !== 1) { bad++; drift("sponsor page: one booking address constant (CONTACT)"); }
+    if (/trueMedian|windowFor|\bmedian\b/i.test(page)) { bad++; drift("sponsor page: a typical is computed in the page — it must come from data.sponsor"); }
+    if (!/<a class="ss-btn ss-btn--secondary" href="\.\/">See the full analytics<\/a>/.test(page)) { bad++; drift("sponsor page: it must link to the full analytics"); }
+  } catch (err) { bad++; fail(`sponsor: block threw — ${err.message}`); }
+  if (!bad) ok(`sponsor: data.sponsor re-derives (views, watch, live, channels, ${data.sponsor?.callIns?.total ?? 0} call-ins, ${(data.sponsor?.brands?.list || []).length} brands, every excerpt and link); clock-checks and contributors hold; the page only formats`);
 }
 
 // --- 1x/1y/1z (PRD v9 W26): small-n on data, no trend words over episode health, stored notes only ---

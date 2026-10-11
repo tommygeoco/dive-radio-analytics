@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "method": "6-word phrases that occur once in both the transcript and the upload's English auto-captions; offset = median(caption time − transcript time); spread = 90th − 10th percentile",
+  "updatedAt": "2026-10-11T16:59:14.711Z",
+  "entries": {
+    "2026-07-17-dive-radio-bumpy-takeoff": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "FqsXWbfKmGw",
+          "transcriptSha256": "7f27cd487a231f4cc9350440c4fa6c591bb0f52d03648fc98fbdb9f131014b96",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 2657,
+          "offsetSec": 2.4,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "VcLm0kAGCck",
+          "transcriptSha256": "7f27cd487a231f4cc9350440c4fa6c591bb0f52d03648fc98fbdb9f131014b96",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 2822,
+          "offsetSec": 0.5,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
+      "uploads": {
+        "yt:joindiveclub": {
+          "videoId": "9HYGZgaHdlw",
+          "transcriptSha256": "1e964bc370469d38338610427ca2b6fc7c827f42baa2600161c13c06d82bae07",
+          "checkedAt": "2026-10-11T16:59:14.711Z",
+          "state": "ready",
+          "anchors": 1756,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-08-06-dive-radio-backyard-designers-behind-the": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "ziyWxt6qzfM",
+          "transcriptSha256": "197f94495b5b831b2ef2e2077ab98f3af622c3e4f3a1eeb8017960d7391f9928",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 944,
+          "offsetSec": -5.4,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+      "uploads": {
+        "yt:joindiveclub": {
+          "videoId": "njOU7GKZcvc",
+          "transcriptSha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 2034,
+          "offsetSec": 0.5,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
+      "uploads": {
+        "yt:joindiveclub": {
+          "videoId": "Vh8ogFIE8CA",
+          "transcriptSha256": "3ca7ee6c1cdc07f26ca9481af1c4e3740860248e04779a899980611d83cb9435",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 927,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "OZG115v6TTg",
+          "transcriptSha256": "80c173ae1fc1d286c6b7227e86535f3f586b2847d867da7c5fe4bfb6068b47b6",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 1126,
+          "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "DUejFPtYll0",
+          "transcriptSha256": "80c173ae1fc1d286c6b7227e86535f3f586b2847d867da7c5fe4bfb6068b47b6",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 1125,
+          "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "0xL0XtpH_og",
+          "transcriptSha256": "a19cf438587011ecbae8427d5a4ee0376573316e5a11f52999fa9884edc144c3",
+          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "state": "ready",
+          "anchors": 1004,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "x05zZ90lY28",
+          "transcriptSha256": "a19cf438587011ecbae8427d5a4ee0376573316e5a11f52999fa9884edc144c3",
+          "checkedAt": "2026-10-11T16:59:14.711Z",
+          "state": "ready",
+          "anchors": 1003,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
+      "uploads": {
+        "yt:joindiveclub": {
+          "videoId": "YI1Kx5U6fQc",
+          "transcriptSha256": "5fe6e41758bb6ee1f14377be4356f2df4de71223110c502ab7f3ef34b2f4f990",
+          "checkedAt": "2026-10-11T16:59:14.711Z",
+          "state": "ready",
+          "anchors": 1089,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    }
+  }
+}

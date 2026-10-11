@@ -1934,16 +1934,16 @@ const DIRECTION_LABELS = {
 };
 const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : "");
 /* PRD v12 W43: the episode's chapters — model-written from its transcript,
-   every timestamp and quote grounded; a link only when the transcript runs on
-   the YouTube upload's clock (captions), never on the live recording's */
+   every timestamp and quote grounded; a timestamp links only through the url
+   build-data stored (clock.mjs: the upload's own captions, or a clock check
+   that matched the transcript to the upload) — the page never builds one */
 function chaptersHTML(e) {
   const ch = e.chapters;
   if (!ch || !ch.list || !ch.list.length) return "";
-  const yt = Object.entries(e.links || {}).find(([k]) => k.startsWith("yt:"))?.[1] || null;
-  const linkable = ch.clock === "upload" && yt;
+  const linkable = ch.list.some((c) => c.url);
   const clock = (t) => String(t).replace(/^00:/, "").replace(/^0(\d)/, "$1");
-  const rows = ch.list.map((c, i) => `<li class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener" aria-describedby="ch-${esc(e.slug)}-${i}"><span class="sr">Play from </span>${esc(clock(c.start))}<span class="sr"> (opens YouTube in a new tab)</span></a>` : esc(clock(c.start))}</span><span class="chb"><b id="ch-${esc(e.slug)}-${i}">${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></li>`).join("");
-  const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording, which starts a few minutes before the upload — read them as approximate.";
+  const rows = ch.list.map((c, i) => `<li class="chrow"><span class="cht">${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener" aria-describedby="ch-${esc(e.slug)}-${i}"><span class="sr">Play from </span>${esc(clock(c.start))}<span class="sr"> (opens YouTube in a new tab)</span></a>` : esc(clock(c.start))}</span><span class="chb"><b id="ch-${esc(e.slug)}-${i}">${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></li>`).join("");
+  const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording and haven’t been matched to the upload yet — read them as approximate.";
   return `<div class="chapters"><h3 class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></h3><ol class="chlist" role="list">${rows}</ol><div class="mut chnote">${note}</div></div>`;
 }
 function launchNote(l) {
@@ -4559,7 +4559,7 @@ function buildAbout() {
   <p><b>Live chat and X threads</b> are captured alongside YouTube feedback. Their displayed totals count messages, not distinct people; mixed reactions appear in both positive and criticism lists. Live-chat names are supplied by Restream, which may anonymize them. Only confidently classified feedback is shown; the full source archive is retained privately. Expanded conversation and chat feedback does not change historical health scores or commenting rates.</p>
   <p><b>Scored audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <h2 id="ab-chapters">Chapters</h2>
-  <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
+  <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock: the transcript is the upload’s own captions, or a check matched hundreds of its phrases to the upload’s captions and found one steady offset.</p>
   <h2 id="ab-actions">Actions</h2>
   <p><b>Actions</b> lists at most five current actions for this week, in order — written by a model over the day’s show-health read (each check’s state, which way every measure is heading, the outlook, each launch word) and the full fact sheet, with the biggest lever first. Every number in an item is copied from a stored fact; an item whose numbers move out from under it is held back rather than shown. Each card leads with the action, the finding under it is the reason, and How this is counted opens the note on how its numbers were read. The category on each item is the decision it informs. The same-age pace of the newest episode stays on its card and in the chart standings. The first two current actions also appear in the health card’s Do next area. When no written list is current, it shows the five most timely fixed-rule findings instead — the newest episode’s own standing first — grouped by the decision they inform.</p>
   <h2 id="ab-cadence">When numbers update</h2>

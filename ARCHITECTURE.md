@@ -98,7 +98,9 @@ days since the episode's premiere (noon Phoenix).
 | runtime `alerts-state.json` | last-seen values used to detect a change | alerts | atomic update after confirmed publish, outside Git | the tracked legacy file is read only for first migration |
 | runtime `alerts-pending.json` | queued lines awaiting a confirmed send under `~/Library/Application Support/Dive Radio Analytics` | alerts, chain, freshness, recovery | locked atomic update outside Git | delivery removes only the snapshotted lines after OpenClaw returns a Slack message receipt; queue locks can never dirty or block the publisher |
 | runtime `daily-attempts.json` | per Phoenix day: invocations, at most two whole-chain attempts, source states, commit, build timestamp, deployment, artifact hashes, outcomes, and the missing-source and hard-failure alert markers | run-daily (recovery shares the alert markers) | locked atomic state outside Git; 31 days kept | a missing initialized ledger fails closed; daily alert markers prevent a repeated same-day recovery check from resending the same source or hard-failure warning, even after delivery removes its queue line |
-| `transcripts/<slug>.txt` | 3 header lines + timestamped body (two formats: Restream speaker transcript or YouTube auto-captions) | transcripts-pull or owner | never overwritten once present | timestamps are live-recording time; VOD trims shift them (moments are windows, not instants); the vault mirror reads the isolated publisher and refreshes both Dive QMD collections on every run, including when vault copies already exist; failed refresh retains a retry marker and fails the job |
+| `transcripts/<slug>.txt` | 3 header lines + timestamped body (two formats: Restream speaker transcript or YouTube auto-captions) | transcripts-pull or owner | never overwritten once present | caption transcripts run on their upload's clock; Restream transcripts run on the live recording's, which `clock-checks.json` matches to each upload (measured 2026-10-11: within −5.4…+2.4 s, never minutes); moments are windows, not instants; the vault mirror reads the isolated publisher and refreshes both Dive QMD collections on every run, including when vault copies already exist; failed refresh retains a retry marker and fails the job |
+| `contributors.json` | per aired episode slug: `{ep, airDate, notes, notesSha256, callIns[{kind: submission\|nomination, who, about \| nominee}]}`, `updatedAt` | `scripts/restream/contributors-import.mjs` (owner-run; reads the vault's published `e<N>-episode-notes-*.md`) | **overwrite from the notes**; `updatedAt` moves only when a call-in changes | only `🎥 SUBMISSION` lines above "Didn't make the show" count (what aired); labels verbatim, links never stored; notes with no sent-in video leave the episode absent, never zero; a note whose episode number or air date disagrees with the registry stops the import |
+| `clock-checks.json` | per slug, per YouTube upload: `{videoId, transcriptSha256, checkedAt, state, anchors, offsetSec, spreadSec, reason}` | `scripts/restream/clock-check.mjs` (yt-dlp captions, json3) | **one check per transcript version**; redone only when the transcript's sha changes or a check did not finish | an upload links exactly (`clock.mjs`) only with ≥100 matched six-word phrases and a 10th–90th percentile spread ≤ 2 s; a missing caption track is `pending` with its reason, never an offset of 0 |
 | `data.json` / `data.js` | the artifact (below) | build-data | rebuilt every run; byte-reproducible from stores (validator 7) | `data.js` is `data.json` wrapped; the page reads only `data.js` |
 
 ---
@@ -153,9 +155,10 @@ matchedUnits, newsletters[], snapshots[]}`.
 | "What matters" — five ranked actions | `insights[]` (each with `rank`, `serves`), `insightsStale[]` | recommendations.mjs (prompt v4, `ranked: true`, exactly five in lever order, W35) else build-data `fallbackInsights` — the five most timely rule-based cards (newest episode's pace, live peak and promo flag first, then this week's levers, then standing facts and caveats), unranked; never more than `TOP_N` (5) on either path (validator 1f re-derives the fallback five) | fact sheet over every store + `context` (the day's health read states, direction words, outlook, launch words — words only); rate facts carry `ageDays`/`basis` | every number token must exist in today's fact sheet or the item is held back; no item compares a young episode's rate with a finished one's |
 | Slack trends text | `slackTrends()` in build-data | build-data | `data.json` itself | must read the same exported numbers the page reads (validator 1e/1f parity) |
 | Agent brief (`agent.md`), digest (`agent.json`), index (`llms.txt`) | the whole `data.json` object, digested | **agent-brief.mjs** (pure; `buildBrief(data)`), written by build-data | `data.json` in memory (episodes with chapters, live depth, announce URLs; health with facts; baselines with known breaks) | reproduces byte for byte (check 7); census: every data path covered or left out with a reason (block 1w, drift); numbers, links, chapter grounding, known-break notes fail; plain words outside Definitions; ≤ 100 KB (PRD v12) |
-| Chapters (panel list, brief) | `episodes[].chapters` | **chapters.mjs** (L3, one model call per transcript; `data/restream/chapters.json`, keyed by slug with transcript sha, superseded on change) | `transcripts/<slug>.txt` via `transcripts.mjs` (wraps `watch-moments.parseTranscript`) | every `start` is a transcript timestamp; every quote found within 90 s; ≥ 3 min apart; first within 5 min, last ≥ 3 min before the end; no digits; deep links only on the upload clock (captions) |
+| Chapters (panel list, brief) | `episodes[].chapters` | **chapters.mjs** (L3, one model call per transcript; `data/restream/chapters.json`, keyed by slug with transcript sha, superseded on change) | `transcripts/<slug>.txt` via `transcripts.mjs` (wraps `watch-moments.parseTranscript`) | every `start` is a transcript timestamp; every quote found within 90 s; ≥ 3 min apart; first within 5 min, last ≥ 3 min before the end; no digits; a chapter's `url` exists only when `clock.mjs` says the transcript runs on that upload's clock (its own captions, or a held clock check), and `chapters.upload` names the upload and offset |
 | Live depth per episode | `episodes[].live.minutesPerViewer`, `.holdRate` | build-data via `baselines.liveDepthOf` | live events | one definition shared with the health scorer |
 | Known reporting breaks | `baselines.knownBreaks` | `baselines.KNOWN_BREAKS` | — | printed on every affected row of the brief (validator) |
+| Sponsor page (`sponsors.html`): views so far, an episode on average, hours watched on YouTube, subscribers and followers, the typical show, hours watched live, call-ins, brands named on air, partner moments, viewer quotes | `sponsor` | **sponsor-view.mjs** (pure, called by build-data) | episodes as assembled (views, watch, live, audience), `channel-stats.json` `current`, `contributors.json`, `clock-checks.json`, transcripts | views/YouTube/X plays/reach are the brief's show totals (absent unless every episode has its reading); the typical show is `baselines.windowFor` (the eight before the newest) + `trueMedian`, three or nothing, break-touched measures from the newest side; live viewers are never added across shows; brands are case-sensitive whole words; partner reads need a sponsor phrase and skip "not sponsored by"; quotes are named, positive, stored rows less addressees and trailing links; validator 1s re-derives every number, excerpt and link |
 | "Data refreshed today · health read is behind" stamp | `generatedAt`, `health.ageDays`, `health.withheld` | build-data / health | — | says when the saved health read is behind the data; exact date in the hover title |
 
 ---
@@ -216,9 +219,10 @@ Blocks in file order, with what each locks (line refs at `96a4f2f`):
 | 1m / 1m2 | watching export ranges and ordering; moments recompute-locked; summaries verbatim |
 | 1n | recommendations re-grounded; `insights` ⇔ store |
 | 1h | show health: schema, append-only vs HEAD, stamps, weighted mean, ±8, bullets cite facts, projection ⇔ `data.health`, trend gate ≥7; bundle re-derived from stores **only for today's entry under the current formula** |
-| 1i | banned words over every reader-facing string |
+| 1i | banned words over every reader-facing string, including the Sponsors page's own copy |
 | 1j / 1j2 | honesty gates present in page source (3-peer, 3-curve, quiet zones, retired absence copy absent, no `?? 0`) |
 | 1k / 1p / 1q / 1r | card layout order and budgets, chart picker, page gutter, destination links |
+| 1s | sponsor page: `data.sponsor` re-derived from the stores (views as the brief's totals, watch hours, the typical show through `baselines`, channel counts, call-ins, an independent brand re-count, every excerpt verbatim at its time, every moment and chapter link by the clock rule, every quote a stored positive row); `contributors.json` and `clock-checks.json` checked against the registry; the page reads `data.js` only, keeps one booking address and computes no typical (drift) |
 | 1u | baselines: fixture test (`audit/baselines.test.mjs`) green; `data.baselines` re-derives; outlier windows exclude self; nothing below `MIN_PEERS`; `metrics.anomaly` matches the outlier test |
 | 1v | chain: required stores current; dedicated-main preflight, exact staging/push, final validation, two-attempt guard, recovery, exact production proof, and acknowledged alert delivery remain wired |
 | 1x / 1y / 1z | Slack/alert lines carry directions only on ≥`MIN_PEERS` samples (on data); no trend word over the episode-health sequence; every stored note is one of the fixed strings and reasons pass the plain-words ban; the page renders notes |
@@ -256,3 +260,31 @@ The publisher is the only writer of the approved store. Build-data reads only co
 `tools/dive-analytics/linkedin.mjs` projects `episodes[].linkedin`: exact URL, source status, nullable owner metrics, immutable observation history, Restream live chat and measurement notes. The build checks import provenance and re-derives identity from raw events. The validator checks the registered identity, public projection, safe URLs and feedback links. `data/restream/linkedin-metrics.json` contains only validated, timestamped owner observations; source input lives in the private `linkedin-imports` inbox. Daily ingestion is idempotent. Invalid or conflicting evidence fails the step.
 
 Restream viewer metrics for LinkedIn are unsupported and render null, including per-minute series. Chat metrics remain the original provider values and already enter the session total once. LinkedIn post impressions, post comments and imported video metrics are separately labeled; existing historical scores and YouTube/X viewing totals keep their existing definitions. The same LinkedIn values and source limits reach the panel, agent digest/brief and recommendation facts. Stale imports are visible as saved observations but cannot supply current recommendation facts. API approval and owner OAuth are still required for automatic viewing metrics; see `docs/linkedin-setup.md`.
+
+## Sponsor page (October 2026)
+
+`sponsors.html` is the third page: a landing page and dashboard the owners send
+to brands deciding whether to book. It reads `data.js` like the other pages and
+renders `data.sponsor`, which `sponsor-view.mjs` projects inside build-data from
+the episodes already assembled plus three stores. Two of them are new and
+owner-run, like the LinkedIn imports:
+
+- **Call-ins** (`contributors.json`, `contributors-import.mjs`): every video the
+  community sent in that aired, read from the owners' published episode notes,
+  which are checked against the recording before they are posted. The import
+  keeps names and words, never links, and refuses a note that disagrees with the
+  registry about its episode or date. E1–E3 carry no list (absent, not zero).
+- **Clock checks** (`clock-checks.json`, `clock-check.mjs`, `clock.mjs`): the
+  Restream transcripts were assumed to run "a few minutes off" the YouTube
+  uploads, so their timestamps never linked. Matching six-word phrases against
+  each upload's own captions measured the real gap at a few seconds with a
+  spread under one second; a held check lets a timestamp link to the exact
+  second. The same rule now decides the dashboard's chapter links and the
+  brief's, so every surface agrees about which timestamps open their moment.
+
+Neither import is a chain step yet: new episodes gain call-ins and exact links
+when the owner runs the two scripts (or adds them to `chain.json` as optional
+steps). Until then their moments show a time without a link and the call-in
+range says which episodes it covers. The packages and prices on the page are the
+owners' own terms, as static copy; the booking address is the page's one
+`CONTACT` constant.
