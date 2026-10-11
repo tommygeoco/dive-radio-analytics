@@ -550,11 +550,13 @@ button { font: inherit; color: inherit; }
   .callins-ep h3 { margin: 0 0 4px; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
   .more > .ss-btn--link { display: flex; width: fit-content; margin-top: var(--d-inner); }
   .more > [aria-expanded="false"] > .more__open, .more > [aria-expanded="true"] > .more__closed { display: none; }
+  .more > .ss-reveal { overflow-anchor: none; }
   .more .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
   .more .ss-reveal > div > div { padding-top: var(--d-inner); padding-bottom: 8px; }
   .more .ss-reveal > div > div.more__flush { padding-top: 0; padding-bottom: 0; }
   .more__flush > .brands { margin-top: 0; }
-  .more__flush > .quotes { padding-top: 24px; }
+  .more__flush > .quotes { padding-top: 24px; padding-bottom: 8px; }
+  .more > #voices-more[data-open="true"] { margin-bottom: -8px; }
   .more__flush > .brands > li:first-child, .more__flush > .moments > .moment:first-child { border-top: 1px solid var(--line); }
 
   /* the live room: the system's KPI strip, then the newest show minute by minute */
@@ -599,10 +601,11 @@ button { font: inherit; color: inherit; }
   .brands { list-style: none; margin: var(--d-inner) 0 0; padding: 0; }
   .brands > li { border-top: 1px solid var(--line); }
   .brands > li:first-child { border-top: 0; }
-  .brow { position: relative; display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) auto 16px; grid-template-areas: "name value chev" "track track track";
-    column-gap: 12px; row-gap: 8px; align-items: center; min-height: 56px; padding: 12px 0; border: 0; border-radius: var(--radius-md); background: none; color: inherit; text-align: left; cursor: pointer; }
-  .brow:focus-visible { outline-offset: 4px; }
-  @media (min-width: 48rem) { .brow { grid-template-columns: 136px minmax(0, 1fr) 120px 16px; grid-template-areas: "name track value chev"; min-height: 44px; padding: 8px 0; } }
+  .brow { position: relative; display: grid; width: calc(100% + 16px); margin-inline: -8px; grid-template-columns: minmax(0, 1fr) auto 16px; grid-template-areas: "name value chev" "track track track";
+    column-gap: 12px; row-gap: 8px; align-items: center; min-height: 56px; padding: 12px 8px; border: 0; border-radius: var(--radius-md); background: none; color: inherit; text-align: left; cursor: pointer; }
+  /* a row on the reveal's clipped edge: the system's inset ring (extension 34), drawn inside the row's 8 px bleed */
+  .brow:focus-visible { outline-offset: -2px; }
+  @media (min-width: 48rem) { .brow { grid-template-columns: 136px minmax(0, 1fr) 120px 16px; grid-template-areas: "name track value chev"; min-height: 44px; padding: 8px; } }
   .brow__name { grid-area: name; display: flex; align-items: center; gap: 8px; min-width: 0; font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-1); }
   .brow__track { grid-area: track; display: block; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
   .brow__track i { display: block; height: 100%; min-width: 2px; border-radius: inherit; background: var(--fg-2); }
@@ -1211,10 +1214,19 @@ function renderPageAbsent() {
 /* --- interaction: disclosures, the partner picker, chart tips, copy ----------------------------------- */
 function setOpen(button, open) {
   const panel = $(button.getAttribute("aria-controls"));
+  // a list closes above its toggle: the toggle stays where it was tapped. Scroll anchoring does it where it exists (the
+  // reveal opts out of being the anchor); elsewhere the page follows the toggle for the length of the close
+  const hold = !open && button.closest(".more") && !CSS.supports("overflow-anchor", "none");
+  const y = hold ? button.getBoundingClientRect().top : 0;
   button.setAttribute("aria-expanded", String(open));
   panel.dataset.open = String(open);
   if (open) { panel.removeAttribute("inert"); panel.removeAttribute("aria-hidden"); }
   else { panel.setAttribute("inert", ""); panel.setAttribute("aria-hidden", "true"); }
+  if (hold) {
+    const until = performance.now() + 240;
+    const follow = () => { window.scrollBy(0, button.getBoundingClientRect().top - y); if (performance.now() < until) requestAnimationFrame(follow); };
+    requestAnimationFrame(follow);
+  }
 }
 document.addEventListener("click", (ev) => {
   const t = ev.target.closest("[data-toggle], #about-toggle");
