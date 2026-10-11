@@ -115,7 +115,7 @@ export function collectFacts(data = readJson(DATA_PATH)) {
       add(`chat-E${e.ep}`, e.live.chatMessages, `E${e.ep} chat messages`);
       add(`chatters-E${e.ep}`, e.live.chatters, `E${e.ep} people who chatted`);
       // PRD v10 §11: the whole live session — one definition (baselines.liveDepthOf)
-      if (e.live.liveViews > 0) add(`live-viewers-E${e.ep}`, e.live.liveViews, `E${e.ep} people who watched live`);
+      if (e.live.liveViews > 0) add(`live-viewers-E${e.ep}`, e.live.liveViews, `E${e.ep} live views, each channel's own count, added`);
       if (e.live.watchedMin > 0) add(`live-minutes-E${e.ep}`, e.live.watchedMin, `E${e.ep} minutes watched live, all together`);
       const depth = liveDepthOf(e);
       if (depth?.minutesPerViewer != null) add(`stay-min-E${e.ep}`, depth.minutesPerViewer, `E${e.ep} minutes each live viewer stayed`);

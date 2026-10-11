@@ -50,7 +50,7 @@ export const BRANDS = Object.freeze([
 export const BRAND_MIN_MENTIONS = 3;
 export const BRAND_TOP = 20;
 export const QUOTES_TOP = 24;
-export const QUOTE_MIN = 20;
+export const QUOTE_MIN = 40;
 export const QUOTE_MAX = 220;
 export const READ_WINDOW_SEC = 15;
 export const EXCERPT_MIN = 90;
@@ -71,9 +71,9 @@ export const EXAMPLE_WINDOW_SEC = { before: 60, after: 120 };
 // the example is the first line within EXAMPLE_WINDOW_SEC that names the
 // partner, so a record the transcript does not bear out shows nothing.
 export const EXAMPLES = Object.freeze([
-  { package: "Mid-roll", format: "A read", label: "Notion’s read on the Dive Radio Skills Library", partner: "Notion", ep: 10, near: 2063, record: "e10-notion-ad-read-2026-09-17.md" },
+  { package: "Mid-roll", format: "A read", label: "Notion on the Dive Radio Skills Library", partner: "Notion", ep: 10, near: 2063, record: "e10-notion-ad-read-2026-09-17.md" },
   { package: "Segment", format: "A named segment", label: "One Up Weekly, brought to you by Lovable", partner: "Lovable", ep: 5, near: 4830, record: "sponsor-recap-lovable-2026-08.md" },
-  { package: "Build", format: "A live build", label: "Notion’s August live build, Notion as Code", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
+  { package: "Build", format: "A live build", label: "Notion as Code, Notion’s August build", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
 ]);
 
 const CHANNELS = Object.freeze([
@@ -114,7 +114,8 @@ export function quoteText(text) {
 
 // Speech as it reads: the transcript's words less what is not speech —
 // Restream's speaker marks (">>"), caption tags ("[Music]") — and less the
-// fillers um / uh / erm and a word said twice in a row ("let's let's"). The
+// fillers um / uh / erm and a word or a pair of words said twice in a row
+// ("let's let's", "is a is a"). The
 // words left are the transcript's, in its order; validator 1s grounds every
 // excerpt through this one function.
 export function cleanSpeech(text) {
@@ -123,6 +124,7 @@ export function cleanSpeech(text) {
     .replace(/\[[^\]]{1,24}\]/g, " ")
     .replace(/(^|[\s,.;:!?])(?:u+h+|u+m+|uhm|erm)\b[,.]?(?=\s|$)/gi, "$1")
     .replace(/\b([A-Za-z]+(?:'[a-z]+)?)(?:\s+\1\b)+/gi, "$1")
+    .replace(/\b([A-Za-z]+(?:'[a-z]+)?\s+[A-Za-z]+(?:'[a-z]+)?)(?:\s+\1\b)+/gi, "$1")
     .replace(/\s+([,.;:!?])/g, "$1")
     .replace(/([,;:])(?:\s*[,;:])+/g, "$1")
     .replace(/(^|[.!?]\s+)[,;:]\s*/g, "$1")
@@ -513,7 +515,9 @@ function brandsBlock(episodes, transcripts, uploads) {
 
 // A partner on air, as the transcript has it: each time the hosts name it as a
 // partner (a sponsor phrase within READ_WINDOW_SEC, never "not sponsored by"),
-// and each chapter about it. Nothing here says a moment was paid for.
+// and each chapter that names it — "segment" when the chapter's title names it
+// (a segment about it), "inSegment" when only its summary does (named in a
+// segment). Nothing here says a moment was paid for.
 function partnersBlock(episodes, transcripts, uploads) {
   return PARTNERS.map((name) => {
     const re = brandPattern(name);
@@ -542,11 +546,12 @@ function partnersBlock(episodes, transcripts, uploads) {
       }
       for (const c of e.chapters?.list || []) {
         if (!new RegExp(re.source).test(`${c.title} ${c.gist}`)) continue;
-        moments.push({ kind: "segment", ep: e.ep, slug: e.slug, at: c.start, seconds: c.seconds, title: c.title, text: c.gist, url: t ? momentUrl(upload, c.seconds) : null, liveAt: liveAt(e, t, c.seconds) });
+        moments.push({ kind: new RegExp(re.source).test(c.title) ? "segment" : "inSegment", ep: e.ep, slug: e.slug, at: c.start, seconds: c.seconds, title: c.title, text: c.gist, url: t ? momentUrl(upload, c.seconds) : null, liveAt: liveAt(e, t, c.seconds) });
       }
     }
-    // a naming inside the first minute of a chapter about the same partner is that chapter
-    const kept = moments.filter((m) => m.kind === "segment" || !moments.some((s) => s.kind === "segment" && s.slug === m.slug && m.seconds >= s.seconds && m.seconds - s.seconds < 60));
+    // a naming inside the first minute of a chapter that names the same partner is that chapter
+    const chapter = (m) => m.kind === "segment" || m.kind === "inSegment";
+    const kept = moments.filter((m) => chapter(m) || !moments.some((s) => chapter(s) && s.slug === m.slug && m.seconds >= s.seconds && m.seconds - s.seconds < 60));
     kept.sort((a, b) => a.ep - b.ep || a.seconds - b.seconds);
     const index = mentionIndex(episodes.filter((e) => transcripts[e.slug]), transcripts, [name]).get(name);
     return {
@@ -554,7 +559,8 @@ function partnersBlock(episodes, transcripts, uploads) {
       mentions: sum(index, (r) => r.count),
       episodes: index.length,
       named: kept.filter((m) => m.kind === "named").length,
-      segments: kept.filter((m) => m.kind === "segment").length,
+      segments: kept.filter(chapter).length,
+      about: kept.filter((m) => m.kind === "segment").length,
       moments: kept,
     };
   });

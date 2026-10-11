@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-10-11T18:04:03.631Z",
+ "generatedAt": "2026-10-11T21:25:07.616Z",
  "chaptersUpdatedAt": "2026-10-10T14:07:39.404Z",
  "promotionUpdatedAt": "2026-10-11T14:00:29.367Z",
  "dests": [
@@ -95694,18 +95694,6 @@ window.DIVE_DATA = {
    "episodes": 13,
    "quotes": [
     {
-     "id": "yt:Ugxwjib7K70jpgikqXR4AaABAg",
-     "ep": 1,
-     "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-     "author": "StangeDeCastro",
-     "platform": "YouTube",
-     "text": "finally a release notes successor",
-     "url": "https://youtube.com/watch?v=VcLm0kAGCck&lc=Ugxwjib7K70jpgikqXR4AaABAg",
-     "likes": 4,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
      "id": "x:2096925770316644438",
      "ep": 8,
      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -95761,30 +95749,6 @@ window.DIVE_DATA = {
      "platform": "YouTube",
      "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
      "url": "https://youtube.com/watch?v=RhemcDEc_-A&lc=UgycC2EjwPzptqmQnox4AaABAg",
-     "likes": 2,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
-     "id": "yt:Ugy7h3-WyCAbkdDGh7F4AaABAg",
-     "ep": 10,
-     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-     "author": "samuelgrayart",
-     "platform": "YouTube",
-     "text": "Great video guys! Super helpful",
-     "url": "https://youtube.com/watch?v=x05zZ90lY28&lc=Ugy7h3-WyCAbkdDGh7F4AaABAg",
-     "likes": 2,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
-     "id": "yt:UgwjrpZLi_JTjJrg0v54AaABAg",
-     "ep": 9,
-     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-     "author": "SudhaGS-c9i",
-     "platform": "YouTube",
-     "text": "Absolutely worth watching.",
-     "url": "https://youtube.com/watch?v=OZG115v6TTg&lc=UgwjrpZLi_JTjJrg0v54AaABAg",
      "likes": 2,
      "onShow": false,
      "calledIn": null
@@ -95922,54 +95886,6 @@ window.DIVE_DATA = {
      "calledIn": null
     },
     {
-     "id": "x:2105706605560119308",
-     "ep": 12,
-     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-     "author": "@JustinPerea",
-     "platform": "X",
-     "text": "I look forward to stream every week 💪",
-     "url": "https://x.com/i/status/2105706605560119308",
-     "likes": 1,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
-     "id": "x:2103229677246566885",
-     "ep": 11,
-     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
-     "author": "@Moore",
-     "platform": "X",
-     "text": "Thanks for showing off the Jev demo!",
-     "url": "https://x.com/i/status/2103229677246566885",
-     "likes": 1,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
-     "id": "x:2100946280629375162",
-     "ep": 10,
-     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-     "author": "@AnaArsonist",
-     "platform": "X",
-     "text": "this is such a good podcast",
-     "url": "https://x.com/i/status/2100946280629375162",
-     "likes": 1,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
-     "id": "yt:UgykYeq0fuXgPS6uzzt4AaABAg",
-     "ep": 6,
-     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-     "author": "ohnaursadface",
-     "platform": "YouTube",
-     "text": "I love this new format!",
-     "url": "https://youtube.com/watch?v=RhemcDEc_-A&lc=UgykYeq0fuXgPS6uzzt4AaABAg",
-     "likes": 1,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
      "id": "x:2095862955522887905",
      "ep": 8,
      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -95977,6 +95893,90 @@ window.DIVE_DATA = {
      "platform": "X",
      "text": "Which is why the Ramp conversation from last week is the closest thing I’ve seen to an answer. Cohesion over consistency. Jazz. A brand that behaves rather than one that gets applied.",
      "url": "https://x.com/i/status/2095862955522887905",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgxyeBCR7SZb4xqjaC14AaABAg",
+     "ep": 2,
+     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "author": "BentoBox",
+     "platform": "YouTube",
+     "text": "If it’s not too much work, y’all should share the links to the articles you’re referencing throughout in the show notes :) Thanks for the pod!",
+     "url": "https://youtube.com/watch?v=Pn6U5nWgD-g&lc=UgxyeBCR7SZb4xqjaC14AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgxEVqoA6QUwVVMcrnV4AaABAg",
+     "ep": 2,
+     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "author": "AndresTheDesigner",
+     "platform": "YouTube",
+     "text": "Love the data vs intuition conversation. Couldn’t agree more with ‘enough data to make a bet’",
+     "url": "https://youtube.com/watch?v=TJqSfnadiGM&lc=UgxEVqoA6QUwVVMcrnV4AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098441427097108584",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@itsjamik",
+     "platform": "X",
+     "text": "the designer-to-engineer jump is such a good topic, gonna check that 1:45 mark",
+     "url": "https://x.com/i/status/2098441427097108584",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:Ugzyc8p2TMvSACMuu8t4AaABAg",
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "author": "notabdussalampopoola",
+     "platform": "YouTube",
+     "text": "1:18:50 were kolbe shared his remotion workflow is gold.",
+     "url": "https://youtube.com/watch?v=bwJB9EBQNSQ&lc=Ugzyc8p2TMvSACMuu8t4AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2101465923366572345",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@LunaBluetjf",
+     "platform": "X",
+     "text": "appreciate the chill vibe despite the spicy takes here.",
+     "url": "https://x.com/i/status/2101465923366572345",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2103318948972515625",
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "author": "@okkshitij",
+     "platform": "X",
+     "text": "so many new experiments! thanks for sharing my work :)",
+     "url": "https://x.com/i/status/2103318948972515625",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgwdYatoecWLcSw4z1Z4AaABAg",
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "author": "kshitijagrawal9363",
+     "platform": "YouTube",
+     "text": "lovely experiments! thanks for sharing my work too :)",
+     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&lc=UgwdYatoecWLcSw4z1Z4AaABAg",
      "likes": 0,
      "onShow": false,
      "calledIn": null
@@ -96947,7 +96947,7 @@ window.DIVE_DATA = {
        "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "at": "00:31:26",
        "seconds": 1886,
-       "text": "And now I’m like, I still I still like Claude for more, like, design creativity stuff, but it’s pretty good.",
+       "text": "And now I’m like, I still like Claude for more, like, design creativity stuff, but it’s pretty good.",
        "url": "https://youtube.com/watch?v=DUejFPtYll0&t=1885s"
       },
       {
@@ -97355,7 +97355,7 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "at": "01:32:59",
        "seconds": 5579,
-       "text": "We were gonna do an episode, and then OpenAI bought it. Yeah. Yeah. And now it’ll be it’ll be, who knows?",
+       "text": "We were gonna do an episode, and then OpenAI bought it. Yeah. Yeah. And now it’ll be, who knows?",
        "url": null
       },
       {
@@ -97707,7 +97707,7 @@ window.DIVE_DATA = {
        "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "at": "00:52:10",
        "seconds": 3130,
-       "text": "I saw I saw, I shipped this, and then, like, a couple weeks later, Paper did made their search like this too.",
+       "text": "I saw, I shipped this, and then, like, a couple weeks later, Paper did made their search like this too.",
        "url": null
       },
       {
@@ -97979,7 +97979,7 @@ window.DIVE_DATA = {
        "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
        "at": "00:14:43",
        "seconds": 883,
-       "text": "Guys, I did I did, Dia instead of Arc. It’s just a little harder to do everything. Okay. Watch this.",
+       "text": "Guys, I did, Dia instead of Arc. It’s just a little harder to do everything. Okay. Watch this.",
        "url": null
       }
      ]
@@ -97993,6 +97993,7 @@ window.DIVE_DATA = {
     "episodes": 10,
     "named": 10,
     "segments": 3,
+    "about": 1,
     "moments": [
      {
       "kind": "named",
@@ -98066,7 +98067,7 @@ window.DIVE_DATA = {
       "liveAt": 60
      },
      {
-      "kind": "segment",
+      "kind": "inSegment",
       "ep": 9,
       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
       "at": "01:22:24",
@@ -98077,7 +98078,7 @@ window.DIVE_DATA = {
       "liveAt": 126
      },
      {
-      "kind": "segment",
+      "kind": "inSegment",
       "ep": 10,
       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
       "at": "00:27:43",
@@ -98135,6 +98136,7 @@ window.DIVE_DATA = {
     "episodes": 6,
     "named": 3,
     "segments": 1,
+    "about": 1,
     "moments": [
      {
       "kind": "named",
@@ -98185,6 +98187,7 @@ window.DIVE_DATA = {
     "episodes": 7,
     "named": 10,
     "segments": 2,
+    "about": 1,
     "moments": [
      {
       "kind": "named",
@@ -98197,7 +98200,7 @@ window.DIVE_DATA = {
       "liveAt": null
      },
      {
-      "kind": "segment",
+      "kind": "inSegment",
       "ep": 5,
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "at": "00:26:25",
@@ -98213,7 +98216,7 @@ window.DIVE_DATA = {
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "at": "01:20:30",
       "seconds": 4830,
-      "text": "Brought to you by Lovable, which I think is a is a very proper sponsor for a segment like this.",
+      "text": "Brought to you by Lovable, which I think is a very proper sponsor for a segment like this.",
       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4831s",
       "liveAt": null
      },
@@ -98316,6 +98319,7 @@ window.DIVE_DATA = {
     "episodes": 4,
     "named": 3,
     "segments": 2,
+    "about": 1,
     "moments": [
      {
       "kind": "named",
@@ -98338,7 +98342,7 @@ window.DIVE_DATA = {
       "liveAt": 35
      },
      {
-      "kind": "segment",
+      "kind": "inSegment",
       "ep": 7,
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "at": "00:57:35",
@@ -98376,7 +98380,7 @@ window.DIVE_DATA = {
    {
     "package": "Mid-roll",
     "format": "A read",
-    "label": "Notion’s read on the Dive Radio Skills Library",
+    "label": "Notion on the Dive Radio Skills Library",
     "partner": "Notion",
     "ep": 10,
     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
@@ -98399,7 +98403,7 @@ window.DIVE_DATA = {
     "moment": {
      "at": "01:20:30",
      "seconds": 4830,
-     "text": "Brought to you by Lovable, which I think is a is a very proper sponsor for a segment like this.",
+     "text": "Brought to you by Lovable, which I think is a very proper sponsor for a segment like this.",
      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4831s",
      "liveAt": null
     },
@@ -98408,7 +98412,7 @@ window.DIVE_DATA = {
    {
     "package": "Build",
     "format": "A live build",
-    "label": "Notion’s August live build, Notion as Code",
+    "label": "Notion as Code, Notion’s August build",
     "partner": "Notion",
     "ep": 5,
     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",

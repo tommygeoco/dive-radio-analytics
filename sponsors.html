@@ -446,8 +446,10 @@ button { font: inherit; color: inherit; }
   .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; white-space: nowrap; overflow-wrap: normal; }
   .block { margin-top: var(--d-section); scroll-margin-top: calc(var(--topbar-h) + var(--safe-top) + var(--d-stack)); }
   .block[hidden] { display: none; }
+  .lede[hidden] { display: none; }
   .lede { margin: 0 0 var(--d-stack); max-width: 62ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
   .ss-section-header__meta { text-wrap: balance; }
+  .ss-section-header[hidden], .partners[hidden] { display: none; }
   /* a line of facts: the system verdict meta's "·" separators (drawn outside each item, clipped at every line start),
      so a wrapped line never opens on a separator */
   .dots { display: flex; flex-wrap: wrap; margin-left: -12px; clip-path: inset(-4px -4px -4px 12px); row-gap: 0; }
@@ -461,7 +463,7 @@ button { font: inherit; color: inherit; }
   .hero__lede { margin: 16px 0 0; max-width: 60ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
   .hero__actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 47.99rem) { .hero__actions > .ss-btn { flex: 1 1 auto; } }
-  .hero__price { margin-block: 12px 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .hero__price { margin-block: 12px 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
   .hero__price b { font-weight: 600; color: var(--fg-1); }
   .hero__summary { margin-top: var(--d-section); padding: var(--d-card); }
   .summary { margin: 0; display: flex; flex-wrap: wrap; column-gap: 32px; row-gap: var(--d-section); }
@@ -499,7 +501,7 @@ button { font: inherit; color: inherit; }
   .bars > li + li { border-top: 1px solid var(--line); }
   .bar { position: relative; display: grid; width: 100%; grid-template-columns: 32px minmax(0, 1fr); grid-template-areas: "ep title" ". track";
     column-gap: 12px; row-gap: 8px; align-items: start; padding: 12px 0; border: 0; background: none; color: inherit; text-align: left; font: inherit; }
-  @media (min-width: 80rem) { .bar { grid-template-columns: 32px minmax(0, 220px) minmax(0, 1fr); grid-template-areas: "ep title track"; align-items: center; padding: 8px 0; } }
+  @media (min-width: 80rem) { .bar { grid-template-columns: 32px minmax(0, 220px) minmax(0, 1fr); grid-template-areas: "ep title track"; align-items: start; padding: 8px 0; } }
   button.bar { cursor: pointer; border-radius: var(--radius-md); }
   button.bar:focus-visible { outline-offset: 4px; }
   .bar__ep { grid-area: ep; font-size: var(--text-meta); line-height: var(--lh-body-sm); color: var(--fg-3); }
@@ -516,8 +518,6 @@ button { font: inherit; color: inherit; }
   button.bar:hover .bar__title, button.bar.is-tip .bar__title { text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
   .chartwrap { position: relative; }
   .ss-x-legend { margin: var(--d-inner) 0 0; }
-  .channels .bar { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "track"; }
-  .channels .bar__title small { margin-left: 8px; font-size: var(--text-meta); color: var(--fg-3); }
 
   /* call-ins: the newest, the count by episode (focus + context: the newest white), everyone behind a disclosure */
   .callins-top { display: grid; grid-template-areas: "stat" "chart" "rows"; row-gap: var(--d-card); }
@@ -536,7 +536,8 @@ button { font: inherit; color: inherit; }
   .cols figcaption { font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
   .cols ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 40px)); }
   .cols li { display: grid; grid-template-rows: auto 64px auto; justify-items: center; }
-  .cols__value { font-size: var(--text-caption); line-height: var(--lh-caption); color: var(--fg-2); }
+  .cols__value { font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 600; color: var(--fg-3); }
+  .cols li:last-child .cols__value { color: var(--fg-1); }
   .cols__plot { width: 100%; display: flex; align-items: flex-end; justify-content: center; box-shadow: inset 0 -1px 0 var(--line-strong); }
   .cols__plot i { display: block; width: min(100% - 8px, 28px); border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: var(--fg-3); }
   .cols li:last-child .cols__plot i { background: var(--series-focus); }
@@ -544,13 +545,19 @@ button { font: inherit; color: inherit; }
   .callins-ep { margin-top: var(--d-card); }
   .callins-ep:first-child { margin-top: 0; }
   .callins-ep h3 { margin: 0 0 4px; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
-  .more { margin-top: var(--d-inner); }
+  .more > .ss-btn--link { display: flex; width: fit-content; margin-top: var(--d-inner); }
   .more .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
   .more .ss-reveal > div > div { padding-top: var(--d-inner); padding-bottom: 8px; }
+  .more .ss-reveal > div > div.more__flush { padding-top: 0; padding-bottom: 0; }
+  .more__flush > .brands { margin-top: 0; }
+  .more__flush > .brands > li:first-child, .more__flush > .moments > .moment:first-child { border-top: 1px solid var(--line); }
 
   /* the live room: the system's KPI strip, then the newest show minute by minute */
   dl.ss-kpis { margin: 0; }
   dl.ss-kpis[hidden] { display: none; }
+  @media (min-width: 48rem) { .kpis-fit { grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); } }
+  @media (max-width: 47.99rem) { .kpis-fit > .ss-kpi:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+  .ss-kpis + .reach-card { margin-top: var(--d-stack); }
   .ss-kpis dd { margin-inline: 0; }
   .ss-kpi__sub { margin-bottom: 0; }
   .room-curve { margin-top: var(--d-stack); }
@@ -561,6 +568,7 @@ button { font: inherit; color: inherit; }
   .curve .base { stroke: var(--line-strong); stroke-width: 1; }
   .curve .line { fill: none; stroke: var(--series-focus); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
   .curve__mark { position: absolute; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--series-focus); box-shadow: 0 0 0 2px var(--surface-1); transform: translate(-50%, -50%); }
+  .curve__tag { position: absolute; transform: translate(-50%, calc(-100% - 8px)); font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 600; color: var(--fg-1); }
   .curve__ticks { position: relative; height: calc(var(--text-caption) * var(--lh-caption)); margin-top: 8px; font-size: var(--text-caption); line-height: var(--lh-caption); color: var(--chart-axis); }
   .curve__ticks > span { position: absolute; top: 0; translate: -50% 0; white-space: nowrap; }
   .curve__ticks > span:first-child { left: 0; translate: none; }
@@ -597,7 +605,7 @@ button { font: inherit; color: inherit; }
   .brow__value b { font-weight: 600; color: var(--fg-1); }
   .brow svg { grid-area: chev; width: 16px; height: 16px; color: var(--fg-3); transition: transform 150ms var(--ease-out-quart); }
   .brow[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .brow:hover .brow__name { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--fg-4); }
+  .brow:hover .brow__label { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--fg-4); }
   /* an opened brand's moments hang off a 2 px rule (the system's nested indent), inside an 8 px compensated inset */
   .brands .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
   .brands .ss-reveal .moments { margin: 0 0 12px; padding-left: 12px; border-left: 2px solid var(--line-strong); }
@@ -610,7 +618,7 @@ button { font: inherit; color: inherit; }
   @media (min-width: 48rem) { .partner-sum { font-size: var(--text-meta); } }
 
   /* quotes: the system quote, three to a row on wide screens */
-  .quotes { display: grid; gap: 24px; }
+  .quotes { display: grid; gap: 24px; align-items: start; }
   @media (min-width: 48rem) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 80rem) { .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .quotes .ss-x-quote { margin-top: 0; }
@@ -644,17 +652,18 @@ button { font: inherit; color: inherit; }
   /* the comparison: the system's inline table (components.md §9.2, "Fair price, by source") */
   .compare { margin-top: var(--d-stack); overflow: hidden; }
   .compare table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-  .compare caption { padding: var(--d-card) var(--d-card) 8px; text-align: left; font-size: var(--text-body-sm); font-weight: 600; color: var(--fg-1); }
-  .compare th, .compare td { padding: 8px 12px; text-align: left; vertical-align: top; overflow-wrap: break-word; }
-  .compare thead th { font-size: var(--text-meta); font-weight: 400; color: var(--fg-3); }
-  .compare tbody th { font-size: var(--text-body-sm); font-weight: 400; color: var(--fg-2); }
+  .compare caption { padding: var(--d-card) var(--d-card) 0; text-align: left; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
+  @media (min-width: 48rem) { .compare caption { font-size: var(--text-body); } }
+  .compare th, .compare td { padding: 8px var(--d-card); text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  .compare thead th { padding-top: var(--d-inner); font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-2); }
+  .compare .compare__item th { padding: 12px var(--d-card) 0; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 400; color: var(--fg-3); }
+  .compare tbody tr.compare__item { border-top: 1px solid var(--line); }
   .compare td { font-size: var(--text-body-sm); color: var(--fg-1); }
-  .compare td.no { color: var(--fg-4); }
-  .compare tbody tr { border-top: 1px solid var(--line); }
-  .compare th:first-child, .compare td:first-child { padding-left: var(--d-card); }
-  .compare th:last-child, .compare td:last-child { padding-right: var(--d-card); }
-  .compare col.what { width: 34%; }
-  @media (max-width: 47.99rem) { .compare th, .compare td { padding: 8px 4px; } .compare th:first-child, .compare td:first-child { padding-left: var(--d-card); } .compare th:last-child, .compare td:last-child { padding-right: var(--d-card); } .compare col.what { width: 31%; } }
+  .compare td.no, .compare td.ask { color: var(--fg-3); }
+  /* columns are equal thirds of the table; the cards above are thirds less two gaps, so column n's text steps in by
+     n thirds of a gap and lands on card n's text edge */
+  .compare thead th:nth-child(2), .compare tr:not(.compare__item) td:nth-child(2) { padding-left: calc(var(--d-card) + var(--d-stack) / 3); }
+  .compare thead th:nth-child(3), .compare tr:not(.compare__item) td:nth-child(3) { padding-left: calc(var(--d-card) + var(--d-stack) * 2 / 3); }
   .terms { margin: var(--d-stack) 0 0; max-width: 72ch; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-3); text-wrap: pretty; }
   .terms b { font-weight: 500; color: var(--fg-2); }
 
@@ -665,7 +674,11 @@ button { font: inherit; color: inherit; }
   .cta p { margin: 8px 0 0; max-width: 60ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
   .cta__actions { display: flex; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 47.99rem) { .cta__actions > .ss-btn { flex: 1 1 auto; } }
-  .cta__alt { margin: var(--d-inner) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .copy { display: inline-grid; place-items: center; }
+  .copy > span { grid-area: 1 / 1; }
+  .copy > span + span, .copy.is-copied > span:first-child { visibility: hidden; }
+  .copy.is-copied > span + span { visibility: visible; }
+  .cta__alt { margin: var(--d-card) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
   .cta__alt a { position: relative; color: var(--tint-fg); text-decoration: none; }
   .cta__alt a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
   .cta__alt a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -713,12 +726,12 @@ button { font: inherit; color: inherit; }
       <div class="hero__copy">
         <p class="hero__meta dots"><span>Live every Thursday</span><span>1 PM Pacific</span><span>with Tommy Geoco and Ridd</span></p>
         <h1 id="hero-title">The live show for designers who build.</h1>
-        <p class="hero__lede"><span id="hero-duration">About two hours</span> of designers calling in with what they’re making<span id="hero-teams"></span>. Your product goes on screen in the middle of the conversation.</p>
+        <p class="hero__lede"><span id="hero-duration">About two hours</span>, live, every week. Designers send in videos of what they’re making<span id="hero-teams"></span>. Your product goes on screen in the middle of the conversation.</p>
         <div class="hero__actions">
           <a class="ss-btn ss-btn--primary" data-book="" href="#book">Book a partnership</a>
           <a class="ss-btn ss-btn--secondary" href="#packages">See packages</a>
         </div>
-        <p class="hero__price dots" id="hero-price"></p>
+        <p class="hero__price" id="hero-price"></p>
       </div>
       <div class="ss-panel hero__summary" id="hero-summary"><dl class="summary" id="kpis"></dl></div>
     </div>
@@ -742,10 +755,9 @@ button { font: inherit; color: inherit; }
         <span class="ss-section-header__meta" id="reach-meta"></span>
       </div>
     </div>
-    <div class="grid grid--2">
-      <div class="ss-panel card" id="episodes-card"></div>
-      <div class="ss-panel card" id="channels-card"></div>
-    </div>
+    <p class="lede" id="reach-lede" hidden></p>
+    <dl class="ss-kpis kpis-fit" id="channel-kpis" hidden></dl>
+    <div class="ss-panel card reach-card" id="episodes-card"></div>
   </section>
 
   <section class="block" id="room" aria-labelledby="room-title">
@@ -755,8 +767,8 @@ button { font: inherit; color: inherit; }
         <span class="ss-section-header__meta" id="room-meta"></span>
       </div>
     </div>
-    <p class="lede">A room, not a feed: people stay through the show and talk back while your product is on screen.</p>
-    <dl class="ss-kpis" id="room-kpis"></dl>
+    <p class="lede" id="room-lede" hidden></p>
+    <dl class="ss-kpis kpis-fit" id="room-kpis"></dl>
     <div class="ss-panel card room-curve" id="room-curve"></div>
   </section>
 
@@ -789,7 +801,7 @@ button { font: inherit; color: inherit; }
     <div class="ss-section-header">
       <div class="ss-section-header__text">
         <h2 class="ss-section-header__title" id="packages-title">Packages</h2>
-        <span class="ss-section-header__meta">Three months, paid up front, 10% off · one partner per category</span>
+        <span class="ss-section-header__meta">Three months, paid up front, 10%&nbsp;off · one partner per category</span>
       </div>
     </div>
     <div class="tiers" id="tiers"></div>
@@ -806,7 +818,7 @@ button { font: inherit; color: inherit; }
       <div>
         <div class="cta__actions">
           <a class="ss-btn ss-btn--primary" data-book="" id="book-mail" href="#book">Email Tommy and Ridd</a>
-          <button type="button" class="ss-btn ss-btn--secondary" id="copy-addr">Copy address</button>
+          <button type="button" class="ss-btn ss-btn--secondary copy" id="copy-addr" aria-label="Copy address"><span>Copy address</span><span aria-hidden="true">Copied</span></button>
         </div>
         <p class="cta__alt">Or write to <a id="book-addr" href="#book"></a><span class="ss-sr" id="copy-status" aria-live="polite"></span></p>
       </div>
@@ -846,11 +858,16 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const ok = (v) => v != null && Number.isFinite(v);
 const fmt = (v) => (ok(v) ? Math.round(v).toLocaleString("en-US") : "—");
 const num = (v) => `<span class="n">${fmt(v)}</span>`;
-const short = (t) => String(t || "").replace(/^Dive Radio:?\s*/i, "");
+const short = (t) => curly(String(t || "").replace(/^Dive Radio:?\s*/i, ""));
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 // "Oct 8": the month is a word, the day a figure, and the two never part across a line
 const day = (iso) => { const [, m, d] = String(iso || "").slice(0, 10).split("-").map(Number); return m ? `${MONTHS[m - 1]}&nbsp;<span class="n">${d}</span>` : ""; };
 const clock = (stamp) => String(stamp || "").replace(/^00:/, "").replace(/^0(\d)/, "$1");
+// a typical show's length in words, to the half hour ("two hours")
+const hoursWord = (min) => { const h = Math.round(min / 30) / 2; return h === 1 ? "an hour" : h === 2 ? "two hours" : `${h} hours`; };
+// shown words in typographic quotes: ’ for an apostrophe, “ ” for a quotation
+const curly = (t) => String(t ?? "").replace(/(^|[\s(\[—–-])"(?=\S)/g, "$1“").replace(/"/g, "”").replace(/(^|[\s(\[—–-])'(?=\w)/g, "$1‘").replace(/'/g, "’");
+const say = (t) => esc(curly(t));
 const list = (words) => (words.length < 2 ? words.join("") : `${words.slice(0, -1).join(", ")} and ${words[words.length - 1]}`);
 const ICON = {
   out: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
@@ -862,9 +879,17 @@ const chev = ICON.chev.replace("<svg ", '<svg class="ss-btn__chev" ');
 function absent(title, body, level = 3) {
   return `<div class="ss-verdict"><span class="ss-verdict__icon" aria-hidden="true">${ICON.wait}</span><div class="ss-verdict__text"><h${level} class="ss-verdict__title">${esc(title)}</h${level}><p class="ss-verdict__body">${esc(body)}</p></div></div>`;
 }
-// a "more" disclosure whose label says what it does in both states
-function moreHTML(id, closedLabel, inner) {
-  return `<div class="more"><div class="ss-reveal" id="${id}" data-open="false" inert aria-hidden="true"><div><div>${inner}</div></div></div>
+// a section with one card whose data is absent: the verdict is the section's heading, and the header steps aside
+function sectionAbsent(sectionId, title, body) {
+  const sec = $(sectionId), head = sec.querySelector(".ss-section-header"), h2 = head.querySelector("h2");
+  head.hidden = true;
+  const id = h2.id; h2.removeAttribute("id");
+  sec.querySelector(".lede")?.setAttribute("hidden", "");
+  return absent(title, body, 2).replace('class="ss-verdict__title"', `class="ss-verdict__title" id="${id}"`);
+}
+// a "more" disclosure whose label says what it does in both states; a list opens flush with the rows above it
+function moreHTML(id, closedLabel, inner, flush = false) {
+  return `<div class="more"><div class="ss-reveal" id="${id}" data-open="false" inert aria-hidden="true"><div><div${flush ? ' class="more__flush"' : ""}>${inner}</div></div></div>
     <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="${id}" data-toggle="${id}" data-closed="${esc(closedLabel)}"><span>${esc(closedLabel)}</span> ${chev}</button></div>`;
 }
 
@@ -877,14 +902,16 @@ const PACKAGES = [
   { name: "Build", fit: "For a product people build with: the hosts use it live, on screen.", total: 47250, monthly: 17500, tag: "Three partners at a time",
     bullets: ["A 10–15 minute live build with your product, once a month", "Named in every episode", "Your logo on the intro, the live overlay and the show notes, every episode", "Rights to use your segments in your own paid and organic posts", "The only partner in your category"] },
 ];
+// a cell is what the owners' terms state; null is a package that does not carry the item; ASK is one no signed order settles
+const ASK = "ask";
 const COMPARE = [
-  ["A 60–90 second read, live", "Twice a month", "Twice a month", null],
-  ["A named segment", null, "Twice a month", null],
+  ["A 60–90 second read, live", "Twice a month", "Twice a month", ASK],
+  ["A named segment", null, "Twice a month", ASK],
   ["A 10–15 minute live build", null, null, "Once a month"],
   ["Named on air", "In each read", "In each read and segment", "Every episode"],
   ["Your logo", "Live overlay, show notes", "Live overlay, show notes", "Intro, live overlay, show notes"],
-  ["Clips cut for shorts", null, "Your segment", null],
-  ["Rights to use the segments in your own posts", null, null, "Paid and organic"],
+  ["Clips cut for shorts", null, "Your segment", ASK],
+  ["Rights to use the segments in your own posts", ASK, ASK, "Paid and organic"],
   ["The only partner in your category", "Yes", "Yes", "Yes"],
 ];
 const money = (v) => `$${v.toLocaleString("en-US")}`;
@@ -899,7 +926,7 @@ function mailto(tier) {
 /* --- hero: the price anchor, four numbers, the partners ------------------------------------- */
 function renderHero() {
   const from = Math.min(...PACKAGES.map((p) => p.total));
-  $("hero-price").innerHTML = `<span>Packages from <b class="n">${money(from)}</b> for three months</span><span>one partner per category</span>`;
+  $("hero-price").innerHTML = `Packages from <b class="n">${money(from)}</b> for three months, one partner per category`;
   const v = S?.views || {}, w = S?.watch || {}, t = S?.live?.typical || null, c = S?.callIns || {};
   const cells = [
     ok(v.perEpisode) && [num(v.perEpisode), "views an episode so far, on average, on YouTube and X"],
@@ -914,22 +941,20 @@ function renderHero() {
     : absent("Dive Radio at a glance", S ? "The latest readings have not arrived yet." : "The latest numbers have not loaded.", 2);
   const names = (S?.partners || []).map((p) => p.name);
   $("partners").innerHTML = names.length ? `<dt>Partners</dt>${names.map((n) => `<dd>${esc(n)}</dd>`).join("")}` : "";
-  const d = t?.durationMin;
-  if (ok(d) && d > 0) {
-    const hours = Math.round(d / 30) / 2;
-    $("hero-duration").textContent = `About ${hours === 1 ? "an hour" : hours === 2 ? "two hours" : `${hours} hours`}`;
-  }
+  $("partners").hidden = !names.length;
+  if (ok(t?.durationMin) && t.durationMin > 0) $("hero-duration").textContent = `About ${hoursWord(t.durationMin)}`;
   const teams = S?.callIns?.teamsNamed || [];
-  $("hero-teams").textContent = teams.length ? `, and how teams at ${list(teams)} design and hire` : "";
+  $("hero-teams").textContent = teams.length ? `, and of how teams at ${list(teams)} design and hire` : "";
 }
 
 /* --- who calls in: the newest, the count by episode, then everyone -------------------------- */
 function renderCallIns() {
   const c = S?.callIns;
-  if (!c || !ok(c.total)) { $("callins-meta").textContent = ""; $("callins-card").innerHTML = absent("Who calls in", c?.reason || "The call-in list has not been imported."); return; }
+  if (!c || !ok(c.total)) { $("callins-card").innerHTML = sectionAbsent("callins-section", "Who calls in", c?.reason || "The call-in list has not been imported."); return; }
   $("callins-meta").innerHTML = `Videos the community sent in that aired, E${c.fromEp}–E${c.toEp}`;
-  const line = (x) => `<b>${esc(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${esc(x.nominee)} for Designer of the Week` : esc(x.about || "sent in a video")}`;
+  const line = (x) => `<b>${say(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${say(x.nominee)} for Designer of the Week` : say(x.about || "sent in a video")}`;
   const newest = [...c.list].reverse().slice(0, 6);
+  const oneEp = newest.every((x) => x.ep === newest[0].ep);
   const top = Math.max(...c.byEpisode.map((x) => x.count), 1);
   const cols = c.byEpisode.map((x) => `<li><span class="cols__value n">${x.count}</span><span class="cols__plot"><i style="height:${((x.count / top) * 100).toFixed(1)}%"></i></span><span class="cols__ep n">E${x.ep}</span></li>`).join("");
   const byEp = new Map();
@@ -937,17 +962,17 @@ function renderCallIns() {
   const titleOf = (ep) => short(EPISODES.find((e) => e.ep === ep)?.title || "");
   const groups = [...byEp.entries()].map(([ep, rows]) => `<section class="callins-ep"><h3>E${ep}, ${esc(titleOf(ep))}</h3><ul class="rows" role="list">${rows.map((x) => `<li><span>${line(x)}</span></li>`).join("")}</ul></section>`).join("");
   $("callins-card").innerHTML = `<div class="callins-top">
-      <p class="statement"><b>${num(c.people)}</b><span>people have called in since E${c.fromEp}, <span class="n">${fmt(c.nominations)}</span> of them to nominate a Designer of the Week</span></p>
+      <p class="statement"><b>${num(c.people)}</b><span>people and teams have sent in <span class="n">${fmt(c.total)}</span> call-ins since E${c.fromEp}, <span class="n">${fmt(c.nominations)}</span> of them Designer of the Week nominations</span></p>
       <figure class="cols" aria-label="${esc(`Call-ins by episode: ${c.byEpisode.map((x) => `E${x.ep} ${x.count}`).join(", ")}`)}">
         <figcaption>Call-ins by episode</figcaption>
         <ol role="list" style="--n: ${c.byEpisode.length}" aria-hidden="true">${cols}</ol>
       </figure>
       <div class="newest">
-        <h3 class="sub">The newest</h3>
-        <ul class="rows" role="list">${newest.map((x) => `<li><span>${line(x)}</span><span class="n">E${x.ep}</span></li>`).join("")}</ul>
+        <h3 class="sub">${oneEp ? `The newest, all from E${newest[0].ep}` : "The newest"}</h3>
+        <ul class="rows" role="list">${newest.map((x) => `<li><span>${line(x)}</span>${oneEp ? "" : `<span class="n">E${x.ep}</span>`}</li>`).join("")}</ul>
       </div>
     </div>
-    ${moreHTML("callins-more", `All ${fmt(c.people)} people who have called in`, groups)}`;
+    ${moreHTML("callins-more", `All ${fmt(c.people)} people and teams who have called in`, groups)}`;
 }
 
 /* --- reach: every episode's views, then the channels ------------------------------------------ */
@@ -971,20 +996,17 @@ function renderReach() {
       ${ok(v.total) ? `<p class="statement"><b>${num(v.total)}</b><span>views so far across all <span class="n">${v.episodes}</span> episodes</span></p>` : ""}
       <p class="ss-x-legend"><span><i style="background: var(--series-1)"></i>YouTube</span><span><i style="background: var(--series-2)"></i>X broadcast plays</span></p>
       <div class="chartwrap"><ol class="bars" role="list" aria-label="Views by episode, oldest first">${bars}</ol></div>
-      <p class="card__foot">Views keep arriving after air${newest ? ` — E${newest.ep} premiered ${day(newest.premiere)}` : ""}. Tap or hover an episode for its split.</p>`;
+      <p class="card__foot">Views keep arriving after air${newest ? ` — E${newest.ep} premiered ${day(newest.premiere)}` : ""}. ${matchMedia("(hover: none)").matches ? "Tap" : "Hover"} an episode for its split.</p>`;
   }
+  // where it goes out: the four channels' counts as the system KPI strip, their sum (two of them published rounded)
+  // to the thousand in the lede; a missing channel leaves its cell out and the sum unsaid
   const a = S?.audience;
-  if (!a?.channels?.length) { $("channels-card").innerHTML = absent("Where it streams", "The latest channel counts have not arrived."); return; }
-  const known = a.channels.filter((c) => ok(c.count)).sort((x, y) => y.count - x.count);
-  const cmax = Math.max(...known.map((c) => c.count), 1);
-  const rows2 = [...known, ...a.channels.filter((c) => !ok(c.count))].map((c) => `<li><div class="bar"><span class="bar__title">${esc(c.label)}<small>${esc(c.platform)} ${esc(c.unit)}</small></span><span class="bar__track">${ok(c.count) ? `<span class="bar__fill" style="width:calc((100% - 72px) * ${(c.count / cmax).toFixed(4)})"><i class="${c.platform === "YouTube" ? "yt" : "x"}" style="flex:1 1 0"></i></span><span class="bar__value n">${fmt(c.count)}</span>` : `<span class="bar__note">not read today</span>`}</span></div></li>`).join("");
-  // the total is a sum of channel counts, two of them published rounded: shown to the thousand
-  const about = ok(a.total) ? `<p class="statement"><b>${(Math.round(a.total / 1000) * 1000).toLocaleString("en-US")}</b><span>subscribers and followers on the four channels, rounded</span></p>` : "";
-  $("channels-card").innerHTML = `<h3 class="card__title">Where it streams</h3>
-    ${about}
-    <p class="card__meta">Every episode goes out live on these four channels at once, and to Ridd’s LinkedIn.</p>
-    <ol class="bars channels" role="list">${rows2}</ol>
-    <p class="card__foot">${a.date ? `Counts on ${day(a.date)}. ` : ""}One person may follow more than one channel, and YouTube publishes its subscriber counts rounded.</p>`;
+  const chans = (a?.channels || []).filter((c) => ok(c.count)).sort((x, y) => y.count - x.count);
+  $("reach-lede").hidden = !ok(a?.total);
+  $("reach-lede").innerHTML = ok(a?.total) ? `Every episode goes out live on four channels at once, and to Ridd’s LinkedIn: about <span class="n">${(Math.round(a.total / 1000) * 1000).toLocaleString("en-US")}</span> subscribers and followers between them${a.date ? ` on ${day(a.date)}` : ""}, though one person may follow more than one.` : "";
+  $("channel-kpis").hidden = chans.length < 2;
+  $("channel-kpis").style.setProperty("--cols", chans.length);
+  $("channel-kpis").innerHTML = chans.length >= 2 ? chans.map((c) => `<div class="ss-kpi"><dt class="ss-kpi__label">${esc(c.label)}</dt><dd class="ss-kpi__value">${fmt(c.count)}</dd><dd class="ss-kpi__sub">${esc(c.platform)} ${esc(c.unit)}</dd></div>`).join("") : "";
 }
 
 /* --- the live room: four numbers, then the newest show minute by minute --------------------- */
@@ -992,35 +1014,43 @@ function renderRoom() {
   const L = S?.live;
   const t = L?.typical;
   $("room-meta").innerHTML = t ? `A typical show is the middle of the <span class="n">${t.shows}</span> shows before the newest, E${t.fromEp}–E${t.toEp}` : "";
-  if (!L || !L.shows) { $("room-kpis").innerHTML = ""; $("room-curve").innerHTML = absent("The live room", L?.reason || "No live session has been read yet."); return; }
+  const lede = ok(t?.messagesPerHour) && ok(t?.durationMin) && t.durationMin > 0;
+  $("room-lede").hidden = !lede;
+  $("room-lede").innerHTML = lede ? `A room, not a feed: about ${hoursWord(t.durationMin)}, live, and on a typical show the chat runs at <span class="n">${fmt(t.messagesPerHour)}</span> messages an hour.` : "";
+  if (!L || !L.shows) { $("room-kpis").innerHTML = ""; $("room-kpis").hidden = true; $("room-curve").innerHTML = sectionAbsent("room", "The live room", L?.reason || "No live session has been read yet."); return; }
   const cells = [
-    ok(t?.holdRate) && ["At the end", `<span class="n">${fmt(t.holdRate)}%</span>`, "of the peak still watching in the last ten minutes"],
-    ok(t?.chattersPer100) && ["In the chat", num(t.chattersPer100), "different people write for every 100 watching at the peak"],
-    ok(t?.people) && ["Live views", num(t.people), "on a typical show: each channel’s own count, added"],
-    ok(L.hours) && ["Watched live", `${num(L.hours)} hours`, `across <span class="n">${L.shows}</span> shows`],
+    ok(t?.holdRate) && ["At the end", `<span class="n">${fmt(t.holdRate)}%</span>`, "of the peak still watching in the last ten minutes", "of the peak still watching in the last ten minutes of a typical show"],
+    ok(t?.chattersPer100) && ["In the chat", num(t.chattersPer100), "different people write for every 100 watching at the peak", "different people write in the chat for every 100 watching at a typical show’s peak"],
+    ok(t?.people) && ["Live views", num(t.people), "on a typical show: each channel’s own count, added", "live views on a typical show: each channel’s own count, added"],
+    ok(L.hours) && ["Watched live", `${num(L.hours)} hours`, `across <span class="n">${L.shows}</span> shows`, `watched live across <span class="n">${L.shows}</span> shows`],
   ].filter(Boolean);
-  $("room-kpis").innerHTML = cells.map(([label, value, sub]) => `<div class="ss-kpi"><dt class="ss-kpi__label">${label}</dt><dd class="ss-kpi__value">${value}</dd><dd class="ss-kpi__sub">${sub}</dd></div>`).join("");
-  $("room-kpis").hidden = !cells.length;
+  // a strip needs two numbers; one is a statement at the top of the curve card
+  $("room-kpis").innerHTML = cells.length >= 2 ? cells.map(([label, value, sub]) => `<div class="ss-kpi"><dt class="ss-kpi__label">${label}</dt><dd class="ss-kpi__value">${value}</dd><dd class="ss-kpi__sub">${sub}</dd></div>`).join("") : "";
+  $("room-kpis").hidden = cells.length < 2;
+  $("room-kpis").style.setProperty("--cols", cells.length);
+  const single = cells.length === 1 ? `<p class="statement"><b>${cells[0][1]}</b><span>${cells[0][3]}</span></p>` : "";
   const C = L.latest;
   const pts = (C?.series || []).filter((p) => ok(p.m) && ok(p.v));
-  if (!C || pts.length < 2) { $("room-curve").innerHTML = absent("The newest show, minute by minute", "Its minute-by-minute audience has not arrived."); return; }
+  if (!C || pts.length < 2) { $("room-curve").innerHTML = `${single}${absent("The newest show, minute by minute", "Its minute-by-minute audience has not arrived.")}`; return; }
   const span = pts[pts.length - 1].m;
   const top = Math.max(...pts.map((p) => p.v), ok(C.peak) ? C.peak : 0, 1);
   const W = 1000, H = 200;
-  const x = (m) => (m / span) * W, y = (v) => H - (v / top) * (H - 8);
+  // the top 32 units stay clear for the peak's figure
+  const x = (m) => (m / span) * W, y = (v) => H - (v / top) * (H - 32);
   const path = pts.map((p, k) => `${k ? "L" : "M"}${x(p.m).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
   // hour ticks sit at their minute; one within 15 minutes of the end would collide with its label
   const ticks = [`<span>start</span>`];
   for (let h = 1; h * 60 <= span - 15; h++) ticks.push(`<span style="left:${((h * 60 / span) * 100).toFixed(2)}%"><span class="n">${h}</span> h</span>`);
   ticks.push(`<span>${ok(C.durationMin) ? `end, <span class="n">${C.durationMin}</span> min` : "end"}</span>`);
-  const mark = ok(C.peakMinute) && ok(C.peak) ? `<span class="curve__mark" style="left:${((C.peakMinute / span) * 100).toFixed(2)}%; top:${((y(C.peak) / H) * 100).toFixed(2)}%" aria-hidden="true"></span>` : "";
+  const at = ok(C.peakMinute) && ok(C.peak) ? { left: (C.peakMinute / span) * 100, top: (y(C.peak) / H) * 100 } : null;
+  const mark = at ? `<span class="curve__mark" style="left:${at.left.toFixed(2)}%; top:${at.top.toFixed(2)}%" aria-hidden="true"></span><span class="curve__tag n" style="left:${at.left.toFixed(2)}%; top:${at.top.toFixed(2)}%" aria-hidden="true">${fmt(C.peak)}</span>` : "";
   const facts = [
     ok(C.peak) && `Peak <span class="n">${fmt(C.peak)}</span>${ok(C.peakMinute) ? `, <span class="n">${C.peakMinute}</span> minutes in` : ""}`,
     ok(C.holdRate) && `<span class="n">${fmt(C.holdRate)}%</span> of the peak still there in the last ten minutes`,
     ok(C.chatMessages) && `<span class="n">${fmt(C.chatMessages)}</span> chat messages`,
   ].filter(Boolean);
-  const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? ` ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
-  $("room-curve").innerHTML = `<h3 class="card__title">E${C.ep}, ${esc(short(C.title))}, minute by minute</h3>
+  const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
+  $("room-curve").innerHTML = `${single}<h3 class="card__title">E${C.ep}, ${esc(short(C.title))}, minute by minute</h3>
     <p class="card__meta">Everyone watching live, on every channel at once · premiered ${day(C.premiere)}</p>
     <div class="curve" role="img" aria-label="${esc(said)}">
       <div class="curve__plot">
@@ -1043,21 +1073,22 @@ function momentRow(m, kind) {
   const live = ok(m.liveAt) ? `<span class="n">${fmt(m.liveAt)}</span> watching live` : "";
   const facts = [kind, live].filter(Boolean);
   const head = facts.length ? `<span class="moment__kind dots">${facts.map((f) => `<span>${f}</span>`).join("")}</span>` : "";
-  const body = m.kind === "segment" ? `<b>${esc(m.title)}</b> — ${esc(m.text)}` : `<q>${esc(m.text)}</q>`;
+  const body = m.kind === "segment" || m.kind === "inSegment" ? `<b>${say(m.title)}</b> — ${say(m.text)}` : `<q>${esc(m.text)}</q>`;
   return `<li class="moment"><span class="moment__at">${when}</span><span class="moment__body">${head}${body}</span></li>`;
 }
-const momentsHTML = (rows, withKind) => `<ol class="moments" role="list">${rows.map((m) => momentRow(m, withKind ? (m.kind === "segment" ? "A segment about it" : "Named as a partner") : "")).join("")}</ol>`;
+const KIND = { named: "Named as a partner", segment: "A segment about it", inSegment: "Named in a segment" };
+const momentsHTML = (rows, withKind) => `<ol class="moments" role="list">${rows.map((m) => momentRow(m, withKind ? KIND[m.kind] || "" : "")).join("")}</ol>`;
 function renderOnAir() {
   const b = S?.brands;
   $("onair-meta").innerHTML = b?.episodes ? `Named in the <span class="n">${b.episodes}</span> episode transcripts, as said on air` : "";
   if (!b?.list?.length) $("brands-card").innerHTML = absent("Brands named on air", b?.reason || "No transcript has been read yet.");
   else {
     const max = Math.max(...b.list.map((x) => x.mentions), 1);
-    const row = (x, i) => `<li><button type="button" class="brow" aria-expanded="false" aria-controls="brand-${i}" data-toggle="brand-${i}"><span class="brow__name">${esc(x.name)}${x.partner ? ' <span class="ss-tag ss-tag--neutral ss-tag--sm">Partner</span>' : ""}</span><span class="brow__track" aria-hidden="true"><i style="width:${((x.mentions / max) * 100).toFixed(1)}%"></i></span><span class="brow__value"><b class="n">${fmt(x.mentions)}</b> in <span class="n">${x.episodes}</span> ${x.episodes === 1 ? "episode" : "episodes"}</span>${ICON.chev}</button><div class="ss-reveal" id="brand-${i}" data-open="false" inert aria-hidden="true"><div>${momentsHTML(x.moments, false)}</div></div></li>`;
+    const row = (x, i) => `<li><button type="button" class="brow" aria-expanded="false" aria-controls="brand-${i}" data-toggle="brand-${i}"><span class="brow__name"><span class="brow__label">${esc(x.name)}</span>${x.partner ? ' <span class="ss-tag ss-tag--neutral ss-tag--sm">Partner</span>' : ""}</span><span class="brow__track" aria-hidden="true"><i style="width:${((x.mentions / max) * 100).toFixed(1)}%"></i></span><span class="brow__value"><b class="n">${fmt(x.mentions)}</b> in <span class="n">${x.episodes}</span> ${x.episodes === 1 ? "episode" : "episodes"}</span>${ICON.chev}</button><div class="ss-reveal" id="brand-${i}" data-open="false" inert aria-hidden="true"><div>${momentsHTML(x.moments, false)}</div></div></li>`;
     const first = b.list.slice(0, 10), rest = b.list.slice(10);
     $("brands-card").innerHTML = `<h3 class="card__title">Brands named on air</h3>
       <p class="card__meta">Mentions in the transcripts · open a brand for its first moment in each episode</p>
-      <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `${rest.length} more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`) : ""}`;
+      <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `${rest.length} more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`, true) : ""}`;
   }
   const P = (S?.partners || []).filter((p) => p.moments?.length);
   if (!P.length) { $("partners-card").innerHTML = absent("Partners on air", "No transcript names a partner yet."); return; }
@@ -1066,19 +1097,19 @@ function renderOnAir() {
   const order = (rows) => [...rows].sort((a, z) => (a.url ? 0 : 1) - (z.url ? 0 : 1) || z.ep - a.ep || a.seconds - z.seconds);
   const panels = P.map((p, i) => {
     const rows = order(p.moments), shown = rows.slice(0, 5), rest = rows.slice(5);
-    const sum = `${esc(p.name)}: named as a partner <span class="n">${p.named}</span> ${p.named === 1 ? "time" : "times"}${p.segments ? `, the subject of <span class="n">${p.segments}</span> ${p.segments === 1 ? "segment" : "segments"}` : ""}, and named <span class="n">${fmt(p.mentions)}</span> times in all, in <span class="n">${p.episodes}</span> episodes.`;
-    return `<div class="partner-panel" id="partner-${i}" role="region" aria-label="${esc(p.name)} on air" ${i ? "hidden" : ""}><p class="partner-sum">${sum}</p>${momentsHTML(shown, true)}${rest.length ? moreHTML(`partner-more-${i}`, `${rest.length} more`, momentsHTML(rest, true)) : ""}</div>`;
+    const sum = `${esc(p.name)}: named as a partner <span class="n">${p.named}</span> ${p.named === 1 ? "time" : "times"}${p.segments ? `, in <span class="n">${p.segments}</span> ${p.segments === 1 ? "segment" : "segments"}${p.about ? ` (<span class="n">${p.about}</span> about it)` : ""}` : ""}, and <span class="n">${fmt(p.mentions)}</span> times in all, in <span class="n">${p.episodes}</span> episodes.`;
+    return `<div class="partner-panel" id="partner-${i}" role="region" aria-label="${esc(p.name)} on air" ${i ? "hidden" : ""}><p class="partner-sum">${sum}</p>${momentsHTML(shown, true)}${rest.length ? moreHTML(`partner-more-${i}`, `${rest.length} more`, momentsHTML(rest, true), true) : ""}</div>`;
   }).join("");
   const unlinked = (S?.links && S.links.exact < S.links.episodes) ? `<p class="card__foot">A time without a link follows the live recording; it links once that episode’s recording has been matched to its upload (<span class="n">${S.links.exact}</span> of <span class="n">${S.links.episodes}</span> so far).</p>` : "";
   $("partners-card").innerHTML = `<h3 class="card__title">Partners on air</h3>
     <p class="card__meta">Each time the hosts named a partner, from the transcripts · a linked time plays the moment on YouTube</p>
-    <div class="ss-seg" role="radiogroup" aria-label="Partner">${seg}</div>${panels}${unlinked}`;
+    ${P.length > 1 ? `<div class="ss-seg" role="radiogroup" aria-label="Partner">${seg}</div>` : ""}${panels}${unlinked}`;
 }
 
 /* --- what viewers say ------------------------------------------------------------------------- */
 function renderVoices() {
   const f = S?.feedback;
-  if (!f || !f.quotes?.length) { $("voices-meta").textContent = ""; $("voices-card").innerHTML = absent("What viewers say", "No public comment has been read yet."); return; }
+  if (!f || !f.quotes?.length) { $("voices-card").innerHTML = sectionAbsent("voices", "What viewers say", "No public comment has been read yet."); return; }
   $("voices-meta").innerHTML = `<span class="n">${fmt(f.positive)}</span> of <span class="n">${fmt(f.messages)}</span> comments and chat messages about the show were positive · the most-liked, one per person, word for word`;
   const quote = (q) => `<blockquote class="ss-x-quote"><p>“${esc(q.text)}”</p><footer><span>${esc(q.author)} · ${esc(q.platform)} · E${q.ep}${q.onShow ? ` · ${q.calledIn != null ? `called in on E${q.calledIn}` : "on the show"}` : ""}</span>${q.url ? `<a class="ss-x-quote__link" href="${esc(q.url)}" target="_blank" rel="noopener">Original${ICON.out}<span class="ss-sr"> (opens ${esc(q.platform)} in a new tab)</span></a>` : ""}</footer></blockquote>`;
   const first = f.quotes.slice(0, 3), rest = f.quotes.slice(3);
@@ -1089,13 +1120,13 @@ function renderVoices() {
 function renderPackages() {
   const t = S?.live?.typical;
   const reach = ok(t?.atMiddle) && ok(t?.recordingAtMiddle)
-    ? `<p class="tier__reach">At the middle of a typical show, <b class="n">${fmt(t.atMiddle)}</b> are watching live, and <b class="n">${fmt(t.recordingAtMiddle)}</b> of every 100 YouTube views are still watching there.</p>` : "";
+    ? `<p class="tier__reach">At the middle of a typical show, <b class="n">${fmt(t.atMiddle)}</b> are watching live, and <b class="n">${fmt(t.recordingAtMiddle)}</b> of every 100 YouTube views reach the middle of the recording.</p>` : "";
   const example = (name) => {
     const x = (S?.examples || []).find((y) => y.package === name);
     if (!x?.moment) return "";
     const at = `E${x.ep} · ${clock(x.moment.at)}`;
     const when = x.moment.url ? `<a href="${esc(x.moment.url)}" target="_blank" rel="noopener"><span class="n">${esc(at)}</span>${ICON.out}<span class="ss-sr"> — play it on YouTube (opens a new tab)</span></a>` : `<span class="n">${esc(at)}</span>`;
-    return `<p class="tier__example">See one on air: ${esc(x.label)} · ${when}</p>`;
+    return `<p class="tier__example">${esc(x.format)} on air: ${esc(x.label)}&nbsp;·&nbsp;${when}</p>`;
   };
   $("tiers").innerHTML = PACKAGES.map((p, i) => `<article class="ss-panel card tier" aria-labelledby="tier-${i + 1}">
       <div class="tier__head"><h3 class="tier__name" id="tier-${i + 1}">${p.name}</h3>${p.tag ? `<span class="ss-tag ss-tag--neutral">${p.tag}</span>` : ""}</div>
@@ -1106,10 +1137,13 @@ function renderPackages() {
       ${p.name === "Mid-roll" ? reach : ""}${example(p.name)}
       <a class="ss-btn ss-btn--secondary" data-book="${p.name}" href="#book">Book ${p.name}</a>
     </article>`).join("");
+  const cell = (c, r, i) => {
+    const h = `headers="item-${r} pkg-${i}"`;
+    return c === ASK ? `<td ${h} class="ask">Ask us</td>` : c ? `<td ${h}>${c}</td>` : `<td ${h} class="no"><span aria-hidden="true">—</span><span class="ss-sr">Not included</span></td>`;
+  };
   $("compare").innerHTML = `<table><caption>What each package includes</caption>
-    <colgroup><col class="what"><col><col><col></colgroup>
-    <thead><tr><th scope="col"><span class="ss-sr">Item</span></th>${PACKAGES.map((p) => `<th scope="col">${p.name}</th>`).join("")}</tr></thead>
-    <tbody>${COMPARE.map(([what, ...cells]) => `<tr><th scope="row">${what}</th>${cells.map((c) => (c ? `<td>${c}</td>` : `<td class="no"><span aria-hidden="true">—</span><span class="ss-sr">Not included</span></td>`)).join("")}</tr>`).join("")}</tbody></table>`;
+    <thead><tr>${PACKAGES.map((p, i) => `<th scope="col" id="pkg-${i}">${p.name}</th>`).join("")}</tr></thead>
+    <tbody>${COMPARE.map(([what, ...cells], r) => `<tr class="compare__item"><th colspan="${PACKAGES.length}" id="item-${r}">${what}</th></tr><tr>${cells.map((c, i) => cell(c, r, i)).join("")}</tr>`).join("")}</tbody></table>`;
 }
 
 /* --- about + freshness ---------------------------------------------------------------------------- */
@@ -1117,20 +1151,21 @@ function renderAbout() {
   $("about-prose").innerHTML = `
     <p><b>Views</b> are YouTube views plus resolved X broadcast plays on the two hosts’ accounts. Native tweet and teaser videos are left out, and so are impressions: they say how many times a post was seen, not watched. Views keep arriving after an episode airs, so the newest episodes are still counting.</p>
     <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode. <b>Hours watched live</b> come from Restream, across every channel the show streams to. The two are never added: YouTube’s hours can include some of the live viewing on YouTube.</p>
+    <p><b>Subscribers and followers</b> are each channel’s public count on the day shown. Their sum is shown to the nearest thousand, since YouTube publishes its counts rounded, and it counts channels, not people: one person can follow more than one.</p>
     <p><b>Watching at once</b> is the most people watching in the same minute, all channels together; <b>on average</b> is the same count across the whole show. <b>Live views</b> are each channel’s own count of who watched any part of the stream, added across YouTube and X, so one person on two channels counts twice.</p>
-    <p><b>At the end</b> compares the last ten minutes of a show with its peak. <b>In the chat</b> counts the different people who wrote at any point in the show on YouTube and X (LinkedIn’s count is left out), set against the most people watching at once.</p>
-    <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every 100 YouTube views of the recording, how many are still watching at its middle (YouTube’s audience curve, read once an episode is a week old).</p>
+    <p><b>At the end</b> compares the last ten minutes of a show with its peak. <b>In the chat</b> counts the different people who wrote at any point in the show on YouTube and X (LinkedIn’s count is left out), set against the most people watching at once. <b>Messages an hour</b> is every chat message on YouTube and X across the show, per hour of the show.</p>
+    <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every 100 YouTube views of the recording, how many reach its middle (YouTube’s audience curve, read once an episode is a week old; it counts every view at that point, including anyone who skipped ahead).</p>
     <p><b>A typical show</b> is the middle value of the eight shows before the newest — the same reading the show’s own dashboard uses.</p>
-    <p><b>Call-ins</b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one. The teams named are where a call-in’s own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
+    <p><b>Call-ins</b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one, and each name counts once as the notes list it, so a studio or a pair is one name. The teams named are where a call-in’s own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
     <p><b>Brands named on air</b> count whole words, as said, in each episode’s transcript. Transcripts are automatic, so a misheard name is missed, never added. Excerpts are the transcript’s words with ums, uhs and repeated words taken out; “…” marks a cut.</p>
-    <p><b>Partners on air</b> lists each time the hosts named a partner as a partner (they say “sponsor”, “partner” or “brought to you by” within fifteen seconds), and each segment about one. It is not a list of what each partner paid for; the example under each package comes from the show’s own records of what a partner received.</p>
+    <p><b>Partners on air</b> lists each time the hosts named a partner as a partner (they say “sponsor”, “partner” or “brought to you by” within fifteen seconds), and each segment that names one: about it when the segment’s title names it. It is not a list of what each partner paid for; the example under each package comes from the show’s own records of what a partner received.</p>
     <p><b>Moments</b> link to the exact second on YouTube when the episode’s transcript has been matched to that upload’s own captions; otherwise the time is shown without a link. <b>Watching live</b> beside a moment is the live audience in that minute of the stream, shown where the transcript runs on the stream’s own clock.</p>
-    <p><b>Quotes</b> are named, public comments on YouTube and X that were positive about the show, word for word: the most-liked first, one per person. Anyone who was on the show comes last and says so.</p>
+    <p><b>Quotes</b> are named, public comments on YouTube and X that were positive about the show and run to at least forty characters, word for word: the most-liked first, one per person. Anyone who was on the show comes last and says so.</p>
     <p><b>Every number</b> on this page is rebuilt each morning from the same data as the show’s public analytics, and checked before it is published.</p>`;
   const fresh = $("fresh");
   fresh.classList.toggle("is-missing", !S?.asOf);
   fresh.innerHTML = S?.asOf
-    ? `<i aria-hidden="true"></i><span>Numbers refreshed ${day(S.asOf)} from YouTube, X and Restream · <a href="./">Full analytics</a></span>`
+    ? `<i aria-hidden="true"></i><span>Numbers refreshed ${day(S.asOf)} from YouTube, X and Restream</span>`
     : `<i aria-hidden="true"></i><span>The latest numbers have not loaded, so the parts that need them are held back.</span>`;
 }
 
@@ -1186,19 +1221,20 @@ function tipHTML(e) {
     <div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(--series-2)"></span><span>X broadcast plays</span>${val(L.xPlays)}</div>
     ${ok(L.xImpressions) ? `<div class="ss-x-chart-tip__sep"></div><div class="ss-x-chart-tip__row"><span class="ss-dot"></span><span>Seen on X, not counted as views</span>${val(L.xImpressions)}</div>` : ""}`;
 }
-// the card sits beside the bar's end, so the bars above and below stay in view
+// the card sits beside the bar's end, inside the chart's own card, so the bars above and below stay in view
 function showTip(el) {
   const e = EPISODES[Number(el.dataset.tip)];
   if (!e) return;
   tipFor?.classList.remove("is-tip");
   tipFor = el; el.classList.add("is-tip");
   tip.innerHTML = tipHTML(e); tip.hidden = false;
-  const fill = el.querySelector(".bar__value") || el;
-  const box = fill.getBoundingClientRect(), row = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
-  let left = box.right + 12;
-  if (left + tw > innerWidth - 16) left = Math.max(16, Math.min(row.right - tw, innerWidth - tw - 16));
-  let top = row.top + row.height / 2 - th / 2;
-  if (left < box.right + 12) top = row.top - th - 8 > 8 ? row.top - th - 8 : row.bottom + 8;
+  const end = (el.querySelector(".bar__value") || el).getBoundingClientRect(), row = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+  const card = el.closest(".card").getBoundingClientRect(), maxRight = card.right - 16;
+  let left = end.right + 12, top = row.top + row.height / 2 - th / 2;
+  if (left + tw > maxRight) {
+    left = Math.min(Math.max(card.left + 16, row.right - tw), maxRight - tw);
+    top = row.top - th - 8 > 8 ? row.top - th - 8 : row.bottom + 8;
+  }
   top = Math.min(Math.max(8, top), innerHeight - th - 8);
   tip.style.left = `${left + scrollX}px`;
   tip.style.top = `${top + scrollY}px`;
@@ -1221,9 +1257,9 @@ $("book-addr").textContent = CONTACT;
 $("book-addr").href = `mailto:${CONTACT}`;
 $("copy-addr").addEventListener("click", async () => {
   const button = $("copy-addr");
-  try { await navigator.clipboard.writeText(CONTACT); button.textContent = "Copied"; $("copy-status").textContent = `${CONTACT} copied`; }
+  try { await navigator.clipboard.writeText(CONTACT); button.classList.add("is-copied"); $("copy-status").textContent = `${CONTACT} copied`; }
   catch { const range = document.createRange(); range.selectNodeContents($("book-addr")); getSelection().removeAllRanges(); getSelection().addRange(range); $("copy-status").textContent = "The address is selected; copy it from there"; }
-  setTimeout(() => { button.textContent = "Copy address"; $("copy-status").textContent = ""; }, 2000);
+  setTimeout(() => { button.classList.remove("is-copied"); $("copy-status").textContent = ""; }, 2000);
 });
 
 /* the skip link focuses main without moving the reader past the hero's heading */

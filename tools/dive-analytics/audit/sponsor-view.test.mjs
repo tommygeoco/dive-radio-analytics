@@ -177,7 +177,11 @@ import { normalize } from "../transcripts.mjs";
   const paper = view.partners.find((p) => p.name === "Paper");
   assert.deepEqual(paper.moments.map((m) => m.ep), [6], "“not sponsored by Paper” is not a read");
   const lovable = view.partners.find((p) => p.name === "Lovable");
-  assert.deepEqual(lovable.moments.map((m) => [m.ep, m.kind]), [[5, "segment"]], "a read inside the first minute of a chapter about the partner is that chapter");
+  assert.deepEqual(lovable.moments.map((m) => [m.ep, m.kind]), [[5, "inSegment"]], "a naming inside the first minute of a chapter that names the partner is that chapter; a chapter whose title does not name it is named in, not about it");
+  assert.deepEqual([lovable.segments, lovable.about], [1, 0]);
+  const titled = sponsorView({ episodes: eps.map((e) => (e.ep === 5 ? { ...e, chapters: { list: [{ start: "00:39:50", seconds: 2390, title: "One Up Weekly by Lovable", gist: "Picks of the week." }] } } : e)), transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  const titledLovable = titled.partners.find((p) => p.name === "Lovable");
+  assert.deepEqual([titledLovable.moments[0].kind, titledLovable.segments, titledLovable.about], ["segment", 1, 1], "a segment whose title names the partner is about it");
 
   // a long speaker segment is cut to whole words around the name, verbatim
   const long = Array.from({ length: 80 }, (_, i) => (i === 40 ? "Mobbin" : `word${i}`)).join(" ");
@@ -187,6 +191,7 @@ import { normalize } from "../transcripts.mjs";
 
   // speech as it reads: marks, fillers and a doubled word go; the words stay in order
   assert.equal(cleanSpeech(">> Uh Remotion is, um, really really good. And I I do wanna say [Music] let's let's go."), "Remotion is, really good. And I do wanna say let's go.");
+  assert.equal(cleanSpeech("which I think is a is a very proper sponsor, and I saw I saw it"), "which I think is a very proper sponsor, and I saw it", "a pair of words said twice goes too");
   assert.equal(cleanSpeech("an umbrella, a hummingbird"), "an umbrella, a hummingbird", "a filler is a whole word, never part of one");
   assert.equal(typographic(`it's "great" 'here'`), "it’s ‘great’ ‘here’", "inside the page's “ ” a quotation takes ‘ ’");
   // whole sentences: a caption fragment run is read back to its sentence start; a cut says so with "…"

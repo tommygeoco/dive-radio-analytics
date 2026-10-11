@@ -630,7 +630,7 @@ try {
   const tableEnd = pageSource.indexOf("function buildEmptyNote", tableStart);
   const tableSource = tableStart >= 0 && tableEnd > tableStart ? pageSource.slice(tableStart, tableEnd) : "";
   for (const [surface, source] of [["summary", heroSource], ["episode panel", panelSource], ["live table", tableSource]]) {
-    if (!source.includes("e.live.liveViews") || !/live viewers|watched live|people watched live/i.test(source)) {
+    if (!source.includes("e.live.liveViews") || !/live views|live viewers|watched live/i.test(source)) {
       bad++; drift(`live sessions: ${surface} does not expose the stored live-viewer count in plain words`);
     }
     if (!source.includes("e.live.watchedMin") || !/minutes watched|watched minutes|watch time/i.test(source)) {
@@ -3527,7 +3527,7 @@ try {
         for (const name of sp.callIns.teamsNamed || []) {
           const x = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
           const re = new RegExp(`\\bat ${x}\\b|\\b${x}['’]s\\b[^,.;]{0,40}\\bteams?\\b|\\bwhat ${x} looks for\\b|\\bhow ${x} hires\\b`);
-          if (!said.some((c) => re.test(c.about || ""))) { bad++; fail(`sponsor: ${name} is listed as a team the call-ins were about, but no aired call-in says so`); }
+          if (!said.some((c) => re.test(c.about || ""))) { bad++; fail(`sponsor: ${name} as a named team does not re-derive from any aired call-in's own words`); }
         }
         if (JSON.stringify(sp.callIns.teamsNamed) !== JSON.stringify(SV.teamsNamed(sp.callIns.list))) { bad++; fail("sponsor: the teams the call-ins were about do not re-derive"); }
       }
@@ -3552,12 +3552,15 @@ try {
         const e = bySlug.get(m.slug);
         const t = parsed.get(m.slug);
         if (!e) { bad++; fail(`sponsor: a ${m.who} moment names an episode that is not in data.json (${m.slug})`); continue; }
-        if (m.kind === "segment") {
+        if (m.kind === "segment" || m.kind === "inSegment") {
           if (!(e.chapters?.list || []).some((c) => c.start === m.at && c.title === m.title && c.gist === m.text)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} is not one of the episode's chapters`); }
+          // a segment is about a partner only when its title names it
+          const titled = new RegExp(`(?<![\\w@#])${m.who}(?![\\w])`).test(m.title || "");
+          if ((m.kind === "segment") !== titled) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} is labelled ${m.kind} but its title ${titled ? "names" : "does not name"} ${m.who}`); }
         } else if (!t || !flat(SV.cleanSpeech(TR.windowText(t, m.at, 60))).includes(flat(m.text.replace(/…/g, " ")))) {
           bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} excerpt is not the transcript's words at that time`);
         }
-        if (m.kind !== "mention" && m.kind !== "segment" && !new RegExp(`(?<![\\w@#])${m.who}(?![\\w])`).test(m.text)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} excerpt does not name ${m.who}`); }
+        if (m.kind !== "mention" && m.kind !== "segment" && m.kind !== "inSegment" && !new RegExp(`(?<![\\w@#])${m.who}(?![\\w])`).test(m.text)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} excerpt does not name ${m.who}`); }
         const want = t ? CL.momentUrl(uploadOf(e), m.seconds) : null;
         if (m.url !== want) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} link is not the clock rule's (${m.url} vs ${want})`); }
         if (m.url && !Object.values(e.links || {}).includes(m.url.replace(/&t=\d+s$/, ""))) { bad++; fail(`sponsor: ${m.who} E${m.ep} links into an upload the registry does not hold`); }
@@ -3565,8 +3568,9 @@ try {
       }
       // partner counts and kinds; each package's example sits near the owners' recorded time
       for (const p of sp.partners || []) {
-        if (p.moments.some((m) => m.kind !== "named" && m.kind !== "segment") || p.named !== p.moments.filter((m) => m.kind === "named").length || p.segments !== p.moments.filter((m) => m.kind === "segment").length) {
-          bad++; fail(`sponsor: ${p.name}'s moments are not counted by kind (named as a partner / chapter)`);
+        if (p.moments.some((m) => !["named", "segment", "inSegment"].includes(m.kind)) || p.named !== p.moments.filter((m) => m.kind === "named").length
+          || p.segments !== p.moments.filter((m) => m.kind === "segment" || m.kind === "inSegment").length || p.about !== p.moments.filter((m) => m.kind === "segment").length) {
+          bad++; fail(`sponsor: ${p.name}'s counts by kind do not re-derive from its moments (named as a partner / a segment about it / named in a segment)`);
         }
       }
       for (const x of SV.EXAMPLES) {

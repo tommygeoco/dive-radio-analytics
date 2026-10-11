@@ -1917,7 +1917,7 @@ const CHECK_LABELS = {
   growth: ["Growth", "How new episodes start", "Growth"],
   audienceQuality: ["Audience quality", "Watch time and reactions", "Audience"],
   reachEfficiency: ["Reach", "X announces being seen and played", "Reach"],
-  livePull: ["Live turnout", "Peak, average, people, and minutes watched live", "Live turnout"],
+  livePull: ["Live turnout", "Peak, average, live views, and minutes watched live", "Live turnout"],
   participation: ["Participation", "Chatters and chat pace", "Participation"],
   conversion: ["Subscribers", "Subscriber pull", "Subscribers"],
   sentiment: ["Goodwill", "How feedback reads", "Goodwill"],
@@ -1929,7 +1929,7 @@ const DIRECTION_LABELS = {
   chattersPer100: "Chatters per hundred at the peak", messagesPerHour: "Chat messages an hour",
   engagementWeekOne: "First-week likes and comments", exposureWeekOne: "First-week X reach",
   announceToPlay: "Announce-to-play on X", watching: "Share of the video watched", subscribers: "Subscribers per thousand views",
-  liveViewers: "People who watched live", minutesWatched: "Minutes watched live", minutesPerViewer: "Minutes each live viewer stayed",
+  liveViewers: "Live views", minutesWatched: "Minutes watched live", minutesPerViewer: "Minutes each live viewer stayed",
   holdRate: "Share of the peak still watching at the end", discoveryShare: "YouTube views from search and suggestions",
 };
 const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : "");
@@ -2011,7 +2011,7 @@ function buildHealth() {
     chat: "Live chat messages",
     chattersPer100: "Chatters per hundred people at the peak",
     messagesPerHour: "Chat messages an hour",
-    liveViewers: "People who watched live",
+    liveViewers: "Live views",
     minutesWatched: "Minutes watched live, all together",
     minutesPerViewer: "Minutes each live viewer stayed",
     holdRate: "Share of the peak still watching in the last ten minutes",
@@ -2332,7 +2332,7 @@ function buildHero() {
         : `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.live.avg)}</span> <small>average live viewers</small></div></div>`;
       const liveFacts = [];
       if (e.live.peak != null) liveFacts.push(`<span class="g" data-tip="peak live viewers" tabindex="0">${ICONS.users}<b>${nfmt(e.live.peak)}</b><span class="gl">peak</span></span>`);
-      if (e.live.liveViews != null) liveFacts.push(`<span class="g" data-tip="people who watched live" tabindex="0">${ICONS.eye}<b>${nfmt(e.live.liveViews)}</b><span class="gl">watched live</span></span>`);
+      if (e.live.liveViews != null) liveFacts.push(`<span class="g" data-tip="live views, each channel’s own count, added" tabindex="0">${ICONS.eye}<b>${nfmt(e.live.liveViews)}</b><span class="gl">live views</span></span>`);
       if (e.live.watchedMin != null) liveFacts.push(`<span class="g" data-tip="minutes watched live" tabindex="0">${ICONS.clock}<b>${nfmt(e.live.watchedMin)}</b><span class="gl">min watched</span></span>`);
       if (liveFacts.length) html += `<div class="gline">${liveFacts.join("")}</div>`;
     } else {
@@ -2801,7 +2801,7 @@ function buildPanel() {
     const liveCells = [
       ["Peak viewers", e.live.peak, ""],
       ["Average viewers", e.live.avg, ""],
-      ["People who watched live", e.live.liveViews, ""],
+      ["Live views", e.live.liveViews, ""],
       ["Minutes watched live", e.live.watchedMin, "min"],
       ["Chat messages", e.live.chatMessages, ""],
       ["People who chatted", e.live.chatters, ""],
@@ -4357,7 +4357,7 @@ function buildTable() {
   // a labelled scroll region a keyboard can scroll, with real column and row headers (steward F17)
   let html = `<div class="tscroll" tabindex="0" role="region" aria-label="${esc(chartTitle()[0])}, as a table"><table><thead><tr>`;
   if (kind === "live") {
-    html += `<th scope="col">Episode</th><th scope="col">Peak</th><th scope="col">Average</th><th scope="col">Watched live</th><th scope="col">Minutes watched</th><th scope="col">Chat messages</th><th scope="col">Chatters</th><th scope="col">Length</th></tr></thead><tbody>`;
+    html += `<th scope="col">Episode</th><th scope="col">Peak</th><th scope="col">Average</th><th scope="col">Live views</th><th scope="col">Minutes watched</th><th scope="col">Chat messages</th><th scope="col">Chatters</th><th scope="col">Length</th></tr></thead><tbody>`;
     for (const e of [...EPS].reverse()) {
       html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
       html += e.live
@@ -4534,7 +4534,7 @@ function buildAbout() {
   <h2 id="ab-show">Show health</h2>
   <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The score and checks come from the day’s checked facts. The headline and evidence use model wording when available; when it is unavailable, validated fixed wording uses the same facts for that day’s read. If neither wording path passes validation, the previous dated read remains and the refresh reports a failure.</p>
   <p>Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — amber fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read.</p>
-  <p>Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos.</p>
+  <p>Live turnout reads the whole live session — peak and average viewers, the live views (each channel’s own count of who watched any part, added, so one person on two channels counts twice), and the minutes watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos.</p>
   <p>Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result.</p>
   <p>Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>
   <p>Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Why this score opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions, in order, with All actions leading to the full list and the finding behind each one.</p>
