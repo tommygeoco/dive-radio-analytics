@@ -444,7 +444,9 @@ button { font: inherit; color: inherit; }
   main { display: block; }
   main:focus { outline: none; }
   .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; white-space: nowrap; overflow-wrap: normal; }
-  .block { margin-top: var(--d-section); scroll-margin-top: calc(var(--topbar-h) + var(--safe-top) + var(--d-stack)); }
+  .nw { white-space: nowrap; }
+  html { scroll-padding-top: calc(var(--topbar-h) + var(--safe-top) + var(--d-stack)); }
+  .block { margin-top: var(--d-section); }
   .block[hidden] { display: none; }
   .lede[hidden] { display: none; }
   .lede { margin: 0 0 var(--d-stack); max-width: 62ch; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
@@ -501,7 +503,7 @@ button { font: inherit; color: inherit; }
   .bars > li + li { border-top: 1px solid var(--line); }
   .bar { position: relative; display: grid; width: 100%; grid-template-columns: 32px minmax(0, 1fr); grid-template-areas: "ep title" ". track";
     column-gap: 12px; row-gap: 8px; align-items: start; padding: 12px 0; border: 0; background: none; color: inherit; text-align: left; font: inherit; }
-  @media (min-width: 80rem) { .bar { grid-template-columns: 32px minmax(0, 220px) minmax(0, 1fr); grid-template-areas: "ep title track"; align-items: start; padding: 8px 0; } }
+  @media (min-width: 80rem) { .bar { grid-template-columns: 32px minmax(0, 340px) minmax(0, 1fr); grid-template-areas: "ep title track"; align-items: start; padding: 8px 0; } }
   button.bar { cursor: pointer; border-radius: var(--radius-md); }
   button.bar:focus-visible { outline-offset: 4px; }
   .bar__ep { grid-area: ep; font-size: var(--text-meta); line-height: var(--lh-body-sm); color: var(--fg-3); }
@@ -522,6 +524,7 @@ button { font: inherit; color: inherit; }
   /* call-ins: the newest, the count by episode (focus + context: the newest white), everyone behind a disclosure */
   .callins-top { display: grid; grid-template-areas: "stat" "chart" "rows"; row-gap: var(--d-card); }
   .callins-top > .statement { grid-area: stat; margin: 0; }
+  #room-curve > .statement { margin-bottom: var(--d-card); padding-bottom: var(--d-card); border-bottom: 1px solid var(--line); }
   .callins-top > .cols { grid-area: chart; }
   .callins-top > .newest { grid-area: rows; }
   @media (min-width: 64rem) {
@@ -546,10 +549,12 @@ button { font: inherit; color: inherit; }
   .callins-ep:first-child { margin-top: 0; }
   .callins-ep h3 { margin: 0 0 4px; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
   .more > .ss-btn--link { display: flex; width: fit-content; margin-top: var(--d-inner); }
+  .more > [aria-expanded="false"] > .more__open, .more > [aria-expanded="true"] > .more__closed { display: none; }
   .more .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
   .more .ss-reveal > div > div { padding-top: var(--d-inner); padding-bottom: 8px; }
   .more .ss-reveal > div > div.more__flush { padding-top: 0; padding-bottom: 0; }
   .more__flush > .brands { margin-top: 0; }
+  .more__flush > .quotes { padding-top: 24px; }
   .more__flush > .brands > li:first-child, .more__flush > .moments > .moment:first-child { border-top: 1px solid var(--line); }
 
   /* the live room: the system's KPI strip, then the newest show minute by minute */
@@ -654,7 +659,9 @@ button { font: inherit; color: inherit; }
   .compare table { width: 100%; border-collapse: collapse; table-layout: fixed; }
   .compare caption { padding: var(--d-card) var(--d-card) 0; text-align: left; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
   @media (min-width: 48rem) { .compare caption { font-size: var(--text-body); } }
-  .compare th, .compare td { padding: 8px var(--d-card); text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  .compare th, .compare td { padding: 8px 0 8px 12px; text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  .compare tr > :first-child { padding-left: var(--d-card); }
+  .compare tr > :last-child { padding-right: var(--d-card); }
   .compare thead th { padding-top: var(--d-inner); font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-2); }
   .compare .compare__item th { padding: 12px var(--d-card) 0; font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 400; color: var(--fg-3); }
   .compare tbody tr.compare__item { border-top: 1px solid var(--line); }
@@ -662,8 +669,11 @@ button { font: inherit; color: inherit; }
   .compare td.no, .compare td.ask { color: var(--fg-3); }
   /* columns are equal thirds of the table; the cards above are thirds less two gaps, so column n's text steps in by
      n thirds of a gap and lands on card n's text edge */
-  .compare thead th:nth-child(2), .compare tr:not(.compare__item) td:nth-child(2) { padding-left: calc(var(--d-card) + var(--d-stack) / 3); }
-  .compare thead th:nth-child(3), .compare tr:not(.compare__item) td:nth-child(3) { padding-left: calc(var(--d-card) + var(--d-stack) * 2 / 3); }
+  @media (min-width: 64rem) {
+    .compare th, .compare td { padding-inline: var(--d-card); }
+    .compare thead th:nth-child(2), .compare tr:not(.compare__item) td:nth-child(2) { padding-left: calc(var(--d-card) + var(--d-stack) / 3); }
+    .compare thead th:nth-child(3), .compare tr:not(.compare__item) td:nth-child(3) { padding-left: calc(var(--d-card) + var(--d-stack) * 2 / 3); }
+  }
   .terms { margin: var(--d-stack) 0 0; max-width: 72ch; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-3); text-wrap: pretty; }
   .terms b { font-weight: 500; color: var(--fg-2); }
 
@@ -678,7 +688,7 @@ button { font: inherit; color: inherit; }
   .copy > span { grid-area: 1 / 1; }
   .copy > span + span, .copy.is-copied > span:first-child { visibility: hidden; }
   .copy.is-copied > span + span { visibility: visible; }
-  .cta__alt { margin: var(--d-card) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
+  .cta .cta__alt { margin: var(--d-card) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
   .cta__alt a { position: relative; color: var(--tint-fg); text-decoration: none; }
   .cta__alt a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
   .cta__alt a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -724,7 +734,7 @@ button { font: inherit; color: inherit; }
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__split">
       <div class="hero__copy">
-        <p class="hero__meta dots"><span>Live every Thursday</span><span>1 PM Pacific</span><span>with Tommy Geoco and Ridd</span></p>
+        <p class="hero__meta dots"><span>Live every Thursday</span><span><span class="n">1</span>&nbsp;PM Pacific</span><span>with Tommy Geoco and Ridd</span></p>
         <h1 id="hero-title">The live show for designers who build.</h1>
         <p class="hero__lede"><span id="hero-duration">About two hours</span>, live, every week. Designers send in videos of what they’re making<span id="hero-teams"></span>. Your product goes on screen in the middle of the conversation.</p>
         <div class="hero__actions">
@@ -755,9 +765,18 @@ button { font: inherit; color: inherit; }
         <span class="ss-section-header__meta" id="reach-meta"></span>
       </div>
     </div>
-    <p class="lede" id="reach-lede" hidden></p>
-    <dl class="ss-kpis kpis-fit" id="channel-kpis" hidden></dl>
     <div class="ss-panel card reach-card" id="episodes-card"></div>
+  </section>
+
+  <section class="block" id="channels" aria-labelledby="channels-title" hidden>
+    <div class="ss-section-header">
+      <div class="ss-section-header__text">
+        <h2 class="ss-section-header__title" id="channels-title">Where it goes out</h2>
+        <span class="ss-section-header__meta" id="channels-meta"></span>
+      </div>
+    </div>
+    <p class="lede" id="channels-lede"></p>
+    <dl class="ss-kpis kpis-fit" id="channel-kpis" hidden></dl>
   </section>
 
   <section class="block" id="room" aria-labelledby="room-title">
@@ -801,12 +820,12 @@ button { font: inherit; color: inherit; }
     <div class="ss-section-header">
       <div class="ss-section-header__text">
         <h2 class="ss-section-header__title" id="packages-title">Packages</h2>
-        <span class="ss-section-header__meta">Three months, paid up front, 10%&nbsp;off · one partner per category</span>
+        <span class="ss-section-header__meta">Three months, paid up front, <span class="n">10%</span>&nbsp;off · one partner per category</span>
       </div>
     </div>
     <div class="tiers" id="tiers"></div>
     <div class="ss-panel compare" id="compare"></div>
-    <p class="terms"><b>Terms.</b> A three-month minimum, paid up front, with 10% off: the totals above. A campaign is three months of weekly live episodes. One partner per category: exclusivity covers paid placements, and the hosts still talk about the tools they use, on their own terms. Ask about live events, community build challenges and the UX Tools newsletter.</p>
+    <p class="terms"><b>Terms.</b> A <span class="nw">three-month</span> minimum, paid up front, with <span class="n">10%</span>&nbsp;off: the totals above. A campaign is three months of weekly live episodes. One partner per category: exclusivity covers paid placements, and the hosts still talk about the tools they use, on their own terms. Ask about live events, community build challenges and the UX Tools newsletter.</p>
   </section>
 
   <section class="block" id="book" aria-labelledby="book-title">
@@ -887,27 +906,28 @@ function sectionAbsent(sectionId, title, body) {
   sec.querySelector(".lede")?.setAttribute("hidden", "");
   return absent(title, body, 2).replace('class="ss-verdict__title"', `class="ss-verdict__title" id="${id}"`);
 }
-// a "more" disclosure whose label says what it does in both states; a list opens flush with the rows above it
+// a "more" disclosure whose label says what it does in both states (the closed label is markup, so its figures are .n);
+// a list opens flush with the rows above it
 function moreHTML(id, closedLabel, inner, flush = false) {
   return `<div class="more"><div class="ss-reveal" id="${id}" data-open="false" inert aria-hidden="true"><div><div${flush ? ' class="more__flush"' : ""}>${inner}</div></div></div>
-    <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="${id}" data-toggle="${id}" data-closed="${esc(closedLabel)}"><span>${esc(closedLabel)}</span> ${chev}</button></div>`;
+    <button type="button" class="ss-btn ss-btn--link" aria-expanded="false" aria-controls="${id}" data-toggle="${id}"><span class="more__closed">${closedLabel}</span><span class="more__open">Show fewer</span> ${chev}</button></div>`;
 }
 
 /* --- the packages: one source for every price on the page (the owners' terms, 2026-07-22, and the signed orders) --- */
 const PACKAGES = [
   { name: "Mid-roll", fit: "For a launch or a steady reminder: your read, live, in the middle of the show.", total: 20250, monthly: 7500,
-    bullets: ["A 60–90 second read, live, twice a month", "Your logo on the live overlay and in the show notes", "The only partner in your category"] },
+    bullets: ["A <span class=\"n\">60–90</span> second read, live, twice a month", "Your logo on the live overlay and in the show notes", "The only partner in your category"] },
   { name: "Segment", fit: "For owning a recurring moment: a segment with your name on it.", total: 33750, monthly: 12500,
     bullets: ["Everything in Mid-roll", "A named segment twice a month, like Designer of the Week", "Clips of your segment cut for shorts"] },
   { name: "Build", fit: "For a product people build with: the hosts use it live, on screen.", total: 47250, monthly: 17500, tag: "Three partners at a time",
-    bullets: ["A 10–15 minute live build with your product, once a month", "Named in every episode", "Your logo on the intro, the live overlay and the show notes, every episode", "Rights to use your segments in your own paid and organic posts", "The only partner in your category"] },
+    bullets: ["A <span class=\"n\">10–15</span> minute live build with your product, once a month", "Named in every episode", "Your logo on the intro, the live overlay and the show notes, every episode", "Rights to use your segments in your own paid and organic posts", "The only partner in your category"] },
 ];
 // a cell is what the owners' terms state; null is a package that does not carry the item; ASK is one no signed order settles
 const ASK = "ask";
 const COMPARE = [
-  ["A 60–90 second read, live", "Twice a month", "Twice a month", ASK],
+  ["A <span class=\"n\">60–90</span> second read, live", "Twice a month", "Twice a month", ASK],
   ["A named segment", null, "Twice a month", ASK],
-  ["A 10–15 minute live build", null, null, "Once a month"],
+  ["A <span class=\"n\">10–15</span> minute live build", null, null, "Once a month"],
   ["Named on air", "In each read", "In each read and segment", "Every episode"],
   ["Your logo", "Live overlay, show notes", "Live overlay, show notes", "Intro, live overlay, show notes"],
   ["Clips cut for shorts", null, "Your segment", ASK],
@@ -931,7 +951,7 @@ function renderHero() {
   const cells = [
     ok(v.perEpisode) && [num(v.perEpisode), "views an episode so far, on average, on YouTube and X"],
     ok(t?.peak) && [num(t.peak), `watching at once at a typical show’s peak${ok(t.average) ? `, <span class="n">${fmt(t.average)}</span> on average` : ""}`],
-    ok(c.total) && [num(c.total), `call-ins aired in <span class="n">${c.episodes}</span> episodes`],
+    ok(c.total) && [num(c.total), `<span class="nw">call-ins</span> aired in <span class="n">${c.episodes}</span> episodes`],
     ok(w.hours) && [num(w.hours), "hours watched on YouTube"],
   ].filter(Boolean);
   // fewer than two numbers is not a summary: one verdict says why instead (with no data at all, the page's own verdict does)
@@ -951,28 +971,28 @@ function renderHero() {
 function renderCallIns() {
   const c = S?.callIns;
   if (!c || !ok(c.total)) { $("callins-card").innerHTML = sectionAbsent("callins-section", "Who calls in", c?.reason || "The call-in list has not been imported."); return; }
-  $("callins-meta").innerHTML = `Videos the community sent in that aired, E${c.fromEp}–E${c.toEp}`;
+  $("callins-meta").innerHTML = `Videos the community sent in that aired, <span class="n">E${c.fromEp}–E${c.toEp}</span>`;
   const line = (x) => `<b>${say(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${say(x.nominee)} for Designer of the Week` : say(x.about || "sent in a video")}`;
-  const newest = [...c.list].reverse().slice(0, 6);
+  const newest = [...c.list].reverse().slice(0, 6), shown = new Set(newest);
   const oneEp = newest.every((x) => x.ep === newest[0].ep);
   const top = Math.max(...c.byEpisode.map((x) => x.count), 1);
   const cols = c.byEpisode.map((x) => `<li><span class="cols__value n">${x.count}</span><span class="cols__plot"><i style="height:${((x.count / top) * 100).toFixed(1)}%"></i></span><span class="cols__ep n">E${x.ep}</span></li>`).join("");
   const byEp = new Map();
-  for (const x of [...c.list].reverse()) { if (!byEp.has(x.ep)) byEp.set(x.ep, []); byEp.get(x.ep).push(x); }
+  for (const x of [...c.list].reverse()) { if (shown.has(x)) continue; if (!byEp.has(x.ep)) byEp.set(x.ep, []); byEp.get(x.ep).push(x); }
   const titleOf = (ep) => short(EPISODES.find((e) => e.ep === ep)?.title || "");
-  const groups = [...byEp.entries()].map(([ep, rows]) => `<section class="callins-ep"><h3>E${ep}, ${esc(titleOf(ep))}</h3><ul class="rows" role="list">${rows.map((x) => `<li><span>${line(x)}</span></li>`).join("")}</ul></section>`).join("");
+  const groups = [...byEp.entries()].map(([ep, rows]) => `<section class="callins-ep"><h3><span class="n">E${ep}</span>, ${esc(titleOf(ep))}</h3><ul class="rows" role="list">${rows.map((x) => `<li><span>${line(x)}</span></li>`).join("")}</ul></section>`).join("");
   $("callins-card").innerHTML = `<div class="callins-top">
-      <p class="statement"><b>${num(c.people)}</b><span>people and teams have sent in <span class="n">${fmt(c.total)}</span> call-ins since E${c.fromEp}, <span class="n">${fmt(c.nominations)}</span> of them Designer of the Week nominations</span></p>
+      <p class="statement"><b>${num(c.people)}</b><span>people and teams have sent in <span class="n">${fmt(c.total)}</span> <span class="nw">call-ins</span> since <span class="n">E${c.fromEp}</span>, <span class="n">${fmt(c.nominations)}</span> of them Designer of the Week nominations</span></p>
       <figure class="cols" aria-label="${esc(`Call-ins by episode: ${c.byEpisode.map((x) => `E${x.ep} ${x.count}`).join(", ")}`)}">
-        <figcaption>Call-ins by episode</figcaption>
+        <figcaption><span class="nw">Call-ins</span> by episode</figcaption>
         <ol role="list" style="--n: ${c.byEpisode.length}" aria-hidden="true">${cols}</ol>
       </figure>
       <div class="newest">
-        <h3 class="sub">${oneEp ? `The newest, all from E${newest[0].ep}` : "The newest"}</h3>
+        <h3 class="sub">${oneEp ? `The newest, all from <span class="n">E${newest[0].ep}</span>` : "The newest"}</h3>
         <ul class="rows" role="list">${newest.map((x) => `<li><span>${line(x)}</span>${oneEp ? "" : `<span class="n">E${x.ep}</span>`}</li>`).join("")}</ul>
       </div>
     </div>
-    ${moreHTML("callins-more", `All ${fmt(c.people)} people and teams who have called in`, groups)}`;
+    ${byEp.size ? moreHTML("callins-more", `<span class="n">${fmt(c.list.length - newest.length)}</span> more <span class="nw">call-ins</span>, by episode`, groups) : ""}`;
 }
 
 /* --- reach: every episode's views, then the channels ------------------------------------------ */
@@ -980,7 +1000,7 @@ function renderReach() {
   const v = S?.views || {};
   $("reach-meta").innerHTML = S?.asOf ? `YouTube views and X broadcast plays so far · as of ${day(S.asOf)}` : "";
   const rows = EPISODES.filter((e) => ok(e.latest?.totalViews));
-  if (!rows.length) $("episodes-card").innerHTML = absent("Views by episode", "The first episode readings have not arrived yet.");
+  if (!rows.length) $("episodes-card").innerHTML = sectionAbsent("reach", "Every episode, counted", "The first episode readings have not arrived yet.");
   else {
     const max = Math.max(...rows.map((e) => e.latest.totalViews));
     const newest = EPISODES[EPISODES.length - 1];
@@ -996,14 +1016,23 @@ function renderReach() {
       ${ok(v.total) ? `<p class="statement"><b>${num(v.total)}</b><span>views so far across all <span class="n">${v.episodes}</span> episodes</span></p>` : ""}
       <p class="ss-x-legend"><span><i style="background: var(--series-1)"></i>YouTube</span><span><i style="background: var(--series-2)"></i>X broadcast plays</span></p>
       <div class="chartwrap"><ol class="bars" role="list" aria-label="Views by episode, oldest first">${bars}</ol></div>
-      <p class="card__foot">Views keep arriving after air${newest ? ` — E${newest.ep} premiered ${day(newest.premiere)}` : ""}. ${matchMedia("(hover: none)").matches ? "Tap" : "Hover"} an episode for its split.</p>`;
+      <p class="card__foot">Views keep arriving after air${newest ? ` — <span class="n">E${newest.ep}</span> premiered ${day(newest.premiere)}` : ""}. ${matchMedia("(hover: none)").matches ? "Tap" : "Hover"} an episode for its split.</p>`;
   }
-  // where it goes out: the four channels' counts as the system KPI strip, their sum (two of them published rounded)
-  // to the thousand in the lede; a missing channel leaves its cell out and the sum unsaid
+}
+
+/* --- where it goes out: the four channels' counts as the system KPI strip; their sum (two of them published
+   rounded) to the thousand in the lede; a missing channel leaves its cell out and the sum unsaid --------------- */
+function renderChannels() {
   const a = S?.audience;
   const chans = (a?.channels || []).filter((c) => ok(c.count)).sort((x, y) => y.count - x.count);
-  $("reach-lede").hidden = !ok(a?.total);
-  $("reach-lede").innerHTML = ok(a?.total) ? `Every episode goes out live on four channels at once, and to Ridd’s LinkedIn: about <span class="n">${(Math.round(a.total / 1000) * 1000).toLocaleString("en-US")}</span> subscribers and followers between them${a.date ? ` on ${day(a.date)}` : ""}, though one person may follow more than one.` : "";
+  $("channels").hidden = !chans.length;
+  if (!chans.length) return;
+  $("channels-meta").innerHTML = `YouTube subscribers and X followers${a?.date ? ` · as of ${day(a.date)}` : ""}`;
+  // the sentence names the four, so it stands only beside all four counts (the store leaves the sum absent otherwise)
+  const sum = ok(a?.total) && chans.length === 4 ? ` Between the four, about <span class="n">${(Math.round(a.total / 1000) * 1000).toLocaleString("en-US")}</span> subscribers and followers, though one person may follow more than one.` : "";
+  // one known channel is a sentence, not a strip
+  const one = chans.length === 1 ? ` ${esc(chans[0].label)} has <span class="n">${fmt(chans[0].count)}</span> ${esc(chans[0].platform)} ${esc(chans[0].unit)}.` : "";
+  $("channels-lede").innerHTML = `Every episode goes out live on four channels at once, and to Ridd’s LinkedIn.${sum}${one}`;
   $("channel-kpis").hidden = chans.length < 2;
   $("channel-kpis").style.setProperty("--cols", chans.length);
   $("channel-kpis").innerHTML = chans.length >= 2 ? chans.map((c) => `<div class="ss-kpi"><dt class="ss-kpi__label">${esc(c.label)}</dt><dd class="ss-kpi__value">${fmt(c.count)}</dd><dd class="ss-kpi__sub">${esc(c.platform)} ${esc(c.unit)}</dd></div>`).join("") : "";
@@ -1013,14 +1042,14 @@ function renderReach() {
 function renderRoom() {
   const L = S?.live;
   const t = L?.typical;
-  $("room-meta").innerHTML = t ? `A typical show is the middle of the <span class="n">${t.shows}</span> shows before the newest, E${t.fromEp}–E${t.toEp}` : "";
+  $("room-meta").innerHTML = t ? `A typical show is the middle of the <span class="n">${t.shows}</span> shows before the newest, <span class="n">E${t.fromEp}–E${t.toEp}</span>` : "";
   const lede = ok(t?.messagesPerHour) && ok(t?.durationMin) && t.durationMin > 0;
   $("room-lede").hidden = !lede;
   $("room-lede").innerHTML = lede ? `A room, not a feed: about ${hoursWord(t.durationMin)}, live, and on a typical show the chat runs at <span class="n">${fmt(t.messagesPerHour)}</span> messages an hour.` : "";
   if (!L || !L.shows) { $("room-kpis").innerHTML = ""; $("room-kpis").hidden = true; $("room-curve").innerHTML = sectionAbsent("room", "The live room", L?.reason || "No live session has been read yet."); return; }
   const cells = [
     ok(t?.holdRate) && ["At the end", `<span class="n">${fmt(t.holdRate)}%</span>`, "of the peak still watching in the last ten minutes", "of the peak still watching in the last ten minutes of a typical show"],
-    ok(t?.chattersPer100) && ["In the chat", num(t.chattersPer100), "different people write for every 100 watching at the peak", "different people write in the chat for every 100 watching at a typical show’s peak"],
+    ok(t?.chattersPer100) && ["In the chat", num(t.chattersPer100), "different people write for every <span class=\"n\">100</span> watching at the peak", "different people write in the chat for every <span class=\"n\">100</span> watching at a typical show’s peak"],
     ok(t?.people) && ["Live views", num(t.people), "on a typical show: each channel’s own count, added", "live views on a typical show: each channel’s own count, added"],
     ok(L.hours) && ["Watched live", `${num(L.hours)} hours`, `across <span class="n">${L.shows}</span> shows`, `watched live across <span class="n">${L.shows}</span> shows`],
   ].filter(Boolean);
@@ -1050,7 +1079,7 @@ function renderRoom() {
     ok(C.chatMessages) && `<span class="n">${fmt(C.chatMessages)}</span> chat messages`,
   ].filter(Boolean);
   const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
-  $("room-curve").innerHTML = `${single}<h3 class="card__title">E${C.ep}, ${esc(short(C.title))}, minute by minute</h3>
+  $("room-curve").innerHTML = `${single}<h3 class="card__title"><span class="n">E${C.ep}</span>, ${esc(short(C.title))}, minute by minute</h3>
     <p class="card__meta">Everyone watching live, on every channel at once · premiered ${day(C.premiere)}</p>
     <div class="curve" role="img" aria-label="${esc(said)}">
       <div class="curve__plot">
@@ -1088,7 +1117,7 @@ function renderOnAir() {
     const first = b.list.slice(0, 10), rest = b.list.slice(10);
     $("brands-card").innerHTML = `<h3 class="card__title">Brands named on air</h3>
       <p class="card__meta">Mentions in the transcripts · open a brand for its first moment in each episode</p>
-      <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `${rest.length} more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`, true) : ""}`;
+      <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `<span class="n">${rest.length}</span> more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`, true) : ""}`;
   }
   const P = (S?.partners || []).filter((p) => p.moments?.length);
   if (!P.length) { $("partners-card").innerHTML = absent("Partners on air", "No transcript names a partner yet."); return; }
@@ -1098,7 +1127,7 @@ function renderOnAir() {
   const panels = P.map((p, i) => {
     const rows = order(p.moments), shown = rows.slice(0, 5), rest = rows.slice(5);
     const sum = `${esc(p.name)}: named as a partner <span class="n">${p.named}</span> ${p.named === 1 ? "time" : "times"}${p.segments ? `, in <span class="n">${p.segments}</span> ${p.segments === 1 ? "segment" : "segments"}${p.about ? ` (<span class="n">${p.about}</span> about it)` : ""}` : ""}, and <span class="n">${fmt(p.mentions)}</span> times in all, in <span class="n">${p.episodes}</span> episodes.`;
-    return `<div class="partner-panel" id="partner-${i}" role="region" aria-label="${esc(p.name)} on air" ${i ? "hidden" : ""}><p class="partner-sum">${sum}</p>${momentsHTML(shown, true)}${rest.length ? moreHTML(`partner-more-${i}`, `${rest.length} more`, momentsHTML(rest, true), true) : ""}</div>`;
+    return `<div class="partner-panel" id="partner-${i}" role="region" aria-label="${esc(p.name)} on air" ${i ? "hidden" : ""}><p class="partner-sum">${sum}</p>${momentsHTML(shown, true)}${rest.length ? moreHTML(`partner-more-${i}`, `<span class="n">${rest.length}</span> more`, momentsHTML(rest, true), true) : ""}</div>`;
   }).join("");
   const unlinked = (S?.links && S.links.exact < S.links.episodes) ? `<p class="card__foot">A time without a link follows the live recording; it links once that episode’s recording has been matched to its upload (<span class="n">${S.links.exact}</span> of <span class="n">${S.links.episodes}</span> so far).</p>` : "";
   $("partners-card").innerHTML = `<h3 class="card__title">Partners on air</h3>
@@ -1110,17 +1139,17 @@ function renderOnAir() {
 function renderVoices() {
   const f = S?.feedback;
   if (!f || !f.quotes?.length) { $("voices-card").innerHTML = sectionAbsent("voices", "What viewers say", "No public comment has been read yet."); return; }
-  $("voices-meta").innerHTML = `<span class="n">${fmt(f.positive)}</span> of <span class="n">${fmt(f.messages)}</span> comments and chat messages about the show were positive · the most-liked, one per person, word for word`;
-  const quote = (q) => `<blockquote class="ss-x-quote"><p>“${esc(q.text)}”</p><footer><span>${esc(q.author)} · ${esc(q.platform)} · E${q.ep}${q.onShow ? ` · ${q.calledIn != null ? `called in on E${q.calledIn}` : "on the show"}` : ""}</span>${q.url ? `<a class="ss-x-quote__link" href="${esc(q.url)}" target="_blank" rel="noopener">Original${ICON.out}<span class="ss-sr"> (opens ${esc(q.platform)} in a new tab)</span></a>` : ""}</footer></blockquote>`;
+  $("voices-meta").innerHTML = `<span class="n">${fmt(f.positive)}</span> of <span class="n">${fmt(f.messages)}</span> comments and chat messages about the show were positive · the <span class="nw">most-liked</span>, one per person, word for word`;
+  const quote = (q) => `<blockquote class="ss-x-quote"><p>“${esc(q.text)}”</p><footer><span>${esc(q.author)} · ${esc(q.platform)} · <span class="n">E${q.ep}</span>${q.onShow ? ` · ${q.calledIn != null ? `called in on <span class="n">E${q.calledIn}</span>` : "on the show"}` : ""}</span>${q.url ? `<a class="ss-x-quote__link" href="${esc(q.url)}" target="_blank" rel="noopener">Original${ICON.out}<span class="ss-sr"> (opens ${esc(q.platform)} in a new tab)</span></a>` : ""}</footer></blockquote>`;
   const first = f.quotes.slice(0, 3), rest = f.quotes.slice(3);
-  $("voices-card").innerHTML = `<div class="quotes">${first.map(quote).join("")}</div>${rest.length ? moreHTML("voices-more", `${rest.length} more`, `<div class="quotes">${rest.map(quote).join("")}</div>`) : ""}`;
+  $("voices-card").innerHTML = `<div class="quotes">${first.map(quote).join("")}</div>${rest.length ? moreHTML("voices-more", `<span class="n">${rest.length}</span> more`, `<div class="quotes">${rest.map(quote).join("")}</div>`, true) : ""}`;
 }
 
 /* --- packages ---------------------------------------------------------------------------------- */
 function renderPackages() {
   const t = S?.live?.typical;
   const reach = ok(t?.atMiddle) && ok(t?.recordingAtMiddle)
-    ? `<p class="tier__reach">At the middle of a typical show, <b class="n">${fmt(t.atMiddle)}</b> are watching live, and <b class="n">${fmt(t.recordingAtMiddle)}</b> of every 100 YouTube views reach the middle of the recording.</p>` : "";
+    ? `<p class="tier__reach">At the middle of a typical show, <b class="n">${fmt(t.atMiddle)}</b> are watching live, and <b class="n">${fmt(t.recordingAtMiddle)}</b> of every <span class="n">100</span> YouTube views reach the middle of the recording.</p>` : "";
   const example = (name) => {
     const x = (S?.examples || []).find((y) => y.package === name);
     if (!x?.moment) return "";
@@ -1154,13 +1183,13 @@ function renderAbout() {
     <p><b>Subscribers and followers</b> are each channel’s public count on the day shown. Their sum is shown to the nearest thousand, since YouTube publishes its counts rounded, and it counts channels, not people: one person can follow more than one.</p>
     <p><b>Watching at once</b> is the most people watching in the same minute, all channels together; <b>on average</b> is the same count across the whole show. <b>Live views</b> are each channel’s own count of who watched any part of the stream, added across YouTube and X, so one person on two channels counts twice.</p>
     <p><b>At the end</b> compares the last ten minutes of a show with its peak. <b>In the chat</b> counts the different people who wrote at any point in the show on YouTube and X (LinkedIn’s count is left out), set against the most people watching at once. <b>Messages an hour</b> is every chat message on YouTube and X across the show, per hour of the show.</p>
-    <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every 100 YouTube views of the recording, how many reach its middle (YouTube’s audience curve, read once an episode is a week old; it counts every view at that point, including anyone who skipped ahead).</p>
+    <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every <span class="n">100</span> YouTube views of the recording, how many reach its middle (YouTube’s audience curve, read once an episode is a week old; it counts every view at that point, including anyone who skipped ahead).</p>
     <p><b>A typical show</b> is the middle value of the eight shows before the newest — the same reading the show’s own dashboard uses.</p>
-    <p><b>Call-ins</b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one, and each name counts once as the notes list it, so a studio or a pair is one name. The teams named are where a call-in’s own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
+    <p><b><span class="nw">Call-ins</span></b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one, and each name counts once as the notes list it, so a studio or a pair is one name. The teams named are where a <span class="nw">call-in’s</span> own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
     <p><b>Brands named on air</b> count whole words, as said, in each episode’s transcript. Transcripts are automatic, so a misheard name is missed, never added. Excerpts are the transcript’s words with ums, uhs and repeated words taken out; “…” marks a cut.</p>
     <p><b>Partners on air</b> lists each time the hosts named a partner as a partner (they say “sponsor”, “partner” or “brought to you by” within fifteen seconds), and each segment that names one: about it when the segment’s title names it. It is not a list of what each partner paid for; the example under each package comes from the show’s own records of what a partner received.</p>
     <p><b>Moments</b> link to the exact second on YouTube when the episode’s transcript has been matched to that upload’s own captions; otherwise the time is shown without a link. <b>Watching live</b> beside a moment is the live audience in that minute of the stream, shown where the transcript runs on the stream’s own clock.</p>
-    <p><b>Quotes</b> are named, public comments on YouTube and X that were positive about the show and run to at least forty characters, word for word: the most-liked first, one per person. Anyone who was on the show comes last and says so.</p>
+    <p><b>Quotes</b> are named, public comments on YouTube and X that were positive about the show and run to at least forty characters, word for word: the <span class="nw">most-liked</span> first, one per person. Anyone who was on the show comes last and says so.</p>
     <p><b>Every number</b> on this page is rebuilt each morning from the same data as the show’s public analytics, and checked before it is published.</p>`;
   const fresh = $("fresh");
   fresh.classList.toggle("is-missing", !S?.asOf);
@@ -1172,7 +1201,7 @@ function renderAbout() {
 /* --- no data at all: one page-level verdict above the packages; the data sections step aside ----------- */
 function renderPageAbsent() {
   const missing = !S;
-  for (const id of ["callins-section", "reach", "room", "onair", "voices"]) $(id).hidden = missing;
+  for (const id of ["callins-section", "reach", "channels", "room", "onair", "voices"]) $(id).hidden = missing;
   $("page-absent").hidden = !missing;
   if (missing) $("page-absent").innerHTML = absent("The show’s numbers aren’t here right now", "This page reads the show’s daily data, and it did not load. The packages and booking below still work.", 2);
 }
@@ -1184,8 +1213,6 @@ function setOpen(button, open) {
   panel.dataset.open = String(open);
   if (open) { panel.removeAttribute("inert"); panel.removeAttribute("aria-hidden"); }
   else { panel.setAttribute("inert", ""); panel.setAttribute("aria-hidden", "true"); }
-  const label = button.dataset.closed;
-  if (label) button.querySelector("span").textContent = open ? "Show fewer" : label;
 }
 document.addEventListener("click", (ev) => {
   const t = ev.target.closest("[data-toggle], #about-toggle");
@@ -1214,7 +1241,7 @@ let tipFor = null;
 function tipHTML(e) {
   const L = e.latest || {};
   const val = (v) => (ok(v) ? `<span class="ss-x-chart-tip__val n">${fmt(v)}</span>` : `<span class="ss-x-chart-tip__val ss-x-chart-tip__val--absent">—</span>`);
-  return `<div class="ss-x-chart-tip__title">E${e.ep}, ${esc(short(e.title))}</div>
+  return `<div class="ss-x-chart-tip__title"><span class="n">E${e.ep}</span>, ${esc(short(e.title))}</div>
     <div class="ss-x-chart-tip__meta">Premiered ${day(e.premiere)}</div>
     <div class="ss-x-chart-tip__value">${num(L.totalViews)} <small>views so far</small></div>
     <div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(--series-1)"></span><span>YouTube</span>${val(L.ytTotal)}</div>
@@ -1265,7 +1292,7 @@ $("copy-addr").addEventListener("click", async () => {
 /* the skip link focuses main without moving the reader past the hero's heading */
 document.querySelector(".ss-skip").addEventListener("click", (ev) => { ev.preventDefault(); $("main").focus(); });
 
-renderPageAbsent(); renderHero(); renderCallIns(); renderReach(); renderRoom(); renderOnAir(); renderVoices(); renderPackages(); renderAbout();
+renderPageAbsent(); renderHero(); renderCallIns(); renderReach(); renderChannels(); renderRoom(); renderOnAir(); renderVoices(); renderPackages(); renderAbout();
 for (const a of document.querySelectorAll("[data-book]")) a.href = mailto(a.dataset.book);
 </script>
 </body>
