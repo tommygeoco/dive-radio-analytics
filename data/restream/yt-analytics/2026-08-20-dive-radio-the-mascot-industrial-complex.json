@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "RhemcDEc_-A",
-      "pulledAt": "2026-10-11T14:01:08.296Z",
+      "pulledAt": "2026-10-11T19:16:08.591Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "RhemcDEc_-A",
-        "pulledAt": "2026-10-11T14:01:08.296Z",
+        "pulledAt": "2026-10-11T19:16:08.591Z",
         "state": "ready"
       },
       "totals": {
-        "views": 985,
+        "views": 986,
         "estimatedMinutesWatched": 10694,
         "averageViewDuration": 771,
         "averageViewPercentage": 13.51,
@@ -51,7 +51,7 @@
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
-          "views": 55,
+          "views": 56,
           "estimatedMinutesWatched": 1083
         },
         {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "eLA79C1jq1g",
-      "pulledAt": "2026-10-11T14:01:08.296Z",
+      "pulledAt": "2026-10-11T19:16:08.591Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
         "objectId": "eLA79C1jq1g",
-        "pulledAt": "2026-10-11T14:01:08.296Z",
+        "pulledAt": "2026-10-11T19:16:08.591Z",
         "state": "ready"
       },
       "totals": {
@@ -949,18 +949,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-11T14:01:08.296Z",
+  "updatedAt": "2026-10-11T19:16:08.591Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
     "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-    "pulledAt": "2026-10-11T14:01:08.296Z",
+    "pulledAt": "2026-10-11T19:16:08.591Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-11T14:01:08.296Z",
+    "checkedAt": "2026-10-11T19:16:08.591Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:eLA79C1jq1g|yt:joindiveclub:RhemcDEc_-A",
@@ -970,7 +970,7 @@
         "videoId": "RhemcDEc_-A",
         "result": "ready",
         "observed": {
-          "views": 985,
+          "views": 986,
           "averageViewPercentage": 13.51
         }
       },
