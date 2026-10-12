@@ -1381,7 +1381,8 @@ function placeTip() {
   } else {
     top = Math.min(Math.max(plotTop, top), plotBottom - th);
   }
-  top = Math.min(Math.max(minTop, top), maxTop);
+  // the top bar's limit wins when the screen is shorter than the card: its title stays readable, its foot runs off
+  top = Math.max(minTop, Math.min(top, maxTop));
   tip.style.left = `${left + scrollX}px`;
   tip.style.top = `${top + scrollY}px`;
   tip.hidden = row.bottom <= barBottom || row.top >= innerHeight;
