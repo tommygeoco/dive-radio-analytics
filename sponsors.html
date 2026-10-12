@@ -486,7 +486,7 @@ button { font: inherit; color: inherit; }
   @media (min-width: 64rem) { .grid--2 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .card__title { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
   @media (min-width: 48rem) { .card__title { font-size: var(--text-body); } }
-  .card__meta { margin: 4px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
+  .card__meta { margin-block: 4px 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
   @media (min-width: 48rem) { .card__meta { font-size: var(--text-meta); } }
   .statement { margin: var(--d-inner) 0 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 12px; row-gap: 4px; }
   .statement:first-child { margin-top: 0; }
@@ -551,6 +551,19 @@ button { font: inherit; color: inherit; }
   .more > .ss-btn--link { display: flex; width: fit-content; margin-top: var(--d-inner); }
   .more > [aria-expanded="false"] > .more__open, .more > [aria-expanded="true"] > .more__closed { display: none; }
   .more > .ss-reveal { overflow-anchor: none; }
+  /* long-form About keeps company on its last line, as every other prose block on the page does */
+  #about-prose p { text-wrap: pretty; }
+  /* forced colours (Windows contrast themes) drop box-shadow and repaint backgrounds: the system button ring becomes an
+     outline there, and the chart marks take the user's palette instead of vanishing (normal mode is unchanged) */
+  @media (forced-colors: active) {
+    .ss-btn:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+    .bar__fill i, .cols__plot i, .brow__track i, .ss-x-legend i, .curve__mark, .ss-dot { forced-color-adjust: none; }
+    .bar__fill .yt, .curve__mark, .cols li:last-child .cols__plot i { background: CanvasText; }
+    .ss-x-legend span:first-child i { background: CanvasText !important; }   /* the legend's swatches are inline styles */
+    .bar__fill .x, .cols__plot i, .brow__track i { background: GrayText; }
+    .ss-x-legend span:last-child i { background: GrayText !important; }
+    .curve .line { stroke: CanvasText; }
+  }
   .more .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
   .more .ss-reveal > div > div { padding-top: var(--d-inner); padding-bottom: 8px; }
   .more .ss-reveal > div > div.more__flush { padding-top: 0; padding-bottom: 0; }
@@ -1085,7 +1098,7 @@ function renderRoom() {
   ].filter(Boolean);
   const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
   $("room-curve").innerHTML = `${single}<h3 class="card__title"><span class="n">E${C.ep}</span>, ${esc(short(C.title))}, minute by minute</h3>
-    <p class="card__meta">Everyone watching live on YouTube and X at once · premiered ${day(C.premiere)}</p>
+    <p class="card__meta dots"><span>Everyone watching live on YouTube and X at once</span><span>premiered ${day(C.premiere)}</span></p>
     <div class="curve" role="img" aria-label="${esc(said)}">
       <div class="curve__plot">
         <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
@@ -1121,7 +1134,7 @@ function renderOnAir() {
     const row = (x, i) => `<li><button type="button" class="brow" aria-expanded="false" aria-controls="brand-${i}" data-toggle="brand-${i}"><span class="brow__name"><span class="brow__label">${esc(x.name)}</span>${x.partner ? ' <span class="ss-tag ss-tag--neutral ss-tag--sm">Partner</span>' : ""}</span><span class="brow__track" aria-hidden="true"><i style="width:${((x.mentions / max) * 100).toFixed(1)}%"></i></span><span class="brow__value"><b class="n">${fmt(x.mentions)}</b> in <span class="n">${x.episodes}</span> ${x.episodes === 1 ? "episode" : "episodes"}</span>${ICON.chev}</button><div class="ss-reveal" id="brand-${i}" data-open="false" inert aria-hidden="true"><div>${momentsHTML(x.moments, false)}</div></div></li>`;
     const first = b.list.slice(0, 10), rest = b.list.slice(10);
     $("brands-card").innerHTML = `<h3 class="card__title">Brands named on air</h3>
-      <p class="card__meta">Mentions in the transcripts · open a brand for its first moment in each episode</p>
+      <p class="card__meta dots"><span>Mentions in the transcripts</span><span>open a brand for its first moment in each episode</span></p>
       <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `<span class="n">${rest.length}</span> more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`, true) : ""}`;
   }
   const P = (S?.partners || []).filter((p) => p.moments?.length);
@@ -1136,7 +1149,7 @@ function renderOnAir() {
   }).join("");
   const unlinked = (S?.links && S.links.exact < S.links.episodes) ? `<p class="card__foot">A time without a link follows the live recording; it links once that episode’s recording has been matched to its upload (<span class="n">${S.links.exact}</span> of <span class="n">${S.links.episodes}</span> so far).</p>` : "";
   $("partners-card").innerHTML = `<h3 class="card__title">Partners on air</h3>
-    <p class="card__meta">Each time the hosts named a partner, from the transcripts · a linked time plays the moment on YouTube</p>
+    <p class="card__meta dots"><span>Each time the hosts named a partner, from the transcripts</span><span>a linked time plays the moment on YouTube</span></p>
     ${P.length > 1 ? `<div class="ss-seg" role="radiogroup" aria-label="Partner">${seg}</div>` : ""}${panels}${unlinked}`;
 }
 
@@ -1214,18 +1227,22 @@ function renderPageAbsent() {
 /* --- interaction: disclosures, the partner picker, chart tips, copy ----------------------------------- */
 function setOpen(button, open) {
   const panel = $(button.getAttribute("aria-controls"));
-  // a list closes above its toggle: the toggle stays where it was tapped. Scroll anchoring does it where it exists (the
-  // reveal opts out of being the anchor); elsewhere the page follows the toggle for the length of the close
-  const hold = !open && button.closest(".more") && !CSS.supports("overflow-anchor", "none");
-  const y = hold ? button.getBoundingClientRect().top : 0;
+  // a list opens and closes above its own toggle. Opening, its first row stays where the toggle was (under the sticky
+  // bar's scroll padding, scroll anchoring can take the toggle as its anchor and push the list out of view); closing,
+  // the toggle stays where it was tapped (scroll anchoring does that where it exists, the reveal opting out; elsewhere
+  // the page follows the toggle). Either way the page follows the held element for the length of the change
+  const own = button.matches(".more > [data-toggle]");
+  const held = own && (open ? panel : CSS.supports("overflow-anchor", "none") ? null : button);
+  const y = held ? held.getBoundingClientRect().top : 0;
   button.setAttribute("aria-expanded", String(open));
   panel.dataset.open = String(open);
   if (open) { panel.removeAttribute("inert"); panel.removeAttribute("aria-hidden"); }
   else { panel.setAttribute("inert", ""); panel.setAttribute("aria-hidden", "true"); }
-  if (hold) {
+  if (held) {
     const until = performance.now() + 240;
-    const follow = () => { window.scrollBy(0, button.getBoundingClientRect().top - y); if (performance.now() < until) requestAnimationFrame(follow); };
-    requestAnimationFrame(follow);
+    // the first correction is immediate, so a change with no transition (reduced motion) never paints a moved frame
+    const follow = () => { window.scrollBy(0, held.getBoundingClientRect().top - y); if (performance.now() < until) requestAnimationFrame(follow); };
+    follow();
   }
 }
 document.addEventListener("click", (ev) => {
