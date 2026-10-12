@@ -2262,9 +2262,9 @@
       }
     ]
   },
-  "updatedAt": "2026-10-12T14:02:29.181Z",
+  "updatedAt": "2026-10-12T19:16:53.444Z",
   "capture": {
-    "checkedAt": "2026-10-12T14:02:29.181Z",
+    "checkedAt": "2026-10-12T19:16:53.444Z",
     "state": "ready",
     "sources": [
       {
@@ -2272,7 +2272,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       },
       {
@@ -2280,7 +2280,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       },
       {
@@ -2288,7 +2288,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       },
       {
@@ -2296,7 +2296,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       }
     ],
@@ -2307,13 +2307,13 @@
       "date": "2026-10-12",
       "subscribers": 68900,
       "totalViews": 2090312,
-      "videos": 428,
+      "videos": 429,
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       }
     },
@@ -2327,20 +2327,20 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       }
     },
     "x:ridd_design": {
       "date": "2026-10-12",
-      "followers": 76565,
+      "followers": 76574,
       "tweets": 21008,
       "reading": {
         "schemaVersion": 1,
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       }
     },
@@ -2353,7 +2353,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-10-12T14:02:29.181Z",
+        "pulledAt": "2026-10-12T19:16:53.444Z",
         "state": "ready"
       }
     }

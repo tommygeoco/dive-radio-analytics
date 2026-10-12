@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "TJqSfnadiGM",
-      "pulledAt": "2026-10-12T14:01:45.635Z",
+      "pulledAt": "2026-10-12T19:16:12.851Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "TJqSfnadiGM",
-        "pulledAt": "2026-10-12T14:01:45.635Z",
+        "pulledAt": "2026-10-12T19:16:12.851Z",
         "state": "ready"
       },
       "totals": {
-        "views": 1273,
+        "views": 1274,
         "estimatedMinutesWatched": 17742,
         "averageViewDuration": 872,
         "averageViewPercentage": 12.15,
@@ -41,7 +41,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 145,
+          "views": 146,
           "estimatedMinutesWatched": 1593
         },
         {
@@ -480,17 +480,17 @@
     },
     "yt:designertom": {
       "videoId": "Pn6U5nWgD-g",
-      "pulledAt": "2026-10-12T14:01:45.635Z",
+      "pulledAt": "2026-10-12T19:16:12.851Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
         "objectId": "Pn6U5nWgD-g",
-        "pulledAt": "2026-10-12T14:01:45.635Z",
+        "pulledAt": "2026-10-12T19:16:12.851Z",
         "state": "ready"
       },
       "totals": {
-        "views": 949,
+        "views": 950,
         "estimatedMinutesWatched": 11105,
         "averageViewDuration": 710,
         "averageViewPercentage": 9.89,
@@ -531,7 +531,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 22,
+          "views": 23,
           "estimatedMinutesWatched": 136
         },
         {
@@ -954,18 +954,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-12T14:01:45.635Z",
+  "updatedAt": "2026-10-12T19:16:12.851Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-    "pulledAt": "2026-10-12T14:01:45.635Z",
+    "pulledAt": "2026-10-12T19:16:12.851Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-12T14:01:45.635Z",
+    "checkedAt": "2026-10-12T19:16:12.851Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Pn6U5nWgD-g|yt:joindiveclub:TJqSfnadiGM",
@@ -975,7 +975,7 @@
         "videoId": "TJqSfnadiGM",
         "result": "ready",
         "observed": {
-          "views": 1273,
+          "views": 1274,
           "averageViewPercentage": 12.15
         }
       },
@@ -984,7 +984,7 @@
         "videoId": "Pn6U5nWgD-g",
         "result": "ready",
         "observed": {
-          "views": 949,
+          "views": 950,
           "averageViewPercentage": 9.89
         }
       }
