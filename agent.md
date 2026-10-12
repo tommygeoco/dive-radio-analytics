@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-10-12T14:52:51.691Z · data through 2026-10-12 · health read 2026-10-12 (data through 2026-10-12) · chapters written 2026-10-10 · brief v1
+Built 2026-10-12T17:03:49.797Z · data through 2026-10-12 · health read 2026-10-12 (data through 2026-10-12) · chapters written 2026-10-10 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 13 episodes in https://dive-radio-analytics.vercel.app/agent.json; 6 included here, 7 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-10-12T14:52:51.691Z); the show-health read (2026-10-12, over data through 2026-10-12 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
+Three clocks: the data build (2026-10-12T17:03:49.797Z); the show-health read (2026-10-12, over data through 2026-10-12 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -60,15 +60,15 @@ Reads Rise of the Playable Portfolio, 3.8 days in; Audience quality, Subscribers
   - X announce impressions that became plays: 25.8 vs typical 27.9; at the same age; 4 peers; usual swing ±13%
   - YouTube views from search and suggested videos: 13.6 vs typical 14.8; as the earlier episodes stand now; 5 peers; usual swing ±12%; carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight
 - **Live turnout** — steady
-  - peak live viewers: 87 vs typical 97.5; as they stand (no age); 8 peers; usual swing ±20%
-  - average live viewers: 70 vs typical 73; as they stand (no age); 8 peers; usual swing ±21%
-  - people who watched live: 843 vs typical 779.5; as they stand (no age); 8 peers; usual swing ±23%; known reporting break: Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).
-  - minutes watched live, all together: 8,610 vs typical 8,629; as they stand (no age); 8 peers; usual swing ±23%
+  - peak live viewers: 87 vs typical 97.5; as they stand (no age); 8 peers; usual swing ±20%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
+  - average live viewers: 70 vs typical 73; as they stand (no age); 8 peers; usual swing ±21%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
+  - people who watched live: 843 vs typical 779.5; as they stand (no age); 8 peers; usual swing ±23%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
+  - minutes watched live, all together: 8,610 vs typical 8,629; as they stand (no age); 8 peers; usual swing ±23%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
 - **Participation** — healthy
-  - chatters per hundred at the peak: 83.9 vs typical 53.9; as they stand (no age); 8 peers; usual swing ±10%
+  - chatters per hundred at the peak: 83.9 vs typical 53.9; as they stand (no age); 8 peers; usual swing ±10%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
   - chat messages an hour: 94.1 vs typical 66.2; as they stand (no age); 8 peers; usual swing ±20%
-  - minutes each live viewer stayed: 10.2 vs typical 10.5; as they stand (no age); 8 peers; usual swing ±16%; known reporting break: Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).
-  - share of the peak still watching at the end: 84.1 vs typical 66.4; as they stand (no age); 8 peers; usual swing ±5%
+  - minutes each live viewer stayed: 10.2 vs typical 10.5; as they stand (no age); 8 peers; usual swing ±16%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
+  - share of the peak still watching at the end: 84.1 vs typical 66.4; as they stand (no age); 8 peers; usual swing ±5%; known reporting break: Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).
 - **Subscribers** — fragile
   - subscribers per thousand views: 0.6 vs typical 2.8; at the same age; 5 peers; usual swing ±73%; carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight
 - **Goodwill** — healthy
@@ -167,7 +167,7 @@ Direction of each durable measure as of the read (last five clean episodes; a wo
 Outlook as of the read: the last three clean first weeks ran 1,189–1,830 YouTube views (typical 1,751); where the next lands if it follows them, never a bound. First-week direction: too few for a word (Three episodes show the slope; a direction word needs four.). Cool-off of the newest episode at 3.8 days: — (promo-driven lift — shown, not scored).
 
 Known reporting breaks:
-- From E5 (2026-08-13-dive-radio-goodbye-blank-canvas-live-cal): Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only). — touches people who watched live, minutes each live viewer stayed. Before it, the X destinations' own peak, average, minutes watched and per-minute viewers are absent in data.json, never zero: Restream did not report X's live viewers or minutes watched before E5.
+- From E5 (2026-08-13-dive-radio-goodbye-blank-canvas-live-cal): Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does). — touches peak live viewers, average live viewers, people who watched live, minutes watched live, all together, chatters per hundred at the peak, minutes each live viewer stayed, share of the peak still watching at the end. Before it, the X destinations' own peak, average, minutes watched and per-minute viewers are absent in data.json, never zero: Restream did not report X's live viewers or minutes watched before E5.
 
 ## 4. What to do this week
 
@@ -186,9 +186,9 @@ Views as of 2026-10-12; first week, launch, and pace at the same age; episode he
 
 | Ep | Date | Title | YouTube | X plays | X reach | Total | First week | Launch | Pace | Ep. health | Live peak / avg / people / min | Min per viewer | Hold | Watched | Subs/1k | Discovery | Feedback + / − | Promo |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| E8 | 2026-09-03 | How to Engineer a Brand Universe | 6,238 | 4,176 | 20,489 | 10,414 | —¹ | — | #1 of 4 (+269%) | 69 | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 9.3% | 6.1 | 9.9% | 7 / 0 | UX Tools |
-| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 12,001 | 4,003 | 12,247 | 16,004 | —¹ | — | — | 67 | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | 9.2% | 2.5 | 9.8% | 8 / 1 | UX Tools |
-| E10 | 2026-09-17 | How To Become a Founding Designer | 8,567 | 1,861 | 7,784 | 10,428 | —¹ | — | — | 64 | 97 / 78 / 513 / 9,438 | 18.4 | 67% | 10.2% | 1.6 | 8.7% | 1 / 0 | UX Tools |
+| E8 | 2026-09-03 | How to Engineer a Brand Universe | 6,238 | 4,176 | 20,489 | 10,414 | —¹ | — | #1 of 4 (+269%) | 73 | 98 / 68 / 872 / 7,820 | 9.0 | 57% | 9.3% | 6.1 | 9.9% | 7 / 0 | UX Tools |
+| E9 | 2026-09-10 | How Designers Are Getting Hired in 2026 | 12,001 | 4,003 | 12,247 | 16,004 | —¹ | — | — | 63 | 133 / 109 / 1,159 / 16,459 | 14.2 | 69% | 9.2% | 2.5 | 9.8% | 8 / 1 | UX Tools |
+| E10 | 2026-09-17 | How To Become a Founding Designer | 8,567 | 1,861 | 7,784 | 10,428 | —¹ | — | — | 66 | 97 / 78 / 513 / 9,438 | 18.4 | 67% | 10.2% | 1.6 | 8.7% | 1 / 0 | UX Tools |
 | E11 | 2026-09-24 | Just-in-Time Interfaces | 5,509 | 2,812 | 8,124 | 8,321 | —¹ | — | — | —² | 109 / 80 / 877 / 9,440 | 10.8 | 67% | 10.7% | 2.2 | 8.2% | 3 / 0 | UX Tools |
 | E12 | 2026-10-01 | Anyone Can Animate Now (and How) | 7,082 | 3,074 | 11,484 | 10,156 | —¹ | — | — | —² | 111 / 86 / 832 / 10,062 | 12.1 | 66% | 10.5% | 1.3 | 6.4% | 5 / 1 | UX Tools |
 | E13 | 2026-10-08 | Rise of the Playable Portfolio | 4,311 | 2,053 | 7,958 | 6,364 | —¹ | — | — | —² | 87 / 70 / 843 / 8,610 | 10.2 | 84% | 12.2% | 1.9 | 7.8% | 0 / 0 | UX Tools |
@@ -235,7 +235,7 @@ Some comments are awaiting review.
 Feedback: 11 comments captured, 8 with a clear lean from 8 people (7 enjoyed, 0 concerns); X replies included. Enjoyed: other (5).
 - "so good guys 🤍🫂" — @evilrabbit_ on X
 - "love your show 🙂" — @ciguleva on X
-Episode health: 69 of 100, read on 2026-09-24 — watch 100; engagement 21; retention 42; live 53; conversion 100; sentiment — (Fewer than three earlier episodes to compare with.). Re-read from its saved inputs under the current rules; under health21-v2 it was 70.
+Episode health: 73 of 100, read on 2026-09-24 — watch 100; engagement 21; retention 42; live — (Fewer than three episodes since the live-reporting change (from E5) to compare with.); conversion 100; sentiment — (Fewer than three earlier episodes to compare with.). Re-read from its saved inputs under the current rules; under health21-v3 it was 69.
 
 ### E9 — How Designers Are Getting Hired in 2026 (2026-09-10)
 
@@ -274,7 +274,7 @@ Some comments are awaiting review.
 Feedback: 14 comments captured, 11 with a clear lean from 11 people (8 enjoyed, 1 concerns); X replies included. Enjoyed: other (8).
 - "That intro was not for public consumption, but it's out there now hahah!" — JaredTredly.Design on YouTube
 - "Absolutely worth watching." — SudhaGS-c9i on YouTube
-Episode health: 67 of 100, read on 2026-10-01 — watch 100; engagement 25; retention 41; live 86; conversion 46; sentiment 44.
+Episode health: 63 of 100, read on 2026-10-01 — watch 100; engagement 25; retention 41; live — (Fewer than three episodes since the live-reporting change (from E5) to compare with.); conversion 46; sentiment 44. Re-read from its saved inputs under the current rules; under health21-v3 it was 67.
 
 ### E10 — How To Become a Founding Designer (2026-09-17)
 
@@ -310,7 +310,7 @@ Some comments are awaiting review.
 - "@ridd_design @kevintwohy @floguo This was a fun episode, Ridd! Thanks for having me!" — @tasedan on X ([original](https://x.com/i/status/2100922934265073802))
 Feedback: 7 comments captured, 1 with a clear lean from 1 people (1 enjoyed, 0 concerns); X replies included.
 - "Great video guys! Super helpful" — samuelgrayart on YouTube
-Episode health: 64 of 100, read on 2026-10-08 — watch 100; engagement 21; retention 45; live 53; conversion 47; sentiment — (Fewer than three earlier episodes to compare with.).
+Episode health: 66 of 100, read on 2026-10-08 — watch 100; engagement 21; retention 45; live — (Fewer than three episodes since the live-reporting change (from E5) to compare with.); conversion 47; sentiment — (Fewer than three earlier episodes to compare with.). Re-read from its saved inputs under the current rules; under health21-v3 it was 64.
 
 ### E11 — Just-in-Time Interfaces (2026-09-24)
 
@@ -460,6 +460,7 @@ Outlook as of this build: 1,189–1,830 YouTube views (typical 1,751), first-wee
 - **first week vs launch reading** — a first week needs a clean seven-day record and feeds the growth slope; a launch reading is the same-age standing available from the first day and can exist where a first week cannot (an episode tracked late).
 - **episode health** — a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline. A scoring-rules change re-reads every finished score from its saved inputs and records the score it had under the earlier rules.
 - **compared live chat** — chat counted on YouTube and X only, in every live comparison (show health's participation, episode health's live check): LinkedIn reports its chat but never its viewers, and not every episode streamed there. Session totals include LinkedIn chat; comparisons never do. When LinkedIn's count for an episode is unknown, its compared chat is absent.
+- **live-reporting change** — Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its count of people who watched live includes X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check — compares only episodes on the same side of E5; chat compares across it.
 - **show health** — a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts.
 - **direction** — each durable measure's change per episode (Theil–Sen slope) over the last five clean episodes; a word needs four; building above plus five percent, softening below minus five; the overall word is single only when every check agrees, otherwise mixed.
 - **outlook** — where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days.

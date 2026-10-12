@@ -301,6 +301,7 @@ export const DEFINITIONS = Object.freeze([
   ["first week vs launch reading", "a first week needs a clean seven-day record and feeds the growth slope; a launch reading is the same-age standing available from the first day and can exist where a first week cannot (an episode tracked late)."],
   ["episode health", "a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline. A scoring-rules change re-reads every finished score from its saved inputs and records the score it had under the earlier rules."],
   ["compared live chat", "chat counted on YouTube and X only, in every live comparison (show health's participation, episode health's live check): LinkedIn reports its chat but never its viewers, and not every episode streamed there. Session totals include LinkedIn chat; comparisons never do. When LinkedIn's count for an episode is unknown, its compared chat is absent."],
+  ["live-reporting change", "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its count of people who watched live includes X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check — compares only episodes on the same side of E5; chat compares across it."],
   ["show health", "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."],
   ["direction", "each durable measure's change per episode (Theil–Sen slope) over the last five clean episodes; a word needs four; building above plus five percent, softening below minus five; the overall word is single only when every check agrees, otherwise mixed."],
   ["outlook", "where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days."],
@@ -455,7 +456,7 @@ function renderMarkdownWindow(digest, episodes, manifest) {
       p();
     }
   }
-  if ((digest.knownBreaks || []).length) { p(`Known reporting breaks:`); for (const b of digest.knownBreaks) p(`- From E${b.fromEp} (${b.from}): ${esc(b.note)} — touches ${b.measures.map((k) => MEASURE_WORDS[k] || DIRECTION_WORDS[k] || k).join(", ")}.${b.unreported ? ` ${unreportedWords(b)}` : ""}`); p(); }
+  if ((digest.knownBreaks || []).length) { p(`Known reporting breaks:`); for (const b of digest.knownBreaks) p(`- From E${b.fromEp} (${b.from}): ${esc(b.note)} — touches ${[...new Set(b.measures.map((k) => MEASURE_WORDS[k] || DIRECTION_WORDS[k] || k))].join(", ")}.${b.unreported ? ` ${unreportedWords(b)}` : ""}`); p(); }
   // 4
   p(HEADINGS[3]);
   p();

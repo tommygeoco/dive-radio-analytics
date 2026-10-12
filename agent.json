@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-10-12T14:52:51.691Z",
+ "generatedAt": "2026-10-12T17:03:49.797Z",
  "promotionUpdatedAt": "2026-10-12T14:00:33.475Z",
  "clocks": {
-  "data": "2026-10-12T14:52:51.691Z",
+  "data": "2026-10-12T17:03:49.797Z",
   "dataThrough": "2026-10-12T14:01:10.646Z",
   "healthRead": "2026-10-12",
   "healthDataThrough": "2026-10-12T14:02:24.065Z",
@@ -3215,7 +3215,7 @@
     }
    ],
    "health": {
-    "score": 36,
+    "score": 37,
     "readOn": "2026-09-03",
     "checks": {
      "watch": {
@@ -3231,8 +3231,8 @@
       "reason": null
      },
      "live": {
-      "score": 31,
-      "reason": null
+      "score": null,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with."
      },
      "conversion": {
       "score": 11,
@@ -3244,7 +3244,7 @@
      }
     },
     "rereadFrom": {
-     "rules": "health21-v2",
+     "rules": "health21-v3",
      "score": 36
     }
    }
@@ -3681,7 +3681,7 @@
     }
    ],
    "health": {
-    "score": 38,
+    "score": 37,
     "readOn": "2026-09-10",
     "checks": {
      "watch": {
@@ -3697,8 +3697,8 @@
       "reason": null
      },
      "live": {
-      "score": 39,
-      "reason": null
+      "score": null,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with."
      },
      "conversion": {
       "score": 11,
@@ -3710,7 +3710,7 @@
      }
     },
     "rereadFrom": {
-     "rules": "health21-v2",
+     "rules": "health21-v3",
      "score": 38
     }
    }
@@ -4139,7 +4139,7 @@
     }
    ],
    "health": {
-    "score": 57,
+    "score": 61,
     "readOn": "2026-09-17",
     "checks": {
      "watch": {
@@ -4155,8 +4155,8 @@
       "reason": null
      },
      "live": {
-      "score": 39,
-      "reason": null
+      "score": null,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with."
      },
      "conversion": {
       "score": 13,
@@ -4168,7 +4168,7 @@
      }
     },
     "rereadFrom": {
-     "rules": "health21-v2",
+     "rules": "health21-v3",
      "score": 57
     }
    }
@@ -4886,7 +4886,7 @@
     }
    ],
    "health": {
-    "score": 69,
+    "score": 73,
     "readOn": "2026-09-24",
     "checks": {
      "watch": {
@@ -4902,8 +4902,8 @@
       "reason": null
      },
      "live": {
-      "score": 53,
-      "reason": null
+      "score": null,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with."
      },
      "conversion": {
       "score": 100,
@@ -4915,8 +4915,8 @@
      }
     },
     "rereadFrom": {
-     "rules": "health21-v2",
-     "score": 70
+     "rules": "health21-v3",
+     "score": 69
     }
    }
   },
@@ -5579,7 +5579,7 @@
     }
    ],
    "health": {
-    "score": 67,
+    "score": 63,
     "readOn": "2026-10-01",
     "checks": {
      "watch": {
@@ -5595,8 +5595,8 @@
       "reason": null
      },
      "live": {
-      "score": 86,
-      "reason": null
+      "score": null,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with."
      },
      "conversion": {
       "score": 46,
@@ -5607,7 +5607,10 @@
       "reason": null
      }
     },
-    "rereadFrom": null
+    "rereadFrom": {
+     "rules": "health21-v3",
+     "score": 67
+    }
    }
   },
   {
@@ -6226,7 +6229,7 @@
     }
    ],
    "health": {
-    "score": 64,
+    "score": 66,
     "readOn": "2026-10-08",
     "checks": {
      "watch": {
@@ -6242,8 +6245,8 @@
       "reason": null
      },
      "live": {
-      "score": 53,
-      "reason": null
+      "score": null,
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with."
      },
      "conversion": {
       "score": 47,
@@ -6254,7 +6257,10 @@
       "reason": "Fewer than three earlier episodes to compare with."
      }
     },
-    "rereadFrom": null
+    "rereadFrom": {
+     "rules": "health21-v3",
+     "score": 64
+    }
    }
   },
   {
@@ -7881,10 +7887,17 @@
    "from": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
    "fromEp": 5,
    "measures": [
+    "peak",
+    "average",
     "liveViewers",
-    "minutesPerViewer"
+    "minutesWatched",
+    "chattersPer100",
+    "minutesPerViewer",
+    "holdRate",
+    "livePeak",
+    "liveAverage"
    ],
-   "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+   "note": "Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).",
    "unreported": {
     "platform": "x",
     "fields": [
@@ -7943,6 +7956,10 @@
    "chat counted on YouTube and X only, in every live comparison (show health's participation, episode health's live check): LinkedIn reports its chat but never its viewers, and not every episode streamed there. Session totals include LinkedIn chat; comparisons never do. When LinkedIn's count for an episode is unknown, its compared chat is absent."
   ],
   [
+   "live-reporting change",
+   "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its count of people who watched live includes X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check — compares only episodes on the same side of E5; chat compares across it."
+  ],
+  [
    "show health",
    "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."
   ],
@@ -7994,7 +8011,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-10-12T14:52:51.691Z",
+    "stamp": "2026-10-12T17:03:49.797Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -8009,7 +8026,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-10-12T14:52:51.691Z",
+    "stamp": "2026-10-12T17:03:49.797Z",
     "note": "4 current actions; saved model actions whose numbers changed are held back"
    },
    {

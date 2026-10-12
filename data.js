@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-10-12T14:52:51.691Z",
+ "generatedAt": "2026-10-12T17:03:49.797Z",
  "chaptersUpdatedAt": "2026-10-10T14:07:39.404Z",
  "promotionUpdatedAt": "2026-10-12T14:00:33.475Z",
  "dests": [
@@ -9458,7 +9458,7 @@ window.DIVE_DATA = {
     "ep": 1,
     "slug": "2026-07-17-dive-radio-bumpy-takeoff",
     "premiere": "2026-07-17",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff"
     ],
@@ -9567,7 +9567,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-23T18:45:20.684Z",
     "frozenAt": "2026-08-23T18:45:20.684Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": null
     }
    },
@@ -19275,7 +19275,7 @@ window.DIVE_DATA = {
     "ep": 2,
     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "premiere": "2026-07-23",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe"
@@ -19432,7 +19432,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-23T18:45:20.684Z",
     "frozenAt": "2026-08-23T18:45:20.684Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": null
     }
    },
@@ -28098,7 +28098,7 @@ window.DIVE_DATA = {
     "ep": 3,
     "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "premiere": "2026-07-30",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -28272,7 +28272,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-23T18:45:20.684Z",
     "frozenAt": "2026-08-23T18:45:20.684Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": null
     }
    },
@@ -36941,7 +36941,7 @@ window.DIVE_DATA = {
     "ep": 4,
     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
     "premiere": "2026-08-06",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -37146,7 +37146,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-08-28T14:03:21.105Z",
     "frozenAt": "2026-08-28T14:03:21.105Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": null
     }
    },
@@ -45206,7 +45206,7 @@ window.DIVE_DATA = {
     "ep": 5,
     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "premiere": "2026-08-13",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -45224,7 +45224,7 @@ window.DIVE_DATA = {
     "atDay": 21,
     "frozenAtDay": 21.3,
     "readCompleteOn": "2026-09-03",
-    "score": 36,
+    "score": 37,
     "checks": {
      "watch": {
       "value": 1257,
@@ -45265,7 +45265,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.3889
+      "weight": 0.4667
      },
      "engagement": {
       "value": 34.2,
@@ -45306,7 +45306,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "retention": {
       "value": 13.24,
@@ -45350,62 +45350,23 @@ window.DIVE_DATA = {
        "yt:designertom",
        "yt:joindiveclub"
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "live": {
       "value": {
        "peak": 64,
        "chat": 98
       },
-      "typical": {
-       "peak": 71,
-       "chat": 304
-      },
-      "ratio": 0.612,
-      "score": 31,
-      "sample": 3,
-      "peers": [
-       {
-        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-        "value": {
-         "peak": 90,
-         "chat": 340
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "value": {
-         "peak": 71,
-         "chat": 304
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "value": {
-         "peak": 63,
-         "chat": 163
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       }
-      ],
-      "reason": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "sample": 0,
+      "peers": [],
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
       "ageBasis": "ageFree",
       "note": "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
-      "excluded": [
-       {
-        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "why": "promo outlier"
-       }
-      ],
-      "weight": 0.1667
+      "excluded": [],
+      "weight": 0
      },
      "conversion": {
       "value": 0.8,
@@ -45445,7 +45406,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1111
+      "weight": 0.1333
      },
      "sentiment": {
       "value": null,
@@ -45462,6 +45423,7 @@ window.DIVE_DATA = {
      }
     },
     "missingChecks": [
+     "live",
      "sentiment"
     ],
     "reason": null,
@@ -45469,7 +45431,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-09-04T02:24:22.827Z",
     "frozenAt": "2026-09-04T02:24:22.827Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": 36
     }
    },
@@ -54011,7 +53973,7 @@ window.DIVE_DATA = {
     "ep": 6,
     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
     "premiere": "2026-08-20",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -54030,7 +53992,7 @@ window.DIVE_DATA = {
     "atDay": 21,
     "frozenAtDay": 21.8,
     "readCompleteOn": "2026-09-10",
-    "score": 38,
+    "score": 37,
     "checks": {
      "watch": {
       "value": 1543,
@@ -54078,7 +54040,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.3889
+      "weight": 0.4667
      },
      "engagement": {
       "value": 27.9,
@@ -54126,7 +54088,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "retention": {
       "value": 11.37,
@@ -54177,72 +54139,23 @@ window.DIVE_DATA = {
        "yt:joindiveclub",
        "yt:designertom"
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "live": {
       "value": {
        "peak": 71,
        "chat": 119
       },
-      "typical": {
-       "peak": 67.5,
-       "chat": 233.5
-      },
-      "ratio": 0.781,
-      "score": 39,
-      "sample": 4,
-      "peers": [
-       {
-        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-        "value": {
-         "peak": 90,
-         "chat": 340
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "value": {
-         "peak": 71,
-         "chat": 304
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "value": {
-         "peak": 63,
-         "chat": 163
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-        "value": {
-         "peak": 64,
-         "chat": 98
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       }
-      ],
-      "reason": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "sample": 1,
+      "peers": [],
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
       "ageBasis": "ageFree",
       "note": "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
-      "excluded": [
-       {
-        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "why": "promo outlier"
-       }
-      ],
-      "weight": 0.1667
+      "excluded": [],
+      "weight": 0
      },
      "conversion": {
       "value": 0.7,
@@ -54289,7 +54202,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1111
+      "weight": 0.1333
      },
      "sentiment": {
       "value": 100,
@@ -54338,6 +54251,7 @@ window.DIVE_DATA = {
      }
     },
     "missingChecks": [
+     "live",
      "sentiment"
     ],
     "reason": null,
@@ -54345,7 +54259,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-09-11T14:01:51.319Z",
     "frozenAt": "2026-09-11T14:01:51.319Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": 38
     }
    },
@@ -61947,7 +61861,7 @@ window.DIVE_DATA = {
     "ep": 7,
     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
     "premiere": "2026-08-27",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -61967,7 +61881,7 @@ window.DIVE_DATA = {
     "atDay": 21,
     "frozenAtDay": 22.9,
     "readCompleteOn": "2026-09-17",
-    "score": 57,
+    "score": 61,
     "checks": {
      "watch": {
       "value": 6003,
@@ -62022,7 +61936,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.3889
+      "weight": 0.4667
      },
      "engagement": {
       "value": 8.8,
@@ -62077,7 +61991,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "retention": {
       "value": 11.05,
@@ -62135,82 +62049,23 @@ window.DIVE_DATA = {
        "yt:joindiveclub",
        "yt:designertom"
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "live": {
       "value": {
        "peak": 72,
        "chat": 89
       },
-      "typical": {
-       "peak": 71,
-       "chat": 163
-      },
-      "ratio": 0.78,
-      "score": 39,
-      "sample": 5,
-      "peers": [
-       {
-        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-        "value": {
-         "peak": 90,
-         "chat": 340
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "value": {
-         "peak": 71,
-         "chat": 304
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "value": {
-         "peak": 63,
-         "chat": 163
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-        "value": {
-         "peak": 64,
-         "chat": 98
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-        "value": {
-         "peak": 71,
-         "chat": 119
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       }
-      ],
-      "reason": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "sample": 2,
+      "peers": [],
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
       "ageBasis": "ageFree",
       "note": "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
-      "excluded": [
-       {
-        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "why": "promo outlier"
-       }
-      ],
-      "weight": 0.1667
+      "excluded": [],
+      "weight": 0
      },
      "conversion": {
       "value": 0.7,
@@ -62264,7 +62119,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1111
+      "weight": 0.1333
      },
      "sentiment": {
       "value": null,
@@ -62281,6 +62136,7 @@ window.DIVE_DATA = {
      }
     },
     "missingChecks": [
+     "live",
      "sentiment"
     ],
     "reason": null,
@@ -62288,7 +62144,7 @@ window.DIVE_DATA = {
     "computedAt": "2026-09-19T16:21:37.177Z",
     "frozenAt": "2026-09-19T16:21:37.177Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
+     "algorithm": "health21-v3",
      "score": 57
     }
    },
@@ -68375,7 +68231,7 @@ window.DIVE_DATA = {
     "ep": 8,
     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
     "premiere": "2026-09-03",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -68400,7 +68256,7 @@ window.DIVE_DATA = {
     "atDay": 21,
     "frozenAtDay": 21.8,
     "readCompleteOn": "2026-09-24",
-    "score": 69,
+    "score": 73,
     "checks": {
      "watch": {
       "value": 6067,
@@ -68459,7 +68315,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.3889
+      "weight": 0.4667
      },
      "engagement": {
       "value": 14.7,
@@ -68518,7 +68374,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "retention": {
       "value": 9.39,
@@ -68580,86 +68436,28 @@ window.DIVE_DATA = {
        "yt:joindiveclub",
        "yt:designertom"
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "live": {
       "value": {
        "peak": 98,
        "chat": 121
       },
-      "typical": {
-       "peak": 71,
-       "chat": 163
-      },
-      "ratio": 1.061,
-      "score": 53,
-      "sample": 5,
-      "peers": [
-       {
-        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-        "value": {
-         "peak": 90,
-         "chat": 340
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "value": {
-         "peak": 71,
-         "chat": 304
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "value": {
-         "peak": 63,
-         "chat": 163
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-        "value": {
-         "peak": 64,
-         "chat": 98
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-        "value": {
-         "peak": 71,
-         "chat": 119
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       }
-      ],
-      "reason": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "sample": 2,
+      "peers": [],
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
       "ageBasis": "ageFree",
       "note": "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
       "excluded": [
-       {
-        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "why": "promo outlier"
-       },
        {
         "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1667
+      "weight": 0
      },
      "conversion": {
       "value": 6.3,
@@ -68717,7 +68515,7 @@ window.DIVE_DATA = {
         "why": "promo outlier"
        }
       ],
-      "weight": 0.1111
+      "weight": 0.1333
      },
      "sentiment": {
       "value": null,
@@ -68734,6 +68532,7 @@ window.DIVE_DATA = {
      }
     },
     "missingChecks": [
+     "live",
      "sentiment"
     ],
     "reason": null,
@@ -68741,8 +68540,8 @@ window.DIVE_DATA = {
     "computedAt": "2026-09-25T14:02:07.707Z",
     "frozenAt": "2026-09-25T14:02:07.707Z",
     "rederivedFrom": {
-     "algorithm": "health21-v2",
-     "score": 70
+     "algorithm": "health21-v3",
+     "score": 69
     }
    },
    "watchReport": {
@@ -75223,7 +75022,7 @@ window.DIVE_DATA = {
     "ep": 9,
     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
     "premiere": "2026-09-10",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -75253,7 +75052,7 @@ window.DIVE_DATA = {
     "atDay": 21,
     "frozenAtDay": 21,
     "readCompleteOn": "2026-10-01",
-    "score": 67,
+    "score": 63,
     "checks": {
      "watch": {
       "value": 11688,
@@ -75316,7 +75115,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.35
+      "weight": 0.4118
      },
      "engagement": {
       "value": 17.4,
@@ -75379,7 +75178,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.15
+      "weight": 0.1765
      },
      "retention": {
       "value": 9.2,
@@ -75445,80 +75244,22 @@ window.DIVE_DATA = {
        "yt:joindiveclub",
        "yt:designertom"
       ],
-      "weight": 0.15
+      "weight": 0.1765
      },
      "live": {
       "value": {
        "peak": 133,
        "chat": 255
       },
-      "typical": {
-       "peak": 71,
-       "chat": 163
-      },
-      "ratio": 1.719,
-      "score": 86,
-      "sample": 5,
-      "peers": [
-       {
-        "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-        "value": {
-         "peak": 90,
-         "chat": 340
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "value": {
-         "peak": 71,
-         "chat": 304
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "value": {
-         "peak": 63,
-         "chat": 163
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-        "value": {
-         "peak": 64,
-         "chat": 98
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-        "value": {
-         "peak": 71,
-         "chat": 119
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       }
-      ],
-      "reason": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "sample": 2,
+      "peers": [],
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
       "ageBasis": "ageFree",
       "note": "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
       "excluded": [
-       {
-        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "why": "promo outlier"
-       },
        {
         "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "why": "promo outlier"
@@ -75528,7 +75269,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.15
+      "weight": 0
      },
      "conversion": {
       "value": 2.5,
@@ -75590,7 +75331,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.1
+      "weight": 0.1176
      },
      "sentiment": {
       "value": 87.5,
@@ -75650,14 +75391,20 @@ window.DIVE_DATA = {
        "yt"
       ],
       "people": 8,
-      "weight": 0.1
+      "weight": 0.1176
      }
     },
-    "missingChecks": [],
+    "missingChecks": [
+     "live"
+    ],
     "reason": null,
     "reproducible": false,
     "computedAt": "2026-10-01T19:17:02.141Z",
-    "frozenAt": "2026-10-01T19:17:02.141Z"
+    "frozenAt": "2026-10-01T19:17:02.141Z",
+    "rederivedFrom": {
+     "algorithm": "health21-v3",
+     "score": 67
+    }
    },
    "watchReport": {
     "state": "ready",
@@ -80689,7 +80436,7 @@ window.DIVE_DATA = {
     "ep": 10,
     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
     "premiere": "2026-09-17",
-    "algorithm": "health21-v3",
+    "algorithm": "health21-v4",
     "windowIds": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
@@ -80723,7 +80470,7 @@ window.DIVE_DATA = {
     "atDay": 21,
     "frozenAtDay": 21,
     "readCompleteOn": "2026-10-08",
-    "score": 64,
+    "score": 66,
     "checks": {
      "watch": {
       "value": 8503,
@@ -80783,7 +80530,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.3889
+      "weight": 0.4667
      },
      "engagement": {
       "value": 14,
@@ -80843,7 +80590,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "retention": {
       "value": 10.16,
@@ -80906,70 +80653,22 @@ window.DIVE_DATA = {
        "yt:joindiveclub",
        "yt:designertom"
       ],
-      "weight": 0.1667
+      "weight": 0.2
      },
      "live": {
       "value": {
        "peak": 97,
        "chat": 99
       },
-      "typical": {
-       "peak": 67.5,
-       "chat": 141
-      },
-      "ratio": 1.07,
-      "score": 53,
-      "sample": 4,
-      "peers": [
-       {
-        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-        "value": {
-         "peak": 71,
-         "chat": 304
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-        "value": {
-         "peak": 63,
-         "chat": 163
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-        "value": {
-         "peak": 64,
-         "chat": 98
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       },
-       {
-        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-        "value": {
-         "peak": 71,
-         "chat": 119
-        },
-        "atDay": null,
-        "source": "live-event",
-        "readDate": null
-       }
-      ],
-      "reason": null,
+      "typical": null,
+      "ratio": null,
+      "score": null,
+      "sample": 2,
+      "peers": [],
+      "reason": "Fewer than three episodes since the live-reporting change (from E5) to compare with.",
       "ageBasis": "ageFree",
       "note": "chat counted on YouTube and X only, since LinkedIn never reports its viewers",
       "excluded": [
-       {
-        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-        "why": "promo outlier"
-       },
        {
         "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
         "why": "promo outlier"
@@ -80983,7 +80682,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.1667
+      "weight": 0
      },
      "conversion": {
       "value": 1.7,
@@ -81042,7 +80741,7 @@ window.DIVE_DATA = {
         "why": "known newsletter promotion"
        }
       ],
-      "weight": 0.1111
+      "weight": 0.1333
      },
      "sentiment": {
       "value": null,
@@ -81059,12 +80758,17 @@ window.DIVE_DATA = {
      }
     },
     "missingChecks": [
+     "live",
      "sentiment"
     ],
     "reason": null,
     "reproducible": false,
     "computedAt": "2026-10-08T19:16:41.544Z",
-    "frozenAt": "2026-10-08T19:16:41.544Z"
+    "frozenAt": "2026-10-08T19:16:41.544Z",
+    "rederivedFrom": {
+     "algorithm": "health21-v3",
+     "score": 64
+    }
    },
    "watchReport": {
     "state": "ready",
@@ -93434,66 +93138,7 @@ window.DIVE_DATA = {
    "The newest episode is still young and growth has too few clean weeks for a direction word, so movement is mixed and the score stays cautious."
   ],
   "checkSetChange": null,
-  "trend": {
-   "points": [
-    {
-     "date": "2026-09-29",
-     "score": 52
-    },
-    {
-     "date": "2026-09-30",
-     "score": 52
-    },
-    {
-     "date": "2026-10-01",
-     "score": 55
-    },
-    {
-     "date": "2026-10-02",
-     "score": 56
-    },
-    {
-     "date": "2026-10-03",
-     "score": 56
-    },
-    {
-     "date": "2026-10-04",
-     "score": 57
-    },
-    {
-     "date": "2026-10-05",
-     "score": 57
-    },
-    {
-     "date": "2026-10-06",
-     "score": 55
-    },
-    {
-     "date": "2026-10-07",
-     "score": 55
-    },
-    {
-     "date": "2026-10-08",
-     "score": 56
-    },
-    {
-     "date": "2026-10-09",
-     "score": 48
-    },
-    {
-     "date": "2026-10-10",
-     "score": 52
-    },
-    {
-     "date": "2026-10-11",
-     "score": 52
-    },
-    {
-     "date": "2026-10-12",
-     "score": 52
-    }
-   ]
-  }
+  "trend": null
  },
  "baselines": {
   "constants": {
@@ -96452,10 +96097,17 @@ window.DIVE_DATA = {
     "from": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     "fromEp": 5,
     "measures": [
+     "peak",
+     "average",
      "liveViewers",
-     "minutesPerViewer"
+     "minutesWatched",
+     "chattersPer100",
+     "minutesPerViewer",
+     "holdRate",
+     "livePeak",
+     "liveAverage"
     ],
-    "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+    "note": "Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).",
     "unreported": {
      "platform": "x",
      "fields": [
