@@ -734,7 +734,10 @@ button { font: inherit; color: inherit; }
   @media (hover: hover) { .fresh a:hover { text-decoration: underline; text-underline-offset: 4px; } }
 
   /* a part of the page the data cannot fill yet says why (the system verdict is the card's heading) */
-  .ss-x-chart-tip { z-index: 20; }
+  /* the card takes the pointer, so a tap on it never lands on a bar hidden underneath, and where a pointer hovers the
+     card can itself be hovered (WCAG 1.4.13): a transparent band bridges the gap to its row */
+  .ss-x-chart-tip { z-index: 20; pointer-events: auto; }
+  @media (hover: hover) { .ss-x-chart-tip::before { content: ""; position: absolute; inset: -12px; } }
   .ss-x-chart-tip__title { text-wrap: balance; }
   .hero__summary[hidden] { display: none; }
   .ss-x-chart-tip[hidden] { display: none; }
@@ -1343,7 +1346,9 @@ function showTip(el) {
 }
 function hideTip() { tip.hidden = true; if (tipFor) { tipFor.classList.remove("is-tip"); tipFor.dataset.pinned = "false"; } tipFor = null; }
 document.addEventListener("pointerover", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse") showTip(el); });
-document.addEventListener("pointerout", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse" && !el.contains(ev.relatedTarget) && document.activeElement !== el) hideTip(); });
+document.addEventListener("pointerout", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse" && !el.contains(ev.relatedTarget) && !tip.contains(ev.relatedTarget) && document.activeElement !== el) hideTip(); });
+// the card holds while the pointer is on it, and goes when the pointer leaves it for anything but its own bar
+tip.addEventListener("pointerleave", (ev) => { if (ev.pointerType === "mouse" && tipFor && !tipFor.contains(ev.relatedTarget) && document.activeElement !== tipFor && tipFor.dataset.pinned !== "true") hideTip(); });
 document.addEventListener("focusin", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el) showTip(el); else if (tipFor) hideTip(); });
 // a tap or a click pins the card; a second tap on the same row, a tap elsewhere or Escape closes it
 document.addEventListener("click", (ev) => {
