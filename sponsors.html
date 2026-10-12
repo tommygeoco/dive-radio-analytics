@@ -557,11 +557,14 @@ button { font: inherit; color: inherit; }
      outline there, and the chart marks take the user's palette instead of vanishing (normal mode is unchanged) */
   @media (forced-colors: active) {
     .ss-btn:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+    /* the system draws surfaces' edges and the picker's selection with shadows and fills, which forced colours drop */
+    .ss-panel, .ss-kpis, .ss-seg, .ss-x-chart-tip, .ss-disclosure, .ss-tag, .ss-btn:not(.ss-btn--link) { border: 1px solid CanvasText; }
+    .ss-seg__opt[aria-checked="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+    /* one identity per series in the user's palette: YouTube and the focus marks in the text colour, X and the context
+       marks in the muted one (the legend's and the tooltip's swatches carry inline colours, hence !important) */
     .bar__fill i, .cols__plot i, .brow__track i, .ss-x-legend i, .curve__mark, .ss-dot { forced-color-adjust: none; }
-    .bar__fill .yt, .curve__mark, .cols li:last-child .cols__plot i { background: CanvasText; }
-    .ss-x-legend span:first-child i { background: CanvasText !important; }   /* the legend's swatches are inline styles */
-    .bar__fill .x, .cols__plot i, .brow__track i { background: GrayText; }
-    .ss-x-legend span:last-child i { background: GrayText !important; }
+    .bar__fill .yt, .ss-x-legend .yt, .ss-dot.yt, .curve__mark, .cols li:last-child .cols__plot i { background: CanvasText !important; }
+    .bar__fill .x, .ss-x-legend .x, .ss-dot.x, .cols__plot i, .brow__track i { background: GrayText !important; }
     .curve .line { stroke: CanvasText; }
   }
   .more .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
@@ -595,6 +598,8 @@ button { font: inherit; color: inherit; }
   .curve__ticks > span:last-child { left: auto; right: 0; translate: none; }
   .curve__label { margin-block: var(--d-inner) 0; font-size: var(--text-body-sm); color: var(--fg-2); }
   @media (min-width: 48rem) { .curve__label { font-size: var(--text-meta); } }
+  .curve__label { text-wrap: pretty; }
+  .sep { color: var(--fg-4); }
 
   /* moments: a timestamp column that links into the upload on a matched clock (extensions.md row 12) */
   .moments { list-style: none; margin: 0; padding: 0; }
@@ -617,7 +622,7 @@ button { font: inherit; color: inherit; }
   .brow { position: relative; display: grid; width: calc(100% + 16px); margin-inline: -8px; grid-template-columns: minmax(0, 1fr) auto 16px; grid-template-areas: "name value chev" "track track track";
     column-gap: 12px; row-gap: 8px; align-items: center; min-height: 56px; padding: 12px 8px; border: 0; border-radius: var(--radius-md); background: none; color: inherit; text-align: left; cursor: pointer; }
   /* a row on the reveal's clipped edge: the system's inset ring (extension 34), drawn inside the row's 8 px bleed */
-  .brow:focus-visible { outline-offset: -2px; }
+  .brow:focus-visible, .moment:focus-visible { outline-offset: -2px; }
   @media (min-width: 48rem) { .brow { grid-template-columns: 136px minmax(0, 1fr) 120px 16px; grid-template-areas: "name track value chev"; min-height: 44px; padding: 8px; } }
   .brow__name { grid-area: name; display: flex; align-items: center; gap: 8px; min-width: 0; font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-1); }
   .brow__track { grid-area: track; display: block; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
@@ -910,6 +915,8 @@ const ICON = {
   wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
 };
 const chev = ICON.chev.replace("<svg ", '<svg class="ss-btn__chev" ');
+// joins facts that can wrap: glued to the words on both sides, muted, and a comma to a screen reader
+const SEP = '&nbsp;<span class="sep" aria-hidden="true">·</span><span class="ss-sr">, </span>&nbsp;';
 // an absent part: the system verdict, its title the card's own name, the reason under it
 function absent(title, body, level = 3) {
   return `<div class="ss-verdict"><span class="ss-verdict__icon" aria-hidden="true">${ICON.wait}</span><div class="ss-verdict__text"><h${level} class="ss-verdict__title">${esc(title)}</h${level}><p class="ss-verdict__body">${esc(body)}</p></div></div>`;
@@ -1030,7 +1037,7 @@ function renderReach() {
     }).join("");
     $("episodes-card").innerHTML = `<h3 class="card__title">Views by episode</h3>
       ${ok(v.total) ? `<p class="statement"><b>${num(v.total)}</b><span>views so far across all <span class="n">${v.episodes}</span> episodes</span></p>` : ""}
-      <p class="ss-x-legend"><span><i style="background: var(--series-1)"></i>YouTube</span><span><i style="background: var(--series-2)"></i>X broadcast plays</span></p>
+      <p class="ss-x-legend"><span><i class="yt" style="background: var(--series-1)"></i>YouTube</span><span><i class="x" style="background: var(--series-2)"></i>X broadcast plays</span></p>
       <div class="chartwrap"><ol class="bars" role="list" aria-label="Views by episode, oldest first">${bars}</ol></div>
       <p class="card__foot">Views keep arriving after air${newest ? ` — <span class="n">E${newest.ep}</span> premiered ${day(newest.premiere)}` : ""}. ${matchMedia("(hover: none)").matches ? "Tap" : "Hover"} an episode for its split.</p>`;
   }
@@ -1098,7 +1105,7 @@ function renderRoom() {
   ].filter(Boolean);
   const said = `E${C.ep} live audience over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)}${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
   $("room-curve").innerHTML = `${single}<h3 class="card__title"><span class="n">E${C.ep}</span>, ${esc(short(C.title))}, minute by minute</h3>
-    <p class="card__meta dots"><span>Everyone watching live on YouTube and X at once</span><span>premiered ${day(C.premiere)}</span></p>
+    <p class="card__meta">Everyone watching live on YouTube and X at once${SEP}premiered ${day(C.premiere)}</p>
     <div class="curve" role="img" aria-label="${esc(said)}">
       <div class="curve__plot">
         <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
@@ -1108,7 +1115,7 @@ function renderRoom() {
       </div>
       <div class="curve__ticks" aria-hidden="true">${ticks.join("")}</div>
     </div>
-    <p class="curve__label dots">${facts.map((f) => `<span>${f}</span>`).join("")}</p>`;
+    <p class="curve__label">${facts.join(SEP)}</p>`;
 }
 
 /* --- on air: brands named, then each partner's moments ---------------------------------------- */
@@ -1134,7 +1141,7 @@ function renderOnAir() {
     const row = (x, i) => `<li><button type="button" class="brow" aria-expanded="false" aria-controls="brand-${i}" data-toggle="brand-${i}"><span class="brow__name"><span class="brow__label">${esc(x.name)}</span>${x.partner ? ' <span class="ss-tag ss-tag--neutral ss-tag--sm">Partner</span>' : ""}</span><span class="brow__track" aria-hidden="true"><i style="width:${((x.mentions / max) * 100).toFixed(1)}%"></i></span><span class="brow__value"><b class="n">${fmt(x.mentions)}</b> in <span class="n">${x.episodes}</span> ${x.episodes === 1 ? "episode" : "episodes"}</span>${ICON.chev}</button><div class="ss-reveal" id="brand-${i}" data-open="false" inert aria-hidden="true"><div>${momentsHTML(x.moments, false)}</div></div></li>`;
     const first = b.list.slice(0, 10), rest = b.list.slice(10);
     $("brands-card").innerHTML = `<h3 class="card__title">Brands named on air</h3>
-      <p class="card__meta dots"><span>Mentions in the transcripts</span><span>open a brand for its first moment in each episode</span></p>
+      <p class="card__meta">Mentions in the transcripts${SEP}open a brand for its first moment in each episode</p>
       <ul class="brands" role="list">${first.map(row).join("")}</ul>${rest.length ? moreHTML("brands-more", `<span class="n">${rest.length}</span> more brands`, `<ul class="brands" role="list">${rest.map((x, k) => row(x, k + 10)).join("")}</ul>`, true) : ""}`;
   }
   const P = (S?.partners || []).filter((p) => p.moments?.length);
@@ -1149,7 +1156,7 @@ function renderOnAir() {
   }).join("");
   const unlinked = (S?.links && S.links.exact < S.links.episodes) ? `<p class="card__foot">A time without a link follows the live recording; it links once that episode’s recording has been matched to its upload (<span class="n">${S.links.exact}</span> of <span class="n">${S.links.episodes}</span> so far).</p>` : "";
   $("partners-card").innerHTML = `<h3 class="card__title">Partners on air</h3>
-    <p class="card__meta dots"><span>Each time the hosts named a partner, from the transcripts</span><span>a linked time plays the moment on YouTube</span></p>
+    <p class="card__meta">Each time the hosts named a partner, from the transcripts${SEP}a linked time plays the moment on YouTube</p>
     ${P.length > 1 ? `<div class="ss-seg" role="radiogroup" aria-label="Partner">${seg}</div>` : ""}${panels}${unlinked}`;
 }
 
@@ -1225,6 +1232,11 @@ function renderPageAbsent() {
 }
 
 /* --- interaction: disclosures, the partner picker, chart tips, copy ----------------------------------- */
+// the reader's own scrolling (wheel, touch, a scroll key) ends any hold below
+let holdToken = 0;
+for (const type of ["wheel", "touchstart", "keydown"]) {
+  addEventListener(type, (ev) => { if (type !== "keydown" || ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(ev.key)) holdToken++; }, { passive: true, capture: true });
+}
 function setOpen(button, open) {
   const panel = $(button.getAttribute("aria-controls"));
   // a list opens and closes above its own toggle. Opening, its first row stays where the toggle was (under the sticky
@@ -1232,17 +1244,27 @@ function setOpen(button, open) {
   // the toggle stays where it was tapped (scroll anchoring does that where it exists, the reveal opting out; elsewhere
   // the page follows the toggle). Either way the page follows the held element for the length of the change
   const own = button.matches(".more > [data-toggle]");
-  const held = own && (open ? panel : CSS.supports("overflow-anchor", "none") ? null : button);
+  let held = own && (open ? panel : CSS.supports("overflow-anchor", "none") ? null : button);
+  if (held) { const r = held.getBoundingClientRect(); if (r.top > innerHeight || r.bottom < 0) held = null; }   // only what is on screen
   const y = held ? held.getBoundingClientRect().top : 0;
   button.setAttribute("aria-expanded", String(open));
   panel.dataset.open = String(open);
   if (open) { panel.removeAttribute("inert"); panel.removeAttribute("aria-hidden"); }
   else { panel.setAttribute("inert", ""); panel.setAttribute("aria-hidden", "true"); }
+  const token = ++holdToken;
   if (held) {
     const until = performance.now() + 240;
-    // the first correction is immediate, so a change with no transition (reduced motion) never paints a moved frame
-    const follow = () => { window.scrollBy(0, held.getBoundingClientRect().top - y); if (performance.now() < until) requestAnimationFrame(follow); };
+    // the first correction is immediate, so a change with no transition (reduced motion) never paints a moved frame;
+    // a newer change, or the reader scrolling, ends the hold
+    const follow = () => { if (token !== holdToken) return; window.scrollBy(0, held.getBoundingClientRect().top - y); if (performance.now() < until) requestAnimationFrame(follow); };
     follow();
+  }
+  if (open && own) {
+    // focus moves to the first row that opened (the hold keeps it where the toggle was), so the next Tab continues into
+    // the list: a brand's button, a moment's link (or the moment), a quote, an episode's call-ins
+    const row = panel.querySelector(".brow, .moment, .ss-x-quote, .callins-ep h3");
+    const target = row && (row.matches(".moment") ? row.querySelector("a[href]") || row : row);
+    if (target) { if (!target.matches("a[href], button")) target.tabIndex = -1; target.focus({ preventScroll: true }); }
   }
 }
 document.addEventListener("click", (ev) => {
@@ -1275,8 +1297,8 @@ function tipHTML(e) {
   return `<div class="ss-x-chart-tip__title"><span class="n">E${e.ep}</span>, ${esc(short(e.title))}</div>
     <div class="ss-x-chart-tip__meta">Premiered ${day(e.premiere)}</div>
     <div class="ss-x-chart-tip__value">${num(L.totalViews)} <small>views so far</small></div>
-    <div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(--series-1)"></span><span>YouTube</span>${val(L.ytTotal)}</div>
-    <div class="ss-x-chart-tip__row"><span class="ss-dot" style="background: var(--series-2)"></span><span>X broadcast plays</span>${val(L.xPlays)}</div>
+    <div class="ss-x-chart-tip__row"><span class="ss-dot yt" style="background: var(--series-1)"></span><span>YouTube</span>${val(L.ytTotal)}</div>
+    <div class="ss-x-chart-tip__row"><span class="ss-dot x" style="background: var(--series-2)"></span><span>X broadcast plays</span>${val(L.xPlays)}</div>
     ${ok(L.xImpressions) ? `<div class="ss-x-chart-tip__sep"></div><div class="ss-x-chart-tip__row"><span class="ss-dot"></span><span>Seen on X, not counted as views</span>${val(L.xImpressions)}</div>` : ""}`;
 }
 // the card sits beside the bar's end, inside the chart's own card, so the bars above and below stay in view
