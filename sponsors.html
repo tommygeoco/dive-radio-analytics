@@ -441,6 +441,12 @@ button { font: inherit; color: inherit; }
     .ss-topbar .book::after { content: ""; position: absolute; inset: -4px 0; }
   }
   .wrap { max-width: calc(var(--content-max) + 2 * var(--d-gutter)); margin: 0 auto; padding: 0 var(--d-gutter) calc(var(--d-section) + var(--safe-bottom)); }
+  /* viewport-fit=cover: the page keeps its own side insets (a notch or island in landscape), as it does top and bottom */
+  :root { --safe-left: env(safe-area-inset-left, 0px); --safe-right: env(safe-area-inset-right, 0px); }
+  .wrap, .ss-topbar__row.topin { padding-left: max(var(--d-gutter), var(--safe-left)); padding-right: max(var(--d-gutter), var(--safe-right)); }
+  .ss-skip { left: max(12px, var(--safe-left)); }
+  /* the page shows once its script has drawn it, so the static shell never paints and then moves (see the head) */
+  .is-rendering body { visibility: hidden; }
   main { display: block; }
   main:focus { outline: none; }
   .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; white-space: nowrap; overflow-wrap: normal; }
@@ -624,7 +630,7 @@ button { font: inherit; color: inherit; }
   /* a row on the reveal's clipped edge: the system's inset ring (extension 34), drawn inside the row's 8 px bleed */
   .brow:focus-visible, .moment:focus-visible { outline-offset: -2px; }
   @media (min-width: 48rem) { .brow { grid-template-columns: 136px minmax(0, 1fr) 120px 16px; grid-template-areas: "name track value chev"; min-height: 44px; padding: 8px; } }
-  .brow__name { grid-area: name; display: flex; align-items: center; gap: 8px; min-width: 0; font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-1); }
+  .brow__name { grid-area: name; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; row-gap: 4px; min-width: 0; font-size: var(--text-body-sm); font-weight: 500; color: var(--fg-1); }
   .brow__track { grid-area: track; display: block; height: 4px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
   .brow__track i { display: block; height: 100%; min-width: 2px; border-radius: inherit; background: var(--fg-2); }
   .brow__value { grid-area: value; justify-self: end; font-size: var(--text-meta); color: var(--fg-3); white-space: nowrap; }
@@ -734,7 +740,10 @@ button { font: inherit; color: inherit; }
   .page-absent { margin-top: var(--d-section); }
   .page-absent[hidden] { display: none; }
 </style>
-<!-- the numbers load before the first paint, so nothing moves when they land (they only set window.DIVE_DATA) -->
+<!-- the numbers load before the first paint, so nothing moves when they land (they only set window.DIVE_DATA); the
+     page stays hidden until its script has drawn it, and the inlined Inter decodes meanwhile, so the first frame is
+     the finished page in its own face -->
+<script>document.documentElement.classList.add("is-rendering"); document.fonts.load("1em Inter");</script>
 <script src="data.js"></script>
 </head>
 <body>
@@ -1077,7 +1086,7 @@ function renderRoom() {
     ok(t?.holdRate) && ["At the end", `<span class="n">${fmt(t.holdRate)}%</span>`, "of the peak still watching in the last ten minutes", "of the peak still watching in the last ten minutes of a typical show"],
     ok(t?.chattersPer100) && ["In the chat", num(t.chattersPer100), "different people write for every <span class=\"n\">100</span> watching at the peak", "different people write in the chat for every <span class=\"n\">100</span> watching at a typical show’s peak"],
     ok(t?.people) && ["Live views", num(t.people), "on a typical show: each channel’s own count, added", "live views on a typical show: each channel’s own count, added"],
-    ok(L.hours) && ["Watched live", `${num(L.hours)} hours`, `across <span class="n">${L.shows}</span> shows`, `watched live across <span class="n">${L.shows}</span> shows`],
+    ok(L.hours) && ["Watched live", num(L.hours), `hours across <span class="n">${L.shows}</span> shows`, `hours watched live across <span class="n">${L.shows}</span> shows`],
   ].filter(Boolean);
   // a strip needs two numbers; one is a statement at the top of the curve card
   $("room-kpis").innerHTML = cells.length >= 2 ? cells.map(([label, value, sub]) => `<div class="ss-kpi"><dt class="ss-kpi__label">${label}</dt><dd class="ss-kpi__value">${value}</dd><dd class="ss-kpi__sub">${sub}</dd></div>`).join("") : "";
@@ -1349,5 +1358,6 @@ document.querySelector(".ss-skip").addEventListener("click", (ev) => { ev.preven
 renderPageAbsent(); renderHero(); renderCallIns(); renderReach(); renderChannels(); renderRoom(); renderOnAir(); renderVoices(); renderPackages(); renderAbout();
 for (const a of document.querySelectorAll("[data-book]")) a.href = mailto(a.dataset.book);
 </script>
+<script>document.documentElement.classList.remove("is-rendering");</script>
 </body>
 </html>
