@@ -1316,6 +1316,10 @@ document.addEventListener("keydown", (ev) => {
 
 const tip = $("tip");
 let tipFor = null;
+// the device's bottom inset (the home indicator's band), measured from layout so every engine resolves env()
+const bottomInset = document.body.appendChild(document.createElement("div"));
+bottomInset.setAttribute("aria-hidden", "true");
+bottomInset.style.cssText = "position: fixed; left: 0; bottom: 0; width: 0; height: var(--safe-bottom); visibility: hidden; pointer-events: none;";
 function tipHTML(e) {
   const L = e.latest || {};
   const val = (v) => (ok(v) ? `<span class="ss-x-chart-tip__val n">${fmt(v)}</span>` : `<span class="ss-x-chart-tip__val ss-x-chart-tip__val--absent">—</span>`);
@@ -1333,6 +1337,10 @@ function showTip(el) {
   tipFor?.classList.remove("is-tip");
   tipFor = el; el.classList.add("is-tip");
   tip.innerHTML = tipHTML(e); tip.hidden = false;
+  // on a narrow plot the card is never wider than the plot less 16 px (dataviz.md), so it stays inside the chart's card
+  const plot = el.closest(".chartwrap").getBoundingClientRect().width;
+  tip.style.maxWidth = `${Math.min(300, plot - 16)}px`;
+  tip.style.minWidth = `${Math.min(216, plot - 16)}px`;
   const end = (el.querySelector(".bar__value") || el).getBoundingClientRect(), row = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
   const card = el.closest(".card").getBoundingClientRect(), maxRight = card.right - 16;
   // the card stays in sight below the sticky top bar, and with its row: while the row is under the bar or off the
@@ -1343,7 +1351,7 @@ function showTip(el) {
     left = Math.min(Math.max(card.left + 16, row.right - tw), maxRight - tw);
     top = row.top - th - 8 > minTop ? row.top - th - 8 : row.bottom + 8;
   }
-  top = Math.min(Math.max(minTop, top), innerHeight - th - 8);
+  top = Math.min(Math.max(minTop, top), innerHeight - bottomInset.offsetHeight - th - 8);
   tip.style.left = `${left + scrollX}px`;
   tip.style.top = `${top + scrollY}px`;
   tip.hidden = row.bottom <= barBottom || row.top >= innerHeight;
