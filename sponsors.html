@@ -1335,14 +1335,18 @@ function showTip(el) {
   tip.innerHTML = tipHTML(e); tip.hidden = false;
   const end = (el.querySelector(".bar__value") || el).getBoundingClientRect(), row = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
   const card = el.closest(".card").getBoundingClientRect(), maxRight = card.right - 16;
+  // the card stays in sight below the sticky top bar, and with its row: while the row is under the bar or off the
+  // screen, the card waits out of sight (a pinned card comes back when its row does)
+  const barBottom = document.querySelector(".ss-topbar")?.getBoundingClientRect().bottom ?? 0, minTop = barBottom + 8;
   let left = end.right + 12, top = row.top + row.height / 2 - th / 2;
   if (left + tw > maxRight) {
     left = Math.min(Math.max(card.left + 16, row.right - tw), maxRight - tw);
-    top = row.top - th - 8 > 8 ? row.top - th - 8 : row.bottom + 8;
+    top = row.top - th - 8 > minTop ? row.top - th - 8 : row.bottom + 8;
   }
-  top = Math.min(Math.max(8, top), innerHeight - th - 8);
+  top = Math.min(Math.max(minTop, top), innerHeight - th - 8);
   tip.style.left = `${left + scrollX}px`;
   tip.style.top = `${top + scrollY}px`;
+  tip.hidden = row.bottom <= barBottom || row.top >= innerHeight;
 }
 function hideTip() { tip.hidden = true; if (tipFor) { tipFor.classList.remove("is-tip"); tipFor.dataset.pinned = "false"; } tipFor = null; }
 document.addEventListener("pointerover", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse") showTip(el); });
