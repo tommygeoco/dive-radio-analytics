@@ -429,7 +429,7 @@ button { font: inherit; color: inherit; }
   .topin { width: 100%; max-width: calc(var(--content-max) + 2 * var(--d-gutter)); margin: 0 auto; }
   .brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-left: -4px; padding: 0 4px; border-radius: var(--radius-lg);
     color: var(--fg-1); text-decoration: none; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; white-space: nowrap; }
-  .brand:hover { background: var(--surface-2); }
+  @media (hover: hover) { .brand:hover { background: var(--surface-2); } }
   .brand svg { width: 24px; height: 24px; flex: none; }
   .brand span { display: none; color: var(--fg-3); font-weight: 400; }
   @media (min-width: 48rem) { .brand span { display: inline; } }
@@ -523,7 +523,8 @@ button { font: inherit; color: inherit; }
   .bar__fill .x { background: var(--series-2); }
   .bar__value { flex: none; font-size: var(--text-meta); font-weight: 600; color: var(--fg-1); }
   .bar__note { flex: none; font-size: var(--text-meta); color: var(--fg-3); }
-  button.bar:hover .bar__title, button.bar.is-tip .bar__title { text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
+  button.bar.is-tip .bar__title { text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; }
+  @media (hover: hover) { button.bar:hover .bar__title { text-decoration: underline dotted var(--fg-4); text-underline-offset: 4px; } }
   .chartwrap { position: relative; }
   .ss-x-legend { margin: var(--d-inner) 0 0; }
 
@@ -614,7 +615,7 @@ button { font: inherit; color: inherit; }
   .moment__at { font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-3); }
   .moment__at a { position: relative; display: inline-flex; align-items: center; gap: 4px; color: var(--tint-fg); text-decoration: none; }
   .moment__at a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
-  .moment__at a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (hover: hover) { .moment__at a:hover { text-decoration: underline; text-underline-offset: 4px; } }
   .moment__at svg { width: 12px; height: 12px; flex: none; }
   .moment__body { min-width: 0; font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
   .moment__kind { font-size: var(--text-meta); line-height: var(--lh-meta); color: var(--fg-3); }
@@ -637,7 +638,7 @@ button { font: inherit; color: inherit; }
   .brow__value b { font-weight: 600; color: var(--fg-1); }
   .brow svg { grid-area: chev; width: 16px; height: 16px; color: var(--fg-3); transition: transform 150ms var(--ease-out-quart); }
   .brow[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .brow:hover .brow__label { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--fg-4); }
+  @media (hover: hover) { .brow:hover .brow__label { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--fg-4); } }
   /* an opened brand's moments hang off a 2 px rule (the system's nested indent), inside an 8 px compensated inset */
   .brands .ss-reveal > div { margin-inline: -8px; padding-inline: 8px; }
   .brands .ss-reveal .moments { margin: 0 0 12px; padding-left: 12px; border-left: 2px solid var(--line-strong); }
@@ -678,7 +679,7 @@ button { font: inherit; color: inherit; }
   .tier__reach b { font-weight: 600; color: var(--fg-1); }
   .tier__example a { position: relative; display: inline-flex; align-items: center; gap: 4px; color: var(--tint-fg); text-decoration: none; }
   .tier__example a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
-  .tier__example a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (hover: hover) { .tier__example a:hover { text-decoration: underline; text-underline-offset: 4px; } }
   .tier__example svg { width: 12px; height: 12px; flex: none; }
   .tier .ss-btn { margin-top: var(--d-card); width: 100%; }
   /* the comparison: the system's inline table (components.md §9.2, "Fair price, by source") */
@@ -718,7 +719,7 @@ button { font: inherit; color: inherit; }
   .cta .cta__alt { margin: var(--d-card) 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
   .cta__alt a { position: relative; color: var(--tint-fg); text-decoration: none; }
   .cta__alt a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
-  .cta__alt a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (hover: hover) { .cta__alt a:hover { text-decoration: underline; text-underline-offset: 4px; } }
 
   /* about these numbers + freshness */
   .about { margin-top: var(--d-section); }
@@ -730,7 +731,7 @@ button { font: inherit; color: inherit; }
   .fresh.is-missing i { background: var(--warn); }
   .fresh a { position: relative; color: var(--tint-fg); text-decoration: none; }
   .fresh a::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 44px; transform: translateY(-50%); }
-  .fresh a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (hover: hover) { .fresh a:hover { text-decoration: underline; text-underline-offset: 4px; } }
 
   /* a part of the page the data cannot fill yet says why (the system verdict is the card's heading) */
   .ss-x-chart-tip { z-index: 20; }
@@ -739,6 +740,17 @@ button { font: inherit; color: inherit; }
   .ss-x-chart-tip[hidden] { display: none; }
   .page-absent { margin-top: var(--d-section); }
   .page-absent[hidden] { display: none; }
+  /* touch screens keep :hover on the last control tapped (iOS Safari, Chrome Android): the page's own hovers apply only
+     where a pointer hovers, and the system's copied recipes come back to their resting look here (the primary
+     button keeps its press colour) */
+  @media (hover: none) {
+    .ss-btn--primary:hover:not(:active) { background: var(--tint); }
+    .ss-btn--secondary:hover { background: var(--surface-3); }
+    .ss-btn--ghost:hover:not([aria-expanded="true"]) { background: transparent; color: var(--fg-2); }
+    .ss-btn--link:hover, .ss-x-quote__link:hover { text-decoration: none; }
+    .ss-seg__opt:hover:not([aria-checked="true"]) { color: var(--fg-3); }
+    .ss-disclosure:hover { background: none; }
+  }
 </style>
 <!-- the numbers load before the first paint, so nothing moves when they land (they only set window.DIVE_DATA); the
      page stays hidden until its script has drawn it, and the inlined Inter decodes meanwhile, so the first frame is
