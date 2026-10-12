@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-10-12T14:07:26.767Z",
+ "generatedAt": "2026-10-12T14:52:51.691Z",
  "chaptersUpdatedAt": "2026-10-10T14:07:39.404Z",
  "promotionUpdatedAt": "2026-10-12T14:00:33.475Z",
  "dests": [
@@ -8279,9 +8279,9 @@ window.DIVE_DATA = {
       "c": 1,
       "ct": 383,
       "byChan": {
-       "X @ridd_design": 0,
+       "X @ridd_design": null,
        "YT Dive Club": 32,
-       "X @designertom": 0,
+       "X @designertom": null,
        "YT DesignerTom": 10
       }
      }
@@ -8289,21 +8289,23 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "label": "X @ridd_design",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 463,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 20,
-      "chatters": 10
+      "chatters": 10,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "X @designertom",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 285,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 15,
-      "chatters": 8
+      "chatters": 8,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "YT Dive Club",
@@ -18356,9 +18358,9 @@ window.DIVE_DATA = {
       "c": 3,
       "ct": 310,
       "byChan": {
-       "X @ridd_design": 0,
+       "X @ridd_design": null,
        "YT Dive Club": 32,
-       "X @designertom": 0,
+       "X @designertom": null,
        "YT DesignerTom": 13
       }
      }
@@ -18366,21 +18368,23 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "label": "X @ridd_design",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 580,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 8,
-      "chatters": 3
+      "chatters": 3,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "X @designertom",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 243,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 7,
-      "chatters": 5
+      "chatters": 5,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "YT Dive Club",
@@ -26027,9 +26031,9 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 0,
       "byChan": {
-       "X @ridd_design": 0,
+       "X @ridd_design": null,
        "YT Dive Club": 2,
-       "X @designertom": 0,
+       "X @designertom": null,
        "YT DesignerTom": 3
       }
      },
@@ -27383,9 +27387,9 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 169,
       "byChan": {
-       "X @ridd_design": 0,
+       "X @ridd_design": null,
        "YT Dive Club": 29,
-       "X @designertom": 0,
+       "X @designertom": null,
        "YT DesignerTom": 23
       }
      }
@@ -27393,21 +27397,23 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "label": "X @ridd_design",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 557,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 13,
-      "chatters": 8
+      "chatters": 8,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "X @designertom",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 397,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 3,
-      "chatters": 3
+      "chatters": 3,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "YT Dive Club",
@@ -36364,9 +36370,9 @@ window.DIVE_DATA = {
       "c": 0,
       "ct": 167,
       "byChan": {
-       "X @ridd_design": 0,
+       "X @ridd_design": null,
        "YT Dive Club": 26,
-       "X @designertom": 0,
+       "X @designertom": null,
        "YT DesignerTom": 18
       }
      }
@@ -36374,21 +36380,23 @@ window.DIVE_DATA = {
     "byChannel": [
      {
       "label": "X @ridd_design",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 673,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 17,
-      "chatters": 8
+      "chatters": 8,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "X @designertom",
-      "peak": 0,
-      "avg": 0,
+      "peak": null,
+      "avg": null,
       "views": 213,
-      "watchedMin": 0,
+      "watchedMin": null,
       "messages": 6,
-      "chatters": 2
+      "chatters": 2,
+      "reason": "Restream did not report X's live viewers or minutes watched before E5."
      },
      {
       "label": "YT Dive Club",
@@ -96447,7 +96455,17 @@ window.DIVE_DATA = {
      "liveViewers",
      "minutesPerViewer"
     ],
-    "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only)."
+    "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+    "unreported": {
+     "platform": "x",
+     "fields": [
+      "peak",
+      "avg",
+      "watchedMin",
+      "series"
+     ],
+     "reason": "Restream did not report X's live viewers or minutes watched before E5."
+    }
    }
   ]
  }

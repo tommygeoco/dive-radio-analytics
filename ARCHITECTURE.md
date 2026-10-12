@@ -122,7 +122,8 @@ snapshots[], weekly[], latest{ts, byDest, ytTotal, youtubeAsOf, youtubeStale, xI
 xPlaysInfo, totalViews, totalViewsInfo}, links, transcript, metrics{week1Velocity,
 week1Note, flatlineWeek, engagementPer1k, anomaly}, live{peak, avg, liveViews,
 watchedMin, chatMessages, chatters, durationMin, series[{m, v, c, ct,
-byChan{destination: number|null}}], byChannel},
+byChan{destination: number|null}}], byChannel[{label, peak, avg, views,
+watchedMin, messages, chatters, reason?}]},
 comments{…, list[], featured[], xCoverage}, watch{avgPercent, avgDurationSec,
 minutesWatched, curve[], traffic[], byChannel, shape, moments}, health,
 promotion{source, updatedAt, emailClicks, verifiedEmailClicks, matchedTargets,
@@ -142,7 +143,8 @@ matchedUnits, newsletters[], snapshots[]}`.
 | Promo outlier | `metrics.anomaly`, `data.baselines.anomaly[slug]` | `baselines.anomalyFlags` | same-age readings of the nearby episodes (tier 1 at day 21; tier 2 at current age; tier 3 window-limited latest totals only while history is thin) | >2× the typical, ≥3 peers, self excluded; provisional until tier 1; excluded from host/announce/topic comparisons and every typical |
 | Engagement per 1k | `metrics.engagementPer1k` (display); show health reads `engagementPer1kOf(snapshotAt(e, A))` | build-data / health | snapshots | drifts with age, so every comparison is same-age |
 | Live peak / chat / chatters | `live.*` | build-data | `events/<id>.json` | age-free (air night) |
-| Live viewers by minute | `live.series[].v`, `.byChan` | build-data `projectLiveSession` | `events/<id>.json` | total and per-destination readings come only from saved Restream points; a missing destination minute stays `null`, while an explicit source zero stays zero |
+| Live viewers by minute | `live.series[].v`, `.byChan` | build-data `projectLiveSession` | `events/<id>.json` | total and per-destination readings come only from saved Restream points; a missing destination minute stays `null`, while an explicit source zero stays zero — except a destination whose per-minute viewers a known reporting break declares unreported (X before E5), which keeps its place with every minute `null` |
+| Live by destination (episode panel, live tooltips) | `live.byChannel[]` | build-data `projectLiveSession` | `events/<id>.json` | each destination's peak, average, views, minutes watched and chat as Restream reported them; a field a known reporting break declares unreported (`baselines.unreportedLiveOf`: X peak, average and minutes watched before E5 — Restream's zeros there were never measured) is `null` and the row carries the break's `reason`, said once at the click layer, never at a glance; validator 3a re-derives every row from the raw event and fails if a declaration would hide a reading above zero. Left out of the brief with a reason; the declaration itself reaches it (AUDIT-2026-10-12) |
 | Share watched, avg time, minutes, curve, traffic | `watch.*` | build-data `attachWatch` | `yt-analytics/<slug>.json` | view-weighted only across the one complete same-pull, current-video cohort; any absent, wrong-id, mixed-time, zero-view, or missing-share channel withholds the whole watch block; curve and traffic remain absent unless every cohort channel returned them; lifetime-to-date |
 | Typical watch line (Watching chart) | `data.baselines.typicalCurve` | `baselines.typicalCurve` | curves of episodes ≥ 21 d, outliers out | drawn only with ≥3 curves; per-point true median where all contributing curves share the `at` |
 | Watched vs typical (table ▲/▼) | `data.baselines.watchPctBySlug[slug]` | `baselines.computeBaselines` | other mature, unflagged episodes (the row never in its own typical) | ≥3 or neutral; quiet zone from constants |
@@ -155,7 +157,7 @@ matchedUnits, newsletters[], snapshots[]}`.
 | Agent brief (`agent.md`), digest (`agent.json`), index (`llms.txt`) | the whole `data.json` object, digested | **agent-brief.mjs** (pure; `buildBrief(data)`), written by build-data | `data.json` in memory (episodes with chapters, live depth, announce URLs; health with facts; baselines with known breaks) | reproduces byte for byte (check 7); census: every data path covered or left out with a reason (block 1w, drift); numbers, links, chapter grounding, known-break notes fail; plain words outside Definitions; ≤ 100 KB (PRD v12) |
 | Chapters (panel list, brief) | `episodes[].chapters` | **chapters.mjs** (L3, one model call per transcript; `data/restream/chapters.json`, keyed by slug with transcript sha, superseded on change) | `transcripts/<slug>.txt` via `transcripts.mjs` (wraps `watch-moments.parseTranscript`) | every `start` is a transcript timestamp; every quote found within 90 s; ≥ 3 min apart; first within 5 min, last ≥ 3 min before the end; no digits; deep links only on the upload clock (captions) |
 | Live depth per episode | `episodes[].live.minutesPerViewer`, `.holdRate` | build-data via `baselines.liveDepthOf` | live events | one definition shared with the health scorer |
-| Known reporting breaks | `baselines.knownBreaks` | `baselines.KNOWN_BREAKS` | — | printed on every affected row of the brief (validator) |
+| Known reporting breaks | `baselines.knownBreaks` | `baselines.KNOWN_BREAKS` | — | printed on every affected row of the brief (validator); an `unreported` declaration (platform, fields, reason) blanks those destination readings before the break in `live.byChannel` and `live.series[].byChan`, and the brief's section 3 prints it with its reason (validator 3a, 1w) |
 | "Data refreshed today · health read is behind" stamp | `generatedAt`, `health.ageDays`, `health.withheld` | build-data / health | — | says when the saved health read is behind the data; exact date in the hover title |
 
 ---

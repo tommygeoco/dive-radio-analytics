@@ -893,6 +893,19 @@ export const KNOWN_BREAKS = Object.freeze([
     fromEp: 5,
     measures: ["liveViewers", "minutesPerViewer"],
     note: "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+    // AUDIT-2026-10-12: before the break Restream measured no live viewing on
+    // the X destinations. Each X row came back with zeros for peak, average and
+    // minutes watched, and a two-point zero series (start and end) in place of
+    // a per-minute one — the shape it gives LinkedIn, which never reports
+    // viewers. Those zeros are not readings: the live projection leaves these
+    // fields absent on the X rows of earlier episodes, every minute of their
+    // per-minute viewers (live.series[].byChan) too, and gives each row this
+    // reason. Views and chat on the same rows were reported and stay.
+    unreported: {
+      platform: "x",
+      fields: ["peak", "avg", "watchedMin", "series"],
+      reason: "Restream did not report X's live viewers or minutes watched before E5.",
+    },
   },
 ]);
 // A break splits the episodes into two populations for the measures it
@@ -900,4 +913,12 @@ export const KNOWN_BREAKS = Object.freeze([
 // episode (health peers, direction points). Nothing is estimated across it.
 export function breaksFor(measureKey) { return KNOWN_BREAKS.filter((b) => b.measures.includes(measureKey)); }
 export function comparableAcrossBreaks(measureKey, episode) { return breaksFor(measureKey).every((b) => (episode?.ep ?? 0) >= b.fromEp); }
+// The live fields a break declares unreported for one destination of one
+// episode — platform "yt" or "x" — or null when its readings stand: the
+// episode aired on or after every such break, or its number is unknown.
+export function unreportedLiveOf(episode, platform) {
+  const ep = episode?.ep;
+  if (!Number.isFinite(ep) || !platform) return null;
+  return KNOWN_BREAKS.find((b) => b.unreported?.platform === platform && ep < b.fromEp)?.unreported ?? null;
+}
 export const NOTE_BREAK = (measureKey) => { const b = breaksFor(measureKey)[0]; return b ? `Fewer than three episodes since the live-reporting change (from E${b.fromEp}) to compare with.` : null; };

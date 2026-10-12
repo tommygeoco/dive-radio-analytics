@@ -27,7 +27,7 @@ import { isAnnouncePost, postRole, splitXReading } from "./x-posts.mjs";
 import {
   computeBaselines, anomalyFlags, paceFor, ytSnapshotAt,
   firstYtSnapshot, latestCurrentYtSnapshot, ytCurrentAge, ytSnapshotsOf, subsPer1kOf, LAUNCH_AGE,
-  ytViewsOf, ytEngagementOf, engagementPer1kOf, discoveryShareOf, liveDepthOf, KNOWN_BREAKS, NOTES,
+  ytViewsOf, ytEngagementOf, engagementPer1kOf, discoveryShareOf, liveDepthOf, unreportedLiveOf, KNOWN_BREAKS, NOTES,
 } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers, TOP_N } from "./recommendations.mjs";
 
@@ -983,8 +983,12 @@ function liveChannelLabel(dest, maps) {
 }
 
 // Pure projection used by both the build and validator fixtures. Missing
-// provider fields stay null; an explicit provider zero stays zero.
-export function projectLiveSession(ev, registry) {
+// provider fields stay null; an explicit provider zero stays zero — except a
+// destination field a known reporting break declares unreported for this
+// episode (baselines.unreportedLiveOf): before E5 Restream filled the X rows'
+// peak, average, minutes watched and per-minute viewers with zeros it never
+// measured, so those stay absent and the row carries the break's reason.
+export function projectLiveSession(ev, registry, { ep = null } = {}) {
   const maps = liveSourceMaps(registry);
   const started = eventMs(ev?.event?.startedAt);
   const finished = eventMs(ev?.event?.finishedAt);
@@ -1001,15 +1005,20 @@ export function projectLiveSession(ev, registry) {
   }
 
   const chanLabel = {};
+  const chanUnreported = {};
   for (const dest of ev?.event?.destinations || []) {
     chanLabel[String(dest.channelId)] = liveChannelLabel(dest, maps) || `channel ${dest.channelId}`;
+    const kind = destinationSource(dest.externalUrl, maps)?.kind;
+    chanUnreported[String(dest.channelId)] = unreportedLiveOf({ ep }, kind === "youtube" ? "yt" : kind);
   }
   const chanMinutes = {};
   if (Number.isFinite(started)) {
     for (const [cid, cv] of Object.entries(ev?.viewers?.byChannel || {})) {
       if (chanLabel[cid] === "LinkedIn" || !Array.isArray(cv?.viewersPerMinute)) continue;
       const minuteMap = new Map();
-      for (const point of cv.viewersPerMinute) {
+      // an unreported per-minute series keeps its destination, every minute missing
+      const points = chanUnreported[cid]?.fields.includes("series") ? [] : cv.viewersPerMinute;
+      for (const point of points) {
         const at = eventMs(point?.timestamp);
         const viewers = sourceNumber(point?.viewers);
         if (Number.isFinite(at) && viewers != null) minuteMap.set(Math.round((at - started) / 60000), viewers);
@@ -1049,15 +1058,18 @@ export function projectLiveSession(ev, registry) {
   for (const cid of channelIds) {
     const cv = chanLabel[cid] === "LinkedIn" ? {} : ev?.viewers?.byChannel?.[cid] || {};
     const cm = ev?.messages?.byChannel?.[cid] || {};
+    const unreported = chanUnreported[cid] || null;
+    const reading = (field, value) => (unreported?.fields.includes(field) ? null : sourceNumber(value));
     const row = {
       label: chanLabel[cid] || `channel ${cid}`,
-      peak: sourceNumber(cv.max),
-      avg: sourceNumber(cv.mean),
-      views: sourceNumber(cv.viewsTotal),
-      watchedMin: sourceNumber(cv.watchedTime),
+      peak: reading("peak", cv.max),
+      avg: reading("avg", cv.mean),
+      views: reading("views", cv.viewsTotal),
+      watchedMin: reading("watchedMin", cv.watchedTime),
       messages: sourceNumber(cm.messagesTotal),
       chatters: sourceNumber(cm.chattersTotal),
     };
+    if (unreported) row.reason = unreported.reason;
     if (Object.values(row).some((value) => typeof value === "number")) byChannel.push(row);
   }
   byChannel.sort((a, b) => (b.views ?? -1) - (a.views ?? -1) || a.label.localeCompare(b.label));
@@ -1096,7 +1108,7 @@ function attachLiveSessions(dive, registry) {
   for (const e of dive) {
     const ev = eventsBySlug.get(e.slug);
     if (!ev) continue;
-    e.live = projectLiveSession(ev, registry);
+    e.live = projectLiveSession(ev, registry, { ep: e.ep });
     e.sourceStates.live = { state: "ready", checkedAt: ev.reading?.pulledAt || ev.fetchedAt || null, reason: null };
     // PRD v12: the two live-depth readings per episode, from the one definition
     const depth = liveDepthOf(e);

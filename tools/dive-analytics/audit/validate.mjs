@@ -385,7 +385,7 @@ try {
     const messages = raw.messages?.total || null;
 
     try {
-      const projected = liveBuild.projectLiveSession(raw, registry);
+      const projected = liveBuild.projectLiveSession(raw, registry, { ep: episode.ep });
       const depth = BL.liveDepthOf({ live: projected });
       const expectedLive = {
         ...projected,
@@ -417,10 +417,10 @@ try {
       }
       if (identity?.startsWith("youtube:")) {
         const label = target?.account === "joindiveclub" ? "YT Dive Club" : target?.account === "designertom" ? "YT DesignerTom" : "YouTube";
-        return { key: target ? `yt:${target.account}` : null, label };
+        return { key: target ? `yt:${target.account}` : null, label, platform: "yt" };
       }
       if (identity?.startsWith("x:")) {
-        return { key: target ? `x:${target.account}` : null, label: target ? `X @${target.account}` : "X" };
+        return { key: target ? `x:${target.account}` : null, label: target ? `X @${target.account}` : "X", platform: "x" };
       }
       try {
         const hostname = new URL(destination.externalUrl).hostname.replace(/^www\./, "");
@@ -434,6 +434,13 @@ try {
     for (const destination of raw.event.destinations || []) {
       descriptors.set(String(destination.channelId), descriptorFor(destination));
     }
+    // A known reporting break can declare a destination's live fields
+    // unreported before it (AUDIT-2026-10-12): before E5 Restream returned
+    // zeros it never measured on the X rows. Re-derived from the definition and
+    // the raw event, not the builder; the declaration may only ever blank a
+    // zero — a positive raw value under it would be a hidden reading.
+    const unreportedFor = (descriptor) => BL.KNOWN_BREAKS.find((b) => b.unreported && b.unreported.platform === descriptor?.platform && episode.ep < b.fromEp)?.unreported ?? null;
+    const hidesReading = (value) => value != null && value !== 0;
 
     const hasChatSeries = Array.isArray(messages?.messagesPerMinute);
     const chatByMinute = new Map();
@@ -446,11 +453,15 @@ try {
       if (!Array.isArray(channel?.viewersPerMinute)) continue;
       const descriptor = descriptors.get(String(channelId)) || { key: null, label: `channel ${channelId}` };
       if (descriptor.label === "LinkedIn") continue;
+      const unreported = unreportedFor(descriptor)?.fields.includes("series") ?? false;
       const points = new Map();
+      let hidden = 0;
       for (const point of channel.viewersPerMinute || []) {
         if (!Number.isFinite(point?.timestamp)) continue;
+        if (unreported) { if (hidesReading(valueOf(point, "viewers"))) hidden++; continue; }
         points.set(Math.round((point.timestamp - started) / 60000), valueOf(point, "viewers"));
       }
+      if (hidden) { bad++; fail(`${episode.slug}: ${descriptor.label} has ${hidden} per-minute reading(s) above zero in ${file}, but a known break declares its per-minute viewers unreported — readings would be hidden`); }
       if (viewersByChannelMinute.has(descriptor.label)) {
         bad++; fail(`${episode.slug}: two Restream channels collapse into live series label ${descriptor.label}`);
       }
@@ -499,7 +510,8 @@ try {
       ...Object.keys(raw.messages?.byChannel || {}),
     ]);
     for (const channelId of rawChannelIds) {
-      const channel = descriptors.get(String(channelId))?.label === "LinkedIn" ? null : raw.viewers?.byChannel?.[channelId] || null;
+      const descriptor = descriptors.get(String(channelId)) || { key: null, label: `channel ${channelId}` };
+      const channel = descriptor.label === "LinkedIn" ? null : raw.viewers?.byChannel?.[channelId] || null;
       const sourceMessages = raw.messages?.byChannel?.[channelId] || null;
       const values = {
         peak: valueOf(channel, "max"),
@@ -509,10 +521,15 @@ try {
         messages: valueOf(sourceMessages, "messagesTotal"),
         chatters: valueOf(sourceMessages, "chattersTotal"),
       };
+      const unreported = unreportedFor(descriptor);
+      for (const field of unreported?.fields || []) {
+        if (!Object.hasOwn(values, field)) continue;
+        if (hidesReading(values[field])) { bad++; fail(`${episode.slug}: ${descriptor.label} ${field} reads ${values[field]} in ${file}, but a known break declares it unreported — a reading would be hidden`); }
+        values[field] = null;
+      }
       if (!Object.values(values).some((value) => Number.isFinite(value))) continue;
-      const descriptor = descriptors.get(String(channelId)) || { key: null, label: `channel ${channelId}` };
       if (expectedChannels.has(descriptor.label)) { bad++; fail(`${episode.slug}: two Restream channels collapse into live row ${descriptor.label}`); }
-      expectedChannels.set(descriptor.label, { ...descriptor, ...values });
+      expectedChannels.set(descriptor.label, { ...descriptor, ...values, reason: unreported?.reason ?? null });
     }
     const gotChannels = Array.isArray(episode.live.byChannel) ? episode.live.byChannel : [];
     const gotByLabel = new Map(gotChannels.map((channel) => [channel.label, channel]));
@@ -526,6 +543,9 @@ try {
       if (got.key != null && got.key !== expected.key) { bad++; fail(`${episode.slug}: ${label} carries channel key ${got.key}, expected ${expected.key}`); }
       for (const key of ["peak", "avg", "views", "watchedMin", "messages", "chatters"]) {
         if ((got[key] ?? null) !== expected[key]) { bad++; fail(`${episode.slug}: ${label} ${key} does not match Restream`); }
+      }
+      if ((got.reason ?? null) !== expected.reason) {
+        bad++; fail(`${episode.slug}: ${label} ${expected.reason ? "does not carry the known break's reason for its absent live readings" : "carries a reason no known break declares"}`);
       }
     }
 
@@ -545,6 +565,23 @@ try {
 
   for (const { event } of archive) {
     if (!matchesByEvent.has(event.event.id)) { bad++; fail(`live sessions: archived event ${event.event.id} is not attached to exactly one episode`); }
+  }
+
+  // A break's definition holds together: its first episode is the one
+  // numbered fromEp, and an unreported declaration names a platform, only
+  // fields a destination row or its per-minute series carries, and a reason
+  // that names the break's episode.
+  for (const b of BL.KNOWN_BREAKS) {
+    const first = eps.find((e) => e.slug === b.from);
+    if (!first || first.ep !== b.fromEp) { bad++; fail(`live sessions: known break ${b.id} starts at ${b.from}, which is ${first ? `E${first.ep}` : "no exported episode"}, not E${b.fromEp}`); }
+    if (!b.unreported) continue;
+    const unknown = (b.unreported.fields || []).filter((field) => !["peak", "avg", "views", "watchedMin", "series"].includes(field));
+    if (!["yt", "x"].includes(b.unreported.platform) || !b.unreported.fields?.length || unknown.length) {
+      bad++; fail(`live sessions: known break ${b.id} declares unreported fields it cannot apply (${b.unreported.platform}: ${(b.unreported.fields || []).join(", ") || "none"})`);
+    }
+    if (typeof b.unreported.reason !== "string" || !b.unreported.reason.includes(`before E${b.fromEp}`)) {
+      bad++; fail(`live sessions: known break ${b.id} gives no reason naming E${b.fromEp} for its unreported fields`);
+    }
   }
 
   const newest = eps.at(-1);
@@ -611,6 +648,47 @@ try {
     bad++; fail(`live sessions: missing-field fixture threw — ${error.message}`);
   }
 
+  // The declared exception, executable (AUDIT-2026-10-12): before a break that
+  // declares X live fields unreported, an X row's zeros become absent with the
+  // break's reason while its views and chat stay, and its per-minute viewers
+  // are missing; a YouTube row on the same night keeps its explicit zeros; from
+  // the break on, the same X zeros stay zeros.
+  try {
+    const xBreak = BL.KNOWN_BREAKS.find((b) => b.unreported?.platform === "x");
+    if (xBreak) {
+      const nightRegistry = { shows: [{ slug: "fixture", targets: [
+        { kind: "youtube", account: "joindiveclub", videoId: "fixtureVideo" },
+        { kind: "x", account: "ridd_design", broadcastId: "fixtureCast" },
+      ] }] };
+      const zeroChannel = () => ({ max: 0, mean: 0, viewsTotal: 7, watchedTime: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }] });
+      const night = {
+        event: { id: "fixture-x-night", startedAt: 1800000000, destinations: [
+          { channelId: 1, externalUrl: "https://youtube.com/watch?v=fixtureVideo" },
+          { channelId: 2, externalUrl: "https://x.com/i/broadcasts/fixtureCast" },
+        ] },
+        viewers: { total: { max: 0, viewersPerMinute: [{ timestamp: 1800000000000, viewers: 0 }] }, byChannel: { 1: zeroChannel(), 2: zeroChannel() } },
+        messages: { total: { messagesTotal: 2 }, byChannel: { 1: { messagesTotal: 1 }, 2: { messagesTotal: 1 } } },
+      };
+      const before = liveBuild.projectLiveSession(night, nightRegistry, { ep: xBreak.fromEp - 1 });
+      const after = liveBuild.projectLiveSession(night, nightRegistry, { ep: xBreak.fromEp });
+      const rowOf = (projection, prefix) => (projection.byChannel || []).find((row) => row.label.startsWith(prefix));
+      const xBefore = rowOf(before, "X @"), ytBefore = rowOf(before, "YT "), xAfter = rowOf(after, "X @");
+      for (const field of ["peak", "avg", "views", "watchedMin"]) {
+        const explicit = field === "views" ? 7 : 0;
+        if (xBefore?.[field] !== (xBreak.unreported.fields.includes(field) ? null : explicit)) { bad++; fail(`live sessions: before the break an X fixture ${field} became ${xBefore?.[field]}`); }
+        if (xAfter?.[field] !== explicit) { bad++; fail(`live sessions: from the break on an X fixture ${field} did not keep its explicit value`); }
+        if (ytBefore?.[field] !== explicit) { bad++; fail(`live sessions: a YouTube fixture ${field} before the break did not keep its explicit value`); }
+      }
+      if (xBefore?.messages !== 1 || xBefore?.reason !== xBreak.unreported.reason) { bad++; fail("live sessions: an X fixture row before the break lost its chat or the break's reason"); }
+      if (!xAfter || !ytBefore || Object.hasOwn(xAfter, "reason") || Object.hasOwn(ytBefore, "reason")) { bad++; fail("live sessions: a fixture row the break does not touch is missing or carries a reason"); }
+      const minuteBefore = before.series?.[0]?.byChan || {}, minuteAfter = after.series?.[0]?.byChan || {};
+      if (xBreak.unreported.fields.includes("series") && (!Object.hasOwn(minuteBefore, xBefore?.label) || minuteBefore[xBefore.label] !== null)) { bad++; fail("live sessions: an X per-minute zero before the break did not become missing"); }
+      if (minuteAfter[xAfter?.label] !== 0 || minuteBefore[ytBefore?.label] !== 0) { bad++; fail("live sessions: a per-minute zero the break does not touch did not stay zero"); }
+    }
+  } catch (error) {
+    bad++; fail(`live sessions: unreported-field fixture threw — ${error.message}`);
+  }
+
   const buildSource = readFileSync(join(TOOL, "build-data.mjs"), "utf8");
   const liveSourceStart = buildSource.indexOf("function sourceNumber");
   const liveSourceEnd = buildSource.indexOf("export function liveChatText", liveSourceStart);
@@ -637,7 +715,7 @@ try {
       bad++; drift(`live sessions: ${surface} does not expose the stored watched-minute count in plain words`);
     }
   }
-  if (!bad) ok(`live sessions: ${matchesByEvent.size} episode(s) trace exactly to Restream; totals, timeline, channels, air-day history, and dashboard surfaces agree`);
+  if (!bad) ok(`live sessions: ${matchesByEvent.size} episode(s) trace exactly to Restream; totals, timeline, channels, air-day history, and dashboard surfaces agree; channel readings a known break declares unreported stay absent with its reason`);
 }
 
 // --- 4. freshness ---
@@ -3405,6 +3483,8 @@ try {
       catch (err) { bad++; fail(`agent: chapters store does not re-derive against the transcripts — ${err.message}`); }
       // known breaks reach every affected row (fail)
       for (const b of data.baselines?.knownBreaks || []) { for (const c of data.health?.checks || []) for (const m of c.measures || []) if (b.measures.includes(m.key) && m.value != null && !md.includes(`known reporting break: ${b.note}`)) { bad++; fail(`agent: the known break is not noted on the ${m.key} row`); } }
+      // a break's unreported destination readings reach the brief with their reason (fail)
+      for (const b of data.baselines?.knownBreaks || []) if (b.unreported && !md.includes(b.unreported.reason)) { bad++; fail(`agent: known break ${b.id} does not name its unreported live readings and their reason in agent.md`); }
       // links: every http(s) link in the brief is the site, a data link, or a transcript (fail)
       const known = new Set([...data.episodes.flatMap((e) => [...Object.values(e.links || {}), ...(e.announces || []).map((a) => a.url).filter(Boolean), ...(e.promotion?.newsletters || []).map((newsletter) => newsletter.url).filter(Boolean), ...(e.audience?.list || []).map(comment => comment.url).filter(Boolean)])]);
       for (const url of md.match(/https?:\/\/[^\s)\]|"]+/g) || []) {

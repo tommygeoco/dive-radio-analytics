@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generatedAt": "2026-10-12T14:07:26.767Z",
+ "generatedAt": "2026-10-12T14:52:51.691Z",
  "promotionUpdatedAt": "2026-10-12T14:00:33.475Z",
  "clocks": {
-  "data": "2026-10-12T14:07:26.767Z",
+  "data": "2026-10-12T14:52:51.691Z",
   "dataThrough": "2026-10-12T14:01:10.646Z",
   "healthRead": "2026-10-12",
   "healthDataThrough": "2026-10-12T14:02:24.065Z",
@@ -7884,7 +7884,17 @@
     "liveViewers",
     "minutesPerViewer"
    ],
-   "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only)."
+   "note": "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+   "unreported": {
+    "platform": "x",
+    "fields": [
+     "peak",
+     "avg",
+     "watchedMin",
+     "series"
+    ],
+    "reason": "Restream did not report X's live viewers or minutes watched before E5."
+   }
   }
  ],
  "definitions": [
@@ -7984,7 +7994,7 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-10-12T14:07:26.767Z",
+    "stamp": "2026-10-12T14:52:51.691Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
@@ -7999,7 +8009,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-10-12T14:07:26.767Z",
+    "stamp": "2026-10-12T14:52:51.691Z",
     "note": "4 current actions; saved model actions whose numbers changed are held back"
    },
    {
@@ -8023,7 +8033,6 @@
   "episodes[].audience.featured[]*",
   "episodes[].audience.sources*",
   "episodes[].metrics*",
-  "episodes[].live.byChannel[]*",
   "episodes[].comments.featured[]*",
   "episodes[].comments.enjoyThemes[]*",
   "episodes[].comments.complaintThemes[]*",
@@ -8150,8 +8159,6 @@
   "episodes[].live.durationMin",
   "episodes[].live.minutesPerViewer",
   "episodes[].live.holdRate",
-  "episodes[].live.byChannel",
-  "episodes[].live.byChannel[]",
   "episodes[].audience",
   "episodes[].audience.count",
   "episodes[].audience.positiveCount",
@@ -8297,6 +8304,10 @@
   {
    "path": "episodes[].live.series",
    "reason": "the per-minute live audience — summarised as peak, average, minutes per viewer, and hold rate"
+  },
+  {
+   "path": "episodes[].live.byChannel",
+   "reason": "the live session by destination — the session totals stand in; each destination's row is in data.json, with the reason where Restream never reported a reading (the known reporting breaks name it)"
   },
   {
    "path": "episodes[].watch.curve",

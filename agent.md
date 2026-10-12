@@ -1,6 +1,6 @@
 # Dive Radio — agent brief
 
-Built 2026-10-12T14:07:26.767Z · data through 2026-10-12 · health read 2026-10-12 (data through 2026-10-12) · chapters written 2026-10-10 · brief v1
+Built 2026-10-12T14:52:51.691Z · data through 2026-10-12 · health read 2026-10-12 (data through 2026-10-12) · chapters written 2026-10-10 · brief v1
 
 ## 1. How to read this
 
@@ -8,7 +8,7 @@ This is the current read of the Dive Radio live show as of its last data refresh
 
 Episode archive: 13 episodes in https://dive-radio-analytics.vercel.app/agent.json; 6 included here, 7 older episodes available in the archive. The archive retains every episode's chapters, links, promotion facts, and full digest. Sections 5, 6, 7's first-week rows, and 10's transcript links cover the episodes included here; show totals and comparisons still use the complete catalog.
 
-Three clocks: the data build (2026-10-12T14:07:26.767Z); the show-health read (2026-10-12, over data through 2026-10-12 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
+Three clocks: the data build (2026-10-12T14:52:51.691Z); the show-health read (2026-10-12, over data through 2026-10-12 — section 3's numbers are as of that read and can sit a day behind section 5's); the chapters (2026-10-10).
 
 Rules every number here follows:
 - Total views = YouTube views + resolved X broadcast plays. Native tweet and teaser-video plays are excluded. X reach is exposure and is never added in.
@@ -167,7 +167,7 @@ Direction of each durable measure as of the read (last five clean episodes; a wo
 Outlook as of the read: the last three clean first weeks ran 1,189–1,830 YouTube views (typical 1,751); where the next lands if it follows them, never a bound. First-week direction: too few for a word (Three episodes show the slope; a direction word needs four.). Cool-off of the newest episode at 3.8 days: — (promo-driven lift — shown, not scored).
 
 Known reporting breaks:
-- From E5 (2026-08-13-dive-radio-goodbye-blank-canvas-live-cal): Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only). — touches people who watched live, minutes each live viewer stayed.
+- From E5 (2026-08-13-dive-radio-goodbye-blank-canvas-live-cal): Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only). — touches people who watched live, minutes each live viewer stayed. Before it, the X destinations' own peak, average, minutes watched and per-minute viewers are absent in data.json, never zero: Restream did not report X's live viewers or minutes watched before E5.
 
 ## 4. What to do this week
 
@@ -502,6 +502,7 @@ Left out of this brief on purpose (in data.json instead):
 - episodes[].snapshots — the raw daily series by destination — summarised as totals, first week, launch, and pace; the full series is in data.json
 - episodes[].weekly — weekly roll-ups of the same series — in data.json
 - episodes[].live.series — the per-minute live audience — summarised as peak, average, minutes per viewer, and hold rate
+- episodes[].live.byChannel — the live session by destination — the session totals stand in; each destination's row is in data.json, with the reason where Restream never reported a reading (the known reporting breaks name it)
 - episodes[].watch.curve — the hundred-point watch curve — summarised by its shape and the moments
 - episodes[].audience.list — full classified YouTube, X-thread and live-chat messages; message totals and featured quotes reach the brief, complete text is in data.json
 - episodes[].comments.list — every classified comment — counts, themes, and featured quotes stand in; the list is in data.json
