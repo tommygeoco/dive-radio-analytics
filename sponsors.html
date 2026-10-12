@@ -1362,7 +1362,22 @@ function placeTip() {
   if (left + tw > maxRight) {
     left = Math.min(Math.max(card.left + 16, row.right - tw), maxRight - tw);
     const up = row.top - th - 8, down = row.bottom + 8, upOk = up >= minTop, downOk = down <= maxTop;
-    top = upOk && up >= plotTop ? up : downOk && down + th <= plotBottom ? down : upOk ? up : down;
+    // short of the full gap, the card can still clear the row's words and its bar: 4 px under the bar, over at most the
+    // row's empty foot, or 4 px above its title. Inside the chart's card first, then in sight anywhere
+    const bar = (el.querySelector(".bar__track") || el).getBoundingClientRect(), words = (el.querySelector(".bar__title") || el).getBoundingClientRect();
+    const inside = (t) => t >= plotTop && t + th <= plotBottom, under = bar.bottom + 4 <= maxTop, over = words.top - 4 - th >= minTop;
+    if (upOk && inside(up)) top = up;
+    else if (downOk && inside(down)) top = down;
+    else if (under && inside(maxTop)) top = maxTop;
+    else if (over && inside(minTop)) top = minTop;
+    else if (upOk || downOk) top = upOk ? up : down;
+    else if (under) top = maxTop;
+    else if (over) top = minTop;
+    else {
+      // nothing on screen clears the bar: the card covers the bar and its value whole (never a sliver of either), inside the chart's card
+      top = Math.min(Math.max(plotTop, bar.top - 8), plotBottom - th);
+      if (left > end.left - 8 && left < end.right) left = Math.max(card.left + 16, end.left - 8);
+    }
   } else {
     top = Math.min(Math.max(plotTop, top), plotBottom - th);
   }
@@ -1376,7 +1391,9 @@ document.addEventListener("pointerover", (ev) => { const el = ev.target.closest?
 document.addEventListener("pointerout", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el && ev.pointerType === "mouse" && !el.contains(ev.relatedTarget) && !tip.contains(ev.relatedTarget) && document.activeElement !== el) hideTip(); });
 // the card holds while the pointer is on it, and goes when the pointer leaves it for anything but its own bar
 tip.addEventListener("pointerleave", (ev) => { if (ev.pointerType === "mouse" && tipFor && !tipFor.contains(ev.relatedTarget) && document.activeElement !== tipFor && tipFor.dataset.pinned !== "true") hideTip(); });
-document.addEventListener("focusin", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el) showTip(el); else if (tipFor) hideTip(); });
+// keyboard focus opens the card; a tap or a click opens it on its own click, so the card never lands under the finger
+// before the click does
+document.addEventListener("focusin", (ev) => { const el = ev.target.closest?.("button.bar[data-tip]"); if (el) { if (el.matches(":focus-visible")) showTip(el); } else if (tipFor) hideTip(); });
 // a tap or a click pins the card; a second tap on the same row, a tap elsewhere or Escape closes it
 document.addEventListener("click", (ev) => {
   const el = ev.target.closest?.("button.bar[data-tip]");
