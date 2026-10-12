@@ -927,6 +927,8 @@ const short = (t) => curly(String(t || "").replace(/^Dive Radio:?\s*/i, ""));
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 // "Oct 8": the month is a word, the day a figure, and the two never part across a line
 const day = (iso) => { const [, m, d] = String(iso || "").slice(0, 10).split("-").map(Number); return m ? `${MONTHS[m - 1]}&nbsp;<span class="n">${d}</span>` : ""; };
+// the same date as plain words, for text alternatives
+const dayText = (iso) => { const [, m, d] = String(iso || "").slice(0, 10).split("-").map(Number); return m ? `${MONTHS[m - 1]} ${d}` : ""; };
 const clock = (stamp) => String(stamp || "").replace(/^00:/, "").replace(/^0(\d)/, "$1");
 // a typical show's length in words, to the half hour ("two hours")
 const hoursWord = (min) => { const h = Math.round(min / 30) / 2; return h === 1 ? "an hour" : h === 2 ? "two hours" : `${h} hours`; };
@@ -1056,7 +1058,10 @@ function renderReach() {
       const L = e.latest || {};
       if (!ok(L.totalViews)) return `<li><div class="bar"><span class="bar__ep n">E${e.ep}</span><span class="bar__title">${esc(short(e.title))}</span><span class="bar__track"><span class="bar__note">not counted yet</span></span></div></li>`;
       const parts = [ok(L.ytTotal) && `${fmt(L.ytTotal)} on YouTube`, ok(L.xPlays) && `${fmt(L.xPlays)} X broadcast plays`].filter(Boolean);
-      const label = `E${e.ep}, ${short(e.title)}: ${fmt(L.totalViews)} views${parts.length ? ` — ${parts.join(" and ")}` : ""}`;
+      // and the card's other lines, so a screen reader hears all the card shows: the premiere date and the X impressions
+      const when = dayText(e.premiere);
+      const more = [when && `premiered ${when}`, ok(L.xImpressions) && `seen on X ${fmt(L.xImpressions)} times, not counted as views`].filter(Boolean);
+      const label = `E${e.ep}, ${short(e.title)}: ${fmt(L.totalViews)} views${parts.length ? ` — ${parts.join(" and ")}` : ""}${more.length ? `; ${more.join("; ")}` : ""}`;
       const segs = `${ok(L.ytTotal) && L.ytTotal > 0 ? `<i class="yt" style="flex:${L.ytTotal} 1 0"></i>` : ""}${ok(L.xPlays) && L.xPlays > 0 ? `<i class="x" style="flex:${L.xPlays} 1 0"></i>` : ""}`;
       return `<li><button type="button" class="bar" data-tip="${i}" aria-label="${esc(label)}"><span class="bar__ep n">E${e.ep}</span><span class="bar__title">${esc(short(e.title))}</span><span class="bar__track" aria-hidden="true"><span class="bar__fill" style="width:calc((100% - 72px) * ${(L.totalViews / max).toFixed(4)})">${segs}</span><span class="bar__value n">${fmt(L.totalViews)}</span></span></button></li>`;
     }).join("");
