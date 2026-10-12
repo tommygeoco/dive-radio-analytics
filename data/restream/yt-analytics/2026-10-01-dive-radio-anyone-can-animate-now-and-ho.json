@@ -5,20 +5,20 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "bBF1yPACap0",
-      "pulledAt": "2026-10-11T19:16:08.591Z",
+      "pulledAt": "2026-10-12T14:01:45.635Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-11T19:16:08.591Z",
+        "pulledAt": "2026-10-12T14:01:45.635Z",
         "state": "ready"
       },
       "totals": {
         "views": 4095,
         "estimatedMinutesWatched": 20493,
-        "averageViewDuration": 773,
-        "averageViewPercentage": 10.95,
+        "averageViewDuration": 775,
+        "averageViewPercentage": 10.98,
         "subscribersGained": 1,
         "likes": 38,
         "comments": 3
@@ -26,17 +26,17 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 3360,
-          "estimatedMinutesWatched": 10193
+          "views": 3357,
+          "estimatedMinutesWatched": 10194
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 182,
+          "views": 181,
           "estimatedMinutesWatched": 1862
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
-          "views": 171,
+          "views": 170,
           "estimatedMinutesWatched": 2059
         },
         {
@@ -480,20 +480,20 @@
     },
     "yt:designertom": {
       "videoId": "bwJB9EBQNSQ",
-      "pulledAt": "2026-10-11T19:16:08.591Z",
+      "pulledAt": "2026-10-12T14:01:45.635Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-11T19:16:08.591Z",
+        "pulledAt": "2026-10-12T14:01:45.635Z",
         "state": "ready"
       },
       "totals": {
         "views": 2845,
         "estimatedMinutesWatched": 11114,
-        "averageViewDuration": 694,
-        "averageViewPercentage": 9.84,
+        "averageViewDuration": 695,
+        "averageViewPercentage": 9.85,
         "subscribersGained": 8,
         "likes": 34,
         "comments": 5
@@ -501,7 +501,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 2447,
+          "views": 2446,
           "estimatedMinutesWatched": 5697
         },
         {
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-11T19:16:08.591Z",
+    "checkedAt": "2026-10-12T14:01:45.635Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:bwJB9EBQNSQ|yt:joindiveclub:bBF1yPACap0",
@@ -967,7 +967,7 @@
         "result": "ready",
         "observed": {
           "views": 4095,
-          "averageViewPercentage": 10.95
+          "averageViewPercentage": 10.98
         }
       },
       {
@@ -976,7 +976,7 @@
         "result": "ready",
         "observed": {
           "views": 2845,
-          "averageViewPercentage": 9.84
+          "averageViewPercentage": 9.85
         }
       }
     ]
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
     "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-    "pulledAt": "2026-10-11T19:16:08.591Z",
+    "pulledAt": "2026-10-12T14:01:45.635Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-11T19:16:08.591Z"
+  "updatedAt": "2026-10-12T14:01:45.635Z"
 }

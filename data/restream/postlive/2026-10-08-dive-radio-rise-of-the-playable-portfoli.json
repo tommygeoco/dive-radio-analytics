@@ -1508,10 +1508,261 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-10-12T14:01:10.646Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "pulledAt": "2026-10-12T14:01:10.646Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2548,
+          "detail": {
+            "views": 2548,
+            "likes": 47,
+            "comments": 1,
+            "title": "Dive Radio: Rise of the Playable Portfolio",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "YI1Kx5U6fQc",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+                "objectId": "YI1Kx5U6fQc",
+                "pulledAt": "2026-10-12T14:01:10.646Z",
+                "state": "ready"
+              },
+              "views": 2548,
+              "detail": {
+                "views": 2548,
+                "likes": 47,
+                "comments": 1,
+                "title": "Dive Radio: Rise of the Playable Portfolio",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+            "objectId": "YI1Kx5U6fQc",
+            "pulledAt": "2026-10-12T14:01:10.646Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 1763,
+          "detail": {
+            "views": 1763,
+            "likes": 32,
+            "comments": 0,
+            "title": "Dive Radio: Rise of the Playable Portfolio",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "Z1MbnYXS8ls",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+                "objectId": "Z1MbnYXS8ls",
+                "pulledAt": "2026-10-12T14:01:10.646Z",
+                "state": "ready"
+              },
+              "views": 1763,
+              "detail": {
+                "views": 1763,
+                "likes": 32,
+                "comments": 0,
+                "title": "Dive Radio: Rise of the Playable Portfolio",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+            "objectId": "Z1MbnYXS8ls",
+            "pulledAt": "2026-10-12T14:01:10.646Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 4769,
+          "detail": {
+            "views": 4769,
+            "likes": 19,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 6,
+            "quotes": 0
+          },
+          "plays": 1247,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 277,
+          "sources": [
+            {
+              "objectId": "2108286408142295262",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+                "objectId": "2108286408142295262",
+                "pulledAt": "2026-10-12T14:01:10.646Z",
+                "state": "ready"
+              },
+              "views": 2390,
+              "detail": {
+                "views": 2390,
+                "likes": 12,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2108084299039678833",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+                "objectId": "2108084299039678833",
+                "pulledAt": "2026-10-12T14:01:10.646Z",
+                "state": "ready"
+              },
+              "views": 2379,
+              "detail": {
+                "views": 2379,
+                "likes": 7,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 3,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+            "objectId": "2108084299039678833,2108286408142295262",
+            "pulledAt": "2026-10-12T14:01:10.646Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+            "objectId": "1nxnRBdzrrmxO",
+            "pulledAt": "2026-10-12T14:01:10.646Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1nxnRBdzrrmxO",
+              "views": 1247,
+              "peakConcurrent": 277,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 3189,
+          "detail": {
+            "views": 3189,
+            "likes": 19,
+            "replies": 1,
+            "reposts": 0,
+            "bookmarks": 1,
+            "quotes": 2
+          },
+          "plays": 806,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 343,
+          "sources": [
+            {
+              "objectId": "2108286406892380351",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+                "objectId": "2108286406892380351",
+                "pulledAt": "2026-10-12T14:01:10.646Z",
+                "state": "ready"
+              },
+              "views": 869,
+              "detail": {
+                "views": 869,
+                "likes": 11,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 0,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2108084299048063412",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+                "objectId": "2108084299048063412",
+                "pulledAt": "2026-10-12T14:01:10.646Z",
+                "state": "ready"
+              },
+              "views": 2320,
+              "detail": {
+                "views": 2320,
+                "likes": 8,
+                "replies": 1,
+                "reposts": 0,
+                "bookmarks": 1,
+                "quotes": 2
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+            "objectId": "2108084299048063412,2108286406892380351",
+            "pulledAt": "2026-10-12T14:01:10.646Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+            "objectId": "1wxWjlLpnnAJQ",
+            "pulledAt": "2026-10-12T14:01:10.646Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1wxWjlLpnnAJQ",
+              "views": 806,
+              "peakConcurrent": 343,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-11T19:15:36.895Z",
+    "checkedAt": "2026-10-12T14:01:10.646Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -1519,7 +1770,7 @@
       "source": "postlive",
       "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
       "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-      "pulledAt": "2026-10-11T19:15:36.895Z",
+      "pulledAt": "2026-10-12T14:01:10.646Z",
       "state": "ready"
     }
   }
