@@ -734,6 +734,8 @@ button { font: inherit; color: inherit; }
   .page-absent { margin-top: var(--d-section); }
   .page-absent[hidden] { display: none; }
 </style>
+<!-- the numbers load before the first paint, so nothing moves when they land (they only set window.DIVE_DATA) -->
+<script src="data.js"></script>
 </head>
 <body>
 <a class="ss-skip" href="#main">Skip to content</a>
@@ -884,7 +886,6 @@ button { font: inherit; color: inherit; }
 </div>
 <div class="ss-x-chart-tip" id="tip" role="tooltip" hidden></div>
 
-<script src="data.js"></script>
 <script>
 /* Sponsors page — renders data.sponsor and the episode rows of data.js; it never
    recomputes a number the build stores (every total, typical, count, peak and link is
