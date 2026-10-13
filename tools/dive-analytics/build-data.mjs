@@ -30,6 +30,11 @@ import {
   ytViewsOf, ytEngagementOf, engagementPer1kOf, discoveryShareOf, liveDepthOf, unreportedLiveOf, KNOWN_BREAKS, NOTES,
 } from "./baselines.mjs";
 import { collectFacts, validateItem, allowedNumbers, TOP_N } from "./recommendations.mjs";
+// 2026-10-11: the sponsor page's projection (data.sponsor) — pure over the
+// assembled episodes plus the channel, call-in and clock-check stores
+import { sponsorView } from "./sponsor-view.mjs";
+import { parseTranscript } from "./transcripts.mjs";
+import { linkableUpload, momentUrl } from "./clock.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -545,13 +550,28 @@ export function computeAll({ now = Date.now() } = {}) {
   // from the registry targets; known reporting breaks from baselines
   let chapterStore = null;
   try { chapterStore = JSON.parse(readFileSync(join(ROOT, "data", "restream", "chapters.json"), "utf8")); } catch { /* not written yet */ }
+  // 2026-10-11: a chapter links into a YouTube upload when clock.mjs says the
+  // transcript runs on that upload's clock — the upload's own captions, or a
+  // stored clock check (clock-check.mjs) that matched the two within seconds
+  const transcripts = Object.fromEntries(dive.filter((e) => e.transcript).map((e) => [e.slug, parseTranscript(readFileSync(join(TRANSCRIPTS_DIR, `${e.slug}.txt`), "utf8"))]));
+  const clockChecks = readStore("clock-checks.json");
   for (const e of episodes) {
     const entry = chapterStore?.entries?.[e.slug] || null;
+    const upload = entry ? linkableUpload(e, transcripts[e.slug], clockChecks) : null;
     e.chapters = entry
-      ? { status: entry.status, clock: entry.clock, format: entry.format, writtenAt: entry.writtenAt, list: entry.chapters.map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote })) }
+      ? { status: entry.status, clock: entry.clock, format: entry.format, writtenAt: entry.writtenAt, upload: upload ? { key: upload.key, offsetSec: upload.offsetSec } : null, list: entry.chapters.map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote, url: momentUrl(upload, c.seconds) })) }
       : (e.transcript ? { status: "none", clock: null, format: null, writtenAt: null, list: [], reason: "chapters not written yet" } : { status: "none", clock: null, format: null, writtenAt: null, list: [], reason: "no transcript" });
   }
   baselines.knownBreaks = KNOWN_BREAKS.map((b) => ({ ...b }));
+  const sponsor = sponsorView({
+    episodes: dive,
+    channelStats: readStore("channel-stats.json"),
+    contributors: readStore("contributors.json"),
+    clockChecks,
+    commentChannels: youtubeCommentChannels(dive),
+    transcripts,
+    generatedAt: new Date(now).toISOString(),
+  });
   return {
     generatedAt: new Date(now).toISOString(),
     chaptersUpdatedAt: chapterStore?.updatedAt || null,
@@ -564,7 +584,28 @@ export function computeAll({ now = Date.now() } = {}) {
     commentSummary,
     health,
     baselines,
+    sponsor,
   };
+}
+
+// an optional store under data/restream, or null when it has not been written
+function readStore(name) {
+  const path = join(ROOT, "data", "restream", name);
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null;
+}
+
+// the YouTube channel each stored comment was left on (comments/<slug>.json),
+// so a quoted comment links to its original on that upload
+function youtubeCommentChannels(dive) {
+  const channels = {};
+  for (const e of dive) {
+    const path = join(COMMENTS_DIR, `${e.slug}.json`);
+    if (!existsSync(path)) continue;
+    for (const c of JSON.parse(readFileSync(path, "utf8")).comments || []) {
+      if (c.source === "yt" && typeof c.channel === "string") channels[c.id] = c.channel;
+    }
+  }
+  return channels;
 }
 
 // --- UX Tools newsletter promotion -----------------------------------------

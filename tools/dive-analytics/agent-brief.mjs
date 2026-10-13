@@ -24,6 +24,7 @@ export const CENSUS_DEPTH = 4;
 export const HEADINGS = Object.freeze([
   "## 1. How to read this", "## 2. The show at a glance", "## 3. Show health today", "## 4. What to do this week",
   "## 5. Episodes", "## 6. Episode by episode", "## 7. Trajectory", "## 8. Definitions", "## 9. Lineage and freshness", "## 10. Deeper data",
+  "## 11. For sponsors",
 ]);
 export const BUDGET = Object.freeze({ warnBytes: 80_000, failBytes: 100_000, excerptChars: 160, quotesPerEpisode: 2, chaptersPerEpisode: 10, fullSectionsForLast: 8 });
 
@@ -51,14 +52,14 @@ export const CHECK_WORDS = Object.freeze({
 export const MEASURE_WORDS = Object.freeze({
   firstWeek: "first-week slope", sameAge: "YouTube views at the newest episode's age", engagement: "likes and comments at the same age", watching: "share of the video watched",
   exposure: "times the X announces were seen at the same age", announceToPlay: "X announce impressions that became plays", discoveryShare: "YouTube views from search and suggested videos",
-  peak: "peak live viewers", average: "average live viewers", liveViewers: "people who watched live", minutesWatched: "minutes watched live, all together",
+  peak: "peak live viewers", average: "average live viewers", liveViewers: "live views (each channel's own count, added)", minutesWatched: "minutes watched live, all together",
   chattersPer100: "chatters per hundred at the peak", messagesPerHour: "chat messages an hour", minutesPerViewer: "minutes each live viewer stayed", holdRate: "share of the peak still watching at the end",
   subscribers: "subscribers per thousand views", balance: "share of feedback leaning positive", commentRate: "people commenting per thousand watches",
 });
 export const DIRECTION_WORDS = Object.freeze({
   firstWeek: "clean first weeks", engagementWeekOne: "first-week likes and comments", watching: "share of the video watched", exposureWeekOne: "first-week X reach",
   announceToPlay: "announce-to-play on X", discoveryShare: "YouTube views from search and suggested videos", liveAverage: "average live viewers", livePeak: "peak live viewers",
-  liveViewers: "people who watched live", minutesWatched: "minutes watched live", chattersPer100: "chatters per hundred at the peak", messagesPerHour: "chat messages an hour",
+  liveViewers: "live views (each channel's own count, added)", minutesWatched: "minutes watched live", chattersPer100: "chatters per hundred at the peak", messagesPerHour: "chat messages an hour",
   minutesPerViewer: "minutes each live viewer stayed", holdRate: "share of the peak still watching at the end", subscribers: "subscribers per thousand views",
 });
 const COMPARED = Object.freeze({ sameAge: "at the same age", mature: "as the earlier episodes stand now", ageFree: "as they stand (no age)" });
@@ -80,7 +81,9 @@ export const COVERS = Object.freeze([
   "episodes[].linkedin*", "episodes[].sourceStates.linkedin*",
   "episodes[].promotion*", "episodes[].audience.featured[]*", "episodes[].audience.sources*",
   "episodes[].metrics*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
-  "episodes[].health*", "episodes[].watchReport*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*",
+  "episodes[].health*", "episodes[].watchReport*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*", "episodes[].chapters.upload*",
+  // 2026-10-11: the sponsor page's projection, carried whole into agent.json and summarised in section 11
+  "sponsor*",
   "insights[]*", "insightsStale[]*", "showTrend.week1VelocityByEpisode[]*", "showTrend.paceRank*", "commentSummary.enjoyThemes[]*", "commentSummary.complaintThemes[]*",
   "health.checks[]*", "health.asOf*", "health.direction*", "health.outlook*", "health.pros[]*", "health.cons[]*", "health.drivers[]*", "health.checkSetChange*", "health.facts[]*", "health.trend*",
   "baselines.constants*", "baselines.pace.{slug}*", "baselines.launch.{slug}*", "baselines.newestVsPrevious*", "baselines.direction.votes[]*", "baselines.direction.measures[]*", "baselines.outlook.nextFirstWeek*", "baselines.outlook.coolOff*", "baselines.anomaly.{slug}*", "baselines.knownBreaks[]*",
@@ -159,9 +162,10 @@ function episodeDigest(e, data) {
   const flag = data.baselines?.anomaly?.[e.slug] || null;
   const yt = Object.entries(e.links || {}).filter(([k]) => k.startsWith("yt:"));
   const x = Object.entries(e.links || {}).filter(([k]) => k.startsWith("x:"));
-  const uploadUrl = e.chapters?.clock === "upload" ? (yt.find(([k]) => e.chapters?.uploadKey && k === e.chapters.uploadKey)?.[1] || yt[0]?.[1] || null) : null;
+  // a chapter's link is the one build-data stored (clock.mjs: the upload's own
+  // captions, or a clock check that matched transcript and upload)
   const chapters = e.chapters?.list?.length
-    ? { status: e.chapters.status, clock: e.chapters.clock, writtenAt: e.chapters.writtenAt, list: e.chapters.list.slice(0, BUDGET.chaptersPerEpisode).map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote, link: uploadUrl ? `${uploadUrl}&t=${c.seconds}s` : null })) }
+    ? { status: e.chapters.status, clock: e.chapters.clock, upload: e.chapters.upload ?? null, writtenAt: e.chapters.writtenAt, list: e.chapters.list.slice(0, BUDGET.chaptersPerEpisode).map((c) => ({ start: c.start, seconds: c.seconds, title: c.title, gist: c.gist, quote: c.quote, link: c.url ?? null })) }
     : absent(e.chapters?.reason || (e.transcript ? "chapters not written yet" : "no transcript"));
   const health = e.health && e.health.score != null
     ? { score: e.health.score, readOn: e.health.readCompleteOn ?? null, checks: e.health.checks ? Object.fromEntries(Object.entries(e.health.checks).map(([k, c]) => [k, { score: c.score ?? null, reason: c.reason ?? null }])) : null, rereadFrom: e.health.rederivedFrom ? { rules: e.health.rederivedFrom.algorithm, score: e.health.rederivedFrom.score ?? null } : null }
@@ -283,6 +287,7 @@ export function buildDigest(data) {
       newestVsPrevious: data.baselines?.newestVsPrevious || null,
     },
     knownBreaks: data.baselines?.knownBreaks || [],
+    sponsor: data.sponsor ?? absent("the sponsor view has not been built"),
     definitions: DEFINITIONS,
     lineage: lineageDigest(data),
     covers: COVERS, leavesOut: LEAVES_OUT,
@@ -301,7 +306,7 @@ export const DEFINITIONS = Object.freeze([
   ["first week vs launch reading", "a first week needs a clean seven-day record and feeds the growth slope; a launch reading is the same-age standing available from the first day and can exist where a first week cannot (an episode tracked late)."],
   ["episode health", "a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline. A scoring-rules change re-reads every finished score from its saved inputs and records the score it had under the earlier rules."],
   ["compared live chat", "chat counted on YouTube and X only, in every live comparison (show health's participation, episode health's live check): LinkedIn reports its chat but never its viewers, and not every episode streamed there. Session totals include LinkedIn chat; comparisons never do. When LinkedIn's count for an episode is unknown, its compared chat is absent."],
-  ["live-reporting change", "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its count of people who watched live includes X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check — compares only episodes on the same side of E5; chat compares across it."],
+  ["live-reporting change", "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its live views (each channel's own count, added) include X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check, the sponsor page's typical show and its records — compares only episodes on the same side of E5; chat compares across it."],
   ["show health", "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."],
   ["direction", "each durable measure's change per episode (Theil–Sen slope) over the last five clean episodes; a word needs four; building above plus five percent, softening below minus five; the overall word is single only when every check agrees, otherwise mixed."],
   ["outlook", "where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days."],
@@ -489,7 +494,7 @@ function renderMarkdownWindow(digest, episodes, manifest) {
   const renderChapters = (e, compact = false) => {
     if (abs(e.chapters)) p(`Chapters: — (${e.chapters.reason}).`);
     else {
-      p(`Chapters (model-written from the transcript, ${e.chapters.status}; timestamps on ${e.chapters.clock === "upload" ? "the YouTube upload's clock — links jump to the moment" : "the live recording's clock — a few minutes off the upload, so no links"}):`);
+      p(`Chapters (model-written from the transcript, ${e.chapters.status}; timestamps on ${e.chapters.clock === "upload" ? "the YouTube upload's clock — links jump to the moment" : e.chapters.upload ? "the live recording's clock, matched to the YouTube upload's own captions — links jump to the moment" : "the live recording's clock, not yet matched to a YouTube upload — no links"}):`);
       for (const ch of e.chapters.list) p(`${chapterMarkdownPrefix(ch)}${compact ? "" : `: ${esc(ch.gist)}`}${ch.link ? ` (${ch.link})` : ""}`);
     }
   };
@@ -533,7 +538,7 @@ function renderMarkdownWindow(digest, episodes, manifest) {
     p(`Standing: ${standing.join("; ")}.`);
     p(`Views: ${fmtNum(e.views.youtube)} YouTube${e.views.youtubeMarker === "old" ? ` (old reading${e.views.youtubeAsOf ? ` from ${day(e.views.youtubeAsOf)}` : ""})` : e.views.youtubeMarker === "missing" ? " (missing)" : ""} + ${fmtNum(e.views.xPlays)} X plays${e.views.xPlaysMarker ? ` (${e.views.xPlaysMarker})` : ""} = ${fmtNum(e.views.total)}${e.views.reason ? ` (${esc(e.views.reason)})` : ""}; X reach ${fmtNum(e.views.xReach)} (announce posts)${abs(e.views.promoReach) ? "" : `; promo posts ${fmtNum(e.views.promoReach.posts)}, ${e.views.promoReach.impressions == null ? "impressions not split for older readings" : `${fmtNum(e.views.promoReach.impressions)} impressions, kept out of reach and views`}`}; likes and comments per thousand YouTube views ${e.engagementPer1k == null ? "—" : fmtNum(e.engagementPer1k, 1)}.`);
     p(abs(e.watching) ? `Watching: — (${e.watching.reason}).` : `Watching (YouTube analytics, ${day(e.watching.updatedAt)}): ${pct(e.watching.sharePercent)} of the video watched on average, ${e.watching.avgDurationSec == null ? "—" : minutes(e.watching.avgDurationSec)} per view, ${fmtNum(e.watching.minutesWatched)} minutes watched in all; views came from ${e.watching.traffic.map((t) => `${t.source} ${pct(t.share)}`).join(", ")}; subscribers per thousand views ${e.subsPer1k == null ? "—" : fmtNum(e.subsPer1k, 1)}; discovery share ${e.discoveryShare == null ? "—" : pct(e.discoveryShare)}.`);
-    p(abs(e.live) ? `Live session: — (${e.live.reason}).` : `Live session: peak ${fmtNum(e.live.peak)}, average ${fmtNum(e.live.average)}, ${fmtNum(e.live.uniqueViewers)} people watched live for ${fmtNum(e.live.minutesWatched)} minutes in all (${e.live.minutesPerViewer == null ? "—" : fmtNum(e.live.minutesPerViewer, 1)} minutes each; ${e.live.holdRate == null ? "hold rate —" : `${pct(e.live.holdRate, 0)} of the peak still watching at the end`}); ${fmtNum(e.live.chatMessages)} chat messages from ${fmtNum(e.live.chatters)} people over ${fmtNum(e.live.durationMin)} minutes.${(digest.knownBreaks || []).some((b) => e.ep >= b.fromEp) ? " Note the live-reporting break in section 3." : ""}`);
+    p(abs(e.live) ? `Live session: — (${e.live.reason}).` : `Live session: peak ${fmtNum(e.live.peak)}, average ${fmtNum(e.live.average)}, ${fmtNum(e.live.uniqueViewers)} live views (each channel's own count, added), ${fmtNum(e.live.minutesWatched)} minutes watched live in all (${e.live.minutesPerViewer == null ? "—" : fmtNum(e.live.minutesPerViewer, 1)} minutes each; ${e.live.holdRate == null ? "hold rate —" : `${pct(e.live.holdRate, 0)} of the peak still watching at the end`}); ${fmtNum(e.live.chatMessages)} chat messages from ${fmtNum(e.live.chatters)} people over ${fmtNum(e.live.durationMin)} minutes.${(digest.knownBreaks || []).some((b) => e.ep >= b.fromEp) ? " Note the live-reporting break in section 3." : ""}`);
     renderChapters(e);
     if (e.watching.curveUnavailableReason) p(e.watching.curveUnavailableReason);
     if (e.moments.length) {
@@ -607,7 +612,38 @@ function renderMarkdownWindow(digest, episodes, manifest) {
   p(`Left out of this brief on purpose (in data.json instead):`);
   for (const x of digest.leavesOut) p(`- ${x.path} — ${x.reason}`);
   p();
+  // 11
+  renderSponsor(p, digest.sponsor, abs);
   return L.join("\n");
+}
+
+// Section 11: the sponsor page's numbers, from data.sponsor. Counts and links
+// only — the verbatim excerpts and quotes stay in agent.json, so a word said
+// on air never becomes the brief's own words.
+function renderSponsor(p, sp, abs) {
+  p(HEADINGS[10]);
+  p();
+  if (abs(sp)) { p(`— (${sp.reason}).`); p(); return; }
+  p(`The numbers the sponsor page shows (${SITE}/sponsors.html), from this build, as of ${sp.asOf}. The same rules hold: views are YouTube views plus resolved X broadcast plays, reach is kept apart, live viewers are never added across shows, and an absent value carries its reason. Everything below is in agent.json under sponsor.`);
+  p();
+  const v = sp.views;
+  p(v.total != null ? `- Views so far: ${fmtNum(v.total)} across ${v.episodes} episodes (${fmtNum(v.perEpisode)} an episode on average so far) = ${fmtNum(v.youtube)} YouTube + ${fmtNum(v.xPlays)} X plays. X reach ${fmtNum(v.xReach)} (exposure, kept apart).` : `- Views so far: — (${v.reason}).`);
+  const w = sp.watch;
+  p(w.hours != null ? `- Watched on YouTube: ${fmtNum(w.hours)} hours across ${w.episodes} episode${w.episodes === 1 ? "" : "s"}${w.missing?.length ? ` (no watch report yet: ${w.missing.map((n) => `E${n}`).join(", ")})` : ""}.` : `- Watched on YouTube: — (${w.reason}).`);
+  const a = sp.audience;
+  p(a.total != null ? `- Subscribers and followers on the four channels the show streams to: ${fmtNum(a.total)} on ${a.date} — ${a.channels.map((c) => `${c.label} on ${c.platform} ${fmtNum(c.count)} ${c.unit}`).join(", ")}. A sum of channel counts, not distinct people.` : `- Subscribers and followers: — (${a.reason}).`);
+  const l = sp.live;
+  const t = l.typical;
+  p(l.shows ? `- Live: ${l.shows} shows, ${fmtNum(l.hours)} hours watched live on YouTube and X${l.xFromEp ? ` (X from E${l.xFromEp}, when Restream began reporting its live viewers)` : ""}, ${fmtNum(l.chat)} chat messages.${l.linkedInShows ? ` ${l.linkedInShows} of the shows also went to LinkedIn, whose live viewers are not reported, so they are in no viewer count; its chat is in the chat messages.` : ""}${t ? ` A typical show (the middle of the ${t.shows} shows before the newest, E${t.fromEp}–E${t.toEp}): ${fmtNum(t.peak, 1)} watching at once at the peak, ${fmtNum(t.average, 1)} on average, ${fmtNum(t.people, 1)} live views (each channel's own count, added: one person on two channels counts twice), ${pct(t.holdRate)} of the peak still watching in the last ten minutes, ${fmtNum(t.chattersPer100, 1)} different people writing in the chat for every hundred at the peak, ${fmtNum(t.messagesPerHour, 1)} chat messages an hour. At the middle of the show: ${fmtNum(t.atMiddle, 1)} watching live, and ${fmtNum(t.recordingAtMiddle, 1)} of every hundred YouTube views still watching at the middle of the recording.` : ""}${l.best?.peak ? ` Highest peak ${l.best.peak.since ? `since E${l.best.peak.since}, the first show whose peak counts X's viewers` : "so far"}: ${fmtNum(l.best.peak.value)} (E${l.best.peak.ep}).` : ""}` : `- Live: — (${l.reason}).`);
+  const c = sp.callIns;
+  p(c.total != null ? `- Call-ins aired: ${fmtNum(c.total)} from ${fmtNum(c.people)} people across E${c.fromEp}–E${c.toEp} (${fmtNum(c.nominations)} of them Designer of the Week nominations), from the published episode notes; every name is under sponsor.callIns.list.${c.teamsNamed?.length ? ` Teams the call-ins were about (named in their words as where the work happens, not where a caller works): ${c.teamsNamed.join(", ")}.` : ""}` : `- Call-ins aired: — (${c.reason}).`);
+  const f = sp.feedback;
+  p(`- Audience feedback: ${fmtNum(f.positive)} positive of ${fmtNum(f.messages)} messages with a clear lean (YouTube comments, X threads, live chat); ${f.quotes.length} named public quotes under sponsor.feedback.quotes, the most-liked first, one per person, people on the show last and marked.`);
+  const b = sp.brands;
+  p(b.list.length ? `- Brands named on air (as said, whole words, in ${b.episodes} transcripts): ${b.list.map((x) => `${x.name}${x.partner ? " (partner)" : ""} ${fmtNum(x.mentions)} in ${x.episodes}`).join("; ")}.` : `- Brands named on air: — (${b.reason || "none yet"}).`);
+  for (const x of sp.examples || []) p(x.moment ? `- ${x.package}, an aired example (${x.format.toLowerCase()}, from the owners' records): ${esc(x.label)}, E${x.ep} ${x.moment.at}${x.moment.url ? ` (${x.moment.url})` : ""}.` : `- ${x.package}, an aired example: — (${x.reason}).`);
+  p(`- Partner moments on air, as the transcript has them (named as a partner, or a segment that names it — about it when its title does — not a record of what was paid for); each is under sponsor.partners[].moments with its excerpt, the live audience that minute where the transcript runs on the stream's clock, and a link where the transcript is matched to the YouTube upload (${sp.links.exact} of ${sp.links.episodes} episodes): ${sp.partners.map((x) => `${x.name} named as a partner ${x.named} time${x.named === 1 ? "" : "s"}, in ${x.segments} segment${x.segments === 1 ? "" : "s"} (${x.about} about it), ${x.moments.filter((m) => m.url).length} linked`).join("; ")}.`);
+  p();
 }
 
 export function renderLlms(digest) {
@@ -629,6 +665,7 @@ export function renderLlms(digest) {
   L.push(``);
   L.push(`## The dashboard`);
   L.push(`- [Dive Radio dashboard](${SITE}): the human view; "About this data" holds the methodology`);
+  L.push(`- [For sponsors](${SITE}/sponsors.html): the show for brands — the audience, the live room, call-ins, brands named on air, partner moments, and the packages`);
   L.push(``);
   return L.join("\n");
 }

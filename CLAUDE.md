@@ -60,10 +60,13 @@ L0 sources     YouTube Data API · YouTube Analytics API (owner OAuth, both chan
                X API (xurl bearer) · Restream API · yt-dlp captions · owner-supplied transcripts
      │
 L1 capture     scripts/restream/*.mjs  →  data/restream/**        (records of what platforms reported)
+               owner-run imports: contributors-import.mjs → contributors.json (aired call-ins, from the published episode notes)
+                                  clock-check.mjs → clock-checks.json (each upload's clock matched to its transcript)
      │
 L2 synthesis   tools/dive-analytics/baselines.mjs   (pure: windows, reading rule, outlier test, typicals — imported by all three below)
  (deterministic) tools/dive-analytics/ratings.mjs   → episode-ratings.json   (episode health health21-v4, frozen, rebuildable, re-derived only by declared steps)
                tools/dive-analytics/build-data.mjs  → data.json / data.js   (EVERY number the page shows, incl. data.baselines)
+               tools/dive-analytics/sponsor-view.mjs (pure, imported by build-data → data.sponsor, the Sponsors page's numbers)
                tools/dive-analytics/watch-moments.mjs (pure functions, imported by build-data)
      │
 L3 model       scripts/restream/comments-classify.mjs → comments-classified.json
@@ -77,7 +80,7 @@ L4 gate        tools/dive-analytics/audit/validate.mjs  (exit 0 or no publish)
                scripts/restream/postlive-publish.sh     (commit → push → Vercel → live parity check)
                tools/dive-analytics/alerts.mjs          (diff vs last run → Slack queue)
      │
-L5 page        index.html reads data.js only. It never fetches, never recomputes a score,
+L5 page        index.html, agents.html and sponsors.html read data.js only. They never fetch, never recompute a score,
                and never decides what is missing — it renders what the store says.
                Agents read agent.md / agent.json / llms.txt (PRD v12) — the same object, digested by build-data.
 ```
@@ -91,7 +94,7 @@ Rules that follow from the shape:
 
 ## The daily chain
 
-Runs on the owner machine from the dedicated checkout `/Users/bones/Library/Application Support/Dive Radio Analytics/publisher-main`. The OpenClaw automation `restream-postlive-snapshot` enters at 07:00 America/Phoenix through `node tools/dive-analytics/run-daily.mjs --primary`; it never runs from an active development tree. A 06:50 job ingests Restream into the same checkout. The disabled 06:00 rehearsal stays disabled. `recover-publish.mjs` checks production at 08:15 and 12:15. A real morning failure uses the reserved recovery immediately; when production is current and only the newest YouTube watch report is pending, 08:15 saves that attempt and 12:15 reruns the complete chain once. A Monday-noon job reads reports from the same checkout. The repo is both source and served site; publish means exact scoped commit + `HEAD:main` push + Vercel production deploy + exact proof of nine core files plus every declared transcript.
+Runs on the owner machine from the dedicated checkout `/Users/bones/Library/Application Support/Dive Radio Analytics/publisher-main`. The OpenClaw automation `restream-postlive-snapshot` enters at 07:00 America/Phoenix through `node tools/dive-analytics/run-daily.mjs --primary`; it never runs from an active development tree. A 06:50 job ingests Restream into the same checkout. The disabled 06:00 rehearsal stays disabled. `recover-publish.mjs` checks production at 08:15 and 12:15. A real morning failure uses the reserved recovery immediately; when production is current and only the newest YouTube watch report is pending, 08:15 saves that attempt and 12:15 reruns the complete chain once. A Monday-noon job reads reports from the same checkout. The repo is both source and served site; publish means exact scoped commit + `HEAD:main` push + Vercel production deploy + exact proof of eleven core files plus every declared transcript.
 
 ```
 postlive-discover → audience-archive → transcripts-pull → newsletter-promotion → postlive-track snapshot --all → yt-analytics-pull
@@ -183,8 +186,11 @@ to certify missing production proof or to erase a failed capture.
 - **glance / click / About** — the three layers: a sentence the owners read in seconds; the detail behind it on click/hover; the methodology in "About this data".
 - **swing / bands / state** (PRD v10 §11, rule 23) — a measure's swing is how much it normally moves between the peers that formed its typical (median absolute deviation as a % of the typical); a check's bands are half its measures' median swing either side of 50, clamped to ±5…±15 points; its state word (healthy / steady / fragile / waiting) follows its bands. The writer stamps all three; nothing on the page applies a fixed cut-off to a check that carries bands.
 - **agent brief / census** (PRD v12, rules 27–29) — `agent.md` / `agent.json` / `llms.txt` are written by build-data from the same object as `data.json` (pure, locale-free, `agent-brief.mjs`); `COVERS` and `LEAVES_OUT` list every data path, `censusPaths()` is the one path grammar (`[]`, `{slug}`, `{dest}`, depth ≤ 4), and a path in neither list is drift. A new surface or piece of intelligence must reach the brief in the same commit. Absences are `{value: null, reason}`; the brief states its three clocks (data, health read, chapters).
-- **chapters** — topics with timestamps per episode, model-written once per transcript (`chapters.mjs`, store keyed by slug with the transcript sha, superseded on change; an incomplete list is retried on later mornings, at most three times, and replaced only by one that grounds more) and grounded: the timestamp exists, the quote is found within 90 seconds, chapters are three minutes apart. Deep links only when the transcript runs on the YouTube upload's clock (captions); Restream transcripts run on the live-stream clock.
+- **chapters** — topics with timestamps per episode, model-written once per transcript (`chapters.mjs`, store keyed by slug with the transcript sha, superseded on change; an incomplete list is retried on later mornings, at most three times, and replaced only by one that grounds more) and grounded: the timestamp exists, the quote is found within 90 seconds, chapters are three minutes apart. A timestamp links into a YouTube upload only when `clock.mjs` says the transcript runs on that upload's clock: the transcript is the upload's own captions, or a held clock check (`clock-checks.json`, ≥100 matched phrases, spread ≤ 2 s) gives the offset. Every surface — the dashboard's chapters, the brief, the Sponsors page — links through the stored `url`, never its own arithmetic.
 - **superseded / rederivedFrom** — on the day a formula ships, the day's older-formula read is moved byte-identical under `store.superseded[]` and the new read names it; the validator accepts exactly that shape. `chain-heal.mjs` merges the store by day when a stash pop left it conflicted. Episode health (`episode-ratings.json`) changes frozen bytes only through a step declared in `ratings.mjs` `REDERIVES` (first: `health21-v2 → v3`, LinkedIn chat out of the live check; then `health21-v3 → v4`, live peers only on the entry's side of the E5 reporting break): the step rebuilds only the changed check from the entry's own window and frozen verdicts plus an append-only store, each entry names its earlier rules and score, and `assertFrozenRatingsUnchanged` / validator 1g replay it from `FROZEN_BASELINE` and HEAD. A from-scratch recompute of frozen entries throws.
+- **call-in** (2026-10-11) — a video the community sent in that aired (a Designer of the Week nomination is one), as listed in the episode's published notes above "Didn't make the show"; `contributors.json` keeps names and words, never links. E1–E3 have no list: absent, not zero.
+- **matched clock / clock check** (2026-10-11) — the offset between a Restream transcript and a YouTube upload, measured by `clock-check.mjs` from the upload's own captions; measured gaps are seconds, not minutes. Only a held check (or caption transcript) lets a timestamp link.
+- **Sponsors page** (2026-10-11) — `sponsors.html`, sent to brands: renders `data.sponsor` (views as the brief's show totals, the typical show and its middle through `baselines.windowFor`, each live figure and record from the shows on the newest's side of a known reporting break (`LIVE_KEYS`), the newest show's stored curve, channel counts, call-ins, brands named on air, partner moments, one aired example per package, named quotes linked to their originals). A partner moment is what the transcript says (named as a partner; a segment about it when the chapter's title names it, else named in a segment), never a claim of what was paid for; excerpts are whole sentences of the transcript's words less `cleanSpeech`. Packages and prices are the owners' terms as static copy (`PACKAGES`); `CONTACT` is the one booking address, shown and copyable. Validator 1s re-derives every number, excerpt and link; `sponsor-conversion-critic` (`.claude/agents/`) judges it as a buyer, alongside the design-system critic.
 - **compared live chat** — `baselines.liveChatOf`: session chat without LinkedIn's row, absent when LinkedIn's count is unknown. Show health's participation and episode health's live check both read it; session totals shown on the page still include LinkedIn chat.
 - **known reporting break** (PRD v12 §3.1) — `baselines.KNOWN_BREAKS`, the one place a platform's change in what it reports is declared. Restream began counting X's live viewers at E5, so before it a session's peak, average and minutes watched are YouTube's alone. That break's `measures` name every live measure built on viewer counts (show health's turnout and participation measures and their direction series, episode health's live check through `peak`), and their peers and direction points stay on one side of it — absent with a reason when that leaves fewer than three. Chat compares across. Validator 3a locks the list to the raw events; owner decision 2026-10-12 (`AUDIT-2026-10-12-live-break-split.md`).
 
@@ -252,7 +258,7 @@ Inflight review still works through the MCP tools above, without the widget.
 
 ## Design system (2026-10-06)
 
-Both pages are built on the Smart Sharps design system — the skill at
+All three pages are built on the Smart Sharps design system — the skill at
 `~/.claude/skills/smart-sharps-design-system/` (tokens, components, data-viz
 extension, `scripts/ds-audit.mjs` linter, `scripts/shoot.mjs` census). Since
 2026-10-08 they run on **3.1.1**: the system's `tokens.css` is inlined verbatim
@@ -267,9 +273,9 @@ typeface: Inter for words and figures; every figure is `.n` (the system's
 `.ss-num`: `--font-num` with tabular figures) and every rule that sets
 `--font-num` also sets tabular figures (1q2 checks it). To move to a later
 version: re-vendor `ds-tokens.css`, `ds-components.css` and `audit/ds-audit.mjs`, re-inline the
-tokens, fonts and recipe runs in both pages, and record the move in an `audit/DESIGN-*.md` ledger
+tokens, fonts and recipe runs in every page, and record the move in an `audit/DESIGN-*.md` ledger
 (see `DESIGN-2026-10-08.md`). A page change must keep
-`node ~/.claude/skills/smart-sharps-design-system/scripts/ds-audit.mjs index.html agents.html`
+`node ~/.claude/skills/smart-sharps-design-system/scripts/ds-audit.mjs index.html agents.html sponsors.html`
 at zero findings and pass the `design-system-critic` agent at 10/10 on every
 dimension before it ships. The page uses the system's app shell inside
 the one file: a rail on desktop and a floating tab bar on phones over four

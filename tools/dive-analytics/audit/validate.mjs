@@ -769,7 +769,7 @@ try {
   const tableEnd = pageSource.indexOf("function buildEmptyNote", tableStart);
   const tableSource = tableStart >= 0 && tableEnd > tableStart ? pageSource.slice(tableStart, tableEnd) : "";
   for (const [surface, source] of [["summary", heroSource], ["episode panel", panelSource], ["live table", tableSource]]) {
-    if (!source.includes("e.live.liveViews") || !/live viewers|watched live|people watched live/i.test(source)) {
+    if (!source.includes("e.live.liveViews") || !/live views|live viewers|watched live/i.test(source)) {
       bad++; drift(`live sessions: ${surface} does not expose the stored live-viewer count in plain words`);
     }
     if (!source.includes("e.live.watchedMin") || !/minutes watched|watched minutes|watch time/i.test(source)) {
@@ -2396,11 +2396,15 @@ try {
   const about = html.match(/function buildAbout\(\) \{[\s\S]*?innerHTML = `([\s\S]*?)`;\n\}/)?.[1];
   if (!about) { bad++; drift("plain words: About copy could not be found in index.html"); }
   else readerStrings.push(`About: ${about.replace(/<[^>]+>/g, " ")}`);
+  {
+    const sponsorPage = readFileSync(join(ROOT, "sponsors.html"), "utf8").replace(/<style\b[\s\S]*?<\/style>/gi, " ");
+    readerStrings.push(`Sponsors page: ${sponsorPage.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ")}`);
+  }
   for (const line of readerStrings) {
     const hit = line.match(BANNED);
     if (hit) { bad++; fail(`plain words: reader-facing copy contains "${hit[0]}" — ${line.slice(0, 180)}`); }
   }
-  if (!bad) ok("plain words: insights, Slack, and About avoid the banned dashboard jargon");
+  if (!bad) ok("plain words: insights, Slack, About, and the Sponsors page avoid the banned dashboard jargon");
 }
 
 // --- 1j. trend and strip honesty gates (critic follow-up) ---
@@ -2953,14 +2957,14 @@ try {
 }
 
 // --- 1q2. design system (owner directive 2026-10-06) ---
-// Both pages are built on the Smart Sharps design system: every color, type
+// Every page is built on the Smart Sharps design system: every color, type
 // size, spacing, radius, font, weight, and case comes from its tokens, checked
 // by the system's own linter (vendored at audit/ds-audit.mjs). A page change
 // that adds a raw color or an off-scale value is drift until it uses a token.
 {
   let bad = 0;
   const { auditSource } = await import(join(TOOL, "audit", "ds-audit.mjs"));
-  for (const page of ["index.html", "agents.html"]) {
+  for (const page of ["index.html", "agents.html", "sponsors.html"]) {
     const { findings } = auditSource(readFileSync(join(ROOT, page), "utf8"), page);
     for (const f of findings.slice(0, 5)) { bad++; drift(`design system: ${page}:${f.line} [${f.rule}] ${f.detail}`); }
     if (findings.length > 5) { bad++; drift(`design system: ${page} has ${findings.length - 5} more off-system value(s)`); }
@@ -2977,7 +2981,7 @@ try {
   // vendored copy, so a recipe can't drift from the system inside a page.
   const dsComponents = readFileSync(join(TOOL, "audit", "ds-components.css"), "utf8");
   const dsTokens = readFileSync(join(TOOL, "audit", "ds-tokens.css"), "utf8");
-  for (const page of ["index.html", "agents.html"]) {
+  for (const page of ["index.html", "agents.html", "sponsors.html"]) {
     const src = readFileSync(join(ROOT, page), "utf8");
     const recipes = src.match(/\/\* ===== components\.css 3\.1\.1:[^*]*\*\/\n([\s\S]*?)\n  \/\* ===== end of the system recipes ===== \*\//);
     if (!recipes) { bad++; drift(`design system: ${page} has no marked block of system recipes (components.css 3.1.1)`); }
@@ -3036,7 +3040,7 @@ try {
   if (/inflight\.co\/widget/.test(html) || /inflight\.co\/widget/.test(readFileSync(join(ROOT, "agents.html"), "utf8"))) {
     bad++; drift("design system: the Inflight widget is back — removed 2026-10-06; it was a third-party runtime script (rule 10)");
   }
-  if (!bad) ok("design system: both pages inline the 3.1.1 tokens verbatim, set Inter with tabular figures, use only design-system tokens; charts read them at runtime; no third-party runtime script");
+  if (!bad) ok("design system: all three pages inline the 3.1.1 tokens verbatim, set Inter with tabular figures, use only design-system tokens; charts read them at runtime; no third-party runtime script");
 }
 
 // LinkedIn identity, evidence and absence contract, independently rebuilt from source records.
@@ -3127,6 +3131,7 @@ try {
     ["mirror-transcripts.test.mjs", "isolated transcript mirror"],
     ["source-receipts.test.mjs", "source receipt and missing-X"],
     ["ingest-restream.test.mjs", "Restream ingest state and delayed analytics"],
+    ["sponsor-view.test.mjs", "sponsor view, call-ins and clock checks"],
   ]) {
     try {
       execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
@@ -3556,7 +3561,7 @@ try {
         if (e.chapters?.list?.length) {
           if ((d.chapters?.list || []).length !== e.chapters.list.length) { bad++; fail(`agent: E${e.ep} chapters in the brief (${(d.chapters?.list || []).length}) differ from the store (${e.chapters.list.length})`); }
           for (const c of e.chapters.list) if (inMarkdown && !section.includes(AB.chapterMarkdownPrefix(c))) { bad++; fail(`agent: E${e.ep} chapter at ${c.start} is not in agent.md`); }
-          if (inMarkdown && e.chapters.clock !== "upload" && /&t=\d+s/.test(section)) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link on the live recording's clock`); }
+          if (inMarkdown && !e.chapters.upload && /&t=\d+s/.test(section)) { bad++; fail(`agent: E${e.ep} carries a YouTube deep link though its transcript is not matched to an upload's clock`); }
         }
       }
       // chapters store grounds against the transcripts (fail)
@@ -3598,6 +3603,223 @@ try {
       if (!bad) ok(`agent: brief reproduces, ${(data.episodes || []).length} episodes, ${ranked.length} actions, ${(data.episodes || []).filter((e) => e.chapters?.list?.length).length} episode(s) with grounded chapters, ${bytes} bytes, every data.json path covered or left out with a reason`);
     }
   } catch (err) { bad++; fail(`agent: block threw — ${err.message}`); }
+}
+
+// --- 1s. sponsor page (2026-10-11): data.sponsor re-derives from the stores; its two new stores hold; the page only formats ---
+// fail: every number, count, quote, excerpt and timestamp link the sponsor page shows is recomputed here from
+// data.json's episodes and the stores (channel-stats, contributors, clock-checks, transcripts) and compared with
+// what shipped; the two new stores are checked against the registry. drift: the page's own source (it reads data.js
+// and nothing else, keeps one booking address, computes no typical).
+{
+  let bad = 0;
+  try {
+    const SV = await import(join(TOOL, "sponsor-view.mjs"));
+    const CL = await import(join(TOOL, "clock.mjs"));
+    const TR = await import(join(TOOL, "transcripts.mjs"));
+    const B = await import(join(TOOL, "baselines.mjs"));
+    const AB = await import(join(TOOL, "agent-brief.mjs"));
+    const readStore = (name) => (existsSync(join(ROOT, "data", "restream", name)) ? JSON.parse(readFileSync(join(ROOT, "data", "restream", name), "utf8")) : null);
+    const registry = JSON.parse(readFileSync(join(ROOT, "data", "restream", "postlive-registry.json"), "utf8"));
+    const sp = data.sponsor;
+    const dive = (data.episodes || []).filter((e) => e.show === "dive-radio").sort((a, b) => a.ep - b.ep);
+    const bySlug = new Map(dive.map((e) => [e.slug, e]));
+    const parsed = new Map(dive.filter((e) => e.transcript).map((e) => [e.slug, TR.readTranscript(ROOT, e.slug)]));
+    const checks = readStore("clock-checks.json");
+    const contributors = readStore("contributors.json");
+    const channels = readStore("channel-stats.json");
+    if (!sp) { bad++; fail("sponsor: data.json carries no sponsor projection"); }
+    else {
+      // views are the brief's show totals, field by field — one definition, never a second sum
+      const totals = AB.buildDigest(data).show.totals;
+      if (sp.views.total !== totals.views || sp.views.youtube !== totals.youtube || sp.views.xPlays !== totals.xPlays || sp.views.xReach !== totals.xReach) {
+        bad++; fail(`sponsor: views (${sp.views.total}) do not re-derive as the brief's show totals (${totals.views})`);
+      }
+      if (sp.views.total != null && sp.views.perEpisode !== Math.round(sp.views.total / dive.length)) { bad++; fail("sponsor: views an episode on average do not re-derive"); }
+      const watched = dive.filter((e) => Number.isFinite(e.watch?.minutesWatched));
+      if ((sp.watch.hours ?? null) !== (watched.length ? Math.round(watched.reduce((a, e) => a + e.watch.minutesWatched, 0) / 60) : null)) {
+        bad++; fail("sponsor: hours watched on YouTube do not re-derive from the episodes' watch minutes");
+      }
+      // a typical show: the middle of the eight shows before the newest, recomputed through baselines; each
+      // figure reads only the shows on the newest's side of every break its declared key names (chat crosses)
+      const lived = dive.filter((e) => Number.isFinite(e.live?.peak) && e.live.peak > 0);
+      const window = lived.length ? B.windowFor(lived[lived.length - 1], lived, { side: "before" }) : [];
+      const middle = (values) => { const v = values.filter(Number.isFinite); return v.length >= B.MIN_PEERS ? Math.round(B.trueMedian(v) * 10) / 10 : null; };
+      const newest = lived[lived.length - 1];
+      const sideOf = (field) => (e) => B.sameSideOfBreaks(SV.LIVE_KEYS[field], newest, e);
+      const typical = sp.live?.typical;
+      const liveFigure = { peak: (e) => e.live.peak, average: (e) => e.live.avg, people: (e) => e.live.liveViews, minutesWatched: (e) => e.live.watchedMin, holdRate: (e) => e.live.holdRate,
+        chattersPer100: (e) => B.liveRatesOf(e)?.chattersPer100, messagesPerHour: (e) => B.liveRatesOf(e)?.messagesPerHour, durationMin: (e) => e.live.durationMin };
+      const offTypical = Object.keys(liveFigure).filter((field) => typical?.[field] !== middle(window.filter(sideOf(field)).map(liveFigure[field])));
+      if (window.length && (!typical || offTypical.length || typical.fromEp !== window[0].ep || typical.toEp !== window[window.length - 1].ep)) {
+        bad++; fail(`sponsor: the typical show does not re-derive as the middle of the eight shows before the newest${offTypical.length ? ` (${offTypical.join(", ")})` : ""}`);
+      }
+      // the records: the highest among the shows on the newest's side of the break, naming the show they run from
+      for (const field of ["peak", "people"]) {
+        const rows = lived.filter(sideOf(field));
+        const top = rows.reduce((t, e) => (Number.isFinite(liveFigure[field](e)) && (!t || liveFigure[field](e) > t.value) ? { value: liveFigure[field](e), ep: e.ep } : t), null);
+        const from = B.breaksFor(SV.LIVE_KEYS[field]).filter((b) => newest.ep >= b.fromEp).map((b) => b.fromEp);
+        const want = top && { ...top, since: rows.length < lived.length && from.length ? Math.max(...from) : null };
+        if (lived.length && JSON.stringify(sp.live.best?.[field] ?? null) !== JSON.stringify(want)) { bad++; fail(`sponsor: the highest ${field === "peak" ? "peak" : "live views"} does not re-derive from the shows on the newest's side of the live-reporting break`); }
+      }
+      if (lived.length && sp.live.hours !== Math.round(lived.filter((e) => Number.isFinite(e.live.watchedMin)).reduce((a, e) => a + e.live.watchedMin, 0) / 60)) {
+        bad++; fail("sponsor: hours watched live do not re-derive from the live sessions");
+      }
+      // where the shows went out: the sessions that carry a LinkedIn row; X counted from the known reporting break
+      const xBreak = B.breaksFor("liveViewers")[0];
+      if (lived.length && (sp.live.linkedInShows !== lived.filter((e) => (e.live.byChannel || []).some((row) => row.label === "LinkedIn")).length
+        || sp.live.xFromEp !== (xBreak && lived.some((e) => e.ep < xBreak.fromEp) ? xBreak.fromEp : null))) {
+        bad++; fail("sponsor: where the shows went out (shows on LinkedIn, X's first reported show) does not re-derive from the live sessions");
+      }
+      // the middle of a show: its middle minute live; the recording's 50% point once a week old
+      const midLive = (e) => { const p = Number.isFinite(e.live?.durationMin) ? (e.live.series || []).find((x) => x.m === Math.floor(e.live.durationMin / 2)) : null; return Number.isFinite(p?.v) ? p.v : null; };
+      const midRec = (e) => { if (!((e.ageDays ?? 0) >= SV.MIDDLE_MIN_AGE_DAYS)) return null; const p = (e.watch?.curve || []).find((x) => Math.abs(x.at - 0.5) < 1e-9); return Number.isFinite(p?.watching) ? Math.round(p.watching * 1000) / 10 : null; };
+      if (window.length && (typical.atMiddle !== middle(window.filter(sideOf("atMiddle")).map(midLive)) || typical.recordingAtMiddle !== middle(window.map(midRec)))) {
+        bad++; fail("sponsor: the middle of a typical show does not re-derive (live minute, recording's 50% point)");
+      }
+      // the newest show's curve says what its session stored: peak, the first minute the series reaches it, length
+      if (newest) {
+        const want = newest.live;
+        const series = (want.series || []).map((x) => ({ m: x.m, v: Number.isFinite(x.v) ? x.v : null }));
+        const at = series.find((x) => x.v === want.peak);
+        const got = sp.live.latest || {};
+        if (got.ep !== newest.ep || got.peak !== want.peak || got.peakMinute !== (at ? at.m : null) || got.durationMin !== (Number.isFinite(want.durationMin) ? want.durationMin : null)
+          || got.holdRate !== (Number.isFinite(want.holdRate) ? want.holdRate : null) || got.chatMessages !== (Number.isFinite(want.chatMessages) ? want.chatMessages : null) || JSON.stringify(got.series) !== JSON.stringify(series)) {
+          bad++; fail(`sponsor: the newest show's curve (E${got.ep}) is not its stored session — peak ${got.peak} at minute ${got.peakMinute}, ${got.durationMin} min`);
+        }
+      }
+      // subscribers and followers: channel-stats' current readings, as stored
+      for (const c of sp.audience.channels || []) {
+        const row = channels?.current?.[c.key];
+        const want = row?.reading?.state === "ready" && Number.isSafeInteger(row[c.unit === "subscribers" ? "subscribers" : "followers"]) ? row[c.unit === "subscribers" ? "subscribers" : "followers"] : null;
+        if (want !== c.count) { bad++; fail(`sponsor: ${c.key} count (${c.count}) is not the stored reading (${want})`); }
+      }
+      const known = (sp.audience.channels || []).filter((c) => c.count != null);
+      if (sp.audience.total !== (known.length === 4 ? known.reduce((a, c) => a + c.count, 0) : null)) { bad++; fail("sponsor: subscribers and followers total does not re-derive (a missing channel must leave it absent)"); }
+      // call-ins: the imported store's aired entries, counted
+      const aired = Object.entries(contributors?.episodes || {}).filter(([slug]) => bySlug.has(slug));
+      const callIns = aired.reduce((a, [, entry]) => a + (entry.callIns || []).length, 0);
+      if ((sp.callIns.total ?? 0) !== callIns || (aired.length === 0) !== (sp.callIns.total == null)) { bad++; fail(`sponsor: call-ins (${sp.callIns.total}) do not re-derive from contributors.json (${callIns})`); }
+      if (sp.callIns.total != null) {
+        const said = aired.flatMap(([, entry]) => entry.callIns || []);
+        if (sp.callIns.people !== new Set(said.map((c) => c.who.toLowerCase())).size) { bad++; fail("sponsor: the number of people who called in does not re-derive"); }
+        // a team is named only where an aired call-in's own words put the work there
+        for (const name of sp.callIns.teamsNamed || []) {
+          const x = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const re = new RegExp(`\\bat ${x}\\b|\\b${x}['’]s\\b[^,.;]{0,40}\\bteams?\\b|\\bwhat ${x} looks for\\b|\\bhow ${x} hires\\b`);
+          if (!said.some((c) => re.test(c.about || ""))) { bad++; fail(`sponsor: ${name} as a named team does not re-derive from any aired call-in's own words`); }
+        }
+        if (JSON.stringify(sp.callIns.teamsNamed) !== JSON.stringify(SV.teamsNamed(sp.callIns.list))) { bad++; fail("sponsor: the teams the call-ins were about do not re-derive"); }
+      }
+      // brands: an independent count of every listed brand over the transcripts (case-sensitive whole words)
+      const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      for (const b of sp.brands.list || []) {
+        const re = new RegExp(`(?<![\\w@#])${esc(b.name).replace(/ /g, "\\s+")}(?![\\w])`, "g");
+        let mentions = 0, episodes = 0;
+        for (const [, t] of parsed) { const n = t.segments.reduce((a, s) => a + (s.text.match(re) || []).length, 0); mentions += n; if (n) episodes++; }
+        if (mentions !== b.mentions || episodes !== b.episodes) { bad++; fail(`sponsor: ${b.name} mentions (${b.mentions} in ${b.episodes}) do not re-count from the transcripts (${mentions} in ${episodes})`); }
+        if (b.mentions < SV.BRAND_MIN_MENTIONS) { bad++; fail(`sponsor: ${b.name} is listed under the mention floor`); }
+      }
+      // moments: every excerpt grounds in its transcript at its time (the transcript's words, less only what
+      // cleanSpeech names); every link is the clock rule's; a live count is the stream's own minute
+      const uploadOf = (e) => CL.linkableUpload(e, parsed.get(e.slug), checks);
+      // words only: quote marks and apostrophes drop out (the page sets ‘ ’ where a transcript has " and ')
+      const flat = (x) => TR.normalize(x).replace(/'/g, "").replace(/\s+/g, " ").trim();
+      const liveMinute = (e, t, seconds) => { if (t?.clock !== "stream") return null; const p = (e.live?.series || []).find((x) => x.m === Math.floor(seconds / 60)); return Number.isFinite(p?.v) ? p.v : null; };
+      const examples = (sp.examples || []).filter((x) => x.moment).map((x) => ({ ...x.moment, kind: "example", ep: x.ep, slug: x.slug, who: x.partner }));
+      const moments = [...(sp.brands.list || []).flatMap((b) => b.moments.map((m) => ({ ...m, kind: "mention", who: b.name }))), ...(sp.partners || []).flatMap((p) => p.moments.map((m) => ({ ...m, who: p.name }))), ...examples];
+      for (const m of moments) {
+        const e = bySlug.get(m.slug);
+        const t = parsed.get(m.slug);
+        if (!e) { bad++; fail(`sponsor: a ${m.who} moment names an episode that is not in data.json (${m.slug})`); continue; }
+        if (m.kind === "segment" || m.kind === "inSegment") {
+          if (!(e.chapters?.list || []).some((c) => c.start === m.at && c.title === m.title && c.gist === m.text)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} is not one of the episode's chapters`); }
+          // a segment is about a partner only when its title names it
+          const titled = new RegExp(`(?<![\\w@#])${m.who}(?![\\w])`).test(m.title || "");
+          if ((m.kind === "segment") !== titled) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} is labelled ${m.kind} but its title ${titled ? "names" : "does not name"} ${m.who}`); }
+        } else if (!t || !flat(SV.cleanSpeech(TR.windowText(t, m.at, 60))).includes(flat(m.text.replace(/…/g, " ")))) {
+          bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} excerpt is not the transcript's words at that time`);
+        }
+        if (m.kind !== "mention" && m.kind !== "segment" && m.kind !== "inSegment" && !new RegExp(`(?<![\\w@#])${m.who}(?![\\w])`).test(m.text)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} excerpt does not name ${m.who}`); }
+        const want = t ? CL.momentUrl(uploadOf(e), m.seconds) : null;
+        if (m.url !== want) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} link is not the clock rule's (${m.url} vs ${want})`); }
+        if (m.url && !Object.values(e.links || {}).includes(m.url.replace(/&t=\d+s$/, ""))) { bad++; fail(`sponsor: ${m.who} E${m.ep} links into an upload the registry does not hold`); }
+        if (m.kind !== "mention" && (m.liveAt ?? null) !== liveMinute(e, t, m.seconds)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} live count (${m.liveAt}) is not the stream's minute`); }
+      }
+      // partner counts and kinds; each package's example sits near the owners' recorded time
+      for (const p of sp.partners || []) {
+        if (p.moments.some((m) => !["named", "segment", "inSegment"].includes(m.kind)) || p.named !== p.moments.filter((m) => m.kind === "named").length
+          || p.segments !== p.moments.filter((m) => m.kind === "segment" || m.kind === "inSegment").length || p.about !== p.moments.filter((m) => m.kind === "segment").length) {
+          bad++; fail(`sponsor: ${p.name}'s counts by kind do not re-derive from its moments (named as a partner / a segment about it / named in a segment)`);
+        }
+      }
+      for (const x of SV.EXAMPLES) {
+        const got = (sp.examples || []).find((y) => y.package === x.package);
+        if (!got || got.partner !== x.partner || got.ep !== x.ep || got.label !== x.label) { bad++; fail(`sponsor: the ${x.package} example is not the owners' recorded one`); continue; }
+        if (got.moment && !(got.moment.seconds >= x.near - SV.EXAMPLE_WINDOW_SEC.before - SV.EXCERPT_BEFORE_SEC && got.moment.seconds <= x.near + SV.EXAMPLE_WINDOW_SEC.after)) { bad++; fail(`sponsor: the ${x.package} example (${got.moment.at}) is not near the recorded time`); }
+        if (!got.moment && !got.reason) { bad++; fail(`sponsor: the ${x.package} example is absent without a reason`); }
+      }
+      // chapters link by the same rule (index.html and the brief render the stored url)
+      for (const e of dive) {
+        const up = e.chapters?.list?.length ? uploadOf(e) : null;
+        for (const c of e.chapters?.list || []) if (c.url !== CL.momentUrl(up, c.seconds)) { bad++; fail(`sponsor: E${e.ep} chapter ${c.start} link is not the clock rule's`); break; }
+        if (e.chapters?.list?.length && JSON.stringify(e.chapters.upload ?? null) !== JSON.stringify(up ? { key: up.key, offsetSec: up.offsetSec } : null)) { bad++; fail(`sponsor: E${e.ep} chapters name the wrong matched upload`); }
+      }
+      // quotes: each is a stored positive row, shown as stored (less addressees and an attached link); its link is
+      // the original (an X post by id; a YouTube comment on the upload its channel names); people on the show rank last
+      const channelOf = new Map();
+      for (const e of dive) {
+        const path = join(ROOT, "data", "restream", "comments", `${e.slug}.json`);
+        if (existsSync(path)) for (const c of JSON.parse(readFileSync(path, "utf8")).comments || []) if (c.source === "yt") channelOf.set(c.id, c.channel);
+      }
+      const callers = SV.callerIndex(sp.callIns?.list);
+      let seenOnShow = false;
+      for (const q of sp.feedback.quotes || []) {
+        const row = (bySlug.get(q.slug)?.audience?.list || []).find((r) => r.id === q.id);
+        if (!row || row.sentiment !== "positive" || row.author !== q.author || SV.quoteText(row.text) !== q.text) { bad++; fail(`sponsor: quote ${q.id} is not a stored positive comment shown verbatim`); continue; }
+        const link = row.source === "x" ? `https://x.com/i/status/${row.id.slice(2)}` : bySlug.get(q.slug)?.links?.[channelOf.get(row.id)] ? `${bySlug.get(q.slug).links[channelOf.get(row.id)]}&lc=${row.id.slice(3)}` : null;
+        if (q.url !== link) { bad++; fail(`sponsor: quote ${q.id} does not link to its original (${q.url} vs ${link})`); }
+        const caller = SV.calledIn(row.author, callers);
+        if (q.calledIn !== (caller ? caller.ep : null) || q.onShow !== (!!caller || SV.ON_SHOW.test(row.text))) { bad++; fail(`sponsor: quote ${q.id} is not marked as from someone on the show`); }
+        if (seenOnShow && !q.onShow) { bad++; fail("sponsor: a quote from someone on the show ranks before the audience's"); }
+        seenOnShow ||= q.onShow;
+      }
+    }
+    // the clock-checks store: each check names the registered upload of its episode
+    const targets = new Map(registry.shows.map((s) => [s.slug, new Map((s.targets || []).filter((x) => x.kind === "youtube" && x.videoId).map((x) => [`yt:${x.account}`, x.videoId]))]));
+    for (const [slug, entry] of Object.entries(checks?.entries || {})) {
+      for (const [key, c] of Object.entries(entry.uploads || {})) {
+        if (targets.get(slug)?.get(key) !== c.videoId) { bad++; fail(`clock-checks: ${slug} ${key} is not the registered upload (${c.videoId})`); }
+        if (!/^[0-9a-f]{64}$/.test(c.transcriptSha256 || "") || !["ready", "pending", "failed"].includes(c.state)) { bad++; fail(`clock-checks: ${slug} ${key} has no transcript fingerprint or state`); }
+        if (c.state === "ready" && !(Number.isFinite(c.offsetSec) && Number.isInteger(c.anchors) && c.anchors > 0 && Number.isFinite(c.spreadSec) && c.spreadSec >= 0)) { bad++; fail(`clock-checks: ${slug} ${key} is ready without an offset, phrases and spread`); }
+        if (c.state !== "ready" && (c.offsetSec != null || !c.reason)) { bad++; fail(`clock-checks: ${slug} ${key} is ${c.state} but carries an offset or no reason`); }
+      }
+    }
+    // the contributors store: aired episodes in registry order, verbatim call-ins, no links
+    const order = registry.shows.filter((s) => (/dive.?radio/i.test(s.title || "") || /dive-radio/.test(s.slug))).sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+    for (const [slug, entry] of Object.entries(contributors?.episodes || {})) {
+      const at = order.findIndex((s) => s.slug === slug);
+      if (at < 0 || entry.ep !== at + 1 || entry.airDate !== order[at].date) { bad++; fail(`contributors: ${slug} is not the registry's E${entry.ep} aired ${entry.airDate}`); }
+      for (const c of entry.callIns || []) {
+        if (!["submission", "nomination"].includes(c.kind) || typeof c.who !== "string" || !c.who.trim() || (c.kind === "nomination" && !c.nominee)) { bad++; fail(`contributors: ${slug} has a malformed call-in`); break; }
+      }
+    }
+    if (contributors && /https?:\/\//.test(JSON.stringify(contributors.episodes))) { bad++; fail("contributors: the store carries a link — call-ins keep names and words only"); }
+    // the page: renders data.sponsor, fetches nothing, keeps one booking address, computes no typical
+    const page = readFileSync(join(ROOT, "sponsors.html"), "utf8");
+    if (/\bfetch\(|XMLHttpRequest|new WebSocket|<script[^>]*\bsrc="(?!data\.js")/.test(page) || !/<script src="data\.js"><\/script>/.test(page)) { bad++; drift("sponsor page: it must read data.js and fetch nothing else at runtime"); }
+    if (!/const S = DATA && DATA\.sponsor \? DATA\.sponsor : null;/.test(page)) { bad++; drift("sponsor page: it must render data.sponsor"); }
+    if ((page.match(/const CONTACT = "[^"\s]+@[^"\s]+";/g) || []).length !== 1) { bad++; drift("sponsor page: one booking address constant (CONTACT)"); }
+    if (/trueMedian|windowFor|\bmedian\b/i.test(page)) { bad++; drift("sponsor page: a typical is computed in the page — it must come from data.sponsor"); }
+    if (/\.live\??\.series|\.indexOf\(\s*max\s*\)/.test(page)) { bad++; drift("sponsor page: the live curve reads data.sponsor.live.latest (its stored peak, peak minute and length), never an episode's series"); }
+    if (!/<a class="ss-btn ss-btn--secondary" href="\.\/">See the full analytics<\/a>/.test(page)) { bad++; drift("sponsor page: it must link to the full analytics"); }
+    // the page says every episode goes out live on four channels at once: every live session carries the four YouTube and X rows
+    const four = (data.dests || []).filter((d) => d.platform === "yt" || d.platform === "x").map((d) => d.label);
+    const sessions = (data.episodes || []).filter((e) => e.show === "dive-radio" && Number.isFinite(e.live?.peak) && e.live.peak > 0);
+    if (/live on four channels at once/.test(page) && (four.length !== 4 || sessions.some((e) => !four.every((label) => (e.live.byChannel || []).some((row) => row.label === label))))) {
+      bad++; drift("sponsor page: it says every episode goes out live on four channels at once, and a live session lacks one of the four");
+    }
+  } catch (err) { bad++; fail(`sponsor: block threw — ${err.message}`); }
+  if (!bad) ok(`sponsor: data.sponsor re-derives (views, watch, live, channels, ${data.sponsor?.callIns?.total ?? 0} call-ins, ${(data.sponsor?.brands?.list || []).length} brands, every excerpt and link); clock-checks and contributors hold; the page only formats`);
 }
 
 // --- 1x/1y/1z (PRD v9 W26): small-n on data, no trend words over episode health, stored notes only ---

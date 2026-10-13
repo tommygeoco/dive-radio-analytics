@@ -58,7 +58,7 @@ export function verifyCheckout(root, { run = checkedCommand, log = console.log, 
     else invoke(['--check', file]);
   }
   let inlineScripts = 0;
-  for (const file of ['index.html', 'agents.html']) {
+  for (const file of ['index.html', 'agents.html', 'sponsors.html']) {
     if (!existsSync(join(root, file))) continue;
     for (const match of readFileSync(join(root, file), 'utf8').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
       if (/\bsrc=|application\/ld\+json|application\/json/i.test(match[1])) continue;

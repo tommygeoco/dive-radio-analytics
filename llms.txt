@@ -27,3 +27,4 @@
 
 ## The dashboard
 - [Dive Radio dashboard](https://dive-radio-analytics.vercel.app): the human view; "About this data" holds the methodology
+- [For sponsors](https://dive-radio-analytics.vercel.app/sponsors.html): the show for brands — the audience, the live room, call-ins, brands named on air, partner moments, and the packages

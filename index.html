@@ -1921,7 +1921,7 @@ const CHECK_LABELS = {
   growth: ["Growth", "How new episodes start", "Growth"],
   audienceQuality: ["Audience quality", "Watch time and reactions", "Audience"],
   reachEfficiency: ["Reach", "X announces being seen and played", "Reach"],
-  livePull: ["Live turnout", "Peak, average, people, and minutes watched live", "Live turnout"],
+  livePull: ["Live turnout", "Peak, average, live views, and minutes watched live", "Live turnout"],
   participation: ["Participation", "Chatters and chat pace", "Participation"],
   conversion: ["Subscribers", "Subscriber pull", "Subscribers"],
   sentiment: ["Goodwill", "How feedback reads", "Goodwill"],
@@ -1933,21 +1933,21 @@ const DIRECTION_LABELS = {
   chattersPer100: "Chatters per hundred at the peak", messagesPerHour: "Chat messages an hour",
   engagementWeekOne: "First-week likes and comments", exposureWeekOne: "First-week X reach",
   announceToPlay: "Announce-to-play on X", watching: "Share of the video watched", subscribers: "Subscribers per thousand views",
-  liveViewers: "People who watched live", minutesWatched: "Minutes watched live", minutesPerViewer: "Minutes each live viewer stayed",
+  liveViewers: "Live views", minutesWatched: "Minutes watched live", minutesPerViewer: "Minutes each live viewer stayed",
   holdRate: "Share of the peak still watching at the end", discoveryShare: "YouTube views from search and suggestions",
 };
 const cap = (w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : "");
 /* PRD v12 W43: the episode's chapters — model-written from its transcript,
-   every timestamp and quote grounded; a link only when the transcript runs on
-   the YouTube upload's clock (captions), never on the live recording's */
+   every timestamp and quote grounded; a timestamp links only through the url
+   build-data stored (clock.mjs: the upload's own captions, or a clock check
+   that matched the transcript to the upload) — the page never builds one */
 function chaptersHTML(e) {
   const ch = e.chapters;
   if (!ch || !ch.list || !ch.list.length) return "";
-  const yt = Object.entries(e.links || {}).find(([k]) => k.startsWith("yt:"))?.[1] || null;
-  const linkable = ch.clock === "upload" && yt;
+  const linkable = ch.list.some((c) => c.url);
   const clock = (t) => String(t).replace(/^00:/, "").replace(/^0(\d)/, "$1");
-  const rows = ch.list.map((c, i) => `<li class="chrow"><span class="cht">${linkable ? `<a href="${esc(yt)}&t=${c.seconds}s" target="_blank" rel="noopener" aria-describedby="ch-${esc(e.slug)}-${i}"><span class="sr">Play from </span>${esc(clock(c.start))}<span class="sr"> (opens YouTube in a new tab)</span></a>` : esc(clock(c.start))}</span><span class="chb"><b id="ch-${esc(e.slug)}-${i}">${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></li>`).join("");
-  const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording, which starts a few minutes before the upload — read them as approximate.";
+  const rows = ch.list.map((c, i) => `<li class="chrow"><span class="cht">${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener" aria-describedby="ch-${esc(e.slug)}-${i}"><span class="sr">Play from </span>${esc(clock(c.start))}<span class="sr"> (opens YouTube in a new tab)</span></a>` : esc(clock(c.start))}</span><span class="chb"><b id="ch-${esc(e.slug)}-${i}">${esc(c.title)}</b><span class="chg">${esc(c.gist)}</span></span></li>`).join("");
+  const note = linkable ? "Timestamps follow the YouTube upload — each one opens the moment." : "Timestamps follow the live recording and haven’t been matched to the upload yet — read them as approximate.";
   return `<div class="chapters"><h3 class="kicker">Chapters <span class="kh">${ch.status === "complete" ? "model-written, every timestamp checked against the transcript" : "incomplete"}</span></h3><ol class="chlist" role="list">${rows}</ol><div class="mut chnote">${note}</div></div>`;
 }
 function launchNote(l) {
@@ -2015,7 +2015,7 @@ function buildHealth() {
     chat: "Live chat messages",
     chattersPer100: "Chatters per hundred people at the peak",
     messagesPerHour: "Chat messages an hour",
-    liveViewers: "People who watched live",
+    liveViewers: "Live views",
     minutesWatched: "Minutes watched live, all together",
     minutesPerViewer: "Minutes each live viewer stayed",
     holdRate: "Share of the peak still watching in the last ten minutes",
@@ -2336,7 +2336,7 @@ function buildHero() {
         : `<div class="metricline"><div class="big"><span data-fold-number>${nfmt(e.live.avg)}</span> <small>average live viewers</small></div></div>`;
       const liveFacts = [];
       if (e.live.peak != null) liveFacts.push(`<span class="g" data-tip="peak live viewers" tabindex="0">${ICONS.users}<b>${nfmt(e.live.peak)}</b><span class="gl">peak</span></span>`);
-      if (e.live.liveViews != null) liveFacts.push(`<span class="g" data-tip="people who watched live" tabindex="0">${ICONS.eye}<b>${nfmt(e.live.liveViews)}</b><span class="gl">watched live</span></span>`);
+      if (e.live.liveViews != null) liveFacts.push(`<span class="g" data-tip="live views, each channel’s own count, added" tabindex="0">${ICONS.eye}<b>${nfmt(e.live.liveViews)}</b><span class="gl">live views</span></span>`);
       if (e.live.watchedMin != null) liveFacts.push(`<span class="g" data-tip="minutes watched live" tabindex="0">${ICONS.clock}<b>${nfmt(e.live.watchedMin)}</b><span class="gl">min watched</span></span>`);
       if (liveFacts.length) html += `<div class="gline">${liveFacts.join("")}</div>`;
     } else {
@@ -2806,7 +2806,7 @@ function buildPanel() {
     const liveCells = [
       ["Peak viewers", e.live.peak, ""],
       ["Average viewers", e.live.avg, ""],
-      ["People who watched live", e.live.liveViews, ""],
+      ["Live views", e.live.liveViews, ""],
       ["Minutes watched live", e.live.watchedMin, "min"],
       ["Chat messages", e.live.chatMessages, ""],
       ["People who chatted", e.live.chatters, ""],
@@ -4365,7 +4365,7 @@ function buildTable() {
   // a labelled scroll region a keyboard can scroll, with real column and row headers (steward F17)
   let html = `<div class="tscroll" tabindex="0" role="region" aria-label="${esc(chartTitle()[0])}, as a table"><table><thead><tr>`;
   if (kind === "live") {
-    html += `<th scope="col">Episode</th><th scope="col">Peak</th><th scope="col">Average</th><th scope="col">Watched live</th><th scope="col">Minutes watched</th><th scope="col">Chat messages</th><th scope="col">Chatters</th><th scope="col">Length</th></tr></thead><tbody>`;
+    html += `<th scope="col">Episode</th><th scope="col">Peak</th><th scope="col">Average</th><th scope="col">Live views</th><th scope="col">Minutes watched</th><th scope="col">Chat messages</th><th scope="col">Chatters</th><th scope="col">Length</th></tr></thead><tbody>`;
     for (const e of [...EPS].reverse()) {
       html += `<tr><th scope="row" class="t"><span class="tid">E${e.ep}</span><span class="ttl"> · ${esc(short(e.title))}</span></th>`;
       html += e.live
@@ -4542,7 +4542,7 @@ function buildAbout() {
   <h2 id="ab-show">Show health</h2>
   <p><b>Show health</b> is saved once a day and reads the newest episode at its age against this show’s usual levels — a today read, not a running total over any fixed stretch of days. The score and checks come from the day’s checked facts. The headline and evidence use model wording when available; when it is unavailable, validated fixed wording uses the same facts for that day’s read. If neither wording path passes validation, the previous dated read remains and the refresh reports a failure.</p>
   <p>Seven checks feed it (growth, audience quality, reach, live turnout, participation, subscribers, goodwill); each check is a pill whose dot shows its state — amber fragile, gray steady, green healthy, hollow when the check has no reading yet — with the fragile ones first, and only the checks that are honestly available on the saved date count. A promo-driven lift — a launch or an X reach more than double what a typical episode gets at the same age — is shown with its numbers but never scored, so promotion can neither flatter nor punish the number. A check that has to read an older episode because the newest is too young is carried at half weight and says which episode it read.</p>
-  <p>Live turnout reads the whole live session — peak and average viewers, how many people watched live, and the minutes they watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Restream began counting X’s live viewers at E5 — before it, the peak, average and minutes watched were YouTube’s alone — so everything built on live viewers is compared only with episodes from E5 on; chat messages an hour compares across. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos.</p>
+  <p>Live turnout reads the whole live session — peak and average viewers, the live views (each channel’s own count of who watched any part, added, so one person on two channels counts twice), and the minutes watched all together; participation reads chatters per hundred people at the peak, chat messages an hour, how many minutes each live viewer stayed, and how much of the peak audience was still there in the last ten minutes, so a short show and a long one compare. Restream began counting X’s live viewers at E5 — before it, the peak, average and minutes watched were YouTube’s alone — so everything built on live viewers is compared only with episodes from E5 on; chat messages an hour compares across. Reach adds the share of YouTube views that YouTube itself brought through search and suggested videos.</p>
   <p>Each check’s state word comes from bands fitted to how much that check normally swings between episodes — never narrower than ten percent either side of usual, never wider than thirty — so a small dip on a measure that always jumps around reads steady, and the same dip on a measure that usually holds still reads fragile; the details behind each check say where its bands sit and why. Beside the score the band carries a direction word — building, holding, softening, or mixed — read from how each durable measure moved over the last few clean episodes, and the Where it’s heading column lists each one, with the range the next first week is expected to land in if it follows the last three clean launches: an expectation, never a result.</p>
   <p>Missing checks drop out instead of becoming zero, and the remaining checks share their weight (goodwill keeps its own weight, so an absent check can never lift it). Every check compares like with like: at the same age, or — until enough same-age history exists — as the earlier episodes stand now, and the row’s details say which. Typical means the last eight comparable episodes with promo outliers left out, and it needs at least three of them; a check with fewer shows Not in yet. When the saved read is behind the data the header says so, and after a week without a fresh read the score is withheld rather than shown as today’s. Each helping or needs-work bullet carries one stored number. A trend appears only after a week of real saved scores; missing days are never filled in.</p>
   <p>Hover, tap, or tab to any check’s name for the saved numbers behind it: the newest result against the show’s typical level, or the reason a check isn’t in yet. Today’s read shows the day’s saved headline; Why this score opens the evidence behind the score — the helping and needs-work facts, the saved reasoning, and the saved scores since the first read under the current rules, drawn on a fixed scale with the usual level marked — and the top do-next actions, in order, with All actions leading to the full list and the finding behind each one.</p>
@@ -4567,7 +4567,7 @@ function buildAbout() {
   <p><b>Live chat and X threads</b> are captured alongside YouTube feedback. Their displayed totals count messages, not distinct people; mixed reactions appear in both positive and criticism lists. Live-chat names are supplied by Restream, which may anonymize them. Only confidently classified feedback is shown; the full source archive is retained privately. Expanded conversation and chat feedback does not change historical health scores or commenting rates.</p>
   <p><b>Scored audience feedback</b> starts with YouTube comments and reply threads from both channels, plus X replies to the announce posts. A model removes spam, unrelated chatter, bare mentions, and questions that do not judge the show. Unclear labels are held for review and never shown. Praise, complaints, and mixed reactions are stored once; a mixed reaction appears in both reading lists with a ± mark. Theme counts are distinct people, and a theme stays hidden until at least three people share it. Neutral suggestions count toward how many people commented, but their text does not appear. Featured quotes must be praise and must also pass a separate negative-word check. Episodes from before X reply tracking say that replies are missing rather than showing a false zero.</p>
   <h2 id="ab-chapters">Chapters</h2>
-  <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock.</p>
+  <p><b>Chapters</b> are model-written from each transcript and every timestamp and quote is checked against it. A timestamp links into the YouTube upload only when the transcript runs on that upload’s clock: the transcript is the upload’s own captions, or a check matched hundreds of its phrases to the upload’s captions and found one steady offset.</p>
   <h2 id="ab-actions">Actions</h2>
   <p><b>Actions</b> lists at most five current actions for this week, in order — written by a model over the day’s show-health read (each check’s state, which way every measure is heading, the outlook, each launch word) and the full fact sheet, with the biggest lever first. Every number in an item is copied from a stored fact; an item whose numbers move out from under it is held back rather than shown. Each card leads with the action, the finding under it is the reason, and How this is counted opens the note on how its numbers were read. The category on each item is the decision it informs. The same-age pace of the newest episode stays on its card and in the chart standings. The first two current actions also appear in the health card’s Do next area. When no written list is current, it shows the five most timely fixed-rule findings instead — the newest episode’s own standing first — grouped by the decision they inform.</p>
   <h2 id="ab-cadence">When numbers update</h2>

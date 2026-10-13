@@ -310,7 +310,7 @@
      },
      {
       "key": "liveViewers",
-      "name": "people who watched live",
+      "name": "live views (each channel's own count, added)",
       "value": 843,
       "typical": 779.5,
       "comparedHow": "as they stand (no age)",
@@ -853,7 +853,7 @@
     },
     {
      "key": "liveViewers",
-     "name": "people who watched live",
+     "name": "live views (each channel's own count, added)",
      "word": "holding",
      "pctPerEpisode": -3.6,
      "readings": 5,
@@ -1029,7 +1029,7 @@
    },
    {
     "key": "liveViewers",
-    "name": "people who watched live",
+    "name": "live views (each channel's own count, added)",
     "word": "holding",
     "pctPerEpisode": -3.6,
     "readings": 5,
@@ -1455,6 +1455,10 @@
    "chapters": {
     "status": "complete",
     "clock": "upload",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.5
+    },
     "writtenAt": "2026-09-02T00:34:09.377Z",
     "list": [
      {
@@ -1463,7 +1467,7 @@
       "title": "Cold open montage and a bumpy first launch",
       "gist": "A montage of designers on AI experimentation leads into the hosts greeting viewers after a chaotic setup.",
       "quote": "Show up, try things, be curious",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=195s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=196s"
      },
      {
       "start": "00:07:34",
@@ -1471,7 +1475,7 @@
       "title": "Why launch a live design show",
       "gist": "The hosts explain what a live stream offers over the polished podcast and what they hope it becomes.",
       "quote": "I really follow what brings me life",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=454s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=455s"
      },
      {
       "start": "00:14:08",
@@ -1479,7 +1483,7 @@
       "title": "Daily driver models and going local",
       "gist": "The hosts compare their daily driver models and weigh deleted projects and running local models.",
       "quote": "What's your daily driver, man?",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=848s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=849s"
      },
      {
       "start": "00:20:10",
@@ -1487,7 +1491,7 @@
       "title": "Voice interfaces take over daily life",
       "gist": "The hosts trade stories of voice mode helping in the kitchen, in parking lots, and coaching a game.",
       "quote": "GPT Live came out and so I've been messing around with that",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=1210s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=1211s"
      },
      {
       "start": "00:31:15",
@@ -1495,7 +1499,7 @@
       "title": "Cursor's comeback and the great bundling",
       "gist": "The hosts discuss Cursor's rise, big designer hires, and how every tool now builds everything.",
       "quote": "Can we call cursor a startup anymore",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=1875s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=1876s"
      },
      {
       "start": "00:39:56",
@@ -1503,7 +1507,7 @@
       "title": "The Gal retirement debate and an AI style test",
       "gist": "The hosts defend a famous designer's retirement post and test an AI recreation of his motion style.",
       "quote": "I want to hear your take",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=2396s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=2397s"
      },
      {
       "start": "00:57:36",
@@ -1511,7 +1515,7 @@
       "title": "Burnout, token FOMO, and panic attacks",
       "gist": "The hosts open up about panic attacks, token limit pressure, and the exhaustion of constant multitasking.",
       "quote": "This past weekend, I had a panic attack",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=3456s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=3457s"
      },
      {
       "start": "01:04:21",
@@ -1519,7 +1523,7 @@
       "title": "Rebranding Dive with mood boards and a playable radio",
       "gist": "The hosts walk through mood boarding with image tools and the interactive radio site with sound design.",
       "quote": "we've been working on some fun stuff",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=3861s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=3862s"
      },
      {
       "start": "01:25:18",
@@ -1527,7 +1531,7 @@
       "title": "A whirlwind brand sprint and audience voting",
       "gist": "The hosts tour FS's rapid brand explorations and ask viewers to vote between sticker and paper styles.",
       "quote": "we had a kickoff call with FS on Monday",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=5118s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=5119s"
      },
      {
       "start": "01:53:27",
@@ -1535,7 +1539,7 @@
       "title": "One-up finds, listener questions, and signing off",
       "gist": "The hosts share a community-built interactive television, a mixed media tool, answer questions, and wrap up.",
       "quote": "We didn't even get to our oneup",
-      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=6807s"
+      "link": "https://youtube.com/watch?v=VcLm0kAGCck&t=6808s"
      }
     ]
    },
@@ -1868,6 +1872,7 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": null,
     "writtenAt": "2026-09-02T00:36:39.748Z",
     "list": [
      {
@@ -2271,6 +2276,10 @@
    "chapters": {
     "status": "complete",
     "clock": "upload",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-09-02T00:38:45.713Z",
     "list": [
      {
@@ -2279,7 +2288,7 @@
       "title": "Opening montage and welcome to the show",
       "gist": "A montage on AI workflows and curiosity plays before the hosts greet listeners and thank new partners.",
       "quote": "the different experiments that people are running",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=198s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=199s"
      },
      {
       "start": "00:06:27",
@@ -2287,7 +2296,7 @@
       "title": "Designer of the week nominations and voting",
       "gist": "Community members and the hosts nominate designers of the week and listeners are invited to vote.",
       "quote": "our designer of the week voting",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=387s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=388s"
      },
      {
       "start": "00:21:01",
@@ -2295,7 +2304,7 @@
       "title": "Live demo of the Backyard Designers draft game",
       "gist": "Cohost Rid demos a game where players draft real designers under a follower-based salary cap.",
       "quote": "I'm calling this Backyard Designers",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=1261s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=1262s"
      },
      {
       "start": "00:39:59",
@@ -2303,7 +2312,7 @@
       "title": "The wave of one-shot AI games",
       "gist": "The hosts scroll through one-shot AI-built games and discuss what the demos reveal about tool workflows.",
       "quote": "look at the game I just one-shotted",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=2399s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=2400s"
      },
      {
       "start": "00:52:49",
@@ -2311,7 +2320,7 @@
       "title": "A roguelike demo grown from a one-shot prompt",
       "gist": "Host Tommy shows a roguelike he grew from a one-shot prompt and compares working with AI to shaping clay.",
       "quote": "It's called Forward Deployed Engineers",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=3169s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=3170s"
      },
      {
       "start": "01:01:11",
@@ -2319,7 +2328,7 @@
       "title": "Mixed media landing pages and the draw zero site",
       "gist": "The hosts click through playful landing pages, including a community-shared scroll story they both admire.",
       "quote": "telling stories through mixed media in these landing pages",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=3671s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=3672s"
      },
      {
       "start": "01:09:14",
@@ -2327,7 +2336,7 @@
       "title": "Shaping clay: an image and asset workflow",
       "gist": "Tommy walks through mood boarding, image generation, and pruning AI outputs into usable game assets.",
       "quote": "I talked about mood boarding",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=4154s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=4155s"
      },
      {
       "start": "01:26:09",
@@ -2335,7 +2344,7 @@
       "title": "A wiki-fed critic agent that gates the work",
       "gist": "Tommy explains building a research wiki and a cranky critic agent that judges each loop of work.",
       "quote": "They called it this adversarial agent",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=5169s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=5170s"
      },
      {
       "start": "01:32:13",
@@ -2343,7 +2352,7 @@
       "title": "Call-in line opens and a live portfolio critique",
       "gist": "The hosts open the phone line, debate mixed media's future, and critique caller James's portfolio site live.",
       "quote": "to the call-in line that we have available",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=5533s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=5534s"
      },
      {
       "start": "01:51:06",
@@ -2351,7 +2360,7 @@
       "title": "Designer of the week winner and sign-off",
       "gist": "The hosts announce the winning nominee, reflect on planning week to week, and close the episode.",
       "quote": "I want to announce the designer of the week",
-      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=6666s"
+      "link": "https://youtube.com/watch?v=9HYGZgaHdlw&t=6667s"
      }
     ]
    },
@@ -2687,6 +2696,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": {
+     "key": "yt:designertom",
+     "offsetSec": -5.4
+    },
     "writtenAt": "2026-09-02T00:42:51.728Z",
     "list": [
      {
@@ -2695,7 +2708,7 @@
       "title": "Cold open, hellos, and the first designer nomination",
       "gist": "A montage on AI tooling leads into the hosts' greetings, sponsor shout outs, and Daniela's nomination.",
       "quote": "the different experiments that people are running",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=198s"
      },
      {
       "start": "00:08:51",
@@ -2703,7 +2716,7 @@
       "title": "Nominations continue with George Hastings and more picks",
       "gist": "George Hastings nominates Dimitri Koresh, then the hosts pick Harris and Jem Gold and open voting.",
       "quote": "present George Hastings and his nomination",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=526s"
      },
      {
       "start": "00:16:10",
@@ -2711,7 +2724,7 @@
       "title": "Figma earnings, a leadership change, and a DM gone wrong",
       "gist": "The hosts react to Figma's results, a new design chief, Nikita's move, and the ASAP Rocky DM spat.",
       "quote": "they just blew things out of the water",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=965s"
      },
      {
       "start": "00:25:56",
@@ -2719,7 +2732,7 @@
       "title": "How the backyard designers game was born and went viral",
       "gist": "Ridd recounts building the game in a day and the hosts marvel at the response from designers they admire.",
       "quote": "I got an idea for a segment",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=1551s"
      },
      {
       "start": "00:35:50",
@@ -2727,7 +2740,7 @@
       "title": "What the traffic data showed about how people use the site",
       "gist": "The hosts review Vercel numbers, long sessions, mobile visits, and debate whether to keep evolving it.",
       "quote": "less than ten percent of people are even finishing a team",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=2145s"
      },
      {
       "start": "00:44:08",
@@ -2735,7 +2748,7 @@
       "title": "Inside the build: sprites, quirks, and Easter eggs",
       "gist": "Ridd walks through his image pipeline, character sprites, automated checks, and quirk driven Easter eggs.",
       "quote": "the main reason this was created",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=2643s"
      },
      {
       "start": "01:00:02",
@@ -2743,7 +2756,7 @@
       "title": "Touring the new backyard world with music and times of day",
       "gist": "Tommy demos the redesigned map, generated songs, and scenes that shift from dawn to night.",
       "quote": "This is what backyard designers looked like",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=3597s"
      },
      {
       "start": "01:06:54",
@@ -2751,7 +2764,7 @@
       "title": "Generating and slicing UI assets with image models",
       "gist": "Tommy shows how he prompts image two to mock ideas, extract repeatable textures, and keep pages fast.",
       "quote": "there's a lot of reasons to use image two",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=4009s"
      },
      {
       "start": "01:23:50",
@@ -2759,7 +2772,7 @@
       "title": "A parody site and a talk on community and inclusion",
       "gist": "The hosts laugh at Hang's parody, then hear Josh and Lex on openness and address the backlash.",
       "quote": "I wanna give some love to Hangzhou",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=5025s"
      },
      {
       "start": "01:42:51",
@@ -2767,7 +2780,7 @@
       "title": "One up picks, a caller's portfolio question, and the winner",
       "gist": "The hosts trade favorite finds, advise caller Kyle on sharing work, name Dimitri winner, and sign off.",
       "quote": "Let's get into the one up weeklies",
-      "link": null
+      "link": "https://youtube.com/watch?v=ziyWxt6qzfM&t=6166s"
      }
     ]
    },
@@ -3092,6 +3105,10 @@
    "chapters": {
     "status": "complete",
     "clock": "upload",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.5
+    },
     "writtenAt": "2026-09-02T00:44:20.166Z",
     "list": [
      {
@@ -3100,7 +3117,7 @@
       "title": "Show open and the fiber internet saga",
       "gist": "The hosts greet listeners and Rid tells the story of contractors cutting his brand new fiber line.",
       "quote": "Top of the afternoon, my friend",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=281s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=282s"
      },
      {
       "start": "00:08:38",
@@ -3108,7 +3125,7 @@
       "title": "Designer of the week nominations begin",
       "gist": "Last week's winner Dimmitri nominates Fay, and guest James McDonald nominates Anna for the weekly award.",
       "quote": "super excited to be here on the Dive Radio podcast",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=518s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=519s"
      },
      {
       "start": "00:16:32",
@@ -3116,7 +3133,7 @@
       "title": "Reacting to Google's design post and Instagram's rebrand",
       "gist": "Hosts react to a widely mocked Google concept post, then compare notes on Instagram's new logo mark.",
       "quote": "I don't think he's confessing",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=992s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=993s"
      },
      {
       "start": "00:26:25",
@@ -3124,7 +3141,7 @@
       "title": "Why more designers are not becoming founders",
       "gist": "A clip of Lovable's founder asks why so few designers start companies, and the hosts debate the reasons.",
       "quote": "we announced our series C yesterday",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=1585s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=1586s"
      },
      {
       "start": "00:32:09",
@@ -3132,7 +3149,7 @@
       "title": "Grockbot and the little guyification of software",
       "gist": "Hosts look at a new bot ecosystem and the trend of cute mascot little guys across AI products.",
       "quote": "the entire Grockbot ecosystem",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=1929s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=1930s"
      },
      {
       "start": "00:40:54",
@@ -3140,7 +3157,7 @@
       "title": "Notion as code and agent friendly backends",
       "gist": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
       "quote": "They recently announced notion as code",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=2454s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=2455s"
      },
      {
       "start": "00:48:33",
@@ -3148,7 +3165,7 @@
       "title": "How prototyping workflows are changing",
       "gist": "Rid shows his shift to throwaway HTML mockups and a playground with dummy data running parallel to production.",
       "quote": "want to talk about prototyping for a second",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=2913s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=2914s"
      },
      {
       "start": "01:10:30",
@@ -3156,7 +3173,7 @@
       "title": "Community clips on new prototyping setups",
       "gist": "Guest videos from Seb and Cl Marin show how their prototyping workflows have evolved with new tools.",
       "quote": "prototyping has completely changed for me",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=4230s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=4231s"
      },
      {
       "start": "01:20:21",
@@ -3164,7 +3181,7 @@
       "title": "Call-in line opens and the OneUp Weekly finds",
       "gist": "The hosts invite live calls and trade finds including a shader lab, a bro skill, and a watercolor drawing toy.",
       "quote": "try to oneup each other with cool finds",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=4821s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=4822s"
      },
      {
       "start": "01:29:58",
@@ -3172,7 +3189,7 @@
       "title": "Winner announcement and closing",
       "gist": "Fay is announced as designer of the week and the hosts wrap up with plans and thanks for next week.",
       "quote": "congratulations Dive Club's designer of the week",
-      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=5398s"
+      "link": "https://youtube.com/watch?v=njOU7GKZcvc&t=5399s"
      }
     ]
    },
@@ -3558,6 +3575,7 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": null,
     "writtenAt": "2026-09-02T00:46:37.166Z",
     "list": [
      {
@@ -4025,6 +4043,7 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": null,
     "writtenAt": "2026-09-02T00:30:47.808Z",
     "list": [
      {
@@ -4754,6 +4773,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-09-04T15:50:09.710Z",
     "list": [
      {
@@ -4762,7 +4785,7 @@
       "title": "Cold open and show intro",
       "gist": "A montage on AI tooling opens the show before the hosts greet the chat and admit brand work isn't their forte.",
       "quote": "The tooling kind of increases our capacity in the day",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=198s"
      },
      {
       "start": "00:08:34",
@@ -4770,7 +4793,7 @@
       "title": "Designer of the week nominations",
       "gist": "Callers nominate designers for their AI craft, tools, and community spirit as voting opens.",
       "quote": "Lucas did win designer of the week",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=515s"
      },
      {
       "start": "00:18:21",
@@ -4778,7 +4801,7 @@
       "title": "Fresh model drop and AI news reactions",
       "gist": "Hosts react to a new model release, a pricing gaffe, a multi agent interface, and a CMS launch.",
       "quote": "came out, just before the show went live",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=1102s"
      },
      {
       "start": "00:25:08",
@@ -4786,7 +4809,7 @@
       "title": "World models and generated video and interfaces",
       "gist": "Hosts watch world model demos, on demand video streams, and an interface that generates itself.",
       "quote": "the first multimodal world model that generates image and video frames",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=1509s"
      },
      {
       "start": "00:33:30",
@@ -4794,7 +4817,7 @@
       "title": "Brand engineering at Vercel",
       "gist": "A clip from Vercel's creative lead shows a team building internal tools instead of one off assets.",
       "quote": "would you like to actually take the lead on this team",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=2011s"
      },
      {
       "start": "00:41:22",
@@ -4802,7 +4825,7 @@
       "title": "Demos of internal brand tools",
       "gist": "Guests demo a parametric toolkit, a client map generator, and a set of tiny creative tools.",
       "quote": "this is a tool that I've built called Oodles",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=2483s"
      },
      {
       "start": "01:02:12",
@@ -4810,7 +4833,7 @@
       "title": "Brand universes and world building the dive brand",
       "gist": "A studio owner urges Disneyland style brands while the hosts explore underwater worlds for their own site.",
       "quote": "How have brand universes started to kind of expand?",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=3733s"
      },
      {
       "start": "01:21:44",
@@ -4818,7 +4841,7 @@
       "title": "Sound design as part of a brand",
       "gist": "A guest designer layers product sounds and a host shows his soundboard experiments.",
       "quote": "sound design is now breaking out of games into product",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=4905s"
      },
      {
       "start": "01:33:17",
@@ -4826,7 +4849,7 @@
       "title": "Branding trends from the Chutzpah sisters",
       "gist": "Two guests describe in person activations, superfan communities, and micro shows as brand plays.",
       "quote": "another pair of those folks are the Chutzpah sisters",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=5598s"
      },
      {
       "start": "01:40:53",
@@ -4834,7 +4857,7 @@
       "title": "One up weekly picks, winner reveal, and closing",
       "gist": "Hosts trade favorite finds, announce the vote winner, and preview a careers episode before signing off.",
       "quote": "get into one Up Weekly, brought to you by Lovable",
-      "link": null
+      "link": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s"
      }
     ]
    },
@@ -5456,6 +5479,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": -1.4
+    },
     "writtenAt": "2026-09-11T17:08:17.383Z",
     "list": [
      {
@@ -5464,7 +5491,7 @@
       "title": "Cold open teases the episode before the hosts say hello",
       "gist": "A montage of voices opens the show before the hosts greet the live chat and tease the topic.",
       "quote": "Show up, try things, be curious",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=196s"
      },
      {
       "start": "00:06:23",
@@ -5472,7 +5499,7 @@
       "title": "Tommy announces he is joining Inflight as cofounder",
       "gist": "A host shares news of joining the startup and the pair discuss prototype feedback and prompting with links.",
       "quote": "cat's out of the bag",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=382s"
      },
      {
       "start": "00:14:55",
@@ -5480,7 +5507,7 @@
       "title": "Designer of the week nominations from the community",
       "gist": "Hosts play recorded nominations spotlighting community designers and open the audience vote.",
       "quote": "please go vote for designer of the week",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=894s"
      },
      {
       "start": "00:25:05",
@@ -5488,7 +5515,7 @@
       "title": "Apple event reactions then Astra model experiments",
       "gist": "Hosts react to the new phone lineup and folding duo, then tour demos people built with a new model.",
       "quote": "So here's what dropped",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=1504s"
      },
      {
       "start": "00:40:49",
@@ -5496,7 +5523,7 @@
       "title": "What the data shows about the design job market",
       "gist": "Hosts review economy projections, talent network findings, and pay, and invite listeners to a survey.",
       "quote": "let's look at some of the data",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=2448s"
      },
      {
       "start": "00:52:07",
@@ -5504,7 +5531,7 @@
       "title": "How designers actually get discovered",
       "gist": "Hosts debate social posts, private groups, and portfolios, with a guest clip on packaging your work.",
       "quote": "which do you think is more important for getting discovered",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=3126s"
      },
      {
       "start": "01:04:07",
@@ -5512,7 +5539,7 @@
       "title": "Going direct with prototypes and cold pitches",
       "gist": "Designers recount pitching prototypes, working a conference, and messaging hiring managers directly.",
       "quote": "I'm gonna share my work and let people find me",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=3846s"
      },
      {
       "start": "01:22:24",
@@ -5520,7 +5547,7 @@
       "title": "Hiring managers reveal how they screen designers",
       "gist": "Guests from Shopify, Notion, and Linear explain how they evaluate designers, followed by new hire stories.",
       "quote": "how a design is being assessed at the start of a funnel",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=4943s"
      },
      {
       "start": "01:53:56",
@@ -5528,7 +5555,7 @@
       "title": "What matters most when accepting an offer",
       "gist": "Hosts poll pay versus team and decision power, then hiring leads and a hired designer share their views.",
       "quote": "What matters most when accepting an offer",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=6835s"
      },
      {
       "start": "02:16:59",
@@ -5536,7 +5563,7 @@
       "title": "Closing questions, weekly picks, and the vote winner",
       "gist": "Hosts answer chat questions on cold outreach, share finds, and announce designer of the week.",
       "quote": "haul of submissions from people in the community",
-      "link": null
+      "link": "https://youtube.com/watch?v=DUejFPtYll0&t=8218s"
      }
     ]
    },
@@ -6106,6 +6133,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-09-19T16:36:07.454Z",
     "list": [
      {
@@ -6114,7 +6145,7 @@
       "title": "Opening thoughts and a conference catch up",
       "gist": "The hosts open with thoughts on AI tools, introduce the show, and share a conference travel story.",
       "quote": "Tooling kind of increases our capacity in the day.",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=198s"
      },
      {
       "start": "00:10:02",
@@ -6122,7 +6153,7 @@
       "title": "Designer of the week nominees",
       "gist": "The hosts and community contributors showcase designers, personal projects, and tools before opening the vote.",
       "quote": "So I want to pay it forward",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=603s"
      },
      {
       "start": "00:19:49",
@@ -6130,7 +6161,7 @@
       "title": "Design tool news and faster AI",
       "gist": "The hosts discuss Elex, Common Knowledge joining Figma, fast AI models, and vector image tools.",
       "quote": "We're gonna do some reacts to the news.",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=1190s"
      },
      {
       "start": "00:27:43",
@@ -6138,7 +6169,7 @@
       "title": "Pitching your help and building useful skills",
       "gist": "The hosts review outreach advice, show a community plugin, and demonstrate a Notion job search skill.",
       "quote": "You know what came across my feed?",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=1664s"
      },
      {
       "start": "00:39:57",
@@ -6146,7 +6177,7 @@
       "title": "What a founding designer actually does",
       "gist": "The hosts and guests distinguish founding roles from first hires and discuss founder fit, listening, and trust.",
       "quote": "So a founding designer.",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=2398s"
      },
      {
       "start": "01:01:00",
@@ -6154,7 +6185,7 @@
       "title": "Who should become a founding designer",
       "gist": "Guests Josh, Flora, and Claire join the hosts in discussing experience, initiative, decisions, and relationships.",
       "quote": "who make for the best founding designers.",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=3661s"
      },
      {
       "start": "01:18:10",
@@ -6162,7 +6193,7 @@
       "title": "From founding designer to design founder",
       "gist": "Guests Joe and Alex and the hosts discuss starting companies, customer needs, sales, and broad business skills.",
       "quote": "you may actually be suited to be a design founder.",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=4691s"
      },
      {
       "start": "01:28:14",
@@ -6170,7 +6201,7 @@
       "title": "Doing the job amid urgency and changing plans",
       "gist": "The hosts and guests discuss fast shipping, intuition, design debt, customer contact, priorities, and AI skills.",
       "quote": "But let's get very specific about doing this job.",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=5295s"
      },
      {
       "start": "01:53:48",
@@ -6178,7 +6209,7 @@
       "title": "Knowing when to leave",
       "gist": "Guest Jess explains leaving after building a brand team, finding new interests, and reflecting on burnout.",
       "quote": "how sometimes after that two year cliff",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=6829s"
      },
      {
       "start": "01:58:54",
@@ -6186,7 +6217,7 @@
       "title": "The winning designer and closing thanks",
       "gist": "The hosts announce the designer of the week, thank viewers, request feedback, and sign off.",
       "quote": "And that is, in fact, who is today's designer",
-      "link": null
+      "link": "https://youtube.com/watch?v=x05zZ90lY28&t=7135s"
      }
     ]
    },
@@ -6681,6 +6712,7 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": null,
     "writtenAt": "2026-10-01T19:21:08.208Z",
     "list": [
      {
@@ -7186,6 +7218,7 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": null,
     "writtenAt": "2026-10-02T14:09:54.578Z",
     "list": [
      {
@@ -7634,6 +7667,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-10-10T14:07:39.404Z",
     "list": [
      {
@@ -7642,7 +7679,7 @@
       "title": "Cold open clips and welcome to Dive Radio",
       "gist": "Guest voices play in a teaser before the hosts greet listeners and preview a two-part portfolio plan.",
       "quote": "Show up, try things, be curious",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=195s"
      },
      {
       "start": "00:06:24",
@@ -7650,7 +7687,7 @@
       "title": "How the portfolio reviews will work with the in flight widget",
       "gist": "The hosts explain how a question widget on each portfolio will steer targeted live feedback from them and the chat.",
       "quote": "how do we give the most useful feedback to people",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=385s"
      },
      {
       "start": "00:09:28",
@@ -7658,7 +7695,7 @@
       "title": "Designer of the week nominees",
       "gist": "Listener nominations for designer of the week, plus the hosts' own picks, including a rising creative tool maker.",
       "quote": "diligent research practice that she puts behind everything she creates",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=569s"
      },
      {
       "start": "00:18:02",
@@ -7666,7 +7703,7 @@
       "title": "OpenAI intelligent UI and a wave of component tools",
       "gist": "Hosts react to chat replies that assemble interface pieces on the fly and cheer new design tools from friends.",
       "quote": "OpenAI announced intelligent UI",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1083s"
      },
      {
       "start": "00:24:46",
@@ -7674,7 +7711,7 @@
       "title": "Agents everywhere: Figma agent, MagicPath plugins and a Continuum demo",
       "gist": "Hosts weigh new design agents, play a founder clip on chat plugins, and react to a real time video operating system.",
       "quote": "I do wanna talk about agents",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1487s"
      },
      {
       "start": "00:42:43",
@@ -7682,7 +7719,7 @@
       "title": "Games boom: agent matches, ported titles, and designers building their own",
       "gist": "Hosts survey game experiments, and guests walk through a Unity build, an art-led world, and a father and son game.",
       "quote": "agents playing games happens to be this thing",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=2564s"
      },
      {
       "start": "01:05:53",
@@ -7690,7 +7727,7 @@
       "title": "Playable portfolios: a Zen garden and a career town",
       "gist": "A designer shows how a garden experiment came together, then the hosts tour a portfolio built as a playable town.",
       "quote": "gonna start to steer in that direction here",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=3954s"
      },
      {
       "start": "01:18:29",
@@ -7698,7 +7735,7 @@
       "title": "Portfolio advice from a public review and a new Netflix hire",
       "gist": "Clips of a portfolio walkthrough and a staff designer's job-hunt tips on clear targets, craft, and easy case studies.",
       "quote": "It's time for a portfolio review",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=4710s"
      },
      {
       "start": "01:25:38",
@@ -7706,7 +7743,7 @@
       "title": "Hosts sort portfolios: world building, simple flex, balance, early career",
       "gist": "The hosts walk through example sites by type and discuss what suits junior and senior designers and hiring managers.",
       "quote": "Rid and I make hiring decisions",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=5139s"
      },
      {
       "start": "02:00:48",
@@ -7714,7 +7751,7 @@
       "title": "Submission reminders, next week's plan, and the designer of the week result",
       "gist": "The hosts repeat how to submit with the widget, preview the full review episode, and congratulate the winner.",
       "quote": "You do not have to be a part of the discord",
-      "link": null
+      "link": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=7249s"
      }
     ]
    },
@@ -7903,7 +7940,7 @@
     "livePeak",
     "liveAverage"
    ],
-   "note": "Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).",
+   "note": "Restream's live reporting changed at E5: before it, the X destinations reported their live views and chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their live views include X; no measure built on live viewers compares across E5 (chat does).",
    "unreported": {
     "platform": "x",
     "fields": [
@@ -7916,6 +7953,3358 @@
    }
   }
  ],
+ "sponsor": {
+  "version": 3,
+  "asOf": "2026-10-12",
+  "episodes": 13,
+  "firstPremiere": "2026-07-17",
+  "latest": {
+   "ep": 13,
+   "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+   "title": "Dive Radio: Rise of the Playable Portfolio",
+   "premiere": "2026-10-08"
+  },
+  "views": {
+   "total": 95690,
+   "youtube": 61169,
+   "xPlays": 34521,
+   "episodes": 13,
+   "perEpisode": 7361,
+   "reason": null,
+   "xReach": 133703
+  },
+  "watch": {
+   "hours": 6224,
+   "minutes": 373416,
+   "episodes": 13,
+   "missing": []
+  },
+  "live": {
+   "shows": 13,
+   "linkedInShows": 12,
+   "xFromEp": 5,
+   "minutes": 102477,
+   "hours": 1708,
+   "chat": 2376,
+   "typical": {
+    "shows": 8,
+    "fromEp": 5,
+    "toEp": 12,
+    "peak": 97.5,
+    "average": 73,
+    "people": 779.5,
+    "minutesWatched": 8629,
+    "holdRate": 66.4,
+    "chattersPer100": 53.9,
+    "messagesPerHour": 66.2,
+    "durationMin": 116.5,
+    "atMiddle": 88.5,
+    "recordingAtMiddle": 14.7
+   },
+   "latest": {
+    "ep": 13,
+    "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+    "title": "Dive Radio: Rise of the Playable Portfolio",
+    "premiere": "2026-10-08",
+    "peak": 87,
+    "peakMinute": 56,
+    "durationMin": 123,
+    "holdRate": 84.1,
+    "chatMessages": 193,
+    "series": [
+     {
+      "m": 0,
+      "v": 11
+     },
+     {
+      "m": 1,
+      "v": 17
+     },
+     {
+      "m": 2,
+      "v": 30
+     },
+     {
+      "m": 3,
+      "v": 28
+     },
+     {
+      "m": 4,
+      "v": 34
+     },
+     {
+      "m": 5,
+      "v": 39
+     },
+     {
+      "m": 6,
+      "v": 45
+     },
+     {
+      "m": 7,
+      "v": 50
+     },
+     {
+      "m": 8,
+      "v": 52
+     },
+     {
+      "m": 9,
+      "v": 50
+     },
+     {
+      "m": 10,
+      "v": 55
+     },
+     {
+      "m": 11,
+      "v": 62
+     },
+     {
+      "m": 12,
+      "v": 73
+     },
+     {
+      "m": 13,
+      "v": 76
+     },
+     {
+      "m": 14,
+      "v": 70
+     },
+     {
+      "m": 15,
+      "v": 71
+     },
+     {
+      "m": 16,
+      "v": 73
+     },
+     {
+      "m": 17,
+      "v": 74
+     },
+     {
+      "m": 18,
+      "v": 67
+     },
+     {
+      "m": 19,
+      "v": 71
+     },
+     {
+      "m": 20,
+      "v": 74
+     },
+     {
+      "m": 21,
+      "v": 74
+     },
+     {
+      "m": 22,
+      "v": 80
+     },
+     {
+      "m": 23,
+      "v": 82
+     },
+     {
+      "m": 24,
+      "v": 84
+     },
+     {
+      "m": 25,
+      "v": 81
+     },
+     {
+      "m": 26,
+      "v": 83
+     },
+     {
+      "m": 27,
+      "v": 81
+     },
+     {
+      "m": 28,
+      "v": 80
+     },
+     {
+      "m": 29,
+      "v": 82
+     },
+     {
+      "m": 30,
+      "v": 80
+     },
+     {
+      "m": 31,
+      "v": 77
+     },
+     {
+      "m": 32,
+      "v": 79
+     },
+     {
+      "m": 33,
+      "v": 81
+     },
+     {
+      "m": 34,
+      "v": 79
+     },
+     {
+      "m": 35,
+      "v": 76
+     },
+     {
+      "m": 36,
+      "v": 78
+     },
+     {
+      "m": 37,
+      "v": 75
+     },
+     {
+      "m": 38,
+      "v": 76
+     },
+     {
+      "m": 39,
+      "v": 74
+     },
+     {
+      "m": 40,
+      "v": 84
+     },
+     {
+      "m": 41,
+      "v": 79
+     },
+     {
+      "m": 42,
+      "v": 82
+     },
+     {
+      "m": 43,
+      "v": 80
+     },
+     {
+      "m": 44,
+      "v": 81
+     },
+     {
+      "m": 45,
+      "v": 72
+     },
+     {
+      "m": 46,
+      "v": 74
+     },
+     {
+      "m": 47,
+      "v": 77
+     },
+     {
+      "m": 48,
+      "v": 79
+     },
+     {
+      "m": 49,
+      "v": 81
+     },
+     {
+      "m": 50,
+      "v": 83
+     },
+     {
+      "m": 51,
+      "v": 77
+     },
+     {
+      "m": 52,
+      "v": 76
+     },
+     {
+      "m": 53,
+      "v": 79
+     },
+     {
+      "m": 54,
+      "v": 81
+     },
+     {
+      "m": 55,
+      "v": 79
+     },
+     {
+      "m": 56,
+      "v": 87
+     },
+     {
+      "m": 57,
+      "v": 79
+     },
+     {
+      "m": 58,
+      "v": 80
+     },
+     {
+      "m": 59,
+      "v": 86
+     },
+     {
+      "m": 60,
+      "v": 78
+     },
+     {
+      "m": 61,
+      "v": 76
+     },
+     {
+      "m": 62,
+      "v": 74
+     },
+     {
+      "m": 63,
+      "v": 73
+     },
+     {
+      "m": 64,
+      "v": 71
+     },
+     {
+      "m": 65,
+      "v": 69
+     },
+     {
+      "m": 66,
+      "v": 68
+     },
+     {
+      "m": 67,
+      "v": 68
+     },
+     {
+      "m": 68,
+      "v": 69
+     },
+     {
+      "m": 69,
+      "v": 70
+     },
+     {
+      "m": 70,
+      "v": 71
+     },
+     {
+      "m": 71,
+      "v": 72
+     },
+     {
+      "m": 72,
+      "v": 73
+     },
+     {
+      "m": 73,
+      "v": 72
+     },
+     {
+      "m": 74,
+      "v": 71
+     },
+     {
+      "m": 75,
+      "v": 70
+     },
+     {
+      "m": 76,
+      "v": 69
+     },
+     {
+      "m": 77,
+      "v": 69
+     },
+     {
+      "m": 78,
+      "v": 67
+     },
+     {
+      "m": 79,
+      "v": 66
+     },
+     {
+      "m": 80,
+      "v": 64
+     },
+     {
+      "m": 81,
+      "v": 63
+     },
+     {
+      "m": 82,
+      "v": 61
+     },
+     {
+      "m": 83,
+      "v": 60
+     },
+     {
+      "m": 84,
+      "v": 61
+     },
+     {
+      "m": 85,
+      "v": 63
+     },
+     {
+      "m": 86,
+      "v": 64
+     },
+     {
+      "m": 87,
+      "v": 66
+     },
+     {
+      "m": 88,
+      "v": 68
+     },
+     {
+      "m": 89,
+      "v": 68
+     },
+     {
+      "m": 90,
+      "v": 68
+     },
+     {
+      "m": 91,
+      "v": 68
+     },
+     {
+      "m": 92,
+      "v": 68
+     },
+     {
+      "m": 93,
+      "v": 68
+     },
+     {
+      "m": 94,
+      "v": 69
+     },
+     {
+      "m": 95,
+      "v": 70
+     },
+     {
+      "m": 96,
+      "v": 71
+     },
+     {
+      "m": 97,
+      "v": 72
+     },
+     {
+      "m": 98,
+      "v": 73
+     },
+     {
+      "m": 99,
+      "v": 74
+     },
+     {
+      "m": 100,
+      "v": 75
+     },
+     {
+      "m": 101,
+      "v": 73
+     },
+     {
+      "m": 102,
+      "v": 72
+     },
+     {
+      "m": 103,
+      "v": 71
+     },
+     {
+      "m": 104,
+      "v": 70
+     },
+     {
+      "m": 105,
+      "v": 69
+     },
+     {
+      "m": 106,
+      "v": 69
+     },
+     {
+      "m": 107,
+      "v": 70
+     },
+     {
+      "m": 108,
+      "v": 71
+     },
+     {
+      "m": 109,
+      "v": 72
+     },
+     {
+      "m": 110,
+      "v": 73
+     },
+     {
+      "m": 111,
+      "v": 74
+     },
+     {
+      "m": 112,
+      "v": 73
+     },
+     {
+      "m": 113,
+      "v": 73
+     },
+     {
+      "m": 114,
+      "v": 73
+     },
+     {
+      "m": 115,
+      "v": 73
+     },
+     {
+      "m": 116,
+      "v": 73
+     },
+     {
+      "m": 117,
+      "v": 73
+     },
+     {
+      "m": 118,
+      "v": 73
+     },
+     {
+      "m": 119,
+      "v": 73
+     },
+     {
+      "m": 120,
+      "v": 73
+     },
+     {
+      "m": 121,
+      "v": 73
+     },
+     {
+      "m": 122,
+      "v": 74
+     },
+     {
+      "m": 123,
+      "v": 74
+     }
+    ]
+   },
+   "best": {
+    "peak": {
+     "value": 133,
+     "ep": 9,
+     "since": 5
+    },
+    "people": {
+     "value": 1159,
+     "ep": 9,
+     "since": 5
+    }
+   }
+  },
+  "audience": {
+   "total": 335252,
+   "date": "2026-10-12",
+   "reason": null,
+   "channels": [
+    {
+     "key": "yt:designertom",
+     "label": "DesignerTom",
+     "platform": "YouTube",
+     "unit": "subscribers",
+     "count": 170000,
+     "date": "2026-10-12"
+    },
+    {
+     "key": "yt:joindiveclub",
+     "label": "Dive Club",
+     "platform": "YouTube",
+     "unit": "subscribers",
+     "count": 68900,
+     "date": "2026-10-12"
+    },
+    {
+     "key": "x:ridd_design",
+     "label": "@ridd_design",
+     "platform": "X",
+     "unit": "followers",
+     "count": 76574,
+     "date": "2026-10-12"
+    },
+    {
+     "key": "x:designertom",
+     "label": "@designertom",
+     "platform": "X",
+     "unit": "followers",
+     "count": 19778,
+     "date": "2026-10-12"
+    }
+   ]
+  },
+  "feedback": {
+   "messages": 364,
+   "positive": 284,
+   "episodes": 13,
+   "quotes": [
+    {
+     "id": "x:2096925770316644438",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "author": "@Khlaseek_dsgner",
+     "platform": "X",
+     "text": "Really cool 👏🏾. I love what you guys are doing at Dive Radio 💯.",
+     "url": "https://x.com/i/status/2096925770316644438",
+     "likes": 3,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098328331066228973",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@omostical",
+     "platform": "X",
+     "text": "Best show so far... Lot of juice to get from this one episode. I have watched it twice already Keep getting better. @designertom @ridd_design 🫡🫡",
+     "url": "https://x.com/i/status/2098328331066228973",
+     "likes": 2,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2090735871938970092",
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "author": "@robhope",
+     "platform": "X",
+     "text": "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!",
+     "url": "https://x.com/i/status/2090735871938970092",
+     "likes": 2,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
+     "ep": 3,
+     "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "author": "khangdbui",
+     "platform": "YouTube",
+     "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+     "url": "https://youtube.com/watch?v=9HYGZgaHdlw&lc=UgzVits6pK6eIXQLIeN4AaABAg",
+     "likes": 2,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgycC2EjwPzptqmQnox4AaABAg",
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "author": "tylerhuntdesign",
+     "platform": "YouTube",
+     "text": "Orca Ridd is going to be my sleep paralysis demon tonight so thanks for that.",
+     "url": "https://youtube.com/watch?v=RhemcDEc_-A&lc=UgycC2EjwPzptqmQnox4AaABAg",
+     "likes": 2,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098229867422900415",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@KaeliVanfossen",
+     "platform": "X",
+     "text": "truly everything was! Im grateful all of you took the time for dive radio, it was such a good episode and so many things have shifted in even just this past year alone, so it helps so much. appreciate you!",
+     "url": "https://x.com/i/status/2098229867422900415",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098237669008449676",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@sanika_mehta98",
+     "platform": "X",
+     "text": "Such an insightful session as someone looking for their next opportunity! Thank you for creating this community!@designertom @ridd_design",
+     "url": "https://x.com/i/status/2098237669008449676",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098189766969692177",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@matteitoooo",
+     "platform": "X",
+     "text": "I started following the lives recently and I love them! On a job hunt currently so this one was gold, thank you 🎸",
+     "url": "https://x.com/i/status/2098189766969692177",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgyYEIb6QFUmQUAuiB14AaABAg",
+     "ep": 1,
+     "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+     "author": "Xijbor",
+     "platform": "YouTube",
+     "text": "Appreciate the conversations and the love for the community. Very inspiring, and excited for what’s to come! <3",
+     "url": "https://youtube.com/watch?v=VcLm0kAGCck&lc=UgyYEIb6QFUmQUAuiB14AaABAg",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2100654534661943377",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@bhori_e",
+     "platform": "X",
+     "text": "I watched the last episode and with how much value I got from that alone, I wouldn’t miss this for anything!",
+     "url": "https://x.com/i/status/2100654534661943377",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgwlYI2C7EEJ1yf5gQJ4AaABAg",
+     "ep": 1,
+     "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+     "author": "BetterNeil",
+     "platform": "YouTube",
+     "text": "Love the intro vid, we need a breakdown of that... clickin’ play on the rest of this while I work! So good",
+     "url": "https://youtube.com/watch?v=VcLm0kAGCck&lc=UgwlYI2C7EEJ1yf5gQJ4AaABAg",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2100662528422425038",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@MikoDesigned",
+     "platform": "X",
+     "text": "founding designer is just ‘do everything and don’t drop the taste’. stacked lineup tho",
+     "url": "https://x.com/i/status/2100662528422425038",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098276877488083239",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@pavlonekrasov",
+     "platform": "X",
+     "text": "one of the best episodes of Dive Radio for me thank you guys for what you’re doing",
+     "url": "https://x.com/i/status/2098276877488083239",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:Ugy6RHppQWH02ApNQRV4AaABAg",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "lydiawere",
+     "platform": "YouTube",
+     "text": "Great content, thanks so much for sharing. Time spent absolutely well.",
+     "url": "https://youtube.com/watch?v=OZG115v6TTg&lc=Ugy6RHppQWH02ApNQRV4AaABAg",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2101474561338327343",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@joshuakrohn",
+     "platform": "X",
+     "text": "Great episode! Such great advice and insights.",
+     "url": "https://x.com/i/status/2101474561338327343",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:Ugw0_SE5nx-kzg7mi6N4AaABAg",
+     "ep": 2,
+     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "author": "Jegteix",
+     "platform": "YouTube",
+     "text": "The Sound design in the Intro is so fire 🔥",
+     "url": "https://youtube.com/watch?v=Pn6U5nWgD-g&lc=Ugw0_SE5nx-kzg7mi6N4AaABAg",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2095862955522887905",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "author": "@alxdoyle",
+     "platform": "X",
+     "text": "Which is why the Ramp conversation from last week is the closest thing I’ve seen to an answer. Cohesion over consistency. Jazz. A brand that behaves rather than one that gets applied.",
+     "url": "https://x.com/i/status/2095862955522887905",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgxyeBCR7SZb4xqjaC14AaABAg",
+     "ep": 2,
+     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "author": "BentoBox",
+     "platform": "YouTube",
+     "text": "If it’s not too much work, y’all should share the links to the articles you’re referencing throughout in the show notes :) Thanks for the pod!",
+     "url": "https://youtube.com/watch?v=Pn6U5nWgD-g&lc=UgxyeBCR7SZb4xqjaC14AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgzC72FWGRbVxVzkSxt4AaABAg",
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "author": "c0up",
+     "platform": "YouTube",
+     "text": "Every week I watch this, the more I get stressed about my current skills and portfolio. Grats you guys 🫠",
+     "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&lc=UgzC72FWGRbVxVzkSxt4AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgxEVqoA6QUwVVMcrnV4AaABAg",
+     "ep": 2,
+     "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+     "author": "AndresTheDesigner",
+     "platform": "YouTube",
+     "text": "Love the data vs intuition conversation. Couldn’t agree more with ‘enough data to make a bet’",
+     "url": "https://youtube.com/watch?v=TJqSfnadiGM&lc=UgxEVqoA6QUwVVMcrnV4AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098441427097108584",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@itsjamik",
+     "platform": "X",
+     "text": "the designer-to-engineer jump is such a good topic, gonna check that 1:45 mark",
+     "url": "https://x.com/i/status/2098441427097108584",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:Ugzyc8p2TMvSACMuu8t4AaABAg",
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "author": "notabdussalampopoola",
+     "platform": "YouTube",
+     "text": "1:18:50 were kolbe shared his remotion workflow is gold.",
+     "url": "https://youtube.com/watch?v=bwJB9EBQNSQ&lc=Ugzyc8p2TMvSACMuu8t4AaABAg",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2101465923366572345",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@LunaBluetjf",
+     "platform": "X",
+     "text": "appreciate the chill vibe despite the spicy takes here.",
+     "url": "https://x.com/i/status/2101465923366572345",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2103318948972515625",
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "author": "@okkshitij",
+     "platform": "X",
+     "text": "so many new experiments! thanks for sharing my work :)",
+     "url": "https://x.com/i/status/2103318948972515625",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    }
+   ]
+  },
+  "callIns": {
+   "total": 100,
+   "nominations": 21,
+   "people": 93,
+   "episodes": 10,
+   "fromEp": 4,
+   "toEp": 13,
+   "byEpisode": [
+    {
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "count": 5
+    },
+    {
+     "ep": 5,
+     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "count": 5
+    },
+    {
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "count": 5
+    },
+    {
+     "ep": 7,
+     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+     "count": 4
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "count": 10
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "count": 20
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "count": 16
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "count": 12
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "count": 12
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "count": 11
+    }
+   ],
+   "teamsNamed": [
+    "Vercel",
+    "Perplexity",
+    "Shopify",
+    "Notion",
+    "Linear",
+    "Attio",
+    "Mercury",
+    "Netflix"
+   ],
+   "list": [
+    {
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "nomination",
+     "who": "George Hastings",
+     "nominee": "Dmitry Kurash"
+    },
+    {
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "nomination",
+     "who": "Daniela Muntyan",
+     "nominee": "Seungmee Lee"
+    },
+    {
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "submission",
+     "who": "Josh Puckett",
+     "about": "making things for yourself, and leaving a way in for others"
+    },
+    {
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "submission",
+     "who": "Lex Roman",
+     "about": "is a community about members or about the creator?"
+    },
+    {
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "submission",
+     "who": "Drew Wilson",
+     "about": "an invite to ValioCon 2026 in Oceanside"
+    },
+    {
+     "ep": 5,
+     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "kind": "nomination",
+     "who": "Dmitry Kurash",
+     "nominee": "Fay Dakrouri"
+    },
+    {
+     "ep": 5,
+     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "kind": "nomination",
+     "who": "James McDonald",
+     "nominee": "Ana Malai"
+    },
+    {
+     "ep": 5,
+     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "kind": "submission",
+     "who": "Nad",
+     "about": "Lovable's Series C, and why so few designers start companies"
+    },
+    {
+     "ep": 5,
+     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "kind": "submission",
+     "who": "Charlie Deets",
+     "about": "why he hands designs to engineers instead of shipping the code himself"
+    },
+    {
+     "ep": 5,
+     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "kind": "submission",
+     "who": "Seb Cornelius",
+     "about": "a prototype lab for trying ideas and tuning how they feel"
+    },
+    {
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "kind": "nomination",
+     "who": "Taylor Palmer",
+     "nominee": "Ruchita"
+    },
+    {
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "kind": "nomination",
+     "who": "Will King",
+     "nominee": "Adhiv"
+    },
+    {
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "kind": "submission",
+     "who": "John Bai",
+     "about": "where Grok Bot's character came from"
+    },
+    {
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "kind": "submission",
+     "who": "Daniel Kuntz",
+     "about": "hire a character animator"
+    },
+    {
+     "ep": 6,
+     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "kind": "submission",
+     "who": "Kenneth Kuh",
+     "about": "how Baby Grok came together"
+    },
+    {
+     "ep": 7,
+     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+     "kind": "nomination",
+     "who": "Andy Allen",
+     "nominee": "Patricia Klein"
+    },
+    {
+     "ep": 7,
+     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+     "kind": "nomination",
+     "who": "Bartek Radziejewski",
+     "nominee": "Taras"
+    },
+    {
+     "ep": 7,
+     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+     "kind": "submission",
+     "who": "Lucas Martinic",
+     "about": "how he built his portfolio site"
+    },
+    {
+     "ep": 7,
+     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+     "kind": "submission",
+     "who": "Ramp",
+     "about": "Paul Jun on a brand system that behaves like jazz"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "nomination",
+     "who": "Kris Puckett",
+     "nominee": "Laura Escobar"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "nomination",
+     "who": "Lucas Martinic",
+     "nominee": "Marina Budarina"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Evil Rabbit",
+     "about": "Vercel's creative team builds tools, not just assets"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Daniel Linthwaite",
+     "about": "building an on-brand OG card tool at Vercel"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Myles Palmer",
+     "about": "Oodles, MetaLab's tool for building parametric tools"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Nick Pattison",
+     "about": "a live map tool Primary built in Lovable for a client brand"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Brett",
+     "about": "Playgrnd, 32 tiny creative tools in one place"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Mike Smith",
+     "about": "brands should feel like Disneyland"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Escha Vera",
+     "about": "sound design for products at Perplexity"
+    },
+    {
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "who": "Hoodzpah",
+     "about": "Jen and Amy on how brand worlds are growing"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "nomination",
+     "who": "Laura Escobar",
+     "nominee": "Jonas"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "nomination",
+     "who": "Frank Bach",
+     "nominee": "Annika"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "nomination",
+     "who": "Cole",
+     "nominee": "Zack Davenport"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Carter Geoco",
+     "about": "Robots and Monsters, a D&D app he built with Grok 4.6"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Charles Patterson",
+     "about": "only post your best, finished work"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Brad",
+     "about": "a prototype got him to the final round without applying"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Ethan Arredondo",
+     "about": "one conference led to four interviews and a job"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Anjali",
+     "about": "a shortlist and a direct note to the hiring manager"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Jared Tredly",
+     "about": "what Shopify looks for in the first five seconds"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Danny Martinez",
+     "about": "why big company logos count for less now"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Chris Andrews",
+     "about": "what Notion looks for in designers now"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Conor Muirhead",
+     "about": "how Linear hires product-leaning designers"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Dylan Widick",
+     "about": "from a fellowship to a design job at Block"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Dan Billson",
+     "about": "moving from engineering to design engineering at Attio"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Oscar Lozano",
+     "about": "why paid design tasks should come back"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Lauren LoPrete",
+     "about": "conviction, communication and outside inspiration at Mercury"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Genny Dee",
+     "about": "deep craft plus systems the whole company can use"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Kyle Zantos",
+     "about": "the candidate side, and why teams should say what shape they need"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Rugved Vaidya",
+     "about": "two offers, a career agent and live build tests"
+    },
+    {
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "kind": "submission",
+     "who": "Ini Abiodun",
+     "about": "Craft Commons, a pilot for African designers"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "nomination",
+     "who": "Victoria",
+     "nominee": "Yael"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "nomination",
+     "who": "Jonas Leupe",
+     "nominee": "Thomas"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Dan Mall and Dan Holdsworth",
+     "about": "how to pitch someone in the DMs"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Tom Johnson",
+     "about": "a true founding role or a first-designer job"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Kevin Twohy",
+     "about": "five things to weigh before you take the role"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Josh Armantrout",
+     "about": "who the role suits, and who it does not"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Flora Guo",
+     "about": "the visual design is the tip of the iceberg"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Claire Taylor",
+     "about": "the relationship comes before the design work"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Joe Salowitz",
+     "about": "a design founder holds many things in tension"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Alex Danilowicz",
+     "about": "anyone can be a founder"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Jacob Jolibois",
+     "about": "no process, and no priority other than urgent"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Dan Tase",
+     "about": "deciding by gut when there is no time for research"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Andres Gonzalez",
+     "about": "three pivots and the design debt fast AI work left behind"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Jared Erondu",
+     "about": "everything is your problem, not everything is your priority"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Chris Davis",
+     "about": "small things compound, and a skill his engineers ship with"
+    },
+    {
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission",
+     "who": "Jess Rosenberg",
+     "about": "giving yourself permission to be finished"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "nomination",
+     "who": "Wesley Bancroft",
+     "nominee": "Sam Hox"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "nomination",
+     "who": "Flora Guo",
+     "nominee": "Josephine"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Teddy Ni",
+     "about": "Jev vs Haiku 4.5, and his search for a use"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Jonathan Moore",
+     "about": "editing UI by voice inside a design system"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Kyle Zantos",
+     "about": "an app idea turned into wireframes"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Kshitij",
+     "about": "trying features from a reference video in your own app"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Samraaj Bath",
+     "about": "a coffee site that rebuilds itself for each visitor"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Harcourt Allen",
+     "about": "Quiver Arrow 2 inside Paper"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Davey Heuser",
+     "about": "the codebase as the source of truth in Paper"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Christopher Downer",
+     "about": "stress-testing designs in Elyx with two prompts"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Carter Geoco",
+     "about": "his Grokbot team of agents"
+    },
+    {
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "who": "Soleio",
+     "about": "advice for someone new who wants to build"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "nomination",
+     "who": "Tom Johnson",
+     "nominee": "Eduard"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "nomination",
+     "who": "David Hoang",
+     "nominee": "Jade"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Xavier Pothin",
+     "about": "motion design when you can't animate"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Kolbe Yang",
+     "about": "from a Figma frame to a finished animation"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Nim",
+     "about": "animating ideas by playing with AI"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Stefan Poulos",
+     "about": "how he made his portfolio promo video"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Bruno Reis",
+     "about": "an AI agent edits his interview in DaVinci Resolve"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Andy Orsow",
+     "about": "plan shots on cheap AI video models first"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Finn McKenty",
+     "about": "restyle real footage in Flora"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "George Hastings",
+     "about": "an in-app announcement made of code, not video"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Rebekah Farr",
+     "about": "an app where every screen is AI video"
+    },
+    {
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "who": "Brett Williams",
+     "about": "how it works"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "nomination",
+     "who": "Tahreem Rehman",
+     "nominee": "Laura Sinisterra"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "nomination",
+     "who": "Ayush Soni",
+     "nominee": "m_11"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Pietro Schirano",
+     "about": "the era of build-your-own agents is over"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Ryan Stephen",
+     "about": "Continuum, an OS made of real-time video"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Frederik Roessell",
+     "about": "building Heatwave, a police chase game, in Unity"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Steven Kawer",
+     "about": "Umbras, his art turned into his first game"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "John Saunders",
+     "about": "Pigeon's Mission, a game made with his son"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Preston Booth",
+     "about": "an interactive Zen garden"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Tom Johnson",
+     "about": "how and why he built Tomjohnville"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Dann Petty",
+     "about": "a clip from his review of 300+ portfolios"
+    },
+    {
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission",
+     "who": "Eric Sin",
+     "about": "how he landed a staff design job at Netflix"
+    }
+   ],
+   "updatedAt": "2026-10-11T16:31:49.034Z"
+  },
+  "brands": {
+   "episodes": 13,
+   "tracked": 62,
+   "list": [
+    {
+     "name": "Figma",
+     "partner": false,
+     "mentions": 83,
+     "episodes": 13,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "00:08:12",
+       "seconds": 492,
+       "text": "Like I would do like Figma training stuff. And so I think maybe there’s a part of me that just likes this.",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=493s"
+      },
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "01:21:41",
+       "seconds": 4901,
+       "text": "I could just make anything in Figma, or maybe I would, like, generate something with Quiver even, get Claude to use it, and then say, just like, hey.",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:07:02",
+       "seconds": 422,
+       "text": "She’s an amazing designer and builder currently working at Figma where she’s helped build Figma motion and she’s been doing some crazy stuff with shaders.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=423s"
+      },
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "00:06:17",
+       "seconds": 377,
+       "text": "My name is Daniela, and I’m a product designer at Figma. And this week, I’d love to nominate Sonme Lee.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=372s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "00:25:10",
+       "seconds": 1510,
+       "text": "Figma at a 12.69 billion market cap and obviously we talked about their quarters report last week.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=1511s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "01:28:31",
+       "seconds": 5311,
+       "text": "Like, the I think we’re gonna look at the era of pointing, clicking, typing, like Figma style comments.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:05:14",
+       "seconds": 314,
+       "text": "The early access to code layers in Figma.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "00:14:48",
+       "seconds": 888,
+       "text": "He became one of the, I think, like, technically, like, founding designer of diagram, which Figma acquired.",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=889s"
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:13:08",
+       "seconds": 788,
+       "text": "Like, can you just make a prototype feel like Figma? Yes. Check. Not that hard. We did it.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=787s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:21:42",
+       "seconds": 1302,
+       "text": "Common knowledge has joined Figma. Now, this is interesting to me. For those who are not familiar or aware what common knowledge is, you may remember this visualization.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=1303s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:16:07",
+       "seconds": 4567,
+       "text": "But what we have been talking about in that group is the canvas and how people, in some cases, are completely offboarding from tools like Figma.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:39:40",
+       "seconds": 2380,
+       "text": "Be able to interact in this way and that way, unless maybe you’re Figma and decide you only wanna let a few partners use your MCP.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "00:24:57",
+       "seconds": 1497,
+       "text": "So Figma just launched Figma Agent. Now I haven’t played with it. I don’t know a lot about it.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1498s"
+      }
+     ]
+    },
+    {
+     "name": "Claude",
+     "partner": false,
+     "mentions": 72,
+     "episodes": 13,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "01:36:20",
+       "seconds": 5780,
+       "text": "But FS just shared the Claude logo, but it looked too much. It looked too real. It looked like a piece of coral.",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=5781s"
+      },
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "00:37:55",
+       "seconds": 2275,
+       "text": "And they want this really generalist, like, straddle all the line skill set where you gotta be able to build websites from scratch, which kinda anyone can kinda do with Claude and all the models now.",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:46:07",
+       "seconds": 2767,
+       "text": "We’re seeing like Blender mixed with Higgs Field mixed with Claude. That’s a workflow I’m going to show you guys in a second.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=2768s"
+      },
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "00:41:14",
+       "seconds": 2474,
+       "text": "Alright. Claude, send image to thing. Like, we have a pretty robust process that happens.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=2469s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "00:52:57",
+       "seconds": 3177,
+       "text": "So I had Claude before this mainly because I was curious. I had it pull out the HTML quick mockup prototypes that I had made this week.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=3178s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:35:53",
+       "seconds": 2153,
+       "text": "But we’ve seen a lot of things coming up with, like, Claude. The they introduced this little guy at some time, was that last year, this year?",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:56:00",
+       "seconds": 3360,
+       "text": "How many tweets how many tweets do you feed into Claude? Like, just to say, like, hey. Let’s, like, figure this out.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "00:39:27",
+       "seconds": 2367,
+       "text": "And if you ask me how, I’d tell you to talk to Claude or vZero. In October last year, this was when, like, I think just after, like, Opus 4.5 come out.",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=2368s"
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:31:26",
+       "seconds": 1886,
+       "text": "And now I’m like, I still like Claude for more, like, design creativity stuff, but it’s pretty good.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=1885s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:24:50",
+       "seconds": 1490,
+       "text": "It got there in ten, twelve x faster than Claude. A 12 times faster than Claude. Now it said it can’t code.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=1491s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "00:23:12",
+       "seconds": 1392,
+       "text": "And so I took 10 photographs, and I just dumped it into Claude. And I was like, build me a three d model, and it built me a three d model of it.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:31:37",
+       "seconds": 1897,
+       "text": "And so, I really liked it because in the past, I used to have to build my plans inside of, like, Claude or one of my agents.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "00:49:44",
+       "seconds": 2984,
+       "text": "The reason why I’m using, ChatTBT instead of Claude in this case is because I wanted to use the built in image generation, which Chat g b t has and Claude doesn’t.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=2985s"
+      }
+     ]
+    },
+    {
+     "name": "Notion",
+     "partner": true,
+     "mentions": 41,
+     "episodes": 10,
+     "moments": [
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:05:11",
+       "seconds": 311,
+       "text": "Brought in a couple elements from new partners of the show, who we’ll be talking about over the next few weeks, Notion, Lovable, and Mobbin.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=312s"
+      },
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "00:05:23",
+       "seconds": 323,
+       "text": "How you doing, mobbing, Notion? I see you. Paper, soon. Excited. Excited for all the people who support the show.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=318s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "00:40:52",
+       "seconds": 2452,
+       "text": "Speaking of notion, friend of the program, one of our partners, Notion, we appreciate you.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2453s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:05:57",
+       "seconds": 357,
+       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:12:28",
+       "seconds": 748,
+       "text": "It’s funny seeing that little montage there because I had two of those designs saved to my Notion.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:14:38",
+       "seconds": 878,
+       "text": "As well as Shopify and Notion and Mercury and Railway, and it’s like, this is cool. Right?",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=877s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:34:23",
+       "seconds": 2063,
+       "text": "And we’re gonna get into Notion, who is a sponsor of the show. They allow us to build what we’ve been creating here.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=2064s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:35:29",
+       "seconds": 5729,
+       "text": "Like, dude, you could have a bill to that page that is, like, distributed and saved in the Notion, you could use something like Jev.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:11:46",
+       "seconds": 706,
+       "text": "And I do wanna say, I appreciate Notion for sponsoring the segment of designer of the week.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "00:17:07",
+       "seconds": 1027,
+       "text": "We will announce the winners at the end of the show. Thank you for Notion for sponsoring this segment.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1028s"
+      }
+     ]
+    },
+    {
+     "name": "Lovable",
+     "partner": true,
+     "mentions": 38,
+     "episodes": 7,
+     "moments": [
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:05:11",
+       "seconds": 311,
+       "text": "Brought in a couple elements from new partners of the show, who we’ll be talking about over the next few weeks, Notion, Lovable, and Mobbin.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=312s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "00:25:18",
+       "seconds": 1518,
+       "text": "You made point to call it out that Lovable who just raised $400 million at a 13.3 billion dollar valuation.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=1519s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:05:57",
+       "seconds": 357,
+       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "00:20:43",
+       "seconds": 1243,
+       "text": "Lovable does not cost 25,000,000 per month. Lovable has a free plan. Yeah. Very good. I, big fan.",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=1244s"
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "01:18:27",
+       "seconds": 4707,
+       "text": "I was also interviewing at other companies at the same time, like, for example, Lovable. Their process was quite different.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=4706s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:53:19",
+       "seconds": 6799,
+       "text": "I have a library I’m building with Lovable, and I’m gonna dive into this next week. I was gonna spend a little bit more time on this, but we’re running out of time here.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:05:00",
+       "seconds": 300,
+       "text": "And if you were tuning in with us, you are tuning in to Dive Radio, the Internet’s group chat for curious designers brought to you by Lovable, actually, who we’ll be hearing more about later.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Vercel",
+     "partner": false,
+     "mentions": 28,
+     "episodes": 7,
+     "moments": [
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "00:36:22",
+       "seconds": 2182,
+       "text": "And they really talk a little bit about, like, what visual design and how Vercel thinks about a lot of this.",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:17:33",
+       "seconds": 1053,
+       "text": "I should probably pull this up in a sec, but it’s a lot of different visuals in the components, the typical way we consume design systems, and then it’s the more markdown design MD, what Vercel’s doing with this…",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=1054s"
+      },
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "00:35:50",
+       "seconds": 2150,
+       "text": "We threw a bunch of Vercel Analytics on this very late. I should have done it way earlier, but, again, I just wasn’t thinking.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=2145s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:37:20",
+       "seconds": 2240,
+       "text": "Even Vercel kinda getting in on it with, their ship icon here. Won’t be surprised to see look at this.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "00:33:30",
+       "seconds": 2010,
+       "text": "Which, by the way, for those unaware, this is Evil Rabbit from Vercel, one of the founding designer.",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=2011s"
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:07:51",
+       "seconds": 471,
+       "text": "…like, hey, I’m gonna take Film Cruise and go follow MetaLab or Vercel or Perplexity, a lot of these companies that are kind of on the fringes of how work is evolving.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=470s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:15:11",
+       "seconds": 911,
+       "text": "And for so Nathan actually just recently joined as a design engineer at Vercel. Super talented.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=912s"
+      }
+     ]
+    },
+    {
+     "name": "Cursor",
+     "partner": false,
+     "mentions": 21,
+     "episodes": 7,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "00:32:00",
+       "seconds": 1920,
+       "text": "Went to Cursor. She went to Cursor ahead of design by the way and it sounded like I immediately bopped over to write Riolu’s Twitter and I was like what’s going on here?",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=1921s"
+      },
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "00:55:11",
+       "seconds": 3311,
+       "text": "This is my agentic coding system that I’ve set up in Cursor. It’s not even open claw. Nothing special.",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:19:16",
+       "seconds": 1156,
+       "text": "Like how important the built-in browser is and what it unlocks for these IDEs like Cursor where it you know that just being able to wrap Figma inside of it is pretty interesting.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=1157s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:18:36",
+       "seconds": 1116,
+       "text": "So the first thing I wanna say, we’re gonna have some we’re gonna feature some of the former Cursor.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "01:42:54",
+       "seconds": 6174,
+       "text": "It’s a lot different than just prompting to Claude or Cursor or having a presentation that’s you’ve been working on for three years of school also at SuperBattery.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=6173s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:43:04",
+       "seconds": 6184,
+       "text": "He has access to the GitHub and to Cursor. So when he starts coding, he will go into Cursor and he will start coding within a cloud workspace.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "01:48:06",
+       "seconds": 6486,
+       "text": "So you interviewed him, Cursor, now SpaceX. He was one of the designers behind Grokbot. And I think this is a...",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=6487s"
+      }
+     ]
+    },
+    {
+     "name": "Mobbin",
+     "partner": true,
+     "mentions": 21,
+     "episodes": 6,
+     "moments": [
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "01:55:15",
+       "seconds": 6915,
+       "text": "Like, drawing from inspiration that you can’t find on Mobbin. I think I have an issue with Mobbin.",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:05:11",
+       "seconds": 311,
+       "text": "Brought in a couple elements from new partners of the show, who we’ll be talking about over the next few weeks, Notion, Lovable, and Mobbin.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=312s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:05:57",
+       "seconds": 357,
+       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "01:19:49",
+       "seconds": 4789,
+       "text": "There’s a lot of stuff in Mobbin I’ve been pulling up that I kinda wanna talk about. But I’m curious.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "02:25:34",
+       "seconds": 8734,
+       "text": "I don’t know how I’ve not come across this before, but it’s basically Mobbin, which I used five times today, but for video game UI.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=8733s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "00:55:00",
+       "seconds": 3300,
+       "text": "The conversation Kyle would say was, like, well, what if you pulled in Mobbin? What if you pulled in, you know, spotted in productions CLI?",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "OpenAI",
+     "partner": false,
+     "mentions": 20,
+     "episodes": 7,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "00:17:10",
+       "seconds": 1030,
+       "text": "And then I saw OpenAI say, ‘We’re looking into this.’ And I thought, well, that’s kind of a that’s kind of a weird thing to suddenly be popping up as a recurring issue.",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=1031s"
+      },
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "00:21:14",
+       "seconds": 1274,
+       "text": "And then a few days later, it’s like, oh, it was OpenAI, and it was just one of the upcoming models.",
+       "url": null
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "00:15:30",
+       "seconds": 930,
+       "text": "I saw OpenAI just dropped the ultra fast mode, super fast. And I want to ask you when you do any sort of coding work AI coding work, are you where you at on the speed spectrum here?",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=931s"
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "01:32:59",
+       "seconds": 5579,
+       "text": "We were gonna do an episode, and then OpenAI bought it. Yeah. Yeah. And now it’ll be, who knows?",
+       "url": null
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "00:19:11",
+       "seconds": 1151,
+       "text": "My plea to OpenAI, Anthropic, please do not ever release a new model on the same day again.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:10:15",
+       "seconds": 615,
+       "text": "But then we had OpenAI’s dev day, which we’re gonna get into there. And, obviously, there’s, like, a couple of the main things that everybody’s talking about.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "00:18:02",
+       "seconds": 1082,
+       "text": "But OpenAI announced intelligent UI.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1083s"
+      }
+     ]
+    },
+    {
+     "name": "Framer",
+     "partner": false,
+     "mentions": 19,
+     "episodes": 6,
+     "moments": [
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "01:28:48",
+       "seconds": 5328,
+       "text": "I was looking at, Framer had a tweet of, like, maybe I don’t can’t remember what it was. They shared four websites earlier this month.",
+       "url": null
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:16:16",
+       "seconds": 976,
+       "text": "Connecting with Framer. This is a dope. This is a dope hire. Anyone who lands Rob Hope is a fortunate team.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:59:38",
+       "seconds": 3578,
+       "text": "And I love Framer. I have been a partner of Framer for many years. I have been a user of Framer even longer, well before the web publishing, pivot they made.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "00:23:47",
+       "seconds": 1427,
+       "text": "I have so many questions on what these web publishing platforms are gonna do. Can’t wait to see what Framer does. I know they have a lot of stuff planned.",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=1428s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:13:28",
+       "seconds": 808,
+       "text": "And what I really appreciate, she does a lot of great work, branding and web design, and Framer’s a big tool of choice that she talks about a lot.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=809s"
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "01:35:23",
+       "seconds": 5723,
+       "text": "Manipulating the world here is Andy Orso from Framer. The dude has just been a tinkering pro, and I wanted to hear how he’s messing around with some things.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Google",
+     "partner": false,
+     "mentions": 18,
+     "episodes": 8,
+     "moments": [
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "01:08:31",
+       "seconds": 4111,
+       "text": "But, also, should you be running the Google type of study on which shade of blue, that you should use on links?",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:09:03",
+       "seconds": 543,
+       "text": "She spent 5 years at YouTube and Google and really understood what it meant to design experiences for hundreds of millions of users.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=544s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "00:16:32",
+       "seconds": 992,
+       "text": "The Google achieve design. I’m still getting up to speed with this. I am laughing at the reaction.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=993s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:23:03",
+       "seconds": 1383,
+       "text": "They’re having more fun than Google seems to be having. Right? So Yeah. Yeah. Something to be said here.",
+       "url": null
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:55:31",
+       "seconds": 3331,
+       "text": "I you know, there was expectations maybe set upfront, but really, I got in and immediately realized a couple of things. I’ll tell you this. They were using Google, Slides to prototype and design their product.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=3332s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:42:23",
+       "seconds": 6143,
+       "text": "So, he has access to my X account and also has access to a Google Drive. This is just like a personal memory bank.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:56:33",
+       "seconds": 3393,
+       "text": "It’s like, finally, Google did something. But Yeah. I think a lot of us are. We’re skeptical of these benchmarks.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "01:07:44",
+       "seconds": 4064,
+       "text": "I just took a bunch of these images that I found of Zen gardens on Google and just fit a bunch of them into Claude and then just started, like, planning out.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=4065s"
+      }
+     ]
+    },
+    {
+     "name": "Apple",
+     "partner": false,
+     "mentions": 16,
+     "episodes": 6,
+     "moments": [
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "01:46:27",
+       "seconds": 6387,
+       "text": "Thing that’s, like, I would expect Apple to be on top of some of this stuff, man.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=6382s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "01:13:01",
+       "seconds": 4381,
+       "text": "By Apple.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4382s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:16:58",
+       "seconds": 1018,
+       "text": "Apple engineers are unveiling a third a $1,400 turntable that hangs a spinning record on your wall.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:24:54",
+       "seconds": 1494,
+       "text": "I’m big Apple Mac mini guy. Huge Apple Mac mini guy. I love my to the new Mac mini. We don’t have to play the sound, but I will show you the stop motion they made.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:25:07",
+       "seconds": 1507,
+       "text": "The Apple event. I hate that name. I’m just gonna say. Not a fan. There’s a couple of things to grind my gears this week.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=1506s"
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:52:01",
+       "seconds": 3121,
+       "text": "Like, this is what I expect Apple to eventually do with their operating system at some point if they ever decide to poke them with a stick and they do something.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Rive",
+     "partner": false,
+     "mentions": 15,
+     "episodes": 3,
+     "moments": [
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:13:12",
+       "seconds": 792,
+       "text": "And I looked through basically every single Rive portfolio in Contra, like, in hours. I went through every single one of them.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:18:51",
+       "seconds": 1131,
+       "text": "Zach, I’m sure you’ve seen in the timeline, has been doing some incredible work in Rive. He works at Brilliant.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=1130s"
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "01:10:15",
+       "seconds": 4215,
+       "text": "And I really wanted to get a video from someone from Rive. I didn’t get the opportunity. Oh, bud.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "GitHub",
+     "partner": false,
+     "mentions": 14,
+     "episodes": 4,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "00:33:50",
+       "seconds": 2030,
+       "text": "It sounds like they’re taking incredibly big swings too, like coming at GitHub. They said that’s going to be like a fall thing if I don’t know.",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=2031s"
+      },
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "01:27:58",
+       "seconds": 5278,
+       "text": "And by the way, he made this, available to check out here on GitHub. I’m it’s an entire tool for creating these effects on top of your images.",
+       "url": null
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:19:22",
+       "seconds": 1162,
+       "text": "We were going to ship this earlier, but GitHub was down. It’s one of the best launch lines.",
+       "url": null
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:43:04",
+       "seconds": 6184,
+       "text": "He has access to the GitHub and to Cursor. So when he starts coding, he will go into Cursor and he will start coding within a cloud workspace.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Grok",
+     "partner": false,
+     "mentions": 13,
+     "episodes": 4,
+     "moments": [
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:25:33",
+       "seconds": 1533,
+       "text": "I’m digging the baby Grok. We talked a little bit about cursor I’m sorry. Grok bought last week.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "01:10:06",
+       "seconds": 4206,
+       "text": "And I was like, Grok really makes a lot of sense. And it’s funny because I’m still having a hard time figuring out what’s so what feels more so intuitive about it.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "01:54:14",
+       "seconds": 6854,
+       "text": "Too many, man. The combination of fantasy football season about to start and then Grok bot releasing…",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=6855s"
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "00:28:59",
+       "seconds": 1739,
+       "text": "Maybe it was a bad idea to try and wall off Grok just to use the Grok models. We’re gonna go ahead and open up Grok so that it’ll use Opus, MidJourney, Suno, whenever the task calls for it.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1740s"
+      }
+     ]
+    },
+    {
+     "name": "Paper",
+     "partner": true,
+     "mentions": 12,
+     "episodes": 4,
+     "moments": [
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "00:05:26",
+       "seconds": 326,
+       "text": "Paper, soon. Excited. Excited for all the people who support the show. We’ll have some segments dedicated to, their love and support and some ways that we actually do use these tools.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=321s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "00:05:57",
+       "seconds": 357,
+       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:52:10",
+       "seconds": 3130,
+       "text": "I saw, I shipped this, and then, like, a couple weeks later, Paper did made their search like this too.",
+       "url": null
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:20:38",
+       "seconds": 4838,
+       "text": "Paper, though, man. Like, the it’s there’s a lot of use cases here. A lot of people bringing stuff in.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Adobe",
+     "partner": false,
+     "mentions": 11,
+     "episodes": 6,
+     "moments": [
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "01:49:12",
+       "seconds": 6552,
+       "text": "It almost felt to me like similar what Sketch did to Adobe Illustrator where I was in Illustrator and all of a sudden you’re in Sketch, and right away you’re like…",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=6553s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "01:06:53",
+       "seconds": 4013,
+       "text": "So what I did is I went into Adobe Illustrator and Woah. Basically to hand refine all the different, AI variations to remove any little artifacts and to retract details.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:35:04",
+       "seconds": 2104,
+       "text": "Gave Astra, access to Adobe Premiere, and it just started chopping away at video. And I have an, you know, big media studio over here.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=2103s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "01:24:12",
+       "seconds": 5052,
+       "text": "I guess I’ll see what this Adobe Illustrator product is all about, and I just started making things.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=5053s"
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "01:21:59",
+       "seconds": 4919,
+       "text": "You know, I was like, use Adobe After Effects to make an amazing launch video. Go all out with transitions and clear stuff in AE.",
+       "url": null
+      },
+      {
+       "ep": 13,
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "at": "00:44:18",
+       "seconds": 2658,
+       "text": "People are going through, and there’s two different versions that got announced this week where someone went and recreated the entire Adobe Creative Suite.",
+       "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=2659s"
+      }
+     ]
+    },
+    {
+     "name": "Anthropic",
+     "partner": false,
+     "mentions": 11,
+     "episodes": 6,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "00:31:50",
+       "seconds": 1910,
+       "text": "And then we found out in like almost the same 24-hour period that Jenny Wen left Anthropic like six hour period dude…",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=1911s"
+      },
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "01:12:41",
+       "seconds": 4361,
+       "text": "Like, if you’re working at Anthropic right now, you can literally build anything. You can squash any micro industry like a bug.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "01:39:05",
+       "seconds": 5945,
+       "text": "Another thing that it made me think of was remember when Anthropic had the pop up shop and they didn’t even announce it?",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=5946s"
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:41:23",
+       "seconds": 2483,
+       "text": "But Anthropic did put out, sort of a projection that you can go and check out here of what they think different economic future paths could look like over the next handful of years.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=2482s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "00:19:11",
+       "seconds": 1151,
+       "text": "My plea to OpenAI, Anthropic, please do not ever release a new model on the same day again.",
+       "url": null
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:45:38",
+       "seconds": 2738,
+       "text": "If ChatGPT, Anthropic, all the labs aren’t gonna allow us users to use their subscriptions, we’re gonna build a bunch of infrastructure.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Shopify",
+     "partner": false,
+     "mentions": 11,
+     "episodes": 4,
+     "moments": [
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:12:04",
+       "seconds": 724,
+       "text": "Shopify is hoarding some talent over there. I think did you just do an episode with Katarina?",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:14:38",
+       "seconds": 878,
+       "text": "As well as Shopify and Notion and Mercury and Railway, and it’s like, this is cool. Right?",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=877s"
+      },
+      {
+       "ep": 10,
+       "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "at": "00:12:02",
+       "seconds": 722,
+       "text": "The Shopify design team, and we know that they’re rock stars. But I want to eliminate her, because I recently become obsessed with her personal projects.",
+       "url": "https://youtube.com/watch?v=x05zZ90lY28&t=723s"
+      },
+      {
+       "ep": 11,
+       "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+       "at": "01:08:37",
+       "seconds": 4117,
+       "text": "Like, it’s all I used to think a lot about Shopify. I was, like, deep in the Shopify ecosystem.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Raycast",
+     "partner": false,
+     "mentions": 9,
+     "episodes": 5,
+     "moments": [
+      {
+       "ep": 2,
+       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+       "at": "00:15:12",
+       "seconds": 912,
+       "text": "Hope you enjoyed Alex’s work. I’d like to nominate Pedro from Raycast and Glaze to spotlight his current inspiration.",
+       "url": null
+      },
+      {
+       "ep": 3,
+       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+       "at": "00:06:55",
+       "seconds": 415,
+       "text": "Hey Dive Radio, it’s Pedro from Raycast and Glaze and thanks Rob for the nomination. I’d like to recommend Daniela Munca.",
+       "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=416s"
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "01:32:50",
+       "seconds": 5570,
+       "text": "It’s almost like a different type of Raycast that’s much more AI forward. And they were about to release the beta.",
+       "url": null
+      },
+      {
+       "ep": 9,
+       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "at": "00:15:42",
+       "seconds": 942,
+       "text": "Early, he has been building his ideas, like this Raycast inspired keyboard. But my favorite move so far happened just last week when he publicly applied to the browser company.",
+       "url": "https://youtube.com/watch?v=DUejFPtYll0&t=941s"
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:18:58",
+       "seconds": 1138,
+       "text": "Everybody at Raycast is cracked. That team is awesome. So wanted to shine a light on Jordan.",
+       "url": null
+      }
+     ]
+    },
+    {
+     "name": "Arc",
+     "partner": false,
+     "mentions": 8,
+     "episodes": 7,
+     "moments": [
+      {
+       "ep": 1,
+       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
+       "at": "00:47:43",
+       "seconds": 2863,
+       "text": "We were having some sound issues outside of Arc. So, you’re not going to see that. But, I basically said, ‘Hey, we’ve got some motion graphics.",
+       "url": "https://youtube.com/watch?v=VcLm0kAGCck&t=2864s"
+      },
+      {
+       "ep": 4,
+       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+       "at": "01:49:03",
+       "seconds": 6543,
+       "text": "And it doesn’t work in Arc, which is super annoying because I wanted to use it all day while I was doing that deck.",
+       "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=6538s"
+      },
+      {
+       "ep": 5,
+       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+       "at": "01:21:24",
+       "seconds": 4884,
+       "text": "I’ve got a little wonkiness with Arc. We’ll pull it up this way. Here we go. And it really is like a miniature unicorn studio of sorts to really make a lot of different shaders.",
+       "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4885s"
+      },
+      {
+       "ep": 6,
+       "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "at": "01:24:47",
+       "seconds": 5087,
+       "text": "Oh, you know what’s confusing is when you rename a tab in Arc. It doesn’t show up in the share.",
+       "url": null
+      },
+      {
+       "ep": 7,
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "at": "00:37:52",
+       "seconds": 2272,
+       "text": "Oh, I’m Arc opens mini Arc, but that doesn’t take over the screen. So you didn’t see that.",
+       "url": null
+      },
+      {
+       "ep": 8,
+       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "at": "01:29:11",
+       "seconds": 5351,
+       "text": "So much easier to switch tabs in Arc. Okay. Sound remote. Okay. So what I did, seriously hold on.",
+       "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=5352s"
+      },
+      {
+       "ep": 12,
+       "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+       "at": "00:14:43",
+       "seconds": 883,
+       "text": "Guys, I did, Dia instead of Arc. It’s just a little harder to do everything. Okay. Watch this.",
+       "url": null
+      }
+     ]
+    }
+   ]
+  },
+  "partners": [
+   {
+    "name": "Notion",
+    "mentions": 41,
+    "episodes": 10,
+    "named": 10,
+    "segments": 3,
+    "about": 1,
+    "moments": [
+     {
+      "kind": "named",
+      "ep": 3,
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "at": "00:05:11",
+      "seconds": 311,
+      "text": "Brought in a couple elements from new partners of the show, who we’ll be talking about over the next few weeks, Notion, Lovable, and Mobbin.",
+      "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=312s",
+      "liveAt": null
+     },
+     {
+      "kind": "named",
+      "ep": 4,
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "at": "00:05:23",
+      "seconds": 323,
+      "text": "How you doing, mobbing, Notion? I see you. Paper, soon. Excited. Excited for all the people who support the show.",
+      "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=318s",
+      "liveAt": 28
+     },
+     {
+      "kind": "named",
+      "ep": 5,
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "at": "00:40:52",
+      "seconds": 2452,
+      "text": "Speaking of notion, friend of the program, one of our partners, Notion, we appreciate you.",
+      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2453s",
+      "liveAt": null
+     },
+     {
+      "kind": "segment",
+      "ep": 5,
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "at": "00:40:54",
+      "seconds": 2454,
+      "title": "Notion as code and agent friendly backends",
+      "text": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
+      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2455s",
+      "liveAt": null
+     },
+     {
+      "kind": "named",
+      "ep": 5,
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "at": "00:47:52",
+      "seconds": 2872,
+      "text": "Real quick, I want to check out the current results of our designer of the week brought to you by Notion.",
+      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2873s",
+      "liveAt": null
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:05:57",
+      "seconds": 357,
+      "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+      "url": null,
+      "liveAt": 35
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:51:19",
+      "seconds": 3079,
+      "text": "Notion, we have Nosy, Mobbin’s chillin’, Papers chillin’. Love the work that Nick Pattison did for their logo, and then we’ve got Lovable.",
+      "url": null,
+      "liveAt": 60
+     },
+     {
+      "kind": "inSegment",
+      "ep": 9,
+      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "at": "01:22:24",
+      "seconds": 4944,
+      "title": "Hiring managers reveal how they screen designers",
+      "text": "Guests from Shopify, Notion, and Linear explain how they evaluate designers, followed by new hire stories.",
+      "url": "https://youtube.com/watch?v=DUejFPtYll0&t=4943s",
+      "liveAt": 126
+     },
+     {
+      "kind": "inSegment",
+      "ep": 10,
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "at": "00:27:43",
+      "seconds": 1663,
+      "title": "Pitching your help and building useful skills",
+      "text": "The hosts review outreach advice, show a community plugin, and demonstrate a Notion job search skill.",
+      "url": "https://youtube.com/watch?v=x05zZ90lY28&t=1664s",
+      "liveAt": 83
+     },
+     {
+      "kind": "named",
+      "ep": 10,
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "at": "00:34:23",
+      "seconds": 2063,
+      "text": "And we’re gonna get into Notion, who is a sponsor of the show. They allow us to build what we’ve been creating here.",
+      "url": "https://youtube.com/watch?v=x05zZ90lY28&t=2064s",
+      "liveAt": 90
+     },
+     {
+      "kind": "named",
+      "ep": 10,
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "at": "00:39:17",
+      "seconds": 2357,
+      "text": "Notion, thank you for sponsoring this episode. Thank you for being part of this design community.",
+      "url": "https://youtube.com/watch?v=x05zZ90lY28&t=2358s",
+      "liveAt": 85
+     },
+     {
+      "kind": "named",
+      "ep": 12,
+      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "at": "00:11:46",
+      "seconds": 706,
+      "text": "And I do wanna say, I appreciate Notion for sponsoring the segment of designer of the week.",
+      "url": null,
+      "liveAt": 82
+     },
+     {
+      "kind": "named",
+      "ep": 13,
+      "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+      "at": "00:17:07",
+      "seconds": 1027,
+      "text": "We will announce the winners at the end of the show. Thank you for Notion for sponsoring this segment.",
+      "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1028s",
+      "liveAt": 74
+     }
+    ]
+   },
+   {
+    "name": "Mobbin",
+    "mentions": 21,
+    "episodes": 6,
+    "named": 3,
+    "segments": 1,
+    "about": 1,
+    "moments": [
+     {
+      "kind": "named",
+      "ep": 3,
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "at": "00:05:11",
+      "seconds": 311,
+      "text": "Brought in a couple elements from new partners of the show, who we’ll be talking about over the next few weeks, Notion, Lovable, and Mobbin.",
+      "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=312s",
+      "liveAt": null
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:05:57",
+      "seconds": 357,
+      "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+      "url": null,
+      "liveAt": 35
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:51:19",
+      "seconds": 3079,
+      "text": "Notion, we have Nosy, Mobbin’s chillin’, Papers chillin’. Love the work that Nick Pattison did for their logo, and then we’ve got Lovable.",
+      "url": null,
+      "liveAt": 60
+     },
+     {
+      "kind": "segment",
+      "ep": 7,
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "at": "01:34:49",
+      "seconds": 5689,
+      "title": "Mobbin workflows, one up picks, and the winner reveal",
+      "text": "Hosts demo pattern research through Mobbin's MCP, trade weekly picks, and crown the designer of the week.",
+      "url": null,
+      "liveAt": 56
+     }
+    ]
+   },
+   {
+    "name": "Lovable",
+    "mentions": 38,
+    "episodes": 7,
+    "named": 10,
+    "segments": 2,
+    "about": 1,
+    "moments": [
+     {
+      "kind": "named",
+      "ep": 3,
+      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "at": "00:05:11",
+      "seconds": 311,
+      "text": "Brought in a couple elements from new partners of the show, who we’ll be talking about over the next few weeks, Notion, Lovable, and Mobbin.",
+      "url": "https://youtube.com/watch?v=9HYGZgaHdlw&t=312s",
+      "liveAt": null
+     },
+     {
+      "kind": "inSegment",
+      "ep": 5,
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "at": "00:26:25",
+      "seconds": 1585,
+      "title": "Why more designers are not becoming founders",
+      "text": "A clip of Lovable's founder asks why so few designers start companies, and the hosts debate the reasons.",
+      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=1586s",
+      "liveAt": null
+     },
+     {
+      "kind": "named",
+      "ep": 5,
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "at": "01:20:30",
+      "seconds": 4830,
+      "text": "Brought to you by Lovable, which I think is a very proper sponsor for a segment like this.",
+      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4831s",
+      "liveAt": null
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:05:57",
+      "seconds": 357,
+      "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+      "url": null,
+      "liveAt": 35
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:44:08",
+      "seconds": 2648,
+      "text": "You may have heard of it called Lovable. You can bring ideas to life, have people love, you know.",
+      "url": null,
+      "liveAt": 68
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:51:23",
+      "seconds": 3083,
+      "text": "Love the work that Nick Pattison did for their logo, and then we’ve got Lovable. I think Fonz did Fonz or Pattison do Lovable’s logo too?",
+      "url": null,
+      "liveAt": 60
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "01:20:44",
+      "seconds": 4844,
+      "text": "I think it is time for the one Up weekly segment brought to you by Lovable. Make creating an idea that other people will love.",
+      "url": null,
+      "liveAt": 43
+     },
+     {
+      "kind": "named",
+      "ep": 8,
+      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "at": "00:21:02",
+      "seconds": 1262,
+      "text": "So, as a partner of Lovable’s, I’ll call this out. Lovable just created their own payment platform, a completely separate product.",
+      "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=1263s",
+      "liveAt": 81
+     },
+     {
+      "kind": "named",
+      "ep": 8,
+      "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "at": "01:40:53",
+      "seconds": 6053,
+      "text": "Anyway, let’s get into one Up Weekly, brought to you by Lovable. Great ideas that somebody loves.",
+      "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s",
+      "liveAt": 58
+     },
+     {
+      "kind": "named",
+      "ep": 11,
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "at": "01:57:24",
+      "seconds": 7044,
+      "text": "Lovable, sponsored the show. And I was using some Jev with it too. But I think I’m actually gonna based on some of the stuff I learned today, I’m gonna do some extra stuff with Jev.",
+      "url": null,
+      "liveAt": 74
+     },
+     {
+      "kind": "named",
+      "ep": 12,
+      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "at": "00:05:00",
+      "seconds": 300,
+      "text": "And if you were tuning in with us, you are tuning in to Dive Radio, the Internet’s group chat for curious designers brought to you by Lovable, actually, who we’ll be hearing more about later.",
+      "url": null,
+      "liveAt": 53
+     },
+     {
+      "kind": "segment",
+      "ep": 12,
+      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "at": "00:20:13",
+      "seconds": 1213,
+      "title": "Brand in a box, the Discord opening, and a Lovable library",
+      "text": "Brett's clip on prebuilt brands, then a host explains the quarterly Discord and a Lovable submissions library.",
+      "url": null,
+      "liveAt": 88
+     }
+    ]
+   },
+   {
+    "name": "Paper",
+    "mentions": 12,
+    "episodes": 4,
+    "named": 3,
+    "segments": 2,
+    "about": 1,
+    "moments": [
+     {
+      "kind": "named",
+      "ep": 4,
+      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "at": "00:05:26",
+      "seconds": 326,
+      "text": "Paper, soon. Excited. Excited for all the people who support the show. We’ll have some segments dedicated to, their love and support and some ways that we actually do use these tools.",
+      "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=321s",
+      "liveAt": 28
+     },
+     {
+      "kind": "named",
+      "ep": 6,
+      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "at": "00:05:57",
+      "seconds": 357,
+      "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
+      "url": null,
+      "liveAt": 35
+     },
+     {
+      "kind": "inSegment",
+      "ep": 7,
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "at": "00:57:35",
+      "seconds": 3455,
+      "title": "Agent working states and prompting inside design canvases",
+      "text": "Hosts compare how Paper, Framer, and Flora signal agent activity and handle prompts on the canvas.",
+      "url": null,
+      "liveAt": 57
+     },
+     {
+      "kind": "named",
+      "ep": 7,
+      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "at": "01:02:34",
+      "seconds": 3754,
+      "text": "I mean, like, Paper has become, obviously, a partner of the show, but that’s because they have become a staple that we use, almost regularly.",
+      "url": null,
+      "liveAt": 61
+     },
+     {
+      "kind": "segment",
+      "ep": 11,
+      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "at": "01:15:20",
+      "seconds": 4520,
+      "title": "Canvas tools, Quiver in Paper, and where design systems should live",
+      "text": "Clips on Quiver in Paper and Alyx lead Ridd to argue design-code parity is dead and systems belong in code.",
+      "url": null,
+      "liveAt": 80
+     }
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "package": "Mid-roll",
+    "format": "A read",
+    "label": "Notion on the Dive Radio Skills Library",
+    "partner": "Notion",
+    "ep": 10,
+    "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+    "moment": {
+     "at": "00:34:23",
+     "seconds": 2063,
+     "text": "And we’re gonna get into Notion, who is a sponsor of the show. They allow us to build what we’ve been creating here.",
+     "url": "https://youtube.com/watch?v=x05zZ90lY28&t=2064s",
+     "liveAt": 90
+    },
+    "reason": null
+   },
+   {
+    "package": "Segment",
+    "format": "A named segment",
+    "label": "One Up Weekly, brought to you by Lovable",
+    "partner": "Lovable",
+    "ep": 5,
+    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "moment": {
+     "at": "01:20:30",
+     "seconds": 4830,
+     "text": "Brought to you by Lovable, which I think is a very proper sponsor for a segment like this.",
+     "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4831s",
+     "liveAt": null
+    },
+    "reason": null
+   },
+   {
+    "package": "Build",
+    "format": "A live build",
+    "label": "Notion as Code, Notion’s August build",
+    "partner": "Notion",
+    "ep": 5,
+    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "moment": {
+     "at": "00:40:52",
+     "seconds": 2452,
+     "text": "Speaking of notion, friend of the program, one of our partners, Notion, we appreciate you.",
+     "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2453s",
+     "liveAt": null
+    },
+    "reason": null
+   }
+  ],
+  "links": {
+   "exact": 8,
+   "episodes": 13
+  }
+ },
  "definitions": [
   [
    "typical",
@@ -7963,7 +11352,7 @@
   ],
   [
    "live-reporting change",
-   "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its count of people who watched live includes X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check — compares only episodes on the same side of E5; chat compares across it."
+   "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its live views (each channel's own count, added) include X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check, the sponsor page's typical show and its records — compares only episodes on the same side of E5; chat compares across it."
   ],
   [
    "show health",
@@ -8067,6 +11456,8 @@
   "episodes[].watch.byChannel[]*",
   "episodes[].watch.channels[]*",
   "episodes[].chapters.list[]*",
+  "episodes[].chapters.upload*",
+  "sponsor*",
   "insights[]*",
   "insightsStale[]*",
   "showTrend.week1VelocityByEpisode[]*",
@@ -8373,13 +11764,12 @@
   "archiveUrl": "https://dive-radio-analytics.vercel.app/agent.json",
   "totalEpisodes": 13,
   "includedSlugs": [
-   "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
    "2026-09-10-dive-radio-how-designers-are-getting-hir",
    "2026-09-17-dive-radio-how-to-become-a-founding-desi",
    "2026-09-24-dive-radio-just-in-time-interfaces",
    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
    "2026-10-08-dive-radio-rise-of-the-playable-portfoli"
   ],
-  "archivedCount": 7
+  "archivedCount": 8
  }
 }
