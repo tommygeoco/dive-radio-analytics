@@ -142,7 +142,16 @@ export const HEALTH_STORE_VERSION = 3;
 // that carry the broadcast (x-posts.mjs). Promo posts' impressions are shown
 // beside reach and never enter exposure, announce-to-play, or any typical.
 // While an episode's comments are still being read, goodwill balance waits.
-export const FORMULA_VERSION = "health-v10";
+// health-v11 (2026-10-12, owner decision, AUDIT-2026-10-12-live-break-split):
+// the known E5 reporting break now touches every live measure built on
+// Restream's viewer readings — peak, average and minutes watched live, the
+// chatters per hundred at the peak and the hold rate join unique live viewers
+// and minutes per viewer — so their peers and direction points come only from
+// the newest side of it. Before E5 Restream counted YouTube's live viewers
+// alone. Chat messages an hour still compares across. No saved read from
+// 2026-10-09 on has a peer before E5, so no number moves; reads from 10-02 to
+// 10-08 compared these measures with E4 and keep the health-v10 stamp.
+export const FORMULA_VERSION = "health-v11";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
 // the 2026-08-24 transition (two checks left, score held at 51) shipped with
@@ -194,6 +203,7 @@ export const WEIGHTS_BY_FORMULA = Object.freeze({
   "health-v8": BASE_WEIGHTS,
   "health-v9": BASE_WEIGHTS,
   "health-v10": BASE_WEIGHTS,
+  "health-v11": BASE_WEIGHTS,
 });
 export const CHECK_LABELS = Object.freeze({
   growth: "growth", audienceQuality: "audience quality", reachEfficiency: "reach", livePull: "live turnout", participation: "participation", conversion: "subscribers", sentiment: "goodwill",
@@ -621,20 +631,22 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   const liveMinutesOf = (e) => (liveOk(e) && Number.isFinite(e.live.watchedMin) && e.live.watchedMin > 0 ? e.live.watchedMin : null);
   let livePeakMeasure, liveAvgMeasure, liveViewersMeasure, liveMinutesMeasure;
   if (liveOk(newest)) {
+    // PRD v12 §3.1 (health-v5, widened in health-v11): a known reporting
+    // break splits the peers — only episodes on the newest's side of it are
+    // like for like for every measure it touches
     const window = windowFor(newest, episodes);
-    const pk = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.peak : null) });
-    const av = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.avg : null) });
-    // PRD v12 §3.1 / health-v5: a known reporting break splits the peers —
-    // only episodes on the newest's side of it are like for like
-    const lv = peersFor({ own: newest, window: window.filter((p) => comparableAcrossBreaks("liveViewers", p)), flags, units: UNIT_FAMILIES.live, valueOf: liveViewersOf });
-    const lm = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: liveMinutesOf });
-    livePeakMeasure = measurement("peak", newest.live.peak, pk, { ageBasis: "ageFree", episodeRead: newest.slug });
-    liveAvgMeasure = measurement("average", newest.live.avg, av, { ageBasis: "ageFree", episodeRead: newest.slug });
+    const sided = (key) => window.filter((p) => comparableAcrossBreaks(key, p));
+    const pk = peersFor({ own: newest, window: sided("peak"), flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.peak : null) });
+    const av = peersFor({ own: newest, window: sided("average"), flags, units: UNIT_FAMILIES.live, valueOf: (p) => (liveOk(p) ? p.live.avg : null) });
+    const lv = peersFor({ own: newest, window: sided("liveViewers"), flags, units: UNIT_FAMILIES.live, valueOf: liveViewersOf });
+    const lm = peersFor({ own: newest, window: sided("minutesWatched"), flags, units: UNIT_FAMILIES.live, valueOf: liveMinutesOf });
+    livePeakMeasure = measurement("peak", newest.live.peak, pk, { ageBasis: "ageFree", episodeRead: newest.slug, reason: pk.typical == null ? NOTE_BREAK("peak") : null });
+    liveAvgMeasure = measurement("average", newest.live.avg, av, { ageBasis: "ageFree", episodeRead: newest.slug, reason: av.typical == null ? NOTE_BREAK("average") : null });
     liveViewersMeasure = liveViewersOf(newest) != null
       ? measurement("liveViewers", liveViewersOf(newest), lv, { ageBasis: "ageFree", episodeRead: newest.slug, reason: lv.typical == null ? NOTE_BREAK("liveViewers") : null })
       : measurement("liveViewers", null, null, { reason: "The latest episode's live session has no viewer count." });
     liveMinutesMeasure = liveMinutesOf(newest) != null
-      ? measurement("minutesWatched", liveMinutesOf(newest), lm, { ageBasis: "ageFree", episodeRead: newest.slug })
+      ? measurement("minutesWatched", liveMinutesOf(newest), lm, { ageBasis: "ageFree", episodeRead: newest.slug, reason: lm.typical == null ? NOTE_BREAK("minutesWatched") : null })
       : measurement("minutesWatched", null, null, { reason: "The latest episode's live session has no watch-time total." });
     if (liveViewersMeasure.score != null) {
       addFact("latest-live-viewers", liveViewersMeasure.value, "", (display) => `${display} people watched the latest show live.`, [`data.json#episodes.${newest.slug}.live.liveViews`]);
@@ -668,17 +680,21 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
   let chattersMeasure, chatRateMeasure, stayMeasure, holdMeasure;
   if (newestRates && Number.isFinite(newestRates.chattersPer100) && Number.isFinite(newestRates.messagesPerHour)) {
     const window = windowFor(newest, episodes);
-    const ch = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.chattersPer100 ?? null });
-    const mr = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.messagesPerHour ?? null });
-    const st = peersFor({ own: newest, window: window.filter((p) => comparableAcrossBreaks("minutesPerViewer", p)), flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.minutesPerViewer ?? null });
-    const hd = peersFor({ own: newest, window, flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.holdRate ?? null });
-    chattersMeasure = measurement("chattersPer100", newestRates.chattersPer100, ch, { ageBasis: "ageFree", episodeRead: newest.slug });
+    // chatters per hundred and the hold rate divide by the peak, minutes per
+    // viewer by unique viewers: the break touches them (health-v11); chat an
+    // hour reads chat, which X reported on both sides of it
+    const sided = (key) => window.filter((p) => comparableAcrossBreaks(key, p));
+    const ch = peersFor({ own: newest, window: sided("chattersPer100"), flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.chattersPer100 ?? null });
+    const mr = peersFor({ own: newest, window: sided("messagesPerHour"), flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveRatesOf(p)?.messagesPerHour ?? null });
+    const st = peersFor({ own: newest, window: sided("minutesPerViewer"), flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.minutesPerViewer ?? null });
+    const hd = peersFor({ own: newest, window: sided("holdRate"), flags, units: UNIT_FAMILIES.live, valueOf: (p) => liveDepthOf(p)?.holdRate ?? null });
+    chattersMeasure = measurement("chattersPer100", newestRates.chattersPer100, ch, { ageBasis: "ageFree", episodeRead: newest.slug, reason: ch.typical == null ? NOTE_BREAK("chattersPer100") : null });
     chatRateMeasure = measurement("messagesPerHour", newestRates.messagesPerHour, mr, { ageBasis: "ageFree", episodeRead: newest.slug });
     stayMeasure = Number.isFinite(newestDepth?.minutesPerViewer)
       ? measurement("minutesPerViewer", newestDepth.minutesPerViewer, st, { ageBasis: "ageFree", episodeRead: newest.slug, reason: st.typical == null ? NOTE_BREAK("minutesPerViewer") : null })
       : measurement("minutesPerViewer", null, null, { reason: "The latest episode's live session has no watch-time or viewer total." });
     holdMeasure = Number.isFinite(newestDepth?.holdRate)
-      ? measurement("holdRate", newestDepth.holdRate, hd, { ageBasis: "ageFree", episodeRead: newest.slug })
+      ? measurement("holdRate", newestDepth.holdRate, hd, { ageBasis: "ageFree", episodeRead: newest.slug, reason: hd.typical == null ? NOTE_BREAK("holdRate") : null })
       : measurement("holdRate", null, null, { reason: "The latest episode's live session has no minute-by-minute audience record." });
     if (stayMeasure.score != null) {
       addFact("latest-minutes-per-viewer", stayMeasure.value, "", (display) => `Each person who watched the latest show live stayed ${display} minutes on average.`, [`data.json#episodes.${newest.slug}.live`]);

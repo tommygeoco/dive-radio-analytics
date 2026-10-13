@@ -147,3 +147,25 @@ carried byte for byte; the entry names its earlier rules and score. The
 frozen-bytes guard and validator 1g replay that step and accept nothing else.
 Decision record and before/after table:
 `audit/AUDIT-2026-09-29-sonnet-comments-promo.md`, finding 12.
+
+## Addendum — `health21-v4` (2026-10-12, owner decision)
+
+The live check compares a peak only with peaks measured the same way. Before
+E5 Restream counted YouTube's live viewers alone: the X destinations reported
+how many people watched and their chat, but no viewer count, so E1–E4's
+session peaks are YouTube's. From E5 they include X, which lifts the peak
+14–41% above YouTube's own on E5–E13. The check therefore takes its peers only from the episode's own side
+of every known reporting break that touches the peak (`baselines.KNOWN_BREAKS`,
+`sameSideOfBreaks`). With fewer than three there, it is absent and stores
+`NOTE_BREAK` as its reason. Its weight goes to the other checks. Chat was
+reported on both sides, but the two halves of the check keep one peer set.
+
+Every frozen entry is re-derived through the declared `health21-v3 → v4` step:
+only the live check is rebuilt, from the entry's own window and frozen outlier
+verdicts plus the live-event files, after proving the stored v3 values still
+match them. On the 2026-10-12 stores E1–E4 keep their checks byte for byte, and
+E5–E10 lose the live check (0, 1, 2, 2, 2 and 2 peers on their side). Their
+scores move 36 → 37, 38 → 37, 57 → 61, 69 → 73, 67 → 63 and 64 → 66. Because
+every episode from E7 on carries a promo flag, E11 and E12 also read without a
+live check, and so does E13 under either rule. Decision record:
+`audit/AUDIT-2026-10-12-live-break-split.md`.

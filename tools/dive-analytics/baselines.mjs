@@ -536,15 +536,17 @@ export function computeDirection(episodes, flags, {
     discoveryShare: (e) => (views(e) && mature(e) ? discoveryOf(e) : null),
     liveAverage: (e) => (live(e) && Number.isFinite(e.live?.avg) ? e.live.avg : null),
     livePeak: (e) => (live(e) && Number.isFinite(e.live?.peak) ? e.live.peak : null),
-    liveViewers: (e) => (live(e) && comparableAcrossBreaks("liveViewers", e) && Number.isFinite(e.live?.liveViews) && e.live.liveViews > 0 ? e.live.liveViews : null),
+    liveViewers: (e) => (live(e) && Number.isFinite(e.live?.liveViews) && e.live.liveViews > 0 ? e.live.liveViews : null),
     minutesWatched: (e) => (live(e) && Number.isFinite(e.live?.watchedMin) && e.live.watchedMin > 0 ? e.live.watchedMin : null),
     chattersPer100: (e) => (live(e) ? liveRatesOf(e)?.chattersPer100 ?? null : null),
     messagesPerHour: (e) => (live(e) ? liveRatesOf(e)?.messagesPerHour ?? null : null),
-    minutesPerViewer: (e) => (live(e) && comparableAcrossBreaks("minutesPerViewer", e) ? liveDepthOf(e)?.minutesPerViewer ?? null : null),
+    minutesPerViewer: (e) => (live(e) ? liveDepthOf(e)?.minutesPerViewer ?? null : null),
     holdRate: (e) => (live(e) ? liveDepthOf(e)?.holdRate ?? null : null),
     subscribers: (e) => (views(e) && mature(e) ? subsOf(e) : null),
   };
-  const measures = TREND_MEASURES.map((m) => trendFor(m.key, episodes, valueOf[m.key], { basis: m.basis, check: m.check }));
+  // a known reporting break keeps every series it touches on the newest side
+  // of it (PRD v12 §3.1): the declaration names the measures, nothing here does
+  const measures = TREND_MEASURES.map((m) => trendFor(m.key, episodes, (e) => (comparableAcrossBreaks(m.key, e) ? valueOf[m.key](e) : null), { basis: m.basis, check: m.check }));
   return { measures, votes: checkVotes(measures), overall: overallDirection(measures) };
 }
 
@@ -891,8 +893,29 @@ export const KNOWN_BREAKS = Object.freeze([
     id: "restream-live-per-channel-2026-08-13",
     from: "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
     fromEp: 5,
-    measures: ["liveViewers", "minutesPerViewer"],
-    note: "Restream's per-channel live reporting changed from E5: the X destinations began reporting live viewers, and the unique-viewer totals before and after are not like for like (E1–E4 counted YouTube only).",
+    // every live measure built on Restream's viewer readings, by the key each
+    // comparison reads it under: show health's live turnout and participation
+    // (peak, average, liveViewers, minutesWatched, chattersPer100,
+    // minutesPerViewer, holdRate), their direction series (livePeak,
+    // liveAverage and the shared keys), and episode health's live check
+    // through `peak` (health21-v4). Chat was reported on X on both sides, so
+    // chat messages an hour and the live check's chat stay comparable
+    // (AUDIT-2026-10-12-live-break-split).
+    measures: ["peak", "average", "liveViewers", "minutesWatched", "chattersPer100", "minutesPerViewer", "holdRate", "livePeak", "liveAverage"],
+    note: "Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).",
+    // AUDIT-2026-10-12: before the break Restream measured no live viewing on
+    // the X destinations. Each X row came back with zeros for peak, average and
+    // minutes watched, and a two-point zero series (start and end) in place of
+    // a per-minute one — the shape it gives LinkedIn, which never reports
+    // viewers. Those zeros are not readings: the live projection leaves these
+    // fields absent on the X rows of earlier episodes, every minute of their
+    // per-minute viewers (live.series[].byChan) too, and gives each row this
+    // reason. Views and chat on the same rows were reported and stay.
+    unreported: {
+      platform: "x",
+      fields: ["peak", "avg", "watchedMin", "series"],
+      reason: "Restream did not report X's live viewers or minutes watched before E5.",
+    },
   },
 ]);
 // A break splits the episodes into two populations for the measures it
@@ -900,4 +923,18 @@ export const KNOWN_BREAKS = Object.freeze([
 // episode (health peers, direction points). Nothing is estimated across it.
 export function breaksFor(measureKey) { return KNOWN_BREAKS.filter((b) => b.measures.includes(measureKey)); }
 export function comparableAcrossBreaks(measureKey, episode) { return breaksFor(measureKey).every((b) => (episode?.ep ?? 0) >= b.fromEp); }
+// A window-relative comparison (episode health) reads the episode under test,
+// not the newest: a peer counts only on that episode's side of every break
+// that touches the measure.
+export function sameSideOfBreaks(measureKey, episode, peer) {
+  return breaksFor(measureKey).every((b) => ((episode?.ep ?? 0) >= b.fromEp) === ((peer?.ep ?? 0) >= b.fromEp));
+}
+// The live fields a break declares unreported for one destination of one
+// episode — platform "yt" or "x" — or null when its readings stand: the
+// episode aired on or after every such break, or its number is unknown.
+export function unreportedLiveOf(episode, platform) {
+  const ep = episode?.ep;
+  if (!Number.isFinite(ep) || !platform) return null;
+  return KNOWN_BREAKS.find((b) => b.unreported?.platform === platform && ep < b.fromEp)?.unreported ?? null;
+}
 export const NOTE_BREAK = (measureKey) => { const b = breaksFor(measureKey)[0]; return b ? `Fewer than three episodes since the live-reporting change (from E${b.fromEp}) to compare with.` : null; };

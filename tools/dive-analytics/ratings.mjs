@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// ratings.mjs — episode health (health21-v3): one 0–100 score per episode,
+// ratings.mjs — episode health (health21-v4): one 0–100 score per episode,
 // measured over its first three weeks against the episodes before it, frozen
 // once written, and rebuildable from what the entry itself stores.
 //
@@ -24,7 +24,9 @@
 //       live       15%  peak concurrents and chat messages vs peers, averaged   [ageFree]
 //                       chat = baselines.liveChatOf: without LinkedIn, absent when
 //                       LinkedIn's count is unknown (health21-v3); a peer counts
-//                       only with both readings
+//                       only with both readings, and only from the episode's own
+//                       side of every known reporting break on the peak — before
+//                       E5 Restream counted YouTube's live viewers alone (health21-v4)
 //       conversion 10%  subscribers per 1k analytics views, same rule as retention
 //       sentiment  10%  positive share of directional feedback posted within 21 d,
 //                       on the sources every window member has coverage for, needing
@@ -57,8 +59,8 @@ import { computeAll } from "./build-data.mjs";
 import { assertFrozenRatingsUnchanged, currentAnalyticsCohort, assertSourceStoreIntegrity } from "./source-integrity.mjs";
 import { atomicWriteText, acquireSourceLock } from "./source-io.mjs";
 import {
-  MIN_PEERS, NOTES, READ_DAYS, WINDOW_N, anomalyFlags, engagementPer1kOf, firstYtSnapshot,
-  flagReason, liveChatOf, peersFor, round1, round3, scoreOf, trueMedian, windowFor, ytCurrentAge,
+  MIN_PEERS, NOTES, NOTE_BREAK, READ_DAYS, WINDOW_N, anomalyFlags, engagementPer1kOf, firstYtSnapshot,
+  flagReason, liveChatOf, peersFor, round1, round3, sameSideOfBreaks, scoreOf, trueMedian, windowFor, ytCurrentAge,
   ytHistoryAt, ytSnapshotAt, ytViewsOf, ageDaysOf,
 } from "./baselines.mjs";
 
@@ -68,7 +70,7 @@ const STORE_PATH = join(ROOT, "data", "restream", "episode-ratings.json");
 const YTA_DIR = join(ROOT, "data", "restream", "yt-analytics");
 const HISTORY_DIR = join(ROOT, "data", "restream", "yt-analytics-history");
 
-export const ALGORITHM = "health21-v3";
+export const ALGORITHM = "health21-v4";
 export const STORE_VERSION = 4;
 export const WEIGHTS = Object.freeze({
   watch: 0.35,
@@ -247,18 +249,28 @@ export function scoreEpisode(target, window, flags, io = DEFAULT_IO) {
 // live: peak and chat each against their typical, averaged — air-night
 // numbers, age-free. Chat is baselines.liveChatOf (health21-v3): LinkedIn's
 // chat left out, absent when LinkedIn's count is unknown. A peer counts only
-// with both readings, so the two typicals come from the same episodes.
+// with both readings, so the two typicals come from the same episodes, and
+// (health21-v4) only from the target's side of every known reporting break
+// on the peak: before E5 Restream counted YouTube's live viewers alone, so an
+// earlier peak is not like for like with a later one. `acrossBreaks` keeps
+// the v3 rule, for the declared v2 → v3 step alone.
 function liveOf(e) {
   const peak = e?.live?.peak, chat = liveChatOf(e);
   return Number.isFinite(peak) && Number.isFinite(chat) ? { peak, chat } : null;
 }
-function liveCheck(target, window, flags) {
+function liveCheck(target, window, flags, { acrossBreaks = false } = {}) {
   // no live session or no chat total: the check does not exist
   if (!Number.isFinite(target.live?.peak) || !Number.isFinite(target.live?.chatMessages)) return null;
   const own = liveOf(target);
   if (!own) return { value: null, typical: null, ratio: null, score: null, sample: 0, peers: [], reason: NOTES.liveChatUnknown, ageBasis: "ageFree", note: NOTES.liveChat, excluded: [] };
-  const ps = peersFor({ own: target, window, flags, valueOf: (p) => liveOf(p)?.peak ?? null });
-  if (ps.typical == null) return { value: own, typical: null, ratio: null, score: null, sample: ps.n, peers: [], reason: ps.reason, ageBasis: "ageFree", note: NOTES.liveChat, excluded: ps.excluded };
+  const valueOf = (p) => liveOf(p)?.peak ?? null;
+  const sameSide = acrossBreaks ? window : window.filter((p) => sameSideOfBreaks("peak", target, p));
+  const ps = peersFor({ own: target, window: sameSide, flags, valueOf });
+  if (ps.typical == null) {
+    // the break is the reason only when the whole window would have compared
+    const split = sameSide.length < window.length && peersFor({ own: target, window, flags, valueOf }).typical != null;
+    return { value: own, typical: null, ratio: null, score: null, sample: ps.n, peers: [], reason: split ? NOTE_BREAK("peak") : ps.reason, ageBasis: "ageFree", note: NOTES.liveChat, excluded: ps.excluded };
+  }
   const peers = ps.peers.map((x) => ({ slug: x.slug, value: liveOf(window.find((w) => w.slug === x.slug)), atDay: null, source: "live-event", readDate: null }));
   const typical = { peak: ps.typical, chat: round1(trueMedian(peers.map((p) => p.value.chat))) };
   const rp = round3(own.peak / typical.peak);
@@ -311,11 +323,12 @@ function finishScore(checks, windowLength) {
 // byte stays as frozen. `assertFrozenRatingsUnchanged` and the validator
 // replay the declared steps from earlier store bytes and accept nothing else.
 
-// health21-v2 → v3 (AUDIT-2026-09-29 #12): the live check's chat leaves
-// LinkedIn out. Its inputs come from the live-event files, frozen at first
-// ingest; the step first proves the entry's stored v2 values still match
-// them, so a changed input can never ride in on a rules change.
-function liveWithoutLinkedin(entry, bySlug) {
+// A live-check step: prove the entry's stored live values still match the
+// live-event files (frozen at first ingest) as the earlier rules read them,
+// so a changed input can never ride in on a rules change; rebuild the live
+// check under the new rules from the entry's own window and the outlier
+// verdicts it froze with; carry every other check byte for byte; re-weight.
+function rederiveLiveCheck(entry, bySlug, { to, storedLiveOf, rules }) {
   const episodeOf = (slug) => {
     const e = bySlug.get(slug);
     if (!e) throw new Error(`re-derive ${entry.slug}: ${slug} is not in the episode list`);
@@ -325,23 +338,22 @@ function liveWithoutLinkedin(entry, bySlug) {
   const window = (entry.windowIds || []).filter((s) => s !== entry.slug).map(episodeOf);
   const checks = structuredClone(entry.checks || {}); // finishScore writes weights; the input stays as frozen
   const stored = checks.live;
-  const v2 = (e) => ({ peak: e.live?.peak ?? null, chat: e.live?.chatMessages ?? null });
   const same = (a, b) => a?.peak === b.peak && a?.chat === b.chat;
-  if (stored?.value != null && !same(stored.value, v2(target))) throw new Error(`re-derive ${entry.slug}: stored live values differ from the live-event file`);
-  for (const p of stored?.peers || []) if (!same(p.value, v2(episodeOf(p.slug)))) throw new Error(`re-derive ${entry.slug}: stored live peer ${p.slug} differs from the live-event file`);
+  if (stored?.value != null && !same(stored.value, storedLiveOf(target))) throw new Error(`re-derive ${entry.slug}: stored live values differ from the live-event file`);
+  for (const p of stored?.peers || []) if (!same(p.value, storedLiveOf(episodeOf(p.slug)))) throw new Error(`re-derive ${entry.slug}: stored live peer ${p.slug} differs from the live-event file`);
   // the outlier verdicts the entry froze with (and their reasons), never today's
   const frozen = new Map((entry.excluded || []).map((x) => [x.slug, { ...x }]));
   const flags = new Map([...frozen.keys()].map((slug) => [slug, { flagged: true }]));
   // an entry that froze with no live session keeps that; a rules change
   // never brings in an input the entry did not have
   if (!(stored?.value == null && stored?.ageBasis == null)) {
-    const live = liveCheck(target, window, flags);
+    const live = liveCheck(target, window, flags, rules);
     checks.live = live && { ...live, excluded: live.excluded.map((x) => frozen.get(x.slug) ?? x) };
   }
   const r = finishScore(checks, window.length);
   return {
     ...entry,
-    algorithm: "health21-v3",
+    algorithm: to,
     score: r.score,
     checks: r.checks,
     missingChecks: r.missingChecks,
@@ -351,8 +363,28 @@ function liveWithoutLinkedin(entry, bySlug) {
   };
 }
 
+// health21-v2 → v3 (AUDIT-2026-09-29 #12): the live check's chat leaves
+// LinkedIn out; v2 stored the session's whole chat. Peers still cross the
+// E5 break under v3 — the step replays exactly what v3 wrote.
+const liveWithoutLinkedin = (entry, bySlug) => rederiveLiveCheck(entry, bySlug, {
+  to: "health21-v3",
+  storedLiveOf: (e) => ({ peak: e.live?.peak ?? null, chat: e.live?.chatMessages ?? null }),
+  rules: { acrossBreaks: true },
+});
+
+// health21-v3 → v4 (AUDIT-2026-10-12-live-break-split, owner decision): the
+// live check's peers come only from the entry's side of the known break on
+// the peak, so a peak with X's live viewers in it never meets a YouTube-only
+// one. v3 stored the peak and the compared chat (liveChatOf).
+const liveOnItsSideOfTheBreak = (entry, bySlug) => rederiveLiveCheck(entry, bySlug, {
+  to: "health21-v4",
+  storedLiveOf: (e) => ({ peak: e.live?.peak ?? null, chat: liveChatOf(e) }),
+  rules: {},
+});
+
 export const REDERIVES = Object.freeze({
   "health21-v3": { from: "health21-v2", entry: liveWithoutLinkedin },
+  "health21-v4": { from: "health21-v3", entry: liveOnItsSideOfTheBreak },
 });
 
 // the declared algorithms from `from` to `to`, oldest first; throws when no
