@@ -97246,7 +97246,7 @@
      "livePeak",
      "liveAverage"
     ],
-    "note": "Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).",
+    "note": "Restream's live reporting changed at E5: before it, the X destinations reported their live views and chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their live views include X; no measure built on live viewers compares across E5 (chat does).",
     "unreported": {
      "platform": "x",
      "fields": [
@@ -97261,7 +97261,7 @@
   ]
  },
  "sponsor": {
-  "version": 2,
+  "version": 3,
   "asOf": "2026-10-12",
   "episodes": 13,
   "firstPremiere": "2026-07-17",
@@ -97820,11 +97820,13 @@
    "best": {
     "peak": {
      "value": 133,
-     "ep": 9
+     "ep": 9,
+     "since": 5
     },
     "people": {
      "value": 1159,
-     "ep": 9
+     "ep": 9,
+     "since": 5
     }
    }
   },

@@ -24,11 +24,20 @@
 //     transcript says (named as a partner, or a chapter about it); the paid
 //     formats are shown only through EXAMPLES, which cite the owners' records.
 
-import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, comparableAcrossBreaks, breaksFor } from "./baselines.mjs";
+import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaksFor } from "./baselines.mjs";
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 2;
+export const SPONSOR_VERSION = 3;
+
+// Each live figure, by the key a known reporting break's declaration names it
+// under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
+// never chat). The middle minute is a count of viewers watching at once, read
+// under the average's key; a key no break names compares across.
+export const LIVE_KEYS = Object.freeze({
+  peak: "peak", average: "average", people: "liveViewers", minutesWatched: "minutesWatched", holdRate: "holdRate",
+  chattersPer100: "chattersPer100", messagesPerHour: "messagesPerHour", durationMin: "durationMin", atMiddle: "average",
+});
 
 // The show's partners this season (sponsor pipeline, 2026-08-15). A partner's
 // on-air moments are found by name; nothing is credited to a partner the
@@ -272,14 +281,22 @@ export function recordingAtMiddle(e) {
 // middle value of the eight shows before the newest, three or nothing. A live
 // night is age-free and carries no promo unit, so no show leaves the window
 // for a promotion; a measure a known reporting break touches reads only the
-// shows on the newest side of the break.
+// shows on the newest's side of the break (baselines.sameSideOfBreaks), and so
+// does its record, which then names the show it runs from.
 function liveBlock(episodes) {
   const lived = episodes.filter((e) => finite(e.live?.peak) && e.live.peak > 0);
   if (!lived.length) return { shows: 0, reason: "No live session has been read yet." };
   const newest = lived[lived.length - 1];
   const window = windowFor(newest, lived, { side: "before" });
-  const comparable = (key) => window.filter((e) => comparableAcrossBreaks(key, e) || !comparableAcrossBreaks(key, newest));
+  const side = (field) => (e) => sameSideOfBreaks(LIVE_KEYS[field], newest, e);
+  const comparable = (field) => window.filter(side(field));
   const best = (rows, f) => rows.reduce((top, e) => (finite(f(e)) && (!top || f(e) > top.value) ? { value: f(e), ep: e.ep } : top), null);
+  const record = (field, f) => {
+    const rows = lived.filter(side(field));
+    const top = best(rows, f);
+    const from = breaksFor(LIVE_KEYS[field]).filter((b) => newest.ep >= b.fromEp).map((b) => b.fromEp);
+    return top && { ...top, since: rows.length < lived.length && from.length ? Math.max(...from) : null };
+  };
   const timed = lived.filter((e) => finite(e.live.watchedMin));
   const L = newest.live;
   // the newest show as its curve says it: the stored peak, the first minute the
@@ -301,15 +318,16 @@ function liveBlock(episodes) {
       shows: window.length,
       fromEp: window[0].ep,
       toEp: window[window.length - 1].ep,
-      peak: medianOf(window.map((e) => e.live.peak)),
-      average: medianOf(window.map((e) => e.live.avg)),
-      people: medianOf(comparable("liveViewers").map((e) => e.live.liveViews)),
-      minutesWatched: medianOf(window.map((e) => e.live.watchedMin)),
-      holdRate: medianOf(window.map((e) => e.live.holdRate)),
-      chattersPer100: medianOf(window.map((e) => liveRatesOf(e)?.chattersPer100)),
-      messagesPerHour: medianOf(window.map((e) => liveRatesOf(e)?.messagesPerHour)),
-      durationMin: medianOf(window.map((e) => e.live.durationMin)),
-      atMiddle: medianOf(window.map(liveAtMiddle)),
+      peak: medianOf(comparable("peak").map((e) => e.live.peak)),
+      average: medianOf(comparable("average").map((e) => e.live.avg)),
+      people: medianOf(comparable("people").map((e) => e.live.liveViews)),
+      minutesWatched: medianOf(comparable("minutesWatched").map((e) => e.live.watchedMin)),
+      holdRate: medianOf(comparable("holdRate").map((e) => e.live.holdRate)),
+      chattersPer100: medianOf(comparable("chattersPer100").map((e) => liveRatesOf(e)?.chattersPer100)),
+      messagesPerHour: medianOf(comparable("messagesPerHour").map((e) => liveRatesOf(e)?.messagesPerHour)),
+      durationMin: medianOf(comparable("durationMin").map((e) => e.live.durationMin)),
+      atMiddle: medianOf(comparable("atMiddle").map(liveAtMiddle)),
+      // the recording's audience curve is YouTube's own, untouched by the live break
       recordingAtMiddle: medianOf(window.map(recordingAtMiddle)),
     } : null,
     latest: {
@@ -325,8 +343,8 @@ function liveBlock(episodes) {
       series,
     },
     best: {
-      peak: best(lived, (e) => e.live.peak),
-      people: best(lived.filter((e) => comparableAcrossBreaks("liveViewers", e) || !comparableAcrossBreaks("liveViewers", newest)), (e) => e.live.liveViews),
+      peak: record("peak", (e) => e.live.peak),
+      people: record("people", (e) => e.live.liveViews),
     },
   };
 }

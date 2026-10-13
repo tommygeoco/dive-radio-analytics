@@ -3639,17 +3639,27 @@ try {
       if ((sp.watch.hours ?? null) !== (watched.length ? Math.round(watched.reduce((a, e) => a + e.watch.minutesWatched, 0) / 60) : null)) {
         bad++; fail("sponsor: hours watched on YouTube do not re-derive from the episodes' watch minutes");
       }
-      // a typical show: the middle of the eight shows before the newest, recomputed through baselines
+      // a typical show: the middle of the eight shows before the newest, recomputed through baselines; each
+      // figure reads only the shows on the newest's side of every break its declared key names (chat crosses)
       const lived = dive.filter((e) => Number.isFinite(e.live?.peak) && e.live.peak > 0);
       const window = lived.length ? B.windowFor(lived[lived.length - 1], lived, { side: "before" }) : [];
       const middle = (values) => { const v = values.filter(Number.isFinite); return v.length >= B.MIN_PEERS ? Math.round(B.trueMedian(v) * 10) / 10 : null; };
       const newest = lived[lived.length - 1];
-      const people = window.filter((e) => B.comparableAcrossBreaks("liveViewers", e) || !B.comparableAcrossBreaks("liveViewers", newest));
+      const sideOf = (field) => (e) => B.sameSideOfBreaks(SV.LIVE_KEYS[field], newest, e);
       const typical = sp.live?.typical;
-      if (window.length && (!typical || typical.peak !== middle(window.map((e) => e.live.peak)) || typical.average !== middle(window.map((e) => e.live.avg))
-        || typical.people !== middle(people.map((e) => e.live.liveViews)) || typical.holdRate !== middle(window.map((e) => e.live.holdRate))
-        || typical.chattersPer100 !== middle(window.map((e) => B.liveRatesOf(e)?.chattersPer100)) || typical.fromEp !== window[0].ep || typical.toEp !== window[window.length - 1].ep)) {
-        bad++; fail("sponsor: the typical show does not re-derive as the middle of the eight shows before the newest");
+      const liveFigure = { peak: (e) => e.live.peak, average: (e) => e.live.avg, people: (e) => e.live.liveViews, minutesWatched: (e) => e.live.watchedMin, holdRate: (e) => e.live.holdRate,
+        chattersPer100: (e) => B.liveRatesOf(e)?.chattersPer100, messagesPerHour: (e) => B.liveRatesOf(e)?.messagesPerHour, durationMin: (e) => e.live.durationMin };
+      const offTypical = Object.keys(liveFigure).filter((field) => typical?.[field] !== middle(window.filter(sideOf(field)).map(liveFigure[field])));
+      if (window.length && (!typical || offTypical.length || typical.fromEp !== window[0].ep || typical.toEp !== window[window.length - 1].ep)) {
+        bad++; fail(`sponsor: the typical show does not re-derive as the middle of the eight shows before the newest${offTypical.length ? ` (${offTypical.join(", ")})` : ""}`);
+      }
+      // the records: the highest among the shows on the newest's side of the break, naming the show they run from
+      for (const field of ["peak", "people"]) {
+        const rows = lived.filter(sideOf(field));
+        const top = rows.reduce((t, e) => (Number.isFinite(liveFigure[field](e)) && (!t || liveFigure[field](e) > t.value) ? { value: liveFigure[field](e), ep: e.ep } : t), null);
+        const from = B.breaksFor(SV.LIVE_KEYS[field]).filter((b) => newest.ep >= b.fromEp).map((b) => b.fromEp);
+        const want = top && { ...top, since: rows.length < lived.length && from.length ? Math.max(...from) : null };
+        if (lived.length && JSON.stringify(sp.live.best?.[field] ?? null) !== JSON.stringify(want)) { bad++; fail(`sponsor: the highest ${field === "peak" ? "peak" : "live views"} does not re-derive from the shows on the newest's side of the live-reporting break`); }
       }
       if (lived.length && sp.live.hours !== Math.round(lived.filter((e) => Number.isFinite(e.live.watchedMin)).reduce((a, e) => a + e.live.watchedMin, 0) / 60)) {
         bad++; fail("sponsor: hours watched live do not re-derive from the live sessions");
@@ -3663,7 +3673,7 @@ try {
       // the middle of a show: its middle minute live; the recording's 50% point once a week old
       const midLive = (e) => { const p = Number.isFinite(e.live?.durationMin) ? (e.live.series || []).find((x) => x.m === Math.floor(e.live.durationMin / 2)) : null; return Number.isFinite(p?.v) ? p.v : null; };
       const midRec = (e) => { if (!((e.ageDays ?? 0) >= SV.MIDDLE_MIN_AGE_DAYS)) return null; const p = (e.watch?.curve || []).find((x) => Math.abs(x.at - 0.5) < 1e-9); return Number.isFinite(p?.watching) ? Math.round(p.watching * 1000) / 10 : null; };
-      if (window.length && (typical.atMiddle !== middle(window.map(midLive)) || typical.recordingAtMiddle !== middle(window.map(midRec)))) {
+      if (window.length && (typical.atMiddle !== middle(window.filter(sideOf("atMiddle")).map(midLive)) || typical.recordingAtMiddle !== middle(window.map(midRec)))) {
         bad++; fail("sponsor: the middle of a typical show does not re-derive (live minute, recording's 50% point)");
       }
       // the newest show's curve says what its session stored: peak, the first minute the series reaches it, length

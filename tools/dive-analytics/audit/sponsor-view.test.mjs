@@ -153,6 +153,19 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(sponsorView({ episodes: eps.filter((e) => e.ep >= 5), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).live.xFromEp, null, "with every show after the break, nothing needs saying");
   const thin = sponsorView({ episodes: eps.slice(0, 3), transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.equal(thin.live.typical.peak, null, "fewer than three shows before the newest is no typical, never a guess");
+  // a window across the live-reporting break (E5): every figure built on live viewers reads only the newest's
+  // side of it, even when an earlier show stands out; chat and the show's length compare across
+  const across = sponsorView({ episodes: eps.slice(0, 9).map((e) => (e.ep === 2 ? { ...e, live: { ...e.live, peak: 500, liveViews: 9000 } } : e)), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  const a = across.live.typical;
+  assert.deepEqual([a.fromEp, a.toEp, a.shows], [1, 8, 8], "the window is still the eight shows before the newest");
+  assert.equal(a.peak, (56 + 57) / 2, "the peak's middle is E5–E8's: E1–E4 counted YouTube's viewers alone");
+  assert.equal(a.average, (46 + 47) / 2);
+  assert.equal(a.people, (460 + 470) / 2);
+  assert.equal(a.holdRate, (66 + 67) / 2);
+  assert.equal(a.durationMin, 120, "a show's length is no viewer count: all eight");
+  assert.deepEqual(across.live.best.peak, { value: 59, ep: 9, since: 5 }, "the record runs from the break and says so");
+  assert.deepEqual(across.live.best.people, { value: 490, ep: 9, since: 5 });
+  assert.deepEqual(sponsorView({ episodes: eps.filter((e) => e.ep >= 5), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).live.best.peak, { value: 63, ep: 13, since: null }, "with every show after the break, the record runs from the first");
 
   assert.equal(view.audience.total, 170000 + 68800 + 76565 + 19776);
   const gap = sponsorView({ episodes: eps, channelStats: { current: { ...channelStats.current, "x:designertom": { date: "2026-10-11", followers: null, reading: { state: "failed" } } } }, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });

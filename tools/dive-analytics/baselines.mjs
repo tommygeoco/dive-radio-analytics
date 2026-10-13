@@ -898,11 +898,12 @@ export const KNOWN_BREAKS = Object.freeze([
     // (peak, average, liveViewers, minutesWatched, chattersPer100,
     // minutesPerViewer, holdRate), their direction series (livePeak,
     // liveAverage and the shared keys), and episode health's live check
-    // through `peak` (health21-v4). Chat was reported on X on both sides, so
-    // chat messages an hour and the live check's chat stay comparable
-    // (AUDIT-2026-10-12-live-break-split).
+    // through `peak` (health21-v4); the sponsor page's typical show and its
+    // records read the same keys (sponsor-view LIVE_KEYS). Chat was reported
+    // on X on both sides, so chat messages an hour and the live check's chat
+    // stay comparable (AUDIT-2026-10-12-live-break-split).
     measures: ["peak", "average", "liveViewers", "minutesWatched", "chattersPer100", "minutesPerViewer", "holdRate", "livePeak", "liveAverage"],
-    note: "Restream's live reporting changed at E5: before it, the X destinations reported how many people watched and their chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their count of people who watched live includes X; no measure built on live viewers compares across E5 (chat does).",
+    note: "Restream's live reporting changed at E5: before it, the X destinations reported their live views and chat, but not how many were watching at once or for how long. So E1–E4's peak, average and minutes watched count YouTube's viewers alone, while their live views include X; no measure built on live viewers compares across E5 (chat does).",
     // AUDIT-2026-10-12: before the break Restream measured no live viewing on
     // the X destinations. Each X row came back with zeros for peak, average and
     // minutes watched, and a two-point zero series (start and end) in place of

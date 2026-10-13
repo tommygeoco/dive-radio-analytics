@@ -150,7 +150,10 @@ export const HEALTH_STORE_VERSION = 3;
 // the newest side of it. Before E5 Restream counted YouTube's live viewers
 // alone. Chat messages an hour still compares across. No saved read from
 // 2026-10-09 on has a peer before E5, so no number moves; reads from 10-02 to
-// 10-08 compared these measures with E4 and keep the health-v10 stamp.
+// 10-08 compared these measures with E4 and keep the health-v10 stamp. v11's
+// facts also call the live viewer count live views, as every other surface
+// does (SPONSOR-2026-10-11 N5): it adds each channel's own count, so one person
+// on two channels counts twice. Reads before v11 keep the words they were saved with.
 export const FORMULA_VERSION = "health-v11";
 // prompt v4 (2026-08-24, W27): a changed check set must ALWAYS be named in the
 // drivers — v3 only required it when the score also moved by more than 5, so
@@ -649,8 +652,8 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
       ? measurement("minutesWatched", liveMinutesOf(newest), lm, { ageBasis: "ageFree", episodeRead: newest.slug, reason: lm.typical == null ? NOTE_BREAK("minutesWatched") : null })
       : measurement("minutesWatched", null, null, { reason: "The latest episode's live session has no watch-time total." });
     if (liveViewersMeasure.score != null) {
-      addFact("latest-live-viewers", liveViewersMeasure.value, "", (display) => `${display} people watched the latest show live.`, [`data.json#episodes.${newest.slug}.live.liveViews`]);
-      addFact("typical-live-viewers", liveViewersMeasure.typical, "", (display) => `Earlier shows were typically watched live by ${display} people.`, ["data.json#episodes.live.liveViews"]);
+      addFact("latest-live-viewers", liveViewersMeasure.value, "", (display) => `The latest show had ${display} live views (each channel's own count, added).`, [`data.json#episodes.${newest.slug}.live.liveViews`]);
+      addFact("typical-live-viewers", liveViewersMeasure.typical, "", (display) => `Earlier shows typically had ${display} live views.`, ["data.json#episodes.live.liveViews"]);
     }
     if (liveMinutesMeasure.score != null) {
       addFact("latest-live-minutes", liveMinutesMeasure.value, "", (display) => `People watched ${display} minutes of the latest show live, all together.`, [`data.json#episodes.${newest.slug}.live.watchedMin`]);
@@ -797,7 +800,7 @@ export function computeHealthInputs({ data = null, now = null, root = ROOT, prev
       liveAverage: "average live viewers", livePeak: "peak live viewers", chattersPer100: "chatters per hundred at the peak",
       messagesPerHour: "chat messages an hour", engagementWeekOne: "first-week likes and comments", exposureWeekOne: "first-week X reach",
       announceToPlay: "announce-to-play on X", watching: "share of the video watched", subscribers: "subscribers per thousand views",
-      liveViewers: "unique live viewers", minutesWatched: "minutes watched live", minutesPerViewer: "minutes each live viewer stayed",
+      liveViewers: "live views", minutesWatched: "minutes watched live", minutesPerViewer: "minutes each live viewer stayed",
       holdRate: "the share of the peak still watching at the end", discoveryShare: "the share of YouTube views from search and suggested videos",
     }[t.key] || t.key;
     const count = t.n === 3 ? "three" : t.n === 4 ? "four" : "five";
