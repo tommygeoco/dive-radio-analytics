@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "YI1Kx5U6fQc",
-      "pulledAt": "2026-10-12T19:16:12.851Z",
+      "pulledAt": "2026-10-13T14:01:13.461Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "YI1Kx5U6fQc",
-        "pulledAt": "2026-10-12T19:16:12.851Z",
+        "pulledAt": "2026-10-13T14:01:13.461Z",
         "state": "ready"
       },
       "totals": {
@@ -26,18 +26,18 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 1847,
-          "estimatedMinutesWatched": 7886
-        },
-        {
-          "insightTrafficSourceType": "NO_LINK_OTHER",
-          "views": 128,
-          "estimatedMinutesWatched": 2106
+          "views": 1841,
+          "estimatedMinutesWatched": 7746
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
           "views": 127,
-          "estimatedMinutesWatched": 1840
+          "estimatedMinutesWatched": 1871
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 124,
+          "estimatedMinutesWatched": 2012
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
@@ -46,18 +46,18 @@
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
-          "views": 52,
-          "estimatedMinutesWatched": 1507
+          "views": 53,
+          "estimatedMinutesWatched": 1567
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 47,
-          "estimatedMinutesWatched": 733
+          "views": 48,
+          "estimatedMinutesWatched": 884
         },
         {
           "insightTrafficSourceType": "NOTIFICATION",
-          "views": 42,
-          "estimatedMinutesWatched": 553
+          "views": 41,
+          "estimatedMinutesWatched": 552
         },
         {
           "insightTrafficSourceType": "EXT_URL",
@@ -475,13 +475,13 @@
     },
     "yt:designertom": {
       "videoId": "Z1MbnYXS8ls",
-      "pulledAt": "2026-10-12T19:16:12.851Z",
+      "pulledAt": "2026-10-13T14:01:13.461Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "Z1MbnYXS8ls",
-        "pulledAt": "2026-10-12T19:16:12.851Z",
+        "pulledAt": "2026-10-13T14:01:13.461Z",
         "state": "ready"
       },
       "totals": {
@@ -496,8 +496,8 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 1398,
-          "estimatedMinutesWatched": 3988
+          "views": 1394,
+          "estimatedMinutesWatched": 3989
         },
         {
           "insightTrafficSourceType": "RELATED_VIDEO",
@@ -506,13 +506,13 @@
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
-          "views": 66,
+          "views": 65,
           "estimatedMinutesWatched": 709
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
-          "views": 52,
-          "estimatedMinutesWatched": 513
+          "views": 53,
+          "estimatedMinutesWatched": 519
         },
         {
           "insightTrafficSourceType": "EXT_URL",
@@ -521,8 +521,8 @@
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 20,
-          "estimatedMinutesWatched": 182
+          "views": 19,
+          "estimatedMinutesWatched": 177
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
@@ -946,7 +946,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-12T19:16:12.851Z",
+    "checkedAt": "2026-10-13T14:01:13.461Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Z1MbnYXS8ls|yt:joindiveclub:YI1Kx5U6fQc",
@@ -976,8 +976,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
     "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-    "pulledAt": "2026-10-12T19:16:12.851Z",
+    "pulledAt": "2026-10-13T14:01:13.461Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-12T19:16:12.851Z"
+  "updatedAt": "2026-10-13T14:01:13.461Z"
 }
