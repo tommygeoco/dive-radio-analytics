@@ -409,3 +409,30 @@ promotion units, pipe-containing titles, deterministic selection and size.
   2026-09-11T17:12:48.742Z. Future unattended mornings remain unverified.
 
 - September 11 audience-feedback acceptance: production `1da5d4fc`, build 2026-09-11T23:10:31.575Z, 18-file parity at 23:14:53.422Z. Fresh-context agent answered the twelve standard questions from agent.md, honestly limiting the longest-viewer comparison to its eight printed episodes, then confirmed every answer against live agent.json (omitted E1 is 7.1 minutes/viewer versus E9 at 14.2). No factual discrepancies. Added regression passed: E9 has 53 expanded feedback messages, 48 positive and five with criticism; both featured quotes match their approved sources; message totals do not replace historical distinct-person scoring. JSON paths were verified in the archive after the brief-only answer pass.
+
+## Addendum — §3.1: the E5 break touches every live viewer measure (2026-10-12, owner decision)
+
+The E5 live-reporting break first declared only unique live viewers and
+minutes per viewer. The raw events show more: before E5 every X destination
+reported people and chat but no viewer count — zero peak, average and minutes,
+and a two-point zero series. So a session's peak, average and minutes watched
+before E5 are YouTube's alone, while its unique viewers include X. The break's
+`measures` now name every live measure built on viewer counts, under each key
+a comparison reads: `peak`, `average`, `liveViewers`, `minutesWatched`,
+`chattersPer100`, `minutesPerViewer`, `holdRate`, `livePeak` and `liveAverage`.
+Chat messages an hour is not touched: X reported chat on both sides.
+
+- Show health (`health-v11`): those measures take peers, and their direction
+  series take points, only from the newest side. No read from 2026-10-09 on had
+  a pre-break peer, so no number moved. Reads from 10-02 to 10-08 compared them
+  with E4 and keep their `health-v10` stamp. The trend restarts under v11.
+- Episode health (`health21-v4`): the live check's peers sit on the episode's
+  own side, through a declared re-derive. See the PRD v4 addendum.
+- The note now says what was YouTube-only and what was not. It no longer
+  claims E1–E4's unique-viewer totals counted YouTube only: E1's 1,131 live
+  views include X's 748.
+- Validator 3a re-derives where the break sits from the raw events. It locks
+  `measures` to exactly the viewer measures, and checks the direction lens and
+  every saved show-health read against the rules each was written with. 1g
+  re-derives the live check's peers and absence reason. Ledger:
+  `audit/AUDIT-2026-10-12-live-break-split.md`.

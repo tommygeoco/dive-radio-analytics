@@ -63,6 +63,15 @@ export const DIRECTION_WORDS = Object.freeze({
   minutesPerViewer: "minutes each live viewer stayed", holdRate: "share of the peak still watching at the end", subscribers: "subscribers per thousand views",
 });
 const COMPARED = Object.freeze({ sameAge: "at the same age", mature: "as the earlier episodes stand now", ageFree: "as they stand (no age)" });
+// a known break's unreported destination readings (baselines.KNOWN_BREAKS
+// `unreported`), in words: absent in data.json, never zero, and why
+const UNREPORTED_WORDS = Object.freeze({ peak: "peak", avg: "average", views: "live views", watchedMin: "minutes watched", series: "per-minute viewers" });
+const PLATFORM_WORDS = Object.freeze({ x: "X", yt: "YouTube" });
+function unreportedWords(b) {
+  const words = b.unreported.fields.map((f) => UNREPORTED_WORDS[f] || f);
+  const said = words.length > 1 ? `${words.slice(0, -1).join(", ")} and ${words.at(-1)}` : words[0];
+  return `Before it, the ${PLATFORM_WORDS[b.unreported.platform] || b.unreported.platform} destinations' own ${said} are absent in data.json, never zero: ${esc(b.unreported.reason)}`;
+}
 const bandWords = (score) => (score == null ? "—" : score >= 55 ? "above usual" : score >= 45 ? "near usual" : "below usual");
 
 // --- coverage --------------------------------------------------------------------
@@ -71,7 +80,7 @@ export const COVERS = Object.freeze([
   "episodes[].announces[]*", "episodes[].links.{dest}*", "episodes[].latest.byDest.{dest}*", "episodes[].latest.xPlaysInfo*", "episodes[].latest.totalViewsInfo*",
   "episodes[].linkedin*", "episodes[].sourceStates.linkedin*",
   "episodes[].promotion*", "episodes[].audience.featured[]*", "episodes[].audience.sources*",
-  "episodes[].metrics*", "episodes[].live.byChannel[]*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
+  "episodes[].metrics*", "episodes[].comments.featured[]*", "episodes[].comments.enjoyThemes[]*", "episodes[].comments.complaintThemes[]*",
   "episodes[].health*", "episodes[].watchReport*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*", "episodes[].chapters.upload*",
   // 2026-10-11: the sponsor page's projection, carried whole into agent.json and summarised in section 11
   "sponsor*",
@@ -86,7 +95,7 @@ export const COVERS = Object.freeze([
   "episodes[].sourceStates", "episodes[].sourceStates.youtube", "episodes[].sourceStates.x", "episodes[].sourceStates.watch", "episodes[].sourceStates.live", "episodes[].sourceStates.transcript", "episodes[].sourceStates.promotion", "episodes[].sourceStates.comments",
   "episodes[].latest", "episodes[].latest.ts", "episodes[].latest.ytTotal", "episodes[].latest.youtubeAsOf", "episodes[].latest.youtubeStale", "episodes[].latest.xImpressions", "episodes[].latest.xPromoReach", "episodes[].latest.xPromoReach.posts", "episodes[].latest.xPromoReach.impressions", "episodes[].latest.xPlays", "episodes[].latest.xPlaysInfo", "episodes[].latest.totalViews", "episodes[].latest.totalViewsInfo", "episodes[].latest.byDest", "episodes[].latest.byDest.{dest}",
   "episodes[].metrics", "episodes[].metrics.week1Velocity", "episodes[].metrics.week1Note", "episodes[].metrics.flatlineWeek", "episodes[].metrics.engagementPer1k", "episodes[].metrics.anomaly",
-  "episodes[].live", "episodes[].live.peak", "episodes[].live.avg", "episodes[].live.liveViews", "episodes[].live.watchedMin", "episodes[].live.chatMessages", "episodes[].live.chatters", "episodes[].live.durationMin", "episodes[].live.minutesPerViewer", "episodes[].live.holdRate", "episodes[].live.byChannel", "episodes[].live.byChannel[]",
+  "episodes[].live", "episodes[].live.peak", "episodes[].live.avg", "episodes[].live.liveViews", "episodes[].live.watchedMin", "episodes[].live.chatMessages", "episodes[].live.chatters", "episodes[].live.durationMin", "episodes[].live.minutesPerViewer", "episodes[].live.holdRate",
   "episodes[].audience", "episodes[].audience.count", "episodes[].audience.positiveCount", "episodes[].audience.negativeCount", "episodes[].audience.featured", "episodes[].audience.featured[]", "episodes[].audience.sources", "episodes[].audience.note", "episodes[].audience.notices", "episodes[].audience.notices[]",
   "episodes[].comments", "episodes[].comments.captured", "episodes[].comments.pending", "episodes[].comments.feedbackCount", "episodes[].comments.uniqueCommenters", "episodes[].comments.enjoyCount", "episodes[].comments.complaintCount", "episodes[].comments.commentersPer1k", "episodes[].comments.commentersPer1kNote", "episodes[].comments.enjoyThemes", "episodes[].comments.complaintThemes", "episodes[].comments.featured", "episodes[].comments.featured[]", "episodes[].comments.xCoverage",
   "episodes[].health", "episodes[].health.score", "episodes[].health.pending", "episodes[].health.readCompleteOn", "episodes[].health.reason", "episodes[].health.checks", "episodes[].health.missingChecks", "episodes[].health.algorithm", "episodes[].health.window", "episodes[].health.windowIds", "episodes[].health.excluded", "episodes[].health.reproducible", "episodes[].health.rederivedFrom", "episodes[].health.weightUsed", "episodes[].health.readAge", "episodes[].health.readAgeDays", "episodes[].health.stillReading",
@@ -104,6 +113,7 @@ export const LEAVES_OUT = Object.freeze([
   { path: "episodes[].snapshots", reason: "the raw daily series by destination — summarised as totals, first week, launch, and pace; the full series is in data.json" },
   { path: "episodes[].weekly", reason: "weekly roll-ups of the same series — in data.json" },
   { path: "episodes[].live.series", reason: "the per-minute live audience — summarised as peak, average, minutes per viewer, and hold rate" },
+  { path: "episodes[].live.byChannel", reason: "the live session by destination — the session totals stand in; each destination's row is in data.json, with the reason where Restream never reported a reading (the known reporting breaks name it)" },
   { path: "episodes[].watch.curve", reason: "the hundred-point watch curve — summarised by its shape and the moments" },
   { path: "episodes[].audience.list", reason: "full classified YouTube, X-thread and live-chat messages; message totals and featured quotes reach the brief, complete text is in data.json" },
   { path: "episodes[].comments.list", reason: "every classified comment — counts, themes, and featured quotes stand in; the list is in data.json" },
@@ -296,6 +306,7 @@ export const DEFINITIONS = Object.freeze([
   ["first week vs launch reading", "a first week needs a clean seven-day record and feeds the growth slope; a launch reading is the same-age standing available from the first day and can exist where a first week cannot (an episode tracked late)."],
   ["episode health", "a frozen zero-to-hundred read written once the episode is twenty-one days old, comparing it with the episodes that aired before it; fifty is typical; two episodes' scores are not on one baseline. A scoring-rules change re-reads every finished score from its saved inputs and records the score it had under the earlier rules."],
   ["compared live chat", "chat counted on YouTube and X only, in every live comparison (show health's participation, episode health's live check): LinkedIn reports its chat but never its viewers, and not every episode streamed there. Session totals include LinkedIn chat; comparisons never do. When LinkedIn's count for an episode is unknown, its compared chat is absent."],
+  ["live-reporting change", "Restream began counting X's live viewers at E5. Before it, a live session's peak, average and minutes watched are YouTube's alone, while its count of people who watched live includes X. Every live measure built on viewers — show health's live turnout and participation, their direction, episode health's live check — compares only episodes on the same side of E5; chat compares across it."],
   ["show health", "a daily read of the newest episode at its age against the show's usual levels — seven checks, each built from its available measures; the words come from a model or the fixed fallback and cite these facts."],
   ["direction", "each durable measure's change per episode (Theil–Sen slope) over the last five clean episodes; a word needs four; building above plus five percent, softening below minus five; the overall word is single only when every check agrees, otherwise mixed."],
   ["outlook", "where the last three clean first weeks landed (lowest, highest, typical) with their direction — a description of what happened, never a bound on what will; the cool-off is the newest episode's growth over its last two days."],
@@ -450,7 +461,7 @@ function renderMarkdownWindow(digest, episodes, manifest) {
       p();
     }
   }
-  if ((digest.knownBreaks || []).length) { p(`Known reporting breaks:`); for (const b of digest.knownBreaks) p(`- From E${b.fromEp} (${b.from}): ${esc(b.note)} — touches ${b.measures.map((k) => MEASURE_WORDS[k] || DIRECTION_WORDS[k] || k).join(", ")}.`); p(); }
+  if ((digest.knownBreaks || []).length) { p(`Known reporting breaks:`); for (const b of digest.knownBreaks) p(`- From E${b.fromEp} (${b.from}): ${esc(b.note)} — touches ${[...new Set(b.measures.map((k) => MEASURE_WORDS[k] || DIRECTION_WORDS[k] || k))].join(", ")}.${b.unreported ? ` ${unreportedWords(b)}` : ""}`); p(); }
   // 4
   p(HEADINGS[3]);
   p();

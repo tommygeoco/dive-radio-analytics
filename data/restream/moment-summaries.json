@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-10T14:05:09.844Z",
+  "updatedAt": "2026-10-12T19:18:05.615Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -373,6 +373,34 @@
     "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.43": {
       "summary": "Hosts discuss employer token budgets and model mandates, then react to a consumer agent app's new version and launch video, praising its team and visual language and comparing it to what Apple might build.",
       "writtenAt": "2026-10-10T14:05:09.844Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|hold|0.19": {
+      "summary": "Hosts react to ChatGPT's new interactive UI, with examples like a retro-styled reply and a stopwatch, then discuss product experiences moving into agent chats and a designer's component tool.",
+      "writtenAt": "2026-10-11T19:17:49.347Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.29": {
+      "summary": "A host recounts an agent leaking private data into a work chat, then plays a clip of a founder explaining how a ChatGPT marketplace plug-in boosted his product's revenue.",
+      "writtenAt": "2026-10-11T19:17:49.348Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|hold|0.47": {
+      "summary": "A submitted video walks through building a mobile police-chase game with ChatGPT and Claude, followed by hosts reacting and one describing an interactive world built for a toddler.",
+      "writtenAt": "2026-10-11T19:17:49.348Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.66": {
+      "summary": "Hosts preview next week's portfolio reviews with a live feedback tool, then show a designer's playable isometric portfolio while he explains in a clip why he built it.",
+      "writtenAt": "2026-10-11T19:17:49.348Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.99": {
+      "summary": "Hosts tour several designer portfolios, praising simple single-scroll layouts and clear project cards, and respond to a viewer worried about their own work before opening a senior designer's site.",
+      "writtenAt": "2026-10-11T19:17:49.348Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.11": {
+      "summary": "Hosts wrap a nomination video about a material-focused designer, then play another for a procedural artist, and the lead host starts introducing a brand and motion designer he worked with.",
+      "writtenAt": "2026-10-12T19:18:05.615Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.83": {
+      "summary": "The lead host screen-shares game-like, world-style portfolios, weighing nostalgia and technical flair against hard-to-read type and noise, while the cohost asks what role such a portfolio suits.",
+      "writtenAt": "2026-10-12T19:18:05.615Z"
     }
   }
 }

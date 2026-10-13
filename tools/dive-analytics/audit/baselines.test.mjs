@@ -642,6 +642,29 @@ console.log("baselines.test: ok");
   assert.deepEqual(B.TREND_MEASURES.filter((m) => ["liveViewers", "minutesWatched", "minutesPerViewer", "holdRate", "discoveryShare"].includes(m.key)).map((m) => m.check),
     ["reachEfficiency", "livePull", "livePull", "participation", "participation"]);
 }
+// --- PRD v12 §3.1 / health-v11: a known reporting break keeps every series it
+// touches on the newest side; chat, which X reported on both sides, crosses ---
+{
+  const brk = B.KNOWN_BREAKS.find((b) => b.measures.includes("livePeak"));
+  assert.ok(brk, "the live-reporting break touches the peak series");
+  // six live nights E1–E6 with no later ones: the last five valued nights would
+  // be E2–E6, but a series the break touches keeps only E5 and E6
+  const nights = Array.from({ length: 6 }, (_, i) => ({
+    slug: `n${i + 1}`, ep: i + 1, premiere: premiere(i),
+    live: { peak: 50 + i * 10, avg: 40 + i * 8, liveViews: 300 + i * 20, watchedMin: 3000 + i * 300, chatMessages: 120 + i * 6, chatters: 30 + i, durationMin: 100,
+      series: Array.from({ length: 20 }, () => ({ v: 40 + i * 8 })), byChannel: [] },
+  }));
+  const lens = B.computeDirection(nights, new Map(), { weekValueOf: () => null });
+  for (const m of lens.measures.filter((t) => B.TREND_MEASURES.find((x) => x.key === t.key)?.family === "live")) {
+    const eps = m.points.map((p) => p.ep);
+    if (brk.measures.includes(m.key)) assert.deepEqual(eps, [5, 6], `${m.key} reads only the nights since E${brk.fromEp}`);
+    else assert.deepEqual(eps, [2, 3, 4, 5, 6], `${m.key} is built on chat and crosses the break`);
+  }
+  assert.ok(lens.measures.find((m) => m.key === "livePeak").pctPerEpisode === null, "two nights since the break: no slope yet");
+  assert.equal(B.comparableAcrossBreaks("messagesPerHour", nights[0]), true);
+  assert.equal(B.comparableAcrossBreaks("holdRate", nights[3]), false);
+  assert.equal(B.comparableAcrossBreaks("holdRate", nights[4]), true);
+}
 
 // --- chain heal: the health store merges by day; a same-day re-derivation keeps the older read under superseded ---
 {
