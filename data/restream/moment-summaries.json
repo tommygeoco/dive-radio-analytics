@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-12T19:18:05.615Z",
+  "updatedAt": "2026-10-13T19:17:56.544Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -401,6 +401,14 @@
     "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.83": {
       "summary": "The lead host screen-shares game-like, world-style portfolios, weighing nostalgia and technical flair against hard-to-read type and noise, while the cohost asks what role such a portfolio suits.",
       "writtenAt": "2026-10-12T19:18:05.615Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|hold|0.64": {
+      "summary": "Hosts joke about AI-made costumes, then preview next week's portfolio review and demo a live markup tool before a featured designer explains his playable isometric portfolio.",
+      "writtenAt": "2026-10-13T19:17:56.543Z"
+    },
+    "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.97": {
+      "summary": "Hosts walk through several designer portfolios, praising simple single-scroll layouts and clear case studies, then respond to a viewer comment about imposter syndrome and portfolios for junior designers.",
+      "writtenAt": "2026-10-13T19:17:56.544Z"
     }
   }
 }
