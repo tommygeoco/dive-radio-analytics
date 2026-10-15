@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T14:02:27.338Z",
+  "updatedAt": "2026-10-15T19:17:03.819Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -1102,7 +1102,11 @@
       "typical": 1751,
       "direction": null,
       "pctPerEpisode": -8.3,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "void",
+        "detail": "2026-10-08-dive-radio-rise-of-the-playable-portfoli: promo-driven first week — not a clean test."
+      }
     },
     {
       "id": "direction:liveAverage:E12:building",
@@ -1266,7 +1270,13 @@
       "pctPerEpisode": 8.3,
       "lastEp": 12,
       "lastValue": 26.4,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "neutral",
+        "actual": 26,
+        "realizedPct": -1.5,
+        "detail": "announceToPlay: E13 moved -1.5% (holding) against the word building."
+      }
     },
     {
       "id": "range:after-E13:1189-1830",
@@ -1306,7 +1316,13 @@
       "pctPerEpisode": 0.4,
       "lastEp": 12,
       "lastValue": 26.5,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "hit",
+        "actual": 26,
+        "realizedPct": -1.9,
+        "detail": "announceToPlay: E13 moved -1.9% (holding) against the word holding."
+      }
     },
     {
       "id": "direction:liveAverage:E13:softening",
@@ -1493,6 +1509,17 @@
         "outcome": "void",
         "detail": "subscribers: E8 is promo-driven and never enters the series."
       }
+    },
+    {
+      "id": "direction:announceToPlay:E13:holding",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-10-15",
+      "word": "holding",
+      "pctPerEpisode": -4.5,
+      "lastEp": 13,
+      "lastValue": 26,
+      "resolution": null
     }
   ]
 }

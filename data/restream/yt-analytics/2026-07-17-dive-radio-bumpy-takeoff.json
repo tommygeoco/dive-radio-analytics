@@ -5,17 +5,17 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "VcLm0kAGCck",
-      "pulledAt": "2026-10-15T14:01:04.448Z",
+      "pulledAt": "2026-10-15T19:16:07.971Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "VcLm0kAGCck",
-        "pulledAt": "2026-10-15T14:01:04.448Z",
+        "pulledAt": "2026-10-15T19:16:07.971Z",
         "state": "ready"
       },
       "totals": {
-        "views": 777,
+        "views": 778,
         "estimatedMinutesWatched": 10385,
         "averageViewDuration": 835,
         "averageViewPercentage": 11.31,
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 283,
+          "views": 284,
           "estimatedMinutesWatched": 2965
         },
         {
@@ -480,17 +480,17 @@
     },
     "yt:designertom": {
       "videoId": "FqsXWbfKmGw",
-      "pulledAt": "2026-10-15T14:01:04.448Z",
+      "pulledAt": "2026-10-15T19:16:07.971Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-07-17-dive-radio-bumpy-takeoff",
         "objectId": "FqsXWbfKmGw",
-        "pulledAt": "2026-10-15T14:01:04.448Z",
+        "pulledAt": "2026-10-15T19:16:07.971Z",
         "state": "ready"
       },
       "totals": {
-        "views": 572,
+        "views": 573,
         "estimatedMinutesWatched": 6356,
         "averageViewDuration": 693,
         "averageViewPercentage": 9.39,
@@ -501,7 +501,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 281,
+          "views": 282,
           "estimatedMinutesWatched": 3034
         },
         {
@@ -949,18 +949,18 @@
       ]
     }
   },
-  "updatedAt": "2026-10-15T14:01:04.448Z",
+  "updatedAt": "2026-10-15T19:16:07.971Z",
   "reading": {
     "schemaVersion": 1,
     "source": "youtube-analytics",
     "episode": "2026-07-17-dive-radio-bumpy-takeoff",
     "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
-    "pulledAt": "2026-10-15T14:01:04.448Z",
+    "pulledAt": "2026-10-15T19:16:07.971Z",
     "state": "ready"
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-15T14:01:04.448Z",
+    "checkedAt": "2026-10-15T19:16:07.971Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:FqsXWbfKmGw|yt:joindiveclub:VcLm0kAGCck",
@@ -970,7 +970,7 @@
         "videoId": "VcLm0kAGCck",
         "result": "ready",
         "observed": {
-          "views": 777,
+          "views": 778,
           "averageViewPercentage": 11.31
         }
       },
@@ -979,7 +979,7 @@
         "videoId": "FqsXWbfKmGw",
         "result": "ready",
         "observed": {
-          "views": 572,
+          "views": 573,
           "averageViewPercentage": 9.39
         }
       }

@@ -12,14 +12,17 @@ Score 52 (weighted mean 54.2, health-v11, prompt v8); reads Rise of the Playable
 
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
-| Next first week inside the expected range | 0 | 0 | 0 | 5 | 3 |
-| Direction word confirmed by the next episode | 26 | 19 | 20 | 10 | 11 |
+| Next first week inside the expected range | 0 | 0 | 0 | 6 | 2 |
+| Direction word confirmed by the next episode | 27 | 19 | 21 | 10 | 10 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
 
+- 2026-10-15 · VOID · 2026-10-08-dive-radio-rise-of-the-playable-portfoli: promo-driven first week — not a clean test.
 - 2026-10-15 · MISS · exposureWeekOne: E13 moved -28.4% (softening) against the word building.
+- 2026-10-15 · NEUTRAL · announceToPlay: E13 moved -1.5% (holding) against the word building.
 - 2026-10-15 · NEUTRAL · exposureWeekOne: E13 moved -28.6% (softening) against the word holding.
+- 2026-10-15 · HIT · announceToPlay: E13 moved -1.9% (holding) against the word holding.
 - 2026-10-15 · VOID · firstWeek: E8 is promo-driven and never enters the series.
 - 2026-10-15 · VOID · engagementWeekOne: E8 is promo-driven and never enters the series.
 - 2026-10-15 · VOID · watching: E8 is promo-driven and never enters the series.
@@ -27,9 +30,6 @@ Most recent resolutions:
 - 2026-10-15 · VOID · subscribers: E8 is promo-driven and never enters the series.
 - 2026-10-09 · MISS · liveAverage: E13 moved -18.6% (softening) against the word building.
 - 2026-10-09 · NEUTRAL · livePeak: E13 moved -21.6% (softening) against the word holding.
-- 2026-10-09 · HIT · liveViewers: E13 moved +1.3% (holding) against the word holding.
-- 2026-10-09 · NEUTRAL · minutesWatched: E13 moved -14.4% (softening) against the word holding.
-- 2026-10-09 · HIT · chattersPer100: E13 moved +41% (building) against the word building.
 
 ### Owner feel against the read
 
@@ -58,10 +58,7 @@ Carried share of scored checks: 29% (at full weight the mean would move -1.1) ·
 
 ## Open claims
 
-- 2026-10-02 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E12.
-- 2026-10-08 · announceToPlay building (+8.3% per episode) — waits for the episode after E12.
 - 2026-10-09 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E13.
-- 2026-10-09 · announceToPlay holding (+0.4% per episode) — waits for the episode after E12.
 - 2026-10-09 · liveAverage softening (-7% per episode) — waits for the episode after E13.
 - 2026-10-09 · livePeak softening (-7.7% per episode) — waits for the episode after E13.
 - 2026-10-09 · liveViewers holding (-3.6% per episode) — waits for the episode after E13.
@@ -72,4 +69,5 @@ Carried share of scored checks: 29% (at full weight the mean would move -1.1) ·
 - 2026-10-09 · holdRate holding (-0.6% per episode) — waits for the episode after E13.
 - 2026-10-15 · the last three clean first weeks ran 1,189–5,188 (building) — waits for the episode after E13.
 - 2026-10-15 · exposureWeekOne holding (0% per episode) — waits for the episode after E13.
+- 2026-10-15 · announceToPlay holding (-4.5% per episode) — waits for the episode after E13.
 

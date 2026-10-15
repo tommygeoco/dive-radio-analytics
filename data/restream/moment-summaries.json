@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-15T14:03:11.782Z",
+  "updatedAt": "2026-10-15T19:17:35.932Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -413,6 +413,10 @@
     "2026-10-08-dive-radio-rise-of-the-playable-portfoli|drop|0.06": {
       "summary": "Two hosts open the live show, greet each other, and explain the plan: other topics now, portfolio reviews next week, with the Discord and a feedback widget for submitting portfolios.",
       "writtenAt": "2026-10-15T14:03:11.782Z"
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.42": {
+      "summary": "A host weighs companies mandating cheaper open models or small daily token budgets against frontier lab models, then moves to consumer agents and the Wabi app's new release.",
+      "writtenAt": "2026-10-15T19:17:35.932Z"
     }
   }
 }
