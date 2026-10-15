@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T19:17:07.427Z",
+  "updatedAt": "2026-10-15T14:02:27.338Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -1249,7 +1249,13 @@
       "pctPerEpisode": 6.4,
       "lastEp": 12,
       "lastValue": 11365,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "miss",
+        "actual": 8137,
+        "realizedPct": -28.4,
+        "detail": "exposureWeekOne: E13 moved -28.4% (softening) against the word building."
+      }
     },
     {
       "id": "direction:announceToPlay:E12:building",
@@ -1283,7 +1289,13 @@
       "pctPerEpisode": 4.5,
       "lastEp": 12,
       "lastValue": 11393,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "neutral",
+        "actual": 8137,
+        "realizedPct": -28.6,
+        "detail": "exposureWeekOne: E13 moved -28.6% (softening) against the word holding."
+      }
     },
     {
       "id": "direction:announceToPlay:E12:holding",
@@ -1383,6 +1395,104 @@
       "lastEp": 13,
       "lastValue": 84.1,
       "resolution": null
+    },
+    {
+      "id": "range:after-E13:1189-5188",
+      "kind": "first-week-range",
+      "madeOn": "2026-10-15",
+      "afterEp": 13,
+      "low": 1189,
+      "high": 5188,
+      "typical": 1751,
+      "direction": "building",
+      "pctPerEpisode": 6.7,
+      "resolution": null
+    },
+    {
+      "id": "direction:firstWeek:E7:building",
+      "kind": "direction",
+      "key": "firstWeek",
+      "madeOn": "2026-10-15",
+      "word": "building",
+      "pctPerEpisode": 6.7,
+      "lastEp": 7,
+      "lastValue": 5188,
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "void",
+        "detail": "firstWeek: E8 is promo-driven and never enters the series."
+      }
+    },
+    {
+      "id": "direction:engagementWeekOne:E7:softening",
+      "kind": "direction",
+      "key": "engagementWeekOne",
+      "madeOn": "2026-10-15",
+      "word": "softening",
+      "pctPerEpisode": -14.7,
+      "lastEp": 7,
+      "lastValue": 43,
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "void",
+        "detail": "engagementWeekOne: E8 is promo-driven and never enters the series."
+      }
+    },
+    {
+      "id": "direction:watching:E7:building",
+      "kind": "direction",
+      "key": "watching",
+      "madeOn": "2026-10-15",
+      "word": "building",
+      "pctPerEpisode": 5.8,
+      "lastEp": 7,
+      "lastValue": 11.1,
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "void",
+        "detail": "watching: E8 is promo-driven and never enters the series."
+      }
+    },
+    {
+      "id": "direction:exposureWeekOne:E13:holding",
+      "kind": "direction",
+      "key": "exposureWeekOne",
+      "madeOn": "2026-10-15",
+      "word": "holding",
+      "pctPerEpisode": 0,
+      "lastEp": 13,
+      "lastValue": 8137,
+      "resolution": null
+    },
+    {
+      "id": "direction:discoveryShare:E7:softening",
+      "kind": "direction",
+      "key": "discoveryShare",
+      "madeOn": "2026-10-15",
+      "word": "softening",
+      "pctPerEpisode": -8.5,
+      "lastEp": 7,
+      "lastValue": 7.5,
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "void",
+        "detail": "discoveryShare: E8 is promo-driven and never enters the series."
+      }
+    },
+    {
+      "id": "direction:subscribers:E7:softening",
+      "kind": "direction",
+      "key": "subscribers",
+      "madeOn": "2026-10-15",
+      "word": "softening",
+      "pctPerEpisode": -28.2,
+      "lastEp": 7,
+      "lastValue": 0.8,
+      "resolution": {
+        "on": "2026-10-15",
+        "outcome": "void",
+        "detail": "subscribers: E8 is promo-driven and never enters the series."
+      }
     }
   ]
 }

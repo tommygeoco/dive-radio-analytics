@@ -1,7 +1,7 @@
 {
- "generatedAt": "2026-10-14T19:18:07.968Z",
+ "generatedAt": "2026-10-15T14:03:34.981Z",
  "chaptersUpdatedAt": "2026-10-10T14:07:39.404Z",
- "promotionUpdatedAt": "2026-10-14T19:15:33.877Z",
+ "promotionUpdatedAt": "2026-10-15T14:00:28.430Z",
  "dests": [
   {
    "key": "linkedin:michaelriddering",
@@ -6531,6 +6531,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1304,
+       "likes": 49,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 890,
+       "likes": 46,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 1532,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1025,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 466
+      },
+      "x:designertom": {
+       "views": 4056,
+       "likes": 26,
+       "comments": 3,
+       "plays": 763,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 286
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-17-dive-radio-bumpy-takeoff",
+      "objectId": "2026-07-17-dive-radio-bumpy-takeoff",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -6896,10 +6935,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1302,
+      "views": 1304,
       "likes": 49,
       "comments": 7
      },
@@ -6925,8 +6964,8 @@
       "peakConcurrent": 286
      }
     },
-    "ytTotal": 2192,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 2194,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
     "xImpressions": 5588,
     "xPromoReach": null,
@@ -6939,12 +6978,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3980,
+    "totalViews": 3982,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -6959,17 +6998,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -6984,12 +7023,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -7006,12 +7045,12 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483627739963379712/"
    },
    "transcript": true,
-   "ageDays": 89,
+   "ageDays": 89.8,
    "metrics": {
     "week1Velocity": 1830,
     "week1Note": null,
     "flatlineWeek": 2,
-    "engagementPer1k": 48.4,
+    "engagementPer1k": 48.3,
     "anomaly": null
    },
    "ep": 1,
@@ -9800,7 +9839,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -10267,7 +10306,7 @@
       "share": 13.5
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 66.5,
      "openFloor": 11.8,
@@ -16899,6 +16938,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1278,
+       "likes": 39,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 952,
+       "likes": 40,
+       "comments": 3
+      },
+      "x:designertom": {
+       "views": 2255,
+       "likes": 1,
+       "comments": 1,
+       "plays": 641,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 246
+      },
+      "x:ridd_design": {
+       "views": 3912,
+       "likes": 3,
+       "comments": 1,
+       "plays": 1187,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 599
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "objectId": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -17264,10 +17342,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1277,
+      "views": 1278,
       "likes": 39,
       "comments": 2
      },
@@ -17293,8 +17371,8 @@
       "peakConcurrent": 599
      }
     },
-    "ytTotal": 2229,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 2230,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
     "xImpressions": 6167,
     "xPromoReach": null,
@@ -17307,12 +17385,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 4057,
+    "totalViews": 4058,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -17327,17 +17405,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -17352,12 +17430,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -17374,7 +17452,7 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485957571070058496/"
    },
    "transcript": true,
-   "ageDays": 83,
+   "ageDays": 83.8,
    "metrics": {
     "week1Velocity": 1751,
     "week1Note": null,
@@ -19906,7 +19984,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -20373,7 +20451,7 @@
       "share": 11.1
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 66.3,
      "openFloor": 14.1,
@@ -26342,6 +26420,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 981,
+       "likes": 22,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 694,
+       "likes": 24,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 3264,
+       "likes": 11,
+       "comments": 1,
+       "plays": 1472,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 562
+      },
+      "x:designertom": {
+       "views": 16781,
+       "likes": 12,
+       "comments": 2,
+       "plays": 2844,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 399
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "objectId": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -26603,7 +26720,7 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 981,
@@ -26624,7 +26741,7 @@
       "peakConcurrent": 562
      },
      "x:designertom": {
-      "views": 16780,
+      "views": 16781,
       "likes": 12,
       "comments": 2,
       "plays": 2844,
@@ -26633,9 +26750,9 @@
      }
     },
     "ytTotal": 1675,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 20044,
+    "xImpressions": 20045,
     "xPromoReach": null,
     "xPlays": 4316,
     "xPlaysInfo": {
@@ -26651,7 +26768,7 @@
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -26666,17 +26783,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -26691,12 +26808,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -26713,13 +26830,13 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488682639726583808/"
    },
    "transcript": true,
-   "ageDays": 76,
+   "ageDays": 76.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
     "flatlineWeek": null,
     "engagementPer1k": 29.3,
-    "anomaly": "more than double what a typical episode gets (4,316 X plays vs a typical 2,136; 19,596 X reach vs a typical 8,976) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "anomaly": "more than double what a typical episode gets (4,316 X plays vs a typical 2,137; 19,596 X reach vs a typical 8,976) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 3,
    "live": {
@@ -28984,7 +29101,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -29451,7 +29568,7 @@
       "share": 12.7
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 73.3,
      "openFloor": 11.3,
@@ -35446,6 +35563,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 1308,
+       "likes": 36,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 743,
+       "likes": 21,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 3565,
+       "likes": 20,
+       "comments": 0,
+       "plays": 1375,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 680
+      },
+      "x:designertom": {
+       "views": 1152,
+       "likes": 11,
+       "comments": 1,
+       "plays": 551,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 216
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "objectId": "2026-08-06-dive-radio-backyard-designers-behind-the",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -35707,10 +35863,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 1307,
+      "views": 1308,
       "likes": 36,
       "comments": 5
      },
@@ -35736,8 +35892,8 @@
       "peakConcurrent": 216
      }
     },
-    "ytTotal": 2050,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 2051,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
     "xImpressions": 4717,
     "xPromoReach": null,
@@ -35750,12 +35906,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3976,
+    "totalViews": 3977,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -35770,17 +35926,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -35795,12 +35951,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -35817,7 +35973,7 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491221759405338624/"
    },
    "transcript": true,
-   "ageDays": 69,
+   "ageDays": 69.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -38099,7 +38255,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -38566,7 +38722,7 @@
       "share": 12
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 69.8,
      "openFloor": 11.8,
@@ -44535,6 +44691,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 753,
+       "likes": 20,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 566,
+       "likes": 18,
+       "comments": 2
+      },
+      "x:ridd_design": {
+       "views": 3029,
+       "likes": 12,
+       "comments": 0,
+       "plays": 1186,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 415
+      },
+      "x:designertom": {
+       "views": 6497,
+       "likes": 10,
+       "comments": 0,
+       "plays": 1162,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 131
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "objectId": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -44796,10 +44991,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 752,
+      "views": 753,
       "likes": 20,
       "comments": 3
      },
@@ -44817,34 +45012,34 @@
       "peakConcurrent": 415
      },
      "x:designertom": {
-      "views": 6490,
+      "views": 6497,
       "likes": 10,
       "comments": 0,
-      "plays": 1159,
+      "plays": 1162,
       "playsSource": "x-broadcast",
       "peakConcurrent": 131
      }
     },
-    "ytTotal": 1318,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 1319,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 9519,
+    "xImpressions": 9526,
     "xPromoReach": null,
-    "xPlays": 2345,
+    "xPlays": 2348,
     "xPlaysInfo": {
-     "value": 2345,
+     "value": 2348,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 3663,
+    "totalViews": 3667,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -44859,17 +45054,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -44884,12 +45079,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -44906,7 +45101,7 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7493743714008485888/"
    },
    "transcript": true,
-   "ageDays": 62,
+   "ageDays": 62.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: partial history",
@@ -46615,7 +46810,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -47082,7 +47277,7 @@
       "share": 12.6
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 69.1,
      "openFloor": 10.1,
@@ -53159,6 +53354,46 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 993,
+       "likes": 22,
+       "comments": 7
+      },
+      "yt:designertom": {
+       "views": 738,
+       "likes": 14,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 7882,
+       "likes": 11,
+       "comments": 0,
+       "plays": 859,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 201
+      },
+      "x:designertom": {
+       "views": 963,
+       "likes": 12,
+       "comments": 1,
+       "promoViews": 352,
+       "plays": 347,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 125
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "objectId": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -53426,7 +53661,7 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 993,
@@ -53439,7 +53674,7 @@
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 7881,
+      "views": 7882,
       "likes": 11,
       "comments": 0,
       "plays": 859,
@@ -53457,9 +53692,9 @@
      }
     },
     "ytTotal": 1731,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 8844,
+    "xImpressions": 8845,
     "xPromoReach": {
      "posts": 1,
      "impressions": 352
@@ -53478,7 +53713,7 @@
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -53493,17 +53728,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -53518,12 +53753,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -53540,7 +53775,7 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496281015804575744/"
    },
    "transcript": true,
-   "ageDays": 55,
+   "ageDays": 55.8,
    "metrics": {
     "week1Velocity": 1189,
     "week1Note": null,
@@ -55690,7 +55925,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -56157,7 +56392,7 @@
       "share": 11.3
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 63.1,
      "openFloor": 11.6,
@@ -61466,6 +61701,47 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3233,
+       "likes": 31,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 2997,
+       "likes": 22,
+       "comments": 1
+      },
+      "x:ridd_design": {
+       "views": 2788,
+       "likes": 44,
+       "comments": 2,
+       "promoViews": 2982,
+       "plays": 1124,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 408
+      },
+      "x:designertom": {
+       "views": 7936,
+       "likes": 36,
+       "comments": 3,
+       "promoViews": 2219,
+       "plays": 2000,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 320
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "objectId": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -61707,15 +61983,15 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 3230,
+      "views": 3233,
       "likes": 31,
       "comments": 3
      },
      "yt:designertom": {
-      "views": 2995,
+      "views": 2997,
       "likes": 22,
       "comments": 1
      },
@@ -61729,7 +62005,7 @@
       "peakConcurrent": 408
      },
      "x:designertom": {
-      "views": 7934,
+      "views": 7936,
       "likes": 36,
       "comments": 3,
       "promoViews": 2219,
@@ -61738,10 +62014,10 @@
       "peakConcurrent": 320
      }
     },
-    "ytTotal": 6225,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 6230,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 10722,
+    "xImpressions": 10724,
     "xPromoReach": {
      "posts": 2,
      "impressions": 5201
@@ -61755,12 +62031,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 9349,
+    "totalViews": 9354,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -61775,17 +62051,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -61800,12 +62076,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -61822,13 +62098,13 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498782244623405056/"
    },
    "transcript": true,
-   "ageDays": 48,
+   "ageDays": 48.8,
    "metrics": {
-    "week1Velocity": null,
-    "week1Note": "excluded: promo-driven outlier",
+    "week1Velocity": 5188,
+    "week1Note": null,
     "flatlineWeek": 3,
-    "engagementPer1k": 9.2,
-    "anomaly": "more than double what a typical episode gets (6,003 YT views vs a typical 1,923) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "engagementPer1k": 9.1,
+    "anomaly": null
    },
    "ep": 7,
    "live": {
@@ -63825,7 +64101,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -64292,7 +64568,7 @@
       "share": 6.4
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 65.2,
      "openFloor": 11.3,
@@ -67663,6 +67939,47 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 3419,
+       "likes": 48,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2851,
+       "likes": 40,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 7905,
+       "likes": 149,
+       "comments": 10,
+       "promoViews": 16075,
+       "plays": 1532,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 359
+      },
+      "x:designertom": {
+       "views": 12599,
+       "likes": 31,
+       "comments": 3,
+       "promoViews": 1330,
+       "plays": 2655,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 575
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "objectId": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -67872,10 +68189,10 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 3409,
+      "views": 3419,
       "likes": 48,
       "comments": 2
      },
@@ -67888,13 +68205,13 @@
       "views": 7905,
       "likes": 149,
       "comments": 10,
-      "promoViews": 16070,
+      "promoViews": 16075,
       "plays": 1532,
       "playsSource": "x-broadcast",
       "peakConcurrent": 359
      },
      "x:designertom": {
-      "views": 12597,
+      "views": 12599,
       "likes": 31,
       "comments": 3,
       "promoViews": 1330,
@@ -67903,13 +68220,13 @@
       "peakConcurrent": 575
      }
     },
-    "ytTotal": 6260,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 6270,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 20502,
+    "xImpressions": 20504,
     "xPromoReach": {
      "posts": 3,
-     "impressions": 17400
+     "impressions": 17405
     },
     "xPlays": 4187,
     "xPlaysInfo": {
@@ -67920,12 +68237,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 10447,
+    "totalViews": 10457,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -67940,17 +68257,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": null
     },
     "live": {
@@ -67965,12 +68282,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -67987,19 +68304,19 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7501031584624717824/"
    },
    "transcript": true,
-   "ageDays": 41,
+   "ageDays": 41.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": 3,
     "engagementPer1k": 14.4,
-    "anomaly": "UX Tools email linked the YouTube upload; more than double what a typical episode gets (4,138 X plays vs a typical 2,023; 20,372 X reach vs a typical 8,976) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
+    "anomaly": "UX Tools email linked the YouTube upload; more than double what a typical episode gets (20,372 X reach vs a typical 8,712) — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 8,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-14T19:15:33.877Z",
+    "updatedAt": "2026-10-15T14:00:28.430Z",
     "emailClicks": 151,
     "verifiedEmailClicks": 68,
     "clicksReason": null,
@@ -68259,6 +68576,12 @@
      {
       "date": "2026-10-14",
       "pulledAt": "2026-10-14T19:15:33.877Z",
+      "emailClicks": 151,
+      "verifiedEmailClicks": 68
+     },
+     {
+      "date": "2026-10-15",
+      "pulledAt": "2026-10-15T14:00:28.430Z",
       "emailClicks": 151,
       "verifiedEmailClicks": 68
      }
@@ -70483,7 +70806,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -70950,7 +71273,7 @@
       "share": 7.5
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 66.3,
      "openFloor": 9.9,
@@ -73706,6 +74029,46 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 7391,
+       "likes": 116,
+       "comments": 8
+      },
+      "yt:designertom": {
+       "views": 4688,
+       "likes": 76,
+       "comments": 9
+      },
+      "x:ridd_design": {
+       "views": 2817,
+       "likes": 40,
+       "comments": 0,
+       "plays": 1835,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 693
+      },
+      "x:designertom": {
+       "views": 9437,
+       "likes": 37,
+       "comments": 3,
+       "promoViews": 2393,
+       "plays": 2178,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 250
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -73876,16 +74239,16 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 7373,
-      "likes": 114,
+      "views": 7391,
+      "likes": 116,
       "comments": 8
      },
      "yt:designertom": {
-      "views": 4684,
-      "likes": 75,
+      "views": 4688,
+      "likes": 76,
       "comments": 9
      },
      "x:ridd_design": {
@@ -73897,7 +74260,7 @@
       "peakConcurrent": 693
      },
      "x:designertom": {
-      "views": 9436,
+      "views": 9437,
       "likes": 37,
       "comments": 3,
       "promoViews": 2393,
@@ -73906,10 +74269,10 @@
       "peakConcurrent": 250
      }
     },
-    "ytTotal": 12057,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 12079,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 12253,
+    "xImpressions": 12254,
     "xPromoReach": {
      "posts": 3,
      "impressions": 2393
@@ -73923,12 +74286,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 16070,
+    "totalViews": 16092,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -73943,17 +74306,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": null
     },
     "live": {
@@ -73968,12 +74331,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -73990,19 +74353,19 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7503493234619293697/"
    },
    "transcript": true,
-   "ageDays": 34,
+   "ageDays": 34.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": 3,
-    "engagementPer1k": 17.1,
+    "engagementPer1k": 17.3,
     "anomaly": "UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 9,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-14T19:15:33.877Z",
+    "updatedAt": "2026-10-15T14:00:28.430Z",
     "emailClicks": 323,
     "verifiedEmailClicks": 213,
     "clicksReason": null,
@@ -74222,6 +74585,12 @@
      {
       "date": "2026-10-14",
       "pulledAt": "2026-10-14T19:15:33.877Z",
+      "emailClicks": 323,
+      "verifiedEmailClicks": 213
+     },
+     {
+      "date": "2026-10-15",
+      "pulledAt": "2026-10-15T14:00:28.430Z",
       "emailClicks": 323,
       "verifiedEmailClicks": 213
      }
@@ -77604,7 +77973,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -78071,7 +78440,7 @@
       "share": 6.5
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 66.9,
      "openFloor": 13,
@@ -80401,6 +80770,47 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 5397,
+       "likes": 60,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 3198,
+       "likes": 56,
+       "comments": 3
+      },
+      "x:ridd_design": {
+       "views": 2771,
+       "likes": 58,
+       "comments": 5,
+       "promoViews": 11788,
+       "plays": 736,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 211
+      },
+      "x:designertom": {
+       "views": 5017,
+       "likes": 17,
+       "comments": 2,
+       "promoViews": 1265,
+       "plays": 1133,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 89
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "objectId": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -80542,15 +80952,15 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 5395,
+      "views": 5397,
       "likes": 60,
       "comments": 2
      },
      "yt:designertom": {
-      "views": 3197,
+      "views": 3198,
       "likes": 56,
       "comments": 3
      },
@@ -80573,8 +80983,8 @@
       "peakConcurrent": 89
      }
     },
-    "ytTotal": 8592,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 8595,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
     "xImpressions": 7788,
     "xPromoReach": {
@@ -80590,12 +81000,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 10461,
+    "totalViews": 10464,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -80610,17 +81020,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": null
     },
     "live": {
@@ -80635,12 +81045,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -80657,7 +81067,7 @@
     "linkedin:michaelriddering": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7506264059403620354/"
    },
    "transcript": true,
-   "ageDays": 27,
+   "ageDays": 27.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
@@ -80669,7 +81079,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-14T19:15:33.877Z",
+    "updatedAt": "2026-10-15T14:00:28.430Z",
     "emailClicks": 96,
     "verifiedEmailClicks": 41,
     "clicksReason": null,
@@ -80845,6 +81255,12 @@
      {
       "date": "2026-10-14",
       "pulledAt": "2026-10-14T19:15:33.877Z",
+      "emailClicks": 96,
+      "verifiedEmailClicks": 41
+     },
+     {
+      "date": "2026-10-15",
+      "pulledAt": "2026-10-15T14:00:28.430Z",
       "emailClicks": 96,
       "verifiedEmailClicks": 41
      }
@@ -82881,11 +83297,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      }
     },
     "notices": [
@@ -83233,7 +83649,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -83700,7 +84116,7 @@
       "share": 5.6
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 73.1,
      "openFloor": 10.3,
@@ -85434,6 +85850,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2909,
+       "likes": 28,
+       "comments": 2
+      },
+      "yt:designertom": {
+       "views": 2666,
+       "likes": 35,
+       "comments": 4
+      },
+      "x:ridd_design": {
+       "views": 2663,
+       "likes": 18,
+       "comments": 1,
+       "plays": 1279,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 438
+      },
+      "x:designertom": {
+       "views": 5480,
+       "likes": 19,
+       "comments": 2,
+       "plays": 1549,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 405
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -85535,15 +85990,15 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 2898,
+      "views": 2909,
       "likes": 28,
       "comments": 2
      },
      "yt:designertom": {
-      "views": 2657,
+      "views": 2666,
       "likes": 35,
       "comments": 4
      },
@@ -85564,8 +86019,8 @@
       "peakConcurrent": 405
      }
     },
-    "ytTotal": 5555,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 5575,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
     "xImpressions": 8143,
     "xPromoReach": null,
@@ -85578,12 +86033,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 8383,
+    "totalViews": 8403,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -85598,17 +86053,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": null
     },
     "live": {
@@ -85623,12 +86078,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -85644,7 +86099,7 @@
     "x:designertom": "https://x.com/i/broadcasts/1qxvveXzoggxB"
    },
    "transcript": true,
-   "ageDays": 20,
+   "ageDays": 20.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
@@ -85656,7 +86111,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-14T19:15:33.877Z",
+    "updatedAt": "2026-10-15T14:00:28.430Z",
     "emailClicks": 46,
     "verifiedEmailClicks": 37,
     "clicksReason": null,
@@ -85796,6 +86251,12 @@
      {
       "date": "2026-10-14",
       "pulledAt": "2026-10-14T19:15:33.877Z",
+      "emailClicks": 46,
+      "verifiedEmailClicks": 37
+     },
+     {
+      "date": "2026-10-15",
+      "pulledAt": "2026-10-15T14:00:28.430Z",
       "emailClicks": 46,
       "verifiedEmailClicks": 37
      }
@@ -87686,11 +88147,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      }
     },
     "notices": [
@@ -87704,7 +88165,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -88171,7 +88632,7 @@
       "share": 6.7
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 69.1,
      "openFloor": 11.5,
@@ -89354,6 +89815,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 4282,
+       "likes": 41,
+       "comments": 5
+      },
+      "yt:designertom": {
+       "views": 2989,
+       "likes": 38,
+       "comments": 5
+      },
+      "x:ridd_design": {
+       "views": 5960,
+       "likes": 44,
+       "comments": 4,
+       "plays": 1678,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 416
+      },
+      "x:designertom": {
+       "views": 5567,
+       "likes": 25,
+       "comments": 0,
+       "plays": 1420,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 365
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -89423,28 +89923,28 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 4241,
-      "likes": 39,
+      "views": 4282,
+      "likes": 41,
       "comments": 5
      },
      "yt:designertom": {
-      "views": 2967,
-      "likes": 36,
+      "views": 2989,
+      "likes": 38,
       "comments": 5
      },
      "x:ridd_design": {
-      "views": 5953,
+      "views": 5960,
       "likes": 44,
       "comments": 4,
-      "plays": 1677,
+      "plays": 1678,
       "playsSource": "x-broadcast",
       "peakConcurrent": 416
      },
      "x:designertom": {
-      "views": 5566,
+      "views": 5567,
       "likes": 25,
       "comments": 0,
       "plays": 1420,
@@ -89452,26 +89952,26 @@
       "peakConcurrent": 365
      }
     },
-    "ytTotal": 7208,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 7271,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 11519,
+    "xImpressions": 11527,
     "xPromoReach": null,
-    "xPlays": 3097,
+    "xPlays": 3098,
     "xPlaysInfo": {
-     "value": 3097,
+     "value": 3098,
      "have": 2,
      "total": 2,
      "partial": false,
      "stale": false,
      "asOf": null
     },
-    "totalViews": 10305,
+    "totalViews": 10369,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -89486,17 +89986,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": null
     },
     "live": {
@@ -89511,12 +90011,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -89532,19 +90032,19 @@
     "x:designertom": "https://x.com/i/broadcasts/1XxygwNQaDyGM"
    },
    "transcript": true,
-   "ageDays": 13,
+   "ageDays": 13.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "excluded: promo-driven outlier",
     "flatlineWeek": null,
-    "engagementPer1k": 11.8,
+    "engagementPer1k": 12.2,
     "anomaly": "UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 12,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-14T19:15:33.877Z",
+    "updatedAt": "2026-10-15T14:00:28.430Z",
     "emailClicks": 95,
     "verifiedEmailClicks": 69,
     "clicksReason": null,
@@ -89642,6 +90142,12 @@
      {
       "date": "2026-10-14",
       "pulledAt": "2026-10-14T19:15:33.877Z",
+      "emailClicks": 95,
+      "verifiedEmailClicks": 69
+     },
+     {
+      "date": "2026-10-15",
+      "pulledAt": "2026-10-15T14:00:28.430Z",
       "emailClicks": 95,
       "verifiedEmailClicks": 69
      }
@@ -91496,11 +92002,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      }
     },
     "notices": [
@@ -91514,7 +92020,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -91957,7 +92463,7 @@
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 309,
+      "views": 308,
       "share": 4.3
      },
      {
@@ -91981,7 +92487,7 @@
       "share": 3.9
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 70.4,
      "openFloor": 11.7,
@@ -92626,6 +93132,45 @@
       "pulledAt": "2026-10-14T19:15:39.991Z",
       "state": "ready"
      }
+    },
+    {
+     "ts": "2026-10-15T14:00:32.450Z",
+     "byDest": {
+      "yt:joindiveclub": {
+       "views": 2805,
+       "likes": 49,
+       "comments": 3
+      },
+      "yt:designertom": {
+       "views": 1901,
+       "likes": 38,
+       "comments": 0
+      },
+      "x:ridd_design": {
+       "views": 4866,
+       "likes": 19,
+       "comments": 1,
+       "plays": 1292,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 277
+      },
+      "x:designertom": {
+       "views": 3271,
+       "likes": 19,
+       "comments": 1,
+       "plays": 828,
+       "playsSource": "x-broadcast",
+       "peakConcurrent": 343
+      }
+     },
+     "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+      "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+      "pulledAt": "2026-10-15T14:00:32.450Z",
+      "state": "ready"
+     }
     }
    ],
    "weekly": [
@@ -92663,20 +93208,20 @@
     }
    ],
    "latest": {
-    "ts": "2026-10-14T19:15:39.991Z",
+    "ts": "2026-10-15T14:00:32.450Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 2767,
+      "views": 2805,
       "likes": 49,
       "comments": 3
      },
      "yt:designertom": {
-      "views": 1882,
+      "views": 1901,
       "likes": 38,
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 4853,
+      "views": 4866,
       "likes": 19,
       "comments": 1,
       "plays": 1292,
@@ -92684,7 +93229,7 @@
       "peakConcurrent": 277
      },
      "x:designertom": {
-      "views": 3264,
+      "views": 3271,
       "likes": 19,
       "comments": 1,
       "plays": 828,
@@ -92692,10 +93237,10 @@
       "peakConcurrent": 343
      }
     },
-    "ytTotal": 4649,
-    "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+    "ytTotal": 4706,
+    "youtubeAsOf": "2026-10-15T14:00:32.450Z",
     "youtubeStale": false,
-    "xImpressions": 8117,
+    "xImpressions": 8137,
     "xPromoReach": null,
     "xPlays": 2120,
     "xPlaysInfo": {
@@ -92706,12 +93251,12 @@
      "stale": false,
      "asOf": null
     },
-    "totalViews": 6769,
+    "totalViews": 6826,
     "totalViewsInfo": {
      "includesYoutube": true,
      "includesPlays": true,
      "youtubeMissing": false,
-     "youtubeAsOf": "2026-10-14T19:15:39.991Z",
+     "youtubeAsOf": "2026-10-15T14:00:32.450Z",
      "youtubeStale": false,
      "missing": false,
      "incomplete": false,
@@ -92726,17 +93271,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:39.991Z",
+     "checkedAt": "2026-10-15T14:00:32.450Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:15:33.877Z",
+     "checkedAt": "2026-10-15T14:00:28.430Z",
      "reason": null
     },
     "live": {
@@ -92751,12 +93296,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:37.078Z",
+     "checkedAt": "2026-10-15T14:01:41.855Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-14T19:16:12.143Z",
+     "checkedAt": "2026-10-15T14:01:04.448Z",
      "reason": null
     },
     "transcript": {
@@ -92772,20 +93317,20 @@
     "x:designertom": "https://x.com/i/broadcasts/1wxWjlLpnnAJQ"
    },
    "transcript": true,
-   "ageDays": 6,
+   "ageDays": 6.8,
    "metrics": {
     "week1Velocity": null,
     "week1Note": "pending: episode under 7 days old",
     "flatlineWeek": null,
-    "engagementPer1k": 19.4,
+    "engagementPer1k": 19.1,
     "anomaly": "UX Tools email linked the YouTube upload — treat the affected viewing numbers as a promo-driven outlier, not topic signal"
    },
    "ep": 13,
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-14T19:15:33.877Z",
-    "emailClicks": 50,
+    "updatedAt": "2026-10-15T14:00:28.430Z",
+    "emailClicks": 52,
     "verifiedEmailClicks": 9,
     "clicksReason": null,
     "combinedUniqueReaders": null,
@@ -92802,7 +93347,7 @@
       "title": "The rise of playable portfolios",
       "publishedAt": "2026-10-08T14:08:00.000Z",
       "url": "https://uxtools.beehiiv.com/p/the-rise-of-playable-portfolios",
-      "emailClicks": 50,
+      "emailClicks": 52,
       "verifiedEmailClicks": 9
      }
     ],
@@ -92841,6 +93386,12 @@
       "date": "2026-10-14",
       "pulledAt": "2026-10-14T19:15:33.877Z",
       "emailClicks": 50,
+      "verifiedEmailClicks": 9
+     },
+     {
+      "date": "2026-10-15",
+      "pulledAt": "2026-10-15T14:00:28.430Z",
+      "emailClicks": 52,
       "verifiedEmailClicks": 9
      }
     ]
@@ -94739,11 +95290,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-14T19:15:08.796Z"
+      "checkedAt": "2026-10-15T14:00:07.341Z"
      }
     },
     "notices": [
@@ -94757,7 +95308,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-14T19:16:12.143Z",
+    "checkedAt": "2026-10-15T14:01:04.448Z",
     "missingChannels": [],
     "reason": null
    },
@@ -95195,13 +95746,13 @@
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "views": 3498,
+      "views": 3499,
       "share": 78.6
      },
      {
       "source": "NO_LINK_OTHER",
-      "views": 237,
-      "share": 5.3
+      "views": 232,
+      "share": 5.2
      },
      {
       "source": "RELATED_VIDEO",
@@ -95215,16 +95766,16 @@
      },
      {
       "source": "YT_CHANNEL",
-      "views": 122,
-      "share": 2.7
+      "views": 123,
+      "share": 2.8
      },
      {
       "source": "OTHER_COMBINED",
-      "views": 227,
+      "views": 228,
       "share": 5.1
      }
     ],
-    "updatedAt": "2026-10-14T19:16:12.143Z",
+    "updatedAt": "2026-10-15T14:01:04.448Z",
     "shape": {
      "openStart": 65.8,
      "openFloor": 10.5,
@@ -95241,7 +95792,8 @@
       "estSec": 404,
       "approx": false,
       "excerpt": "But I think what'll be most helpful is if we had a way for people to let us know what specifically they want feedback on because it allows us to kind of go through a lot of portfolios over one episode and actually answer the questions you're specifically looking to get answers on.",
-      "speaker": "Speaker 3"
+      "speaker": "Speaker 3",
+      "summary": "Two hosts open the live show, greet each other, and explain the plan: other topics now, portfolio reviews next week, with the Discord and a feedback widget for submitting portfolios."
      },
      {
       "kind": "drop",
@@ -95381,47 +95933,44 @@
  ],
  "insights": [
   {
-   "id": "fix-subscriber-sign-ups",
-   "text": "Subscribers are the fragile check: the read of 0.6 per 1,000 views, carried from an older finished episode, sits under the show's usual 2.8. DesignerTom converts at 3.1 per 1,000 views, Dive Club at 1.9.",
-   "recommendation": "Add a spoken subscribe ask and a pinned prompt on the Dive Club stream, where sign-ups run lower. Track whether its per-1,000 figure moves toward DesignerTom's after the next episode.",
+   "id": "lift-live-peak",
+   "text": "Live pull is softening: the newest peak is 87 viewers against a usual 97.5, and the average is 70 against 73. The peak has been sliding over the last few episodes.",
+   "recommendation": "Announce the next live a day ahead on both channels, X and LinkedIn with one named segment or guest tease, and see whether the peak rises.",
    "category": "promotion",
    "rank": 1,
-   "serves": "conversion"
-  },
-  {
-   "id": "rebuild-live-pull-from-e9",
-   "text": "Live pull is softening: the newest peak of 87 trails the usual 97.5. E9 reached a peak of 133 with 109 average viewers.",
-   "recommendation": "Build next week's show around guest-submitted nominations and stories, which E9 had. Name that segment in the announcement before going live, then test whether the peak climbs back.",
-   "category": "content",
-   "rank": 2,
    "serves": "livePull"
   },
   {
-   "id": "tighten-opening-stretch",
-   "text": "E13, still in its first week, lost 3.5 of every 100 viewers around minute 7 and 4.9 around minute 12, about a tenth of the way in. The talk there was about how to submit portfolios for feedback.",
-   "recommendation": "Test cutting the portfolio-feedback explanation to one sentence. Move the internal-tools tease, which added 2.5 viewers of every 100 about a fifth of the way in, into the opening stretch.",
+   "id": "tighten-opening",
+   "text": "In E13, still in its first weeks, 3.5 of every 100 viewers left around minute 7 and 4.9 left around minute 12. Both exits come early in the show, before the first guest segment is well under way.",
+   "recommendation": "Test a tighter open: skip housekeeping, tease the strongest portfolio or guest moment in the first 5 minutes, and see whether the early exits shrink.",
    "category": "content",
-   "rank": 3,
+   "rank": 2,
    "serves": "audienceQuality"
   },
   {
-   "id": "widen-discovery-surfaces",
-   "text": "Search and suggested views are softening: the latest read, carried from an older finished episode, is 13.6 against a usual 14.7. End screens brought 20 views and Shorts 6, while subscribers supplied 71.4 percent.",
-   "recommendation": "Put an end-screen card pointing to the next episode on every upload. Cut a few short clips from the strongest moments to test whether search and suggested traffic grows beyond existing subscribers.",
+   "id": "use-end-screens-playlists",
+   "text": "End screens brought only 20 YouTube views and playlists 324, while 71.4% of views come from existing subscribers. Surfaces that could reach new people are close to unused.",
+   "recommendation": "Add an end screen pointing to the next episode on every upload, group episodes into a playlist, and watch whether those views grow over the next few weeks.",
    "category": "distribution",
-   "rank": 4,
+   "rank": 3,
    "serves": "reachEfficiency"
   },
   {
-   "id": "protect-chat-strength",
-   "text": "Chat is the strongest read: 83.9 chatters per 100 viewers against a usual 53.9, and 84.1 of the peak still watching at the end against 66.4.",
-   "recommendation": "Keep the live prompts that draw chat and repeat the subscribe ask there. Sound-check any call-in guest before going live: LinkedIn viewers on an earlier show said they could not hear the caller.",
+   "id": "protect-chat-energy",
+   "text": "Participation is the healthiest check: 83.9 chatters per 100 viewers against a usual 53.9, and 84.1 of the peak still watching late against 66.4.",
+   "recommendation": "Keep the chat prompts and shout-outs that are working, and run a call-in audio check before each show so a caller is audible. A LinkedIn viewer once said they could not hear one.",
    "category": "audience",
-   "rank": 5,
+   "rank": 4,
    "serves": "participation"
   }
  ],
- "insightsStale": [],
+ "insightsStale": [
+  {
+   "id": "fix-subscriber-ask",
+   "why": "number 0.6 is not in the cited facts"
+  }
+ ],
  "showTrend": {
   "week1VelocityByEpisode": [
    {
@@ -95470,8 +96019,8 @@
     "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
     "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins",
     "premiere": "2026-08-27",
-    "value": null,
-    "note": "excluded: promo-driven outlier"
+    "value": 5188,
+    "note": null
    },
    {
     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -95611,21 +96160,21 @@
   ]
  },
  "health": {
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "ageDays": 0,
   "withheld": false,
   "formulaVersion": "health-v11",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
-  "dataThrough": "2026-10-14T14:02:08.085Z",
-  "score": 53,
+  "dataThrough": "2026-10-15T14:01:48.638Z",
+  "score": 52,
   "readState": "early",
-  "headline": "Participation and goodwill look healthy, subscribers look fragile, and the direction is mixed.",
+  "headline": "Chat and goodwill look healthy, reach is fragile, and the overall direction is mixed.",
   "checks": [
    {
     "key": "growth",
-    "score": 46,
-    "reason": "Only 1 earlier episode was tracked this early; at least three are needed.",
+    "score": 53,
+    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
     "carried": false,
     "state": "steady",
     "bands": {
@@ -95636,9 +96185,9 @@
     "measures": [
      {
       "key": "firstWeek",
-      "value": 0.9,
+      "value": 1.1,
       "typical": 1,
-      "sample": 3,
+      "sample": 4,
       "reason": null,
       "ageBasis": "ageFree",
       "note": null,
@@ -95652,8 +96201,8 @@
       "key": "sameAge",
       "value": null,
       "typical": null,
-      "sample": 1,
-      "reason": "Only 1 earlier episode was tracked this early; at least three are needed.",
+      "sample": 2,
+      "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
       "ageBasis": null,
       "note": null,
       "episodeRead": null,
@@ -95666,22 +96215,22 @@
    },
    {
     "key": "audienceQuality",
-    "score": 54,
-    "reason": "Only 1 earlier episode was tracked this early; at least three are needed. read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
+    "score": 51,
+    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed. read from Steal These AI Design Patterns + Live Ca, the latest finished episode",
     "carried": true,
     "state": "steady",
     "bands": {
-     "healthy": 57,
-     "steady": 43
+     "healthy": 55,
+     "steady": 45
     },
-    "swing": 14,
+    "swing": 10,
     "measures": [
      {
       "key": "engagement",
       "value": null,
       "typical": null,
-      "sample": 1,
-      "reason": "Only 1 earlier episode was tracked this early; at least three are needed.",
+      "sample": 2,
+      "reason": "Only 2 earlier episodes were tracked this early; at least three are needed.",
       "ageBasis": null,
       "note": null,
       "episodeRead": null,
@@ -95692,37 +96241,37 @@
      },
      {
       "key": "watching",
-      "value": 11.4,
-      "typical": 10.6,
-      "sample": 5,
+      "value": 11.1,
+      "typical": 10.9,
+      "sample": 6,
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
-      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "qualified": false,
       "carried": true,
-      "carriedNote": "carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight",
-      "swing": 14
+      "carriedNote": "carried from Steal These AI Design Patterns + Live Ca, the latest finished episode — counted at half weight",
+      "swing": 10
      }
     ]
    },
    {
     "key": "reachEfficiency",
-    "score": 50,
-    "reason": "read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
+    "score": 40,
+    "reason": "read from Steal These AI Design Patterns + Live Ca, the latest finished episode",
     "carried": false,
-    "state": "steady",
+    "state": "fragile",
     "bands": {
-     "healthy": 56,
-     "steady": 44
+     "healthy": 56.5,
+     "steady": 43.5
     },
-    "swing": 12,
+    "swing": 13,
     "measures": [
      {
       "key": "exposure",
-      "value": 8096,
-      "typical": 7758,
-      "sample": 3,
+      "value": 8137,
+      "typical": 9633.5,
+      "sample": 4,
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
@@ -95730,13 +96279,13 @@
       "qualified": false,
       "carried": false,
       "carriedNote": null,
-      "swing": 5
+      "swing": 20
      },
      {
       "key": "announceToPlay",
       "value": 26.1,
-      "typical": 26.1,
-      "sample": 3,
+      "typical": 29.4,
+      "sample": 4,
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
@@ -95748,17 +96297,17 @@
      },
      {
       "key": "discoveryShare",
-      "value": 13.6,
-      "typical": 14.7,
-      "sample": 5,
+      "value": 7.5,
+      "typical": 14.2,
+      "sample": 6,
       "reason": null,
       "ageBasis": "mature",
       "note": "compared with earlier episodes as they stand now, not at the same age",
-      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "qualified": false,
       "carried": true,
-      "carriedNote": "carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight",
-      "swing": 12
+      "carriedNote": "carried from Steal These AI Design Patterns + Live Ca, the latest finished episode — counted at half weight",
+      "swing": 9
      }
     ]
    },
@@ -95904,36 +96453,36 @@
    },
    {
     "key": "conversion",
-    "score": 10,
-    "reason": "read from The Mascot Industrial Complex + Live Cal, the latest finished episode",
+    "score": 22,
+    "reason": "read from Steal These AI Design Patterns + Live Ca, the latest finished episode",
     "carried": true,
     "state": "fragile",
     "bands": {
      "healthy": 65,
      "steady": 35
     },
-    "swing": 73,
+    "swing": 80,
     "measures": [
      {
       "key": "subscribers",
-      "value": 0.6,
-      "typical": 2.8,
-      "sample": 5,
+      "value": 0.8,
+      "typical": 1.8,
+      "sample": 6,
       "reason": null,
       "ageBasis": "sameAge",
       "note": "compared at the same age",
-      "episodeRead": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+      "episodeRead": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
       "qualified": false,
       "carried": true,
-      "carriedNote": "carried from The Mascot Industrial Complex + Live Cal, the latest finished episode — counted at half weight",
-      "swing": 73
+      "carriedNote": "carried from Steal These AI Design Patterns + Live Ca, the latest finished episode — counted at half weight",
+      "swing": 80
      }
     ]
    },
    {
     "key": "sentiment",
     "score": 90,
-    "reason": "Only 2 episodes have complete replies and watch counts; at least four are required.",
+    "reason": "Only 3 episodes have complete replies and watch counts; at least four are required.",
     "carried": false,
     "state": "healthy",
     "bands": {
@@ -95960,8 +96509,8 @@
       "key": "commentRate",
       "value": 0.1,
       "typical": null,
-      "sample": 1,
-      "reason": "Only 2 episodes have complete replies and watch counts; at least four are required.",
+      "sample": 2,
+      "reason": "Only 3 episodes have complete replies and watch counts; at least four are required.",
       "ageBasis": null,
       "note": null,
       "episodeRead": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
@@ -95976,7 +96525,7 @@
   "asOf": {
    "newest": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
    "newestTitle": "Rise of the Playable Portfolio",
-   "ageDays": 5.8,
+   "ageDays": 6.8,
    "provisional": true,
    "carried": [
     "audienceQuality",
@@ -95989,43 +96538,43 @@
    "measures": [
     {
      "key": "firstWeek",
-     "n": 3,
-     "pctPerEpisode": -8.3,
-     "direction": null,
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "n": 4,
+     "pctPerEpisode": 6.7,
+     "direction": "building",
+     "reason": null
     },
     {
      "key": "engagementWeekOne",
-     "n": 3,
-     "pctPerEpisode": -17.6,
-     "direction": null,
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "n": 4,
+     "pctPerEpisode": -14.7,
+     "direction": "softening",
+     "reason": null
     },
     {
      "key": "watching",
      "n": 5,
-     "pctPerEpisode": 3,
-     "direction": "holding",
+     "pctPerEpisode": 5.8,
+     "direction": "building",
      "reason": null
     },
     {
      "key": "exposureWeekOne",
      "n": 5,
-     "pctPerEpisode": 4.5,
+     "pctPerEpisode": 0,
      "direction": "holding",
      "reason": null
     },
     {
      "key": "announceToPlay",
      "n": 5,
-     "pctPerEpisode": 0.6,
+     "pctPerEpisode": 0.7,
      "direction": "holding",
      "reason": null
     },
     {
      "key": "discoveryShare",
      "n": 5,
-     "pctPerEpisode": -7.1,
+     "pctPerEpisode": -8.5,
      "direction": "softening",
      "reason": null
     },
@@ -96088,7 +96637,7 @@
     {
      "key": "subscribers",
      "n": 5,
-     "pctPerEpisode": -37.1,
+     "pctPerEpisode": -28.2,
      "direction": "softening",
      "reason": null
     }
@@ -96097,64 +96646,64 @@
   "outlook": {
    "nextFirstWeek": {
     "low": 1189,
-    "high": 1830,
+    "high": 5188,
     "typical": 1751,
     "n": 3,
-    "direction": null,
-    "reason": "Three episodes show the slope; a direction word needs four."
+    "direction": "building",
+    "reason": null
    },
    "coolOff": {
-    "ageDays": 5.8,
+    "ageDays": 6.8,
     "word": null,
-    "n": 1,
+    "n": 2,
     "reason": "promo-driven lift — shown, not scored"
    }
   },
   "facts": [
    {
     "id": "clean-first-weeks",
-    "display": "3",
-    "text": "Only 3 episodes have clean first-week records."
+    "display": "4",
+    "text": "Only 4 episodes have clean first-week records."
    },
    {
     "id": "latest-clean-first-week",
-    "display": "1,189",
-    "text": "The latest clean first week reached 1,189 YouTube views."
+    "display": "5,188",
+    "text": "The latest clean first week reached 5,188 YouTube views."
    },
    {
     "id": "first-week-change-each-episode",
-    "display": "8.3%",
-    "text": "Across the last three clean first weeks the slope runs down about 8.3% each episode — too few weeks for a direction word."
+    "display": "6.7%",
+    "text": "Across the last four clean first weeks the slope runs up about 6.7% each episode."
    },
    {
     "id": "latest-watch-percent",
-    "display": "11.4%",
-    "text": "Viewers watched 11.4% of the latest finished YouTube episode on average."
+    "display": "11.1%",
+    "text": "Viewers watched 11.1% of the latest finished YouTube episode on average."
    },
    {
     "id": "typical-watch-percent",
-    "display": "10.6%",
-    "text": "Earlier episodes typically held viewers for 10.6% of their YouTube run time."
+    "display": "10.9%",
+    "text": "Earlier episodes typically held viewers for 10.9% of their YouTube run time."
    },
    {
     "id": "latest-watch-percent-joindiveclub",
-    "display": "13.5%",
-    "text": "Viewers watched 13.5% of that episode on Dive Club on average."
+    "display": "12%",
+    "text": "Viewers watched 12% of that episode on Dive Club on average."
    },
    {
     "id": "latest-watch-percent-designertom",
-    "display": "8.6%",
-    "text": "Viewers watched 8.6% of that episode on DesignerTom on average."
+    "display": "10.1%",
+    "text": "Viewers watched 10.1% of that episode on DesignerTom on average."
    },
    {
     "id": "latest-same-age-reach",
-    "display": "8,096",
-    "text": "The latest episode's X announces have been seen 8,096 times at this age."
+    "display": "8,137",
+    "text": "The latest episode's X announces have been seen 8,137 times at this age."
    },
    {
     "id": "typical-same-age-reach",
-    "display": "7,758",
-    "text": "Earlier episodes' announces had typically been seen 7,758 times at the same age."
+    "display": "9,633.5",
+    "text": "Earlier episodes' announces had typically been seen 9,633.5 times at the same age."
    },
    {
     "id": "latest-announce-play",
@@ -96163,18 +96712,18 @@
    },
    {
     "id": "typical-announce-play",
-    "display": "26.1%",
-    "text": "Earlier clean episodes typically turned 26.1% of X announce impressions into plays."
+    "display": "29.4%",
+    "text": "Earlier clean episodes typically turned 29.4% of X announce impressions into plays."
    },
    {
     "id": "latest-discovery-share",
-    "display": "13.6%",
-    "text": "13.6% of the latest finished episode's YouTube views came from search and suggested videos."
+    "display": "7.5%",
+    "text": "7.5% of the latest finished episode's YouTube views came from search and suggested videos."
    },
    {
     "id": "typical-discovery-share",
-    "display": "14.7%",
-    "text": "Earlier episodes typically drew 14.7% of their YouTube views from search and suggested videos."
+    "display": "14.2%",
+    "text": "Earlier episodes typically drew 14.2% of their YouTube views from search and suggested videos."
    },
    {
     "id": "latest-live-viewers",
@@ -96258,23 +96807,23 @@
    },
    {
     "id": "latest-subscriber-rate",
-    "display": "0.6",
-    "text": "The latest finished episode added 0.6 subscribers for each thousand YouTube views."
+    "display": "0.8",
+    "text": "The latest finished episode added 0.8 subscribers for each thousand YouTube views."
    },
    {
     "id": "typical-subscriber-rate",
-    "display": "2.8",
-    "text": "Earlier clean episodes typically added 2.8 subscribers for each thousand YouTube views."
+    "display": "1.8",
+    "text": "Earlier clean episodes typically added 1.8 subscribers for each thousand YouTube views."
    },
    {
     "id": "latest-subscriber-rate-joindiveclub",
-    "display": "1",
-    "text": "Dive Club added 1 subscribers for each thousand of its YouTube views on that episode."
+    "display": "0.9",
+    "text": "Dive Club added 0.9 subscribers for each thousand of its YouTube views on that episode."
    },
    {
     "id": "latest-subscriber-rate-designertom",
-    "display": "0",
-    "text": "DesignerTom added 0 subscribers for each thousand of its YouTube views on that episode."
+    "display": "0.7",
+    "text": "DesignerTom added 0.7 subscribers for each thousand of its YouTube views on that episode."
    },
    {
     "id": "recent-positive-feedback",
@@ -96298,28 +96847,28 @@
    },
    {
     "id": "direction-engagementWeekOne",
-    "display": "17.6%",
-    "text": "Over the last three clean readings, first-week likes and comments fell about 17.6% each episode — too few readings for a direction word."
+    "display": "14.7%",
+    "text": "Over the last four clean readings, first-week likes and comments fell about 14.7% each episode."
    },
    {
     "id": "direction-watching",
-    "display": "3%",
-    "text": "Over the last five clean readings, as those episodes stand now, share of the video watched rose about 3% each episode."
+    "display": "5.8%",
+    "text": "Over the last five clean readings, as those episodes stand now, share of the video watched rose about 5.8% each episode."
    },
    {
     "id": "direction-exposureWeekOne",
-    "display": "4.5%",
-    "text": "Over the last five clean readings, first-week X reach rose about 4.5% each episode."
+    "display": "0%",
+    "text": "Over the last five clean readings, first-week X reach rose about 0% each episode."
    },
    {
     "id": "direction-announceToPlay",
-    "display": "0.6%",
-    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X rose about 0.6% each episode."
+    "display": "0.7%",
+    "text": "Over the last five clean readings, as those episodes stand now, announce-to-play on X rose about 0.7% each episode."
    },
    {
     "id": "direction-discoveryShare",
-    "display": "7.1%",
-    "text": "Over the last five clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 7.1% each episode."
+    "display": "8.5%",
+    "text": "Over the last five clean readings, as those episodes stand now, the share of YouTube views from search and suggested videos fell about 8.5% each episode."
    },
    {
     "id": "direction-liveAverage",
@@ -96363,8 +96912,8 @@
    },
    {
     "id": "direction-subscribers",
-    "display": "37.1%",
-    "text": "Over the last five clean readings, as those episodes stand now, subscribers per thousand views fell about 37.1% each episode."
+    "display": "28.2%",
+    "text": "Over the last five clean readings, as those episodes stand now, subscribers per thousand views fell about 28.2% each episode."
    },
    {
     "id": "outlook-first-week-low",
@@ -96373,8 +96922,8 @@
    },
    {
     "id": "outlook-first-week-high",
-    "display": "1,830",
-    "text": "The highest of the last three clean first weeks was 1,830 YouTube views."
+    "display": "5,188",
+    "text": "The highest of the last three clean first weeks was 5,188 YouTube views."
    },
    {
     "id": "data-age-hours",
@@ -96384,28 +96933,28 @@
   ],
   "pros": [
    {
-    "text": "Live chat was busy: 83.9 chatters for every hundred people at the peak of the latest show.",
+    "text": "The latest show drew 83.9 chatters for every hundred people at its peak, a strong chat turnout.",
     "factId": "latest-chatters-per-100"
    },
    {
-    "text": "9 recent comments were clearly positive, which supports a healthy goodwill read.",
+    "text": "9 recent comments were clearly positive, which fits with goodwill reading healthy.",
     "factId": "recent-positive-feedback"
    }
   ],
   "cons": [
    {
-    "text": "The latest finished episode added 0.6 subscribers for each thousand YouTube views, well under the usual rate.",
-    "factId": "latest-subscriber-rate"
+    "text": "Only 7.5% of the latest finished episode's YouTube views came from search and suggested videos, low next to earlier episodes.",
+    "factId": "latest-discovery-share"
    },
    {
-    "text": "The latest show peaked at 87 live viewers, below the usual peak of earlier shows.",
-    "factId": "latest-live-peak"
+    "text": "The latest finished episode added 0.8 subscribers for each thousand YouTube views, below earlier clean episodes.",
+    "factId": "latest-subscriber-rate"
    }
   ],
   "drivers": [
-   "Most checks sit in the steady middle. Chat and goodwill lift the read, while subscriber sign-ups pull it down.",
-   "Subscribers and audience quality come from an older episode and count lightly, so the weak sign-up read is not a verdict on the newest show.",
-   "Live numbers are softening, and growth has too few clean weeks for a direction word, so the overall movement stays mixed."
+   "Score sits a touch under where the checks put it: live turnout and search discovery are slipping, and subscriber conversion is weak.",
+   "Audience quality and subscribers rest on an older finished episode and count half, since the newest episode is under a week old.",
+   "Recent launches were promo-driven, so their lift scores nothing. Direction is mixed, with chat building but live turnout softening."
   ],
   "checkSetChange": null,
   "trend": null
@@ -96468,7 +97017,7 @@
      "xPlays": {
       "tier": 3,
       "value": 1788,
-      "typical": 2734.5,
+      "typical": 2736,
       "n": 8,
       "window": [
        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
@@ -96525,7 +97074,7 @@
      "xPlays": {
       "tier": 3,
       "value": 1828,
-      "typical": 2734.5,
+      "typical": 2736,
       "n": 8,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -96582,7 +97131,7 @@
      "xPlays": {
       "tier": 3,
       "value": 4316,
-      "typical": 2135.5,
+      "typical": 2137,
       "n": 8,
       "window": [
        "2026-07-17-dive-radio-bumpy-takeoff",
@@ -96776,14 +97325,14 @@
     }
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
-    "flagged": true,
+    "flagged": false,
     "provisional": false,
     "units": {
      "ytViews": {
       "tier": 1,
       "value": 6003,
-      "typical": 1923,
-      "n": 7,
+      "typical": 3749,
+      "n": 8,
       "window": [
        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "2026-08-06-dive-radio-backyard-designers-behind-the",
@@ -96791,37 +97340,40 @@
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
-      "flag": true
+      "flag": false
      },
      "xPlays": {
       "tier": 1,
       "value": 2970,
-      "typical": 2023,
-      "n": 6,
+      "typical": 2172,
+      "n": 7,
       "window": [
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      },
      "xImpressions": {
       "tier": 1,
       "value": 10499,
-      "typical": 8976,
-      "n": 6,
+      "typical": 8712,
+      "n": 7,
       "window": [
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      }
@@ -96833,7 +97385,7 @@
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 6260,
+      "value": 6270,
       "typical": null,
       "n": 0,
       "window": [],
@@ -96843,30 +97395,32 @@
      "xPlays": {
       "tier": 1,
       "value": 4138,
-      "typical": 2023,
-      "n": 6,
+      "typical": 2172,
+      "n": 7,
       "window": [
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
-      "flag": true
+      "flag": false
      },
      "xImpressions": {
       "tier": 1,
       "value": 20372,
-      "typical": 8976,
-      "n": 6,
+      "typical": 8712,
+      "n": 7,
       "window": [
        "2026-08-06-dive-radio-backyard-designers-behind-the",
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": true
      }
@@ -96878,7 +97432,7 @@
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 12057,
+      "value": 12079,
       "typical": null,
       "n": 0,
       "window": [],
@@ -96888,26 +97442,29 @@
      "xPlays": {
       "tier": 1,
       "value": 3978,
-      "typical": 2011.5,
-      "n": 4,
+      "typical": 2500,
+      "n": 6,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      },
      "xImpressions": {
       "tier": 1,
       "value": 12186,
-      "typical": 8976,
-      "n": 4,
+      "typical": 8712,
+      "n": 5,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-17-dive-radio-how-to-become-a-founding-desi"
+       "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      }
@@ -96919,7 +97476,7 @@
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 8592,
+      "value": 8595,
       "typical": null,
       "n": 0,
       "window": [],
@@ -96929,26 +97486,29 @@
      "xPlays": {
       "tier": 1,
       "value": 1851,
-      "typical": 2571,
-      "n": 4,
+      "typical": 2899,
+      "n": 6,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-10-dive-radio-how-designers-are-getting-hir"
+       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      },
      "xImpressions": {
       "tier": 1,
       "value": 7761,
-      "typical": 9869.5,
-      "n": 4,
+      "typical": 9240,
+      "n": 5,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-       "2026-09-10-dive-radio-how-designers-are-getting-hir"
+       "2026-09-10-dive-radio-how-designers-are-getting-hir",
+       "2026-09-24-dive-radio-just-in-time-interfaces"
       ],
       "flag": false
      }
@@ -96960,7 +97520,7 @@
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 5555,
+      "value": 5575,
       "typical": null,
       "n": 0,
       "window": [],
@@ -96970,11 +97530,13 @@
      "xPlays": {
       "tier": 2,
       "value": 2828,
-      "typical": 2002.5,
-      "n": 4,
+      "typical": 2571,
+      "n": 6,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "2026-09-17-dive-radio-how-to-become-a-founding-desi"
       ],
@@ -96983,11 +97545,12 @@
      "xImpressions": {
       "tier": 2,
       "value": 8143,
-      "typical": 8965.5,
-      "n": 4,
+      "typical": 9240,
+      "n": 5,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
+       "2026-08-28-dive-radio-steal-these-ai-design-pattern",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "2026-09-17-dive-radio-how-to-become-a-founding-desi"
       ],
@@ -97001,7 +97564,7 @@
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 7208,
+      "value": 7271,
       "typical": null,
       "n": 0,
       "window": [],
@@ -97010,13 +97573,14 @@
      },
      "xPlays": {
       "tier": 2,
-      "value": 3097,
-      "typical": 2425.5,
-      "n": 6,
+      "value": 3098,
+      "typical": 2785,
+      "n": 7,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
        "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "2026-09-24-dive-radio-just-in-time-interfaces"
@@ -97025,8 +97589,8 @@
      },
      "xImpressions": {
       "tier": 2,
-      "value": 11519,
-      "typical": 9035,
+      "value": 11527,
+      "typical": 9049,
       "n": 5,
       "window": [
        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
@@ -97045,7 +97609,7 @@
     "units": {
      "ytViews": {
       "tier": "known-promotion",
-      "value": 4649,
+      "value": 4706,
       "typical": null,
       "n": 0,
       "window": [],
@@ -97055,11 +97619,13 @@
      "xPlays": {
       "tier": 2,
       "value": 2120,
-      "typical": 2438,
-      "n": 5,
+      "typical": 2690,
+      "n": 7,
       "window": [
        "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+       "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "2026-09-24-dive-radio-just-in-time-interfaces",
        "2026-10-01-dive-radio-anyone-can-animate-now-and-ho"
@@ -97068,10 +97634,11 @@
      },
      "xImpressions": {
       "tier": 2,
-      "value": 8117,
-      "typical": 7758,
-      "n": 3,
+      "value": 8137,
+      "typical": 9633.5,
+      "n": 4,
       "window": [
+       "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "2026-09-17-dive-radio-how-to-become-a-founding-desi",
        "2026-09-24-dive-radio-just-in-time-interfaces",
        "2026-10-01-dive-radio-anyone-can-animate-now-and-ho"
@@ -97082,88 +97649,95 @@
    }
   },
   "watchPct": {
-   "typical": 10.8,
-   "n": 6,
+   "typical": 11.1,
+   "n": 7,
    "window": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "2026-08-06-dive-radio-backyard-designers-behind-the",
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    "2026-08-20-dive-radio-the-mascot-industrial-complex",
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern"
    ],
    "ageBasis": "mature"
   },
   "watchPctBySlug": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
-    "typical": 11.2,
-    "n": 5,
+    "typical": 11.1,
+    "n": 6,
     "window": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "typical": 10.5,
-    "n": 5,
+    "typical": 10.8,
+    "n": 6,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
-    "typical": 11.2,
-    "n": 5,
+    "typical": 11.1,
+    "n": 6,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-    "typical": 11.2,
-    "n": 5,
+    "typical": 11.1,
+    "n": 6,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "typical": 10.5,
-    "n": 5,
+    "typical": 10.8,
+    "n": 6,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-    "typical": 10.5,
-    "n": 5,
+    "typical": 10.8,
+    "n": 6,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
-     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
@@ -97181,80 +97755,86 @@
     "ageBasis": "mature"
    },
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
-    "typical": 10.8,
-    "n": 6,
+    "typical": 11.1,
+    "n": 7,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
-    "typical": 10.8,
-    "n": 6,
+    "typical": 11.1,
+    "n": 7,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
-    "typical": 10.8,
-    "n": 6,
+    "typical": 11.1,
+    "n": 7,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-09-24-dive-radio-just-in-time-interfaces": {
-    "typical": 10.8,
-    "n": 6,
+    "typical": 11.1,
+    "n": 7,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
-    "typical": 10.8,
-    "n": 6,
+    "typical": 11.1,
+    "n": 7,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    },
    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
-    "typical": 10.8,
-    "n": 6,
+    "typical": 11.1,
+    "n": 7,
     "window": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "ageBasis": "mature"
    }
@@ -97263,7 +97843,7 @@
    "points": [
     {
      "at": 0.01,
-     "watching": 0.68
+     "watching": 0.67
     },
     {
      "at": 0.02,
@@ -97275,11 +97855,11 @@
     },
     {
      "at": 0.04,
-     "watching": 0.16
+     "watching": 0.14
     },
     {
      "at": 0.05,
-     "watching": 0.24
+     "watching": 0.23
     },
     {
      "at": 0.06,
@@ -97303,7 +97883,7 @@
     },
     {
      "at": 0.11,
-     "watching": 0.21
+     "watching": 0.23
     },
     {
      "at": 0.12,
@@ -97311,7 +97891,7 @@
     },
     {
      "at": 0.13,
-     "watching": 0.2
+     "watching": 0.21
     },
     {
      "at": 0.14,
@@ -97339,7 +97919,7 @@
     },
     {
      "at": 0.2,
-     "watching": 0.17
+     "watching": 0.18
     },
     {
      "at": 0.21,
@@ -97347,11 +97927,11 @@
     },
     {
      "at": 0.22,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.23,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.24,
@@ -97363,7 +97943,7 @@
     },
     {
      "at": 0.26,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.27,
@@ -97391,11 +97971,11 @@
     },
     {
      "at": 0.33,
-     "watching": 0.15
+     "watching": 0.16
     },
     {
      "at": 0.34,
-     "watching": 0.15
+     "watching": 0.16
     },
     {
      "at": 0.35,
@@ -97411,11 +97991,11 @@
     },
     {
      "at": 0.38,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.39,
-     "watching": 0.16
+     "watching": 0.17
     },
     {
      "at": 0.4,
@@ -97427,7 +98007,7 @@
     },
     {
      "at": 0.42,
-     "watching": 0.15
+     "watching": 0.16
     },
     {
      "at": 0.43,
@@ -97459,19 +98039,19 @@
     },
     {
      "at": 0.5,
-     "watching": 0.13
-    },
-    {
-     "at": 0.51,
      "watching": 0.14
     },
     {
+     "at": 0.51,
+     "watching": 0.15
+    },
+    {
      "at": 0.52,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.53,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.54,
@@ -97507,7 +98087,7 @@
     },
     {
      "at": 0.62,
-     "watching": 0.13
+     "watching": 0.14
     },
     {
      "at": 0.63,
@@ -97547,7 +98127,7 @@
     },
     {
      "at": 0.72,
-     "watching": 0.13
+     "watching": 0.12
     },
     {
      "at": 0.73,
@@ -97579,7 +98159,7 @@
     },
     {
      "at": 0.8,
-     "watching": 0.12
+     "watching": 0.11
     },
     {
      "at": 0.81,
@@ -97603,7 +98183,7 @@
     },
     {
      "at": 0.86,
-     "watching": 0.11
+     "watching": 0.1
     },
     {
      "at": 0.87,
@@ -97631,7 +98211,7 @@
     },
     {
      "at": 0.93,
-     "watching": 0.1
+     "watching": 0.09
     },
     {
      "at": 0.94,
@@ -97662,20 +98242,21 @@
      "watching": 0.07
     }
    ],
-   "n": 6,
+   "n": 7,
    "window": [
     "2026-07-17-dive-radio-bumpy-takeoff",
     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
     "2026-08-06-dive-radio-backyard-designers-behind-the",
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-    "2026-08-20-dive-radio-the-mascot-industrial-complex"
+    "2026-08-20-dive-radio-the-mascot-industrial-complex",
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern"
    ]
   },
   "pace": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
-    "ageDays": 89,
-    "value": 2192,
+    "ageDays": 89.8,
+    "value": 2194,
     "typical": null,
     "n": 0,
     "rank": null,
@@ -97705,7 +98286,7 @@
      },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -97719,8 +98300,8 @@
     "reason": "Only 0 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
-    "ageDays": 83,
-    "value": 2229,
+    "ageDays": 83.8,
+    "value": 2230,
     "typical": null,
     "n": 1,
     "rank": null,
@@ -97748,7 +98329,7 @@
      },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -97762,7 +98343,7 @@
     "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
    },
    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
-    "ageDays": 76,
+    "ageDays": 76.8,
     "value": 1675,
     "typical": null,
     "n": 2,
@@ -97788,7 +98369,7 @@
      },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -97802,9 +98383,9 @@
     "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    },
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
-    "ageDays": 69,
-    "value": 2050,
-    "typical": 2144,
+    "ageDays": 69.8,
+    "value": 2051,
+    "typical": 2145,
     "n": 3,
     "rank": 3,
     "of": 4,
@@ -97825,7 +98406,7 @@
      },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -97839,13 +98420,13 @@
     "reason": null
    },
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-    "ageDays": 62,
-    "value": 1318,
+    "ageDays": 62.8,
+    "value": 1319,
     "typical": 2044,
     "n": 3,
     "rank": 4,
     "of": 4,
-    "pct": -36,
+    "pct": -35,
     "peers": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
@@ -97862,7 +98443,7 @@
      },
      {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -97876,26 +98457,23 @@
     "reason": null
    },
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
-    "ageDays": 55,
+    "ageDays": 55.8,
     "value": 1731,
-    "typical": 1653,
-    "n": 3,
-    "rank": 2,
-    "of": 4,
-    "pct": 5,
+    "typical": 1842.5,
+    "n": 4,
+    "rank": 3,
+    "of": 5,
+    "pct": -6,
     "peers": [
+     "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
     ],
     "excluded": [
      {
-      "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-      "why": "no reading at this age"
-     },
-     {
       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
+      "why": "no reading at this age"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -97913,23 +98491,20 @@
     "reason": null
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
-    "ageDays": 48,
-    "value": 6225,
-    "typical": 1714,
-    "n": 3,
+    "ageDays": 48.8,
+    "value": 6230,
+    "typical": 1681.5,
+    "n": 4,
     "rank": 1,
-    "of": 4,
-    "pct": 263,
+    "of": 5,
+    "pct": 271,
     "peers": [
+     "2026-07-30-dive-radio-mixed-media-workflows-game-de",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
      "2026-08-20-dive-radio-the-mascot-industrial-complex"
     ],
     "excluded": [
-     {
-      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-      "why": "no reading at this age"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -97950,26 +98525,20 @@
     "reason": null
    },
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
-    "ageDays": 41,
-    "value": 6260,
-    "typical": null,
-    "n": 2,
-    "rank": null,
-    "of": null,
-    "pct": null,
+    "ageDays": 41.8,
+    "value": 6270,
+    "typical": 1851,
+    "n": 4,
+    "rank": 1,
+    "of": 5,
+    "pct": 239,
     "peers": [
+     "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-      "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
       "why": "known newsletter promotion"
@@ -97987,28 +98556,22 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "reason": null
    },
    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
-    "ageDays": 34,
-    "value": 12057,
-    "typical": null,
-    "n": 1,
-    "rank": null,
-    "of": null,
-    "pct": null,
+    "ageDays": 34.8,
+    "value": 12079,
+    "typical": 1677,
+    "n": 3,
+    "rank": 1,
+    "of": 4,
+    "pct": 620,
     "peers": [
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-      "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98030,28 +98593,22 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
+    "reason": null
    },
    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
-    "ageDays": 27,
-    "value": 8592,
-    "typical": null,
-    "n": 1,
-    "rank": null,
-    "of": null,
-    "pct": null,
+    "ageDays": 27.8,
+    "value": 8595,
+    "typical": 1644,
+    "n": 3,
+    "rank": 1,
+    "of": 4,
+    "pct": 423,
     "peers": [
-     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-      "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98073,25 +98630,22 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
+    "reason": null
    },
    "2026-09-24-dive-radio-just-in-time-interfaces": {
-    "ageDays": 20,
-    "value": 5555,
-    "typical": null,
-    "n": 2,
-    "rank": null,
-    "of": null,
-    "pct": null,
+    "ageDays": 20.8,
+    "value": 5575,
+    "typical": 1543,
+    "n": 3,
+    "rank": 2,
+    "of": 4,
+    "pct": 261,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98113,25 +98667,22 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "reason": null
    },
    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
-    "ageDays": 13,
-    "value": 7208,
-    "typical": null,
-    "n": 2,
-    "rank": null,
-    "of": null,
-    "pct": null,
+    "ageDays": 13.8,
+    "value": 7271,
+    "typical": 1435,
+    "n": 3,
+    "rank": 1,
+    "of": 4,
+    "pct": 407,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98153,18 +98704,19 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
+    "reason": null
    },
    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
-    "ageDays": 6,
-    "value": 4649,
+    "ageDays": 6.8,
+    "value": 4706,
     "typical": null,
-    "n": 1,
+    "n": 2,
     "rank": null,
     "of": null,
     "pct": null,
     "peers": [
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
@@ -98172,10 +98724,6 @@
       "why": "no reading at this age"
      },
      {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
-     {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
      },
@@ -98196,16 +98744,16 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Only 1 earlier episode was tracked this early; at least three are needed."
+    "reason": "Only 2 earlier episodes were tracked this early; at least three are needed."
    }
   },
   "launch": {
    "2026-07-17-dive-radio-bumpy-takeoff": {
     "ageDays": 7,
     "value": 1830,
-    "typical": 1189,
-    "n": 3,
-    "pct": 54,
+    "typical": 1470,
+    "n": 4,
+    "pct": 24,
     "word": "strong",
     "promoDriven": false,
     "provisional": false,
@@ -98213,7 +98761,8 @@
     "peers": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
@@ -98223,10 +98772,6 @@
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -98242,9 +98787,9 @@
    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
     "ageDays": 7,
     "value": 1751,
-    "typical": 1189,
-    "n": 3,
-    "pct": 47,
+    "typical": 1509.5,
+    "n": 4,
+    "pct": 16,
     "word": "strong",
     "promoDriven": false,
     "provisional": false,
@@ -98252,7 +98797,8 @@
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
@@ -98262,10 +98808,6 @@
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -98281,9 +98823,9 @@
    "2026-07-30-dive-radio-mixed-media-workflows-game-de": {
     "ageDays": 21,
     "value": 1601,
-    "typical": 1923,
-    "n": 5,
-    "pct": -17,
+    "typical": 1969,
+    "n": 6,
+    "pct": -19,
     "word": "soft",
     "promoDriven": false,
     "provisional": false,
@@ -98293,13 +98835,10 @@
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-06-dive-radio-backyard-designers-behind-the",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98314,10 +98853,10 @@
    "2026-08-06-dive-radio-backyard-designers-behind-the": {
     "ageDays": 14.4,
     "value": 1892,
-    "typical": 1694.5,
-    "n": 4,
-    "pct": 12,
-    "word": "strong",
+    "typical": 1942,
+    "n": 5,
+    "pct": -3,
+    "word": "typical",
     "promoDriven": false,
     "provisional": false,
     "late": true,
@@ -98325,16 +98864,13 @@
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
       "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -98350,9 +98886,9 @@
    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
     "ageDays": 7,
     "value": 1127,
-    "typical": 1751,
-    "n": 3,
-    "pct": -36,
+    "typical": 1790.5,
+    "n": 4,
+    "pct": -37,
     "word": "soft",
     "promoDriven": false,
     "provisional": false,
@@ -98360,7 +98896,8 @@
     "peers": [
      "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
@@ -98370,10 +98907,6 @@
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -98389,16 +98922,17 @@
    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
     "ageDays": 7,
     "value": 1189,
-    "typical": null,
-    "n": 2,
-    "pct": null,
-    "word": null,
+    "typical": 1751,
+    "n": 3,
+    "pct": -32,
+    "word": "soft",
     "promoDriven": false,
     "provisional": false,
     "late": false,
     "peers": [
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal"
+     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
@@ -98408,10 +98942,6 @@
      {
       "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -98426,7 +98956,7 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Fewer than three earlier episodes to compare with."
+    "reason": null
    },
    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
     "ageDays": 7,
@@ -98435,7 +98965,7 @@
     "n": 2,
     "pct": null,
     "word": null,
-    "promoDriven": true,
+    "promoDriven": false,
     "provisional": false,
     "late": false,
     "peers": [
@@ -98473,16 +99003,17 @@
    "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
     "ageDays": 7,
     "value": 5432,
-    "typical": null,
-    "n": 2,
-    "pct": null,
-    "word": null,
+    "typical": 1189,
+    "n": 3,
+    "pct": 357,
+    "word": "strong",
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
@@ -98490,10 +99021,6 @@
       "why": "no reading at this age"
      },
      {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
-     {
       "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
       "why": "known newsletter promotion"
      },
@@ -98510,27 +99037,24 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Fewer than three earlier episodes to compare with."
+    "reason": null
    },
    "2026-09-10-dive-radio-how-designers-are-getting-hir": {
     "ageDays": 7,
     "value": 9937,
-    "typical": null,
-    "n": 2,
-    "pct": null,
-    "word": null,
+    "typical": 1189,
+    "n": 3,
+    "pct": 736,
+    "word": "strong",
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98552,27 +99076,24 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Fewer than three earlier episodes to compare with."
+    "reason": null
    },
    "2026-09-17-dive-radio-how-to-become-a-founding-desi": {
     "ageDays": 7,
     "value": 7665,
-    "typical": null,
-    "n": 2,
-    "pct": null,
-    "word": null,
+    "typical": 1189,
+    "n": 3,
+    "pct": 545,
+    "word": "strong",
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98594,27 +99115,24 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Fewer than three earlier episodes to compare with."
+    "reason": null
    },
    "2026-09-24-dive-radio-just-in-time-interfaces": {
     "ageDays": 7,
     "value": 4975,
-    "typical": null,
-    "n": 2,
-    "pct": null,
-    "word": null,
+    "typical": 1189,
+    "n": 3,
+    "pct": 318,
+    "word": "strong",
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98636,27 +99154,24 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Fewer than three earlier episodes to compare with."
+    "reason": null
    },
    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
     "ageDays": 7,
     "value": 6818,
-    "typical": null,
-    "n": 2,
-    "pct": null,
-    "word": null,
+    "typical": 1189,
+    "n": 3,
+    "pct": 473,
+    "word": "strong",
     "promoDriven": true,
     "provisional": false,
     "late": false,
     "peers": [
      "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
-     },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
       "why": "known newsletter promotion"
@@ -98678,29 +99193,26 @@
       "why": "known newsletter promotion"
      }
     ],
-    "reason": "Fewer than three earlier episodes to compare with."
+    "reason": null
    },
    "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
-    "ageDays": 6,
-    "value": 4649,
+    "ageDays": 6.8,
+    "value": 4706,
     "typical": null,
-    "n": 1,
+    "n": 2,
     "pct": null,
     "word": null,
     "promoDriven": true,
     "provisional": true,
     "late": false,
     "peers": [
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -98729,13 +99241,13 @@
   "newestVsPrevious": {
    "newest": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
    "previous": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-   "ageDays": 6,
+   "ageDays": 6.8,
    "reach": {
     "pct": -28,
     "ageBasis": "sameAge"
    },
    "watched": {
-    "pct": 10,
+    "pct": 12,
     "ageBasis": "sameAge"
    },
    "live": {
@@ -98748,9 +99260,9 @@
     {
      "key": "firstWeek",
      "check": "growth",
-     "n": 3,
-     "pctPerEpisode": -8.3,
-     "direction": null,
+     "n": 4,
+     "pctPerEpisode": 6.7,
+     "direction": "building",
      "ageBasis": "ageFree",
      "note": null,
      "points": [
@@ -98768,16 +99280,21 @@
        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "ep": 6,
        "value": 1189
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 5188
       }
      ],
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "reason": null
     },
     {
      "key": "engagementWeekOne",
      "check": "audienceQuality",
-     "n": 3,
-     "pctPerEpisode": -17.6,
-     "direction": null,
+     "n": 4,
+     "pctPerEpisode": -14.7,
+     "direction": "softening",
      "ageBasis": "sameAge",
      "note": "compared at the same age",
      "points": [
@@ -98795,24 +99312,24 @@
        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "ep": 6,
        "value": 36
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 43
       }
      ],
-     "reason": "Three episodes show the slope; a direction word needs four."
+     "reason": null
     },
     {
      "key": "watching",
      "check": "audienceQuality",
      "n": 5,
-     "pctPerEpisode": 3,
-     "direction": "holding",
+     "pctPerEpisode": 5.8,
+     "direction": "building",
      "ageBasis": "mature",
      "note": "compared with earlier episodes as they stand now, not at the same age",
      "points": [
-      {
-       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-       "ep": 2,
-       "value": 11.2
-      },
       {
        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "ep": 3,
@@ -98832,6 +99349,11 @@
        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "ep": 6,
        "value": 11.4
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 11.1
       }
      ],
      "reason": null
@@ -98840,16 +99362,11 @@
      "key": "exposureWeekOne",
      "check": "reachEfficiency",
      "n": 5,
-     "pctPerEpisode": 4.5,
+     "pctPerEpisode": 0,
      "direction": "holding",
      "ageBasis": "sameAge",
      "note": "compared at the same age",
      "points": [
-      {
-       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-       "ep": 2,
-       "value": 5640
-      },
       {
        "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "ep": 9,
@@ -98869,6 +99386,11 @@
        "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
        "ep": 12,
        "value": 11393
+      },
+      {
+       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+       "ep": 13,
+       "value": 8137
       }
      ],
      "reason": null
@@ -98877,7 +99399,7 @@
      "key": "announceToPlay",
      "check": "reachEfficiency",
      "n": 5,
-     "pctPerEpisode": 0.6,
+     "pctPerEpisode": 0.7,
      "direction": "holding",
      "ageBasis": "mature",
      "note": "compared with earlier episodes as they stand now, not at the same age",
@@ -98890,7 +99412,7 @@
       {
        "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
        "ep": 9,
-       "value": 32.8
+       "value": 32.7
       },
       {
        "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
@@ -98914,16 +99436,11 @@
      "key": "discoveryShare",
      "check": "reachEfficiency",
      "n": 5,
-     "pctPerEpisode": -7.1,
+     "pctPerEpisode": -8.5,
      "direction": "softening",
      "ageBasis": "mature",
      "note": "compared with earlier episodes as they stand now, not at the same age",
      "points": [
-      {
-       "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-       "ep": 2,
-       "value": 20.8
-      },
       {
        "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
        "ep": 3,
@@ -98943,6 +99460,11 @@
        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "ep": 6,
        "value": 13.6
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 7.5
       }
      ],
      "reason": null
@@ -99247,16 +99769,11 @@
      "key": "subscribers",
      "check": "conversion",
      "n": 5,
-     "pctPerEpisode": -37.1,
+     "pctPerEpisode": -28.2,
      "direction": "softening",
      "ageBasis": "mature",
      "note": "compared with earlier episodes as they stand now, not at the same age",
      "points": [
-      {
-       "slug": "2026-07-17-dive-radio-bumpy-takeoff",
-       "ep": 1,
-       "value": 8.2
-      },
       {
        "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
        "ep": 2,
@@ -99276,6 +99793,11 @@
        "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
        "ep": 6,
        "value": 0.6
+      },
+      {
+       "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+       "ep": 7,
+       "value": 0.8
       }
      ],
      "reason": null
@@ -99283,9 +99805,14 @@
    ],
    "votes": [
     {
-     "check": "audienceQuality",
-     "direction": "holding",
+     "check": "growth",
+     "direction": "building",
      "measures": 1
+    },
+    {
+     "check": "audienceQuality",
+     "direction": "mixed",
+     "measures": 2
     },
     {
      "check": "reachEfficiency",
@@ -99313,37 +99840,34 @@
   "outlook": {
    "nextFirstWeek": {
     "low": 1189,
-    "high": 1830,
+    "high": 5188,
     "typical": 1751,
     "n": 3,
     "window": [
-     "2026-07-17-dive-radio-bumpy-takeoff",
      "2026-07-23-dive-radio-data-vs-intuition-web-designe",
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
-    "pctPerEpisode": -8.3,
-    "direction": null,
-    "reason": "Three episodes show the slope; a direction word needs four."
+    "pctPerEpisode": 6.7,
+    "direction": "building",
+    "reason": null
    },
    "coolOff": {
-    "ageDays": 6,
+    "ageDays": 6.8,
     "span": 2,
-    "value": 1.067,
+    "value": 1.051,
     "typical": null,
-    "n": 1,
+    "n": 2,
     "word": null,
     "promoDriven": true,
     "peers": [
-     "2026-08-20-dive-radio-the-mascot-industrial-complex"
+     "2026-08-20-dive-radio-the-mascot-industrial-complex",
+     "2026-08-28-dive-radio-steal-these-ai-design-pattern"
     ],
     "excluded": [
      {
       "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
       "why": "no reading at this age"
-     },
-     {
-      "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
-      "why": "promo outlier"
      },
      {
       "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -99401,7 +99925,7 @@
  },
  "sponsor": {
   "version": 3,
-  "asOf": "2026-10-14",
+  "asOf": "2026-10-15",
   "episodes": 13,
   "firstPremiere": "2026-07-17",
   "latest": {
@@ -99411,13 +99935,13 @@
    "premiere": "2026-10-08"
   },
   "views": {
-   "total": 96388,
-   "youtube": 61741,
-   "xPlays": 34647,
+   "total": 96577,
+   "youtube": 61926,
+   "xPlays": 34651,
    "episodes": 13,
-   "perEpisode": 7414,
+   "perEpisode": 7429,
    "reason": null,
-   "xReach": 133923
+   "xReach": 133965
   },
   "watch": {
    "hours": 6306,
@@ -99970,8 +100494,8 @@
    }
   },
   "audience": {
-   "total": 335268,
-   "date": "2026-10-14",
+   "total": 335400,
+   "date": "2026-10-15",
    "reason": null,
    "channels": [
     {
@@ -99980,31 +100504,31 @@
      "platform": "YouTube",
      "unit": "subscribers",
      "count": 170000,
-     "date": "2026-10-14"
+     "date": "2026-10-15"
     },
     {
      "key": "yt:joindiveclub",
      "label": "Dive Club",
      "platform": "YouTube",
      "unit": "subscribers",
-     "count": 68900,
-     "date": "2026-10-14"
+     "count": 69000,
+     "date": "2026-10-15"
     },
     {
      "key": "x:ridd_design",
      "label": "@ridd_design",
      "platform": "X",
      "unit": "followers",
-     "count": 76589,
-     "date": "2026-10-14"
+     "count": 76619,
+     "date": "2026-10-15"
     },
     {
      "key": "x:designertom",
      "label": "@designertom",
      "platform": "X",
      "unit": "followers",
-     "count": 19779,
-     "date": "2026-10-14"
+     "count": 19781,
+     "date": "2026-10-15"
     }
    ]
   },
