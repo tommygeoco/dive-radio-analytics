@@ -212,6 +212,9 @@ gateway call failed outright on 09-29 — two mornings without a publish.
   6 of 10 E11 chapters, `xhigh` 9 of 10). Only an `end_turn` reply with text is
   returned; `refusal`, `max_tokens`, `pause_turn` and empty replies throw before a
   script parses anything. 429/5xx/529 get one paced retry; a timeout does not.
+  Every reply is streamed and rebuilt into one message (2026-10-16: Node's fetch
+  gives up on headers after 300 s, which cut off E14's unstreamed xhigh chapters
+  read); an error event or dropped connection mid-stream is not retried.
   A retry that continues a conversation (recommendations' grounding correction)
   passes the full reply back unchanged, thinking blocks included — append-only.
 - **Credential:** `ANTHROPIC_API_KEY` from the OpenClaw gateway environment on the
