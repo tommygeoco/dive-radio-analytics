@@ -5,7 +5,11 @@
 //
 // Deterministic outside the yt-dlp fetch: no model calls and no runtime
 // dependencies. Existing transcript files are never opened for writing, so a
-// manually supplied canonical transcript always wins. A vault speaker
+// manually supplied canonical transcript always wins — with one declared
+// exception (2026-10-16): a copy saved from YouTube auto-captions is replaced,
+// once, by the episode's Restream speaker export when that export reaches the
+// vault later. The episode's chapters are superseded first and the ledger
+// names the copy it replaced. A vault speaker
 // transcript is selected only by exact episode number plus registry air date;
 // a file under that name with no timed speaker lines (a Whisper copy) is
 // skipped with a warning; conflicting speaker copies stop the step instead of
@@ -36,7 +40,7 @@ import { tmpdir } from "node:os";
 import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { atomicWriteJson, readJsonFile, withSourceLock, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
+import { atomicWriteJson, atomicWriteText, readJsonFile, withSourceLock, readingEnvelope } from "../../tools/dive-analytics/source-io.mjs";
 import { readVerifiedSource, SOURCE_CACHE_DIR } from "../../tools/dive-analytics/verified-source-read.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -175,9 +179,11 @@ export function speakerBody(raw) {
 }
 
 // A vault file can carry an episode's transcript name without being a Restream
-// speaker export: the episode-notes job saves its Whisper copy of the replay as
-// e<n>-transcript-<date>.txt. Such a file is not a source. It is skipped (onSkip
-// names it) and the remaining files are read as usual.
+// speaker export: the transcript mirror's copy of a captions transcript, or a
+// Whisper copy saved under the reserved name (E14's, before the episode-notes
+// job began saving them as e<n>-whisper-transcript-<date>.txt on 2026-10-16).
+// Such a file is not a source. It is skipped (onSkip names it) and the
+// remaining files are read as usual.
 export function vaultTranscriptCandidates(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT, { onSkip = () => {} } = {}) {
   if (!existsSync(vaultDir)) return [];
   const pattern = new RegExp(`^e${ep}-transcript-${regexEscape(show.date)}(?:-[^.]+)?\\.txt$`);
@@ -226,6 +232,40 @@ export function writeTranscriptOnce(path, content) {
   } finally {
     if (existsSync(tempPath)) unlinkSync(tempPath);
   }
+}
+
+const sha256Of = (bytes) => createHash("sha256").update(bytes).digest("hex");
+
+// The one transcript that may be replaced: a copy of YouTube auto-captions
+// (header line three, as transcriptHeader writes it) with no timed speaker lines.
+export function isCaptionsTranscript(raw) {
+  const text = String(raw).replace(/^﻿/, "").replace(/\r/g, "");
+  return /^Source: YouTube auto-captions\b/.test(text.split("\n")[2] || "") && findSpeakerBody(text) == null;
+}
+
+// Replace the captions copy only if it is still the bytes that were read.
+export function replaceCaptionsTranscript(path, content, expectedSha256) {
+  if (!existsSync(path) || sha256Of(readFileSync(path)) !== expectedSha256) return false;
+  atomicWriteText(path, content);
+  return true;
+}
+
+// A replaced transcript takes its chapters with it, before the transcript
+// changes: the entry moves unchanged under superseded[] with the reason
+// chapters.mjs gives a changed transcript, so the store never holds chapters
+// for a transcript that is not on disk, and the chapters step writes a fresh
+// list. The chapters clock (updatedAt) stays the time of the last model write.
+export function supersedeChapters(chaptersPath, slug, sha256, now = Date.now()) {
+  if (!existsSync(chaptersPath)) return false;
+  return withSourceLock(chaptersPath, () => {
+    const store = readJsonFile(chaptersPath);
+    const entry = store.entries?.[slug];
+    if (!entry || entry.sha256 === sha256) return false;
+    store.superseded = [...(store.superseded || []), { slug, supersededOn: new Date(now).toISOString().slice(0, 10), why: "transcript changed", entry }];
+    delete store.entries[slug];
+    atomicWriteText(chaptersPath, JSON.stringify(store, null, 2) + "\n");
+    return true;
+  });
 }
 
 function downloadEnglishVtt(target, { ytdlpBin = YTDLP_BIN } = {}) {
@@ -305,10 +345,12 @@ function pullTranscriptFiles({
   const state = readJsonFile(statePath, { fallback: { schemaVersion: 1, entries: {} } });
   if (state.schemaVersion !== 1 || !state.entries || typeof state.entries !== "object" || Array.isArray(state.entries)) throw new Error("transcript source state is invalid");
   const pulledAt = new Date(now).toISOString();
-  const record = (plan, sourceState, objectId, reason = null) => {
+  const chaptersPath = join(root, "data", "restream", "chapters.json");
+  const record = (plan, sourceState, objectId, reason = null, replaced = null) => {
     if (dryRun) return;
-    const sha256 = existsSync(plan.path) ? createHash("sha256").update(readFileSync(plan.path)).digest("hex") : null;
+    const sha256 = existsSync(plan.path) ? sha256Of(readFileSync(plan.path)) : null;
     const previous = state.entries[plan.show.slug];
+    const replacedCopies = [...(previous?.replaced || []), ...(replaced ? [replaced] : [])];
     state.entries[plan.show.slug] = {
       reading: sourceState === "ready" && previous?.reading?.state === "ready" && previous?.sha256 === sha256
         ? previous.reading
@@ -316,15 +358,38 @@ function pullTranscriptFiles({
       checkedAt: pulledAt,
       reason, file: existsSync(plan.path) ? `transcripts/${plan.show.slug}.txt` : null,
       ...(sha256 ? { sha256 } : {}),
+      ...(replacedCopies.length ? { replaced: replacedCopies } : {}),
     };
     state.checkedAt = pulledAt;
     atomicWriteJson(statePath, state);
   };
   let created = 0;
+  let replacedCount = 0;
   let waiting = 0;
   for (const plan of plans) {
     if (plan.show.date > phoenixDateKey(now)) continue;
     if (existsSync(plan.path)) {
+      // 2026-10-16: captions are the fallback, never the end state. A Restream
+      // speaker export that reaches the vault after captions were saved replaces
+      // them once; a speaker transcript is never replaced.
+      const current = readFileSync(plan.path);
+      const vaultTranscript = isCaptionsTranscript(current.toString("utf8")) ? planVaultTranscript(plan.show, plan.ep, vaultDir) : null;
+      if (vaultTranscript && dryRun) {
+        logger.log(`transcripts: E${plan.ep} would replace its YouTube auto-captions with ${vaultTranscript.file} from the owner vault`);
+        continue;
+      }
+      if (vaultTranscript) {
+        const content = restreamTranscriptHeader(plan.show, plan.ep, plan.youtubeTargets[0], vaultTranscript.file) + vaultTranscript.body;
+        const captionsSha256 = sha256Of(current);
+        const supersededChapters = supersedeChapters(chaptersPath, plan.show.slug, sha256Of(content), now);
+        if (replaceCaptionsTranscript(plan.path, content, captionsSha256)) {
+          replacedCount++;
+          logger.log(`transcripts: E${plan.ep} replaced its YouTube auto-captions with ${vaultTranscript.file} from the owner vault${supersededChapters ? "; its chapters were superseded" : ""}`);
+          record(plan, "ready", `vault:${vaultTranscript.file}`, null, { sha256: captionsSha256, objectId: state.entries[plan.show.slug]?.reading?.objectId ?? null, replacedAt: pulledAt });
+          continue;
+        }
+        logger.log(`transcripts: E${plan.ep} transcript changed while the vault source was being read — kept that file unchanged`);
+      }
       record(plan, "ready", `file:transcripts/${plan.show.slug}.txt`);
       logger.log(`transcripts: E${plan.ep} already has a transcript — kept unchanged`);
       continue;
@@ -396,7 +461,7 @@ function pullTranscriptFiles({
       logger.warn(`WARN  transcripts: E${plan.ep} is due but no English auto-captions are available; it will be tried again tomorrow`);
     }
   }
-  return { created, waiting, planned: plans.length };
+  return { created, replaced: replacedCount, waiting, planned: plans.length };
 }
 
 export function runTranscriptPull(options = {}) {
@@ -407,7 +472,7 @@ export function runTranscriptPull(options = {}) {
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
   const result = runTranscriptPull({ dryRun });
-  console.log(`transcripts: ${result.created} created, ${result.waiting} waiting, ${result.planned} tracked episode(s)`);
+  console.log(`transcripts: ${result.created} created, ${result.replaced} replaced, ${result.waiting} waiting, ${result.planned} tracked episode(s)`);
   if (result.waiting && !dryRun) process.exitCode = 20;
 }
 

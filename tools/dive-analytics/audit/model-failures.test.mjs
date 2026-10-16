@@ -146,6 +146,16 @@ try {
   save('chapters.json', { ...originalChapters, entries: { [success.slug]: { ...partial, retries: 3 } }, superseded: [] });
   const exhausted = run('chapters.mjs', ['--only', success.slug], 'mixed-chapters');
   assert.equal(exhausted.status, 0); assert.equal(exhausted.calls, 0, 'three tries is the cap');
+  // A captions copy replaced by its Restream export: transcripts-pull already moved
+  // the list under superseded, so the fresh list names it without superseding it twice.
+  const captionsList = { ...full, sha256: 'f'.repeat(64), format: 'captions', clock: 'upload' };
+  save('chapters.json', { ...originalChapters, entries: {}, superseded: [{ slug: success.slug, supersededOn: '2026-10-17', why: 'transcript changed', entry: captionsList }] });
+  setFixture(full.chapters);
+  const fresh = run('chapters.mjs', ['--only', success.slug], 'mixed-chapters');
+  assert.equal(fresh.status, 0, `the replaced transcript gets a fresh list: ${fresh.stdout} ${fresh.stderr}`);
+  const afterFresh = JSON.parse(load('chapters.json'));
+  assert.deepEqual(afterFresh.entries[success.slug].rederivedFrom, { sha256: captionsList.sha256, promptVersion: captionsList.promptVersion });
+  assert.equal(afterFresh.superseded.length, 1, 'the list moved by transcripts-pull is not superseded again');
   // Explicit diagnostic and no-input paths retain their normal successful exit.
   const checked = run('moment-summaries.mjs', ['--check']);
   assert.equal(checked.status, 0); assert.equal(checked.calls, 0);

@@ -32,7 +32,8 @@
    "script": "scripts/restream/transcripts-pull.mjs",
    "writes": [
     "transcripts/*.txt",
-    "data/restream/transcript-state.json"
+    "data/restream/transcript-state.json",
+    "data/restream/chapters.json"
    ],
    "freshnessKey": null,
    "required": true,

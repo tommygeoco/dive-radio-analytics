@@ -837,6 +837,8 @@ try {
     if (!registeredSlugs.has(slug)) { bad++; fail(`transcripts: ${name} does not map to a registered Dive Radio episode`); }
   }
 
+  const transcriptStatePath = join(ROOT, "data", "restream", "transcript-state.json");
+  const transcriptState = existsSync(transcriptStatePath) ? JSON.parse(readFileSync(transcriptStatePath, "utf8")) : null;
   for (const episode of eps) {
     const show = registeredDiveShows.find((candidate) => candidate.slug === episode.slug);
     const path = join(TRANSCRIPTS, `${episode.slug}.txt`);
@@ -845,13 +847,27 @@ try {
     const text = raw == null ? "" : raw.replace(/^\uFEFF/, "").replace(/\r/g, "");
     const lines = text.split("\n");
     const declaresVaultSource = lines[2]?.startsWith("Source: Restream speaker transcript (vault") || false;
+    const captionsCopy = fileExists && pull ? pull.isCaptionsTranscript(raw) : false;
     let vaultPlan = null;
-    if (show && pull && vaultDir && existsSync(vaultDir) && (!fileExists || declaresVaultSource)) {
+    if (show && pull && vaultDir && existsSync(vaultDir) && (!fileExists || declaresVaultSource || captionsCopy)) {
       try { vaultPlan = pull.planVaultTranscript(show, episode.ep, vaultDir); }
       catch (error) { bad++; fail(`${episode.slug}: ${error.message}`); }
       if (vaultPlan && !fileExists) {
         bad++; fail(`${episode.slug}: ${vaultPlan.file} exists in the owner vault but was not imported`);
       }
+      // 2026-10-16: captions are the fallback \u2014 a speaker export in the vault replaces them
+      if (vaultPlan && captionsCopy) {
+        bad++; fail(`${episode.slug}: ${vaultPlan.file} exists in the owner vault but the YouTube auto-captions copy was kept`);
+      }
+    }
+    // a replaced copy is named in the ledger, and only a Restream speaker export replaces one
+    const replaced = transcriptState?.entries?.[episode.slug]?.replaced;
+    if (replaced != null) {
+      const current = transcriptState.entries[episode.slug].sha256;
+      if (!Array.isArray(replaced) || !replaced.length || replaced.some((r) => !/^[0-9a-f]{64}$/.test(r?.sha256 || "") || r.sha256 === current || !Number.isFinite(Date.parse(r.replacedAt || "")) || !(r.objectId === null || typeof r.objectId === "string"))) {
+        bad++; fail(`${episode.slug}: transcript ledger names a replaced copy without its fingerprint and time`);
+      }
+      if (!fileExists || !declaresVaultSource) { bad++; fail(`${episode.slug}: transcript was replaced, but not by a Restream speaker export from the owner vault`); }
     }
     if (typeof episode.transcript !== "boolean" || episode.transcript !== fileExists) {
       bad++; fail(`${episode.slug}: stored transcript flag does not exactly match file existence`);
@@ -3117,7 +3133,7 @@ try {
     ["youtube-zero-downstream.test.mjs", "startup-zero downstream"],
     ["youtube-readiness.test.mjs", "late YouTube watch report"],
     ["x-broadcast-discovery.test.mjs", "late X broadcast discovery"],
-    ["transcripts-pull.test.mjs", "transcript source and no-overwrite"],
+    ["transcripts-pull.test.mjs", "transcript source, no-overwrite and captions replacement"],
     ["beehiiv-promotions.test.mjs", "newsletter link attribution"],
     ["live-parity.test.mjs", "production transcript byte proof"],
     ["chart-tooltip.test.mjs", "comparison chart hover"],

@@ -14,7 +14,10 @@ import { completeModel, modelIdentity } from "./model-route.mjs";
 // A chapter that fails is dropped; fewer than MIN_CHAPTERS survivors marks the
 // episode "incomplete" and the brief says so. Chapters are written once per
 // transcript (keyed by its sha256) and never rewritten without a
-// PROMPT_VERSION bump — a re-pulled transcript gets a fresh list.
+// PROMPT_VERSION bump — a re-pulled transcript gets a fresh list. When
+// transcripts-pull replaces a captions copy with its Restream export, it moves
+// the old list under superseded itself (so the store always grounds) and the
+// fresh list here names it in rederivedFrom.
 //
 //   node tools/dive-analytics/chapters.mjs            # write missing chapters
 //   node tools/dive-analytics/chapters.mjs --check    # validate the store, no model
@@ -202,11 +205,14 @@ async function main() {
       const why = replaces.sha256 !== parsed.sha256 ? "transcript changed" : retry ? "earlier list was incomplete" : "prompt version changed";
       store.superseded = [...(store.superseded || []), { slug: episode.slug, supersededOn: new Date().toISOString().slice(0, 10), why, entry: replaces }];
     }
+    // a captions copy replaced by its Restream export (transcripts-pull) has
+    // already moved its list under superseded; the new list names that one
+    const earlier = replaces || (store.superseded || []).findLast((s) => s.slug === episode.slug && s.why === "transcript changed" && s.entry?.sha256 !== parsed.sha256)?.entry;
     store.entries[episode.slug] = {
       sha256: parsed.sha256, format: parsed.format, clock: parsed.clock, status: grounded.status,
       chapters: grounded.chapters, dropped: grounded.dropped.length,
       promptVersion: PROMPT_VERSION, model: result.model, writtenAt: new Date().toISOString(),
-      ...(replaces ? { rederivedFrom: { sha256: replaces.sha256, promptVersion: replaces.promptVersion } } : {}),
+      ...(earlier ? { rederivedFrom: { sha256: earlier.sha256, promptVersion: earlier.promptVersion } } : {}),
       ...(retry && grounded.status !== "complete" ? { retries: tries } : {}),
     };
     written++;
