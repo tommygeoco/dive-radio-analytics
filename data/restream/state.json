@@ -91,11 +91,23 @@
         "pulledAt": "2026-10-09T14:02:13.420Z",
         "state": "ready"
       }
+    },
+    "7b9067a1-cff9-4b11-9018-d5150b58c5f8": {
+      "status": "ingested",
+      "ingestedAt": "2026-10-16T14:01:01.375Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "restream",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "7b9067a1-cff9-4b11-9018-d5150b58c5f8",
+        "pulledAt": "2026-10-16T14:01:01.375Z",
+        "state": "ready"
+      }
     }
   },
-  "checkedAt": "2026-10-15T19:16:41.067Z",
+  "checkedAt": "2026-10-16T21:28:00.027Z",
   "capture": {
-    "checkedAt": "2026-10-15T19:16:41.067Z",
+    "checkedAt": "2026-10-16T21:28:00.027Z",
     "state": "ready",
     "pendingEvents": [],
     "errors": []

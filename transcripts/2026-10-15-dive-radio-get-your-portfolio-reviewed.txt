@@ -1,0 +1,6219 @@
+Dive Radio E14 — Get Your Portfolio Reviewed
+Aired: 2026-10-15 · YouTube: https://youtube.com/watch?v=J3NB3migbE0
+Source: Restream speaker transcript (vault e14-transcript-2026-10-15-restream.txt). Speaker labels are automatic — verify quotes against video.
+
+00:03:15 [Speaker 1]
+And desire for people to just see what flows and 100 people, the different experiments that people are running and the different learnings that others have.
+00:03:25 [Speaker 1]
+Cooling kind of increases our capacity in the day.
+00:03:28 [Speaker 1]
+We have more more things
+
+00:03:29 [Speaker 2]
+we can do now because the tooling makes those kind of rope things easier.
+
+00:03:34 [Speaker 1]
+I'm able to go through, you know, a spectrum of explorations that are so much larger than I could do in a day, And I can do it in minutes.
+00:03:44 [Speaker 1]
+Agents are using tools.
+00:03:47 [Speaker 1]
+What does that look like and what does that mean?
+00:03:51 [Speaker 1]
+Show up and try things and be curious.
+
+00:03:53 [Speaker 2]
+I think the future is bright, but it has to be built.
+
+00:03:57 [Speaker 1]
+I can always see things that I didn't plan on seeing.
+00:03:59 [Speaker 1]
+I'm making micro decisions that I didn't have a grid for a year ago, and it's only because of the ability that AI can see.
+
+00:04:06 [Speaker 2]
+I feel like there's this binary thinking that,
+
+00:04:08 [Speaker 1]
+like, AI means fully automated and click no.
+00:04:11 [Speaker 1]
+In fact, I think some of the better workflows are the ones that aren't fully automated.
+00:04:15 [Speaker 1]
+The ability to effectively multitask at a really high level is one of the core skills of operating in this, like, AI world.
+00:04:24 [Speaker 1]
+So, no preconceived notions about how things should be done.
+00:04:28 [Speaker 1]
+This is the moment in time right now to create the rewards of being publicly clueless.
+
+00:04:34 [Speaker 1]
+What do you
+
+00:04:35 [Speaker 2]
+do with the question, what if?
+
+00:04:37 [Speaker 3]
+Hey, guys.
+00:04:37 [Speaker 3]
+Hi.
+
+00:04:38 [Speaker 4]
+What's up, design fam?
+
+00:04:39 [Speaker 5]
+This is Chloe Park.
+00:04:40 [Speaker 5]
+Jenny Wen.
+
+00:04:41 [Speaker 4]
+This is Soleil, and you're listening.
+
+00:04:42 [Speaker 5]
+And you're listening to the dive Dive.
+
+00:04:44 [Speaker 6]
+Dive radio show.
+
+00:04:52 [Speaker 1]
+Well, how...
+
+00:04:55 [Speaker 2]
+I made it....
+00:04:56 [Speaker 2]
+Obvious that
+
+00:04:56 [Speaker 1]
+you were gonna make it.
+
+00:04:58 [Speaker 2]
+You made it.
+00:05:00 [Speaker 2]
+We are on many minutes of sleep.
+00:05:02 [Speaker 2]
+That's about it, I think.
+00:05:05 [Speaker 2]
+Hello, and welcome to Dive Radio.
+00:05:09 [Speaker 2]
+The, something about the group chat with the designers who are curious and stuff.
+
+00:05:16 [Speaker 2]
+Hey, guys.
+00:05:16 [Speaker 2]
+So little little BTS or behind the scenes.
+00:05:20 [Speaker 2]
+I just got off a plane with no Wi Fi on a launch day, mind you.
+00:05:29 [Speaker 2]
+We had a launch.
+00:05:30 [Speaker 2]
+We just launched something today.
+
+00:05:33 [Speaker 2]
+I know.
+00:05:34 [Speaker 2]
+Hey.
+00:05:35 [Speaker 2]
+Hats off.
+00:05:35 [Speaker 2]
+I...
+00:05:35 [Speaker 2]
+I'm I'm celebrating.
+
+00:05:36 [Speaker 2]
+I'm big on celebrating the big and the small wins.
+00:05:38 [Speaker 2]
+We've got athletic brew, the nonalcoholic
+
+00:05:41 [Speaker 1]
+I have, two thirds of one of my toddler's apple juices.
+00:05:45 [Speaker 1]
+Little sugar.
+00:05:47 [Speaker 1]
+Cheers.
+00:05:48 [Speaker 1]
+Cheers.
+00:05:49 [Speaker 1]
+The the intro music started, and I panicked, and I didn't know what to grab.
+
+00:05:52 [Speaker 1]
+I couldn't find anything, so I just grabbed this apple juice.
+
+00:05:57 [Speaker 2]
+Well, it was better
+
+00:05:57 [Speaker 7]
+than what
+
+00:05:58 [Speaker 2]
+you had because I did see you take a drink
+
+00:05:59 [Speaker 1]
+of this.
+00:06:00 [Speaker 1]
+Gonna be a show today.
+00:06:01 [Speaker 1]
+This is gonna be fun.
+00:06:02 [Speaker 1]
+It's gonna be fun and loose.
+
+00:06:04 [Speaker 2]
+Here...
+00:06:04 [Speaker 2]
+And here's why.
+00:06:06 [Speaker 2]
+Loose...
+00:06:06 [Speaker 2]
+Very loose.
+00:06:08 [Speaker 2]
+So for those who don't know, I literally just got back from Savannah.
+
+00:06:12 [Speaker 2]
+It was a four day shoot in Savannah.
+00:06:13 [Speaker 2]
+Interesting, by the way, did a ghost tour.
+00:06:16 [Speaker 2]
+I went and I stood by a bunch of beehives, which was weird and cool.
+00:06:20 [Speaker 2]
+I didn't get stung.
+
+00:06:21 [Speaker 1]
+That is weird.
+00:06:21 [Speaker 1]
+Yep.
+
+00:06:22 [Speaker 2]
+And I talked to some of the smartest design researchers I've ever met.
+00:06:27 [Speaker 2]
+I I definitely felt imposter syndrome.
+00:06:30 [Speaker 2]
+It was very cool.
+00:06:31 [Speaker 2]
+I have a lot to say about it.
+00:06:32 [Speaker 2]
+So shooting that documentary, getting ready for our MetaLab launch coming out in a couple of weeks.
+
+00:06:37 [Speaker 2]
+I'm excited to show you guys what the MetaLab documentary looks like.
+00:06:40 [Speaker 2]
+Very, very cool.
+00:06:42 [Speaker 2]
+And then, jumping on a flight, coming home for a little livestream, and we launched inflight.co.
+00:06:50 [Speaker 2]
+And I I really...
+00:06:51 [Speaker 2]
+I wanna celebrate this.
+
+00:06:52 [Speaker 2]
+I'm so excited about this.
+00:06:53 [Speaker 2]
+I think I'm just gonna show I think I'm just gonna show the video real quick.
+
+00:06:56 [Speaker 1]
+Let me see.
+00:06:57 [Speaker 1]
+I like the video.
+00:06:58 [Speaker 1]
+Yeah.
+00:06:58 [Speaker 1]
+Sorry.
+00:06:58 [Speaker 1]
+The video we like this....
+
+00:06:59 [Speaker 2]
+Turned out cool.
+00:07:01 [Speaker 2]
+And for anyone who has seen it already or who has retweeted, thank you very much for your support.
+00:07:07 [Speaker 2]
+This is not easy.
+00:07:08 [Speaker 2]
+Launching is not easy.
+00:07:09 [Speaker 2]
+Especially when you get rumor that other people, like Anthropic, are potentially dropping a model on the one day you choose to launch something.
+
+00:07:18 [Speaker 2]
+I don't think they did.
+00:07:19 [Speaker 2]
+We'll talk about it.
+00:07:20 [Speaker 2]
+But let's, let's let's just...
+00:07:22 [Speaker 2]
+Let's let's brag a
+
+00:07:23 [Speaker 7]
+little bit.
+
+00:07:23 [Speaker 2]
+Let's show
+
+00:07:24 [Speaker 1]
+the Bask in the glory of it, everybody.
+00:07:26 [Speaker 1]
+Yeah.
+00:07:26 [Speaker 1]
+You know what I mean?
+
+00:07:27 [Speaker 2]
+And please forgive us.
+00:07:29 [Speaker 2]
+We're we're tired.
+00:07:32 [Speaker 2]
+We're tired.
+00:07:34 [Speaker 2]
+Here we go, man.
+00:07:36 [Speaker 2]
+Rid, you you...
+
+00:07:37 [Speaker 2]
+By the way, Rid, I think you...
+00:07:38 [Speaker 2]
+I think you're a better video presenter.
+00:07:40 [Speaker 2]
+And and I...
+00:07:41 [Speaker 2]
+It makes me wanna step up my game.
+
+00:07:43 [Speaker 1]
+Let's see
+
+00:07:43 [Speaker 2]
+what the people...
+
+00:07:43 [Speaker 1]
+If I had your voice, I'd be famous, bro.
+
+00:07:47 [Speaker 2]
+Let's watch it.
+
+00:07:48 [Speaker 1]
+Design teams are turning ideas into coded prototypes faster than ever, but feedback hasn't kept up.
+00:07:56 [Speaker 1]
+I mean, teams are struggling to make decisions with comments and context scattered across every tool, but in flight turns every prototype into its own design review.
+00:08:07 [Speaker 1]
+All I have to do is tell my agent to add the in flight flight toolkit to my prototype.
+00:08:12 [Speaker 1]
+There, I can record a video walk through and ask specific questions like, what do you think of this new onboarding flow?
+
+00:08:19 [Speaker 2]
+When I open a prototype, I can see all of the context and questions he wants my take on.
+00:08:23 [Speaker 2]
+I can leave a comment or record a short video to say, should there be a progress bar on a two step flow?
+
+00:08:29 [Speaker 1]
+My team can respond inside of the prototype while they're using it.
+00:08:33 [Speaker 1]
+And then all of those comments are automatically organized as clear next steps that I can pull directly into my coding agent using the in flight MCP.
+
+00:08:43 [Speaker 2]
+We're already seeing some of the top design teams in the world using in flight to supercharge their prototypes.
+00:08:48 [Speaker 2]
+This is at least one piece of what we believe the future of design looks like.
+
+00:08:52 [Speaker 1]
+We built in flight to make collaborating on our own work easier, and now our toolkit is powering prototypes with thousands of designers at some of the top teams in the world.
+00:09:03 [Speaker 1]
+So today, we're launching in flight to everyone, and you can learn more at inflight.com.
+00:09:09 [Speaker 1]
+Let's
+
+00:09:10 [Speaker 2]
+go, baby.
+00:09:12 [Speaker 2]
+Mark Vasileski and team were the, the editors behind it.
+00:09:16 [Speaker 2]
+We did a lot of, we did a lot of mood boarding and a little bit behind it, and, they nailed it, man.
+00:09:24 [Speaker 2]
+They nailed it in a couple of weeks.
+00:09:27 [Speaker 2]
+I I love it.
+
+00:09:28 [Speaker 2]
+I love it.
+00:09:29 [Speaker 2]
+Launch videos are a weird thing.
+00:09:30 [Speaker 2]
+Launch videos are weird because there's a lot of...
+00:09:32 [Speaker 2]
+I think there's some people starting to get skeptical about it.
+00:09:35 [Speaker 2]
+There's a lot of, like, like, what is that video actually saying to me?
+
+00:09:39 [Speaker 2]
+And so we we said, hey.
+00:09:40 [Speaker 2]
+We're not gonna get crazy.
+00:09:41 [Speaker 2]
+We're just gonna let the design tell the story.
+00:09:44 [Speaker 2]
+We're gonna let the interface tell the story, and we had a very specific vision for it.
+00:09:47 [Speaker 2]
+And I think I think it worked pretty well, man.
+
+00:09:49 [Speaker 1]
+I mean, especially, like, only two weeks removed from our Opus five five video episode too where people were making incredible things with agents.
+00:09:57 [Speaker 1]
+It's a more tricky challenge now.
+00:09:59 [Speaker 1]
+It's like, how do you make something that feels human?
+00:10:03 [Speaker 1]
+Yes.
+00:10:03 [Speaker 1]
+You
+
+00:10:03 [Speaker 2]
+know?
+00:10:04 [Speaker 2]
+Yes.
+
+00:10:04 [Speaker 1]
+We very specifically wanted both of our faces in it for a lot of it.
+00:10:08 [Speaker 1]
+And then we were, like, landing on visual treatments that didn't feel vibe codable as one of the measuring sticks, which is kind of a bizarre way to even think about it.
+00:10:18 [Speaker 1]
+But I love it.
+00:10:19 [Speaker 1]
+I love how it turned
+
+00:10:20 [Speaker 2]
+out.
+00:10:20 [Speaker 2]
+Someone says, I built my own prototype playground.
+00:10:22 [Speaker 2]
+Can I use it there?
+00:10:24 [Speaker 2]
+Yeah.
+00:10:24 [Speaker 2]
+Yeah.
+
+00:10:24 [Speaker 2]
+Yeah.
+00:10:25 [Speaker 2]
+And listen.
+00:10:25 [Speaker 2]
+The the the intent here is for anyone...
+00:10:28 [Speaker 2]
+Anything you build, doesn't matter.
+00:10:30 [Speaker 2]
+Anything.
+
+00:10:31 [Speaker 2]
+And you wanna get collect feedback from your team, right there in the prototype, that's where it's at.
+00:10:36 [Speaker 2]
+And listen, I just got back from, one of the best researcher events in the world, and I was asking everybody, like, you have artifacts everywhere, Slack, Gmail, linear comments.
+00:10:47 [Speaker 2]
+And and the problem is that it's like the...
+00:10:49 [Speaker 2]
+These things are falling through the cracks.
+00:10:51 [Speaker 2]
+How are you thinking as an organization?
+
+00:10:53 [Speaker 2]
+How are you bringing all that together into one place you can actually turn it into feedback you can give to your agent?
+00:10:58 [Speaker 2]
+And that's what we're trying to solve.
+00:11:00 [Speaker 2]
+Also SOC two, which is a huge, huge part of this for enterprise teams.
+00:11:05 [Speaker 2]
+SOC two compliant.
+
+00:11:08 [Speaker 1]
+Yeah.
+00:11:09 [Speaker 1]
+It's been a it's been a bit, man.
+00:11:11 [Speaker 1]
+I I feel like this is the theme of all...
+00:11:13 [Speaker 1]
+We're always just scrambling to throw these things together, and this is no different.
+00:11:16 [Speaker 1]
+It's...
+
+00:11:17 [Speaker 1]
+I love it, man.
+00:11:18 [Speaker 1]
+I love it.
+00:11:19 [Speaker 1]
+I just...
+00:11:20 [Speaker 1]
+Like, a week before launch, like, just blew up the entire onboarding, redid the entire first session experience, and then, you know, kinda...
+00:11:27 [Speaker 1]
+I kinda just procrastinated a little bit and did, you know, like, did you...
+
+00:11:32 [Speaker 1]
+I didn't even start on this website until about twenty four hours ago.
+00:11:36 [Speaker 1]
+And, it's just fun, man.
+00:11:38 [Speaker 1]
+It's fun.
+00:11:39 [Speaker 1]
+It feels like a big game.
+
+00:11:40 [Speaker 2]
+Okay.
+00:11:41 [Speaker 2]
+So hold on.
+00:11:41 [Speaker 2]
+And and I'm a stop shilling our own stuff.
+00:11:43 [Speaker 2]
+We'll move on.
+00:11:44 [Speaker 2]
+We have a really cool episode ahead of us, but I do wanna give you some flowers, Rid, because, again, the people do not know how talented you are.
+
+00:11:52 [Speaker 2]
+I don't think they do.
+00:11:53 [Speaker 2]
+And I wanna show you guys.
+00:11:54 [Speaker 2]
+You're talking about the onboarding.
+00:11:56 [Speaker 2]
+Right?
+00:11:57 [Speaker 2]
+Rid just over the weekend, and I think this was...
+
+00:11:59 [Speaker 2]
+He was cooking up a brand new onboarding experience.
+00:12:02 [Speaker 2]
+Like, this is genuinely new and novel stuff.
+00:12:06 [Speaker 2]
+And this is only I already deleted this one, though.
+00:12:08 [Speaker 2]
+I see the whole person has so fast that I'm not seeing it.
+00:12:14 [Speaker 2]
+Check out in flights onboarding.
+
+00:12:15 [Speaker 2]
+Like, that alone needs to be something you guys are pulling inspiration from because it's not like, oh, I've seen this before.
+00:12:23 [Speaker 2]
+Ridge genuinely shipping some incredible patterns around here.
+00:12:26 [Speaker 2]
+And on top of that, I will say, we had a whole different landing page.
+00:12:31 [Speaker 2]
+We had a whole...
+00:12:32 [Speaker 2]
+This was not the landing page.
+
+00:12:33 [Speaker 2]
+Different.
+
+00:12:33 [Speaker 1]
+I wasn't didn't have a video.
+00:12:35 [Speaker 1]
+We didn't have a video that we wanted to make the stars.
+00:12:36 [Speaker 1]
+It was like, how do we make the video, like, the show on the website?
+
+00:12:40 [Speaker 2]
+Yeah.
+00:12:40 [Speaker 2]
+And and and so you and I are on the phone at, like, 2AM last night.
+00:12:44 [Speaker 2]
+My first flight this morning, by the way, which I never miss my flights, which added a whole new layer of things.
+00:12:51 [Speaker 2]
+I'll talk about that.
+00:12:52 [Speaker 2]
+And you built this in less than twenty four hours.
+
+00:12:56 [Speaker 2]
+You built this entire landing page in less than twenty four hours.
+00:12:59 [Speaker 2]
+And I was like,
+
+00:13:01 [Speaker 1]
+bro.
+00:13:01 [Speaker 1]
+I built it.
+00:13:02 [Speaker 1]
+I I...
+00:13:02 [Speaker 1]
+This is...
+00:13:03 [Speaker 1]
+So I I really tried this new way of working, and I promise I will show more about this at some point.
+
+00:13:07 [Speaker 1]
+But, like, I built this entire thing using only my voice.
+00:13:10 [Speaker 1]
+I didn't type, and I didn't take a single screenshot.
+00:13:13 [Speaker 1]
+And I built the whole thing like that.
+
+00:13:15 [Speaker 2]
+It's so good, man.
+00:13:16 [Speaker 2]
+And, obviously, it was funny because I was looking at it last night too on my phone.
+00:13:19 [Speaker 2]
+I'm like, oh, yeah.
+00:13:20 [Speaker 2]
+This looks awful on mobile.
+00:13:22 [Speaker 2]
+And then I jumped, I think when I woke up from my flight a couple hours after our call, I I realized, like, the website was the old landing page.
+
+00:13:29 [Speaker 2]
+I was like, oh, maybe he couldn't figure it out.
+00:13:31 [Speaker 2]
+And then you had shipped it at some point or Claude eventually shipped it.
+00:13:35 [Speaker 2]
+And then I was on the plane and I was like, oh, actually, it's fantastic now.
+00:13:39 [Speaker 2]
+So, anyway, crazy stuff.
+00:13:41 [Speaker 2]
+We gotta see your process at some point.
+
+00:13:44 [Speaker 2]
+I get on my connection flight, Atlanta to Phoenix.
+00:13:48 [Speaker 2]
+We have a launch going live at 8AM.
+00:13:50 [Speaker 2]
+I have no Wi Fi.
+00:13:52 [Speaker 2]
+None.
+00:13:52 [Speaker 2]
+There's no Wi Fi.
+
+00:13:54 [Speaker 2]
+That was
+
+00:13:54 [Speaker 1]
+just frantically texting him to to, like, get feedback on the launch tweet because I hadn't written it, and it was, like, eleven minutes before it was supposed to go do.
+00:14:02 [Speaker 1]
+And you're just not responding.
+00:14:03 [Speaker 1]
+And I was like It...
+00:14:04 [Speaker 1]
+It's it's about as
+
+00:14:06 [Speaker 2]
+about as worst case scenario as it could get for a launch day.
+00:14:09 [Speaker 2]
+And then I was like, alright.
+00:14:10 [Speaker 2]
+Well, this is just...
+00:14:11 [Speaker 2]
+There's nothing you could do.
+00:14:12 [Speaker 2]
+I'm in a tin can in the air.
+
+00:14:14 [Speaker 2]
+No one has Wi Fi.
+00:14:15 [Speaker 2]
+Delta, thank you.
+00:14:17 [Speaker 2]
+And I'm like, screw it.
+00:14:18 [Speaker 2]
+I'm just gonna fall asleep.
+00:14:20 [Speaker 2]
+I slept the entire flight home.
+
+00:14:22 [Speaker 2]
+It's like a hour flight.
+00:14:24 [Speaker 2]
+I wake up.
+00:14:25 [Speaker 2]
+I wake up.
+00:14:26 [Speaker 2]
+The flight attendant says, oh, there you are sleeping beauty.
+00:14:29 [Speaker 2]
+And she turns to the the the folks in my section.
+
+00:14:32 [Speaker 2]
+She's like, he's awake, and they clapped for me.
+00:14:35 [Speaker 2]
+And I couldn't understand.
+00:14:36 [Speaker 2]
+I didn't understand why they clapped for me.
+00:14:39 [Speaker 2]
+So I don't know if I was just, like, farting.
+00:14:41 [Speaker 2]
+I don't know if I was.
+
+00:14:43 [Speaker 2]
+I don't know what happened.
+00:14:44 [Speaker 2]
+The guy behind me goes, yeah.
+00:14:46 [Speaker 2]
+I've been holding on to your AirPod.
+00:14:47 [Speaker 2]
+It fell out of your ear.
+00:14:48 [Speaker 2]
+I was like, okay.
+
+00:14:49 [Speaker 2]
+Appreciate you.
+00:14:51 [Speaker 2]
+I look over to my right.
+00:14:52 [Speaker 2]
+There's a woman with a Louis Vuitton dog carrier.
+00:14:55 [Speaker 2]
+It's a little short poodle thing.
+00:14:57 [Speaker 2]
+This poodle has a pearl necklace on.
+
+00:14:59 [Speaker 2]
+And I was like, man, I gotta get this plane, dude.
+00:15:02 [Speaker 2]
+I don't know what's going on.
+
+00:15:06 [Speaker 1]
+Oh, that got me.
+00:15:07 [Speaker 1]
+That's funny.
+00:15:08 [Speaker 1]
+It's been
+
+00:15:09 [Speaker 2]
+a day.
+00:15:09 [Speaker 2]
+Funny?
+00:15:10 [Speaker 2]
+It's been a day.
+00:15:11 [Speaker 2]
+I'm a...
+00:15:12 [Speaker 2]
+I don't snore, though.
+
+00:15:12 [Speaker 2]
+I'm not a big...
+00:15:13 [Speaker 2]
+I so I don't Yeah.
+
+00:15:14 [Speaker 1]
+That's what everybody says, bro.
+00:15:16 [Speaker 1]
+They don't clap for you if you weren't making hella noise in that plane.
+
+00:15:19 [Speaker 2]
+Yeah.
+00:15:20 [Speaker 2]
+So, it's been a day.
+00:15:22 [Speaker 2]
+Guys, we said last week...
+00:15:24 [Speaker 2]
+I just wanna call us out.
+00:15:25 [Speaker 2]
+We're gonna get into a couple news items, quick short news segment because we have a whole...
+
+00:15:29 [Speaker 2]
+This whole episode is just gonna be off the rails.
+00:15:32 [Speaker 2]
+We have, we asked you guys to submit your portfolio.
+00:15:35 [Speaker 2]
+We said, hey.
+00:15:36 [Speaker 2]
+When you submit your portfolio for review, install the in flight widget, ask a couple of specific questions, and we're gonna review it.
+00:15:42 [Speaker 2]
+And we thought it would be cool if we reached out to our network of friends who are really dope people and said, hey.
+
+00:15:47 [Speaker 2]
+Hiring managers, fellow designers, come and chime in on some of these, portfolios.
+00:15:52 [Speaker 2]
+We're gonna ask, like, a couple of people.
+00:15:54 [Speaker 2]
+Dude, people showed up in droves to review your portfolio.
+00:15:58 [Speaker 2]
+And and I'm like, wait a second.
+00:16:00 [Speaker 2]
+I don't know that you and I are gonna have an opportunity to do a lot of reviewing because there are so many sick people who showed up to review your portfolios.
+
+00:16:08 [Speaker 2]
+Yeah.
+00:16:08 [Speaker 2]
+And we're gonna we're gonna walk further.
+
+00:16:10 [Speaker 1]
+And there were more...
+00:16:11 [Speaker 1]
+Do...
+00:16:11 [Speaker 1]
+There were more people in DMs too?
+00:16:13 [Speaker 1]
+I mean, like, very famous, well known heads of designs that everybody follows on Twitter and you all use their products.
+00:16:18 [Speaker 1]
+And they're like, I love this.
+
+00:16:19 [Speaker 1]
+I don't quite have time.
+00:16:20 [Speaker 1]
+Like, it's a little bit too last minute.
+00:16:21 [Speaker 1]
+Like, there's a format here.
+00:16:23 [Speaker 1]
+I think the leaders in the industry are actually very excited to give back to the community.
+00:16:28 [Speaker 1]
+And I I think there's something here.
+
+00:16:29 [Speaker 1]
+This is gonna be a little bit raw, and I...
+00:16:30 [Speaker 1]
+There's a couple of mistakes that I made along the way.
+00:16:33 [Speaker 1]
+But there's something here, man.
+00:16:35 [Speaker 1]
+There's something here.
+00:16:36 [Speaker 1]
+I'm really, really excited about this episode.
+
+00:16:37 [Speaker 1]
+It's gonna be fun.
+
+00:16:38 [Speaker 2]
+I'm I'm stoked.
+00:16:39 [Speaker 2]
+And and thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable.
+00:16:43 [Speaker 2]
+You guys make this possible.
+00:16:45 [Speaker 2]
+I hope we do justice today because, when I look at, when I look at Adrian here, he's a mod in our Discord.
+00:16:51 [Speaker 2]
+He's a friend.
+
+00:16:52 [Speaker 2]
+And he says, that or you were talking in your sleep.
+00:16:54 [Speaker 2]
+I probably was.
+00:16:55 [Speaker 2]
+I was probably yelling about not having Wi Fi the whole time in my sleep.
+00:17:00 [Speaker 2]
+But, Adrian, you also left a comment I saw earlier this week, and you're like, yeah.
+00:17:03 [Speaker 2]
+I would love to see hiring managers reviewing the portfolios.
+
+00:17:08 [Speaker 2]
+And I wanna be clear.
+00:17:09 [Speaker 2]
+You know, Reid and I have done some hiring.
+00:17:10 [Speaker 2]
+We do some...
+00:17:11 [Speaker 2]
+We're actually hiring right now.
+00:17:12 [Speaker 2]
+I'm looking for a UX researcher to come help us with the short term project.
+
+00:17:15 [Speaker 2]
+So if you are somebody who has extremely, good UXR chops, hit me up.
+00:17:22 [Speaker 2]
+But heard.
+00:17:24 [Speaker 2]
+And so we did.
+00:17:25 [Speaker 2]
+We grabbed some some dope people who are, in fact, hiring daily to give some feedback.
+00:17:30 [Speaker 2]
+We will get into that in just a second.
+
+00:17:32 [Speaker 2]
+I do wanna talk a little bit about, some things going on.
+00:17:35 [Speaker 2]
+So, you know, like, if you haven't seen the onboarding yet and this isn't the example, there's a there's a better example that's like a couple of, choose which tools you're using.
+00:17:45 [Speaker 2]
+It's really cool and and red.
+00:17:46 [Speaker 2]
+I just wanted to call this out because I thought this was a really cool pattern.
+00:17:49 [Speaker 2]
+And I've actually...
+
+00:17:50 [Speaker 2]
+I actually don't know who's Zolt, Coxo.
+00:17:52 [Speaker 2]
+I don't even know how to say his name correctly and I apologize.
+00:17:54 [Speaker 2]
+Careful.
+00:17:56 [Speaker 2]
+Correct.
+00:17:57 [Speaker 2]
+And I liked this a lot.
+
+00:17:59 [Speaker 2]
+And I just thought I'd share this because this is really cool to me.
+00:18:03 [Speaker 2]
+This is an incredible way to add visualizations to, like, an interface.
+00:18:08 [Speaker 2]
+And and I'm like, man, Red, maybe maybe we pull some from this because this is cool.
+
+00:18:13 [Speaker 1]
+Dude, we're just gonna decide which models represent which elements.
+
+00:18:17 [Speaker 8]
+I'm so down.
+
+00:18:18 [Speaker 2]
+Yeah.
+
+00:18:19 [Speaker 1]
+I'm so down.
+
+00:18:19 [Speaker 2]
+I I...
+00:18:20 [Speaker 2]
+Like, what would curse...
+00:18:21 [Speaker 2]
+What would, cursor be?
+00:18:22 [Speaker 2]
+Cursor would be a...
+00:18:23 [Speaker 2]
+It's gotta be spacey.
+
+00:18:24 [Speaker 2]
+Right?
+00:18:24 [Speaker 2]
+It's gotta be Yeah.
+
+00:18:25 [Speaker 1]
+The cursor has to be spacey.
+00:18:26 [Speaker 1]
+But, dude, they're all black.
+00:18:27 [Speaker 1]
+I was working on this in the website.
+00:18:28 [Speaker 1]
+I'm like, man, I always...
+00:18:29 [Speaker 1]
+I wanted more color.
+
+00:18:30 [Speaker 1]
+They're all black.
+00:18:30 [Speaker 1]
+So I don't know.
+
+00:18:32 [Speaker 2]
+Yeah.
+00:18:32 [Speaker 2]
+Yeah.
+00:18:32 [Speaker 2]
+We'll we'll see how it goes.
+00:18:34 [Speaker 2]
+Nikita Beard...
+00:18:35 [Speaker 2]
+So this was interesting.
+
+00:18:36 [Speaker 2]
+I'd like...
+00:18:36 [Speaker 2]
+Launch has been on my mind the last couple of weeks.
+00:18:38 [Speaker 2]
+I almost wanted to do a full episode just talking about, like, how to launch your products.
+00:18:42 [Speaker 2]
+Josh Puckett is actually coming, onto a private livestream for the Discord community, in a couple of weeks.
+00:18:48 [Speaker 2]
+I think we have a Halloween episode.
+
+00:18:50 [Speaker 2]
+I will be dressing up for that episode.
+00:18:51 [Speaker 2]
+Josh, you better too.
+00:18:53 [Speaker 2]
+Otherwise, you're lame.
+00:18:54 [Speaker 2]
+And, he's gonna talk about what it's...
+00:18:56 [Speaker 2]
+What it takes as designers to ship and launch even if it's a side project.
+
+00:19:00 [Speaker 2]
+I'm really excited about it.
+00:19:01 [Speaker 2]
+But Nikkiti Beer, who's constantly launching things, said, hey.
+00:19:06 [Speaker 2]
+Can I make a chicken sandwich number one on the App Store?
+00:19:10 [Speaker 2]
+And it did.
+00:19:11 [Speaker 2]
+Dave's hot chicken is ranking number one at least, for a day, in the App Store.
+
+00:19:15 [Speaker 2]
+I just wanted to call this......
+
+00:19:16 [Speaker 1]
+A bunch of free food?
+00:19:18 [Speaker 1]
+Like...
+
+00:19:19 [Speaker 2]
+What the app's supposed to do?
+00:19:20 [Speaker 2]
+Is you order food and it goes through DoorDash?
+00:19:22 [Speaker 2]
+I don't know.
+00:19:24 [Speaker 2]
+The Spelt News...
+
+00:19:24 [Speaker 1]
+It's gotta be insane to be at the point in your career where you kind of have conquered everything and now you're just giving yourself absurd little side quests.
+00:19:32 [Speaker 1]
+Like, you can't top x.
+00:19:34 [Speaker 1]
+So then it's like, oh, I'll just work on fried chicken.
+
+00:19:37 [Speaker 2]
+Already kinda missing the key to beer on x, to be honest.
+00:19:40 [Speaker 2]
+Yeah.
+00:19:40 [Speaker 2]
+I am too.
+00:19:41 [Speaker 2]
+I am too.
+00:19:41 [Speaker 2]
+You know, with the future releases, I am missing.
+
+00:19:43 [Speaker 1]
+But also very grateful for what he did over a 100 a year.
+00:19:47 [Speaker 1]
+Like, it's 10 times better.
+
+00:19:48 [Speaker 2]
+And I do think you set that team and that design team up and Benjie and everybody for They're
+
+00:19:52 [Speaker 1]
+in a great spot.
+
+00:19:53 [Speaker 2]
+Cool stuff.
+00:19:54 [Speaker 2]
+So, you know, there's been some, we talked about Jeff.
+00:19:58 [Speaker 2]
+Did I call this out last week?
+00:19:59 [Speaker 2]
+I may have called this out.
+00:20:00 [Speaker 2]
+I don't remember.
+
+00:20:00 [Speaker 2]
+This was October 9.
+00:20:02 [Speaker 2]
+It is the fifteenth.
+00:20:04 [Speaker 2]
+Help me do math.
+00:20:05 [Speaker 2]
+They raised, Jeff, TypeSafe AI, who we talked about, oh my gosh, decisions happening fast.
+00:20:15 [Speaker 2]
+They raised, like...
+
+00:20:16 [Speaker 2]
+How how much was it?
+00:20:17 [Speaker 2]
+It's not on here.
+00:20:19 [Speaker 2]
+100,000,000 or so?
+
+00:20:20 [Speaker 1]
+Yeah.
+00:20:21 [Speaker 1]
+It was more than that.
+00:20:21 [Speaker 1]
+It was an absurd amount.
+
+00:20:23 [Speaker 2]
+In three weeks.
+00:20:24 [Speaker 2]
+Launch video, viral.
+00:20:27 [Speaker 2]
+$102,100,000,000 dollar raise from a 16 z in three weeks.
+00:20:31 [Speaker 2]
+Crazy.
+00:20:32 [Speaker 2]
+Crazy what's happening in fundraising around a lot of this tooling.
+
+00:20:36 [Speaker 2]
+What do you think about it?
+00:20:43 [Speaker 2]
+Is your brain working today?
+
+00:20:45 [Speaker 1]
+No.
+00:20:45 [Speaker 1]
+It is.
+00:20:46 [Speaker 1]
+It's just like, I think my takes are mostly skeptical and sometimes I pause around skepticism.
+00:20:50 [Speaker 1]
+It's just like, there's just so much VC money that's just propping up so much of this industry.
+00:20:56 [Speaker 1]
+And some of it, I think, will have staying power, but a lot of it won't.
+
+00:21:00 [Speaker 1]
+And it's really hard to tell what has good unit economics and what is just purely subsidized.
+
+00:21:09 [Speaker 2]
+In flight and
+
+00:21:10 [Speaker 7]
+a race,
+
+00:21:11 [Speaker 2]
+that easy.
+00:21:11 [Speaker 2]
+Hey.
+00:21:13 [Speaker 2]
+Yeah.
+
+00:21:14 [Speaker 1]
+Yeah.
+00:21:15 [Speaker 1]
+You know, give us four weeks after this video.
+00:21:16 [Speaker 1]
+You know, we'll we'll we'll drop our, $140,000,000 series a.
+
+00:21:20 [Speaker 2]
+I think we're...
+00:21:21 [Speaker 2]
+I think our video is at, like, 60,000 views.
+00:21:23 [Speaker 2]
+I think we're about, thirty nine point five hundred million short.
+00:21:30 [Speaker 2]
+Mhmm.
+00:21:31 [Speaker 2]
+But what good is that?
+
+00:21:34 [Speaker 2]
+But models models are.
+00:21:36 [Speaker 2]
+Like, there really is this, contextual model creation that's happening that's really interesting.
+00:21:40 [Speaker 2]
+And and in fact, it's interesting to see there's just never any leaders.
+00:21:44 [Speaker 2]
+We thought, like...
+00:21:45 [Speaker 2]
+Well, I'll get to this in a second, but Muse just drops.
+
+00:21:47 [Speaker 2]
+And and I'm so skeptical anytime, like, Facebook drops something now, I'm like, you know?
+00:21:53 [Speaker 2]
+It's like a deflating balloon to me.
+
+00:21:55 [Speaker 1]
+With news yet?
+00:21:56 [Speaker 1]
+How much...
+00:21:56 [Speaker 1]
+Have you played with this?
+
+00:21:57 [Speaker 2]
+With the agent a little bit, and I'm just...
+00:21:59 [Speaker 2]
+I'm kind of tired of using other people's agents.
+
+00:22:02 [Speaker 1]
+Yeah.
+00:22:03 [Speaker 1]
+I am too.
+00:22:03 [Speaker 1]
+But I have had a lot of positive feedback from people that I look up to where I'm like, okay.
+00:22:07 [Speaker 1]
+It can't suck.
+00:22:08 [Speaker 1]
+There's obviously something there.
+
+00:22:11 [Speaker 2]
+I don't know.
+00:22:12 [Speaker 2]
+I will say.
+00:22:14 [Speaker 2]
+Muse is getting a lot of love from people who I don't think are shilling on on behalf of, money.
+00:22:19 [Speaker 2]
+Like Toby from Shopify saying this model is very, very good.
+00:22:22 [Speaker 2]
+I was struggling to find anything to throw at it that it couldn't do.
+
+00:22:26 [Speaker 2]
+Even other top models failed.
+00:22:28 [Speaker 2]
+Meta Meta is back.
+00:22:29 [Speaker 2]
+It's interesting.
+00:22:30 [Speaker 2]
+You know?
+00:22:30 [Speaker 2]
+Even Theo.
+
+00:22:31 [Speaker 2]
+Now Theo, who knows?
+00:22:32 [Speaker 2]
+Has he paid?
+00:22:33 [Speaker 2]
+Could be.
+00:22:35 [Speaker 2]
+Claims that Opus five five and Muse are s tier.
+00:22:38 [Speaker 2]
+Now he does go to clarify, and he says, I'm not saying that Opus is just as capable or isn't, as capable.
+
+00:22:45 [Speaker 2]
+And he's not recommending replacing Opus with Muse, but he's saying that I like them a similar amount.
+00:22:51 [Speaker 2]
+So not something that I've tested.
+00:22:52 [Speaker 2]
+I don't have an opinion on this yet, but I will probably check this out over the next week.
+00:22:58 [Speaker 2]
+Yeah.
+00:22:58 [Speaker 2]
+Interesting.
+
+00:22:59 [Speaker 1]
+I probably won't.
+
+00:23:01 [Speaker 2]
+You probably won't have any time for anything.
+00:23:03 [Speaker 2]
+And and how do we have time for?
+
+00:23:05 [Speaker 1]
+I'm happy and happy with my setup.
+
+00:23:07 [Speaker 2]
+Well, you know, and to be clear, man, I mean, the rumors are buzzing for those who've been, paying attention to x, the bubble itself, that Fable five five is supposed to drop any day now.
+00:23:17 [Speaker 2]
+Yesterday, it was supposed to drop, then the the buzzing got even louder that it was gonna drop today.
+00:23:23 [Speaker 2]
+And so we're kinda panicking in in group chat like, oh, did we pick the one day to launch that Fable's gonna drop?
+00:23:31 [Speaker 2]
+We'll see.
+00:23:32 [Speaker 2]
+You know?
+
+00:23:32 [Speaker 2]
+We will see what happens when Fable five five drops, if and when.
+00:23:36 [Speaker 2]
+It's gonna be kinda crazy because Opus...
+00:23:38 [Speaker 2]
+I mean, if...
+00:23:39 [Speaker 2]
+Not Opus, but, OpenAI, they had Astra six rumored to drop, and then they're like, yo.
+00:23:45 [Speaker 2]
+This is too dangerous.
+
+00:23:46 [Speaker 2]
+We need to pull it back and continue to kind of evaluate some safety concerns.
+00:23:50 [Speaker 2]
+It was probably still doing all of its rogue agent stuff, so they're figuring that out.
+00:23:54 [Speaker 2]
+And, you know, probably we're on the precipice of learning some insider information.
+00:23:58 [Speaker 2]
+If it weren't for the employee who got caught trying to bug the Executive Meeting Room, and then they called the FBI on him and so he's having a bad week, this was kinda funny to me though that there are employees now bugging, trying to pull information.
+00:24:13 [Speaker 2]
+This was like an inconsequential employee doing a consequential thing.
+
+00:24:19 [Speaker 2]
+What a time to be a frontier lab, man.
+00:24:22 [Speaker 2]
+You have your own team coming in, trying to pull out the secrets, trying to do who knows what that.
+00:24:27 [Speaker 2]
+You know?
+00:24:27 [Speaker 2]
+Like, we know some folks at some of these labs in higher positions, and I I was thinking to myself, even those people.
+00:24:34 [Speaker 2]
+There's probably, like, four people at these organizations who actually know what's going on.
+
+00:24:39 [Speaker 1]
+Agreed.
+
+00:24:40 [Speaker 2]
+Agreed.
+00:24:40 [Speaker 2]
+You know?
+00:24:40 [Speaker 2]
+Like, they have to have so many layers of comms.
+00:24:43 [Speaker 2]
+It's, that's crazy.
+00:24:45 [Speaker 2]
+It's crazy.
+
+00:24:46 [Speaker 2]
+Our friend John Falcone made a game, very fast, by the way, where you find the bug in OpenAI's office.
+00:24:55 [Speaker 2]
+It's called chat and mouse.
+00:25:03 [Speaker 2]
+This is funny.
+
+00:25:04 [Speaker 1]
+I miss this.
+00:25:04 [Speaker 1]
+This is amazing.
+
+00:25:05 [Speaker 2]
+Yeah.
+00:25:10 [Speaker 2]
+Boom.
+00:25:10 [Speaker 2]
+Got it.
+00:25:11 [Speaker 2]
+There it is behind the TV.
+00:25:12 [Speaker 2]
+Well done, Don.
+
+00:25:17 [Speaker 2]
+Man, what a time.
+00:25:18 [Speaker 2]
+What a time to be alive.
+00:25:20 [Speaker 2]
+We're gonna get into a lot of things today.
+00:25:22 [Speaker 2]
+You know, we're...
+00:25:23 [Speaker 2]
+Like I said, we are hiring for...
+
+00:25:25 [Speaker 2]
+We're looking for some help on the on the contractor side for UXRs.
+00:25:28 [Speaker 2]
+There's a lot of ways to do hiring.
+00:25:30 [Speaker 2]
+One of my favorite ways that I think is honest to both the candidate and the, employer is to just be like, yo.
+00:25:39 [Speaker 2]
+Hunter Hammond's kinda...
+00:25:40 [Speaker 2]
+He does this, and I like it.
+
+00:25:41 [Speaker 2]
+And he can't do this for everything, but he's like, hey.
+00:25:43 [Speaker 2]
+Listen.
+00:25:43 [Speaker 2]
+We're looking for somebody.
+00:25:44 [Speaker 2]
+Post your four best pieces of work in the comments.
+00:25:47 [Speaker 2]
+He he doesn't even wanna see your portfolio.
+
+00:25:49 [Speaker 2]
+He's like, show me your best four pieces.
+00:25:51 [Speaker 2]
+Makes hiring decision, tests them out for thirty days, and you figure out if it works.
+00:25:55 [Speaker 2]
+And I...
+00:25:55 [Speaker 2]
+I'm like, there's something honest about that.
+00:25:56 [Speaker 2]
+You get paid for your trial.
+
+00:25:58 [Speaker 2]
+Let's, like, circumvent all the bullshit.
+00:26:00 [Speaker 2]
+Let's get straight to the work.
+00:26:01 [Speaker 2]
+Sometimes I like working that way.
+00:26:03 [Speaker 2]
+And we just saw...
+00:26:05 [Speaker 2]
+So there is someone coming from, what is this, app here?
+
+00:26:09 [Speaker 2]
+Your, JuliaWorks Oh, yeah.
+
+00:26:12 [Speaker 1]
+I saw this.
+00:26:13 [Speaker 1]
+This is weird, man.
+
+00:26:14 [Speaker 2]
+Yeah.
+00:26:14 [Speaker 2]
+And so I'm gonna call this out because I got got by this.
+00:26:17 [Speaker 2]
+Right?
+00:26:17 [Speaker 2]
+I posted this, and I saw this.
+00:26:19 [Speaker 2]
+And at first, I laughed because I was like, oh, that's funny.
+
+00:26:21 [Speaker 2]
+That's cool.
+00:26:21 [Speaker 2]
+And let me support them.
+00:26:23 [Speaker 2]
+And I said, hey.
+00:26:23 [Speaker 2]
+I think she's looking for designers.
+00:26:25 [Speaker 2]
+Right?
+
+00:26:25 [Speaker 2]
+And then and then I went to bed.
+00:26:27 [Speaker 2]
+And I woke up, and then I saw some stories, and I wanna be clear.
+00:26:31 [Speaker 2]
+There are three sides to every story.
+00:26:32 [Speaker 2]
+There's theirs, there's yours, and there's the truth.
+00:26:35 [Speaker 2]
+I don't know what's true here, so this is all alleged.
+
+00:26:38 [Speaker 2]
+But a couple people started coming forward and said, hey.
+00:26:41 [Speaker 2]
+Like, basically, tried to tried to go over there, did some work for free to kinda show my value.
+00:26:48 [Speaker 2]
+They said, hey.
+00:26:48 [Speaker 2]
+You're really good, but we're actually gonna go in a different direction.
+00:26:51 [Speaker 2]
+We're holding off on the role.
+
+00:26:52 [Speaker 2]
+And then she posts that again.
+00:26:53 [Speaker 2]
+And they're like, yo.
+00:26:54 [Speaker 2]
+If you're still looking for designers, why did you make me go through those hoops and tell me this and that?
+00:26:58 [Speaker 2]
+And this started to pop up in a number of allegations that people said, hey.
+00:27:02 [Speaker 2]
+Like, they're they're doing this a little bit unethically.
+
+00:27:05 [Speaker 2]
+I don't love that.
+00:27:06 [Speaker 2]
+I deleted my post about it.
+00:27:07 [Speaker 2]
+Obviously, the community's talking about it.
+00:27:10 [Speaker 2]
+Shameless behavior, if true.
+00:27:12 [Speaker 2]
+If true, we wanna call this out.
+
+00:27:13 [Speaker 2]
+We don't know if it's true or not, but not my not my favorite way for things to happen.
+00:27:19 [Speaker 2]
+And when I see stuff like this, I, I I lean on the new meme of Zuck tasting a Guinness.
+
+00:27:26 [Speaker 1]
+I'll just He's trying.
+00:27:30 [Speaker 1]
+What, man?
+
+00:27:33 [Speaker 2]
+Are you a Guinness fan?
+00:27:34 [Speaker 2]
+Have you had Guinness?
+
+00:27:36 [Speaker 1]
+Yeah.
+00:27:36 [Speaker 1]
+I like it.
+
+00:27:37 [Speaker 2]
+Yeah.
+00:27:37 [Speaker 2]
+This is a
+
+00:27:38 [Speaker 1]
+I wouldn't, like, seek it out, but I think it tastes good.
+
+00:27:40 [Speaker 2]
+I love Guinness, and it's it's low cal.
+00:27:42 [Speaker 2]
+This is a ridiculous reaction to drinking Guinness.
+
+00:27:45 [Speaker 1]
+It is.
+00:27:45 [Speaker 1]
+It's like it's like 4%.
+
+00:27:49 [Speaker 2]
+I need to find ways to use it.
+00:27:51 [Speaker 2]
+Figma already did.
+00:27:52 [Speaker 2]
+So there's a lot of there's a lot of launches to talk about.
+00:27:54 [Speaker 2]
+Figma actually had a pretty interesting launch day, but we have so many portfolios to walk through today that, I'm just gonna get into it, man.
+00:28:02 [Speaker 2]
+I'm gonna skip a lot of the news.
+
+00:28:04 [Speaker 2]
+We'll talk about the news next week because this was the thing.
+00:28:08 [Speaker 2]
+Right?
+00:28:09 [Speaker 2]
+We said, hey.
+00:28:10 [Speaker 2]
+We reached out to friends in our network, and we said it would be really cool if you jump in and check out a portfolio or two, and everybody showed up in droves.
+00:28:19 [Speaker 2]
+We also said, hey.
+
+00:28:20 [Speaker 2]
+You know, try to keep your feedback videos.
+00:28:22 [Speaker 2]
+They recorded videos as they walk through your portfolios under, like, ninety seconds.
+00:28:27 [Speaker 2]
+I think there's one person who was able to do that, which is fair.
+
+00:28:31 [Speaker 1]
+It's hard.
+00:28:32 [Speaker 1]
+It is really hard.
+00:28:33 [Speaker 1]
+As somebody who's recorded so many portfolio reviews through ShiftNudge, it's very
+
+00:28:37 [Speaker 2]
+hard.
+00:28:38 [Speaker 2]
+It is very hard, but I also wanna say that, like, we've got...
+00:28:41 [Speaker 2]
+Like, some of these reviews are, like, eight minutes long.
+00:28:44 [Speaker 2]
+And while we can't play an eight minute video here for the sake of the stream, they're extremely useful.
+00:28:51 [Speaker 2]
+Like, these aren't just people who showed up to give, like, cheap dollar store reviews.
+
+00:28:55 [Speaker 2]
+Like, there is some incredible value that was dumped inside of these portfolio reviews.
+00:29:00 [Speaker 2]
+So we're gonna walk through as many as we can today, and then we're gonna post those links in the show notes in the Discord.
+00:29:08 [Speaker 2]
+And and, for any that, you know, we're not able to get to, you can find them in there.
+00:29:12 [Speaker 2]
+You can, even if it's not your portfolio getting reviewed, I think you're gonna get a ton of value at how these these folks I'm gonna
+
+00:29:19 [Speaker 1]
+I'm gonna try to go through some of the ones that don't get looked at too.
+00:29:21 [Speaker 1]
+Just maybe we can even just sit down and blitz through a few of them sometime.
+00:29:25 [Speaker 1]
+Okay.
+00:29:25 [Speaker 1]
+There was too many.
+00:29:26 [Speaker 1]
+It was a very...
+
+00:29:27 [Speaker 1]
+It it was well received on both sides, which is I...
+00:29:30 [Speaker 1]
+It's definitely not the last time that we do this because I think it is fun.
+00:29:33 [Speaker 1]
+But,
+
+00:29:35 [Speaker 2]
+Kyle said
+
+00:29:36 [Speaker 1]
+to give a...
+00:29:37 [Speaker 1]
+Oh, gosh.
+
+00:29:38 [Speaker 2]
+I did not get the note.
+
+00:29:39 [Speaker 1]
+Yours is fine.
+
+00:29:40 [Speaker 2]
+Yours is great.
+00:29:41 [Speaker 2]
+But, Kyle, even if we gave you that note, let's be yourself for real, brother.
+00:29:44 [Speaker 2]
+You would have not met that either.
+
+00:29:45 [Speaker 1]
+Yeah.
+00:29:45 [Speaker 1]
+The la...
+00:29:46 [Speaker 1]
+The single last person on the list that I would bet on being able to make a ninety second review.
+00:29:52 [Speaker 1]
+Here's the here's the thing.
+00:29:53 [Speaker 1]
+I wanna give one more disclaimer too.
+
+00:29:54 [Speaker 1]
+So while Tommy's gonna screen share, I think basically all of these have, like, a video review from somebody that you you probably know who's gonna walk through these portfolios.
+00:30:05 [Speaker 1]
+And so we'll we'll listen there, but then also, I'm gonna put the link in the chat.
+00:30:11 [Speaker 1]
+So have the chat open because we can all hop in here.
+00:30:15 [Speaker 1]
+And and if you wanna leave a video by all means, but you can, even just, like, tap c and leave a pinned comment and just, like, let's just do it.
+00:30:22 [Speaker 1]
+Let's just, like, make this a community thing.
+
+00:30:24 [Speaker 1]
+I think that's gonna be the most fun version of this is where we can consume but also contribute.
+00:30:29 [Speaker 1]
+And everybody kinda gets this crowdsourced grit.
+00:30:32 [Speaker 1]
+That's the vision for this.
+00:30:35 [Speaker 1]
+So
+
+00:30:35 [Speaker 2]
+The thing you need to know chat.
+00:30:37 [Speaker 2]
+That any feedback you leave on the links we post using that in flight widget is that person has an immediate MCP access to just plug that into their coding agent.
+00:30:47 [Speaker 2]
+It's actually extremely helpful for them.
+00:30:49 [Speaker 2]
+So it's super cool.
+00:30:51 [Speaker 2]
+Thank you for contributing.
+
+00:30:52 [Speaker 2]
+And I just wanna make one last call out.
+00:30:54 [Speaker 2]
+Day 67 of asking for a hunter appearance.
+00:30:57 [Speaker 2]
+I love those with the deep cuts.
+00:31:00 [Speaker 2]
+Guys, just so you know, this this actually is in the works.
+00:31:03 [Speaker 2]
+There there is a hunter appearance coming up at some point.
+
+00:31:06 [Speaker 2]
+So, I don't even think Red knows that, but it is coming.
+
+00:31:09 [Speaker 1]
+I don't know that.
+00:31:10 [Speaker 1]
+I don't know.
+
+00:31:12 [Speaker 2]
+Yeah.
+00:31:13 [Speaker 2]
+You're gonna be gone at some point, so we'll have that.
+00:31:17 [Speaker 2]
+Cool.
+00:31:18 [Speaker 2]
+Let's dig in.
+00:31:19 [Speaker 2]
+Before we get into the portfolio reviews, we did have some folks who submitted some tips around their portfolio, creation, or what they look for, and I I thought these were really good.
+
+00:31:29 [Speaker 2]
+So I'm gonna show you one person, one designer, who gives some tips on what she looks for in your portfolio, and then one designer who...
+00:31:38 [Speaker 2]
+What their thought process was as they built their portfolio.
+00:31:40 [Speaker 2]
+And then we're gonna get into the actual portfolio.
+00:31:42 [Speaker 2]
+So let's dive into this, starting with Elizabeth Lin who works at some really great tips here.
+
+00:31:49 [Speaker 7]
+So I
+
+00:31:49 [Speaker 5]
+review a ton of portfolios, and I think the biggest mistake I see is people spend too much time designing the frame of their portfolio and not enough time refining the content itself.
+00:31:59 [Speaker 5]
+What really matters for portfolios is highlighting the work you've already done.
+00:32:03 [Speaker 5]
+If you have great work, great visual design in your work, and great process, the frame it lives in doesn't matter as much because I can trust that you're a good designer based on the work that you're highlighting.
+00:32:13 [Speaker 5]
+You can't really save bad work with a portfolio because I can kind of see through the differences between your portfolio's design and your actual work itself.
+00:32:23 [Speaker 5]
+A lot of times when people will, like, pick a really flashy template, I might get tricked initially, but then when I look in the projects, I'll be like, oh, like, there's a mismatch between their ability level and this, like, template that they chose.
+
+00:32:34 [Speaker 5]
+It is also important to, like, stand out because a lot of times hiring managers are flipping through, like, hundreds of portfolios at once.
+00:32:39 [Speaker 5]
+And so it is important, like, outside of the work itself to maybe focus a little bit on making sure that your portfolio design has a little bit of personality.
+00:32:48 [Speaker 5]
+And, honestly, that can come through really simply through, like, typography and also the words that you're putting on the page.
+00:32:55 [Speaker 5]
+A lot of times, I'll open a portfolio and within a few seconds, I can assess if someone has strong typography skills because of how many portfolios I've reviewed in the past.
+00:33:03 [Speaker 5]
+And so try to avoid doing something too flashy if you're not a competent visual designer instead of focus on making sure that the visuals are solid and the fundamentals are there, and then you can maybe add a little bit more flare along the way.
+
+00:33:18 [Speaker 5]
+If you add, like, for example, like, a really cool, like, animation, you have to make sure it's amazing.
+00:33:23 [Speaker 5]
+Otherwise, I'll look at it like, oh, this looks like it was vibe coded in five minutes.
+00:33:26 [Speaker 5]
+Like, I don't really see the skill there.
+00:33:28 [Speaker 5]
+And so, really, if you want to add kind of, like, these little details, make sure you go the extra mile to make it amazing and to really make it good because it's just so easy to add these little flashy things with the current state of, vibe coding.
+00:33:42 [Speaker 5]
+A lot of people will also ask me about case studies.
+
+00:33:45 [Speaker 5]
+Case studies are really important.
+00:33:46 [Speaker 5]
+So we're like, oh, like, how long should my case study be?
+00:33:49 [Speaker 5]
+A lot of people now are doing these, like, summary case studies.
+00:33:51 [Speaker 5]
+I think that's the wrong question to be asking.
+00:33:54 [Speaker 5]
+I don't really care about the length of your case study because at the end of the day, I just wanna know how you think.
+
+00:33:59 [Speaker 5]
+I feel like writing the case study is really for yourself.
+00:34:01 [Speaker 5]
+If you write a full case study, it really help you with the actual interview process.
+00:34:04 [Speaker 5]
+And once you have to make the actual portfolio presentation, it'll help you a long way.
+00:34:09 [Speaker 5]
+The length itself, in my opinion, doesn't really matter because if someone has a strong case study that's long, I should be able to skim it really quickly by scrolling through it.
+00:34:16 [Speaker 5]
+What I'm really looking for is interesting artifacts.
+
+00:34:18 [Speaker 5]
+So I wanna see how you thought along the way, how you, like, brainstorm ideas, how you iterated on your work, and I wanna see that through, like, visual elements.
+00:34:26 [Speaker 5]
+I don't wanna be, like, reading full paragraphs of text.
+00:34:29 [Speaker 5]
+And I think for the case study specifically, it's the best way for me to assess if someone has, like, good problem solving and storytelling ability.
+00:34:36 [Speaker 5]
+Because if I can understand the process you went through, regardless of the length of your case study, I can really quickly understand, like, what it might be like to work with you in the first place.
+
+00:34:47 [Speaker 1]
+Gold.
+00:34:47 [Speaker 1]
+Elizabeth is amazing.
+00:34:48 [Speaker 1]
+She...
+00:34:48 [Speaker 1]
+She's she's like one of those people that's like an educator, you know.
+00:34:51 [Speaker 1]
+Like, she has the knowledge, but she also has the ability to communicate it in a way that is really helpful.
+
+00:34:55 [Speaker 2]
+Runs a lot of, like, local events too.
+00:34:57 [Speaker 2]
+I I I saw I met her in person when I went and, talked to Diego Zacks for a podcast episode out there in New York.
+00:35:04 [Speaker 2]
+Very, very cool.
+00:35:04 [Speaker 2]
+And, love how much she contributes to the community.
+00:35:08 [Speaker 2]
+Now on the other side of it, like, thinking...
+
+00:35:09 [Speaker 2]
+You know, I I love hearing from hiring managers and people who are evaluating.
+00:35:13 [Speaker 2]
+We're gonna hear a bunch from them.
+00:35:14 [Speaker 2]
+By the way, my favorite, I have not seen any of the portfolios that we're gonna look at today.
+00:35:18 [Speaker 2]
+I think you've seen a couple.
+00:35:19 [Speaker 2]
+Yeah?
+
+00:35:21 [Speaker 1]
+Very briefly.
+00:35:21 [Speaker 1]
+Just in...
+00:35:22 [Speaker 1]
+Just putting together the agenda.
+
+00:35:24 [Speaker 2]
+Cool.
+00:35:24 [Speaker 2]
+So we're gonna get...
+00:35:25 [Speaker 2]
+We're gonna get raw looks at this.
+00:35:27 [Speaker 2]
+And and there's, like, a range of whether it's, like, beginner to senior.
+00:35:31 [Speaker 2]
+But my favorite one that I saw was we have Josh Puckett reviewing Gabriel Valdivia's portfolio, two powerhouses in the industry.
+
+00:35:41 [Speaker 2]
+And I thought that's cool.
+00:35:42 [Speaker 2]
+That's it.
+00:35:43 [Speaker 2]
+Yeah.
+
+00:35:43 [Speaker 1]
+It's gonna be fun.
+
+00:35:44 [Speaker 2]
+Yeah.
+00:35:44 [Speaker 2]
+So we're gonna take a look at that.
+00:35:45 [Speaker 2]
+But this is Eric who who kinda talks about what he was thinking when he built his portfolio.
+00:35:51 [Speaker 2]
+And so we'll look at this, and then we're gonna get into the portfolios.
+
+00:35:53 [Speaker 9]
+Hi.
+00:35:53 [Speaker 9]
+My name is Eric.
+00:35:54 [Speaker 9]
+I'm a designer at Cognition, and I'm gonna walk you through what went into making my website.
+00:35:58 [Speaker 9]
+I started on this website, I believe.
+
+00:36:00 [Speaker 2]
+Sorry.
+00:36:01 [Speaker 2]
+One thing to say about Eric is he just, I believe, got his role at Cognition, and this is part of why I wanted to understand, you know, hey.
+00:36:09 [Speaker 2]
+What was your portfolio that got you in the door?
+
+00:36:11 [Speaker 9]
+In 2021, and the design was finished, like, relatively quickly around 2022, but I didn't put it out until 2024.
+00:36:18 [Speaker 9]
+This is my website as it currently stands.
+00:36:21 [Speaker 9]
+It's a pretty maximalist representation of my work.
+00:36:23 [Speaker 9]
+But I look at the version that came with it previously.
+00:36:25 [Speaker 9]
+This was around 2020, and it was a very different kind of portfolio.
+
+00:36:28 [Speaker 9]
+It's the same work that I have, but the presentation is a lot more different.
+00:36:32 [Speaker 9]
+It's a lot more quiet.
+00:36:33 [Speaker 9]
+I didn't originally start in tech.
+00:36:34 [Speaker 9]
+I came from the fashion industry.
+00:36:35 [Speaker 9]
+I felt really stuck in my career because I do a lot of different things.
+
+00:36:39 [Speaker 9]
+You know, I do a lot of branding.
+00:36:40 [Speaker 9]
+I do a lot of typography, but the fashion industry, it tends to want to go towards more cleaner, simpler, a minimal kind of looks and so I felt really kind of restrained because there was an entire side of me that I couldn't really tap into without losing mostly my main clientele.
+00:36:55 [Speaker 9]
+And this is one of those things that a lot of designers have to learn the hard way, which is that the work you show is the work you get hired for.
+00:37:02 [Speaker 9]
+But I I finally took the dive with this website.
+00:37:04 [Speaker 9]
+What ended up happening was that by showing this richer, you know, more visually diverse side of my my work, I ended up expanding my horizons in a lot of useful ways too.
+
+00:37:13 [Speaker 9]
+And it's one of those things where from a design standpoint, you kinda just wanna go into it because a lot of what I really like about a website is that for me, it's like a narrative.
+00:37:21 [Speaker 9]
+It's storytelling.
+00:37:22 [Speaker 9]
+Like, it's less important that I group things by year or by recency, but that I I just really make an impact and impression again, same amount of work, but a different presentation.
+00:37:32 [Speaker 9]
+And so, you know, for me, this was just always a lesson where it's like, you know, designers are notoriously bad at designing their portfolios, but, you know, and there's also these, like, different kind of beliefs.
+00:37:40 [Speaker 9]
+Like some folks believe that, you know, a poor...
+
+00:37:42 [Speaker 9]
+Portfolio should act as a picture frame where it should be more about the picture than the frame.
+00:37:47 [Speaker 9]
+And, you know, I I take a much more, you know, contrarian view to that where it's like the portfolio is that lens in which you view the work.
+00:37:55 [Speaker 9]
+And so, you know, why constrain yourself to to that kind of belief?
+00:37:59 [Speaker 9]
+And I think looking at work in this kind of context, for example, even if you do go into, you know, kind of deeper dives and whatnot versus, like, again, looking at what came before it, it feels like really night and day.
+00:38:10 [Speaker 9]
+And so I I think if there's any kind of takeaway, again, it's that, like, the work you show is the work you get hired for.
+
+00:38:16 [Speaker 9]
+Like, the the issue was is that when my website looked like this, I was at a place in my career where I felt genuinely stuck.
+00:38:24 [Speaker 9]
+You know, I was getting clients that kinda wanted me to do the same thing that I did like years ago but I was already tired of.
+00:38:32 [Speaker 9]
+But I couldn't quit those clients because you know you know, as a freelancer it's like when it rains it pours.
+00:38:36 [Speaker 9]
+And so I needed to rip the band aid off and take a leap.
+00:38:39 [Speaker 9]
+And, you know, ever since then, it's like my my work has felt much more comfortable and in a just a different direction.
+
+00:38:46 [Speaker 9]
+You know, I'll I'll update my bio here and there.
+00:38:48 [Speaker 9]
+I'll add a project here and there, but, you know, have I...
+00:38:51 [Speaker 9]
+Do I have newer designs in my portfolio?
+00:38:53 [Speaker 9]
+Yes.
+00:38:53 [Speaker 9]
+But it hasn't really been a meaningful step improvement over this one.
+
+00:38:56 [Speaker 9]
+And so for the time being, this is where it is.
+00:38:59 [Speaker 9]
+Thank you.
+
+00:39:02 [Speaker 1]
+I love the emphasis from both people on storytelling as a keyword.
+00:39:05 [Speaker 1]
+I I think that's kind of the word, honestly.
+
+00:39:08 [Speaker 2]
+Yeah.
+00:39:09 [Speaker 2]
+I do think it's important to call out too when you create your portfolio.
+00:39:11 [Speaker 2]
+Like, what you're putting on there is what you're gonna be hired and expected to do.
+00:39:15 [Speaker 2]
+It's the other piece.
+00:39:16 [Speaker 2]
+And, I will say, like, it's it's it's a tough thing when you take work, and sometimes you have to take what you can get.
+
+00:39:21 [Speaker 2]
+I've been there.
+00:39:22 [Speaker 2]
+You can also find yourself pigeonholing yourself into a type of work.
+00:39:27 [Speaker 2]
+And sometimes your portfolio is the only way you can emphasize, like, hey.
+00:39:30 [Speaker 2]
+I can also do this, although it's not showing up in the, you know, the case studies itself.
+00:39:37 [Speaker 2]
+Alright.
+
+00:39:38 [Speaker 2]
+We're gonna get into the portfolios.
+00:39:40 [Speaker 2]
+We are gonna do them live.
+00:39:41 [Speaker 2]
+They've been presubmitted, and we're gonna...
+00:39:44 [Speaker 2]
+We're just gonna start showing these up.
+00:39:45 [Speaker 2]
+So the first one is Kartik Iyer.
+
+00:39:48 [Speaker 2]
+I'm probably...
+00:39:49 [Speaker 2]
+I'm gonna try my best not to butcher people's names.
+00:39:51 [Speaker 2]
+If I do, I apologize.
+00:39:54 [Speaker 2]
+So this is what we're looking at.
+00:39:55 [Speaker 2]
+This is Kartik's portfolio.
+
+00:39:57 [Speaker 2]
+Over on the right side, you're gonna see the in flight widget.
+00:40:01 [Speaker 2]
+Really beautiful thing here.
+00:40:02 [Speaker 2]
+Lot of different feedback happening in the widget, but I'm gonna go straight down to...
+00:40:08 [Speaker 2]
+Again, I was not expecting so many people to show up and deliver video feedback right away, but that's exactly what we have.
+00:40:16 [Speaker 2]
+And so I'm gonna play, I'm gonna play all the feedback, and we're gonna...
+
+00:40:19 [Speaker 2]
+We're really gonna maybe even make a skill out of a lot of the feedback we hear today.
+00:40:23 [Speaker 2]
+We'll see.
+00:40:24 [Speaker 2]
+But all of this feedback in the widget is available to Kartik, and you can come in here and you can drop...
+00:40:29 [Speaker 2]
+Like, there's a comment right here.
+00:40:31 [Speaker 2]
+You can drop comments on their pro, portfolios.
+
+00:40:33 [Speaker 2]
+You can enter it inside of the widget.
+00:40:36 [Speaker 2]
+You can record videos.
+00:40:37 [Speaker 2]
+And these designers will get all of that feedback available to them so they can use it in whatever their next build is.
+00:40:43 [Speaker 2]
+They can punch it right through, to their agent using our MCP.
+00:40:48 [Speaker 2]
+So let's go ahead and view this video.
+
+00:40:50 [Speaker 4]
+Hi, Kartik.
+00:40:51 [Speaker 4]
+I'm Jeff.
+00:40:52 [Speaker 4]
+Thanks for letting me take a look at your portfolio.
+00:40:55 [Speaker 4]
+I wanna start by saying that you
+
+00:40:57 [Speaker 2]
+Sorry.
+00:40:58 [Speaker 2]
+Can you give us some context on who Jeff is?
+
+00:41:00 [Speaker 1]
+Yeah.
+00:41:00 [Speaker 1]
+Okay.
+00:41:00 [Speaker 1]
+So this is Jeff Tian.
+00:41:01 [Speaker 1]
+This is, like, true OG design industry.
+00:41:04 [Speaker 1]
+Tianan Lacks, one of the, you know, the real pioneering agencies back in the day, had a heck of a run at, Facebook and is now cofounder of, LightSpark.
+
+00:41:16 [Speaker 1]
+So I actually just interviewed him about a month ago, and it was kind of like a fanboy moment for me.
+00:41:22 [Speaker 1]
+So he gives incredible feedback.
+00:41:24 [Speaker 1]
+I mean, just I just want everybody to appreciate the quality of, like, who we get to hear from right now because this is as good as it gets in terms of having somebody review your portfolio.
+00:41:34 [Speaker 1]
+I would be freaking out if Jeff was reviewing my work.
+
+00:41:37 [Speaker 2]
+So That is awesome.
+00:41:38 [Speaker 2]
+And Kartik, I see you in the comments asking us to please refresh.
+00:41:41 [Speaker 2]
+I will do that before we take a look at it after the video.
+
+00:41:44 [Speaker 4]
+Probably just have a few seconds to capture my attention on, portfolio.
+00:41:49 [Speaker 4]
+I think a lot of folks are looking at hundreds of these, before making a decision on whether to proceed and potentially hire.
+00:41:55 [Speaker 4]
+For example, on my last hire, I looked at more than 800 portfolios, and most of those didn't really get past the first glance.
+00:42:00 [Speaker 4]
+In those first five seconds, I really do wanna see final work.
+00:42:03 [Speaker 4]
+A single hero piece that that tells me what kind of designer you are and shows me some of that work.
+
+00:42:08 [Speaker 4]
+Without it, I'm really just left, judging the portfolio itself.
+00:42:13 [Speaker 4]
+You know?
+00:42:14 [Speaker 4]
+Its craft, its clarity, its communication, and that would have to be really strong in order to make me want to keep looking.
+00:42:20 [Speaker 4]
+You know, I get down into some work here when I see some of the prototyping ideas and some of these playground things, which is good.
+00:42:28 [Speaker 4]
+But you're 12 in here.
+
+00:42:29 [Speaker 4]
+So you've got more than a decade of experience, and the work should really be leading here.
+00:42:33 [Speaker 4]
+It should show the breadth and depth, of the things that you're...
+00:42:36 [Speaker 4]
+That you excel at.
+00:42:38 [Speaker 4]
+I think showing these three d line drawings are...
+00:42:41 [Speaker 4]
+I mean, I think they look nice, but I do feel like they're maybe a little bit derivative of things I've seen before at the expense of showing work, which I think is a miss.
+
+00:42:49 [Speaker 4]
+Like, this kinda feels a little bit like linear, and some other things.
+00:42:53 [Speaker 4]
+And so I think it's definitely better to show the work.
+00:42:56 [Speaker 4]
+I do think there's a bunch of small compounding issues here too.
+00:42:58 [Speaker 4]
+So aside from just not showing work, like, even with this line drawing style, you know, you've chosen in the footer to also do a line drawing style, but it's totally different.
+00:43:06 [Speaker 4]
+It's not nearly as polished as the one above.
+
+00:43:08 [Speaker 4]
+So that's just something that's a little bit off putting to me.
+00:43:11 [Speaker 4]
+You've got some great testimonials in here, but I can't really access them.
+00:43:15 [Speaker 4]
+Like, there's no way to scroll.
+00:43:16 [Speaker 4]
+Mhmm.
+00:43:17 [Speaker 4]
+Half of them are are cut off.
+
+00:43:18 [Speaker 4]
+And so I think that those types of things compound when you're looking at hundreds of these, and they can turn people away before they even get to see any work.
+00:43:27 [Speaker 4]
+When you do dig into some of the case studies, I think that, you know, some of these things are interesting, but we're looking at work that is primarily, like, calendar driven.
+00:43:42 [Speaker 4]
+There's not a lot of setup to this.
+00:43:45 [Speaker 4]
+Like, I don't really know what this company does and how you're really measuring success of this product is by reducing the number of clicks, I guess, to schedule, which when you dig in is really just about finding ways to optimize, like, multi select.
+00:44:00 [Speaker 4]
+And I think that's good.
+
+00:44:01 [Speaker 4]
+I...
+00:44:01 [Speaker 4]
+It just feels a little thin to me.
+00:44:03 [Speaker 4]
+And so I think you're gonna wanna find things in this project that are going to be a little bit meatier, to help illustrate the type of work that you do and the types of complex problems that you solve.
+00:44:12 [Speaker 4]
+And then I think, again, you know, in some of this playground stuff, you're leading with another calendar product.
+00:44:15 [Speaker 4]
+So I'd say, like, this just comes out a little bit flat and could probably show more breadth and depth of, of the work.
+
+00:44:21 [Speaker 4]
+I do think that playgrounds are an interesting topic because if you're working at a place that isn't letting you ship to production, I think that's, a, a problem.
+00:44:29 [Speaker 4]
+But, b, I think that these these playground sections can be that outlet to showcase the type of software that you're capable of building even if your current job doesn't really allow you to do that.
+00:44:38 [Speaker 4]
+So I do like the thought of this.
+00:44:40 [Speaker 4]
+I just think that there really shouldn't be much in here that are just simple toys.
+00:44:45 [Speaker 4]
+I think it...
+
+00:44:46 [Speaker 4]
+The the the thing I'd leave with here is that I think it's really important to step back and decide what you want people to take away.
+00:44:51 [Speaker 4]
+You've gotta put your strengths upfront so that I wanna stay and dig in, and care about the problem you solved, what your role was in it, and how it performed.
+
+00:45:01 [Speaker 2]
+Wow, man.
+00:45:03 [Speaker 2]
+How do I even give feedback?
+00:45:04 [Speaker 2]
+So Kartik said refresh, and even Kartik's in chat here.
+00:45:07 [Speaker 2]
+By the way, someone said, wait.
+00:45:10 [Speaker 2]
+The video is in the cursor while they're reviewing it.
+
+00:45:13 [Speaker 2]
+Yeah.
+00:45:14 [Speaker 2]
+Welcome to your flight.
+00:45:15 [Speaker 2]
+You know?
+00:45:15 [Speaker 2]
+Yeah.
+00:45:16 [Speaker 2]
+Ridd, we should probably add, like, the ability to speed the video up too.
+
+00:45:20 [Speaker 1]
+There definitely is.
+
+00:45:21 [Speaker 2]
+Oh, I didn't see.
+
+00:45:23 [Speaker 1]
+Was it good design because you missed it?
+00:45:24 [Speaker 1]
+Yeah.
+00:45:24 [Speaker 1]
+For sure.
+00:45:25 [Speaker 1]
+But that's a good idea.
+00:45:26 [Speaker 1]
+We should probably just default to, like, 1.5..
+
+00:45:28 [Speaker 1]
+So Kartik's already made a bunch of changes, which is kinda fun, like, to almost see what he decided to change based off of that feedback.
+00:45:37 [Speaker 1]
+Because, like, when you when you look at it, the work the work is more prominent.
+00:45:42 [Speaker 1]
+I think the biggest thing for me is especially, like, I'm just looking at it on a laptop right now.
+00:45:45 [Speaker 1]
+The UI cards are still outside of that 100 VH, like, first view port.
+00:45:50 [Speaker 1]
+Mhmm.
+
+00:45:51 [Speaker 1]
+I think I'd love to see it.
+00:45:52 [Speaker 1]
+I just...
+00:45:53 [Speaker 1]
+I'd I'd I'd love to see work without having to scroll at all.
+00:45:57 [Speaker 1]
+And it's, like, closer, but it's not quite there too.
+
+00:46:00 [Speaker 2]
+Dan Petty talked about it last week where it was like, tease it from the top.
+00:46:04 [Speaker 2]
+And so we don't have the work poking up.
+00:46:07 [Speaker 2]
+Like, if you don't wanna show the work right away...
+00:46:09 [Speaker 2]
+This...
+00:46:09 [Speaker 2]
+By the way, I'm an old...
+
+00:46:10 [Speaker 2]
+My eyes are bad.
+00:46:11 [Speaker 2]
+I wear glasses.
+00:46:12 [Speaker 2]
+I've got a lazy eye for those who don't know.
+00:46:14 [Speaker 2]
+And so I'm really sensitive to small text.
+00:46:16 [Speaker 2]
+I like to see this easier.
+
+00:46:18 [Speaker 2]
+I don't I don't want paragraphs running longer than...
+00:46:21 [Speaker 2]
+You know, I guess this is a three line rule.
+00:46:23 [Speaker 2]
+That's cool.
+00:46:24 [Speaker 2]
+I think it's fine.
+00:46:25 [Speaker 2]
+But, give me give me something I can quickly jump into.
+
+00:46:28 [Speaker 2]
+Again, remember that hiring managers are doing 20 things in a day, and they're looking through 50 portfolios in a lunch hour.
+00:46:37 [Speaker 2]
+You know?
+00:46:38 [Speaker 2]
+And they're just quickly trying to digest what they're what they're doing so they can move you to the next phase.
+00:46:43 [Speaker 2]
+So something to think about.
+00:46:44 [Speaker 2]
+I agree with what he he was saying about this.
+
+00:46:46 [Speaker 2]
+Like, I I don't really understand.
+00:46:48 [Speaker 2]
+Like, if this opened up and I immediately see the impact here, that's cool.
+00:46:52 [Speaker 2]
+Maybe tease the context, the entry point on this layer.
+00:46:56 [Speaker 2]
+And when it opens up, it'll be something new here.
+00:46:59 [Speaker 2]
+Right?
+
+00:46:59 [Speaker 1]
+Mhmm.
+
+00:46:59 [Speaker 2]
+It'll give me something new.
+
+00:47:00 [Speaker 1]
+I had a really positive impression to the way that those cards felt and the way that they opened up.
+00:47:04 [Speaker 1]
+It almost felt like the new Stripe feature models on their home page.
+00:47:08 [Speaker 1]
+That was what it reminded me of, and that I thought was great.
+00:47:12 [Speaker 1]
+Some of...
+00:47:12 [Speaker 1]
+One of the comments that I left was even in those case studies, the UI that showcased is almost, like, slightly lower fidelity in dark mode, but then, like, the mock ups are really bright.
+
+00:47:21 [Speaker 1]
+And that disconnect made me kinda confused, I guess.
+00:47:24 [Speaker 1]
+I I wasn't, like, sure what the relationship between the two was.
+00:47:28 [Speaker 1]
+And then the last...
+00:47:29 [Speaker 1]
+I have one.
+00:47:29 [Speaker 1]
+Do I have, like, super nitpicky?
+
+00:47:32 [Speaker 1]
+I I don't know where the lines of personal preference is, but I did have a little bit of a negative reaction.
+00:47:35 [Speaker 1]
+If you scroll to the hero section, I just think that the content composition is a little bit imbalanced.
+00:47:40 [Speaker 1]
+You have the narrow container on the right, which has three distinct chunks and seven lines.
+00:47:45 [Speaker 1]
+And then the heading is just one line.
+00:47:46 [Speaker 1]
+So it's like really long and narrow and then, like, really...
+
+00:47:49 [Speaker 1]
+Or really really long and wide and really, like, kinda like chunky and narrow.
+00:47:53 [Speaker 1]
+And that combination felt a bit odd to me, where I I literally think if you just boost it up the the the font size, and maybe it just says design craft meets engineering prowess or design craft meets engineering prowess, and then put those onto two lines.
+00:48:07 [Speaker 1]
+I actually think the entire thing would immediately just feel a little bit more balanced.
+
+00:48:11 [Speaker 2]
+I encourage all designers to show your face.
+00:48:14 [Speaker 2]
+I think I would need a portfolio.
+00:48:16 [Speaker 2]
+Let me...
+
+00:48:16 [Speaker 1]
+Like, yeah,
+
+00:48:17 [Speaker 2]
+I don't care if it's a small little just circle somewhere.
+00:48:19 [Speaker 2]
+Like, show me...
+00:48:20 [Speaker 2]
+Just add some...
+00:48:21 [Speaker 2]
+You know, because, like, sometimes sometimes the the thing that I I...
+00:48:25 [Speaker 2]
+That kinda turns me off when I used to make hiring decisions about, portfolios was was when it was like, am I looking at an agency, or am I looking at a designer's portfolio?
+
+00:48:34 [Speaker 2]
+And I wanna feel like this is you, the individual.
+00:48:36 [Speaker 2]
+You know?
+00:48:37 [Speaker 2]
+And sometimes that face can convey that.
+00:48:40 [Speaker 2]
+Let's move on to, Pooja Jadev.
+00:48:45 [Speaker 2]
+I think I'm saying that correctly.
+
+00:48:46 [Speaker 2]
+I hope.
+
+00:48:47 [Speaker 1]
+There are actually two videos in this one.
+00:48:49 [Speaker 1]
+I think they're shorter.
+
+00:48:51 [Speaker 2]
+Awesome.
+00:48:51 [Speaker 2]
+Look at all this, man.
+00:48:52 [Speaker 2]
+This is so cool.
+00:48:53 [Speaker 2]
+It makes me...
+00:48:54 [Speaker 2]
+Anytime you build anything and you see people using it, that's so cool.
+
+00:48:58 [Speaker 2]
+This...
+00:48:58 [Speaker 2]
+I...
+00:48:59 [Speaker 2]
+I'm gonna have to not gush over that.
+00:49:00 [Speaker 2]
+That's really neat.
+00:49:01 [Speaker 2]
+Maheen.
+
+00:49:02 [Speaker 2]
+Hey.
+00:49:02 [Speaker 2]
+Give me some context on Maheen and Rob Hope.
+
+00:49:05 [Speaker 1]
+Okay.
+00:49:06 [Speaker 1]
+So Mahin, long time meta designer.
+00:49:10 [Speaker 1]
+She was really early on the VR team, all of the AI work.
+00:49:14 [Speaker 1]
+She's she's just one of the core pillars of what's happening at Facebook design right now.
+00:49:20 [Speaker 1]
+And, also, is an educator.
+
+00:49:22 [Speaker 1]
+She has a course on Maven where she teaches a bunch of, like, AI skills.
+00:49:26 [Speaker 1]
+And I love hearing from people who, again, kind of like Elizabeth earlier, like, when you're used to teaching, I feel feel like the feedback is really, really good.
+00:49:34 [Speaker 1]
+So So that's why we were excited to bring Maheen in and then Rob Hope.
+00:49:38 [Speaker 1]
+OnePage Love.
+00:49:39 [Speaker 1]
+I mean, goodness.
+
+00:49:40 [Speaker 1]
+Onepagelove.com.
+00:49:41 [Speaker 1]
+Been going there my entire design career.
+00:49:43 [Speaker 1]
+It's amazing.
+00:49:44 [Speaker 1]
+One of the video people.
+00:49:46 [Speaker 1]
+And now he's at Framer.
+
+00:49:48 [Speaker 2]
+Yeah.
+00:49:48 [Speaker 2]
+Framer.
+00:49:49 [Speaker 2]
+Yeah.
+00:49:49 [Speaker 2]
+Very cool.
+
+00:49:50 [Speaker 1]
+Which is a big deal.
+00:49:51 [Speaker 1]
+So
+
+00:49:51 [Speaker 2]
+And Jeff And he literally
+
+00:49:52 [Speaker 1]
+had a landing page course.
+00:49:54 [Speaker 1]
+This is like his jam, man.
+00:49:56 [Speaker 1]
+So
+
+00:49:56 [Speaker 2]
+Yeah.
+00:49:57 [Speaker 2]
+So we're, Jeff in the comments.
+00:49:58 [Speaker 2]
+Was I supposed to roast him?
+00:50:01 [Speaker 2]
+Jeff, that was a great feedback, by the way.
+00:50:03 [Speaker 2]
+Let's get into what Maheem said, and then we're gonna
+
+00:50:04 [Speaker 6]
+Hi, Puja.
+00:50:05 [Speaker 6]
+Thanks for sharing your portfolio.
+00:50:07 [Speaker 6]
+My immediate thought on your landing page and whether your uniqueness comes across is that while it's clear that you do brand marketing and product, your unique skill set actually came through in your info page, which I think you could bring to your home page.
+00:50:19 [Speaker 6]
+So for example here, the thing that I really liked was how clear it was that you go between these three worlds, but you're also a builder and you're a lifelong learner, and as a hiring manager that shows to me that you're constantly experiment with things beyond the project that's at hand, things like new AI tools, and think, and building building on those experiences.
+00:50:36 [Speaker 6]
+I think additionally, you know, it's great that you added sort of, like, things you're building outside of work, but I'd love to learn a bit more about what you use to build it and, like, why did you build it.
+
+00:50:45 [Speaker 6]
+Otherwise, it just feels like a random set of, like, things that you've made.
+00:50:48 [Speaker 6]
+So I think that would really help.
+00:50:49 [Speaker 6]
+And then I would also think about maybe simplifying this experience.
+00:50:52 [Speaker 6]
+Right now, you have a lot of different types of patterns in the website.
+00:50:55 [Speaker 6]
+So helping you focus on sort of the narrative that you're trying to tell, which really should come through the visuals since you are more on the brand and marketing side.
+
+00:51:02 [Speaker 6]
+So those are the few changes that I would make.
+00:51:04 [Speaker 6]
+But overall, great job.
+
+00:51:06 [Speaker 2]
+I had a reaction.
+00:51:07 [Speaker 2]
+I can't wait to share.
+00:51:08 [Speaker 2]
+I'm gonna go over to Robin.
+
+00:51:09 [Speaker 1]
+Hit hit Rob first, and I'm the same.
+
+00:51:11 [Speaker 10]
+Yo.
+00:51:12 [Speaker 10]
+Yo, Puja.
+00:51:12 [Speaker 10]
+It's Rob from Framer, x one page love.
+00:51:14 [Speaker 10]
+I've seen your work before.
+00:51:15 [Speaker 10]
+I've also review...
+
+00:51:16 [Speaker 10]
+Reviewed, like, a thousand portfolios.
+00:51:17 [Speaker 10]
+And I just wanna say, vibes, you've done a great job.
+00:51:21 [Speaker 10]
+You know, pairing Cooper with Geistemono is actually the first I've seen of that.
+00:51:24 [Speaker 10]
+It's got good color.
+00:51:25 [Speaker 10]
+It's animated.
+
+00:51:26 [Speaker 10]
+It's vibrant.
+00:51:26 [Speaker 10]
+It's all there.
+00:51:27 [Speaker 10]
+Just straight into a critique, I feel like it could be more social proof and just some backing to your pitch.
+00:51:34 [Speaker 10]
+Kinda before I get into it, like, it's...
+00:51:35 [Speaker 10]
+You're just talking about my work.
+
+00:51:37 [Speaker 10]
+There's this.
+00:51:37 [Speaker 10]
+If you scroll down to the photo, you'll see that we've got Kat, and she says, you know, immense humor.
+00:51:42 [Speaker 10]
+We've got Dan Moore.
+00:51:44 [Speaker 10]
+He says, you know, go to for illustration work.
+00:51:46 [Speaker 10]
+And you...
+
+00:51:46 [Speaker 10]
+In the next one, we can say, you know, producing amazing deliverables.
+00:51:50 [Speaker 10]
+Imagine if, you know, Sam, Dan, Kat were all sort of in the hair here just with those takeaways, immediately just backing everything, giving a little bit more depth in your pitch.
+00:52:00 [Speaker 10]
+And then you've got this, fun section, which I love.
+00:52:03 [Speaker 10]
+I love.
+00:52:04 [Speaker 10]
+I love.
+
+00:52:04 [Speaker 10]
+But you're like, thank you for your patience.
+00:52:06 [Speaker 10]
+It might, take a a bit of time to learn.
+00:52:08 [Speaker 10]
+Back yourself.
+00:52:09 [Speaker 10]
+Also, be a bit cheeky.
+
+00:52:15 [Speaker 1]
+But, real You go first.
+
+00:52:17 [Speaker 2]
+Well, I'm gonna talk about...
+00:52:18 [Speaker 2]
+But, like, the transcripts are available.
+00:52:20 [Speaker 2]
+All of this is immediately available in the MCP.
+00:52:23 [Speaker 2]
+You just be like, hey.
+00:52:24 [Speaker 2]
+Take the feedback from in flight, Claude, and make me a list of, changes that you would recommend.
+
+00:52:28 [Speaker 2]
+It'll start building a PRD out.
+00:52:30 [Speaker 2]
+Boom.
+00:52:30 [Speaker 2]
+Immediately ship.
+
+00:52:31 [Speaker 1]
+I just have it whip it.
+00:52:32 [Speaker 1]
+I just have it go right to HTML, honestly.
+00:52:34 [Speaker 1]
+Just, like, literally create me a visual report of the feedback and then your proposed ideas.
+
+00:52:38 [Speaker 2]
+Yeah.
+00:52:39 [Speaker 2]
+That's awesome.
+00:52:39 [Speaker 2]
+So I'll go.
+00:52:40 [Speaker 2]
+So I love I love the feedback about, like, bringing the testimonials front and center.
+00:52:44 [Speaker 2]
+And and, like, think of, like, the movie posters, like, Guardian said, outstanding.
+
+00:52:47 [Speaker 2]
+You know?
+00:52:48 [Speaker 2]
+Like, pull out, like, the one thing that's really worth highlighting.
+00:52:51 [Speaker 2]
+I think that could be interesting.
+00:52:52 [Speaker 2]
+I'm still still still, that's number two priority for me as testimonials.
+00:52:57 [Speaker 2]
+Number one is always work.
+
+00:52:59 [Speaker 2]
+Like, I wanna see work right up front.
+00:53:02 [Speaker 2]
+And this is all cool.
+00:53:03 [Speaker 2]
+I love motion.
+00:53:04 [Speaker 2]
+I love seeing that there's, like, stuff that...
+00:53:06 [Speaker 2]
+Okay.
+
+00:53:06 [Speaker 2]
+This looks like very mature displays of work.
+00:53:10 [Speaker 2]
+It's very good.
+00:53:11 [Speaker 2]
+This is so good, man.
+
+00:53:12 [Speaker 1]
+I I stop so good, dude.
+00:53:15 [Speaker 1]
+This is so I
+
+00:53:16 [Speaker 2]
+I feel like you could you could you could push this further.
+00:53:19 [Speaker 2]
+In fact, like, if this became part of the hero and these were projects that in opening up had more context available
+
+00:53:26 [Speaker 1]
+Yep.
+00:53:26 [Speaker 1]
+There's there's......
+00:53:27 [Speaker 1]
+Back in my thoughts too.
+00:53:28 [Speaker 1]
+I don't like the light box though.
+00:53:30 [Speaker 1]
+I don't like the dark overlay.
+
+00:53:31 [Speaker 1]
+It took it took me out of the vibe of the site.
+00:53:33 [Speaker 1]
+Like, I wanted more of, like, a graceful...
+00:53:36 [Speaker 1]
+Almost kind of more what, like, Kartik did a little bit.
+00:53:39 [Speaker 1]
+But, dude, I had the same thought.
+00:53:40 [Speaker 1]
+Like, I think the illustration's fine.
+
+00:53:41 [Speaker 1]
+Maybe it's just not my style.
+00:53:43 [Speaker 1]
+The hero section is my least favorite part of this entire site.
+00:53:45 [Speaker 1]
+I totally agree with what Rob said.
+00:53:47 [Speaker 1]
+This all...
+00:53:47 [Speaker 1]
+I agree with what you said.
+
+00:53:48 [Speaker 1]
+This is the most...
+00:53:49 [Speaker 1]
+This is the coolest thing.
+00:53:50 [Speaker 1]
+Like, if it said brand and marketing designer and then it was just, like, this immersive, like, I don't even know what you call that three d layout type of thing, like, that would have been a really, really, really positive impression.
+00:54:00 [Speaker 1]
+I think this is pretty sick.
+
+00:54:01 [Speaker 2]
+Hey.
+00:54:01 [Speaker 2]
+Shout out to the design tool survey for UX tools.
+
+00:54:05 [Speaker 1]
+It's awesome.
+00:54:05 [Speaker 1]
+Nice.
+
+00:54:06 [Speaker 2]
+Love to see it.
+00:54:08 [Speaker 2]
+Yeah.
+00:54:09 [Speaker 2]
+So so really would love to see this leaned into.
+00:54:11 [Speaker 2]
+I like the, what do we have?
+00:54:13 [Speaker 2]
+Fun work.
+
+00:54:14 [Speaker 1]
+I I love that page transitions too.
+00:54:17 [Speaker 1]
+Yeah.
+00:54:18 [Speaker 1]
+Yeah.
+00:54:18 [Speaker 1]
+Like the transition to fun is really cool.
+00:54:20 [Speaker 1]
+I I really like Rob's point and I think it actually is...
+
+00:54:24 [Speaker 1]
+I I I take it even outside of portfolios.
+00:54:25 [Speaker 1]
+I never do testimonial carousels anymore.
+00:54:28 [Speaker 1]
+People just don't look at them, man.
+00:54:29 [Speaker 1]
+If you're doing a carousel, then all you're saying is 99% of people are never gonna look at testimonials two through four.
+00:54:36 [Speaker 1]
+Yep.
+
+00:54:36 [Speaker 1]
+So, like, pull them out and put them in places.
+00:54:38 [Speaker 1]
+Like, how often can you have it so that other people are telling who you are in their words?
+00:54:43 [Speaker 1]
+It's always more powerful.
+00:54:44 [Speaker 1]
+And she's got good ones.
+00:54:45 [Speaker 1]
+Like, she's just really downplaying them right now.
+
+00:54:47 [Speaker 2]
+I'm such a big fan.
+00:54:49 [Speaker 2]
+I've become more and more in...
+00:54:50 [Speaker 2]
+As we've, you know, risen into the playground effect of portfolios, I really like the clear and easy delineation.
+00:54:57 [Speaker 2]
+I feel like it's almost becoming a recognizable paradigm, which is, like, work, fun.
+00:55:02 [Speaker 2]
+I really like separating those now more and more.
+
+00:55:05 [Speaker 2]
+I think that's becoming a pattern that's really easy for my brain if I'm a hiring manager to understand.
+00:55:10 [Speaker 2]
+Okay.
+00:55:10 [Speaker 2]
+This is actual work, and this is, like, okay.
+00:55:12 [Speaker 2]
+They're experimenting.
+00:55:13 [Speaker 2]
+I think even just calling out that you have a playground is, like, showing, hey.
+
+00:55:18 [Speaker 2]
+Like, I I do this.
+
+00:55:19 [Speaker 1]
+It's a it's
+
+00:55:20 [Speaker 2]
+a...
+00:55:21 [Speaker 2]
+It's it's...
+00:55:21 [Speaker 2]
+Yeah.
+00:55:21 [Speaker 2]
+It's worthwhile.
+
+00:55:22 [Speaker 1]
+Yeah.
+00:55:22 [Speaker 1]
+It's great work, Puja.
+00:55:23 [Speaker 1]
+I think this is, like, really close.
+00:55:25 [Speaker 1]
+It's the...
+00:55:25 [Speaker 1]
+Literally, the only thing that bugs me is the hero section.
+
+00:55:27 [Speaker 1]
+Everything else is, like, actually amazing.
+
+00:55:29 [Speaker 2]
+Yeah.
+00:55:29 [Speaker 2]
+Yeah.
+00:55:30 [Speaker 2]
+We have, Matteo Alliano.
+00:55:33 [Speaker 2]
+Alliano.
+00:55:35 [Speaker 2]
+Mateo Alliano.
+
+00:55:36 [Speaker 2]
+I'm sorry.
+00:55:36 [Speaker 2]
+I'm gonna get these wrong.
+00:55:37 [Speaker 2]
+I'm on no sleep.
+00:55:39 [Speaker 2]
+Let's get into this.
+00:55:40 [Speaker 2]
+Let's see.
+
+00:55:40 [Speaker 2]
+Look at all the comments we have.
+00:55:42 [Speaker 2]
+Puckett Joshua.
+00:55:44 [Speaker 2]
+Let us go.
+00:55:45 [Speaker 2]
+See what he has to say.
+
+00:55:47 [Speaker 7]
+Hey, Mateo.
+00:55:48 [Speaker 7]
+Josh here.
+00:55:49 [Speaker 7]
+Ridd and Tommy asked me to take a look at your site, and so that is what I'm doing.
+00:55:52 [Speaker 7]
+Cool.
+00:55:53 [Speaker 7]
+So you got some questions for me.
+
+00:55:54 [Speaker 7]
+Does the landing page itself spark interest?
+00:56:02 [Speaker 7]
+I would say probably not.
+00:56:04 [Speaker 7]
+If what your...
+00:56:04 [Speaker 7]
+If your goal...
+00:56:05 [Speaker 7]
+And I'm just going to set the tab here to see it.
+
+00:56:07 [Speaker 7]
+Alright.
+00:56:08 [Speaker 7]
+So there's some work here, but it's it's very tax heavy.
+00:56:12 [Speaker 7]
+So I I would say no.
+00:56:14 [Speaker 7]
+If I'm a hiring manager or a founder or a recruiter looking to hire somebody, I probably have a list.
+00:56:19 [Speaker 7]
+And so I'm going through a bunch of those at any one time.
+
+00:56:21 [Speaker 7]
+And then when I load your website and I see this, I usually have to start doing work.
+00:56:26 [Speaker 7]
+Right?
+00:56:26 [Speaker 7]
+Compare that to a website where the first thing you're showing me is work examples or when I scroll, you have a bunch of work for me.
+00:56:32 [Speaker 7]
+Then I can very quickly immediately see it and start to process, like, okay.
+00:56:35 [Speaker 7]
+Cool.
+
+00:56:35 [Speaker 7]
+Does this fit kind of the vibe of what I'm looking for?
+00:56:37 [Speaker 7]
+Is it worth me clicking in?
+00:56:38 [Speaker 7]
+Is it worth me, like, spending another five, ten seconds, thirty seconds evaluating it to keep going to spend more time on your on your site and move you through the process?
+00:56:46 [Speaker 7]
+So that's probably the biggest, opportunity for improvement here.
+00:56:49 [Speaker 7]
+It's like, hey.
+
+00:56:49 [Speaker 7]
+Just show me work.
+00:56:50 [Speaker 7]
+Right?
+00:56:50 [Speaker 7]
+You're alluding to work here, but I have to click.
+00:56:52 [Speaker 7]
+And then when I click, there's a whole bunch of text.
+00:56:53 [Speaker 7]
+And so, you know, I think I think that's, like, that's gonna be a challenge.
+
+00:56:59 [Speaker 7]
+Your questions here about sort of these hybrid roles, that's that's sort of a difficult one, but it's worth, I think, again, understanding or anchoring on the nuance of, like, well, what folks are looking for is they just want to see work.
+00:57:10 [Speaker 7]
+Right?
+00:57:11 [Speaker 7]
+This is cool.
+00:57:12 [Speaker 7]
+Like, this is cool.
+00:57:12 [Speaker 7]
+You've done...
+
+00:57:13 [Speaker 7]
+There's a lot of, like, little components here that are nice.
+00:57:15 [Speaker 7]
+Imagine this, like, almost full screen as the homepage where it's like, oh, cool.
+00:57:20 [Speaker 7]
+Sweet potatoes, like, got a bunch of components.
+00:57:22 [Speaker 7]
+They're all, like, seemingly real.
+00:57:23 [Speaker 7]
+Yep.
+
+00:57:23 [Speaker 7]
+They're interactive.
+00:57:25 [Speaker 7]
+I can see them.
+00:57:25 [Speaker 7]
+Like, that's amazing.
+00:57:26 [Speaker 7]
+Like, I'm immediately biased towards wanting to, like, figure out more.
+00:57:29 [Speaker 7]
+And then you can just have little blurbs to talk about, like, yeah.
+
+00:57:32 [Speaker 7]
+Here's what I did.
+00:57:32 [Speaker 7]
+Like, I designed and shipped this.
+00:57:33 [Speaker 7]
+Right?
+00:57:34 [Speaker 7]
+Getting into the nuance of these is, you know, save that for your interviews or your, you know, your phone screens or your portfolio presentation.
+00:57:40 [Speaker 7]
+Your portfolio's job is to communicate.
+
+00:57:43 [Speaker 7]
+Cool.
+00:57:43 [Speaker 7]
+Like, I do good work.
+00:57:44 [Speaker 7]
+I have them do work.
+00:57:45 [Speaker 7]
+That's representative of the work that you is whoever I'm applying to or talking to, representative of work that they need.
+00:57:50 [Speaker 7]
+And so just show me that immediately.
+
+00:57:52 [Speaker 7]
+These things are fun.
+00:57:53 [Speaker 7]
+Like, I love this.
+00:57:54 [Speaker 7]
+If this was a personal website, it's like, alright.
+00:57:55 [Speaker 7]
+This is, like, a cool little idea.
+00:57:57 [Speaker 7]
+But this being the first thing on your website is...
+
+00:57:59 [Speaker 7]
+Makes me think, like, ah, this person probably doesn't actually have interesting work, which is why they're not showing it.
+00:58:03 [Speaker 7]
+So, yeah, hope that's helpful.
+00:58:04 [Speaker 7]
+Just...
+
+00:58:05 [Speaker 2]
+Leading with...
+
+00:58:06 [Speaker 1]
+Josh has been working with a lot of people in the Talent Network just out of his own goodwill because he's a great human and just transforming people's lives with pure feedback.
+00:58:14 [Speaker 1]
+And so the fact that, like, it's just amazing.
+00:58:17 [Speaker 1]
+He offered that he offered to do that.
+00:58:19 [Speaker 1]
+I agree with everything.
+00:58:20 [Speaker 1]
+The one thing that I will add that I left a little comment up there is I I think I think you're playing on hard mode a little bit if you use the h one on your site to just say, hey.
+
+00:58:31 [Speaker 1]
+I'm Matteo.
+00:58:32 [Speaker 1]
+Mhmm.
+00:58:32 [Speaker 1]
+If you have really good work that immediately helps somebody classify you.
+00:58:35 [Speaker 1]
+Like, if you say, hey.
+00:58:36 [Speaker 1]
+I'm Matteo, and then it's a bunch of, like, really elegant, complex b to b dashboards, and that's the type of role that you want, and somebody can see those pictures and immediately be like, this person meets my needs in terms of what I'm looking for for a designer, then you can get away with it.
+
+00:58:48 [Speaker 1]
+But if you don't have work and you're not using the h one, then you're just making hiring managers play a massive guessing game, and I think you're underutilizing one of the more valuable pieces of real estate on the entire
+
+00:59:00 [Speaker 2]
+site.
+00:59:01 [Speaker 2]
+This is fun to play with.
+00:59:03 [Speaker 2]
+I will say that.
+00:59:03 [Speaker 2]
+Like, there's definitely It's
+
+00:59:04 [Speaker 1]
+very fun.
+
+00:59:05 [Speaker 2]
+It's it's it's not...
+00:59:07 [Speaker 2]
+It doesn't feel like, oh, this was a vibe coded thing.
+00:59:10 [Speaker 2]
+But it it feels very intentional.
+00:59:12 [Speaker 2]
+So there there is that that I think this has going for it.
+00:59:15 [Speaker 2]
+I just wonder if the composition on how it's revealed and shown is...
+
+00:59:19 [Speaker 2]
+Again, I think the...
+00:59:20 [Speaker 2]
+Probably the number one theme we're gonna see is about leading with the work, across all of these.
+00:59:27 [Speaker 2]
+This is this is simplicity that I really dig here.
+00:59:31 [Speaker 2]
+Like, as a hiring manager going through 30 things in a day, there is something...
+00:59:34 [Speaker 2]
+Aside from not being able to see the work, which is a is a glaring hole, there is something about this that feels like it respects my time that I appreciate.
+
+00:59:42 [Speaker 2]
+You know, I can get it at a glance.
+00:59:43 [Speaker 2]
+I can get to some really interesting, information about you, but not the work.
+00:59:49 [Speaker 2]
+Right?
+00:59:50 [Speaker 2]
+And that's the part that's missing.
+
+00:59:52 [Speaker 1]
+On with the next one.
+00:59:53 [Speaker 1]
+We got we gotta keep up the pace.
+00:59:54 [Speaker 1]
+We got a lot to get through.
+
+00:59:56 [Speaker 2]
+Absolutely.
+00:59:56 [Speaker 2]
+Let's see.
+00:59:57 [Speaker 2]
+Who do we have?
+00:59:59 [Speaker 2]
+Case Runkio.
+
+01:00:03 [Speaker 7]
+Right?
+01:00:03 [Speaker 7]
+I think so.
+
+01:00:04 [Speaker 1]
+Yeah.
+01:00:04 [Speaker 1]
+And this is reviewed by MDS, from ShiftNudge, who again is, like, literally a professional at this.
+01:00:10 [Speaker 1]
+He's...
+01:00:10 [Speaker 1]
+Gives design critique professionals.
+
+01:00:12 [Speaker 2]
+Absolutely.
+01:00:13 [Speaker 2]
+Doing it
+
+01:00:13 [Speaker 1]
+right here.
+
+01:00:14 [Speaker 2]
+Reviews.
+01:00:15 [Speaker 2]
+Oh, man.
+01:00:15 [Speaker 2]
+Yeah.
+
+01:00:16 [Speaker 1]
+It's the best of the best.
+01:00:17 [Speaker 1]
+Like, I'm I'm so pleased with...
+01:00:18 [Speaker 1]
+It's amazing.
+01:00:19 [Speaker 1]
+Keep going.
+01:00:20 [Speaker 1]
+Keep going.
+
+01:00:20 [Speaker 8]
+Case portfolio.
+01:00:23 [Speaker 8]
+I'm gonna try to go sixty seconds, but it's just not enough time.
+01:00:25 [Speaker 8]
+I'll probably go at least ninety.
+01:00:29 [Speaker 8]
+I like the colors.
+01:00:30 [Speaker 8]
+I like the the black and the the muted red.
+
+01:00:33 [Speaker 8]
+It's it's fun.
+01:00:34 [Speaker 8]
+It's got personality, but I don't know what I'm looking at yet.
+01:00:39 [Speaker 8]
+I don't know if you're a product designer, an illustrator, a brand designer.
+01:00:43 [Speaker 8]
+Right off the gate I don't know what you do.
+01:00:46 [Speaker 8]
+I'm willing to explore because it is inviting, but I just, just wanna say that right off the bat.
+
+01:00:55 [Speaker 8]
+My impact so far.
+01:00:58 [Speaker 8]
+It's a lot it's a lot to ask of me to read and understand when I'm...
+01:01:01 [Speaker 8]
+I just really wanna just...
+01:01:03 [Speaker 8]
+I wanna get a sample of your work.
+01:01:04 [Speaker 8]
+I wanna get some an idea of what you do.
+
+01:01:09 [Speaker 8]
+I still don't really know.
+01:01:11 [Speaker 8]
+I do like...
+01:01:11 [Speaker 8]
+There's some fun interactions, but I...
+01:01:14 [Speaker 8]
+It's very unlikely that I'm going to read this paragraph.
+01:01:17 [Speaker 8]
+I crafted a new payment conversion experience and increased deposits for your 60,000,000 ecommerce platform by 10%.
+
+01:01:23 [Speaker 8]
+I don't know if you were involved in the marketing or the design.
+01:01:26 [Speaker 8]
+I don't know.
+01:01:27 [Speaker 8]
+This sounds like you single handedly, helped this company make $6,000,000 maybe and that feels like a giant claim even if I did read it and so I'm not even sure, like, what to make of that yet because I haven't quite figured out, what you've done here.
+01:01:44 [Speaker 8]
+So I'm kinda, like, looking for work, I'm looking for work.
+01:01:46 [Speaker 8]
+I mean, this is cool.
+
+01:01:47 [Speaker 8]
+I love all of this.
+
+01:01:51 [Speaker 2]
+Vikings.
+01:01:52 [Speaker 2]
+Why
+
+01:01:53 [Speaker 8]
+you left sales?
+01:01:53 [Speaker 8]
+I mean, that's that's pretty cool, but, I also...
+01:01:58 [Speaker 8]
+I'm looking for a way to figure out what you're doing.
+01:02:03 [Speaker 8]
+You left sales?
+01:02:06 [Speaker 8]
+You love to build, you love to ship, I guess you love to craft, but I still don't even know.
+
+01:02:10 [Speaker 8]
+Are you designer?
+01:02:12 [Speaker 8]
+Are you, I'm not a 100% sure and these...
+01:02:18 [Speaker 8]
+All of these projects and all of this work maybe because it's so branded in in your...
+01:02:27 [Speaker 8]
+Like this font, Ingenio, Savor Life, Torch and stay in chat, dashboard first, why me?
+01:02:34 [Speaker 8]
+All of these sort of very quickly without really trying to go through it.
+
+01:02:37 [Speaker 8]
+It, feels like the same project.
+01:02:40 [Speaker 8]
+And I could tell this is a little different, but this one...
+01:02:47 [Speaker 8]
+Everything is is very, is very branded, and it's really hard to see the work.
+01:02:53 [Speaker 8]
+So if you are trying to showcase your design work, I wanna get to a place where I can see it.
+01:02:58 [Speaker 8]
+You know?
+
+01:02:58 [Speaker 8]
+I think that's the risk with, like, a very, very customized website is you risk making the website all about the website and not necessarily about the work.
+01:03:07 [Speaker 8]
+And if I wanted to potentially have, you know, get a website built that is sort of fun like this, that's a a nice showcase of its own.
+01:03:16 [Speaker 8]
+A lot of this is really cool.
+01:03:18 [Speaker 8]
+I like the interactions, and I I totally get the idea of putting some of this together.
+01:03:24 [Speaker 8]
+And, like, this composition is really nice, like, and the the theme and the ideas, and the execution of a lot of it is actually really strong.
+
+01:03:34 [Speaker 8]
+However, if you are trying to get that new client or get that new promotion or whatever and showcase your design skills, I feel like I I didn't quite get to see your design skills beyond this website on its own.
+01:03:48 [Speaker 8]
+So I hope that helps.
+
+01:03:51 [Speaker 2]
+Four minutes, Matt.
+
+01:03:53 [Speaker 1]
+It's not bad.
+01:03:54 [Speaker 1]
+Dude, look.
+01:03:54 [Speaker 1]
+See.
+01:03:54 [Speaker 1]
+Okay.
+01:03:54 [Speaker 1]
+It's defaulting to 1.2.
+
+01:03:56 [Speaker 1]
+You can go you can go to 1.5 next time.
+01:03:58 [Speaker 1]
+This time.
+01:03:59 [Speaker 1]
+I know.
+01:03:59 [Speaker 1]
+I was like, I knew they were
+
+01:04:01 [Speaker 2]
+there.
+01:04:01 [Speaker 2]
+Oh, it
+
+01:04:02 [Speaker 7]
+did it?
+
+01:04:02 [Speaker 2]
+It defaults to the 1.2?
+01:04:03 [Speaker 2]
+Nice.
+
+01:04:04 [Speaker 1]
+Yeah.
+01:04:04 [Speaker 1]
+But you can do you can do 1.5.
+
+01:04:06 [Speaker 2]
+Yeah.
+01:04:06 [Speaker 2]
+I agree.
+01:04:07 [Speaker 2]
+I...
+01:04:07 [Speaker 2]
+Again, the thing that's coming up here is show the work upfront that for me Yeah.
+
+01:04:11 [Speaker 1]
+It's almost like there are almost like there are themes.
+01:04:15 [Speaker 1]
+I I...
+01:04:16 [Speaker 1]
+So there's also...
+01:04:18 [Speaker 1]
+Sometimes I get nervous about...
+01:04:20 [Speaker 1]
+Like, a before and after is really good.
+
+01:04:22 [Speaker 1]
+Like, if you click on click on the, the torch.
+
+01:04:27 [Speaker 2]
+The torch?
+
+01:04:28 [Speaker 1]
+I didn't even know which one I was on, which maybe is an issue.
+
+01:04:30 [Speaker 2]
+This one here.
+
+01:04:31 [Speaker 1]
+Yeah.
+01:04:32 [Speaker 1]
+So, like, I guess a little bit of feedback.
+01:04:34 [Speaker 1]
+Your case, I didn't know which project I was on at the time.
+01:04:37 [Speaker 1]
+Oh, here it is.
+01:04:37 [Speaker 1]
+Torch all the way bottom right.
+
+01:04:38 [Speaker 1]
+Okay.
+01:04:38 [Speaker 1]
+I didn't see that.
+01:04:39 [Speaker 1]
+Yeah.
+01:04:40 [Speaker 1]
+I think that is part of, MDS' feedback around, like, I...
+01:04:43 [Speaker 1]
+It's...
+
+01:04:43 [Speaker 1]
+Which...
+01:04:43 [Speaker 1]
+Where are we?
+01:04:44 [Speaker 1]
+Everything looks the same kind of thing.
+01:04:46 [Speaker 1]
+I think there's a lot of visual real estate dedicated to the befores.
+01:04:50 [Speaker 1]
+I'm not against the before and after, but, like, you have a before and after.
+
+01:04:53 [Speaker 1]
+And then the very next thing I look at if you scroll down is a giant before.
+01:04:58 [Speaker 1]
+I'm like, dude, I'm skimming this thing.
+01:05:00 [Speaker 1]
+I look at this, and I'm...
+01:05:01 [Speaker 1]
+Originally, I thought it was the work that you did.
+01:05:03 [Speaker 1]
+Keep scrolling.
+
+01:05:04 [Speaker 1]
+He did it again below.
+01:05:06 [Speaker 1]
+I saw this past page, and I thought it was your work.
+01:05:08 [Speaker 1]
+And I was like, that's not very good.
+01:05:11 [Speaker 1]
+Right.
+01:05:11 [Speaker 1]
+But your whole point was, like, to redesign it, but, like, dude, it just was so much to get through before I actually saw in detail what you made that all I saw was, like, the mess before and then a bunch of text.
+
+01:05:22 [Speaker 1]
+And I I would've I would've command w'd, pretty quickly on on this case study, admittedly.
+
+01:05:28 [Speaker 2]
+This is a...
+01:05:29 [Speaker 2]
+Like, listen.
+01:05:29 [Speaker 2]
+I love the color palette.
+01:05:31 [Speaker 2]
+I like the kind of aesthetic that you're staying consistent to.
+01:05:34 [Speaker 2]
+But the thing that's doing a disservice is, like, even just all the different canted angles and the the different typography, hierarchy is is all kind of a lot to ingest very quickly.
+
+01:05:45 [Speaker 2]
+I kinda have to, like, orient myself at every section here.
+01:05:49 [Speaker 2]
+And that is counterintuitive to a hiring manager who's quickly moving through this.
+01:05:53 [Speaker 2]
+Adrian called it out in the comments.
+01:05:55 [Speaker 2]
+Look at how quick he's moving through the website.
+01:05:57 [Speaker 2]
+Although it was a quick one but still, it is the way that...
+
+01:06:00 [Speaker 1]
+I'm gonna say one more thing one more thing on the red.
+01:06:02 [Speaker 1]
+Go back to the red section, and then we probably should move on.
+01:06:04 [Speaker 1]
+I don't wanna just hammer you too hard here, Case.
+01:06:06 [Speaker 1]
+But, like, this to me, when there's an abundance of text, it just smells like Claude, man.
+01:06:13 [Speaker 1]
+When there's labels everywhere and subtext everywhere, everything has subtext.
+
+01:06:18 [Speaker 1]
+This is what Claude gives you out of the box.
+01:06:20 [Speaker 1]
+And and maybe it's not the case, but even if you hand assembled every single piece of this, I think it is important to realize that, like, this is what AI is giving you out of the box.
+01:06:30 [Speaker 1]
+And you kinda gotta get the heck away from that as a designer.
+01:06:34 [Speaker 1]
+Like, you gotta ditch all the labels everywhere.
+01:06:36 [Speaker 1]
+You gotta ditch all of the subtext everywhere because that's what it's just...
+
+01:06:40 [Speaker 1]
+You know, there's a smell.
+01:06:41 [Speaker 1]
+There's a smell about it.
+
+01:06:42 [Speaker 2]
+It is a smell.
+01:06:43 [Speaker 2]
+I love a good eyebrow, but, man, it's the m dash of the design world now, unfortunately.
+
+01:06:48 [Speaker 1]
+Yeah.
+01:06:49 [Speaker 1]
+Same, dude.
+01:06:49 [Speaker 1]
+I love eyebrows, and I can never use them again.
+01:06:51 [Speaker 1]
+Sucks.
+
+01:06:52 [Speaker 2]
+Yeah.
+01:06:53 [Speaker 2]
+Tracy q q q.
+01:06:55 [Speaker 2]
+I'm sorry.
+01:06:56 [Speaker 2]
+But it's Tracy.
+
+01:06:57 [Speaker 1]
+I'm glad you're I'm glad you're doing this.
+
+01:07:00 [Speaker 2]
+You can flame me.
+01:07:01 [Speaker 2]
+I'm fine with it.
+01:07:03 [Speaker 2]
+Eeny.
+01:07:03 [Speaker 2]
+Let's go.
+01:07:04 [Speaker 2]
+Hell, yes.
+
+01:07:05 [Speaker 2]
+We got Eeny giving feedback here.
+01:07:07 [Speaker 2]
+Let's see what we got.
+
+01:07:08 [Speaker 3]
+I loved the intro animation on your portfolio.
+01:07:11 [Speaker 3]
+However, thinking from a hiring manager's perspective where perhaps I've got dozens of, case studies to go through, it does feel like it it is a lengthy animation to, introduce your portfolio.
+01:07:23 [Speaker 3]
+And so I would bring down the animation as much as possible, and moving it by landing onto your hero section, your name, your location, and then talking about where where brand and design systems meet.
+01:07:37 [Speaker 3]
+I'd perhaps wonder about how you could say that a bit more succinctly.
+01:07:40 [Speaker 3]
+What exactly is your core focus?
+
+01:07:41 [Speaker 3]
+What are you interested in?
+01:07:42 [Speaker 3]
+I'd be more interested in who you are as a person in terms of, like, what you enjoy doing and what you enjoy creating.
+01:07:47 [Speaker 3]
+The information about where you're studying does help me calibrate instantly where you are in your career, and it's nice also to see a place where you've contributed.
+01:07:53 [Speaker 3]
+I would kill the divider line, and your navigation is quite hidden, so it makes it a bit tricky to try to, discover what else I could see on the site.
+01:07:59 [Speaker 3]
+Now I would also kill all of this because, really, it's adding more noise.
+
+01:08:02 [Speaker 3]
+I think the first thing I noticed was there's just a fair bit that I have to instantly take in when I land on the hues section as opposed to if if this led strongly and it was very much about the work.
+01:08:11 [Speaker 3]
+So I would prioritize...
+01:08:12 [Speaker 3]
+Recommend prioritizing, one, finding a better place for, your navigation to make that as discoverable and easy for me to click across.
+01:08:18 [Speaker 3]
+And then I had to click into this to begin to, alright, understand, and then still, like, that is a teaser.
+01:08:23 [Speaker 3]
+And for a teaser, it's it's quite a lot still, to then begin to realize there is an entire case study that I would have to, click into and explore to be
+
+01:08:31 [Speaker 7]
+able to
+
+01:08:31 [Speaker 3]
+see that.
+01:08:31 [Speaker 3]
+Now there is then another school to be able to then get to, like, playground, which I absolutely love the interaction design on this.
+01:08:36 [Speaker 3]
+I think it's fantastic.
+01:08:38 [Speaker 3]
+I wonder if that could just come earlier in the experience.
+01:08:40 [Speaker 3]
+Right?
+
+01:08:40 [Speaker 3]
+And not necessarily...
+01:08:42 [Speaker 3]
+In a sense, because this is, a concept, I would say, I'd go out, as far as saying, one leading with the, previously at Nike.
+01:08:48 [Speaker 3]
+So, obviously, leading with the Nike work, and then just, yeah, just starting to go straight into some of your explorations, which I can see are quite fun and interesting and tell me a lot about who you are as a person.
+01:08:58 [Speaker 3]
+So I'd be more curious to want to...
+01:09:00 [Speaker 3]
+Yeah.
+
+01:09:00 [Speaker 3]
+This is absolutely fantastic.
+01:09:01 [Speaker 3]
+I'd want to explore that, more and just see the kinds of things that you're doing outside of just work.
+01:09:05 [Speaker 3]
+And finally, I think I have a comment about your...
+01:09:08 [Speaker 3]
+About pageviews I think was...
+01:09:09 [Speaker 3]
+Is wonderfully made out in terms of the grid system and things like that.
+
+01:09:12 [Speaker 3]
+And it's just, like, delightful, interactions like this where, yeah, why is the bird running away from the feed, which is really cool.
+01:09:17 [Speaker 3]
+But I think more importantly for me was, finding this Komorui bi, projects where you're exploring a lot of dark blue light.
+01:09:22 [Speaker 3]
+And I'm not sure if you're the one I've seen on, Twitter sharing a lot of these experiments, but it made me think of that.
+01:09:27 [Speaker 3]
+And I thought, wow, absolutely fantastic.
+01:09:29 [Speaker 3]
+And I spent a fair bit of time actually just clicking through this and playing with the dark blue light.
+
+01:09:33 [Speaker 3]
+So overall, fantastic work.
+01:09:35 [Speaker 3]
+I would prioritize, I mean, on your about page, for sure, I want to read about you.
+01:09:39 [Speaker 3]
+I want to learn more about you.
+01:09:40 [Speaker 3]
+However, on the homepage, I would want to I would want to just instantly be able to see work without having to parse how much of this is, first of all, as a concept.
+01:09:48 [Speaker 3]
+There's an entire case that you have to click into.
+
+01:09:50 [Speaker 3]
+So, I mean, if that is the way you want to arrange it, then you'd introduce...
+01:09:53 [Speaker 3]
+You'd rather invite people into your world and into the work that you do, then by by all means, go for that.
+01:09:58 [Speaker 3]
+However, when there is already a lot of words upfront that I have to do the hard work of sort of passing through what am I supposed to be looking at and understanding here, then I'm not...
+01:10:06 [Speaker 3]
+I will not necessarily be inclined to want to read more and go into a full case study.
+01:10:10 [Speaker 3]
+So those are the things that I prioritize, just like cleaning up the words a lot.
+
+01:10:13 [Speaker 3]
+Like, these are crazy projects that I will want to immediately get into, out so far.
+01:10:17 [Speaker 3]
+Like, yeah, find better ways of just, like, introducing that very quickly higher up on the page and really bringing joyful interactions that makes it instantly noticeable as opposed to hiding those further down the page.
+
+01:10:29 [Speaker 2]
+I'm...
+01:10:29 [Speaker 2]
+I think we only...
+01:10:30 [Speaker 2]
+I only...
+01:10:30 [Speaker 2]
+I feel like we've only got time to give, like, one piece of feedback.
+01:10:33 [Speaker 2]
+And I'll say this.
+
+01:10:34 [Speaker 2]
+Your work, Tracy, is killer.
+01:10:36 [Speaker 2]
+You have the unfair advantage of having really great work to showcase.
+01:10:39 [Speaker 2]
+You're giving it good real estate here.
+01:10:41 [Speaker 2]
+Give it even more.
+01:10:42 [Speaker 2]
+I think that, you know, you have some really fun interactions that are going on.
+
+01:10:46 [Speaker 2]
+Tone down some of the things that are competing for visual real estate.
+01:10:49 [Speaker 2]
+Blow up the work a little bit.
+01:10:51 [Speaker 2]
+And then, like, if there's some progressive disclosure way to show some of those interactions, I think that's a...
+01:10:56 [Speaker 2]
+That's standout, but this is good.
+
+01:10:58 [Speaker 1]
+I I left a few kinda nitpicky, pieces, but, that one...
+01:11:03 [Speaker 1]
+I actually had a really negative reaction to the header, which I, I left the comment and I wanna bring it up because it's like, it's so de like, if you scroll the scrolling version in dark mode specifically, go to dark mode.
+01:11:16 [Speaker 1]
+Okay.
+01:11:16 [Speaker 1]
+It's like, right.
+01:11:17 [Speaker 1]
+It's huge.
+
+01:11:18 [Speaker 1]
+First off, It's huge and it's right in between that transparency level where it's not, like, subtle, but it's too...
+01:11:24 [Speaker 1]
+It's letting too much light in where it's actually just distracting.
+01:11:26 [Speaker 1]
+Like, the blur is just, like, flashing at me.
+01:11:28 [Speaker 1]
+It's too big and it was like, I had more of a negative reaction to that than
+
+01:11:33 [Speaker 2]
+I would have thought.
+01:11:34 [Speaker 2]
+Because the rest
+
+01:11:34 [Speaker 1]
+of the product is like...
+01:11:35 [Speaker 1]
+The rest of the thing is, like, really nice.
+01:11:36 [Speaker 1]
+Also, this line of text in the header where it says, like, featured products, I don't know why that exists.
+01:11:41 [Speaker 1]
+I feel like you could just delete that, and the whole thing would become much clearer.
+01:11:45 [Speaker 1]
+Where does it
+
+01:11:46 [Speaker 2]
+say featured products?
+
+01:11:47 [Speaker 1]
+It's...
+01:11:48 [Speaker 1]
+Well, exactly.
+01:11:49 [Speaker 1]
+You're not you're not even reading it.
+01:11:50 [Speaker 1]
+So scroll up to the very header.
+01:11:53 [Speaker 1]
+So, like, there's, like, this two line label system, but it's using the same typography as each individual product.
+
+01:11:59 [Speaker 1]
+Yeah.
+01:12:00 [Speaker 1]
+Yeah.
+01:12:00 [Speaker 1]
+Yeah.
+01:12:00 [Speaker 1]
+It's...
+01:12:01 [Speaker 1]
+I don't actually think you I don't think you need that.
+
+01:12:03 [Speaker 1]
+I know this is the work.
+01:12:04 [Speaker 1]
+I know these are the projects.
+01:12:04 [Speaker 1]
+I don't think you need to, like, introduce this with a piece of text that's actually kinda throwing off the composition because I wanna read the the top right.
+01:12:10 [Speaker 1]
+I think that's a really cool placement.
+01:12:12 [Speaker 1]
+That's cool.
+
+01:12:12 [Speaker 1]
+But then, like, the feature products two liner steals from that.
+01:12:15 [Speaker 1]
+And then echoing any thing, it's not just about that I also didn't realize that you had to click twice in order to open up the case study.
+01:12:21 [Speaker 1]
+It's it's like you gotta understand what the hiring manager's trying to do.
+01:12:25 [Speaker 1]
+They're just trying to freaking get to the work as fast as possible so they can make a ten second decision of whether they wanna invest more time.
+01:12:31 [Speaker 1]
+And you're making two clicks.
+
+01:12:33 [Speaker 1]
+It's two clicks every single time.
+01:12:34 [Speaker 1]
+Like, just make it one click.
+
+01:12:37 [Speaker 2]
+And even with the the misgivings, that, you know, you can decide if you wanna correct, still showing the work upfront, it it just just does so much carrying in those cases.
+
+01:12:47 [Speaker 1]
+This is a good portfolio.
+01:12:48 [Speaker 1]
+Yeah.
+01:12:48 [Speaker 1]
+There's like...
+01:12:49 [Speaker 1]
+We're we're getting a little bit more granular in terms of what needs to be improved because there is...
+01:12:53 [Speaker 1]
+This is solid.
+
+01:12:54 [Speaker 2]
+We're gonna get into Shreyas Patel.
+01:12:58 [Speaker 2]
+Who do we have?
+01:12:59 [Speaker 2]
+Kyle.
+01:12:59 [Speaker 2]
+Alright.
+01:13:00 [Speaker 2]
+A two minuteer.
+
+01:13:01 [Speaker 1]
+Who is this guy?
+
+01:13:02 [Speaker 11]
+Hey, Shreyas.
+01:13:04 [Speaker 11]
+It's been cool to go through your portfolio.
+01:13:06 [Speaker 11]
+Left some comments, about the questions that you put in here, but I wanted to touch on this part a little bit.
+01:13:14 [Speaker 11]
+I think this is a pretty fun, like, clever idea, and I think the main thing that I was feeling while I was going through it is I just really wish it was bigger.
+
+01:13:26 [Speaker 1]
+Playback speed.
+01:13:26 [Speaker 1]
+I'm on
+
+01:13:27 [Speaker 11]
+a 27 inch monitor right now, and it's almost full screen.
+01:13:29 [Speaker 11]
+Not quite.
+01:13:30 [Speaker 11]
+But there's plenty of real estate that you could work with.
+01:13:32 [Speaker 11]
+I know that, you know, it can be a little bit more challenging on smaller view ports and stuff, so that's something to solve for.
+01:13:36 [Speaker 11]
+But the readability at this size and with sort of the handwritten, you know, thinner font is just harder to to read at this, at this size.
+
+01:13:45 [Speaker 11]
+But I think it's a clever idea.
+01:13:46 [Speaker 11]
+There's a lot of good stuff in here.
+01:13:47 [Speaker 11]
+I like some of the diversity of what you're putting in here.
+01:13:52 [Speaker 11]
+Yeah.
+01:13:52 [Speaker 11]
+So overall, I kind of I think I'd like to just see this larger, just to make it easier for me to consume.
+
+01:13:59 [Speaker 11]
+Aside from that, yeah, I made the note about, this going, I think, a little bit too wide.
+01:14:04 [Speaker 11]
+And it's a little...
+01:14:06 [Speaker 11]
+Chaotic is the wrong word, but it's a little, like, hard for me to figure out what I should even click on.
+01:14:11 [Speaker 11]
+And, like, I noticed this early, like, oh, cool.
+01:14:13 [Speaker 11]
+You know, there's...
+
+01:14:13 [Speaker 11]
+This is interactive.
+01:14:15 [Speaker 11]
+Whereas, like, I'm seeing this, and this is not interactive at all.
+01:14:17 [Speaker 11]
+This one, it is, which I discovered through the hover state.
+01:14:20 [Speaker 11]
+But, but yeah, like, I eventually figured out, oh, this is the right clicking word.
+01:14:24 [Speaker 11]
+So it's just...
+
+01:14:25 [Speaker 11]
+There's there's, like, a lot of interactions here that I think some kind of organization and stuff, I think would be more helpful than than...
+01:14:31 [Speaker 11]
+This is a little bit of a shotgun blast right now.
+01:14:33 [Speaker 11]
+Yeah.
+01:14:34 [Speaker 11]
+Overall, I think that things look good.
+01:14:36 [Speaker 11]
+You're highlighting your your work early on and towards the top.
+
+01:14:41 [Speaker 11]
+I think that's great.
+01:14:43 [Speaker 11]
+So, yeah, overall, I think you have a lot of good stuff going on here, and there's just a few areas that could get a little bit of tweaking, a little bit of tightening, but nice work, man.
+
+01:14:50 [Speaker 2]
+Kyle, I put you at 1.5 speed, and it still sounded like you were talking slow.
+
+01:14:57 [Speaker 1]
+I texted Kyle, and I was like, yo.
+01:14:58 [Speaker 1]
+You know if Tommy doesn't get off that plan in time, you're the cohost.
+01:15:01 [Speaker 1]
+Right?
+
+01:15:04 [Speaker 2]
+Yeah.
+01:15:05 [Speaker 2]
+Yeah.
+01:15:06 [Speaker 2]
+Agree with some of that feedback.
+01:15:07 [Speaker 2]
+I like the, give it a little bit of whip.
+01:15:09 [Speaker 2]
+I love the...
+
+01:15:10 [Speaker 2]
+I...
+01:15:12 [Speaker 2]
+Okay.
+01:15:12 [Speaker 2]
+So made changes maybe?
+01:15:15 [Speaker 2]
+Were changes made?
+01:15:17 [Speaker 2]
+Is he on a widescreen monitor maybe?
+
+01:15:19 [Speaker 2]
+He's just
+
+01:15:19 [Speaker 1]
+on a super widescreen monitor.
+
+01:15:21 [Speaker 2]
+That's what it is.
+01:15:21 [Speaker 2]
+Okay.
+01:15:22 [Speaker 2]
+Yeah.
+
+01:15:23 [Speaker 1]
+I I I
+
+01:15:23 [Speaker 2]
+like the feedback to make it, like, a little bit more digestible cognitively.
+01:15:26 [Speaker 2]
+But,
+
+01:15:27 [Speaker 1]
+I think it's kinda just the combination of the really narrow column.
+01:15:29 [Speaker 1]
+I'm a sucker for narrow narrow columns.
+01:15:31 [Speaker 1]
+Like, I think what he's done with it where it's, like, wide hero, narrow column, and then wide base is actually kinda cool, and I really like the case study layouts.
+01:15:39 [Speaker 1]
+Like, if you if
+
+01:15:40 [Speaker 2]
+you click...
+
+01:15:42 [Speaker 1]
+It's nice, dude.
+01:15:42 [Speaker 1]
+The transition into it is beautiful.
+01:15:44 [Speaker 1]
+The really clear table of contents on the left.
+01:15:47 [Speaker 1]
+Everything's really narrow.
+01:15:47 [Speaker 1]
+I don't have a lot of eye tracking to be able to consume it.
+
+01:15:50 [Speaker 1]
+Everything's...
+01:15:50 [Speaker 1]
+There's a lot of imagery.
+01:15:52 [Speaker 1]
+Like
+
+01:15:52 [Speaker 2]
+I love how visual these studies are here.
+01:15:54 [Speaker 2]
+This is fantastic, actually.
+
+01:15:56 [Speaker 1]
+This...
+01:15:56 [Speaker 1]
+Even the way that he, like, he, like, really intentionally frame...
+01:15:59 [Speaker 1]
+Like, he framed all of his work in a way that feels, like, scared, and one of them all look good.
+
+01:16:05 [Speaker 2]
+It it feels like I know what I'm getting into.
+01:16:07 [Speaker 2]
+I can jump in and out, and I can quickly scan.
+01:16:09 [Speaker 2]
+There's a lot here that I love.
+01:16:11 [Speaker 2]
+And and just quick shout out to the old Mac UI here.
+01:16:14 [Speaker 2]
+Right?
+
+01:16:14 [Speaker 2]
+Like, that's cool, this button.
+
+01:16:15 [Speaker 1]
+Oh, it's so good, dude.
+01:16:17 [Speaker 1]
+The buttons are...
+01:16:18 [Speaker 1]
+I'm actually...
+01:16:18 [Speaker 1]
+This is this is a really good portfolio for me, and I really like it a lot.
+01:16:22 [Speaker 1]
+I don't have, like, a ton of things that are jumping out.
+
+01:16:25 [Speaker 1]
+I left one comment, which is, I love this book, dude.
+
+01:16:29 [Speaker 2]
+Yeah.
+01:16:29 [Speaker 2]
+I think it's so good.
+01:16:30 [Speaker 2]
+It's so good.
+01:16:32 [Speaker 2]
+Yeah.
+01:16:34 [Speaker 2]
+Top portfolio
+
+01:16:34 [Speaker 1]
+Cameo is.
+01:16:35 [Speaker 1]
+I don't know what Cameo is.
+01:16:37 [Speaker 1]
+It's...
+01:16:37 [Speaker 1]
+It doesn't feel like a work project, but, like, Cameo just by itself.
+01:16:41 [Speaker 1]
+Like, I think it was maybe just the issue.
+
+01:16:42 [Speaker 1]
+It was just, like, the title.
+01:16:43 [Speaker 1]
+I could just...
+01:16:44 [Speaker 1]
+I didn't...
+01:16:44 [Speaker 1]
+I don't like when I come to a portfolio, and in the first five seconds, I'm a little bit confused what I'm looking at.
+
+01:16:50 [Speaker 2]
+And I wonder Give me a description here that's, like, a Yeah.
+
+01:16:53 [Speaker 1]
+What is this?
+
+01:16:54 [Speaker 2]
+You know?
+01:16:54 [Speaker 2]
+Give me something that that, like, I drill into.
+01:16:56 [Speaker 2]
+Like, really let me...
+01:16:58 [Speaker 2]
+Like, really make the drill into a thing.
+01:17:01 [Speaker 2]
+Yeah.
+
+01:17:02 [Speaker 2]
+Favorite portfolio so far.
+01:17:05 [Speaker 2]
+I'm going over to Tracy Le Lung.
+01:17:10 [Speaker 2]
+Man, I'm a get roasted.
+
+01:17:11 [Speaker 1]
+Let's do it.
+
+01:17:13 [Speaker 2]
+Femke.
+01:17:14 [Speaker 2]
+Femke.
+01:17:15 [Speaker 2]
+Hell yeah, dude.
+01:17:16 [Speaker 2]
+Man, I'm so stoked with how
+
+01:17:18 [Speaker 1]
+Another one with a ton of portfolio review reps under her belt.
+01:17:22 [Speaker 1]
+This
+
+01:17:22 [Speaker 7]
+You guys
+
+01:17:23 [Speaker 2]
+wanted hiring managers.
+01:17:24 [Speaker 2]
+Here you go.
+01:17:24 [Speaker 2]
+You you...
+01:17:25 [Speaker 2]
+We got plenty of them.
+
+01:17:27 [Speaker 12]
+Alright.
+01:17:28 [Speaker 12]
+You asked, do I understand what you do in ten seconds?
+01:17:31 [Speaker 12]
+First of all, I don't know your name.
+01:17:32 [Speaker 12]
+I am drawn to this flower, and now I see it reveals your name.
+01:17:36 [Speaker 12]
+I'm not sure why that's hidden or what the purpose of that is.
+
+01:17:38 [Speaker 12]
+So that's my ten seconds spent.
+01:17:40 [Speaker 12]
+I then see you're an end to end product designer at Society General.
+01:17:42 [Speaker 12]
+I don't know this company personally.
+01:17:43 [Speaker 12]
+I would love to go to click on this to find out more about this company.
+01:17:46 [Speaker 12]
+I'm also kinda curious to know what team you're on or what area of the product are you responsible for.
+
+01:17:51 [Speaker 12]
+I get that it's a financial product is what I'm getting from this mention about financial workflows, but I'm not really learning anything about what you own or what area of the product you're responsible for.
+01:18:00 [Speaker 12]
+So it's not really telling me much more other than your product designer and a company, which feels a little bit vague.
+01:18:06 [Speaker 12]
+So I would kinda try to push you to be more specific in positioning yourself.
+
+01:18:10 [Speaker 2]
+Love that.
+01:18:11 [Speaker 2]
+Listen.
+01:18:12 [Speaker 2]
+My favorite thing about these critiques is the kind not nice.
+01:18:17 [Speaker 2]
+And that's what you need.
+01:18:18 [Speaker 2]
+Right?
+
+01:18:18 [Speaker 2]
+Like, you need kind not nice.
+01:18:21 [Speaker 2]
+This is this is fantastic.
+01:18:25 [Speaker 2]
+Yeah.
+01:18:25 [Speaker 2]
+Feedback.
+01:18:26 [Speaker 2]
+This portfolio itself, there's a simplicity that I do appreciate.
+
+01:18:32 [Speaker 2]
+It's not immediately apparent.
+01:18:35 [Speaker 2]
+Like, you're making me think a lot.
+
+01:18:39 [Speaker 1]
+I didn't even realize you click on the name to expand.
+01:18:42 [Speaker 1]
+Did you realize that?
+
+01:18:44 [Speaker 2]
+No.
+01:18:44 [Speaker 2]
+I didn't initially.
+01:18:45 [Speaker 2]
+And that's what I mean.
+01:18:46 [Speaker 2]
+Like, you're making me kind of work for it.
+01:18:47 [Speaker 2]
+I don't...
+
+01:18:48 [Speaker 2]
+Don't make me...
+01:18:48 [Speaker 2]
+Like, it's clever.
+01:18:50 [Speaker 2]
+It's too clever.
+01:18:50 [Speaker 2]
+Don't make me work for it is is how I think about this.
+
+01:18:54 [Speaker 1]
+Yeah.
+01:18:55 [Speaker 1]
+I I think I think, like, when you're gonna have really unique patterns too, you kinda...
+01:19:01 [Speaker 1]
+They gotta kinda be consistent.
+01:19:03 [Speaker 1]
+Like, I think the thing that was really confusing to me is b has a hover state, C has a hover state, but D doesn't.
+
+01:19:13 [Speaker 2]
+And
+
+01:19:13 [Speaker 1]
+I'm like, wait, what the, but they're the same visually.
+01:19:15 [Speaker 1]
+They're the exact same thing.
+01:19:19 [Speaker 1]
+And only the middle one has two underlines.
+01:19:25 [Speaker 1]
+Like there are two underlines that, oh, I actually just realized that they each have their own hover state or maybe it's on a timer.
+01:19:31 [Speaker 1]
+I don't, I guess I don't, I don't really get it.
+
+01:19:33 [Speaker 1]
+I, I, it's not like connecting to me how I'm supposed to consume this portfolio.
+01:19:37 [Speaker 1]
+And, again, you just gotta remember that, like, people have ten seconds.
+01:19:39 [Speaker 1]
+And you can totally get by with a layout like this if you can if you can still make it intuitive.
+01:19:44 [Speaker 1]
+And I don't think this is I don't think this is intuitive enough.
+
+01:19:47 [Speaker 2]
+There's not a heuristic here that's telling me, like, oh, this is something I should...
+01:19:50 [Speaker 2]
+I mean, I guess that is the carrot.
+01:19:51 [Speaker 2]
+But...
+01:19:52 [Speaker 2]
+Yeah.
+
+01:19:53 [Speaker 1]
+But it took me too long to find the carrot.
+01:19:54 [Speaker 1]
+I didn't I didn't actually see it.
+01:19:55 [Speaker 1]
+I think it's cool.
+01:19:56 [Speaker 1]
+I think the design inside of the carrot...
+01:19:57 [Speaker 1]
+Like, there's a...
+
+01:19:58 [Speaker 1]
+It's a fresh aesthetic.
+01:19:59 [Speaker 1]
+Like, there's something here.
+01:20:01 [Speaker 1]
+I think you just can't make people think quite as much.
+
+01:20:04 [Speaker 2]
+Yeah.
+01:20:04 [Speaker 2]
+Adrian says, oh, no.
+01:20:05 [Speaker 2]
+Don't make them think.
+01:20:06 [Speaker 2]
+Thinking is hard.
+01:20:07 [Speaker 2]
+I mean, we can be cynical about it, but that...
+
+01:20:10 [Speaker 2]
+That's the truth.
+01:20:10 [Speaker 2]
+Again, hiring managers eating a sandwich, going through 50 portfolios.
+01:20:16 [Speaker 2]
+Do you want the job?
+01:20:17 [Speaker 2]
+Yeah.
+01:20:17 [Speaker 2]
+Do To be right, you know?
+
+01:20:19 [Speaker 1]
+Even, like, for the talent network, like, I, like, batch this stuff, man.
+01:20:22 [Speaker 1]
+Like, I'll go through 70 in a Saturday.
+01:20:25 [Speaker 1]
+Like, I'm try...
+01:20:26 [Speaker 1]
+I'm, like, I'm moving, man.
+01:20:27 [Speaker 1]
+I'm moving through 70 of these things.
+
+01:20:29 [Speaker 2]
+Yeah.
+01:20:29 [Speaker 2]
+Yeah.
+01:20:30 [Speaker 2]
+I mean, you know, you you you gotta you gotta play the game or don't.
+01:20:34 [Speaker 2]
+But then don't be upset when you're not getting picked.
+01:20:37 [Speaker 2]
+We have Gal.
+
+01:20:38 [Speaker 2]
+Gal Zirrigo.
+01:20:40 [Speaker 2]
+See what we got.
+
+01:20:41 [Speaker 1]
+Dropping the link in chat here.
+
+01:20:43 [Speaker 2]
+Jeff again.
+
+01:20:44 [Speaker 1]
+Oh, it's another Jeff one.
+01:20:45 [Speaker 1]
+Nice.
+01:20:47 [Speaker 1]
+Alright.
+01:20:47 [Speaker 1]
+Where we at?
+
+01:20:48 [Speaker 4]
+Hi, Gal.
+01:20:49 [Speaker 4]
+Thanks for letting me review your portfolio.
+01:20:51 [Speaker 4]
+I'm Jeff.
+01:20:51 [Speaker 4]
+And I'm gonna start this off as the same way I do with some of the others in stating that I really just...
+01:20:55 [Speaker 4]
+And we only really have, like, a few seconds to look at portfolio before we decide if it's worth exploring.
+
+01:21:00 [Speaker 4]
+And you're putting some good work upfront and center.
+01:21:02 [Speaker 4]
+I think that's a good strong start.
+01:21:04 [Speaker 4]
+I do think that with a style like this, it is a little bit hard to tell where one project starts and the other stops.
+01:21:09 [Speaker 4]
+You know, between brow and off band here.
+01:21:12 [Speaker 4]
+It's really more of a grid and it reads a little bit more like a port, a blog rather than it does a portfolio.
+
+01:21:17 [Speaker 4]
+I can see the influence of designers who work in that blog like style here.
+01:21:21 [Speaker 4]
+I think, like, it reminds me a little bit of Benjie Taylor, but I do think that there's just there's just too much going on.
+01:21:24 [Speaker 4]
+And some of what makes that format valuable, is getting muddled a little bit, and it's pulling away from from the work.
+01:21:30 [Speaker 4]
+So things like the time, the temperature, the chat box, a lot of different text styles, link styles, button styles.
+01:21:37 [Speaker 4]
+I think that there is probably like a little bit of a...
+
+01:21:40 [Speaker 4]
+A lot of these things are competing with each other, but then I also think that there's a priority problem here.
+01:21:44 [Speaker 4]
+There's just too much asking for my attention.
+01:21:46 [Speaker 4]
+And I think some of it isn't adding value.
+01:21:48 [Speaker 4]
+I do like the solutions that you're showing here.
+01:21:50 [Speaker 4]
+I think this is something that people can relate to.
+
+01:21:52 [Speaker 4]
+A Mac app or toolbar app that shows your AI usage, limits in in this sort of notch.
+01:21:58 [Speaker 4]
+And so I I I like that.
+01:22:00 [Speaker 4]
+But I do think you could probably put a little bit more love into this into how you illustrate this.
+01:22:04 [Speaker 4]
+You know, could some of these things be more interactive?
+01:22:06 [Speaker 4]
+Could there be more hero moments or an actual hero moment?
+
+01:22:09 [Speaker 4]
+You know, could you voice over some of this stuff and explain what it solves?
+01:22:12 [Speaker 4]
+I really do love long form content, but I think there are more captivating ways to capture those moments than just some small, animated GIF to scroll past.
+01:22:20 [Speaker 4]
+I do love that this is showing work that's been built.
+01:22:22 [Speaker 4]
+I can dive into these areas.
+01:22:23 [Speaker 4]
+I can go quite deep into these.
+
+01:22:24 [Speaker 4]
+I think that that's great.
+01:22:25 [Speaker 4]
+I can also just try the software myself so I can dig a little deeper and look under the hood.
+01:22:30 [Speaker 4]
+So I think that stuff's really great.
+01:22:32 [Speaker 4]
+Overall, I'd say that what this portfolio needs to take it to the next level is really just some visual hierarchy, reduce and simplify some of the styles, and, and just think more about how you can create more compelling ways to illustrate the the work that you did.
+01:22:43 [Speaker 4]
+Do that, and I think that this becomes a pretty decent portfolio.
+
+01:22:47 [Speaker 2]
+Really into these feed portfolios.
+01:22:49 [Speaker 2]
+It's...
+01:22:49 [Speaker 2]
+I think that's a new composition that I'm a fan of.
+
+01:22:54 [Speaker 1]
+I...
+01:22:55 [Speaker 1]
+I'm a fan.
+01:22:56 [Speaker 1]
+I I think it does come back to some of the things that we were talking about last week with John Buys where I thought you brought up a really good point where what made that portfolio so good was you could see the connection between projects in a single scroll track, and you lose that with the feed.
+01:23:09 [Speaker 1]
+I think it's actually a really interesting design challenge to think through that totally has some creative solutions to it where given a single feed that somebody can just get lost in and they don't feel like they have to navigate, how do you create visual association between work so that somebody can, at a glance, squint and kinda see where the lines are drawn?
+01:23:26 [Speaker 1]
+There's something there for sure.
+
+01:23:28 [Speaker 2]
+I like these smaller...
+01:23:30 [Speaker 2]
+I like the old nineteen ninety nine width containers.
+01:23:33 [Speaker 2]
+That's probably...
+01:23:34 [Speaker 2]
+If I if I brought my portfolio to life, I would do something like that.
+01:23:39 [Speaker 2]
+Curious how many people use these ask about me, these AI containers.
+
+01:23:44 [Speaker 1]
+I never want to.
+01:23:45 [Speaker 1]
+I did just test it, and I I actually kinda liked how it was designed, but I I don't...
+01:23:50 [Speaker 1]
+It's just slow, man.
+01:23:51 [Speaker 1]
+It's all about speed and efficiency.
+01:23:52 [Speaker 1]
+Like, hiring managers trying to figure out what is the most efficient way to grade somebody.
+
+01:23:58 [Speaker 1]
+I...
+01:23:59 [Speaker 1]
+I'm gonna say one thing too, which it sounds like Jeff alluded to.
+01:24:04 [Speaker 1]
+It's not always possible, and I get that Brow is a Mac app.
+01:24:07 [Speaker 1]
+But I, dude, I don't...
+01:24:12 [Speaker 1]
+I think we're, like, exiting the era of, PNGs and even, like, Screen Studio zoomed video assets.
+
+01:24:21 [Speaker 2]
+Yeah.
+01:24:22 [Speaker 2]
+It's really
+
+01:24:23 [Speaker 1]
+freaking easy to take your designs, have them represented in code, and render that as code on your portfolio.
+01:24:29 [Speaker 1]
+Make them interactive.
+01:24:30 [Speaker 1]
+You can animate them in.
+01:24:32 [Speaker 1]
+You do...
+01:24:32 [Speaker 1]
+You could do whatever the hell you want with them.
+
+01:24:34 [Speaker 1]
+I don't think I will ever put a raw mock up of a product on anything that I design ever again.
+
+01:24:42 [Speaker 2]
+So this is brow.
+01:24:43 [Speaker 2]
+This is a way to see your token limits.
+01:24:48 [Speaker 2]
+Like, yeah.
+01:24:48 [Speaker 2]
+Why is it...
+01:24:49 [Speaker 2]
+Like, why is
+
+01:24:49 [Speaker 1]
+it that
+
+01:24:49 [Speaker 2]
+You could...
+
+01:24:50 [Speaker 1]
+I I get that it's a Mac app.
+01:24:51 [Speaker 1]
+Like, so it's, like, it's tough.
+01:24:52 [Speaker 1]
+You know?
+01:24:52 [Speaker 1]
+But, like, dude, it's a one shot.
+01:24:55 [Speaker 1]
+It takes five minutes and then you have something that's way more crisp and feels better.
+
+01:25:00 [Speaker 1]
+Even on the invite website, dude, like I just was rendering the entire widget, even in the CTA bar at the bottom of the page.
+01:25:06 [Speaker 1]
+I was like, screw it.
+01:25:06 [Speaker 1]
+It's fully interactive.
+01:25:07 [Speaker 1]
+It's fun.
+01:25:08 [Speaker 1]
+Like I think, and it looks better in its lighter weight.
+
+01:25:10 [Speaker 1]
+Like, there's just so many pros to doing it in code, and it used to be tedious, but now it is not.
+01:25:15 [Speaker 1]
+So
+
+01:25:16 [Speaker 2]
+Make this an interactive demo.
+01:25:18 [Speaker 2]
+There.
+01:25:18 [Speaker 2]
+Now it's in your MCP.
+01:25:20 [Speaker 2]
+Just feed that to your agent.
+01:25:22 [Speaker 2]
+Done.
+
+01:25:23 [Speaker 1]
+Yeah.
+
+01:25:23 [Speaker 2]
+You know?
+01:25:24 [Speaker 2]
+Cool.
+01:25:25 [Speaker 2]
+Moving on.
+01:25:26 [Speaker 2]
+Gabe.
+01:25:27 [Speaker 2]
+Oh, here's the one.
+
+01:25:27 [Speaker 2]
+I wanted to see this so
+
+01:25:29 [Speaker 1]
+bad.
+01:25:29 [Speaker 1]
+Alright.
+
+01:25:29 [Speaker 2]
+Here we go.
+01:25:30 [Speaker 2]
+Here we go.
+01:25:31 [Speaker 2]
+Claim my portfolio.
+01:25:32 [Speaker 2]
+That's sick, by the way.
+01:25:33 [Speaker 2]
+I love how this looks.
+
+01:25:34 [Speaker 2]
+This is turn So
+
+01:25:35 [Speaker 1]
+I I tried to hack...
+01:25:36 [Speaker 1]
+Okay.
+01:25:36 [Speaker 1]
+Let me get a quick disclaimer for Gabe.
+01:25:38 [Speaker 1]
+It's gonna make him feel better.
+01:25:40 [Speaker 1]
+I tried to hack in flight to support this by having this like claim your portfolio so that you could add this to your site without having to even touch the in flight off.
+
+01:25:49 [Speaker 1]
+And it totally worked.
+01:25:50 [Speaker 1]
+And I was really happy about it, except there's a bug.
+01:25:53 [Speaker 1]
+Like, it it, like, generates questions for you.
+01:25:55 [Speaker 1]
+It's like when you share work, it'll help you get good feedback by, like, asking questions to your team.
+01:26:00 [Speaker 1]
+But it couldn't use the question feature because you weren't an author yet because you hadn't claimed it yet and, like, created this chicken and the egg problem.
+
+01:26:07 [Speaker 1]
+So Gabe was a little bit embarrassed that it...
+01:26:09 [Speaker 1]
+These are, like, not using our harness, and these questions are horrendous.
+01:26:14 [Speaker 1]
+It's a little bit tough.
+01:26:15 [Speaker 1]
+So look past that.
+01:26:17 [Speaker 1]
+He's he's not a he's not a bonehead.
+
+01:26:19 [Speaker 1]
+I promise.
+01:26:19 [Speaker 1]
+Now we can watch Josh.
+
+01:26:22 [Speaker 7]
+Alright.
+01:26:22 [Speaker 7]
+Here we have a a lovely portfolio.
+01:26:24 [Speaker 7]
+Let me open up these comments and kinda answer these questions.
+01:26:26 [Speaker 7]
+Alright.
+01:26:26 [Speaker 7]
+Gabe says, is my headline clear?
+
+01:26:29 [Speaker 7]
+Does it position me?
+01:26:30 [Speaker 7]
+So, interestingly, I...
+01:26:32 [Speaker 7]
+This is probably specific to me, but I think design partner is pretty overused these days.
+01:26:36 [Speaker 7]
+I also think, it has a lot of connotations as some achievement.
+01:26:39 [Speaker 7]
+I think how I at least know Gabe to work, which is much more than just a design partner.
+
+01:26:42 [Speaker 7]
+You're actually embedding.
+01:26:43 [Speaker 7]
+You're being a fractional.
+01:26:44 [Speaker 7]
+I think you had a design.
+01:26:45 [Speaker 7]
+So design partner feels a little bit kinda common for who I know you to be, and doesn't really speak to your differentiation.
+01:26:51 [Speaker 7]
+First generation products feels to me like this is trying to be different for the sake of being different.
+
+01:26:54 [Speaker 7]
+I don't have to think about, like, okay.
+01:26:56 [Speaker 7]
+Wait.
+01:26:56 [Speaker 7]
+Is this for, like, people who are first generation in America?
+01:26:58 [Speaker 7]
+Like, what does that mean?
+01:26:58 [Speaker 7]
+You know?
+
+01:26:59 [Speaker 7]
+I think what you mean is more like I want to be working from zero to one, which is probably overused, which is why you're looking for, like, a different, you know, headline.
+01:27:05 [Speaker 7]
+But, I think it doesn't necessarily position you against, like, who you wanna work for, but there's probably ways to just be a little bit more direct, and clear, you know, which is like, I help companies ship the first version of the product or or I embed, you know, accident and kind of design for seed seed stage startups.
+01:27:18 [Speaker 7]
+Whatever it is, I think, you know, could be more specific, but I'm gonna get to hear you.
+01:27:22 [Speaker 7]
+Cool.
+01:27:23 [Speaker 7]
+Your second question is the feature carousel, especially on mobile.
+
+01:27:26 [Speaker 7]
+Okay.
+01:27:26 [Speaker 7]
+Well, let's look at that on mobile.
+01:27:28 [Speaker 7]
+I mean, Safari, which I don't typically use.
+01:27:31 [Speaker 7]
+So let me find
+
+01:27:32 [Speaker 1]
+out how to go to
+
+01:27:33 [Speaker 7]
+dev tools, which is...
+01:27:35 [Speaker 7]
+Let us find out.
+01:27:36 [Speaker 7]
+Wow.
+01:27:36 [Speaker 7]
+Can't find the set...
+01:27:37 [Speaker 7]
+Settings advanced.
+
+01:27:38 [Speaker 7]
+K.
+01:27:38 [Speaker 7]
+We'll have to set that up.
+01:27:39 [Speaker 7]
+So we'll do that later.
+01:27:40 [Speaker 7]
+We'll just try to shrink this window, see if this works.
+01:27:43 [Speaker 7]
+Oh, okay.
+
+01:27:45 [Speaker 7]
+Yeah.
+01:27:45 [Speaker 7]
+I mean, I think this...
+01:27:46 [Speaker 7]
+Like, this is cool.
+01:27:47 [Speaker 7]
+If this is what I assume you mean by future carousel, I think that's pretty nice.
+
+01:27:50 [Speaker 1]
+One of
+
+01:27:50 [Speaker 7]
+the things that I...
+01:27:51 [Speaker 7]
+Oh, it's going on....
+01:27:51 [Speaker 7]
+Popular...
+01:27:52 [Speaker 7]
+This is a video.
+01:27:53 [Speaker 7]
+Because I love here how this is a video.
+
+01:27:55 [Speaker 7]
+This to me and then coming back, I think most of your work was, was videos.
+01:27:58 [Speaker 7]
+These are all very high production value.
+01:27:59 [Speaker 7]
+And so one, I can get immediately a reaction like, okay.
+01:28:02 [Speaker 7]
+Cool.
+01:28:02 [Speaker 7]
+This person, like, really gives a shit about their work and cares to present it in this way.
+
+01:28:05 [Speaker 7]
+And so if I hire them, they're going to present my work in the same way, which is awesome.
+01:28:09 [Speaker 7]
+It also feels very memorable and differentiated in that way.
+01:28:11 [Speaker 7]
+Like, this is cool.
+01:28:11 [Speaker 7]
+I've never seen anything like this before.
+01:28:12 [Speaker 7]
+You know?
+
+01:28:13 [Speaker 1]
+All
+
+01:28:13 [Speaker 7]
+of the videos, I think they also go, like, a really long way in helping to communicate.
+01:28:17 [Speaker 7]
+Like, okay.
+01:28:17 [Speaker 7]
+I'm doing more than just, you know, pretty mock ups.
+01:28:19 [Speaker 7]
+Either you're actually helping code or you're proud and you're showing, like, your finished artifacts, which means that you take it all the way.
+01:28:23 [Speaker 7]
+Right?
+
+01:28:23 [Speaker 7]
+Like, you care about the implementation, and you'll get the feedback, or even get the code or whatever it is to achieve the end result of this is beautiful functional software on my users, you know, devices.
+01:28:31 [Speaker 7]
+And so, yeah, I think it's pretty effective.
+01:28:33 [Speaker 7]
+Alright.
+01:28:33 [Speaker 7]
+Does my contribution, like, make sense on daylight?
+01:28:36 [Speaker 7]
+Alright.
+
+01:28:37 [Speaker 7]
+So let's go over to daylight.
+01:28:44 [Speaker 7]
+This is kind of a hard I'm actually never thinking, like, about that question specifically.
+01:28:50 [Speaker 7]
+This is pretty clear, like, what you did here.
+01:28:52 [Speaker 7]
+Like, everything you're showing me is like, oh, you're thinking through it.
+01:28:54 [Speaker 7]
+So I don't know that I would actually be concerned about your individual contribution.
+
+01:28:59 [Speaker 7]
+To me, all of it...
+01:29:00 [Speaker 7]
+The portfolio is not the place to, like, ever talk about this kind of work.
+01:29:03 [Speaker 7]
+The place to talk about that is when you're actually presenting the work and or are receiving questions about it.
+01:29:06 [Speaker 7]
+Nobody cares upfront, like, about this stuff.
+01:29:08 [Speaker 7]
+That's one of those things that is just true that people don't really believe.
+
+01:29:10 [Speaker 7]
+What they care about is, like, okay.
+01:29:11 [Speaker 7]
+What's the finished product?
+01:29:12 [Speaker 7]
+Like, what are you what are you doing?
+01:29:13 [Speaker 7]
+Can you create things that look good, that feel good, that are representative of what I want for my product and my brand?
+01:29:17 [Speaker 7]
+And I think this is an effective way of doing it.
+
+01:29:19 [Speaker 7]
+This shows, like, alright.
+01:29:19 [Speaker 7]
+Cool.
+01:29:19 [Speaker 7]
+Like, I'm gonna get some, you know...
+01:29:21 [Speaker 7]
+He's exploring conceptual models here.
+01:29:22 [Speaker 7]
+This is probably what it might look like to work with.
+
+01:29:24 [Speaker 7]
+We would see some of these.
+01:29:25 [Speaker 7]
+He's iterating.
+01:29:26 [Speaker 7]
+He's trying things.
+01:29:26 [Speaker 7]
+They're all interactive.
+01:29:27 [Speaker 7]
+There's motion.
+
+01:29:28 [Speaker 7]
+Cool.
+01:29:28 [Speaker 7]
+It culminates in something, you know, that's pretty visual, and then he's gonna wrap it up in, like, a system for me.
+01:29:31 [Speaker 7]
+Like, that's awesome.
+01:29:32 [Speaker 7]
+I would never be at this point thinking, like, what are the constraints on this project?
+
+01:29:35 [Speaker 1]
+How long
+
+01:29:35 [Speaker 7]
+does this take?
+01:29:36 [Speaker 7]
+Right?
+01:29:36 [Speaker 7]
+I just wanna know, do you do good work?
+01:29:38 [Speaker 7]
+Have you done good work?
+01:29:38 [Speaker 7]
+Can you do good work for me?
+
+01:29:39 [Speaker 7]
+And I think this effectively communicates that.
+
+01:29:43 [Speaker 2]
+Everyone flame in flight right now.
+
+01:29:45 [Speaker 1]
+I just...
+01:29:45 [Speaker 1]
+I don't know even know
+
+01:29:46 [Speaker 2]
+what happened.
+01:29:47 [Speaker 2]
+Yeah.
+01:29:47 [Speaker 2]
+Group chat.
+01:29:48 [Speaker 2]
+I think this is one
+
+01:29:48 [Speaker 1]
+of the more...
+01:29:49 [Speaker 1]
+This is one of my favorite bodies of work.
+01:29:51 [Speaker 1]
+I'm a Gabe fan.
+
+01:29:53 [Speaker 2]
+Yeah.
+01:29:53 [Speaker 2]
+Me too.
+
+01:29:53 [Speaker 1]
+Like, how many people have products, like, you know, like decks on there?
+01:29:57 [Speaker 1]
+Like, it's it's really cool.
+01:29:59 [Speaker 1]
+There's a lot of little things that I like, and I think the the composition of, like, the cards on the home page is great.
+01:30:07 [Speaker 1]
+See how he's...
+01:30:08 [Speaker 1]
+He puts everything for every single case study.
+
+01:30:10 [Speaker 1]
+He has, like, a, he says, this is how I'm gonna frame the device containers, and then it's just the same thing every single time all the way down, whether it's, like, a gradient background or, like, a really subtle background.
+01:30:20 [Speaker 1]
+I I appreciate these.
+01:30:21 [Speaker 1]
+And these compositions, I think, are...
+01:30:23 [Speaker 1]
+They're just lovely.
+
+01:30:24 [Speaker 2]
+It's so good.
+01:30:25 [Speaker 2]
+And I really do, this is, a generated a generated demo.
+01:30:31 [Speaker 2]
+Let's go back to it right here.
+01:30:36 [Speaker 2]
+CGI hand using the app.
+01:30:37 [Speaker 2]
+I'm curious if that was, like, made just for the portfolio or not, but that's a really interesting way to frame, like, the usage of app.
+
+01:30:43 [Speaker 2]
+You were talking about, hey.
+01:30:44 [Speaker 2]
+Make it interactive, or show me a video of someone, like, of the of the app being in this, like, more human space.
+01:30:50 [Speaker 2]
+You know?
+
+01:30:51 [Speaker 1]
+I haven't seen that before.
+01:30:52 [Speaker 1]
+I would actually be curious how and why that was made because it is cool.
+
+01:30:57 [Speaker 2]
+Yeah.
+01:30:58 [Speaker 2]
+That's interesting.
+01:30:59 [Speaker 2]
+It's a lot here.
+01:31:00 [Speaker 2]
+Face.
+01:31:00 [Speaker 2]
+Love the face.
+
+01:31:01 [Speaker 2]
+I I feel like this is the first portfolio we've actually seen.
+
+01:31:03 [Speaker 1]
+There's a little Easter egg.
+01:31:04 [Speaker 1]
+I didn't see that.
+
+01:31:05 [Speaker 2]
+What this here?
+
+01:31:06 [Speaker 1]
+Oh, I can just draw on him.
+01:31:07 [Speaker 1]
+I like it.
+01:31:09 [Speaker 1]
+Yeah.
+01:31:10 [Speaker 1]
+The paint runs too.
+01:31:13 [Speaker 1]
+Oh, the paint runs.
+
+01:31:15 [Speaker 2]
+Yeah.
+01:31:16 [Speaker 2]
+Yeah.
+01:31:17 [Speaker 2]
+Yeah.
+01:31:18 [Speaker 2]
+This is great.
+
+01:31:19 [Speaker 1]
+Gabe, I sent you an email, man.
+01:31:21 [Speaker 1]
+And...
+01:31:22 [Speaker 1]
+Oh, that's cool too.
+01:31:23 [Speaker 1]
+Just...
+
+01:31:24 [Speaker 2]
+I love this.
+
+01:31:25 [Speaker 1]
+I I like it.
+01:31:25 [Speaker 1]
+I like it.
+01:31:26 [Speaker 1]
+I was I was expecting, like, this really satisfying sunset.
+01:31:30 [Speaker 1]
+And I got a I got a piece of gray text,
+
+01:31:32 [Speaker 2]
+man.
+
+01:31:33 [Speaker 1]
+I don't know.
+
+01:31:34 [Speaker 2]
+Alright.
+01:31:34 [Speaker 2]
+Everybody find Gabe now.
+01:31:35 [Speaker 2]
+You know?
+
+01:31:36 [Speaker 1]
+Gabe Gabe says, Gabe says, that's my hand.
+
+01:31:41 [Speaker 2]
+Oh, this?
+01:31:42 [Speaker 2]
+Oh, shut up.
+01:31:44 [Speaker 2]
+This is great.
+01:31:45 [Speaker 2]
+This takes place...
+01:31:46 [Speaker 2]
+This is, my favorite so far.
+
+01:31:48 [Speaker 2]
+And, I mean, listen, Gabe, you're a high bar.
+
+01:31:51 [Speaker 1]
+Yeah.
+01:31:51 [Speaker 1]
+We got...
+01:31:52 [Speaker 1]
+We...
+01:31:52 [Speaker 1]
+You're too good.
+01:31:53 [Speaker 1]
+We're gonna move on.
+
+01:31:54 [Speaker 2]
+Yeah.
+01:31:54 [Speaker 2]
+There you go.
+
+01:31:55 [Speaker 1]
+Sorry for whoever has to go after Gabe.
+
+01:31:57 [Speaker 2]
+Yeah.
+01:31:57 [Speaker 2]
+Which is Brandon Dun Dunne Levy.
+01:31:59 [Speaker 2]
+Brandon Dunne Levy.
+01:32:00 [Speaker 2]
+Let's see what we got.
+01:32:01 [Speaker 2]
+Who who did this?
+
+01:32:01 [Speaker 2]
+Who who who?
+01:32:03 [Speaker 2]
+Maheen.
+01:32:03 [Speaker 2]
+Maheen.
+01:32:05 [Speaker 2]
+Just love it.
+
+01:32:05 [Speaker 6]
+Hi, Brandon.
+01:32:07 [Speaker 6]
+I think you've had added a lot of delightful elements into your portfolio such as the hover transition, a lot of motion happening in here.
+01:32:15 [Speaker 6]
+And I like that you have some Easter eggs.
+01:32:17 [Speaker 6]
+But my first impression of the site is that there's a lot going on and it's unclear to me what are...
+01:32:23 [Speaker 6]
+What makes you unique as a designer and, like, what your narrative is as a designer of the products that you've worked on.
+
+01:32:28 [Speaker 6]
+And so for example, this seems like it's a project, but it...
+01:32:32 [Speaker 6]
+It's very closely connected to your description, and then there's a lot of text to read here.
+01:32:37 [Speaker 6]
+And so how do we sort of simplify that so you can have the hiring manager focus on what really matters, which is your experience and potentially the results that you've, sort of enabled, which is great to see.
+01:32:47 [Speaker 6]
+Another pattern here that I felt was a bit odd was as I'm scrolling, I can't actually go further down into references, so I'd also find a way to fix that so that the navigation is more clear.
+01:32:57 [Speaker 6]
+And then lastly, I think it was cool to read through, like, how you made the website.
+
+01:33:01 [Speaker 6]
+I would just find a way to sort of, like, make the text a little shorter, and and bring that clarity into the rest of the projects too.
+01:33:07 [Speaker 6]
+But this was really interesting to sort of, like, dive deeper into.
+
+01:33:11 [Speaker 2]
+I know it's not fair, especially if you were intentional about this.
+01:33:14 [Speaker 2]
+But listen.
+01:33:15 [Speaker 2]
+This is the aesthetic of 2026 right now, which when you have over detailed moments inside, like, everything's...
+01:33:23 [Speaker 2]
+There's a here is to cure.
+01:33:24 [Speaker 2]
+There's a here is to cure.
+
+01:33:26 [Speaker 2]
+It smells like AI.
+01:33:27 [Speaker 2]
+You know?
+01:33:29 [Speaker 2]
+It's one color.
+
+01:33:31 [Speaker 1]
+I I I think there's a lot of really good stuff here.
+01:33:34 [Speaker 1]
+I think we're...
+01:33:35 [Speaker 1]
+The act of trimming, like, that is...
+01:33:38 [Speaker 1]
+It's it's trimming, especially, I mean, it's in quite a few pieces.
+01:33:43 [Speaker 1]
+I think Mahin hit on it.
+
+01:33:44 [Speaker 1]
+I do.
+01:33:47 [Speaker 1]
+I'm hesitant to say this, but I think I'm gonna say it anyway.
+01:33:50 [Speaker 1]
+The hover with the background in it right now, like, if you're on the main page and and, it kind of follows the light on your cursor, It it looks good.
+01:34:01 [Speaker 1]
+Dude, if you tell Claude to, like, create a tool to give some kind of, like, a hover effect tied to your mouse cursor, this is the first style of thing that it's gonna have in that array of options every single time.
+01:34:14 [Speaker 1]
+And I think I think you gotta push past it, like always.
+
+01:34:20 [Speaker 1]
+I I don't...
+01:34:20 [Speaker 1]
+This used to be really, really cool.
+01:34:22 [Speaker 1]
+And I think now it feels like you just kinda did two quick prompts with Claude, and it looks similar to a lot of other stuff that you would see.
+01:34:30 [Speaker 1]
+And it is kind of the AI aesthetic.
+
+01:34:33 [Speaker 2]
+Yeah.
+01:34:33 [Speaker 2]
+And and, again, the the reason that...
+01:34:35 [Speaker 2]
+Listen.
+01:34:35 [Speaker 2]
+AI can come up with some, like, interesting boilerplate stuff.
+01:34:38 [Speaker 2]
+It's fine.
+
+01:34:39 [Speaker 2]
+But, at the end of the day, you're distracting me from what I should be paying attention to, which Mahin already said.
+01:34:44 [Speaker 2]
+So that's my feedback.
+
+01:34:46 [Speaker 7]
+Yeah.
+01:34:46 [Speaker 7]
+Some cool stuff
+
+01:34:47 [Speaker 2]
+here, though.
+01:34:47 [Speaker 2]
+Like that you show me
+
+01:34:48 [Speaker 1]
+The the visual motif is cool, though.
+01:34:50 [Speaker 1]
+Like, the the, like, paper cutout, like, it just needs less.
+01:34:53 [Speaker 1]
+We just need less stuff everywhere.
+01:34:56 [Speaker 1]
+But it's...
+01:34:56 [Speaker 1]
+This...
+
+01:34:56 [Speaker 1]
+It's cool.
+01:34:57 [Speaker 1]
+There's something here.
+
+01:34:58 [Speaker 2]
+Yeah.
+01:34:58 [Speaker 2]
+I agree.
+01:34:59 [Speaker 2]
+I agree.
+01:34:59 [Speaker 2]
+It's it's more of like...
+01:35:00 [Speaker 2]
+Listen.
+
+01:35:00 [Speaker 2]
+That's the that's the thing.
+01:35:01 [Speaker 2]
+Like, AI will give you the big ball of clay that's just...
+01:35:04 [Speaker 2]
+And then you come in and you just spit out.
+01:35:06 [Speaker 2]
+You trim away and you take away.
+01:35:08 [Speaker 2]
+It's a great time for that to come into play.
+
+01:35:10 [Speaker 2]
+We're gonna move on.
+01:35:11 [Speaker 2]
+We're kinda going quickly here because we got some time.
+01:35:14 [Speaker 2]
+Marimar Cabrera.
+01:35:15 [Speaker 2]
+Who who who Femca?
+01:35:21 [Speaker 2]
+Oh, Femca.
+
+01:35:23 [Speaker 2]
+Femke is kind, not nice.
+01:35:24 [Speaker 2]
+I like it.
+
+01:35:25 [Speaker 12]
+This makes me really happy to look at.
+01:35:28 [Speaker 12]
+It's well balanced.
+01:35:29 [Speaker 12]
+The hierarchy is good.
+01:35:30 [Speaker 12]
+It's harmonious.
+01:35:31 [Speaker 12]
+The UI feels clean.
+
+01:35:34 [Speaker 12]
+Not too much text.
+01:35:35 [Speaker 12]
+The visuals are high quality, high fi.
+01:35:40 [Speaker 12]
+I feel at peace when I'm looking at this website.
+01:35:44 [Speaker 12]
+So good job on, I think, the layout and the design.
+01:35:47 [Speaker 12]
+I love that you have the testimonials here from your team.
+
+01:35:50 [Speaker 12]
+Just everything about this feels very clean and inviting.
+01:35:53 [Speaker 12]
+I think one thing I would push a little bit more on is what kind of products do you like to design?
+01:36:00 [Speaker 12]
+You mentioned early stage teams, so now I'm putting you in a bucket of, like, maybe a founding designer or you've had experience in, like, zero to one or high velocity kind of environments, but I would love for you to kind of proactively fill those gaps.
+01:36:16 [Speaker 12]
+Visuals are looking good.
+01:36:17 [Speaker 12]
+I'm seeing, like, mobile app and mobile and web, so my assumption would be some sort of well rounded designer.
+
+01:36:29 [Speaker 1]
+What do you what do you think about the device mock ups?
+01:36:31 [Speaker 1]
+What kind of impression do you have when you look at the composition of four...
+01:36:35 [Speaker 1]
+Like, if you go on the homepage, go on the homepage really quickly.
+01:36:38 [Speaker 1]
+You have this grid here of the projects.
+01:36:41 [Speaker 1]
+What's your reaction to this?
+
+01:36:44 [Speaker 2]
+I think the device mock ups are a distraction.
+01:36:48 [Speaker 2]
+Yeah.
+01:36:49 [Speaker 2]
+I think they feel a little dated.
+01:36:52 [Speaker 2]
+We were doing this.
+
+01:36:53 [Speaker 1]
+That's the word I have in my head too.
+
+01:36:54 [Speaker 2]
+And and it's a little...
+01:36:55 [Speaker 2]
+It feels a little old, and it doesn't add the value.
+01:36:58 [Speaker 2]
+We've moved on from them, I think, collectively because, you know, like, why were we using device mock ups before?
+01:37:04 [Speaker 2]
+Well, yeah, it was an easy way to frame work without it just being a a straight on shot.
+01:37:08 [Speaker 2]
+But also because, like, mobile and tablet became a thing, and it was like a way to show that we were working through, like, responsive screens.
+
+01:37:14 [Speaker 2]
+I don't think we need to do that the same way anymore.
+01:37:16 [Speaker 2]
+So it is noisy.
+01:37:17 [Speaker 2]
+It's noisy to me.
+01:37:18 [Speaker 2]
+I think there's more interesting ways, if you wanna show
+
+01:37:20 [Speaker 1]
+I think it just hides...
+01:37:21 [Speaker 1]
+I think it hides some part visual work, personally.
+
+01:37:23 [Speaker 2]
+Well, look.
+01:37:24 [Speaker 2]
+Yeah.
+
+01:37:24 [Speaker 1]
+It's a correlation that I see.
+
+01:37:25 [Speaker 2]
+That's a fantastic call out, actually.
+01:37:27 [Speaker 2]
+You're correct.
+
+01:37:27 [Speaker 1]
+Because I can't see that work right there.
+01:37:28 [Speaker 1]
+I...
+01:37:28 [Speaker 1]
+I'm just looking at two devices that you just, like, could throw together from a library.
+01:37:32 [Speaker 1]
+And the...
+01:37:35 [Speaker 1]
+I like this portfolio.
+
+01:37:37 [Speaker 1]
+I think it actually is fresh.
+01:37:38 [Speaker 1]
+The blue is is, like, kinda ballsy, and I like it.
+01:37:41 [Speaker 1]
+It stands out.
+
+01:37:42 [Speaker 2]
+I I was gonna say the exact same thing that this was a risk in doing the blue, and you nailed it.
+01:37:47 [Speaker 2]
+I think you really hit this hit this one up.
+
+01:37:51 [Speaker 1]
+That is cool.
+01:37:52 [Speaker 1]
+Yeah.
+01:37:52 [Speaker 1]
+I love that transition.
+
+01:37:53 [Speaker 2]
+I like that a
+
+01:37:54 [Speaker 1]
+lot.
+01:37:54 [Speaker 1]
+I don't think, if you click into the top right project really quickly
+
+01:37:58 [Speaker 2]
+I'm drawing on the moon.
+01:37:59 [Speaker 2]
+Hold on.
+
+01:37:59 [Speaker 1]
+I'm gonna say I I I like this this...
+01:38:02 [Speaker 1]
+I'm gonna...
+01:38:02 [Speaker 1]
+What do they call it?
+01:38:03 [Speaker 1]
+This...
+01:38:03 [Speaker 1]
+The shit sandwich where you say, like, a nice thing and then critique and then a nice thing.
+
+01:38:06 [Speaker 1]
+Yeah.
+01:38:07 [Speaker 1]
+Click into the top right project really quickly.
+
+01:38:10 [Speaker 2]
+I can't.
+
+01:38:11 [Speaker 1]
+No.
+01:38:11 [Speaker 1]
+No.
+01:38:11 [Speaker 1]
+No.
+01:38:11 [Speaker 1]
+Dude.
+01:38:11 [Speaker 1]
+Like, like, the the project, the the mocks, the mocks, the mocks.
+
+01:38:14 [Speaker 1]
+Yeah.
+01:38:14 [Speaker 1]
+This one.
+01:38:15 [Speaker 1]
+So I...
+01:38:19 [Speaker 1]
+Hot take.
+01:38:20 [Speaker 1]
+Hot take.
+
+01:38:22 [Speaker 1]
+I don't think that the visual work here is going to be good enough to get you past a lot of the knee jerk reactions that hiring managers are gonna have.
+01:38:32 [Speaker 1]
+It's fine.
+01:38:34 [Speaker 1]
+But, like, it also didn't really have to be anything more than fine, perhaps, just based off of the type of product, the expectations, the timelines, the pace, the quality of the engineers.
+01:38:42 [Speaker 1]
+There are so many variables.
+01:38:43 [Speaker 1]
+The design system.
+
+01:38:44 [Speaker 1]
+Maybe all of this is tied to a design system that you hate.
+01:38:47 [Speaker 1]
+I don't think it is crazy to have Claude redesign this type of work, and you just make it better.
+01:38:55 [Speaker 1]
+And you just do it as if you were gonna do...
+01:38:57 [Speaker 1]
+Keep all the UX the same, you know, like this...
+01:38:59 [Speaker 1]
+You gotta be able to explain the thinking, but, like, I actually think spending a few hours dialing up the visual craft of this would get you over, a bar that for a lot of hiring managers, you don't quite hit just based off of the quality of the visual design in these mock ups.
+
+01:39:13 [Speaker 1]
+Maybe that's a hot take.
+01:39:14 [Speaker 1]
+Let me throw it out there.
+
+01:39:16 [Speaker 2]
+I would, a lot of times, lead with work that maybe got shelved, but it was better of a version that, like, compared to the version that actually got launched due to limitations.
+01:39:26 [Speaker 2]
+There's a lot of times you work in those limitations.
+01:39:28 [Speaker 2]
+You know?
+01:39:29 [Speaker 2]
+You're working with, like, front end frameworks, like view versus react, and it's like, oh, we couldn't ship that because it...
+01:39:33 [Speaker 2]
+This or that.
+
+01:39:34 [Speaker 2]
+And I was like, screw it.
+01:39:35 [Speaker 2]
+I'm just gonna show the version that I'm more proud of even though it's not the live version.
+01:39:38 [Speaker 2]
+You know?
+01:39:40 [Speaker 2]
+Yeah.
+
+01:39:41 [Speaker 1]
+Yeah.
+01:39:42 [Speaker 1]
+Let's motor through.
+01:39:43 [Speaker 1]
+How many how many how many more we can get through here?
+
+01:39:45 [Speaker 2]
+I think, we've got we've got twenty minutes here.
+01:39:47 [Speaker 2]
+I think we can get through these.
+01:39:48 [Speaker 2]
+Angelina, we can get Let's get through three or four.
+01:39:51 [Speaker 2]
+Yeah.
+01:39:51 [Speaker 2]
+Yeah.
+
+01:39:51 [Speaker 2]
+Oh, we got this.
+01:39:52 [Speaker 2]
+We got this.
+01:39:52 [Speaker 2]
+Here we go.
+01:39:53 [Speaker 2]
+Fuck it.
+
+01:39:54 [Speaker 7]
+Hey, Angelina.
+01:39:55 [Speaker 7]
+Josh here.
+01:39:55 [Speaker 7]
+Rentaly asked me to take a look at your portfolio.
+01:39:57 [Speaker 7]
+So I'm just going to give some kind of quick reactions and thoughts here.
+01:40:00 [Speaker 7]
+So, go back to the homepage here.
+
+01:40:02 [Speaker 7]
+Cool.
+01:40:02 [Speaker 7]
+I realized you had a couple questions, and so I'll address those.
+01:40:05 [Speaker 7]
+As far as order of projects, generally, with your best best work first, I would wanna see something if I'm considering hiring you as a designer.
+01:40:11 [Speaker 7]
+I wanna see your...
+01:40:12 [Speaker 7]
+You know, what's the thing you're most proud of or is best immediately so that I can start to feel, cool.
+
+01:40:14 [Speaker 7]
+Great.
+01:40:15 [Speaker 7]
+It's worth spending another five, ten seconds, thirty seconds digging into it.
+01:40:17 [Speaker 7]
+And so that's how I would think about ordering your work.
+01:40:20 [Speaker 7]
+This project here, yes, I would get rid of it.
+01:40:22 [Speaker 7]
+It's fine that it's your oldest, right, and that it maybe leads more in process.
+
+01:40:25 [Speaker 7]
+The output here, the interface design is pretty...
+01:40:27 [Speaker 7]
+Is is below what I would be considering an industry standard for, you know, just an event driven, like, iOS app basically or or whatever this is.
+01:40:34 [Speaker 7]
+And so in that case, I think it's working against you.
+01:40:36 [Speaker 7]
+Obviously, we all create a bunch of work that, you know, isn't that great, especially when we get started and we refine, refine, refine.
+01:40:40 [Speaker 7]
+But showcasing this would let somebody, you know, I might hit this page, I'd scroll, and I'd be like, probably not.
+
+01:40:45 [Speaker 7]
+You know?
+01:40:45 [Speaker 7]
+And then I would move on.
+01:40:46 [Speaker 7]
+And so I would remove anything that isn't representative of, like, the best possible version of of what you wanna show.
+01:40:52 [Speaker 7]
+Let's see what this footer is.
+01:40:54 [Speaker 7]
+Yeah.
+
+01:40:54 [Speaker 7]
+I mean, this is fun.
+01:40:55 [Speaker 7]
+I love this.
+01:40:55 [Speaker 7]
+Like, what this immediately show...
+01:40:56 [Speaker 7]
+What this and things like this show to me are, like, oh, cool.
+01:40:59 [Speaker 7]
+Like, Angelina's making stuff.
+
+01:41:00 [Speaker 7]
+Like, she's she's trying.
+01:41:01 [Speaker 7]
+She's, like, you know, exploring.
+01:41:02 [Speaker 7]
+I love this play page.
+01:41:03 [Speaker 7]
+It's awesome.
+01:41:04 [Speaker 7]
+I always love when designers, go kind of above and beyond, but also are just curious about making stuff and are and are creative and are expressing that and sharing that and producing a high volume of experimentation at work.
+
+01:41:12 [Speaker 7]
+That ultimately is how you level up, like, very quickly.
+01:41:14 [Speaker 7]
+And so I love seeing that.
+01:41:15 [Speaker 7]
+Like, okay.
+01:41:16 [Speaker 7]
+Cool.
+01:41:16 [Speaker 7]
+She's doing cool stuff.
+
+01:41:16 [Speaker 7]
+She's trying it out.
+01:41:17 [Speaker 7]
+Like, she seems like she's on a trajectory.
+01:41:19 [Speaker 7]
+And then, you know, for me, the decision would be okay.
+01:41:21 [Speaker 7]
+Can't...
+01:41:21 [Speaker 7]
+Do I have a team or a role that I think she could either grow into or that she could start contributing today, but then help her into being, you know, even better of a designer in six to twelve months.
+
+01:41:28 [Speaker 7]
+And so, knowing that you spend, you know, your own time exploring, learning, teaching yourself, just trying out new technologies and your creative interests goes a long way to communicate, the kind of person that that that you are.
+01:41:36 [Speaker 7]
+So those are kind of my initial thoughts.
+01:41:37 [Speaker 7]
+I don't think overall, like, it's too busy.
+01:41:39 [Speaker 7]
+I would think about, okay, cool.
+01:41:40 [Speaker 7]
+How do you take what you're showing and do another level of refinement, both in the work itself and maybe also, like, the presentation, you know, of the work.
+
+01:41:45 [Speaker 7]
+How do you sort of simplify styles?
+01:41:47 [Speaker 7]
+You know, these grid lines, for example, is very, kind of brutalist style, which is a style, but some people will react negatively to it.
+01:41:53 [Speaker 7]
+And so it's just worth, you know, noting that.
+01:41:55 [Speaker 7]
+If you're using this as a way to get your first job, you would wanna make it sort of as unobjectionable as as possible, while just starting out while maybe you don't have a lot of connections or network.
+01:42:06 [Speaker 7]
+And so, you know, things that maybe could be perceived as, like, a lot of person like that could be fine, but just noting that that would be how some people might, you know, might read some of this stuff.
+
+01:42:09 [Speaker 7]
+Yeah.
+01:42:09 [Speaker 7]
+Cool.
+01:42:10 [Speaker 7]
+Hope that's helpful.
+
+01:42:11 [Speaker 2]
+I think you I think you use brutalist...
+01:42:13 [Speaker 2]
+Brutalism the right way.
+01:42:14 [Speaker 2]
+I think this works.
+01:42:16 [Speaker 2]
+I think it's a a good take on brutalism.
+01:42:18 [Speaker 2]
+Brutal...
+
+01:42:18 [Speaker 2]
+It's not my favorite aesthetic by any means, but I think it works here because you are allowing the work to, take up the space, and and I think it works well there.
+
+01:42:29 [Speaker 1]
+Yeah.
+01:42:30 [Speaker 1]
+I I like it a lot.
+01:42:31 [Speaker 1]
+I actually think that the...
+01:42:32 [Speaker 1]
+Normally, I don't care much about custom cursors, but I think the blocky custom cursor inside of the blocky design is is kinda fresh.
+01:42:39 [Speaker 1]
+I I had a pretty positive reaction to the general Yeah.
+
+01:42:41 [Speaker 1]
+I do.
+01:42:41 [Speaker 1]
+I do.
+01:42:42 [Speaker 1]
+My only
+
+01:42:42 [Speaker 2]
+dig that.
+
+01:42:43 [Speaker 1]
+It's nice.
+01:42:43 [Speaker 1]
+Right?
+01:42:44 [Speaker 1]
+Like, I I think that's nice.
+01:42:45 [Speaker 1]
+This is...
+01:42:46 [Speaker 1]
+Especially for somebody, like, you know, you see personal project internship or obviously earlier in career here.
+
+01:42:52 [Speaker 1]
+This is all a green flag for me.
+01:42:54 [Speaker 1]
+Obviously, it needs a lot of work, but I I think there's, like, a slope here that is interesting.
+01:42:59 [Speaker 1]
+I think the I think the four compositions, they're a little bit much, you know.
+01:43:06 [Speaker 1]
+Like, the...
+01:43:07 [Speaker 1]
+You look at, like, what Gabe does.
+
+01:43:08 [Speaker 1]
+Gabe's gonna take very different types of aesthetics and find more interesting ways to unify them and make them feel cohesive juxtaposed.
+01:43:18 [Speaker 1]
+Whereas this is like, yeah, they're in like a boxy card, but, like, dude, these four thumbnails that you're looking at at the top are...
+01:43:25 [Speaker 1]
+They just couldn't be more different.
+01:43:28 [Speaker 1]
+I'm not...
+01:43:28 [Speaker 1]
+I am torn.
+
+01:43:29 [Speaker 1]
+I'm torn on that.
+01:43:30 [Speaker 1]
+And the only other thing I will say is the, and she asked a comment up in the top left that I responded to.
+01:43:37 [Speaker 1]
+But it...
+01:43:37 [Speaker 1]
+It's...
+01:43:38 [Speaker 1]
+This text doesn't do it for me.
+
+01:43:41 [Speaker 1]
+It's too long.
+01:43:41 [Speaker 1]
+I don't wanna read it.
+01:43:43 [Speaker 1]
+And and she did the highlighting some key words, but she only highlighted key words, and it's just delight and human connection, which doesn't tell me anything.
+01:43:49 [Speaker 1]
+So I think you either have to collapse it and shorten it, or you have to do a more intentional job of pulling out, like, the one sentence that you want me to be able to read in half a second at, like, in my periphery.
+
+01:44:00 [Speaker 2]
+Show me show me a face.
+01:44:02 [Speaker 2]
+I like it.
+01:44:02 [Speaker 2]
+But I I will say I do dig that, like, you've kinda tucked away, like, a little playground experience here.
+01:44:07 [Speaker 2]
+Yeah.
+01:44:07 [Speaker 2]
+And, I think that I think that works well.
+
+01:44:10 [Speaker 2]
+I'm a fan, man.
+01:44:11 [Speaker 2]
+I I...
+01:44:11 [Speaker 2]
+You know, we should have been doing, like, would you would you, promote them to the next step?
+01:44:16 [Speaker 2]
+And this...
+01:44:17 [Speaker 2]
+If I was looking for a specific designer that was, like, maybe mid tier junior, this would this would move to the next step.
+
+01:44:24 [Speaker 1]
+Yeah.
+01:44:24 [Speaker 1]
+I think so.
+
+01:44:26 [Speaker 2]
+Mid tier meaning, like, mid career.
+01:44:30 [Speaker 2]
+Alright, Klaa.
+01:44:31 [Speaker 2]
+Let's go, man.
+
+01:44:34 [Speaker 1]
+Hi,
+
+01:44:34 [Speaker 6]
+Klaa.
+01:44:35 [Speaker 6]
+I really enjoyed going through your website.
+01:44:36 [Speaker 6]
+Some of the things that stood out to me were just all the unique interactions you have in here.
+01:44:40 [Speaker 6]
+The location is nice.
+01:44:41 [Speaker 6]
+I almost miss the moving avatar, so maybe make it a little bit bigger.
+
+01:44:45 [Speaker 6]
+Some of the text is unreadable, so things like where it says designer here, so I'd fix that.
+01:44:50 [Speaker 6]
+I love the ability to send ChatGpT or Claude a prompt with your portfolio link and sort of dive deeper as what...
+01:44:57 [Speaker 6]
+Whatever role the viewer is coming in with.
+01:45:00 [Speaker 6]
+Maybe you could also find a way to have the system prompt or the prompt take the, the photo that you have in your portfolio just to have that continuation.
+01:45:08 [Speaker 6]
+That could be really nice.
+
+01:45:10 [Speaker 6]
+The projects for Quill is very clear to see, like, what are the things you've built, but I'd find a way to connect that section with this section.
+01:45:15 [Speaker 6]
+Since this is not interactive, I'm not really sure what purpose it's serving.
+01:45:20 [Speaker 6]
+It's great to see, your timeline.
+01:45:22 [Speaker 6]
+I like that I'm seeing the projects, and and sort of what your role was in each.
+01:45:27 [Speaker 6]
+So this was really fun too.
+
+01:45:28 [Speaker 6]
+Yeah.
+01:45:28 [Speaker 6]
+So I think to wrap up, just find a way to, like, connect these different pieces together so that it reads more, more clearly as a visual narrative.
+01:45:35 [Speaker 6]
+But, otherwise, I really enjoyed going through your portfolio.
+
+01:45:38 [Speaker 2]
+Yeah.
+01:45:38 [Speaker 2]
+Clout, this is sick.
+01:45:39 [Speaker 2]
+I like it a lot.
+01:45:40 [Speaker 2]
+Again, I'm, personally a fan of of these these feed styles here.
+01:45:45 [Speaker 2]
+I really like that.
+
+01:45:45 [Speaker 2]
+That's something that I'm gonna lean into if I ever make a portfolio, which I probably won't.
+01:45:50 [Speaker 2]
+But then this to go into this, like, interaction pattern here, it's clever.
+01:45:54 [Speaker 2]
+I like it.
+01:45:55 [Speaker 2]
+It's a little noisy.
+01:45:56 [Speaker 2]
+I wish these were clickable, but outside of that Yeah.
+
+01:45:58 [Speaker 1]
+That's my thing.
+01:45:59 [Speaker 1]
+They're not super high res, and I can't click on them.
+01:46:02 [Speaker 1]
+And I I...
+01:46:03 [Speaker 1]
+I'll be honest.
+01:46:03 [Speaker 1]
+Maybe I'm an idiot, but I didn't even click on the grid.
+
+01:46:06 [Speaker 1]
+I thought the grid was, like at the very top.
+01:46:09 [Speaker 1]
+I know at the very top grid.
+01:46:10 [Speaker 1]
+That's cool.
+01:46:11 [Speaker 1]
+This grid, I didn't know that was navigation at first, which now I feel dumb, but I just am giving that raw feedback.
+01:46:17 [Speaker 1]
+I didn't, I thought it was like, I thought it was a collection of icons and I kinda scroll past it as one entity of something that you made.
+
+01:46:23 [Speaker 1]
+And then I got to the bottom and I was like, wait, where's the work?
+01:46:26 [Speaker 1]
+Turns out that's how you get to the work.
+01:46:30 [Speaker 1]
+I think everything's a little bit small.
+01:46:31 [Speaker 1]
+It's like like everything everything like, you just let me see your work big.
+01:46:35 [Speaker 1]
+I can't see the work big in any way on this portfolio, and it's kinda driving me crazy a little bit.
+
+01:46:39 [Speaker 1]
+Like, there's a lot of things that are cool, but, like, you're just making my job hard because I don't feel like I can evaluate the work well in its current size and fidelity.
+
+01:46:50 [Speaker 2]
+Yeah.
+01:46:50 [Speaker 2]
+Like that, I can only move this around.
+01:46:52 [Speaker 2]
+I would say this not red...
+01:46:54 [Speaker 2]
+Not realizing this was clickable is a skill issue.
+01:46:57 [Speaker 2]
+So don't...
+
+01:46:57 [Speaker 2]
+I don't know.
+
+01:46:57 [Speaker 1]
+I think it probably is.
+01:46:58 [Speaker 1]
+I'm willing to accept
+
+01:47:00 [Speaker 2]
+I'm willing to accept that.
+01:47:01 [Speaker 2]
+Fun, though.
+
+01:47:01 [Speaker 1]
+I...
+01:47:02 [Speaker 1]
+Something else was he said, dude, the avatar up top is dope.
+01:47:05 [Speaker 1]
+I'm not sure that I would have seen it move.
+01:47:07 [Speaker 1]
+I think it's really, really cool.
+01:47:10 [Speaker 1]
+I could...
+
+01:47:11 [Speaker 1]
+I think that could be bigger.
+01:47:12 [Speaker 1]
+I think it's cool.
+01:47:12 [Speaker 1]
+Like, kinda sets the tone for the aesthetic a little bit.
+
+01:47:15 [Speaker 2]
+Yeah.
+01:47:15 [Speaker 2]
+Yeah.
+01:47:15 [Speaker 2]
+Lot of fun lot of fun ideas here.
+01:47:18 [Speaker 2]
+Moving on to, Priya Pandey.
+01:47:25 [Speaker 2]
+Jeff.
+
+01:47:25 [Speaker 2]
+Let's go.
+
+01:47:27 [Speaker 4]
+Hey.
+01:47:27 [Speaker 4]
+I'm Jeff.
+01:47:28 [Speaker 4]
+Thanks for letting me look at your portfolio.
+01:47:30 [Speaker 4]
+Same rules apply here.
+01:47:31 [Speaker 4]
+Just have a few seconds to look at portfolios before we decide to, dig deeper or move on to another candidate.
+
+01:47:36 [Speaker 4]
+My honest first instinct when I look at this is that it feels a little bit generic.
+01:47:39 [Speaker 4]
+I do think that it's great that you're showing a breadth of work, but I think that the portfolio itself could use a little bit more care and craft.
+01:47:46 [Speaker 4]
+I think the hero isn't really telling me much.
+01:47:49 [Speaker 4]
+And the thumbnail isn't really visually interesting enough to make me wanna interact with it.
+01:47:53 [Speaker 4]
+I'd say that, like, this needs to be your very best work.
+
+01:47:55 [Speaker 4]
+It's the thing that you're gonna be most proud of, that others should immediately recognize as being good.
+01:47:59 [Speaker 4]
+And so I could maybe ask you in return, do you feel like these words and this thumbnail, are representative of your best work, your superpower, the work that you wanna be doing, the work that you think others need?
+01:48:11 [Speaker 4]
+I think even when I click through this, I...
+01:48:13 [Speaker 4]
+I'm guessing that this isn't what you would show somebody that you look up to and say, here's my best work.
+01:48:17 [Speaker 4]
+Because I think there...
+
+01:48:18 [Speaker 4]
+Even if it is, there's probably even better ways to present it than just a modal with a a static image.
+01:48:22 [Speaker 4]
+So that just feels a little bit underwhelming.
+01:48:24 [Speaker 4]
+I do think when you show the work, I think you should think about the presentation.
+01:48:27 [Speaker 4]
+So this particular project is just one big zoomed out, full screen animation that's silent of you adding a resource.
+01:48:32 [Speaker 4]
+And even if that's the moment that you really wanna pull into, I'm pretty sure there there are some more engaging ways to pull me in and show me why this work is great.
+
+01:48:39 [Speaker 4]
+I think you do, you know, you do when I just go in one of these things.
+01:48:43 [Speaker 4]
+You know, you do get into a lot more details around the project and what these companies are and what problems you're trying to solve.
+01:48:50 [Speaker 4]
+But I do think you need maybe a stronger hook to get into some of these.
+01:48:52 [Speaker 4]
+Let's go back here and look at another one.
+01:48:54 [Speaker 4]
+So Rocket Mortgage is another example.
+
+01:48:55 [Speaker 1]
+I think
+
+01:48:55 [Speaker 4]
+some of this work looks pretty compelling.
+01:48:57 [Speaker 4]
+I think the problem is how it's being presented.
+01:48:58 [Speaker 4]
+You have three different screens here all vying for my attention at once.
+01:49:00 [Speaker 4]
+They're all animating off the same time.
+01:49:02 [Speaker 4]
+It's hard for me to understand if these relate to each other or if these are just three different experiences.
+
+01:49:05 [Speaker 4]
+And so it comes off a little bit chaotic, and it's putting a lot of work on me to understand what you're trying to show me in this work.
+01:49:10 [Speaker 4]
+So I think that, again, there's some good work here.
+01:49:12 [Speaker 4]
+I think how you're presenting it could probably use some improvement.
+01:49:14 [Speaker 4]
+Again, with this portfolio, I think there's a lot of different text styles, and button styles that are kind of similar.
+
+01:49:19 [Speaker 1]
+Yeah.
+
+01:49:20 [Speaker 4]
+And it...
+01:49:20 [Speaker 4]
+Again, it just...
+01:49:21 [Speaker 4]
+It's it's creating some tension.
+01:49:23 [Speaker 4]
+Every corner of this site has something in it.
+01:49:25 [Speaker 4]
+And I feel like you probably just need to do some simplification and some reduction in some of these styles.
+
+01:49:30 [Speaker 4]
+I also think just the hero needs to demand more attention.
+01:49:33 [Speaker 4]
+I think showing a lot of work is good.
+01:49:35 [Speaker 4]
+But I think only showing work that you're proud of, and you wouldn't be afraid to show somebody deeply respect in this industry is what's necessary here.
+01:49:41 [Speaker 4]
+So even when I go into the playground here, again, I don't mind looking at playgrounds.
+01:49:44 [Speaker 4]
+I think this is a great way to see what somebody's capable of without the con...
+
+01:49:47 [Speaker 4]
+Without the constraints of maybe the work environment or the projects they're working on.
+01:49:50 [Speaker 4]
+But if you're gonna show a bunch of things in here, each one should really be representative of of your best work.
+01:49:55 [Speaker 4]
+Just putting stuff in here to have more stuff or because you built it isn't really that great.
+01:49:59 [Speaker 4]
+Whether it's your playground or your work, I think you really need to edit what you show and only show the very best work.
+01:50:04 [Speaker 4]
+Because I think a few weaker pieces can kind of bring everything down.
+
+01:50:06 [Speaker 4]
+So edit back everything into what you are proud of absolutely everything.
+
+01:50:10 [Speaker 1]
+Yeah.
+01:50:11 [Speaker 1]
+Dude, I love that last piece.
+01:50:12 [Speaker 1]
+And Josh said it too where he was talking about how trimming it, like, the part that wasn't up to industry standard.
+01:50:16 [Speaker 1]
+Like, it's so important to realize that people take the average of your work, not the sum of your work.
+
+01:50:22 [Speaker 2]
+Yeah.
+
+01:50:22 [Speaker 1]
+If you have one p...
+01:50:24 [Speaker 1]
+Like, all the time, I'm looking at someone and I'm like, I haven't quite made a decision.
+01:50:29 [Speaker 1]
+It looks interesting.
+01:50:30 [Speaker 1]
+I'm, like, still trying to figure it out.
+01:50:31 [Speaker 1]
+And then I scroll, and now I'm into something that you made six years ago, and it doesn't look very good.
+
+01:50:35 [Speaker 1]
+And I'm like, yeah.
+01:50:35 [Speaker 1]
+Yeah.
+01:50:36 [Speaker 1]
+Yeah.
+01:50:36 [Speaker 1]
+I'll just move on.
+01:50:37 [Speaker 1]
+And that's, like, a tough thing to say, but there's no way that I'm the only one that reacts that way.
+
+01:50:41 [Speaker 1]
+You gotta keep the average up.
+01:50:44 [Speaker 1]
+And I think that he nailed it there.
+01:50:46 [Speaker 1]
+Also, I could just listen to to Jeff give feedback.
+
+01:50:49 [Speaker 2]
+A 100%.
+
+01:50:50 [Speaker 1]
+So freaking good, man.
+
+01:50:52 [Speaker 2]
+Yeah.
+01:50:52 [Speaker 2]
+Thank you.
+01:50:52 [Speaker 2]
+I mean, everybody.
+01:50:53 [Speaker 2]
+Thank you.
+
+01:50:54 [Speaker 1]
+Yeah.
+01:50:54 [Speaker 1]
+Thank you, Jeff.
+01:50:55 [Speaker 1]
+Everybody.
+01:50:55 [Speaker 1]
+Yeah.
+
+01:50:56 [Speaker 2]
+The two strong things that stand out to me is the layout.
+01:50:58 [Speaker 2]
+I do like the layout.
+01:50:59 [Speaker 2]
+I think it needs a lot of love.
+01:51:00 [Speaker 2]
+But, like, if just in...
+01:51:01 [Speaker 2]
+If we were thinking of just, like, a wireframe, I think the way that you're thinking about showing the work big and then, quick descriptions, that's a...
+
+01:51:09 [Speaker 2]
+That...
+01:51:09 [Speaker 2]
+That's worth holding on to.
+01:51:11 [Speaker 2]
+And then I I personally like segmenting out playground from work like this.
+01:51:14 [Speaker 2]
+So those are the two things that I think are strong.
+01:51:16 [Speaker 2]
+Everything else, I think, continue to to push into.
+
+01:51:20 [Speaker 2]
+You know?
+01:51:21 [Speaker 2]
+We've got limited time.
+01:51:22 [Speaker 2]
+So I'm gonna I'm gonna kinda jump through a couple of these to give people an opportunity to see what we got going on.
+01:51:28 [Speaker 2]
+Like, Julio Julio Romero.
+01:51:31 [Speaker 2]
+Let's see what we got.
+
+01:51:32 [Speaker 1]
+This this might be the last one, honestly.
+
+01:51:34 [Speaker 2]
+Okay.
+01:51:35 [Speaker 2]
+MDS.
+
+01:51:36 [Speaker 8]
+Okay.
+01:51:36 [Speaker 8]
+I've only got sixty seconds.
+01:51:38 [Speaker 8]
+Normally, I like to do a big breakdown, but, gosh.
+01:51:42 [Speaker 8]
+This is a second.
+01:51:44 [Speaker 8]
+So I'm just gonna take it a little slower.
+
+01:51:48 [Speaker 8]
+This is super fun.
+01:51:51 [Speaker 8]
+I like the sound effects.
+01:51:58 [Speaker 8]
+And it's a it's a fun playground.
+01:52:00 [Speaker 8]
+I like...
+01:52:00 [Speaker 8]
+It's definitely memorable, but my biggest critique right off the bat is I can't see your work very well, and I'm only getting to your work on, like, a hover.
+
+01:52:10 [Speaker 8]
+Mhmm.
+01:52:12 [Speaker 8]
+So I wanna go in here and let's look at this work.
+01:52:14 [Speaker 8]
+Lovely photo.
+01:52:15 [Speaker 8]
+These feel like maybe...
+01:52:17 [Speaker 8]
+It feels a little weird to go with actual UI when you've got all these other, like, non UI, like, road signs, and then we've got, like, actual UI.
+
+01:52:24 [Speaker 8]
+I actually really like the interaction you've got here, but it feels disconnected with the concept you've got here.
+01:52:28 [Speaker 8]
+This gray is, like, pretty warm and brown, but you're using green and blue.
+01:52:32 [Speaker 8]
+And so it feels like the warmth of maybe the gray background and the warmth of this cream...
+01:52:35 [Speaker 8]
+This is cream background and the warmth of this text feels like it's two different kinda color palettes.
+01:52:40 [Speaker 8]
+And so I'm not sure...
+
+01:52:42 [Speaker 8]
+You you know, the colors could be tweaked a little.
+01:52:44 [Speaker 8]
+And I'm also going here because I wanna see your work, and then I'm seeing a bunch of text.
+01:52:48 [Speaker 8]
+I like to see these these here.
+01:52:51 [Speaker 8]
+Lots of text, lots of text, lots of text, lots of text, graphs, text, fun little, like, illustration, text, text, text, text, text.
+01:52:57 [Speaker 8]
+A little bit of work.
+
+01:52:58 [Speaker 8]
+A little bit of work.
+01:53:00 [Speaker 8]
+Some specimens, some more work, but it's also really small.
+01:53:04 [Speaker 8]
+I got this giant screen I'm I'm having to kinda dig...
+01:53:07 [Speaker 8]
+Like, I wanna...
+01:53:07 [Speaker 8]
+I really wanna get in here.
+
+01:53:08 [Speaker 8]
+I wanna see the corner radius that you put on these, and I wanna see the spacing and how did you handle the spacing between x versus...
+01:53:15 [Speaker 8]
+You know, I wanna see you use, like, an actual type Chevron here versus an icon.
+01:53:19 [Speaker 8]
+And, some of that is a little bit hard to see.
+01:53:23 [Speaker 8]
+I I actually love the layout that you have here, but I kinda want it to take over.
+01:53:27 [Speaker 8]
+You know, right now, I'm still seeing all of this big UI and I feel like it sort of crowds out the work a little bit.
+
+01:53:33 [Speaker 8]
+And I think that that's a...
+01:53:36 [Speaker 8]
+That is a trade off when you go with a very strong experience for your portfolio.
+01:53:41 [Speaker 8]
+The portfolio ultimately needs to serve the work that it's showcasing, and the more you try to customize the experience, the more you can hinder the experience of viewing the actual work.
+01:53:48 [Speaker 8]
+But I've already gone three minutes, and this is way longer than someone might go on an actual portfolio, and I didn't have time to read all of this.
+01:53:53 [Speaker 8]
+I'm just...
+
+01:53:54 [Speaker 8]
+I'm scanning, like, where's the work?
+01:53:55 [Speaker 8]
+Where's the work?
+01:53:55 [Speaker 8]
+Where's the work?
+01:53:55 [Speaker 8]
+And so if I have to scroll to find it and then I...
+01:53:57 [Speaker 8]
+When I get to it, it's smaller images, I feel like that statistically lowers your percentage of doing what you want your portfolio to do.
+
+01:54:05 [Speaker 8]
+And that's just looking at this one one thing.
+01:54:07 [Speaker 8]
+I can tell that you have a lot of design chops and you're very creative and and that's why I want so badly for for your work to take the, front seat because I I want to...
+01:54:17 [Speaker 8]
+I don't want someone to pass over you because they couldn't get to your work.
+01:54:20 [Speaker 8]
+Alright.
+01:54:20 [Speaker 8]
+So that's four minutes.
+
+01:54:21 [Speaker 8]
+I'm gonna stop this one.
+
+01:54:22 [Speaker 2]
+Yeah.
+01:54:22 [Speaker 2]
+I agree.
+01:54:23 [Speaker 2]
+I think there's some, compelling and interest...
+01:54:25 [Speaker 2]
+Some interesting ideas that you're bringing to life that you could push into.
+01:54:28 [Speaker 2]
+I think visually visually some of this...
+
+01:54:32 [Speaker 2]
+I I...
+01:54:32 [Speaker 2]
+I'd be interested in, like, what what what...
+
+01:54:34 [Speaker 1]
+There's something here, man.
+01:54:35 [Speaker 1]
+There's something here.
+
+01:54:36 [Speaker 2]
+But I but I do agree.
+01:54:37 [Speaker 2]
+Like, the fact that I...
+01:54:38 [Speaker 2]
+You know, your work's not on...
+01:54:39 [Speaker 2]
+At a macro view, like, quickly available to you because the in flight would be.
+01:54:46 [Speaker 2]
+Oh, that's interesting.
+
+01:54:48 [Speaker 1]
+It's kinda fun.
+01:54:49 [Speaker 1]
+Yeah.
+01:54:49 [Speaker 1]
+Dude, I'm actually completely obsessed with the...
+01:54:53 [Speaker 1]
+This...
+01:54:54 [Speaker 1]
+I don't even know what it did.
+
+01:54:54 [Speaker 1]
+Like, the back button, like, whatever that container is, I don't even know how to describe it.
+01:54:57 [Speaker 1]
+I'm actually obsessed with it.
+01:54:59 [Speaker 1]
+I think it's amazing.
+01:55:00 [Speaker 1]
+Like, there's something really, really special here.
+01:55:04 [Speaker 1]
+You are...
+
+01:55:05 [Speaker 1]
+It's just making it really hard to do the job of the hiring manager.
+01:55:08 [Speaker 1]
+And if you just made it easier and then kept some of the aesthetic, I do totally agree with MDS.
+01:55:13 [Speaker 1]
+I don't like the style of the overview, like that nav.
+01:55:16 [Speaker 1]
+It just feels really out of place.
+01:55:18 [Speaker 1]
+But I'm down.
+
+01:55:20 [Speaker 1]
+I'm down for, like, the weird.
+01:55:22 [Speaker 1]
+If you still can make it easy for me to get my job done.
+
+01:55:25 [Speaker 2]
+I dig this about me situation here.
+
+01:55:27 [Speaker 1]
+Me too, man.
+01:55:28 [Speaker 1]
+There's something here.
+01:55:28 [Speaker 1]
+Like, this is deeply creative.
+
+01:55:30 [Speaker 2]
+Yeah.
+01:55:32 [Speaker 2]
+Yeah.
+01:55:33 [Speaker 2]
+Just give me...
+01:55:34 [Speaker 2]
+It's not
+
+01:55:34 [Speaker 1]
+like this is bad.
+01:55:35 [Speaker 1]
+That this is...
+01:55:35 [Speaker 1]
+That's the...
+01:55:36 [Speaker 1]
+That bottom left is like the
+
+01:55:38 [Speaker 2]
+This is...
+01:55:38 [Speaker 2]
+So, like, without interacting with anything, this is what I see.
+01:55:41 [Speaker 2]
+And it's like, man, there's a missed opportunity here.
+01:55:43 [Speaker 2]
+Maybe, like, some photos of the work, like, Polaroids of the work, and then, like, clicking on it brings them more front front and center.
+01:55:50 [Speaker 2]
+Something to that.
+
+01:55:50 [Speaker 2]
+I don't know.
+
+01:55:51 [Speaker 1]
+There's something...
+01:55:52 [Speaker 1]
+The physical, almost like paper backdrop.
+01:55:54 [Speaker 1]
+Like, there's a physicality to this portfolio that I really like where I actually think that there's a a real opportunity to take the work and just lay it on...
+01:56:02 [Speaker 1]
+Like, right now, like, when I hover over that state, like what you're doing, that doesn't that doesn't match the physicality of the space.
+01:56:08 [Speaker 1]
+There's not, like, a realism to it.
+
+01:56:10 [Speaker 1]
+So figure out, like, how do you create the entry points in a way that shows the work but also leans into the realism that you're doing everywhere else and kinda play with those fun textures.
+01:56:20 [Speaker 1]
+If you just did that and right now we were looking at, like, exposed work, I think this would immediately become twice as valuable.
+
+01:56:27 [Speaker 2]
+There's a question in the comments.
+01:56:28 [Speaker 2]
+Does inflight know what he's looking at and pointing at when he's talking and sends that to me?
+
+01:56:35 [Speaker 1]
+Yes.
+01:56:36 [Speaker 1]
+And the raw technology is how I was able to build the website with just my voice and not typing or doing anything on a canvas or doing anything with screenshots.
+01:56:45 [Speaker 1]
+Yes.
+
+01:56:46 [Speaker 2]
+In flight is dope today, and I cannot wait to show you that.
+
+01:56:50 [Speaker 1]
+Yeah.
+01:56:52 [Speaker 1]
+It's gonna get it's gonna get insane.
+
+01:56:54 [Speaker 2]
+Yeah.
+01:56:56 [Speaker 2]
+Very cool.
+01:56:57 [Speaker 2]
+I I truly need to shout out everyone, and I'm I'm probably gonna forget everyone's name here.
+01:57:03 [Speaker 2]
+But, if you submitted
+
+01:57:04 [Speaker 1]
+I can do it.
+01:57:05 [Speaker 1]
+I got it up.
+
+01:57:06 [Speaker 2]
+Yeah.
+01:57:06 [Speaker 2]
+Let me...
+01:57:07 [Speaker 2]
+Like, Matt, Josh, Ini, Kyle, Jeff,
+
+01:57:13 [Speaker 1]
+Mahin, Femke.
+
+01:57:16 [Speaker 2]
+Thank you.
+01:57:18 [Speaker 2]
+Like, thank you for for taking time to review the community's portfolios.
+01:57:21 [Speaker 2]
+These are people just...
+01:57:22 [Speaker 2]
+It's goodwill.
+01:57:22 [Speaker 2]
+Right?
+
+01:57:23 [Speaker 2]
+And that's that's a whole
+
+01:57:24 [Speaker 1]
+And we didn't get through all them all too.
+01:57:25 [Speaker 1]
+We didn't get through them.
+01:57:26 [Speaker 1]
+Like, there's just too many.
+01:57:27 [Speaker 1]
+Like, this was this...
+01:57:27 [Speaker 1]
+There's an explosion of interest on both sides, which is, like, really exciting.
+
+01:57:30 [Speaker 1]
+Also, we don't have all day.
+01:57:32 [Speaker 1]
+My wife would kill me if I'm on here for more than five more minutes.
+01:57:36 [Speaker 1]
+But the...
+01:57:38 [Speaker 1]
+Like, even, Gabe Valdivia, like, left a bunch of ping comments on on a bunch of the work.
+01:57:42 [Speaker 1]
+Like, there's a whole lot...
+
+01:57:43 [Speaker 1]
+There's, like, 10 more portfolios that received feedback.
+01:57:45 [Speaker 1]
+We'll try to get to more of them too, but, like, there's something here, man.
+
+01:57:48 [Speaker 2]
+This is Rit Rit and I will talk about how to surface.
+01:57:50 [Speaker 2]
+We have a bunch of submissions from you guys.
+01:57:52 [Speaker 2]
+We didn't know what to expect.
+01:57:54 [Speaker 2]
+We'll figure out how to make this useful to everybody.
+01:57:57 [Speaker 2]
+You know, this certainly won't be the end of it.
+
+01:57:59 [Speaker 2]
+We've gotta figure out what it looks like.
+01:58:01 [Speaker 2]
+There's a lot to talk about each week.
+01:58:02 [Speaker 2]
+But thank you for submitting.
+01:58:03 [Speaker 2]
+Thank you for putting yourself out there.
+01:58:05 [Speaker 2]
+I hope this was helpful for you guys.
+
+01:58:06 [Speaker 2]
+And thank you for supporting in flight.
+01:58:08 [Speaker 2]
+Please check out in flight at inflight.co.
+01:58:10 [Speaker 2]
+Big launch day for us.
+01:58:12 [Speaker 2]
+We are smoked.
+01:58:14 [Speaker 2]
+So we're gonna do our best.
+
+01:58:15 [Speaker 2]
+We're gonna show up next week again, continue to talk about, some good stuff.
+01:58:19 [Speaker 2]
+So, oh, I was supposed to play our outro song, and I forgot that too.
+
+01:58:23 [Speaker 1]
+That would have been so...
+01:58:24 [Speaker 1]
+Would have been so perfect.
+01:58:25 [Speaker 1]
+You know what?
+01:58:26 [Speaker 1]
+You know what?
+
+01:58:26 [Speaker 2]
+Let's do it.
+
+01:58:27 [Speaker 1]
+We got Good anyway.
+01:58:27 [Speaker 1]
+What do you got planned for this weekend, Tommy?
+
+01:58:29 [Speaker 2]
+There you go.
+01:58:30 [Speaker 2]
+I like it.
+01:58:31 [Speaker 2]
+Sleeping, man.
+01:58:32 [Speaker 2]
+Saturday's sleep.
+01:58:33 [Speaker 2]
+I'm I'm...
+
+01:58:34 [Speaker 2]
+I, like, genuinely, I'm not done.
+01:58:37 [Speaker 2]
+I I gotta finish strong.
+01:58:38 [Speaker 2]
+I got a whole thing going on tomorrow, with MetaLab doc.
+01:58:41 [Speaker 2]
+I can't wait to show the trailer, to show you guys what we're cooking with MetaLab.
+01:58:45 [Speaker 2]
+I can't wait to show you what we just filmed in Savannah.
+
+01:58:48 [Speaker 2]
+My goodness.
+01:58:49 [Speaker 2]
+I am a busy boy, and I
+
+01:58:51 [Speaker 1]
+am sleepy.
+01:58:52 [Speaker 1]
+I still need to
+
+01:58:53 [Speaker 2]
+understand what people were applauding when I woke up.
+01:58:56 [Speaker 2]
+I need to know.
+01:58:57 [Speaker 2]
+It's what life's missing.
+01:58:59 [Speaker 2]
+Oh, man.
+01:58:59 [Speaker 2]
+You never know.
+
+01:59:00 [Speaker 1]
+That that story got me good.
+01:59:02 [Speaker 1]
+I appreciate that....
+
+01:59:03 [Speaker 2]
+Long time.
+01:59:06 [Speaker 2]
+Thanks for tuning in everybody.
+01:59:08 [Speaker 2]
+We...
+01:59:09 [Speaker 2]
+You guys make this show a lot of fun.
+01:59:11 [Speaker 2]
+And, I'm glad it's useful for for so many of you.
+
+01:59:14 [Speaker 2]
+So we will see you next week, Thursday, 1PM Pacific.
+01:59:18 [Speaker 2]
+And, yeah.
+
+01:59:20 [Speaker 1]
+Peace.

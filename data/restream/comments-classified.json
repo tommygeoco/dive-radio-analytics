@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-10-15T19:16:40.288Z",
+  "updatedAt": "2026-10-16T21:25:06.189Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1730,6 +1730,131 @@
         ],
         "confidence": 0.62
       }
+    },
+    "yt:Ugw6bREaYo6OIqH8Pj54AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "guest",
+        "format"
+      ],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z"
+    },
+    "yt:Ugw6bREaYo6OIqH8Pj54AaABAg.Ac0L7Qlo-_oAc0NIMNk7i7": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.65,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z",
+      "audit": {
+        "at": "2026-10-16T21:25:06.189Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.65
+      }
+    },
+    "yt:Ugzw11U67cN2ZLu4yH14AaABAg": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "guest",
+        "other"
+      ],
+      "confidence": 0.88,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z"
+    },
+    "x:2110999076988960845": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "guest"
+      ],
+      "confidence": 0.85,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z",
+      "audit": {
+        "at": "2026-10-16T21:25:06.189Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "guest"
+        ],
+        "confidence": 0.82
+      }
+    },
+    "x:2110996291224322431": {
+      "state": "ready",
+      "relevance": "feedback",
+      "sentiment": "positive",
+      "themes": [
+        "format",
+        "topic choice"
+      ],
+      "confidence": 0.75,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z",
+      "audit": {
+        "at": "2026-10-16T21:25:06.189Z",
+        "agreed": true,
+        "relevance": "feedback",
+        "sentiment": "positive",
+        "themes": [
+          "format",
+          "topic choice"
+        ],
+        "confidence": 0.78
+      }
+    },
+    "x:2110977445406941613": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.62,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z",
+      "audit": {
+        "at": "2026-10-16T21:25:06.189Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.62
+      }
+    },
+    "x:2108939568615690379": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.93,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-16T21:25:06.189Z"
     }
   },
   "golden": {
@@ -1750,9 +1875,9 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-10-15T19:16:40.288Z",
+    "at": "2026-10-16T21:25:06.189Z",
     "status": "complete",
-    "added": 0,
+    "added": 7,
     "reviewed": 0,
     "pendingIds": []
   },
