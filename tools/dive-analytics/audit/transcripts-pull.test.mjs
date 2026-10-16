@@ -211,9 +211,16 @@ try {
   writeFileSync(join(cases, "e8-transcript-2026-09-02.txt"), expectedBody);
   assert.equal(planVaultTranscript(show, 8, cases), null, "wrong air date must not match");
 
-  writeFileSync(join(cases, "e8-transcript-2026-09-03.txt"), "not a timed speaker transcript\n");
-  assert.throws(() => planVaultTranscript(show, 8, cases), /no timed speaker body/);
+  const whisper = "Dive Radio E8 — Vault Test\nSource: local Whisper of the replay audio, no speaker labels\n\n[00:00:00] Music\n[00:03:17] Exact first line.\n";
+  writeFileSync(join(cases, "e8-transcript-2026-09-03.txt"), whisper);
+  const skipped = [];
+  assert.equal(planVaultTranscript(show, 8, cases, { onSkip: (file) => skipped.push(file) }), null, "a file without timed speaker lines is not a vault source");
+  assert.deepEqual(skipped, ["e8-transcript-2026-09-03.txt"], "the skipped file is named");
+  assert.throws(() => speakerBody(whisper), /no timed speaker body/, "the canonical parity check still refuses a body without speaker lines");
+  writeFileSync(join(cases, "e8-transcript-2026-09-03-restream.txt"), expectedBody);
+  assert.equal(planVaultTranscript(show, 8, cases).file, "e8-transcript-2026-09-03-restream.txt", "a speaker export beside a Whisper copy is selected");
   rmSync(join(cases, "e8-transcript-2026-09-03.txt"));
+  rmSync(join(cases, "e8-transcript-2026-09-03-restream.txt"));
 
   writeFileSync(join(cases, "e8-transcript-2026-09-03-a.txt"), expectedBody);
   writeFileSync(join(cases, "e8-transcript-2026-09-03-b.txt"), "00:03:17 [Speaker 1]\nDifferent body.\n");
@@ -225,4 +232,51 @@ try {
   rmSync(vaultRoot, { recursive: true, force: true });
 }
 
-console.log("ok    transcripts pull: day-two gate, vault import and parity, conflict guard, caption fallback, retry, and no-overwrite passed");
+// 2026-10-16: the episode-notes job saved a Whisper copy as e14-transcript-<date>.txt
+// before the Restream export arrived. It must be skipped, not stop the required step.
+const whisperRoot = mkdtempSync(join(tmpdir(), "dive-radio-vault-whisper-test-"));
+try {
+  const vault = join(whisperRoot, "vault");
+  const root = join(whisperRoot, "publisher");
+  mkdirSync(join(root, "data", "restream"), { recursive: true });
+  mkdirSync(vault);
+  const slug = "2026-10-15-dive-radio-whisper-test";
+  const show = {
+    slug,
+    title: "Dive Radio: Whisper Test",
+    date: "2026-10-15",
+    active: true,
+    targets: [{ kind: "youtube", account: "joindiveclub", videoId: "whisper123" }],
+  };
+  writeFileSync(join(root, "data", "restream", "postlive-registry.json"), JSON.stringify({ shows: [show] }));
+  writeFileSync(join(vault, "e1-transcript-2026-10-15.txt"), "Dive Radio E1 — Whisper Test\nSource: local Whisper of the replay audio, no speaker labels\n\n[00:00:00] Music\n[00:03:15] First line.\n");
+  const warnings = [];
+  const logger = { log() {}, warn: (line) => warnings.push(line) };
+  const morning = Date.parse("2026-10-16T14:00:00Z");
+  const whisperOnly = runTranscriptPull({
+    root,
+    vaultDir: vault,
+    now: morning,
+    logger,
+    downloadVtt() { throw new Error("YouTube has not published English auto-captions yet"); },
+  });
+  assert.deepEqual(whisperOnly, { created: 0, waiting: 1, planned: 1 }, "a Whisper copy alone leaves the episode waiting instead of stopping the step");
+  assert.ok(warnings.some((line) => /E1 skipped e1-transcript-2026-10-15\.txt in the owner vault/.test(line)), "the skip is logged");
+
+  const speaker = "00:03:15 [Speaker 1]\nFirst line.\n\n00:03:25 [Speaker 2]\nSecond line.\n";
+  writeFileSync(join(vault, "e1-transcript-2026-10-15-restream.txt"), speaker);
+  const withExport = runTranscriptPull({
+    root,
+    vaultDir: vault,
+    now: morning + 3600000,
+    logger,
+    downloadVtt() { throw new Error("the vault export must win"); },
+  });
+  assert.deepEqual(withExport, { created: 1, waiting: 0, planned: 1 });
+  const canonical = readFileSync(join(root, "transcripts", `${slug}.txt`), "utf8");
+  assert.equal(canonical, restreamTranscriptHeader(show, 1, show.targets[0], "e1-transcript-2026-10-15-restream.txt") + speakerBody(speaker));
+} finally {
+  rmSync(whisperRoot, { recursive: true, force: true });
+}
+
+console.log("ok    transcripts pull: day-two gate, vault import and parity, Whisper-copy skip, conflict guard, caption fallback, retry, and no-overwrite passed");

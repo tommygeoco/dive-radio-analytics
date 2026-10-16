@@ -7,9 +7,10 @@
 // dependencies. Existing transcript files are never opened for writing, so a
 // manually supplied canonical transcript always wins. A vault speaker
 // transcript is selected only by exact episode number plus registry air date;
-// conflicting copies stop the step instead of guessing. Caption delays are
-// expected: a due episode with no source stays absent and is tried again on
-// the next daily run.
+// a file under that name with no timed speaker lines (a Whisper copy) is
+// skipped with a warning; conflicting speaker copies stop the step instead of
+// guessing. Caption delays are expected: a due episode with no source stays
+// absent and is tried again on the next daily run.
 //
 // Operator wiring (do not edit cron here): run after postlive-discover.mjs and
 // before snapshot/build-data so the newly created file reaches data.json.
@@ -160,28 +161,38 @@ function regexEscape(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-export function speakerBody(raw) {
+function findSpeakerBody(raw) {
   const text = String(raw).replace(/^\uFEFF/, "");
   const match = /^\d{2}:\d{2}:\d{2} \[Speaker [^\]\r\n]+\]\r?$/m.exec(text);
-  if (!match) throw new Error("vault transcript has no timed speaker body");
+  if (!match) return null;
   return text.slice(match.index).replace(/\r\n/g, "\n").replace(/\n+$/, "");
 }
 
-export function vaultTranscriptCandidates(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT) {
-  if (!existsSync(vaultDir)) return [];
-  const pattern = new RegExp(`^e${ep}-transcript-${regexEscape(show.date)}(?:-[^.]+)?\\.txt$`);
-  return readdirSync(vaultDir)
-    .filter((name) => pattern.test(name))
-    .sort()
-    .map((file) => ({
-      file,
-      path: join(vaultDir, file),
-      body: speakerBody(readVerifiedSource(join(vaultDir, file), { cacheDir: resolve(vaultDir) === resolve(DEFAULT_VAULT) ? SOURCE_CACHE_DIR : null })),
-    }));
+export function speakerBody(raw) {
+  const body = findSpeakerBody(raw);
+  if (body == null) throw new Error("vault transcript has no timed speaker body");
+  return body;
 }
 
-export function planVaultTranscript(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT) {
-  const candidates = vaultTranscriptCandidates(show, ep, vaultDir);
+// A vault file can carry an episode's transcript name without being a Restream
+// speaker export: the episode-notes job saves its Whisper copy of the replay as
+// e<n>-transcript-<date>.txt. Such a file is not a source. It is skipped (onSkip
+// names it) and the remaining files are read as usual.
+export function vaultTranscriptCandidates(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT, { onSkip = () => {} } = {}) {
+  if (!existsSync(vaultDir)) return [];
+  const pattern = new RegExp(`^e${ep}-transcript-${regexEscape(show.date)}(?:-[^.]+)?\\.txt$`);
+  const candidates = [];
+  for (const file of readdirSync(vaultDir).filter((name) => pattern.test(name)).sort()) {
+    const path = join(vaultDir, file);
+    const body = findSpeakerBody(readVerifiedSource(path, { cacheDir: resolve(vaultDir) === resolve(DEFAULT_VAULT) ? SOURCE_CACHE_DIR : null }));
+    if (body == null) { onSkip(file); continue; }
+    candidates.push({ file, path, body });
+  }
+  return candidates;
+}
+
+export function planVaultTranscript(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT, { onSkip } = {}) {
+  const candidates = vaultTranscriptCandidates(show, ep, vaultDir, { onSkip });
   if (!candidates.length) return null;
   const hashes = new Set(candidates.map((candidate) => createHash("sha256").update(candidate.body).digest("hex")));
   if (hashes.size > 1) {
@@ -318,7 +329,9 @@ function pullTranscriptFiles({
       logger.log(`transcripts: E${plan.ep} already has a transcript — kept unchanged`);
       continue;
     }
-    const vaultTranscript = planVaultTranscript(plan.show, plan.ep, vaultDir);
+    const vaultTranscript = planVaultTranscript(plan.show, plan.ep, vaultDir, {
+      onSkip: (file) => logger.warn(`WARN  transcripts: E${plan.ep} skipped ${file} in the owner vault — it has no timed speaker lines, so it is not a Restream speaker transcript`),
+    });
     if (vaultTranscript) {
       if (dryRun) {
         logger.log(`transcripts: E${plan.ep} would import ${vaultTranscript.file} from the owner vault`);
