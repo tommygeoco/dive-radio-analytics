@@ -111,10 +111,91 @@ historical is rewritten.
 If an export lands between the transcripts step and `validate` in the same run, that
 attempt fails. The race already exists for a missing file, and recovery reruns.
 
-## Queued
+## Queued, then fixed the same day
 
 - **The mirror's captions copy.** The mirror copies a captions transcript into the vault
   under the reserved name `e<n>-transcript-<date>.txt`. After a replacement, that stale
   copy stays next to the export, and `clips.mjs findTranscript` or search may pick it.
   Options: the mirror skips captions copies, or it names them `e<n>-captions-transcript-…`.
-  Either is a change on the vault side.
+  Either is a change on the vault side. Fixed below.
+
+## Follow-up: the mirror names a captions copy for what it is
+
+### Who reads the vault names (checked on the Mini, read-only)
+
+| Reader | Pattern | Effect of a captions copy under the reserved name |
+|---|---|---|
+| `transcripts-pull.mjs vaultTranscriptCandidates` | `^e<n>-transcript-<air-date>(-x)?\.txt$` | skipped, no speaker lines (`bd91361`) |
+| `mirror-transcripts.mjs` (`haveEpisode`) | `^e<n>-transcript-.*\.txt$` | the episode counts as present |
+| hinterlands `clips.mjs findTranscript` | `^e<n>-transcript-.*\.txt$`, then `^e<n>-autocaptions-.*\.txt$` | read as the full transcript, and the Notion page says "full transcript" |
+| hinterlands `clips-pull-prompt.md` | moves a sheet from `eN-autocaptions-…` to `eN-transcript-…` when one lands | never moves, because the captions already hold the full name |
+| episode-notes skill | `V/eN-transcript-*.txt` = "the show's own" | an agent reads captions as the show's own transcript |
+| QMD `dive-radio-transcripts` | the publisher's `transcripts/**/*.txt` | none, because the vault is not indexed |
+| QMD `dive-radio-ops` | the vault's `**/*.md` | none, because `.txt` files are not indexed |
+| validator 5a | `planVaultTranscript` | none |
+
+The real harm is on the vault side. A captions copy sitting under the reserved name forces a
+late export to land under a suffixed name (as E14's had to, beside the Whisper copy). It
+also leaves the clips job and the episode-notes agent reading captions as the full
+transcript. Search was never affected: QMD indexes the publisher's folder, not the vault's
+`.txt` files.
+
+### The change
+
+- `mirror-transcripts.mjs` sorts each publisher transcript into one of three kinds:
+  - **Captions** (`isCaptionsTranscript`) are copied as `e<n>-autocaptions-<air-date>.txt`,
+    but only if the vault has no file of that episode, either under the reserved name or
+    as `e<n>-autocaptions-…`. That is the name `clips.mjs` already gives its own caption
+    pulls. Its readers rank it below `e<n>-transcript-…` and label it "YouTube
+    auto-captions, no speaker labels". The clips job moves a sheet off it once the full
+    transcript lands. Nothing else matches it.
+  - **A speaker transcript** (`hasSpeakerBody`) keeps the reserved
+    `e<n>-transcript-<air-date>.txt`, but only if no file of that episode is under that name.
+  - **Anything else** stops the job and nothing is copied. A transcript the mirror cannot
+    classify never takes the reserved name.
+- A copy that a racing writer got to first is no longer reported as "copied".
+- **Rejected: the brief's `e<n>-captions-transcript-<date>.txt`.** No reader knows that
+  name. `clips.mjs` would miss it and pull a second set of captions itself.
+- **Rejected: skipping captions.** That would leave no transcript in the vault for an
+  episode with captions only (E1, E3, E5 today), and the clips job reads the vault.
+
+### Decisions
+
+- **Retire the stale captions copy once the export replaces it?** Recommended: no. Under
+  its new name it is harmless. Every reader prefers the export, and the importer and the
+  mirror never see it. The clips job and episode notes cite the transcript file by name
+  (`transcript:` in the sheet's frontmatter, and the Notion callout), so a deleted file
+  would leave those citations pointing at nothing. Retiring would also give an unattended
+  job a power it has never had: deleting files in the owner's vault. If ever wanted, the
+  safe test is bytes equal to a `replaced[].sha256` in `transcript-state.json`.
+  **Owner decision 2026-10-16: no retire** (Tommy approved the recommendation).
+- **Rename E1's and E5's existing mirror copies?** Recommended: no. Their bytes equal the
+  publisher's current captions (sha256 `7f27cd48…`, `ca405bcf…`), so nothing about them is
+  stale. `e5-episode-notes-2026-08-13.md` cites E5's copy by name (`transcript:` and
+  `sources:`), and `running-log.md` records both copies by name. The mirror counts them as
+  present, so it never adds a second copy. E3's
+  `e3-transcript-2026-07-30-youtube-autocaptions.txt` was not written by the mirror (pulled
+  2026-08-07; the publisher's copy was pulled 2026-08-22), so it is not the mirror's to
+  touch. This matches the owner's E14 decision ("Leave e14-transcript-2026-10-15.txt as it
+  is"). **Owner decision 2026-10-16: no rename** (Tommy approved the recommendation).
+
+### Proof
+
+- `audit/mirror-transcripts.test.mjs` builds its fixtures with transcripts-pull's own header
+  writers and replays an E14-style morning for E16:
+  - Day two: the captions are copied as `e16-autocaptions-…`, byte for byte, and the
+    reserved name stays free. The mirror wrote no captions under any reserved name. The
+    importer neither sees the copy nor skips it.
+  - 09:20: the export is written under the reserved name with an exclusive create, so the
+    test fails if the name is taken. The importer then plans exactly that file.
+  - Day three: the publisher holds the export, the mirror copies nothing, and both vault
+    files are unchanged. A `^e16-transcript-` reader finds only the export.
+  - Captions that `clips.mjs` already pulled (E17), and a legacy reserved-name copy (E18),
+    each win, and neither gets a second copy. A dry run writes nothing. A publisher file of
+    neither kind stops the job before anything is copied.
+  - Eight mutations were tried and all were killed: captions written under the reserved
+    name, either "already present" check dropped, the speaker check dropped, the
+    reserved-name guard dropped, captions detection dropped, `e<n>-autocaptions-` not read,
+    and the reserved pattern narrowed.
+- The validator runs this test at the fail tier ("isolated transcript mirror and its
+  captions name").

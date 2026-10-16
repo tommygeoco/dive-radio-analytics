@@ -2,6 +2,15 @@
 // mirror-transcripts.mjs — copy missing Dive Radio transcripts from this
 // dedicated chain checkout into the owner vault, then refresh the two search
 // collections. An existing episode file in the vault always wins.
+//
+// The vault name says what a transcript is (2026-10-16). `e<n>-transcript-
+// <air-date>[-x].txt` is reserved for the show's own speaker transcripts: the
+// Restream export the analytics importer reads, and this mirror's copy of one.
+// A YouTube auto-captions transcript is copied as `e<n>-autocaptions-
+// <air-date>.txt`, the name clips.mjs gives its own caption pulls, and only
+// while the vault holds no transcript of that episode. A captions copy never
+// takes the reserved name, so a speaker export that lands later gets that name
+// and every reader that prefers `e<n>-transcript-…` reads the export.
 
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -9,7 +18,7 @@ import { dirname, join } from "node:path";
 import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { atomicWriteJson, withSourceLock } from "../../tools/dive-analytics/source-io.mjs";
-import { writeTranscriptOnce } from "./transcripts-pull.mjs";
+import { hasSpeakerBody, isCaptionsTranscript, writeTranscriptOnce } from "./transcripts-pull.mjs";
 import { ISOLATED_PUBLISHER_ROOT, TRANSCRIPT_REFRESH_STATE_PATH } from "../../tools/dive-analytics/runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -18,6 +27,8 @@ export const DEFAULT_SOURCE = join(ISOLATED_PUBLISHER_ROOT, "transcripts");
 const DEFAULT_VAULT = join(homedir(), "Documents", "Obsidian", "Hinterlands", "Dive Media Group", "Dive Radio");
 const DEFAULT_REFRESH = join(homedir(), "Dev", "2026", "hinterlands", "scripts", "vault", "qmd-refresh-collections.mjs");
 const COLLECTIONS = ["dive-radio-transcripts", "dive-radio-ops"];
+export const speakerName = (ep, aired) => `e${ep}-transcript-${aired}.txt`;
+export const captionsName = (ep, aired) => `e${ep}-autocaptions-${aired}.txt`;
 
 function saveRefreshState(path, files) {
   mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
@@ -51,21 +62,34 @@ function mirrorTranscriptFiles({
 } = {}) {
   if (!existsSync(source)) throw new Error(`source folder missing at ${source}`);
   if (!existsSync(vault)) throw new Error(`vault folder missing at ${vault}`);
-  const haveEpisode = new Set(readdirSync(vault)
-    .filter((file) => /^e\d+-transcript-.*\.txt$/.test(file))
-    .map((file) => Number(file.match(/^e(\d+)-/)[1])));
+  const vaultFiles = readdirSync(vault);
+  const episodeOf = (pattern) => new Set(vaultFiles.map((file) => file.match(pattern)?.[1]).filter(Boolean).map(Number));
+  const haveReserved = episodeOf(/^e(\d+)-transcript-.*\.txt$/);
+  const haveCaptions = episodeOf(/^e(\d+)-autocaptions-.*\.txt$/);
   const copied = [];
   const planned = [];
   const problems = [];
   for (const file of readdirSync(source).filter((name) => name.endsWith(".txt")).sort()) {
-    const head = readFileSync(join(source, file), "utf8").split("\n", 3);
+    const raw = readFileSync(join(source, file), "utf8");
+    const head = raw.split("\n", 3);
     const episode = head[0].match(/Dive Radio E(\d+)\b/);
     const aired = (head[1] || "").match(/Aired:\s*(\d{4}-\d{2}-\d{2})/);
     if (!episode || !aired) { problems.push(`${file}: header lacks episode number or air date`); continue; }
     const ep = Number(episode[1]);
-    if (haveEpisode.has(ep)) continue;
-    const target = `e${ep}-transcript-${aired[1]}.txt`;
-    haveEpisode.add(ep);
+    let target;
+    if (isCaptionsTranscript(raw)) {
+      // captions are the last resort: any transcript of the episode in the vault wins
+      if (haveReserved.has(ep) || haveCaptions.has(ep)) continue;
+      target = captionsName(ep, aired[1]);
+      haveCaptions.add(ep);
+    } else if (hasSpeakerBody(raw)) {
+      if (haveReserved.has(ep)) continue;
+      target = speakerName(ep, aired[1]);
+      haveReserved.add(ep);
+    } else {
+      problems.push(`${file}: is neither a Restream speaker transcript nor YouTube auto-captions`);
+      continue;
+    }
     planned.push({ source: join(source, file), target, destination: join(vault, target) });
   }
   if (problems.length) throw new Error(problems.join("; "));
@@ -74,8 +98,7 @@ function mirrorTranscriptFiles({
   // Check both collections on every scheduled run, including an unchanged vault.
   if (!dryRun && (planned.length || !noQmd)) saveRefreshState(refreshState, planned.map((item) => item.target));
   for (const item of planned) {
-    if (!dryRun) writeTranscriptOnce(item.destination, readFileSync(item.source));
-    copied.push(item.target);
+    if (dryRun || writeTranscriptOnce(item.destination, readFileSync(item.source))) copied.push(item.target);
   }
   for (const target of copied) log(`Dive Radio transcript mirror: copied ${target}${dryRun ? " (dry run)" : ""}`);
   const needsRefresh = !dryRun && pendingRefresh(refreshState);

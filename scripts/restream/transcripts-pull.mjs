@@ -178,10 +178,16 @@ export function speakerBody(raw) {
   return body;
 }
 
+export function hasSpeakerBody(raw) {
+  return findSpeakerBody(raw) != null;
+}
+
 // A vault file can carry an episode's transcript name without being a Restream
-// speaker export: the transcript mirror's copy of a captions transcript, or a
-// Whisper copy saved under the reserved name (E14's, before the episode-notes
-// job began saving them as e<n>-whisper-transcript-<date>.txt on 2026-10-16).
+// speaker export: the transcript mirror's copy of a captions transcript (E1's
+// and E5's, before the mirror began naming those e<n>-autocaptions-<date>.txt
+// on 2026-10-16), or a Whisper copy saved under the reserved name (E14's,
+// before the episode-notes job began saving them as
+// e<n>-whisper-transcript-<date>.txt the same day).
 // Such a file is not a source. It is skipped (onSkip names it) and the
 // remaining files are read as usual.
 export function vaultTranscriptCandidates(show, ep, vaultDir = process.env.DIVE_TRANSCRIPT_VAULT || DEFAULT_VAULT, { onSkip = () => {} } = {}) {

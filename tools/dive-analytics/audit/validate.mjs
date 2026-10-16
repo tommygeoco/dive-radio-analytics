@@ -3144,7 +3144,7 @@ try {
     ["recover-publish.test.mjs", "isolated recovery proof"],
     ["run-chain-policy.test.mjs", "chain retry outcomes"],
     ["transcript-cron-script.test.mjs", "transcript cron exit propagation"],
-    ["mirror-transcripts.test.mjs", "isolated transcript mirror"],
+    ["mirror-transcripts.test.mjs", "isolated transcript mirror and its captions name"],
     ["source-receipts.test.mjs", "source receipt and missing-X"],
     ["ingest-restream.test.mjs", "Restream ingest state and delayed analytics"],
     ["sponsor-view.test.mjs", "sponsor view, call-ins and clock checks"],

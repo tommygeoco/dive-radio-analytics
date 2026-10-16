@@ -152,7 +152,10 @@ unclear items off every surface. Built with vanilla JS + Chart.js (MIT, vendored
 The 08:00 transcript mirror uses the tested OpenClaw script stored at
 `tools/dive-analytics/transcript-cron-script.js`. It reads the inner command's
 structured exit code, stays quiet when nothing changed, and fails the job on a
-nonzero or missing status so the configured failure alert is truthful. Every run
+nonzero or missing status so the configured failure alert is truthful. It copies a
+speaker transcript into the vault as `e<n>-transcript-<air-date>.txt` and a YouTube
+captions transcript as `e<n>-autocaptions-<air-date>.txt`, never under the name the
+Restream export uses, and never over a file the vault already has. Every run
 refreshes the `dive-radio-transcripts` and `dive-radio-ops` QMD collections, even
 when all vault copies already exist. The transcript collection reads the isolated
 publisher; indexing or embedding failure remains pending and fails the job.
