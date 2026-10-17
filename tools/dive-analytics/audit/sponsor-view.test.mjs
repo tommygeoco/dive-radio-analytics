@@ -420,6 +420,8 @@ import { normalize } from "../transcripts.mjs";
   const coverView = sponsorView({ episodes: eps.map((e, i) => ({ ...e, slug: FEATURED_COVERS[i] ?? e.slug })), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.deepEqual(coverView.covers.map((c) => c.slug), [...FEATURED_COVERS], "through the projection: the owners' row over the stored episodes");
   assert.deepEqual(view.covers, [], "none of the picked slugs is stored in the fixture: an empty row, never an invented one");
+  assert.equal(FEATURED_COVERS.at(-1), "2026-08-20-dive-radio-the-mascot-industrial-complex", "D25: E6, a titled cover, closes the row");
+  assert.ok(!FEATURED_COVERS.includes("2026-07-30-dive-radio-mixed-media-workflows-game-de") && !FEATURED_COVERS.some((slug) => /portfoli/.test(slug)), "D25: no bare-wordmark cover (E3), no portfolio episode");
   // the call-ins that show the audience building with tools (D21): the same own-video rule, the stored words verbatim,
   // never a name featured above, a submission without words dropped, three at most, in the owners' order
   assert.ok(FEATURED_TOOL_CALLINS.length <= FEATURED_TOOL_CALLINS_MAX && FEATURED_TOOL_CALLINS_MAX === 3 && new Set(FEATURED_TOOL_CALLINS).size === FEATURED_TOOL_CALLINS.length);

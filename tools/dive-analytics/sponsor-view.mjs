@@ -146,7 +146,7 @@ export function toolCallIns(list, names = FEATURED_TOOL_CALLINS, featured = feat
   return out;
 }
 
-// The episodes on the desktop cover row (D23, 2026-10-17): up to six (two of
+// The episodes on the desktop cover row (D23, D25, 2026-10-17): up to six (two of
 // the page's twelve columns each), by slug, in the owners' order, chosen for
 // titles that show building and tools at work (one portfolio episode at most). Each is the stored episode's number,
 // slug and title; a slug no stored episode has is dropped. The phone rail still
@@ -158,7 +158,7 @@ export const FEATURED_COVERS = Object.freeze([
   "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal", // E5 Goodbye, Blank Canvas (Notion's live build)
   "2026-08-28-dive-radio-steal-these-ai-design-pattern", // E7 Steal These AI Design Patterns
   "2026-09-02-dive-radio-how-to-engineer-a-brand-unive", // E8 How to Engineer a Brand Universe
-  "2026-07-30-dive-radio-mixed-media-workflows-game-de", // E3 Mixed Media Workflows, Game Design
+  "2026-08-20-dive-radio-the-mascot-industrial-complex", // E6 The Mascot Industrial Complex (D25: its cover is titled; E3's is a bare wordmark)
 ]);
 
 export function featuredCovers(episodes, slugs = FEATURED_COVERS) {

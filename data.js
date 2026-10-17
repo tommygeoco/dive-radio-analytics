@@ -103823,9 +103823,9 @@ window.DIVE_DATA = {
     "title": "Dive Radio: How to Engineer a Brand Universe"
    },
    {
-    "ep": 3,
-    "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
-    "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins"
+    "ep": 6,
+    "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
+    "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins"
    }
   ],
   "views": {
