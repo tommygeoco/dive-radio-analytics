@@ -112,13 +112,13 @@ export const FEATURED_QUOTES_MAX = 3;
 export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377"]);
 export const FEATURED_KIND = "submission";
 // The call-ins that show the audience building with tools at work, the
-// partners' own among them (D21, 2026-10-17): up to three exact names, each
+// partners' own among them (D21, D22, 2026-10-17): up to three exact names, each
 // that person's first aired submission with its stored words (`about`),
 // verbatim. The same own-video rule as FEATURED_CALLINS; a name already
 // featured above is not repeated here, and a submission the notes give no
 // words for is dropped, since its words are what this list shows.
 export const FEATURED_TOOL_CALLINS_MAX = 3;
-export const FEATURED_TOOL_CALLINS = Object.freeze(["Nick Pattison", "Davey Heuser", "Kolbe Yang"]);
+export const FEATURED_TOOL_CALLINS = Object.freeze(["Davey Heuser", "Kolbe Yang", "Bruno Reis"]);
 
 export function featuredCallIns(list, names = FEATURED_CALLINS) {
   const out = [];

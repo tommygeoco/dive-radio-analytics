@@ -104821,13 +104821,6 @@ window.DIVE_DATA = {
    ],
    "tools": [
     {
-     "who": "Nick Pattison",
-     "ep": 8,
-     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-     "kind": "submission",
-     "about": "a live map tool Primary built in Lovable for a client brand"
-    },
-    {
      "who": "Davey Heuser",
      "ep": 11,
      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
@@ -104840,6 +104833,13 @@ window.DIVE_DATA = {
      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
      "kind": "submission",
      "about": "from a Figma frame to a finished animation"
+    },
+    {
+     "who": "Bruno Reis",
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "about": "an AI agent edits his interview in DaVinci Resolve"
     }
    ],
    "list": [

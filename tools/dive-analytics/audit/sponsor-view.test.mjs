@@ -422,12 +422,15 @@ import { normalize } from "../transcripts.mjs";
   ], "the owners' order; an unknown name, a submission without words, a portfolio and a featured name dropped; a name's first video past its nomination; the stored words verbatim; three at most");
   assert.deepEqual(toolCallIns(null), [], "no call-in list, no tool call-ins");
   const toolView = sponsorView({ episodes: eps, contributors: { episodes: {
-    e9: { callIns: [{ kind: "submission", who: FEATURED_TOOL_CALLINS[1], about: "words as the notes give them" }, { kind: "submission", who: FEATURED_TOOL_CALLINS[0], about: "first pick's words" }] },
+    e9: { callIns: [{ kind: "submission", who: FEATURED_TOOL_CALLINS[2], about: "third pick's words" }, { kind: "submission", who: FEATURED_TOOL_CALLINS[1], about: "words as the notes give them" }, { kind: "submission", who: FEATURED_TOOL_CALLINS[0], about: "first pick's words" }] },
+    e10: { callIns: [{ kind: "submission", who: "Nick Pattison", about: "a live map tool Primary built in Lovable for a client brand" }] },
   } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.deepEqual(toolView.callIns.tools, [
     { who: FEATURED_TOOL_CALLINS[0], ep: 9, slug: "e9", kind: "submission", about: "first pick's words" },
     { who: FEATURED_TOOL_CALLINS[1], ep: 9, slug: "e9", kind: "submission", about: "words as the notes give them" },
-  ], "through the projection: the owners' list over the stored entries");
+    { who: FEATURED_TOOL_CALLINS[2], ep: 9, slug: "e9", kind: "submission", about: "third pick's words" },
+  ], "through the projection: the owners' list over the stored entries; an aired call-in not on the list (D22: Nick Pattison) stays out");
+  assert.ok(!FEATURED_TOOL_CALLINS.includes("Nick Pattison") && !FEATURED_TOOL_CALLINS.includes("Daniel Linthwaite"), "D22: a line a cold reader can misread, and a clip cut from an interview, are not picks");
   assert.deepEqual(view.callIns.tools, [], "none of the picks aired in the fixture");
   assert.deepEqual(sponsorView({ episodes: eps, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).callIns.tools, [], "no call-in list: an empty list beside the absent count's reason");
   const nominatedOnly = sponsorView({ episodes: eps, contributors: { episodes: { e11: { callIns: [{ kind: "nomination", who: firstPick, nominee: "Someone" }] } } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
