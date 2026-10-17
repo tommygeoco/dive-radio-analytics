@@ -10,7 +10,7 @@ import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
-  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts,
+  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
@@ -334,12 +334,18 @@ import { normalize } from "../transcripts.mjs";
 
   // each package's example is found near the owners' recorded time, or absent with a reason
   assert.deepEqual(EXAMPLES.map((x) => x.package), ["Mid-roll", "Segment", "Build"]);
-  const withOneUp = { ...transcripts, e5: { ...transcripts.e5, segments: [...transcripts.e5.segments, { stamp: "01:20:35", seconds: 4835, speaker: null, text: "The One Up Weekly segment, brought to you by Lovable." }] } };
+  // D29: the named segment is E8's One Up Weekly, the newest the hosts opened with "brought to you by Lovable"; the read is
+  // "A live read"; Build stays E5
+  assert.deepEqual(EXAMPLES.map((x) => [x.package, x.format, x.partner, x.ep]), [["Mid-roll", "A live read", "Notion", 10], ["Segment", "A named segment", "Lovable", 8], ["Build", "A live build", "Notion", 5]]);
+  const oneUp = EXAMPLES.find((x) => x.package === "Segment");
+  const oneUpAt = (sec) => `${String(Math.floor(sec / 3600)).padStart(2, "0")}:${String(Math.floor((sec % 3600) / 60)).padStart(2, "0")}:${String(sec % 60).padStart(2, "0")}`;
+  const withOneUp = { ...transcripts, e8: { ...transcripts.e8, segments: [...transcripts.e8.segments, { stamp: oneUpAt(oneUp.near + 5), seconds: oneUp.near + 5, speaker: null, text: "Let's get into One Up Weekly, brought to you by Lovable." }] } };
   const shown = sponsorView({ episodes: eps, transcripts: withOneUp, generatedAt: "2026-10-11T14:00:00.000Z" });
   const ex = shown.examples.find((x) => x.package === "Segment");
-  assert.equal(ex.moment.at, "01:20:35", "Lovable is named within the window of the recorded time");
+  assert.equal(ex.moment.at, oneUpAt(oneUp.near + 5), "Lovable is named within the window of the recorded time");
   assert.equal(ex.moment.url, null, "no clock check, no link");
-  assert.equal(view.examples.find((x) => x.package === "Segment").moment, null, "the 40-minute line is not near the recorded time");
+  assert.equal(view.examples.find((x) => x.package === "Segment").moment, null, "no line naming Lovable near the recorded time: no moment, with a reason");
+  assert.ok(view.examples.find((x) => x.package === "Segment").reason);
   assert.equal(shown.examples.find((x) => x.package === "Mid-roll").moment, null);
   assert.ok(shown.examples.find((x) => x.package === "Mid-roll").reason, "a record the transcript does not bear out shows nothing, with a reason");
 
@@ -430,6 +436,49 @@ import { normalize } from "../transcripts.mjs";
   } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "submission", about: "advice" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission", about: "a later name in the list, aired first" }], "the owners' order, the store's own entries with their words");
 
+  // each featured and tool call-in's aired moment (D27): the first transcript line within the window of the owners'
+  // record that holds the clip's opening words; its time is the line's, its link the clock rule's; otherwise none
+  for (const who of [...FEATURED_CALLINS, ...FEATURED_TOOL_CALLINS]) assert.ok(CALLIN_MOMENTS[who], `${who} has a located clip`);
+  const rec = CALLIN_MOMENTS.Soleio;
+  const clipT = (lines) => ({ clock: "stream", sha256: "s", segments: lines.map(([seconds, text]) => ({ stamp: at(seconds), seconds, speaker: null, text })) });
+  const soleio = { who: "Soleio", ep: rec.ep, slug: "e11", kind: "submission", about: "advice" };
+  const opening = `${rec.opens}? Three things.`;
+  assert.deepEqual(callInMoment(soleio, { e11: clipT([[rec.near - 3, "And this is what he had to say."], [rec.near + 12, opening]]) }, {}),
+    { at: at(rec.near + 12), seconds: rec.near + 12, url: null }, "the transcript line's own time, not the record's; no clock check, no link");
+  assert.deepEqual(callInMoment(soleio, { e11: clipT([[rec.near + 12, opening]]) }, { e11: { url: "https://youtube.com/watch?v=V11", offsetSec: 0.6 } }),
+    { at: at(rec.near + 12), seconds: rec.near + 12, url: `https://youtube.com/watch?v=V11&t=${rec.near + 13}s` }, "a matched clock links to the second, offset applied");
+  assert.equal(callInMoment(soleio, { e11: clipT([[rec.near + CALLIN_WINDOW_SEC + 1, opening]]) }, {}), null, "the words outside the window: no moment");
+  assert.equal(callInMoment(soleio, { e11: clipT([[rec.near, "Something else entirely was said here."]]) }, {}), null, "the words not said: no moment");
+  assert.equal(callInMoment({ ...soleio, ep: rec.ep + 1 }, { e11: clipT([[rec.near, opening]]) }, {}), null, "a record for another episode than the entry's: no moment");
+  assert.equal(callInMoment(soleio, {}, {}), null, "no transcript: no moment");
+  assert.equal(callInMoment({ ...soleio, who: "Not Located" }, { e11: clipT([[rec.near, opening]]) }, {}), null, "no record: no moment");
+  const momentView = sponsorView({ episodes: eps, contributors: { episodes: { e11: { callIns: [{ kind: "submission", who: "Soleio", about: "advice for someone new who wants to build" }] } } },
+    transcripts: { ...transcripts, e11: { ...transcripts.e11, segments: [...transcripts.e11.segments, { stamp: at(rec.near), seconds: rec.near, speaker: null, text: opening }] } }, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(momentView.callIns.featured.find((c) => c.who === "Soleio"), { who: "Soleio", ep: 11, slug: "e11", kind: "submission", about: "advice for someone new who wants to build", at: at(rec.near), seconds: rec.near, url: null },
+    "through the projection: the entry, then its aired moment");
+  // a featured call-in's who-line (D28): the hosts' own words on air, at most six, starting lowercase, found near the
+  // recorded second; a brand in it must be one the caller names in their own clip; otherwise none
+  for (const [who, r] of Object.entries(CALLIN_KNOWN)) {
+    assert.ok(FEATURED_CALLINS.includes(who), `${who}'s who-line belongs to a featured name`);
+    assert.ok(r.known.split(/\s+/).length <= 6 && /^[a-z]/.test(r.known), `${who}'s who-line is short and starts lowercase`);
+  }
+  const pk = CALLIN_KNOWN["Pietro Schirano"];
+  const pm = CALLIN_MOMENTS["Pietro Schirano"];
+  const pietro = { who: "Pietro Schirano", ep: pm.ep, slug: `e${pm.ep}`, kind: "submission", about: "the era of build-your-own agents is over" };
+  const clipSaid = (brand) => clipT([[pm.near, `${pm.opens}.`], [pm.near + 50, `You basically learn how to use ${brand}.`]]);
+  const hostSaid = clipT([[pk.near, "And on top of that, Pietro, you know, the the founder of MagicPath here, says build a plug in."]]);
+  const heard = { at: at(pm.near), seconds: pm.near, url: null };
+  assert.deepEqual(callInKnown(pietro, heard, eps, { [`e${pk.ep}`]: hostSaid, [`e${pm.ep}`]: clipSaid("MagicPath") }),
+    { known: pk.known, knownSource: { ep: pk.ep, slug: `e${pk.ep}`, at: at(pk.near), seconds: pk.near } }, "the hosts' words, with the line they were found in");
+  assert.equal(callInKnown(pietro, heard, eps, { [`e${pk.ep}`]: hostSaid, [`e${pm.ep}`]: clipSaid("Figma") }), null, "a brand the caller does not name in their own clip: none");
+  assert.equal(callInKnown(pietro, null, eps, { [`e${pk.ep}`]: hostSaid, [`e${pm.ep}`]: clipSaid("MagicPath") }), null, "no grounded clip: none");
+  assert.equal(callInKnown(pietro, heard, eps, { [`e${pk.ep}`]: clipT([[pk.near, "And on top of that, Pietro says build a plug in."]]), [`e${pm.ep}`]: clipSaid("MagicPath") }), null, "the hosts never said it: none");
+  assert.equal(callInKnown(pietro, heard, eps, { [`e${pk.ep}`]: clipT([[pk.near + CALLIN_WINDOW_SEC + 1, "the founder of MagicPath here"]]), [`e${pm.ep}`]: clipSaid("MagicPath") }), null, "said outside the window: none");
+  assert.equal(callInKnown({ ...pietro, who: "Soleio" }, heard, eps, {}), null, "no who-line recorded: none");
+  assert.ok(CALLIN_CLIP_SEC >= 60);
+  const unheard = sponsorView({ episodes: eps, contributors: { episodes: { e11: { callIns: [{ kind: "submission", who: "Soleio", about: "advice for someone new who wants to build" }] } } }, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(Object.keys(unheard.callIns.featured[0]), ["who", "ep", "slug", "kind", "about"], "a clip the transcript does not bear out: no moment fields at all, never null");
+
   // the desktop cover row (D23): stored episodes by slug, in the owners' order, each once, six at most; unknown dropped
   assert.ok(FEATURED_COVERS.length <= FEATURED_COVERS_MAX && FEATURED_COVERS_MAX === 6 && new Set(FEATURED_COVERS).size === FEATURED_COVERS.length, "the owners' cover picks fit the row (six, two of the page's twelve columns each), each once");
   assert.deepEqual(featuredCovers(eps, ["e12", "e-unknown", "e5", "e12", "e7"]), [
@@ -492,4 +541,4 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(view.feedback.featured, [], "none of the picked ids is stored in the fixture");
 }
 
-console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins (with their words), tool call-ins, quotes and cover row are stored entries in their order within the caps, the room's claim is the stronger true hold, the listed brands' group figures are stored, and absent inputs stay absent");
+console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins (with their words), tool call-ins, quotes and cover row are stored entries in their order within the caps, each featured name's aired moment is a transcript line, the room's claim is the stronger true hold, the listed brands' group figures are stored, and absent inputs stay absent");

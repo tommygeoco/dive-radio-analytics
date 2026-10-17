@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 9,
+  "version": 10,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -104825,28 +104825,54 @@ window.DIVE_DATA = {
      "ep": 11,
      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
      "kind": "submission",
-     "about": "advice for someone new who wants to build"
+     "about": "advice for someone new who wants to build",
+     "at": "01:50:32",
+     "seconds": 6632,
+     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6633s"
     },
     {
      "who": "Pietro Schirano",
      "ep": 13,
      "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
      "kind": "submission",
-     "about": "the era of build-your-own agents is over"
+     "about": "the era of build-your-own agents is over",
+     "at": "00:32:09",
+     "seconds": 1929,
+     "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1930s",
+     "known": "founder of MagicPath",
+     "knownSource": {
+      "ep": 12,
+      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+      "at": "00:35:45",
+      "seconds": 2145
+     }
     },
     {
      "who": "Jared Erondu",
      "ep": 10,
      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
      "kind": "submission",
-     "about": "everything is your problem, not everything is your priority"
+     "about": "everything is your problem, not everything is your priority",
+     "at": "01:46:00",
+     "seconds": 6360,
+     "url": "https://youtube.com/watch?v=x05zZ90lY28&t=6361s",
+     "known": "head of design at Span",
+     "knownSource": {
+      "ep": 10,
+      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+      "at": "01:45:50",
+      "seconds": 6350
+     }
     },
     {
      "who": "Josh Puckett",
      "ep": 4,
      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
      "kind": "submission",
-     "about": "making things for yourself, and leaving a way in for others"
+     "about": "making things for yourself, and leaving a way in for others",
+     "at": "01:31:19",
+     "seconds": 5479,
+     "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=5474s"
     }
    ],
    "tools": [
@@ -104855,21 +104881,30 @@ window.DIVE_DATA = {
      "ep": 11,
      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
      "kind": "submission",
-     "about": "the codebase as the source of truth in Paper"
+     "about": "the codebase as the source of truth in Paper",
+     "at": "01:23:48",
+     "seconds": 5028,
+     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=5029s"
     },
     {
      "who": "Kolbe Yang",
      "ep": 12,
      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
      "kind": "submission",
-     "about": "from a Figma frame to a finished animation"
+     "about": "from a Figma frame to a finished animation",
+     "at": "01:18:57",
+     "seconds": 4737,
+     "url": "https://youtube.com/watch?v=bBF1yPACap0&t=4738s"
     },
     {
      "who": "Bruno Reis",
      "ep": 12,
      "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
      "kind": "submission",
-     "about": "an AI agent edits his interview in DaVinci Resolve"
+     "about": "an AI agent edits his interview in DaVinci Resolve",
+     "at": "01:31:55",
+     "seconds": 5515,
+     "url": "https://youtube.com/watch?v=bBF1yPACap0&t=5516s"
     }
    ],
    "list": [
@@ -107440,7 +107475,7 @@ window.DIVE_DATA = {
   "examples": [
    {
     "package": "Mid-roll",
-    "format": "A read",
+    "format": "A live read",
     "label": "Notion on the Dive Radio Skills Library",
     "partner": "Notion",
     "ep": 10,
@@ -107459,14 +107494,14 @@ window.DIVE_DATA = {
     "format": "A named segment",
     "label": "One Up Weekly, brought to you by Lovable",
     "partner": "Lovable",
-    "ep": 5,
-    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "ep": 8,
+    "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
     "moment": {
-     "at": "01:20:30",
-     "seconds": 4830,
-     "text": "Brought to you by Lovable, which I think is a very proper sponsor for a segment like this.",
-     "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=4831s",
-     "liveAt": null
+     "at": "01:40:53",
+     "seconds": 6053,
+     "text": "Anyway, let’s get into one Up Weekly, brought to you by Lovable. Great ideas that somebody loves.",
+     "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s",
+     "liveAt": 58
     },
     "reason": null
    },

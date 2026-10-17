@@ -3876,6 +3876,8 @@ try {
       const callInsWant = pickedNames.map((who) => airedCallIns.find((c) => c.who === who && c.kind === "submission")).filter(Boolean).slice(0, SV.FEATURED_CALLINS_MAX)
         .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, ...(typeof c.about === "string" && c.about.trim() ? { about: c.about } : {}) }));
       const featuredCalls = sp.callIns.featured;
+      // the entry itself, without its aired moment (D27) and its who-line (D28), each re-derived on its own below
+      const entryOnly = ({ at, seconds, url, known, knownSource, ...entry }) => entry;
       // each featured name's hook (D23): its own stored words, verbatim, or no field when the notes give none
       const storedWords = (f) => { const c = airedCallIns.find((x) => x.who === f.who && x.ep === f.ep && x.slug === f.slug && x.kind === f.kind); return c && typeof c.about === "string" && c.about.trim() ? c.about : undefined; };
       const hooksOff = Array.isArray(featuredCalls) ? featuredCalls.filter((f) => f.about !== storedWords(f) || (storedWords(f) === undefined && "about" in f)).map((f) => f.who) : [];
@@ -3887,7 +3889,7 @@ try {
           if (f.kind !== "submission") { bad++; fail(`sponsor: featured ${f.who} (E${f.ep}) is a ${f.kind}, not a video they sent — the page says they called in`); }
         }
         if (hooksOff.length) { bad++; fail(`sponsor: featured ${hooksOff.join(", ")} do not carry their own stored words, verbatim (or none where the notes give none)`); }
-        if (JSON.stringify(featuredCalls) !== JSON.stringify(callInsWant)) { bad++; fail(`sponsor: the featured call-ins (${featuredCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${callInsWant.map((c) => c.who).join(", ")})`); }
+        if (JSON.stringify(featuredCalls.map(entryOnly)) !== JSON.stringify(callInsWant)) { bad++; fail(`sponsor: the featured call-ins (${featuredCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${callInsWant.map((c) => c.who).join(", ")})`); }
       }
       // the desktop cover row (D23): each a stored episode's number, slug and title, in the owners' order, each once,
       // six at most; a slug no stored episode has is absent
@@ -3922,7 +3924,39 @@ try {
       if (toolsUnstored.length) { bad++; fail(`sponsor: tool call-ins ${toolsUnstored.join(", ")} are not aired call-ins in contributors.json, shown word for word`); }
       if (toolsNotSent.length) { bad++; fail(`sponsor: tool call-ins ${toolsNotSent.join(", ")} are not videos the people sent`); }
       if (toolsRepeated.length) { bad++; fail(`sponsor: tool call-ins ${toolsRepeated.join(", ")} are already featured above`); }
-      if (toolsListed && JSON.stringify(toolCalls) !== JSON.stringify(toolsWant)) { bad++; fail(`sponsor: the tool call-ins (${toolCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${toolsWant.map((c) => c.who).join(", ")})`); }
+      if (toolsListed && JSON.stringify(toolCalls.map(entryOnly)) !== JSON.stringify(toolsWant)) { bad++; fail(`sponsor: the tool call-ins (${toolCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${toolsWant.map((c) => c.who).join(", ")})`); }
+      // each featured and tool call-in's aired moment (D27): the first transcript line within the window of the owners'
+      // record that holds the clip's opening words, its time and its clock-rule link; none without a record the
+      // transcript bears out — a time the transcript does not ground fails
+      const clipWant = (f) => {
+        const r = SV.CALLIN_MOMENTS[f.who]; const e = bySlug.get(f.slug); const t = parsed.get(f.slug);
+        if (!r || r.ep !== f.ep || !e || !t) return null;
+        const line = t.segments.find((x) => Math.abs(x.seconds - r.near) <= SV.CALLIN_WINDOW_SEC && flat(x.text).includes(flat(r.opens)));
+        return line ? { at: line.stamp, seconds: line.seconds, url: CL.momentUrl(uploadOf(e), line.seconds) } : null;
+      };
+      // a featured call-in's who-line (D28): the hosts' words on air, six words at most, starting lowercase, found in the
+      // recorded episode's transcript near the recorded second; a brand in it is one the caller names in their own clip
+      const brandIn = (name, text) => new RegExp(`(?<![\\w@#])${esc(name).replace(/ /g, "\\s+")}(?![\\w])`).test(text);
+      const knownWant = (f, clip) => {
+        const r = SV.CALLIN_KNOWN[f.who];
+        if (!r || !clip || String(r.known).trim().split(/\s+/).length > 6 || !/^[a-z]/.test(r.known)) return null;
+        const e = dive.find((x) => x.ep === r.ep); const t = e ? parsed.get(e.slug) : null;
+        const line = (t?.segments || []).find((x) => Math.abs(x.seconds - r.near) <= SV.CALLIN_WINDOW_SEC && flat(x.text).includes(flat(r.known)));
+        if (!line) return null;
+        const own = (parsed.get(f.slug)?.segments || []).filter((x) => x.seconds >= clip.seconds && x.seconds <= clip.seconds + SV.CALLIN_CLIP_SEC).map((x) => x.text).join(" ");
+        if (SV.BRANDS.some((name) => brandIn(name, r.known) && !brandIn(name, own))) return null;
+        return { known: r.known, knownSource: { ep: e.ep, slug: e.slug, at: line.stamp, seconds: line.seconds } };
+      };
+      const featuredSet = new Set(Array.isArray(featuredCalls) ? featuredCalls : []);
+      for (const f of [...(Array.isArray(featuredCalls) ? featuredCalls : []), ...(toolsListed ? toolCalls : [])]) {
+        const want = clipWant(f);
+        const got = ["at", "seconds", "url"].some((k) => k in f) ? { at: f.at, seconds: f.seconds, url: f.url } : null;
+        if (JSON.stringify(got) !== JSON.stringify(want)) { bad++; fail(`sponsor: ${f.who}'s aired moment (${got?.at ?? "none"}) is not the transcript line where the clip opens (${want?.at ?? "none"})`); }
+        if (f.url && !Object.values(bySlug.get(f.slug)?.links || {}).includes(f.url.replace(/&t=\d+s$/, ""))) { bad++; fail(`sponsor: ${f.who}'s aired moment links into an upload the registry does not hold`); }
+        const lineWant = featuredSet.has(f) ? knownWant(f, want) : null;
+        const lineGot = "known" in f || "knownSource" in f ? { known: f.known, knownSource: f.knownSource } : null;
+        if (JSON.stringify(lineGot) !== JSON.stringify(lineWant)) { bad++; fail(`sponsor: ${f.who}'s who-line (${lineGot?.known ?? "none"}) is not the hosts' words on air at the recorded second (${lineWant?.known ?? "none"})`); }
+      }
       const pickedIds = [...new Set(SV.FEATURED_QUOTES)];
       const quotesWant = pickedIds.map((id) => (sp.feedback.quotes || []).find((q) => q.id === id)).filter((q) => q && !q.onShow).slice(0, SV.FEATURED_QUOTES_MAX);
       const featuredSaid = sp.feedback.featured;
