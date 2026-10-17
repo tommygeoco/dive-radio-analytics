@@ -10,6 +10,7 @@ import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
+  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
@@ -366,13 +367,15 @@ import { normalize } from "../transcripts.mjs";
     { ep: 12, slug: "e12", kind: "nomination", who: "David Hoang", nominee: "Jade" },
   ];
   assert.deepEqual(featuredCallIns(aired, ["Kyle Zantos", "Nobody Aired", "Evil Rabbit", "Josh Puckett", "Evil Rabbit"]), [
-    { who: "Kyle Zantos", ep: 9, slug: "e9", kind: "submission" },
-    { who: "Evil Rabbit", ep: 8, slug: "e8", kind: "submission" },
-    { who: "Josh Puckett", ep: 4, slug: "e4", kind: "submission" },
-  ], "the list's order, not the episodes'; an unknown name dropped; a repeated pick once; a name's first aired call-in; who, episode, slug and kind only");
+    { who: "Kyle Zantos", ep: 9, slug: "e9", kind: "submission", about: "the candidate side" },
+    { who: "Evil Rabbit", ep: 8, slug: "e8", kind: "submission", about: "Vercel's creative team builds tools" },
+    { who: "Josh Puckett", ep: 4, slug: "e4", kind: "submission", about: "making things for yourself" },
+  ], "the list's order, not the episodes'; an unknown name dropped; a repeated pick once; a name's first aired call-in; who, episode, slug, kind and its own words (D23), verbatim");
+  assert.deepEqual(featuredCallIns([{ ep: 8, slug: "e8", kind: "submission", who: "Brett", about: null }, { ep: 9, slug: "e9", kind: "submission", who: "Anjali", about: "  " }], ["Brett", "Anjali"]),
+    [{ who: "Brett", ep: 8, slug: "e8", kind: "submission" }, { who: "Anjali", ep: 9, slug: "e9", kind: "submission" }], "a call-in the notes give no words for carries no words field, never null or blank");
   assert.deepEqual(featuredCallIns(aired, ["David Hoang", "Evil Rabbit"]).map((c) => c.who), ["Evil Rabbit"], "a nomination of someone else is not the nominator's own call-in: the page says they called in");
   assert.deepEqual(featuredCallIns([{ ep: 10, slug: "e10", kind: "nomination", who: "Flora Guo", nominee: "Josephine" }, { ep: 11, slug: "e11", kind: "submission", who: "Flora Guo", about: "the tip of the iceberg" }, { ep: 14, slug: "e14", kind: "portfolio", who: "Kartik Iyer", reviewedBy: "Geoff Teehan" }], ["Flora Guo", "Kartik Iyer"]),
-    [{ who: "Flora Guo", ep: 11, slug: "e11", kind: "submission" }], "a name's first video, past an earlier nomination; a portfolio reviewed on air is not its sender calling in");
+    [{ who: "Flora Guo", ep: 11, slug: "e11", kind: "submission", about: "the tip of the iceberg" }], "a name's first video, past an earlier nomination; a portfolio reviewed on air is not its sender calling in");
   assert.deepEqual(featuredCallIns(aired, ["evil rabbit", "Evil  Rabbit"]), [], "an exact name only: nothing is matched loosely");
   assert.deepEqual(featuredCallIns(null), [], "no call-in list, nothing featured");
   const many = Array.from({ length: 9 }, (_, i) => ({ ep: 4 + i, slug: `e${4 + i}`, kind: "submission", who: `Person ${i}` }));
@@ -399,7 +402,21 @@ import { normalize } from "../transcripts.mjs";
     e9: { callIns: [{ kind: "submission", who: secondPick, about: "a later name in the list, aired first" }] },
     e11: { callIns: [{ kind: "nomination", who: secondPick, nominee: "Someone" }, { kind: "submission", who: firstPick, about: "advice" }, { kind: "submission", who: "Not Picked", about: "x" }] },
   } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
-  assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "submission" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission" }], "the owners' order, the store's own entries");
+  assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "submission", about: "advice" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission", about: "a later name in the list, aired first" }], "the owners' order, the store's own entries with their words");
+
+  // the desktop cover row (D23): stored episodes by slug, in the owners' order, each once, six at most; unknown dropped
+  assert.ok(FEATURED_COVERS.length <= FEATURED_COVERS_MAX && FEATURED_COVERS_MAX === 6 && new Set(FEATURED_COVERS).size === FEATURED_COVERS.length, "the owners' cover picks fit the row (six, two of the page's twelve columns each), each once");
+  assert.deepEqual(featuredCovers(eps, ["e12", "e-unknown", "e5", "e12", "e7"]), [
+    { ep: 12, slug: "e12", title: "Dive Radio: Episode 12" },
+    { ep: 5, slug: "e5", title: "Dive Radio: Episode 5" },
+    { ep: 7, slug: "e7", title: "Dive Radio: Episode 7" },
+  ], "the owners' order, not the episodes'; an unknown slug dropped; a repeat once; the stored number, slug and title only");
+  assert.deepEqual(featuredCovers(eps, eps.map((e) => e.slug)).map((c) => c.ep), [1, 2, 3, 4, 5, 6], "six at most");
+  assert.deepEqual(featuredCovers(eps, ["e-unknown", ...eps.slice(0, 6).map((e) => e.slug)]).length, 6, "an unknown slug takes no place in the row");
+  assert.deepEqual(featuredCovers(null), [], "no episodes, no covers");
+  const coverView = sponsorView({ episodes: eps.map((e, i) => ({ ...e, slug: FEATURED_COVERS[i] ?? e.slug })), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(coverView.covers.map((c) => c.slug), [...FEATURED_COVERS], "through the projection: the owners' row over the stored episodes");
+  assert.deepEqual(view.covers, [], "none of the picked slugs is stored in the fixture: an empty row, never an invented one");
   // the call-ins that show the audience building with tools (D21): the same own-video rule, the stored words verbatim,
   // never a name featured above, a submission without words dropped, three at most, in the owners' order
   assert.ok(FEATURED_TOOL_CALLINS.length <= FEATURED_TOOL_CALLINS_MAX && FEATURED_TOOL_CALLINS_MAX === 3 && new Set(FEATURED_TOOL_CALLINS).size === FEATURED_TOOL_CALLINS.length);
@@ -447,4 +464,4 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(view.feedback.featured, [], "none of the picked ids is stored in the fixture");
 }
 
-console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins, tool call-ins and quotes are stored entries in their order within the caps, and absent inputs stay absent");
+console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins (with their words), tool call-ins, quotes and cover row are stored entries in their order within the caps, and absent inputs stay absent");

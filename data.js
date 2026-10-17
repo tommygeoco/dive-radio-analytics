@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 7,
+  "version": 8,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -103796,6 +103796,38 @@ window.DIVE_DATA = {
    "title": "Dive Radio: Get Your Portfolio Reviewed",
    "premiere": "2026-10-15"
   },
+  "covers": [
+   {
+    "ep": 12,
+    "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+    "title": "Dive Radio: Anyone Can Animate Now (and How)"
+   },
+   {
+    "ep": 11,
+    "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+    "title": "Dive Radio: Just-in-Time Interfaces"
+   },
+   {
+    "ep": 5,
+    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+    "title": "Dive Radio: Goodbye, Blank Canvas + Live Call-Ins"
+   },
+   {
+    "ep": 7,
+    "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+    "title": "Dive Radio: Steal These AI Design Patterns + Live Call-Ins"
+   },
+   {
+    "ep": 8,
+    "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+    "title": "Dive Radio: How to Engineer a Brand Universe"
+   },
+   {
+    "ep": 3,
+    "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+    "title": "Dive Radio: Mixed Media Workflows, Game Design, + Live Call-Ins"
+   }
+  ],
   "views": {
    "total": 102248,
    "youtube": 65509,
@@ -104786,37 +104818,43 @@ window.DIVE_DATA = {
      "who": "Soleio",
      "ep": 11,
      "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
-     "kind": "submission"
+     "kind": "submission",
+     "about": "advice for someone new who wants to build"
     },
     {
      "who": "Pietro Schirano",
      "ep": 13,
      "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-     "kind": "submission"
+     "kind": "submission",
+     "about": "the era of build-your-own agents is over"
     },
     {
      "who": "Jared Erondu",
      "ep": 10,
      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-     "kind": "submission"
+     "kind": "submission",
+     "about": "everything is your problem, not everything is your priority"
     },
     {
      "who": "Josh Puckett",
      "ep": 4,
      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
-     "kind": "submission"
+     "kind": "submission",
+     "about": "making things for yourself, and leaving a way in for others"
     },
     {
      "who": "Eric Sin",
      "ep": 13,
      "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-     "kind": "submission"
+     "kind": "submission",
+     "about": "how he landed a staff design job at Netflix"
     },
     {
      "who": "Alex Danilowicz",
      "ep": 10,
      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
-     "kind": "submission"
+     "kind": "submission",
+     "about": "anyone can be a founder"
     }
    ],
    "tools": [

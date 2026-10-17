@@ -84,7 +84,8 @@ export const COVERS = Object.freeze([
   "episodes[].health*", "episodes[].watchReport*", "episodes[].watch.traffic[]*", "episodes[].watch.shape*", "episodes[].watch.moments[]*", "episodes[].watch.byChannel[]*", "episodes[].watch.channels[]*", "episodes[].chapters.list[]*", "episodes[].chapters.upload*",
   // 2026-10-11: the sponsor page's projection, carried whole into agent.json and summarised in section 11
   // (2026-10-16: sponsor.callIns.featured and sponsor.feedback.featured, the owners' picks, are named there too;
-  //  2026-10-17: sponsor.callIns.tools and each sponsor.examples[].segment, by name, title and link)
+  //  2026-10-17: sponsor.callIns.tools and each sponsor.examples[].segment, by name, title and link; sponsor.covers
+  //  (the page's desktop cover row) and each featured call-in's words stay in agent.json, so the brief keeps its budget)
   "sponsor*",
   "insights[]*", "insightsStale[]*", "showTrend.week1VelocityByEpisode[]*", "showTrend.paceRank*", "commentSummary.enjoyThemes[]*", "commentSummary.complaintThemes[]*",
   "health.checks[]*", "health.asOf*", "health.direction*", "health.outlook*", "health.pros[]*", "health.cons[]*", "health.drivers[]*", "health.checkSetChange*", "health.facts[]*", "health.trend*",

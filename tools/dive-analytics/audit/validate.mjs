@@ -3847,8 +3847,11 @@ try {
         .flatMap(({ ep, slug, entry }) => (entry.callIns || []).map((c) => ({ ep, slug, ...c })));
       const pickedNames = [...new Set(SV.FEATURED_CALLINS)];
       const callInsWant = pickedNames.map((who) => airedCallIns.find((c) => c.who === who && c.kind === "submission")).filter(Boolean).slice(0, SV.FEATURED_CALLINS_MAX)
-        .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind }));
+        .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, ...(typeof c.about === "string" && c.about.trim() ? { about: c.about } : {}) }));
       const featuredCalls = sp.callIns.featured;
+      // each featured name's hook (D23): its own stored words, verbatim, or no field when the notes give none
+      const storedWords = (f) => { const c = airedCallIns.find((x) => x.who === f.who && x.ep === f.ep && x.slug === f.slug && x.kind === f.kind); return c && typeof c.about === "string" && c.about.trim() ? c.about : undefined; };
+      const hooksOff = Array.isArray(featuredCalls) ? featuredCalls.filter((f) => f.about !== storedWords(f) || (storedWords(f) === undefined && "about" in f)).map((f) => f.who) : [];
       if (!Array.isArray(featuredCalls)) { bad++; fail("sponsor: the featured call-ins are not a list"); }
       else {
         if (SV.FEATURED_CALLINS.length > SV.FEATURED_CALLINS_MAX || featuredCalls.length > SV.FEATURED_CALLINS_MAX) { bad++; fail(`sponsor: the featured call-ins (${SV.FEATURED_CALLINS.length} picked, ${featuredCalls.length} shipped) run past their cap of ${SV.FEATURED_CALLINS_MAX}`); }
@@ -3856,8 +3859,23 @@ try {
           if (!airedCallIns.some((c) => c.who === f.who && c.ep === f.ep && c.slug === f.slug && c.kind === f.kind)) { bad++; fail(`sponsor: featured ${f.who} (E${f.ep}) is not an aired call-in in contributors.json`); }
           if (f.kind !== "submission") { bad++; fail(`sponsor: featured ${f.who} (E${f.ep}) is a ${f.kind}, not a video they sent — the page says they called in`); }
         }
+        if (hooksOff.length) { bad++; fail(`sponsor: featured ${hooksOff.join(", ")} do not carry their own stored words, verbatim (or none where the notes give none)`); }
         if (JSON.stringify(featuredCalls) !== JSON.stringify(callInsWant)) { bad++; fail(`sponsor: the featured call-ins (${featuredCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${callInsWant.map((c) => c.who).join(", ")})`); }
       }
+      // the desktop cover row (D23): each a stored episode's number, slug and title, in the owners' order, each once,
+      // six at most; a slug no stored episode has is absent
+      const coverSlugs = [...new Set(SV.FEATURED_COVERS)];
+      const coversWant = coverSlugs.map((slug) => dive.find((e) => e.slug === slug)).filter(Boolean).slice(0, SV.FEATURED_COVERS_MAX).map((e) => ({ ep: e.ep, slug: e.slug, title: e.title }));
+      const covers = sp.covers;
+      const coversListed = Array.isArray(covers);
+      const coversOverCap = SV.FEATURED_COVERS.length > SV.FEATURED_COVERS_MAX || (coversListed && covers.length > SV.FEATURED_COVERS_MAX);
+      const coversRepeated = coversListed && new Set(covers.map((c) => c.slug)).size !== covers.length;
+      const coversUnstored = coversListed ? covers.filter((c) => !dive.some((e) => e.slug === c.slug && e.ep === c.ep && e.title === c.title)).map((c) => `E${c.ep}`) : [];
+      if (!coversListed) { bad++; fail("sponsor: the cover row is not a list"); }
+      if (coversOverCap) { bad++; fail(`sponsor: the cover row (${SV.FEATURED_COVERS.length} picked, ${covers?.length} shipped) runs past its cap of ${SV.FEATURED_COVERS_MAX}`); }
+      if (coversRepeated) { bad++; fail("sponsor: the cover row shows an episode twice"); }
+      if (coversUnstored.length) { bad++; fail(`sponsor: cover row entries ${coversUnstored.join(", ")} are not stored episodes (number, slug and title)`); }
+      if (coversListed && JSON.stringify(covers) !== JSON.stringify(coversWant)) { bad++; fail(`sponsor: the cover row (${covers.map((c) => `E${c.ep}`).join(", ")}) does not re-derive from the owners' list and the stored episodes (${coversWant.map((c) => `E${c.ep}`).join(", ")})`); }
       // the call-ins that show the audience building with tools (D21): each the first aired submission of that exact
       // name in contributors.json with its stored words, verbatim; never a name featured above; within the cap of three
       const toolNames = [...new Set(SV.FEATURED_TOOL_CALLINS)];

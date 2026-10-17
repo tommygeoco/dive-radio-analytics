@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 7;
+export const SPONSOR_VERSION = 8;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -120,13 +120,17 @@ export const FEATURED_KIND = "submission";
 export const FEATURED_TOOL_CALLINS_MAX = 3;
 export const FEATURED_TOOL_CALLINS = Object.freeze(["Davey Heuser", "Kolbe Yang", "Bruno Reis"]);
 
+// a call-in's own words, as the notes give them (D23: the hook a featured name
+// carries); a submission with none carries none
+const hasWords = (c) => typeof c.about === "string" && c.about.trim().length > 0;
+
 export function featuredCallIns(list, names = FEATURED_CALLINS) {
   const out = [];
   for (const who of names) {
     if (out.length >= FEATURED_CALLINS_MAX) break;
     if (out.some((c) => c.who === who)) continue;
     const c = (list || []).find((x) => x.who === who && x.kind === FEATURED_KIND);
-    if (c) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind });
+    if (c) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, ...(hasWords(c) ? { about: c.about } : {}) });
   }
   return out;
 }
@@ -137,7 +141,33 @@ export function toolCallIns(list, names = FEATURED_TOOL_CALLINS, featured = feat
     if (out.length >= FEATURED_TOOL_CALLINS_MAX) break;
     if (out.some((c) => c.who === who) || featured.some((c) => c.who === who)) continue;
     const c = (list || []).find((x) => x.who === who && x.kind === FEATURED_KIND);
-    if (c && typeof c.about === "string" && c.about.trim()) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, about: c.about });
+    if (c && hasWords(c)) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, about: c.about });
+  }
+  return out;
+}
+
+// The episodes on the desktop cover row (D23, 2026-10-17): up to six (two of
+// the page's twelve columns each), by slug, in the owners' order, chosen for
+// titles that show building and tools at work (one portfolio episode at most). Each is the stored episode's number,
+// slug and title; a slug no stored episode has is dropped. The phone rail still
+// shows every episode, newest first, from data.episodes.
+export const FEATURED_COVERS_MAX = 6;
+export const FEATURED_COVERS = Object.freeze([
+  "2026-10-01-dive-radio-anyone-can-animate-now-and-ho", // E12 Anyone Can Animate Now (and How)
+  "2026-09-24-dive-radio-just-in-time-interfaces", // E11 Just-in-Time Interfaces
+  "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal", // E5 Goodbye, Blank Canvas (Notion's live build)
+  "2026-08-28-dive-radio-steal-these-ai-design-pattern", // E7 Steal These AI Design Patterns
+  "2026-09-02-dive-radio-how-to-engineer-a-brand-unive", // E8 How to Engineer a Brand Universe
+  "2026-07-30-dive-radio-mixed-media-workflows-game-de", // E3 Mixed Media Workflows, Game Design
+]);
+
+export function featuredCovers(episodes, slugs = FEATURED_COVERS) {
+  const out = [];
+  for (const slug of slugs) {
+    if (out.length >= FEATURED_COVERS_MAX) break;
+    if (out.some((c) => c.slug === slug)) continue;
+    const e = (episodes || []).find((x) => x.slug === slug);
+    if (e) out.push({ ep: e.ep, slug: e.slug, title: e.title });
   }
   return out;
 }
@@ -725,6 +755,7 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
     episodes: dive.length,
     firstPremiere: dive[0]?.premiere ?? null,
     latest: latest ? { ep: latest.ep, slug: latest.slug, title: latest.title, premiere: latest.premiere } : null,
+    covers: featuredCovers(dive),
     views: viewsBlock(dive),
     watch: watchBlock(dive),
     live: liveBlock(dive),
