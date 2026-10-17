@@ -105,6 +105,10 @@ import { normalize } from "../transcripts.mjs";
 {
   assert.equal(quoteText("@designertom @ridd_design This was a fun episode, Ridd! https://t.co/abc"), "This was a fun episode, Ridd!", "addressees and an attached link go; the words stay");
   assert.equal(quoteText("Loving this edit!!"), "Loving this edit!!");
+  assert.equal(quoteText("Such an insightful session! Thank you for creating this community!@designertom @ridd_design https://t.co/x"), "Such an insightful session! Thank you for creating this community!",
+    "addressees after the last sentence go too, with the attached link");
+  assert.equal(quoteText("Huge thanks to @ridd_design"), "Huge thanks to @ridd_design", "a mention inside the sentence is its own word and stays");
+  assert.equal(quoteText("Great show. Thanks @designertom and @ridd_design"), "Great show. Thanks @designertom and @ridd_design", "only a run of mentions after a closing mark is addressees");
   const re = brandPattern("Paper");
   assert.equal("we use Paper daily".match(re)?.length, 1);
   assert.equal("a paper cut, Papers chillin', @Paper".match(re), null, "case-sensitive whole words: the tool, not the word, not a handle");
@@ -326,11 +330,14 @@ import { normalize } from "../transcripts.mjs";
     { ep: 11, slug: "e11", kind: "submission", who: "Kyle Zantos", about: "an app idea turned into wireframes" },
     { ep: 12, slug: "e12", kind: "nomination", who: "David Hoang", nominee: "Jade" },
   ];
-  assert.deepEqual(featuredCallIns(aired, ["David Hoang", "Nobody Aired", "Evil Rabbit", "Kyle Zantos", "Evil Rabbit"]), [
-    { who: "David Hoang", ep: 12, slug: "e12", kind: "nomination" },
-    { who: "Evil Rabbit", ep: 8, slug: "e8", kind: "submission" },
+  assert.deepEqual(featuredCallIns(aired, ["Kyle Zantos", "Nobody Aired", "Evil Rabbit", "Josh Puckett", "Evil Rabbit"]), [
     { who: "Kyle Zantos", ep: 9, slug: "e9", kind: "submission" },
+    { who: "Evil Rabbit", ep: 8, slug: "e8", kind: "submission" },
+    { who: "Josh Puckett", ep: 4, slug: "e4", kind: "submission" },
   ], "the list's order, not the episodes'; an unknown name dropped; a repeated pick once; a name's first aired call-in; who, episode, slug and kind only");
+  assert.deepEqual(featuredCallIns(aired, ["David Hoang", "Evil Rabbit"]).map((c) => c.who), ["Evil Rabbit"], "a nomination of someone else is not the nominator's own call-in: the page says they called in");
+  assert.deepEqual(featuredCallIns([{ ep: 10, slug: "e10", kind: "nomination", who: "Flora Guo", nominee: "Josephine" }, { ep: 11, slug: "e11", kind: "submission", who: "Flora Guo", about: "the tip of the iceberg" }, { ep: 14, slug: "e14", kind: "portfolio", who: "Kartik Iyer", reviewedBy: "Geoff Teehan" }], ["Flora Guo", "Kartik Iyer"]),
+    [{ who: "Flora Guo", ep: 11, slug: "e11", kind: "submission" }], "a name's first video, past an earlier nomination; a portfolio reviewed on air is not its sender calling in");
   assert.deepEqual(featuredCallIns(aired, ["evil rabbit", "Evil  Rabbit"]), [], "an exact name only: nothing is matched loosely");
   assert.deepEqual(featuredCallIns(null), [], "no call-in list, nothing featured");
   const many = Array.from({ length: 9 }, (_, i) => ({ ep: 4 + i, slug: `e${4 + i}`, kind: "submission", who: `Person ${i}` }));
@@ -355,9 +362,11 @@ import { normalize } from "../transcripts.mjs";
   const [firstPick, secondPick] = FEATURED_CALLINS;
   const pickedView = sponsorView({ episodes: eps, contributors: { episodes: {
     e9: { callIns: [{ kind: "submission", who: secondPick, about: "a later name in the list, aired first" }] },
-    e11: { callIns: [{ kind: "nomination", who: firstPick, nominee: "Someone" }, { kind: "submission", who: "Not Picked", about: "x" }] },
+    e11: { callIns: [{ kind: "nomination", who: secondPick, nominee: "Someone" }, { kind: "submission", who: firstPick, about: "advice" }, { kind: "submission", who: "Not Picked", about: "x" }] },
   } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
-  assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "nomination" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission" }], "the owners' order, the store's own entries");
+  assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "submission" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission" }], "the owners' order, the store's own entries");
+  const nominatedOnly = sponsorView({ episodes: eps, contributors: { episodes: { e11: { callIns: [{ kind: "nomination", who: firstPick, nominee: "Someone" }] } } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(nominatedOnly.callIns.featured, [], "a pick whose only aired entry is a nomination is not featured");
   assert.deepEqual(view.callIns.featured, [], "none of the picks aired in the fixture: nothing featured, never invented");
   assert.deepEqual(sponsorView({ episodes: eps, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).callIns.featured, [], "no call-in list: an empty feature, beside the absent count's reason");
   const quoted = sponsorView({ episodes: eps.map((e) => (e.ep === 10 ? { ...e, audience: { list: [

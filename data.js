@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 5,
+  "version": 6,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -104446,18 +104446,6 @@ window.DIVE_DATA = {
      "calledIn": null
     },
     {
-     "id": "x:2098237669008449676",
-     "ep": 9,
-     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-     "author": "@sanika_mehta98",
-     "platform": "X",
-     "text": "Such an insightful session as someone looking for their next opportunity! Thank you for creating this community!@designertom @ridd_design",
-     "url": "https://x.com/i/status/2098237669008449676",
-     "likes": 1,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
      "id": "x:2098189766969692177",
      "ep": 9,
      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
@@ -104465,6 +104453,18 @@ window.DIVE_DATA = {
      "platform": "X",
      "text": "I started following the lives recently and I love them! On a job hunt currently so this one was gold, thank you 🎸",
      "url": "https://x.com/i/status/2098189766969692177",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2098237669008449676",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@sanika_mehta98",
+     "platform": "X",
+     "text": "Such an insightful session as someone looking for their next opportunity! Thank you for creating this community!",
+     "url": "https://x.com/i/status/2098237669008449676",
      "likes": 1,
      "onShow": false,
      "calledIn": null
@@ -104688,25 +104688,13 @@ window.DIVE_DATA = {
      "calledIn": null
     },
     {
-     "id": "x:2095862955522887905",
-     "ep": 8,
-     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-     "author": "@alxdoyle",
-     "platform": "X",
-     "text": "Which is why the Ramp conversation from last week is the closest thing I’ve seen to an answer. Cohesion over consistency. Jazz. A brand that behaves rather than one that gets applied.",
-     "url": "https://x.com/i/status/2095862955522887905",
-     "likes": 0,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
-     "id": "yt:Ugy6RHppQWH02ApNQRV4AaABAg",
+     "id": "x:2098237669008449676",
      "ep": 9,
      "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-     "author": "lydiawere",
-     "platform": "YouTube",
-     "text": "Great content, thanks so much for sharing. Time spent absolutely well.",
-     "url": "https://youtube.com/watch?v=OZG115v6TTg&lc=Ugy6RHppQWH02ApNQRV4AaABAg",
+     "author": "@sanika_mehta98",
+     "platform": "X",
+     "text": "Such an insightful session as someone looking for their next opportunity! Thank you for creating this community!",
+     "url": "https://x.com/i/status/2098237669008449676",
      "likes": 1,
      "onShow": false,
      "calledIn": null
@@ -104813,12 +104801,6 @@ window.DIVE_DATA = {
      "kind": "submission"
     },
     {
-     "who": "Evil Rabbit",
-     "ep": 8,
-     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
-     "kind": "submission"
-    },
-    {
      "who": "Pietro Schirano",
      "ep": 13,
      "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
@@ -104831,15 +104813,21 @@ window.DIVE_DATA = {
      "kind": "submission"
     },
     {
-     "who": "David Hoang",
-     "ep": 12,
-     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-     "kind": "nomination"
-    },
-    {
      "who": "Josh Puckett",
      "ep": 4,
      "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "submission"
+    },
+    {
+     "who": "Eric Sin",
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission"
+    },
+    {
+     "who": "Alex Danilowicz",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
      "kind": "submission"
     }
    ],

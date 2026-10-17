@@ -3824,14 +3824,15 @@ try {
         if (seenOnShow && !q.onShow) { bad++; fail("sponsor: a quote from someone on the show ranks before the audience's"); }
         seenOnShow ||= q.onShow;
       }
-      // the owners' featured picks (D19): each name is the first aired call-in of that exact name in contributors.json,
-      // each quote a shipped quote unchanged and still a stored positive row, shown verbatim and linked to its original;
-      // in the lists' order, each pick once, within the caps; a pick the stores do not hold, or a quote from someone on
-      // the show, is absent — never invented
+      // the owners' featured picks (D19, D20): each name is the first aired submission of that exact name in
+      // contributors.json — a video the person sent, since the page says they called in, never a nomination or a
+      // portfolio — each quote a shipped quote unchanged and still a stored positive row, shown verbatim and linked to
+      // its original; in the lists' order, each pick once, within the caps; a pick the stores do not hold, or a quote
+      // from someone on the show, is absent — never invented
       const airedCallIns = aired.map(([slug, entry]) => ({ ep: bySlug.get(slug).ep, slug, entry })).sort((x, y) => x.ep - y.ep)
         .flatMap(({ ep, slug, entry }) => (entry.callIns || []).map((c) => ({ ep, slug, ...c })));
       const pickedNames = [...new Set(SV.FEATURED_CALLINS)];
-      const callInsWant = pickedNames.map((who) => airedCallIns.find((c) => c.who === who)).filter(Boolean).slice(0, SV.FEATURED_CALLINS_MAX)
+      const callInsWant = pickedNames.map((who) => airedCallIns.find((c) => c.who === who && c.kind === "submission")).filter(Boolean).slice(0, SV.FEATURED_CALLINS_MAX)
         .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind }));
       const featuredCalls = sp.callIns.featured;
       if (!Array.isArray(featuredCalls)) { bad++; fail("sponsor: the featured call-ins are not a list"); }
@@ -3839,6 +3840,7 @@ try {
         if (SV.FEATURED_CALLINS.length > SV.FEATURED_CALLINS_MAX || featuredCalls.length > SV.FEATURED_CALLINS_MAX) { bad++; fail(`sponsor: the featured call-ins (${SV.FEATURED_CALLINS.length} picked, ${featuredCalls.length} shipped) run past their cap of ${SV.FEATURED_CALLINS_MAX}`); }
         for (const f of featuredCalls) {
           if (!airedCallIns.some((c) => c.who === f.who && c.ep === f.ep && c.slug === f.slug && c.kind === f.kind)) { bad++; fail(`sponsor: featured ${f.who} (E${f.ep}) is not an aired call-in in contributors.json`); }
+          if (f.kind !== "submission") { bad++; fail(`sponsor: featured ${f.who} (E${f.ep}) is a ${f.kind}, not a video they sent — the page says they called in`); }
         }
         if (JSON.stringify(featuredCalls) !== JSON.stringify(callInsWant)) { bad++; fail(`sponsor: the featured call-ins (${featuredCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${callInsWant.map((c) => c.who).join(", ")})`); }
       }

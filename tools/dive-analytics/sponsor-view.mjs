@@ -17,8 +17,9 @@
 //   • a median needs MIN_PEERS readings, a measure touched by a known
 //     reporting break reads only the shows on the newest side of it;
 //   • a missing input leaves its field null with a reason, never a zero;
-//   • quotes are the stored words (less leading @-mentions and trailing links,
-//     with typographic quote marks); excerpts are the transcript's words in
+//   • quotes are the stored words (less their addressees — @-mentions that lead
+//     the text or follow its last sentence — and trailing links, with
+//     typographic quote marks); excerpts are the transcript's words in
 //     order, less only what cleanSpeech names; a timestamp links only by clock.mjs;
 //   • nothing here says a moment was paid for: a partner moment is what the
 //     transcript says (named as a partner, or a chapter about it); the paid
@@ -30,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 5;
+export const SPONSOR_VERSION = 6;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -87,28 +88,31 @@ export const EXAMPLES = Object.freeze([
   { package: "Build", format: "A live build", label: "Notion as Code, Notion’s August build", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
 ]);
 
-// The owners' featured picks (SPONSOR-2026-10-11.md D19, 2026-10-16): the
-// call-ins a design- or developer-tool buyer would know by name, and the
-// audience's words a buyer would believe. Picking is a data-layer decision, so
-// the page shows these lists as stored and filters nothing; the owners change a
-// pick by editing a list here. A name is a call-in's exact `who` as the
-// published episode notes give it (a featured name is that name's first aired
-// call-in); a quote is a stored quote's id (feedback.quotes), copied unchanged.
-// A pick the stores do not hold is dropped, never invented; so is a quote from
-// someone on the show (onShow), because a featured quote is the audience's
-// voice. Each list keeps its order, holds a pick once, and stops at its cap;
-// validator 1s re-derives both.
+// The owners' featured picks (SPONSOR-2026-10-11.md D19 and D20, 2026-10-16/17):
+// people a design- or developer-tool buyer would know by name whose own
+// call-in aired, and the audience's words a buyer would believe. Picking is a
+// data-layer decision, so the page shows these lists as stored and filters
+// nothing; the owners change a pick by editing a list here. A name is a
+// call-in's exact `who` as the published episode notes give it; a featured
+// name is that name's first aired submission — a video the person sent, since
+// the page says they "called in" — so a nomination of someone else or a
+// portfolio reviewed on air never features. A quote is a stored quote's id
+// (feedback.quotes), copied unchanged. A pick the stores do not hold is
+// dropped, never invented; so is a quote from someone on the show (onShow),
+// because a featured quote is the audience's voice. Each list keeps its order,
+// holds a pick once, and stops at its cap; validator 1s re-derives both.
 export const FEATURED_CALLINS_MAX = 6;
-export const FEATURED_CALLINS = Object.freeze(["Soleio", "Evil Rabbit", "Pietro Schirano", "Jared Erondu", "David Hoang", "Josh Puckett"]);
+export const FEATURED_CALLINS = Object.freeze(["Soleio", "Pietro Schirano", "Jared Erondu", "Josh Puckett", "Eric Sin", "Alex Danilowicz"]);
 export const FEATURED_QUOTES_MAX = 3;
-export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377", "x:2095862955522887905", "yt:Ugy6RHppQWH02ApNQRV4AaABAg"]);
+export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377", "x:2098237669008449676"]);
+export const FEATURED_KIND = "submission";
 
 export function featuredCallIns(list, names = FEATURED_CALLINS) {
   const out = [];
   for (const who of names) {
     if (out.length >= FEATURED_CALLINS_MAX) break;
     if (out.some((c) => c.who === who)) continue;
-    const c = (list || []).find((x) => x.who === who);
+    const c = (list || []).find((x) => x.who === who && x.kind === FEATURED_KIND);
     if (c) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind });
   }
   return out;
@@ -148,13 +152,16 @@ export function typographic(text) {
     .replace(/“/g, "‘").replace(/”/g, "’");
 }
 
-// a quote as shown: the stored text without its leading @-mentions (an X
-// reply's addressees) or trailing links (an attached image), with
-// typographic quote marks; never reworded
+// a quote as shown: the stored text without its addressees — the @-mentions
+// that lead it (an X reply's) or that follow its last sentence's closing mark
+// ("…this community!@designertom @ridd_design") — or trailing links (an
+// attached image), with typographic quote marks; never reworded. A mention
+// inside a sentence ("thanks to @ridd_design") is the sentence's own word and stays.
 function quotePlain(text) {
   let t = String(text || "").replace(/\s+/g, " ").trim();
   t = t.replace(/^(?:@\w+[\s,:]*)+/, "").trim();
   t = t.replace(/(?:\s+https?:\/\/\S+)+$/, "").trim();
+  t = t.replace(/([.!?…])\s*(?:@\w+[\s,]*)+$/, "$1").trim();
   return t;
 }
 export function quoteText(text) {
