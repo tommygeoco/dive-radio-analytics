@@ -940,7 +940,7 @@ function renderReach() {
   // the line says what the cells show: four channels when all four are there, otherwise the platforms that are
   const platforms = [...new Set(chans.map((c) => c.platform).filter(Boolean))];
   document.querySelector(".reach__lead").textContent = chans.length === 4 ? "We go out live on four channels at once."
-    : `We go out live on ${list(platforms)}${chans.length > 1 ? " at once" : ""}.`;
+    : `We go out live on ${list(platforms)}${platforms.length > 1 ? " at once" : ""}.`;
   $("reach-list").innerHTML = chans.map((c) => `<li><p class="reach__fig"><span class="n">${fmt(c.count)}</span> <span class="reach__unit">${esc(c.unit || "")}</span></p><p class="reach__where">${esc(c.label)} on ${esc(c.platform)}</p></li>`).join("");
 }
 
@@ -1002,13 +1002,14 @@ function renderTools() {
   // partners' counts include their own reads, so this act names only the tools that aren't partners
   const all = (B?.list || []).filter((b) => b?.name && ok(b.episodes) && !b.partner);
   if (!all.length || !ok(N)) { $("tools").hidden = true; return; }
-  const every = all.filter((b) => b.episodes === N).slice(0, 3);
-  const lead = every.length ? every : [all[0]];
+  const ranked = [...all].sort((a, z) => z.episodes - a.episodes);
+  const every = ranked.filter((b) => b.episodes === N).slice(0, 3);
+  const lead = every.length ? every : [ranked[0]];
   $("tools-title").textContent = every.length
     ? `${list(lead.map((b) => b.name))} ${lead.length > 1 ? "have" : "has"} come up in all ${N} episodes.`
     : `${lead[0].name} has come up in ${lead[0].episodes} of ${N} episodes.`;
   // the next tools by episodes, in whole tie groups: the first group, and the next only while four names or fewer
-  const rest = all.filter((b) => !lead.includes(b)).sort((a, z) => z.episodes - a.episodes);
+  const rest = ranked.filter((b) => !lead.includes(b));
   const groups = [];
   for (const b of rest) { const g = groups[groups.length - 1]; if (g && g.k === b.episodes) g.names.push(b.name); else groups.push({ k: b.episodes, names: [b.name] }); }
   const shown = [];
@@ -1105,7 +1106,7 @@ function renderOnAir() {
     const foot = `${e?.premiere ? `<span>${day(e.premiere)}</span>` : ""}<a class="ss-x-quote__link" href="${esc(m.url)}" target="_blank" rel="noopener">Watch from <span class="n">${esc(clock(m.at))}</span><span class="ss-sr">, ${esc(showName(e) || `episode ${x.ep}`)} (opens YouTube in a new tab)</span></a>${ok(m.liveAt) ? `<span><span class="n">${fmt(m.liveAt)}</span> watching live</span>` : ""}`;
     const body = clean(x)
       ? `<blockquote class="ss-x-quote aired__quote"><p>“${say(m.text)}”</p><footer class="aired__foot">${foot}</footer></blockquote>`
-      : `<div class="ss-x-quote aired__quote aired__quote--label"><p class="aired__label">${say(x.label)}</p><p class="aired__foot">${foot}</p></div>`;
+      : `<div class="ss-x-quote aired__quote aired__quote--label"><p class="aired__label">${say(x.label)}</p><footer class="aired__foot">${foot}</footer></div>`;
     return `<li class="aired__item"><h3 class="aired__fmt">${esc(fmtName(x))}</h3><div class="aired__body">${body}</div></li>`;
   }).join("");
 }
@@ -1211,7 +1212,10 @@ function closeRoster() {
   scrim.classList.add(sheet ? "is-leaving-slow" : "is-leaving");
   let done = false;
   const end = () => { if (!done) { done = true; finish(); } };
-  dlg.addEventListener(sheet ? "transitionend" : "animationend", end, { once: true });
+  // transitionend and animationend bubble (the Close button's own press transition would end this early): listen for
+  // the sheet's own transform, or the dialog's own exit animation, only
+  const onEnd = (e) => { if (e.target === dlg && (sheet ? e.propertyName === "transform" : e.animationName === "roster-dialog-out")) { dlg.removeEventListener(sheet ? "transitionend" : "animationend", onEnd); end(); } };
+  dlg.addEventListener(sheet ? "transitionend" : "animationend", onEnd);
   setTimeout(end, sheet ? 600 : 250);   // a backstop if the event never fires
 }
 // the sheet follows a finger on its handle or head; let go past a quarter of its height, or with a flick, and it
@@ -1235,7 +1239,8 @@ function dragSheet(sheet) {
     removeEventListener("pointermove", move); removeEventListener("pointerup", up); removeEventListener("pointercancel", up);
     if (dy > h * 0.25 || (flick && dy > 24)) { closeRoster(); return; }
     sheet.classList.add("is-settling"); sheet.style.transform = "translateY(0)";
-    sheet.addEventListener("transitionend", () => { sheet.classList.remove("is-settling"); sheet.style.removeProperty("transform"); }, { once: true });
+    const settled = (e) => { if (e.target !== sheet || e.propertyName !== "transform") return; sheet.removeEventListener("transitionend", settled); sheet.classList.remove("is-settling"); sheet.style.removeProperty("transform"); };
+    sheet.addEventListener("transitionend", settled);
   };
   for (const g of grips) g.addEventListener("pointerdown", (ev) => {
     if (ev.target.closest("button") || rosterState.leaving) return;
