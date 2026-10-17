@@ -1823,7 +1823,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
-    "upload": null,
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-09-02T00:36:39.748Z",
     "list": [
      {
@@ -1832,7 +1835,7 @@
       "title": "Cold open on AI tooling before the show kicks off",
       "gist": "A montage about AI tooling, agents, and curiosity plays before the hosts open the live show.",
       "quote": "I think the future is bright, but it has to be built",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=203s"
      },
      {
       "start": "00:06:33",
@@ -1840,7 +1843,7 @@
       "title": "Designer of the week nominations and community picks",
       "gist": "Hosts and community members nominate favorite designers and open a public vote for the weekly crown.",
       "quote": "Working at AirOps now came from Intercom",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=394s"
      },
      {
       "start": "00:16:53",
@@ -1848,7 +1851,7 @@
       "title": "A basketball training robot and smart home devices",
       "gist": "Hosts watch a demo of a robotic basketball trainer and swap stories about smart home gadgets.",
       "quote": "Three cameras track your movement",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=1014s"
      },
      {
       "start": "00:20:22",
@@ -1856,7 +1859,7 @@
       "title": "AI news: a sandbox escape, a math proof, and holdouts",
       "gist": "Hosts discuss a model breaking out of a test sandbox, a disproved conjecture, and famous coders embracing AI.",
       "quote": "did you hear about GPT six breaking containment",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=1223s"
      },
      {
       "start": "00:30:42",
@@ -1864,7 +1867,7 @@
       "title": "Reactions to the Coca Cola rebrand",
       "gist": "Hosts critique the subtle Coca Cola refresh, its sound design, and what such a change is really for.",
       "quote": "what do you think about Coca Cola's rebrand",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=1843s"
      },
      {
       "start": "00:35:41",
@@ -1872,7 +1875,7 @@
       "title": "Web designers are back: new roles and titles",
       "gist": "Hosts examine a visual design job posting and a write up mapping the range between designer and engineer.",
       "quote": "That's most of the Versace design team",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=2142s"
      },
      {
       "start": "00:49:26",
@@ -1880,7 +1883,7 @@
       "title": "Bold predictions and a teenage agent builder",
       "gist": "Hosts react to a clip predicting humanoid robots, then a host's son demos his own coding agent setup.",
       "quote": "digital intelligence will exceed the sum of all human intelligence",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=2967s"
      },
      {
       "start": "01:00:57",
@@ -1888,7 +1891,7 @@
       "title": "Data versus intuition in design decisions",
       "gist": "Hosts debate shipping by feel versus metrics, with a former Airbnb lead sharing his view in a clip.",
       "quote": "they don't do AB testing or use analytics",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=3658s"
      },
      {
       "start": "01:15:39",
@@ -1896,7 +1899,7 @@
       "title": "DialKit demos and one up weekly picks",
       "gist": "Hosts tweak live parameters with DialKit, trade favorite finds, and crown the first weekly winner.",
       "quote": "DialKit is a library made by Josh Puckett",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=4540s"
      },
      {
       "start": "01:36:13",
@@ -1904,7 +1907,7 @@
       "title": "The live call in line debuts and the show closes",
       "gist": "Callers ask about job titles, anti AI sentiment, and developing taste before the hosts sign off.",
       "quote": "Everybody, we have a phone number",
-      "link": null
+      "link": "https://youtube.com/watch?v=TJqSfnadiGM&t=5774s"
      }
     ]
    },
@@ -3546,7 +3549,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
-    "upload": null,
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-09-02T00:46:37.166Z",
     "list": [
      {
@@ -3555,7 +3561,7 @@
       "title": "Show opens with hosts checking in from New York",
       "gist": "Hosts open the live show, catch up on a busy week away from home, and thank the sponsors.",
       "quote": "so a little change of scenery",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=277s"
      },
      {
       "start": "00:07:45",
@@ -3563,7 +3569,7 @@
       "title": "Designer of the week nominations from the community",
       "gist": "Guest videos nominate designers with Pixar, Blizzard, music tool, and shader work for the weekly vote.",
       "quote": "I would like to nominate Ruchita for designer of the week",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=466s"
      },
      {
       "start": "00:18:36",
@@ -3571,7 +3577,7 @@
       "title": "Origin launches during a GitHub outage",
       "gist": "Hosts discuss the new Origin launch, the GitHub outage, and whether teams will migrate their code.",
       "quote": "Origin just came out",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=1117s"
      },
      {
       "start": "00:26:12",
@@ -3579,7 +3585,7 @@
       "title": "Grokbot sparks a second wave of agent adoption",
       "gist": "Ridd tells how Grokbot converted him to agents, from QA bots to fantasy football helpers.",
       "quote": "Grokbot is kind of pushing the second coming",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=1573s"
      },
      {
       "start": "00:31:38",
@@ -3587,7 +3593,7 @@
       "title": "The rise of mascots and brand personification",
       "gist": "Hosts survey mascots like Duolingo, Nosey, and baby Grok, with clips from designers on character craft.",
       "quote": "the rise of this, like, mascot and these personification things",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=1899s"
      },
      {
       "start": "00:43:48",
@@ -3595,7 +3601,7 @@
       "title": "Mascot experiments with blobs, expressions, and absurd characters",
       "gist": "Tommy demos blob mascots, expression tools, and absurd whale versions of Ridd built for fun.",
       "quote": "a little stab at a few experiments here",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=2629s"
      },
      {
       "start": "00:56:40",
@@ -3603,7 +3609,7 @@
       "title": "A hand built SVG story animator demo",
       "gist": "Tommy shows a story animator named for his daughter that pushes SVG characters to convey feeling.",
       "quote": "the narrative on rails animator",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=3401s"
      },
      {
       "start": "01:05:01",
@@ -3611,7 +3617,7 @@
       "title": "A mixed media animation workflow and sound libraries",
       "gist": "A community member explains an AI plus hand refined animation workflow, followed by sound libraries.",
       "quote": "how did you animate the story",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=3902s"
      },
      {
       "start": "01:14:43",
@@ -3619,7 +3625,7 @@
       "title": "A caller on why mascots build trust",
       "gist": "Caller DJ compares software mascots to service business mascots that build trust with customers.",
       "quote": "back before there was this massive influx",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=4484s"
      },
      {
       "start": "01:20:44",
@@ -3627,7 +3633,7 @@
       "title": "One up picks, winner announcement, and closing",
       "gist": "Hosts share finds like Block's bird agents, announce Bartek as winner, and preview next week.",
       "quote": "time for the one Up weekly segment",
-      "link": null
+      "link": "https://youtube.com/watch?v=RhemcDEc_-A&t=4845s"
      }
     ]
    },
@@ -4010,7 +4016,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
-    "upload": null,
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.5
+    },
     "writtenAt": "2026-09-02T00:30:47.808Z",
     "list": [
      {
@@ -4019,7 +4028,7 @@
       "title": "Cold open on designing with AI and staying curious",
       "gist": "A montage of voices reflects on how AI tooling expands daily exploration before the hosts greet listeners.",
       "quote": "Show up, try things, be curious",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=200s"
      },
      {
       "start": "00:09:46",
@@ -4027,7 +4036,7 @@
       "title": "Designer of the week nominations from the community",
       "gist": "Hosts play video nominations from Bartek and Andy spotlighting quieter designers and their work.",
       "quote": "kick off the show with the designer of the week",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=587s"
      },
      {
       "start": "00:20:39",
@@ -4035,7 +4044,7 @@
       "title": "News roundup on acquisitions, vibe coding takes, and startup moves",
       "gist": "Hosts react to an acquisition, a clip about designers vibe coding, and Linear's employee investment round.",
       "quote": "the big news of the day here is KD",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=1240s"
      },
      {
       "start": "00:27:48",
@@ -4043,7 +4052,7 @@
       "title": "Lucas walks through his interactive portfolio",
       "gist": "Guest Lucas demos the parallax depth trick, hidden touches, and sticky note wall on his portfolio site.",
       "quote": "So this is my portfolio",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=1669s"
      },
      {
       "start": "00:39:46",
@@ -4051,7 +4060,7 @@
       "title": "Ramp's creative director on a brand that behaves like jazz",
       "gist": "A guest video from Ramp's creative director explains chasing coherence over consistency in a fast rebrand.",
       "quote": "a brand system that behaves like jazz",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=2387s"
      },
      {
       "start": "00:46:01",
@@ -4059,7 +4068,7 @@
       "title": "A tour of in flight, a tool for prototype feedback",
       "gist": "Tommy tours Ridd's product for giving feedback on prototypes, from preview links to its playful details.",
       "quote": "I had early eyes on in flight",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=2762s"
      },
      {
       "start": "00:57:35",
@@ -4067,7 +4076,7 @@
       "title": "Agent working states and prompting inside design canvases",
       "gist": "Hosts compare how Paper, Framer, and Flora signal agent activity and handle prompts on the canvas.",
       "quote": "my favorite agent is working animation",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3456s"
      },
      {
       "start": "01:06:28",
@@ -4075,7 +4084,7 @@
       "title": "How new AI products teach people to use them",
       "gist": "Hosts review onboarding flows from Perplexity, Grokbot, and Instinct, from spa day polish to plugins.",
       "quote": "how do I use this product",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3989s"
      },
      {
       "start": "01:19:53",
@@ -4083,7 +4092,7 @@
       "title": "Inside Ridd's saved library of AI interface patterns",
       "gist": "Ridd flips through saved examples of prompt aids, composers, loading states, and agent memory designs.",
       "quote": "saving stuff to my Notion inspiration library",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=4794s"
      },
      {
       "start": "01:34:49",
@@ -4091,7 +4100,7 @@
       "title": "Mobbin workflows, one up picks, and the winner reveal",
       "gist": "Hosts demo pattern research through Mobbin's MCP, trade weekly picks, and crown the designer of the week.",
       "quote": "we really should start documenting the patterns",
-      "link": null
+      "link": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=5690s"
      }
     ]
    },
@@ -6789,7 +6798,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
-    "upload": null,
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-10-01T19:21:08.208Z",
     "list": [
      {
@@ -6798,7 +6810,7 @@
       "title": "Cold open and welcome to the group chat",
       "gist": "A clip montage opens the show, then the hosts greet viewers and preview the lineup and the live chat format.",
       "quote": "Show up, try things, be curious.",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=197s"
      },
      {
       "start": "00:07:11",
@@ -6806,7 +6818,7 @@
       "title": "Survey plug and designer of the week nominations",
       "gist": "The hosts promote an industry survey, then viewer clips and the hosts nominate designers for the weekly vote.",
       "quote": "we have collected hundreds of responses to this so far",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=432s"
      },
      {
       "start": "00:29:13",
@@ -6814,7 +6826,7 @@
       "title": "Pushback on AI-heavy work and a fast build story",
       "gist": "The hosts weigh a viral complaint about agent-driven work, authorship, and a replay tool built in hours.",
       "quote": "people who are definitely frustrated with the state of work",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=1754s"
      },
      {
       "start": "00:42:36",
@@ -6822,7 +6834,7 @@
       "title": "Jev explained: a copyright strike and a first test",
       "gist": "Tommy introduces Jev, a Rick and Morty explainer gets struck mid-play, and Teddy Nee shares a Magic Patterns test.",
       "quote": "It gets so big that there's actually a subreddit",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=2557s"
      },
      {
       "start": "00:50:31",
@@ -6830,7 +6842,7 @@
       "title": "Voice-driven interface demos built on Jev",
       "gist": "Jonathan Moore and Neil show voice-edited interface demos, alongside Kyle's sketch tool and a playground clip.",
       "quote": "Add a card titled invite a teammate and a description",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=3032s"
      },
      {
       "start": "01:03:41",
@@ -6838,7 +6850,7 @@
       "title": "Generative websites and what Jev unlocks next",
       "gist": "Samraj demos a site that reshapes itself per visitor, then the hosts discuss where Jev could lead.",
       "quote": "I use JEV to make any site dynamically update itself",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=3822s"
      },
      {
       "start": "01:15:20",
@@ -6846,7 +6858,7 @@
       "title": "Canvas tools, Quiver in Paper, and where design systems should live",
       "gist": "Clips on Quiver in Paper and Alyx lead Ridd to argue design-code parity is dead and systems belong in code.",
       "quote": "the canvas layer is something in the Discord",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=4521s"
      },
      {
       "start": "01:39:12",
@@ -6854,7 +6866,7 @@
       "title": "Teen builders, rethinking education, and advice for new builders",
       "gist": "Tommy shows his son's agent team, the hosts discuss young builders and school, and Soleil shares advice.",
       "quote": "I just got back from Washington state over the weekend",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=5953s"
      },
      {
       "start": "01:56:03",
@@ -6862,7 +6874,7 @@
       "title": "Designer of the week reveal and sign-off",
       "gist": "The hosts announce the vote winner, mention the submission form and Discord plans, and say goodbye until next week.",
       "quote": "not before we reveal this week's designer of the week",
-      "link": null
+      "link": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6964s"
      }
     ]
    },
@@ -7337,7 +7349,10 @@
    "chapters": {
     "status": "complete",
     "clock": "stream",
-    "upload": null,
+    "upload": {
+     "key": "yt:joindiveclub",
+     "offsetSec": 0.6
+    },
     "writtenAt": "2026-10-02T14:09:54.578Z",
     "list": [
      {
@@ -7346,7 +7361,7 @@
       "title": "Cold open, welcome, and a preview of the motion theme",
       "gist": "Both hosts open with a highlight reel, swap vacation and holiday chat, and set up an episode about motion.",
       "quote": "I think the view is bright, but it has to be built",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=197s"
      },
      {
       "start": "00:11:46",
@@ -7354,7 +7369,7 @@
       "title": "Designer of the week nominations and voting",
       "gist": "Hosts and community members nominate designers, and a single-screen site gets a quick look.",
       "quote": "I appreciate Notion for sponsoring the segment of designer of the week",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=707s"
      },
      {
       "start": "00:20:13",
@@ -7362,7 +7377,7 @@
       "title": "Brand in a box, the Discord opening, and a Lovable library",
       "gist": "Brett's clip on prebuilt brands, then a host explains the quarterly Discord and a Lovable submissions library.",
       "quote": "wanna call out that something just showed up here",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=1214s"
      },
      {
       "start": "00:32:09",
@@ -7370,7 +7385,7 @@
       "title": "OpenAI Dev Day news, sign-in with ChatGPT, and plugins",
       "gist": "Hosts react to Dev Day announcements, the rush to build chat plugins, and cute mascot trends in agent products.",
       "quote": "OpenAI's Dev Day kicks off",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=1930s"
      },
      {
       "start": "00:40:16",
@@ -7378,7 +7393,7 @@
       "title": "Picking an agent ecosystem and what it costs to switch",
       "gist": "Hosts weigh which agent platform to commit to, rebuilding setups, model mandates, and a consumer app launch.",
       "quote": "I'm feeling a lot of pressure to choose correctly",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=2417s"
      },
      {
       "start": "01:00:28",
@@ -7386,7 +7401,7 @@
       "title": "america.gov and the national design studio",
       "gist": "A host praises the single government site that folds many agency sites into one, with the other agreeing.",
       "quote": "get into this for a quick second",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=3629s"
      },
      {
       "start": "01:04:13",
@@ -7394,7 +7409,7 @@
       "title": "Opus and AI launch videos, plus Mixture and Rive tools",
       "gist": "Hosts watch AI-made launch videos, debate where they fall short, and one host demos an agent video editor.",
       "quote": "Opus five five is insanely good at motion design launch videos",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=3854s"
      },
      {
       "start": "01:16:07",
@@ -7402,7 +7417,7 @@
       "title": "Designers share motion workflows from skills to code",
       "gist": "Viewers show how they animate with cheap video models, tunable dials, After Effects, and Figma storyboards.",
       "quote": "I'm Xavier from France, and I wanted to",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=4568s"
      },
      {
       "start": "01:31:55",
@@ -7410,7 +7425,7 @@
       "title": "Editing and generating video with agents",
       "gist": "Guests demo DaVinci edits by Claude, cheap draft video models, footage restyling, shader scenes, and video as app UI.",
       "quote": "So you can see that I just sent a prompt",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=5516s"
      },
      {
       "start": "01:55:01",
@@ -7418,7 +7433,7 @@
       "title": "Winner announced and closing thoughts",
       "gist": "Edward wins designer of the week, then both hosts reflect on the episode and point to the Discord and next week.",
       "quote": "Let's go look at our designer of the week results here",
-      "link": null
+      "link": "https://youtube.com/watch?v=bBF1yPACap0&t=6902s"
      }
     ]
    },
@@ -8416,7 +8431,7 @@
   }
  ],
  "sponsor": {
-  "version": 3,
+  "version": 4,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -9040,18 +9055,6 @@
      "calledIn": null
     },
     {
-     "id": "x:2090735871938970092",
-     "ep": 6,
-     "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
-     "author": "@robhope",
-     "platform": "X",
-     "text": "i smiled and chuckled so much during this one, the flow is getting better and better, thanks guys!",
-     "url": "https://x.com/i/status/2090735871938970092",
-     "likes": 2,
-     "onShow": false,
-     "calledIn": null
-    },
-    {
      "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
      "ep": 3,
      "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
@@ -9302,16 +9305,29 @@
      "likes": 0,
      "onShow": false,
      "calledIn": null
+    },
+    {
+     "id": "x:2101465923366572345",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@LunaBluetjf",
+     "platform": "X",
+     "text": "appreciate the chill vibe despite the spicy takes here.",
+     "url": "https://x.com/i/status/2101465923366572345",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
     }
    ]
   },
   "callIns": {
-   "total": 100,
+   "total": 117,
    "nominations": 21,
-   "people": 93,
-   "episodes": 10,
+   "portfolios": 15,
+   "people": 110,
+   "episodes": 11,
    "fromEp": 4,
-   "toEp": 13,
+   "toEp": 14,
    "byEpisode": [
     {
      "ep": 4,
@@ -9362,6 +9378,28 @@
      "ep": 13,
      "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
      "count": 11
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "count": 17
+    }
+   ],
+   "reviews": [
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "portfolios": 15,
+     "reviewers": [
+      "Geoff Teehan",
+      "Maheen Sohail",
+      "Rob Hope",
+      "Josh Puckett",
+      "MDS of Shift Nudge",
+      "Ini Abíódún",
+      "Kyle Zantos",
+      "Femke"
+     ]
     }
    ],
    "teamsNamed": [
@@ -10074,9 +10112,128 @@
      "kind": "submission",
      "who": "Eric Sin",
      "about": "how he landed a staff design job at Netflix"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "submission",
+     "who": "Elizabeth Lin",
+     "about": "the biggest portfolio mistake she sees"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "submission",
+     "who": "Eric Hu",
+     "about": "the work you show is the work you get hired for"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Kartik Iyer",
+     "reviewedBy": "Geoff Teehan"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Pooja Jadav",
+     "reviewedBy": "Maheen Sohail and Rob Hope"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Matteo Aliano",
+     "reviewedBy": "Josh Puckett"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Case Ronquillo",
+     "reviewedBy": "MDS of Shift Nudge"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Tracy Khiew",
+     "reviewedBy": "Ini Abíódún"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Shreyas Patil",
+     "reviewedBy": "Kyle Zantos"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Tracy Leung",
+     "reviewedBy": "Femke"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Gal Zorigo",
+     "reviewedBy": "Geoff Teehan"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Gabriel Valdivia",
+     "reviewedBy": "Josh Puckett"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Brandon Dunlevy",
+     "reviewedBy": "Maheen Sohail"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Marimar Cabrero",
+     "reviewedBy": "Femke"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Angelina Wu",
+     "reviewedBy": "Josh Puckett"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Clau Marin",
+     "reviewedBy": "Maheen Sohail"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Priyamwada Pandey",
+     "reviewedBy": "Geoff Teehan"
+    },
+    {
+     "ep": 14,
+     "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+     "kind": "portfolio",
+     "who": "Julio Romero",
+     "reviewedBy": "MDS of Shift Nudge"
     }
    ],
-   "updatedAt": "2026-10-11T16:31:49.034Z"
+   "updatedAt": "2026-10-16T23:41:19.339Z"
   },
   "brands": {
    "episodes": 14,
@@ -10102,7 +10259,7 @@
        "at": "01:21:41",
        "seconds": 4901,
        "text": "I could just make anything in Figma, or maybe I would, like, generate something with Quiver even, get Claude to use it, and then say, just like, hey.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=4902s"
       },
       {
        "ep": 3,
@@ -10134,7 +10291,7 @@
        "at": "01:28:31",
        "seconds": 5311,
        "text": "Like, the I think we’re gonna look at the era of pointing, clicking, typing, like Figma style comments.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=5312s"
       },
       {
        "ep": 7,
@@ -10142,7 +10299,7 @@
        "at": "00:05:14",
        "seconds": 314,
        "text": "The early access to code layers in Figma.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=315s"
       },
       {
        "ep": 8,
@@ -10174,7 +10331,7 @@
        "at": "01:16:07",
        "seconds": 4567,
        "text": "But what we have been talking about in that group is the canvas and how people, in some cases, are completely offboarding from tools like Figma.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=4568s"
       },
       {
        "ep": 12,
@@ -10182,7 +10339,7 @@
        "at": "00:39:40",
        "seconds": 2380,
        "text": "Be able to interact in this way and that way, unless maybe you’re Figma and decide you only wanna let a few partners use your MCP.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=2381s"
       },
       {
        "ep": 13,
@@ -10198,7 +10355,7 @@
        "at": "00:27:49",
        "seconds": 1669,
        "text": "I need to find ways to use it. Figma already did. So there’s a lot of there’s a lot of launches to talk about.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=1668s"
       }
      ]
     },
@@ -10222,7 +10379,7 @@
        "at": "00:37:55",
        "seconds": 2275,
        "text": "And they want this really generalist, like, straddle all the line skill set where you gotta be able to build websites from scratch, which kinda anyone can kinda do with Claude and all the models now.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=2276s"
       },
       {
        "ep": 3,
@@ -10254,7 +10411,7 @@
        "at": "00:35:53",
        "seconds": 2153,
        "text": "But we’ve seen a lot of things coming up with, like, Claude. The they introduced this little guy at some time, was that last year, this year?",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=2154s"
       },
       {
        "ep": 7,
@@ -10262,7 +10419,7 @@
        "at": "00:56:00",
        "seconds": 3360,
        "text": "How many tweets how many tweets do you feed into Claude? Like, just to say, like, hey. Let’s, like, figure this out.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3361s"
       },
       {
        "ep": 8,
@@ -10294,7 +10451,7 @@
        "at": "00:23:12",
        "seconds": 1392,
        "text": "And so I took 10 photographs, and I just dumped it into Claude. And I was like, build me a three d model, and it built me a three d model of it.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=1393s"
       },
       {
        "ep": 12,
@@ -10302,7 +10459,7 @@
        "at": "00:31:37",
        "seconds": 1897,
        "text": "And so, I really liked it because in the past, I used to have to build my plans inside of, like, Claude or one of my agents.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=1898s"
       },
       {
        "ep": 13,
@@ -10318,7 +10475,7 @@
        "at": "00:13:31",
        "seconds": 811,
        "text": "And then you had shipped it at some point or Claude eventually shipped it. And then I was on the plane and I was like, oh, actually, it’s fantastic now.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=810s"
       }
      ]
     },
@@ -10358,7 +10515,7 @@
        "at": "00:05:57",
        "seconds": 357,
        "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s"
       },
       {
        "ep": 7,
@@ -10366,7 +10523,7 @@
        "at": "00:12:28",
        "seconds": 748,
        "text": "It’s funny seeing that little montage there because I had two of those designs saved to my Notion.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=749s"
       },
       {
        "ep": 9,
@@ -10390,7 +10547,7 @@
        "at": "01:35:29",
        "seconds": 5729,
        "text": "Like, dude, you could have a bill to that page that is, like, distributed and saved in the Notion, you could use something like Jev.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=5730s"
       },
       {
        "ep": 12,
@@ -10398,7 +10555,7 @@
        "at": "00:11:46",
        "seconds": 706,
        "text": "And I do wanna say, I appreciate Notion for sponsoring the segment of designer of the week.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=707s"
       },
       {
        "ep": 13,
@@ -10414,7 +10571,7 @@
        "at": "00:16:39",
        "seconds": 999,
        "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s"
       }
      ]
     },
@@ -10446,7 +10603,7 @@
        "at": "00:05:57",
        "seconds": 357,
        "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s"
       },
       {
        "ep": 8,
@@ -10470,7 +10627,7 @@
        "at": "01:53:19",
        "seconds": 6799,
        "text": "I have a library I’m building with Lovable, and I’m gonna dive into this next week. I was gonna spend a little bit more time on this, but we’re running out of time here.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6800s"
       },
       {
        "ep": 12,
@@ -10478,7 +10635,7 @@
        "at": "00:05:00",
        "seconds": 300,
        "text": "And if you were tuning in with us, you are tuning in to Dive Radio, the Internet’s group chat for curious designers brought to you by Lovable, actually, who we’ll be hearing more about later.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=301s"
       },
       {
        "ep": 14,
@@ -10486,7 +10643,7 @@
        "at": "00:16:39",
        "seconds": 999,
        "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s"
       }
      ]
     },
@@ -10502,7 +10659,7 @@
        "at": "00:36:22",
        "seconds": 2182,
        "text": "And they really talk a little bit about, like, what visual design and how Vercel thinks about a lot of this.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=2183s"
       },
       {
        "ep": 3,
@@ -10526,7 +10683,7 @@
        "at": "00:37:20",
        "seconds": 2240,
        "text": "Even Vercel kinda getting in on it with, their ship icon here. Won’t be surprised to see look at this.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=2241s"
       },
       {
        "ep": 8,
@@ -10574,7 +10731,7 @@
        "at": "00:55:11",
        "seconds": 3311,
        "text": "This is my agentic coding system that I’ve set up in Cursor. It’s not even open claw. Nothing special.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=3312s"
       },
       {
        "ep": 3,
@@ -10590,7 +10747,7 @@
        "at": "00:18:36",
        "seconds": 1116,
        "text": "So the first thing I wanna say, we’re gonna have some we’re gonna feature some of the former Cursor.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=1117s"
       },
       {
        "ep": 9,
@@ -10606,7 +10763,7 @@
        "at": "01:43:04",
        "seconds": 6184,
        "text": "He has access to the GitHub and to Cursor. So when he starts coding, he will go into Cursor and he will start coding within a cloud workspace.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6185s"
       },
       {
        "ep": 13,
@@ -10622,7 +10779,7 @@
        "at": "00:18:21",
        "seconds": 1101,
        "text": "What would, cursor be? Cursor would be a... It’s gotta be spacey. Right? It’s gotta be Yeah.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=1100s"
       }
      ]
     },
@@ -10646,7 +10803,7 @@
        "at": "00:21:14",
        "seconds": 1274,
        "text": "And then a few days later, it’s like, oh, it was OpenAI, and it was just one of the upcoming models.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=1275s"
       },
       {
        "ep": 5,
@@ -10662,7 +10819,7 @@
        "at": "01:32:59",
        "seconds": 5579,
        "text": "We were gonna do an episode, and then OpenAI bought it. Yeah. Yeah. And now it’ll be, who knows?",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=5580s"
       },
       {
        "ep": 11,
@@ -10670,7 +10827,7 @@
        "at": "00:19:11",
        "seconds": 1151,
        "text": "My plea to OpenAI, Anthropic, please do not ever release a new model on the same day again.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=1152s"
       },
       {
        "ep": 12,
@@ -10678,7 +10835,7 @@
        "at": "00:10:15",
        "seconds": 615,
        "text": "But then we had OpenAI’s dev day, which we’re gonna get into there. And, obviously, there’s, like, a couple of the main things that everybody’s talking about.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=616s"
       },
       {
        "ep": 13,
@@ -10694,7 +10851,7 @@
        "at": "00:23:39",
        "seconds": 1419,
        "text": "Not Opus, but, OpenAI, they had Astra six rumored to drop, and then they’re like, yo. This is too dangerous.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=1418s"
       }
      ]
     },
@@ -10710,7 +10867,7 @@
        "at": "01:28:48",
        "seconds": 5328,
        "text": "I was looking at, Framer had a tweet of, like, maybe I don’t can’t remember what it was. They shared four websites earlier this month.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=5329s"
       },
       {
        "ep": 6,
@@ -10718,7 +10875,7 @@
        "at": "00:16:16",
        "seconds": 976,
        "text": "Connecting with Framer. This is a dope. This is a dope hire. Anyone who lands Rob Hope is a fortunate team.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=977s"
       },
       {
        "ep": 7,
@@ -10726,7 +10883,7 @@
        "at": "00:59:38",
        "seconds": 3578,
        "text": "And I love Framer. I have been a partner of Framer for many years. I have been a user of Framer even longer, well before the web publishing, pivot they made.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3579s"
       },
       {
        "ep": 8,
@@ -10750,7 +10907,7 @@
        "at": "01:35:23",
        "seconds": 5723,
        "text": "Manipulating the world here is Andy Orso from Framer. The dude has just been a tinkering pro, and I wanted to hear how he’s messing around with some things.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=5724s"
       },
       {
        "ep": 14,
@@ -10758,7 +10915,7 @@
        "at": "00:49:41",
        "seconds": 2981,
        "text": "Been going there my entire design career. It’s amazing. One of the video people. And now he’s at Framer.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=2980s"
       }
      ]
     },
@@ -10774,7 +10931,7 @@
        "at": "01:55:15",
        "seconds": 6915,
        "text": "Like, drawing from inspiration that you can’t find on Mobbin. I think I have an issue with Mobbin.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=6916s"
       },
       {
        "ep": 3,
@@ -10790,7 +10947,7 @@
        "at": "00:05:57",
        "seconds": 357,
        "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s"
       },
       {
        "ep": 7,
@@ -10798,7 +10955,7 @@
        "at": "01:19:49",
        "seconds": 4789,
        "text": "There’s a lot of stuff in Mobbin I’ve been pulling up that I kinda wanna talk about. But I’m curious.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=4790s"
       },
       {
        "ep": 9,
@@ -10814,7 +10971,7 @@
        "at": "00:55:00",
        "seconds": 3300,
        "text": "The conversation Kyle would say was, like, well, what if you pulled in Mobbin? What if you pulled in, you know, spotted in productions CLI?",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=3301s"
       },
       {
        "ep": 14,
@@ -10822,7 +10979,7 @@
        "at": "00:16:39",
        "seconds": 999,
        "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s"
       }
      ]
     },
@@ -10838,7 +10995,7 @@
        "at": "01:08:31",
        "seconds": 4111,
        "text": "But, also, should you be running the Google type of study on which shade of blue, that you should use on links?",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=4112s"
       },
       {
        "ep": 3,
@@ -10862,7 +11019,7 @@
        "at": "00:23:03",
        "seconds": 1383,
        "text": "They’re having more fun than Google seems to be having. Right? So Yeah. Yeah. Something to be said here.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=1384s"
       },
       {
        "ep": 10,
@@ -10878,7 +11035,7 @@
        "at": "01:42:23",
        "seconds": 6143,
        "text": "So, he has access to my X account and also has access to a Google Drive. This is just like a personal memory bank.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6144s"
       },
       {
        "ep": 12,
@@ -10886,7 +11043,7 @@
        "at": "00:56:33",
        "seconds": 3393,
        "text": "It’s like, finally, Google did something. But Yeah. I think a lot of us are. We’re skeptical of these benchmarks.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=3394s"
       },
       {
        "ep": 13,
@@ -10926,7 +11083,7 @@
        "at": "00:16:58",
        "seconds": 1018,
        "text": "Apple engineers are unveiling a third a $1,400 turntable that hangs a spinning record on your wall.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=1019s"
       },
       {
        "ep": 7,
@@ -10934,7 +11091,7 @@
        "at": "00:24:54",
        "seconds": 1494,
        "text": "I’m big Apple Mac mini guy. Huge Apple Mac mini guy. I love my to the new Mac mini. We don’t have to play the sound, but I will show you the stop motion they made.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=1495s"
       },
       {
        "ep": 9,
@@ -10950,7 +11107,7 @@
        "at": "00:52:01",
        "seconds": 3121,
        "text": "Like, this is what I expect Apple to eventually do with their operating system at some point if they ever decide to poke them with a stick and they do something.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=3122s"
       }
      ]
     },
@@ -10966,7 +11123,7 @@
        "at": "00:13:12",
        "seconds": 792,
        "text": "And I looked through basically every single Rive portfolio in Contra, like, in hours. I went through every single one of them.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=793s"
       },
       {
        "ep": 9,
@@ -10982,7 +11139,7 @@
        "at": "01:10:15",
        "seconds": 4215,
        "text": "And I really wanted to get a video from someone from Rive. I didn’t get the opportunity. Oh, bud.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=4216s"
       }
      ]
     },
@@ -11006,7 +11163,7 @@
        "at": "01:27:58",
        "seconds": 5278,
        "text": "And by the way, he made this, available to check out here on GitHub. I’m it’s an entire tool for creating these effects on top of your images.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=5279s"
       },
       {
        "ep": 6,
@@ -11014,7 +11171,7 @@
        "at": "00:19:22",
        "seconds": 1162,
        "text": "We were going to ship this earlier, but GitHub was down. It’s one of the best launch lines.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=1163s"
       },
       {
        "ep": 11,
@@ -11022,7 +11179,7 @@
        "at": "01:43:04",
        "seconds": 6184,
        "text": "He has access to the GitHub and to Cursor. So when he starts coding, he will go into Cursor and he will start coding within a cloud workspace.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6185s"
       }
      ]
     },
@@ -11046,7 +11203,7 @@
        "at": "00:05:57",
        "seconds": 357,
        "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s"
       },
       {
        "ep": 7,
@@ -11054,7 +11211,7 @@
        "at": "00:52:10",
        "seconds": 3130,
        "text": "I saw, I shipped this, and then, like, a couple weeks later, Paper did made their search like this too.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3131s"
       },
       {
        "ep": 11,
@@ -11062,7 +11219,7 @@
        "at": "01:20:38",
        "seconds": 4838,
        "text": "Paper, though, man. Like, the it’s there’s a lot of use cases here. A lot of people bringing stuff in.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=4839s"
       },
       {
        "ep": 14,
@@ -11070,7 +11227,7 @@
        "at": "00:16:39",
        "seconds": 999,
        "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s"
       }
      ]
     },
@@ -11086,7 +11243,7 @@
        "at": "00:25:33",
        "seconds": 1533,
        "text": "I’m digging the baby Grok. We talked a little bit about cursor I’m sorry. Grok bought last week.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=1534s"
       },
       {
        "ep": 7,
@@ -11094,7 +11251,7 @@
        "at": "01:10:06",
        "seconds": 4206,
        "text": "And I was like, Grok really makes a lot of sense. And it’s funny because I’m still having a hard time figuring out what’s so what feels more so intuitive about it.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=4207s"
       },
       {
        "ep": 8,
@@ -11134,7 +11291,7 @@
        "at": "01:12:41",
        "seconds": 4361,
        "text": "Like, if you’re working at Anthropic right now, you can literally build anything. You can squash any micro industry like a bug.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=4362s"
       },
       {
        "ep": 8,
@@ -11158,7 +11315,7 @@
        "at": "00:19:11",
        "seconds": 1151,
        "text": "My plea to OpenAI, Anthropic, please do not ever release a new model on the same day again.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=1152s"
       },
       {
        "ep": 12,
@@ -11166,7 +11323,7 @@
        "at": "00:45:38",
        "seconds": 2738,
        "text": "If ChatGPT, Anthropic, all the labs aren’t gonna allow us users to use their subscriptions, we’re gonna build a bunch of infrastructure.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=2739s"
       },
       {
        "ep": 14,
@@ -11174,7 +11331,7 @@
        "at": "00:07:09",
        "seconds": 429,
        "text": "Especially when you get rumor that other people, like Anthropic, are potentially dropping a model on the one day you choose to launch something.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=428s"
       }
      ]
     },
@@ -11190,7 +11347,7 @@
        "at": "00:12:04",
        "seconds": 724,
        "text": "Shopify is hoarding some talent over there. I think did you just do an episode with Katarina?",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=725s"
       },
       {
        "ep": 9,
@@ -11214,7 +11371,7 @@
        "at": "01:08:37",
        "seconds": 4117,
        "text": "Like, it’s all I used to think a lot about Shopify. I was, like, deep in the Shopify ecosystem.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=4118s"
       },
       {
        "ep": 14,
@@ -11222,7 +11379,7 @@
        "at": "00:22:19",
        "seconds": 1339,
        "text": "Like Toby from Shopify saying this model is very, very good. I was struggling to find anything to throw at it that it couldn’t do.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=1338s"
       }
      ]
     },
@@ -11246,7 +11403,7 @@
        "at": "01:06:53",
        "seconds": 4013,
        "text": "So what I did is I went into Adobe Illustrator and Woah. Basically to hand refine all the different, AI variations to remove any little artifacts and to retract details.",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=4014s"
       },
       {
        "ep": 9,
@@ -11270,7 +11427,7 @@
        "at": "01:21:59",
        "seconds": 4919,
        "text": "You know, I was like, use Adobe After Effects to make an amazing launch video. Go all out with transitions and clear stuff in AE.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=4920s"
       },
       {
        "ep": 13,
@@ -11310,7 +11467,7 @@
        "at": "00:26:18",
        "seconds": 1578,
        "text": "Stripe said, they think the singularity, whatever that means, which is essentially agents doing, work better than a lot of…",
-       "url": null
+       "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=1579s"
       },
       {
        "ep": 10,
@@ -11326,7 +11483,7 @@
        "at": "01:10:00",
        "seconds": 4200,
        "text": "Like, the demo that Jonathan showed for Stripe is not how it’s not like the Stripe teams, like, woke up and, like, we got Jonathan gave us fire.",
-       "url": null
+       "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=4201s"
       },
       {
        "ep": 14,
@@ -11334,7 +11491,7 @@
        "at": "00:47:04",
        "seconds": 2824,
        "text": "It almost felt like the new Stripe feature models on their home page. That was what it reminded me of, and that I thought was great.",
-       "url": null
+       "url": "https://youtube.com/watch?v=J3NB3migbE0&t=2823s"
       }
      ]
     },
@@ -11350,7 +11507,7 @@
        "at": "00:15:12",
        "seconds": 912,
        "text": "Hope you enjoyed Alex’s work. I’d like to nominate Pedro from Raycast and Glaze to spotlight his current inspiration.",
-       "url": null
+       "url": "https://youtube.com/watch?v=TJqSfnadiGM&t=913s"
       },
       {
        "ep": 3,
@@ -11366,7 +11523,7 @@
        "at": "01:32:50",
        "seconds": 5570,
        "text": "It’s almost like a different type of Raycast that’s much more AI forward. And they were about to release the beta.",
-       "url": null
+       "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=5571s"
       },
       {
        "ep": 9,
@@ -11382,7 +11539,7 @@
        "at": "00:18:58",
        "seconds": 1138,
        "text": "Everybody at Raycast is cracked. That team is awesome. So wanted to shine a light on Jordan.",
-       "url": null
+       "url": "https://youtube.com/watch?v=bBF1yPACap0&t=1139s"
       }
      ]
     }
@@ -11455,7 +11612,7 @@
       "at": "00:05:57",
       "seconds": 357,
       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s",
       "liveAt": 35
      },
      {
@@ -11465,7 +11622,7 @@
       "at": "00:51:19",
       "seconds": 3079,
       "text": "Notion, we have Nosy, Mobbin’s chillin’, Papers chillin’. Love the work that Nick Pattison did for their logo, and then we’ve got Lovable.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=3080s",
       "liveAt": 60
      },
      {
@@ -11517,7 +11674,7 @@
       "at": "00:11:46",
       "seconds": 706,
       "text": "And I do wanna say, I appreciate Notion for sponsoring the segment of designer of the week.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=bBF1yPACap0&t=707s",
       "liveAt": 82
      },
      {
@@ -11537,7 +11694,7 @@
       "at": "00:16:39",
       "seconds": 999,
       "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s",
       "liveAt": 100
      }
     ]
@@ -11567,7 +11724,7 @@
       "at": "00:05:57",
       "seconds": 357,
       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s",
       "liveAt": 35
      },
      {
@@ -11577,7 +11734,7 @@
       "at": "00:51:19",
       "seconds": 3079,
       "text": "Notion, we have Nosy, Mobbin’s chillin’, Papers chillin’. Love the work that Nick Pattison did for their logo, and then we’ve got Lovable.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=3080s",
       "liveAt": 60
      },
      {
@@ -11588,7 +11745,7 @@
       "seconds": 5689,
       "title": "Mobbin workflows, one up picks, and the winner reveal",
       "text": "Hosts demo pattern research through Mobbin's MCP, trade weekly picks, and crown the designer of the week.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=5690s",
       "liveAt": 56
      },
      {
@@ -11598,7 +11755,7 @@
       "at": "00:16:39",
       "seconds": 999,
       "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s",
       "liveAt": 100
      }
     ]
@@ -11649,7 +11806,7 @@
       "at": "00:05:57",
       "seconds": 357,
       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s",
       "liveAt": 35
      },
      {
@@ -11659,7 +11816,7 @@
       "at": "00:44:08",
       "seconds": 2648,
       "text": "You may have heard of it called Lovable. You can bring ideas to life, have people love, you know.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=2649s",
       "liveAt": 68
      },
      {
@@ -11669,7 +11826,7 @@
       "at": "00:51:23",
       "seconds": 3083,
       "text": "Love the work that Nick Pattison did for their logo, and then we’ve got Lovable. I think Fonz did Fonz or Pattison do Lovable’s logo too?",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=3084s",
       "liveAt": 60
      },
      {
@@ -11679,7 +11836,7 @@
       "at": "01:20:44",
       "seconds": 4844,
       "text": "I think it is time for the one Up weekly segment brought to you by Lovable. Make creating an idea that other people will love.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=4845s",
       "liveAt": 43
      },
      {
@@ -11709,7 +11866,7 @@
       "at": "01:57:24",
       "seconds": 7044,
       "text": "Lovable, sponsored the show. And I was using some Jev with it too. But I think I’m actually gonna based on some of the stuff I learned today, I’m gonna do some extra stuff with Jev.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=7045s",
       "liveAt": 74
      },
      {
@@ -11719,7 +11876,7 @@
       "at": "00:05:00",
       "seconds": 300,
       "text": "And if you were tuning in with us, you are tuning in to Dive Radio, the Internet’s group chat for curious designers brought to you by Lovable, actually, who we’ll be hearing more about later.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=bBF1yPACap0&t=301s",
       "liveAt": 53
      },
      {
@@ -11730,7 +11887,7 @@
       "seconds": 1213,
       "title": "Brand in a box, the Discord opening, and a Lovable library",
       "text": "Brett's clip on prebuilt brands, then a host explains the quarterly Discord and a Lovable submissions library.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=bBF1yPACap0&t=1214s",
       "liveAt": 88
      },
      {
@@ -11740,7 +11897,7 @@
       "at": "00:16:39",
       "seconds": 999,
       "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s",
       "liveAt": 100
      }
     ]
@@ -11770,7 +11927,7 @@
       "at": "00:05:57",
       "seconds": 357,
       "text": "Not sponsored by Celsius, but we are sponsored by Notion, Lovable, Mobbin, and Paper. You guys rock.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=RhemcDEc_-A&t=358s",
       "liveAt": 35
      },
      {
@@ -11781,7 +11938,7 @@
       "seconds": 3455,
       "title": "Agent working states and prompting inside design canvases",
       "text": "Hosts compare how Paper, Framer, and Flora signal agent activity and handle prompts on the canvas.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3456s",
       "liveAt": 57
      },
      {
@@ -11791,7 +11948,7 @@
       "at": "01:02:34",
       "seconds": 3754,
       "text": "I mean, like, Paper has become, obviously, a partner of the show, but that’s because they have become a staple that we use, almost regularly.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=sC3Wvi1Whm4&t=3755s",
       "liveAt": 61
      },
      {
@@ -11802,7 +11959,7 @@
       "seconds": 4520,
       "title": "Canvas tools, Quiver in Paper, and where design systems should live",
       "text": "Clips on Quiver in Paper and Alyx lead Ridd to argue design-code parity is dead and systems belong in code.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=4521s",
       "liveAt": 80
      },
      {
@@ -11812,7 +11969,7 @@
       "at": "00:16:39",
       "seconds": 999,
       "text": "And thank you to all of our sponsors, Notion, Mobbin, Paper, Lovable. You guys make this possible.",
-      "url": null,
+      "url": "https://youtube.com/watch?v=J3NB3migbE0&t=998s",
       "liveAt": 100
      }
     ]
@@ -11869,7 +12026,7 @@
    }
   ],
   "links": {
-   "exact": 8,
+   "exact": 14,
    "episodes": 14
   }
  },

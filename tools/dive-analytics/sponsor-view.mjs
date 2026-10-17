@@ -28,7 +28,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 3;
+export const SPONSOR_VERSION = 4;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -366,7 +366,8 @@ function audienceBlock(channelStats) {
   };
 }
 
-// Someone who called in: a quote's author whose handle carries a call-in's
+// Someone who called in (a video, a nomination, or a portfolio reviewed on
+// air): a quote's author whose handle carries a call-in's
 // name as one run of letters — the full name in either order ("@gennydee" is
 // Genny Dee, "JaredTredly.Design" is Jared Tredly, "@tasedan" is Dan Tase), or
 // the first name and the first four letters of a longer surname
@@ -384,6 +385,18 @@ export function callerIndex(list) {
     const keys = [parts.join(""), [...parts].reverse().join(""), last.length >= 5 ? first + last.slice(0, 4) : ""]
       .filter((k, i, all) => k.length >= 7 && all.indexOf(k) === i);
     if (keys.length) out.push({ ep: c.ep, who: c.who, keys });
+  }
+  return out;
+}
+// The designers a portfolio's "reviewed by" names ("Maheen Sohail and Rob Hope" is two), each once, in the order
+// they first appear, with the episode they reviewed on. They were on the show, so their quotes rank with the guests'.
+export function reviewersOf(list) {
+  const out = [];
+  for (const c of list || []) {
+    if (c.kind !== "portfolio") continue;
+    for (const who of String(c.reviewedBy || "").split(/\s*,\s*(?:and\s+)?|\s+and\s+/).map((x) => x.trim()).filter(Boolean)) {
+      if (!out.some((r) => r.ep === c.ep && r.who === who)) out.push({ ep: c.ep, who });
+    }
   }
   return out;
 }
@@ -406,17 +419,19 @@ export const ON_SHOW = /\b(?:for (?:including|featuring|having) me|my (?:little 
 
 // Quotes: named, positive, public comments (X, YouTube) — no questions, no
 // links, no negative signal — one per person, the most-liked first. People who
-// were on the show (a call-in by name, or by their own words) rank after
-// everyone else and say so (onShow, calledIn), so the first quotes a sponsor
-// reads are from the audience, not from the show's own guests.
+// were on the show (a call-in by name, a designer who reviewed a portfolio on
+// air, or by their own words) rank after everyone else and say so (onShow,
+// calledIn for a call-in), so the first quotes a sponsor reads are from the
+// audience, not from the show's own guests.
 function feedbackBlock(episodes, callIns, commentChannels) {
   const bySlug = new Map(episodes.map((e) => [e.slug, e]));
   const rows = episodes.flatMap((e) => (e.audience?.list || []).map((r) => ({ ...r, ep: e.ep, slug: e.slug })));
   const callers = callerIndex(callIns?.list);
+  const guests = callerIndex(reviewersOf(callIns?.list));
   const seen = new Set();
   const candidates = rows
     .filter((r) => (r.source === "x" || r.source === "yt") && r.sentiment === "positive" && r.author)
-    .map((r) => { const plain = quotePlain(r.text); const caller = calledIn(r.author, callers); return { ...r, plain, caller, onShow: !!caller || ON_SHOW.test(plain) }; })
+    .map((r) => { const plain = quotePlain(r.text); const caller = calledIn(r.author, callers); return { ...r, plain, caller, onShow: !!caller || !!calledIn(r.author, guests) || ON_SHOW.test(plain) }; })
     .filter((r) => r.plain.length >= QUOTE_MIN && r.plain.length <= QUOTE_MAX && !r.plain.includes("?") && !/https?:\/\//.test(r.plain) && !hasNegativeSignal(r.plain))
     .sort((a, b) => (a.onShow ? 1 : 0) - (b.onShow ? 1 : 0) || (b.likes ?? 0) - (a.likes ?? 0) || b.plain.length - a.plain.length || String(b.at).localeCompare(String(a.at)) || a.id.localeCompare(b.id));
   const quotes = [];
@@ -467,11 +482,18 @@ function callInsBlock(episodes, contributors) {
   return {
     total: list.length,
     nominations: list.filter((c) => c.kind === "nomination").length,
+    portfolios: list.filter((c) => c.kind === "portfolio").length,
     people: new Set(list.map((c) => c.who.toLowerCase())).size,
     episodes: rows.length,
     fromEp: bySlug.get(rows[0][0]).ep,
     toEp: bySlug.get(rows[rows.length - 1][0]).ep,
     byEpisode: rows.map(([slug, entry]) => ({ ep: bySlug.get(slug).ep, slug, count: entry.callIns.length })),
+    // each episode's portfolios reviewed on air, as one fact: how many, and the designers who reviewed them
+    reviews: rows.filter(([, entry]) => entry.callIns.some((c) => c.kind === "portfolio")).map(([slug, entry]) => {
+      const ep = bySlug.get(slug).ep;
+      const shown = entry.callIns.filter((c) => c.kind === "portfolio").map((c) => ({ ...c, ep }));
+      return { ep, slug, portfolios: shown.length, reviewers: reviewersOf(shown).map((r) => r.who) };
+    }),
     teamsNamed: teamsNamed(list),
     list,
     updatedAt: contributors.updatedAt || null,

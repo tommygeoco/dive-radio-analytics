@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK_MIN_ANCHORS, CLOCK_MAX_SPREAD } from "../clock.mjs";
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
-import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, BRAND_MIN_MENTIONS, EXAMPLES } from "../sponsor-view.mjs";
+import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
 // --- clock.mjs ----------------------------------------------------------------------
@@ -71,6 +71,22 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(parsed.airDate, "2026-09-10");
   assert.deepEqual(parsed.callIns.map((c) => c.who), ["Laura Escobar", "Conor Muirhead"], "only what aired, above “Didn't make the show”");
   assert.ok(!JSON.stringify(parsed).includes("example.com"), "links are never stored");
+  // a portfolio the community sent in counts once a named designer reviewed it on air; one only shown, or not reached, does not
+  const reviewed = parseEpisodeNotes([
+    "---", "episode: 14", "air_date: 2026-10-15", "---", "",
+    "🌐 Site · [Pablo Stanley's portfolio: a world to explore](https://example.com/p)",
+    "🌐 Site · [Inflight: the free portfolio review widget](https://example.com/i)",
+    "🌐 Site · [Kartik Iyer's portfolio, reviewed by Geoff Teehan](https://example.com/k)",
+    "🌐 Site · [Pooja Jadav’s portfolio, reviewed by Maheen Sohail and Rob Hope](https://example.com/j)",
+    "🌐 Site · [James’ portfolio, reviewed by Femke](https://example.com/s)",
+    "**Didn't make the show, still worth a look**",
+    "🌐 Site · [Furkan Durgun's portfolio, reviewed by Nobody](https://example.com/f)",
+  ].join("\n"));
+  assert.deepEqual(reviewed.callIns, [
+    { kind: "portfolio", who: "Kartik Iyer", reviewedBy: "Geoff Teehan" },
+    { kind: "portfolio", who: "Pooja Jadav", reviewedBy: "Maheen Sohail and Rob Hope" },
+    { kind: "portfolio", who: "James", reviewedBy: "Femke" },
+  ], "reviewed on air, above “Didn't make the show”: who sent it and who reviewed it, no link");
 
   const registry = { shows: [
     { slug: "2026-07-15-jason-yuan-designing", date: "2026-07-15", title: "Jason Yuan - Designing" },
@@ -128,7 +144,7 @@ import { normalize } from "../transcripts.mjs";
     "x:ridd_design": { date: "2026-10-11", followers: 76565, reading: { state: "ready" } },
     "x:designertom": { date: "2026-10-11", followers: 19776, reading: { state: "ready" } },
   } };
-  const contributors = { updatedAt: "2026-10-11T00:00:00Z", episodes: { e9: { callIns: [{ kind: "submission", who: "A", about: "b" }, { kind: "nomination", who: "C", nominee: "D" }] }, "not-aired": { callIns: [{ kind: "submission", who: "X" }] } } };
+  const contributors = { updatedAt: "2026-10-11T00:00:00Z", episodes: { e9: { callIns: [{ kind: "submission", who: "A", about: "b" }, { kind: "nomination", who: "C", nominee: "D" }, { kind: "portfolio", who: "E", reviewedBy: "F" }] }, "not-aired": { callIns: [{ kind: "submission", who: "X" }] } } };
   const view = sponsorView({ episodes: eps, channelStats, contributors, clockChecks: null, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
 
   assert.equal(view.asOf, "2026-10-11", "the Phoenix date of the build");
@@ -175,8 +191,17 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(view.feedback.quotes.map((q) => q.id), ["x:1"], "named public praise only: no questions, no anonymous chat, no negatives, one per person");
   assert.equal(view.feedback.positive, 4);
 
-  assert.equal(view.callIns.total, 2, "a store entry for an episode that has not aired is ignored");
+  assert.equal(view.callIns.total, 3, "a store entry for an episode that has not aired is ignored");
   assert.equal(view.callIns.nominations, 1);
+  assert.equal(view.callIns.portfolios, 1, "a portfolio reviewed on air is a call-in of its own kind");
+  assert.equal(view.callIns.people, 3, "the person who sent a portfolio counts; its reviewer does not");
+  assert.deepEqual(view.callIns.reviews, [{ ep: 9, slug: "e9", portfolios: 1, reviewers: ["F"] }], "an episode's portfolio reviews are one fact: how many, and by whom");
+  assert.deepEqual(reviewersOf([
+    { kind: "portfolio", ep: 14, who: "A", reviewedBy: "Maheen Sohail and Rob Hope" },
+    { kind: "portfolio", ep: 14, who: "B", reviewedBy: "Geoff Teehan, Josh Puckett, and Femke" },
+    { kind: "portfolio", ep: 14, who: "C", reviewedBy: "Rob Hope" },
+    { kind: "submission", ep: 14, who: "D", about: "reviewed by nobody" },
+  ]).map((r) => r.who), ["Maheen Sohail", "Rob Hope", "Geoff Teehan", "Josh Puckett", "Femke"], "each reviewer once, in the order the notes name them");
   assert.equal(sponsorView({ episodes: eps, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).callIns.total, null);
 
   const figma = view.brands.list.find((b) => b.name === "Figma");
@@ -266,6 +291,13 @@ import { normalize } from "../transcripts.mjs";
   ] } } : e));
   const g = sponsorView({ episodes: guests, contributors: { episodes: { e9: { callIns: [{ kind: "submission", who: "Genny Dee", about: "a job at Railway" }] } } }, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.deepEqual(g.feedback.quotes.map((q) => [q.author, q.onShow, q.calledIn]), [["@viewer", false, null], ["@gennydee", true, 9], ["@jess", true, null]], "the audience first; a call-in or someone who says they were on the show after, marked");
+  // a designer who reviewed a portfolio on air was on the show: their quote ranks after the audience's, marked, never "called in"
+  const reviewer = eps.map((e) => (e.ep === 6 ? { ...e, audience: { list: [
+    { id: "x:10", source: "x", author: "@robhope", text: "i smiled and chuckled so much during this one, thanks guys!", platform: "X", url: "https://x.com/i/status/10", likes: 40, sentiment: "positive", at: "2026-08-21T00:00:00Z" },
+    { id: "x:11", source: "x", author: "@viewer", text: "Best show so far, watched it twice already.", platform: "X", url: "https://x.com/i/status/11", likes: 1, sentiment: "positive", at: "2026-08-21T00:00:00Z" },
+  ] } } : e));
+  const r = sponsorView({ episodes: reviewer, contributors: { episodes: { e13: { callIns: [{ kind: "portfolio", who: "Pooja Jadav", reviewedBy: "Maheen Sohail and Rob Hope" }] } } }, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(r.feedback.quotes.map((q) => [q.author, q.onShow, q.calledIn]), [["@viewer", false, null], ["@robhope", true, null]], "a reviewer's quote, however liked, comes after the audience's and says “on the show”");
 
   // the teams the call-ins were about: only where their words put the work
   assert.deepEqual(teamsNamed([{ about: "building an OG card tool at Vercel" }, { about: "what Shopify looks for in five seconds" }, { about: "a map built in Lovable" }, { about: "Lovable's Series C" }, { about: "Vercel's creative team builds tools" }]), ["Vercel", "Shopify"]);

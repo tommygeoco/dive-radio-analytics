@@ -150,6 +150,26 @@
    "scope": "registered-restream-broadcasts"
   },
   {
+   "step": "contributors",
+   "script": "scripts/restream/contributors-import.mjs",
+   "writes": [
+    "data/restream/contributors.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
+   "step": "clock-check",
+   "script": "scripts/restream/clock-check.mjs",
+   "writes": [
+    "data/restream/clock-checks.json"
+   ],
+   "freshnessKey": null,
+   "required": false,
+   "scope": "all"
+  },
+  {
    "step": "ratings",
    "script": "tools/dive-analytics/ratings.mjs",
    "writes": [

@@ -10,7 +10,12 @@
 // above the notes' "Didn't make the show" part and their accuracy audit — a
 // video the community sent in that aired. A Designer of the Week nomination is
 // one too ("X's nomination of Y"). The label is kept verbatim, split once at
-// ": " into who sent it and what they shared. Links are never stored.
+// ": " into who sent it and what they shared. Since 2026-10-16 a portfolio the
+// community sent in and the show reviewed on air is one too: a
+// "🌐 Site · [X's portfolio, reviewed by Y](link)" line, kept as who sent it
+// and who reviewed it. A portfolio the notes only list (shown on screen, or
+// not reached) carries no "reviewed by" and is not a call-in. Links are never
+// stored.
 //
 // Identity: the note's `episode:` number and `air_date:` must name the same
 // aired episode in the registry (its position among Dive Radio shows by date);
@@ -33,6 +38,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const STORE_PATH = join(ROOT, "data", "restream", "contributors.json");
 export const NOTES_FILE = /^e(\d+)-episode-notes-(\d{4}-\d{2}-\d{2})\.md$/;
 const SUBMISSION = /^🎥 \*\*SUBMISSION\*\* · \[(.+?)\]\((https?:\/\/[^)\s]+)\)\s*$/;
+const PORTFOLIO = /^🌐 (?:\*\*)?Site(?:\*\*)? · \[(.+?)['’]s? portfolio, reviewed by (.+?)\]\((https?:\/\/[^)\s]+)\)\s*$/;
 const NOMINATION = /^(.+?)['’]s nomination of (.+)$/;
 const STOP = /^(?:\*\*Didn['’]t make the show|## Accuracy audit)/i;
 
@@ -58,6 +64,8 @@ export function parseEpisodeNotes(text) {
     if (STOP.test(line)) break;
     const m = SUBMISSION.exec(line);
     if (m) callIns.push(parseCallIn(m[1]));
+    const p = PORTFOLIO.exec(line);
+    if (p) callIns.push({ kind: "portfolio", who: p[1].trim(), reviewedBy: p[2].trim() });
   }
   return { episode: Number.isInteger(episode) && episode > 0 ? episode : null, airDate, callIns };
 }
@@ -108,8 +116,8 @@ export function importContributors({ root = ROOT, notesDir, now = Date.now(), dr
     const previous = readJsonFile(path, { fallback: null });
     const changed = JSON.stringify(previous?.episodes || null) !== JSON.stringify(episodes);
     const store = {
-      schemaVersion: 1,
-      source: "Dive Radio episode notes (owner vault, the published #episode-notes drafts): every SUBMISSION line above “Didn't make the show”",
+      schemaVersion: 2,
+      source: "Dive Radio episode notes (owner vault, the published #episode-notes drafts): every SUBMISSION line, and every portfolio “reviewed by” a named reviewer, above “Didn't make the show”",
       updatedAt: changed || !previous?.updatedAt ? new Date(now).toISOString() : previous.updatedAt,
       episodes,
     };

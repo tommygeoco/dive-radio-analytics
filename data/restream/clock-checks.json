@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "method": "6-word phrases that occur once in both the transcript and the upload's English auto-captions; offset = median(caption time − transcript time); spread = 90th − 10th percentile",
-  "updatedAt": "2026-10-11T17:44:31.620Z",
+  "updatedAt": "2026-10-16T23:39:45.987Z",
   "entries": {
     "2026-07-17-dive-radio-bumpy-takeoff": {
       "uploads": {
@@ -22,6 +22,30 @@
           "state": "ready",
           "anchors": 2822,
           "offsetSec": 0.5,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "Pn6U5nWgD-g",
+          "transcriptSha256": "c63f95d422dd88d435e16e3fc4187cb7ddd2ad37ba6e115f7deb9b7d37350426",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 848,
+          "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "TJqSfnadiGM",
+          "transcriptSha256": "c63f95d422dd88d435e16e3fc4187cb7ddd2ad37ba6e115f7deb9b7d37350426",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 846,
+          "offsetSec": 0.6,
           "spreadSec": 0.8,
           "reason": null
         }
@@ -62,11 +86,31 @@
           "offsetSec": -5.4,
           "spreadSec": 0.8,
           "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "0tRHVW0qRt4",
+          "transcriptSha256": "197f94495b5b831b2ef2e2077ab98f3af622c3e4f3a1eeb8017960d7391f9928",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "pending",
+          "anchors": 0,
+          "offsetSec": null,
+          "spreadSec": null,
+          "reason": "YouTube has not published English auto-captions yet"
         }
       }
     },
     "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
       "uploads": {
+        "yt:designertom": {
+          "videoId": "G2_F3dd3RkA",
+          "transcriptSha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 1963,
+          "offsetSec": 0.5,
+          "spreadSec": 0.8,
+          "reason": null
+        },
         "yt:joindiveclub": {
           "videoId": "njOU7GKZcvc",
           "transcriptSha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
@@ -79,8 +123,66 @@
         }
       }
     },
+    "2026-08-20-dive-radio-the-mascot-industrial-complex": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "eLA79C1jq1g",
+          "transcriptSha256": "e59dca596134380a83862ea62c303b9fe60a80e9d52da854c63b98c69c9d084d",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 642,
+          "offsetSec": -1.5,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "RhemcDEc_-A",
+          "transcriptSha256": "e59dca596134380a83862ea62c303b9fe60a80e9d52da854c63b98c69c9d084d",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 662,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-08-28-dive-radio-steal-these-ai-design-pattern": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "qPAPUmg_qZE",
+          "transcriptSha256": "783dc63759db39bfe6e4338ccaf6754798a0ea3e5ea490d12349e82ec45d5475",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 895,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "sC3Wvi1Whm4",
+          "transcriptSha256": "783dc63759db39bfe6e4338ccaf6754798a0ea3e5ea490d12349e82ec45d5475",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 893,
+          "offsetSec": 0.5,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
     "2026-09-02-dive-radio-how-to-engineer-a-brand-unive": {
       "uploads": {
+        "yt:designertom": {
+          "videoId": "lnAecYrKYos",
+          "transcriptSha256": "3ca7ee6c1cdc07f26ca9481af1c4e3740860248e04779a899980611d83cb9435",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 929,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        },
         "yt:joindiveclub": {
           "videoId": "Vh8ogFIE8CA",
           "transcriptSha256": "3ca7ee6c1cdc07f26ca9481af1c4e3740860248e04779a899980611d83cb9435",
@@ -141,8 +243,66 @@
         }
       }
     },
+    "2026-09-24-dive-radio-just-in-time-interfaces": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "2EAAU-knqRE",
+          "transcriptSha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 924,
+          "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "Cjv-0MKQ4GU",
+          "transcriptSha256": "e9a13d09d1ab84d96588fa6947a192f147d9fccdda6baef6da998cfd0dc998df",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 925,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-10-01-dive-radio-anyone-can-animate-now-and-ho": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "bwJB9EBQNSQ",
+          "transcriptSha256": "78533c2f023b853399115cfabaeb7d2f4ecaddb38004ec8e12729db0961cee88",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 977,
+          "offsetSec": -5.4,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "bBF1yPACap0",
+          "transcriptSha256": "78533c2f023b853399115cfabaeb7d2f4ecaddb38004ec8e12729db0961cee88",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 977,
+          "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
     "2026-10-08-dive-radio-rise-of-the-playable-portfoli": {
       "uploads": {
+        "yt:designertom": {
+          "videoId": "Z1MbnYXS8ls",
+          "transcriptSha256": "5fe6e41758bb6ee1f14377be4356f2df4de71223110c502ab7f3ef34b2f4f990",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "pending",
+          "anchors": 0,
+          "offsetSec": null,
+          "spreadSec": null,
+          "reason": "YouTube has not published English auto-captions yet"
+        },
         "yt:joindiveclub": {
           "videoId": "YI1Kx5U6fQc",
           "transcriptSha256": "5fe6e41758bb6ee1f14377be4356f2df4de71223110c502ab7f3ef34b2f4f990",
@@ -150,6 +310,30 @@
           "state": "ready",
           "anchors": 1089,
           "offsetSec": 0.6,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "YmC8feEgGDw",
+          "transcriptSha256": "c6c89ac7c106337c6fa37b4f4850a0709a405c6576e1add15a98eb4e1fba3980",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "pending",
+          "anchors": 0,
+          "offsetSec": null,
+          "spreadSec": null,
+          "reason": "YouTube has not published English auto-captions yet"
+        },
+        "yt:joindiveclub": {
+          "videoId": "J3NB3migbE0",
+          "transcriptSha256": "c6c89ac7c106337c6fa37b4f4850a0709a405c6576e1add15a98eb4e1fba3980",
+          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "state": "ready",
+          "anchors": 1080,
+          "offsetSec": -1.4,
           "spreadSec": 0.8,
           "reason": null
         }

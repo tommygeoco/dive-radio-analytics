@@ -28,10 +28,12 @@ viewing analytics requires owner observations or approved API access.
 - [For sponsors](https://dive-radio-analytics.vercel.app/sponsors.html): the page the owners send to brands —
   subscribers and followers on the four channels, views so far, hours watched,
   the typical live show (peak, the share still watching at the end, chat), every
-  community call-in that aired, brands named on air with a link to each moment,
+  community call-in that aired (videos, nominations, and portfolios reviewed on
+  air), brands named on air with a link to each moment,
   what partners get on air (reads, named segments, live builds), named viewer
   quotes, and the packages. Same data as the dashboard (`data.sponsor`), rebuilt
-  every morning; timestamps open YouTube at the exact second wherever the
+  every morning, with each new episode's call-ins and caption matches imported
+  by the morning chain; timestamps open YouTube at the exact second wherever the
   transcript has been matched to that upload's captions.
 - [Agents](https://dive-radio-analytics.vercel.app/agents.html) (a separate page linked from the header): one address any AI agent can read —
   [`agent.md`](https://dive-radio-analytics.vercel.app/agent.md) — the whole

@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
-  "source": "Dive Radio episode notes (owner vault, the published #episode-notes drafts): every SUBMISSION line above “Didn't make the show”",
-  "updatedAt": "2026-10-11T16:31:49.034Z",
+  "schemaVersion": 2,
+  "source": "Dive Radio episode notes (owner vault, the published #episode-notes drafts): every SUBMISSION line, and every portfolio “reviewed by” a named reviewer, above “Didn't make the show”",
+  "updatedAt": "2026-10-16T23:41:19.339Z",
   "episodes": {
     "2026-08-06-dive-radio-backyard-designers-behind-the": {
       "ep": 4,
@@ -580,6 +580,99 @@
           "kind": "submission",
           "who": "Eric Sin",
           "about": "how he landed a staff design job at Netflix"
+        }
+      ]
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed": {
+      "ep": 14,
+      "airDate": "2026-10-15",
+      "notes": "e14-episode-notes-2026-10-15.md",
+      "notesSha256": "1578442667633072413646a3acc2e969169f22c58e072d66e861a14d11a9470f",
+      "callIns": [
+        {
+          "kind": "submission",
+          "who": "Elizabeth Lin",
+          "about": "the biggest portfolio mistake she sees"
+        },
+        {
+          "kind": "submission",
+          "who": "Eric Hu",
+          "about": "the work you show is the work you get hired for"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Kartik Iyer",
+          "reviewedBy": "Geoff Teehan"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Pooja Jadav",
+          "reviewedBy": "Maheen Sohail and Rob Hope"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Matteo Aliano",
+          "reviewedBy": "Josh Puckett"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Case Ronquillo",
+          "reviewedBy": "MDS of Shift Nudge"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Tracy Khiew",
+          "reviewedBy": "Ini Abíódún"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Shreyas Patil",
+          "reviewedBy": "Kyle Zantos"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Tracy Leung",
+          "reviewedBy": "Femke"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Gal Zorigo",
+          "reviewedBy": "Geoff Teehan"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Gabriel Valdivia",
+          "reviewedBy": "Josh Puckett"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Brandon Dunlevy",
+          "reviewedBy": "Maheen Sohail"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Marimar Cabrero",
+          "reviewedBy": "Femke"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Angelina Wu",
+          "reviewedBy": "Josh Puckett"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Clau Marin",
+          "reviewedBy": "Maheen Sohail"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Priyamwada Pandey",
+          "reviewedBy": "Geoff Teehan"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Julio Romero",
+          "reviewedBy": "MDS of Shift Nudge"
         }
       ]
     }

@@ -3148,6 +3148,7 @@ try {
     ["source-receipts.test.mjs", "source receipt and missing-X"],
     ["ingest-restream.test.mjs", "Restream ingest state and delayed analytics"],
     ["sponsor-view.test.mjs", "sponsor view, call-ins and clock checks"],
+    ["clock-check.test.mjs", "daily clock check (refusals, waits, kept records)"],
   ]) {
     try {
       execFileSync(process.execPath, [join(HERE, fixture[0])], { cwd: ROOT, encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] });
@@ -3253,6 +3254,14 @@ try {
     if (!transcriptStep?.required || order.indexOf("transcripts") > firstBuild) { bad++; drift("chain: transcript import must be required and run before build-data"); }
     if (!newsletterStep?.required || newsletterStep.freshnessKey !== "lastSuccessfulAt" || JSON.stringify(newsletterStep.writes) !== JSON.stringify(["data/restream/beehiiv-promotions.json"]) || order.indexOf("newsletter-promotion") > firstBuild) {
       bad++; drift("chain: newsletter promotion capture must be required, current, and run before build-data");
+    }
+    // the Sponsors page's two owner-record imports (2026-10-16): call-ins from the published notes and the clock checks
+    // that let a moment link; optional (never a publish blocker), after the transcripts they read, before build-data
+    for (const [name, script, store] of [["contributors", "scripts/restream/contributors-import.mjs", "data/restream/contributors.json"], ["clock-check", "scripts/restream/clock-check.mjs", "data/restream/clock-checks.json"]]) {
+      const step = chain.steps.find((s) => s.step === name);
+      if (!step || step.required || step.script !== script || JSON.stringify(step.writes) !== JSON.stringify([store]) || order.indexOf(name) < order.indexOf("transcripts") || order.indexOf(name) > firstBuild) {
+        bad++; drift(`chain: the Sponsors page's ${name} import must run, optional, after transcripts and before build-data, writing only ${store}`);
+      }
     }
     const active = (slug) => { const e = eps.find((x) => x.slug === slug); return !!e && e.active !== false; };
     const inScope = (scope, slug) => scope === "all" || active(slug);
@@ -3713,11 +3722,17 @@ try {
       if (sp.audience.total !== (known.length === 4 ? known.reduce((a, c) => a + c.count, 0) : null)) { bad++; fail("sponsor: subscribers and followers total does not re-derive (a missing channel must leave it absent)"); }
       // call-ins: the imported store's aired entries, counted
       const aired = Object.entries(contributors?.episodes || {}).filter(([slug]) => bySlug.has(slug));
+      // the designers a portfolio's "reviewed by" names ("A and B" is two), read here from the store's own words
+      const reviewerNames = (c) => String(c.reviewedBy || "").split(/\s*,\s*(?:and\s+)?|\s+and\s+/).map((who) => who.trim()).filter(Boolean);
       const callIns = aired.reduce((a, [, entry]) => a + (entry.callIns || []).length, 0);
       if ((sp.callIns.total ?? 0) !== callIns || (aired.length === 0) !== (sp.callIns.total == null)) { bad++; fail(`sponsor: call-ins (${sp.callIns.total}) do not re-derive from contributors.json (${callIns})`); }
       if (sp.callIns.total != null) {
         const said = aired.flatMap(([, entry]) => entry.callIns || []);
         if (sp.callIns.people !== new Set(said.map((c) => c.who.toLowerCase())).size) { bad++; fail("sponsor: the number of people who called in does not re-derive"); }
+        // each kind counted from the store: nominations, and portfolios a named designer reviewed on air
+        for (const [field, kind] of [["nominations", "nomination"], ["portfolios", "portfolio"]]) {
+          if (sp.callIns[field] !== said.filter((c) => c.kind === kind).length) { bad++; fail(`sponsor: call-in ${field} (${sp.callIns[field]}) do not re-derive from contributors.json`); }
+        }
         // a team is named only where an aired call-in's own words put the work there
         for (const name of sp.callIns.teamsNamed || []) {
           const x = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -3725,6 +3740,14 @@ try {
           if (!said.some((c) => re.test(c.about || ""))) { bad++; fail(`sponsor: ${name} as a named team does not re-derive from any aired call-in's own words`); }
         }
         if (JSON.stringify(sp.callIns.teamsNamed) !== JSON.stringify(SV.teamsNamed(sp.callIns.list))) { bad++; fail("sponsor: the teams the call-ins were about do not re-derive"); }
+        // each episode's portfolios reviewed on air: how many, and each reviewer once, in the order the notes name them
+        const reviewsWant = aired.filter(([, entry]) => (entry.callIns || []).some((c) => c.kind === "portfolio")).map(([slug, entry]) => {
+          const portfolios = entry.callIns.filter((c) => c.kind === "portfolio");
+          const reviewers = [];
+          for (const c of portfolios) for (const who of reviewerNames(c)) if (!reviewers.includes(who)) reviewers.push(who);
+          return { ep: bySlug.get(slug).ep, slug, portfolios: portfolios.length, reviewers };
+        }).sort((x, y) => x.ep - y.ep);
+        if (JSON.stringify(sp.callIns.reviews ?? []) !== JSON.stringify(reviewsWant)) { bad++; fail("sponsor: the portfolios reviewed on air (how many, and by whom, per episode) do not re-derive from contributors.json"); }
       }
       // brands: an independent count of every listed brand over the transcripts (case-sensitive whole words)
       const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -3788,6 +3811,8 @@ try {
         if (existsSync(path)) for (const c of JSON.parse(readFileSync(path, "utf8")).comments || []) if (c.source === "yt") channelOf.set(c.id, c.channel);
       }
       const callers = SV.callerIndex(sp.callIns?.list);
+      // a designer who reviewed a portfolio on air was on the show too
+      const guests = SV.callerIndex(aired.flatMap(([, entry]) => (entry.callIns || []).filter((c) => c.kind === "portfolio").flatMap((c) => reviewerNames(c).map((who) => ({ who })))));
       let seenOnShow = false;
       for (const q of sp.feedback.quotes || []) {
         const row = (bySlug.get(q.slug)?.audience?.list || []).find((r) => r.id === q.id);
@@ -3795,7 +3820,7 @@ try {
         const link = row.source === "x" ? `https://x.com/i/status/${row.id.slice(2)}` : bySlug.get(q.slug)?.links?.[channelOf.get(row.id)] ? `${bySlug.get(q.slug).links[channelOf.get(row.id)]}&lc=${row.id.slice(3)}` : null;
         if (q.url !== link) { bad++; fail(`sponsor: quote ${q.id} does not link to its original (${q.url} vs ${link})`); }
         const caller = SV.calledIn(row.author, callers);
-        if (q.calledIn !== (caller ? caller.ep : null) || q.onShow !== (!!caller || SV.ON_SHOW.test(row.text))) { bad++; fail(`sponsor: quote ${q.id} is not marked as from someone on the show`); }
+        if (q.calledIn !== (caller ? caller.ep : null) || q.onShow !== (!!caller || !!SV.calledIn(row.author, guests) || SV.ON_SHOW.test(row.text))) { bad++; fail(`sponsor: quote ${q.id} is not marked as from someone on the show`); }
         if (seenOnShow && !q.onShow) { bad++; fail("sponsor: a quote from someone on the show ranks before the audience's"); }
         seenOnShow ||= q.onShow;
       }
@@ -3816,7 +3841,7 @@ try {
       const at = order.findIndex((s) => s.slug === slug);
       if (at < 0 || entry.ep !== at + 1 || entry.airDate !== order[at].date) { bad++; fail(`contributors: ${slug} is not the registry's E${entry.ep} aired ${entry.airDate}`); }
       for (const c of entry.callIns || []) {
-        if (!["submission", "nomination"].includes(c.kind) || typeof c.who !== "string" || !c.who.trim() || (c.kind === "nomination" && !c.nominee)) { bad++; fail(`contributors: ${slug} has a malformed call-in`); break; }
+        if (!["submission", "nomination", "portfolio"].includes(c.kind) || typeof c.who !== "string" || !c.who.trim() || (c.kind === "nomination" && !c.nominee) || (c.kind === "portfolio" && !String(c.reviewedBy || "").trim())) { bad++; fail(`contributors: ${slug} has a malformed call-in`); break; }
       }
     }
     if (contributors && /https?:\/\//.test(JSON.stringify(contributors.episodes))) { bad++; fail("contributors: the store carries a link — call-ins keep names and words only"); }

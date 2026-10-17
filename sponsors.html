@@ -474,7 +474,7 @@ button { font: inherit; color: inherit; }
   .hero__price { margin-block: 12px 0; font-size: var(--text-body-sm); color: var(--fg-3); text-wrap: pretty; }
   .hero__price b { font-weight: 600; color: var(--fg-1); }
   .hero__summary { margin-top: var(--d-section); padding: var(--d-card); }
-  .summary { margin: 0; display: flex; flex-wrap: wrap; column-gap: 32px; row-gap: var(--d-section); }
+  .summary { margin: 0; display: flex; flex-wrap: wrap; align-items: flex-start; column-gap: 32px; row-gap: var(--d-section); }
   .summary > .ss-big { flex: 1 1 calc(50% - 16px); min-width: 0; }
   .summary .ss-big dt { text-wrap: balance; }
   @media (min-width: 64rem) {
@@ -542,6 +542,7 @@ button { font: inherit; color: inherit; }
     font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-2); text-wrap: pretty; }
   .rows > li b { font-weight: 500; color: var(--fg-1); }
   .rows > li .n { color: var(--fg-3); }
+  .rows > li b .n { color: inherit; }
   .cols { margin: 0; }
   .cols figcaption { font-size: var(--text-meta); line-height: var(--lh-meta); font-weight: 500; color: var(--fg-3); }
   .cols ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 40px)); }
@@ -883,7 +884,7 @@ button { font: inherit; color: inherit; }
       </div>
       <div>
         <div class="cta__actions">
-          <a class="ss-btn ss-btn--primary" data-book="" id="book-mail" href="#book">Email Tommy and Ridd</a>
+          <a class="ss-btn ss-btn--primary" data-book="" id="book-mail" href="#book">Email Tommy</a>
           <button type="button" class="ss-btn ss-btn--secondary copy" id="copy-addr" aria-label="Copy address"><span>Copy address</span><span aria-hidden="true">Copied</span></button>
         </div>
         <p class="cta__alt">Or write to <a id="book-addr" href="#book"></a><span class="ss-sr" id="copy-status" aria-live="polite"></span></p>
@@ -914,7 +915,7 @@ button { font: inherit; color: inherit; }
 /* Sponsors page — renders data.sponsor and the episode rows of data.js; it never
    recomputes a number the build stores (every total, typical, count, peak and link is
    data.sponsor's), and a part the data cannot fill says why instead of showing a zero. */
-const CONTACT = "hello@dive.club";
+const CONTACT = "tommy@enjoyers.com";
 const DATA = window.DIVE_DATA || null;
 const S = DATA && DATA.sponsor ? DATA.sponsor : null;
 const EPISODES = (DATA && Array.isArray(DATA.episodes) ? DATA.episodes : []).filter((e) => e.show === "dive-radio").sort((a, b) => a.ep - b.ep);
@@ -989,7 +990,7 @@ const money = (v) => `$${v.toLocaleString("en-US")}`;
 /* --- booking: one address, the package in the subject --------------------------------- */
 function mailto(tier) {
   const subject = tier ? `Dive Radio partnership — ${tier}` : "Dive Radio partnership";
-  const body = `Hi Tommy and Ridd,\n\nWe'd like to talk about ${tier ? `the ${tier} package` : "a partnership"} on Dive Radio.\n\nCompany:\nProduct and category:\nWhen we'd like to start:\n`;
+  const body = `Hi Tommy,\n\nWe'd like to talk about ${tier ? `the ${tier} package` : "a partnership"} on Dive Radio.\n\nCompany:\nProduct and category:\nWhen we'd like to start:\n`;
   return `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -1002,7 +1003,8 @@ function renderHero() {
     ok(v.perEpisode) && [num(v.perEpisode), "views an episode so far, on average, on YouTube and X"],
     ok(t?.peak) && [num(t.peak), `watching at once at a typical show’s peak${ok(t.average) ? `, <span class="n">${fmt(t.average)}</span> on average` : ""}`],
     ok(c.total) && [num(c.total), `<span class="nw">call-ins</span> aired in <span class="n">${c.episodes}</span> episodes`],
-    ok(w.hours) && [num(w.hours), "hours watched on YouTube"],
+    // until YouTube reports the newest episode's watch time, the total says which episodes it covers
+    ok(w.hours) && [num(w.hours), `hours watched on YouTube${w.missing?.length && ok(w.episodes) ? ` in <span class="n">${w.episodes}</span> of <span class="n">${S.episodes}</span> episodes` : ""}`],
   ].filter(Boolean);
   // fewer than two numbers is not a summary: one verdict says why instead (with no data at all, the page's own verdict does)
   $("hero-summary").hidden = !S;
@@ -1021,10 +1023,19 @@ function renderHero() {
 function renderCallIns() {
   const c = S?.callIns;
   if (!c || !ok(c.total)) { $("callins-card").innerHTML = sectionAbsent("callins-section", "Who calls in", c?.reason || "The call-in list has not been imported."); return; }
-  $("callins-meta").innerHTML = `Videos the community sent in that aired, <span class="n">E${c.fromEp}–E${c.toEp}</span>`;
-  const line = (x) => `<b>${say(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${say(x.nominee)} for Designer of the Week` : say(x.about || "sent in a video")}`;
-  const newest = [...c.list].reverse().slice(0, 6), shown = new Set(newest);
+  $("callins-meta").innerHTML = `${c.portfolios ? "Videos and portfolios" : "Videos"} the community sent in that aired, <span class="n">E${c.fromEp}–E${c.toEp}</span>`;
+  const line = (x) => `<b>${say(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${say(x.nominee)} for Designer of the Week` : x.kind === "portfolio" ? `portfolio reviewed by ${say(x.reviewedBy)}` : say(x.about || "sent in a video")}`;
+  // the newest six things sent in; an episode's portfolio reviews are one row (how many, and the designers who reviewed
+  // them, as data.sponsor.callIns.reviews has them), and every portfolio keeps its own row in the list below
+  const reviews = new Map((c.reviews || []).map((r) => [r.ep, r]));
+  const items = [];
+  for (const x of [...c.list].reverse()) {
+    if (x.kind !== "portfolio") items.push(x);
+    else if (reviews.has(x.ep) && !items.some((i) => i.review && i.ep === x.ep)) items.push({ ep: x.ep, review: reviews.get(x.ep) });
+  }
+  const newest = items.slice(0, 6), shown = new Set(newest.filter((x) => !x.review));
   const oneEp = newest.every((x) => x.ep === newest[0].ep);
+  const row = (x) => (x.review ? `<b><span class="n">${fmt(x.review.portfolios)}</span> portfolios</b> — reviewed on air by ${say(list(x.review.reviewers))}` : line(x));
   const top = Math.max(...c.byEpisode.map((x) => x.count), 1);
   const cols = c.byEpisode.map((x) => `<li><span class="cols__value n">${x.count}</span><span class="cols__plot"><i style="height:${((x.count / top) * 100).toFixed(1)}%"></i></span><span class="cols__ep n">E${x.ep}</span></li>`).join("");
   const byEp = new Map();
@@ -1032,17 +1043,17 @@ function renderCallIns() {
   const titleOf = (ep) => short(EPISODES.find((e) => e.ep === ep)?.title || "");
   const groups = [...byEp.entries()].map(([ep, rows]) => `<section class="callins-ep"><h3><span class="n">E${ep}</span>, ${esc(titleOf(ep))}</h3><ul class="rows" role="list">${rows.map((x) => `<li><span>${line(x)}</span></li>`).join("")}</ul></section>`).join("");
   $("callins-card").innerHTML = `<div class="callins-top">
-      <p class="statement"><b>${num(c.people)}</b><span>people and teams have sent in <span class="n">${fmt(c.total)}</span> <span class="nw">call-ins</span> since <span class="n">E${c.fromEp}</span>, <span class="n">${fmt(c.nominations)}</span> of them Designer of the Week nominations</span></p>
+      <p class="statement"><b>${num(c.people)}</b><span>people and teams have sent in <span class="n">${fmt(c.total)}</span> <span class="nw">call-ins</span> since <span class="n">E${c.fromEp}</span>, <span class="n">${fmt(c.nominations)}</span> of them Designer of the Week nominations${c.portfolios ? ` and <span class="n">${fmt(c.portfolios)}</span> portfolios <span class="nw">reviewed on air</span>` : ""}</span></p>
       <figure class="cols" aria-label="${esc(`Call-ins by episode: ${c.byEpisode.map((x) => `E${x.ep} ${x.count}`).join(", ")}`)}">
         <figcaption><span class="nw">Call-ins</span> by episode</figcaption>
         <ol role="list" style="--n: ${c.byEpisode.length}" aria-hidden="true">${cols}</ol>
       </figure>
       <div class="newest">
         <h3 class="sub">${oneEp ? `The newest, all from <span class="n">E${newest[0].ep}</span>` : "The newest"}</h3>
-        <ul class="rows" role="list">${newest.map((x) => `<li><span>${line(x)}</span>${oneEp ? "" : `<span class="n">E${x.ep}</span>`}</li>`).join("")}</ul>
+        <ul class="rows" role="list">${newest.map((x) => `<li><span>${row(x)}</span>${oneEp ? "" : `<span class="n">E${x.ep}</span>`}</li>`).join("")}</ul>
       </div>
     </div>
-    ${byEp.size ? moreHTML("callins-more", `<span class="n">${fmt(c.list.length - newest.length)}</span> more <span class="nw">call-ins</span>, by episode`, groups) : ""}`;
+    ${byEp.size ? moreHTML("callins-more", `<span class="n">${fmt(c.list.length - shown.size)}</span> more <span class="nw">call-ins</span>, by episode`, groups) : ""}`;
 }
 
 /* --- reach: every episode's views, then the channels ------------------------------------------ */
@@ -1234,13 +1245,13 @@ function renderPackages() {
 function renderAbout() {
   $("about-prose").innerHTML = `
     <p><b>Views</b> are YouTube views plus resolved X broadcast plays on the two hosts’ accounts. Native tweet and teaser videos are left out, and so are impressions: they say how many times a post was seen, not watched. Views keep arriving after an episode airs, so the newest episodes are still counting.</p>
-    <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode. <b>Hours watched live</b> come from Restream, on YouTube and X${ok(S?.live?.xFromEp) ? ` (X’s from <span class="n">E${S.live.xFromEp}</span>, when Restream began reporting its live viewers)` : ""}. The two are never added: YouTube’s hours can include some of the live viewing on YouTube.</p>
+    <p><b>Hours watched</b> come from YouTube’s own analytics for both uploads of each episode; an episode joins the total when YouTube reports its watch time, two or three days after it airs. <b>Hours watched live</b> come from Restream, on YouTube and X${ok(S?.live?.xFromEp) ? ` (X’s from <span class="n">E${S.live.xFromEp}</span>, when Restream began reporting its live viewers)` : ""}. The two are never added: YouTube’s hours can include some of the live viewing on YouTube.</p>
     <p><b>Subscribers and followers</b> are each channel’s public count on the day shown. Their sum is shown to the nearest thousand, since YouTube publishes its counts rounded, and it counts channels, not people: one person can follow more than one.</p>
     <p><b>Watching at once</b> is the most people watching in the same minute, on YouTube and X together; <b>on average</b> is the same count across the whole show. <b>Live views</b> are each channel’s own count of who watched any part of the stream, added across YouTube and X, so one person on two channels counts twice.${S?.live?.linkedInShows ? " LinkedIn’s live viewers aren’t reported, so they are in none of these counts." : ""}</p>
     <p><b>At the end</b> compares the last ten minutes of a show with its peak. <b>In the chat</b> counts the different people who wrote at any point in the show on YouTube and X (LinkedIn’s count is left out), set against the most people watching at once. <b>Messages an hour</b> is every chat message on YouTube and X across the show, per hour of the show.</p>
     <p><b>At the middle of a show</b>: the people watching live in its middle minute, and of every <span class="n">100</span> YouTube views of the recording, how many reach its middle (YouTube’s audience curve, read once an episode is a week old; it counts every view at that point, including anyone who skipped ahead).</p>
     <p><b>A typical show</b> is the middle value of the eight shows before the newest — the same reading the show’s own dashboard uses.</p>
-    <p><b><span class="nw">Call-ins</span></b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one, and each name counts once as the notes list it, so a studio or a pair is one name. The teams named are where a <span class="nw">call-in’s</span> own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
+    <p><b><span class="nw">Call-ins</span></b> are the videos the community sent in that aired, listed in each episode’s published notes, which are checked against the recording. A Designer of the Week nomination counts as one, and so does a portfolio someone sent in that a named designer reviewed on air. Each name counts once as the notes list it, so a studio or a pair is one name. The teams named are where a <span class="nw">call-in’s</span> own words put the work (“at Vercel”, “how Linear hires”), not where a caller works.</p>
     <p><b>Brands named on air</b> count whole words, as said, in each episode’s transcript. Transcripts are automatic, so a misheard name is missed, never added. Excerpts are the transcript’s words with ums, uhs and repeated words taken out; “…” marks a cut.</p>
     <p><b>Partners on air</b> lists each time the hosts named a partner as a partner (they say “sponsor”, “partner” or “brought to you by” within fifteen seconds), and each segment that names one: about it when the segment’s title names it. It is not a list of what each partner paid for; the example under each package comes from the show’s own records of what a partner received.</p>
     <p><b>Moments</b> link to the exact second on YouTube when the episode’s transcript has been matched to that upload’s own captions; otherwise the time is shown without a link. <b>Watching live</b> beside a moment is the live audience in that minute of the stream, shown where the transcript runs on the stream’s own clock.</p>
