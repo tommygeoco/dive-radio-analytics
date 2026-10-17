@@ -3796,6 +3796,20 @@ try {
         if (!got || got.partner !== x.partner || got.ep !== x.ep || got.label !== x.label) { bad++; fail(`sponsor: the ${x.package} example is not the owners' recorded one`); continue; }
         if (got.moment && !(got.moment.seconds >= x.near - SV.EXAMPLE_WINDOW_SEC.before - SV.EXCERPT_BEFORE_SEC && got.moment.seconds <= x.near + SV.EXAMPLE_WINDOW_SEC.after)) { bad++; fail(`sponsor: the ${x.package} example (${got.moment.at}) is not near the recorded time`); }
         if (!got.moment && !got.reason) { bad++; fail(`sponsor: the ${x.package} example is absent without a reason`); }
+        // the segment it aired in (D21): the partner's own first stored segment moment in the example's episode inside the
+        // recorded window, as stored — and that moment is one of the episode's chapters, its title naming the partner, linked
+        // by the clock rule; with none, the field is absent
+        const lo = x.near - SV.EXAMPLE_WINDOW_SEC.before, hi = x.near + SV.EXAMPLE_WINDOW_SEC.after;
+        const seg = ((sp.partners || []).find((p) => p.name === x.partner)?.moments || []).find((m) => m.kind === "segment" && m.ep === x.ep && m.seconds >= lo && m.seconds <= hi);
+        const segWant = seg ? { at: seg.at, seconds: seg.seconds, title: seg.title, text: seg.text, url: seg.url } : undefined;
+        if (JSON.stringify(got.segment) !== JSON.stringify(segWant) || (!segWant && "segment" in got)) { bad++; fail(`sponsor: the ${x.package} example's segment (${got.segment?.at ?? "none"}) does not re-derive from ${x.partner}'s stored segment moments in E${x.ep} inside the recorded window (${segWant?.at ?? "none"})`); }
+        if (got.segment) {
+          const e = bySlug.get(got.slug);
+          const ch = (e?.chapters?.list || []).find((c) => c.start === got.segment.at && c.title === got.segment.title && c.gist === got.segment.text && c.seconds === got.segment.seconds);
+          if (!ch || !new RegExp(`(?<![\\w@#])${x.partner}(?![\\w])`).test(ch.title)) { bad++; fail(`sponsor: the ${x.package} example's segment (E${x.ep} ${got.segment.at}) is not an E${x.ep} chapter whose title names ${x.partner}`); }
+          if (!(got.segment.seconds >= lo && got.segment.seconds <= hi)) { bad++; fail(`sponsor: the ${x.package} example's segment (E${x.ep} ${got.segment.at}) is outside the recorded window`); }
+          if (got.segment.url !== (e && parsed.get(e.slug) ? CL.momentUrl(uploadOf(e), got.segment.seconds) : null)) { bad++; fail(`sponsor: the ${x.package} example's segment link is not the clock rule's`); }
+        }
       }
       // chapters link by the same rule (index.html and the brief render the stored url)
       for (const e of dive) {
@@ -3844,6 +3858,26 @@ try {
         }
         if (JSON.stringify(featuredCalls) !== JSON.stringify(callInsWant)) { bad++; fail(`sponsor: the featured call-ins (${featuredCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${callInsWant.map((c) => c.who).join(", ")})`); }
       }
+      // the call-ins that show the audience building with tools (D21): each the first aired submission of that exact
+      // name in contributors.json with its stored words, verbatim; never a name featured above; within the cap of three
+      const toolNames = [...new Set(SV.FEATURED_TOOL_CALLINS)];
+      const featuredNames = callInsWant.map((c) => c.who);
+      const toolsWant = toolNames.filter((who) => !featuredNames.includes(who)).map((who) => airedCallIns.find((c) => c.who === who && c.kind === "submission"))
+        .filter((c) => c && typeof c.about === "string" && c.about.trim()).slice(0, SV.FEATURED_TOOL_CALLINS_MAX)
+        .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, about: c.about }));
+      const toolCalls = sp.callIns.tools;
+      const toolsListed = Array.isArray(toolCalls);
+      const toolsOverCap = SV.FEATURED_TOOL_CALLINS.length > SV.FEATURED_TOOL_CALLINS_MAX || (toolsListed && toolCalls.length > SV.FEATURED_TOOL_CALLINS_MAX);
+      const toolStored = (t) => airedCallIns.some((c) => c.who === t.who && c.ep === t.ep && c.slug === t.slug && c.kind === t.kind && c.about === t.about);
+      const toolsUnstored = toolsListed ? toolCalls.filter((t) => !toolStored(t)).map((t) => t.who) : [];
+      const toolsNotSent = toolsListed ? toolCalls.filter((t) => t.kind !== "submission").map((t) => t.who) : [];
+      const toolsRepeated = toolsListed ? toolCalls.filter((t) => featuredNames.includes(t.who)).map((t) => t.who) : [];
+      if (!toolsListed) { bad++; fail("sponsor: the tool call-ins are not a list"); }
+      if (toolsOverCap) { bad++; fail(`sponsor: the tool call-ins (${SV.FEATURED_TOOL_CALLINS.length} picked, ${toolCalls?.length} shipped) run past their cap of ${SV.FEATURED_TOOL_CALLINS_MAX}`); }
+      if (toolsUnstored.length) { bad++; fail(`sponsor: tool call-ins ${toolsUnstored.join(", ")} are not aired call-ins in contributors.json, shown word for word`); }
+      if (toolsNotSent.length) { bad++; fail(`sponsor: tool call-ins ${toolsNotSent.join(", ")} are not videos the people sent`); }
+      if (toolsRepeated.length) { bad++; fail(`sponsor: tool call-ins ${toolsRepeated.join(", ")} are already featured above`); }
+      if (toolsListed && JSON.stringify(toolCalls) !== JSON.stringify(toolsWant)) { bad++; fail(`sponsor: the tool call-ins (${toolCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${toolsWant.map((c) => c.who).join(", ")})`); }
       const pickedIds = [...new Set(SV.FEATURED_QUOTES)];
       const quotesWant = pickedIds.map((id) => (sp.feedback.quotes || []).find((q) => q.id === id)).filter((q) => q && !q.onShow).slice(0, SV.FEATURED_QUOTES_MAX);
       const featuredSaid = sp.feedback.featured;

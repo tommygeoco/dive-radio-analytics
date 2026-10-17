@@ -103786,7 +103786,7 @@
   ]
  },
  "sponsor": {
-  "version": 6,
+  "version": 7,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -104686,18 +104686,6 @@
      "likes": 1,
      "onShow": false,
      "calledIn": null
-    },
-    {
-     "id": "x:2098237669008449676",
-     "ep": 9,
-     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-     "author": "@sanika_mehta98",
-     "platform": "X",
-     "text": "Such an insightful session as someone looking for their next opportunity! Thank you for creating this community!",
-     "url": "https://x.com/i/status/2098237669008449676",
-     "likes": 1,
-     "onShow": false,
-     "calledIn": null
     }
    ]
   },
@@ -104829,6 +104817,29 @@
      "ep": 10,
      "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
      "kind": "submission"
+    }
+   ],
+   "tools": [
+    {
+     "who": "Nick Pattison",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission",
+     "about": "a live map tool Primary built in Lovable for a client brand"
+    },
+    {
+     "who": "Davey Heuser",
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission",
+     "about": "the codebase as the source of truth in Paper"
+    },
+    {
+     "who": "Kolbe Yang",
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "submission",
+     "about": "from a Figma frame to a finished animation"
     }
    ],
    "list": [
@@ -107441,7 +107452,14 @@
      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2453s",
      "liveAt": null
     },
-    "reason": null
+    "reason": null,
+    "segment": {
+     "at": "00:40:54",
+     "seconds": 2454,
+     "title": "Notion as code and agent friendly backends",
+     "text": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
+     "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2455s"
+    }
    }
   ],
   "links": {

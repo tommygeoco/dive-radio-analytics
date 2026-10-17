@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 6;
+export const SPONSOR_VERSION = 7;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -81,14 +81,19 @@ export const EXAMPLE_WINDOW_SEC = { before: 60, after: 120 };
 // (Dive Radio/sponsor-recap-*-2026-08.md) and the E10 read's note
 // (Dive Radio/e10-notion-ad-read-2026-09-17.md). `near` is the recorded time;
 // the example is the first line within EXAMPLE_WINDOW_SEC that names the
-// partner, so a record the transcript does not bear out shows nothing.
+// partner, so a record the transcript does not bear out shows nothing. An
+// example also carries the segment it aired in (`segment`), when the partner's
+// own stored moments hold a segment about it (a chapter whose title names it)
+// in the same episode inside the same window: the chapter's time, title, stored
+// description and link, as stored — a description of the segment, never a
+// quote. With no such segment the field is absent.
 export const EXAMPLES = Object.freeze([
   { package: "Mid-roll", format: "A read", label: "Notion on the Dive Radio Skills Library", partner: "Notion", ep: 10, near: 2063, record: "e10-notion-ad-read-2026-09-17.md" },
   { package: "Segment", format: "A named segment", label: "One Up Weekly, brought to you by Lovable", partner: "Lovable", ep: 5, near: 4830, record: "sponsor-recap-lovable-2026-08.md" },
   { package: "Build", format: "A live build", label: "Notion as Code, Notion’s August build", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
 ]);
 
-// The owners' featured picks (SPONSOR-2026-10-11.md D19 and D20, 2026-10-16/17):
+// The owners' featured picks (SPONSOR-2026-10-11.md D19–D21, 2026-10-16/17):
 // people a design- or developer-tool buyer would know by name whose own
 // call-in aired, and the audience's words a buyer would believe. Picking is a
 // data-layer decision, so the page shows these lists as stored and filters
@@ -104,8 +109,16 @@ export const EXAMPLES = Object.freeze([
 export const FEATURED_CALLINS_MAX = 6;
 export const FEATURED_CALLINS = Object.freeze(["Soleio", "Pietro Schirano", "Jared Erondu", "Josh Puckett", "Eric Sin", "Alex Danilowicz"]);
 export const FEATURED_QUOTES_MAX = 3;
-export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377", "x:2098237669008449676"]);
+export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377"]);
 export const FEATURED_KIND = "submission";
+// The call-ins that show the audience building with tools at work, the
+// partners' own among them (D21, 2026-10-17): up to three exact names, each
+// that person's first aired submission with its stored words (`about`),
+// verbatim. The same own-video rule as FEATURED_CALLINS; a name already
+// featured above is not repeated here, and a submission the notes give no
+// words for is dropped, since its words are what this list shows.
+export const FEATURED_TOOL_CALLINS_MAX = 3;
+export const FEATURED_TOOL_CALLINS = Object.freeze(["Nick Pattison", "Davey Heuser", "Kolbe Yang"]);
 
 export function featuredCallIns(list, names = FEATURED_CALLINS) {
   const out = [];
@@ -114,6 +127,17 @@ export function featuredCallIns(list, names = FEATURED_CALLINS) {
     if (out.some((c) => c.who === who)) continue;
     const c = (list || []).find((x) => x.who === who && x.kind === FEATURED_KIND);
     if (c) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind });
+  }
+  return out;
+}
+
+export function toolCallIns(list, names = FEATURED_TOOL_CALLINS, featured = featuredCallIns(list)) {
+  const out = [];
+  for (const who of names) {
+    if (out.length >= FEATURED_TOOL_CALLINS_MAX) break;
+    if (out.some((c) => c.who === who) || featured.some((c) => c.who === who)) continue;
+    const c = (list || []).find((x) => x.who === who && x.kind === FEATURED_KIND);
+    if (c && typeof c.about === "string" && c.about.trim()) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, about: c.about });
   }
   return out;
 }
@@ -520,12 +544,12 @@ export function teamsNamed(list) {
 }
 
 function callInsBlock(episodes, contributors) {
-  if (!contributors?.episodes) return { total: null, reason: "The call-in list has not been imported.", featured: [] };
+  if (!contributors?.episodes) return { total: null, reason: "The call-in list has not been imported.", featured: [], tools: [] };
   const bySlug = new Map(episodes.map((e) => [e.slug, e]));
   const rows = Object.entries(contributors.episodes)
     .filter(([slug]) => bySlug.has(slug))
     .sort(([a], [b]) => bySlug.get(a).ep - bySlug.get(b).ep);
-  if (!rows.length) return { total: null, reason: "No aired episode has an imported call-in list.", featured: [] };
+  if (!rows.length) return { total: null, reason: "No aired episode has an imported call-in list.", featured: [], tools: [] };
   const list = rows.flatMap(([slug, entry]) => entry.callIns.map((c) => ({ ep: bySlug.get(slug).ep, slug, ...c })));
   return {
     total: list.length,
@@ -544,6 +568,7 @@ function callInsBlock(episodes, contributors) {
     }),
     teamsNamed: teamsNamed(list),
     featured: featuredCallIns(list),
+    tools: toolCallIns(list),
     list,
     updatedAt: contributors.updatedAt || null,
   };
@@ -661,18 +686,30 @@ function partnersBlock(episodes, transcripts, uploads) {
   });
 }
 
-// each package's example, found in its transcript near the recorded time
-function examplesBlock(episodes, transcripts, uploads) {
+// the segment an example aired in: the partner's own first stored segment
+// moment (a chapter whose title names it) in the example's episode, inside the
+// example's window
+export function exampleSegment(x, partners) {
+  const inWindow = (m) => m.seconds >= x.near - EXAMPLE_WINDOW_SEC.before && m.seconds <= x.near + EXAMPLE_WINDOW_SEC.after;
+  const m = ((partners || []).find((p) => p.name === x.partner)?.moments || []).find((s) => s.kind === "segment" && s.ep === x.ep && inWindow(s));
+  return m ? { at: m.at, seconds: m.seconds, title: m.title, text: m.text, url: m.url } : null;
+}
+
+// each package's example, found in its transcript near the recorded time, with
+// the segment it aired in when the partner's moments hold one
+function examplesBlock(episodes, transcripts, uploads, partners) {
   return EXAMPLES.map((x) => {
     const e = episodes.find((r) => r.ep === x.ep);
     const t = e ? transcripts[e.slug] : null;
     const base = { package: x.package, format: x.format, label: x.label, partner: x.partner, ep: x.ep, slug: e?.slug ?? null };
-    if (!t) return { ...base, moment: null, reason: "The episode’s transcript is not available." };
+    const segment = exampleSegment(x, partners);
+    const withSegment = (row) => (segment ? { ...row, segment } : row);
+    if (!t) return withSegment({ ...base, moment: null, reason: "The episode’s transcript is not available." });
     const re = brandPattern(x.partner);
     const i = t.segments.findIndex((s) => s.seconds >= x.near - EXAMPLE_WINDOW_SEC.before && s.seconds <= x.near + EXAMPLE_WINDOW_SEC.after && new RegExp(re.source).test(s.text));
-    if (i < 0) return { ...base, moment: null, reason: `The transcript does not name ${x.partner} near the recorded time.` };
+    if (i < 0) return withSegment({ ...base, moment: null, reason: `The transcript does not name ${x.partner} near the recorded time.` });
     const m = stored(momentOf(e, t, uploads[e.slug], i, re));
-    return { ...base, moment: { at: m.at, seconds: m.seconds, text: m.text, url: m.url, liveAt: liveAt(e, t, m.seconds) }, reason: null };
+    return withSegment({ ...base, moment: { at: m.at, seconds: m.seconds, text: m.text, url: m.url, liveAt: liveAt(e, t, m.seconds) }, reason: null });
   });
 }
 
@@ -681,6 +718,7 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
   const uploads = Object.fromEntries(dive.map((e) => [e.slug, linkableUpload(e, transcripts[e.slug], clockChecks)]));
   const latest = dive[dive.length - 1] || null;
   const callIns = callInsBlock(dive, contributors);
+  const partners = partnersBlock(dive, transcripts, uploads);
   return {
     version: SPONSOR_VERSION,
     asOf: generatedAt ? new Date(Date.parse(generatedAt) - 7 * 3600000).toISOString().slice(0, 10) : null,
@@ -694,8 +732,8 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
     feedback: feedbackBlock(dive, callIns, commentChannels),
     callIns,
     brands: brandsBlock(dive, transcripts, uploads),
-    partners: partnersBlock(dive, transcripts, uploads),
-    examples: examplesBlock(dive, transcripts, uploads),
+    partners,
+    examples: examplesBlock(dive, transcripts, uploads, partners),
     links: {
       exact: Object.values(uploads).filter(Boolean).length,
       episodes: dive.filter((e) => transcripts[e.slug]).length,

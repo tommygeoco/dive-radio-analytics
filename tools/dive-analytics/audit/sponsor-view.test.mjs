@@ -9,7 +9,8 @@ import assert from "node:assert/strict";
 import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK_MIN_ANCHORS, CLOCK_MAX_SPREAD } from "../clock.mjs";
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
-  featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX } from "../sponsor-view.mjs";
+  featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
+  toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
 // --- clock.mjs ----------------------------------------------------------------------
@@ -318,6 +319,40 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(shown.examples.find((x) => x.package === "Mid-roll").moment, null);
   assert.ok(shown.examples.find((x) => x.package === "Mid-roll").reason, "a record the transcript does not bear out shows nothing, with a reason");
 
+  // each example carries the segment it aired in (D21): the partner's own stored segment moment (a chapter whose title
+  // names it) in the example's episode inside the recorded window, as stored; with none, no field at all
+  const build = EXAMPLES.find((x) => x.package === "Build");
+  assert.deepEqual([build.partner, build.ep], ["Notion", 5]);
+  const at = (sec) => `00:${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(sec % 60).padStart(2, "0")}`;
+  const before = build.near - EXAMPLE_WINDOW_SEC.before, after = build.near + EXAMPLE_WINDOW_SEC.after;
+  const chaptered = eps.map((e) => (e.ep === build.ep ? { ...e, chapters: { list: [
+    { start: "00:39:50", seconds: 2390, title: "One Up Weekly", gist: "Picks of the week, presented by Lovable." },
+    { start: at(before - 1), seconds: before - 1, title: "Notion just before", gist: "A second before the window opens." },
+    { start: at(before + 5), seconds: before + 5, title: "A Mobbin segment", gist: "Another partner's segment, inside the window." },
+    { start: at(before + 10), seconds: before + 10, title: "Building live", gist: "Named in, not about it: the hosts build on Notion." },
+    { start: at(build.near + 26), seconds: build.near + 26, title: "Notion as code", gist: "Tommy demos Notion as code powering show tools." },
+    { start: at(after - 1), seconds: after - 1, title: "Notion, later in the window", gist: "A second segment inside the window." },
+    { start: at(after + 1), seconds: after + 1, title: "Notion past the window", gist: "A second after it closes." },
+  ] } } : e.ep === 6 ? { ...e, chapters: { list: [{ start: at(build.near + 26), seconds: build.near + 26, title: "Notion as code", gist: "The same time in another episode." }] } } : e));
+  const withSegments = sponsorView({ episodes: chaptered, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  const notionSegment = withSegments.partners.find((p) => p.name === "Notion").moments.find((m) => m.kind === "segment" && m.ep === 5 && m.title === "Notion as code");
+  const builtIn = withSegments.examples.find((x) => x.package === "Build");
+  assert.deepEqual(builtIn.segment, { at: notionSegment.at, seconds: notionSegment.seconds, title: "Notion as code", text: "Tommy demos Notion as code powering show tools.", url: null },
+    "the partner's first stored segment about it in the window, as stored: time, title, the chapter's description, link (none without a clock check)");
+  assert.deepEqual(Object.keys(builtIn.segment), ["at", "seconds", "title", "text", "url"]);
+  assert.ok(!("segment" in withSegments.examples.find((x) => x.package === "Mid-roll")), "no segment of the partner in that episode's window: no field, never null");
+  assert.ok(!("segment" in withSegments.examples.find((x) => x.package === "Segment")), "a chapter that only names the partner in its description, or lies outside the window, is not the example's segment");
+  assert.ok(!("segment" in view.examples.find((x) => x.package === "Build")), "no chapter about the partner, no segment");
+  const untranscribed = sponsorView({ episodes: chaptered, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).examples.find((x) => x.package === "Build");
+  assert.equal(untranscribed.moment, null);
+  assert.equal(untranscribed.segment.title, "Notion as code", "a stored chapter stands without the transcript line; its link waits for one");
+  const partnersOf = (moments) => [{ name: "Notion", moments }];
+  const segAt = (ep, seconds, kind = "segment") => ({ kind, ep, slug: `e${ep}`, at: at(seconds), seconds, title: `t${seconds}`, text: `d${seconds}`, url: null, liveAt: null });
+  assert.equal(exampleSegment(build, partnersOf([segAt(5, before - 1), segAt(6, build.near), segAt(5, build.near, "inSegment"), segAt(5, after + 1)])), null, "outside the window, another episode, or only named in: none");
+  assert.equal(exampleSegment(build, [{ name: "Mobbin", moments: [segAt(5, build.near)] }]), null, "another partner's segment is never this example's");
+  assert.equal(exampleSegment(build, partnersOf([segAt(5, before), segAt(5, after)])).seconds, before, "the window's edges count; the first segment wins");
+  assert.equal(exampleSegment(build, null), null);
+
   // the owners' featured picks (D19): stored entries in the list's order, each once, within the caps; a pick the
   // stores do not hold is dropped, never invented; a featured quote is the stored quote object, unchanged
   assert.ok(FEATURED_CALLINS.length <= FEATURED_CALLINS_MAX && new Set(FEATURED_CALLINS).size === FEATURED_CALLINS.length, "the owners' call-in picks fit the cap, each once");
@@ -365,6 +400,36 @@ import { normalize } from "../transcripts.mjs";
     e11: { callIns: [{ kind: "nomination", who: secondPick, nominee: "Someone" }, { kind: "submission", who: firstPick, about: "advice" }, { kind: "submission", who: "Not Picked", about: "x" }] },
   } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "submission" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission" }], "the owners' order, the store's own entries");
+  // the call-ins that show the audience building with tools (D21): the same own-video rule, the stored words verbatim,
+  // never a name featured above, a submission without words dropped, three at most, in the owners' order
+  assert.ok(FEATURED_TOOL_CALLINS.length <= FEATURED_TOOL_CALLINS_MAX && FEATURED_TOOL_CALLINS_MAX === 3 && new Set(FEATURED_TOOL_CALLINS).size === FEATURED_TOOL_CALLINS.length);
+  assert.ok(!FEATURED_TOOL_CALLINS.some((who) => FEATURED_CALLINS.includes(who)), "no name in both lists");
+  const builders = [
+    { ep: 8, slug: "e8", kind: "submission", who: "Nick Pattison", about: "a live map tool Primary built in Lovable for a client brand" },
+    { ep: 8, slug: "e8", kind: "submission", who: "Brett", about: null },
+    { ep: 9, slug: "e9", kind: "nomination", who: "Davey Heuser", nominee: "Someone" },
+    { ep: 11, slug: "e11", kind: "submission", who: "Davey Heuser", about: "the codebase as the source of truth in Paper" },
+    { ep: 12, slug: "e12", kind: "submission", who: "Kolbe Yang", about: "from a Figma frame to a finished animation" },
+    { ep: 12, slug: "e12", kind: "submission", who: "Finn McKenty", about: "restyle real footage in Flora" },
+    { ep: 13, slug: "e13", kind: "submission", who: "Eric Sin", about: "how he landed a staff design job" },
+    { ep: 14, slug: "e14", kind: "portfolio", who: "Kartik Iyer", reviewedBy: "Geoff Teehan" },
+  ];
+  const featuredHere = featuredCallIns(builders, ["Eric Sin"]);
+  assert.deepEqual(toolCallIns(builders, ["Kolbe Yang", "Nobody", "Brett", "Kartik Iyer", "Eric Sin", "Davey Heuser", "Kolbe Yang", "Nick Pattison", "Finn McKenty"], featuredHere), [
+    { who: "Kolbe Yang", ep: 12, slug: "e12", kind: "submission", about: "from a Figma frame to a finished animation" },
+    { who: "Davey Heuser", ep: 11, slug: "e11", kind: "submission", about: "the codebase as the source of truth in Paper" },
+    { who: "Nick Pattison", ep: 8, slug: "e8", kind: "submission", about: "a live map tool Primary built in Lovable for a client brand" },
+  ], "the owners' order; an unknown name, a submission without words, a portfolio and a featured name dropped; a name's first video past its nomination; the stored words verbatim; three at most");
+  assert.deepEqual(toolCallIns(null), [], "no call-in list, no tool call-ins");
+  const toolView = sponsorView({ episodes: eps, contributors: { episodes: {
+    e9: { callIns: [{ kind: "submission", who: FEATURED_TOOL_CALLINS[1], about: "words as the notes give them" }, { kind: "submission", who: FEATURED_TOOL_CALLINS[0], about: "first pick's words" }] },
+  } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(toolView.callIns.tools, [
+    { who: FEATURED_TOOL_CALLINS[0], ep: 9, slug: "e9", kind: "submission", about: "first pick's words" },
+    { who: FEATURED_TOOL_CALLINS[1], ep: 9, slug: "e9", kind: "submission", about: "words as the notes give them" },
+  ], "through the projection: the owners' list over the stored entries");
+  assert.deepEqual(view.callIns.tools, [], "none of the picks aired in the fixture");
+  assert.deepEqual(sponsorView({ episodes: eps, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).callIns.tools, [], "no call-in list: an empty list beside the absent count's reason");
   const nominatedOnly = sponsorView({ episodes: eps, contributors: { episodes: { e11: { callIns: [{ kind: "nomination", who: firstPick, nominee: "Someone" }] } } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
   assert.deepEqual(nominatedOnly.callIns.featured, [], "a pick whose only aired entry is a nomination is not featured");
   assert.deepEqual(view.callIns.featured, [], "none of the picks aired in the fixture: nothing featured, never invented");
@@ -379,4 +444,4 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(view.feedback.featured, [], "none of the picked ids is stored in the fixture");
 }
 
-console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out, the owners' featured call-ins and quotes are stored entries in their order within the caps, and absent inputs stay absent");
+console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins, tool call-ins and quotes are stored entries in their order within the caps, and absent inputs stay absent");
