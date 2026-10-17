@@ -384,6 +384,8 @@ button { font: inherit; color: inherit; }
     --anchor-pad: calc(var(--topbar-h) + var(--safe-top) + var(--d-card)); }
   @media (min-width: 48rem) { :root { --act-gap: calc(var(--d-section) * 3); } }
   html { scroll-padding-top: var(--anchor-pad); }
+  /* on phones the floating booking bar covers the bottom of the screen: keyboard focus scrolls to clear it */
+  @media (max-width: 47.99rem) { html { scroll-padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + var(--d-card)); } }
   /* the top bar's own controls are always in view: focusing one must not scroll the page to clear the padding above */
   .ss-topbar a { scroll-margin-top: calc(-1 * var(--anchor-pad)); }
   .is-rendering body { visibility: hidden; }
@@ -487,15 +489,21 @@ button { font: inherit; color: inherit; }
   .said b { font-weight: 500; color: var(--fg-1); white-space: nowrap; }   /* a name never breaks across lines */
   .said + .said { margin-top: var(--d-card); }
   .all { margin-top: var(--d-section); }
-  .said--reach { margin-top: var(--d-section); }
+  .said--reach { margin-top: var(--d-card); }
+  #people-said:empty + .said--reach, #people-said[hidden] + .said--reach { margin-top: 0; }
   .all .ss-btn--link { white-space: normal; text-align: left; }
   .all .ss-btn--link > span { text-wrap: balance; }
   .all .nw { white-space: nowrap; }
   .all .ss-btn__chev { margin-left: 8px; vertical-align: middle; }
-  .roster-panel > div > div { padding-top: var(--d-card); }
+  /* the reveal's clipping box reaches 4 px past the column on each side and 4 px below the list, so the frame's focus
+     ring (2 px out, 2 px wide) is never cut */
+  .roster-panel > div { margin: 0 -4px; padding: 0 4px; }
+  .roster-panel > div > div { padding: var(--d-card) 0 4px; }
   /* the full list keeps its own height: the panel holds its frame, an inner scroller moves and fades at the edge it
      can still go to, and a way out waits at its end */
   .roster { overflow: hidden; border-radius: var(--radius-2xl); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line); }
+  .roster__scroll:focus-visible { outline: none; }
+  .roster:has(> .roster__scroll:focus-visible) { outline: 2px solid var(--tint); outline-offset: 2px; }
   .roster__scroll { max-height: 440px; overflow-y: auto; overscroll-behavior: contain; padding: var(--d-card); scrollbar-width: thin; scrollbar-color: var(--surface-3) transparent; }
   @media (max-width: 47.99rem) { .roster__scroll { overscroll-behavior: auto; } }   /* on phones a swipe past the end carries on down the page */
   .roster__scroll.more-down { -webkit-mask-image: linear-gradient(to top, transparent 0, black 32px); mask-image: linear-gradient(to top, transparent 0, black 32px); }
@@ -551,15 +559,21 @@ button { font: inherit; color: inherit; }
   .aired { margin: var(--d-section) 0 0; padding: 0; list-style: none; }
   .aired__ep { display: grid; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 30rem) { .aired__ep { grid-template-columns: auto minmax(0, 1fr); } }
-  .aired__img { display: block; overflow: hidden; aspect-ratio: 16 / 9; margin: var(--d-card) var(--d-card) 0; border-radius: var(--radius-lg); background: var(--surface-2); }
+  .aired__img { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 9; margin: var(--d-card) var(--d-card) 0; border-radius: var(--radius-lg); background: var(--surface-2); }
   @media (min-width: 30rem) { .aired__img { width: 136px; margin: var(--d-card) 0 var(--d-card) var(--d-card); border-radius: var(--radius-md); } }
   @media (min-width: 48rem) { .aired__img { width: 176px; margin: var(--pad-wide) 0 var(--pad-wide) var(--pad-wide); border-radius: var(--radius-lg); } }
   .aired__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .aired__img::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--line); pointer-events: none; transition: box-shadow 150ms; }
+  @media (hover: hover) { a.aired__img:hover::after { box-shadow: inset 0 0 0 1px var(--line-strong); } a.aired__img:hover .ep__play { opacity: 1; } }
   .aired__rows { min-width: 0; margin: 0; padding: 0; list-style: none; display: grid; grid-auto-rows: 1fr; }
   .aired__rows > li { position: relative; display: grid; }
   .aired__rows > li + li::before { content: ""; position: absolute; top: 0; left: var(--d-card); right: 0; border-top: 1px solid var(--line); }
   .aired__row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 8px; align-content: center; padding: var(--d-row) var(--d-card); }
   @media (min-width: 48rem) { .aired__row { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--d-section); align-items: center; padding: var(--d-row) var(--pad-wide) var(--d-row) var(--d-card); } }
+  /* the rows at the panel's corners round their focus ring into them (the list recipe's first/last rule, one level deeper) */
+  .aired > li:first-child .aired__rows > li:first-child > .aired__row:focus-visible { border-top-right-radius: var(--radius-2xl); }
+  .aired > li:last-child .aired__rows > li:last-child > .aired__row:focus-visible { border-bottom-right-radius: var(--radius-2xl); }
+  @media (max-width: 29.99rem) { .aired > li:last-child .aired__rows > li:last-child > .aired__row:focus-visible { border-bottom-left-radius: var(--radius-2xl); } }
   .aired__text { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
   @media (min-width: 64rem) { .aired__text { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: var(--d-card); align-items: baseline; } }
   .aired__pkg { font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
@@ -693,12 +707,12 @@ button { font: inherit; color: inherit; }
       <h2 class="claim" id="people-title">Designers you already follow show up on air.</h2>
       <div>
         <div id="people-said"></div>
+        <p class="said said--reach" id="reach" hidden></p>
         <div class="all" id="people-all"></div>
         <div class="ss-reveal roster-panel" id="roster" data-open="false" inert aria-hidden="true"><div><div>
           <div class="roster"><div class="roster__scroll" id="roster-list" tabindex="0" role="region" aria-label="Everyone who called in, by show"></div></div>
           <div class="roster__end"><button type="button" class="ss-btn ss-btn--link" id="roster-close">Close the list</button></div>
         </div></div></div>
-        <p class="said said--reach" id="reach" hidden></p>
       </div>
     </div>
   </section>
@@ -800,6 +814,7 @@ const fmt = (v) => (ok(v) ? Math.round(v).toLocaleString("en-US") : "—");
 const curly = (t) => String(t ?? "").replace(/(^|[\s(\[—–-])"(?=\S)/g, "$1“").replace(/"/g, "”").replace(/(^|[\s(\[—–-])'(?=\w)/g, "$1‘").replace(/'/g, "’");
 const say = (t) => esc(curly(t));
 const short = (t) => curly(String(t || "").replace(/^Dive Radio:?\s*/i, ""));
+const WORDS = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
 const list = (words) => (words.length < 2 ? words.join("") : `${words.slice(0, -1).join(", ")} and ${words[words.length - 1]}`);
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const day = (iso) => { const [, m, d] = String(iso || "").slice(0, 10).split("-").map(Number); return m ? `${MONTHS[m - 1].slice(0, 3)}&nbsp;<span class="n">${d}</span>` : ""; };
@@ -874,7 +889,14 @@ function renderWall() {
 /* --- 2 · who is in the room: the designers who reviewed work on air, the teams the call-ins covered, everyone --- */
 function renderPeople() {
   const c = S?.callIns;
-  if (!c || !ok(c.total) || !c.list?.length) { $("people").hidden = true; return; }
+  const channels = renderReach();
+  if (!c || !ok(c.total) || !c.list?.length) {
+    // no call-ins: the act keeps the channel counts under a claim about them, or steps aside when they are gone too
+    if (!channels) { $("people").hidden = true; return; }
+    $("people-title").textContent = `The show goes out live on ${WORDS[channels] || channels} channels.`;
+    for (const id of ["people-said", "people-all", "roster"]) $(id).hidden = true;
+    return;
+  }
   const bold = (names) => list(names.map((n) => `<b>${say(n)}</b>`));
   const said = [];
   const r = (c.reviews || [])[c.reviews.length - 1];
@@ -886,8 +908,9 @@ function renderPeople() {
   const line = (x) => `<b>${say(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${say(x.nominee)} for Designer of the Week` : x.kind === "portfolio" ? `portfolio reviewed by ${say(x.reviewedBy)}` : say(x.about || "sent in a video")}`;
   const byEp = new Map();
   for (const x of [...c.list].reverse()) { if (!byEp.has(x.ep)) byEp.set(x.ep, []); byEp.get(x.ep).push(x); }
-  $("roster-list").innerHTML = [...byEp.entries()].map(([ep, rows]) => `<section><h3>${esc(showName(episode(ep)) || `Episode ${ep}`)}</h3><ul role="list">${rows.map((x) => `<li>${line(x)}</li>`).join("")}</ul></section>`).join("");
-  renderReach();
+  // a show heading: its title and its date in tabular figures (showName keeps the plain form for alt and spoken text)
+  const heading = (e, ep) => e?.title ? `${esc(short(e.title))}${e.premiere ? `, ${day(e.premiere)}` : ""}` : `Episode ${ep}`;
+  $("roster-list").innerHTML = [...byEp.entries()].map(([ep, rows]) => `<section><h3>${heading(episode(ep), ep)}</h3><ul role="list">${rows.map((x) => `<li>${line(x)}</li>`).join("")}</ul></section>`).join("");
 }
 
 // where the show goes out: each channel's own count in plain sentences, one per platform; never a total, since one
@@ -895,15 +918,15 @@ function renderPeople() {
 function renderReach() {
   const chans = (S?.audience?.channels || []).filter((c) => ok(c.count) && c.label);
   $("reach").hidden = !chans.length;
-  if (!chans.length) return;
+  if (!chans.length) return 0;
   const by = new Map();
   for (const c of chans) { if (!by.has(c.platform)) by.set(c.platform, []); by.get(c.platform).push(c); }
-  const WORD = ["", "one", "two", "three", "four", "five"];
   const NOUN = { YouTube: "channels", X: "accounts" };
   const part = (cs) => list(cs.map((c, i) => `<b>${esc(c.label)}</b> with <b class="n">${fmt(c.count)}</b>${i === 0 && c.unit ? ` ${esc(c.unit)}` : ""}`));
   $("reach").innerHTML = [...by.entries()].map(([platform, cs], k) => k === 0
-    ? `We go out live on ${cs.length > 1 ? `${WORD[cs.length] || cs.length} ${esc(platform)} ${NOUN[platform] || "channels"}` : esc(platform)}, ${part(cs)}.`
+    ? `We go out live on ${cs.length > 1 ? `${WORDS[cs.length] || cs.length} ${esc(platform)} ${NOUN[platform] || "channels"}` : esc(platform)}, ${part(cs)}.`
     : `On ${esc(platform)}, we stream from ${part(cs)}.`).join(" ");
+  return chans.length;
 }
 
 /* --- 3 · attention: the newest show minute by minute (data.sponsor.live.latest), a typical show beside it ------- */
@@ -971,10 +994,11 @@ function renderOnAir() {
         <span class="aired__text"><span class="aired__pkg">${esc(x.package)}</span><span class="aired__label">${say(x.label)}</span></span>
         <span class="aired__go"><span class="aired__watch">Watch from <span class="n">${esc(clock(x.moment.at))}</span></span>${ok(x.moment.liveAt) ? `<span class="aired__live"><span class="n">${fmt(x.moment.liveAt)}</span> watching live</span>` : ""}</span><span class="ss-sr">, ${esc(showName(episode(x.ep)) || `episode ${x.ep}`)} (opens YouTube in a new tab)</span></a></li>`;
   $("aired").innerHTML = groups.map((g) => {
-    const img = cover(g.ep), e = episode(g.ep);
-    const name = showName(e) || `Episode ${g.ep}`;
-    const pic = img ? `<img src="${img.getAttribute("src")}" width="${img.getAttribute("width")}" height="${img.getAttribute("height")}" alt="${esc(name)}" loading="lazy">` : "";
-    return `<li class="aired__ep"><span class="aired__img">${pic}</span><ul class="aired__rows" role="list">${g.items.map(row).join("")}</ul></li>`;
+    const img = cover(g.ep);
+    const pic = img ? `<img src="${img.getAttribute("src")}" width="${img.getAttribute("width")}" height="${img.getAttribute("height")}" alt="" loading="lazy">` : "";
+    // the cover plays its first example, as every cover on the page does; it is a pointer shortcut only (the row below
+    // it is the same link for keyboards and screen readers)
+    return `<li class="aired__ep"><a class="aired__img" href="${esc(g.items[0].moment.url)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">${pic}<span class="ep__play">${PLAY}</span></a><ul class="aired__rows" role="list">${g.items.map(row).join("")}</ul></li>`;
   }).join("");
 }
 
