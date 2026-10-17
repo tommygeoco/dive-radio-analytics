@@ -16,6 +16,14 @@
 // guessing. Caption delays are expected: a due episode with no source stays
 // absent and is tried again on the next daily run.
 //
+// Captions are each upload's own English speech recognition ("en-orig"), and
+// YouTube's "en" track only when an upload has none (2026-10-16). YouTube
+// turning a download away (HTTP 429, its sign-in or bot check) is a delay too:
+// the episode stays pending, its reason names the refusal, and the next run
+// asks again. Only a download that fails for any other reason, a missing
+// yt-dlp or unreadable captions stop the step
+// (audit/AUDIT-2026-10-16-caption-refusals.md).
+//
 // Operator wiring (do not edit cron here): run after postlive-discover.mjs and
 // before snapshot/build-data so the newly created file reaches data.json.
 //
@@ -274,34 +282,53 @@ export function supersedeChapters(chaptersPath, slug, sha256, now = Date.now()) 
   });
 }
 
+// The upload's own English speech recognition ("en-orig") first, as clock-check.mjs asks: "en" can be YouTube's
+// machine translation of another track, and those are the downloads YouTube refused with HTTP 429 on 2026-10-16.
+// "en" only when no "en-orig" file appears. transcripts-pull.test.mjs holds this list equal to clock-check's.
+export const CAPTION_LANGS = Object.freeze(["en-orig", "en"]);
+// YouTube turning this machine away for now — clock-check.mjs's test, held equal to it by transcripts-pull.test.mjs
+export const REFUSED = /HTTP Error 429|Too Many Requests|confirm you(?:['’]| a)re not a bot|Sign in to confirm/i;
+
+// One request per track, in CAPTION_LANGS order. A request that fails (a refusal included) ends the
+// download, so "en" is never asked for after YouTube turned "en-orig" away.
 function downloadEnglishVtt(target, { ytdlpBin = YTDLP_BIN } = {}) {
   const workDir = mkdtempSync(join(tmpdir(), "dive-radio-transcript-"));
   try {
-    execFileSync(ytdlpBin, [
-      "--no-playlist",
-      "--no-warnings",
-      "--no-progress",
-      "--skip-download",
-      "--write-auto-subs",
-      "--sub-langs", "en.*",
-      "--sub-format", "vtt",
-      "--retries", "1",
-      "--fragment-retries", "1",
-      "--socket-timeout", "20",
-      "--output", join(workDir, "%(id)s.%(ext)s"),
-      `https://www.youtube.com/watch?v=${target.videoId}`,
-    ], {
-      encoding: "utf8",
-      timeout: 120000,
-      stdio: ["ignore", "pipe", "pipe"],
-      env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
-    });
-    const files = readdirSync(workDir).filter((name) => name.startsWith(`${target.videoId}.`) && name.endsWith(".vtt")).sort();
-    if (!files.length) throw new Error("YouTube has not published English auto-captions yet");
-    return readFileSync(join(workDir, files[0]), "utf8");
+    for (const lang of CAPTION_LANGS) {
+      execFileSync(ytdlpBin, [
+        "--no-playlist",
+        "--no-warnings",
+        "--no-progress",
+        "--skip-download",
+        "--write-auto-subs",
+        "--sub-langs", lang,
+        "--sub-format", "vtt",
+        "--retries", "1",
+        "--fragment-retries", "1",
+        "--socket-timeout", "20",
+        "--output", join(workDir, "%(id)s.%(ext)s"),
+        `https://www.youtube.com/watch?v=${target.videoId}`,
+      ], {
+        encoding: "utf8",
+        timeout: 120000,
+        stdio: ["ignore", "pipe", "pipe"],
+        env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH ?? "/usr/bin:/bin"}` },
+      });
+      const files = readdirSync(workDir).filter((name) => name.startsWith(`${target.videoId}.`) && name.endsWith(".vtt")).sort();
+      if (files.length) return readFileSync(join(workDir, files[0]), "utf8");
+    }
+    throw new Error("YouTube has not published English auto-captions yet");
   } finally {
     rmSync(workDir, { recursive: true, force: true });
   }
+}
+
+// Why a refused episode waits, in plain words: the page's episode note and the morning alert show it.
+// yt-dlp's own line goes to the run log.
+export function refusalReason(said) {
+  return /HTTP Error 429|Too Many Requests/i.test(said)
+    ? "YouTube refused the caption download for now (too many requests); it is tried again on the next run."
+    : "YouTube refused the caption download until this machine signs in; it is tried again on the next run.";
 }
 
 function errorLine(error) {
@@ -430,11 +457,20 @@ function pullTranscriptFiles({
     }
     let stored = false;
     const hardErrors = [];
+    let refusal = null;
     for (const target of plan.youtubeTargets) {
       let body;
       try {
         body = vttToTranscript(downloadVtt(target));
       } catch (error) {
+        // 2026-10-16: a refusal is a wait, like captions not yet published (PRD v11 rule 24, v13 rules 30–31).
+        // The next upload is still asked: it is another video, and its own English track may be served.
+        const said = `${error?.stderr || ""}\n${error?.message || error}`;
+        if (REFUSED.test(said)) {
+          refusal ||= refusalReason(said);
+          logger.warn(`WARN  transcripts: E${plan.ep} ${target.account || target.videoId} captions refused by YouTube for now — ${errorLine(error)}`);
+          continue;
+        }
         const expectedDelay = /captions pending|not published English auto-captions|no subtitles|no automatic captions|no English auto-captions/i.test(errorLine(error));
         if (!expectedDelay) {
           hardErrors.push(error?.code === "ENOENT" ? `yt-dlp is unavailable at ${ytdlpBin}` : `caption download failed for E${plan.ep}: ${errorLine(error)}`);
@@ -463,8 +499,10 @@ function pullTranscriptFiles({
         throw new Error(hardErrors.join("; "));
       }
       waiting++;
-      record(plan, "pending", `youtube:${plan.youtubeTargets.map((target) => target.videoId).join(",") || "unregistered"}`, "No English captions or owner transcript are available yet.");
-      logger.warn(`WARN  transcripts: E${plan.ep} is due but no English auto-captions are available; it will be tried again tomorrow`);
+      record(plan, "pending", `youtube:${plan.youtubeTargets.map((target) => target.videoId).join(",") || "unregistered"}`, refusal || "No English captions or owner transcript are available yet.");
+      logger.warn(refusal
+        ? `WARN  transcripts: E${plan.ep} is due but YouTube refused its caption download for now; it will be tried again on the next run`
+        : `WARN  transcripts: E${plan.ep} is due but no English auto-captions are available; it will be tried again tomorrow`);
     }
   }
   return { created, replaced: replacedCount, waiting, planned: plans.length };

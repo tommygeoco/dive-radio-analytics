@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import {
+  CAPTION_LANGS,
   isCaptionsTranscript,
   isTranscriptDue,
   planVaultTranscript,
   phoenixCalendarAgeDays,
+  REFUSED,
+  refusalReason,
   replaceCaptionsTranscript,
   restreamTranscriptHeader,
   runTranscriptPull,
@@ -17,10 +20,22 @@ import {
   vttToTranscript,
   writeTranscriptOnce,
 } from "../../../scripts/restream/transcripts-pull.mjs";
+import { CAPTION_LANGS as CLOCK_CAPTION_LANGS, REFUSED as CLOCK_REFUSED } from "../../../scripts/restream/clock-check.mjs";
 import { validateStore as validateChapterStore } from "../chapters.mjs";
 import { sourceStoreIntegrityErrors } from "../source-integrity.mjs";
 
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
+
+// 2026-10-16: both caption readers ask YouTube for the same tracks and tell a refusal the same way
+assert.deepEqual([...CAPTION_LANGS], ["en-orig", "en"], "the upload's own English speech recognition before YouTube's en track");
+assert.deepEqual([...CAPTION_LANGS], [...CLOCK_CAPTION_LANGS], "transcripts and the clock check ask for the same tracks");
+assert.equal(`${REFUSED}`, `${CLOCK_REFUSED}`, "and share one refusal test");
+assert.ok(["HTTP Error 429: Too Many Requests", "Sign in to confirm you’re not a bot", "Sign in to confirm you're not a bot"].every((said) => REFUSED.test(said)));
+assert.ok(!REFUSED.test("YouTube has not published English auto-captions yet") && !REFUSED.test("HTTP Error 403: Forbidden"));
+const TOO_MANY = "YouTube refused the caption download for now (too many requests); it is tried again on the next run.";
+const SIGN_IN = "YouTube refused the caption download until this machine signs in; it is tried again on the next run.";
+assert.equal(refusalReason("ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests"), TOO_MANY);
+assert.equal(refusalReason("ERROR: [youtube] abc123: Sign in to confirm you’re not a bot."), SIGN_IN);
 
 const saturdayMorningPhoenix = Date.parse("2026-08-22T14:00:00Z");
 const fridayMorningPhoenix = Date.parse("2026-08-21T14:00:00Z");
@@ -157,6 +172,42 @@ try {
   let state = JSON.parse(readFileSync(statePath));
   assert.equal(state.entries[slug].reading.state, "pending");
   assert.equal(state.entries[slug].reading.episode, slug);
+  assert.equal(state.entries[slug].reason, "No English captions or owner transcript are available yet.");
+
+  // 2026-10-16: YouTube turning the download away is a wait (exit 20, the chain's waiting path), never a stopped
+  // step. Errors shaped as execFileSync throws them: yt-dlp's words on stderr, the command in the message.
+  const ytdlpError = (said) => Object.assign(new Error(`Command failed: /opt/homebrew/bin/yt-dlp --sub-langs en-orig https://www.youtube.com/watch?v=first\n${said}\n`), { status: 1, stderr: `${said}\n` });
+  const tooMany = ytdlpError("ERROR: Unable to download video subtitles for 'en-orig': HTTP Error 429: Too Many Requests");
+  const botCheck = ytdlpError("ERROR: [youtube] first: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication.");
+  const refusedCalls = [];
+  const refusedWarnings = [];
+  assert.deepEqual(runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: { log() {}, warn: (line) => refusedWarnings.push(line) },
+    downloadVtt(target) { refusedCalls.push(target.videoId); throw tooMany; } }), { created: 0, replaced: 0, waiting: 1, planned: 1 }, "a refusal leaves the episode waiting instead of stopping the step");
+  assert.deepEqual(refusedCalls, ["first", "second"], "the other upload is still asked");
+  assert.equal(existsSync(transcriptPath), false);
+  state = JSON.parse(readFileSync(statePath));
+  assert.equal(state.entries[slug].reading.state, "pending");
+  assert.equal(state.entries[slug].reason, TOO_MANY, "the reason names the refusal in plain words");
+  assert.ok(refusedWarnings.includes("WARN  transcripts: E1 joindiveclub captions refused by YouTube for now — ERROR: Unable to download video subtitles for 'en-orig': HTTP Error 429: Too Many Requests"), "yt-dlp's own words reach the run log");
+  assert.ok(refusedWarnings.includes("WARN  transcripts: E1 is due but YouTube refused its caption download for now; it will be tried again on the next run"));
+  assert.deepEqual(runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: quiet,
+    downloadVtt() { throw botCheck; } }), { created: 0, replaced: 0, waiting: 1, planned: 1 }, "so does YouTube's sign-in check");
+  assert.equal(JSON.parse(readFileSync(statePath)).entries[slug].reason, SIGN_IN);
+  assert.deepEqual(runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: quiet,
+    downloadVtt(target) { if (target.videoId === "first") throw tooMany; throw new Error("captions pending"); } }), { created: 0, replaced: 0, waiting: 1, planned: 1 });
+  assert.equal(JSON.parse(readFileSync(statePath)).entries[slug].reason, TOO_MANY, "a refusal is named even when the other upload has no captions yet");
+  // the next run asks again: one upload refused, the other served
+  assert.deepEqual(runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix + 3600000, logger: quiet,
+    downloadVtt(target) { if (target.videoId === "first") throw tooMany; return vtt; } }), { created: 1, replaced: 0, waiting: 0, planned: 1 });
+  assert.match(readFileSync(transcriptPath, "utf8"), /^Dive Radio E1 — Test\nAired: 2026-08-20 · YouTube: https:\/\/youtube\.com\/watch\?v=second\n/);
+  state = JSON.parse(readFileSync(statePath));
+  assert.deepEqual([state.entries[slug].reading.state, state.entries[slug].reading.objectId, state.entries[slug].reason], ["ready", "youtube:second", null]);
+  rmSync(transcriptPath);
+  // any other download failure still stops the step, even beside a refusal
+  assert.throws(() => runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: quiet,
+    downloadVtt(target) { if (target.videoId === "first") throw tooMany; throw ytdlpError("ERROR: Unable to download video subtitles for 'en-orig': HTTP Error 403: Forbidden"); } }),
+  /caption download failed for E1: ERROR: Unable to download video subtitles for 'en-orig': HTTP Error 403: Forbidden/);
+  assert.equal(JSON.parse(readFileSync(statePath)).entries[slug].reading.state, "failed");
   assert.throws(() => runTranscriptPull({ root: pipelineRoot, vaultDir: emptyVault, now: saturdayMorningPhoenix, logger: quiet,
     downloadVtt() { throw new Error("HTTP 403 forbidden"); } }), /caption download failed/);
   state = JSON.parse(readFileSync(statePath));
@@ -383,4 +434,82 @@ try {
   rmSync(lateRoot, { recursive: true, force: true });
 }
 
-console.log("ok    transcripts pull: day-two gate, vault import and parity, Whisper-copy skip, conflict guard, caption fallback, retry, no-overwrite, and late speaker export replacing captions once passed");
+// 2026-10-16: the real download path against a stand-in yt-dlp that answers the way YouTube did that day, by video
+// id (no network). Each upload is asked for its own English speech recognition ("en-orig") first; "en", which
+// YouTube refused with HTTP 429, only when no "en-orig" file appears, and never after "en-orig" was turned away.
+const tracksRoot = mkdtempSync(join(tmpdir(), "dive-radio-caption-tracks-test-"));
+try {
+  const root = join(tracksRoot, "publisher");
+  mkdirSync(join(root, "data", "restream"), { recursive: true });
+  const bin = join(tracksRoot, "bin");
+  mkdirSync(bin);
+  const ytdlp = join(bin, "yt-dlp");
+  writeFileSync(ytdlp, [
+    "#!/bin/sh",
+    'out=""; lang=""; format=""; url=""',
+    "while [ $# -gt 0 ]; do",
+    '  case "$1" in',
+    '    --output) out="$2"; shift 2 ;;',
+    '    --sub-langs) lang="$2"; shift 2 ;;',
+    '    --sub-format) format="$2"; shift 2 ;;',
+    '    *) url="$1"; shift ;;',
+    "  esac",
+    "done",
+    'id="${url##*v=}"',
+    'printf "%s %s %s\\n" "$id" "$lang" "$format" >> "${0%/*}/requests.log"',
+    'case "$id:$lang" in',
+    '  both*:en-orig|enonly*:en) printf "WEBVTT\\n\\n00:00:01.000 --> 00:00:03.000\\n%s words from %s\\n" "$lang" "$id" > "${out%/*}/$id.$lang.vtt" ;;',
+    "  enonly*:en-orig|none*:en-orig|none*:en) ;;",
+    '  bot*) printf "ERROR: [youtube] %s: Sign in to confirm you\\342\\200\\231re not a bot. Use --cookies-from-browser or --cookies for the authentication.\\n" "$id" >&2; exit 1 ;;',
+    "  *) printf \"ERROR: Unable to download video subtitles for '%s': HTTP Error 429: Too Many Requests\\n\" \"$lang\" >&2; exit 1 ;;",
+    "esac",
+    "",
+  ].join("\n"));
+  chmodSync(ytdlp, 0o755);
+  const shows = [
+    ["2026-10-01", [["joindiveclub", "both0000001"]]],                                  // both tracks; YouTube refuses "en"
+    ["2026-10-02", [["joindiveclub", "enonly00001"]]],                                  // no "en-orig"
+    ["2026-10-03", [["joindiveclub", "none0000001"]]],                                  // no English captions yet
+    ["2026-10-04", [["joindiveclub", "refused0001"]]],                                  // "en-orig" refused (429)
+    ["2026-10-05", [["joindiveclub", "bot00000001"]]],                                  // sign-in (bot) check
+    ["2026-10-06", [["joindiveclub", "refused0002"], ["designertom", "both0000002"]]], // one upload refused, one served
+  ].map(([date, uploads], index) => ({
+    slug: `${date}-dive-radio-tracks-${index + 1}`, title: `Dive Radio: Tracks ${index + 1}`, date, active: true,
+    targets: uploads.map(([account, videoId]) => ({ kind: "youtube", account, videoId })),
+  }));
+  writeFileSync(join(root, "data", "restream", "postlive-registry.json"), JSON.stringify({ shows }));
+  const morning = Date.parse("2026-10-16T14:00:00Z");
+  const warnings = [];
+  assert.deepEqual(runTranscriptPull({ root, vaultDir: join(tracksRoot, "vault"), now: morning, ytdlpBin: ytdlp, logger: { log() {}, warn: (line) => warnings.push(line) } }),
+    { created: 3, replaced: 0, waiting: 3, planned: 6 }, "three saved, three waiting, and the step does not stop");
+  assert.deepEqual(readFileSync(join(bin, "requests.log"), "utf8").trim().split("\n"), [
+    "both0000001 en-orig vtt",
+    "enonly00001 en-orig vtt",
+    "enonly00001 en vtt",
+    "none0000001 en-orig vtt",
+    "none0000001 en vtt",
+    "refused0001 en-orig vtt",
+    "bot00000001 en-orig vtt",
+    "refused0002 en-orig vtt",
+    "both0000002 en-orig vtt",
+  ], "one track per request, en-orig first; en only when en-orig left no file");
+  const transcript = (n) => readFileSync(join(root, "transcripts", `${shows[n - 1].slug}.txt`), "utf8");
+  assert.ok(transcript(1).endsWith("\n00:00:01  en-orig words from both0000001\n"), "the upload's own English track is saved");
+  assert.ok(transcript(2).endsWith("\n00:00:01  en words from enonly00001\n"), "en when the upload has no en-orig");
+  assert.equal(transcript(6), transcriptHeader(shows[5], 6, shows[5].targets[1], "2026-10-16") + "00:00:01  en-orig words from both0000002\n", "the second upload's captions when the first was refused");
+  const entries = JSON.parse(readFileSync(join(root, "data", "restream", "transcript-state.json"), "utf8")).entries;
+  assert.deepEqual(shows.map((show) => [entries[show.slug].reading.state, entries[show.slug].reading.objectId, entries[show.slug].reason]), [
+    ["ready", "youtube:both0000001", null],
+    ["ready", "youtube:enonly00001", null],
+    ["pending", "youtube:none0000001", "No English captions or owner transcript are available yet."],
+    ["pending", "youtube:refused0001", TOO_MANY],
+    ["pending", "youtube:bot00000001", SIGN_IN],
+    ["ready", "youtube:both0000002", null],
+  ]);
+  assert.ok(warnings.includes("WARN  transcripts: E5 joindiveclub captions refused by YouTube for now — ERROR: [youtube] bot00000001: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication."), "yt-dlp's own words reach the run log");
+  assert.deepEqual(sourceStoreIntegrityErrors(root, morning), [], "the ledger matches the files");
+} finally {
+  rmSync(tracksRoot, { recursive: true, force: true });
+}
+
+console.log("ok    transcripts pull: day-two gate, vault import and parity, Whisper-copy skip, conflict guard, caption fallback (en-orig before en), refusals waiting instead of stopping the step, retry, no-overwrite, and late speaker export replacing captions once passed");
