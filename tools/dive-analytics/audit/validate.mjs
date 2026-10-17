@@ -3824,6 +3824,40 @@ try {
         if (seenOnShow && !q.onShow) { bad++; fail("sponsor: a quote from someone on the show ranks before the audience's"); }
         seenOnShow ||= q.onShow;
       }
+      // the owners' featured picks (D19): each name is the first aired call-in of that exact name in contributors.json,
+      // each quote a shipped quote unchanged and still a stored positive row, shown verbatim and linked to its original;
+      // in the lists' order, each pick once, within the caps; a pick the stores do not hold, or a quote from someone on
+      // the show, is absent — never invented
+      const airedCallIns = aired.map(([slug, entry]) => ({ ep: bySlug.get(slug).ep, slug, entry })).sort((x, y) => x.ep - y.ep)
+        .flatMap(({ ep, slug, entry }) => (entry.callIns || []).map((c) => ({ ep, slug, ...c })));
+      const pickedNames = [...new Set(SV.FEATURED_CALLINS)];
+      const callInsWant = pickedNames.map((who) => airedCallIns.find((c) => c.who === who)).filter(Boolean).slice(0, SV.FEATURED_CALLINS_MAX)
+        .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind }));
+      const featuredCalls = sp.callIns.featured;
+      if (!Array.isArray(featuredCalls)) { bad++; fail("sponsor: the featured call-ins are not a list"); }
+      else {
+        if (SV.FEATURED_CALLINS.length > SV.FEATURED_CALLINS_MAX || featuredCalls.length > SV.FEATURED_CALLINS_MAX) { bad++; fail(`sponsor: the featured call-ins (${SV.FEATURED_CALLINS.length} picked, ${featuredCalls.length} shipped) run past their cap of ${SV.FEATURED_CALLINS_MAX}`); }
+        for (const f of featuredCalls) {
+          if (!airedCallIns.some((c) => c.who === f.who && c.ep === f.ep && c.slug === f.slug && c.kind === f.kind)) { bad++; fail(`sponsor: featured ${f.who} (E${f.ep}) is not an aired call-in in contributors.json`); }
+        }
+        if (JSON.stringify(featuredCalls) !== JSON.stringify(callInsWant)) { bad++; fail(`sponsor: the featured call-ins (${featuredCalls.map((c) => c.who).join(", ")}) do not re-derive from the owners' list and contributors.json (${callInsWant.map((c) => c.who).join(", ")})`); }
+      }
+      const pickedIds = [...new Set(SV.FEATURED_QUOTES)];
+      const quotesWant = pickedIds.map((id) => (sp.feedback.quotes || []).find((q) => q.id === id)).filter((q) => q && !q.onShow).slice(0, SV.FEATURED_QUOTES_MAX);
+      const featuredSaid = sp.feedback.featured;
+      if (!Array.isArray(featuredSaid)) { bad++; fail("sponsor: the featured quotes are not a list"); }
+      else {
+        if (SV.FEATURED_QUOTES.length > SV.FEATURED_QUOTES_MAX || featuredSaid.length > SV.FEATURED_QUOTES_MAX) { bad++; fail(`sponsor: the featured quotes (${SV.FEATURED_QUOTES.length} picked, ${featuredSaid.length} shipped) run past their cap of ${SV.FEATURED_QUOTES_MAX}`); }
+        for (const q of featuredSaid) {
+          const shipped = (sp.feedback.quotes || []).find((x) => x.id === q.id);
+          if (!shipped || JSON.stringify(shipped) !== JSON.stringify(q)) { bad++; fail(`sponsor: featured quote ${q.id} is not a shipped quote, unchanged`); continue; }
+          const row = (bySlug.get(q.slug)?.audience?.list || []).find((r) => r.id === q.id);
+          const link = !row ? null : row.source === "x" ? `https://x.com/i/status/${row.id.slice(2)}` : bySlug.get(q.slug)?.links?.[channelOf.get(row.id)] ? `${bySlug.get(q.slug).links[channelOf.get(row.id)]}&lc=${row.id.slice(3)}` : null;
+          if (!row || row.sentiment !== "positive" || row.author !== q.author || SV.quoteText(row.text) !== q.text || q.url !== link) { bad++; fail(`sponsor: featured quote ${q.id} is not its stored comment's author, words and original link`); }
+          if (q.onShow) { bad++; fail(`sponsor: featured quote ${q.id} is from someone on the show`); }
+        }
+        if (JSON.stringify(featuredSaid) !== JSON.stringify(quotesWant)) { bad++; fail(`sponsor: the featured quotes (${featuredSaid.map((q) => q.id).join(", ")}) do not re-derive from the owners' list and the shipped quotes (${quotesWant.map((q) => q.id).join(", ")})`); }
+      }
     }
     // the clock-checks store: each check names the registered upload of its episode
     const targets = new Map(registry.shows.map((s) => [s.slug, new Map((s.targets || []).filter((x) => x.kind === "youtube" && x.videoId).map((x) => [`yt:${x.account}`, x.videoId]))]));
@@ -3860,7 +3894,7 @@ try {
       bad++; drift("sponsor page: it says every episode goes out live on four channels at once, and a live session lacks one of the four");
     }
   } catch (err) { bad++; fail(`sponsor: block threw — ${err.message}`); }
-  if (!bad) ok(`sponsor: data.sponsor re-derives (views, watch, live, channels, ${data.sponsor?.callIns?.total ?? 0} call-ins, ${(data.sponsor?.brands?.list || []).length} brands, every excerpt and link); clock-checks and contributors hold; the page only formats`);
+  if (!bad) ok(`sponsor: data.sponsor re-derives (views, watch, live, channels, ${data.sponsor?.callIns?.total ?? 0} call-ins, ${(data.sponsor?.brands?.list || []).length} brands, every excerpt and link, ${(data.sponsor?.callIns?.featured || []).length} featured call-ins and ${(data.sponsor?.feedback?.featured || []).length} featured quotes as the owners picked them); clock-checks and contributors hold; the page only formats`);
 }
 
 // --- 1x/1y/1z (PRD v9 W26): small-n on data, no trend words over episode health, stored notes only ---

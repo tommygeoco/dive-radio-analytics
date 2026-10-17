@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 4,
+  "version": 5,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -104673,6 +104673,44 @@ window.DIVE_DATA = {
      "onShow": false,
      "calledIn": null
     }
+   ],
+   "featured": [
+    {
+     "id": "x:2100654534661943377",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "author": "@bhori_e",
+     "platform": "X",
+     "text": "I watched the last episode and with how much value I got from that alone, I wouldn’t miss this for anything!",
+     "url": "https://x.com/i/status/2100654534661943377",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "x:2095862955522887905",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "author": "@alxdoyle",
+     "platform": "X",
+     "text": "Which is why the Ramp conversation from last week is the closest thing I’ve seen to an answer. Cohesion over consistency. Jazz. A brand that behaves rather than one that gets applied.",
+     "url": "https://x.com/i/status/2095862955522887905",
+     "likes": 0,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:Ugy6RHppQWH02ApNQRV4AaABAg",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "lydiawere",
+     "platform": "YouTube",
+     "text": "Great content, thanks so much for sharing. Time spent absolutely well.",
+     "url": "https://youtube.com/watch?v=OZG115v6TTg&lc=Ugy6RHppQWH02ApNQRV4AaABAg",
+     "likes": 1,
+     "onShow": false,
+     "calledIn": null
+    }
    ]
   },
   "callIns": {
@@ -104766,6 +104804,44 @@ window.DIVE_DATA = {
     "Attio",
     "Mercury",
     "Netflix"
+   ],
+   "featured": [
+    {
+     "who": "Soleio",
+     "ep": 11,
+     "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
+     "kind": "submission"
+    },
+    {
+     "who": "Evil Rabbit",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+     "kind": "submission"
+    },
+    {
+     "who": "Pietro Schirano",
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+     "kind": "submission"
+    },
+    {
+     "who": "Jared Erondu",
+     "ep": 10,
+     "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+     "kind": "submission"
+    },
+    {
+     "who": "David Hoang",
+     "ep": 12,
+     "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+     "kind": "nomination"
+    },
+    {
+     "who": "Josh Puckett",
+     "ep": 4,
+     "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
+     "kind": "submission"
+    }
    ],
    "list": [
     {

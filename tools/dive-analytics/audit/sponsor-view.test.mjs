@@ -8,7 +8,8 @@
 import assert from "node:assert/strict";
 import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK_MIN_ANCHORS, CLOCK_MAX_SPREAD } from "../clock.mjs";
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
-import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES } from "../sponsor-view.mjs";
+import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
+  featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
 // --- clock.mjs ----------------------------------------------------------------------
@@ -312,6 +313,61 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(view.examples.find((x) => x.package === "Segment").moment, null, "the 40-minute line is not near the recorded time");
   assert.equal(shown.examples.find((x) => x.package === "Mid-roll").moment, null);
   assert.ok(shown.examples.find((x) => x.package === "Mid-roll").reason, "a record the transcript does not bear out shows nothing, with a reason");
+
+  // the owners' featured picks (D19): stored entries in the list's order, each once, within the caps; a pick the
+  // stores do not hold is dropped, never invented; a featured quote is the stored quote object, unchanged
+  assert.ok(FEATURED_CALLINS.length <= FEATURED_CALLINS_MAX && new Set(FEATURED_CALLINS).size === FEATURED_CALLINS.length, "the owners' call-in picks fit the cap, each once");
+  assert.ok(FEATURED_QUOTES.length <= FEATURED_QUOTES_MAX && new Set(FEATURED_QUOTES).size === FEATURED_QUOTES.length, "the owners' quote picks fit the cap, each once");
+  assert.deepEqual([FEATURED_CALLINS_MAX, FEATURED_QUOTES_MAX], [6, 3]);
+  const aired = [
+    { ep: 4, slug: "e4", kind: "submission", who: "Josh Puckett", about: "making things for yourself" },
+    { ep: 8, slug: "e8", kind: "submission", who: "Evil Rabbit", about: "Vercel's creative team builds tools" },
+    { ep: 9, slug: "e9", kind: "submission", who: "Kyle Zantos", about: "the candidate side" },
+    { ep: 11, slug: "e11", kind: "submission", who: "Kyle Zantos", about: "an app idea turned into wireframes" },
+    { ep: 12, slug: "e12", kind: "nomination", who: "David Hoang", nominee: "Jade" },
+  ];
+  assert.deepEqual(featuredCallIns(aired, ["David Hoang", "Nobody Aired", "Evil Rabbit", "Kyle Zantos", "Evil Rabbit"]), [
+    { who: "David Hoang", ep: 12, slug: "e12", kind: "nomination" },
+    { who: "Evil Rabbit", ep: 8, slug: "e8", kind: "submission" },
+    { who: "Kyle Zantos", ep: 9, slug: "e9", kind: "submission" },
+  ], "the list's order, not the episodes'; an unknown name dropped; a repeated pick once; a name's first aired call-in; who, episode, slug and kind only");
+  assert.deepEqual(featuredCallIns(aired, ["evil rabbit", "Evil  Rabbit"]), [], "an exact name only: nothing is matched loosely");
+  assert.deepEqual(featuredCallIns(null), [], "no call-in list, nothing featured");
+  const many = Array.from({ length: 9 }, (_, i) => ({ ep: 4 + i, slug: `e${4 + i}`, kind: "submission", who: `Person ${i}` }));
+  assert.deepEqual(featuredCallIns(many, many.map((c) => c.who)).map((c) => c.who), many.slice(0, FEATURED_CALLINS_MAX).map((c) => c.who), "the cap holds, in order");
+  assert.deepEqual(featuredCallIns([...aired, { ep: 13, slug: "e13", kind: "submission", who: "Soleio" }], ["Nobody", ...many.map((c) => c.who), "Soleio"]).map((c) => c.who), ["Soleio"], "a name the list does not hold takes no place under the cap");
+
+  const stored = [
+    { id: "x:1", ep: 9, slug: "e9", author: "@viewer", platform: "X", text: "Best show so far, watched it twice already.", url: "https://x.com/i/status/1", likes: 2, onShow: false, calledIn: null },
+    { id: "yt:2", ep: 9, slug: "e9", author: "someone", platform: "YouTube", text: "Time spent absolutely well, thank you both.", url: "https://youtube.com/watch?v=V9&lc=2", likes: 1, onShow: false, calledIn: null },
+    { id: "x:3", ep: 10, slug: "e10", author: "@another", platform: "X", text: "I would not miss one of these for anything.", url: "https://x.com/i/status/3", likes: 1, onShow: false, calledIn: null },
+    { id: "x:4", ep: 10, slug: "e10", author: "@extra", platform: "X", text: "A fourth quote, to prove the cap holds here.", url: "https://x.com/i/status/4", likes: 0, onShow: false, calledIn: null },
+    { id: "x:5", ep: 9, slug: "e9", author: "@gennydee", platform: "X", text: "This was fun and in good company, thanks all!", url: "https://x.com/i/status/5", likes: 9, onShow: true, calledIn: 9 },
+  ];
+  const picked = featuredQuotes(stored, ["yt:2", "x:missing", "x:1", "yt:2"]);
+  assert.deepEqual(picked, [stored[1], stored[0]], "verbatim, in the list's order; an unknown id dropped; a repeated id once");
+  assert.notEqual(picked[0], stored[1], "a copy: the shipped quote list is never shared or changed");
+  assert.deepEqual(featuredQuotes(stored, ["x:5", "x:1"]), [stored[0]], "a quote from someone on the show is never featured as the audience's");
+  assert.deepEqual(featuredQuotes(stored, ["x:1", "yt:2", "x:3", "x:4"]).map((q) => q.id), ["x:1", "yt:2", "x:3"], "the cap holds, in order");
+  assert.deepEqual(featuredQuotes(undefined), [], "no quotes, nothing featured");
+
+  // through the projection: the owners' own lists, read from the stores as built
+  const [firstPick, secondPick] = FEATURED_CALLINS;
+  const pickedView = sponsorView({ episodes: eps, contributors: { episodes: {
+    e9: { callIns: [{ kind: "submission", who: secondPick, about: "a later name in the list, aired first" }] },
+    e11: { callIns: [{ kind: "nomination", who: firstPick, nominee: "Someone" }, { kind: "submission", who: "Not Picked", about: "x" }] },
+  } }, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(pickedView.callIns.featured, [{ who: firstPick, ep: 11, slug: "e11", kind: "nomination" }, { who: secondPick, ep: 9, slug: "e9", kind: "submission" }], "the owners' order, the store's own entries");
+  assert.deepEqual(view.callIns.featured, [], "none of the picks aired in the fixture: nothing featured, never invented");
+  assert.deepEqual(sponsorView({ episodes: eps, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).callIns.featured, [], "no call-in list: an empty feature, beside the absent count's reason");
+  const quoted = sponsorView({ episodes: eps.map((e) => (e.ep === 10 ? { ...e, audience: { list: [
+    { id: FEATURED_QUOTES[0], source: "x", author: "@audience", text: "@ridd_design A whole sentence from the audience, long enough to quote.", platform: "X", url: `https://x.com/i/status/${FEATURED_QUOTES[0].slice(2)}`, likes: 0, sentiment: "positive", at: "2026-09-18T00:00:00Z" },
+  ] } } : e)), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" });
+  const shippedQuote = quoted.feedback.quotes.find((q) => q.id === FEATURED_QUOTES[0]);
+  assert.ok(shippedQuote, "the fixture's comment is a shipped quote");
+  assert.deepEqual(quoted.feedback.featured, [shippedQuote], "a featured quote is the shipped quote, unchanged");
+  assert.equal(quoted.feedback.featured[0].text, "A whole sentence from the audience, long enough to quote.");
+  assert.deepEqual(view.feedback.featured, [], "none of the picked ids is stored in the fixture");
 }
 
-console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out, and absent inputs stay absent");
+console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out, the owners' featured call-ins and quotes are stored entries in their order within the caps, and absent inputs stay absent");

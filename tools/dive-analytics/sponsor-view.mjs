@@ -22,13 +22,15 @@
 //     order, less only what cleanSpeech names; a timestamp links only by clock.mjs;
 //   • nothing here says a moment was paid for: a partner moment is what the
 //     transcript says (named as a partner, or a chapter about it); the paid
-//     formats are shown only through EXAMPLES, which cite the owners' records.
+//     formats are shown only through EXAMPLES, which cite the owners' records;
+//   • what the page features is the owners' pick (FEATURED_CALLINS,
+//     FEATURED_QUOTES), copied from the stored entries, never a ranking made here.
 
 import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaksFor } from "./baselines.mjs";
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 4;
+export const SPONSOR_VERSION = 5;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -84,6 +86,44 @@ export const EXAMPLES = Object.freeze([
   { package: "Segment", format: "A named segment", label: "One Up Weekly, brought to you by Lovable", partner: "Lovable", ep: 5, near: 4830, record: "sponsor-recap-lovable-2026-08.md" },
   { package: "Build", format: "A live build", label: "Notion as Code, Notion’s August build", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
 ]);
+
+// The owners' featured picks (SPONSOR-2026-10-11.md D19, 2026-10-16): the
+// call-ins a design- or developer-tool buyer would know by name, and the
+// audience's words a buyer would believe. Picking is a data-layer decision, so
+// the page shows these lists as stored and filters nothing; the owners change a
+// pick by editing a list here. A name is a call-in's exact `who` as the
+// published episode notes give it (a featured name is that name's first aired
+// call-in); a quote is a stored quote's id (feedback.quotes), copied unchanged.
+// A pick the stores do not hold is dropped, never invented; so is a quote from
+// someone on the show (onShow), because a featured quote is the audience's
+// voice. Each list keeps its order, holds a pick once, and stops at its cap;
+// validator 1s re-derives both.
+export const FEATURED_CALLINS_MAX = 6;
+export const FEATURED_CALLINS = Object.freeze(["Soleio", "Evil Rabbit", "Pietro Schirano", "Jared Erondu", "David Hoang", "Josh Puckett"]);
+export const FEATURED_QUOTES_MAX = 3;
+export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377", "x:2095862955522887905", "yt:Ugy6RHppQWH02ApNQRV4AaABAg"]);
+
+export function featuredCallIns(list, names = FEATURED_CALLINS) {
+  const out = [];
+  for (const who of names) {
+    if (out.length >= FEATURED_CALLINS_MAX) break;
+    if (out.some((c) => c.who === who)) continue;
+    const c = (list || []).find((x) => x.who === who);
+    if (c) out.push({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind });
+  }
+  return out;
+}
+
+export function featuredQuotes(quotes, ids = FEATURED_QUOTES) {
+  const out = [];
+  for (const id of ids) {
+    if (out.length >= FEATURED_QUOTES_MAX) break;
+    if (out.some((q) => q.id === id)) continue;
+    const q = (quotes || []).find((x) => x.id === id);
+    if (q && !q.onShow) out.push({ ...q });
+  }
+  return out;
+}
 
 const CHANNELS = Object.freeze([
   { key: "yt:designertom", label: "DesignerTom", platform: "YouTube", unit: "subscribers", field: "subscribers" },
@@ -450,6 +490,7 @@ function feedbackBlock(episodes, callIns, commentChannels) {
     positive: rows.filter((r) => r.sentiment === "positive").length,
     episodes: episodes.filter((e) => e.audience).length,
     quotes,
+    featured: featuredQuotes(quotes),
   };
 }
 
@@ -472,12 +513,12 @@ export function teamsNamed(list) {
 }
 
 function callInsBlock(episodes, contributors) {
-  if (!contributors?.episodes) return { total: null, reason: "The call-in list has not been imported." };
+  if (!contributors?.episodes) return { total: null, reason: "The call-in list has not been imported.", featured: [] };
   const bySlug = new Map(episodes.map((e) => [e.slug, e]));
   const rows = Object.entries(contributors.episodes)
     .filter(([slug]) => bySlug.has(slug))
     .sort(([a], [b]) => bySlug.get(a).ep - bySlug.get(b).ep);
-  if (!rows.length) return { total: null, reason: "No aired episode has an imported call-in list." };
+  if (!rows.length) return { total: null, reason: "No aired episode has an imported call-in list.", featured: [] };
   const list = rows.flatMap(([slug, entry]) => entry.callIns.map((c) => ({ ep: bySlug.get(slug).ep, slug, ...c })));
   return {
     total: list.length,
@@ -495,6 +536,7 @@ function callInsBlock(episodes, contributors) {
       return { ep, slug, portfolios: shown.length, reviewers: reviewersOf(shown).map((r) => r.who) };
     }),
     teamsNamed: teamsNamed(list),
+    featured: featuredCallIns(list),
     list,
     updatedAt: contributors.updatedAt || null,
   };
