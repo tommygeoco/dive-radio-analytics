@@ -398,6 +398,9 @@ button { font: inherit; color: inherit; }
        entry price and one primary. That primary takes the active tab's geometry, 48 px at radius full, concentric with
        the 64 px pill's 8 px inset. It and the desktop top-bar button show only while no booking button is on screen,
        and hand focus to whichever control replaces them; on desktop the Packages pill stays beside the button. */
+  /* the hidden attribute always wins: a class that sets display never brings a hidden element back */
+  [hidden] { display: none !important; }
+
   /* the page's own spacing tokens, built from the density tokens */
   :root { --safe-left: env(safe-area-inset-left, 0px); --safe-right: env(safe-area-inset-right, 0px);
     --act-gap: calc(var(--d-section) * 2);     /* between acts: 48 on phones, 72 from 48rem */
@@ -492,6 +495,7 @@ button { font: inherit; color: inherit; }
   .wall__rest.ss-x-carousel { margin-inline: calc(-1 * (var(--d-gutter) + var(--safe-left))) calc(-1 * (var(--d-gutter) + var(--safe-right)));
     padding-inline: calc(var(--d-gutter) + var(--safe-left)) calc(var(--d-gutter) + var(--safe-right)); scroll-padding-inline: calc(var(--d-gutter) + var(--safe-left)); }
   .wall__rest.ss-x-carousel > * { flex-basis: 200px; scroll-snap-align: start; }
+  .wall__rest.ss-x-carousel { overflow-y: hidden; }
   @media (min-width: 48rem) {
     .wall { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--d-stack); }
     .wall__rest { display: contents; }
@@ -510,14 +514,15 @@ button { font: inherit; color: inherit; }
   .reach__list li { min-width: 0; padding-top: var(--d-row); border-top: 1px solid var(--line); }
   .reach__fig { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; font-size: var(--text-body); color: var(--fg-2); }
   .reach__fig .n { font-size: var(--text-display); line-height: var(--lh-display); font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); }
-  .reach__where { margin: 4px 0 0; font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-3); }
+  .reach__where { margin: 4px 0 0; font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-3); text-wrap: balance; }
+  @media (max-width: 63.99rem) { .reach__fig { flex-direction: column; align-items: flex-start; } .reach__unit { font-size: var(--text-body-sm); line-height: var(--lh-body-sm); } }
 
   /* 2 · who is in the room: the designers who reviewed work on air, the teams the call-ins covered, everyone */
   .said { margin: 0; max-width: 40em; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
   @media (min-width: 48rem) { .said { font-size: var(--text-title); } }
   .nw { white-space: nowrap; }   /* a name never breaks across lines; names in prose stay regular weight */
   .said + .said { margin-top: var(--d-card); }
-  .all { margin-top: var(--d-section); }
+  .all { margin-top: var(--d-card); }
   .all .ss-btn--link { white-space: normal; text-align: left; }
   .all .ss-btn--link > span { text-wrap: balance; }
   .all .nw { white-space: nowrap; }
@@ -527,7 +532,17 @@ button { font: inherit; color: inherit; }
   .ss-sheet__head.roster__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: var(--d-inner); }
   .roster__head .roster__sub { grid-column: 1 / -1; margin-top: 0; }
   .roster__body:focus-visible { outline-offset: -2px; }
-  .ss-sheet .roster__body { padding-top: var(--d-inner); }
+  .ss-sheet .roster__body { padding-top: var(--d-inner); padding-bottom: calc(var(--safe-bottom) + var(--d-inner)); }
+  .roster .ss-dialog__title { outline: none; }   /* the title takes focus on open (components.md 9.1) */
+  .ss-sheet.roster .ss-sheet__handle, .ss-sheet.roster .roster__head { touch-action: none; cursor: grab; }
+  .ss-sheet.roster.is-dragging { transition: none; }
+  .ss-sheet.roster.is-leaving { transform: translateY(100%); transition: transform 500ms var(--ease-sheet); }
+  .ss-sheet.roster.is-settling { transition: transform 500ms var(--ease-sheet); }
+  .ss-dialog.roster.is-leaving { animation: roster-dialog-out 150ms ease forwards; }
+  .ss-scrim.is-leaving { animation: roster-scrim-out 150ms ease forwards; }
+  .ss-scrim.is-leaving-slow { animation: roster-scrim-out 500ms var(--ease-sheet) forwards; }
+  @keyframes roster-dialog-out { to { opacity: 0; transform: translate(-50%, -50%) scale(0.97); } }
+  @keyframes roster-scrim-out { to { opacity: 0; } }
   .roster__body section + section { margin-top: var(--d-section); }
   .roster__body h3 { margin: 0 0 var(--d-inner); font-size: var(--text-body); font-weight: 600; color: var(--fg-1); }
   .roster__body ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
@@ -535,7 +550,7 @@ button { font: inherit; color: inherit; }
   .roster__body .who { color: var(--fg-1); }
 
   /* the tools on the show: one sentence, and a way to hear the lead names */
-  .tools__go { margin-top: var(--d-section); display: flex; flex-wrap: wrap; column-gap: var(--d-section); row-gap: var(--d-card); }
+  .tools__go { margin-top: var(--d-card); display: flex; flex-wrap: wrap; column-gap: var(--d-section); row-gap: var(--d-card); }
   .tools__go .ss-btn--link { white-space: normal; text-align: left; }
 
   /* 3 · attention: the newest show minute by minute, and a typical show beside it */
@@ -576,22 +591,16 @@ button { font: inherit; color: inherit; }
   @media (max-width: 47.99rem) { .facts li { font-size: var(--text-body-sm); line-height: var(--lh-body-sm); } }
   @media (min-width: 48rem) { .facts li { grid-template-columns: max-content minmax(0, 1fr); } }
 
-  /* the viewers' own words: the house quote, three across from 64rem */
+  /* the viewers' own words: the house quote, stacked below 64rem at a readable measure, three across from 64rem.
+     Nothing here scrolls. */
   .voices { margin-top: var(--d-section); }
   .voices__lead { margin: 0; max-width: 40em; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); }
   @media (min-width: 48rem) { .voices__lead { font-size: var(--text-title); } }
-  .voices__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--d-card); }
+  .voices__list { margin: var(--d-inner) 0 0; padding: 0; list-style: none; display: grid; gap: var(--d-inner); }
+  @media (min-width: 64rem) { .voices__list { margin-top: var(--d-card); gap: var(--d-card); } }
   @media (min-width: 64rem) { .voices__list { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--d-section); } }
+  .voices__list .ss-x-quote { margin: 0; max-width: 40em; }
   .voices__list .ss-x-quote footer { display: flex; flex-wrap: wrap; column-gap: var(--d-inner); }
-  .voices__list .ss-x-quote { margin: 0; }
-  @media (max-width: 63.99rem) {
-    .voices__list { margin-top: var(--d-inner); }
-    .voices__list.ss-x-carousel { margin-inline: calc(-1 * (var(--d-gutter) + var(--safe-left))) calc(-1 * (var(--d-gutter) + var(--safe-right)));
-      padding-inline: calc(var(--d-gutter) + var(--safe-left)) calc(var(--d-gutter) + var(--safe-right)); scroll-padding-inline: calc(var(--d-gutter) + var(--safe-left)); }
-    .voices__list.ss-x-carousel > * { flex-basis: 272px; scroll-snap-align: start; }
-  }
-  @media (min-width: 48rem) and (max-width: 63.99rem) { .voices__list.ss-x-carousel > * { flex-basis: 320px; } }
-  @media (min-width: 64rem) { .voices__list { margin-top: var(--d-card); } }
 
   /* 4 · on air: one example of each format, in the offer's order: its name, the hosts' own words (or the owners'
      label where the stored line can't be shown as said), and a link to that second */
@@ -601,6 +610,7 @@ button { font: inherit; color: inherit; }
   .aired__fmt { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
   .aired__body { min-width: 0; }
   .aired__quote { margin: 0; }
+  .aired__quote--label { border-left-color: transparent; }   /* the quote's text edge, without claiming a quotation */
   .aired__label { margin: 0; font-size: var(--text-body); line-height: 1.5; color: var(--fg-1); }
   .aired__foot { margin: 8px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--d-inner); row-gap: 4px; font-size: var(--text-meta); color: var(--fg-3); }
   .aired__quote .aired__foot { margin-top: 4px; }
@@ -720,7 +730,7 @@ button { font: inherit; color: inherit; }
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__copy">
       <h1 id="hero-title">Put your tool on the live show for designers who build.</h1>
-      <p class="hero__line" id="hero-line">Dive Radio is segments and call-ins with Tommy Geoco and Ridd, live every Thursday at <span class="n">1</span>&nbsp;PM&nbsp;Pacific on YouTube and X.</p>
+      <p class="hero__line" id="hero-line">Dive Radio is segments and <span class="nw">call-ins</span> with Tommy Geoco and Ridd, live every Thursday at <span class="n">1</span>&nbsp;PM&nbsp;Pacific on YouTube and X.</p>
     </div>
     <ul class="proof" id="proof" role="list" hidden></ul>
     <div class="hero__act">
@@ -759,7 +769,7 @@ button { font: inherit; color: inherit; }
     <div class="ss-panel room" id="room"></div>
     <div class="voices" id="voices" hidden>
       <p class="voices__lead" id="voices-lead"></p>
-      <ul class="voices__list ss-x-carousel" id="voices-list" role="list"></ul>
+      <ul class="voices__list" id="voices-list" role="list"></ul>
     </div>
   </section>
 
@@ -911,12 +921,12 @@ function renderHero() {
   const t = S?.live?.typical || {};
   const partners = (S?.partners || []).map((p) => p.name).filter(Boolean);
   const length = ok(t.durationMin) && t.durationMin > 0 ? `${hoursWord(t.durationMin)} of ` : "";
-  $("hero-line").innerHTML = `Dive Radio is ${length}segments and call-ins with Tommy Geoco and Ridd, live every Thursday at <span class="n">1</span>&nbsp;PM&nbsp;Pacific on YouTube and X.${partners.length ? ` ${list(partners.map(esc))} ${partners.length > 1 ? "are partners" : "is a partner"} this&nbsp;season.` : ""}`;
+  $("hero-line").innerHTML = `Dive Radio is ${length}segments and <span class="nw">call-ins</span> with Tommy Geoco and Ridd, live every Thursday at <span class="n">1</span>&nbsp;PM&nbsp;Pacific on YouTube and X.${partners.length ? ` ${list(partners.map(esc))} ${partners.length > 1 ? "are partners" : "is a partner"} this&nbsp;season.` : ""}`;
   const v = S?.views || {}, c = S?.callIns || {};
   const cells = [
     ok(v.total) && [fmt(v.total), ok(v.episodes) ? `views across <span class="n">${fmt(v.episodes)}</span> episodes` : "views so far"],
     ok(v.perEpisode) && [fmt(v.perEpisode), "views an episode, on average"],
-    ok(c.total) && [fmt(c.total), "community call-ins aired"],
+    ok(c.total) && [fmt(c.total), `community <span class="nw">call-ins</span> aired`],
   ].filter(Boolean);
   // fewer than two figures is not a proof list: it steps aside
   $("proof").hidden = cells.length < 2;
@@ -927,7 +937,11 @@ function renderHero() {
 function renderReach() {
   const chans = (S?.audience?.channels || []).filter((c) => ok(c.count) && c.label);
   $("reach").hidden = !chans.length;
-  $("reach-list").innerHTML = chans.map((c) => `<li><p class="reach__fig"><span class="n">${fmt(c.count)}</span> ${esc(c.unit || "")}</p><p class="reach__where">${esc(c.label)} on ${esc(c.platform)}</p></li>`).join("");
+  // the line says what the cells show: four channels when all four are there, otherwise the platforms that are
+  const platforms = [...new Set(chans.map((c) => c.platform).filter(Boolean))];
+  document.querySelector(".reach__lead").textContent = chans.length === 4 ? "We go out live on four channels at once."
+    : `We go out live on ${list(platforms)}${chans.length > 1 ? " at once" : ""}.`;
+  $("reach-list").innerHTML = chans.map((c) => `<li><p class="reach__fig"><span class="n">${fmt(c.count)}</span> <span class="reach__unit">${esc(c.unit || "")}</span></p><p class="reach__where">${esc(c.label)} on ${esc(c.platform)}</p></li>`).join("");
 }
 
 /* --- the wall: the covers newest first, each a link to its upload (phones: every one; from 48rem the newest ten) */
@@ -965,7 +979,10 @@ function renderPeople() {
     said.push(`${when ? `On ${when}` : "On the newest show"}, ${who} reviewed <span class="n">${fmt(r.portfolios)}</span>&nbsp;portfolios the community sent in.`);
   }
   // with neither, the claim still stands on the count itself
-  if (!said.length) { const from = day(episode(c.fromEp)?.premiere); said.push(`${from ? `Since ${from}, ` : ""}<span class="n">${fmt(c.total)}</span> call-ins${ok(c.people) ? ` from <span class="n">${fmt(c.people)}</span> people and teams` : ""} have aired.`); }
+  if (!said.length) {
+    // with no names to show, the claim can't promise designers you follow; it says what the count shows
+    $("people-title").textContent = "The community calls in.";
+    const from = day(episode(c.fromEp)?.premiere); said.push(`${from ? `Since ${from}, ` : ""}<span class="n">${fmt(c.total)}</span> call-ins${ok(c.people) ? ` from <span class="n">${fmt(c.people)}</span> people and teams` : ""} have aired.`); }
   $("people-said").innerHTML = said.map((s) => `<p class="said">${s}</p>`).join("");
   $("people-all").innerHTML = `<button type="button" class="ss-btn ss-btn--link" id="roster-toggle" aria-haspopup="dialog" aria-controls="roster"><span>See all <span class="n">${fmt(c.total)}</span> call-ins${ok(c.people) ? `, from <span class="n">${fmt(c.people)}</span> people and teams` : ""}</span></button>`;
   // everyone, by show, newest first; within a show the videos and nominations come before the portfolios
@@ -982,20 +999,23 @@ function renderPeople() {
 /* --- the tools on the show: names said on air, by how many episodes they came up in (data.sponsor.brands) ----- */
 function renderTools() {
   const B = S?.brands, N = B?.episodes;
-  const all = (B?.list || []).filter((b) => b?.name && ok(b.episodes));
+  // partners' counts include their own reads, so this act names only the tools that aren't partners
+  const all = (B?.list || []).filter((b) => b?.name && ok(b.episodes) && !b.partner);
   if (!all.length || !ok(N)) { $("tools").hidden = true; return; }
   const every = all.filter((b) => b.episodes === N).slice(0, 3);
   const lead = every.length ? every : [all[0]];
   $("tools-title").textContent = every.length
     ? `${list(lead.map((b) => b.name))} ${lead.length > 1 ? "have" : "has"} come up in all ${N} episodes.`
     : `${lead[0].name} has come up in ${lead[0].episodes} of ${N} episodes.`;
-  // the next four by episodes, said once each (a stable sort keeps the stored order on ties)
-  const rest = all.filter((b) => !lead.includes(b)).sort((a, z) => z.episodes - a.episodes).slice(0, 4);
+  // the next tools by episodes, in whole tie groups: the first group, and the next only while four names or fewer
+  const rest = all.filter((b) => !lead.includes(b)).sort((a, z) => z.episodes - a.episodes);
   const groups = [];
   for (const b of rest) { const g = groups[groups.length - 1]; if (g && g.k === b.episodes) g.names.push(b.name); else groups.push({ k: b.episodes, names: [b.name] }); }
-  const part = (g, first) => `${list(g.names.map(person))} ${first ? "came up in" : "in"} <span class="n">${g.k}</span>${first ? " of them" : ""}${g.names.length > 1 ? " each" : ""}`;
-  $("tools-line").innerHTML = groups.length ? `${part(groups[0], true)}${groups.length > 1 ? `, and ${list(groups.slice(1).map((g) => part(g, false)))}` : ""}.` : "";
-  $("tools-line").hidden = !groups.length;
+  const shown = [];
+  for (const g of groups) { if (shown.length && shown.reduce((n, x) => n + x.names.length, 0) + g.names.length > 4) break; shown.push(g); if (shown.length === 2) break; }
+  const part = (g, first) => `${list(g.names.map(person))}${first && g.names.length > 1 ? " each" : ""} ${first ? "came up in" : "in"} <span class="n">${g.k}</span>${first ? " of them" : ""}`;
+  $("tools-line").innerHTML = shown.length ? `${part(shown[0], true)}${shown[1] ? `, and ${part(shown[1], false)}` : ""}.` : "";
+  $("tools-line").hidden = !shown.length;
   // a way to hear the first of them on air: its moment in the newest show it came up in
   const hear = lead.slice(0, 1).map((b) => { const m = (b.moments || []).filter((x) => x?.url).sort((a, z) => z.ep - a.ep)[0]; return m ? { b, m } : null; }).filter(Boolean);
   $("tools-go").innerHTML = hear.map(({ b, m }) => `<a class="ss-btn ss-btn--link" href="${esc(m.url)}" target="_blank" rel="noopener"><span>Hear ${esc(b.name)} come up${episode(m.ep)?.premiere ? ` on ${day(episode(m.ep).premiere)}` : ""}</span>${OUT}</a>`).join("");
@@ -1085,7 +1105,7 @@ function renderOnAir() {
     const foot = `${e?.premiere ? `<span>${day(e.premiere)}</span>` : ""}<a class="ss-x-quote__link" href="${esc(m.url)}" target="_blank" rel="noopener">Watch from <span class="n">${esc(clock(m.at))}</span><span class="ss-sr">, ${esc(showName(e) || `episode ${x.ep}`)} (opens YouTube in a new tab)</span></a>${ok(m.liveAt) ? `<span><span class="n">${fmt(m.liveAt)}</span> watching live</span>` : ""}`;
     const body = clean(x)
       ? `<blockquote class="ss-x-quote aired__quote"><p>“${say(m.text)}”</p><footer class="aired__foot">${foot}</footer></blockquote>`
-      : `<p class="aired__label">${say(x.label)}</p><p class="aired__foot">${foot}</p>`;
+      : `<div class="ss-x-quote aired__quote aired__quote--label"><p class="aired__label">${say(x.label)}</p><p class="aired__foot">${foot}</p></div>`;
     return `<li class="aired__item"><h3 class="aired__fmt">${esc(fmtName(x))}</h3><div class="aired__body">${body}</div></li>`;
   }).join("");
 }
@@ -1148,7 +1168,7 @@ document.addEventListener("click", (ev) => {
 
 // everyone who called in opens in the system's dialog (from 48rem) or bottom sheet (phones): the page behind goes
 // inert, Escape and the scrim close it, and focus comes back to the link that opened it
-const rosterState = { opener: null };
+const rosterState = { opener: null, leaving: false };
 function openRoster(opener) {
   const dlg = $("roster"), scrim = $("roster-scrim"), wide = matchMedia("(min-width: 48rem)").matches;
   const c = S?.callIns;
@@ -1156,27 +1176,76 @@ function openRoster(opener) {
   const sub = ok(c?.total) ? `<span class="n">${fmt(c.total)}</span> call-ins${ok(c.people) ? ` from <span class="n">${fmt(c.people)}</span> people and teams` : ""}, newest show first` : "";
   dlg.className = wide ? "ss-dialog ss-dialog--wide roster" : "ss-sheet roster";
   dlg.innerHTML = wide
-    ? `<div class="ss-dialog__head"><h2 class="ss-dialog__title" id="roster-title">${title}</h2>${sub ? `<p class="roster__sub">${sub}</p>` : ""}</div><div class="ss-dialog__body roster__body" id="roster-list" tabindex="0" role="region" aria-label="${title}, by show">${rosterHTML}</div><button type="button" class="ss-btn ss-btn--ghost ss-btn--icon ss-dialog__close" id="roster-close" aria-label="Close">${CLOSE}</button>`
-    : `<div class="ss-sheet__handle" aria-hidden="true"></div><div class="ss-sheet__head roster__head"><h2 class="ss-dialog__title" id="roster-title">${title}</h2><button type="button" class="ss-btn ss-btn--ghost ss-btn--icon" id="roster-close" aria-label="Close">${CLOSE}</button>${sub ? `<p class="roster__sub">${sub}</p>` : ""}</div><div class="ss-sheet__body roster__body" id="roster-list" tabindex="0" role="region" aria-label="${title}, by show">${rosterHTML}</div>`;
+    ? `<div class="ss-dialog__head"><h2 class="ss-dialog__title" id="roster-title" tabindex="-1">${title}</h2>${sub ? `<p class="roster__sub">${sub}</p>` : ""}</div><div class="ss-dialog__body roster__body" id="roster-list" tabindex="0" role="region" aria-label="${title}, by show">${rosterHTML}</div><button type="button" class="ss-btn ss-btn--ghost ss-btn--icon ss-dialog__close" id="roster-close" aria-label="Close">${CLOSE}</button>`
+    : `<div class="ss-sheet__handle" aria-hidden="true"></div><div class="ss-sheet__head roster__head"><h2 class="ss-dialog__title" id="roster-title" tabindex="-1">${title}</h2><button type="button" class="ss-btn ss-btn--ghost ss-btn--icon" id="roster-close" aria-label="Close">${CLOSE}</button>${sub ? `<p class="roster__sub">${sub}</p>` : ""}</div><div class="ss-sheet__body roster__body" id="roster-list" tabindex="0" role="region" aria-label="${title}, by show">${rosterHTML}</div>`;
   rosterState.opener = opener || null;
   for (const el of [$("topbar"), $("top"), $("bookbar")]) el.setAttribute("inert", "");
   document.documentElement.classList.add("is-modal");
   scrim.hidden = false; dlg.hidden = false;
-  $("roster-close").addEventListener("click", closeRoster);
-  $("roster-close").focus();
+  $("roster-close").addEventListener("click", () => closeRoster());
+  if (!wide) dragSheet(dlg);
+  $("roster-title").focus();
 }
+// the exit mirrors the entry: the dialog fades and shrinks (150 ms), the sheet slides down (500 ms, the recipe's curve);
+// both are instant when reduced motion is asked for
+const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 function closeRoster() {
-  const dlg = $("roster");
-  if (dlg.hidden) return;
-  dlg.hidden = true; $("roster-scrim").hidden = true; dlg.innerHTML = "";
-  for (const el of [$("topbar"), $("top")]) el.removeAttribute("inert");
-  // the booking bar returns to the state its observer last set
-  if ($("bookbar").dataset.shown === "true") $("bookbar").removeAttribute("inert");
-  document.documentElement.classList.remove("is-modal");
-  rosterState.opener?.focus({ preventScroll: true });
+  const dlg = $("roster"), scrim = $("roster-scrim");
+  if (dlg.hidden || rosterState.leaving) return;
+  const sheet = dlg.classList.contains("ss-sheet");
+  const finish = () => {
+    rosterState.leaving = false;
+    dlg.hidden = true; scrim.hidden = true; dlg.innerHTML = ""; dlg.className = ""; dlg.removeAttribute("style");
+    scrim.className = "ss-scrim";
+    for (const el of [$("topbar"), $("top")]) el.removeAttribute("inert");
+    // the booking bar returns to the state its observer last set
+    if ($("bookbar").dataset.shown === "true") $("bookbar").removeAttribute("inert");
+    document.documentElement.classList.remove("is-modal");
+    rosterState.opener?.focus({ preventScroll: true });
+  };
+  if (calm()) { finish(); return; }
+  rosterState.leaving = true;
+  dlg.style.removeProperty("transform");
+  dlg.classList.remove("is-dragging", "is-settling");
+  dlg.classList.add("is-leaving");
+  scrim.classList.add(sheet ? "is-leaving-slow" : "is-leaving");
+  let done = false;
+  const end = () => { if (!done) { done = true; finish(); } };
+  dlg.addEventListener(sheet ? "transitionend" : "animationend", end, { once: true });
+  setTimeout(end, sheet ? 600 : 250);   // a backstop if the event never fires
+}
+// the sheet follows a finger on its handle or head; let go past a quarter of its height, or with a flick, and it
+// slides away; anything less springs back
+function dragSheet(sheet) {
+  const grips = [sheet.querySelector(".ss-sheet__handle"), sheet.querySelector(".roster__head")].filter(Boolean);
+  let start = null;
+  const move = (ev) => {
+    if (!start) return;
+    const dy = Math.max(0, ev.clientY - start.y);
+    start.last = { y: ev.clientY, t: ev.timeStamp };
+    sheet.style.transform = `translateY(${dy}px)`;
+  };
+  const up = (ev) => {
+    if (!start) return;
+    const dy = Math.max(0, ev.clientY - start.y), dt = Math.max(1, ev.timeStamp - start.t);
+    const flick = dy / dt > 0.5;
+    sheet.classList.remove("is-dragging");
+    const h = sheet.getBoundingClientRect().height;
+    start = null;
+    removeEventListener("pointermove", move); removeEventListener("pointerup", up); removeEventListener("pointercancel", up);
+    if (dy > h * 0.25 || (flick && dy > 24)) { closeRoster(); return; }
+    sheet.classList.add("is-settling"); sheet.style.transform = "translateY(0)";
+    sheet.addEventListener("transitionend", () => { sheet.classList.remove("is-settling"); sheet.style.removeProperty("transform"); }, { once: true });
+  };
+  for (const g of grips) g.addEventListener("pointerdown", (ev) => {
+    if (ev.target.closest("button") || rosterState.leaving) return;
+    start = { y: ev.clientY, t: ev.timeStamp };
+    sheet.classList.add("is-dragging");
+    addEventListener("pointermove", move); addEventListener("pointerup", up); addEventListener("pointercancel", up);
+  });
 }
 document.addEventListener("click", (ev) => { const t = ev.target.closest("#roster-toggle"); if (t) openRoster(t); });
-$("roster-scrim").addEventListener("click", closeRoster);
+$("roster-scrim").addEventListener("click", () => closeRoster());
 $("roster").addEventListener("keydown", (ev) => {
   if (ev.key === "Escape") { ev.preventDefault(); closeRoster(); return; }
   if (ev.key !== "Tab") return;
@@ -1190,7 +1259,7 @@ $("roster").addEventListener("keydown", (ev) => {
 // a scroller fades the edge it can still move toward (the system carousel's masks)
 function edgesX(el) { const max = el.scrollWidth - el.clientWidth; el.classList.toggle("more-left", max > 1 && el.scrollLeft > 1); el.classList.toggle("more-right", max > 1 && el.scrollLeft < max - 1); }
 function watchScrollers() {
-  for (const rail of [$("wall-rest"), $("voices-list")]) {
+  for (const rail of [$("wall-rest")]) {
     if (!rail) continue;
     edgesX(rail); rail.addEventListener("scroll", () => edgesX(rail), { passive: true }); addEventListener("resize", () => edgesX(rail));
   }
@@ -1255,7 +1324,7 @@ function watchBars() {
   };
   // the hero's button has scrolled away only once it has left by the top (read on every scroll, so a jump that
   // never crosses the observed band still counts)
-  const passed = () => hero.getBoundingClientRect().bottom <= 56;
+  const passed = () => hero.getBoundingClientRect().bottom <= $("topbar").getBoundingClientRect().bottom;
   const update = () => show(passed() && inView.size === 0);
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) { if (e.isIntersecting) inView.add(e.target); else inView.delete(e.target); }
