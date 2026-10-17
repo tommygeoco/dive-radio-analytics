@@ -86,7 +86,11 @@ function readState(path) {
 }
 
 export function checkScheduler({
-  read = () => spawnSync("openclaw", ["cron", "list", "--all", "--json"], { encoding: "utf8", maxBuffer: 8 * 1024 * 1024, timeout: 30_000 }),
+  // Gateway RPC without Slack delivery previews: the same jobs with payload and
+  // state in under a second (hinterlands runbook W3-09, 2026-10-17). `cron list`
+  // built a preview per job, 11-33 s per call, with rate-limit bursts.
+  read = () => spawnSync("openclaw", ["gateway", "call", "cron.list", "--json", "--timeout", "60000", "--params",
+    JSON.stringify({ includeDisabled: true, includeDeliveryPreviews: false, limit: 200 })], { encoding: "utf8", maxBuffer: 8 * 1024 * 1024, timeout: 65_000 }),
   enable = (id) => spawnSync("openclaw", ["cron", "enable", id, "--json"], { encoding: "utf8", maxBuffer: 1024 * 1024, timeout: 30_000 }),
   queue = (lines) => appendQueueLines(lines),
   statePath = SCHEDULER_WATCH_PATH,
