@@ -366,18 +366,43 @@ button { font: inherit; color: inherit; }
      Page extensions (the system has no marketing recipes; each is built from its parts and noted here):
      · one word headline at the hero step; figures one step down (display) with their unit words on the same baseline;
      · act claims at the display step, one sentence each, never paired with a meta line;
-     · the show's own art as content: the episode wall (a 7-column grid from 48rem; on phones the newest large over a
-       carousel rail, the system's .ss-x-carousel with its edge fades), the on-air frames, the hosts on the close;
+     · the show's own art as content: the episode wall (the newest ten in a 5-column grid from 48rem; on phones every
+       episode, the newest large over a carousel rail, the system's .ss-x-carousel with its edge fades), the on-air
+       frames, the hosts on the close;
+     · a long list inside a panel scrolls in an inner scroller (the panel keeps its frame; only the scroller fades at
+       the edge it can still move toward, with the carousel's mask), with a way out at its end;
+     · the lead package is raised to surface-2 (the container hairline stays --line); its width, order, the offer's
+       only primary and the claim above carry the lead;
      · the phone booking bar rides on the floating tab bar's geometry (.ss-tabbar + __fade + __pill), holding the
-       entry price and one primary; it and the desktop top-bar button show only while no booking button is on screen. */
-  :root { --safe-left: env(safe-area-inset-left, 0px); --safe-right: env(safe-area-inset-right, 0px); }
-  html { scroll-padding-top: calc(var(--topbar-h) + var(--safe-top) + 16px); }
+       entry price and one primary; it and the desktop top-bar button show only while no booking button is on screen,
+       and hand focus to whichever control replaces them. */
+  /* the page's own spacing tokens, built from the density tokens */
+  :root { --safe-left: env(safe-area-inset-left, 0px); --safe-right: env(safe-area-inset-right, 0px);
+    --act-gap: calc(var(--d-section) * 2);     /* between acts: 48 on phones, 72 from 48rem */
+    --pad-wide: var(--d-section);              /* a card's padding from 48rem */
+    --plot-gutter: var(--d-pane);              /* the chart's y-label column */
+    --anchor-pad: calc(var(--topbar-h) + var(--safe-top) + var(--d-card)); }
+  @media (min-width: 48rem) { :root { --act-gap: calc(var(--d-section) * 3); } }
+  html { scroll-padding-top: var(--anchor-pad); }
+  /* the top bar's own controls are always in view: focusing one must not scroll the page to clear the padding above */
+  .ss-topbar a { scroll-margin-top: calc(-1 * var(--anchor-pad)); }
   .is-rendering body { visibility: hidden; }
-  .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; white-space: nowrap; }
+  .n { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; letter-spacing: normal; white-space: nowrap; overflow-wrap: normal; }
+
+  /* touch screens keep :hover on the last control tapped: the page's own hovers apply only where a pointer hovers, and
+     the copied recipes come back to their resting look here (the primary keeps its press colour) */
+  @media (hover: none) {
+    .ss-btn--primary:hover:not(:active) { background: var(--tint); }
+    .ss-btn--secondary:hover { background: var(--surface-3); }
+    .ss-btn--link:hover { text-decoration: none; }
+    .ss-disclosure:hover, .ss-row--link:hover, .ss-pill-select:hover { background: none; }
+  }
 
   /* top bar: the mark and the name, the packages pill, and a booking button that waits its turn */
   .topin { max-width: var(--content-max); margin: 0 auto; padding-left: calc(var(--d-gutter) + var(--safe-left)); padding-right: calc(var(--d-gutter) + var(--safe-right)); }
-  .brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg-1); text-decoration: none; }
+  .brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-left: -8px; padding: 0 8px; border-radius: var(--radius-lg);
+    color: var(--fg-1); text-decoration: none; transition: background-color 150ms; }
+  @media (hover: hover) { .brand:hover { background: var(--surface-2); } }
   .brand svg { width: 24px; height: 24px; flex: none; }
   .topbook { display: none; }
   @media (min-width: 48rem) {
@@ -387,104 +412,108 @@ button { font: inherit; color: inherit; }
     .topbook { display: inline-flex; opacity: 0; visibility: hidden; }
     .topbook[data-shown="true"] { opacity: 1; visibility: visible; transition: opacity 160ms var(--ease-out-quart), background-color 150ms; }
     .topslot:has(.topbook[data-shown="true"]) .ss-pill-select { opacity: 0; visibility: hidden; }
+    /* coming back, the pill is visible at once, so focus can be handed to it */
+    .topslot:not(:has(.topbook[data-shown="true"])) .ss-pill-select { transition: opacity 160ms var(--ease-out-quart), background-color 150ms; }
   }
 
   .wrap { max-width: var(--content-max); margin: 0 auto; padding-left: calc(var(--d-gutter) + var(--safe-left)); padding-right: calc(var(--d-gutter) + var(--safe-right)); }
   main { outline: none; }
 
   /* every act: one claim, then its proof */
-  .act { margin-top: calc(var(--d-section) * 3); }
-  @media (min-width: 64rem) { .act { margin-top: 80px; } }
+  .act { margin-top: var(--act-gap); }
   .claim { margin: 0; max-width: 24em; font-size: var(--text-display); line-height: var(--lh-display); font-weight: 600; letter-spacing: -0.025em; color: var(--fg-1); text-wrap: balance; }
-  .split { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+  .split { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--d-section); }
   @media (min-width: 64rem) {
-    .split { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 16px; align-items: start; }
+    .split { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--d-card); align-items: start; }
     .split > :first-child { grid-column: 1 / span 5; }
     .split > :last-child { grid-column: 6 / span 7; }
   }
 
   /* 1 · the pitch: the claim, the show in two sentences, three figures, one button, then every episode */
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 24px; padding-top: 32px; }
-  @media (min-width: 48rem) { .hero { padding-top: 48px; } }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--d-section); padding-top: var(--d-pane); }
+  @media (min-width: 48rem) { .hero { padding-top: calc(var(--d-section) * 2); } }
   @media (min-width: 64rem) {
-    .hero { padding-top: 64px; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 16px; row-gap: 0; }
+    .hero { padding-top: calc(var(--d-pane) * 2); grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--d-card); row-gap: 0; }
     .hero__copy { grid-column: 1 / span 7; grid-row: 1; }
-    .hero__act { grid-column: 1 / span 7; grid-row: 2; margin-top: 32px; }
+    .hero__act { grid-column: 1 / span 7; grid-row: 2; margin-top: var(--d-pane); }
     .proof { grid-column: 9 / span 4; grid-row: 1 / span 2; align-self: end; }
     .wall { grid-column: 1 / -1; grid-row: 3; }
   }
   .hero h1 { margin: 0; max-width: 15em; font-size: var(--text-hero); line-height: var(--lh-hero); font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; }
-  .hero__line { margin: 16px 0 0; max-width: 36em; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
-  @media (min-width: 48rem) { .hero__line { margin-top: 20px; font-size: var(--text-title); } }
+  .hero__line { margin: var(--d-card) 0 0; max-width: 36em; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
+  @media (min-width: 48rem) { .hero__line { font-size: var(--text-title); } }
   .hero__line b { font-weight: 500; color: var(--fg-1); }
   /* the figures: each one with its unit words on its baseline (the dashboard's hero figure, one step down) */
   .proof { margin: 0; padding: 0; list-style: none; }
-  .proof li { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; padding: 12px 0; border-top: 1px solid var(--line); font-size: var(--text-body); line-height: var(--lh-body); color: var(--fg-2); }
+  .proof li { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; padding: var(--d-row) 0; border-top: 1px solid var(--line); font-size: var(--text-body); line-height: var(--lh-body); color: var(--fg-2); }
   .proof li:first-child { padding-top: 0; border-top: 0; }
   .proof li:last-child { padding-bottom: 0; }
   .proof .n { font-size: var(--text-display); line-height: var(--lh-display); font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); }
-  .wall { margin-top: 8px; }
-  @media (min-width: 48rem) and (max-width: 63.99rem) { .wall { margin-top: 24px; } }
-  @media (min-width: 64rem) { .wall { margin-top: 56px; } }
-  .hero__act { display: flex; flex-wrap: wrap; align-items: center; column-gap: 16px; row-gap: 12px; }
+  .wall { margin-top: calc(var(--d-card) / 2); }
+  @media (min-width: 48rem) and (max-width: 63.99rem) { .wall { margin-top: 0; } }
+  @media (min-width: 64rem) { .wall { margin-top: calc(var(--d-section) * 2); } }
+  .hero__act { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--d-card); row-gap: var(--d-inner); }
   .hero__price { margin: 0; font-size: var(--text-body); color: var(--fg-2); }
   .hero__price b { font-weight: 600; color: var(--fg-1); }
   @media (max-width: 39.99rem) { .hero__act .ss-btn { flex: 1 1 100%; } }
 
-  /* the wall: every episode, newest first, each one a link to its upload. Phones: the newest large over a rail;
-     from 48rem all fourteen in one 7-column grid. One Tab stop; the arrow keys move inside it. */
+  /* the wall: the episodes newest first, each one a link to its upload. Phones: every episode, the newest large over a
+     rail; from 48rem the newest ten in a 5-column grid. One Tab stop; the arrow keys move inside it. */
   .ep { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); background: var(--surface-2); color: inherit; }
   .ep::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--line); pointer-events: none; transition: box-shadow 150ms; }
   @media (hover: hover) { a.ep:hover::after { box-shadow: inset 0 0 0 1px var(--line-strong); } }
   .ep img { display: block; width: 100%; height: 100%; object-fit: cover; }
   /* a cover says it plays: a play mark over it on hover and keyboard focus */
-  .ep__play { position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; display: flex; align-items: center; justify-content: center;
+  .ep__play { position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center;
     border-radius: var(--radius-full); background: var(--surface-2); color: var(--fg-1); box-shadow: inset 0 0 0 1px var(--line-strong); opacity: 0; transition: opacity 150ms var(--ease-out-quart); pointer-events: none; }
-  .ep__play svg { width: 16px; height: 16px; margin-left: 2px; }
+  .ep__play svg { width: 16px; height: 16px; }
   @media (hover: hover) { a.ep:hover .ep__play { opacity: 1; } }
   a.ep:focus-visible .ep__play { opacity: 1; }
   .ep--lead { border-radius: var(--radius-xl); }
-  .wall__rest { margin-top: 4px; }
+  .wall__rest { margin-top: 4px; }   /* the carousel's own 8 px inset sits under the lead; 4 + 8 = the rail's 12 px gap */
   .wall__rest.ss-x-carousel { margin-inline: calc(-1 * (var(--d-gutter) + var(--safe-left))) calc(-1 * (var(--d-gutter) + var(--safe-right)));
     padding-inline: calc(var(--d-gutter) + var(--safe-left)) calc(var(--d-gutter) + var(--safe-right)); scroll-padding-inline: calc(var(--d-gutter) + var(--safe-left)); }
   .wall__rest.ss-x-carousel > * { flex-basis: 160px; scroll-snap-align: start; }
   @media (min-width: 48rem) {
-    .wall { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px; }
+    .wall { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--d-stack); }
     .wall__rest { display: contents; }
+    .wall__rest > :nth-child(n + 10) { display: none; }   /* the lead and nine more: the newest ten */
     .ep--lead { border-radius: var(--radius-lg); }
   }
-  @media (min-width: 48rem) and (max-width: 63.99rem) { .wall { gap: 8px; } }
 
   /* 2 · who is in the room: the designers who reviewed work on air, the teams the call-ins covered, everyone */
-  .said { margin: 0; max-width: 40em; font-size: var(--text-body); line-height: 1.55; color: var(--fg-3); text-wrap: pretty; }
+  .said { margin: 0; max-width: 40em; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
   @media (min-width: 48rem) { .said { font-size: var(--text-title); } }
-  .said b { font-weight: 500; color: var(--fg-1); }
-  .said + .said { margin-top: 16px; }
-  .all { margin-top: 24px; }
+  .said b { font-weight: 500; color: var(--fg-1); white-space: nowrap; }   /* a name never breaks across lines */
+  .said + .said { margin-top: var(--d-card); }
+  .all { margin-top: var(--d-section); }
+  .said--reach { margin-top: var(--d-section); }
   .all .ss-btn--link { white-space: normal; text-align: left; }
   .all .ss-btn--link > span { text-wrap: balance; }
   .all .nw { white-space: nowrap; }
   .all .ss-btn__chev { margin-left: 8px; vertical-align: middle; }
-  .roster-panel > div > div { padding-top: 16px; }
-  /* the full list keeps its own height: it scrolls inside a panel, with a way out at its end */
-  .roster { max-height: 440px; overflow-y: auto; overscroll-behavior: contain; padding: 16px var(--d-card); border-radius: var(--radius-2xl); background: var(--surface-1);
-    box-shadow: inset 0 0 0 1px var(--line); scrollbar-width: thin; scrollbar-color: var(--surface-3) transparent; }
-  .roster.more-down { -webkit-mask-image: linear-gradient(to top, transparent 0, black 32px); mask-image: linear-gradient(to top, transparent 0, black 32px); }
-  .roster.more-up { -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px); mask-image: linear-gradient(to bottom, transparent 0, black 32px); }
-  .roster.more-up.more-down { -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); }
-  .roster section + section { margin-top: 20px; }
-  .roster h3 { margin: 0 0 8px; font-size: var(--text-body); font-weight: 600; color: var(--fg-1); }
-  .roster ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .roster-panel > div > div { padding-top: var(--d-card); }
+  /* the full list keeps its own height: the panel holds its frame, an inner scroller moves and fades at the edge it
+     can still go to, and a way out waits at its end */
+  .roster { overflow: hidden; border-radius: var(--radius-2xl); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--line); }
+  .roster__scroll { max-height: 440px; overflow-y: auto; overscroll-behavior: contain; padding: var(--d-card); scrollbar-width: thin; scrollbar-color: var(--surface-3) transparent; }
+  @media (max-width: 47.99rem) { .roster__scroll { overscroll-behavior: auto; } }   /* on phones a swipe past the end carries on down the page */
+  .roster__scroll.more-down { -webkit-mask-image: linear-gradient(to top, transparent 0, black 32px); mask-image: linear-gradient(to top, transparent 0, black 32px); }
+  .roster__scroll.more-up { -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px); mask-image: linear-gradient(to bottom, transparent 0, black 32px); }
+  .roster__scroll.more-up.more-down { -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, black 32px, black calc(100% - 32px), transparent 100%); }
+  .roster section + section { margin-top: var(--d-section); }
+  .roster h3 { margin: 0 0 var(--d-inner); font-size: var(--text-body); font-weight: 600; color: var(--fg-1); }
+  .roster ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   .roster li { font-size: var(--text-body-sm); line-height: 1.5; color: var(--fg-2); }
   .roster li b { font-weight: 500; color: var(--fg-1); }
-  .roster__end { margin-top: 16px; }
+  .roster__end { margin-top: var(--d-card); }
 
   /* 3 · attention: the newest show minute by minute, and a typical show beside it */
-  .room { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); }
+  .room { margin-top: var(--d-section); display: grid; grid-template-columns: minmax(0, 1fr); }
   .curve { margin: 0; padding: var(--d-card); min-width: 0; }
-  @media (min-width: 48rem) { .curve { padding: 24px; } }
+  @media (min-width: 48rem) { .curve { padding: var(--pad-wide); } }
   .curve h3, .typical h3 { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; }
-  .curve__plot { position: relative; height: 176px; margin: 48px 0 0 32px; }
+  .curve__plot { position: relative; height: 176px; margin: calc(var(--d-section) * 2) 0 0 var(--plot-gutter); }
   @media (min-width: 48rem) { .curve__plot { height: 232px; } }
   @media (min-width: 64rem) { .curve__plot { height: 248px; } }
   .curve__plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -500,122 +529,127 @@ button { font: inherit; color: inherit; }
   .curve__tag--start { transform: translate(-12px, calc(-100% - 12px)); }
   .curve__tag--end { transform: translate(calc(-100% + 12px), calc(-100% - 12px)); }
   .curve__tag b { font-weight: 600; color: var(--fg-1); }
-  .curve__ticks { position: relative; height: 16px; margin: 8px 0 0 32px; font-size: var(--text-caption); color: var(--fg-3); }
+  .curve__ticks { position: relative; height: 16px; margin: 8px 0 0 var(--plot-gutter); font-size: var(--text-caption); color: var(--fg-3); }
   .curve__ticks > span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
   .curve__ticks > span:first-child { left: 0; transform: none; }
   .curve__ticks > span:last-child { left: auto; right: 0; transform: none; }
   .typical { padding: var(--d-card); border-top: 1px solid var(--line); }
-  @media (min-width: 48rem) { .typical { padding: 24px; } }
+  @media (min-width: 48rem) { .typical { padding: var(--pad-wide); } }
   /* under the curve, a typical show in one band: its name, then three figures, each with its words on its baseline */
-  @media (min-width: 64rem) { .typical { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); column-gap: 24px; align-items: baseline; } }
-  .facts { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 16px; }
-  @media (min-width: 48rem) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; } }
+  @media (min-width: 64rem) { .typical { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); column-gap: var(--d-section); align-items: baseline; } }
+  .facts { margin: var(--d-card) 0 0; padding: 0; list-style: none; display: grid; gap: var(--d-card); }
+  @media (min-width: 48rem) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--d-section); } }
   @media (min-width: 64rem) { .facts { margin: 0; } }
-  .facts li { display: grid; grid-template-columns: 64px minmax(0, 1fr); column-gap: 12px; align-items: baseline; font-size: var(--text-body); line-height: 1.45; color: var(--fg-2); text-wrap: pretty; }
+  .facts li { display: grid; grid-template-columns: 64px minmax(0, 1fr); column-gap: var(--d-inner); align-items: baseline; font-size: var(--text-body); line-height: 1.45; color: var(--fg-2); text-wrap: pretty; }
   .facts .n { font-size: var(--text-display); line-height: var(--lh-display); font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); }
   @media (min-width: 48rem) and (max-width: 63.99rem) { .facts li { grid-template-columns: minmax(0, 1fr); row-gap: 4px; } }
   @media (min-width: 64rem) { .facts li { grid-template-columns: max-content minmax(0, 1fr); } }
 
   /* 4 · on air: one aired example per package, in the offer's order, each opening at its second. Examples from the
-     same episode share its frame, so a cover is never shown twice in a row. */
-  .aired { margin: 24px 0 0; padding: 0; list-style: none; }
-  .aired__ep { display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: start; padding: 8px; }
-  @media (min-width: 48rem) { .aired__ep { grid-template-columns: 192px minmax(0, 1fr); } }
-  .aired__img { margin: 8px 0 8px 8px; display: block; overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--radius-md); background: var(--surface-2); }
-  @media (min-width: 48rem) { .aired__img { margin: 8px 8px 8px 8px; border-radius: var(--radius-lg); } }
+     same episode share its frame, so a cover is never shown twice in a row. The rows are the list-row recipe: flat,
+     square, full height to the panel's edge; the divider between two rows starts at their text. */
+  .aired { margin: var(--d-section) 0 0; padding: 0; list-style: none; }
+  .aired__ep { display: grid; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 30rem) { .aired__ep { grid-template-columns: auto minmax(0, 1fr); } }
+  .aired__img { display: block; overflow: hidden; aspect-ratio: 16 / 9; margin: var(--d-card) var(--d-card) 0; border-radius: var(--radius-lg); background: var(--surface-2); }
+  @media (min-width: 30rem) { .aired__img { width: 136px; margin: var(--d-card) 0 var(--d-card) var(--d-card); border-radius: var(--radius-md); } }
+  @media (min-width: 48rem) { .aired__img { width: 176px; margin: var(--pad-wide) 0 var(--pad-wide) var(--pad-wide); border-radius: var(--radius-lg); } }
   .aired__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .aired__rows { min-width: 0; margin: 0; padding: 0; list-style: none; }
-  .aired__rows > li + li { border-top: 1px solid var(--line); }
-  .aired__row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 8px; align-items: center; padding: 12px; border-radius: var(--radius-lg); }
-  @media (min-width: 48rem) { .aired__row { grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; min-height: 56px; padding: 12px 16px; } }
-  /* a frame beside one example: the row stands as tall as the frame, so the two share a centre line */
-  @media (min-width: 48rem) { .aired__rows > li:only-child > .aired__row { min-height: 116px; } }
+  .aired__rows { min-width: 0; margin: 0; padding: 0; list-style: none; display: grid; grid-auto-rows: 1fr; }
+  .aired__rows > li { position: relative; display: grid; }
+  .aired__rows > li + li::before { content: ""; position: absolute; top: 0; left: var(--d-card); right: 0; border-top: 1px solid var(--line); }
+  .aired__row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 8px; align-content: center; padding: var(--d-row) var(--d-card); }
+  @media (min-width: 48rem) { .aired__row { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--d-section); align-items: center; padding: var(--d-row) var(--pad-wide) var(--d-row) var(--d-card); } }
   .aired__text { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-  @media (min-width: 64rem) { .aired__text { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 16px; align-items: baseline; } }
+  @media (min-width: 64rem) { .aired__text { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: var(--d-card); align-items: baseline; } }
   .aired__pkg { font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; color: var(--fg-1); }
   .aired__label { font-size: var(--text-body); line-height: 1.45; color: var(--fg-2); text-wrap: pretty; }
-  .aired__go { display: flex; flex-wrap: wrap; column-gap: 12px; row-gap: 4px; font-size: var(--text-body-sm); line-height: var(--lh-body-sm); }
+  .aired__go { display: flex; flex-wrap: wrap; column-gap: var(--d-inner); row-gap: 4px; font-size: var(--text-body-sm); line-height: var(--lh-body-sm); }
   @media (min-width: 48rem) { .aired__go { flex-direction: column; align-items: flex-end; text-align: right; } }
   .aired__watch { font-weight: 500; color: var(--tint-fg); }
   .aired__live { color: var(--fg-3); }
-  .reach { margin: 20px 0 0; max-width: 72ch; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
-  .reach b { font-weight: 500; color: var(--fg-1); }
 
   /* 5 · the offer: one package leads, with the section's only primary */
-  .tiers { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tiers { margin-top: var(--d-section); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--d-stack); }
   /* from 64rem the three cards share their rows, so names, prices, lists and buttons line up across */
   @media (min-width: 64rem) {
-    .tiers { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 4fr); grid-template-rows: repeat(5, auto); column-gap: 16px; row-gap: 0; }
+    .tiers { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 4fr); grid-template-rows: repeat(5, auto); column-gap: var(--d-card); row-gap: 0; }
     .tiers > .tier { grid-row: span 5; display: grid; grid-template-rows: subgrid; row-gap: 0; }
     .tiers > .tier .ss-btn { align-self: end; }
   }
-  .tier { display: flex; flex-direction: column; padding: 20px; }
-  @media (min-width: 48rem) { .tier { padding: 24px; } }
-  .tier--lead { background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
-  .tier__name { margin: 0; font-size: var(--text-num-lg); line-height: var(--lh-num-lg); font-weight: 600; letter-spacing: -0.015em; }
+  .tier { display: flex; flex-direction: column; padding: var(--d-card); }
+  @media (min-width: 48rem) { .tier { padding: var(--pad-wide); } }
+  .tier--lead { background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+  .tier__name { margin: 0; font-size: var(--text-title); line-height: var(--lh-title); font-weight: 600; letter-spacing: -0.015em; }
   .tier__fit { margin: 8px 0 0; font-size: var(--text-body); line-height: 1.5; color: var(--fg-2); text-wrap: pretty; }
-  .tier__price { margin: 20px 0 0; }
+  .tier__price { margin: var(--d-section) 0 0; }
   .tier__total { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; font-size: var(--text-body-sm); color: var(--fg-2); }
   .tier__total .n { font-size: var(--text-display); line-height: 1; font-weight: 600; letter-spacing: -0.02em; color: var(--fg-1); }
   .tier__monthly { margin: 8px 0 0; font-size: var(--text-body-sm); color: var(--fg-3); }
-  .tier .ss-bullets { margin: 20px 0 24px; padding-top: 20px; border-top: 1px solid var(--line); align-content: start; }
+  .tier .ss-bullets { margin: var(--d-section) 0; padding-top: var(--d-section); border-top: 1px solid var(--line); align-content: start; }
   .tier .ss-btn { margin-top: auto; width: 100%; }
   /* tablets: Build leads across the row, its list beside its price; the other two share the row below, aligned */
   @media (min-width: 48rem) and (max-width: 63.99rem) {
-    .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto repeat(5, auto); row-gap: 12px; column-gap: 12px; }
-    .tiers > .tier--lead { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto; column-gap: 32px; }
+    .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto repeat(5, auto); row-gap: var(--d-stack); column-gap: var(--d-stack); }
+    /* two columns inside one card stand apart by their gap, never a rule (layout.md) */
+    .tiers > .tier--lead { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto; column-gap: var(--d-pane); }
     .tiers > .tier--lead > * { grid-column: 1; }
-    .tiers > .tier--lead > .ss-bullets { grid-column: 2; grid-row: 1 / span 3; margin: 0; padding: 0 0 0 32px; border-top: 0; border-left: 1px solid var(--line); }
-    .tiers > .tier--lead > .ss-btn { grid-column: 2; grid-row: 4; margin: 24px 0 0 32px; width: auto; }
+    .tiers > .tier--lead > .ss-bullets { grid-column: 2; grid-row: 1 / span 3; margin: 0; padding: 0; border-top: 0; }
+    .tiers > .tier--lead > .ss-btn { grid-column: 2; grid-row: 4; margin: var(--d-section) 0 0; width: auto; }
     .tiers > .tier:not(.tier--lead) { grid-row: 2 / span 5; display: grid; grid-template-rows: subgrid; row-gap: 0; }
     .tiers > .tier:not(.tier--lead) .ss-btn { align-self: end; }
   }
-  .terms { margin: 20px 0 0; max-width: 72ch; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
+  .terms { margin: var(--d-section) 0 0; max-width: 72ch; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
 
-  /* 6 · yes: the show's own end card, the hosts beside the one way to say it */
+  /* 6 · yes: the show's own end card, the hosts beside the one way to say it (side by side from 48rem) */
   .close { display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; }
-  @media (min-width: 64rem) { .close { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 16px; align-items: end; } }
-  .close__hosts { order: 2; display: flex; justify-content: center; align-items: flex-end; gap: 0; padding: 8px 16px 0; }
+  @media (min-width: 48rem) { .close { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--d-card); align-items: end; } }
+  .close__hosts { order: 2; display: flex; justify-content: center; align-items: flex-end; padding: 8px var(--d-card) 0; }
   .close__hosts img { display: block; width: auto; height: 160px; }
   .close__hosts img + img { margin-left: -12px; }
-  @media (min-width: 64rem) { .close__hosts { order: 0; grid-column: 1 / span 5; padding: 40px 0 0; } .close__hosts img { height: 240px; } .close__hosts img + img { margin-left: -24px; } }
-  .close__text { padding: 24px var(--d-card) 0; }
-  @media (min-width: 48rem) { .close__text { padding: 32px 32px 0; } }
-  @media (min-width: 64rem) { .close__text { grid-column: 6 / span 7; padding: 48px 48px 48px 0; } }
-  .close__line { margin: 12px 0 0; max-width: 34em; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
-  .close__act { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; column-gap: 24px; row-gap: 16px; }
+  @media (min-width: 48rem) { .close__hosts { order: 0; grid-column: 1 / span 5; padding: var(--d-pane) 0 0; } .close__hosts img { height: 176px; } .close__hosts img + img { margin-left: -16px; } }
+  @media (min-width: 64rem) { .close__hosts img { height: 240px; } .close__hosts img + img { margin-left: -24px; } }
+  .close__text { padding: var(--d-section) var(--d-card) 0; }
+  @media (min-width: 48rem) { .close__text { grid-column: 6 / span 7; padding: var(--d-pane) var(--d-pane) var(--d-pane) 0; } }
+  @media (min-width: 64rem) { .close__text { padding: calc(var(--d-section) * 2) calc(var(--d-section) * 2) calc(var(--d-section) * 2) 0; } }
+  .close__line { margin: var(--d-inner) 0 0; max-width: 34em; font-size: var(--text-body); line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }
+  .close__act { margin-top: var(--d-section); display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--d-section); row-gap: var(--d-card); }
   @media (max-width: 39.99rem) { .close__act .ss-btn--primary { flex: 1 1 100%; } }
-  .copy svg { color: var(--fg-3); }
-  .copy .copy__done { display: none; }
-  .copy.is-copied .copy__addr { display: none; }
+  /* the address, one tap from the clipboard: icon and words in the link's colour; once copied, a check and quiet words */
+  .copy .copy__check, .copy .copy__done { display: none; }
+  .copy.is-copied { color: var(--fg-2); }
+  .copy.is-copied .copy__icon, .copy.is-copied .copy__addr { display: none; }
+  .copy.is-copied .copy__check { display: block; }
   .copy.is-copied .copy__done { display: inline; }
 
   /* footer: freshness once, the full analytics, and the method in one closed place */
-  .foot { margin-top: calc(var(--d-section) * 3); padding: 24px 0 calc(var(--tabbar-h) + var(--safe-bottom) + 32px); border-top: 1px solid var(--line); display: grid; gap: 16px; }
-  @media (min-width: 48rem) { .foot { padding-bottom: 32px; } }
-  .foot__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: 24px; row-gap: 16px; }
+  .foot { margin-top: var(--act-gap); padding: var(--d-section) 0 calc(var(--tabbar-h) + var(--safe-bottom) + var(--d-pane)); border-top: 1px solid var(--line); display: grid; gap: var(--d-card); }
+  @media (min-width: 48rem) { .foot { padding-bottom: var(--d-pane); } }
+  .foot__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--d-section); row-gap: var(--d-card); }
   @media (max-width: 39.99rem) { .foot__row .ss-btn { flex: 1 1 100%; } }
   .fresh { margin: 0; display: flex; align-items: flex-start; gap: 8px; font-size: var(--text-body-sm); line-height: var(--lh-body-sm); color: var(--fg-2); }
   .fresh i { width: 8px; height: 8px; flex: none; margin-top: 4px; margin-top: calc((1lh - 8px) / 2); border-radius: var(--radius-full); background: var(--fg-3); }
   .fresh.is-missing i { background: var(--warn); }
-  .about-panel > div > div { padding: 16px var(--d-card) 8px; }
+  .ss-disclosure__icon svg { width: 16px; height: 16px; }
+  .about-panel > div > div { padding: var(--d-card) var(--d-card) 8px; }
 
-  .page-absent { margin-top: calc(var(--d-section) * 3); }
+  .page-absent { margin-top: var(--act-gap); }
 
   /* the phone booking bar: the tab bar's floating pill, with the entry price and one primary */
   .bookbar { transform: translateY(calc(100% + 8px)); transition: transform 320ms var(--ease-out-expo); }
   .bookbar[data-shown="true"] { transform: none; }
   .bookbar .ss-tabbar__fade { opacity: 0; transition: opacity 160ms; }
   .bookbar[data-shown="true"] .ss-tabbar__fade { opacity: 1; }
-  .bookbar__pill { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 8px 8px 24px; }
+  .bookbar__pill { display: flex; align-items: center; justify-content: space-between; gap: var(--d-inner); padding: 8px 8px 8px var(--d-section); }
   .bookbar__price { margin: 0; display: flex; flex-direction: column; font-size: var(--text-meta); line-height: var(--lh-meta); color: var(--fg-2); }
   .bookbar__price b { font-size: var(--text-body); font-weight: 600; color: var(--fg-1); }
-  .bookbar .ss-btn { height: 48px; padding: 0 20px; border-radius: var(--radius-full); }
+  .bookbar .ss-btn { height: 48px; padding: 0 var(--d-card); border-radius: var(--radius-full); }
 
   @media (forced-colors: active) {
     .curve__line { stroke: CanvasText; }
     .curve__mark { background: CanvasText; }
     .tier, .ss-panel, .ep, .roster { border: 1px solid CanvasText; }
+    .aired__rows > li + li::before { border-color: CanvasText; }
   }
 </style>
 <!-- the numbers load before the first paint, so nothing moves when they land (they only set window.DIVE_DATA); the
@@ -661,9 +695,10 @@ button { font: inherit; color: inherit; }
         <div id="people-said"></div>
         <div class="all" id="people-all"></div>
         <div class="ss-reveal roster-panel" id="roster" data-open="false" inert aria-hidden="true"><div><div>
-          <div class="roster" id="roster-list" tabindex="0" role="region" aria-label="Everyone who called in, by episode"></div>
+          <div class="roster"><div class="roster__scroll" id="roster-list" tabindex="0" role="region" aria-label="Everyone who called in, by show"></div></div>
           <div class="roster__end"><button type="button" class="ss-btn ss-btn--link" id="roster-close">Close the list</button></div>
         </div></div></div>
+        <p class="said said--reach" id="reach" hidden></p>
       </div>
     </div>
   </section>
@@ -676,7 +711,6 @@ button { font: inherit; color: inherit; }
   <section class="act" id="onair" aria-labelledby="onair-title">
     <h2 class="claim" id="onair-title">Every package has aired. Watch each one.</h2>
     <ol class="ss-panel ss-panel--list aired" role="list" id="aired"></ol>
-    <p class="reach" id="reach" hidden></p>
   </section>
 
   <div class="ss-panel ss-panel--pad page-absent" id="page-absent" hidden></div>
@@ -695,11 +729,12 @@ button { font: inherit; color: inherit; }
       </div>
       <div class="close__text">
         <h2 class="claim" id="book-title">Tell us what you’re building.</h2>
-        <p class="close__line">Send your product, your category and the month you’d like to start.</p>
+        <p class="close__line">Send your product, your category and the month you’d like to start. We’ll reply with an insertion order to sign.</p>
         <div class="close__act">
           <a class="ss-btn ss-btn--primary" data-book="" href="#book">Email Tommy</a>
           <button type="button" class="ss-btn ss-btn--link copy" id="copy-addr">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <svg class="copy__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <svg class="copy__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
             <span class="copy__addr" id="copy-label"></span><span class="copy__done">Copied</span>
           </button>
           <span class="ss-sr" id="copy-status" aria-live="polite"></span>
@@ -715,6 +750,7 @@ button { font: inherit; color: inherit; }
     <a class="ss-btn ss-btn--secondary" href="./">See the full analytics</a>
   </div>
   <button type="button" class="ss-disclosure" id="about-toggle" aria-expanded="false" aria-controls="about-body" data-toggle="about-body">
+    <span class="ss-disclosure__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M16 14v4"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
     <span class="ss-disclosure__text"><span class="ss-disclosure__title">How we count</span></span>
     <svg class="ss-disclosure__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
   </button>
@@ -773,9 +809,11 @@ const clock = (stamp) => String(stamp || "").replace(/^00:/, "").replace(/^0(\d)
 // a show's length in words, to the half hour ("two hours")
 const hoursWord = (min) => { const h = Math.round(min / 30) / 2; return h === 1 ? "an hour" : h === 2 ? "two hours" : `${h} hours`; };
 const episode = (ep) => EPISODES.find((e) => e.ep === ep);
+// a show as a buyer names it: its title and the day it aired (the internal E-number stays in "How we count")
+const showName = (e) => [e?.title ? short(e.title) : "", e?.premiere ? dayText(e.premiere) : ""].filter(Boolean).join(", ");
 const youtubeOf = (e) => e?.links?.["yt:joindiveclub"] || e?.links?.["yt:designertom"] || "";
 const OUT = '<span class="ss-sr"> (opens YouTube in a new tab)</span>';
-const PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>';
+const PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 9.5 5.5Z"/></svg>';
 const cover = (ep) => $("covers").content.querySelector(`[data-ep="${ep}"]`);
 
 /* --- the packages: one source for every price on the page (the owners' terms, 2026-07-22, and the signed orders) --- */
@@ -818,19 +856,19 @@ function renderHero() {
   $("proof").innerHTML = cells.length >= 2 ? cells.map(([value, label]) => `<li><span class="n">${value}</span> ${label}</li>`).join("") : "";
 }
 
-/* --- the wall: every episode cover, newest first, each a link to its upload ----------------------------------- */
+/* --- the wall: the covers newest first, each a link to its upload (phones: every one; from 48rem the newest ten) */
 function renderWall() {
   const imgs = [...$("covers").content.querySelectorAll("img[data-ep]")];
   if (!imgs.length) { $("wall").hidden = true; return; }
   const tile = (img, lead) => {
     const ep = Number(img.dataset.ep), e = episode(ep), href = youtubeOf(e);
-    const name = `E${ep}${e?.title ? `, ${short(e.title)}` : ""}${e?.premiere ? `, ${dayText(e.premiere)}` : ""}`;
+    const name = showName(e) || `Episode ${ep}`;
     const pic = `<img src="${img.getAttribute("src")}" width="${img.getAttribute("width")}" height="${img.getAttribute("height")}" alt=""${lead ? "" : ' loading="lazy"'}>`;
     return href
       ? `<a class="ep${lead ? " ep--lead" : ""}" href="${esc(href)}" target="_blank" rel="noopener">${pic}<span class="ep__play" aria-hidden="true">${PLAY}</span><span class="ss-sr">${esc(name)}${OUT}</span></a>`
       : `<span class="ep${lead ? " ep--lead" : ""}" role="img" aria-label="${esc(name)}">${pic}</span>`;
   };
-  $("wall").innerHTML = `${tile(imgs[0], true)}<div class="wall__rest ss-x-carousel" id="wall-rest">${imgs.slice(1).map((img) => tile(img, false)).join("")}</div>`;
+  $("wall").innerHTML = `${tile(imgs[0], true)}<div class="wall__rest ss-x-carousel" id="wall-rest" tabindex="-1">${imgs.slice(1).map((img) => tile(img, false)).join("")}</div>`;
 }
 
 /* --- 2 · who is in the room: the designers who reviewed work on air, the teams the call-ins covered, everyone --- */
@@ -840,21 +878,41 @@ function renderPeople() {
   const bold = (names) => list(names.map((n) => `<b>${say(n)}</b>`));
   const said = [];
   const r = (c.reviews || [])[c.reviews.length - 1];
-  if (r?.reviewers?.length && ok(r.portfolios)) said.push(`On <span class="n">E${r.ep}</span>, ${bold(r.reviewers)} reviewed <span class="n">${fmt(r.portfolios)}</span>&nbsp;portfolios live.`);
+  const when = day(episode(r?.ep)?.premiere);
+  if (r?.reviewers?.length && ok(r.portfolios)) said.push(`${when ? `On ${when}` : "On the newest show"}, ${bold(r.reviewers)} reviewed <span class="n">${fmt(r.portfolios)}</span>&nbsp;portfolios live.`);
   if (c.teamsNamed?.length) said.push(`Call-ins have walked through how teams at ${bold(c.teamsNamed)} design and hire.`);
   $("people-said").innerHTML = said.map((s) => `<p class="said">${s}</p>`).join("");
   $("people-all").innerHTML = `<button type="button" class="ss-btn ss-btn--link" id="roster-toggle" aria-expanded="false" aria-controls="roster" data-toggle="roster"><span>${ok(c.people) ? `See all <span class="n">${fmt(c.people)}</span> people and teams who called` : "See everyone who called"} <span class="nw">in<svg class="ss-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></span></button>`;
   const line = (x) => `<b>${say(x.who)}</b> — ${x.kind === "nomination" ? `nominated ${say(x.nominee)} for Designer of the Week` : x.kind === "portfolio" ? `portfolio reviewed by ${say(x.reviewedBy)}` : say(x.about || "sent in a video")}`;
   const byEp = new Map();
   for (const x of [...c.list].reverse()) { if (!byEp.has(x.ep)) byEp.set(x.ep, []); byEp.get(x.ep).push(x); }
-  $("roster-list").innerHTML = [...byEp.entries()].map(([ep, rows]) => `<section><h3><span class="n">E${ep}</span>${episode(ep)?.title ? `, ${esc(short(episode(ep).title))}` : ""}</h3><ul role="list">${rows.map((x) => `<li>${line(x)}</li>`).join("")}</ul></section>`).join("");
+  $("roster-list").innerHTML = [...byEp.entries()].map(([ep, rows]) => `<section><h3>${esc(showName(episode(ep)) || `Episode ${ep}`)}</h3><ul role="list">${rows.map((x) => `<li>${line(x)}</li>`).join("")}</ul></section>`).join("");
+  renderReach();
+}
+
+// where the show goes out: each channel's own count in plain sentences, one per platform; never a total, since one
+// person can follow more than one
+function renderReach() {
+  const chans = (S?.audience?.channels || []).filter((c) => ok(c.count) && c.label);
+  $("reach").hidden = !chans.length;
+  if (!chans.length) return;
+  const by = new Map();
+  for (const c of chans) { if (!by.has(c.platform)) by.set(c.platform, []); by.get(c.platform).push(c); }
+  const WORD = ["", "one", "two", "three", "four", "five"];
+  const NOUN = { YouTube: "channels", X: "accounts" };
+  const part = (cs) => list(cs.map((c, i) => `<b>${esc(c.label)}</b> with <b class="n">${fmt(c.count)}</b>${i === 0 && c.unit ? ` ${esc(c.unit)}` : ""}`));
+  $("reach").innerHTML = [...by.entries()].map(([platform, cs], k) => k === 0
+    ? `We go out live on ${cs.length > 1 ? `${WORD[cs.length] || cs.length} ${esc(platform)} ${NOUN[platform] || "channels"}` : esc(platform)}, ${part(cs)}.`
+    : `On ${esc(platform)}, we stream from ${part(cs)}.`).join(" ");
 }
 
 /* --- 3 · attention: the newest show minute by minute (data.sponsor.live.latest), a typical show beside it ------- */
 function renderRoom() {
   const L = S?.live, t = L?.typical || {}, C = L?.latest;
-  if (ok(t.durationMin) && t.durationMin > 0) $("attention-title").textContent = `The room fills up and stays for ${hoursWord(t.durationMin)}.`;
   const pts = (C?.series || []).filter((p) => ok(p.m) && ok(p.v));
+  // the claim says only what the panel shows: "fills up" needs the curve
+  const length = ok(t.durationMin) && t.durationMin > 0 ? ` for ${hoursWord(t.durationMin)}` : "";
+  $("attention-title").textContent = pts.length >= 2 ? `The room fills up and stays${length}.` : `The room stays${length}.`;
   const facts = [
     ok(t.peak) && [`${fmt(t.peak)}`, "watching at the peak"],
     ok(t.holdRate) && [`${fmt(t.holdRate)}%`, "of the peak still watching in the last ten minutes"],
@@ -876,15 +934,16 @@ function renderRoom() {
     const lines = grid.map((g) => `<line class="curve__grid" x1="0" x2="${W}" y1="${y(g).toFixed(1)}" y2="${y(g).toFixed(1)}" vector-effect="non-scaling-stroke"/>`).join("");
     const labels = grid.map((g) => `<span class="curve__y n" style="top:${((y(g) / H) * 100).toFixed(2)}%">${g}</span>`).join("");
     const ticks = [`<span>Start</span>`];
-    for (let h = 1; h * 60 <= span - 15; h++) ticks.push(`<span style="left:${((h * 60 / span) * 100).toFixed(2)}%"><span class="n">${h}</span> h</span>`);
+    for (let h = 1; h * 60 <= span - 15; h++) ticks.push(`<span style="left:${((h * 60 / span) * 100).toFixed(2)}%"><span class="n">${h * 60}</span> min</span>`);
     ticks.push(`<span>${ok(C.durationMin) ? `<span class="n">${C.durationMin}</span> min` : "End"}</span>`);
     const at = ok(C.peakMinute) && ok(C.peak) ? { left: Math.min(100, Math.max(0, (C.peakMinute / span) * 100)), top: (y(C.peak) / H) * 100 } : null;
     // the label leans in from the edge the peak is near, so a late or early peak never pushes it out of the panel
     const lean = at ? (at.left > 75 ? " curve__tag--end" : at.left < 25 ? " curve__tag--start" : "") : "";
     const mark = at ? `<span class="curve__mark" style="left:${at.left.toFixed(2)}%; top:${at.top.toFixed(2)}%" aria-hidden="true"></span><span class="curve__tag${lean}" style="left:${at.left.toFixed(2)}%; top:${at.top.toFixed(2)}%" aria-hidden="true"><b class="n">${fmt(C.peak)}</b> at the peak</span>` : "";
-    const told = `E${C.ep} live audience on YouTube and X over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)} watching at once${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
+    const date = dayText(C.premiere);
+    const told = `The newest show's live audience${date ? `, ${date},` : ""} on YouTube and X over ${ok(C.durationMin) ? `${C.durationMin} minutes` : "the show"}${ok(C.peak) ? `: it peaked at ${fmt(C.peak)} watching at once${ok(C.peakMinute) ? `, ${C.peakMinute} minutes in` : ""}` : ""}${ok(C.holdRate) ? `, and ${fmt(C.holdRate)}% of the peak was still watching in the last ten minutes` : ""}.`;
     curve = `<figure class="curve">
-        <h3>Watching <span class="n">E${C.ep}</span> live, minute by minute</h3>
+        <h3>The newest show${date ? `, ${day(C.premiere)},` : ""} minute by minute</h3>
         <div class="curve__plot" role="img" aria-label="${esc(told)}">
           <svg class="curve__area" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${area}"/></svg>
           <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${lines}<line class="curve__base" x1="0" x2="${W}" y1="${H}" y2="${H}" vector-effect="non-scaling-stroke"/><path class="curve__line" d="${path}" vector-effect="non-scaling-stroke"/></svg>
@@ -901,7 +960,6 @@ function renderRoom() {
 function renderOnAir() {
   const byPkg = new Map((S?.examples || []).filter((x) => x?.moment?.url).map((x) => [x.package, x]));
   const rows = SHOWN.map((p) => byPkg.get(p.name)).filter(Boolean);
-  const chans = (S?.audience?.channels || []).filter((c) => ok(c.count));
   // the act is its examples: without one it steps aside
   if (!rows.length) { $("onair").hidden = true; return; }
   // the claim holds only while every package has its example; otherwise it names the ones that have aired
@@ -911,18 +969,13 @@ function renderOnAir() {
   for (const x of rows) { const g = groups[groups.length - 1]; if (g && g.ep === x.ep) g.items.push(x); else groups.push({ ep: x.ep, items: [x] }); }
   const row = (x) => `<li><a class="ss-row--link aired__row" href="${esc(x.moment.url)}" target="_blank" rel="noopener">
         <span class="aired__text"><span class="aired__pkg">${esc(x.package)}</span><span class="aired__label">${say(x.label)}</span></span>
-        <span class="aired__go"><span class="aired__watch">Watch <span class="n">E${x.ep}</span> at <span class="n">${esc(clock(x.moment.at))}</span></span>${ok(x.moment.liveAt) ? `<span class="aired__live"><span class="n">${fmt(x.moment.liveAt)}</span> watching live</span>` : ""}</span>${OUT}</a></li>`;
+        <span class="aired__go"><span class="aired__watch">Watch from <span class="n">${esc(clock(x.moment.at))}</span></span>${ok(x.moment.liveAt) ? `<span class="aired__live"><span class="n">${fmt(x.moment.liveAt)}</span> watching live</span>` : ""}</span><span class="ss-sr">, ${esc(showName(episode(x.ep)) || `episode ${x.ep}`)} (opens YouTube in a new tab)</span></a></li>`;
   $("aired").innerHTML = groups.map((g) => {
     const img = cover(g.ep), e = episode(g.ep);
-    const name = `E${g.ep}${e?.title ? `, ${short(e.title)}` : ""}`;
+    const name = showName(e) || `Episode ${g.ep}`;
     const pic = img ? `<img src="${img.getAttribute("src")}" width="${img.getAttribute("width")}" height="${img.getAttribute("height")}" alt="${esc(name)}" loading="lazy">` : "";
     return `<li class="aired__ep"><span class="aired__img">${pic}</span><ul class="aired__rows" role="list">${g.items.map(row).join("")}</ul></li>`;
   }).join("");
-  // each channel's own count, the platform's unit said once per platform; no total, since one person can follow several
-  const seen = new Set();
-  const named = chans.map((c) => { const first = !seen.has(c.platform); seen.add(c.platform); return `${esc(c.label)} (<b class="n">${fmt(c.count)}</b>${first ? ` ${esc(c.platform)} ${esc(c.unit)}` : ""})`; });
-  $("reach").hidden = !chans.length;
-  $("reach").innerHTML = chans.length ? `The show goes out live on ${list(named)}.` : "";
 }
 
 /* --- 5 · the offer ------------------------------------------------------------------------------------------------ */
@@ -999,23 +1052,32 @@ function watchScrollers() {
   roster.addEventListener("scroll", () => edgesY(roster), { passive: true });
 }
 
-// the wall is one Tab stop: the arrow keys (and Home, End) move between the episodes, newest first
+// the wall is one Tab stop: the arrow keys (and Home, End) move between the covers on screen, newest first
 function roveWall() {
-  const items = [...$("wall").querySelectorAll("a.ep")];
-  if (items.length < 2) return;
-  const set = (k) => items.forEach((a, i) => { a.tabIndex = i === k ? 0 : -1; });
-  set(0);
-  $("wall").addEventListener("focusin", (ev) => { const k = items.indexOf(ev.target); if (k >= 0) set(k); });
+  const all = [...$("wall").querySelectorAll("a.ep")];
+  if (all.length < 2) return;
+  const wide = matchMedia("(min-width: 48rem)");
+  const shown = () => all.filter((a) => a.getClientRects().length > 0);
+  const set = (el) => all.forEach((a) => { a.tabIndex = a === el ? 0 : -1; });
+  const label = () => {
+    $("wall").setAttribute("aria-label", `${wide.matches ? "The newest ten episodes" : "Every episode"}, newest first. The arrow keys move between them.`);
+    // a cover that left the screen at this width hands the Tab stop back to the newest
+    const current = all.find((a) => a.tabIndex === 0);
+    if (!current || !current.getClientRects().length) set(all[0]);
+  };
+  set(all[0]); label();
+  wide.addEventListener("change", label);
+  $("wall").addEventListener("focusin", (ev) => { if (all.includes(ev.target)) set(ev.target); });
   $("wall").addEventListener("keydown", (ev) => {
-    const i = items.indexOf(document.activeElement);
+    const items = shown(), i = items.indexOf(document.activeElement);
     if (i < 0) return;
-    const across = matchMedia("(min-width: 48rem)").matches ? 7 : 1;
+    const across = wide.matches ? 5 : 1;
     const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: across, ArrowUp: -across }[ev.key];
     let j = ev.key === "Home" ? 0 : ev.key === "End" ? items.length - 1 : step != null ? i + step : null;
     if (j == null) return;
     ev.preventDefault();
     j = Math.max(0, Math.min(items.length - 1, j));
-    set(j); items[j].focus();
+    set(items[j]); items[j].focus();
   });
 }
 
@@ -1030,17 +1092,23 @@ $("copy-addr").addEventListener("click", async () => {
 // the booking bars (the phone's floating bar, the desktop top bar's button) show only while no booking button is on
 // screen: never two ways to book in view, and one always within reach once the hero's has scrolled away
 function watchBars() {
-  const bars = [$("bookbar"), document.querySelector(".topbook")];
-  const show = (on) => {
-    for (const el of bars) {
-      el.dataset.shown = String(on);
-      if (on) { el.removeAttribute("inert"); el.removeAttribute("aria-hidden"); } else { el.setAttribute("inert", ""); el.setAttribute("aria-hidden", "true"); }
-    }
-  };
+  const bar = $("bookbar"), top = document.querySelector(".topbook"), pill = document.querySelector(".ss-pill-select");
   const targets = [...document.querySelectorAll("main [data-book]")].filter((b) => !b.hasAttribute("data-bar"));
   if (!("IntersectionObserver" in window) || !targets.length) return;
   const inView = new Set();
   const hero = targets[0];
+  const visible = (el) => el && getComputedStyle(el).display !== "none";
+  const show = (on) => {
+    // a control about to be hidden or made inert never keeps focus: it passes to the control that takes its place
+    const a = document.activeElement;
+    for (const el of [bar, top]) {
+      el.dataset.shown = String(on);
+      if (on) { el.removeAttribute("inert"); el.removeAttribute("aria-hidden"); } else { el.setAttribute("inert", ""); el.setAttribute("aria-hidden", "true"); }
+    }
+    if (on && a === pill && visible(top)) top.focus({ preventScroll: true });
+    if (!on && a === top) pill.focus({ preventScroll: true });
+    if (!on && bar.contains(a)) (targets.find((t) => inView.has(t)) || hero).focus({ preventScroll: true });
+  };
   // the hero's button has scrolled away only once it has left by the top (read on every scroll, so a jump that
   // never crosses the observed band still counts)
   const passed = () => hero.getBoundingClientRect().bottom <= 56;
