@@ -177,6 +177,17 @@ export async function deployWithParity({
   return { ok: false, message: last };
 }
 
+// The Vercel login on the owner machine is an 8-hour OAuth token and the morning publish is the
+// day's first CLI call, so `vercel deploy` used to go out on the expired token ("Not authorized")
+// and only the retry worked. Any other CLI call refreshes and saves the token first. Never blocks:
+// if this fails the deploy still runs and keeps its own retry.
+export function refreshVercelLogin(run, log = console.log) {
+  let ok = false;
+  try { ok = run().status === 0; } catch { /* the deploy below reports its own failure */ }
+  if (!ok) log("publish: could not refresh the Vercel login first; deploying anyway.");
+  return { ok };
+}
+
 export function assertCleanRelease(root, sha) {
   // Long gates and deployments can outlive the last remote fetch.
   git(root, ["fetch", "--quiet", "origin", "main"]);
@@ -201,6 +212,7 @@ async function deployProduction(root, sha, log) {
       const gate = command(root, process.execPath, ["tools/dive-analytics/release-gate.mjs"], { timeout: 20 * 60_000 });
       if (gate.stdout.trim()) log(tail(gate.stdout, 1));
       assertCleanRelease(root, sha);
+      refreshVercelLogin(() => command(root, "vercel", ["whoami"], { allowFailure: true, timeout: 60_000 }), log);
       const run = command(root, "vercel", ["deploy", "--prod", "--yes"], { allowFailure: true, timeout: 10 * 60_000 });
       deploymentUrl = (run.stdout.match(/https:\/\/[a-z0-9-]+\.vercel\.app/g) || []).at(-1) || null;
       const summary = tail(run.stdout || run.stderr, 3);
