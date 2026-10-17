@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-15T19:17:35.932Z",
+  "updatedAt": "2026-10-17T19:18:16.122Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -417,6 +417,18 @@
     "2026-10-01-dive-radio-anyone-can-animate-now-and-ho|hold|0.42": {
       "summary": "A host weighs companies mandating cheaper open models or small daily token budgets against frontier lab models, then moves to consumer agents and the Wabi app's new release.",
       "writtenAt": "2026-10-15T19:17:35.932Z"
+    },
+    "2026-07-23-dive-radio-data-vs-intuition-web-designe|drop|0.2": {
+      "summary": "A host explains a recent math result using a Photoshop warp analogy, with the other host chiming in, then pivots to design-model test reports and a new model's front-end results.",
+      "writtenAt": "2026-10-17T19:18:16.122Z"
+    },
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de|hold|0.43": {
+      "summary": "Host frames mixed media workflows around games, shows a community member's audio-driven text adventure, then explains loops with a harsh critic gate that sends work back for another pass.",
+      "writtenAt": "2026-10-17T19:18:16.122Z"
+    },
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de|drop|0.79": {
+      "summary": "Host walks through building a wiki-fed game critic from developer talks in Obsidian, then shows an agent playing through a game to test fight length across versions, with a co-host chiming in.",
+      "writtenAt": "2026-10-17T19:18:16.122Z"
     }
   }
 }

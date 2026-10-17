@@ -2,30 +2,185 @@
   "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
   "title": "Dive Radio: Get Your Portfolio Reviewed",
   "premiere": "2026-10-15",
-  "channels": {},
+  "channels": {
+    "yt:joindiveclub": {
+      "videoId": "J3NB3migbE0",
+      "pulledAt": "2026-10-17T19:16:09.412Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "J3NB3migbE0",
+        "pulledAt": "2026-10-17T19:16:09.412Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1248,
+        "estimatedMinutesWatched": 10712,
+        "averageViewDuration": 1233,
+        "averageViewPercentage": 20.34,
+        "subscribersGained": 2,
+        "likes": 30,
+        "comments": 2
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 1034,
+          "estimatedMinutesWatched": 6452
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 55,
+          "estimatedMinutesWatched": 1007
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 46,
+          "estimatedMinutesWatched": 840
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 34,
+          "estimatedMinutesWatched": 674
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 26,
+          "estimatedMinutesWatched": 522
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 25,
+          "estimatedMinutesWatched": 966
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 16,
+          "estimatedMinutesWatched": 154
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 8,
+          "estimatedMinutesWatched": 72
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
+          "views": 4,
+          "estimatedMinutesWatched": 22
+        }
+      ],
+      "retention": []
+    },
+    "yt:designertom": {
+      "videoId": "YmC8feEgGDw",
+      "pulledAt": "2026-10-17T19:16:09.412Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-analytics",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "YmC8feEgGDw",
+        "pulledAt": "2026-10-17T19:16:09.412Z",
+        "state": "ready"
+      },
+      "totals": {
+        "views": 1000,
+        "estimatedMinutesWatched": 5789,
+        "averageViewDuration": 911,
+        "averageViewPercentage": 15.93,
+        "subscribersGained": 1,
+        "likes": 17,
+        "comments": 1
+      },
+      "trafficSources": [
+        {
+          "insightTrafficSourceType": "SUBSCRIBER",
+          "views": 833,
+          "estimatedMinutesWatched": 2824
+        },
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 46,
+          "estimatedMinutesWatched": 640
+        },
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 40,
+          "estimatedMinutesWatched": 729
+        },
+        {
+          "insightTrafficSourceType": "RELATED_VIDEO",
+          "views": 24,
+          "estimatedMinutesWatched": 466
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 23,
+          "estimatedMinutesWatched": 706
+        },
+        {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 16,
+          "estimatedMinutesWatched": 118
+        },
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 8,
+          "estimatedMinutesWatched": 269
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 8,
+          "estimatedMinutesWatched": 34
+        },
+        {
+          "insightTrafficSourceType": "SHORTS",
+          "views": 1,
+          "estimatedMinutesWatched": 0
+        },
+        {
+          "insightTrafficSourceType": "SHORTS_CONTENT_LINKS",
+          "views": 1,
+          "estimatedMinutesWatched": 0
+        }
+      ],
+      "retention": []
+    }
+  },
   "watchReport": {
-    "state": "pending",
-    "checkedAt": "2026-10-17T14:01:29.546Z",
-    "missingChannels": [
-      "yt:joindiveclub",
-      "yt:designertom"
-    ],
-    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "state": "ready",
+    "checkedAt": "2026-10-17T19:16:09.412Z",
+    "missingChannels": [],
+    "reason": null,
     "targetFingerprint": "yt:designertom:YmC8feEgGDw|yt:joindiveclub:J3NB3migbE0",
     "probes": [
       {
         "key": "yt:joindiveclub",
         "videoId": "J3NB3migbE0",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1248,
+          "averageViewPercentage": 20.34
+        }
       },
       {
         "key": "yt:designertom",
         "videoId": "YmC8feEgGDw",
-        "result": "no-row",
-        "observed": null
+        "result": "ready",
+        "observed": {
+          "views": 1000,
+          "averageViewPercentage": 15.93
+        }
       }
-    ],
-    "pendingSince": "2026-10-16T21:24:29.763Z"
-  }
+    ]
+  },
+  "reading": {
+    "schemaVersion": 1,
+    "source": "youtube-analytics",
+    "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+    "objectId": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+    "pulledAt": "2026-10-17T19:16:09.412Z",
+    "state": "ready"
+  },
+  "updatedAt": "2026-10-17T19:16:09.412Z"
 }
