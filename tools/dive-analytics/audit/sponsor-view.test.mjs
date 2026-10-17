@@ -396,6 +396,9 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(featuredQuotes(stored, ["x:1", "yt:2", "x:3", "x:4"]).map((q) => q.id), ["x:1", "yt:2", "x:3"], "the cap holds, in order");
   assert.deepEqual(featuredQuotes(undefined), [], "no quotes, nothing featured");
 
+  // D24: four names, none of the career-shaped hooks the panels read as a careers show
+  assert.deepEqual([...FEATURED_CALLINS], ["Soleio", "Pietro Schirano", "Jared Erondu", "Josh Puckett"]);
+  assert.ok(!FEATURED_CALLINS.includes("Eric Sin") && !FEATURED_CALLINS.includes("Alex Danilowicz"), "D24: the career-shaped hooks are not featured");
   // through the projection: the owners' own lists, read from the stores as built
   const [firstPick, secondPick] = FEATURED_CALLINS;
   const pickedView = sponsorView({ episodes: eps, contributors: { episodes: {

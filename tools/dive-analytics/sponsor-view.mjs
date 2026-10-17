@@ -93,7 +93,7 @@ export const EXAMPLES = Object.freeze([
   { package: "Build", format: "A live build", label: "Notion as Code, Notion’s August build", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
 ]);
 
-// The owners' featured picks (SPONSOR-2026-10-11.md D19–D21, 2026-10-16/17):
+// The owners' featured picks (SPONSOR-2026-10-11.md D19–D21, D24, 2026-10-16/17):
 // people a design- or developer-tool buyer would know by name whose own
 // call-in aired, and the audience's words a buyer would believe. Picking is a
 // data-layer decision, so the page shows these lists as stored and filters
@@ -107,7 +107,7 @@ export const EXAMPLES = Object.freeze([
 // because a featured quote is the audience's voice. Each list keeps its order,
 // holds a pick once, and stops at its cap; validator 1s re-derives both.
 export const FEATURED_CALLINS_MAX = 6;
-export const FEATURED_CALLINS = Object.freeze(["Soleio", "Pietro Schirano", "Jared Erondu", "Josh Puckett", "Eric Sin", "Alex Danilowicz"]);
+export const FEATURED_CALLINS = Object.freeze(["Soleio", "Pietro Schirano", "Jared Erondu", "Josh Puckett"]);
 export const FEATURED_QUOTES_MAX = 3;
 export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377"]);
 export const FEATURED_KIND = "submission";
