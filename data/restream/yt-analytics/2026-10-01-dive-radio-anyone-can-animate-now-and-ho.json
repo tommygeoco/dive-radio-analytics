@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "bBF1yPACap0",
-      "pulledAt": "2026-10-16T21:24:29.763Z",
+      "pulledAt": "2026-10-17T14:01:29.546Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bBF1yPACap0",
-        "pulledAt": "2026-10-16T21:24:29.763Z",
+        "pulledAt": "2026-10-17T14:01:29.546Z",
         "state": "ready"
       },
       "totals": {
-        "views": 4274,
-        "estimatedMinutesWatched": 21758,
+        "views": 4271,
+        "estimatedMinutesWatched": 21673,
         "averageViewDuration": 765,
         "averageViewPercentage": 10.84,
         "subscribersGained": 4,
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "bwJB9EBQNSQ",
-      "pulledAt": "2026-10-16T21:24:29.763Z",
+      "pulledAt": "2026-10-17T14:01:29.546Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
         "objectId": "bwJB9EBQNSQ",
-        "pulledAt": "2026-10-16T21:24:29.763Z",
+        "pulledAt": "2026-10-17T14:01:29.546Z",
         "state": "ready"
       },
       "totals": {
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-16T21:24:29.763Z",
+    "checkedAt": "2026-10-17T14:01:29.546Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:bwJB9EBQNSQ|yt:joindiveclub:bBF1yPACap0",
@@ -966,7 +966,7 @@
         "videoId": "bBF1yPACap0",
         "result": "ready",
         "observed": {
-          "views": 4274,
+          "views": 4271,
           "averageViewPercentage": 10.84
         }
       },
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
     "objectId": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
-    "pulledAt": "2026-10-16T21:24:29.763Z",
+    "pulledAt": "2026-10-17T14:01:29.546Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-16T21:24:29.763Z"
+  "updatedAt": "2026-10-17T14:01:29.546Z"
 }
