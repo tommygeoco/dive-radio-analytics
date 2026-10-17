@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 8;
+export const SPONSOR_VERSION = 9;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -386,7 +386,7 @@ export function recordingAtMiddle(e) {
 // does its record, which then names the show it runs from.
 function liveBlock(episodes) {
   const lived = episodes.filter((e) => finite(e.live?.peak) && e.live.peak > 0);
-  if (!lived.length) return { shows: 0, reason: "No live session has been read yet." };
+  if (!lived.length) return { shows: 0, reason: "No live session has been read yet.", claim: null };
   const newest = lived[lived.length - 1];
   const window = windowFor(newest, lived, { side: "before" });
   const side = (field) => (e) => sameSideOfBreaks(LIVE_KEYS[field], newest, e);
@@ -408,7 +408,7 @@ function liveBlock(episodes) {
   // not reported, so it is in no live count), and the first show whose X channels report live viewing (the known
   // reporting break) when earlier shows sit in the totals, which are YouTube's alone before it
   const xBreak = breaksFor("liveViewers")[0];
-  return {
+  const block = {
     shows: lived.length,
     linkedInShows: lived.filter((e) => (e.live.byChannel || []).some((row) => row.label === "LinkedIn")).length,
     xFromEp: xBreak && lived.some((e) => e.ep < xBreak.fromEp) ? xBreak.fromEp : null,
@@ -448,6 +448,20 @@ function liveBlock(episodes) {
       people: record("people", (e) => e.live.liveViews),
     },
   };
+  block.claim = holdClaim(block.latest, block.typical);
+  return block;
+}
+
+// The room's claim (D26): the stronger of the two true hold readings, so the
+// page leads with it every morning — the newest show's own hold (with its
+// episode and date) or a typical show's (the middle of the eight before it).
+// A tie goes to the newest show; with one reading, that one; with neither, null.
+export function holdClaim(latest, typical) {
+  const own = finite(latest?.holdRate) ? latest.holdRate : null;
+  const usual = finite(typical?.holdRate) ? typical.holdRate : null;
+  if (own == null && usual == null) return null;
+  if (usual == null || (own != null && own >= usual)) return { basis: "latest", holdRate: own, ep: latest.ep, premiere: latest.premiere };
+  return { basis: "typical", holdRate: usual };
 }
 
 function audienceBlock(channelStats) {
@@ -646,7 +660,7 @@ function bestMoment(e, t, upload, lines, pattern) {
 
 function brandsBlock(episodes, transcripts, uploads) {
   const read = episodes.filter((e) => transcripts[e.slug]);
-  if (!read.length) return { list: [], episodes: 0, reason: "No transcript is available yet." };
+  if (!read.length) return { list: [], episodes: 0, reason: "No transcript is available yet.", listMentions: null, listMin: null };
   const index = mentionIndex(read, transcripts, BRANDS);
   const list = [...index.entries()]
     .map(([name, rows]) => ({ name, rows, mentions: sum(rows, (r) => r.count) }))
@@ -660,7 +674,20 @@ function brandsBlock(episodes, transcripts, uploads) {
       episodes: rows.length,
       moments: rows.map((r) => bestMoment(r.e, transcripts[r.e.slug], uploads[r.e.slug], r.lines, brandPattern(name))),
     }));
-  return { episodes: read.length, tracked: BRANDS.length, list };
+  return { episodes: read.length, tracked: BRANDS.length, ...listFacts(list), list };
+}
+
+// What the page says about the listed brands as a group (D26), stored so it
+// adds nothing itself: their mentions between them, and the fewest any of them
+// has (the "at least N times each" floor). With no brand listed, both are
+// absent (null), never zero. No count of brands named in every episode is
+// stored: it would point at brands the sentence does not name.
+export function listFacts(list) {
+  if (!list.length) return { listMentions: null, listMin: null };
+  return {
+    listMentions: sum(list, (b) => b.mentions),
+    listMin: Math.min(...list.map((b) => b.mentions)),
+  };
 }
 
 // A partner on air, as the transcript has it: each time the hosts name it as a

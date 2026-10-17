@@ -10,7 +10,7 @@ import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
-  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX,
+  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
@@ -211,6 +211,14 @@ import { normalize } from "../transcripts.mjs";
   ]).map((r) => r.who), ["Maheen Sohail", "Rob Hope", "Geoff Teehan", "Josh Puckett", "Femke"], "each reviewer once, in the order the notes name them");
   assert.equal(sponsorView({ episodes: eps, transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).callIns.total, null);
 
+  // the listed brands as a group (D26): stored, so the page adds nothing
+  assert.deepEqual(listFacts([{ mentions: 5, episodes: 3 }, { mentions: 9, episodes: 2 }, { mentions: 4, episodes: 3 }]), { listMentions: 18, listMin: 4 }, "the mentions between them and the floor, nothing else");
+  assert.deepEqual(listFacts([{ mentions: 5, episodes: 2 }]), { listMentions: 5, listMin: 5 });
+  assert.deepEqual(listFacts([]), { listMentions: null, listMin: null }, "no brand listed: absent, never zero");
+  assert.equal(view.brands.listMentions, view.brands.list.reduce((a, b) => a + b.mentions, 0));
+  assert.equal(view.brands.listMin, Math.min(...view.brands.list.map((b) => b.mentions)));
+  assert.ok(!("allEpisodes" in view.brands) && !("leastMentions" in view.brands), "no every-episode count: it would point at brands the sentence does not name");
+  assert.deepEqual(["listMentions", "listMin"].map((k) => sponsorView({ episodes: eps, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).brands[k]), [null, null], "no transcript read: absent");
   const figma = view.brands.list.find((b) => b.name === "Figma");
   assert.equal(figma.mentions, 2 * 12, "every whole-word mention, in every episode that says it");
   assert.equal(figma.episodes, 12);
@@ -281,6 +289,21 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(v2.live.typical.atMiddle, (50 + 8 + 50 + 9) / 2, "the middle minute (60 of 120) of each show in the window, its middle value");
   assert.equal(v2.live.typical.recordingAtMiddle, (18 + 19) / 2 / 1, "of every 100 YouTube views, still watching at the recording's middle");
   assert.equal(liveAt(lived[4], { clock: "stream" }, 3601), lived[4].live.series[60].v, "a stream-clock moment reads its own minute");
+
+  // the room's claim (D26): the stronger true hold, the newest show's (with its episode and date) or a typical show's
+  assert.deepEqual(holdClaim({ ep: 14, premiere: "2026-10-15", holdRate: 79.4 }, { holdRate: 67.2 }), { basis: "latest", holdRate: 79.4, ep: 14, premiere: "2026-10-15" }, "the newest show's hold, when it is the stronger");
+  assert.deepEqual(holdClaim({ ep: 14, premiere: "2026-10-15", holdRate: 61 }, { holdRate: 67.2 }), { basis: "typical", holdRate: 67.2 }, "a typical show's hold, when that is the stronger");
+  assert.deepEqual(holdClaim({ ep: 14, premiere: "2026-10-15", holdRate: 67.2 }, { holdRate: 67.2 }), { basis: "latest", holdRate: 67.2, ep: 14, premiere: "2026-10-15" }, "a tie goes to the newest show");
+  assert.deepEqual(holdClaim({ ep: 14, premiere: "2026-10-15", holdRate: null }, { holdRate: 67.2 }), { basis: "typical", holdRate: 67.2 }, "no hold for the newest show: the typical one");
+  assert.deepEqual(holdClaim({ ep: 14, premiere: "2026-10-15", holdRate: 52 }, null), { basis: "latest", holdRate: 52, ep: 14, premiere: "2026-10-15" }, "no typical show: the newest show's, however low");
+  assert.deepEqual(holdClaim({ ep: 14, premiere: "2026-10-15", holdRate: 52 }, { holdRate: null }), { basis: "latest", holdRate: 52, ep: 14, premiere: "2026-10-15" });
+  assert.equal(holdClaim({ ep: 14, holdRate: null }, { holdRate: null }), null, "neither: no claim, never a zero");
+  assert.equal(holdClaim(undefined, undefined), null);
+  assert.deepEqual(v2.live.claim, { basis: "latest", holdRate: lived[12].live.holdRate, ep: 13, premiere: lived[12].premiere }, "through the projection: the newest show's stored hold beats the typical");
+  assert.ok(v2.live.claim.holdRate > v2.live.typical.holdRate);
+  const lowNewest = sponsorView({ episodes: lived.map((e, i) => (i === 12 ? { ...e, live: { ...e.live, holdRate: 40 } } : e)), transcripts, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(lowNewest.live.claim, { basis: "typical", holdRate: lowNewest.live.typical.holdRate }, "a weak newest show yields to the typical show");
+  assert.equal(sponsorView({ episodes: eps.map((e) => ({ ...e, live: null })), transcripts, generatedAt: "2026-10-11T14:00:00.000Z" }).live.claim, null, "no live session read: no claim");
   assert.equal(liveAt(lived[4], { clock: "upload" }, 3601), null, "an upload-clock transcript has no live minute");
 
   // quotes: originals linked; people on the show rank last and say so
@@ -469,4 +492,4 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(view.feedback.featured, [], "none of the picked ids is stored in the fixture");
 }
 
-console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins (with their words), tool call-ins, quotes and cover row are stored entries in their order within the caps, and absent inputs stay absent");
+console.log("sponsor-view.test: clock checks link only on a matched clock; call-ins come from what aired; sponsor totals mirror the brief, typicals use the window before the newest, the newest curve is its stored session, excerpts are whole sentences of the transcript's words, quotes link to their originals with the show's own guests last, examples stand only where the transcript bears the owners' record out and carry the partner's own segment from the recorded window, the owners' featured call-ins (with their words), tool call-ins, quotes and cover row are stored entries in their order within the caps, the room's claim is the stronger true hold, the listed brands' group figures are stored, and absent inputs stay absent");

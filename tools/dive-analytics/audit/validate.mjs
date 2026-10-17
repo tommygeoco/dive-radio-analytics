@@ -3712,6 +3712,16 @@ try {
           bad++; fail(`sponsor: the newest show's curve (E${got.ep}) is not its stored session — peak ${got.peak} at minute ${got.peakMinute}, ${got.durationMin} min`);
         }
       }
+      // the room's claim (D26): the stronger of the newest show's own hold and the typical show's, re-derived from the
+      // sessions; a tie goes to the newest show; one reading stands alone; with neither, null
+      {
+        const ownHold = newest && Number.isFinite(newest.live.holdRate) ? newest.live.holdRate : null;
+        const usualHold = window.length ? middle(window.filter(sideOf("holdRate")).map(liveFigure.holdRate)) : null;
+        const claimWant = ownHold == null && usualHold == null ? null
+          : usualHold == null || (ownHold != null && ownHold >= usualHold) ? { basis: "latest", holdRate: ownHold, ep: newest.ep, premiere: newest.premiere }
+          : { basis: "typical", holdRate: usualHold };
+        if (JSON.stringify(sp.live?.claim ?? null) !== JSON.stringify(claimWant) || !("claim" in (sp.live || {}))) { bad++; fail(`sponsor: the room's claim (${sp.live?.claim?.basis ?? "none"} ${sp.live?.claim?.holdRate ?? ""}) does not re-derive as the stronger hold of the newest show (${ownHold}) and a typical show (${usualHold})`); }
+      }
       // subscribers and followers: channel-stats' current readings, as stored
       for (const c of sp.audience.channels || []) {
         const row = channels?.current?.[c.key];
@@ -3757,6 +3767,23 @@ try {
         for (const [, t] of parsed) { const n = t.segments.reduce((a, s) => a + (s.text.match(re) || []).length, 0); mentions += n; if (n) episodes++; }
         if (mentions !== b.mentions || episodes !== b.episodes) { bad++; fail(`sponsor: ${b.name} mentions (${b.mentions} in ${b.episodes}) do not re-count from the transcripts (${mentions} in ${episodes})`); }
         if (b.mentions < SV.BRAND_MIN_MENTIONS) { bad++; fail(`sponsor: ${b.name} is listed under the mention floor`); }
+      }
+      // the listed brands as a group (D26), from this block's own re-count: their mentions between them and the fewest
+      // any has; absent (null) with no brand listed; no every-episode count is stored
+      {
+        const recount = (sp.brands.list || []).map((b) => {
+          const re = new RegExp(`(?<![\\w@#])${esc(b.name).replace(/ /g, "\\s+")}(?![\\w])`, "g");
+          let mentions = 0, episodes = 0;
+          for (const [, t] of parsed) { const n = t.segments.reduce((a, s) => a + (s.text.match(re) || []).length, 0); mentions += n; if (n) episodes++; }
+          return { mentions, episodes };
+        });
+        const factsWant = recount.length ? { listMentions: recount.reduce((a, r) => a + r.mentions, 0), listMin: Math.min(...recount.map((r) => r.mentions)) }
+          : { listMentions: null, listMin: null };
+        const factsGot = { listMentions: sp.brands.listMentions, listMin: sp.brands.listMin };
+        const strayFigures = ["allEpisodes", "leastMentions"].filter((k) => k in sp.brands);
+        if (JSON.stringify(factsGot) !== JSON.stringify(factsWant)) { bad++; fail(`sponsor: the listed brands' group figures (${JSON.stringify(factsGot)}) do not re-derive from a re-count of the transcripts (${JSON.stringify(factsWant)})`); }
+        if (strayFigures.length) { bad++; fail(`sponsor: the brands carry ${strayFigures.join(", ")}, a figure the page must not state (it points at brands the sentence does not name)`); }
+        if (sp.brands.episodes !== parsed.size) { bad++; fail(`sponsor: brands are read over ${sp.brands.episodes} episodes, but ${parsed.size} transcripts are held`); }
       }
       // moments: every excerpt grounds in its transcript at its time (the transcript's words, less only what
       // cleanSpeech names); every link is the clock rule's; a live count is the stream's own minute

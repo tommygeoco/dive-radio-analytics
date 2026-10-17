@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 8,
+  "version": 9,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -104371,6 +104371,12 @@ window.DIVE_DATA = {
      "ep": 9,
      "since": 5
     }
+   },
+   "claim": {
+    "basis": "latest",
+    "holdRate": 79.4,
+    "ep": 14,
+    "premiere": "2026-10-15"
    }
   },
   "audience": {
@@ -105692,6 +105698,8 @@ window.DIVE_DATA = {
   "brands": {
    "episodes": 14,
    "tracked": 62,
+   "listMentions": 504,
+   "listMin": 9,
    "list": [
     {
      "name": "Figma",
