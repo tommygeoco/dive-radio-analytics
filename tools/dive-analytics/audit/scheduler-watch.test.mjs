@@ -39,6 +39,7 @@ function harness(name, jobs, overrides = {}) {
     now: morning,
     read: listing(jobs, "OpenClaw 2026.9.7 (c074824)\n"),
     enable: (id) => { enabledCalls.push(id); return { status: 0, stdout: "{\"ok\":true}" }; },
+    probe: () => ({ status: 0, stdout: "v24.22.0\n", stderr: "" }),
     queue: (lines) => queued.push(...lines),
     ...overrides,
   };
@@ -175,6 +176,34 @@ try {
     writeFileSync(`${h.statePath}.lock`, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }));
     assert.equal(h.run().skipped, "another scheduler check is running"); assertions++;
     rmSync(`${h.statePath}.lock`);
+  }
+
+  // 12. The 2026-10-18 failure: the Node every core job names will not start
+  //     (dyld could not load a library a Homebrew upgrade moved). One line per
+  //     dead runtime per day names the jobs and the loader's words; each
+  //     executable is started once per check; a working runtime is silent.
+  {
+    const jobs = healthy();
+    jobs[2] = { ...jobs[2], enabled: false, state: { consecutiveErrors: 10, autoDisabled: { reason: "consecutive-failures", consecutiveErrors: 10 } } };
+    jobs[3] = { ...jobs[3], payload: { ...jobs[3].payload, argv: ["/Users/bones/.local/share/node/node-v24.20.0-darwin-arm64/bin/node", "scripts/restream/ingest-restream.mjs"] } };
+    const probed = [];
+    const dyld = { status: null, signal: "SIGABRT", stdout: "", stderr: "dyld[87670]: Library not loaded: /opt/homebrew/opt/simdjson/lib/libsimdjson.29.dylib\n  Referenced from: <D0FA> /opt/homebrew/Cellar/node/25.6.1/bin/node\n" };
+    const h = harness("dead-runtime", jobs, { probe: (exe) => { probed.push(exe); return exe.startsWith("/opt/homebrew/") ? dyld : { status: 0, stdout: "v24.22.0\n", stderr: "" }; } });
+    h.run();
+    assert.deepEqual(probed, ["/opt/homebrew/bin/node", "/Users/bones/.local/share/node/node-v24.20.0-darwin-arm64/bin/node"], "each executable is started once per check"); assertions++;
+    const dead = h.queued.filter((line) => /will not start/.test(line));
+    assert.equal(dead.length, 1, "one line per dead runtime, not one per job"); assertions++;
+    assert.equal(dead[0], "The 07:00 daily run, the 08:15/12:15 recovery check and slack alert delivery start /opt/homebrew/bin/node, which will not start on the chain machine (SIGABRT: Library not loaded: /opt/homebrew/opt/simdjson/lib/libsimdjson.29.dylib), so they fail before any check of their own can run. Repair that runtime or point the jobs at one that starts; `/opt/homebrew/bin/node -v` on the chain machine shows the error."); assertions++;
+    assert.ok(!h.queued.some((line) => /share\/node/.test(line)), "a runtime that starts says nothing"); assertions++;
+    h.run();
+    assert.equal(h.queued.filter((line) => /will not start/.test(line)).length, 1, "the five-minute check does not repeat itself"); assertions++;
+    const missing = harness("missing-runtime", healthy().slice(0, 1), { probe: () => { throw Object.assign(new Error("spawnSync /opt/homebrew/bin/node ENOENT"), { code: "ENOENT" }); } });
+    missing.run();
+    assert.ok(missing.queued.some((line) => /^The 07:00 daily run starts \/opt\/homebrew\/bin\/node, which will not start on the chain machine \(ENOENT\), so it fails before any check of its own can run\./.test(line)), "a missing executable is the same failure, not a crash"); assertions++;
+    let started = 0;
+    const byName = harness("runtime-by-name", healthy().map((item) => ({ ...item, payload: { ...item.payload, argv: ["node", ...item.payload.argv.slice(1)] } })), { probe: () => { started++; return { status: 1 }; } });
+    byName.run();
+    assert.equal(started, 0, "a job that names its runtime through PATH is not probed"); assertions++;
   }
 
   // 11. Every core matcher finds the real chain-machine command, and the

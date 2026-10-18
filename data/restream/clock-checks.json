@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "method": "6-word phrases that occur once in both the transcript and the upload's English auto-captions; offset = median(caption time − transcript time); spread = 90th − 10th percentile",
-  "updatedAt": "2026-10-16T23:39:45.987Z",
+  "updatedAt": "2026-10-17T14:02:24.865Z",
   "entries": {
     "2026-07-17-dive-radio-bumpy-takeoff": {
       "uploads": {
@@ -320,12 +320,12 @@
         "yt:designertom": {
           "videoId": "YmC8feEgGDw",
           "transcriptSha256": "c6c89ac7c106337c6fa37b4f4850a0709a405c6576e1add15a98eb4e1fba3980",
-          "checkedAt": "2026-10-16T23:39:45.987Z",
-          "state": "pending",
-          "anchors": 0,
-          "offsetSec": null,
-          "spreadSec": null,
-          "reason": "YouTube has not published English auto-captions yet"
+          "checkedAt": "2026-10-17T14:02:24.865Z",
+          "state": "ready",
+          "anchors": 1078,
+          "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
         },
         "yt:joindiveclub": {
           "videoId": "J3NB3migbE0",

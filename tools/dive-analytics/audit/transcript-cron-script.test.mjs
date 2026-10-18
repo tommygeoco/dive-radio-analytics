@@ -26,6 +26,7 @@ assert.deepEqual(quiet.value, {});
 assert.equal(quiet.calls.length, 1);
 assert.match(quiet.calls[0].command, /mirror-transcripts\.mjs --quiet-current/);
 assert.match(quiet.calls[0].command, /Library\/Application Support\/Dive Radio Analytics\/publisher-main/);
+assert.match(quiet.calls[0].command, /&& \/Users\/bones\/\.local\/bin\/node scripts\/restream\/mirror-transcripts\.mjs/, "the official Node, never Homebrew's");
 
 const changed = await run({ exitCode: 0, aggregated: "copied e8 transcript" });
 assert.deepEqual(changed.value, { notify: "copied e8 transcript" });

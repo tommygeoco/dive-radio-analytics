@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-10-16T21:25:06.189Z",
+  "updatedAt": "2026-10-18T19:16:44.275Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1855,6 +1855,25 @@
       "promptVersion": 3,
       "model": "claude-sonnet-5-5",
       "classifiedAt": "2026-10-16T21:25:06.189Z"
+    },
+    "yt:Ugw9x0oZfPFqrJRUY0V4AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.95,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-17T14:02:09.815Z",
+      "audit": {
+        "at": "2026-10-17T14:02:09.815Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.95
+      }
     }
   },
   "golden": {
@@ -1875,9 +1894,9 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-10-16T21:25:06.189Z",
+    "at": "2026-10-18T19:16:44.275Z",
     "status": "complete",
-    "added": 7,
+    "added": 0,
     "reviewed": 0,
     "pendingIds": []
   },

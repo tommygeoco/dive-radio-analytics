@@ -17,6 +17,14 @@
 //      auto-disabled core automation back on and queues one line per job per
 //      Phoenix day for anything it cannot fix: switched off by a person,
 //      missing, unreadable, or failing repeatedly.
+//   3. A core job whose Node will not start (2026-10-18: a Homebrew upgrade
+//      left /opt/homebrew/bin/node unable to load its libraries, so every core
+//      job died in dyld before any of its own checks could speak, and OpenClaw's
+//      notice named only a signal). The watch runs on whatever runtime still
+//      works and starts each core job's executable with `-v`; one that will not
+//      start reaches Slack once a day with the loader's own words. A dead
+//      runtime under the watch itself is the OpenClaw-native watchdog's case,
+//      which needs no Node (audit/AUDIT-2026-10-18-homebrew-node.md).
 //
 // It never runs the chain, never edits a schedule or command, and never
 // touches an automation outside CORE_JOBS. Entry points act only from the
@@ -31,7 +39,7 @@ import { fileURLToPath } from "node:url";
 import { acquireLock, appendQueueLines } from "./alert-queue.mjs";
 import { phoenixDay } from "./freshness.mjs";
 import { saveReceipt } from "./run-receipt.mjs";
-import { ISOLATED_PUBLISHER_ROOT, RUNTIME_DIR } from "./runtime-paths.mjs";
+import { ISOLATED_PUBLISHER_ROOT, RUNTIME_DIR, childEnv } from "./runtime-paths.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -75,6 +83,19 @@ function parseJobs(stdout) {
   return jobs;
 }
 
+// The executable a core job starts, when the job names one by absolute path.
+export function runtimeOf(argv) {
+  const exe = Array.isArray(argv) ? argv[0] : null;
+  return typeof exe === "string" && exe.startsWith("/") ? exe : null;
+}
+const probeRuntime = (exe) => spawnSync(exe, ["-v"], { encoding: "utf8", timeout: 10_000, maxBuffer: 64 * 1024 });
+// "SIGABRT: Library not loaded: …libsimdjson.29.dylib" — the loader's first line, without its pid.
+function whyNot(result) {
+  const reason = result?.error?.code || result?.signal || `exit ${result?.status ?? "missing"}`;
+  const said = String(result?.stderr ?? "").split("\n").map((line) => line.trim()).find(Boolean);
+  return said ? `${reason}: ${said.replace(/^dyld\[\d+\]:\s*/, "").slice(0, 120)}` : reason;
+}
+
 const phxClock = (now) => new Intl.DateTimeFormat("en-US", { timeZone: "America/Phoenix", hour: "numeric", minute: "2-digit" }).format(now);
 const failed = (result) => !result || result.error || result.signal || result.status !== 0;
 
@@ -86,8 +107,13 @@ function readState(path) {
 }
 
 export function checkScheduler({
-  read = () => spawnSync("openclaw", ["cron", "list", "--all", "--json"], { encoding: "utf8", maxBuffer: 8 * 1024 * 1024, timeout: 30_000 }),
-  enable = (id) => spawnSync("openclaw", ["cron", "enable", id, "--json"], { encoding: "utf8", maxBuffer: 1024 * 1024, timeout: 30_000 }),
+  // Gateway RPC without Slack delivery previews: the same jobs with payload and
+  // state in under a second (hinterlands runbook W3-09, 2026-10-17). `cron list`
+  // built a preview per job, 11-33 s per call, with rate-limit bursts.
+  read = () => spawnSync("openclaw", ["gateway", "call", "cron.list", "--json", "--timeout", "60000", "--params",
+    JSON.stringify({ includeDisabled: true, includeDeliveryPreviews: false, limit: 200 })], { env: childEnv(), encoding: "utf8", maxBuffer: 8 * 1024 * 1024, timeout: 65_000 }),
+  enable = (id) => spawnSync("openclaw", ["cron", "enable", id, "--json"], { env: childEnv(), encoding: "utf8", maxBuffer: 1024 * 1024, timeout: 30_000 }),
+  probe = probeRuntime,
   queue = (lines) => appendQueueLines(lines),
   statePath = SCHEDULER_WATCH_PATH,
   now = Date.now(),
@@ -119,6 +145,7 @@ export function checkScheduler({
       catch (error) { once("list:unreadable", `The OpenClaw automation list was unreadable (${error.message}), so nothing can confirm the daily run is switched on.`); }
     }
 
+    const runtimes = new Map(); // executable → the core jobs that start it
     for (const core of jobs ? CORE_JOBS : []) {
       const matches = jobs.filter((job) => job?.schedule?.kind === "cron" && Array.isArray(job?.payload?.argv) && core.match(job.payload.argv));
       if (!matches.length) {
@@ -126,6 +153,8 @@ export function checkScheduler({
         continue;
       }
       for (const job of matches) {
+        const exe = runtimeOf(job.payload.argv);
+        if (exe) runtimes.set(exe, [...(runtimes.get(exe) ?? []), core.label]);
         const streak = Number.isInteger(job.state?.consecutiveErrors) ? job.state.consecutiveErrors : 0;
         if (job.enabled === false) {
           const auto = job.state?.autoDisabled;
@@ -145,6 +174,15 @@ export function checkScheduler({
           once(`${core.key}:${job.id}:streak`, `${core.label} has failed ${streak} runs in a row; OpenClaw switches an automation off at ${OPENCLAW_DISABLE_AT}, and the watchdog will switch it back on if that happens.`);
         }
       }
+    }
+
+    for (const [exe, labels] of runtimes) {
+      let result;
+      try { result = probe(exe); } catch (error) { result = { status: null, error }; }
+      if (!failed(result)) continue;
+      const named = [...new Set(labels)].map((label, i) => i ? label.toLowerCase() : label);
+      const who = named.length > 1 ? `${named.slice(0, -1).join(", ")} and ${named.at(-1)}` : named[0];
+      once(`runtime:${exe}`, `${who} ${named.length > 1 ? "start" : "starts"} ${exe}, which will not start on the chain machine (${whyNot(result)}), so ${named.length > 1 ? "they fail" : "it fails"} before any check of ${named.length > 1 ? "their" : "its"} own can run. Repair that runtime or point the ${named.length > 1 ? "jobs" : "job"} at one that starts; \`${exe} -v\` on the chain machine shows the error.`);
     }
 
     if (lines.length) queue(lines);

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-10T14:07:39.404Z",
+  "updatedAt": "2026-10-17T14:07:27.266Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -1067,6 +1067,88 @@
       "promptVersion": 1,
       "model": "claude-sonnet-5-5",
       "writtenAt": "2026-10-10T14:07:39.404Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed": {
+      "sha256": "c6c89ac7c106337c6fa37b4f4850a0709a405c6576e1add15a98eb4e1fba3980",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:15",
+          "seconds": 195,
+          "title": "Cold open, Savannah recap, the launch video, and a plane nap story",
+          "gist": "Hosts open with clips, recap a documentary shoot, play the launch video, and trade stories about a sleepy flight.",
+          "quote": "Show up and try things and be curious."
+        },
+        {
+          "start": "00:17:32",
+          "seconds": 1052,
+          "title": "News run: design patterns, big funding, new models, and a hiring dispute",
+          "gist": "Hosts react to an onboarding pattern, a chicken sandwich app, funding, model buzz, and a disputed hiring post.",
+          "quote": "I do wanna talk a little bit about"
+        },
+        {
+          "start": "00:28:04",
+          "seconds": 1684,
+          "title": "How the reviews work, then tips from Elizabeth Lin and Eric",
+          "gist": "Hosts explain the community feedback setup, then play portfolio advice from Elizabeth Lin and a Cognition designer.",
+          "quote": "We'll talk about the news next week"
+        },
+        {
+          "start": "00:40:50",
+          "seconds": 2450,
+          "title": "First review: Kartik's portfolio with Jeff Tian's video critique",
+          "gist": "Jeff Tian urges Kartik to lead with finished work, and the hosts react to his live changes.",
+          "quote": "Thanks for letting me take a look at your portfolio"
+        },
+        {
+          "start": "00:48:40",
+          "seconds": 2920,
+          "title": "Pooja's and Matteo's portfolios get reviewed by Maheen, Rob, and Josh",
+          "gist": "Maheen and Rob critique Pooja's testimonials and hero, then Josh says Matteo's text-heavy site should show work.",
+          "quote": "long time meta designer"
+        },
+        {
+          "start": "01:00:03",
+          "seconds": 3603,
+          "title": "Case's and Tracy's portfolios and the pull of AI-made design habits",
+          "gist": "MDS and Eeny critique two sites while the hosts flag text overload, extra clicks, and default AI looks.",
+          "quote": "I'm gonna try to go sixty seconds"
+        },
+        {
+          "start": "01:12:59",
+          "seconds": 4379,
+          "title": "Shreyas's, a financial designer's, and Gal's portfolios",
+          "gist": "Kyle, Femke, and Jeff review three sites, with the hosts debating clever interactions and feed-style layouts.",
+          "quote": "It's been cool to go through your portfolio"
+        },
+        {
+          "start": "01:25:27",
+          "seconds": 5127,
+          "title": "Gabe's, Brandon's, and Marimar's portfolios under review",
+          "gist": "Josh reviews Gabe's site; later critiques flag AI-looking effects and dated device mockups for Brandon and Marimar.",
+          "quote": "Let me get a quick disclaimer for Gabe"
+        },
+        {
+          "start": "01:39:54",
+          "seconds": 5994,
+          "title": "More reviews: Angelina, a playful feed site, Priya, and Julio",
+          "gist": "Josh, Maheen, Jeff, and MDS critique early-career and playful sites, stressing larger work and tighter editing.",
+          "quote": "asked me to take a look at your portfolio"
+        },
+        {
+          "start": "01:56:57",
+          "seconds": 7017,
+          "title": "Shout-outs to the reviewers and a sleepy sign-off",
+          "gist": "Hosts thank the reviewers, note many submissions went unseen, plug the launch, and sign off until next week.",
+          "quote": "truly need to shout out everyone"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-sonnet-5-5",
+      "writtenAt": "2026-10-17T14:07:27.266Z"
     }
   },
   "superseded": [

@@ -4,4 +4,6 @@
 set -eu
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$REPO" || { echo "publish: cannot open $REPO" >&2; exit 1; }
-exec node tools/dive-analytics/publish-flow.mjs "$@"
+# DIVE_NODE is the Node running the chain (runtime-paths.childEnv); a person
+# running this by hand gets the first node on PATH.
+exec "${DIVE_NODE:-node}" tools/dive-analytics/publish-flow.mjs "$@"

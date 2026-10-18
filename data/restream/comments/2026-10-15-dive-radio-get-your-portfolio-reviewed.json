@@ -11,7 +11,7 @@
       "author": "lancerloco",
       "authorId": "UCBq_jubwiI0nNVFog5O591w",
       "text": "59:57 Hey guys, Case Ronquillo here, first off thank you so much for doing this and being able to pull in all of these amazing design leaders for their invaluable feedback (especially from MDS no less!) Btw, I’m a product designer haha\n\nAs nerve-racking as it is to get feedback in this public of a format, it definitely provides me with some clarity on what I need to dial in.\n\nI will say that for someone that doesn’t come from a traditional design background, it was rewarding to hear what reflect",
-      "likes": 0,
+      "likes": 2,
       "publishedAt": "2026-10-16T05:56:04Z",
       "reading": {
         "schemaVersion": 1,
@@ -21,7 +21,15 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "Ugw6bREaYo6OIqH8Pj54AaABAg",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugw6bREaYo6OIqH8Pj54AaABAg.Ac0L7Qlo-_oAc0NIMNk7i7",
@@ -31,7 +39,7 @@
       "author": "lancerloco",
       "authorId": "UCBq_jubwiI0nNVFog5O591w",
       "text": "P.s Regarding the Claude thing, I did write those case studies myself but I did have Claude help me repackage them to help flush out the story based on some custom Claude skills I made. I see now that in that “repackaging” it relied on visual cues and formats that give off that reek. Definitely not something I want people to think especially if those words are mine. Good lesson.",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-10-16T06:15:02Z",
       "reading": {
         "schemaVersion": 1,
@@ -41,7 +49,15 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "Ugw6bREaYo6OIqH8Pj54AaABAg.Ac0L7Qlo-_oAc0NIMNk7i7",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     },
     {
       "id": "yt:Ugzw11U67cN2ZLu4yH14AaABAg",
@@ -61,7 +77,15 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "Ugzw11U67cN2ZLu4yH14AaABAg",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2110999076988960845",
@@ -81,7 +105,15 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "2110999076988960845",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2110996291224322431",
@@ -101,7 +133,15 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "2110996291224322431",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2110977445406941613",
@@ -121,7 +161,15 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "2110977445406941613",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2108939568615690379",
@@ -141,11 +189,47 @@
         "pulledAt": "2026-10-16T21:24:58.881Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-16T21:24:58.881Z"
+      "firstSeenAt": "2026-10-16T21:24:58.881Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "2108939568615690379",
+        "pulledAt": "2026-10-17T14:02:02.421Z",
+        "state": "ready"
+      }
+    },
+    {
+      "id": "yt:Ugw9x0oZfPFqrJRUY0V4AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "J3NB3migbE0",
+      "author": "Yanjkee",
+      "authorId": "UCecGuIH_YyvimWqLKFMwS5Q",
+      "text": "Timecodes please",
+      "likes": 2,
+      "publishedAt": "2026-10-16T22:55:59Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "Ugw9x0oZfPFqrJRUY0V4AaABAg",
+        "pulledAt": "2026-10-17T14:02:02.421Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-17T14:02:02.421Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "Ugw9x0oZfPFqrJRUY0V4AaABAg",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
+        "state": "ready"
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-16T21:24:58.881Z",
+    "checkedAt": "2026-10-18T19:16:37.360Z",
     "state": "ready",
     "sources": [
       {
@@ -153,16 +237,16 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "J3NB3migbE0",
-        "pulledAt": "2026-10-16T21:24:58.881Z",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
         "state": "ready",
-        "count": 2
+        "count": 3
       },
       {
         "schemaVersion": 1,
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "YmC8feEgGDw",
-        "pulledAt": "2026-10-16T21:24:58.881Z",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
         "state": "ready",
         "count": 1
       },
@@ -171,7 +255,7 @@
         "source": "x-replies",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "2110823157116661822",
-        "pulledAt": "2026-10-16T21:24:58.881Z",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
         "state": "ready",
         "count": 3
       },
@@ -180,16 +264,16 @@
         "source": "x-replies",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "2108818810580926824",
-        "pulledAt": "2026-10-16T21:24:58.881Z",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
         "state": "ready",
-        "count": 1
+        "count": 0
       },
       {
         "schemaVersion": 1,
         "source": "x-replies",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "2110823157649285553",
-        "pulledAt": "2026-10-16T21:24:58.881Z",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
         "state": "ready",
         "count": 0
       },
@@ -198,12 +282,12 @@
         "source": "x-replies",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "2108823591399891441",
-        "pulledAt": "2026-10-16T21:24:58.881Z",
+        "pulledAt": "2026-10-18T19:16:37.360Z",
         "state": "ready",
         "count": 0
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-16T21:24:58.881Z"
+  "updatedAt": "2026-10-18T19:16:37.360Z"
 }

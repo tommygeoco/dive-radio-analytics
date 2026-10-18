@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { deployWithParity, MAX_ATTEMPTS } from "../publish-flow.mjs";
+import { deployWithParity, MAX_ATTEMPTS, refreshVercelLogin } from "../publish-flow.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -54,6 +54,19 @@ assert.equal(MAX_ATTEMPTS, 2);
 }
 
 {
+  // The login refresh runs one cheap CLI call and can never stop the deploy.
+  const lines = [];
+  let calls = 0;
+  assert.deepEqual(refreshVercelLogin(() => { calls++; return { status: 0 }; }, (line) => lines.push(line)), { ok: true });
+  assert.equal(calls, 1);
+  assert.equal(lines.length, 0, "a refreshed login says nothing");
+  assert.deepEqual(refreshVercelLogin(() => ({ status: 1 }), (line) => lines.push(line)), { ok: false });
+  assert.deepEqual(refreshVercelLogin(() => { throw new Error("spawn failed"); }, (line) => lines.push(line)), { ok: false });
+  assert.equal(lines.length, 2, "each failed refresh is named once and the deploy still runs");
+  assert.match(lines[0], /deploying anyway/);
+}
+
+{
   const flow = readFileSync(join(HERE, "..", "publish-flow.mjs"), "utf8");
   const wrapper = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
   assert.match(flow, /assertPublisherCheckout\(root\)/);
@@ -63,6 +76,9 @@ assert.equal(MAX_ATTEMPTS, 2);
   assert.match(flow, /validate\.mjs"/);
   assert.match(wrapper, /set -eu/);
   assert.doesNotMatch(wrapper, /vercel[^\n]*\|/);
+  const refresh = flow.indexOf('command(root, "vercel", ["whoami"]');
+  const deploy = flow.indexOf('command(root, "vercel", ["deploy", "--prod", "--yes"]');
+  assert.ok(refresh > 0 && deploy > refresh, "the login refresh runs before every vercel deploy");
 }
 
 console.log("publish-flow.test: two-try bound, failed deploy handling, exact proof, main-only push, scoped staging, and strict final validation pass");
