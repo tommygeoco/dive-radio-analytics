@@ -438,15 +438,15 @@ button { font: inherit; color: inherit; }
   /* the system's trust bar: phones move a not-current freshness sentence under the top bar */
   .trust { display: none; }
   #audience-preview { margin-top: var(--gap); }
-  /* the other pages (Sponsors, Agents): the top bar's pills (outline, no fill) */
-  .agentslink, .pagelink { position: relative; display: inline-flex; align-items: center; height: 36px; padding: 0 12px; flex: none;
+  /* the Agents page: the top bar's pill (outline, no fill); Sponsors is a nav item in the rail and the tab bar */
+  .agentslink { position: relative; display: inline-flex; align-items: center; height: 36px; padding: 0 12px; flex: none;
     border-radius: var(--radius-full); box-shadow: inset 0 0 0 1px var(--line-strong);
     color: var(--fg-1); font-size: var(--text-body-sm); font-weight: 500; text-decoration: none; white-space: nowrap;
     transition: background 150ms var(--ease-out-quart); }
-  .agentslink::after, .pagelink::after { content: ""; position: absolute; inset: -4px 0; }
-  .agentslink:hover, .pagelink:hover { background: var(--surface-2); }
-  @media (hover: none) { .agentslink:hover, .pagelink:hover { background: none; } }
-  @media (min-width: 48rem) { .agentslink, .pagelink { height: 32px; font-size: var(--text-meta); } }
+  .agentslink::after { content: ""; position: absolute; inset: -4px 0; }
+  .agentslink:hover { background: var(--surface-2); }
+  @media (hover: none) { .agentslink:hover { background: none; } }
+  @media (min-width: 48rem) { .agentslink { height: 32px; font-size: var(--text-meta); } }
   /* A copy that is not the live site (a one-off build, a branch preview) whose
      data is from an earlier day says so and links to the live dashboard —
      the system's warning banner. */
@@ -1396,6 +1396,7 @@ button { font: inherit; color: inherit; }
     <a class="ss-rail__item" href="#today" data-nav="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Today</span></a><a class="ss-rail__item" href="#episodes" data-nav="episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/></svg><span>Episodes</span></a><a class="ss-rail__item" href="#actions" data-nav="actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg><span>Actions</span></a>
   </div>
   <div class="ss-rail__list ss-rail__list--bottom">
+    <a class="ss-rail__item" href="sponsors.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span>Sponsors</span></a>
     <a class="ss-rail__item" href="#about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg><span>About</span></a>
   </div>
 </nav>
@@ -1403,7 +1404,6 @@ button { font: inherit; color: inherit; }
   <div class="topin">
     <h1 id="pagetitle" tabindex="-1">Today</h1>
     <button type="button" class="ss-conn stamp" id="stamp"></button>
-    <a class="pagelink" href="sponsors.html">Sponsors</a>
     <a class="agentslink" href="agents.html">Agents</a>
   </div>
 </header>
@@ -1470,7 +1470,7 @@ button { font: inherit; color: inherit; }
 <nav class="ss-tabbar" aria-label="Primary">
   <div class="ss-tabbar__fade" aria-hidden="true"></div>
   <div class="ss-tabbar__pill">
-    <a class="ss-tab" href="#today" data-nav="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Today</span></a><a class="ss-tab" href="#episodes" data-nav="episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/></svg><span>Episodes</span></a><a class="ss-tab" href="#actions" data-nav="actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg><span>Actions</span></a><a class="ss-tab" href="#about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg><span>About</span></a>
+    <a class="ss-tab" href="#today" data-nav="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Today</span></a><a class="ss-tab" href="#episodes" data-nav="episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6.5" rx="2"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="2"/></svg><span>Episodes</span></a><a class="ss-tab" href="#actions" data-nav="actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 7 2 2 3.5-3.5M3.5 17l2 2 3.5-3.5M13 7h7.5M13 12h7.5M13 17h7.5"/></svg><span>Actions</span></a><a class="ss-tab" href="sponsors.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span>Sponsors</span></a><a class="ss-tab" href="#about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 7.8h.01" stroke-width="2.8"/></svg><span>About</span></a>
   </div>
 </nav>
 
