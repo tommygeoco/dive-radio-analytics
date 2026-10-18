@@ -27,7 +27,7 @@ import { fileURLToPath } from "node:url";
 import { CHECK_LABELS } from "./health.mjs";
 import { MIN_PEERS } from "./baselines.mjs";
 import { acknowledgeQueueLines, acquireLock, appendQueueLines, QUEUE_PATH, readQueue } from "./alert-queue.mjs";
-import { ALERT_STATE_PATH, DAILY_STATE_PATH } from "./runtime-paths.mjs";
+import { ALERT_STATE_PATH, DAILY_STATE_PATH, childEnv } from "./runtime-paths.mjs";
 import { saveReceipt } from "./run-receipt.mjs";
 import { createHash, randomUUID } from "node:crypto";
 import { phoenixDay } from "./freshness.mjs";
@@ -272,7 +272,7 @@ const slackPlain = (text) => String(text ?? "").replace(/&amp;/g, "&").replace(/
 
 export function reconcileDeliveryAttempt(attempt, {
   history = { attempts: [] }, now = Date.now(), settleMs = 120_000,
-  read = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 20_000 }),
+  read = (args) => spawnSync("openclaw", args, { env: childEnv(), encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 20_000 }),
 } = {}) {
   const checkedAt = new Date(now).toISOString();
   const unknown = (reason, extra = {}) => ({ state: "unknown", checkedAt, reason, ...extra });
@@ -318,7 +318,7 @@ export function deliverPending({
   channel = "slack",
   account = "default",
   target,
-  send = (args) => spawnSync("openclaw", args, { encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 60_000 }),
+  send = (args) => spawnSync("openclaw", args, { env: childEnv(), encoding: "utf8", maxBuffer: 4 * 1024 * 1024, timeout: 60_000 }),
   chainGuard = () => acquireLock(`${DAILY_STATE_PATH}.run.lock`, { label: "daily publishing chain", maxAgeMs: 2 * 60 * 60 * 1000 }),
   log = console.log,
   receiptPath = `${queuePath}.receipts.json`,

@@ -3356,7 +3356,7 @@ try {
     const youtubeAnalyticsSource = readFileSync(join(ROOT, "scripts", "restream", "yt-analytics-pull.mjs"), "utf8");
     const youtubeReadinessSource = readFileSync(join(TOOL, "youtube-readiness.mjs"), "utf8");
     const sourceReceiptModule = await import(join(ROOT, "scripts", "restream", "source-receipts.mjs"));
-    if (!/set -eu/.test(wrapperSource) || !/exec node tools\/dive-analytics\/publish-flow\.mjs/.test(wrapperSource)) { bad++; drift("chain: publish wrapper must hand off to the checked release flow"); }
+    if (!/set -eu/.test(wrapperSource) || !/exec "\$\{DIVE_NODE:-node\}" tools\/dive-analytics\/publish-flow\.mjs "\$@"/.test(wrapperSource)) { bad++; drift("chain: publish wrapper must hand off to the checked release flow"); }
     if (!/branch !== "main"/.test(checkoutSource) || !/assertPublishScope\(root\)/.test(checkoutSource) || !/assertCommittedPublishScope\(root\)/.test(checkoutSource)) { bad++; drift("chain: the publisher checkout must require main and reject undeclared changes in files or local commits"); }
     if (!/assertPublisherCheckout\(ROOT\)/.test(runnerSource) && !/assertPublisherCheckout\(root\)/.test(runnerSource)) { bad++; drift("chain: runner must check the dedicated publisher checkout before capture"); }
     if (runnerSource.indexOf("pullFirst();") < 0 || runnerSource.indexOf("pullFirst();") > runnerSource.indexOf("for (const step of chain.steps)")) { bad++; drift("chain: runner must pull and check main before the first step"); }

@@ -41,8 +41,8 @@ assert.deepEqual(offenders, [], `source-inspecting checks still block a publish:
 assert.ok(drifts >= 60, `expected the source contracts to be drift-tier (found ${drifts} drift call sites)`);
 
 // 2. live: publish mode never fails on drift
-const strict = spawnSync("node", [join(HERE, "validate.mjs")], { cwd: ROOT, encoding: "utf8" });
-const publish = spawnSync("node", [join(HERE, "validate.mjs"), "--publish"], { cwd: ROOT, encoding: "utf8" });
+const strict = spawnSync(process.execPath, [join(HERE, "validate.mjs")], { cwd: ROOT, encoding: "utf8" });
+const publish = spawnSync(process.execPath, [join(HERE, "validate.mjs"), "--publish"], { cwd: ROOT, encoding: "utf8" });
 const strictFails = (strict.stdout.match(/^FAIL /gm) || []).length;
 const publishFails = (publish.stdout.match(/^FAIL /gm) || []).length;
 assert.equal(publishFails, strictFails, "the two modes must agree on every fail");

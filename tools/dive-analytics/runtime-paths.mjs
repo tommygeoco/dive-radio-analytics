@@ -2,7 +2,7 @@
 // checkout used to build and publish the dashboard.
 
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 
 export const RUNTIME_DIR = process.env.DIVE_RUNTIME_DIR
   || join(homedir(), "Library", "Application Support", "Dive Radio Analytics");
@@ -20,3 +20,14 @@ export const RECOVERY_PROOF_PATH = process.env.DIVE_RECOVERY_PROOF_PATH
   || join(RUNTIME_DIR, "recovery-proof.json");
 export const TRANSCRIPT_REFRESH_STATE_PATH = process.env.DIVE_TRANSCRIPT_REFRESH_STATE
   || join(RUNTIME_DIR, "transcript-index-refresh-needed.json");
+
+// Every child of a scheduled Dive run uses the Node that runs it (2026-10-18,
+// audit/AUDIT-2026-10-18-homebrew-node.md): a Homebrew upgrade broke
+// /opt/homebrew/bin/node, and anything started as bare `node` died with it.
+// Scripts start through process.execPath. childEnv() names that Node in
+// DIVE_NODE (postlive-publish.sh execs it) and puts its bin directory first on
+// PATH, so a Node CLI started by name (vercel, openclaw: `#!/usr/bin/env node`)
+// runs on it too. /opt/homebrew/bin stays for git, yt-dlp and xurl.
+export const childPath = (path = process.env.PATH) =>
+  `${dirname(process.execPath)}:/opt/homebrew/bin:/usr/local/bin:${path ?? ""}`;
+export const childEnv = (env = process.env) => ({ ...env, PATH: childPath(env.PATH), DIVE_NODE: process.execPath });

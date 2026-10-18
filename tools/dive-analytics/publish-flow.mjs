@@ -16,12 +16,13 @@ import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { stagePublishScope } from "./publish-scope.mjs";
 import { healLeftovers } from "./chain-heal.mjs";
 import { checkLiveParity, SITE } from "./live-parity.mjs";
+import { childEnv } from "./runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
 export const MAX_ATTEMPTS = 2;
 export const PRODUCTION_PROJECT = Object.freeze({ projectId: "prj_qhIPgmf5xXY36ECFM28gGxww9770", orgId: "team_I5Lv2baPfAlRXOmFfSkNHInZ" });
-const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
+const ENV = childEnv();
 
 export function assertProductionProject(root, env = process.env) {
   let linked;

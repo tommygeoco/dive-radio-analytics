@@ -64,7 +64,7 @@ assert.deepEqual(compareArtifactMaps(fixture, { ...fixture }).mismatches, []);
   const publish = readFileSync(join(ROOT, "scripts", "restream", "postlive-publish.sh"), "utf8");
   const flow = readFileSync(join(HERE, "..", "publish-flow.mjs"), "utf8");
   assert.match(helper, /AbortSignal\.timeout\(20_000\)/, "every live fetch is bounded");
-  assert.match(publish, /exec node tools\/dive-analytics\/publish-flow\.mjs/, "the shell cannot mask the checked release flow");
+  assert.match(publish, /exec "\$\{DIVE_NODE:-node\}" tools\/dive-analytics\/publish-flow\.mjs "\$@"/, "the shell cannot mask the checked release flow, and it runs on the chain's Node");
   assert.doesNotMatch(flow, /skipping deploy/, "an unchanged Git tree cannot bypass production repair");
   assert.match(flow, /vercel[\s\S]+checkLiveParity/, "the release proves exact live bytes after deployment");
 }

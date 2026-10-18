@@ -14,7 +14,7 @@ import { acquireLock, appendQueueLines, importLegacyQueueFile, resolveOperationa
 import { healLeftovers } from "./chain-heal.mjs";
 import { phoenixDay } from "./freshness.mjs";
 import { assertPublisherCheckout } from "./publisher-checkout.mjs";
-import { DAILY_STATE_PATH, ISOLATED_PUBLISHER_ROOT } from "./runtime-paths.mjs";
+import { DAILY_STATE_PATH, ISOLATED_PUBLISHER_ROOT, childEnv } from "./runtime-paths.mjs";
 import { exitForScheduler, watchSchedulerQuietly } from "./scheduler-watch.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT, YOUTUBE_WATCH_PENDING_STATUS } from "./youtube-readiness.mjs";
 import { ADVISORY_PENDING_EXIT, ADVISORY_PENDING_STATUS, lastProductionProof, pendingSourceStates, publicSourceStates, readPublishEvidence, receiptForAttempt, saveReceipt, SOURCE_PENDING_STATUS } from "./run-receipt.mjs";
@@ -28,7 +28,7 @@ export const STATE_PATH = DAILY_STATE_PATH;
 export const RUN_LOCK_MAX_AGE_MS = 2 * 60 * 60 * 1000;
 export const CHAIN_TIMEOUT_MS = 29 * 60 * 1000;
 const COMMAND_TIMEOUT_MS = 2 * 60 * 1000;
-const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
+const ENV = childEnv();
 
 function emptyState() {
   return { version: 1, timezone: "America/Phoenix", days: {}, invocations: {}, youtubeWatchAlerts: {}, failureAlerts: {}, advisoryAlerts: {} };

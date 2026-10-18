@@ -37,6 +37,7 @@ import { assertPublisherCheckout } from "./publisher-checkout.mjs";
 import { appendQueueLines, QUEUE_PATH } from "./alert-queue.mjs";
 import { YOUTUBE_WATCH_PENDING_EXIT } from "./youtube-readiness.mjs";
 import { ADVISORY_PENDING_EXIT } from "./run-receipt.mjs";
+import { childEnv } from "./runtime-paths.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
@@ -51,7 +52,7 @@ const SOURCE_PENDING_STEPS = new Set(["snapshot", "yt-analytics", "live", "newsl
 const RETRY_PAUSE_MS = 60_000;
 const LOG_DIR = process.env.DIVE_CHAIN_LOG_DIR || join(homedir(), "Library", "Logs", "dive-radio-analytics");
 const LOG_KEEP_DAYS = 30;
-const ENV = { ...process.env, PATH: `/opt/homebrew/bin:/usr/local/bin:${process.env.PATH ?? ""}` };
+const ENV = childEnv();
 
 // --- W40: the run log --------------------------------------------------------
 let logPath = null;
@@ -209,7 +210,7 @@ async function main() {
     if (step.when === "Mondays" && PHX_DAY !== "Mon") { log(`chain: ${step.step} — waits for Monday, skipped`); continue; }
     if (rehearse && REHEARSE_SKIP.has(step.step)) { log(`chain: ${step.step} — rehearsal, skipped (no publish-side effects)`); continue; }
     const parts = step.script.split(" ");
-    const cmd = parts[0].endsWith(".sh") ? ["sh", ...parts] : ["node", ...parts];
+    const cmd = parts[0].endsWith(".sh") ? ["sh", ...parts] : [process.execPath, ...parts];
     if (dry) { console.log(`chain: would run ${step.step}${step.required ? "" : " (optional)"} — ${cmd.join(" ")}`); continue; }
     log(`chain: ${step.step} …`);
     const outcome = await runStepWithPolicy({

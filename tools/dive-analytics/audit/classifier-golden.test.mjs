@@ -51,7 +51,7 @@ globalThis.fetch = async (url, options) => {
   {
     const seeded = JSON.parse(readFileSync(storePath, "utf8"));
     const dir = join(root, "data/restream/comments");
-    const rawIds = execFileSync("node", ["-e", `
+    const rawIds = execFileSync(process.execPath, ["-e", `
       const { readdirSync, readFileSync } = require('node:fs');
       const dir = ${JSON.stringify(dir)};
       console.log(JSON.stringify(readdirSync(dir).filter((f) => f.endsWith('.json')).flatMap((f) => JSON.parse(readFileSync(dir + '/' + f, 'utf8')).comments || []).map((c) => c.id)));`], { encoding: "utf8" });
@@ -63,7 +63,7 @@ globalThis.fetch = async (url, options) => {
     writeFileSync(storePath, JSON.stringify(seeded, null, 2) + "\n");
   }
   const before = JSON.parse(readFileSync(storePath, "utf8"));
-  const waiting = JSON.parse(execFileSync("node", ["-e", `
+  const waiting = JSON.parse(execFileSync(process.execPath, ["-e", `
     const { readdirSync, readFileSync } = require('node:fs');
     const dir = ${JSON.stringify(join(root, "data/restream/comments"))};
     const labels = JSON.parse(readFileSync(${JSON.stringify(storePath)}, 'utf8')).classified;
