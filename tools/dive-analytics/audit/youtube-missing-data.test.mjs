@@ -3,7 +3,7 @@
 // analytics are available. Missing counts must not become a day-one zero.
 
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
@@ -68,6 +68,8 @@ assert.equal(youtubeViewsForDisplay(aired), 20, "a positive YouTube reading keep
 assert.equal(destinationViewsForDisplay(aired, "yt:designertom"), 0);
 
 const dir = mkdtempSync(join(tmpdir(), "dive-youtube-missing-"));
+// Removed on exit, pass or fail: the chain runs this on every validate, and the dirs piled up in the gateway TMPDIR.
+process.on("exit", () => rmSync(dir, { recursive: true, force: true }));
 const historyPath = join(dir, "episode.jsonl");
 const empty = historyLine({
   premiere: "2026-09-03",

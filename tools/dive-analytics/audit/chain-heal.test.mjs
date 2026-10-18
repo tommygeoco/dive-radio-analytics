@@ -5,12 +5,14 @@
 // stash. Run: node tools/dive-analytics/audit/chain-heal.test.mjs
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, writeFileSync, readFileSync, mkdirSync } from "node:fs";
+import { mkdtempSync, writeFileSync, readFileSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { healLeftovers, mergeEpisodeRatingsStores, mergePostliveStores } from "../chain-heal.mjs";
 
 const base = mkdtempSync(join(process.env.CLAUDE_SCRATCH || tmpdir(), "chain-heal-"));
+// Removed on exit, pass or fail: the chain runs this on every validate, and the dirs piled up in the gateway TMPDIR.
+process.on("exit", () => rmSync(base, { recursive: true, force: true }));
 const git = (cwd, ...args) => execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], env: { ...process.env, GIT_AUTHOR_NAME: "t", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "t", GIT_COMMITTER_EMAIL: "t@t" } });
 const write = (root, rel, value) => { mkdirSync(join(root, rel, ".."), { recursive: true }); writeFileSync(join(root, rel), JSON.stringify(value, null, 2) + "\n"); };
 const v3 = (date, score) => ({ date, score, formulaVersion: "health-v3", createdAt: `${date}T14:00:00Z` });
