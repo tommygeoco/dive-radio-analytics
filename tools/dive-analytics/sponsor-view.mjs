@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 10;
+export const SPONSOR_VERSION = 11;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -230,7 +230,7 @@ export function callInMoment(c, transcripts, uploads) {
   if (!r || r.ep !== c.ep || !t) return null;
   const words = plainWords(r.opens);
   const line = (t.segments || []).find((x) => Math.abs(x.seconds - r.near) <= CALLIN_WINDOW_SEC && plainWords(x.text).includes(words));
-  return line ? { at: line.stamp, seconds: line.seconds, url: momentUrl(uploads?.[c.slug], line.seconds) } : null;
+  return line ? withLinkAt({ at: line.stamp, seconds: line.seconds, url: momentUrl(uploads?.[c.slug], line.seconds) }) : null;
 }
 
 export function featuredQuotes(quotes, ids = FEATURED_QUOTES) {
@@ -251,6 +251,18 @@ const CHANNELS = Object.freeze([
   { key: "x:designertom", label: "@designertom", platform: "X", unit: "followers", field: "followers" },
 ]);
 const SPONSOR_PHRASE = /\b(?:brought to you by|presented by|sponsor(?:s|ed|ing)?|partners?)\b/i;
+// The second a stored link opens, on its upload's clock (D27): the link's own
+// `t`, which the clock rule set to the transcript second plus the upload's
+// measured offset. A time shown beside a link is this one, so the page never
+// does clock arithmetic; a moment without a link has none.
+const pad2 = (n) => String(n).padStart(2, "0");
+export function linkAtOf(url) {
+  const m = /[?&]t=(\d+)s$/.exec(url || "");
+  if (!m) return null;
+  const s = Number(m[1]);
+  return `${pad2(Math.floor(s / 3600))}:${pad2(Math.floor((s % 3600) / 60))}:${pad2(s % 60)}`;
+}
+const withLinkAt = (moment) => (moment.url ? { ...moment, linkAt: linkAtOf(moment.url) } : moment);
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 export const brandPattern = (name) => new RegExp(`(?<![\\w@#])${escapeRe(name).replace(/ /g, "\\s+")}(?![\\w])`, "g");
 const negatedFor = (name) => new RegExp(`\\bnot (?:a |our )?(?:sponsor(?:ed)?|partner)(?: by)?[^.]{0,20}\\b${escapeRe(name)}\\b`, "i");
@@ -810,7 +822,7 @@ function partnersBlock(episodes, transcripts, uploads) {
 export function exampleSegment(x, partners) {
   const inWindow = (m) => m.seconds >= x.near - EXAMPLE_WINDOW_SEC.before && m.seconds <= x.near + EXAMPLE_WINDOW_SEC.after;
   const m = ((partners || []).find((p) => p.name === x.partner)?.moments || []).find((s) => s.kind === "segment" && s.ep === x.ep && inWindow(s));
-  return m ? { at: m.at, seconds: m.seconds, title: m.title, text: m.text, url: m.url } : null;
+  return m ? withLinkAt({ at: m.at, seconds: m.seconds, title: m.title, text: m.text, url: m.url }) : null;
 }
 
 // each package's example, found in its transcript near the recorded time, with
@@ -827,7 +839,7 @@ function examplesBlock(episodes, transcripts, uploads, partners) {
     const i = t.segments.findIndex((s) => s.seconds >= x.near - EXAMPLE_WINDOW_SEC.before && s.seconds <= x.near + EXAMPLE_WINDOW_SEC.after && new RegExp(re.source).test(s.text));
     if (i < 0) return withSegment({ ...base, moment: null, reason: `The transcript does not name ${x.partner} near the recorded time.` });
     const m = stored(momentOf(e, t, uploads[e.slug], i, re));
-    return withSegment({ ...base, moment: { at: m.at, seconds: m.seconds, text: m.text, url: m.url, liveAt: liveAt(e, t, m.seconds) }, reason: null });
+    return withSegment({ ...base, moment: { ...withLinkAt({ at: m.at, seconds: m.seconds, text: m.text, url: m.url }), liveAt: liveAt(e, t, m.seconds) }, reason: null });
   });
 }
 

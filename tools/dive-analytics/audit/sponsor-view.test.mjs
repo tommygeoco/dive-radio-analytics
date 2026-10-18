@@ -10,7 +10,7 @@ import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
-  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
+  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, linkAtOf, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
@@ -344,6 +344,10 @@ import { normalize } from "../transcripts.mjs";
   const ex = shown.examples.find((x) => x.package === "Segment");
   assert.equal(ex.moment.at, oneUpAt(oneUp.near + 5), "Lovable is named within the window of the recorded time");
   assert.equal(ex.moment.url, null, "no clock check, no link");
+  assert.ok(!("linkAt" in ex.moment), "no link, no link time");
+  const ownClock = { ...withOneUp, e8: { ...withOneUp.e8, clock: "upload", youtubeUrl: "https://youtube.com/watch?v=V8" } };
+  const linked = sponsorView({ episodes: eps, transcripts: ownClock, generatedAt: "2026-10-11T14:00:00.000Z" }).examples.find((x) => x.package === "Segment").moment;
+  assert.deepEqual([linked.url, linked.linkAt], [`https://youtube.com/watch?v=V8&t=${oneUp.near + 5}s`, oneUpAt(oneUp.near + 5)], "a caption transcript is its upload's clock: the link opens at the time shown");
   assert.equal(view.examples.find((x) => x.package === "Segment").moment, null, "no line naming Lovable near the recorded time: no moment, with a reason");
   assert.ok(view.examples.find((x) => x.package === "Segment").reason);
   assert.equal(shown.examples.find((x) => x.package === "Mid-roll").moment, null);
@@ -446,7 +450,14 @@ import { normalize } from "../transcripts.mjs";
   assert.deepEqual(callInMoment(soleio, { e11: clipT([[rec.near - 3, "And this is what he had to say."], [rec.near + 12, opening]]) }, {}),
     { at: at(rec.near + 12), seconds: rec.near + 12, url: null }, "the transcript line's own time, not the record's; no clock check, no link");
   assert.deepEqual(callInMoment(soleio, { e11: clipT([[rec.near + 12, opening]]) }, { e11: { url: "https://youtube.com/watch?v=V11", offsetSec: 0.6 } }),
-    { at: at(rec.near + 12), seconds: rec.near + 12, url: `https://youtube.com/watch?v=V11&t=${rec.near + 13}s` }, "a matched clock links to the second, offset applied");
+    { at: at(rec.near + 12), seconds: rec.near + 12, url: `https://youtube.com/watch?v=V11&t=${rec.near + 13}s`, linkAt: linkAtOf(`&t=${rec.near + 13}s`) }, "a matched clock links to the second, offset applied, and says the second the link opens");
+  // the second a link opens is the link's own t, on the upload's clock: never the transcript time shown beside it
+  assert.equal(linkAtOf("https://youtube.com/watch?v=V4&t=5474s"), "01:31:14", "E4's DesignerTom link: 01:31:19 on the transcript, 5.4 s earlier on the upload");
+  assert.equal(linkAtOf("https://youtube.com/watch?v=V4&t=0s"), "00:00:00");
+  assert.equal(linkAtOf(null), null, "no link, no time");
+  assert.equal(linkAtOf("https://youtube.com/watch?v=V4"), null, "a link without a second, no time");
+  const early = callInMoment(soleio, { e11: clipT([[rec.near, opening]]) }, { e11: { url: "https://youtube.com/watch?v=V11", offsetSec: -5.4 } });
+  assert.deepEqual([early.seconds, early.url, early.linkAt], [rec.near, `https://youtube.com/watch?v=V11&t=${Math.round(rec.near - 5.4)}s`, linkAtOf(`&t=${Math.round(rec.near - 5.4)}s`)], "an upload running behind the transcript opens earlier, and says so");
   assert.equal(callInMoment(soleio, { e11: clipT([[rec.near + CALLIN_WINDOW_SEC + 1, opening]]) }, {}), null, "the words outside the window: no moment");
   assert.equal(callInMoment(soleio, { e11: clipT([[rec.near, "Something else entirely was said here."]]) }, {}), null, "the words not said: no moment");
   assert.equal(callInMoment({ ...soleio, ep: rec.ep + 1 }, { e11: clipT([[rec.near, opening]]) }, {}), null, "a record for another episode than the entry's: no moment");

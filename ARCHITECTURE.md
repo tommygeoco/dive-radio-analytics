@@ -340,6 +340,10 @@ and tool call-in links to the second its own clip starts (ledger D27):
 `CALLIN_MOMENTS` locates it (episode, a second, the clip's opening words as the
 transcript has them), and the projected `at` / `seconds` / `url` are the
 transcript line's, linked by the clock rule. Call-in stores keep no times (D7).
+Beside every stored link (call-ins, `examples[].moment`, `examples[].segment`),
+`linkAt` is the second the link opens on its upload's clock: the link's own
+`t`, the transcript second plus the matched offset, rounded. The page states
+that time beside a link and never adds an offset itself.
 A featured name may also carry `known`, a who-line of at most six words in the
 hosts' own on-air words, with the line it was found in (`knownSource`, D28).
 

@@ -3788,6 +3788,9 @@ try {
       // moments: every excerpt grounds in its transcript at its time (the transcript's words, less only what
       // cleanSpeech names); every link is the clock rule's; a live count is the stream's own minute
       const uploadOf = (e) => CL.linkableUpload(e, parsed.get(e.slug), checks);
+      // the second a moment's link opens on its upload's clock: the transcript second plus the matched offset, as the
+      // clock rule rounds it (D27); none without a matched upload
+      const opensAt = (e, seconds) => { const up = uploadOf(e); return up && Number.isFinite(seconds) ? TR.toStamp(Math.max(0, Math.round(seconds + up.offsetSec))) : null; };
       // words only: quote marks and apostrophes drop out (the page sets ‘ ’ where a transcript has " and ')
       const flat = (x) => TR.normalize(x).replace(/'/g, "").replace(/\s+/g, " ").trim();
       const liveMinute = (e, t, seconds) => { if (t?.clock !== "stream") return null; const p = (e.live?.series || []).find((x) => x.m === Math.floor(seconds / 60)); return Number.isFinite(p?.v) ? p.v : null; };
@@ -3810,6 +3813,8 @@ try {
         if (m.url !== want) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} link is not the clock rule's (${m.url} vs ${want})`); }
         if (m.url && !Object.values(e.links || {}).includes(m.url.replace(/&t=\d+s$/, ""))) { bad++; fail(`sponsor: ${m.who} E${m.ep} links into an upload the registry does not hold`); }
         if (m.kind !== "mention" && (m.liveAt ?? null) !== liveMinute(e, t, m.seconds)) { bad++; fail(`sponsor: ${m.who} E${m.ep} ${m.at} live count (${m.liveAt}) is not the stream's minute`); }
+        // an example's link carries the second it opens on its upload's clock (D27), re-derived through the clock rule
+        if (m.kind === "example" && (m.linkAt ?? null) !== (m.url ? opensAt(e, m.seconds) : null)) { bad++; fail(`sponsor: the ${m.who} example's link opens at ${opensAt(e, m.seconds)}, not ${m.linkAt ?? "none"} as stored`); }
       }
       // partner counts and kinds; each package's example sits near the owners' recorded time
       for (const p of sp.partners || []) {
@@ -3828,7 +3833,8 @@ try {
         // by the clock rule; with none, the field is absent
         const lo = x.near - SV.EXAMPLE_WINDOW_SEC.before, hi = x.near + SV.EXAMPLE_WINDOW_SEC.after;
         const seg = ((sp.partners || []).find((p) => p.name === x.partner)?.moments || []).find((m) => m.kind === "segment" && m.ep === x.ep && m.seconds >= lo && m.seconds <= hi);
-        const segWant = seg ? { at: seg.at, seconds: seg.seconds, title: seg.title, text: seg.text, url: seg.url } : undefined;
+        const segE = bySlug.get(got.slug);
+        const segWant = seg ? { at: seg.at, seconds: seg.seconds, title: seg.title, text: seg.text, url: seg.url, ...(seg.url && segE ? { linkAt: opensAt(segE, seg.seconds) } : {}) } : undefined;
         if (JSON.stringify(got.segment) !== JSON.stringify(segWant) || (!segWant && "segment" in got)) { bad++; fail(`sponsor: the ${x.package} example's segment (${got.segment?.at ?? "none"}) does not re-derive from ${x.partner}'s stored segment moments in E${x.ep} inside the recorded window (${segWant?.at ?? "none"})`); }
         if (got.segment) {
           const e = bySlug.get(got.slug);
@@ -3877,7 +3883,7 @@ try {
         .map((c) => ({ who: c.who, ep: c.ep, slug: c.slug, kind: c.kind, ...(typeof c.about === "string" && c.about.trim() ? { about: c.about } : {}) }));
       const featuredCalls = sp.callIns.featured;
       // the entry itself, without its aired moment (D27) and its who-line (D28), each re-derived on its own below
-      const entryOnly = ({ at, seconds, url, known, knownSource, ...entry }) => entry;
+      const entryOnly = ({ at, seconds, url, linkAt, known, knownSource, ...entry }) => entry;
       // each featured name's hook (D23): its own stored words, verbatim, or no field when the notes give none
       const storedWords = (f) => { const c = airedCallIns.find((x) => x.who === f.who && x.ep === f.ep && x.slug === f.slug && x.kind === f.kind); return c && typeof c.about === "string" && c.about.trim() ? c.about : undefined; };
       const hooksOff = Array.isArray(featuredCalls) ? featuredCalls.filter((f) => f.about !== storedWords(f) || (storedWords(f) === undefined && "about" in f)).map((f) => f.who) : [];
@@ -3932,7 +3938,9 @@ try {
         const r = SV.CALLIN_MOMENTS[f.who]; const e = bySlug.get(f.slug); const t = parsed.get(f.slug);
         if (!r || r.ep !== f.ep || !e || !t) return null;
         const line = t.segments.find((x) => Math.abs(x.seconds - r.near) <= SV.CALLIN_WINDOW_SEC && flat(x.text).includes(flat(r.opens)));
-        return line ? { at: line.stamp, seconds: line.seconds, url: CL.momentUrl(uploadOf(e), line.seconds) } : null;
+        if (!line) return null;
+        const link = CL.momentUrl(uploadOf(e), line.seconds);
+        return { at: line.stamp, seconds: line.seconds, url: link, ...(link ? { linkAt: opensAt(e, line.seconds) } : {}) };
       };
       // a featured call-in's who-line (D28): the hosts' words on air, six words at most, starting lowercase, found in the
       // recorded episode's transcript near the recorded second; a brand in it is one the caller names in their own clip
@@ -3950,7 +3958,8 @@ try {
       const featuredSet = new Set(Array.isArray(featuredCalls) ? featuredCalls : []);
       for (const f of [...(Array.isArray(featuredCalls) ? featuredCalls : []), ...(toolsListed ? toolCalls : [])]) {
         const want = clipWant(f);
-        const got = ["at", "seconds", "url"].some((k) => k in f) ? { at: f.at, seconds: f.seconds, url: f.url } : null;
+        const got = ["at", "seconds", "url", "linkAt"].some((k) => k in f) ? { at: f.at, seconds: f.seconds, url: f.url, ...("linkAt" in f ? { linkAt: f.linkAt } : {}) } : null;
+        if (f.url && f.linkAt !== TR.toStamp(Number((/[?&]t=(\d+)s$/.exec(f.url) || [])[1]))) { bad++; fail(`sponsor: ${f.who}'s link time (${f.linkAt ?? "none"}) is not the second the link opens`); }
         if (JSON.stringify(got) !== JSON.stringify(want)) { bad++; fail(`sponsor: ${f.who}'s aired moment (${got?.at ?? "none"}) is not the transcript line where the clip opens (${want?.at ?? "none"})`); }
         if (f.url && !Object.values(bySlug.get(f.slug)?.links || {}).includes(f.url.replace(/&t=\d+s$/, ""))) { bad++; fail(`sponsor: ${f.who}'s aired moment links into an upload the registry does not hold`); }
         const lineWant = featuredSet.has(f) ? knownWant(f, want) : null;

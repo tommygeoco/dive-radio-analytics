@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 10,
+  "version": 11,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -104828,7 +104828,8 @@ window.DIVE_DATA = {
      "about": "advice for someone new who wants to build",
      "at": "01:50:32",
      "seconds": 6632,
-     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6633s"
+     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=6633s",
+     "linkAt": "01:50:33"
     },
     {
      "who": "Pietro Schirano",
@@ -104839,6 +104840,7 @@ window.DIVE_DATA = {
      "at": "00:32:09",
      "seconds": 1929,
      "url": "https://youtube.com/watch?v=YI1Kx5U6fQc&t=1930s",
+     "linkAt": "00:32:10",
      "known": "founder of MagicPath",
      "knownSource": {
       "ep": 12,
@@ -104856,6 +104858,7 @@ window.DIVE_DATA = {
      "at": "01:46:00",
      "seconds": 6360,
      "url": "https://youtube.com/watch?v=x05zZ90lY28&t=6361s",
+     "linkAt": "01:46:01",
      "known": "head of design at Span",
      "knownSource": {
       "ep": 10,
@@ -104872,7 +104875,8 @@ window.DIVE_DATA = {
      "about": "making things for yourself, and leaving a way in for others",
      "at": "01:31:19",
      "seconds": 5479,
-     "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=5474s"
+     "url": "https://youtube.com/watch?v=ziyWxt6qzfM&t=5474s",
+     "linkAt": "01:31:14"
     }
    ],
    "tools": [
@@ -104884,7 +104888,8 @@ window.DIVE_DATA = {
      "about": "the codebase as the source of truth in Paper",
      "at": "01:23:48",
      "seconds": 5028,
-     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=5029s"
+     "url": "https://youtube.com/watch?v=Cjv-0MKQ4GU&t=5029s",
+     "linkAt": "01:23:49"
     },
     {
      "who": "Kolbe Yang",
@@ -104894,7 +104899,8 @@ window.DIVE_DATA = {
      "about": "from a Figma frame to a finished animation",
      "at": "01:18:57",
      "seconds": 4737,
-     "url": "https://youtube.com/watch?v=bBF1yPACap0&t=4738s"
+     "url": "https://youtube.com/watch?v=bBF1yPACap0&t=4738s",
+     "linkAt": "01:18:58"
     },
     {
      "who": "Bruno Reis",
@@ -104904,7 +104910,8 @@ window.DIVE_DATA = {
      "about": "an AI agent edits his interview in DaVinci Resolve",
      "at": "01:31:55",
      "seconds": 5515,
-     "url": "https://youtube.com/watch?v=bBF1yPACap0&t=5516s"
+     "url": "https://youtube.com/watch?v=bBF1yPACap0&t=5516s",
+     "linkAt": "01:31:56"
     }
    ],
    "list": [
@@ -107485,6 +107492,7 @@ window.DIVE_DATA = {
      "seconds": 2063,
      "text": "And we’re gonna get into Notion, who is a sponsor of the show. They allow us to build what we’ve been creating here.",
      "url": "https://youtube.com/watch?v=x05zZ90lY28&t=2064s",
+     "linkAt": "00:34:24",
      "liveAt": 90
     },
     "reason": null
@@ -107501,6 +107509,7 @@ window.DIVE_DATA = {
      "seconds": 6053,
      "text": "Anyway, let’s get into one Up Weekly, brought to you by Lovable. Great ideas that somebody loves.",
      "url": "https://youtube.com/watch?v=Vh8ogFIE8CA&t=6054s",
+     "linkAt": "01:40:54",
      "liveAt": 58
     },
     "reason": null
@@ -107517,6 +107526,7 @@ window.DIVE_DATA = {
      "seconds": 2452,
      "text": "Speaking of notion, friend of the program, one of our partners, Notion, we appreciate you.",
      "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2453s",
+     "linkAt": "00:40:53",
      "liveAt": null
     },
     "reason": null,
@@ -107525,7 +107535,8 @@ window.DIVE_DATA = {
      "seconds": 2454,
      "title": "Notion as code and agent friendly backends",
      "text": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
-     "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2455s"
+     "url": "https://youtube.com/watch?v=njOU7GKZcvc&t=2455s",
+     "linkAt": "00:40:55"
     }
    }
   ],
