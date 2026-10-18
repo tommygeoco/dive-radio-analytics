@@ -8431,7 +8431,7 @@
   }
  ],
  "sponsor": {
-  "version": 12,
+  "version": 13,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -8473,6 +8473,13 @@
     "title": "Dive Radio: The Mascot Industrial Complex + Live Call-Ins"
    }
   ],
+  "heroFrame": {
+   "ep": 14,
+   "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+   "seconds": 332,
+   "linkAt": "00:05:32",
+   "url": "https://youtube.com/watch?v=J3NB3migbE0&t=332s"
+  },
   "views": {
    "total": 102248,
    "youtube": 65509,
@@ -9451,7 +9458,14 @@
       "Ini Abíódún",
       "Kyle Zantos",
       "Femke"
-     ]
+     ],
+     "moment": {
+      "at": "00:28:10",
+      "seconds": 1690,
+      "text": "We reached out to friends in our network, and we said it would be really cool if you jump in and check out a portfolio or two, and everybody showed up in droves.",
+      "url": "https://youtube.com/watch?v=J3NB3migbE0&t=1689s",
+      "linkAt": "00:28:09"
+     }
     }
    ],
    "teamsNamed": [
@@ -12199,7 +12213,7 @@
    {
     "package": "Build",
     "format": "A live build",
-    "label": "Notion as Code, Notion’s August build",
+    "label": "Notion as Code",
     "partner": "Notion",
     "ep": 5,
     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",

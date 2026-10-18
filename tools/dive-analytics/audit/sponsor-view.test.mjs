@@ -10,7 +10,7 @@ import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
-  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, linkAtOf, PARTNERS, PARTNER_NAMES, currentPartners, EXAMPLE_LINES, exampleLine, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
+  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, linkAtOf, PARTNERS, PARTNER_NAMES, currentPartners, EXAMPLE_LINES, exampleLine, REVIEW_MOMENTS, reviewMoment, HERO_FRAME, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
@@ -365,6 +365,31 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(exampleLine(EXAMPLES.find((x) => x.package === "Build"), withCue, null), null, "no line recorded for the package: none");
   const readView = sponsorView({ episodes: eps, transcripts: { ...transcripts, e10: withCue }, generatedAt: "2026-10-11T14:00:00.000Z" }).examples.find((x) => x.package === "Mid-roll");
   assert.equal(readView.line.speaker, "Tommy", "through the projection");
+
+  // where the hosts open an episode's portfolio reviews (D32): the record's words near the recorded second, the
+  // transcript's words less cleanSpeech, linked by the clock rule; otherwise none
+  const rv = REVIEW_MOMENTS[14];
+  const review = { ep: 14, slug: "e14", portfolios: 15, reviewers: ["Geoff Teehan"] };
+  const reviewT = (lines) => ({ clock: "stream", sha256: "rv", segments: lines.map(([seconds, text]) => ({ stamp: oneUpAt(seconds), seconds, speaker: "Speaker 2", text })) });
+  const opensWith = `${rv.opens}, and, um, everybody showed up in droves.`;
+  assert.deepEqual(reviewMoment(review, { e14: reviewT([[rv.near - 1, "We said, hey."], [rv.near, opensWith]]) }, { e14: { url: "https://youtube.com/watch?v=V14", offsetSec: -1.4 } }),
+    { at: oneUpAt(rv.near), seconds: rv.near, text: `${rv.opens.replace("'", "’")}, and, everybody showed up in droves.`, url: `https://youtube.com/watch?v=V14&t=${rv.near - 1}s`, linkAt: oneUpAt(rv.near - 1) },
+    "the line where the hosts open the reviews: its own time, the upload's second for the link");
+  assert.equal(reviewMoment(review, { e14: reviewT([[rv.near + CALLIN_WINDOW_SEC + 1, opensWith]]) }, {}), null, "outside the window: none");
+  assert.equal(reviewMoment(review, { e14: reviewT([[rv.near, "Something else was said."]]) }, {}), null, "the words not said: none");
+  assert.equal(reviewMoment({ ...review, ep: 13, slug: "e13" }, { e13: reviewT([[rv.near, opensWith]]) }, {}), null, "no record for the episode: none");
+  assert.equal(reviewMoment(review, {}, {}), null, "no transcript: none");
+  const reviewed = sponsorView({ episodes: eps.concat([{ ...eps[12], ep: 14, slug: "e14", premiere: "2026-07-24" }]), contributors: { episodes: { e14: { callIns: [{ kind: "portfolio", who: "Kartik Iyer", reviewedBy: "Geoff Teehan" }] } } },
+    transcripts: { ...transcripts, e14: reviewT([[rv.near, opensWith]]) }, generatedAt: "2026-10-11T14:00:00.000Z" });
+  assert.deepEqual(reviewed.callIns.reviews.map((r) => [r.ep, r.moment?.at]), [[14, oneUpAt(rv.near)]], "through the projection, on the episode's review row");
+
+  // the hero frame (D34): a second on its upload's own clock, linked into that upload; none without the upload
+  assert.deepEqual([HERO_FRAME.ep, HERO_FRAME.upload, HERO_FRAME.seconds], [14, "yt:joindiveclub", 332]);
+  const heroEp = { ...eps[12], ep: 14, slug: "e14", links: { "yt:joindiveclub": "https://youtube.com/watch?v=J3NB3migbE0" } };
+  assert.deepEqual(sponsorView({ episodes: eps.concat([heroEp]), transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).heroFrame,
+    { ep: 14, slug: "e14", seconds: 332, linkAt: "00:05:32", url: "https://youtube.com/watch?v=J3NB3migbE0&t=332s" }, "no transcript offset: the frame's own second");
+  assert.equal(sponsorView({ episodes: eps, transcripts: {}, generatedAt: "2026-10-11T14:00:00.000Z" }).heroFrame, null, "no such episode: none");
+  assert.equal(EXAMPLES.find((x) => x.package === "Build").label, "Notion as Code", "D33: the build as the owners' recap names it");
 
   // partners are dated (D31): current while asOf is on or before their campaign's end; what aired stays
   assert.deepEqual(PARTNER_NAMES, ["Notion", "Mobbin", "Lovable", "Paper"]);

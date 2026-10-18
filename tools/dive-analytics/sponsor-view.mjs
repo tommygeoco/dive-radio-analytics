@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 12;
+export const SPONSOR_VERSION = 13;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -117,7 +117,7 @@ export const EXAMPLE_WINDOW_SEC = { before: 60, after: 120 };
 export const EXAMPLES = Object.freeze([
   { package: "Mid-roll", format: "A live read", label: "Notion on the Dive Radio Skills Library", partner: "Notion", ep: 10, near: 2063, record: "e10-notion-ad-read-2026-09-17.md" },
   { package: "Segment", format: "A named segment", label: "One Up Weekly, brought to you by Lovable", partner: "Lovable", ep: 8, near: 6053, record: "E8 transcript 01:40:53, partners[Lovable].moments (D29)" },
-  { package: "Build", format: "A live build", label: "Notion as Code, Notion’s August build", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md" },
+  { package: "Build", format: "A live build", label: "Notion as Code", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md (D33: \"The August live build (Notion as Code)\")" },
 ]);
 
 // The owners' featured picks (SPONSOR-2026-10-11.md D19–D21, D24, 2026-10-16/17):
@@ -255,6 +255,39 @@ export function callInMoment(c, transcripts, uploads) {
   const words = plainWords(r.opens);
   const line = (t.segments || []).find((x) => Math.abs(x.seconds - r.near) <= CALLIN_WINDOW_SEC && plainWords(x.text).includes(words));
   return line ? withLinkAt({ at: line.stamp, seconds: line.seconds, url: momentUrl(uploads?.[c.slug], line.seconds) }) : null;
+}
+
+// Where the hosts open an episode's portfolio reviews (D32): the first
+// transcript line within CALLIN_WINDOW_SEC of `near` holding `opens`, shown as
+// the transcript's words less cleanSpeech, linked by the clock rule. E14's
+// reviews were videos the reviewers recorded ("They recorded videos as they
+// walk through your portfolios", E14 00:28:22), played on the show.
+export const REVIEW_MOMENTS = Object.freeze({
+  14: { near: 1690, opens: "We reached out to friends in our network" },
+});
+
+export function reviewMoment(r, transcripts, uploads) {
+  const rec = REVIEW_MOMENTS[r?.ep];
+  const t = transcripts?.[r?.slug];
+  if (!rec || !t) return null;
+  const words = plainWords(rec.opens);
+  const line = (t.segments || []).find((x) => Math.abs(x.seconds - rec.near) <= CALLIN_WINDOW_SEC && plainWords(x.text).includes(words));
+  return line ? withLinkAt({ at: line.stamp, seconds: line.seconds, text: typographic(cleanSpeech(line.text)), url: momentUrl(uploads?.[r.slug], line.seconds) }) : null;
+}
+
+// The page's hero picture (D34): one frame of an episode's upload, at a second on
+// that upload's own clock (the frame was taken from the upload, so no transcript
+// offset applies). Verified 2026-10-18: the frame the page uses matches the Dive
+// Club upload's frame at exactly 332.000 s (identical, PSNR ∞) and not the frames
+// a thirtieth of a second either side. Its link opens that second.
+export const HERO_FRAME = Object.freeze({ ep: 14, upload: "yt:joindiveclub", seconds: 332 });
+
+function heroFrameOf(episodes) {
+  const e = (episodes || []).find((x) => x.ep === HERO_FRAME.ep);
+  const base = e?.links?.[HERO_FRAME.upload];
+  if (!e || !base) return null;
+  const url = momentUrl({ url: base, offsetSec: 0 }, HERO_FRAME.seconds);
+  return { ep: e.ep, slug: e.slug, seconds: HERO_FRAME.seconds, linkAt: linkAtOf(url), url };
 }
 
 export function featuredQuotes(quotes, ids = FEATURED_QUOTES) {
@@ -904,6 +937,8 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
   const withMoment = (c) => { const m = callInMoment(c, transcripts, uploads); return m ? { ...c, ...m } : c; };
   if (Array.isArray(callIns.tools)) callIns.tools = callIns.tools.map(withMoment);
   if (Array.isArray(callIns.featured)) callIns.featured = callIns.featured.map((c) => { const m = callInMoment(c, transcripts, uploads); const k = callInKnown(c, m, dive, transcripts); return { ...c, ...(m || {}), ...(k || {}) }; });
+  // each episode's portfolio reviews, with the moment the hosts open them when one is grounded (D32)
+  if (Array.isArray(callIns.reviews)) callIns.reviews = callIns.reviews.map((r) => { const m = reviewMoment(r, transcripts, uploads); return m ? { ...r, moment: m } : r; });
   const asOf = generatedAt ? new Date(Date.parse(generatedAt) - 7 * 3600000).toISOString().slice(0, 10) : null;
   const partners = partnersBlock(dive, transcripts, uploads, asOf);
   return {
@@ -913,6 +948,7 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
     firstPremiere: dive[0]?.premiere ?? null,
     latest: latest ? { ep: latest.ep, slug: latest.slug, title: latest.title, premiere: latest.premiere } : null,
     covers: featuredCovers(dive),
+    heroFrame: heroFrameOf(dive),
     views: viewsBlock(dive),
     watch: watchBlock(dive),
     live: liveBlock(dive),

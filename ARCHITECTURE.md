@@ -352,7 +352,10 @@ campaign's last day (`through`). `currentPartners` lists those whose campaign
 runs on `asOf`, empty with a reason after. Each `partners[]` entry says
 `through` and `current`, and `brands.list[].partner` follows the same rule.
 What aired with a partner (its moments, the examples) stays, whatever the
-date.
+date. An episode's portfolio-review row may carry `moment`, the transcript line
+where the hosts open the reviews, linked by the clock rule (D32). `heroFrame`
+is the page's hero picture: one frame of a registered upload at a second on
+that upload's own clock, linked there (D34).
 A featured name may also carry `known`, a who-line of at most six words in the
 hosts' own on-air words, with the line it was found in (`knownSource`, D28).
 

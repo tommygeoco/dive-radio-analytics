@@ -3757,7 +3757,7 @@ try {
           for (const c of portfolios) for (const who of reviewerNames(c)) if (!reviewers.includes(who)) reviewers.push(who);
           return { ep: bySlug.get(slug).ep, slug, portfolios: portfolios.length, reviewers };
         }).sort((x, y) => x.ep - y.ep);
-        if (JSON.stringify(sp.callIns.reviews ?? []) !== JSON.stringify(reviewsWant)) { bad++; fail("sponsor: the portfolios reviewed on air (how many, and by whom, per episode) do not re-derive from contributors.json"); }
+        if (JSON.stringify((sp.callIns.reviews ?? []).map(({ moment, ...review }) => review)) !== JSON.stringify(reviewsWant)) { bad++; fail("sponsor: the portfolios reviewed on air (how many, and by whom, per episode) do not re-derive from contributors.json"); }
       }
       // brands: an independent count of every listed brand over the transcripts (case-sensitive whole words)
       const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -3991,6 +3991,22 @@ try {
         const lineWant = featuredSet.has(f) ? knownWant(f, want) : null;
         const lineGot = "known" in f || "knownSource" in f ? { known: f.known, knownSource: f.knownSource } : null;
         if (JSON.stringify(lineGot) !== JSON.stringify(lineWant)) { bad++; fail(`sponsor: ${f.who}'s who-line (${lineGot?.known ?? "none"}) is not the hosts' words on air at the recorded second (${lineWant?.known ?? "none"})`); }
+      }
+      // where the hosts open each episode's portfolio reviews (D32): the record's words in the episode's transcript near
+      // the recorded second, shown as the transcript has them less cleanSpeech, linked by the clock rule; none otherwise
+      for (const r of sp.callIns.reviews || []) {
+        const rec = SV.REVIEW_MOMENTS[r.ep]; const re = bySlug.get(r.slug); const rt = re ? parsed.get(re.slug) : null;
+        const opened = rec && rt ? rt.segments.find((x) => Math.abs(x.seconds - rec.near) <= SV.CALLIN_WINDOW_SEC && flat(x.text).includes(flat(rec.opens))) : null;
+        const link = opened ? CL.momentUrl(uploadOf(re), opened.seconds) : null;
+        const reviewWant = opened ? { at: opened.stamp, seconds: opened.seconds, text: SV.typographic(SV.cleanSpeech(opened.text)), url: link, ...(link ? { linkAt: opensAt(re, opened.seconds) } : {}) } : undefined;
+        if (JSON.stringify(r.moment) !== JSON.stringify(reviewWant) || (!reviewWant && "moment" in r)) { bad++; fail(`sponsor: E${r.ep}'s reviews moment (${r.moment?.at ?? "none"}) is not the transcript line where the hosts open them (${reviewWant?.at ?? "none"})`); }
+        if (r.moment && (!rt || !flat(SV.cleanSpeech(TR.windowText(rt, r.moment.at, 60))).includes(flat(r.moment.text)))) { bad++; fail(`sponsor: E${r.ep}'s reviews moment is not the transcript's words at ${r.moment.at}`); }
+      }
+      // the hero frame (D34): a second on its upload's own clock, linked into that registered upload at that second
+      {
+        const hf = SV.HERO_FRAME; const he = dive.find((x) => x.ep === hf.ep); const hbase = he?.links?.[hf.upload];
+        const heroWant = he && hbase ? { ep: he.ep, slug: he.slug, seconds: hf.seconds, linkAt: TR.toStamp(hf.seconds), url: `${hbase}&t=${hf.seconds}s` } : null;
+        if (JSON.stringify(sp.heroFrame ?? null) !== JSON.stringify(heroWant) || !("heroFrame" in sp)) { bad++; fail(`sponsor: the hero frame (${sp.heroFrame?.url ?? "none"}) is not the recorded second of its upload (${heroWant?.url ?? "none"})`); }
       }
       const pickedIds = [...new Set(SV.FEATURED_QUOTES)];
       const quotesWant = pickedIds.map((id) => (sp.feedback.quotes || []).find((q) => q.id === id)).filter((q) => q && !q.onShow).slice(0, SV.FEATURED_QUOTES_MAX);
