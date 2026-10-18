@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-17T19:18:16.122Z",
+  "updatedAt": "2026-10-18T19:18:18.781Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -429,6 +429,34 @@
     "2026-07-30-dive-radio-mixed-media-workflows-game-de|drop|0.79": {
       "summary": "Host walks through building a wiki-fed game critic from developer talks in Obsidian, then shows an agent playing through a game to test fight length across versions, with a co-host chiming in.",
       "writtenAt": "2026-10-17T19:18:16.122Z"
+    },
+    "2026-07-30-dive-radio-mixed-media-workflows-game-de|drop|0.1": {
+      "summary": "Hosts wrap one designer-of-the-week nomination, then one host champions Sebastian, an interaction designer praised for micro details and a doc reader project, before turning to the co-host's pick.",
+      "writtenAt": "2026-10-18T19:18:18.780Z"
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal|drop|0.31": {
+      "summary": "After a merch aside, hosts discuss why so few designers become founders, covering perfectionism versus pragmatism and the community copying each other's tools instead of finding new problems.",
+      "writtenAt": "2026-10-18T19:18:18.780Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.08": {
+      "summary": "A host plays the launch video for inflight, a prototype feedback toolkit, then talks with the co-host about how it was made, the editors involved, and the choice to let the interface tell the story.",
+      "writtenAt": "2026-10-18T19:18:18.780Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|hold|0.33": {
+      "summary": "A recorded reviewer gives portfolio tips on typography, flashy animation and case study depth. Hosts praise her, preview the reviews ahead, and a designer's video about his own site begins.",
+      "writtenAt": "2026-10-18T19:18:18.780Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.58": {
+      "summary": "Hosts close one review, then a recorded reviewer critiques Case's portfolio: the colors and personality work, but the role is unclear, the text is heavy, and the branding hides the actual work.",
+      "writtenAt": "2026-10-18T19:18:18.781Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.66": {
+      "summary": "A recorded reviewer critiques Tracy's portfolio, wanting the work and navigation more visible up front, while praising the interactions. Hosts add notes on the oversized, blurry header in dark mode.",
+      "writtenAt": "2026-10-18T19:18:18.781Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|hold|0.85": {
+      "summary": "A reviewer praises Gabe's video-heavy, polished portfolio as proof of care and craft. Hosts then browse it, enjoying the card layouts, a CGI hand demo and a paint-drawing Easter egg.",
+      "writtenAt": "2026-10-18T19:18:18.781Z"
     }
   }
 }
