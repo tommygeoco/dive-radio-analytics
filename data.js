@@ -103786,7 +103786,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 11,
+  "version": 12,
   "asOf": "2026-10-16",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -107049,9 +107049,32 @@ window.DIVE_DATA = {
     }
    ]
   },
+  "currentPartners": {
+   "list": [
+    {
+     "name": "Notion",
+     "through": "2026-10-29"
+    },
+    {
+     "name": "Mobbin",
+     "through": "2026-10-29"
+    },
+    {
+     "name": "Lovable",
+     "through": "2026-10-29"
+    },
+    {
+     "name": "Paper",
+     "through": "2026-10-29"
+    }
+   ],
+   "reason": null
+  },
   "partners": [
    {
     "name": "Notion",
+    "through": "2026-10-29",
+    "current": true,
     "mentions": 42,
     "episodes": 11,
     "named": 11,
@@ -107205,6 +107228,8 @@ window.DIVE_DATA = {
    },
    {
     "name": "Mobbin",
+    "through": "2026-10-29",
+    "current": true,
     "mentions": 22,
     "episodes": 7,
     "named": 4,
@@ -107266,6 +107291,8 @@ window.DIVE_DATA = {
    },
    {
     "name": "Lovable",
+    "through": "2026-10-29",
+    "current": true,
     "mentions": 39,
     "episodes": 8,
     "named": 11,
@@ -107408,6 +107435,8 @@ window.DIVE_DATA = {
    },
    {
     "name": "Paper",
+    "through": "2026-10-29",
+    "current": true,
     "mentions": 13,
     "episodes": 5,
     "named": 4,
@@ -107495,7 +107524,15 @@ window.DIVE_DATA = {
      "linkAt": "00:34:24",
      "liveAt": 90
     },
-    "reason": null
+    "reason": null,
+    "line": {
+     "at": "00:35:20",
+     "seconds": 2120,
+     "text": "We’re working with them because we use them.",
+     "url": "https://youtube.com/watch?v=x05zZ90lY28&t=2121s",
+     "linkAt": "00:35:21",
+     "speaker": "Tommy"
+    }
    },
    {
     "package": "Segment",

@@ -3843,6 +3843,32 @@ try {
           if (!(got.segment.seconds >= lo && got.segment.seconds <= hi)) { bad++; fail(`sponsor: the ${x.package} example's segment (E${x.ep} ${got.segment.at}) is outside the recorded window`); }
           if (got.segment.url !== (e && parsed.get(e.slug) ? CL.momentUrl(uploadOf(e), got.segment.seconds) : null)) { bad++; fail(`sponsor: the ${x.package} example's segment link is not the clock rule's`); }
         }
+        // a line from a full read (D30): the record's words in the example's transcript inside the recorded window, shown as
+        // the transcript has them less cleanSpeech, linked by the clock rule; a speaker only when the same transcript ties
+        // that speaker label to the host elsewhere
+        const rl = SV.EXAMPLE_LINES[x.package];
+        const le = bySlug.get(got.slug); const lt = le ? parsed.get(le.slug) : null;
+        const lsaid = rl && lt ? lt.segments.find((s) => s.seconds >= lo && s.seconds <= hi && flat(s.text).includes(flat(rl.says))) : null;
+        let lineWant;
+        if (lsaid) {
+          const link = CL.momentUrl(uploadOf(le), lsaid.seconds);
+          const cue = rl.speaker && rl.cue && lsaid.speaker ? lt.segments.find((s) => s.speaker === lsaid.speaker && flat(s.text).includes(flat(rl.cue))) : null;
+          lineWant = { at: lsaid.stamp, seconds: lsaid.seconds, text: SV.typographic(SV.cleanSpeech(lsaid.text)), url: link, ...(link ? { linkAt: opensAt(le, lsaid.seconds) } : {}), ...(cue ? { speaker: rl.speaker } : {}) };
+        }
+        if (JSON.stringify(got.line) !== JSON.stringify(lineWant) || (!lineWant && "line" in got)) { bad++; fail(`sponsor: the ${x.package} example's line (${got.line?.at ?? "none"}) is not the read's own words found in the transcript inside the recorded window (${lineWant?.at ?? "none"})`); }
+        if (got.line && (!lt || !flat(SV.cleanSpeech(TR.windowText(lt, got.line.at, 60))).includes(flat(got.line.text.replace(/…/g, " "))))) { bad++; fail(`sponsor: the ${x.package} example's line is not the transcript's words at ${got.line.at}`); }
+      }
+      // the partners now (D31): those whose signed campaign runs on the data's own date; a brand's partner flag follows
+      // the same rule; every partner entry keeps what aired and says its end date and whether it runs now
+      {
+        const asOfWant = data.generatedAt ? new Date(Date.parse(data.generatedAt) - 7 * 3600000).toISOString().slice(0, 10) : null;
+        const running = SV.PARTNERS.filter((p) => !!asOfWant && asOfWant <= p.through);
+        const cp = sp.currentPartners;
+        if (sp.asOf !== asOfWant) { bad++; fail(`sponsor: asOf (${sp.asOf}) is not the build's Phoenix date (${asOfWant})`); }
+        if (!cp || JSON.stringify(cp.list) !== JSON.stringify(running.map((p) => ({ name: p.name, through: p.through }))) || (running.length ? cp.reason !== null : !cp.reason)) { bad++; fail(`sponsor: the partners now (${(cp?.list || []).map((p) => p.name).join(", ") || "none"}) do not re-derive from each campaign's end date and ${asOfWant} (${running.map((p) => p.name).join(", ") || "none"})`); }
+        const flagged = (sp.brands.list || []).filter((b) => b.partner !== running.some((p) => p.name === b.name)).map((b) => b.name);
+        if (flagged.length) { bad++; fail(`sponsor: brands ${flagged.join(", ")} carry a partner flag their campaign dates do not give on ${asOfWant}`); }
+        if (JSON.stringify((sp.partners || []).map((p) => [p.name, p.through, p.current])) !== JSON.stringify(SV.PARTNERS.map((p) => [p.name, p.through, !!asOfWant && asOfWant <= p.through]))) { bad++; fail("sponsor: the partner entries do not re-derive (each partner, its campaign's end date, and whether it runs now)"); }
       }
       // chapters link by the same rule (index.html and the brief render the stored url)
       for (const e of dive) {

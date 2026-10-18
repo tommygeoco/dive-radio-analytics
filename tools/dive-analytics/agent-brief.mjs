@@ -644,6 +644,8 @@ function renderSponsor(p, sp, abs) {
   p(`- Audience feedback: ${fmtNum(f.positive)} positive of ${fmtNum(f.messages)} messages with a clear lean (YouTube comments, X threads, live chat); ${f.quotes.length} named public quotes under sponsor.feedback.quotes, the most-liked first, one per person, people on the show last and marked.${f.featured?.length ? ` The owners feature ${f.featured.length} of them, from the audience, under sponsor.feedback.featured (by ${f.featured.map((q) => `${q.author} on ${q.platform}, E${q.ep}`).join("; ")}).` : ""}`);
   const b = sp.brands;
   p(b.list.length ? `- Brands named on air (as said, whole words, in ${b.episodes} transcripts): ${b.list.map((x) => `${x.name}${x.partner ? " (partner)" : ""} ${fmtNum(x.mentions)} in ${x.episodes}`).join("; ")}.` : `- Brands named on air: — (${b.reason || "none yet"}).`);
+  // D31: the partners whose signed campaign runs on the data's date (what aired with a partner stays in the moments below)
+  if (sp.currentPartners) p(sp.currentPartners.list?.length ? `- Partners now (sponsor.currentPartners, each to the end of its signed campaign): ${sp.currentPartners.list.map((x) => `${x.name} through ${x.through}`).join(", ")}.` : `- Partners now: — (${sp.currentPartners.reason}).`);
   for (const x of sp.examples || []) {
     // the segment it aired in, by the chapter's title (a stored description, never words said on air)
     const seg = x.segment ? ` It aired in the segment titled "${esc(x.segment.title)}", E${x.ep} ${x.segment.at}${x.segment.url ? ` (${x.segment.url})` : ""}; its description is under sponsor.examples[].segment.` : "";

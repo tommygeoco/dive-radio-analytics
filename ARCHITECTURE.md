@@ -343,7 +343,16 @@ transcript line's, linked by the clock rule. Call-in stores keep no times (D7).
 Beside every stored link (call-ins, `examples[].moment`, `examples[].segment`),
 `linkAt` is the second the link opens on its upload's clock: the link's own
 `t`, the transcript second plus the matched offset, rounded. The page states
-that time beside a link and never adds an offset itself.
+that time beside a link and never adds an offset itself. The read example may
+carry `line` (ledger D30): one sentence from the read itself, found in the
+transcript inside the example's window, shown as the transcript's words less
+`cleanSpeech`, with `speaker` only when the same transcript ties that speaker
+label to a host. Partners are dated (D31): `PARTNERS` gives each its signed
+campaign's last day (`through`). `currentPartners` lists those whose campaign
+runs on `asOf`, empty with a reason after. Each `partners[]` entry says
+`through` and `current`, and `brands.list[].partner` follows the same rule.
+What aired with a partner (its moments, the examples) stays, whatever the
+date.
 A featured name may also carry `known`, a who-line of at most six words in the
 hosts' own on-air words, with the line it was found in (`knownSource`, D28).
 

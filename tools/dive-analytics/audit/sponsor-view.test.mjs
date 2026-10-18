@@ -10,7 +10,7 @@ import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
 import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
-  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, linkAtOf, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
+  featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, linkAtOf, PARTNERS, PARTNER_NAMES, currentPartners, EXAMPLE_LINES, exampleLine, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
 import { normalize } from "../transcripts.mjs";
 
@@ -345,6 +345,46 @@ import { normalize } from "../transcripts.mjs";
   assert.equal(ex.moment.at, oneUpAt(oneUp.near + 5), "Lovable is named within the window of the recorded time");
   assert.equal(ex.moment.url, null, "no clock check, no link");
   assert.ok(!("linkAt" in ex.moment), "no link, no link time");
+
+  // a line from a full read (D30): the record's words inside the example's window, shown as the transcript's words less
+  // cleanSpeech; a speaker only when the same transcript ties that label to the host elsewhere
+  const readX = EXAMPLES.find((x) => x.package === "Mid-roll");
+  const rl = EXAMPLE_LINES["Mid-roll"];
+  assert.deepEqual([readX.partner, readX.ep, rl.speaker], ["Notion", 10, "Tommy"]);
+  const readT = (lines) => ({ clock: "stream", sha256: "r", segments: lines.map(([seconds, speaker, text]) => ({ stamp: oneUpAt(seconds), seconds, speaker, text })) });
+  const said = `Notion, um, ${rl.says}.`;
+  const withCue = readT([[587, "Speaker 2", `This is ${rl.cue} that is slowly becoming a first class citizen.`], [readX.near + 57, "Speaker 2", said]]);
+  assert.deepEqual(exampleLine(readX, withCue, { url: "https://youtube.com/watch?v=V10", offsetSec: 0.6 }),
+    { at: oneUpAt(readX.near + 57), seconds: readX.near + 57, text: `Notion, ${rl.says.replace("'", "’")}.`, url: `https://youtube.com/watch?v=V10&t=${readX.near + 58}s`, linkAt: oneUpAt(readX.near + 58), speaker: "Tommy" },
+    "the transcript's words less cleanSpeech, its link and link time, and the host the same transcript names");
+  assert.ok(!("speaker" in exampleLine(readX, readT([[587, "Speaker 6", `This is ${rl.cue}.`], [readX.near + 57, "Speaker 2", said]]), null)), "the cue said by another label: no speaker");
+  assert.ok(!("speaker" in exampleLine(readX, readT([[readX.near + 57, null, said]]), null)), "an unlabelled caption line: no speaker");
+  assert.deepEqual(Object.keys(exampleLine(readX, readT([[readX.near + 57, "Speaker 2", said]]), null)), ["at", "seconds", "text", "url"], "no link: no link time; no cue: no speaker");
+  assert.equal(exampleLine(readX, readT([[readX.near + EXAMPLE_WINDOW_SEC.after + 1, "Speaker 2", said]]), null), null, "outside the window: no line");
+  assert.equal(exampleLine(readX, readT([[readX.near + 57, "Speaker 2", "We work with them for other reasons."]]), null), null, "the words not said: no line");
+  assert.equal(exampleLine(EXAMPLES.find((x) => x.package === "Build"), withCue, null), null, "no line recorded for the package: none");
+  const readView = sponsorView({ episodes: eps, transcripts: { ...transcripts, e10: withCue }, generatedAt: "2026-10-11T14:00:00.000Z" }).examples.find((x) => x.package === "Mid-roll");
+  assert.equal(readView.line.speaker, "Tommy", "through the projection");
+
+  // partners are dated (D31): current while asOf is on or before their campaign's end; what aired stays
+  assert.deepEqual(PARTNER_NAMES, ["Notion", "Mobbin", "Lovable", "Paper"]);
+  assert.ok(PARTNERS.every((p) => /^\d{4}-\d{2}-\d{2}$/.test(p.through)));
+  assert.deepEqual(currentPartners("2026-10-29").map((p) => p.name), PARTNER_NAMES, "the last day of a campaign still counts");
+  assert.deepEqual(currentPartners("2026-10-30"), [], "the day after, none");
+  assert.deepEqual(currentPartners(null), [], "no date, none");
+  const brandT = { ...transcripts, e1: { ...transcripts.e1, segments: [...transcripts.e1.segments, { stamp: "00:50:00", seconds: 3000, speaker: null, text: "Notion, Notion and Notion again." }] } };
+  const inRun = sponsorView({ episodes: eps, transcripts: brandT, generatedAt: "2026-10-11T14:00:00.000Z" });
+  const ended = sponsorView({ episodes: eps, transcripts: brandT, generatedAt: "2026-10-30T14:00:00.000Z" });
+  assert.equal(ended.asOf, "2026-10-30");
+  assert.deepEqual(inRun.currentPartners, { list: PARTNERS.map((p) => ({ name: p.name, through: p.through })), reason: null });
+  assert.deepEqual(ended.currentPartners.list, [], "after the campaigns end, no current partner: never a stale list");
+  assert.ok(ended.currentPartners.reason, "with the reason");
+  assert.equal(inRun.brands.list.find((b) => b.name === "Notion")?.partner, true, "a partner brand during its campaign");
+  assert.ok(!ended.brands.list.some((b) => b.partner) && ended.brands.list.some((b) => b.name === "Notion"), "after it, the same brand is listed, without the flag");
+  assert.deepEqual(ended.partners.map((p) => [p.name, p.current]), PARTNER_NAMES.map((n) => [n, false]));
+  assert.deepEqual(inRun.partners.map((p) => p.current), PARTNER_NAMES.map(() => true));
+  assert.deepEqual(ended.partners.map((p) => p.moments), inRun.partners.map((p) => p.moments), "what aired with a partner stays");
+  assert.deepEqual(ended.examples, inRun.examples, "the examples describe what aired, whatever the date");
   const ownClock = { ...withOneUp, e8: { ...withOneUp.e8, clock: "upload", youtubeUrl: "https://youtube.com/watch?v=V8" } };
   const linked = sponsorView({ episodes: eps, transcripts: ownClock, generatedAt: "2026-10-11T14:00:00.000Z" }).examples.find((x) => x.package === "Segment").moment;
   assert.deepEqual([linked.url, linked.linkAt], [`https://youtube.com/watch?v=V8&t=${oneUp.near + 5}s`, oneUpAt(oneUp.near + 5)], "a caption transcript is its upload's clock: the link opens at the time shown");

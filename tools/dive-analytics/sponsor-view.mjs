@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 11;
+export const SPONSOR_VERSION = 12;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -42,10 +42,34 @@ export const LIVE_KEYS = Object.freeze({
   chattersPer100: "chattersPer100", messagesPerHour: "messagesPerHour", durationMin: "durationMin", atMiddle: "average",
 });
 
-// The show's partners this season (sponsor pipeline, 2026-08-15). A partner's
-// on-air moments are found by name; nothing is credited to a partner the
-// transcript does not name.
-export const PARTNERS = Object.freeze(["Notion", "Mobbin", "Lovable", "Paper"]);
+// The show's partners and the last day of each one's signed campaign (D31). Notion,
+// Mobbin and Lovable: their IOs as the sponsor pipeline records them ("Campaign
+// 7/30–10/29", Dive Radio/sponsor-pipeline.md). Paper: the owners' renewal plan
+// ("Current campaigns end 10/29", Ops/Bones/revenue-sequencing-2026-08-26.md);
+// its own IO is not on file. A partner is current while the data's `asOf` is on
+// or before its `through`; a renewal is a one-line date change. A partner's
+// on-air moments are found by name, whatever the date — they describe what
+// aired, not the contract; nothing is credited to a partner the transcript does
+// not name.
+export const PARTNERS = Object.freeze([
+  { name: "Notion", through: "2026-10-29" },
+  { name: "Mobbin", through: "2026-10-29" },
+  { name: "Lovable", through: "2026-10-29" },
+  { name: "Paper", through: "2026-10-29" },
+]);
+export const PARTNER_NAMES = Object.freeze(PARTNERS.map((p) => p.name));
+const isCurrent = (p, asOf) => typeof asOf === "string" && asOf <= p.through;
+
+// the partners whose campaign runs on `asOf`, in the list's order
+export function currentPartners(asOf) {
+  return PARTNERS.filter((p) => isCurrent(p, asOf)).map((p) => ({ name: p.name, through: p.through }));
+}
+function currentPartnersBlock(asOf) {
+  const list = currentPartners(asOf);
+  if (list.length) return { list, reason: null };
+  const last = PARTNERS.map((p) => p.through).sort().at(-1);
+  return { list: [], reason: asOf ? `No partner campaign runs on ${asOf}; the last ended ${last}.` : "The build date is unknown." };
+}
 
 // Brands counted when they come up on air: tools and companies, named as said.
 // The platforms the show streams and chats on (YouTube, X, LinkedIn, Discord,
@@ -731,7 +755,8 @@ function bestMoment(e, t, upload, lines, pattern) {
   return stored(first);
 }
 
-function brandsBlock(episodes, transcripts, uploads) {
+function brandsBlock(episodes, transcripts, uploads, asOf) {
+  const partnersNow = currentPartners(asOf).map((p) => p.name);
   const read = episodes.filter((e) => transcripts[e.slug]);
   if (!read.length) return { list: [], episodes: 0, reason: "No transcript is available yet.", listMentions: null, listMin: null };
   const index = mentionIndex(read, transcripts, BRANDS);
@@ -742,7 +767,7 @@ function brandsBlock(episodes, transcripts, uploads) {
     .slice(0, BRAND_TOP)
     .map(({ name, rows, mentions }) => ({
       name,
-      partner: PARTNERS.includes(name),
+      partner: partnersNow.includes(name),
       mentions,
       episodes: rows.length,
       moments: rows.map((r) => bestMoment(r.e, transcripts[r.e.slug], uploads[r.e.slug], r.lines, brandPattern(name))),
@@ -768,8 +793,8 @@ export function listFacts(list) {
 // and each chapter that names it — "segment" when the chapter's title names it
 // (a segment about it), "inSegment" when only its summary does (named in a
 // segment). Nothing here says a moment was paid for.
-function partnersBlock(episodes, transcripts, uploads) {
-  return PARTNERS.map((name) => {
+function partnersBlock(episodes, transcripts, uploads, asOf) {
+  return PARTNERS.map(({ name, through }) => {
     const re = brandPattern(name);
     const negated = negatedFor(name);
     const moments = [];
@@ -806,6 +831,8 @@ function partnersBlock(episodes, transcripts, uploads) {
     const index = mentionIndex(episodes.filter((e) => transcripts[e.slug]), transcripts, [name]).get(name);
     return {
       name,
+      through,
+      current: isCurrent({ through }, asOf),
       mentions: sum(index, (r) => r.count),
       episodes: index.length,
       named: kept.filter((m) => m.kind === "named").length,
@@ -814,6 +841,29 @@ function partnersBlock(episodes, transcripts, uploads) {
       moments: kept,
     };
   });
+}
+
+// A line from a full read, carried on its example's row (D30): decision 3
+// allows words on an on-air row only for a line from a full read. `says` is the
+// sentence's words as the transcript has them; the line is the first transcript
+// line inside the example's window holding them, shown as the transcript's
+// words less cleanSpeech, with its time and its link by the clock rule. The
+// speaker is named only when the same transcript ties that speaker label to the
+// host elsewhere: `cue` is words that label says which identify him (E10
+// 00:09:47, "a side project for Ridd and I"); otherwise the line has no speaker.
+export const EXAMPLE_LINES = Object.freeze({
+  "Mid-roll": { says: "We're working with them because we use them", speaker: "Tommy", cue: "a side project for Ridd and I" },
+});
+
+export function exampleLine(x, t, upload) {
+  const r = EXAMPLE_LINES[x.package];
+  if (!r || !t) return null;
+  const words = plainWords(r.says);
+  const said = (t.segments || []).find((s) => s.seconds >= x.near - EXAMPLE_WINDOW_SEC.before && s.seconds <= x.near + EXAMPLE_WINDOW_SEC.after && plainWords(s.text).includes(words));
+  if (!said) return null;
+  const line = withLinkAt({ at: said.stamp, seconds: said.seconds, text: typographic(cleanSpeech(said.text)), url: momentUrl(upload, said.seconds) });
+  const cue = r.speaker && r.cue && said.speaker ? (t.segments || []).find((s) => s.speaker === said.speaker && plainWords(s.text).includes(plainWords(r.cue))) : null;
+  return cue ? { ...line, speaker: r.speaker } : line;
 }
 
 // the segment an example aired in: the partner's own first stored segment
@@ -833,7 +883,8 @@ function examplesBlock(episodes, transcripts, uploads, partners) {
     const t = e ? transcripts[e.slug] : null;
     const base = { package: x.package, format: x.format, label: x.label, partner: x.partner, ep: x.ep, slug: e?.slug ?? null };
     const segment = exampleSegment(x, partners);
-    const withSegment = (row) => (segment ? { ...row, segment } : row);
+    const line = exampleLine(x, t, uploads[e?.slug]);
+    const withSegment = (row) => ({ ...row, ...(segment ? { segment } : {}), ...(line ? { line } : {}) });
     if (!t) return withSegment({ ...base, moment: null, reason: "The episode’s transcript is not available." });
     const re = brandPattern(x.partner);
     const i = t.segments.findIndex((s) => s.seconds >= x.near - EXAMPLE_WINDOW_SEC.before && s.seconds <= x.near + EXAMPLE_WINDOW_SEC.after && new RegExp(re.source).test(s.text));
@@ -853,10 +904,11 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
   const withMoment = (c) => { const m = callInMoment(c, transcripts, uploads); return m ? { ...c, ...m } : c; };
   if (Array.isArray(callIns.tools)) callIns.tools = callIns.tools.map(withMoment);
   if (Array.isArray(callIns.featured)) callIns.featured = callIns.featured.map((c) => { const m = callInMoment(c, transcripts, uploads); const k = callInKnown(c, m, dive, transcripts); return { ...c, ...(m || {}), ...(k || {}) }; });
-  const partners = partnersBlock(dive, transcripts, uploads);
+  const asOf = generatedAt ? new Date(Date.parse(generatedAt) - 7 * 3600000).toISOString().slice(0, 10) : null;
+  const partners = partnersBlock(dive, transcripts, uploads, asOf);
   return {
     version: SPONSOR_VERSION,
-    asOf: generatedAt ? new Date(Date.parse(generatedAt) - 7 * 3600000).toISOString().slice(0, 10) : null,
+    asOf,
     episodes: dive.length,
     firstPremiere: dive[0]?.premiere ?? null,
     latest: latest ? { ep: latest.ep, slug: latest.slug, title: latest.title, premiere: latest.premiere } : null,
@@ -867,7 +919,8 @@ export function sponsorView({ episodes, channelStats = null, contributors = null
     audience: audienceBlock(channelStats),
     feedback: feedbackBlock(dive, callIns, commentChannels),
     callIns,
-    brands: brandsBlock(dive, transcripts, uploads),
+    brands: brandsBlock(dive, transcripts, uploads, asOf),
+    currentPartners: currentPartnersBlock(asOf),
     partners,
     examples: examplesBlock(dive, transcripts, uploads, partners),
     links: {
