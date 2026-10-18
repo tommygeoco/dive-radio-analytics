@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "UgwyCQYY3QfEgziaI9p4AaABAg",
-        "pulledAt": "2026-10-17T19:16:36.764Z",
+        "pulledAt": "2026-10-18T17:41:32.015Z",
         "state": "ready"
       }
     },
@@ -83,13 +83,13 @@
         "source": "youtube-comments",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "UgzC72FWGRbVxVzkSxt4AaABAg",
-        "pulledAt": "2026-10-17T19:16:36.764Z",
+        "pulledAt": "2026-10-18T17:41:32.015Z",
         "state": "ready"
       }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-17T19:16:36.764Z",
+    "checkedAt": "2026-10-18T17:41:32.015Z",
     "state": "ready",
     "sources": [
       {
@@ -97,7 +97,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "YI1Kx5U6fQc",
-        "pulledAt": "2026-10-17T19:16:36.764Z",
+        "pulledAt": "2026-10-18T17:41:32.015Z",
         "state": "ready",
         "count": 2
       },
@@ -106,12 +106,12 @@
         "source": "youtube-comments",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "Z1MbnYXS8ls",
-        "pulledAt": "2026-10-17T19:16:36.764Z",
+        "pulledAt": "2026-10-18T17:41:32.015Z",
         "state": "ready",
         "count": 0
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-17T19:16:36.764Z"
+  "updatedAt": "2026-10-18T17:41:32.015Z"
 }

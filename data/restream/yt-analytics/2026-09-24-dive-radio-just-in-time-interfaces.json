@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "Cjv-0MKQ4GU",
-      "pulledAt": "2026-10-17T19:16:09.412Z",
+      "pulledAt": "2026-10-18T17:41:03.719Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "Cjv-0MKQ4GU",
-        "pulledAt": "2026-10-17T19:16:09.412Z",
+        "pulledAt": "2026-10-18T17:41:03.719Z",
         "state": "ready"
       },
       "totals": {
@@ -480,20 +480,20 @@
     },
     "yt:designertom": {
       "videoId": "2EAAU-knqRE",
-      "pulledAt": "2026-10-17T19:16:09.412Z",
+      "pulledAt": "2026-10-18T17:41:03.719Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
         "objectId": "2EAAU-knqRE",
-        "pulledAt": "2026-10-17T19:16:09.412Z",
+        "pulledAt": "2026-10-18T17:41:03.719Z",
         "state": "ready"
       },
       "totals": {
         "views": 2674,
         "estimatedMinutesWatched": 10681,
-        "averageViewDuration": 657,
-        "averageViewPercentage": 9.29,
+        "averageViewDuration": 660,
+        "averageViewPercentage": 9.35,
         "subscribersGained": 7,
         "likes": 35,
         "comments": 3
@@ -547,7 +547,7 @@
         {
           "insightTrafficSourceType": "PLAYLIST",
           "views": 14,
-          "estimatedMinutesWatched": 175
+          "estimatedMinutesWatched": 206
         },
         {
           "insightTrafficSourceType": "SHORTS",
@@ -854,114 +854,114 @@
         },
         {
           "elapsedVideoTimeRatio": 0.75,
-          "audienceWatchRatio": 0.0867
+          "audienceWatchRatio": 0.0883
         },
         {
           "elapsedVideoTimeRatio": 0.76,
-          "audienceWatchRatio": 0.0833
+          "audienceWatchRatio": 0.085
         },
         {
           "elapsedVideoTimeRatio": 0.77,
-          "audienceWatchRatio": 0.07
+          "audienceWatchRatio": 0.0717
         },
         {
           "elapsedVideoTimeRatio": 0.78,
-          "audienceWatchRatio": 0.0633
+          "audienceWatchRatio": 0.065
         },
         {
           "elapsedVideoTimeRatio": 0.79,
-          "audienceWatchRatio": 0.0667
-        },
-        {
-          "elapsedVideoTimeRatio": 0.8,
-          "audienceWatchRatio": 0.0633
-        },
-        {
-          "elapsedVideoTimeRatio": 0.81,
-          "audienceWatchRatio": 0.0583
-        },
-        {
-          "elapsedVideoTimeRatio": 0.82,
-          "audienceWatchRatio": 0.065
-        },
-        {
-          "elapsedVideoTimeRatio": 0.83,
-          "audienceWatchRatio": 0.065
-        },
-        {
-          "elapsedVideoTimeRatio": 0.84,
-          "audienceWatchRatio": 0.0583
-        },
-        {
-          "elapsedVideoTimeRatio": 0.85,
-          "audienceWatchRatio": 0.07
-        },
-        {
-          "elapsedVideoTimeRatio": 0.86,
-          "audienceWatchRatio": 0.0633
-        },
-        {
-          "elapsedVideoTimeRatio": 0.87,
           "audienceWatchRatio": 0.0683
         },
         {
+          "elapsedVideoTimeRatio": 0.8,
+          "audienceWatchRatio": 0.065
+        },
+        {
+          "elapsedVideoTimeRatio": 0.81,
+          "audienceWatchRatio": 0.06
+        },
+        {
+          "elapsedVideoTimeRatio": 0.82,
+          "audienceWatchRatio": 0.0667
+        },
+        {
+          "elapsedVideoTimeRatio": 0.83,
+          "audienceWatchRatio": 0.0667
+        },
+        {
+          "elapsedVideoTimeRatio": 0.84,
+          "audienceWatchRatio": 0.06
+        },
+        {
+          "elapsedVideoTimeRatio": 0.85,
+          "audienceWatchRatio": 0.0717
+        },
+        {
+          "elapsedVideoTimeRatio": 0.86,
+          "audienceWatchRatio": 0.065
+        },
+        {
+          "elapsedVideoTimeRatio": 0.87,
+          "audienceWatchRatio": 0.07
+        },
+        {
           "elapsedVideoTimeRatio": 0.88,
-          "audienceWatchRatio": 0.0583
+          "audienceWatchRatio": 0.06
         },
         {
           "elapsedVideoTimeRatio": 0.89,
-          "audienceWatchRatio": 0.0617
+          "audienceWatchRatio": 0.0633
         },
         {
           "elapsedVideoTimeRatio": 0.9,
-          "audienceWatchRatio": 0.055
+          "audienceWatchRatio": 0.0567
         },
         {
           "elapsedVideoTimeRatio": 0.91,
-          "audienceWatchRatio": 0.0467
+          "audienceWatchRatio": 0.0483
         },
         {
           "elapsedVideoTimeRatio": 0.92,
-          "audienceWatchRatio": 0.0467
+          "audienceWatchRatio": 0.0483
         },
         {
           "elapsedVideoTimeRatio": 0.93,
-          "audienceWatchRatio": 0.0467
+          "audienceWatchRatio": 0.0483
         },
         {
           "elapsedVideoTimeRatio": 0.94,
-          "audienceWatchRatio": 0.0417
+          "audienceWatchRatio": 0.0433
         },
         {
           "elapsedVideoTimeRatio": 0.95,
-          "audienceWatchRatio": 0.05
+          "audienceWatchRatio": 0.051699999999999996
         },
         {
           "elapsedVideoTimeRatio": 0.96,
-          "audienceWatchRatio": 0.0433
+          "audienceWatchRatio": 0.045
         },
         {
           "elapsedVideoTimeRatio": 0.97,
-          "audienceWatchRatio": 0.04
+          "audienceWatchRatio": 0.0417
         },
         {
           "elapsedVideoTimeRatio": 0.98,
-          "audienceWatchRatio": 0.0467
+          "audienceWatchRatio": 0.0483
         },
         {
           "elapsedVideoTimeRatio": 0.99,
-          "audienceWatchRatio": 0.0433
+          "audienceWatchRatio": 0.045
         },
         {
           "elapsedVideoTimeRatio": 1,
-          "audienceWatchRatio": 0.0467
+          "audienceWatchRatio": 0.0483
         }
       ]
     }
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-17T19:16:09.412Z",
+    "checkedAt": "2026-10-18T17:41:03.719Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:2EAAU-knqRE|yt:joindiveclub:Cjv-0MKQ4GU",
@@ -981,7 +981,7 @@
         "result": "ready",
         "observed": {
           "views": 2674,
-          "averageViewPercentage": 9.29
+          "averageViewPercentage": 9.35
         }
       }
     ]
@@ -991,8 +991,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-24-dive-radio-just-in-time-interfaces",
     "objectId": "2026-09-24-dive-radio-just-in-time-interfaces",
-    "pulledAt": "2026-10-17T19:16:09.412Z",
+    "pulledAt": "2026-10-18T17:41:03.719Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-17T19:16:09.412Z"
+  "updatedAt": "2026-10-18T17:41:03.719Z"
 }

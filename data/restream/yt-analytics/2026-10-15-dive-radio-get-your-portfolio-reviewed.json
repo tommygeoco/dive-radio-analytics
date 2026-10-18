@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "J3NB3migbE0",
-      "pulledAt": "2026-10-17T19:16:09.412Z",
+      "pulledAt": "2026-10-18T17:41:03.719Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "J3NB3migbE0",
-        "pulledAt": "2026-10-17T19:16:09.412Z",
+        "pulledAt": "2026-10-18T17:41:03.719Z",
         "state": "ready"
       },
       "totals": {
@@ -74,13 +74,13 @@
     },
     "yt:designertom": {
       "videoId": "YmC8feEgGDw",
-      "pulledAt": "2026-10-17T19:16:09.412Z",
+      "pulledAt": "2026-10-18T17:41:03.719Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "YmC8feEgGDw",
-        "pulledAt": "2026-10-17T19:16:09.412Z",
+        "pulledAt": "2026-10-18T17:41:03.719Z",
         "state": "ready"
       },
       "totals": {
@@ -149,7 +149,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-17T19:16:09.412Z",
+    "checkedAt": "2026-10-18T17:41:03.719Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:YmC8feEgGDw|yt:joindiveclub:J3NB3migbE0",
@@ -179,8 +179,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
     "objectId": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-    "pulledAt": "2026-10-17T19:16:09.412Z",
+    "pulledAt": "2026-10-18T17:41:03.719Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-17T19:16:09.412Z"
+  "updatedAt": "2026-10-18T17:41:03.719Z"
 }
