@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "YI1Kx5U6fQc",
-      "pulledAt": "2026-10-18T19:16:10.065Z",
+      "pulledAt": "2026-10-19T14:01:06.956Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "YI1Kx5U6fQc",
-        "pulledAt": "2026-10-18T19:16:10.065Z",
+        "pulledAt": "2026-10-19T14:01:06.956Z",
         "state": "ready"
       },
       "totals": {
         "views": 2941,
-        "estimatedMinutesWatched": 20496,
+        "estimatedMinutesWatched": 20498,
         "averageViewDuration": 845,
         "averageViewPercentage": 11.43,
         "subscribersGained": 3,
@@ -26,7 +26,7 @@
       "trafficSources": [
         {
           "insightTrafficSourceType": "SUBSCRIBER",
-          "views": 2105,
+          "views": 2104,
           "estimatedMinutesWatched": 8992
         },
         {
@@ -480,13 +480,13 @@
     },
     "yt:designertom": {
       "videoId": "Z1MbnYXS8ls",
-      "pulledAt": "2026-10-18T19:16:10.065Z",
+      "pulledAt": "2026-10-19T14:01:06.956Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
         "objectId": "Z1MbnYXS8ls",
-        "pulledAt": "2026-10-18T19:16:10.065Z",
+        "pulledAt": "2026-10-19T14:01:06.956Z",
         "state": "ready"
       },
       "totals": {
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-18T19:16:10.065Z",
+    "checkedAt": "2026-10-19T14:01:06.956Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:Z1MbnYXS8ls|yt:joindiveclub:YI1Kx5U6fQc",
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
     "objectId": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-    "pulledAt": "2026-10-18T19:16:10.065Z",
+    "pulledAt": "2026-10-19T14:01:06.956Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-18T19:16:10.065Z"
+  "updatedAt": "2026-10-19T14:01:06.956Z"
 }
