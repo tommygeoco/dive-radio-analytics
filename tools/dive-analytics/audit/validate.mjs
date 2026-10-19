@@ -3750,6 +3750,9 @@ try {
           if (!said.some((c) => re.test(c.about || ""))) { bad++; fail(`sponsor: ${name} as a named team does not re-derive from any aired call-in's own words`); }
         }
         if (JSON.stringify(sp.callIns.teamsNamed) !== JSON.stringify(SV.teamsNamed(sp.callIns.list))) { bad++; fail("sponsor: the teams the call-ins were about do not re-derive"); }
+        // each named team carries the aired call-in whose own words name it first, word for word
+        if (JSON.stringify(sp.callIns.teams) !== JSON.stringify(SV.teamCallIns(sp.callIns.list))
+          || (sp.callIns.teams || []).some((t) => !said.some((c) => c.who === t.who && c.about === t.about))) { bad++; fail("sponsor: the teams' call-in lines do not re-derive from the aired call-ins' own words"); }
         // each episode's portfolios reviewed on air: how many, and each reviewer once, in the order the notes name them
         const reviewsWant = aired.filter(([, entry]) => (entry.callIns || []).some((c) => c.kind === "portfolio")).map(([slug, entry]) => {
           const portfolios = entry.callIns.filter((c) => c.kind === "portfolio");
@@ -3825,7 +3828,7 @@ try {
       }
       for (const x of SV.EXAMPLES) {
         const got = (sp.examples || []).find((y) => y.package === x.package);
-        if (!got || got.partner !== x.partner || got.ep !== x.ep || got.label !== x.label) { bad++; fail(`sponsor: the ${x.package} example is not the owners' recorded one`); continue; }
+        if (!got || got.partner !== x.partner || got.ep !== x.ep || got.label !== x.label || (got.aired ?? null) !== (x.aired ?? null)) { bad++; fail(`sponsor: the ${x.package} example is not the owners' recorded one`); continue; }
         if (got.moment && !(got.moment.seconds >= x.near - SV.EXAMPLE_WINDOW_SEC.before - SV.EXCERPT_BEFORE_SEC && got.moment.seconds <= x.near + SV.EXAMPLE_WINDOW_SEC.after)) { bad++; fail(`sponsor: the ${x.package} example (${got.moment.at}) is not near the recorded time`); }
         if (!got.moment && !got.reason) { bad++; fail(`sponsor: the ${x.package} example is absent without a reason`); }
         // the segment it aired in (D21): the partner's own first stored segment moment in the example's episode inside the

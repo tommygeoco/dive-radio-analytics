@@ -25,16 +25,16 @@ viewing analytics requires owner observations or approved API access.
   (`tools/dive-analytics/health-feedback.mjs better|same|worse "…"`).
 - Launch word per episode (strong / typical / soft, promo-qualified, "so far"
   under a week) on every card from its first reading.
-- [For sponsors](https://dive-radio-analytics.vercel.app/sponsors.html): the page the owners send to brands —
-  subscribers and followers on the four channels, views so far, hours watched,
-  the typical live show (peak, the share still watching at the end, chat), every
-  community call-in that aired (videos, nominations, and portfolios reviewed on
-  air), brands named on air with a link to each moment,
-  what partners get on air (reads, named segments, live builds), named viewer
-  quotes, and the packages. Same data as the dashboard (`data.sponsor`), rebuilt
-  every morning, with each new episode's call-ins and caption matches imported
-  by the morning chain; timestamps open YouTube at the exact second wherever the
-  transcript has been matched to that upload's captions.
+- [For sponsors](https://dive-radio-analytics.vercel.app/sponsors.html): the page the owners send to brands,
+  in the order a buyer asks: what the show is and what it costs, the numbers (views a show, subscribers
+  and followers across the hosts' four channels, views so far, hours watched, with how they are counted),
+  this season's partners, the hosts and episode covers, the people who call in (with pictures from their
+  own videos on air, the tools they showed, the recorded portfolio reviews and the teams their words
+  name), the audience's own words, the live room (how much of the peak audience is still there at the
+  end, the newest show's curve), each partner format as it aired with the partner bar, the packages, the
+  three questions partners ask, and the booking steps. Same data as the dashboard (`data.sponsor`), rebuilt
+  every morning; every timestamp opens YouTube at its exact second wherever the transcript has been matched
+  to that upload's captions.
 - [Agents](https://dive-radio-analytics.vercel.app/agents.html) (a separate page linked from the header): one address any AI agent can read —
   [`agent.md`](https://dive-radio-analytics.vercel.app/agent.md) — the whole
   show in one pull: the health read with its facts, the five actions, every

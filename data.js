@@ -1,5 +1,5 @@
 window.DIVE_DATA = {
- "generatedAt": "2026-10-18T20:01:52.755Z",
+ "generatedAt": "2026-10-18T23:36:02.387Z",
  "chaptersUpdatedAt": "2026-10-17T14:07:27.266Z",
  "promotionUpdatedAt": "2026-10-18T19:15:31.426Z",
  "dests": [
@@ -106696,7 +106696,7 @@ window.DIVE_DATA = {
   ]
  },
  "sponsor": {
-  "version": 13,
+  "version": 14,
   "asOf": "2026-10-18",
   "episodes": 14,
   "firstPremiere": "2026-07-17",
@@ -107639,6 +107639,30 @@ window.DIVE_DATA = {
      "likes": 1,
      "onShow": false,
      "calledIn": null
+    },
+    {
+     "id": "x:2098328331066228973",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
+     "author": "@omostical",
+     "platform": "X",
+     "text": "Best show so far... Lot of juice to get from this one episode. I have watched it twice already Keep getting better. @designertom @ridd_design 🫡🫡",
+     "url": "https://x.com/i/status/2098328331066228973",
+     "likes": 2,
+     "onShow": false,
+     "calledIn": null
+    },
+    {
+     "id": "yt:UgzVits6pK6eIXQLIeN4AaABAg",
+     "ep": 3,
+     "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+     "author": "khangdbui",
+     "platform": "YouTube",
+     "text": "Okay that BackyardDesigners game has GOT to be the COOLEST thing I’ve ever seen!! Great job, Ridd!",
+     "url": "https://youtube.com/watch?v=9HYGZgaHdlw&lc=UgzVits6pK6eIXQLIeN4AaABAg",
+     "likes": 2,
+     "onShow": false,
+     "calledIn": null
     }
    ]
   },
@@ -107740,6 +107764,64 @@ window.DIVE_DATA = {
     "Attio",
     "Mercury",
     "Netflix"
+   ],
+   "teams": [
+    {
+     "name": "Vercel",
+     "who": "Evil Rabbit",
+     "about": "Vercel's creative team builds tools, not just assets",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+    },
+    {
+     "name": "Perplexity",
+     "who": "Escha Vera",
+     "about": "sound design for products at Perplexity",
+     "ep": 8,
+     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive"
+    },
+    {
+     "name": "Shopify",
+     "who": "Jared Tredly",
+     "about": "what Shopify looks for in the first five seconds",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir"
+    },
+    {
+     "name": "Notion",
+     "who": "Chris Andrews",
+     "about": "what Notion looks for in designers now",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir"
+    },
+    {
+     "name": "Linear",
+     "who": "Conor Muirhead",
+     "about": "how Linear hires product-leaning designers",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir"
+    },
+    {
+     "name": "Attio",
+     "who": "Dan Billson",
+     "about": "moving from engineering to design engineering at Attio",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir"
+    },
+    {
+     "name": "Mercury",
+     "who": "Lauren LoPrete",
+     "about": "conviction, communication and outside inspiration at Mercury",
+     "ep": 9,
+     "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir"
+    },
+    {
+     "name": "Netflix",
+     "who": "Eric Sin",
+     "about": "how he landed a staff design job at Netflix",
+     "ep": 13,
+     "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli"
+    }
    ],
    "featured": [
     {
@@ -110460,6 +110542,7 @@ window.DIVE_DATA = {
     "package": "Segment",
     "format": "A named segment",
     "label": "One Up Weekly, brought to you by Lovable",
+    "aired": "In One Up Weekly the hosts trade their favorite finds of the week.",
     "partner": "Lovable",
     "ep": 8,
     "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
@@ -110477,6 +110560,7 @@ window.DIVE_DATA = {
     "package": "Build",
     "format": "A live build",
     "label": "Notion as Code",
+    "aired": "Tommy showed the show’s own tools running on Notion as code, and a card game built on a Notion pipeline.",
     "partner": "Notion",
     "ep": 5,
     "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",

@@ -31,7 +31,7 @@ import { trueMedian, windowFor, MIN_PEERS, liveRatesOf, sameSideOfBreaks, breaks
 import { hasNegativeSignal } from "../../scripts/restream/comments-sentiment.mjs";
 import { linkableUpload, momentUrl } from "./clock.mjs";
 
-export const SPONSOR_VERSION = 13;
+export const SPONSOR_VERSION = 14;
 
 // Each live figure, by the key a known reporting break's declaration names it
 // under (baselines.KNOWN_BREAKS: every live measure built on viewer counts,
@@ -113,11 +113,15 @@ export const EXAMPLE_WINDOW_SEC = { before: 60, after: 120 };
 // own stored moments hold a segment about it (a chapter whose title names it)
 // in the same episode inside the same window: the chapter's time, title, stored
 // description and link, as stored — a description of the segment, never a
-// quote. With no such segment the field is absent.
+// quote. With no such segment the field is absent. `aired` (D39) is one line of what the example's
+// show did, in the owners' words, written from the episode's own chapter (E8 01:40:53 "One up weekly picks…",
+// E5 00:40:54 "Notion as code…"); it is copied as written.
 export const EXAMPLES = Object.freeze([
   { package: "Mid-roll", format: "A live read", label: "Notion on the Dive Radio Skills Library", partner: "Notion", ep: 10, near: 2063, record: "e10-notion-ad-read-2026-09-17.md" },
-  { package: "Segment", format: "A named segment", label: "One Up Weekly, brought to you by Lovable", partner: "Lovable", ep: 8, near: 6053, record: "E8 transcript 01:40:53, partners[Lovable].moments (D29)" },
-  { package: "Build", format: "A live build", label: "Notion as Code", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md (D33: \"The August live build (Notion as Code)\")" },
+  { package: "Segment", format: "A named segment", label: "One Up Weekly, brought to you by Lovable", partner: "Lovable", ep: 8, near: 6053, record: "E8 transcript 01:40:53, partners[Lovable].moments (D29)",
+    aired: "In One Up Weekly the hosts trade their favorite finds of the week." },
+  { package: "Build", format: "A live build", label: "Notion as Code", partner: "Notion", ep: 5, near: 2428, record: "sponsor-recap-notion-2026-08.md (D33: \"The August live build (Notion as Code)\")",
+    aired: "Tommy showed the show’s own tools running on Notion as code, and a card game built on a Notion pipeline." },
 ]);
 
 // The owners' featured picks (SPONSOR-2026-10-11.md D19–D21, D24, 2026-10-16/17):
@@ -136,7 +140,7 @@ export const EXAMPLES = Object.freeze([
 export const FEATURED_CALLINS_MAX = 6;
 export const FEATURED_CALLINS = Object.freeze(["Soleio", "Pietro Schirano", "Jared Erondu", "Josh Puckett"]);
 export const FEATURED_QUOTES_MAX = 3;
-export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377"]);
+export const FEATURED_QUOTES = Object.freeze(["x:2100654534661943377", "x:2098328331066228973", "yt:UgzVits6pK6eIXQLIeN4AaABAg"]);
 export const FEATURED_KIND = "submission";
 // The call-ins that show the audience building with tools at work, the
 // partners' own among them (D21, D22, 2026-10-17): up to three exact names, each
@@ -704,17 +708,27 @@ function feedbackBlock(episodes, callIns, commentChannels) {
 // team", "what Shopify looks for", "how Linear hires". A product named as a tool
 // ("built in Lovable", "a Figma frame") is not a team, and nothing here says
 // where a caller works.
+const teamRe = (name) => {
+  const b = escapeRe(name);
+  return new RegExp(`\\bat ${b}\\b|\\b${b}['’]s\\b[^,.;]{0,40}\\bteams?\\b|\\bwhat ${b} looks for\\b|\\bhow ${b} hires\\b`);
+};
 export function teamsNamed(list) {
   const named = [];
   for (const c of list || []) {
     const words = c.about || "";
     for (const name of BRANDS) {
-      const b = escapeRe(name);
-      const re = new RegExp(`\\bat ${b}\\b|\\b${b}['’]s\\b[^,.;]{0,40}\\bteams?\\b|\\bwhat ${b} looks for\\b|\\bhow ${b} hires\\b`);
-      if (re.test(words) && !named.includes(name)) named.push(name);
+      if (teamRe(name).test(words) && !named.includes(name)) named.push(name);
     }
   }
   return named;
+}
+// each named team with the call-in whose own words name it first (airing order): who said it and their words, as
+// stored, so the page shows the words that name the team and never says where a caller works
+export function teamCallIns(list) {
+  return teamsNamed(list).map((name) => {
+    const c = (list || []).find((x) => teamRe(name).test(x.about || ""));
+    return { name, who: c.who, about: c.about, ep: c.ep, slug: c.slug };
+  });
 }
 
 function callInsBlock(episodes, contributors) {
@@ -741,6 +755,7 @@ function callInsBlock(episodes, contributors) {
       return { ep, slug, portfolios: shown.length, reviewers: reviewersOf(shown).map((r) => r.who) };
     }),
     teamsNamed: teamsNamed(list),
+    teams: teamCallIns(list),
     featured: featuredCallIns(list),
     tools: toolCallIns(list),
     list,
@@ -914,7 +929,7 @@ function examplesBlock(episodes, transcripts, uploads, partners) {
   return EXAMPLES.map((x) => {
     const e = episodes.find((r) => r.ep === x.ep);
     const t = e ? transcripts[e.slug] : null;
-    const base = { package: x.package, format: x.format, label: x.label, partner: x.partner, ep: x.ep, slug: e?.slug ?? null };
+    const base = { package: x.package, format: x.format, label: x.label, ...(x.aired ? { aired: x.aired } : {}), partner: x.partner, ep: x.ep, slug: e?.slug ?? null };
     const segment = exampleSegment(x, partners);
     const line = exampleLine(x, t, uploads[e?.slug]);
     const withSegment = (row) => ({ ...row, ...(segment ? { segment } : {}), ...(line ? { line } : {}) });

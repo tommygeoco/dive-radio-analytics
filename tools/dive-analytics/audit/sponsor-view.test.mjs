@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import { captionWords, clockOffset, clockHolds, linkableUpload, momentUrl, CLOCK_MIN_ANCHORS, CLOCK_MAX_SPREAD } from "../clock.mjs";
 import { parseCallIn, parseEpisodeNotes, contributorEpisodes } from "../../../scripts/restream/contributors-import.mjs";
-import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
+import { sponsorView, quoteText, excerptAt, brandPattern, cleanSpeech, typographic, callerIndex, calledIn, quoteUrl, teamsNamed, teamCallIns, liveAt, reviewersOf, BRAND_MIN_MENTIONS, EXAMPLES,
   featuredCallIns, featuredQuotes, FEATURED_CALLINS, FEATURED_CALLINS_MAX, FEATURED_QUOTES, FEATURED_QUOTES_MAX, exampleSegment, EXAMPLE_WINDOW_SEC,
   featuredCovers, FEATURED_COVERS, FEATURED_COVERS_MAX, holdClaim, listFacts, linkAtOf, PARTNERS, PARTNER_NAMES, currentPartners, EXAMPLE_LINES, exampleLine, REVIEW_MOMENTS, reviewMoment, HERO_FRAME, callInMoment, CALLIN_MOMENTS, CALLIN_WINDOW_SEC, callInKnown, CALLIN_KNOWN, CALLIN_CLIP_SEC,
   toolCallIns, FEATURED_TOOL_CALLINS, FEATURED_TOOL_CALLINS_MAX } from "../sponsor-view.mjs";
@@ -331,9 +331,23 @@ import { normalize } from "../transcripts.mjs";
 
   // the teams the call-ins were about: only where their words put the work
   assert.deepEqual(teamsNamed([{ about: "building an OG card tool at Vercel" }, { about: "what Shopify looks for in five seconds" }, { about: "a map built in Lovable" }, { about: "Lovable's Series C" }, { about: "Vercel's creative team builds tools" }]), ["Vercel", "Shopify"]);
+  // each named team carries the first aired call-in whose own words name it, word for word
+  const teamList = [
+    { ep: 4, slug: "a", who: "Ann", about: "a map built in Lovable" },
+    { ep: 5, slug: "b", who: "Bo", about: "building an OG card tool at Vercel" },
+    { ep: 6, slug: "c", who: "Cy", about: "how Vercel hires designers" },
+    { ep: 7, slug: "d", who: "Di", about: "what Shopify looks for in five seconds" },
+  ];
+  assert.deepEqual(teamCallIns(teamList), [
+    { name: "Vercel", who: "Bo", about: "building an OG card tool at Vercel", ep: 5, slug: "b" },
+    { name: "Shopify", who: "Di", about: "what Shopify looks for in five seconds", ep: 7, slug: "d" },
+  ]);
+  assert.deepEqual(teamCallIns([]), []);
 
   // each package's example is found near the owners' recorded time, or absent with a reason
   assert.deepEqual(EXAMPLES.map((x) => x.package), ["Mid-roll", "Segment", "Build"]);
+  // each example's line of what aired is the owners' own, copied as written (D40)
+  assert.ok(EXAMPLES.every((x) => x.aired === undefined || (typeof x.aired === "string" && /^[A-Z].*\.$/.test(x.aired))), "an example's aired line is a sentence");
   // D29: the named segment is E8's One Up Weekly, the newest the hosts opened with "brought to you by Lovable"; the read is
   // "A live read"; Build stays E5
   assert.deepEqual(EXAMPLES.map((x) => [x.package, x.format, x.partner, x.ep]), [["Mid-roll", "A live read", "Notion", 10], ["Segment", "A named segment", "Lovable", 8], ["Build", "A live build", "Notion", 5]]);
