@@ -2640,9 +2640,9 @@
       }
     ]
   },
-  "updatedAt": "2026-10-19T14:01:47.670Z",
+  "updatedAt": "2026-10-19T19:16:52.640Z",
   "capture": {
-    "checkedAt": "2026-10-19T14:01:47.670Z",
+    "checkedAt": "2026-10-19T19:16:52.640Z",
     "state": "ready",
     "sources": [
       {
@@ -2650,7 +2650,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       },
       {
@@ -2658,7 +2658,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       },
       {
@@ -2666,7 +2666,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       },
       {
@@ -2674,7 +2674,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       }
     ],
@@ -2691,7 +2691,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       }
     },
@@ -2705,33 +2705,33 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       }
     },
     "x:ridd_design": {
       "date": "2026-10-19",
-      "followers": 76904,
-      "tweets": 21185,
+      "followers": 76906,
+      "tweets": 21191,
       "reading": {
         "schemaVersion": 1,
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       }
     },
     "x:designertom": {
       "date": "2026-10-19",
-      "followers": 19821,
-      "tweets": 9640,
+      "followers": 19828,
+      "tweets": 9646,
       "reading": {
         "schemaVersion": 1,
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-10-19T14:01:47.670Z",
+        "pulledAt": "2026-10-19T19:16:52.640Z",
         "state": "ready"
       }
     }

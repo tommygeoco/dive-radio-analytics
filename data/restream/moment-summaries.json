@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-18T19:18:18.781Z",
+  "updatedAt": "2026-10-19T19:18:11.891Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -457,6 +457,22 @@
     "2026-10-15-dive-radio-get-your-portfolio-reviewed|hold|0.85": {
       "summary": "A reviewer praises Gabe's video-heavy, polished portfolio as proof of care and craft. Hosts then browse it, enjoying the card layouts, a CGI hand demo and a paint-drawing Easter egg.",
       "writtenAt": "2026-10-18T19:18:18.781Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|hold|0.22": {
+      "summary": "The two hosts trade reactions to new AI model releases and rumored launches, joke about a lab employee bugging an office, and mention hiring contractors before the show's main segment.",
+      "writtenAt": "2026-10-19T19:18:11.891Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.31": {
+      "summary": "A host introduces portfolio tips from viewers, then a recorded designer explains what she looks for: strong content over flashy frames, subtle personality, and case studies that show process.",
+      "writtenAt": "2026-10-19T19:18:11.891Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.52": {
+      "summary": "Hosts finish a portfolio review praising its work and fun split and discussing testimonial carousels, then a recorded reviewer critiques a text-heavy landing page and urges showing work first.",
+      "writtenAt": "2026-10-19T19:18:11.891Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|hold|0.68": {
+      "summary": "One host critiques a portfolio's oversized blurred header, redundant label and double-click case studies; then a recorded reviewer says a playful interactive layout should be larger and better organized.",
+      "writtenAt": "2026-10-19T19:18:11.891Z"
     }
   }
 }
