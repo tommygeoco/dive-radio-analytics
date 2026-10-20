@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "J3NB3migbE0",
-      "pulledAt": "2026-10-19T19:16:13.713Z",
+      "pulledAt": "2026-10-20T14:02:07.656Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "J3NB3migbE0",
-        "pulledAt": "2026-10-19T19:16:13.713Z",
+        "pulledAt": "2026-10-20T14:02:07.656Z",
         "state": "ready"
       },
       "totals": {
-        "views": 2219,
-        "estimatedMinutesWatched": 17590,
+        "views": 2197,
+        "estimatedMinutesWatched": 16828,
         "averageViewDuration": 1175,
         "averageViewPercentage": 18.02,
         "subscribersGained": 2,
@@ -475,18 +475,18 @@
     },
     "yt:designertom": {
       "videoId": "YmC8feEgGDw",
-      "pulledAt": "2026-10-19T19:16:13.713Z",
+      "pulledAt": "2026-10-20T14:02:07.656Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "YmC8feEgGDw",
-        "pulledAt": "2026-10-19T19:16:13.713Z",
+        "pulledAt": "2026-10-20T14:02:07.656Z",
         "state": "ready"
       },
       "totals": {
-        "views": 1771,
-        "estimatedMinutesWatched": 9628,
+        "views": 1763,
+        "estimatedMinutesWatched": 9572,
         "averageViewDuration": 899,
         "averageViewPercentage": 14.27,
         "subscribersGained": 2,
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-19T19:16:13.713Z",
+    "checkedAt": "2026-10-20T14:02:07.656Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:YmC8feEgGDw|yt:joindiveclub:J3NB3migbE0",
@@ -966,7 +966,7 @@
         "videoId": "J3NB3migbE0",
         "result": "ready",
         "observed": {
-          "views": 2219,
+          "views": 2197,
           "averageViewPercentage": 18.02
         }
       },
@@ -975,7 +975,7 @@
         "videoId": "YmC8feEgGDw",
         "result": "ready",
         "observed": {
-          "views": 1771,
+          "views": 1763,
           "averageViewPercentage": 14.27
         }
       }
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
     "objectId": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-    "pulledAt": "2026-10-19T19:16:13.713Z",
+    "pulledAt": "2026-10-20T14:02:07.656Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-19T19:16:13.713Z"
+  "updatedAt": "2026-10-20T14:02:07.656Z"
 }

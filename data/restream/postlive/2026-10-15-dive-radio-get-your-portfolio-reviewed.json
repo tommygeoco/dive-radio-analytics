@@ -1759,10 +1759,261 @@
           ]
         }
       }
+    },
+    {
+      "ts": "2026-10-20T14:01:32.814Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "objectId": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "pulledAt": "2026-10-20T14:01:32.814Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 2553,
+          "detail": {
+            "views": 2553,
+            "likes": 42,
+            "comments": 3,
+            "title": "Dive Radio: Get Your Portfolio Reviewed",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "J3NB3migbE0",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+                "objectId": "J3NB3migbE0",
+                "pulledAt": "2026-10-20T14:01:32.814Z",
+                "state": "ready"
+              },
+              "views": 2553,
+              "detail": {
+                "views": 2553,
+                "likes": 42,
+                "comments": 3,
+                "title": "Dive Radio: Get Your Portfolio Reviewed",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+            "objectId": "J3NB3migbE0",
+            "pulledAt": "2026-10-20T14:01:32.814Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 1919,
+          "detail": {
+            "views": 1919,
+            "likes": 34,
+            "comments": 1,
+            "title": "Dive Radio: Get Your Portfolio Reviewed",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "YmC8feEgGDw",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+                "objectId": "YmC8feEgGDw",
+                "pulledAt": "2026-10-20T14:01:32.814Z",
+                "state": "ready"
+              },
+              "views": 1919,
+              "detail": {
+                "views": 1919,
+                "likes": 34,
+                "comments": 1,
+                "title": "Dive Radio: Get Your Portfolio Reviewed",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+            "objectId": "YmC8feEgGDw",
+            "pulledAt": "2026-10-20T14:01:32.814Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 5086,
+          "detail": {
+            "views": 5086,
+            "likes": 13,
+            "replies": 4,
+            "reposts": 3,
+            "bookmarks": 11,
+            "quotes": 0
+          },
+          "plays": 1341,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 609,
+          "sources": [
+            {
+              "objectId": "2110823157116661822",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+                "objectId": "2110823157116661822",
+                "pulledAt": "2026-10-20T14:01:32.814Z",
+                "state": "ready"
+              },
+              "views": 2492,
+              "detail": {
+                "views": 2492,
+                "likes": 13,
+                "replies": 3,
+                "reposts": 2,
+                "bookmarks": 10,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2108818810580926824",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+                "objectId": "2108818810580926824",
+                "pulledAt": "2026-10-20T14:01:32.814Z",
+                "state": "ready"
+              },
+              "views": 2594,
+              "detail": {
+                "views": 2594,
+                "likes": 0,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+            "objectId": "2108818810580926824,2110823157116661822",
+            "pulledAt": "2026-10-20T14:01:32.814Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+            "objectId": "1nGnRBlWPZyGO",
+            "pulledAt": "2026-10-20T14:01:32.814Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1nGnRBlWPZyGO",
+              "views": 1341,
+              "peakConcurrent": 609,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 4559,
+          "detail": {
+            "views": 4559,
+            "likes": 13,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 5,
+            "quotes": 2
+          },
+          "plays": 1062,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 510,
+          "sources": [
+            {
+              "objectId": "2110823157649285553",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+                "objectId": "2110823157649285553",
+                "pulledAt": "2026-10-20T14:01:32.814Z",
+                "state": "ready"
+              },
+              "views": 1441,
+              "detail": {
+                "views": 1441,
+                "likes": 7,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 4,
+                "quotes": 1
+              }
+            },
+            {
+              "objectId": "2108823591399891441",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+                "objectId": "2108823591399891441",
+                "pulledAt": "2026-10-20T14:01:32.814Z",
+                "state": "ready"
+              },
+              "views": 3118,
+              "detail": {
+                "views": 3118,
+                "likes": 6,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 1,
+                "quotes": 1
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+            "objectId": "2108823591399891441,2110823157649285553",
+            "pulledAt": "2026-10-20T14:01:32.814Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+            "objectId": "1RJZzBNDagrJB",
+            "pulledAt": "2026-10-20T14:01:32.814Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1RJZzBNDagrJB",
+              "views": 1062,
+              "peakConcurrent": 510,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-19T19:15:37.108Z",
+    "checkedAt": "2026-10-20T14:01:32.814Z",
     "state": "ready",
     "reason": null,
     "reading": {
@@ -1770,7 +2021,7 @@
       "source": "postlive",
       "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
       "objectId": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-      "pulledAt": "2026-10-19T19:15:37.108Z",
+      "pulledAt": "2026-10-20T14:01:32.814Z",
       "state": "ready"
     }
   }

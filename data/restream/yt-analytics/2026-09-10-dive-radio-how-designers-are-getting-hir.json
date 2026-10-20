@@ -5,18 +5,18 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "DUejFPtYll0",
-      "pulledAt": "2026-10-19T19:16:13.713Z",
+      "pulledAt": "2026-10-20T14:02:07.656Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "DUejFPtYll0",
-        "pulledAt": "2026-10-19T19:16:13.713Z",
+        "pulledAt": "2026-10-20T14:02:07.656Z",
         "state": "ready"
       },
       "totals": {
-        "views": 7461,
-        "estimatedMinutesWatched": 53190,
+        "views": 7459,
+        "estimatedMinutesWatched": 53171,
         "averageViewDuration": 869,
         "averageViewPercentage": 9.63,
         "subscribersGained": 12,
@@ -475,17 +475,17 @@
     },
     "yt:designertom": {
       "videoId": "OZG115v6TTg",
-      "pulledAt": "2026-10-19T19:16:13.713Z",
+      "pulledAt": "2026-10-20T14:02:07.656Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
         "objectId": "OZG115v6TTg",
-        "pulledAt": "2026-10-19T19:16:13.713Z",
+        "pulledAt": "2026-10-20T14:02:07.656Z",
         "state": "ready"
       },
       "totals": {
-        "views": 4698,
+        "views": 4697,
         "estimatedMinutesWatched": 25092,
         "averageViewDuration": 792,
         "averageViewPercentage": 8.79,
@@ -956,7 +956,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-19T19:16:13.713Z",
+    "checkedAt": "2026-10-20T14:02:07.656Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:OZG115v6TTg|yt:joindiveclub:DUejFPtYll0",
@@ -966,7 +966,7 @@
         "videoId": "DUejFPtYll0",
         "result": "ready",
         "observed": {
-          "views": 7461,
+          "views": 7459,
           "averageViewPercentage": 9.63
         }
       },
@@ -975,7 +975,7 @@
         "videoId": "OZG115v6TTg",
         "result": "ready",
         "observed": {
-          "views": 4698,
+          "views": 4697,
           "averageViewPercentage": 8.79
         }
       }
@@ -986,8 +986,8 @@
     "source": "youtube-analytics",
     "episode": "2026-09-10-dive-radio-how-designers-are-getting-hir",
     "objectId": "2026-09-10-dive-radio-how-designers-are-getting-hir",
-    "pulledAt": "2026-10-19T19:16:13.713Z",
+    "pulledAt": "2026-10-20T14:02:07.656Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-19T19:16:13.713Z"
+  "updatedAt": "2026-10-20T14:02:07.656Z"
 }
