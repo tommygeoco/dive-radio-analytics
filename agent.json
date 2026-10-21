@@ -1,14 +1,14 @@
 {
  "version": 1,
- "generatedAt": "2026-10-21T14:04:55.239Z",
- "promotionUpdatedAt": "2026-10-21T14:01:24.239Z",
+ "generatedAt": "2026-10-21T19:18:36.506Z",
+ "promotionUpdatedAt": "2026-10-21T19:15:28.456Z",
  "clocks": {
-  "data": "2026-10-21T14:04:55.239Z",
-  "dataThrough": "2026-10-21T14:01:28.439Z",
+  "data": "2026-10-21T19:18:36.506Z",
+  "dataThrough": "2026-10-21T19:15:32.422Z",
   "healthRead": "2026-10-21",
   "healthDataThrough": "2026-10-21T14:02:44.741Z",
   "chaptersWritten": "2026-10-17T14:07:27.266Z",
-  "promotionChecked": "2026-10-21T14:01:24.239Z"
+  "promotionChecked": "2026-10-21T19:15:28.456Z"
  },
  "site": "https://dive-radio-analytics.vercel.app",
  "show": {
@@ -51,10 +51,10 @@
    }
   ],
   "totals": {
-   "views": 104752,
-   "youtube": 67443,
-   "xPlays": 37309,
-   "xReach": 144154,
+   "views": 104942,
+   "youtube": 67497,
+   "xPlays": 37445,
+   "xReach": 144483,
    "incomplete": false,
    "reason": null,
    "youtubeMarkers": [],
@@ -1107,7 +1107,7 @@
    "reason": null
   },
   "coolOff": {
-   "ageDays": 5.8,
+   "ageDays": 6,
    "word": null,
    "reason": "promo-driven lift — shown, not scored"
   }
@@ -1118,8 +1118,8 @@
    "id": "fix-subscribe-ask",
    "category": "audience",
    "serves": "conversion",
-   "finding": "Subscriber sign-ups read fragile: 0.8 per 1,000 views (from an older finished episode) against a typical 1.8. Show-wide, DesignerTom gets 3 per 1,000 views and Dive Club 1.8.",
-   "action": "Make one spoken subscribe ask in the last ten minutes of the next live and pin it on both channels. Watch whether Dive Club's sign-ups per 1,000 views move toward DesignerTom's.",
+   "finding": "Sign-ups are the one fragile check. The latest reading, from an older finished episode, is 0.8 subscribers per 1,000 views against a typical 1.8. Over the whole run DesignerTom gains 3.1 per 1,000 views and Dive Club 1.8.",
+   "action": "Say a short subscribe ask at the live peak and pin it in chat on both channels. Then see whether Dive Club, the weaker channel at turning viewers into subscribers, moves closer to DesignerTom.",
    "caveat": null
   },
   {
@@ -1127,35 +1127,35 @@
    "id": "lift-search-discovery",
    "category": "distribution",
    "serves": "reachEfficiency",
-   "finding": "Search and suggested share reads 7.7 (from an older finished episode) against a typical 14.3. Subscribers supply 71.3 of every 100 YouTube views, while search brings only 5.",
-   "action": "Write the next title and description around the guest's name and the problem solved, in words a stranger would search. Then compare search and suggested share with 7.7 after two weeks.",
+   "finding": "Search and suggested videos are softening: 7.7% of YouTube views on the latest read, from an older episode, against a typical 14.3%. Subscribers bring 71.3% of all YouTube views and search only 5%.",
+   "action": "Rewrite the next episode's title and description around the plain phrase a designer would search, like portfolio review, add chapter markers, and check whether search share moves after a week.",
    "caveat": null
   },
   {
    "rank": 3,
-   "id": "fix-soft-launches",
-   "category": "promotion",
-   "serves": "growth",
-   "finding": "E5 and E6 launched soft: 1,127 and 1,189 YouTube views at their launch reads, against typical figures of 1,790.5 and 1,751 at that age.",
-   "action": "Before the next live, post a short guest clip on both channels. Post a second clip the day after. Treat it as a test and compare first-week views with the typical launch, not with the promo-driven episodes.",
+   "id": "test-midshow-exit",
+   "category": "content",
+   "serves": "audienceQuality",
+   "finding": "On the newest episode, still in its first weeks, 3.8 of every 100 viewers left a little past half way in and 4.1 more shortly after. About a third in, 5 extra of every 100 were watching.",
+   "action": "Test trimming or reordering the stretch from about 62 to 69 minutes in. Move a stronger portfolio review there, then compare whether the exit points change next episode.",
    "caveat": null
   },
   {
    "rank": 4,
-   "id": "trim-early-exit",
-   "category": "content",
-   "serves": "audienceQuality",
-   "finding": "Viewers keep leaving about a tenth of the way in: 5.4 of every 100 on E9, 5.3 on E5 and 4.8 on E4. In the E9 and E5 excerpts the hosts were talking among themselves around that point.",
-   "action": "Test moving the first guest showcase or work review into the opening ten minutes, and trim the chat before it. Compare the early drop on the next finished episode against these three.",
+   "id": "match-announce-push",
+   "category": "promotion",
+   "serves": "growth",
+   "finding": "Two regular launches ran soft: E5 had 1,127 YouTube views at its launch read against a typical 1,790.5, and E6 had 1,189 against 1,751.",
+   "action": "Give each regular episode the announce push the promo-driven ones got. Post clips on both channels and X the day before and again the morning after, then compare first-week views with recent episodes.",
    "caveat": null
   },
   {
    "rank": 5,
-   "id": "protect-chat-momentum",
+   "id": "protect-chat-energy",
    "category": "audience",
    "serves": "participation",
-   "finding": "Chat is healthy: 79.6 chatters per 100 viewers against a typical 53.9. In E14, still in its first weeks, candid portfolio talk added 3.8 and 4.2 extra viewers of every 100 about a quarter and a third of the way in.",
-   "action": "Keep the portfolio-review format and open chat with a one-line prompt. Try putting a candid portfolio discussion earlier in the next show and see whether early leaving eases.",
+   "finding": "Chat is healthy and building: 79.6 chatters per 100 viewers on the newest episode against a typical 53.9, and 123 messages an hour against 72.2.",
+   "action": "Protect it: keep taking live viewer portfolio submissions and put one direct chat question in every segment. Use that same chat moment to ask for subscribes, which ties back to the weakest check.",
    "caveat": null
   }
  ],
@@ -1165,7 +1165,7 @@
    "slug": "2026-07-17-dive-radio-bumpy-takeoff",
    "title": "Bumpy Takeoff",
    "premiere": "2026-07-17",
-   "ageDays": 95.8,
+   "ageDays": 96,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -1200,17 +1200,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -1225,12 +1225,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -1264,21 +1264,21 @@
     "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
-    "youtube": 2216,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtube": 2217,
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 1788,
     "xPlaysMarker": null,
-    "total": 4004,
+    "total": 4005,
     "incomplete": false,
     "reason": null,
-    "xReach": 5601,
+    "xReach": 5603,
     "promoReach": {
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1308,
@@ -1286,7 +1286,7 @@
       "comments": 7
      },
      "yt:designertom": {
-      "views": 908,
+      "views": 909,
       "likes": 46,
       "comments": 4
      },
@@ -1299,7 +1299,7 @@
       "peakConcurrent": 466
      },
      "x:designertom": {
-      "views": 4068,
+      "views": 4070,
       "likes": 26,
       "comments": 3,
       "plays": 763,
@@ -1330,7 +1330,7 @@
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -1338,18 +1338,18 @@
    "subsPer1k": 8,
    "discoveryShare": 15.5,
    "watching": {
-    "sharePercent": 10.6,
-    "avgDurationSec": 782,
-    "minutesWatched": 17036,
+    "sharePercent": 10.57,
+    "avgDurationSec": 780,
+    "minutesWatched": 17037,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 42
+      "share": 42.2
      },
      {
       "source": "NO_LINK_OTHER",
-      "share": 20.6
+      "share": 20.5
      },
      {
       "source": "YT_CHANNEL",
@@ -1357,18 +1357,18 @@
      },
      {
       "source": "YT_SEARCH",
-      "share": 8.2
+      "share": 8.1
      }
     ],
     "shape": {
-     "openStart": 66.4,
-     "openFloor": 11.8,
-     "recoveryPeak": 28.7,
+     "openStart": 66.3,
+     "openFloor": 11.7,
+     "recoveryPeak": 28.6,
      "recoveryAt": 0.05,
      "midHold": 14.4,
-     "endHold": 10.1
+     "endHold": 10
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 90,
@@ -1562,7 +1562,7 @@
      "kind": "drop",
      "at": 0.27,
      "minutesIn": 33,
-     "points": 2.9,
+     "points": 3,
      "approx": false,
      "summary": "Industry-news riffing: the hosts react to designer moves — big names leaving for Cursor — and debate whether running design at a fast-scaling company is a job anyone should want.",
      "excerpt": "Crazy crazy comeback art. 00:33:08  >> Now, you're not a cursor user, right? 00:33:10  >> I'm not. I'm I'm I'm still team 00:33:12  conductor. 00:33:13  conduc…"
@@ -1571,10 +1571,10 @@
      "kind": "drop",
      "at": 0.99,
      "minutesIn": 122,
-     "points": 3.3,
+     "points": 3.5,
      "approx": false,
      "summary": "Wind-down talk at the very end: the hosts trade late-night work-habit confessions — chasing an idea until early morning — and joke that none of it should be taken as advice.",
-     "excerpt": "like, \"Oh, I went and built a whole 02:01:38  bunch of stuff that, you know, was 02:01:40  questionable.\" Um so yeah, guys, thank 02:01:45  you for joining us…"
+     "excerpt": "bunch of stuff that, you know, was 02:01:40  questionable.\" Um so yeah, guys, thank 02:01:45  you for joining us on our uh rough 02:01:47  start. Uh I promise…"
     }
    ],
    "health": {
@@ -1587,7 +1587,7 @@
    "slug": "2026-07-23-dive-radio-data-vs-intuition-web-designe",
    "title": "Data vs. Intuition, Web Designers Are Back + Call-Ins",
    "premiere": "2026-07-23",
-   "ageDays": 89.8,
+   "ageDays": 90,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -1622,17 +1622,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -1647,12 +1647,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -1687,7 +1687,7 @@
    },
    "views": {
     "youtube": 2234,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 1830,
@@ -1700,7 +1700,7 @@
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1280,
@@ -1752,7 +1752,7 @@
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -1762,7 +1762,7 @@
    "watching": {
     "sharePercent": 11.15,
     "avgDurationSec": 800,
-    "minutesWatched": 28858,
+    "minutesWatched": 28860,
     "curveUnavailableReason": null,
     "traffic": [
      {
@@ -1784,13 +1784,13 @@
     ],
     "shape": {
      "openStart": 66.2,
-     "openFloor": 14.1,
+     "openFloor": 14,
      "recoveryPeak": 29.5,
      "recoveryAt": 0.05,
      "midHold": 13.5,
      "endHold": 7.1
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 71,
@@ -1970,19 +1970,10 @@
      "kind": "drop",
      "at": 0.11,
      "minutesIn": 13,
-     "points": 3.8,
+     "points": 3.9,
      "approx": false,
      "summary": "Hosts celebrate Sid landing a startup role, plug the vote page, then play recorded community nominations from evil rabbit, Dan Mall, and Rob spotlighting designers and illustrators.",
      "excerpt": "I love all the little details there. 00:13:04 [Speaker 3] Definitely a lot easier to make the case for these designers when we pre edit the videos with their d…"
-    },
-    {
-     "kind": "drop",
-     "at": 0.2,
-     "minutesIn": 24,
-     "points": 2.1,
-     "approx": false,
-     "summary": "A host explains a recent math result using a Photoshop warp analogy, with the other host chiming in, then pivots to design-model test reports and a new model's front-end results.",
-     "excerpt": "Star Trek is real. 00:23:51 [Speaker 3] That's obviously Are 00:23:52 [Speaker 1] you a math guy? 00:23:53 [Speaker 3] I'm not a math guy at all. 00:23:55 [Spe…"
     },
     {
      "kind": "drop",
@@ -2004,7 +1995,7 @@
    "slug": "2026-07-30-dive-radio-mixed-media-workflows-game-de",
    "title": "Mixed Media Workflows, Game Design, + Live Call-Ins",
    "premiere": "2026-07-30",
-   "ageDays": 82.8,
+   "ageDays": 83,
    "trackedLate": true,
    "history": {
     "ready": true,
@@ -2039,17 +2030,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -2064,12 +2055,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -2104,7 +2095,7 @@
    },
    "views": {
     "youtube": 1680,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 4316,
@@ -2112,12 +2103,12 @@
     "total": 5996,
     "incomplete": false,
     "reason": null,
-    "xReach": 20058,
+    "xReach": 20059,
     "promoReach": {
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 985,
@@ -2138,7 +2129,7 @@
       "peakConcurrent": 562
      },
      "x:designertom": {
-      "views": 16792,
+      "views": 16793,
       "likes": 12,
       "comments": 2,
       "plays": 2844,
@@ -2173,7 +2164,7 @@
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -2181,7 +2172,7 @@
    "subsPer1k": 0,
    "discoveryShare": 13,
    "watching": {
-    "sharePercent": 9.21,
+    "sharePercent": 9.2,
     "avgDurationSec": 623,
     "minutesWatched": 17214,
     "curveUnavailableReason": null,
@@ -2204,14 +2195,14 @@
      }
     ],
     "shape": {
-     "openStart": 73.4,
+     "openStart": 73.3,
      "openFloor": 11.3,
      "recoveryPeak": 26.7,
      "recoveryAt": 0.07,
      "midHold": 13.8,
      "endHold": 8.8
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 53,
@@ -2384,39 +2375,39 @@
    "moments": [
     {
      "kind": "drop",
-     "at": 0.1,
-     "minutesIn": 11,
+     "at": 0.08,
+     "minutesIn": 9,
      "points": 3.8,
      "approx": false,
-     "summary": "Hosts wrap one designer-of-the-week nomination, then one host champions Sebastian, an interaction designer praised for micro details and a doc reader project, before turning to the co-host's pick.",
-     "excerpt": "the beginning of last year, if I'm not 00:11:11  mistaken. 00:11:12  mistaken. 00:11:12  And I randomly stumbled upon him, and 00:11:15  there are people who c…"
+     "summary": "The nomination chain continues — a recorded video hands the torch to an engineer at Resend — and the hosts talk about how the pay-it-forward format started and why it is becoming their favorite segment.",
+     "excerpt": ">> Totally. 00:08:55  >> Hi, my name is Eniola. I am honored to 00:08:57  be the inaugural designer of the week on 00:08:59  Dive Radio. And now I would love t…"
     },
     {
-     "kind": "drop",
-     "at": 0.41,
-     "minutesIn": 46,
+     "kind": "hold",
+     "at": 0.43,
+     "minutesIn": 49,
      "points": 2.6,
      "approx": false,
-     "summary": "A talk stretch on AI demo overload: the hosts argue the viral demos are really experiments in chaining tools together — mixed-media workflows — not finished products, and that people judge them wrong.",
-     "excerpt": "Higgs Field mixed with Claude. That's a 00:46:11  workflow I'm going to show you guys in a 00:46:12  second. Or Open AI's image two with 00:46:15  paper with C…"
+     "summary": "Host frames mixed media workflows around games, shows a community member's audio-driven text adventure, then explains loops with a harsh critic gate that sends work back for another pass.",
+     "excerpt": "in 00:48:24  in 00:48:24  >> WQWR is quieter than you remember. 00:48:28  Rain taps the booth glass and every old 00:48:31  machine seems to be waiting for a v…"
     },
     {
      "kind": "drop",
      "at": 0.5,
      "minutesIn": 56,
-     "points": 3.1,
+     "points": 3.2,
      "approx": false,
      "summary": "A live gameplay demo, music and all: one host plays an AI-built game on screen — running out of missiles, fumbling a landing — while framing it as a playable experiment, not a market-ready game.",
      "excerpt": "like uh-oh. 00:56:18  No, end of 00:56:20  No, end of 00:56:20  Oh, we got it. 00:56:23  And then anything else 00:56:25  >> She's smiling. 00:56:25  >> So goo…"
     },
     {
-     "kind": "hold",
-     "at": 0.77,
-     "minutesIn": 87,
-     "points": 2.9,
+     "kind": "drop",
+     "at": 0.79,
+     "minutesIn": 89,
+     "points": 2.6,
      "approx": false,
-     "summary": "The maker explains an AI catching its own broken model — the mesh was unworkable vector soup — and re-meshing it, then walks through the wiki-fed critic agent they use to gate what counts as good.",
-     "excerpt": "And so the way that I did that and 01:26:44  someone talked about it here by the way. 01:26:46  They called it this adversarial agent 01:26:48  and he said uh…"
+     "summary": "Host walks through building a wiki-fed game critic from developer talks in Obsidian, then shows an agent playing through a game to test fight length across versions, with a co-host chiming in.",
+     "excerpt": "\"Listen, 01:29:01  this is ass. And here are the things 01:29:03  that need to change in order for this, 01:29:05  you know, to go.\" And so, you have that 01:2…"
     }
    ],
    "health": {
@@ -2429,7 +2420,7 @@
    "slug": "2026-08-06-dive-radio-backyard-designers-behind-the",
    "title": "Backyard Designers behind-the-scenes",
    "premiere": "2026-08-06",
-   "ageDays": 75.8,
+   "ageDays": 76,
    "trackedLate": true,
    "history": {
     "ready": true,
@@ -2464,17 +2455,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -2489,12 +2480,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -2529,7 +2520,7 @@
    },
    "views": {
     "youtube": 2058,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 1928,
@@ -2542,7 +2533,7 @@
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 1315,
@@ -2593,13 +2584,13 @@
     "pct": -5,
     "value": 2058,
     "typical": 2156,
-    "ageDays": 75.8
+    "ageDays": 76
    },
    "promo": null,
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -2607,14 +2598,14 @@
    "subsPer1k": 3.4,
    "discoveryShare": 14.7,
    "watching": {
-    "sharePercent": 9.14,
-    "avgDurationSec": 677,
+    "sharePercent": 9.13,
+    "avgDurationSec": 676,
     "minutesWatched": 22827,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 53.3
+      "share": 53.2
      },
      {
       "source": "NO_LINK_OTHER",
@@ -2631,13 +2622,13 @@
     ],
     "shape": {
      "openStart": 69.9,
-     "openFloor": 11.9,
+     "openFloor": 11.8,
      "recoveryPeak": 22.7,
      "recoveryAt": 0.05,
      "midHold": 12,
      "endHold": 6.8
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 63,
@@ -2818,13 +2809,13 @@
      "points": 2,
      "approx": false,
      "summary": "The backyard-project team gets candid about the launch: feedback lists and voice notes pouring in unprompted, the game becoming something they never set out to make, and asking designers what would help.",
-     "excerpt": "What is, you know, what are you looking at here? 00:38:14 [Speaker 3] For me, it was I can't remember how I found it, but the the time on-site was wild. 00:38:…"
+     "excerpt": "I don't I don't care. 00:38:04 [Speaker 2] Is this, oh, that's not analytics. 00:38:09 [Speaker 2] Yeah. 00:38:09 [Speaker 2] What is, you know, what are you l…"
     },
     {
      "kind": "drop",
      "at": 0.39,
      "minutesIn": 48,
-     "points": 5.9,
+     "points": 5.8,
      "approx": false,
      "summary": "One of the makers screen-shares a story deck generated by voice with an AI design tool reading the game's own codebase — built in the final hours before the show — and tests whether its images stay consistent.",
      "excerpt": "And I'm just rambling at this point, and I'm pasting in images that I can find from from the world of backyard baseball. 00:48:06 [Speaker 3] And we're going b…"
@@ -2840,7 +2831,7 @@
    "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
    "title": "Goodbye, Blank Canvas + Live Call-Ins",
    "premiere": "2026-08-13",
-   "ageDays": 68.8,
+   "ageDays": 69,
    "trackedLate": true,
    "history": {
     "ready": true,
@@ -2875,17 +2866,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -2900,12 +2891,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -2940,7 +2931,7 @@
    },
    "views": {
     "youtube": 1323,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 2351,
@@ -2953,7 +2944,7 @@
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 757,
@@ -3004,13 +2995,13 @@
     "pct": -37,
     "value": 1323,
     "typical": 2097,
-    "ageDays": 68.8
+    "ageDays": 69
    },
    "promo": null,
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -3048,7 +3039,7 @@
      "midHold": 17.3,
      "endHold": 11.7
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 64,
@@ -3301,7 +3292,7 @@
    "slug": "2026-08-20-dive-radio-the-mascot-industrial-complex",
    "title": "The Mascot Industrial Complex + Live Call-Ins",
    "premiere": "2026-08-20",
-   "ageDays": 61.8,
+   "ageDays": 62,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -3342,17 +3333,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -3367,12 +3358,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -3407,7 +3398,7 @@
    },
    "views": {
     "youtube": 1739,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 1207,
@@ -3420,7 +3411,7 @@
      "posts": 1,
      "impressions": 352
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 998,
@@ -3471,13 +3462,13 @@
     "pct": -6,
     "value": 1739,
     "typical": 1853,
-    "ageDays": 61.8
+    "ageDays": 62
    },
    "promo": null,
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -3485,7 +3476,7 @@
    "subsPer1k": 0.6,
    "discoveryShare": 13.9,
    "watching": {
-    "sharePercent": 11.48,
+    "sharePercent": 11.47,
     "avgDurationSec": 655,
     "minutesWatched": 15155,
     "curveUnavailableReason": null,
@@ -3515,7 +3506,7 @@
      "midHold": 16.2,
      "endHold": 9.4
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 71,
@@ -3703,15 +3694,6 @@
    "moments": [
     {
      "kind": "drop",
-     "at": 0.07,
-     "minutesIn": 7,
-     "points": 2.3,
-     "approx": false,
-     "summary": "Hosts open with banter about a travel studio setup and energy drink flavors, thank sponsors, then play Taylor's recorded video nominating Ruchita for designer of the week citing her Pixar and Blizzard work.",
-     "excerpt": "Rid actually does have a job. 00:06:41 [Speaker 3] And 00:06:41 [Speaker 2] I do have 00:06:41 [Speaker 3] a job. 00:06:42 [Speaker 3] Yeah. 00:06:43 [Speaker…"
-    },
-    {
-     "kind": "drop",
      "at": 0.16,
      "minutesIn": 15,
      "points": 4.7,
@@ -3729,19 +3711,19 @@
      "excerpt": "Let's let's give these bots personality. 00:34:14 [Speaker 2] And how cool is it? 00:34:15 [Speaker 2] I mean, it just makes a lot of sense too because, like,…"
     },
     {
-     "kind": "hold",
-     "at": 0.5,
-     "minutesIn": 48,
-     "points": 2.9,
+     "kind": "drop",
+     "at": 0.52,
+     "minutesIn": 49,
+     "points": 2.3,
      "approx": false,
-     "summary": "Host demos mascot creation tools live, tweaking movement and expressions, showing cute animal characters, and joking with cohost Ridd over absurd mixed-media mascots including a killer whale version of him.",
-     "excerpt": "We got a little little otter or seal. 00:47:33 [Speaker 3] I always I don't know. 00:47:35 [Speaker 3] Walrus, one of the three, sitting here at the bottom. 00…"
+     "summary": "A host screen-shares open source mascot tools, tweaking blob eyes and motion for a dive character, plugs sponsor Lovable, and riffs on cute animal logos and children's books.",
+     "excerpt": "If you can't unsee that, people are saying, I cannot unsee that. 00:49:26 [Speaker 3] That's RID's final form. 00:49:28 [Speaker 3] Let me introduce you to rid…"
     },
     {
      "kind": "hold",
      "at": 0.7,
      "minutesIn": 67,
-     "points": 2.1,
+     "points": 2,
      "approx": false,
      "summary": "Hosts chat about making stories with their kids, plug the designer of the week vote, then bring caller DJ on air and troubleshoot his missing audio while asking the chat to confirm sound.",
      "excerpt": "Sorry, DJ. 01:06:29 [Speaker 6] Create different pose variation. 01:06:31 [Speaker 6] Hey, Tommy. 01:06:32 [Speaker 6] I just wanna say thank you so much for f…"
@@ -3787,7 +3769,7 @@
    "slug": "2026-08-28-dive-radio-steal-these-ai-design-pattern",
    "title": "Steal These AI Design Patterns + Live Call-Ins",
    "premiere": "2026-08-27",
-   "ageDays": 54.8,
+   "ageDays": 55,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -3834,17 +3816,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": "No newsletter link could be tied to this episode exactly."
     },
     "live": {
@@ -3859,12 +3841,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -3899,20 +3881,20 @@
    },
    "views": {
     "youtube": 6258,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
-    "xPlays": 3126,
+    "xPlays": 3127,
     "xPlaysMarker": null,
-    "total": 9384,
+    "total": 9385,
     "incomplete": false,
     "reason": null,
-    "xReach": 10731,
+    "xReach": 10732,
     "promoReach": {
      "posts": 2,
      "impressions": 5207
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 3252,
@@ -3934,11 +3916,11 @@
       "peakConcurrent": 408
      },
      "x:designertom": {
-      "views": 7939,
+      "views": 7940,
       "likes": 35,
       "comments": 3,
       "promoViews": 2219,
-      "plays": 2001,
+      "plays": 2002,
       "playsSource": "x-broadcast",
       "peakConcurrent": 320
      }
@@ -3954,16 +3936,16 @@
    "pace": {
     "rank": 1,
     "of": 5,
-    "pct": 271,
+    "pct": 270,
     "value": 6258,
-    "typical": 1689,
-    "ageDays": 54.8
+    "typical": 1692,
+    "ageDays": 55
    },
    "promo": null,
    "promotion": null,
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -3971,9 +3953,9 @@
    "subsPer1k": 0.8,
    "discoveryShare": 7.7,
    "watching": {
-    "sharePercent": 11.22,
-    "avgDurationSec": 737,
-    "minutesWatched": 30135,
+    "sharePercent": 11.2,
+    "avgDurationSec": 736,
+    "minutesWatched": 30170,
     "curveUnavailableReason": null,
     "traffic": [
      {
@@ -3982,7 +3964,7 @@
      },
      {
       "source": "NO_LINK_OTHER",
-      "share": 4.9
+      "share": 5
      },
      {
       "source": "YT_SEARCH",
@@ -3990,18 +3972,18 @@
      },
      {
       "source": "RELATED_VIDEO",
-      "share": 3.3
+      "share": 3.4
      }
     ],
     "shape": {
      "openStart": 65.2,
      "openFloor": 11.5,
-     "recoveryPeak": 26.8,
+     "recoveryPeak": 26.7,
      "recoveryAt": 0.11,
-     "midHold": 15.8,
+     "midHold": 15.7,
      "endHold": 8.7
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 72,
@@ -4181,7 +4163,7 @@
      "kind": "drop",
      "at": 0.18,
      "minutesIn": 20,
-     "points": 5.3,
+     "points": 5.2,
      "approx": false,
      "summary": "A host nominates designer Alex for designer of the week, praising his work on Honk and other apps, while the other host screen-shares a live voting page with competing progress bars.",
      "excerpt": "It I, Lucas getting some love today. 00:19:41 [Speaker 3] Lucas is getting some love today. 00:19:45 [Speaker 3] There's some work to be done on these other en…"
@@ -4199,7 +4181,7 @@
      "kind": "drop",
      "at": 0.4,
      "minutesIn": 44,
-     "points": 3.9,
+     "points": 3.8,
      "approx": false,
      "summary": "A guest closes a talk on Ramp's brand refresh favoring coherence over consistency; hosts praise the work, plug audience voting, then one host begins defending his cohost's design credentials.",
      "excerpt": "it. 00:43:43 [Speaker 3] That's a cool I I love, like, four week sprint blocks of something. 00:43:49 [Speaker 3] Like, hey. 00:43:49 [Speaker 3] We're about t…"
@@ -4245,7 +4227,7 @@
    "slug": "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
    "title": "How to Engineer a Brand Universe",
    "premiere": "2026-09-03",
-   "ageDays": 47.8,
+   "ageDays": 48,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -4298,17 +4280,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -4323,12 +4305,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -4363,7 +4345,7 @@
    },
    "views": {
     "youtube": 6309,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 4188,
@@ -4374,9 +4356,9 @@
     "xReach": 20531,
     "promoReach": {
      "posts": 3,
-     "impressions": 17559
+     "impressions": 17564
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 3448,
@@ -4392,7 +4374,7 @@
       "views": 7924,
       "likes": 149,
       "comments": 10,
-      "promoViews": 16228,
+      "promoViews": 16233,
       "plays": 1533,
       "playsSource": "x-broadcast",
       "peakConcurrent": 359
@@ -4426,10 +4408,10 @@
    "pace": {
     "rank": 1,
     "of": 5,
-    "pct": 239,
+    "pct": 238,
     "value": 6309,
-    "typical": 1863,
-    "ageDays": 47.8
+    "typical": 1864,
+    "ageDays": 48
    },
    "promo": {
     "provisional": false,
@@ -4438,7 +4420,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 151,
     "verifiedEmailClicks": 68,
     "clicksReason": null,
@@ -4739,7 +4721,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 151,
       "verifiedEmailClicks": 68
      }
@@ -4747,7 +4729,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -4755,9 +4737,9 @@
    "subsPer1k": 6,
    "discoveryShare": 10.1,
    "watching": {
-    "sharePercent": 9.29,
+    "sharePercent": 9.28,
     "avgDurationSec": 639,
-    "minutesWatched": 29550,
+    "minutesWatched": 29559,
     "curveUnavailableReason": null,
     "traffic": [
      {
@@ -4778,14 +4760,14 @@
      }
     ],
     "shape": {
-     "openStart": 65.7,
+     "openStart": 65.6,
      "openFloor": 9.7,
-     "recoveryPeak": 23.8,
+     "recoveryPeak": 23.7,
      "recoveryAt": 0.09,
      "midHold": 14.2,
-     "endHold": 6.5
+     "endHold": 6.6
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 98,
@@ -4975,7 +4957,7 @@
      "kind": "drop",
      "at": 0.1,
      "minutesIn": 11,
-     "points": 3.5,
+     "points": 3.4,
      "approx": false,
      "summary": "Hosts move from brand work in products into the designer of the week segment, playing recorded nominations for Marina and Laura before a host shares his own pick, Jackie.",
      "excerpt": "She is so dope on the thing she we'll get we'll get into her portfolio in a second. 00:11:25 [Speaker 2] I I do wanna show you this, Substack article down here…"
@@ -4987,13 +4969,13 @@
      "points": 4.7,
      "approx": false,
      "summary": "Hosts discuss generated interfaces as branding's next big shift after social media, cite designers with strong personal brands, then play a clip of Evil Rabbit describing his creative team's work at Vercel.",
-     "excerpt": "We can have these different settings. 00:43:32 [Speaker 13] So we could come in and say, actually, we want a nine by 16 asset, and we wanna change the kind of,…"
+     "excerpt": "And what we could do is we can have all of these different artboards. 00:43:31 [Speaker 13] We can have these different settings. 00:43:32 [Speaker 13] So we c…"
     },
     {
      "kind": "drop",
      "at": 0.5,
      "minutesIn": 57,
-     "points": 2.6,
+     "points": 2.5,
      "approx": false,
      "summary": "Playground’s creator demonstrates small tools for making brand assets, then the hosts discuss designers building tools with Claude and emerging brand engineer jobs.",
      "excerpt": "He told me in a voice note that he was cons he he was like, you know, I started with a left panel, kind of the typical dial kit, levers and controls, and he sa…"
@@ -5005,7 +4987,7 @@
      "points": 2.1,
      "approx": false,
      "summary": "Hosts discuss rising demand and pay for brand designers and expanding brand universes, then play a clip of Mike Smith comparing brand world building to the immersive feeling of Disneyland.",
-     "excerpt": "I brought this up, I think, with in our Slack channel, Hatch Conference, which, Damien Martone hosting in, the EU. 01:21:27 [Speaker 2] Go check this out if yo…"
+     "excerpt": "They did the badge thing. 01:21:19 [Speaker 2] I brought this up, I think, with in our Slack channel, Hatch Conference, which, Damien Martone hosting in, the E…"
     }
    ],
    "health": {
@@ -5048,7 +5030,7 @@
    "slug": "2026-09-10-dive-radio-how-designers-are-getting-hir",
    "title": "How Designers Are Getting Hired in 2026",
    "premiere": "2026-09-10",
-   "ageDays": 40.8,
+   "ageDays": 41,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -5101,17 +5083,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -5126,12 +5108,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -5165,24 +5147,24 @@
     "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
-    "youtube": 12210,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtube": 12214,
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 4022,
     "xPlaysMarker": null,
-    "total": 16232,
+    "total": 16236,
     "incomplete": false,
     "reason": null,
-    "xReach": 12275,
+    "xReach": 12276,
     "promoReach": {
      "posts": 3,
      "impressions": 2399
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 7507,
+      "views": 7511,
       "likes": 117,
       "comments": 8
      },
@@ -5192,7 +5174,7 @@
       "comments": 9
      },
      "x:ridd_design": {
-      "views": 2827,
+      "views": 2828,
       "likes": 40,
       "comments": 0,
       "plays": 1842,
@@ -5229,9 +5211,9 @@
     "rank": 1,
     "of": 4,
     "pct": 621,
-    "value": 12210,
+    "value": 12214,
     "typical": 1693,
-    "ageDays": 40.8
+    "ageDays": 41
    },
    "promo": {
     "provisional": false,
@@ -5240,7 +5222,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 323,
     "verifiedEmailClicks": 213,
     "clicksReason": null,
@@ -5501,7 +5483,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 323,
       "verifiedEmailClicks": 213
      }
@@ -5509,7 +5491,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -5517,14 +5499,14 @@
    "subsPer1k": 2.5,
    "discoveryShare": 10.3,
    "watching": {
-    "sharePercent": 9.31,
+    "sharePercent": 9.3,
     "avgDurationSec": 839,
-    "minutesWatched": 78418,
+    "minutesWatched": 78646,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 70.9
+      "share": 70.8
      },
      {
       "source": "NO_LINK_OTHER",
@@ -5541,13 +5523,13 @@
     ],
     "shape": {
      "openStart": 66.7,
-     "openFloor": 13.1,
+     "openFloor": 13,
      "recoveryPeak": 24.7,
      "recoveryAt": 0.04,
      "midHold": 12.8,
      "endHold": 6.7
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 133,
@@ -5737,7 +5719,7 @@
      "kind": "drop",
      "at": 0.05,
      "minutesIn": 8,
-     "points": 2.9,
+     "points": 3,
      "approx": false,
      "summary": "The hosts greet viewers, preview their discussion of design hiring, and announce Tommy joining Inflight as a cofounder.",
      "excerpt": "So with everybody, you know, trying to hire you, why? 00:07:32 [Speaker 1] Why why is this something that you're interested in? 00:07:34 [Speaker 1] Outside of…"
@@ -5746,7 +5728,7 @@
      "kind": "drop",
      "at": 0.12,
      "minutesIn": 18,
-     "points": 5.4,
+     "points": 5.3,
      "approx": false,
      "summary": "The hosts preview hiring insights from companies, then play designer nomination videos highlighting Jonas's brand work and prototypes and Frank Bach's pick, Anika.",
      "excerpt": "Good at articulating why these people are dope. 00:18:04 [Speaker 3] I'm like, I need to get better at that. 00:18:06 [Speaker 1] I was about to say, I feel li…"
@@ -5758,13 +5740,13 @@
      "points": 2.3,
      "approx": false,
      "summary": "Hosts cover news: Tailwind heading to Shopify, Miro's sale and other acquisitions at steep markdowns, then the Apple event and a dual-screen phone, joking about the new breakpoints designers face.",
-     "excerpt": "I think that's, like, the only Apple product I continue to look forward to upgrading right now. 00:25:30 [Speaker 3] You got the new watch series 12, the watch…"
+     "excerpt": "You got the new watch series 12, the watch ultra four, yada yada yada. 00:25:39 [Speaker 1] So 00:25:40 [Speaker 3] there is something here. 00:25:42 [Speaker…"
     },
     {
      "kind": "hold",
      "at": 0.55,
      "minutesIn": 83,
-     "points": 2.2,
+     "points": 2.1,
      "approx": false,
      "summary": "The hosts discuss targeted prototypes, networking, and online posts as hiring signals; Ethan shares a recorded story about finding work through a conference.",
      "excerpt": "Welcome to Dive Radio with DJ T Bone and the Ridla. 01:22:46 [Speaker 3] So the we're gonna get a soundboard, and those are the first two that's the first one…"
@@ -5810,7 +5792,7 @@
    "slug": "2026-09-17-dive-radio-how-to-become-a-founding-desi",
    "title": "How To Become a Founding Designer",
    "premiere": "2026-09-17",
-   "ageDays": 33.8,
+   "ageDays": 34,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -5875,17 +5857,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -5900,12 +5882,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -5939,24 +5921,24 @@
     "note": "LinkedIn video plays use its own counting rules. Post impressions are exposure. Live chat is a separate count from post comments and may overlap; never add them. Saved observations do not reconstruct earlier days. LinkedIn viewing metrics are shown separately from the existing YouTube and X view totals and historical scores."
    },
    "views": {
-    "youtube": 8666,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtube": 8667,
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 1882,
     "xPlaysMarker": null,
-    "total": 10548,
+    "total": 10549,
     "incomplete": false,
     "reason": null,
-    "xReach": 7805,
+    "xReach": 7806,
     "promoReach": {
      "posts": 5,
-     "impressions": 13079
+     "impressions": 13080
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 5445,
+      "views": 5446,
       "likes": 61,
       "comments": 2
      },
@@ -5966,10 +5948,10 @@
       "comments": 3
      },
      "x:ridd_design": {
-      "views": 2785,
+      "views": 2786,
       "likes": 58,
       "comments": 5,
-      "promoViews": 11812,
+      "promoViews": 11813,
       "plays": 748,
       "playsSource": "x-broadcast",
       "peakConcurrent": 211
@@ -6004,7 +5986,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 96,
     "verifiedEmailClicks": 41,
     "clicksReason": null,
@@ -6221,7 +6203,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 96,
       "verifiedEmailClicks": 41
      }
@@ -6229,7 +6211,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -6237,14 +6219,14 @@
    "subsPer1k": 1.6,
    "discoveryShare": 9,
    "watching": {
-    "sharePercent": 10.24,
-    "avgDurationSec": 744,
-    "minutesWatched": 41529,
+    "sharePercent": 10.26,
+    "avgDurationSec": 745,
+    "minutesWatched": 41650,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 74.9
+      "share": 74.8
      },
      {
       "source": "EXT_URL",
@@ -6252,7 +6234,7 @@
      },
      {
       "source": "YT_SEARCH",
-      "share": 5.1
+      "share": 5.2
      },
      {
       "source": "NO_LINK_OTHER",
@@ -6267,7 +6249,7 @@
      "midHold": 13.1,
      "endHold": 7.7
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 97,
@@ -6456,7 +6438,7 @@
      "kind": "drop",
      "at": 0.44,
      "minutesIn": 53,
-     "points": 2.9,
+     "points": 2.8,
      "approx": false,
      "summary": "Hosts discuss founders’ involvement in design, and Ridd contrasts executing a sports betting startup’s ideas with shaping product strategy at Maven.",
      "excerpt": "They were horrendous designers. 00:53:13 [Speaker 6] They had no idea. 00:53:14 [Speaker 6] And so a big part of my role was I I actually I actually learned so…"
@@ -6520,7 +6502,7 @@
    "slug": "2026-09-24-dive-radio-just-in-time-interfaces",
    "title": "Just-in-Time Interfaces",
    "premiere": "2026-09-24",
-   "ageDays": 26.8,
+   "ageDays": 27,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -6561,17 +6543,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -6586,12 +6568,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -6602,13 +6584,13 @@
    },
    "linkedin": null,
    "views": {
-    "youtube": 5650,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtube": 5653,
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 2846,
     "xPlaysMarker": null,
-    "total": 8496,
+    "total": 8499,
     "incomplete": false,
     "reason": null,
     "xReach": 8175,
@@ -6616,7 +6598,7 @@
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 2942,
@@ -6624,7 +6606,7 @@
       "comments": 2
      },
      "yt:designertom": {
-      "views": 2708,
+      "views": 2711,
       "likes": 35,
       "comments": 4
      },
@@ -6665,7 +6647,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 47,
     "verifiedEmailClicks": 38,
     "clicksReason": null,
@@ -6846,7 +6828,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 47,
       "verifiedEmailClicks": 38
      }
@@ -6854,7 +6836,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -6862,9 +6844,9 @@
    "subsPer1k": 2.3,
    "discoveryShare": 8.7,
    "watching": {
-    "sharePercent": 10.72,
-    "avgDurationSec": 758,
-    "minutesWatched": 29131,
+    "sharePercent": 10.77,
+    "avgDurationSec": 761,
+    "minutesWatched": 29353,
     "curveUnavailableReason": null,
     "traffic": [
      {
@@ -6885,14 +6867,14 @@
      }
     ],
     "shape": {
-     "openStart": 68.6,
-     "openFloor": 11.5,
+     "openStart": 68.3,
+     "openFloor": 11.6,
      "recoveryPeak": 24.1,
      "recoveryAt": 0.09,
-     "midHold": 14.5,
-     "endHold": 8
+     "midHold": 14.6,
+     "endHold": 8.1
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 109,
@@ -6912,11 +6894,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -7071,26 +7053,17 @@
     {
      "kind": "drop",
      "at": 0.14,
-     "minutesIn": 17,
+     "minutesIn": 16,
      "points": 3.5,
      "approx": false,
      "summary": "Hosts give shout-outs in a community voting segment: one cheers an experimental designer, the other praises a New York design community organizer and his live event series, then they joke about an algorithm.",
-     "excerpt": "Right? 00:16:34 [Speaker 1] You gotta, like, pick a lane. 00:16:36 [Speaker 1] And John does not pick a lane. 00:16:37 [Speaker 1] And even down to, like, his…"
-    },
-    {
-     "kind": "hold",
-     "at": 0.37,
-     "minutesIn": 44,
-     "points": 2,
-     "approx": false,
-     "summary": "Hosts react to community projects, joke about a subreddit takeover, then play a Rick and Morty explainer on Jev that gets cut by a copyright strike, and they recap what Jev does.",
-     "excerpt": "I I I did watch it. 00:43:32 [Speaker 2] I have one. 00:43:33 [Speaker 2] I just love it. 00:43:33 [Speaker 2] It's really good. 00:43:34 [Speaker 2] So this i…"
+     "excerpt": "And I think the reason I like John so much is I feel like too many people in the industry assume that you just, you can't be good at content and design, or you…"
     },
     {
      "kind": "drop",
      "at": 0.45,
      "minutesIn": 53,
-     "points": 3.2,
+     "points": 3.1,
      "approx": false,
      "summary": "A designer in a recorded demo shows voice and typed commands changing a UI live with Jev inside a design system; hosts then discuss a friend's sketch-to-wireframe variation and what could be added.",
      "excerpt": "So being able to turn on this cursor mode and be able to target certain things, I could turn the microphone back on and say, move this element down. 00:53:09 […"
@@ -7099,7 +7072,7 @@
      "kind": "drop",
      "at": 0.56,
      "minutesIn": 66,
-     "points": 4.5,
+     "points": 4.4,
      "approx": false,
      "summary": "A host explains the limits of Jev's option sets, then plays Neil's voice-driven Speak UI demo, where spoken commands swap templates and text, and reads a chat comment about an open source alternative.",
      "excerpt": "It also will extract a profile of your brand which can be customized so it knows the type of customizations that are most likely to make levered converts for d…"
@@ -7108,10 +7081,10 @@
      "kind": "hold",
      "at": 0.65,
      "minutesIn": 77,
-     "points": 2.9,
+     "points": 2.8,
      "approx": false,
      "summary": "A submitted demo shows a coffee site that reshapes its content from a visitor's browsing and past orders using Jev; the host then reacts, crediting the builder and weighing a chat objection.",
-     "excerpt": "Canvas tools, more and more, are starting to be used in reverse. 01:16:41 [Speaker 2] We are creating things and then bringing those creations into the Canvas…"
+     "excerpt": "We had to pull in our in flight UI into 01:16:24 [Speaker 10] Oh my god. 01:16:25 [Speaker 2] Into paper to give to our motion graphics team, and that was, I t…"
     }
    ],
    "health": {
@@ -7151,7 +7124,7 @@
    "slug": "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
    "title": "Anyone Can Animate Now (and How)",
    "premiere": "2026-10-01",
-   "ageDays": 19.8,
+   "ageDays": 20,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -7198,17 +7171,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -7223,12 +7196,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -7240,7 +7213,7 @@
    "linkedin": null,
    "views": {
     "youtube": 7445,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 3147,
@@ -7248,12 +7221,12 @@
     "total": 10592,
     "incomplete": false,
     "reason": null,
-    "xReach": 11595,
+    "xReach": 11597,
     "promoReach": {
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
       "views": 4391,
@@ -7266,7 +7239,7 @@
       "comments": 5
      },
      "x:ridd_design": {
-      "views": 6016,
+      "views": 6018,
       "likes": 44,
       "comments": 4,
       "plays": 1716,
@@ -7302,7 +7275,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 95,
     "verifiedEmailClicks": 69,
     "clicksReason": null,
@@ -7441,7 +7414,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 95,
       "verifiedEmailClicks": 69
      }
@@ -7449,22 +7422,22 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
    "engagementPer1k": 12.1,
    "subsPer1k": 1.6,
-   "discoveryShare": 6.6,
+   "discoveryShare": 6.7,
    "watching": {
     "sharePercent": 10.29,
     "avgDurationSec": 726,
-    "minutesWatched": 34376,
+    "minutesWatched": 34458,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 81.8
+      "share": 81.7
      },
      {
       "source": "NO_LINK_OTHER",
@@ -7482,12 +7455,12 @@
     "shape": {
      "openStart": 69.5,
      "openFloor": 12.2,
-     "recoveryPeak": 25.3,
+     "recoveryPeak": 25.4,
      "recoveryAt": 0.12,
      "midHold": 13.7,
      "endHold": 9.3
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 111,
@@ -7507,11 +7480,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -7670,19 +7643,19 @@
      "kind": "drop",
      "at": 0.06,
      "minutesIn": 7,
-     "points": 3.8,
+     "points": 3.7,
      "approx": false,
      "summary": "Opening banter: one host calls in from a family trip, talking toddler pool time and working on vacation, then both chat about holiday plans and upcoming show topics.",
      "excerpt": "Like, okay. 00:07:02 [Speaker 2] Tired. 00:07:02 [Speaker 2] For a few hours. 00:07:03 [Speaker 3] Time to check. 00:07:04 [Speaker 1] Yeah. 00:07:05 [Speaker…"
     },
     {
      "kind": "drop",
-     "at": 0.13,
-     "minutesIn": 15,
+     "at": 0.2,
+     "minutesIn": 24,
      "points": 3.1,
      "approx": false,
-     "summary": "A recorded nominator praises a designer's port-monitoring app and landing page; the hosts react to its single-screen design and subtle tilt, then one host introduces another designer's experimental AI art work.",
-     "excerpt": "Like, that's that's really great. 00:15:14 [Speaker 1] The way it all animates in. 00:15:15 [Speaker 1] It's simple. 00:15:16 [Speaker 1] I get it. 00:15:16 [S…"
+     "summary": "A recorded designer pitches a concept where he makes finished brand identities with no client, sold once at a fixed price. The hosts then react, praising his product thinking and discussing marketplace ideas.",
+     "excerpt": "There's always gonna be a space for that. 00:23:32 [Speaker 1] I think there's also... 00:23:34 [Speaker 1] Especially just given the explosion of new ideas an…"
     },
     {
      "kind": "drop",
@@ -7704,7 +7677,7 @@
    "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
    "title": "Rise of the Playable Portfolio",
    "premiere": "2026-10-08",
-   "ageDays": 12.8,
+   "ageDays": 13,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -7751,17 +7724,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -7776,12 +7749,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -7792,34 +7765,34 @@
    },
    "linkedin": null,
    "views": {
-    "youtube": 5043,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtube": 5052,
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
     "xPlays": 2187,
     "xPlaysMarker": null,
-    "total": 7230,
+    "total": 7239,
     "incomplete": false,
     "reason": null,
-    "xReach": 8315,
+    "xReach": 8317,
     "promoReach": {
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 3056,
+      "views": 3064,
       "likes": 49,
       "comments": 3
      },
      "yt:designertom": {
-      "views": 1987,
+      "views": 1988,
       "likes": 40,
       "comments": 0
      },
      "x:ridd_design": {
-      "views": 5002,
+      "views": 5003,
       "likes": 19,
       "comments": 1,
       "plays": 1336,
@@ -7827,7 +7800,7 @@
       "peakConcurrent": 277
      },
      "x:designertom": {
-      "views": 3313,
+      "views": 3314,
       "likes": 19,
       "comments": 1,
       "plays": 851,
@@ -7855,7 +7828,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 54,
     "verifiedEmailClicks": 10,
     "clicksReason": null,
@@ -7952,7 +7925,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 54,
       "verifiedEmailClicks": 10
      }
@@ -7960,7 +7933,7 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
@@ -7968,18 +7941,18 @@
    "subsPer1k": 2.2,
    "discoveryShare": 9,
    "watching": {
-    "sharePercent": 10.32,
-    "avgDurationSec": 763,
-    "minutesWatched": 28573,
+    "sharePercent": 10.39,
+    "avgDurationSec": 768,
+    "minutesWatched": 29068,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 74.7
+      "share": 74.4
      },
      {
       "source": "NO_LINK_OTHER",
-      "share": 6.5
+      "share": 6.6
      },
      {
       "source": "RELATED_VIDEO",
@@ -7987,18 +7960,18 @@
      },
      {
       "source": "YT_SEARCH",
-      "share": 4.1
+      "share": 4.2
      }
     ],
     "shape": {
      "openStart": 65.2,
      "openFloor": 10,
-     "recoveryPeak": 24.5,
+     "recoveryPeak": 24.8,
      "recoveryAt": 0.09,
-     "midHold": 14.1,
-     "endHold": 9.8
+     "midHold": 14.3,
+     "endHold": 9.9
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 87,
@@ -8018,11 +7991,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -8174,45 +8147,27 @@
    "moments": [
     {
      "kind": "drop",
-     "at": 0.06,
-     "minutesIn": 7,
-     "points": 2.8,
-     "approx": false,
-     "summary": "Two hosts open the live show, greet each other, and explain the plan: other topics now, portfolio reviews next week, with the Discord and a feedback widget for submitting portfolios.",
-     "excerpt": "It's a one click install, a one one prompt install. 00:07:22 [Speaker 3] It adds a little question widget to your website. 00:07:26 [Speaker 3] And what we'll…"
-    },
-    {
-     "kind": "drop",
      "at": 0.11,
      "minutesIn": 14,
-     "points": 4,
+     "points": 3.9,
      "approx": false,
      "summary": "Hosts wrap a nomination video about a material-focused designer, then play another for a procedural artist, and the lead host starts introducing a brand and motion designer he worked with.",
      "excerpt": "There are just some designers who are end to end from brand to product, from motion, just the creative direction, that just can do it. 00:13:39 [Speaker 3] The…"
     },
     {
-     "kind": "hold",
-     "at": 0.19,
-     "minutesIn": 23,
-     "points": 2.2,
+     "kind": "drop",
+     "at": 0.66,
+     "minutesIn": 81,
+     "points": 2.7,
      "approx": false,
-     "summary": "Hosts react to ChatGPT's new interactive UI, with examples like a retro-styled reply and a stopwatch, then discuss product experiences moving into agent chats and a designer's component tool.",
-     "excerpt": "a beautiful website. 00:23:23 [Speaker 2] It's worth a scroll. 00:23:24 [Speaker 2] Just... 00:23:24 [Speaker 2] I mean, it's a really good designer making a n…"
-    },
-    {
-     "kind": "hold",
-     "at": 0.64,
-     "minutesIn": 79,
-     "points": 3.8,
-     "approx": false,
-     "summary": "Hosts joke about AI-made costumes, then preview next week's portfolio review and demo a live markup tool before a featured designer explains his playable isometric portfolio.",
-     "excerpt": "Beautiful product right up front. 01:18:49 [Speaker 9] I love this scrolling animation. 01:18:51 [Speaker 9] This is great. 01:18:52 [Speaker 9] I can get lost…"
+     "summary": "Hosts preview next week's portfolio reviews with a live feedback tool, then show a designer's playable isometric portfolio while he explains in a clip why he built it.",
+     "excerpt": "Yep. 01:21:14 [Speaker 9] Personality there. 01:21:15 [Speaker 9] I mean, there's not a lot here. 01:21:17 [Speaker 9] I actually really like simplicity like t…"
     },
     {
      "kind": "drop",
      "at": 0.99,
      "minutesIn": 122,
-     "points": 3.9,
+     "points": 4.2,
      "approx": false,
      "summary": "Hosts tour several designer portfolios, praising simple single-scroll layouts and clear project cards, and respond to a viewer worried about their own work before opening a senior designer's site.",
      "excerpt": "I think it's a small ask. 02:01:57 [Speaker 3] We appreciate it. 02:01:58 [Speaker 3] But outside of that, congratulations, Isaiah. 02:02:03 [Speaker 3] That i…"
@@ -8228,7 +8183,7 @@
    "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
    "title": "Get Your Portfolio Reviewed",
    "premiere": "2026-10-15",
-   "ageDays": 5.8,
+   "ageDays": 6,
    "trackedLate": false,
    "history": {
     "ready": true,
@@ -8275,17 +8230,17 @@
    "sourceStates": {
     "youtube": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "x": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:28.439Z",
+     "checkedAt": "2026-10-21T19:15:32.422Z",
      "reason": null
     },
     "promotion": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:01:24.239Z",
+     "checkedAt": "2026-10-21T19:15:28.456Z",
      "reason": null
     },
     "live": {
@@ -8300,12 +8255,12 @@
     },
     "comments": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:37.613Z",
+     "checkedAt": "2026-10-21T19:16:37.722Z",
      "reason": null
     },
     "watch": {
      "state": "ready",
-     "checkedAt": "2026-10-21T14:02:04.400Z",
+     "checkedAt": "2026-10-21T19:16:06.138Z",
      "reason": null
     },
     "transcript": {
@@ -8316,45 +8271,45 @@
    },
    "linkedin": null,
    "views": {
-    "youtube": 4612,
-    "youtubeAsOf": "2026-10-21T14:01:28.439Z",
+    "youtube": 4648,
+    "youtubeAsOf": "2026-10-21T19:15:32.422Z",
     "youtubeStale": false,
     "youtubeMarker": null,
-    "xPlays": 2491,
+    "xPlays": 2626,
     "xPlaysMarker": null,
-    "total": 7103,
+    "total": 7274,
     "incomplete": false,
     "reason": null,
-    "xReach": 9784,
+    "xReach": 10103,
     "promoReach": {
      "value": null,
      "reason": "no promo posts registered"
     },
-    "asOf": "2026-10-21T14:01:28.439Z",
+    "asOf": "2026-10-21T19:15:32.422Z",
     "byDest": {
      "yt:joindiveclub": {
-      "views": 2650,
-      "likes": 42,
+      "views": 2681,
+      "likes": 44,
       "comments": 3
      },
      "yt:designertom": {
-      "views": 1962,
+      "views": 1967,
       "likes": 34,
       "comments": 1
      },
      "x:ridd_design": {
-      "views": 5192,
-      "likes": 14,
+      "views": 5507,
+      "likes": 15,
       "comments": 4,
-      "plays": 1401,
+      "plays": 1535,
       "playsSource": "x-broadcast",
       "peakConcurrent": 609
      },
      "x:designertom": {
-      "views": 4592,
+      "views": 4596,
       "likes": 13,
       "comments": 0,
-      "plays": 1090,
+      "plays": 1091,
       "playsSource": "x-broadcast",
       "peakConcurrent": 510
      }
@@ -8379,7 +8334,7 @@
    "promotion": {
     "status": "found",
     "source": "UX Tools",
-    "updatedAt": "2026-10-21T14:01:24.239Z",
+    "updatedAt": "2026-10-21T19:15:28.456Z",
     "emailClicks": 27,
     "verifiedEmailClicks": 13,
     "clicksReason": null,
@@ -8434,7 +8389,7 @@
      },
      {
       "date": "2026-10-21",
-      "pulledAt": "2026-10-21T14:01:24.239Z",
+      "pulledAt": "2026-10-21T19:15:28.456Z",
       "emailClicks": 27,
       "verifiedEmailClicks": 13
      }
@@ -8442,45 +8397,45 @@
    },
    "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T14:02:04.400Z",
+    "checkedAt": "2026-10-21T19:16:06.138Z",
     "missingChannels": [],
     "reason": null
    },
-   "engagementPer1k": 17.3,
-   "subsPer1k": 1.2,
-   "discoveryShare": 7.7,
+   "engagementPer1k": 17.6,
+   "subsPer1k": 1.3,
+   "discoveryShare": 8,
    "watching": {
-    "sharePercent": 14.32,
-    "avgDurationSec": 1024,
-    "minutesWatched": 27630,
+    "sharePercent": 14.06,
+    "avgDurationSec": 1005,
+    "minutesWatched": 28920,
     "curveUnavailableReason": null,
     "traffic": [
      {
       "source": "SUBSCRIBER",
-      "share": 80.9
-     },
-     {
-      "source": "RELATED_VIDEO",
-      "share": 4.6
+      "share": 80.1
      },
      {
       "source": "NO_LINK_OTHER",
-      "share": 4.4
+      "share": 4.7
+     },
+     {
+      "source": "RELATED_VIDEO",
+      "share": 4.5
      },
      {
       "source": "YT_SEARCH",
-      "share": 3.1
+      "share": 3.5
      }
     ],
     "shape": {
-     "openStart": 63.4,
-     "openFloor": 11,
-     "recoveryPeak": 24.1,
+     "openStart": 61.7,
+     "openFloor": 10.7,
+     "recoveryPeak": 23.2,
      "recoveryAt": 0.11,
-     "midHold": 22,
-     "endHold": 13.6
+     "midHold": 21,
+     "endHold": 13
     },
-    "updatedAt": "2026-10-21T14:02:04.400Z"
+    "updatedAt": "2026-10-21T19:16:06.138Z"
    },
    "live": {
     "peak": 142,
@@ -8500,11 +8455,11 @@
     "sources": {
      "x": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      },
      "live-chat": {
       "state": "ready",
-      "checkedAt": "2026-10-21T14:00:05.420Z"
+      "checkedAt": "2026-10-21T19:15:06.695Z"
      }
     },
     "note": "Comments from YouTube, X threads and live chat, including LinkedIn. Counts are messages, not distinct people. Live-chat names are supplied by Restream.",
@@ -8669,7 +8624,7 @@
      "kind": "hold",
      "at": 0.27,
      "minutesIn": 32,
-     "points": 3.8,
+     "points": 3.5,
      "approx": false,
      "summary": "Hosts invite chat to leave comments on submitted portfolios and tease a future guest, then play a recorded tip from designer Elizabeth Lin on putting work content ahead of the portfolio frame.",
      "excerpt": "You can't really save bad work with a portfolio because I can kind of see through the differences between your portfolio's design and your actual work itself."
@@ -8678,34 +8633,34 @@
      "kind": "hold",
      "at": 0.33,
      "minutesIn": 39,
-     "points": 4.2,
+     "points": 5,
      "approx": false,
      "summary": "A recorded reviewer gives portfolio tips on typography, flashy animation and case study depth. Hosts praise her, preview the reviews ahead, and a designer's video about his own site begins.",
      "excerpt": "It's the other piece. 00:39:16 [Speaker 2] And, I will say, like, it's it's it's a tough thing when you take work, and sometimes you have to take what you can…"
     },
     {
      "kind": "drop",
+     "at": 0.52,
+     "minutesIn": 62,
+     "points": 3.8,
+     "approx": false,
+     "summary": "Hosts finish a portfolio review praising its work and fun split and discussing testimonial carousels, then a recorded reviewer critiques a text-heavy landing page and urges showing work first.",
+     "excerpt": "I love all of this. 01:01:51 [Speaker 2] Vikings. 01:01:52 [Speaker 2] Why 01:01:53 [Speaker 8] you left sales? 01:01:53 [Speaker 8] I mean, that's that's pret…"
+    },
+    {
+     "kind": "drop",
      "at": 0.58,
      "minutesIn": 69,
-     "points": 4.5,
+     "points": 4.1,
      "approx": false,
      "summary": "Hosts close one review, then a recorded reviewer critiques Case's portfolio: the colors and personality work, but the role is unclear, the text is heavy, and the branding hides the actual work.",
      "excerpt": "And finally, I think I have a comment about your... 01:09:08 [Speaker 3] About pageviews I think was... 01:09:09 [Speaker 3] Is wonderfully made out in terms o…"
     },
     {
      "kind": "drop",
-     "at": 0.65,
-     "minutesIn": 77,
-     "points": 4.1,
-     "approx": false,
-     "summary": "Hosts praise a portfolio's narrow-column case studies, then a recorded hiring-manager critique of the next one's vague positioning leads them to discuss a too-clever name reveal and uneven hover states.",
-     "excerpt": "wanted hiring managers. 01:17:24 [Speaker 2] Here you go. 01:17:24 [Speaker 2] You you... 01:17:25 [Speaker 2] We got plenty of them. 01:17:27 [Speaker 12] Alr…"
-    },
-    {
-     "kind": "drop",
      "at": 0.99,
      "minutesIn": 118,
-     "points": 4.2,
+     "points": 4.6,
      "approx": false,
      "summary": "A guest reviewer wraps up feedback on one portfolio, then the hosts critique its small, unclickable images. A new reviewer then starts on the next portfolio, calling the hero and thumbnail generic.",
      "excerpt": "You know, this certainly won't be the end of it. 01:57:59 [Speaker 2] We've gotta figure out what it looks like. 01:58:01 [Speaker 2] There's a lot to talk abo…"
@@ -8825,9 +8780,9 @@
   "newestVsPrevious": {
    "newest": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
    "previous": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
-   "ageDays": 5.8,
+   "ageDays": 6,
    "reach": {
-    "pct": 21,
+    "pct": 24,
     "ageBasis": "sameAge"
    },
    "watched": {
@@ -8920,17 +8875,17 @@
    "url": "https://youtube.com/watch?v=J3NB3migbE0&t=332s"
   },
   "views": {
-   "total": 104752,
-   "youtube": 67443,
-   "xPlays": 37309,
+   "total": 104942,
+   "youtube": 67497,
+   "xPlays": 37445,
    "episodes": 14,
-   "perEpisode": 7482,
+   "perEpisode": 7496,
    "reason": null,
-   "xReach": 144154
+   "xReach": 144483
   },
   "watch": {
-   "hours": 6936,
-   "minutes": 416143,
+   "hours": 6977,
+   "minutes": 418628,
    "episodes": 14,
    "missing": []
   },
@@ -8954,7 +8909,7 @@
     "messagesPerHour": 72.2,
     "durationMin": 118,
     "atMiddle": 88.5,
-    "recordingAtMiddle": 14.2
+    "recordingAtMiddle": 14.3
    },
    "latest": {
     "ep": 14,
@@ -9469,7 +9424,7 @@
    }
   },
   "audience": {
-   "total": 335896,
+   "total": 335905,
    "date": "2026-10-21",
    "reason": null,
    "channels": [
@@ -9494,7 +9449,7 @@
      "label": "@ridd_design",
      "platform": "X",
      "unit": "followers",
-     "count": 76941,
+     "count": 76949,
      "date": "2026-10-21"
     },
     {
@@ -9502,7 +9457,7 @@
      "label": "@designertom",
      "platform": "X",
      "unit": "followers",
-     "count": 19855,
+     "count": 19856,
      "date": "2026-10-21"
     }
    ]
@@ -12848,12 +12803,12 @@
   "stores": [
    {
     "store": "daily snapshots (YouTube Data API, X)",
-    "stamp": "2026-10-21T14:01:28.439Z",
+    "stamp": "2026-10-21T19:15:32.422Z",
     "note": "append-only time series per destination; the source of views, likes, comments, X reach and plays"
    },
    {
     "store": "YouTube analytics (owner OAuth)",
-    "stamp": "2026-10-21T14:02:04.400Z",
+    "stamp": "2026-10-21T19:16:06.138Z",
     "note": "share watched, average duration, minutes watched, traffic sources, subscribers gained; a daily history line per episode since 2026-08-23"
    },
    {
@@ -12863,12 +12818,12 @@
    },
    {
     "store": "audience comments + classifier",
-    "stamp": "2026-10-21T14:04:55.239Z",
+    "stamp": "2026-10-21T19:18:36.506Z",
     "note": "YouTube comments and X replies, model-labelled; noise, neutral text, and pending items stay off"
    },
    {
     "store": "UX Tools newsletter",
-    "stamp": "2026-10-21T14:01:24.239Z",
+    "stamp": "2026-10-21T19:15:28.456Z",
     "note": "exact episode links and Beehiiv email click counts; tracked clicks and clicks verified by Beehiiv stay separate and are never added to views"
    },
    {
@@ -12878,7 +12833,7 @@
    },
    {
     "store": "recommendations",
-    "stamp": "2026-10-21T14:04:55.239Z",
+    "stamp": "2026-10-21T19:18:36.506Z",
     "note": "5 current actions; saved model actions whose numbers changed are held back"
    },
    {
