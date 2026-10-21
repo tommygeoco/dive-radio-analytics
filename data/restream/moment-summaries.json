@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-20T19:18:15.063Z",
+  "updatedAt": "2026-10-21T14:04:31.396Z",
   "provider": "anthropic",
   "model": "claude-sonnet-5-5",
   "note": "Seeded from the owner session on 2026-08-23: each summary written after reading the transcript window around its moment. moment-summaries.mjs writes future entries when the pipeline runs with an API key.",
@@ -481,6 +481,14 @@
     "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.99": {
       "summary": "A guest reviewer wraps up feedback on one portfolio, then the hosts critique its small, unclickable images. A new reviewer then starts on the next portfolio, calling the hero and thumbnail generic.",
       "writtenAt": "2026-10-20T19:18:15.063Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|hold|0.27": {
+      "summary": "Hosts invite chat to leave comments on submitted portfolios and tease a future guest, then play a recorded tip from designer Elizabeth Lin on putting work content ahead of the portfolio frame.",
+      "writtenAt": "2026-10-21T14:04:31.396Z"
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed|drop|0.65": {
+      "summary": "Hosts praise a portfolio's narrow-column case studies, then a recorded hiring-manager critique of the next one's vague positioning leads them to discuss a too-clever name reveal and uneven hover states.",
+      "writtenAt": "2026-10-21T14:04:31.396Z"
     }
   }
 }
