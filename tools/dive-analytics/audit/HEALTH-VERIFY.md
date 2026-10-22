@@ -12,13 +12,16 @@ Score 61 (weighted mean 61.1, health-v11, prompt v8); reads Get Your Portfolio R
 
 | Claim | Hits | Misses | Neutral | Void | Open |
 |---|---|---|---|---|---|
-| Next first week inside the expected range | 0 | 0 | 0 | 6 | 3 |
-| Direction word confirmed by the next episode | 27 | 24 | 25 | 10 | 10 |
+| Next first week inside the expected range | 0 | 0 | 0 | 8 | 1 |
+| Direction word confirmed by the next episode | 27 | 24 | 26 | 10 | 10 |
 | Provisional launch word held at day seven | 0 | 0 | 0 | 0 | 0 |
 
 Most recent resolutions:
 
+- 2026-10-22 · VOID · 2026-10-15-dive-radio-get-your-portfolio-reviewed: promo-driven first week — not a clean test.
+- 2026-10-22 · VOID · 2026-10-15-dive-radio-get-your-portfolio-reviewed: promo-driven first week — not a clean test.
 - 2026-10-22 · NEUTRAL · exposureWeekOne: E14 moved +60% (building) against the word holding.
+- 2026-10-22 · NEUTRAL · announceToPlay: E14 moved -16.9% (softening) against the word holding.
 - 2026-10-16 · MISS · liveAverage: E14 moved +61.4% (building) against the word softening.
 - 2026-10-16 · MISS · livePeak: E14 moved +63.2% (building) against the word softening.
 - 2026-10-16 · NEUTRAL · liveViewers: E14 moved +28.6% (building) against the word holding.
@@ -27,9 +30,6 @@ Most recent resolutions:
 - 2026-10-16 · NEUTRAL · messagesPerHour: E14 moved +30.7% (building) against the word holding.
 - 2026-10-16 · MISS · minutesPerViewer: E14 moved +21.6% (building) against the word softening.
 - 2026-10-16 · NEUTRAL · holdRate: E14 moved -5.6% (softening) against the word holding.
-- 2026-10-15 · VOID · 2026-10-08-dive-radio-rise-of-the-playable-portfoli: promo-driven first week — not a clean test.
-- 2026-10-15 · MISS · exposureWeekOne: E13 moved -28.4% (softening) against the word building.
-- 2026-10-15 · NEUTRAL · announceToPlay: E13 moved -1.5% (holding) against the word building.
 
 ### Owner feel against the read
 
@@ -57,9 +57,6 @@ Carried share of scored checks: 29% (at full weight the mean would move -2) · p
 
 ## Open claims
 
-- 2026-10-09 · the last three clean first weeks ran 1,189–1,830 — waits for the episode after E13.
-- 2026-10-15 · the last three clean first weeks ran 1,189–5,188 (building) — waits for the episode after E13.
-- 2026-10-15 · announceToPlay holding (-4.5% per episode) — waits for the episode after E13.
 - 2026-10-16 · the last three clean first weeks ran 1,189–5,188 (building) — waits for the episode after E14.
 - 2026-10-16 · liveAverage building (+6.2% per episode) — waits for the episode after E14.
 - 2026-10-16 · livePeak building (+8.1% per episode) — waits for the episode after E14.
@@ -70,4 +67,5 @@ Carried share of scored checks: 29% (at full weight the mean would move -2) · p
 - 2026-10-16 · minutesPerViewer softening (-6.2% per episode) — waits for the episode after E14.
 - 2026-10-16 · holdRate holding (+5% per episode) — waits for the episode after E14.
 - 2026-10-22 · exposureWeekOne building (+10.7% per episode) — waits for the episode after E14.
+- 2026-10-22 · announceToPlay softening (-7.2% per episode) — waits for the episode after E14.
 

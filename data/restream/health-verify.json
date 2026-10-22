@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-22T14:03:58.677Z",
+  "updatedAt": "2026-10-22T19:18:21.880Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -1288,7 +1288,11 @@
       "typical": 1751,
       "direction": null,
       "pctPerEpisode": -8.3,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-22",
+        "outcome": "void",
+        "detail": "2026-10-15-dive-radio-get-your-portfolio-reviewed: promo-driven first week — not a clean test."
+      }
     },
     {
       "id": "direction:exposureWeekOne:E12:holding",
@@ -1470,7 +1474,11 @@
       "typical": 1751,
       "direction": "building",
       "pctPerEpisode": 6.7,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-22",
+        "outcome": "void",
+        "detail": "2026-10-15-dive-radio-get-your-portfolio-reviewed: promo-driven first week — not a clean test."
+      }
     },
     {
       "id": "direction:firstWeek:E7:building",
@@ -1573,7 +1581,13 @@
       "pctPerEpisode": -4.5,
       "lastEp": 13,
       "lastValue": 26,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-22",
+        "outcome": "neutral",
+        "actual": 21.6,
+        "realizedPct": -16.9,
+        "detail": "announceToPlay: E14 moved -16.9% (softening) against the word holding."
+      }
     },
     {
       "id": "range:after-E14:1189-5188",
@@ -1684,6 +1698,17 @@
       "pctPerEpisode": 10.7,
       "lastEp": 14,
       "lastValue": 13016,
+      "resolution": null
+    },
+    {
+      "id": "direction:announceToPlay:E14:softening",
+      "kind": "direction",
+      "key": "announceToPlay",
+      "madeOn": "2026-10-22",
+      "word": "softening",
+      "pctPerEpisode": -7.2,
+      "lastEp": 14,
+      "lastValue": 21.6,
       "resolution": null
     }
   ]
