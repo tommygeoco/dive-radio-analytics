@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-21T19:16:44.450Z",
+  "updatedAt": "2026-10-22T14:02:51.481Z",
   "configurations": {
     "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39": {
       "classifierVersion": 1,
@@ -33,16 +33,16 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         }
       },
       "processing": {
         "pending": 0,
-        "review": 90
+        "review": 94
       },
       "list": [
         {
@@ -476,6 +476,199 @@
             "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
             "classifiedAt": "2026-10-21T14:02:44.828Z"
           }
+        },
+        {
+          "id": "x:2113135754625081373",
+          "source": "x",
+          "author": "@nikunjdesign",
+          "text": "@ridd_design @gt @mds @femkesvs @IniAbiodun @joshpuckett @gabrielvaldivia @maheen_sohail Reviews from Geoff, Femke, Josh and the rest in one episode is such a gift for designers. a standing segment would be amazing",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-22T05:09:58.000Z",
+          "url": "https://x.com/i/status/2113135754625081373",
+          "likes": 0,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "6406534e286c8ea1131bfa5cd8625af68b2647369875fb74f9f2bd43ff44ff5f",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "guest",
+              "format"
+            ],
+            "confidence": 0.93,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113113507067723898",
+          "source": "x",
+          "author": "@NischalSkanda",
+          "text": "@ridd_design @gt @mds @femkesvs @IniAbiodun @joshpuckett @gabrielvaldivia @maheen_sohail This is such an amazing idea!! Would love to know where to submit the portfolios",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-22T03:41:34.000Z",
+          "url": "https://x.com/i/status/2113113507067723898",
+          "likes": 0,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "cfa98647e78ef95c904f010258061d6abc1433a068c05e24d81fbcd02f21c282",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "format"
+            ],
+            "confidence": 0.88,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113072682812232080",
+          "source": "x",
+          "author": "@AndreasKatzmann",
+          "text": "@ridd_design @gt @mds @femkesvs @IniAbiodun @joshpuckett @gabrielvaldivia @maheen_sohail Was super fun to watch. Unfortunately mine didn't make it, but still a ton of valuable insights.\n\nIf someone wants to give feedback on mine, I still have the Inflight widget on here: https://t.co/foA20YlGYW 😅",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-22T00:59:21.000Z",
+          "url": "https://x.com/i/status/2113072682812232080",
+          "likes": 0,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "9afb974296192bdf092fa0bf5250a3895e9571400459659486e04648de450e5d",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.8,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113060660892594558",
+          "source": "x",
+          "author": "@talhaminhaas",
+          "text": "@ridd_design @gt @mds @femkesvs @IniAbiodun @joshpuckett @gabrielvaldivia @maheen_sohail live portfolio reviews are underrated. Way more useful than another \"10 tips for your portfolio\" thread, you actually see how reviewers think in real time.",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-22T00:11:34.000Z",
+          "url": "https://x.com/i/status/2113060660892594558",
+          "likes": 0,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "72eacddd8dc7ff4fdf11aa27c4317412483fccab137024589e5fc95201f17a9f",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "format"
+            ],
+            "confidence": 0.9,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113054230131192164",
+          "source": "x",
+          "author": "@gt",
+          "text": "@ridd_design @mds @femkesvs @IniAbiodun @joshpuckett @gabrielvaldivia @maheen_sohail This was a lot of fun",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-21T23:46:01.000Z",
+          "url": "https://x.com/i/status/2113054230131192164",
+          "likes": 0,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "d8be1c249497788f602f3e7debc418bf6f2ba154e3794fb261f5824f6d9e0660",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.9,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113027522120045030",
+          "source": "x",
+          "author": "@IniAbiodun",
+          "text": "@ridd_design @gt @mds @femkesvs @joshpuckett @gabrielvaldivia @maheen_sohail Always a pleasure to give back! Such a great episode.",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-21T21:59:54.000Z",
+          "url": "https://x.com/i/status/2113027522120045030",
+          "likes": 3,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "f355c365b99d2eab5d85df4515efdee4fbbd4ee824989574b63a195657928e97",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.92,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113136117616980068",
+          "source": "x",
+          "author": "@nikunjdesign",
+          "text": "@designertom Making portfolio critiques commonplace would help so many designers. excited to see what you and Ridd come up with",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-22T05:11:25.000Z",
+          "url": "https://x.com/i/status/2113136117616980068",
+          "likes": 0,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "d49b00b6c2b8a9ceb39e22ecf0f2159568bcf9efc4940182d18e21452cbc59d1",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "topic choice"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
+        },
+        {
+          "id": "x:2113032411734786054",
+          "source": "x",
+          "author": "@bryanconnor",
+          "text": "@designertom love this idea and format",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-21T22:19:19.000Z",
+          "url": "https://x.com/i/status/2113032411734786054",
+          "likes": 1,
+          "capturedAt": "2026-10-22T14:00:05.576Z",
+          "contentHash": "c2fed16c972e6d296c0d18483303ee1ae2b3ea1f396066fae97b678a1193d00b",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "format"
+            ],
+            "confidence": 0.93,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-22T14:02:51.481Z"
+          }
         }
       ]
     },
@@ -483,11 +676,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         }
       },
       "processing": {
@@ -885,11 +1078,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         }
       },
       "processing": {
@@ -1119,11 +1312,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-21T19:15:06.695Z"
+          "checkedAt": "2026-10-22T14:00:05.576Z"
         }
       },
       "processing": {

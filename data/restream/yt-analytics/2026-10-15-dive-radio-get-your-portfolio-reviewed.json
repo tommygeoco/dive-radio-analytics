@@ -5,13 +5,13 @@
   "channels": {
     "yt:joindiveclub": {
       "videoId": "J3NB3migbE0",
-      "pulledAt": "2026-10-21T19:16:06.138Z",
+      "pulledAt": "2026-10-22T14:02:07.212Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "J3NB3migbE0",
-        "pulledAt": "2026-10-21T19:16:06.138Z",
+        "pulledAt": "2026-10-22T14:02:07.212Z",
         "state": "ready"
       },
       "totals": {
@@ -480,18 +480,18 @@
     },
     "yt:designertom": {
       "videoId": "YmC8feEgGDw",
-      "pulledAt": "2026-10-21T19:16:06.138Z",
+      "pulledAt": "2026-10-22T14:02:07.212Z",
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-analytics",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "YmC8feEgGDw",
-        "pulledAt": "2026-10-21T19:16:06.138Z",
+        "pulledAt": "2026-10-22T14:02:07.212Z",
         "state": "ready"
       },
       "totals": {
         "views": 1912,
-        "estimatedMinutesWatched": 10355,
+        "estimatedMinutesWatched": 10356,
         "averageViewDuration": 889,
         "averageViewPercentage": 12.43,
         "subscribersGained": 3,
@@ -961,7 +961,7 @@
   },
   "watchReport": {
     "state": "ready",
-    "checkedAt": "2026-10-21T19:16:06.138Z",
+    "checkedAt": "2026-10-22T14:02:07.212Z",
     "missingChannels": [],
     "reason": null,
     "targetFingerprint": "yt:designertom:YmC8feEgGDw|yt:joindiveclub:J3NB3migbE0",
@@ -991,8 +991,8 @@
     "source": "youtube-analytics",
     "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
     "objectId": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-    "pulledAt": "2026-10-21T19:16:06.138Z",
+    "pulledAt": "2026-10-22T14:02:07.212Z",
     "state": "ready"
   },
-  "updatedAt": "2026-10-21T19:16:06.138Z"
+  "updatedAt": "2026-10-22T14:02:07.212Z"
 }

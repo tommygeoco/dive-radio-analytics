@@ -715,6 +715,20 @@
           "pulledAt": "2026-10-21T14:02:50.543Z",
           "state": "ready"
         }
+      },
+      {
+        "date": "2026-10-22",
+        "subscribers": 170000,
+        "totalViews": 106389185,
+        "videos": 475,
+        "reading": {
+          "schemaVersion": 1,
+          "source": "youtube-channel",
+          "episode": null,
+          "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
+          "pulledAt": "2026-10-22T14:03:08.315Z",
+          "state": "ready"
+        }
       }
     ],
     "yt:joindiveclub": [
@@ -1431,6 +1445,20 @@
           "pulledAt": "2026-10-21T14:02:50.543Z",
           "state": "ready"
         }
+      },
+      {
+        "date": "2026-10-22",
+        "subscribers": 69100,
+        "totalViews": 2135380,
+        "videos": 435,
+        "reading": {
+          "schemaVersion": 1,
+          "source": "youtube-channel",
+          "episode": null,
+          "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
+          "pulledAt": "2026-10-22T14:03:08.315Z",
+          "state": "ready"
+        }
       }
     ],
     "x:ridd_design": [
@@ -2086,6 +2114,19 @@
           "episode": null,
           "objectId": "304108071",
           "pulledAt": "2026-10-21T14:02:50.543Z",
+          "state": "ready"
+        }
+      },
+      {
+        "date": "2026-10-22",
+        "followers": 76984,
+        "tweets": 21205,
+        "reading": {
+          "schemaVersion": 1,
+          "source": "x-account",
+          "episode": null,
+          "objectId": "304108071",
+          "pulledAt": "2026-10-22T14:03:08.315Z",
           "state": "ready"
         }
       }
@@ -2745,12 +2786,25 @@
           "pulledAt": "2026-10-21T14:02:50.543Z",
           "state": "ready"
         }
+      },
+      {
+        "date": "2026-10-22",
+        "followers": 19855,
+        "tweets": 9694,
+        "reading": {
+          "schemaVersion": 1,
+          "source": "x-account",
+          "episode": null,
+          "objectId": "547417813",
+          "pulledAt": "2026-10-22T14:03:08.315Z",
+          "state": "ready"
+        }
       }
     ]
   },
-  "updatedAt": "2026-10-21T19:16:51.360Z",
+  "updatedAt": "2026-10-22T14:03:08.315Z",
   "capture": {
-    "checkedAt": "2026-10-21T19:16:51.360Z",
+    "checkedAt": "2026-10-22T14:03:08.315Z",
     "state": "ready",
     "sources": [
       {
@@ -2758,7 +2812,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       },
       {
@@ -2766,7 +2820,7 @@
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       },
       {
@@ -2774,7 +2828,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       },
       {
@@ -2782,7 +2836,7 @@
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       }
     ],
@@ -2790,56 +2844,56 @@
   },
   "current": {
     "yt:joindiveclub": {
-      "date": "2026-10-21",
+      "date": "2026-10-22",
       "subscribers": 69100,
-      "totalViews": 2127780,
+      "totalViews": 2135380,
       "videos": 435,
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UCkCnraWwlnBw1_i7C9-3p0w",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       }
     },
     "yt:designertom": {
-      "date": "2026-10-21",
+      "date": "2026-10-22",
       "subscribers": 170000,
-      "totalViews": 106386933,
-      "videos": 474,
+      "totalViews": 106389185,
+      "videos": 475,
       "reading": {
         "schemaVersion": 1,
         "source": "youtube-channel",
         "episode": null,
         "objectId": "UC4_qP33t3TGpEM0-96WfC6Q",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       }
     },
     "x:ridd_design": {
-      "date": "2026-10-21",
-      "followers": 76949,
-      "tweets": 21201,
+      "date": "2026-10-22",
+      "followers": 76984,
+      "tweets": 21205,
       "reading": {
         "schemaVersion": 1,
         "source": "x-account",
         "episode": null,
         "objectId": "304108071",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       }
     },
     "x:designertom": {
-      "date": "2026-10-21",
-      "followers": 19856,
-      "tweets": 9689,
+      "date": "2026-10-22",
+      "followers": 19855,
+      "tweets": 9694,
       "reading": {
         "schemaVersion": 1,
         "source": "x-account",
         "episode": null,
         "objectId": "547417813",
-        "pulledAt": "2026-10-21T19:16:51.360Z",
+        "pulledAt": "2026-10-22T14:03:08.315Z",
         "state": "ready"
       }
     }

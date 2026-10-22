@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-21T19:17:28.101Z",
+  "updatedAt": "2026-10-22T14:03:58.677Z",
   "claims": [
     {
       "id": "range:after-E7:1189-1830",
@@ -1526,7 +1526,13 @@
       "pctPerEpisode": 0,
       "lastEp": 13,
       "lastValue": 8137,
-      "resolution": null
+      "resolution": {
+        "on": "2026-10-22",
+        "outcome": "neutral",
+        "actual": 13016,
+        "realizedPct": 60,
+        "detail": "exposureWeekOne: E14 moved +60% (building) against the word holding."
+      }
     },
     {
       "id": "direction:discoveryShare:E7:softening",
@@ -1667,6 +1673,17 @@
       "pctPerEpisode": 5,
       "lastEp": 14,
       "lastValue": 79.4,
+      "resolution": null
+    },
+    {
+      "id": "direction:exposureWeekOne:E14:building",
+      "kind": "direction",
+      "key": "exposureWeekOne",
+      "madeOn": "2026-10-22",
+      "word": "building",
+      "pctPerEpisode": 10.7,
+      "lastEp": 14,
+      "lastValue": 13016,
       "resolution": null
     }
   ]
