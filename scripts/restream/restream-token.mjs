@@ -12,10 +12,10 @@
 //
 // Diagnostics go to stderr; stdout carries only the token (or auth URL).
 
-import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync, chmodSync, renameSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, chmodSync, renameSync, mkdirSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
+import { pathToFileURL } from "node:url";
 import { randomBytes } from "node:crypto";
 import { atomicWriteJson, readJsonFile, withSourceLock, fetchJson } from "../../tools/dive-analytics/source-io.mjs";
 
@@ -25,46 +25,34 @@ const TOKEN_URL = "https://api.restream.io/oauth/token";
 const DEFAULT_REDIRECT = "http://localhost:8899/callback";
 const SCOPES = "stream.read";
 const SKEW_MS = 5 * 60 * 1000;
+// The shared 1Password reader lives in the hinterlands repo, not here. It is
+// loaded only on the fallback path, from a fixed location (override with
+// DIVE_OP_HELPER), so env and token-cache reads never depend on it.
+export const OP_HELPER_PATH = process.env.DIVE_OP_HELPER
+  || join(homedir(), "Dev", "2026", "hinterlands", "scripts", "op", "op.mjs");
 
-// Read client creds from 1Password with retries (op intermittently hangs on a
-// stale op-daemon socket; see 2026-07-27 incident). On persistent failure,
-// fall back to creds cached in the 0600 token file by a previous good read.
-function readOpCreds({ attempts = 3, timeoutMs = 10000 } = {}) {
-  if (process.env.RESTREAM_CLIENT_ID && process.env.RESTREAM_CLIENT_SECRET) return { clientId: process.env.RESTREAM_CLIENT_ID, clientSecret: process.env.RESTREAM_CLIENT_SECRET };
-  let opToken = process.env.OP_SERVICE_ACCOUNT_TOKEN;
-  if (!opToken) try { opToken = execFileSync(
-    "security",
-    ["find-generic-password", "-s", "ai.openclaw.op_service_account_token", "-w"],
-    { encoding: "utf8", timeout: 10000, stdio: ["ignore", "pipe", "pipe"] }
-  ).trim(); } catch { throw new Error("Restream 1Password service credential is unavailable"); }
-  const env = { ...process.env, OP_SERVICE_ACCOUNT_TOKEN: opToken, OP_CACHE: "false" };
-  const read = (field) =>
-    execFileSync("op", ["--cache=false", "read", `op://OpenClaw/Restream/${field}`], {
-      encoding: "utf8",
-      env,
-      timeout: timeoutMs,
-    }).trim();
-  let lastErr;
-  for (let i = 1; i <= attempts; i++) {
-    try {
-      const clientId = read("client_id");
-      const clientSecret = read("client_secret");
-      if (!clientId || !clientSecret)
-        throw new Error("Restream client_id/client_secret empty in 1Password");
-      return { clientId, clientSecret };
-    } catch (err) {
-      lastErr = err;
-      process.stderr.write(
-        `restream-token: op read attempt ${i}/${attempts} failed (credential read failed)\n`
-      );
-    }
+export async function loadOpRead(path = OP_HELPER_PATH) {
+  if (!existsSync(path)) throw new Error(`Restream client credentials need the 1Password helper, which is missing at ${path} (set DIVE_OP_HELPER)`);
+  let mod;
+  try { mod = await import(pathToFileURL(path).href); }
+  catch { throw new Error(`Restream client credentials need the 1Password helper, which failed to load from ${path}`); }
+  if (typeof mod.opRead !== "function") throw new Error(`the 1Password helper at ${path} does not export opRead`);
+  return mod.opRead;
+}
+
+// Use env, then the protected token cache. Read 1Password once only when absent
+// or when Restream rejects the cached client credentials.
+async function readOpCreds({ refresh = false } = {}) {
+  if (!refresh && process.env.RESTREAM_CLIENT_ID && process.env.RESTREAM_CLIENT_SECRET) return { clientId: process.env.RESTREAM_CLIENT_ID, clientSecret: process.env.RESTREAM_CLIENT_SECRET };
+  if (!refresh) {
+    const cache = readCache();
+    if (cache?.client_id && cache?.client_secret) return { clientId: cache.client_id, clientSecret: cache.client_secret };
   }
-  const cache = readCache();
-  if (cache?.client_id && cache?.client_secret) {
-    process.stderr.write("restream-token: 1Password unreachable, using cached client creds\n");
-    return { clientId: cache.client_id, clientSecret: cache.client_secret };
-  }
-  throw new Error("Restream client credentials are unavailable after bounded 1Password checks");
+  const opRead = await loadOpRead();
+  const clientId = opRead('op://OpenClaw/Restream/client_id', { caller: 'restream-token' });
+  const clientSecret = opRead('op://OpenClaw/Restream/client_secret', { caller: 'restream-token' });
+  if (!clientId || !clientSecret) throw new Error('Restream client credentials are unavailable');
+  return { clientId, clientSecret };
 }
 
 function readCache(path = TOKEN_PATH) { return readJsonFile(path, { fallback: null }); }
@@ -111,11 +99,15 @@ export async function getAccessToken({ tokenPath = TOKEN_PATH, readCredentials =
     );
   }
   if (needsRefresh(cache, now)) {
-    const creds = readCredentials();
-    const data = await request(
-      { grant_type: "refresh_token", refresh_token: cache.refresh_token },
-      creds
-    );
+    const creds = await readCredentials();
+    let data;
+    try { data = await request({ grant_type: "refresh_token", refresh_token: cache.refresh_token }, creds); }
+    catch (error) {
+      if (!/HTTP (401|403)\b/.test(String(error?.message || error))) throw error;
+      const fresh = await readCredentials({ refresh: true });
+      data = await request({ grant_type: "refresh_token", refresh_token: cache.refresh_token }, fresh);
+      Object.assign(creds, fresh);
+    }
     cache = {
       ...cacheFromResponse(data, cache),
       client_id: creds.clientId,
@@ -136,7 +128,7 @@ function arg(name) {
 async function main() {
   const redirect = arg("--redirect-uri") || DEFAULT_REDIRECT;
   if (process.argv.includes("--auth-url")) {
-    const creds = readOpCreds();
+    const creds = await readOpCreds();
     const state = randomBytes(16).toString("hex");
     const url = new URL(AUTHORIZE_URL);
     url.searchParams.set("response_type", "code");
@@ -149,7 +141,7 @@ async function main() {
   }
   const code = arg("--exchange");
   if (code) {
-    const creds = readOpCreds();
+    const creds = await readOpCreds();
     const data = await tokenRequest(
       { grant_type: "authorization_code", code, redirect_uri: redirect },
       creds
