@@ -139,6 +139,15 @@ failures, only on a changed committed revision. It retains both failures and
 their receipts, uses the same lock and complete release chain, and refuses a
 second repair. Scheduled primary/recovery modes still allow only two automatic
 attempts and never select the operator mode.
+Owner override (authorized October 23): only when the owner personally directs
+it, an operator can run
+`run-daily.mjs --operator-repair --owner-override --reason="Owner direction and reason"`
+for at most ONE extra repair per Phoenix day, after that day's operator repair
+has finished, again only on a changed committed revision. It is logged as a
+fourth ledger record (`mode: "operator-repair"`, `kind: "owner-override"`, its
+own `reason` and `startedAt`); the reason is required. A third repair is refused
+with or without the flag. Watchdog, capture checks, validation and the pre-push
+gate are unchanged, and no scheduler may pass `--owner-override`.
 YouTube watch channels advance only as
 one same-pull, current-video reading; a partial response preserves the whole
 prior reading or leaves the reading absent, never a cross-day blend. Future

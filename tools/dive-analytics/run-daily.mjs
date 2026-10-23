@@ -5,6 +5,8 @@
 // normally runs in the morning; YouTube's expected watch-report
 // delay keeps it available for noon. An owner-directed operator repair can run
 // once after two failed automatic attempts, on changed code with a saved reason.
+// The owner alone may direct one further repair that day (--owner-override):
+// recorded as kind "owner-override" with its own reason, on changed code again.
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
@@ -24,6 +26,8 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 export const ROOT = join(HERE, "..", "..");
 export const PUBLISHER_ROOT = ISOLATED_PUBLISHER_ROOT;
 export const MAX_DAILY_ATTEMPTS = 2;
+// At most one plain operator repair, plus one owner-override repair, per day.
+export const OWNER_OVERRIDE_KIND = "owner-override";
 export const STATE_PATH = DAILY_STATE_PATH;
 export const RUN_LOCK_MAX_AGE_MS = 2 * 60 * 60 * 1000;
 export const CHAIN_TIMEOUT_MS = 29 * 60 * 1000;
@@ -54,13 +58,24 @@ export function readAttemptState(path = STATE_PATH) {
   for (const [day, attempts] of Object.entries(state.days)) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Array.isArray(attempts)
       || attempts.filter(a => a?.mode !== "operator-repair").length > MAX_DAILY_ATTEMPTS
-      || attempts.filter(a => a?.mode === "operator-repair").length > 1) throw new Error("daily attempt state has an invalid day");
+      || attempts.filter(a => a?.mode === "operator-repair" && a?.kind !== OWNER_OVERRIDE_KIND).length > 1
+      || attempts.filter(a => a?.mode === "operator-repair" && a?.kind === OWNER_OVERRIDE_KIND).length > 1) throw new Error("daily attempt state has an invalid day");
     for (const attempt of attempts) {
       if (!attempt || typeof attempt.id !== "string" || !attempt.id || !["primary", "recovery", "operator-repair"].includes(attempt.mode)
         || !Number.isFinite(Date.parse(attempt.startedAt)) || phoenixDay(attempt.startedAt) !== day || typeof attempt.status !== "string") {
         throw new Error("daily attempt state has an invalid attempt");
       }
-      if (attempt.mode === "operator-repair") {
+      if (attempt.kind !== undefined && (attempt.mode !== "operator-repair" || attempt.kind !== OWNER_OVERRIDE_KIND)) {
+        throw new Error("daily attempt state has an invalid attempt kind");
+      }
+      if (attempt.mode === "operator-repair" && attempt.kind === OWNER_OVERRIDE_KIND) {
+        validateRepairReason(attempt.reason);
+        const prior = attempts.slice(0, attempts.indexOf(attempt));
+        if (prior.length !== MAX_DAILY_ATTEMPTS + 1 || prior.at(-1).mode !== "operator-repair" || prior.at(-1).kind !== undefined
+          || !/^[a-f0-9]{40}$/.test(attempt.origin || "") || attempt.origin === prior.at(-1).origin) {
+          throw new Error("owner-override repair requires the day's operator repair before it and changed committed code");
+        }
+      } else if (attempt.mode === "operator-repair") {
         validateRepairReason(attempt.reason);
         const prior = attempts.slice(0, attempts.indexOf(attempt));
         if (prior.length !== MAX_DAILY_ATTEMPTS || prior.some(a => a.mode === "operator-repair" || !a.status.startsWith("failed:"))
@@ -122,12 +137,23 @@ function validateRepairReason(reason) {
   }
 }
 
-export function nextAttempt(state, now = Date.now(), { mode = "primary", id = randomUUID(), origin = null, reason } = {}) {
+export function nextAttempt(state, now = Date.now(), { mode = "primary", id = randomUUID(), origin = null, reason, ownerOverride = false } = {}) {
   const day = phoenixDay(now);
   if (!day) throw new Error("daily attempt clock is invalid");
   const attempts = state.days[day] || [];
   if (!["primary", "recovery", "operator-repair"].includes(mode)) throw new Error("unknown daily run mode");
-  if (mode === "operator-repair") {
+  if (ownerOverride && mode !== "operator-repair") throw new Error("--owner-override applies only to --operator-repair");
+  if (mode === "operator-repair" && ownerOverride) {
+    validateRepairReason(reason);
+    if (attempts.some(a => a.mode === mode && a.kind === OWNER_OVERRIDE_KIND)) return { allowed: false, reason: "owner-override-used", day, number: attempts.length + 1, state };
+    const repair = attempts.at(-1);
+    if (attempts.length !== MAX_DAILY_ATTEMPTS + 1 || repair?.mode !== "operator-repair" || ["running", "proving", "finishing"].includes(repair.status)) {
+      throw new Error("owner override requires today's operator repair to have already run; use --operator-repair alone first");
+    }
+    if (!/^[a-f0-9]{40}$/.test(origin || "") || origin === repair.origin) {
+      throw new Error("owner override requires changed committed code since today's operator repair");
+    }
+  } else if (mode === "operator-repair") {
     validateRepairReason(reason);
     if (attempts.some(a => a.mode === mode)) return { allowed: false, day, number: attempts.length + 1, state };
     if (attempts.length !== MAX_DAILY_ATTEMPTS || attempts.some(a => !a.status.startsWith("failed:"))
@@ -147,6 +173,7 @@ export function nextAttempt(state, now = Date.now(), { mode = "primary", id = ra
     startedAt: new Date(now).toISOString(),
     status: "running",
     ...(mode === "operator-repair" ? { reason: reason.trim() } : {}),
+    ...(mode === "operator-repair" && ownerOverride ? { kind: OWNER_OVERRIDE_KIND } : {}),
   }];
   const keepAfter = Date.parse(`${day}T12:00:00Z`) - 31 * 86400000;
   for (const savedDay of Object.keys(next.days)) {
@@ -446,6 +473,7 @@ export async function runDaily({
   now = Date.now(),
   mode,
   reason,
+  ownerOverride = false,
   prepare = prepareCaptureCheckout,
   getOrigin = originSha,
   queue = (lines) => appendQueueLines(lines),
@@ -454,6 +482,7 @@ export async function runDaily({
   resolve = () => resolveOperationalAlerts(undefined, { includeChecklist: true, includeYoutubeWatch: true }),
 } = {}) {
   if (mode === "operator-repair") validateRepairReason(reason);
+  if (ownerOverride && mode !== "operator-repair") throw new Error("--owner-override applies only to --operator-repair");
   const release = acquireLock(`${statePath}.run.lock`, { now, label: "daily publishing chain", maxAgeMs: RUN_LOCK_MAX_AGE_MS });
   try {
     const invocation = startInvocation(reconcileInterruptedState(readAttemptState(statePath), now), now, { mode });
@@ -472,7 +501,7 @@ export async function runDaily({
 
     let reserved;
     try {
-      reserved = nextAttempt(readAttemptState(statePath), now, { mode, origin: getOrigin(publisherRoot), reason });
+      reserved = nextAttempt(readAttemptState(statePath), now, { mode, origin: getOrigin(publisherRoot), reason, ownerOverride });
     } catch (error) {
       saveAttemptState(statePath, finishInvocation(readAttemptState(statePath), invocation.day, invocation.id, "refused:run-policy", Date.now(), error.message));
       throw error;
@@ -480,6 +509,8 @@ export async function runDaily({
     if (!reserved.allowed) {
       const line = reserved.reason === "primary-already-ran"
         ? `The primary capture already ran for ${reserved.day}; the remaining attempt is reserved for recovery.`
+        : reserved.reason === "owner-override-used"
+        ? `The owner-override repair for ${reserved.day} was already used; no additional run was started.`
         : mode === "operator-repair"
         ? `The operator repair for ${reserved.day} was already used; no additional run was started.`
         : `Daily publish already used both automatic attempts for ${reserved.day}; no third automatic run was started.`;
@@ -490,7 +521,9 @@ export async function runDaily({
       return 75;
     }
     saveAttemptState(statePath, reserved.state);
-    console.log(mode === "operator-repair"
+    console.log(mode === "operator-repair" && ownerOverride
+      ? `daily-run: ${reserved.day} owner-override repair (the day's one extra owner-directed repair); earlier attempts retained. Reason: ${reason.trim()}`
+      : mode === "operator-repair"
       ? `daily-run: ${reserved.day} owner-directed operator repair; both failed automatic attempts retained. Reason: ${reason.trim()}`
       : `daily-run: ${reserved.day} attempt ${reserved.number} of ${MAX_DAILY_ATTEMPTS} (${mode}).`);
     let result;
@@ -625,7 +658,7 @@ if (isMain) {
       // The scheduler, not this run, is what OpenClaw can switch off; check it
       // first. The recovery child keeps its true exit for recover-publish.
       if (mode === "primary") watchSchedulerQuietly("daily-run");
-      runDaily({ mode, reason: process.argv.find(arg => arg.startsWith("--reason="))?.slice(9) }).then((status) => process.exit(mode === "primary" ? exitForScheduler(status, "daily-run") : status)).catch((error) => {
+      runDaily({ mode, reason: process.argv.find(arg => arg.startsWith("--reason="))?.slice(9), ownerOverride: process.argv.includes("--owner-override") }).then((status) => process.exit(mode === "primary" ? exitForScheduler(status, "daily-run") : status)).catch((error) => {
         console.error(`daily-run: ${error.message}`);
         process.exit(1);
       });

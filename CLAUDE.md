@@ -123,7 +123,14 @@ automatic attempts, an explicitly owner-directed `--operator-repair` may run onc
 from the dedicated publisher on changed committed code, with a recorded
 `--reason`. It keeps the two failures and uses the same lock, capture, strict
 validation, release and live-proof path. Never reset the ledger, select another
-state file, or configure a scheduler to use operator mode. Code-only adoption
+state file, or configure a scheduler to use operator mode.
+Owner override, authorized October 23: only on the owner's own direction may
+`--operator-repair --owner-override --reason=...` run ONE further repair that
+day, after the day's operator repair and on changed code again. It is logged in
+the ledger as `kind: "owner-override"` with its reason and start time; a third
+repair is always refused. Never use it on an agent's own initiative or from a
+scheduler.
+Code-only adoption
 may use `DIVE_SOURCE_ONLY_PUSH=1` only when every source store and public artifact
 is identical to origin/main; its full audit/syntax gate does not certify a data
 release. Every production publish still runs the ordinary strict gate.

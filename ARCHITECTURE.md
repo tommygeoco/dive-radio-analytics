@@ -66,6 +66,11 @@ third record in the same daily ledger, tagged `operator-repair`, preserving the
 two automatic receipts. Replay is refused even after a crash. Scheduled modes
 still cap automatic work at two attempts; the operator path shares their lock,
 full chain and production proof. No job is configured for operator mode.
+Only on the owner's direction, `--operator-repair --owner-override --reason=...`
+adds at most one more record that day (`kind: "owner-override"`, with reason
+and start time), after the plain repair and on changed code. The ledger reader
+rejects any other `kind`, a second override, or an override without a reason or
+plain repair before it; a third repair is refused.
 
 The critic alone has a separate advisory outcome: chain exit 21 becomes
 `passed:advisory-pending` only after real production evidence is read. The run
