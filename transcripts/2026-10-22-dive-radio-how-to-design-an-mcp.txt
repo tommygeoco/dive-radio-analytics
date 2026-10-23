@@ -1,0 +1,4911 @@
+Dive Radio E15 — How to Design an MCP
+Aired: 2026-10-22 · YouTube: https://youtube.com/watch?v=uwUqcQKx6Ww
+Source: Restream speaker transcript (vault e15-transcript-2026-10-22.txt). Speaker labels are automatic — verify quotes against video.
+
+00:03:20 [Speaker 1]
+And desire for people to just see what flows and to honor people, the different experiments that people are running and the different learnings that others have.
+00:03:30 [Speaker 1]
+The tooling kind of increases our capacity in the day.
+00:03:33 [Speaker 1]
+We have more of the things we can do now because the tooling makes those kind of road things easier.
+00:03:39 [Speaker 1]
+I'm able to go through you know, spectrum of exploration that is so much larger than I could do in a day, and I can do it in minutes.
+00:03:49 [Speaker 1]
+Agents are using tools.
+
+00:03:52 [Speaker 1]
+What does that look like, and what does that mean?
+00:03:56 [Speaker 1]
+Show up, try things, be curious.
+00:03:58 [Speaker 1]
+I think the view is bright, but it has to be built.
+00:04:02 [Speaker 1]
+I can always see things that I didn't plan on seeing.
+00:04:04 [Speaker 1]
+I'm making micro decisions that I didn't have a grid for a year ago, and it's only because of the ability today I can support.
+
+00:04:11 [Speaker 1]
+I feel like there's this binary thinking that, like, AI means fully automated and quick neural.
+00:04:15 [Speaker 1]
+In fact, I think some of the better workflows are the ones that aren't fully automated.
+00:04:20 [Speaker 1]
+The ability to effectively multitask at a really high level is one of the core skills of operating in this, like, AI world.
+00:04:29 [Speaker 1]
+So, no preconceived notions about how things should be done, This is the moment of time right now to reap the rewards of the public reach books.
+
+00:04:39 [Speaker 2]
+What do you do with the question what if?
+
+00:04:42 [Speaker 3]
+Hey, guys.
+00:04:42 [Speaker 3]
+Hi.
+
+00:04:43 [Speaker 1]
+What's up, design fam?
+00:04:44 [Speaker 1]
+This is Corey Park.
+00:04:45 [Speaker 1]
+Jenny Wen.
+00:04:45 [Speaker 1]
+This is Soleil, and you're listening.
+00:04:47 [Speaker 1]
+And you're listening to the dive Dive.
+
+00:04:49 [Speaker 1]
+Dive radio show.
+
+00:04:57 [Speaker 4]
+Hey.
+00:04:58 [Speaker 4]
+What is
+
+00:04:59 [Speaker 2]
+going on, dude?
+
+00:05:00 [Speaker 1]
+Multiple months in, that interest still gets me hyped.
+
+00:05:03 [Speaker 2]
+I I like it.
+00:05:04 [Speaker 2]
+I've been thinking about I've been thinking about it.
+00:05:06 [Speaker 2]
+I wanna do some things.
+00:05:08 [Speaker 2]
+What's funny is that was created so many video models ago.
+00:05:11 [Speaker 2]
+We've been at this now for, three months, sir.
+
+00:05:13 [Speaker 1]
+Three months.
+00:05:14 [Speaker 1]
+So you know.
+00:05:15 [Speaker 1]
+Yep.
+
+00:05:15 [Speaker 2]
+This is episode 15.
+00:05:18 [Speaker 2]
+So next week will be our three month anniversary, I think.
+00:05:21 [Speaker 2]
+But that's pretty cool.
+
+00:05:23 [Speaker 1]
+Happy anniversary.
+
+00:05:24 [Speaker 2]
+Happy anniversary, early.
+00:05:26 [Speaker 2]
+If you're joining us, you are joining the live show for designers who are curious, and we are happy you've been rocking with us.
+00:05:32 [Speaker 2]
+This has been cool.
+00:05:33 [Speaker 2]
+We've been able to cover a lot of things today and to air this this show.
+00:05:36 [Speaker 2]
+Today, especially, we're gonna jump into a number of topics.
+
+00:05:40 [Speaker 2]
+We have not been hacked.
+00:05:41 [Speaker 2]
+Many have.
+00:05:42 [Speaker 2]
+We'll talk about that for sure.
+00:05:45 [Speaker 2]
+We're gonna dive into a lot of MCP, which sounds like a big nerdy engineering topic.
+00:05:51 [Speaker 2]
+As it turns out, a lot of designers are making use of MCPs.
+
+00:05:55 [Speaker 5]
+A lot
+
+00:05:55 [Speaker 2]
+of designers are designing MCPs.
+00:05:57 [Speaker 2]
+What does it even mean?
+00:05:58 [Speaker 2]
+I don't know.
+00:05:59 [Speaker 2]
+We're gonna get into it.
+00:06:00 [Speaker 2]
+And the number one thing that I've been kind of combating myself is now that AI is kind of touching all of the output, what are people doing to eliminate the m dash of design, which is that design smell that we were seeing.
+
+00:06:14 [Speaker 2]
+We talked a lot about it on the portfolios last week.
+00:06:17 [Speaker 2]
+And speaking of portfolios, we're gonna move away, I think, from the designer of the week concept, which is awesome.
+00:06:26 [Speaker 2]
+I love spotlighting designers.
+00:06:28 [Speaker 2]
+And instead, there's another way that I think we can spotlight designers by also being helpful, which is doing portfolio reviews, a couple, at the end of the show every day or every week.
+00:06:38 [Speaker 2]
+And that's, that's gonna start today.
+
+00:06:40 [Speaker 2]
+So we had a lot of requests last week.
+00:06:42 [Speaker 2]
+We're like, oh, man.
+00:06:43 [Speaker 2]
+I would love for you guys to review the portfolios, talk about it.
+00:06:46 [Speaker 2]
+We have so many submissions.
+00:06:47 [Speaker 2]
+There's some really great ones out there, so expect to see a little taste of that every week at the end of the show.
+
+00:06:54 [Speaker 2]
+Before I do that, man, I'm gonna give a couple flowers out because we saw somebody's...
+00:07:00 [Speaker 2]
+You know, a lot of people have been making little dive club submissions.
+00:07:03 [Speaker 2]
+They're pretty cool.
+
+00:07:05 [Speaker 1]
+Yes.
+00:07:05 [Speaker 1]
+You
+
+00:07:06 [Speaker 4]
+already you already know
+
+00:07:06 [Speaker 2]
+the one I'm talking about right now.
+
+00:07:08 [Speaker 1]
+I do.
+00:07:08 [Speaker 1]
+It's so good.
+
+00:07:09 [Speaker 2]
+It's it's pretty cool.
+00:07:10 [Speaker 2]
+I...
+00:07:11 [Speaker 2]
+This has probably been my favorite so far.
+00:07:13 [Speaker 2]
+I'm just gonna dive right into this.
+00:07:14 [Speaker 2]
+So this is, my aunt Kinger.
+
+00:07:17 [Speaker 2]
+Alright?
+00:07:17 [Speaker 2]
+And he just, like, tweeted a little thing.
+00:07:19 [Speaker 2]
+I think it was either in the Discord or on Twitter.
+00:07:21 [Speaker 2]
+I can't remember now.
+
+00:07:22 [Speaker 1]
+Discord.
+00:07:23 [Speaker 1]
+You drop it in the Discord.
+
+00:07:24 [Speaker 2]
+Well, it was in Discord.
+00:07:25 [Speaker 2]
+That's right.
+
+00:07:26 [Speaker 4]
+Yeah.
+
+00:07:26 [Speaker 2]
+And, and, actually, this was a week and a half, two weeks ago that he shared this...
+00:07:31 [Speaker 2]
+Just a little love letter to dive club.
+00:07:33 [Speaker 2]
+It was really cool.
+00:07:34 [Speaker 2]
+I went and pulled it up again last night because I was like, yeah.
+00:07:38 [Speaker 2]
+We're gonna we're gonna spotlight this.
+
+00:07:40 [Speaker 2]
+Dude, he added so much to it.
+
+00:07:41 [Speaker 1]
+Really?
+00:07:42 [Speaker 1]
+Okay.
+00:07:42 [Speaker 1]
+Cool.
+00:07:42 [Speaker 1]
+Cool.
+00:07:43 [Speaker 1]
+Cool.
+
+00:07:43 [Speaker 1]
+Because it was so good a week and a half ago.
+00:07:44 [Speaker 1]
+I even showed my whole family.
+00:07:45 [Speaker 1]
+Everybody freaked out.
+
+00:07:46 [Speaker 2]
+Yeah.
+00:07:47 [Speaker 2]
+Yeah.
+00:07:47 [Speaker 2]
+So very cool.
+00:07:48 [Speaker 2]
+Thank...
+00:07:48 [Speaker 2]
+This is a very flattering thing to make, but, we're gonna
+
+00:07:52 [Speaker 1]
+I look so lame compared to you.
+00:07:54 [Speaker 1]
+I...
+00:07:54 [Speaker 1]
+We've, like, landed on these characters, and I...
+00:07:56 [Speaker 1]
+My guy just looks so lame, man.
+00:07:58 [Speaker 1]
+I don't know if it's the mustache or what.
+
+00:07:59 [Speaker 1]
+I'm just like Oh, yeah.
+
+00:08:00 [Speaker 2]
+You you wanna glow up, Rit?
+00:08:01 [Speaker 2]
+You want a little glow up?
+
+00:08:02 [Speaker 1]
+I need a glow up.
+00:08:03 [Speaker 1]
+I need a glow up.
+
+00:08:04 [Speaker 2]
+Okay.
+00:08:04 [Speaker 2]
+Alright.
+00:08:05 [Speaker 2]
+Why don't you...
+00:08:06 [Speaker 2]
+Do you want me to...
+00:08:07 [Speaker 2]
+So here's the thing.
+
+00:08:08 [Speaker 2]
+Right?
+00:08:08 [Speaker 2]
+I'm gonna...
+00:08:08 [Speaker 2]
+Sorry.
+00:08:09 [Speaker 2]
+This is a tangent.
+00:08:10 [Speaker 2]
+In the military, everyone assigned you your call signs.
+
+00:08:13 [Speaker 2]
+You're not allowed to pick your own call sign because everyone always tried to pick something cool.
+00:08:17 [Speaker 2]
+So I'll I'll give you a couple glow up options here coming up.
+00:08:21 [Speaker 2]
+Okay.
+00:08:21 [Speaker 2]
+We'll let we'll let the audience decide.
+
+00:08:23 [Speaker 1]
+I think we should...
+00:08:24 [Speaker 1]
+We'll make it a community vote.
+
+00:08:25 [Speaker 4]
+Yeah.
+
+00:08:25 [Speaker 1]
+Community vote.
+00:08:26 [Speaker 1]
+I'm down to open it up to...
+00:08:27 [Speaker 1]
+I'll open up the floor because I'll reroll all day compared to what I got.
+
+00:08:33 [Speaker 2]
+Well, let's let's check this out.
+00:08:35 [Speaker 2]
+So I love This
+
+00:08:35 [Speaker 1]
+is already sick.
+00:08:36 [Speaker 1]
+Got it.
+
+00:08:40 [Speaker 2]
+So I wanna be clear.
+
+00:08:44 [Speaker 4]
+Big Subnautica fan.
+00:08:45 [Speaker 4]
+For those who don't know, Subnautica is an underwater adventure game.
+00:08:49 [Speaker 4]
+It's great.
+00:08:50 [Speaker 4]
+So in here, I'm able to kind of navigate around.
+00:08:53 [Speaker 4]
+It's it's
+
+00:08:53 [Speaker 2]
+a bit linear on rails.
+
+00:08:55 [Speaker 4]
+I'm passing all of the, dive club interviews.
+00:08:58 [Speaker 4]
+And I can go ahead, and what's cool is I click on one of these.
+00:09:01 [Speaker 4]
+Lot of lot of UI love here.
+00:09:03 [Speaker 4]
+So I'm digging this.
+00:09:04 [Speaker 4]
+Right?
+
+00:09:05 [Speaker 1]
+Dude, he used to button styles even.
+00:09:07 [Speaker 1]
+Like the...
+00:09:08 [Speaker 1]
+There's so many stylistic nods to the old Framer site.
+00:09:12 [Speaker 1]
+It's cool.
+
+00:09:13 [Speaker 4]
+I dig the way he made the preview show up in the bubble and the little effecting.
+
+00:09:16 [Speaker 1]
+Yeah.
+00:09:17 [Speaker 1]
+It's really great.
+
+00:09:17 [Speaker 4]
+So good.
+00:09:18 [Speaker 4]
+So I'm gonna fast forward so it's got layers through this exploration.
+00:09:21 [Speaker 4]
+We go down to skip the twilight.
+00:09:24 [Speaker 4]
+Alright.
+00:09:24 [Speaker 4]
+That's where we go.
+
+00:09:25 [Speaker 1]
+Does...
+00:09:25 [Speaker 1]
+Is it just a mute button, or can you...
+00:09:27 [Speaker 1]
+Do you have a volume slider by chance?
+
+00:09:30 [Speaker 4]
+A volume slider?
+
+00:09:31 [Speaker 1]
+It's just loud.
+00:09:33 [Speaker 1]
+It's a mute.
+00:09:33 [Speaker 1]
+Yeah.
+
+00:09:34 [Speaker 4]
+I don't know.
+00:09:34 [Speaker 4]
+But we do have one here.
+00:09:35 [Speaker 4]
+Is it a bit loud?
+
+00:09:37 [Speaker 1]
+Yeah.
+00:09:37 [Speaker 1]
+It's pretty loud.
+00:09:44 [Speaker 1]
+Better?
+00:09:45 [Speaker 1]
+I think so.
+
+00:09:46 [Speaker 4]
+Okay.
+00:09:47 [Speaker 4]
+We'll see.
+00:09:47 [Speaker 4]
+We'll see how this goes.
+00:09:50 [Speaker 4]
+So we're we're continuing to go down.
+00:09:51 [Speaker 4]
+Look at all the details.
+
+00:09:52 [Speaker 4]
+So I'm digging this, loving the world building, loving underwater, seeing myself, I'm gonna go down even further to the Midnight Wreck.
+00:10:01 [Speaker 4]
+Alright?
+00:10:01 [Speaker 4]
+So now we're getting into the Rive radio episodes here.
+00:10:04 [Speaker 4]
+It's post pic, dude.
+
+00:10:06 [Speaker 1]
+Oh, this is cool.
+00:10:06 [Speaker 1]
+I didn't go to Steve.
+00:10:07 [Speaker 1]
+This is cool.
+00:10:08 [Speaker 1]
+Yeah.
+00:10:08 [Speaker 1]
+We we start to see some
+
+00:10:09 [Speaker 2]
+of the we start to see
+
+00:10:10 [Speaker 4]
+some of the wildlife here.
+00:10:12 [Speaker 4]
+Oh, what do we got?
+00:10:13 [Speaker 4]
+Yes.
+00:10:14 [Speaker 4]
+Love this.
+00:10:15 [Speaker 4]
+Here's the chip.
+
+00:10:16 [Speaker 4]
+I think this is the chip from the intro.
+00:10:18 [Speaker 4]
+Rip?
+00:10:19 [Speaker 4]
+Woah.
+00:10:20 [Speaker 4]
+Yeah.
+00:10:20 [Speaker 4]
+Yeah.
+
+00:10:21 [Speaker 4]
+Now let's go step one step further to the abyss.
+00:10:25 [Speaker 4]
+Alright.
+
+00:10:27 [Speaker 2]
+And you come
+
+00:10:28 [Speaker 4]
+across you come across, like...
+00:10:30 [Speaker 4]
+So this...
+00:10:31 [Speaker 4]
+You open this up, and now you can submit your own demo or see the community library that we have set up for a lot of the submissions that people made.
+
+00:10:39 [Speaker 1]
+No way....
+
+00:10:40 [Speaker 4]
+Updated.
+00:10:41 [Speaker 4]
+This was this was sick.
+
+00:10:42 [Speaker 1]
+This was very, very cool and
+
+00:10:44 [Speaker 4]
+thoughtful and really appreciate this, man.
+00:10:46 [Speaker 4]
+Just wanted to give you a big shout out.
+00:10:48 [Speaker 4]
+Out.
+00:10:48 [Speaker 4]
+Love this.
+00:10:49 [Speaker 4]
+I think Mayank has a portfolio that, he submitted that he wants us to review.
+
+00:10:54 [Speaker 4]
+We will get to that, either this week or next.
+00:10:57 [Speaker 4]
+It might be next week, but we got you.
+00:10:58 [Speaker 4]
+Appreciate this.
+00:11:00 [Speaker 4]
+Yeah.
+00:11:00 [Speaker 4]
+Super, super cool.
+
+00:11:02 [Speaker 4]
+One more shout out that
+
+00:11:04 [Speaker 2]
+I wanna give is to, Soleil.
+00:11:06 [Speaker 2]
+So Soleil, who's been working on a little design interview show for the last, year and a half, two years, First of Kind.
+00:11:14 [Speaker 2]
+He's already on season three, dude.
+00:11:16 [Speaker 2]
+Yeah.
+00:11:17 [Speaker 2]
+He just dropped season three, interviewing some of the most prolific people in design.
+
+00:11:23 [Speaker 2]
+Really, really cool.
+00:11:24 [Speaker 2]
+I love just the aesthetic that they're doing.
+00:11:26 [Speaker 2]
+Speaking of which, so
+
+00:11:27 [Speaker 4]
+you can go watch
+
+00:11:27 [Speaker 2]
+the First of Kind, season three episode one on x, on YouTube, First of Kind.
+00:11:33 [Speaker 2]
+Look at these posters.
+
+00:11:35 [Speaker 1]
+Dude.
+00:11:36 [Speaker 1]
+So good.
+
+00:11:36 [Speaker 2]
+I love this aesthetic.
+00:11:38 [Speaker 2]
+So the first guest is, Guillermo Rausch from Vercel.
+00:11:43 [Speaker 2]
+And who do you think designed these?
+00:11:45 [Speaker 2]
+Take a guess.
+00:11:45 [Speaker 2]
+Do you know?
+
+00:11:46 [Speaker 1]
+I I do know.
+00:11:47 [Speaker 1]
+I I don't know.
+00:11:47 [Speaker 1]
+I would end up spoiling it.
+00:11:49 [Speaker 1]
+Yeah.
+00:11:49 [Speaker 1]
+Yeah.
+
+00:11:49 [Speaker 2]
+Yeah.
+00:11:50 [Speaker 2]
+So quarter, Harris.
+00:11:52 [Speaker 2]
+Right?
+00:11:52 [Speaker 2]
+Like, they shared some of this.
+00:11:54 [Speaker 2]
+Just super, super cool.
+
+00:11:57 [Speaker 1]
+Did you see a a news video from paper?
+
+00:12:00 [Speaker 2]
+I did not.
+
+00:12:02 [Speaker 1]
+Dude.
+00:12:02 [Speaker 1]
+It's just that......
+00:12:03 [Speaker 1]
+Using, like,
+
+00:12:04 [Speaker 2]
+paper shadows and stuff like that?
+
+00:12:06 [Speaker 1]
+No.
+00:12:06 [Speaker 1]
+No.
+00:12:06 [Speaker 1]
+Soleil Soleil put it in the in the fantasy chat, actually.
+00:12:11 [Speaker 1]
+Oh.
+00:12:11 [Speaker 1]
+But if you just search...
+
+00:12:14 [Speaker 1]
+Let's see here.
+
+00:12:16 [Speaker 2]
+Yeah.
+00:12:16 [Speaker 2]
+Tell me.
+
+00:12:18 [Speaker 1]
+I get you.
+00:12:18 [Speaker 1]
+Like, I'm trying to think of the the best way to to give the the link here.
+00:12:23 [Speaker 1]
+Okay.
+00:12:23 [Speaker 1]
+A g u s e g u I.
+00:12:27 [Speaker 1]
+Give that a little search.
+
+00:12:28 [Speaker 1]
+A g u s e g u I.
+
+00:12:33 [Speaker 2]
+This one here?
+00:12:33 [Speaker 2]
+Yeah.
+00:12:34 [Speaker 2]
+The monologue?
+
+00:12:36 [Speaker 1]
+No.
+00:12:36 [Speaker 1]
+No.
+00:12:36 [Speaker 1]
+No.
+00:12:36 [Speaker 1]
+No.
+00:12:36 [Speaker 1]
+No.
+
+00:12:37 [Speaker 1]
+That's...
+00:12:37 [Speaker 1]
+He just
+
+00:12:38 [Speaker 4]
+Oh, right here.
+
+00:12:41 [Speaker 1]
+Yeah.
+00:12:42 [Speaker 1]
+It's...
+00:12:44 [Speaker 1]
+He, like, made, like, the animation engine for it.
+00:12:46 [Speaker 1]
+I mean, that's so good.
+00:12:48 [Speaker 1]
+So cool.
+
+00:12:49 [Speaker 1]
+This is such a fun visual language.
+00:12:51 [Speaker 1]
+It's really hard to do something that is fresh, you know, like, fresh fresh.
+00:12:56 [Speaker 1]
+And I I haven't seen this before.
+00:12:59 [Speaker 1]
+I I think it's really, really good.
+
+00:13:01 [Speaker 2]
+I love how it picks...
+00:13:02 [Speaker 2]
+Like, each each little label it has its own feel, and then it's pixelated in...
+00:13:07 [Speaker 2]
+Inside of it.
+00:13:08 [Speaker 2]
+That's...
+00:13:08 [Speaker 2]
+Oh, it's so good, man.
+
+00:13:10 [Speaker 1]
+I'm completely addicted to this.
+00:13:11 [Speaker 1]
+Everything about the visual language, the animation style, the...
+00:13:14 [Speaker 1]
+I mean, it's just...
+00:13:14 [Speaker 1]
+It's so well done.
+
+00:13:15 [Speaker 2]
+Absolutely killed it.
+00:13:16 [Speaker 2]
+So shout out to both of those.
+00:13:18 [Speaker 2]
+Those...
+00:13:19 [Speaker 2]
+But just love love, starting off a good Thursday near the end of the week with some sick design work.
+00:13:25 [Speaker 2]
+We have more to show soon.
+
+00:13:27 [Speaker 2]
+Unfortunately, we're also kicking off the end of the week here with some spooky cybersecurity incidents, man.
+00:13:36 [Speaker 2]
+I don't know.
+00:13:37 [Speaker 2]
+Our team has been making sure we're buttoned down.
+00:13:40 [Speaker 2]
+I think if you are on a team at all, this has probably come up somewhere.
+00:13:45 [Speaker 2]
+But even if you're not a team.
+
+00:13:46 [Speaker 2]
+Right?
+00:13:46 [Speaker 2]
+Talking about Guillermo.
+00:13:47 [Speaker 2]
+He's Vercel's out here, like, hey, we've got a firewall levels of...
+00:13:51 [Speaker 2]
+We're we're patching vulnerabilities as fast as we can.
+00:13:54 [Speaker 2]
+You have people calling this the cybersecurity Black October, which I think, like, Black October is a name for anytime some sort of black swan event happens, whether it's a stock market crash or some sort of war related thing.
+
+00:14:06 [Speaker 2]
+And in this case, we have...
+00:14:08 [Speaker 2]
+What I'm understanding is these massive security incidents that all of the different cybersecurity threat detection agencies, their rating systems, One of these incidents are rated, like, nine nine or 10.
+00:14:22 [Speaker 2]
+The highest it can be.
+00:14:24 [Speaker 2]
+And then there's, like, 12 different incidents that are nine and tens happening all at the same time right now.
+00:14:30 [Speaker 2]
+So Yeah.
+
+00:14:31 [Speaker 2]
+My very simple understanding of this is you have things like PHP.
+00:14:36 [Speaker 2]
+If you run certain versions of PHP, on a server, these are, like, all WordPress websites are getting affected by this, Apache, etcetera.
+00:14:45 [Speaker 2]
+You are you are told to update immediately.
+00:14:48 [Speaker 2]
+People are able to access your server without needing any sort of authorization, which is wild to think about.
+00:14:55 [Speaker 2]
+I don't understand how it works, but these are these these are attacks coming in.
+
+00:14:59 [Speaker 2]
+Then on top of that, you have, a bunch of other systems.
+00:15:03 [Speaker 2]
+Like, we got notices from Railway, who were saying we're compromised.
+00:15:07 [Speaker 2]
+Node.
+00:15:08 [Speaker 2]
+Js had compromises.
+00:15:10 [Speaker 2]
+And it just kept...
+
+00:15:10 [Speaker 2]
+It feel like it kept hitting.
+00:15:12 [Speaker 2]
+GitLab, announced compromises.
+00:15:14 [Speaker 2]
+This just was...
+00:15:15 [Speaker 2]
+It was like one after the other.
+00:15:17 [Speaker 2]
+So much so.
+
+00:15:18 [Speaker 2]
+So you had, like, the PHP Foundation saying, hey, here's what we're doing about it.
+00:15:22 [Speaker 2]
+The problem with this is usually when these vulnerabilities are announced, or found, usually, the companies, the PHP Foundation, etcetera, are announcing them after patches have been published.
+00:15:35 [Speaker 2]
+But this...
+00:15:35 [Speaker 2]
+These vulnerabilities were discovered and then started circulating to the mainstream before the patches were ready.
+00:15:42 [Speaker 2]
+And so because of that, and you had, like, Node.
+
+00:15:45 [Speaker 2]
+Js talking about their security updates that are available.
+00:15:47 [Speaker 2]
+Everyone was immediately on this.
+00:15:50 [Speaker 2]
+Railway was, like, urgent notice.
+00:15:52 [Speaker 2]
+But you even had departments, state level departments across Europe, the NSA Cyber said effective immediately.
+00:16:00 [Speaker 2]
+Basically, advising companies to do one of two actions, either take down your website, unplug that thing, take down your server, or patch it right now.
+
+00:16:12 [Speaker 2]
+And those were essentially the only two options that they were recommending, which is pretty wild to see.
+00:16:18 [Speaker 2]
+You had people from, like, CloudFlare who were talking deeply about this.
+00:16:22 [Speaker 2]
+So everybody on top of this at every layer has been saying, hey.
+00:16:26 [Speaker 2]
+Take action.
+00:16:27 [Speaker 2]
+Even...
+
+00:16:27 [Speaker 2]
+And so that, like, there there are some vulnerabilities here.
+00:16:29 [Speaker 2]
+I had, some of my friends who I've worked on old projects with.
+00:16:30 [Speaker 2]
+We had a we had a, friends who I've worked on old projects with.
+00:16:34 [Speaker 2]
+We had a we had a, an app that we tried to do something with a few years back called Teardowns.
+00:16:39 [Speaker 2]
+It was like mobbing for AI UiPath.
+
+00:16:41 [Speaker 2]
+Yeah.
+00:16:41 [Speaker 2]
+I remember that.
+00:16:43 [Speaker 2]
+And, you know, it's like whatever.
+00:16:44 [Speaker 2]
+It's just kinda living, coexisting.
+00:16:45 [Speaker 2]
+And he's like, hey, man.
+
+00:16:46 [Speaker 2]
+Just so you know, I went and, like, rotated keys.
+00:16:48 [Speaker 2]
+I shut this service down, that service down because, some of the things that are at highest risk are those dormant projects sitting out there that you might not be thinking twice about, but probably have a vector of attack.
+00:17:01 [Speaker 2]
+They get into that.
+00:17:02 [Speaker 2]
+They could get all kinds of information, maybe then spin off into something else that you wouldn't expect.
+00:17:06 [Speaker 2]
+So rotate your keys.
+
+00:17:09 [Speaker 2]
+Make sure everything's updated, including your personal devices, your phones, your operating systems, your, your versions of the different frameworks you're using.
+00:17:17 [Speaker 2]
+Get out there and you spend a day working with AI, just updating absolutely everything.
+00:17:23 [Speaker 2]
+It's not a joke.
+00:17:24 [Speaker 2]
+Pretty crazy
+
+00:17:25 [Speaker 1]
+stuff.
+00:17:25 [Speaker 1]
+And then you have, like, all the stuff about, you know, bank infiltration and everything.
+00:17:29 [Speaker 1]
+He kind of...
+00:17:30 [Speaker 1]
+Especially not living in a tech hub.
+00:17:33 [Speaker 1]
+You know, the meme where it has, like, the stick figures and the...
+
+00:17:35 [Speaker 1]
+You know, you're at the party and they don't know that blank.
+00:17:38 [Speaker 1]
+It's kinda felt like that a little bit for me.
+00:17:40 [Speaker 1]
+I'm like...
+00:17:40 [Speaker 1]
+I was, like, with a group of guys I was friends with, you know, we're having lunch.
+00:17:43 [Speaker 1]
+I'm kinda looking around like, you guys...
+
+00:17:45 [Speaker 1]
+Nobody knows anything.
+00:17:46 [Speaker 1]
+You don't you don't even know that the entire Internet is under attack.
+00:17:50 [Speaker 1]
+You know?
+00:17:50 [Speaker 1]
+It's crazy.
+
+00:17:51 [Speaker 2]
+Like, truly half the Internet feels like it's under attack, if not more.
+00:17:54 [Speaker 2]
+And you're right.
+00:17:55 [Speaker 2]
+Yeah.
+00:17:55 [Speaker 2]
+The major US banks were saying, hey.
+00:17:57 [Speaker 2]
+We're detecting unauthorized third party AI agents operating inside of customer accounts.
+
+00:18:02 [Speaker 2]
+It's funny.
+00:18:02 [Speaker 2]
+I just went shopping for a, a minivan.
+00:18:05 [Speaker 2]
+We have a huge family, and it was time to get something a little bit more comfortable for him.
+00:18:10 [Speaker 2]
+And I had my AI agent moving through everything to try to find good deals, loan stuff, operating on my behalf.
+00:18:17 [Speaker 2]
+And one of the problems that these...
+
+00:18:19 [Speaker 2]
+So I don't know that the major...
+00:18:21 [Speaker 2]
+The bank issue is necessarily related to some of these, like, vulnerability attacks that we were hearing about.
+00:18:28 [Speaker 2]
+They could be because what they're seeing is a giant influx of AI agent activity, and they can't tell two things.
+00:18:37 [Speaker 2]
+One, if they can't tell the difference between an agent and a human now, because browser use essentially renders that
+
+00:18:42 [Speaker 4]
+Mhmm.
+
+00:18:43 [Speaker 2]
+Hard to tell.
+00:18:44 [Speaker 2]
+And they can't tell if the actions the agents are taking are on behalf of the human or just rogue actions.
+00:18:51 [Speaker 2]
+And so that creates a really complicated problem.
+00:18:56 [Speaker 2]
+And now that you have all these other vulnerabilities out there, it's like, I think already Chase is now completely blocked, if they can tell, agent activity.
+00:19:05 [Speaker 2]
+There's a number of other banks that'll probably follow suit.
+
+00:19:08 [Speaker 2]
+It's it's a whole thing.
+00:19:09 [Speaker 2]
+I have a I have a group with a bunch of friends in the space, whole whole wide range of politics, whole wide range of philosophies, And we sometimes...
+00:19:18 [Speaker 2]
+We just entertain, like, what are the black swan events that will happen potentially in 2027?
+00:19:24 [Speaker 2]
+And it's like you wake up one day, and your bank accounts are just drained.
+00:19:28 [Speaker 2]
+You know?
+
+00:19:30 [Speaker 2]
+Electrical grid.
+00:19:30 [Speaker 2]
+It's like all these things.
+00:19:31 [Speaker 2]
+And and I say, like, one of the things I wish a lot of the advocates who are making a lot of noise, who are kind of anti AI and they make noise about, like, water and environmental.
+00:19:41 [Speaker 2]
+I'm like, I really wish that wasn't the focus because the things that do deserve the noise are the fact that there are so many rogue AI agents that are just...
+00:19:50 [Speaker 2]
+That's just our infrastructure now.
+
+00:19:52 [Speaker 2]
+And we need to...
+00:19:53 [Speaker 2]
+You know, I I don't know that advocacy is necessarily needed because the cybersecurity agencies that need to know about it are very well aware of this.
+00:20:03 [Speaker 2]
+Dax basically says, hey.
+00:20:06 [Speaker 2]
+This is this is our new reality.
+00:20:08 [Speaker 2]
+Like, oh, we think this is a one off event.
+
+00:20:11 [Speaker 2]
+This is just how it's probably going to be.
+00:20:14 [Speaker 2]
+Yeah.
+00:20:15 [Speaker 2]
+You know?
+00:20:16 [Speaker 2]
+This is a 20...
+
+00:20:17 [Speaker 1]
+We talked about this at dinner after the...
+00:20:20 [Speaker 1]
+One of the nights at Vallecon.
+00:20:21 [Speaker 1]
+This was, like, the topic of conversation at the dinner table was...
+
+00:20:24 [Speaker 2]
+Yeah.
+
+00:20:25 [Speaker 1]
+Does the Internet in the long run...
+00:20:27 [Speaker 1]
+Like, are we racing towards this world where the Internet is almost unusable because it's really just agent highways, and you almost create your own more niche surface area where you're scraping the things that you want and creating your own consumption experiences, but the Internet is basically overrun.
+00:20:43 [Speaker 1]
+And I think it's really tied to a lot of the stuff we're talking about today with the MCPs.
+00:20:46 [Speaker 1]
+You think about the bank example where they don't know who...
+00:20:49 [Speaker 1]
+Like, which...
+
+00:20:50 [Speaker 1]
+What's a rogue agent versus what's an agent that is doing a a task that the user wants done.
+00:20:54 [Speaker 1]
+Right?
+00:20:55 [Speaker 1]
+And it's so frustrating right now when a service locks me out, and I can't use Grokbot with it, and they just shut it down.
+00:21:03 [Speaker 1]
+You know?
+00:21:03 [Speaker 1]
+Drives me crazy.
+
+00:21:04 [Speaker 1]
+But on one hand, you're like, I kinda get it, but it...
+00:21:06 [Speaker 1]
+It's just such a...
+00:21:07 [Speaker 1]
+It's the wild, wild West right now in terms of what the experiences that you're creating for people to be able to use agents and how do you do that in a way that is safe.
+00:21:17 [Speaker 1]
+Like, it kinda feels like we're making progress a heck of a lot faster than we're putting the right guardrails in place.
+
+00:21:24 [Speaker 2]
+Yeah.
+00:21:24 [Speaker 2]
+I mean, it makes a lot of sense now why it's it's so hard to know if, like, the labs, if it's a marketing, if it's performative.
+00:21:31 [Speaker 2]
+There was some sentiment that, like, all the doomerism about how the site...
+00:21:35 [Speaker 2]
+How risky a lot of this was going to be, and then the the eight...
+00:21:39 [Speaker 2]
+The labs going to the governments and saying, hey.
+
+00:21:41 [Speaker 2]
+Like, we wanna get ahead of this.
+00:21:43 [Speaker 2]
+Who knows?
+00:21:44 [Speaker 2]
+You know?
+00:21:44 [Speaker 2]
+Maybe there was some...
+00:21:46 [Speaker 2]
+It's definitely some merit here.
+
+00:21:48 [Speaker 2]
+It's gonna...
+00:21:49 [Speaker 2]
+It's...
+00:21:50 [Speaker 2]
+So I I come from, this kind of cybersecurity space.
+00:21:54 [Speaker 2]
+I am not somebody who's an expert on it, but I was at least adjacent to having to understand the topic with a company I worked with, some years ago.
+00:22:02 [Speaker 2]
+And I worked there for about two years.
+
+00:22:04 [Speaker 2]
+And, you know, it is a cat and mouse game, and it never will change.
+00:22:07 [Speaker 2]
+What's probably different right now is the fact that the scale and the volume, and maybe even the severity, the risk now, is that no systems are safe the way they used to be.
+00:22:21 [Speaker 2]
+You know, like, even the old...
+00:22:23 [Speaker 2]
+Like, a lot of people are like, why are people still using old, these antiquated legacy frameworks?
+00:22:28 [Speaker 2]
+And it's like, well, because a lot of those have so much hardening behind them.
+
+00:22:32 [Speaker 2]
+They're so complicated to get into compared to some of the more modern frameworks.
+00:22:36 [Speaker 2]
+That doesn't seem to be the case anymore.
+00:22:38 [Speaker 2]
+Now you can just throw AI at swarms at everything.
+00:22:42 [Speaker 2]
+So then then what?
+00:22:43 [Speaker 2]
+You know?
+
+00:22:44 [Speaker 2]
+We will see, man.
+00:22:45 [Speaker 2]
+Pretty crazy.
+
+00:22:46 [Speaker 1]
+We will see.
+
+00:22:47 [Speaker 2]
+Black October.
+00:22:49 [Speaker 2]
+But I...
+00:22:49 [Speaker 2]
+So we're gonna change the tone in a second.
+00:22:51 [Speaker 2]
+I have had to address that because it's something we're all dealing with.
+00:22:54 [Speaker 2]
+But I will say, in lighter news, we have a lot of people in the community who are moving.
+
+00:23:01 [Speaker 2]
+Now there's there's...
+00:23:02 [Speaker 2]
+You know, when we saw it...
+00:23:03 [Speaker 2]
+For those who watch t VPN, they created this trading card aesthetic.
+00:23:08 [Speaker 2]
+Anytime big players in this tech space moved over to different companies.
+00:23:13 [Speaker 2]
+And it very much felt like there was this top echelon of performers who were worth tracking.
+
+00:23:20 [Speaker 2]
+Like, oh my god.
+00:23:21 [Speaker 2]
+Someone just, Wabi, for example.
+00:23:23 [Speaker 2]
+It was, like, in, like, last month.
+00:23:25 [Speaker 2]
+Henry Modesitt coming from Perplexity, now going over to Wabi.
+00:23:30 [Speaker 2]
+And it was right as Wabi two point o was announced, and it was like, oh, that's a really big deal.
+
+00:23:35 [Speaker 2]
+And now you have, you know, Emil Kowalski going from Lanier to To Be Determined, hasn't announced it yet.
+00:23:43 [Speaker 2]
+And and that's big news.
+00:23:44 [Speaker 2]
+We're like, woah.
+00:23:45 [Speaker 2]
+Where is he going?
+00:23:46 [Speaker 2]
+One of the, I think, you know, godfathers here of of really good interaction design.
+
+00:23:51 [Speaker 2]
+But another one that really shook it up for me too in the same week was Pablo Stanley announcing that he is moving on from Vercel going over to Anthropic, specifically to work on Claude Duet, their new, agent that they're they're kind of wait listing and slow releasing.
+00:24:11 [Speaker 2]
+And I, you know, I have a lot I wanna say about the Claude Duet thing, and I think we actually do have an episode coming up on personal agents.
+00:24:18 [Speaker 2]
+So I'll I'll save some of that for it.
+00:24:21 [Speaker 2]
+But this really brought a question.
+00:24:23 [Speaker 2]
+I thought it was really timely from Brad Young, who's in our Discord community.
+
+00:24:27 [Speaker 2]
+And I I wanna play it.
+00:24:29 [Speaker 2]
+We answered and we gave our take.
+00:24:30 [Speaker 2]
+I gave, like, a seven minute take in Discord.
+00:24:32 [Speaker 2]
+You gave, like, a two, three minute take.
+00:24:35 [Speaker 2]
+But I think this is something worth talking about here.
+
+00:24:37 [Speaker 2]
+And this is what Brad had to say or rather had to ask.
+
+00:24:44 [Speaker 6]
+Hey, Tommy and Red.
+00:24:46 [Speaker 6]
+Wants to chime in.
+00:24:48 [Speaker 6]
+Had a a thought.
+00:24:51 [Speaker 6]
+I just saw the news about, Pablo Stanley joining Anthropic, and it made me think, you know, there's this kind of, like, group of...
+00:25:02 [Speaker 6]
+Not group of designers because they're all individuals.
+
+00:25:05 [Speaker 6]
+They're not part of a group necessarily.
+00:25:07 [Speaker 6]
+But there's all these designers that I've noticed over the past maybe six months to twelve months where they've kind of shuffled between companies.
+00:25:18 [Speaker 6]
+You know, they they started at maybe Anthropic, or maybe they started at OpenAI, or maybe they started at Ramp, or maybe they started at Perplexity, etcetera.
+00:25:31 [Speaker 6]
+And they kind of jumped from company to company.
+00:25:34 [Speaker 6]
+You know, obviously, Pablo Stanley, I think, was at Vercel prior to this, which is another one of those companies.
+
+00:25:40 [Speaker 6]
+But it seems like there's this kind of, like, upper crust of designers that are very...
+00:25:48 [Speaker 6]
+I don't know if they're...
+00:25:50 [Speaker 6]
+If it's that they're so hotly contested that they're jumping, you know, every six months to these, basically, almost like competitors in a way.
+00:26:00 [Speaker 6]
+But all that to say, what are your thoughts around, like, becoming a designer like that where you can...
+00:26:10 [Speaker 6]
+You you have the luxury of jumping ship from, you know, Vercel to Anthropic to, to XAI to, you know, Perplexity or OpenAI, you know, that that kind of top level echelon where it seems like once you break through, you kind of get to just hop from company to company almost at your leisure.
+
+00:26:32 [Speaker 6]
+I'm sure it's not like that in reality.
+00:26:34 [Speaker 6]
+But from the x announcements, you know, it kind of seems like that in a way.
+00:26:39 [Speaker 6]
+So I'm just curious on, like, what your your guys' opinions are around that.
+00:26:45 [Speaker 6]
+And if...
+
+00:26:46 [Speaker 2]
+Yeah.
+00:26:46 [Speaker 2]
+I...
+00:26:47 [Speaker 2]
+So I I thought you had a really good take.
+00:26:50 [Speaker 2]
+I'm curious if you have anything that you've...
+00:26:52 [Speaker 2]
+That's come to mind since then.
+
+00:26:55 [Speaker 2]
+What do you feel about this?
+00:26:56 [Speaker 2]
+That that upper crust, he says, of designers getting, that we seem to follow them from one massive player in the space to the next.
+00:27:06 [Speaker 2]
+And it seems like, it seems kind of like inside baseball.
+
+00:27:13 [Speaker 4]
+Oh, you're muted, bud.
+
+00:27:17 [Speaker 1]
+I muted myself to blow my nose.
+00:27:19 [Speaker 1]
+It's more nuanced, I think, than you would initially think was kind of my point because it's...
+00:27:26 [Speaker 1]
+You look at somebody, and and I would imagine a lot of people feel this way where you look at Pablo.
+00:27:29 [Speaker 1]
+Okay.
+00:27:30 [Speaker 1]
+Maybe Pablo's not a great example because to be honest, he's probably a better designer than you are.
+
+00:27:34 [Speaker 1]
+But oftentimes, it's like, man, my work's good.
+00:27:38 [Speaker 1]
+You know?
+00:27:38 [Speaker 1]
+Like, why why why am I not desired in the same way?
+00:27:42 [Speaker 1]
+And I think there's two primary elements.
+00:27:45 [Speaker 1]
+One is there is a a skill and experience angle to this.
+
+00:27:49 [Speaker 1]
+And, you know, you look at somebody like Pablo, dude's a perfect fit.
+00:27:52 [Speaker 1]
+He's perfect to work on duet.
+00:27:54 [Speaker 1]
+He's already doing...
+00:27:55 [Speaker 1]
+He was doing the the agent management with Elos, and he's really deep into, like, that way of working.
+00:28:01 [Speaker 1]
+The other element, though, is there's more concentration, like, more concentration of demand for design talent than really ever before.
+
+00:28:10 [Speaker 1]
+We have an unbelievable amount of money being thrown at people.
+00:28:12 [Speaker 1]
+These people are getting bags.
+00:28:14 [Speaker 1]
+Right?
+00:28:14 [Speaker 1]
+People are getting paid a lot of money at the top end of the market.
+00:28:18 [Speaker 1]
+So, of course, people are jumping ship because they can just make a ton of money.
+
+00:28:21 [Speaker 1]
+Like, this is the time to jump ship and bounce around because you just get, like, some ridiculous pay raises.
+00:28:25 [Speaker 1]
+But because of that and because these teams are trying to scale, I think there's more weight than ever put on hiring somebody that in themselves is a brand that attracts a bunch of talent to the rest of the team.
+00:28:40 [Speaker 1]
+And so we're talking about it.
+00:28:42 [Speaker 1]
+It got brought up in the Discord.
+00:28:43 [Speaker 1]
+It got, you know, who knows how many tens of thousands of impressions on Twitter.
+
+00:28:47 [Speaker 1]
+So all of a sudden, that is just inflating the desirability of the anthropic design org even more where the value from a branding and perception standpoint is honestly just as high as what he's gonna bring to the table from a skill standpoint.
+00:29:02 [Speaker 1]
+And you kinda just gotta remember that when you see all of these announcements.
+00:29:06 [Speaker 1]
+Like, yeah, there's a reason it's happening to the the people with all the Twitter followers because it's, like, half marketing and half skill acquisition.
+
+00:29:13 [Speaker 2]
+Yeah.
+00:29:13 [Speaker 2]
+I I think what people might be surprised to hear is how hard even these top companies that we're talking about, how hard of a time they're having finding the talent that they're looking for.
+
+00:29:26 [Speaker 1]
+It is It's so intense.
+
+00:29:28 [Speaker 2]
+It is so competitive, and they've got all the resources.
+00:29:31 [Speaker 2]
+You have that much resources, and you're trying to aim for, like, a...
+00:29:35 [Speaker 2]
+An s tier level talent, and it is still extremely hard to find that or evaluate that.
+00:29:41 [Speaker 2]
+And what...
+00:29:42 [Speaker 2]
+So what do you do?
+
+00:29:42 [Speaker 2]
+Well, first, let's understand that the companies we're talking about are companies that help other software companies.
+00:29:48 [Speaker 2]
+Now some of these extend far beyond beyond that as well.
+00:29:52 [Speaker 2]
+But that there's a certain flavor and smell to these companies that, if you're on Twitter, you probably are speaking the language of, hey.
+00:30:01 [Speaker 2]
+This is the kind of work I do, and it's, you know, someone like Pablo fits perfectly into those molds.
+00:30:07 [Speaker 2]
+But his ability to come and attract that talent's a huge part of it.
+
+00:30:11 [Speaker 2]
+But let me give my own experience for example here.
+00:30:14 [Speaker 2]
+When we were going through all these portfolios last week, and we're gonna go through a couple of them to, at the end of the show, the...
+00:30:21 [Speaker 2]
+One of the main things that kept coming up is leading with the work.
+00:30:24 [Speaker 2]
+And nothing is going to sell your abilities like the work that you're sharing, the work that you're shipping.
+00:30:31 [Speaker 2]
+That's gonna say, this is who I am.
+
+00:30:32 [Speaker 2]
+This is what I'm capable of, and that is the best evidence of it.
+00:30:36 [Speaker 2]
+And so I went through this trajectory when I left.
+00:30:40 [Speaker 2]
+When I stopped trying to promote myself and I got more into media for a while, and then it became clear that I was, like, a founder doing things, I saw my drop off rate of in...
+00:30:49 [Speaker 2]
+Inbound, hey.
+00:30:50 [Speaker 2]
+You wanna come work for us?
+
+00:30:52 [Speaker 2]
+Starts to to decrease.
+00:30:54 [Speaker 2]
+Because I think the work I'm putting out there looks...
+00:30:57 [Speaker 2]
+Doesn't look like I'm doing design.
+00:30:59 [Speaker 2]
+It looks like I'm doing media.
+00:31:01 [Speaker 2]
+But it doesn't look like I'm a marketer, so, like, that kind of...
+
+00:31:03 [Speaker 2]
+It just kind of was this lull for a while.
+00:31:06 [Speaker 2]
+And then suddenly, I was doing more design, but also media and community.
+00:31:10 [Speaker 2]
+And then suddenly people were like, hey.
+00:31:12 [Speaker 2]
+Actually, we would love for you to come work for us because we think that, you know, that that...
+00:31:16 [Speaker 2]
+There's a community play there.
+
+00:31:17 [Speaker 2]
+There's maybe a talent play there.
+00:31:18 [Speaker 2]
+And so everything that I put out is exactly what I was being reached out for.
+00:31:24 [Speaker 2]
+And the same is true for whatever you do.
+00:31:26 [Speaker 2]
+And and I don't think it has anything to do with, oh, it's AI now.
+00:31:30 [Speaker 2]
+The...
+
+00:31:30 [Speaker 2]
+One of the metaphors or one of the examples I gave in the Discord was if you were working in, like, medical tech, there's a lot of nuances to that.
+00:31:39 [Speaker 2]
+It's largely an unsexy industry, but it is a very complicated problem space, and it is not right for everybody.
+00:31:46 [Speaker 2]
+And if you wanna do really good work in that space, understanding how hospital networks and insurers work, alongside how data and HIPAA and all kinds of other regulations work with the transfer of data, if you are somebody who has worked in that space, you've built network in that space, you're not necessarily gonna wanna be posting on x to represent that.
+00:32:06 [Speaker 2]
+You're gonna find other outlets where people who are looking for you, maybe it's trade show, maybe it's conference specific things, that's where you're gonna find your value recognized.
+00:32:17 [Speaker 2]
+And so I think that the main takeaway for me is you have to really lean into what do you want to be known for, and then you just need to be hammering the watering holes where those people who are looking for that, where they're frequenting.
+
+00:32:31 [Speaker 2]
+And you need to be consistent about what you're being recognized for, either the the main thing or things around the thing.
+00:32:38 [Speaker 2]
+And that's gonna let you lock in.
+00:32:40 [Speaker 2]
+I mean, I knew a guy who was working in in, like, mining.
+00:32:43 [Speaker 2]
+He was a designer for mining software.
+00:32:46 [Speaker 2]
+There's not a lot of people who understood that space or had the connections.
+
+00:32:49 [Speaker 2]
+And this was maybe in 2021, making bank, making big money.
+00:32:55 [Speaker 2]
+Because he could just go into these legacy software and immediately solve problems.
+00:32:59 [Speaker 2]
+Just boom.
+00:33:00 [Speaker 2]
+Boom.
+00:33:00 [Speaker 2]
+Boom.
+
+00:33:01 [Speaker 2]
+You know?
+00:33:02 [Speaker 2]
+And that's the big thing.
+
+00:33:03 [Speaker 4]
+That's
+
+00:33:03 [Speaker 2]
+what it is.
+
+00:33:04 [Speaker 1]
+And I think it's an interesting time right now where so many of the jobs, especially the ones that are celebrated on Twitter, they...
+00:33:12 [Speaker 1]
+It's a lot of tools.
+00:33:13 [Speaker 1]
+It's a lot of companies that are gearing themselves towards designers, towards engineers, towards tech more broadly.
+00:33:19 [Speaker 1]
+Like, this example here, I think, is really interesting.
+00:33:21 [Speaker 1]
+Like, you know, Dan Petty joining Quiver.
+
+00:33:25 [Speaker 2]
+Right.
+
+00:33:25 [Speaker 1]
+My goodness.
+00:33:26 [Speaker 1]
+I don't know what Quiver's playing Dan Petty, but I bet he makes up for that just in his personality and association on Twitter alone.
+00:33:36 [Speaker 1]
+You know?
+00:33:36 [Speaker 1]
+Like, that's a really, really big deal.
+00:33:39 [Speaker 1]
+And people are always asking, you know, different shades of advice, and it's...
+
+00:33:46 [Speaker 1]
+I don't think it's unfortunate, but I think it's very frustrating for people how often the reality is.
+00:33:51 [Speaker 1]
+Like, dude, Twitter's really important.
+00:33:52 [Speaker 1]
+It's It's really important.
+00:33:53 [Speaker 1]
+It's really, really important.
+00:33:54 [Speaker 1]
+It gets Building some kind of a brand.
+
+00:33:57 [Speaker 1]
+Oh my god.
+00:33:58 [Speaker 1]
+People hate it.
+00:33:59 [Speaker 1]
+People hate it or they love it, and it's...
+00:34:01 [Speaker 1]
+I don't know.
+00:34:01 [Speaker 1]
+Like, guys, don't shoot the messenger kinda thing because I I was talking about this with James McDonald.
+
+00:34:06 [Speaker 1]
+I'm I'm really seeing an episode with him on Tuesday.
+00:34:08 [Speaker 1]
+I'm like, man, why don't you why don't you charge for the visibility that you create for these companies?
+00:34:15 [Speaker 1]
+Like, he has kind of a niche working in more, like, tech adjacent companies, you know, a 100,000 followers.
+00:34:20 [Speaker 1]
+Like, that dude drives, and he was telling me.
+00:34:22 [Speaker 1]
+He's like, yeah.
+
+00:34:22 [Speaker 1]
+Actually, I talk with the founders and, like, all of their biggest inflection points in terms of, like, the visitors on the website and everything is when I do their projects because I...
+00:34:30 [Speaker 1]
+He sends so many people their way.
+00:34:33 [Speaker 1]
+And, obviously, that's an extreme example, but you can see it.
+00:34:36 [Speaker 1]
+Even in the talent network, you can see when people even just subconsciously are influenced by, like, oh, wow.
+00:34:42 [Speaker 1]
+You know, like, they're a recognized person in the industry.
+
+00:34:46 [Speaker 1]
+Like, there's just a desirability factor that is honestly, just human nature at the end of the day.
+
+00:34:51 [Speaker 2]
+Yeah.
+00:34:52 [Speaker 2]
+Yeah.
+00:34:53 [Speaker 2]
+I I think it's a big deal.
+00:34:54 [Speaker 2]
+I think it...
+00:34:54 [Speaker 2]
+And and, again, using some of the examples, mining or medical technology.
+
+00:34:59 [Speaker 2]
+Pablo's not the right fit for that.
+00:35:01 [Speaker 2]
+Someone who's hiring for that position isn't...
+00:35:04 [Speaker 2]
+Like, Dan Petty's audience isn't gonna be valuable in that particular role.
+00:35:08 [Speaker 2]
+And so you just have to consider, like, where do these things slot in?
+00:35:12 [Speaker 2]
+What does it...
+
+00:35:13 [Speaker 2]
+What what is it that you're trying to be known for?
+00:35:16 [Speaker 2]
+Where does that best slot in?
+00:35:17 [Speaker 2]
+You know?
+00:35:18 [Speaker 2]
+You can't be that person who's been representing yourself as, like, a medical technology expert and wonder why you're not getting a phone call from Vercel.
+00:35:26 [Speaker 2]
+So what do you do?
+
+00:35:27 [Speaker 1]
+I give I give a really quick personal anecdote, actually.
+00:35:31 [Speaker 1]
+Short.
+00:35:31 [Speaker 1]
+But when I was applying for Maven, I didn't have a lot of Twitter followers.
+00:35:35 [Speaker 1]
+Like, I I was kind of...
+00:35:37 [Speaker 1]
+Nobody didn't have a big background, but that was one of the things that I sold myself on was...
+
+00:35:41 [Speaker 1]
+Because I was I was working with MDS, and I was, like, starting the early, like, Figma Academy stuff.
+00:35:46 [Speaker 1]
+And I had met a few other instructors.
+00:35:49 [Speaker 1]
+So I was trying to just network with people who were teaching to learn how they taught and how they thought about pedagogy and all this kind of stuff.
+00:35:55 [Speaker 1]
+And when I went and I was applying, I was pitching.
+00:35:58 [Speaker 1]
+I, like, sent this kind of, like, email pitching myself.
+
+00:36:00 [Speaker 1]
+One of the things was, hey.
+00:36:02 [Speaker 1]
+I'm already connected with these people.
+00:36:04 [Speaker 1]
+I'm already in this community.
+00:36:05 [Speaker 1]
+I can turn to people even for some, like, initial UX research and just to learn.
+00:36:10 [Speaker 1]
+And, like, that was one of the things that I kind of pointed to as why I was uniquely valuable as a candidate.
+
+00:36:16 [Speaker 1]
+And I think you can do that in almost any industry.
+
+00:36:19 [Speaker 2]
+Yeah.
+00:36:19 [Speaker 2]
+And and I wanna call out, like, when I I had a moment in my career where I was kind of this jack of all trades.
+00:36:26 [Speaker 2]
+I I could engineer.
+00:36:27 [Speaker 2]
+I could design.
+00:36:27 [Speaker 2]
+I could do a lot of things because I just had.
+
+00:36:31 [Speaker 2]
+But I was really bad at messaging myself.
+00:36:33 [Speaker 2]
+And I would kinda show up to these interviews and kinda lay out, like, well, here are the things I could do.
+00:36:39 [Speaker 2]
+You tell me what shape you want me to be.
+00:36:42 [Speaker 2]
+And that was, like, obviously, the worst approach possible because, you know, no one is looking to build the shape of you for the role.
+00:36:50 [Speaker 2]
+They're just saying, hey.
+
+00:36:52 [Speaker 2]
+Can you fill my problem space?
+00:36:55 [Speaker 2]
+And you just basically say, yeah, and here's why.
+00:36:58 [Speaker 2]
+And so if you're somebody who is maybe coming from an unrelated problem space, and you really wanna be considered for something that's different, well...
+00:37:07 [Speaker 2]
+And and you might have the skill set, but not the body of work that represents that same problem space, then the next best thing you can do is publicly be sharing your process.
+00:37:18 [Speaker 2]
+I think that's the next thing you could show is, like, hey.
+
+00:37:20 [Speaker 2]
+I might not have worked in software developer tools, but here's my process for coming up with really complex or cool things.
+00:37:28 [Speaker 2]
+And that alone is is is gonna get you further along in those interviews.
+00:37:32 [Speaker 2]
+And one of the things that we're really seeing today is MCP technology.
+00:37:38 [Speaker 2]
+MCPs, you know, are no different whether it's like a a a software developer tool, a design tool, something for, like, home automation.
+00:37:48 [Speaker 2]
+And and I think a lot of designers are finding themselves now not just using MCPs, but having to actually think about how they perform.
+
+00:37:56 [Speaker 2]
+They're kind of this invisible interface.
+00:37:59 [Speaker 2]
+And a perfect example of showing a process and talking about just how they're kinda using MCPs without really saying it is like Brett from DesignJoy.
+00:38:07 [Speaker 2]
+He talked a little bit about this, and we're gonna get specific to the MCP layer.
+00:38:11 [Speaker 2]
+But I thought I would share this just to kinda kick this off because this is what we're gonna talk about for the first half of today, is MCPs and how designers are operating with them.
+00:38:20 [Speaker 2]
+This is what Brett had to say.
+
+00:38:22 [Speaker 7]
+You you say you don't use skills.
+00:38:23 [Speaker 7]
+And how do you use your AI?
+00:38:24 [Speaker 7]
+Is there a rule file?
+00:38:25 [Speaker 7]
+We'd love to understand your process.
+00:38:26 [Speaker 7]
+No rule files.
+
+00:38:27 [Speaker 7]
+No skills.
+00:38:29 [Speaker 7]
+It usually...
+00:38:29 [Speaker 7]
+It goes as simple as this.
+00:38:31 [Speaker 7]
+I design a a page in...
+00:38:33 [Speaker 7]
+Inside of Figma, and I click the little development tab, and then there's a copy MCP whatever thing at this upper right hand corner, and it has your prompt already built in.
+
+00:38:43 [Speaker 7]
+I think it says something effective like, hey.
+00:38:45 [Speaker 7]
+Build this out or something like that.
+00:38:46 [Speaker 7]
+Paste that in the cloud.
+00:38:47 [Speaker 7]
+Boom.
+00:38:47 [Speaker 7]
+That's it.
+
+00:38:48 [Speaker 7]
+No skills.
+00:38:49 [Speaker 7]
+No nothing.
+00:38:50 [Speaker 7]
+Not saying that you shouldn't do skills.
+00:38:52 [Speaker 7]
+I'm sure skills have a a very useful place in the process and workflow of many other designers.
+00:38:57 [Speaker 7]
+I just...
+
+00:38:57 [Speaker 7]
+I haven't had the use case for it yet.
+00:38:59 [Speaker 7]
+Not to say that I won't.
+00:39:01 [Speaker 7]
+I can't think of a need why I would need to set up a bot in Grok to do anything for me.
+00:39:06 [Speaker 7]
+Now I I cannot get enough of it.
+00:39:08 [Speaker 7]
+I don't...
+
+00:39:09 [Speaker 7]
+I literally...
+00:39:09 [Speaker 7]
+I am creating bots for all kites...
+00:39:12 [Speaker 7]
+Types of shit.
+00:39:13 [Speaker 7]
+Like, I pull up mine right now.
+00:39:14 [Speaker 7]
+I'm not gonna show it on stream because it might have personal info in there.
+
+00:39:19 [Speaker 7]
+But I created...
+00:39:20 [Speaker 7]
+I do a lot of brand deals, so I created an agent, called the agent, that just manages all those, sends invoices for sponsored posts, lets me know when one needs to go out, lets me know when I need to provide a draft or or collect payment or whatever it is, or if there's any scheduling conflicts or whatever.
+00:39:37 [Speaker 7]
+Super, super easy.
+00:39:38 [Speaker 7]
+Just connected that to my ex account.
+00:39:40 [Speaker 7]
+It reads my DMs and basically runs that whole side of the business for me.
+
+00:39:46 [Speaker 7]
+I created a bot, obviously, to help me kinda draft content.
+00:39:49 [Speaker 7]
+Those two bots talk to each other, and so that's that's super great.
+00:39:53 [Speaker 7]
+So between those two things, it pretty much runs 90% of the the the brand deal side for me just through just through Grok bottle.
+00:39:59 [Speaker 7]
+Oh, I created a shopping one.
+00:40:00 [Speaker 7]
+So yesterday, like, my wife was like, hey.
+
+00:40:02 [Speaker 7]
+See if we could trade in this Apple Watch and what Best Buy would give you for it and and see what it would cost us in to upgrade to this one.
+00:40:09 [Speaker 7]
+I use a computer, so it just did all the checkout stuff for me, gave me all the numbers, and did the whole thing.
+00:40:15 [Speaker 7]
+So I have a...
+00:40:16 [Speaker 7]
+I have one of those.
+00:40:19 [Speaker 7]
+Let's see here.
+
+00:40:20 [Speaker 7]
+Ledger.
+00:40:20 [Speaker 7]
+So I I...
+00:40:22 [Speaker 7]
+Basically, anything that I purchased in any kind of my emails, I have it all connected to my emails.
+00:40:27 [Speaker 7]
+So anything that could be a tax write off, whether it's a technology purchase or a subscription, it automatically updates it into my expense sheet and tracks all that stuff more.
+00:40:36 [Speaker 7]
+May I have it check it, once a week and update anything like that.
+
+00:40:40 [Speaker 7]
+Just all kinds of stuff.
+00:40:41 [Speaker 7]
+Like, I have I have a bot set up for my Stripe subscriptions through...
+00:40:44 [Speaker 7]
+For DesignJoy.
+00:40:45 [Speaker 7]
+If there's any changes in them, any cancellations, any new ones, any of that kind of stuff.
+00:40:49 [Speaker 7]
+I have one set up for that.
+
+00:40:50 [Speaker 7]
+I mean, this list goes on
+
+00:40:51 [Speaker 1]
+and on and on and on and on.
+
+00:40:52 [Speaker 2]
+Ridd, are you using, how how often are you using agents and and interfacing with MCPs today?
+
+00:40:59 [Speaker 1]
+You know, it's funny because he started typing, or he was talking about, the invoicing, and I was like, oh, man.
+00:41:04 [Speaker 1]
+I haven't brought that into bots yet.
+00:41:06 [Speaker 1]
+I need to send this invoice.
+00:41:07 [Speaker 1]
+And so I literally just, like...
+00:41:08 [Speaker 1]
+Was like, hey.
+
+00:41:09 [Speaker 1]
+Can you just...
+00:41:10 [Speaker 1]
+I already started doing that.
+00:41:11 [Speaker 1]
+Dude, I need to send it over.
+
+00:41:12 [Speaker 2]
+Did you just send an invoice right now?
+
+00:41:15 [Speaker 1]
+I'm having it send an invoice for
+
+00:41:16 [Speaker 2]
+me right now.
+00:41:17 [Speaker 2]
+Yeah.
+
+00:41:17 [Speaker 1]
+It took me twelve seconds.
+00:41:20 [Speaker 1]
+I...
+00:41:21 [Speaker 1]
+Oh, man.
+00:41:22 [Speaker 1]
+I expect to be able to do everything from an agent now.
+00:41:25 [Speaker 1]
+Like, every single thing.
+
+00:41:26 [Speaker 1]
+I I I don't there are probably six tools that I use on a borderline daily basis through in flight that I never open, and the same thing for, Dive.
+00:41:42 [Speaker 1]
+Everything's powered by Notion.
+00:41:45 [Speaker 1]
+I don't really open Notion a ton anymore.
+00:41:47 [Speaker 1]
+I just do everything through GrokBot.
+00:41:49 [Speaker 1]
+I use Beehive for email.
+
+00:41:51 [Speaker 1]
+I never open Beehive anymore.
+00:41:53 [Speaker 1]
+I just use all of the connectors, and I'm just slinging from my agent all day.
+
+00:41:57 [Speaker 2]
+Notion has become my, like, collaborative space where the end output gets put in so that other...
+00:42:02 [Speaker 2]
+I can send it to other humans.
+00:42:04 [Speaker 2]
+And it's a bit of a repository too.
+00:42:07 [Speaker 2]
+But I will say, yeah, agents and their ability to use other tools has become, my...
+00:42:13 [Speaker 2]
+One of my primary use cases.
+
+00:42:16 [Speaker 2]
+And so much so that I am very, very aware of of the products I'm signing up for now.
+00:42:23 [Speaker 2]
+Do do you have an MCP?
+00:42:24 [Speaker 2]
+Oh, you don't?
+00:42:25 [Speaker 2]
+Yeah.
+00:42:26 [Speaker 2]
+Or it's, like, really immature?
+
+00:42:28 [Speaker 2]
+That's that's getting
+
+00:42:29 [Speaker 1]
+When I was designing the new in flight website, this is the whole...
+00:42:32 [Speaker 1]
+I would have never put a top nav up there for, like, secondary pages.
+00:42:37 [Speaker 1]
+It was that reason I put MCP as one of the main reasons because I wanted people to just subconsciously see it in the hero section because I'm the subconsciously see it in the hero section because I'm the same way, man.
+00:42:44 [Speaker 1]
+It's like Yeah.
+00:42:45 [Speaker 1]
+I remember, Kyle Zantos.
+
+00:42:46 [Speaker 1]
+Like, this was six months ago, and he was like, if it's not an MCP, I don't use it.
+00:42:50 [Speaker 1]
+And I'm like, whatever, man.
+00:42:52 [Speaker 1]
+I'm totally there now where I immediately look.
+00:42:55 [Speaker 1]
+Do you have an MCP?
+00:42:57 [Speaker 1]
+Great.
+
+00:42:57 [Speaker 1]
+Okay.
+00:42:57 [Speaker 1]
+I'll do it.
+00:42:57 [Speaker 1]
+If not, I'm out.
+
+00:42:59 [Speaker 2]
+It's it's it's...
+00:43:00 [Speaker 2]
+I'm churning from companies that aren't investing heavily into their MCP because there are still, like, some companies who have a version of an MCP, but it...
+00:43:09 [Speaker 2]
+You can tell it's kinda clunky.
+00:43:11 [Speaker 2]
+And I was trying to articulate, like, what makes a good MCP?
+00:43:16 [Speaker 2]
+And I think I've nailed at least a couple of things that I'm thinking about as we're building our MCP.
+
+00:43:21 [Speaker 2]
+We have a couple other things that we're gonna do for dive around an MCP.
+00:43:24 [Speaker 2]
+There...
+00:43:25 [Speaker 2]
+I'm really thinking meaningfully about this.
+00:43:26 [Speaker 2]
+So I wanted to ask some people.
+00:43:28 [Speaker 2]
+Jitter, for example, just released, the Jitter MCP.
+
+00:43:32 [Speaker 2]
+And again, a lot of these companies had, like, a version of this, but no one's truly felt, like, confident to go to market and bang a drum on it until recently.
+00:43:41 [Speaker 2]
+Suddenly, it seems like we're seeing a massive influx of these really thoughtful MCPs.
+00:43:47 [Speaker 2]
+And so I asked Robbie, the the CEO of Jitter, to talk a little bit about how...
+00:43:52 [Speaker 2]
+Like, what...
+00:43:53 [Speaker 2]
+Yes.
+
+00:43:53 [Speaker 2]
+What does the MCP do fine?
+00:43:56 [Speaker 2]
+But what what do you think about is a good user experience for MCPs?
+00:44:00 [Speaker 2]
+And and how are you thinking about it?
+00:44:02 [Speaker 2]
+So this is what he had to say.
+
+00:44:03 [Speaker 8]
+Hey, guys.
+00:44:04 [Speaker 8]
+Thanks for having me.
+00:44:05 [Speaker 8]
+So we launched Jira MCP yesterday, and we'd love to show you a little bit what it does and more importantly how we built it.
+00:44:11 [Speaker 8]
+I think that the most important concept that we introduced is that we don't want to build the MCP tool by tool, which would feel very limited.
+00:44:19 [Speaker 8]
+Like, we decided to provide everything that Jitter can do in one go to the agents.
+
+00:44:24 [Speaker 8]
+So basically what happens under the hood is that we're spawning, like, a Jitter instance on a server, and the agents can literally have access to everything you as a human can do, which means that you can literally ask the MCP to do anything, and it will never find, any limitations.
+00:44:41 [Speaker 8]
+One of the best use cases is probably to ask it to create, like, a video for you based on some of the context that you have in cloud or in other tools that are linked to your Cloud account.
+00:44:51 [Speaker 8]
+There is a lot of buzz on making launch videos at the moment, and with the MTP, you can exactly do that.
+00:44:57 [Speaker 8]
+You can give it references like Figma, screens, reference videos so it can take inspiration, and then I can just launch the task, and it's just going to execute it for me.
+00:45:08 [Speaker 8]
+This is what it outputs like in one shot, which is pretty impressive.
+
+00:45:12 [Speaker 8]
+But more importantly, what's really interesting is that if there is anything that I want edit, this is not like an MP4.
+00:45:19 [Speaker 8]
+Like, this is a Jitter file that I can keep tweaking, to my liking, and I can keep iterating with the MCP.
+00:45:26 [Speaker 8]
+Another interesting use case is how you can use the MCP to use all of your context, to go from one asset, an updated asset, to a full campaign.
+00:45:34 [Speaker 8]
+For instance, let's start from this asset, so let me copy the file link, and then I can say check this Jira file.
+00:45:44 [Speaker 8]
+Now generate five copy variants in this chat.
+
+00:45:50 [Speaker 8]
+And so I can iterate on that copy for as long as I want, and then ask to translate those to French, Italian, Spanish, and Chinese.
+00:46:03 [Speaker 8]
+Cool.
+00:46:03 [Speaker 8]
+So I've got all of those, and now I can simply ask to scale the campaign in Jitter using all these variations.
+00:46:14 [Speaker 8]
+And there you go.
+00:46:14 [Speaker 8]
+So it created all of those assets directly in Jitter with everything translated with all of the variants.
+
+00:46:22 [Speaker 8]
+And this is basically how we can go from one asset to one full localized campaign through the MCP.
+00:46:29 [Speaker 8]
+One of the big UX choices that we made was to make all of the editor entirely operable by agents, so that you can literally do anything.
+00:46:39 [Speaker 8]
+It's really about having Claude do all of the heavy lifting lifting for you and not constraining it.
+00:46:44 [Speaker 8]
+So starting with the editor, and obviously, we're now expanding this towards other areas of Jira to have the MCP, to have Claude, like, being able to manipulate files in your workspace, your brand kits, even your exports, leveraging all of the intelligence and all of the context that Clode has so that it can operate Jitter in the best way possible.
+00:47:02 [Speaker 8]
+Super excited about where this is going.
+
+00:47:04 [Speaker 8]
+Thanks again for having us.
+00:47:05 [Speaker 8]
+Give it a try and let us know what you think.
+
+00:47:08 [Speaker 5]
+I love the way
+
+00:47:09 [Speaker 2]
+you say Claude.
+
+00:47:10 [Speaker 1]
+I'm so excited about Jitter specifically because I've I've been a power user for a long time.
+00:47:14 [Speaker 1]
+I love Jitter.
+00:47:15 [Speaker 1]
+Love this product.
+00:47:16 [Speaker 1]
+And the most important context that really any company has nowadays is the code base.
+00:47:24 [Speaker 1]
+Right?
+
+00:47:25 [Speaker 1]
+It's like the keeper of everything.
+00:47:26 [Speaker 1]
+You understand what's new.
+00:47:28 [Speaker 1]
+You understand, like, new feature releases.
+00:47:30 [Speaker 1]
+Like, you could build pipelines to just turn new feature leases automatically into videos.
+00:47:36 [Speaker 1]
+It understands your visual language.
+
+00:47:37 [Speaker 1]
+It understands how you write copy.
+00:47:39 [Speaker 1]
+It it understands customers, everything.
+00:47:42 [Speaker 1]
+And that is the unlock for me.
+00:47:44 [Speaker 1]
+It's like, to...
+00:47:46 [Speaker 1]
+These tools have to be built on top of the code base.
+
+00:47:48 [Speaker 1]
+Everything has to be built on top of the code base.
+00:47:49 [Speaker 1]
+I'm very excited about this one in particular.
+
+00:47:52 [Speaker 2]
+Yeah.
+00:47:52 [Speaker 2]
+And, you know, the thing that really stuck out to me was the...
+00:47:56 [Speaker 2]
+He talks about the the decision they had to make, which was, you know, we didn't wanna just offer a couple of tools.
+00:48:03 [Speaker 2]
+We wanted to make the entire app usable by an agent in, like, the full interface.
+00:48:09 [Speaker 2]
+And I know that some designers, it's gonna kinda break your heart a little bit.
+
+00:48:13 [Speaker 2]
+Like, Rit.
+00:48:14 [Speaker 2]
+Yeah.
+00:48:15 [Speaker 2]
+The in flight UI is gorgeous.
+00:48:17 [Speaker 2]
+Like, it is truly, like, still finding some interesting patterns that I've not seen before.
+00:48:23 [Speaker 2]
+And through our MCP, it is very possible that there's a world not far from now where humans don't even touch it.
+
+00:48:31 [Speaker 1]
+Yeah, dude.
+00:48:32 [Speaker 1]
+And and and
+
+00:48:33 [Speaker 2]
+and that...
+00:48:34 [Speaker 2]
+I think that might make some designers a little sad, which...
+00:48:37 [Speaker 2]
+Understandable.
+00:48:39 [Speaker 2]
+But what happens is it's switching to...
+00:48:41 [Speaker 2]
+Well, then what actually is...
+
+00:48:43 [Speaker 2]
+An MCP isn't just like, hey.
+00:48:45 [Speaker 2]
+MCP is created.
+00:48:46 [Speaker 2]
+Now agent use, and it's all gravy.
+00:48:49 [Speaker 2]
+It's like, no, man.
+00:48:50 [Speaker 2]
+If you've ever...
+
+00:48:51 [Speaker 2]
+Like, listen.
+00:48:52 [Speaker 2]
+I I don't mean to throw people under the bus, but Figma's first MCP version was really unreliable at times.
+00:48:59 [Speaker 2]
+And it's hard to say why, but I can tell you at least two things that stand out to me, is when an agent is using an MCP, how much tokens does it cost?
+00:49:10 [Speaker 2]
+A really good MCP seems to optimize...
+00:49:13 [Speaker 2]
+Like, an agent knows exactly where to go, what to do, and when.
+
+00:49:17 [Speaker 2]
+And so you really limit the amount of, like, token spend it has to do understanding what to do.
+00:49:22 [Speaker 2]
+Whereas if you just said, hey, agent.
+00:49:24 [Speaker 2]
+Use the browser or use my computer and use this tool, it'll have to spend an enormous amount of tokens kind of path finding how to accomplish the task.
+00:49:33 [Speaker 2]
+So that's one version of an MCP that works really well.
+00:49:36 [Speaker 2]
+The other side is then, in the same vein, speed.
+
+00:49:39 [Speaker 2]
+How fast can an agent get to, get through the tasks it needs to do?
+00:49:44 [Speaker 2]
+What tools are available so that it can quickly or as quickly as possible render the output that you're trying to get?
+00:49:52 [Speaker 2]
+And I think that comes from just clearly defining, as Robbie kind of talked about, exactly what they should be doing.
+00:49:59 [Speaker 2]
+He's not the only person or team who's having to reckon with this idea that users may not be using their products the way it was before.
+00:50:10 [Speaker 2]
+And a perfect example of that is the team at Magic Patterns, who just released Magic OS.
+
+00:50:16 [Speaker 2]
+So I'm talking to a lot of these design founders, because they're the ones, first and foremost, reckoning with this.
+00:50:22 [Speaker 2]
+But there are designers too who are kind of building their own personal MCPs that we'll get into.
+00:50:26 [Speaker 2]
+But I wanna hear from Magic Patterns about how they made the decision to go into what...
+00:50:32 [Speaker 2]
+And I'm hearing this term operating system more and more.
+00:50:35 [Speaker 2]
+Oh, yeah.
+
+00:50:36 [Speaker 2]
+We created an operating system.
+00:50:38 [Speaker 2]
+And we're like, no.
+00:50:38 [Speaker 2]
+No.
+00:50:38 [Speaker 2]
+No.
+00:50:39 [Speaker 2]
+Operating systems, it's Windows or Apple or Linux.
+
+00:50:41 [Speaker 2]
+Like, what are you talking about?
+00:50:42 [Speaker 2]
+No.
+00:50:42 [Speaker 2]
+No.
+00:50:42 [Speaker 2]
+No.
+00:50:43 [Speaker 2]
+There seems to be this converging around an idea of these micro operating systems, and here's how MagicPatterns thinks about it.
+
+00:50:50 [Speaker 9]
+So we just released Magic OS, which is a controversial name.
+00:50:54 [Speaker 9]
+We got some feedback on it before launching it.
+
+00:50:56 [Speaker 10]
+Maybe it's a little bit extreme calling it an operating system.
+
+00:51:00 [Speaker 9]
+But the reason that we stuck with it is because it really is a file system under the hood.
+
+00:51:05 [Speaker 10]
+I think there's been a very fundamental shift in product building in that AI is now the expectation.
+00:51:12 [Speaker 10]
+In the pre AI era, this used to be the question, what do people need to do their work?
+00:51:17 [Speaker 10]
+How can you build a tool that fits into people's workflows?
+00:51:20 [Speaker 10]
+But I think workflows as a core concept has been shaken up a lot with AI.
+00:51:24 [Speaker 10]
+And this question of how do people actually do their work has become the bigger question.
+
+00:51:31 [Speaker 9]
+So the way people have been using magic patterns, they would be taking a document or images and using that to make a design.
+
+00:51:40 [Speaker 10]
+And I think that's where our feeling for the word OS has come from in that it feels like a more foundational level compared to an app.
+00:51:49 [Speaker 10]
+Right?
+00:51:49 [Speaker 10]
+Like, all apps are built on top of an operating system.
+
+00:51:52 [Speaker 9]
+So we thought, what if we put all of that on the canvas?
+00:51:55 [Speaker 9]
+What if the canvas itself became this underlying file system, this underlying operating system, and then the agent is interacting with that file system?
+
+00:52:05 [Speaker 10]
+And so that's why we named it Magic OS.
+00:52:07 [Speaker 10]
+We very much built Magic OS around AI being the default, and what that has meant is that every decision we made has prioritized the agent experience.
+00:52:16 [Speaker 10]
+A very core design philosophy we've had is anything a user can do, an agent should be able to do.
+
+00:52:22 [Speaker 9]
+Of course, what's powerful here too is we can go to something like Cursor, and we can use our MCP to just prompt another design to life, right, where the agent through Cursor is referencing that file system or that OS, that operating system.
+
+00:52:38 [Speaker 10]
+Another key one has been being MCP first in that, you know, a lot of folks these days are just working directly in their their main agent and just using MCPs
+
+00:52:48 [Speaker 9]
+to help orchestrate everything.
+00:52:50 [Speaker 9]
+You'll see we actually have Cursor working on this simultaneously.
+00:52:53 [Speaker 9]
+That's really the power of a canvas and many, many agents at once, right, bringing these designs to life.
+
+00:52:58 [Speaker 10]
+We treat external agents as literally a first class citizen in that it's given the same tools, the same prompt guidance, the same access as our in house built harness.
+00:53:09 [Speaker 10]
+We were very focused on building an environment that agents naturally thrive in, letting them write scripts, letting them spin up their own browser, taking screenshots, reviewing their own work.
+
+00:53:20 [Speaker 9]
+We think lots of people are gonna follow suit here and, you know, leverage their platforms and their harness to have many different file types.
+00:53:31 [Speaker 9]
+But the name, Magic OS has taken on on Magic patterns.
+
+00:53:35 [Speaker 10]
+We do fundamentally believe that this is a huge shift in how people do work, and it feels a lot more of a fundamental change than just, you know, a set of new features per se.
+
+00:53:48 [Speaker 2]
+Yeah, man.
+00:53:48 [Speaker 2]
+I I love the operating system metaphor.
+00:53:51 [Speaker 2]
+I don't know if it'll catch you.
+00:53:52 [Speaker 2]
+I've heard I've heard...
+00:53:53 [Speaker 2]
+You've heard me talk about it with the team.
+
+00:53:55 [Speaker 2]
+I've heard other companies out here using a lot of it.
+00:53:58 [Speaker 2]
+Because as you start to, like, break down what an MCP is, obviously, it's a set of tools and rules and, and connections, but it's like it starts to attach to a lot of things.
+00:54:08 [Speaker 2]
+And I think we're gonna enter as we get through this next era, you know, last December...
+00:54:14 [Speaker 2]
+And we...
+00:54:15 [Speaker 2]
+We're gonna do a full episode on on agents.
+
+00:54:17 [Speaker 2]
+I really think they deserve it.
+00:54:19 [Speaker 2]
+It won't be today.
+00:54:20 [Speaker 2]
+But my thought was, if last December to January, where everyone kinda had a holiday break and was really exploring Open Claw and agents, If that was the first kind of big spike in agentic workflows, it was very siloed.
+00:54:35 [Speaker 2]
+And this December, what seems to be happening, and there's a bunch of releases that make me think this, we are approaching multiplayer agentic work that is actually feasible amongst small teams.
+00:54:47 [Speaker 2]
+And if that's gonna be the case, logic would say...
+
+00:54:51 [Speaker 2]
+Suggest that there's a lot of, infrastructure that needs to be built to support that.
+00:54:57 [Speaker 2]
+Little mini operating systems that teams can come in and out of.
+00:55:00 [Speaker 2]
+It's like the MCP highway.
+00:55:02 [Speaker 2]
+It's kinda how I think.
+00:55:03 [Speaker 2]
+Like, every tool should be able to just harness on one continuous highway stream of work.
+
+00:55:09 [Speaker 2]
+And if your tool harnesses on and it creates a door, you immediately start to exclude yourself from what I think are becoming more modern workflows.
+
+00:55:20 [Speaker 1]
+Yeah.
+00:55:20 [Speaker 1]
+No.
+00:55:21 [Speaker 1]
+I I agree.
+00:55:22 [Speaker 1]
+I, it's funny.
+00:55:24 [Speaker 1]
+I mean, the invoice is sent.
+
+00:55:26 [Speaker 1]
+Like, I started it at the beginning when it all worked.
+00:55:29 [Speaker 1]
+I just assumed it would work, and it it worked, and I didn't have to do anything.
+00:55:33 [Speaker 1]
+And that is my ex...
+00:55:36 [Speaker 1]
+Expectation of tools.
+00:55:37 [Speaker 1]
+I remember this moment even when designing in flight.
+
+00:55:40 [Speaker 1]
+I don't know.
+00:55:41 [Speaker 1]
+I don't know.
+00:55:41 [Speaker 1]
+I've never thought about designing an MCP before, you know, just kinda winging it and figuring it out.
+00:55:45 [Speaker 1]
+But it used to be, in my head, the MCP was just the bridge.
+00:55:50 [Speaker 1]
+Like, just get a feedback toolkit onto a prototype and then pull the feedback down and, like, just close the loop.
+
+00:55:56 [Speaker 1]
+You know?
+00:55:56 [Speaker 1]
+That's the close loop with the MCP.
+00:55:57 [Speaker 1]
+And then I was sitting there one day, and and I remember I wanted to stack commands.
+00:56:03 [Speaker 1]
+So sometimes I'm like, you know, make this change, build the preview link.
+00:56:07 [Speaker 1]
+And then I had this moment.
+
+00:56:08 [Speaker 1]
+I was like, hey.
+00:56:10 [Speaker 1]
+Send that to Kyle and Veer.
+00:56:11 [Speaker 1]
+I wanna request reviews on this prototype.
+00:56:13 [Speaker 1]
+But the prototype link didn't exist yet.
+00:56:15 [Speaker 1]
+I just wanted to stack that command to my agent, and it didn't work.
+
+00:56:18 [Speaker 1]
+And that was my moment where it's like, oh, shoot, man.
+00:56:21 [Speaker 1]
+Like, this...
+00:56:22 [Speaker 1]
+That sucks.
+00:56:23 [Speaker 1]
+Like, you you literally...
+00:56:24 [Speaker 1]
+Like, they had the the lines.
+
+00:56:25 [Speaker 1]
+Like, every single thing that a human can do with a trackpad or with a mouse, the agent should be able to do.
+00:56:33 [Speaker 1]
+And it...
+00:56:33 [Speaker 1]
+That was, you know, maybe a couple months ago.
+00:56:35 [Speaker 1]
+And it really reshaped the way that I thought about the MCP.
+00:56:38 [Speaker 1]
+And since then, now it's like that is the core path that I feel like I'm having to design for is everything's going through the agent.
+
+00:56:46 [Speaker 1]
+And it's weird.
+00:56:46 [Speaker 1]
+It it it does make you a little bit uncomfortable.
+00:56:48 [Speaker 1]
+The one thing that I will tack on that I've been thinking a lot about in terms of good MCP design, totally agree.
+00:56:56 [Speaker 1]
+Efficiency, speed, very, very important.
+00:56:59 [Speaker 1]
+It's an interesting thing when you go all the way and you...
+
+00:57:02 [Speaker 1]
+Like, I I wrote a bunch of emails today, basically, telling, you know, thousand different people, hey.
+00:57:08 [Speaker 1]
+Use inflight to the MCP.
+00:57:09 [Speaker 1]
+This is how you use the product.
+00:57:10 [Speaker 1]
+It is an MCP product.
+00:57:13 [Speaker 1]
+What you lose is you lose the discoverability of interface pieces.
+
+00:57:18 [Speaker 1]
+You know?
+00:57:19 [Speaker 1]
+Affordances, drop downs, containers that explain to people what the product is capable of.
+00:57:24 [Speaker 1]
+You lose all of that.
+00:57:26 [Speaker 1]
+And so I've been thinking a lot about how you can create little, almost conversational bridges between tools in the way that the models respond.
+00:57:36 [Speaker 1]
+So if you say, hey.
+
+00:57:38 [Speaker 1]
+Share a prototype with Inflight, it can respond and say, great.
+00:57:43 [Speaker 1]
+When you're ready, paste...
+00:57:44 [Speaker 1]
+Like, just tell me.
+00:57:44 [Speaker 1]
+I'll pull down the feedback.
+00:57:45 [Speaker 1]
+And it's, like, teaching the next tool with it.
+
+00:57:49 [Speaker 1]
+You know?
+00:57:49 [Speaker 1]
+Or when you pull down the feedback, the agent can say, hey.
+00:57:53 [Speaker 1]
+Just...
+00:57:54 [Speaker 1]
+You know, when you're ready, let me know.
+00:57:56 [Speaker 1]
+I'll I'll mark off the next steps for you.
+
+00:57:58 [Speaker 1]
+But, you know, when you share, I'll create a new version from you here.
+00:58:02 [Speaker 1]
+It's like trying to always tee up what that next MCP tool could be.
+00:58:06 [Speaker 1]
+Where it's like you use a tool, present the next tool.
+00:58:09 [Speaker 1]
+Use a tool, present the next tool.
+00:58:10 [Speaker 1]
+Because otherwise, there's no discoverability in what the MCP can even do.
+
+00:58:15 [Speaker 1]
+Yeah.
+00:58:16 [Speaker 1]
+Much deeper to go there, but that's like a piece of the...
+00:58:18 [Speaker 1]
+I don't know.
+00:58:19 [Speaker 1]
+I'm thinking a lot about the UX of an MCP, and that's something that I've been thinking a lot about.
+
+00:58:25 [Speaker 2]
+Yeah.
+00:58:25 [Speaker 2]
+I mean, it forces you to really think, like, okay.
+00:58:27 [Speaker 2]
+If this was truly invisible...
+00:58:29 [Speaker 2]
+And I think part of what you were describing a moment ago was tool chaining.
+00:58:32 [Speaker 2]
+Like, the ability to make a command, and then immediately because the MCP has thought about it, it's like, oh, you wanna create a file?
+
+00:58:40 [Speaker 2]
+It's got a combination of tool chains already ready.
+00:58:43 [Speaker 2]
+And so it knows create file, boom, execute this tool chain really seamlessly, that operates with...
+00:58:49 [Speaker 2]
+And and it's like, these are things that are largely, you know, the engineer's gonna be thinking about in the past.
+00:58:54 [Speaker 2]
+But now, it's more and more designers are thinking about this.
+00:58:56 [Speaker 2]
+And then you're like, well, hold on.
+
+00:58:57 [Speaker 2]
+I want the designer to be able to just type a command.
+00:58:59 [Speaker 2]
+And suddenly, you're like, oh, designers are creating command line interfaces?
+00:59:03 [Speaker 2]
+This all sounds, like, very out of the design wheelhouse.
+00:59:07 [Speaker 2]
+But as it turns out, this is becoming more and more common for designers to have to wrestle with.
+00:59:13 [Speaker 2]
+And Yep.
+
+00:59:14 [Speaker 2]
+Even when when we do our surveys.
+00:59:16 [Speaker 2]
+Every time we launch a survey, last survey in the spring, the one we we have coming up, for the state of design jobs, which you can take at survey.dive.radio, all of that's gonna be available through an MCP.
+00:59:27 [Speaker 2]
+You can run...
+00:59:28 [Speaker 2]
+Push your agent to it, and you can take, like, our portfolio skill inside of Notion.
+00:59:33 [Speaker 2]
+And you could take the data from our design job survey, and you could feed it to your agent to help you to be an assistant as you create your portfolio or make some decisions about your career.
+
+00:59:43 [Speaker 2]
+That is a possibility and made only more powerful because we're thinking about MCPs.
+
+00:59:50 [Speaker 1]
+A lot
+
+00:59:50 [Speaker 2]
+of things.
+00:59:51 [Speaker 2]
+Great.
+00:59:51 [Speaker 2]
+Someone says, RID's mic sounds, different.
+00:59:55 [Speaker 2]
+And someone said it might have......
+00:59:56 [Speaker 2]
+It.
+
+00:59:57 [Speaker 1]
+Oh, I was about to go back.
+
+00:59:59 [Speaker 2]
+You have to......
+
+00:59:59 [Speaker 1]
+One hour, and nobody tells me that I'm hooked up to my AirPods, and I'm talking into this thing even though it's doing nothing.
+01:00:04 [Speaker 1]
+Unbelievable.
+
+01:00:05 [Speaker 2]
+I I was curious.
+01:00:06 [Speaker 2]
+And you know what?
+01:00:06 [Speaker 2]
+I feel like I've seen the same happen to me, and no one's given me love.
+01:00:09 [Speaker 2]
+I've been, like, talking into this, and it might have been local.
+01:00:12 [Speaker 2]
+I was gonna call out, though, if we did sound different, and I don't know that we do.
+
+01:00:17 [Speaker 2]
+We're both the...
+01:00:19 [Speaker 2]
+We're we're getting through the the fogginess of a potential head cold here.
+01:00:22 [Speaker 2]
+I'm not sure.
+01:00:23 [Speaker 2]
+So if anyone out there is tuning in and you're on the......
+
+01:00:26 [Speaker 1]
+Big deal.
+
+01:00:28 [Speaker 2]
+Yeah.
+01:00:28 [Speaker 2]
+Yeah.
+01:00:29 [Speaker 2]
+Yeah.
+01:00:29 [Speaker 2]
+If you...
+01:00:29 [Speaker 2]
+If you're if you're sitting in bed listening to this, just know that you're not alone.
+
+01:00:34 [Speaker 2]
+This is going around.
+01:00:35 [Speaker 2]
+I had a full day get canceled of meetings, and everybody said I'm sick.
+01:00:39 [Speaker 2]
+So, apparently, this is this is hitting everybody.
+01:00:44 [Speaker 2]
+But it's not just founders, man, who...
+01:00:47 [Speaker 2]
+You know, us and and and these teams we just heard from who are having to deal with these MCPs.
+
+01:00:51 [Speaker 2]
+I wanna show you an example of how personal MCPs can become extremely helpful.
+01:00:58 [Speaker 2]
+And I'm gonna start by showing you what Shah did as a personal project, and then take that one step further on inspiring some ideas on how you might create your own MCP for your agent that helps reduce cost of tokens and is is very specific to your custom workflow.
+01:01:14 [Speaker 2]
+Let's see what tool he built, and we'll take it from there.
+
+01:01:18 [Speaker 11]
+Hey, Domi.
+01:01:19 [Speaker 11]
+I wanted to show you a tool that I built, that I use for my daily workflow.
+01:01:24 [Speaker 11]
+So it's called Basket and essentially it's a database of all the inspiration that you see.
+01:01:31 [Speaker 11]
+So I built this tool, which essentially comes with an extension.
+01:01:37 [Speaker 11]
+And, you can go on Twitter or, Cosmos Arena, whatever, and you can essentially save the post.
+
+01:01:44 [Speaker 11]
+So what it's gonna do is it's gonna save the caption, who made it, what details of the tweet it got and the attachments.
+01:01:53 [Speaker 11]
+So all these images here are gonna get saved.
+01:01:56 [Speaker 11]
+So I already saved this post to my basket.
+01:01:59 [Speaker 11]
+And what it does is it's...
+01:02:01 [Speaker 11]
+It runs it through a vision model to generate, AI descriptions as well as, like, colors.
+
+01:02:11 [Speaker 11]
+I give it a list of tags for it to choose from.
+01:02:14 [Speaker 11]
+So it chooses, relevant tags to put in this, this item and also generates, like, relevant metadata for it.
+01:02:24 [Speaker 11]
+After it generates all this info, it goes through an embedding model and the embeddings are saved to a database from which I can then use semantic search to bring out the relevant designs.
+01:02:37 [Speaker 11]
+So I can just type something like, kinetic typography, and it's gonna look through the database and find me the post that it thinks is the most relevant to the word kinetic typography.
+01:02:56 [Speaker 11]
+And, the best part about that is since I already have like a very informative database of all the images and inspiration that I saved, I actually built an MCP so I can give any of my agents access to this database and find me relevant stuff when I'm designing.
+
+01:03:14 [Speaker 11]
+So I can directly get the inspiration here.
+01:03:17 [Speaker 11]
+So, if you see on the screen, I have chat g b t open with the basket MCP, and I wanted five images of different gradients.
+01:03:26 [Speaker 11]
+And it basically did a search on basket And then ChatGPT actually looked through all the items that the search spit out and then found me the relevant images.
+01:03:37 [Speaker 11]
+So, it goes through, like, two layers of LLMs.
+01:03:43 [Speaker 11]
+I could, like, connect it to other MCPs such as Figma MCPs to, like, take the images from out of the database and then put it into Figma to make a mood board for me.
+
+01:03:58 [Speaker 2]
+This is the example that I'm talking about where designers are creating these very custom workflows.
+01:04:03 [Speaker 2]
+And I think this is...
+01:04:05 [Speaker 2]
+I think a lot of designers are gonna have...
+01:04:07 [Speaker 2]
+I I almost feel like this is gonna become, a personal thing for most designers is, one, having your own global design system that you build over time.
+01:04:19 [Speaker 2]
+So when you work with AI, you're pulling components that you refine, and you're like, cool.
+
+01:04:23 [Speaker 2]
+I wanna use that again in another project.
+01:04:25 [Speaker 2]
+But also building your own kind of library of inspiration that you can pull in quickly.
+01:04:31 [Speaker 2]
+I I feel like I'm hearing more and more designers doing both of those activities.
+
+01:04:35 [Speaker 1]
+Yep.
+01:04:35 [Speaker 1]
+I've been contributing to a Notion one for seven years, maybe, that I reference a lot.
+01:04:42 [Speaker 1]
+And then, I mean, honestly, Mobbin, it's almost embarrassing for me to explain how I use Mobbin in terms of going back to what you were talking about with, like, the people aren't even using our products.
+01:04:53 [Speaker 1]
+They're just using the MCP.
+01:04:55 [Speaker 1]
+You know, like, Mobbin's my extreme case because I went used to browse frequently.
+
+01:05:00 [Speaker 1]
+I basically never browse anymore.
+01:05:03 [Speaker 1]
+We made a joke recent episodes ago where so many of the prompts...
+01:05:09 [Speaker 1]
+Or actually it was Nim.
+01:05:10 [Speaker 1]
+Remember when Nim was showing, like, the pouring of the wax where we were talking about the Novus 5.5 models?
+01:05:14 [Speaker 1]
+And he was talking about how all of my prompts are basically some variation of do better.
+
+01:05:20 [Speaker 1]
+You know?
+01:05:20 [Speaker 1]
+I was like, man, that resonated so much because that's basically what I am.
+01:05:23 [Speaker 1]
+I'm like, how can I creatively tell you to do better so it actually happens?
+01:05:27 [Speaker 1]
+My do better prompt is the mob and MCB.
+01:05:30 [Speaker 1]
+Like, I'll get something, and I'd be like, I just don't realize that.
+
+01:05:33 [Speaker 1]
+I won't look at mobbing.
+01:05:35 [Speaker 1]
+I won't even have it pull.
+01:05:36 [Speaker 1]
+I used to have it pull outputs, put it into paper for me to look at.
+01:05:41 [Speaker 1]
+I don't do that anymore.
+01:05:42 [Speaker 1]
+I just I just push it in and I say, look at the Mobbin MCP.
+
+01:05:46 [Speaker 1]
+This sucks.
+01:05:46 [Speaker 1]
+Figure out how to make it better.
+01:05:49 [Speaker 1]
+Bro, it's so much more effective than it should be.
+01:05:51 [Speaker 1]
+And it's, like, embarrassing to admit that that is a prompt that I use, but I probably used that, I don't know, six or seven times while making the in flight website.
+
+01:06:00 [Speaker 2]
+Royal Beck says, Mob and MCP changed my life.
+01:06:02 [Speaker 2]
+And one of the things...
+01:06:04 [Speaker 2]
+Again, in Mob and MCP is, I think, an MCP designed very well.
+01:06:07 [Speaker 2]
+It gets you what you're looking for.
+01:06:08 [Speaker 2]
+It does it fairly quickly.
+
+01:06:10 [Speaker 2]
+And the thing about Mob and as a product that really made that, like, just hit so well is that how well they compartmentalize workflows.
+01:06:19 [Speaker 2]
+Right?
+01:06:20 [Speaker 2]
+Like, you can certainly look up components.
+01:06:22 [Speaker 2]
+They have that that as a a sort of segment as well, but actual workflows, onboarding.
+01:06:28 [Speaker 2]
+And so if you're doing product work and you're using a canvas like paper or something, you can connect it to Mob and say, hey.
+
+01:06:33 [Speaker 2]
+I'm looking for just some inspiration on how a couple different, onboarding workflows look.
+01:06:37 [Speaker 2]
+It'll pull those in, and you could really use those as both visual inspiration on the canvas or just to inform your agent.
+01:06:44 [Speaker 2]
+And in fact, it's funny to hear you had no idea this next one was coming up.
+01:06:48 [Speaker 2]
+It's funny to hear you talk about that because we're gonna look at it from Thomas Meyer and a specific example of mob into paper Nice.
+01:06:55 [Speaker 2]
+Using the mob in MCP.
+
+01:06:57 [Speaker 2]
+Yeah.
+01:06:58 [Speaker 2]
+And and I...
+01:06:58 [Speaker 2]
+And for anyone who's never seen this, you're gonna see an example of this.
+
+01:07:01 [Speaker 12]
+Last weekend, my tweet about how I use paper and mobbin together with Firo.
+01:07:05 [Speaker 12]
+A lot of you asked for a tutorial, so here it is.
+01:07:08 [Speaker 12]
+I'm currently building my new portfolio with codex, and I want to quickly explore different variations of the current layout.
+01:07:14 [Speaker 12]
+I still like making quick edits on the canvas before adding things back to my agent.
+01:07:19 [Speaker 12]
+I'm asking Codex to use the MOB and MCP to find inspiration, then create five new variations in paper, keeping existing fonts, colors, and content.
+
+01:07:29 [Speaker 12]
+So let's go see what it finds.
+01:07:32 [Speaker 12]
+Now the variations are appearing here on paper.
+01:07:35 [Speaker 12]
+That's why I like this workflow.
+01:07:36 [Speaker 12]
+I can quickly compare different ideas, choose the direction, and keep exploring.
+01:07:41 [Speaker 12]
+I would still do refine all this and test it before putting anything light.
+
+01:07:47 [Speaker 1]
+I like the little disclaimer at the end.
+01:07:49 [Speaker 1]
+Yeah.
+01:07:49 [Speaker 1]
+Don't outsource a 100% of my thinking.
+
+01:07:53 [Speaker 2]
+Yeah.
+01:07:54 [Speaker 2]
+Yeah.
+
+01:07:55 [Speaker 1]
+I
+
+01:07:55 [Speaker 2]
+had a...
+01:07:55 [Speaker 2]
+One of one of
+
+01:07:56 [Speaker 1]
+the most successful Mobbin moments is the most meta example because I was designing all of these MCP connection flows.
+01:08:04 [Speaker 1]
+And for anybody who hasn't had to design MCP connection flows, it's...
+01:08:09 [Speaker 1]
+There's an unfortunate amount of differences depending on whether you're connecting codex or cloud design or lovable or, you know, cloud code into the terminal.
+01:08:18 [Speaker 1]
+Some are much easier.
+01:08:19 [Speaker 1]
+Some are much more difficult.
+
+01:08:20 [Speaker 1]
+And the the quality of Mobbin's output when I just said, show me relevant MCP connection flows was unbelievable.
+01:08:31 [Speaker 1]
+Like, it's it's actually so good for that.
+01:08:35 [Speaker 1]
+And it's...
+01:08:36 [Speaker 1]
+I don't know.
+01:08:37 [Speaker 1]
+It's a whole other type of...
+
+01:08:38 [Speaker 1]
+I...
+01:08:38 [Speaker 1]
+I've spent so much time thinking about that subset of flows.
+01:08:40 [Speaker 1]
+It was really helpful because I...
+01:08:41 [Speaker 1]
+I don't know.
+01:08:42 [Speaker 1]
+I'm like like, maybe other people too.
+
+01:08:44 [Speaker 1]
+It's like, I'm just doing all this for the first time.
+
+01:08:47 [Speaker 2]
+I, I I really think...
+01:08:49 [Speaker 2]
+So there's...
+01:08:49 [Speaker 2]
+I I was thinking about this idea the other day, and it was like, the canvas...
+01:08:53 [Speaker 2]
+And and I may have...
+01:08:54 [Speaker 2]
+We may have discussed this briefly here, but the canvas is no longer the the place I start any design work.
+
+01:09:01 [Speaker 2]
+I...
+01:09:02 [Speaker 2]
+It is the place that I bring in the ball of clay and start to shape it down, typically.
+01:09:09 [Speaker 2]
+And so it's like...
+01:09:09 [Speaker 2]
+And I was trying to think of a metaphor, and it was like the canvas cul de sac is like this metaphor where, like, you would go there and it's kinda, like, self containing, and then you might come back around.
+01:09:18 [Speaker 2]
+But I feel like, again, using that MCP freeway metaphor, now that canvases that are using, like, paper allowing MCPs to flow through, the same way he brought some stuff in, and he brought it in from the inspiration angle.
+
+01:09:33 [Speaker 2]
+I'll typically bring it in from, like, using Claude, and then I'll bring stuff in, and then tweak it, and then push it back out.
+01:09:39 [Speaker 2]
+They're becoming this place that, people are using at different parts, different intervals of the project.
+01:09:46 [Speaker 2]
+And you can see that more and more.
+01:09:48 [Speaker 2]
+This is actually a really great example.
+01:09:50 [Speaker 2]
+So Framer today just launched their MCP.
+
+01:09:53 [Speaker 2]
+They call it...
+01:09:53 [Speaker 2]
+They launched their MCP.
+01:09:55 [Speaker 2]
+Now Framer has had this beta of their MCP, and the beta was not great.
+01:10:00 [Speaker 2]
+They were testing it.
+01:10:01 [Speaker 2]
+They were making it better.
+
+01:10:03 [Speaker 2]
+And so I've been using my agent with Framer's API as a way to get work done on the UX tools website.
+01:10:11 [Speaker 2]
+And it was good.
+01:10:12 [Speaker 2]
+It would be a little bit more expensive than I'd want to because I had to go through the API, and it wasn't really optimized for agents.
+01:10:19 [Speaker 2]
+But I was I was just talking about being sick.
+01:10:22 [Speaker 2]
+And it's funny.
+
+01:10:23 [Speaker 2]
+We're gonna look at this quick forty second video that they announced.
+01:10:26 [Speaker 2]
+This was literally me two days ago, sick in bed, working on projects.
+01:10:30 [Speaker 2]
+I did this.
+
+01:10:53 [Speaker 3]
+Pull the client's feedback from Slack and update the campaign landing page in Framer.
+01:10:58 [Speaker 3]
+Bold, clean, mobile first.
+01:11:01 [Speaker 3]
+Ready by 8AM.
+
+01:11:03 [Speaker 1]
+On it.
+
+01:11:11 [Speaker 2]
+So...
+01:11:11 [Speaker 2]
+Their
+
+01:11:11 [Speaker 1]
+ads are so good.
+01:11:13 [Speaker 1]
+No.
+01:11:13 [Speaker 1]
+And and I...
+
+01:11:13 [Speaker 2]
+And obviously, they have they have incredible video studio team over there, with Andy and Joseph and everybody.
+01:11:19 [Speaker 2]
+So shout out to that.
+01:11:20 [Speaker 2]
+I love this, though.
+01:11:21 [Speaker 2]
+So the the main thing here for me is is when I'm using MCPs, whether it's with Framer or elsewhere, like Framer's example, I'm sick, and I'm still kinda getting over that.
+01:11:29 [Speaker 2]
+But I I had to update the UX tools website with recent newsletters that went out with, some recent...
+
+01:11:35 [Speaker 2]
+Our...
+01:11:36 [Speaker 2]
+Every time we release one of our episodes, I need to update the website and get all the thumbnail stuff.
+01:11:41 [Speaker 2]
+These are not hard tasks, but they are, monotonous.
+01:11:46 [Speaker 2]
+They are these things that I just have to do, content management, updating details.
+01:11:50 [Speaker 2]
+I don't do those manual anymore.
+
+01:11:51 [Speaker 2]
+Agent, hey.
+01:11:52 [Speaker 2]
+Go and find the dive club, and go and find the dive radio episodes, the thumbnails.
+01:11:56 [Speaker 2]
+Update the newsletter.
+01:11:57 [Speaker 2]
+Update all the things.
+01:11:58 [Speaker 2]
+And and it just does it.
+
+01:12:00 [Speaker 2]
+It takes maybe five minutes.
+01:12:01 [Speaker 2]
+I am so happy the MCP is out because it'll probably take half the time, half the token spend.
+01:12:06 [Speaker 2]
+Very, very cool to see.
+01:12:07 [Speaker 2]
+And a trend.
+01:12:08 [Speaker 2]
+A trend.
+
+01:12:09 [Speaker 1]
+I mean, that...
+01:12:09 [Speaker 1]
+That's...
+01:12:10 [Speaker 1]
+So somebody responded.
+01:12:11 [Speaker 1]
+I was tweeting about this today, and somebody commented.
+01:12:14 [Speaker 1]
+Like, I don't get it.
+
+01:12:15 [Speaker 1]
+Like, why would you use Framer?
+01:12:16 [Speaker 1]
+And, dude, there's a lot of...
+01:12:17 [Speaker 1]
+Especially when you're collaborating with other people.
+01:12:20 [Speaker 1]
+Like, I don't actually push updates to the Dive Club website.
+01:12:24 [Speaker 1]
+Like, I have somebody that does that for me.
+
+01:12:26 [Speaker 1]
+Like, having an interface is is really, really valuable.
+01:12:31 [Speaker 1]
+I do think it's gonna start getting kind of interesting now where it's like so much of the updates that I'm pushing.
+01:12:35 [Speaker 1]
+It's just content.
+01:12:36 [Speaker 1]
+I'm just pushing up update.
+01:12:37 [Speaker 1]
+I mean, there's so many things that you have to put onto the website to make an episode go live, and all of those just become 10 times easier.
+
+01:12:43 [Speaker 1]
+I'm pretty I'm pretty excited about it.
+
+01:12:46 [Speaker 2]
+I wanna find a post real quick.
+01:12:48 [Speaker 2]
+This was not planned, but you made me think of something.
+01:12:50 [Speaker 2]
+And I...
+01:12:51 [Speaker 2]
+And it kinda goes with, it it has to do...
+01:12:56 [Speaker 2]
+So Dan Shipper, I think, made this post.
+
+01:12:58 [Speaker 2]
+Let me find it.
+01:12:58 [Speaker 2]
+But this idea that, like, how are we collaborating?
+01:13:02 [Speaker 2]
+Right?
+01:13:03 [Speaker 2]
+Like, I said, multiplayer agents are, I think, gonna see this holiday spike.
+01:13:08 [Speaker 2]
+And there's a couple of ways it works.
+
+01:13:10 [Speaker 2]
+It's, like, when you and I were building backyard designers, or we're working on some internal tools for in flight right now, You and I have...
+01:13:17 [Speaker 2]
+Are just kind of fumbling our way around, learning how to step on each other's work and build...
+01:13:22 [Speaker 2]
+Continue to make progress.
+01:13:24 [Speaker 2]
+And there are there are workflows we're figuring out, and there are workflows that haven't been figured out yet.
+01:13:29 [Speaker 2]
+But even then, that's more of an indie builder collaboration compared to how many of our customers who are these enterprise teams are actually working.
+
+01:13:37 [Speaker 2]
+Lot of different things.
+01:13:38 [Speaker 2]
+And so it's like, oh, yeah.
+01:13:39 [Speaker 2]
+Indie builders can do this.
+01:13:41 [Speaker 2]
+Maybe a two player agentic back and forth.
+01:13:44 [Speaker 2]
+But can enterprise teams do this?
+
+01:13:46 [Speaker 2]
+And I think we're getting to the point where it's like, yeah, they can, but it's different.
+01:13:50 [Speaker 2]
+When you look at this, so every talks about, like, hey.
+01:13:53 [Speaker 2]
+Our team is made up of people.
+01:13:54 [Speaker 2]
+We have the head of Evals, who is building personal benchmarks.
+01:13:59 [Speaker 2]
+We have the, senior editor, who's building, like, a a tabless browser for work they had to do.
+
+01:14:05 [Speaker 2]
+They have a resident writer, who's teaching her AI writing plug in who the reader is.
+01:14:10 [Speaker 2]
+There's, like, an inside engineer with a personal AI orchestrator.
+01:14:14 [Speaker 2]
+There's a compound engineer who uses AI to build power tools.
+01:14:17 [Speaker 2]
+And there was this video game I played some time ago called Citizen Sleeper, and you can kinda pick who your character is.
+01:14:23 [Speaker 2]
+It's a futuristic thing.
+
+01:14:25 [Speaker 2]
+One of the characters' things is, like, they're this engineer, and they come equipped with this personal drone.
+01:14:31 [Speaker 2]
+And that drone gives you, like, little benefits, and it can help play the game with you.
+01:14:35 [Speaker 2]
+And I'm, like, we are all becoming these little ICs with our personal agent.
+01:14:41 [Speaker 2]
+And, like, we...
+01:14:42 [Speaker 2]
+Like, oh, what...
+
+01:14:42 [Speaker 2]
+What's your agent build out?
+01:14:43 [Speaker 2]
+And it's like, oh, well, my agent build out does this, and I do these things.
+01:14:46 [Speaker 2]
+And it's like, that is becoming part of you as a human and your stack.
+01:14:52 [Speaker 2]
+And I think a team like Evry is a great example of that.
+01:14:54 [Speaker 2]
+I think our team at in flight is a perfect example of that.
+
+01:14:58 [Speaker 2]
+Each of us has our own little thing, and it's almost serendipitous when we, like, share notes.
+01:15:03 [Speaker 2]
+It's like, oh, yeah.
+01:15:04 [Speaker 2]
+I did this with my agent.
+01:15:05 [Speaker 2]
+And then I...
+01:15:05 [Speaker 2]
+Kyle was like, I think Ridd and I work very similarly.
+
+01:15:08 [Speaker 2]
+It's like we're we're rediscovering how to work with each other with our own little stacks.
+
+01:15:14 [Speaker 1]
+Yep.
+01:15:15 [Speaker 1]
+Yep.
+01:15:16 [Speaker 1]
+I I wonder actually how many routines I have in Grokbot right now.
+01:15:21 [Speaker 1]
+It's probably a lot, dude.
+01:15:22 [Speaker 1]
+Like, definitely over a 100, which is since...
+
+01:15:25 [Speaker 1]
+Kind of interesting to think about.
+01:15:26 [Speaker 1]
+Like, that happened really quickly.
+
+01:15:27 [Speaker 2]
+Yeah.
+01:15:29 [Speaker 2]
+He says, this is where the demand for designers starts to drop.
+01:15:33 [Speaker 2]
+I I...
+01:15:34 [Speaker 2]
+It's so hard because there are two parts of the market happening right now across all fields.
+01:15:39 [Speaker 2]
+Right?
+
+01:15:39 [Speaker 2]
+Like, engineering is seeing it, design, prod, everywhere.
+01:15:42 [Speaker 2]
+But you are seeing a drop in in two categories.
+01:15:47 [Speaker 2]
+Juniors are having a little bit of a harder time.
+01:15:49 [Speaker 2]
+Everyone's looking for that senior who's got a a a satellite drone with them.
+01:15:53 [Speaker 2]
+And then you're seeing traditional...
+
+01:15:56 [Speaker 2]
+People who put themselves and marketed themselves in this kind of traditional, double diamond kind of, like, way of design work.
+01:16:05 [Speaker 2]
+It's not the way that it's being thought about, in...
+01:16:08 [Speaker 2]
+At least the companies I'm coming across right now.
+01:16:11 [Speaker 2]
+But on the other side is if you are somebody who fits into this wheelhouse here and you're a designer, like, they still want someone who is design forward, who is going to take care of design, but is doing it in a different way, who plugs into these systems where sometimes you are enabling other cross functional partners to do design also.
+01:16:31 [Speaker 2]
+But you are still kind of, like, person representing the work or the systems that enable other partners.
+
+01:16:38 [Speaker 2]
+So it's it's hard to say.
+01:16:39 [Speaker 2]
+The demand for designers is declining.
+01:16:42 [Speaker 2]
+I I don't know yet.
+01:16:43 [Speaker 2]
+And our state of design jobs is gonna help us understand that better.
+01:16:46 [Speaker 2]
+But I will say that it's changing.
+
+01:16:48 [Speaker 2]
+And there is still high demand, but it is for designers who look a little more in this direction.
+01:16:54 [Speaker 2]
+What do you think?
+01:16:55 [Speaker 2]
+Agreed.
+
+01:16:56 [Speaker 1]
+Yeah.
+01:16:56 [Speaker 1]
+I agree.
+01:16:57 [Speaker 1]
+I think the thing that we often don't talk as much about too is the TAM is growing at the same time.
+01:17:04 [Speaker 1]
+Yeah.
+01:17:04 [Speaker 1]
+There's so much money being poured into this industry.
+
+01:17:06 [Speaker 1]
+There are so many ideas that maybe were not economically viable or technologically possible that now are.
+01:17:13 [Speaker 1]
+And so you have this explosion of companies.
+01:17:16 [Speaker 1]
+So there's a lot more surface area for design to happen.
+01:17:20 [Speaker 1]
+Now what percentage of these companies are required to push past the baseline that cloud is gonna give them?
+01:17:27 [Speaker 1]
+That is, you know, that's a measuring stick that we're gonna have to keep a pulse on over the next year or so.
+
+01:17:35 [Speaker 1]
+But, dude, there's a lot of companies starting that one design.
+01:17:39 [Speaker 1]
+I think we are having this redistribution of talent is one variable.
+01:17:44 [Speaker 1]
+So it's not like...
+01:17:45 [Speaker 1]
+Like, back in the day, remember, like, Dropbox used to have all the best designers.
+
+01:17:49 [Speaker 5]
+Right.
+
+01:17:49 [Speaker 1]
+Like, so many people left from Facebook, went to Dropbox, and it was just this incredible...
+01:17:54 [Speaker 1]
+It just vacuum sucked everybody up.
+01:17:56 [Speaker 1]
+Mhmm.
+01:17:56 [Speaker 1]
+And I think a similar thing happened a little bit with, like, the models, and maybe that is still a thing.
+01:18:05 [Speaker 1]
+They're obviously hiring.
+
+01:18:06 [Speaker 1]
+We talked about that earlier.
+01:18:07 [Speaker 1]
+They're hiring like crazy.
+01:18:08 [Speaker 1]
+But there is this redistribution of a lot of talent.
+01:18:11 [Speaker 1]
+You look at Meta, for instance.
+01:18:12 [Speaker 1]
+I mean, a lot of designers got laid off from Meta in the last two years.
+
+01:18:16 [Speaker 1]
+Most of them landed somewhere.
+01:18:18 [Speaker 1]
+You know?
+01:18:18 [Speaker 1]
+Was it at as big of a company?
+01:18:20 [Speaker 1]
+Probably not.
+01:18:21 [Speaker 1]
+And I think that's kind of the point.
+
+01:18:22 [Speaker 1]
+So you have this redistribution, and then you also have what you're talking about, the shape of designers.
+01:18:27 [Speaker 1]
+I I have an episode coming out in a couple weeks with a, Derek Briggs, who's a principal designer at Shopify and and really, really making a big impact there.
+01:18:39 [Speaker 1]
+And he talked about...
+01:18:40 [Speaker 1]
+I was just talking about him like, you know, you're you're building this team.
+01:18:42 [Speaker 1]
+You're being entrusted with a lot of, like, an agent for change inside of Shopify and, like, you know, well, who do you wanna work with?
+
+01:18:49 [Speaker 1]
+Like, what types of designers do you wanna bring on?
+01:18:51 [Speaker 1]
+The first thing he went to was more of this scaling your impact inside of an org.
+01:18:58 [Speaker 1]
+Can you build the tools and the systems to scale your impact and distribute your knowledge to a greater amount of people?
+01:19:04 [Speaker 1]
+And I don't think that we know how to tell stories around that type of impact yet.
+01:19:08 [Speaker 1]
+No.
+
+01:19:09 [Speaker 1]
+And I don't think that we know how to even describe that accurately in a in a job write up on Ashby.
+01:19:16 [Speaker 1]
+Like, it's like this weird thing there.
+01:19:18 [Speaker 1]
+There's a moment in time where there's a window where if you can position yourself that way, it's so so so so desirable because we're...
+01:19:27 [Speaker 1]
+You know, like, we're talking about all the agent stuff.
+01:19:29 [Speaker 1]
+We see the impact that somebody who has a heck of a, a load out with agents and how they think about it.
+
+01:19:37 [Speaker 1]
+Like, the impact that you can have inside of an org is just astronomical.
+01:19:41 [Speaker 1]
+And I think it's leading to, like, this concentration of demand.
+01:19:44 [Speaker 1]
+So it's just a lot of different factors.
+01:19:45 [Speaker 1]
+I...
+01:19:45 [Speaker 1]
+I'm still mostly optimistic for designers, at least the designers that will be quick to adapt.
+
+01:19:54 [Speaker 2]
+There's definitely, there are definitely gonna be some holdouts, some some left behinds, and and that is really where a lot of our mission to try to pull ladders down for people who wanna take them.
+01:20:02 [Speaker 2]
+We're not we're not saying, hey.
+01:20:03 [Speaker 2]
+You're screwed if you don't.
+01:20:05 [Speaker 2]
+I I have my personal feelings about it.
+01:20:06 [Speaker 2]
+But at the end of the day, it's like, hey.
+
+01:20:08 [Speaker 2]
+When you're ready, there's an opportunity to...
+
+01:20:10 [Speaker 1]
+I might be saying that.
+01:20:11 [Speaker 1]
+Yeah.
+01:20:12 [Speaker 1]
+I...
+01:20:12 [Speaker 1]
+I'm I'm I'm
+
+01:20:13 [Speaker 2]
+I'm so torn on how to...
+01:20:15 [Speaker 2]
+I I do believe that there is a time that you do have to you do have to follow the market, or you have to be prepared to say, you know, I I think I'm just gonna change fields.
+01:20:25 [Speaker 2]
+I'm not...
+01:20:25 [Speaker 2]
+I don't like where the change is going.
+01:20:27 [Speaker 2]
+Those are valid feelings to have.
+
+01:20:29 [Speaker 2]
+But if you do wanna continue doing impactful work, making impact at scale, making money, you know, I have a whole lot to say about the economy and where I think that might be going.
+01:20:39 [Speaker 2]
+There is...
+01:20:39 [Speaker 2]
+You you have to learn.
+01:20:40 [Speaker 2]
+You have to be willing to continue to flex the the ideas that you once once thought this field was about and and acknowledge that they're changing.
+01:20:48 [Speaker 2]
+I have had some, interactions over the last three weeks from people who were very critical of even the fact that we talk about, how these roles...
+
+01:20:57 [Speaker 2]
+Oh, you only talk to the leading companies.
+01:20:59 [Speaker 2]
+That's not impacting the rest of the market.
+01:21:00 [Speaker 2]
+And it's, like, actually, the laggards that typically take a lot longer, about two years to adopt this, there is so much incentive right now.
+01:21:09 [Speaker 2]
+And also also just risk, mitigation happening at large enterprises that that usually wait to adopt this, they are moving very quickly.
+01:21:20 [Speaker 2]
+And, suddenly, I have people who were in my comments or in my DM saying, you know, it's not really impacting me the way you guys think it is, saying, actually, I just...
+
+01:21:27 [Speaker 2]
+We just got told from leadership this and that.
+01:21:30 [Speaker 2]
+Do you have any advice?
+01:21:31 [Speaker 2]
+What...
+01:21:31 [Speaker 2]
+Where can I start learning?
+01:21:32 [Speaker 2]
+What can I look at?
+
+01:21:33 [Speaker 2]
+And I'm hearing that over and over from the companies that, you know, aren't quote unquote sexy.
+01:21:38 [Speaker 2]
+They're just like your regular enterprise companies, maybe not even software companies.
+01:21:42 [Speaker 2]
+Software is just a secondary part of what they provide.
+01:21:45 [Speaker 2]
+And now, the designers on those teams are saying, oh, wow.
+01:21:47 [Speaker 2]
+This happened a little faster than I thought.
+
+01:21:50 [Speaker 2]
+What should I do now?
+01:21:51 [Speaker 2]
+And it's like, yeah.
+01:21:52 [Speaker 2]
+Just just...
+01:21:53 [Speaker 2]
+You know, we're we're gonna continue to look at that and try to help people out with what we see other peep...
+01:21:57 [Speaker 2]
+We don't have the answers.
+
+01:21:58 [Speaker 2]
+We're just observing it as part of our job.
+01:22:00 [Speaker 2]
+You know?
+01:22:01 [Speaker 2]
+And it's it's an interesting field.
+01:22:02 [Speaker 2]
+And that's why this MCP topic, we talked about this MCP.
+01:22:06 [Speaker 2]
+And we said, is this too niche?
+
+01:22:08 [Speaker 2]
+And it might be, but I think we're...
+01:22:10 [Speaker 2]
+I think it's resonating with a lot of people.
+01:22:12 [Speaker 2]
+What do we have here?
+
+01:22:13 [Speaker 1]
+Even with the resonating, like, it's come up a couple times in the chat about just a desire to see more of the personal agent stuff.
+01:22:20 [Speaker 1]
+That's another one of the things where I'm like, man, how relevant is this design?
+01:22:24 [Speaker 1]
+Like, is it too niche?
+01:22:26 [Speaker 1]
+It's trying that out for me.
+01:22:27 [Speaker 1]
+It just feels like it's such an important part of my day to day, and I'm doing so much experimentation.
+
+01:22:31 [Speaker 1]
+I'm sure a bunch of other people are in the community.
+01:22:33 [Speaker 1]
+It it feels like this needs to be an episode soon where we just have to talk about, like, what
+
+01:22:38 [Speaker 2]
+are your personal...
+01:22:38 [Speaker 2]
+What's your loadout?
+
+01:22:39 [Speaker 1]
+What's your personal agents?
+01:22:40 [Speaker 1]
+Yeah.
+01:22:40 [Speaker 1]
+Let's...
+01:22:40 [Speaker 1]
+I I think we should just do it next week.
+01:22:42 [Speaker 1]
+I I I
+
+01:22:42 [Speaker 2]
+really...
+01:22:43 [Speaker 2]
+I want...
+01:22:43 [Speaker 2]
+I wish people understood.
+01:22:44 [Speaker 2]
+Like, I run two businesses with teams, and they're unrelated.
+01:22:49 [Speaker 2]
+One is a...
+
+01:22:50 [Speaker 2]
+I produce.
+01:22:50 [Speaker 2]
+I film make.
+01:22:51 [Speaker 2]
+I script write.
+01:22:52 [Speaker 2]
+I go on location with with film crews.
+01:22:54 [Speaker 2]
+And the other is a software company.
+
+01:22:56 [Speaker 2]
+And we're doing a whole bunch of internal tooling, and this would not be possible.
+01:23:01 [Speaker 2]
+While I have a family of five children, and we do all kinds of things over there too, I I have...
+01:23:06 [Speaker 2]
+I can get sick still.
+01:23:07 [Speaker 2]
+This would not be possible if I hadn't figured out how to leverage agents the way I have.
+01:23:13 [Speaker 2]
+And so there there was a moment in the narrative on the Internet where it was like, oh, everyone's saying productivity gains, or they're making more money doing these things.
+
+01:23:20 [Speaker 2]
+And it's like, you you might have questioned that if you weren't super deep into it.
+01:23:24 [Speaker 2]
+But I think now if you don't acknowledge what that means now, that's that's a tough place to to continue to exist.
+
+01:23:33 [Speaker 1]
+Yeah.
+01:23:33 [Speaker 1]
+I...
+01:23:33 [Speaker 1]
+I've...
+01:23:34 [Speaker 1]
+I see the light now.
+01:23:36 [Speaker 1]
+Honestly, it would be a good forcing function too.
+
+01:23:38 [Speaker 1]
+So something that Tom and I are doing behind the scenes right now is we on what, Tuesday or something met to figure out, like, what's the right type of internal brain system thing that we can build an in flight where we'll create an MCP that we can use from our individual agents, but everybody can...
+01:23:55 [Speaker 1]
+Like, because the agents are all, like, siloed by default.
+01:23:58 [Speaker 1]
+I'm in my Dropbox doing my thing.
+01:24:00 [Speaker 1]
+Your God knows where doing your weird custom spun things.
+01:24:04 [Speaker 1]
+And, you know, how do we talk to each other?
+
+01:24:05 [Speaker 1]
+How do we not step on each other's toes?
+01:24:07 [Speaker 1]
+That's a hard problem to solve.
+01:24:09 [Speaker 1]
+And actually creating a single source of truth with an MCP, we believe is the solution.
+01:24:15 [Speaker 1]
+Probably be a really interesting forcing function for us to maybe come up with a way to, I don't know Talk about it.
+01:24:20 [Speaker 1]
+Make the data anonymous and kinda do...
+
+01:24:22 [Speaker 1]
+We just show, like, what we built because we're we're, like, actually in the trenches trying to solve this type of thing right now, and then we can talk about how it connects to the things that we're doing with our individual agents because it's...
+01:24:33 [Speaker 1]
+Man, I'm alive in Grokbot right now.
+01:24:35 [Speaker 1]
+I'm having as much fun in Grokbot as I am in code, which is crazy.
+01:24:40 [Speaker 1]
+It's just flat.
+
+01:24:41 [Speaker 2]
+Yeah.
+01:24:41 [Speaker 2]
+It's utilitarian.
+01:24:42 [Speaker 2]
+Even where security is, like, a a a very big staple for us because we serve as enterprise teams.
+01:24:47 [Speaker 2]
+And so people laugh, and they're like, oh, these...
+01:24:49 [Speaker 2]
+All these teams who claim they're gonna build a CRM or they're gonna rebuild Salesforce, buddy, we did it.
+
+01:24:54 [Speaker 2]
+We did it in two days.
+01:24:55 [Speaker 2]
+Yeah.
+01:24:56 [Speaker 2]
+And and it's, like...
+01:24:56 [Speaker 2]
+So, like, if you don't if you don't understand it, I hate the skill issue meme.
+01:25:01 [Speaker 2]
+But there is a little bit of, like, you probably just need to continue to brush up a little bit on what's possible and then, like, get some reps in.
+
+01:25:07 [Speaker 2]
+Because it's it's wild.
+01:25:09 [Speaker 2]
+It's wild.
+01:25:09 [Speaker 2]
+And and, yeah, let's talk about it next week.
+01:25:11 [Speaker 2]
+And and I'll say this too.
+01:25:12 [Speaker 2]
+Like, the MCP side...
+
+01:25:13 [Speaker 2]
+So, like, MCP use is something that's gotten a lot of love.
+01:25:16 [Speaker 2]
+I've heard a lot of people talk about this.
+01:25:18 [Speaker 2]
+I've not used it myself.
+01:25:19 [Speaker 2]
+But it's basically a full stack MCP framework for developing your own MCP apps for, like, chat gbt, cloud, everything like that.
+01:25:28 [Speaker 2]
+And I was like, oh, that's really cool.
+
+01:25:29 [Speaker 2]
+It's it's it's specifically made for agents and all of this this this framework, the things we're talking about.
+01:25:34 [Speaker 2]
+And then I was able to get Andrew, one of the the creators of MCPUs, to tell us, like, how did you build this?
+01:25:40 [Speaker 2]
+Like, what were the things you had in mind?
+01:25:42 [Speaker 2]
+And, you know, so when we talk about a good versus bad MCP, this is the person who can let us know.
+01:25:46 [Speaker 2]
+I wanna hear from him.
+
+01:25:48 [Speaker 13]
+Hi.
+01:25:48 [Speaker 13]
+My name is Andrew Cotter.
+01:25:49 [Speaker 13]
+I'm a founding agent here at Manufact, and I'm also the maintainer of MCPUs, which is our full stack TypeScript framework for building MCP servers and MCP apps.
+01:25:59 [Speaker 13]
+Just in case you don't know what MCP apps are really quick, they're just this, way that you can bundle UI with your MCP tools so that when it gets called, it'll also render a UI that's able to interact with both the agent and you.
+01:26:14 [Speaker 13]
+So it can do things like send follow-up messages, call other tools, and MCP use is built on React.
+
+01:26:19 [Speaker 13]
+So it's literally just a React component, and we give you these hooks, like use call tool, use tool context.
+01:26:25 [Speaker 13]
+You can use them to just make the whole process easier and, like, not have to worry about that whole system yourself.
+01:26:30 [Speaker 13]
+And I think what makes a really great MCP server when it comes to, like, UIs, UI that actually matters and, like, makes sense.
+01:26:37 [Speaker 13]
+This is our ManufactMCP app.
+01:26:38 [Speaker 13]
+Basically, this is like an analytics, dashboard that gets opened up.
+
+01:26:42 [Speaker 13]
+This is actually part of, like, a new ChatGBT plug in extensions, which we also support.
+01:26:46 [Speaker 13]
+And, basically, you'll see that it opens up in the side here.
+01:26:49 [Speaker 13]
+It's like a native way for ChatGee BT to, like, render these new apps.
+01:26:54 [Speaker 13]
+And I'm able to just, like, view the analytics of our manufacturing CP server.
+01:26:57 [Speaker 13]
+I can scroll down.
+
+01:26:58 [Speaker 13]
+I can look through the errors.
+01:27:00 [Speaker 13]
+So, like, for example, maybe this error I'm curious about.
+01:27:02 [Speaker 13]
+So I can click it, and it'll tell me, like, what's wrong with it.
+01:27:05 [Speaker 13]
+I can add it to the chat.
+01:27:06 [Speaker 13]
+You can see here when I add it to the chat, it comes here in our composer, and it has, like, a JSON on, like, what's going on here.
+
+01:27:13 [Speaker 1]
+And
+
+01:27:13 [Speaker 13]
+then maybe I can ask it, like, what's going on with this error.
+01:27:16 [Speaker 13]
+And then I'm able to, like, easily debug it, with the agent by my side, which is really nice.
+01:27:21 [Speaker 13]
+And I think what really makes a great MCP server, it comes down to, like, two things.
+01:27:26 [Speaker 13]
+The first thing is having really descriptive tools that really convey intent very well and that aren't super ambiguous on on what they do and what they return.
+01:27:35 [Speaker 13]
+Most MCP servers these days have, like, hundreds of tools.
+
+01:27:38 [Speaker 13]
+For example, our server has, like, 75.
+01:27:41 [Speaker 13]
+Neon's has, like, a 105.
+01:27:42 [Speaker 13]
+I think CloudFlare just dropped one with, like, 3,000.
+
+01:27:45 [Speaker 1]
+Wow.
+
+01:27:46 [Speaker 13]
+And we can do these things now Jeez.
+01:27:48 [Speaker 13]
+Because the models have gotten really smart and really good at tool calling.
+01:27:52 [Speaker 13]
+And the harnesses as well all, like, implement some sort of, like, deferred tool search.
+01:27:56 [Speaker 13]
+So that's why it's more important for your tool to be clear so that when the model reaches into the bag, it knows this is the tool I need.
+01:28:04 [Speaker 13]
+And I think another really important, part of MTP servers is error recovery.
+
+01:28:10 [Speaker 13]
+Imagine you have, like, a shared document somewhere.
+01:28:12 [Speaker 13]
+You have two tools.
+01:28:13 [Speaker 13]
+Like, one to read the document, one to edit the document, and say your agent edits it.
+01:28:17 [Speaker 13]
+And then, like, ten minutes later, another agent edits it, and then your agent tries to edit it again.
+01:28:22 [Speaker 13]
+The error shouldn't just say, be able to edit this document because then the model might just give up or it might just keep trying to edit it again and again.
+
+01:28:30 [Speaker 13]
+It should say something like, fail to edit this document.
+01:28:32 [Speaker 13]
+Please run redocument again to get the status of this.
+01:28:36 [Speaker 13]
+So that way the agent could continue this workflow without being interrupted.
+01:28:40 [Speaker 13]
+We still need to help them and, like, guide them into making good decisions and, like, how the workflow should work so that they can do it faster and better than us.
+
+01:28:50 [Speaker 1]
+I'm taking the transcript of those last five lines, and I'm gonna feed it in the quad.
+01:28:53 [Speaker 1]
+Yeah.
+01:28:54 [Speaker 1]
+Yeah.
+
+01:28:54 [Speaker 2]
+That...
+01:28:55 [Speaker 2]
+That's money.
+01:28:57 [Speaker 2]
+So a lot to...
+01:28:59 [Speaker 2]
+There's there's a lot to unpack with MCPs.
+01:29:01 [Speaker 2]
+This was certainly as comprehensive as we could get with the submissions we have.
+
+01:29:05 [Speaker 2]
+There's a lot that we're still learning as we build these out ourselves, undoubtedly.
+01:29:10 [Speaker 2]
+We will come back to this topic and and share more as we build out our own MCPs.
+01:29:14 [Speaker 2]
+Like I said, couple cool projects in the works, both for in flight and for dive, so expect that.
+01:29:20 [Speaker 2]
+Now, there's a topic that keeps coming up in this conversation that will come up again, is how people are...
+01:29:26 [Speaker 2]
+How designers are using their personal agents, and also, like, how designers are adjusting for, like, the AI smell of the design work that these agents are helping them produce.
+
+01:29:37 [Speaker 2]
+I have a number of fantastic submissions and things I wanna talk about.
+01:29:42 [Speaker 2]
+So I'm letting everybody know right now that next week's episode is gonna focus both on the personal agent side.
+01:29:48 [Speaker 2]
+We're gonna talk a little bit about that.
+01:29:49 [Speaker 2]
+Rit and I will share how we're using our agents.
+01:29:52 [Speaker 2]
+And then when our agents create output on our behalf or collaborate with us, how are we getting into the details and solving for smell?
+
+01:30:00 [Speaker 2]
+We're gonna hear from a lot of people next week all about that.
+01:30:06 [Speaker 2]
+I want to make the rest of the time useful for some portfolio reviews.
+01:30:11 [Speaker 2]
+And as a reminder, we do have some preselected ones today, but please send more our way.
+01:30:17 [Speaker 2]
+If you attach the in flight widget to those, and I think that's inflight.co/portfolio, that is how we source the, the people to use it.
+01:30:28 [Speaker 2]
+So one, yes, we obviously would love for you to try in flight.
+
+01:30:32 [Speaker 2]
+Let us know what you think.
+01:30:33 [Speaker 2]
+But two, what that widget allows us to do is to see the questions you were looking for our input on, not just, hey.
+01:30:40 [Speaker 2]
+Here's my portfolio.
+01:30:41 [Speaker 2]
+We wanna know what you're looking for, and we wanna be able to give that to you in the widget so that you can take that feedback and actually provide it to your agent to make improvements.
+01:30:49 [Speaker 2]
+So please do that.
+
+01:30:50 [Speaker 2]
+We will be doing these portfolio reviews at the end of the show, every, week.
+01:30:54 [Speaker 2]
+But before I get to that, some flowers.
+01:30:57 [Speaker 2]
+Alright?
+01:30:58 [Speaker 2]
+Now I know some of you saw this video.
+01:31:02 [Speaker 2]
+Alright?
+
+01:31:03 [Speaker 2]
+Darcie does.
+01:31:04 [Speaker 2]
+It made a viral 5,300,000
+
+01:31:08 [Speaker 1]
+views.
+01:31:08 [Speaker 1]
+Unbelievable.
+
+01:31:09 [Speaker 2]
+Not gonna play the video here live.
+01:31:11 [Speaker 2]
+I would encourage you to go to her, Twitter here, underscore darshi.
+01:31:16 [Speaker 2]
+Check it out.
+01:31:17 [Speaker 2]
+It is well done.
+01:31:19 [Speaker 2]
+And and this was all about her as a designer storytelling her career journey in a really clever way, and she did this with her brother.
+
+01:31:28 [Speaker 2]
+I thought this was so cool, man.
+01:31:30 [Speaker 2]
+Obviously, the storyteller in me geeks out on this.
+01:31:33 [Speaker 2]
+But it was also something we didn't talk about in last week's episode around portfolios, was only four...
+01:31:39 [Speaker 2]
+5,300,000 views.
+01:31:40 [Speaker 2]
+Yeah.
+
+01:31:41 [Speaker 2]
+Was video.
+01:31:42 [Speaker 2]
+Video didn't come up a ton.
+01:31:44 [Speaker 2]
+And...
+01:31:44 [Speaker 2]
+Yeah.
+
+01:31:45 [Speaker 1]
+I had it two weeks ago.
+01:31:46 [Speaker 1]
+I had a few of them saved.
+01:31:47 [Speaker 1]
+I think there's a ton of output in video.
+
+01:31:50 [Speaker 2]
+I think so too.
+01:31:51 [Speaker 2]
+I think it is a tricky one.
+01:31:52 [Speaker 2]
+But I think that if you can do it well, there's a lot...
+01:31:56 [Speaker 2]
+I mean, this this is a perfect example.
+01:31:58 [Speaker 2]
+And so I said, hey.
+
+01:32:00 [Speaker 2]
+Would you guys be willing to tell us a little bit about how all of this came to be?
+01:32:05 [Speaker 2]
+And, they said, yeah.
+01:32:06 [Speaker 2]
+And so This
+
+01:32:07 [Speaker 1]
+is so great.
+
+01:32:09 [Speaker 2]
+So great work, and I love seeing the behind the scenes of great work.
+01:32:12 [Speaker 2]
+I'm gonna play this.
+01:32:13 [Speaker 2]
+Here we go.
+
+01:32:14 [Speaker 14]
+Hi, guys.
+01:32:15 [Speaker 14]
+I'm Darshita, and I'm a designer.
+01:32:17 [Speaker 14]
+And you must have seen our brand, Film Designers Dead.
+
+01:32:20 [Speaker 15]
+And I'm Vikrant.
+01:32:21 [Speaker 15]
+I'm the filmmaker who got to work with this wonderful designer, who also happens to be my sister.
+
+01:32:27 [Speaker 14]
+He is an even better filmmaker that I have had an honor to work with.
+01:32:32 [Speaker 14]
+So I think both of our creative juices kind of collaborated together, and it has been, like, a wild ride.
+
+01:32:38 [Speaker 6]
+How do
+
+01:32:38 [Speaker 14]
+you mean?
+01:32:38 [Speaker 14]
+Not even imagine it to cross the numbers that it has right now, let alone have so many, like, people comment on it, like, people that I really look up to.
+01:32:49 [Speaker 14]
+So it is, like, it's it's been insane.
+01:32:51 [Speaker 14]
+I I cannot believe.
+
+01:32:52 [Speaker 15]
+Just to give you guys some context, Darshita already wanted to make a video, like, a video about herself, just trying...
+01:32:59 [Speaker 15]
+Wanting to pitch herself, like, you know, tell her story, who is she as a designer, especially in a year filled with anxiety.
+
+01:33:06 [Speaker 14]
+How would I be able to look for opportunities in the age of AI?
+01:33:10 [Speaker 14]
+That was the first question I had.
+01:33:11 [Speaker 14]
+Like, why would somebody hire Darshita in the age of AI?
+01:33:15 [Speaker 14]
+This question came out of anxiety.
+01:33:17 [Speaker 14]
+So I thought that let's just move past all of those thoughts and worries and, try to pitch yourself in the most unique, authentic way possible.
+
+01:33:27 [Speaker 14]
+Because if I can just share a portfolio, I might as well, like, you know, talk more about myself, then let people decide whether they even want to work with me or not.
+
+01:33:36 [Speaker 15]
+Pashta just one day came up to me with this fantastic idea after hearing which I was like, let's just go all in.
+
+01:33:43 [Speaker 14]
+I'm such a huge fan of movies and how there are these characters who go through a transformation.
+01:33:50 [Speaker 14]
+Greatest example is the movie La La Land, which I am super, super, super inspired by.
+01:33:54 [Speaker 14]
+I really love that film.
+01:33:55 [Speaker 14]
+They're both fans of it.
+01:33:57 [Speaker 14]
+I just love how the character in itself was just pitching herself out in public.
+
+01:34:01 [Speaker 14]
+So I thought, like, maybe I can do it too.
+01:34:04 [Speaker 14]
+My website is already very pink.
+01:34:05 [Speaker 14]
+It is retro.
+01:34:06 [Speaker 14]
+It has gotten these mirror balls and everything that I like, the glitz and glamour and the shine.
+01:34:12 [Speaker 14]
+And I know, like, your portfolio is supposed to be something that a hiring manager likes, but it also is like a very safe, cozy space for yourself.
+
+01:34:22 [Speaker 14]
+So I wanted it to have this kind of a personality that is mine.
+
+01:34:26 [Speaker 15]
+Maybe you can do a of all the things that you have designed just for this particular film.
+
+01:34:30 [Speaker 14]
+Yeah.
+01:34:30 [Speaker 14]
+So the newspaper that you see was all designed, like, the front page cover.
+01:34:35 [Speaker 14]
+I wanted it to feel like a very apocalyptic, but also in, like, the most beautifully designed, very pink and, like
+
+01:34:43 [Speaker 15]
+Like satirical.
+
+01:34:43 [Speaker 14]
+Satireical.
+01:34:44 [Speaker 14]
+The cat animation was also made for the video.
+
+01:34:47 [Speaker 1]
+So
+
+01:34:47 [Speaker 15]
+So, basically, I was trying to convince her really hard during the entire making of the project that we should just use AI.
+01:34:53 [Speaker 15]
+We should just use codex or cloth code to generate that cat or to generate the the the newspaper, but she was very adamant about not using any of the AI tools.
+
+01:35:02 [Speaker 14]
+Not just because we cannot.
+01:35:04 [Speaker 14]
+Yeah.
+01:35:04 [Speaker 14]
+Sure.
+01:35:04 [Speaker 14]
+We can.
+01:35:05 [Speaker 14]
+But I feel like I just did not have the patience for it to create something so I was like, let it...
+
+01:35:09 [Speaker 14]
+Let me just go ahead and do it my way because I have a vision in my head, and I know how to quickly just execute it in the way I want it precisely.
+01:35:18 [Speaker 14]
+We could have, like, done it in, like, two days or a week, but it took longer because I thought
+
+01:35:24 [Speaker 15]
+two months.
+
+01:35:25 [Speaker 14]
+Yeah.
+01:35:25 [Speaker 14]
+I thought it was pretty big.
+01:35:26 [Speaker 14]
+I just wanted it to be, like, super professional, very well done, very well executed.
+
+01:35:32 [Speaker 15]
+Everything was deliberately chosen to make you feel something, to make you feel very specific things.
+01:35:37 [Speaker 15]
+We both are actually working on the making of Design is Dead.
+01:35:40 [Speaker 15]
+It's gonna soon come out maybe in a week or two.
+01:35:42 [Speaker 15]
+Do you wanna talk about maybe your offers, the offers that you're getting or let's just keep that secret, you know, because everyone is, you know, everyone is looking forward to
+
+01:35:51 [Speaker 14]
+worth it to create.
+01:35:53 [Speaker 14]
+Whatever you feel like, just put yourself out there because it is so, so worth it.
+01:35:57 [Speaker 14]
+None of our efforts have gone to waste because my DMs have been flooded.
+
+01:36:02 [Speaker 15]
+They're completely dissolved.
+01:36:04 [Speaker 15]
+Yeah.
+
+01:36:04 [Speaker 14]
+Thank you.
+01:36:06 [Speaker 14]
+Alright.
+01:36:07 [Speaker 14]
+Won't take so much of your time.
+01:36:08 [Speaker 14]
+Bye, guys.
+
+01:36:09 [Speaker 12]
+Bye bye.
+01:36:09 [Speaker 12]
+Bye.
+
+01:36:11 [Speaker 2]
+That...
+01:36:11 [Speaker 2]
+Man, that's a cool thing to see.
+
+01:36:13 [Speaker 1]
+That's heartwarming.
+01:36:14 [Speaker 1]
+That was great.
+01:36:14 [Speaker 1]
+Yeah.
+01:36:15 [Speaker 1]
+I'm so glad that we have that video, and I'm so glad the video worked too.
+01:36:17 [Speaker 1]
+I was literally just thinking about it yesterday.
+
+01:36:19 [Speaker 1]
+I was like, did that?
+01:36:20 [Speaker 1]
+I wonder if if she had the outcome.
+01:36:22 [Speaker 1]
+Also, how funny is it that, like, of course, the video editor is like, it took two months.
+01:36:26 [Speaker 1]
+Like, tell them.
+01:36:27 [Speaker 1]
+I ripped my ass off of that thing.
+
+01:36:30 [Speaker 2]
+And and I and I I mean, listen.
+01:36:31 [Speaker 2]
+Like, this is a one two punch duo that's working very well, and both of them had such hands involved in in the decision making here that I I love this so much.
+01:36:40 [Speaker 2]
+Even just the, hey, Vic.
+01:36:42 [Speaker 2]
+I can tell right now you put the angle down on the camera, and this is just...
+01:36:45 [Speaker 2]
+You're in the house just recording a quick thing for us, and I love it.
+
+01:36:49 [Speaker 2]
+I love the whole...
+01:36:50 [Speaker 2]
+Just all the decisions you're making around this.
+01:36:51 [Speaker 2]
+And thank you, by the way, for taking time to record this with what I imagine are flooded inboxes.
+01:36:58 [Speaker 2]
+This...
+01:36:58 [Speaker 2]
+We...
+
+01:36:59 [Speaker 2]
+Dude, people sometimes make submissions, and I tell them, I say, hey.
+01:37:03 [Speaker 2]
+Like, you know, we're gonna cut it to three to four minutes.
+01:37:07 [Speaker 2]
+You know, try not to give us, like, a thirty minute submission because we have to figure out how to squeeze your intent into three to four minutes.
+01:37:14 [Speaker 2]
+And sometimes, they're...
+01:37:15 [Speaker 2]
+They they are thirty minutes.
+
+01:37:16 [Speaker 2]
+This one, I think, was, like, seven or eight minutes, and we have to end up cutting some really cool moments from it.
+01:37:22 [Speaker 2]
+And what I would recommend to anybody submitting something to us, and many do, share that on your own Twitter in the full glory.
+01:37:30 [Speaker 2]
+We have to cut it down for the length of the show, but the full things are wonderful behind the scenes.
+01:37:35 [Speaker 2]
+And and what I love is more people are finding their voice in, like, submitting it to us and then going, oh, that went over well.
+01:37:41 [Speaker 2]
+I'll submit it online.
+
+01:37:42 [Speaker 2]
+Do that.
+01:37:43 [Speaker 2]
+And if if you guys do that, I recommend everybody go check out the full version.
+01:37:47 [Speaker 2]
+Really cool.
+01:37:49 [Speaker 2]
+Yeah.
+01:37:50 [Speaker 2]
+Let's get into some portfolio reviews.
+
+01:37:52 [Speaker 2]
+So Let's do it.
+01:37:53 [Speaker 2]
+We had a few we had a few leftover from last week that I'm gonna get right into, and we're gonna we're gonna dig into this.
+01:38:02 [Speaker 2]
+This was Fatima.
+01:38:03 [Speaker 2]
+And if I'm not mistaken, MDS did give some feedback on this.
+01:38:10 [Speaker 2]
+Before we go into our feedback, let's see what MDS had to say.
+
+01:38:15 [Speaker 5]
+Okay.
+01:38:15 [Speaker 5]
+So that's...
+01:38:15 [Speaker 5]
+Looking at Fatima Ashraf portfolio.
+01:38:19 [Speaker 5]
+I really like this typeface.
+01:38:22 [Speaker 5]
+This one in particular, I like the colors.
+
+01:38:26 [Speaker 5]
+The line height on these looks nice.
+01:38:28 [Speaker 5]
+I like the blue as an accent, and the blue dot even looks nice.
+01:38:33 [Speaker 5]
+I don't like when my mouse goes faster or slower than it normally does.
+01:38:38 [Speaker 5]
+I don't like that I can't see your work without hovering.
+01:38:43 [Speaker 5]
+And this navigation feels a little disjointed from the other things.
+
+01:38:49 [Speaker 5]
+When I see, and also brand and website website redesign system, these sort of feel tacked on.
+01:38:56 [Speaker 5]
+And this stuff here, like, the smaller, monospace stuff, I almost think it it feels a little bit...
+01:39:04 [Speaker 5]
+If you were just to draw a line around all of this, you would get, you know, some, like, pretty squirrely lines.
+01:39:10 [Speaker 5]
+And so when you're trying to go with, like, a a really sort of Swiss grid style like this, I feel like you really have to lock in, like, very strong structural scan lines.
+01:39:18 [Speaker 5]
+Otherwise, it it might kinda break a little bit.
+
+01:39:20 [Speaker 5]
+And I really...
+01:39:21 [Speaker 5]
+So right out of the gate, I don't know exactly what you do.
+01:39:24 [Speaker 5]
+I can guess because these tiny words say brand and website, and I'm gonna click on one of these.
+01:39:31 [Speaker 5]
+And I I like what you're doing here.
+01:39:33 [Speaker 5]
+Like, I like this idea, but I feel like you may want to consider, going with, like, a very strong...
+
+01:39:42 [Speaker 5]
+Like, a stronger left alignment for this text.
+01:39:45 [Speaker 5]
+Just draw a line across the left edge of all of this and, see if you can get it a little stronger, from a compositions standpoint.
+01:39:56 [Speaker 5]
+It's it's close, and that's not even about the work.
+01:39:59 [Speaker 5]
+But when I see typography that could be tightened up, my eye is drawn to, like, what could be fixed here, and it my...
+01:40:04 [Speaker 5]
+And puts a seed in my mind about typography skill.
+
+01:40:10 [Speaker 5]
+And so I'm looking at this.
+01:40:12 [Speaker 5]
+I'm like, okay.
+01:40:12 [Speaker 5]
+There's a video.
+01:40:13 [Speaker 5]
+It's an illustration, landing page.
+01:40:17 [Speaker 5]
+Definitely gonna skip past the stuff I might need to read.
+
+01:40:19 [Speaker 5]
+Now I'm thinking, did you illustrate these images?
+01:40:22 [Speaker 5]
+Are you an illustrator?
+01:40:23 [Speaker 5]
+You built the guidelines as a live site logo, how to draw the elephant.
+01:40:27 [Speaker 5]
+That's cool.
+01:40:38 [Speaker 5]
+I think I'm still...
+
+01:40:39 [Speaker 5]
+Without reading anything, I'm still wondering.
+01:40:41 [Speaker 5]
+I...
+01:40:41 [Speaker 5]
+I'm guessing you designed the entire website and you did the elephant.
+01:40:48 [Speaker 5]
+Honest ground.
+01:40:48 [Speaker 5]
+This this is a lot of information to take in really large.
+
+01:40:51 [Speaker 5]
+I almost wonder if it was in a smaller, like, iPad container or a web...
+01:40:55 [Speaker 5]
+Chrome container.
+01:40:57 [Speaker 5]
+Would that be potentially an easier way to view this particular work?
+01:41:03 [Speaker 5]
+Also, because this is a...
+01:41:04 [Speaker 5]
+An information heavy dense screen, it feels like these three screens sort of feel like the same thing.
+
+01:41:10 [Speaker 5]
+It's a big headline with orange as a highlight and then some, like, illustrative type things.
+01:41:14 [Speaker 5]
+And so it could be worthwhile to...
+01:41:17 [Speaker 5]
+You know, if one of these was, you know, just this section right here, like, something to add some variety where it doesn't headline orange tags with the elephant headline orange tags with the elephant just to get some more variety.
+01:41:27 [Speaker 5]
+I mean, there's a lot of good things here, like the way that you're exploring this little button section here.
+01:41:33 [Speaker 5]
+And this is this is a much nicer composition, I think, is the big block of orange with the letter.
+
+01:41:38 [Speaker 5]
+This really strong layout here with the grid, I can kinda understand and kinda soak in a little bit more of the design.
+01:41:43 [Speaker 5]
+I do want...
+01:41:44 [Speaker 5]
+I'd love to see a little more negative space around this composition that feels a little tight.
+01:41:47 [Speaker 5]
+Feels like if these were all a little taller in general, it might be a nicer, composition on these images specifically.
+01:41:53 [Speaker 5]
+But then I'm I'm I'm remembering these three orange headlines with the elephant.
+
+01:41:56 [Speaker 5]
+I really like this lockup, and then I'm getting more of the orange headlines with the elephant.
+01:42:02 [Speaker 5]
+These are a little different here.
+01:42:05 [Speaker 5]
+This might...
+01:42:05 [Speaker 5]
+These three, h one, h two, h three, whatever you wanna call it, feel like they might be competing a little bit on this one.
+01:42:11 [Speaker 5]
+I really like this page.
+
+01:42:12 [Speaker 5]
+I think this works really well.
+01:42:15 [Speaker 5]
+Alright.
+01:42:16 [Speaker 5]
+Let me go back and try to get one more in here.
+01:42:18 [Speaker 5]
+I'm actually interested to see more of the work.
+01:42:22 [Speaker 5]
+I think this this looks nice.
+
+01:42:25 [Speaker 5]
+There's a lot of text on here.
+01:42:26 [Speaker 5]
+This looks maybe a little potentially broken.
+01:42:29 [Speaker 5]
+Just a bunch of text right here that I'm not gonna read that could potentially be moved.
+01:42:33 [Speaker 5]
+These all feel just...
+01:42:35 [Speaker 5]
+It it all kinda has, like, a medium zoom level feel.
+
+01:42:37 [Speaker 5]
+The composition themselves don't work well altogether.
+01:42:41 [Speaker 5]
+And so I would look at either making them smaller or blowing one up or giving it more space.
+01:42:45 [Speaker 5]
+See how, like, four ways to add memory?
+01:42:47 [Speaker 5]
+It's really tight up against the edge there.
+01:42:50 [Speaker 5]
+And then you randomly have this cropped where the navigation is, and that just feels like an oversight.
+
+01:42:54 [Speaker 5]
+And so I think if you put all of these as, like, you know, curated mag...
+01:42:58 [Speaker 5]
+Or curated paintings are gonna hang in a gallery.
+01:43:00 [Speaker 5]
+You want every little detail, especially how you're displaying your work to just really shine.
+01:43:04 [Speaker 5]
+And these really, really data heavy screens, I feel like almost need to be...
+01:43:08 [Speaker 5]
+I need to have, like, a a giant blue background with a logo and then, like, a version of this.
+
+01:43:13 [Speaker 5]
+Maybe you only show the, the pricing tiers, or one pricing tier, you know, to kinda show off the way that you handle that one pricing tier.
+01:43:19 [Speaker 5]
+And some of these feel like, you know, very low quality images with pixel attack, so it's hard to get a feel for, the full layout.
+01:43:26 [Speaker 5]
+So I would potentially consider how could you rework these images alone to have, like, a stronger composition of the images within within the site.
+01:43:34 [Speaker 5]
+Same thing here where these are all sort of this...
+01:43:37 [Speaker 5]
+Like, these two screens feel the same.
+
+01:43:38 [Speaker 5]
+One's got a white thing.
+01:43:39 [Speaker 5]
+One's got a dark thing.
+01:43:40 [Speaker 5]
+These screens feel the same.
+01:43:41 [Speaker 5]
+It's like one...
+01:43:41 [Speaker 5]
+It's like light and dark mode together.
+
+01:43:44 [Speaker 5]
+If I'm just kinda scanning, it feels like I'm not getting as much, visual interest.
+01:43:48 [Speaker 5]
+It feels like I'm looking at two different versions of the same screen.
+01:43:51 [Speaker 5]
+Now this one, I feel like has a nicer...
+01:43:53 [Speaker 5]
+Okay.
+01:43:53 [Speaker 5]
+It's larger and I can kind of, like, take it in, but it's also a little bit pixelated.
+
+01:43:57 [Speaker 5]
+But I do like the negative space and the composition of this image compared to some of the others that you have on here.
+01:44:03 [Speaker 5]
+And somehow this feels like a completely separate thing from this project.
+01:44:07 [Speaker 5]
+It feels like a DIRECTV piece of work in the midst of this, like, very paper blue situation.
+01:44:15 [Speaker 5]
+See, like, the crop here, just really, really tight and this is kinda pixely.
+01:44:19 [Speaker 5]
+I wanna see, like, beautiful strong images.
+
+01:44:21 [Speaker 5]
+I would get rid of this.
+01:44:23 [Speaker 5]
+This kinda looks like a stock photo in a way.
+01:44:27 [Speaker 5]
+Alright.
+01:44:27 [Speaker 5]
+Hope that helps.
+
+01:44:31 [Speaker 2]
+Yeah.
+01:44:32 [Speaker 2]
+I'll I'll I'll say this, and I appreciate you, MDS, going through that.
+01:44:35 [Speaker 2]
+I've obviously got the dark mode going on.
+01:44:37 [Speaker 2]
+And someone asked, what is this floating panel and cursor?
+01:44:40 [Speaker 2]
+Well, hey.
+
+01:44:41 [Speaker 2]
+That's in flight.co.
+01:44:42 [Speaker 2]
+Go check it out.
+01:44:43 [Speaker 2]
+You know?
+01:44:44 [Speaker 2]
+I'm gonna close that for now.
+01:44:47 [Speaker 2]
+I will say, I have become to appreciate...
+
+01:44:50 [Speaker 2]
+Maybe we're just being saturated with these, like, this explosion of uniqueness that people are trying to bring to their portfolios.
+01:44:59 [Speaker 2]
+This page feels like it's a little bit messy.
+01:45:03 [Speaker 2]
+The navigation's harder for me.
+01:45:04 [Speaker 2]
+I agree with the point about having to hover to see the work.
+01:45:09 [Speaker 2]
+But as I dig into this, I really do appreciate the simplicity of these case studies.
+
+01:45:14 [Speaker 2]
+I wish the text was a little bit bigger, but I appreciate the character count on the descriptions.
+01:45:19 [Speaker 2]
+This is some stronger work.
+01:45:22 [Speaker 2]
+I also agree that, like, for example, the the kind of sizzle reel of this, I like that as a choice.
+01:45:28 [Speaker 2]
+Same.
+01:45:29 [Speaker 2]
+You know, I think sizzle reels like that work really well as long as we have an opportunity to dig deeper into the the details.
+
+01:45:35 [Speaker 1]
+There's almost no excuse to not do them too.
+01:45:38 [Speaker 1]
+Like...
+01:45:38 [Speaker 1]
+I agree.
+01:45:39 [Speaker 1]
+Saying that.
+01:45:39 [Speaker 1]
+Yeah.
+
+01:45:40 [Speaker 2]
+Keep going.
+01:45:41 [Speaker 2]
+100%.
+01:45:41 [Speaker 2]
+The the last piece I was gonna say was, like, with regards to him saying, I wish some of these images were a little bit higher quality, like, the text looking pixelated or, just certain components.
+01:45:53 [Speaker 2]
+I don't think it was this case study.
+01:45:54 [Speaker 2]
+It was another one with the pricing cards, and he suggested, why don't you just highlight one of those cards, have it float, and really dig into, like, the details of that particular pricing card?
+
+01:46:04 [Speaker 2]
+I think advertising the component details is a really good idea occasionally throughout a case study.
+01:46:12 [Speaker 2]
+I think that that can, like, emphasize, look at the detail.
+01:46:14 [Speaker 2]
+Look at the craft here.
+01:46:16 [Speaker 2]
+You know, you can redline it if you want to, but I think seeing that in a higher quality, goes a long way.
+01:46:22 [Speaker 2]
+And his point about taking a line and drawing it here, I think, makes...
+
+01:46:26 [Speaker 2]
+I think that sound mainly, like, you know, where are my eyes going?
+01:46:30 [Speaker 2]
+Am I having to get into here?
+01:46:32 [Speaker 2]
+And, again, I have bad eyes.
+01:46:33 [Speaker 2]
+So anytime I see text that's hard to discern, it's not something I love to look at.
+
+01:46:39 [Speaker 1]
+Yeah.
+01:46:39 [Speaker 1]
+I I think it is important to remember the fact that that was a visual critique made by the master visual critiquer.
+01:46:48 [Speaker 1]
+You know?
+01:46:48 [Speaker 1]
+Like, there might there may be there might not be a more difficult person to impress from a visual design standpoint than MDS.
+01:46:57 [Speaker 1]
+Yeah.
+
+01:46:58 [Speaker 1]
+I think, overall, I think this portfolio is quite good.
+
+01:47:01 [Speaker 2]
+Mhmm.
+
+01:47:01 [Speaker 1]
+I would definitely share this portfolio.
+01:47:04 [Speaker 1]
+I agree it gets a little bit messy with some of the, text to the right of the titles.
+01:47:10 [Speaker 1]
+I like...
+01:47:11 [Speaker 1]
+I'm I'm a fan of breaking, you know, typical patterns when it comes to typographic layout.
+01:47:18 [Speaker 1]
+That did feel a little bit messy.
+
+01:47:19 [Speaker 1]
+I actually...
+01:47:20 [Speaker 1]
+My hot take...
+01:47:21 [Speaker 1]
+MDS kinda didn't like it, but the the years breaking the frame on the left, I love that.
+01:47:27 [Speaker 1]
+I think it's sick.
+01:47:28 [Speaker 1]
+I think just, like, having one item break that left alignment, I think, is very cool.
+
+01:47:33 [Speaker 1]
+I think I think it's with...
+01:47:35 [Speaker 1]
+Combined with all of the labels to the right.
+01:47:36 [Speaker 1]
+I think it gets too messy.
+01:47:38 [Speaker 1]
+One little thing that kinda bugged me was the work in the lab and the about, they're designed as the exact same type of button, but they're not.
+01:47:47 [Speaker 1]
+This is actually a section tag.
+
+01:47:49 [Speaker 1]
+So I clicked lab, and it didn't do anything because I was on a taller laptop, but it just scroll to the section.
+01:47:54 [Speaker 1]
+That felt weird to me.
+01:47:55 [Speaker 1]
+But then if you hit about, it actually navigates to to a separate route.
+01:47:59 [Speaker 1]
+That felt a little bit careless to me.
+
+01:48:01 [Speaker 2]
+Disjointed.
+01:48:02 [Speaker 2]
+Yeah.
+
+01:48:03 [Speaker 1]
+Yeah.
+01:48:03 [Speaker 1]
+But overall, I mean, I I think the work is good.
+01:48:06 [Speaker 1]
+I think some of the things that MBS was saying are a reminder that people take the average of your work and not the sum.
+01:48:12 [Speaker 1]
+And I think some of the comp...
+01:48:14 [Speaker 1]
+Like, you you could've trimmed down some of the stuff that you were showing, but I love this interaction.
+
+01:48:20 [Speaker 1]
+I don't hate the custom blue cursor.
+01:48:23 [Speaker 1]
+I love the custom back cursor when you hover over the left.
+
+01:48:28 [Speaker 2]
+And Yeah.
+01:48:29 [Speaker 2]
+That is nice.
+
+01:48:30 [Speaker 1]
+Interaction is fun.
+01:48:31 [Speaker 1]
+Yeah.
+01:48:31 [Speaker 1]
+I I I I kind of, I wonder how recently it was added and how much inspiration was taken from some other portfolios that we've looked at.
+01:48:40 [Speaker 1]
+But I I really, really like it.
+
+01:48:42 [Speaker 2]
+There was a...
+01:48:43 [Speaker 2]
+I can't recreate it, but I thought when he was looking at this, there was a top nav that looked a little bit more traditional, and I appreciated that over this one.
+01:48:51 [Speaker 2]
+I don't know where that was activated.
+01:48:53 [Speaker 2]
+But...
+01:48:54 [Speaker 2]
+Yeah.
+
+01:48:54 [Speaker 2]
+Otherwise, a lot to like as well.
+01:48:57 [Speaker 2]
+I'm gonna get into, Louis, Noguchi, I believe, is how that's pronounced.
+01:49:04 [Speaker 2]
+I'm sorry if I did not.
+01:49:06 [Speaker 2]
+Eeny.
+01:49:07 [Speaker 2]
+Oh, I wanna hear what she has to say.
+
+01:49:09 [Speaker 3]
+Hi, Lewis.
+01:49:10 [Speaker 3]
+Okay.
+01:49:11 [Speaker 3]
+So first impression about your site is that there are a lot of words.
+01:49:16 [Speaker 3]
+There's so much to read.
+01:49:19 [Speaker 3]
+I...
+
+01:49:19 [Speaker 3]
+Yes.
+01:49:19 [Speaker 3]
+I appreciate understanding where you are in terms of your journey.
+01:49:22 [Speaker 3]
+I'm looking at this, and, at first, it was easy to understand.
+01:49:26 [Speaker 3]
+Those are the companies you've worked at, and then I say location.
+01:49:28 [Speaker 3]
+I'm I'm sure.
+
+01:49:29 [Speaker 3]
+I'm unsure.
+01:49:29 [Speaker 3]
+I think it's mostly...
+01:49:31 [Speaker 3]
+The first three sections seem to be saying exactly the same thing.
+01:49:33 [Speaker 3]
+So in terms of you've got these that are reinforcing what you already have as text, and then you've got all this information.
+01:49:39 [Speaker 3]
+And then when I go into the next section, which is about work, I get your full work history, which in a way is tied to the hero.
+
+01:49:45 [Speaker 3]
+And then finally, it's by the third scroll before I see some work.
+01:49:49 [Speaker 3]
+And I think that is where I start to be slightly concerned.
+01:49:52 [Speaker 3]
+Unfortunately, this is not loading in for me, but, I imagine landing on the page and working out your, typographic hierarchy would be a better way to purchase this.
+01:50:02 [Speaker 3]
+And with the right sizing of your, of your type, you can...
+01:50:06 [Speaker 3]
+Of your type hierarchy rather.
+
+01:50:07 [Speaker 3]
+You can then introduce the experience instantly by letting someone see, oh, there is a fair bit of work behind you, which is great.
+01:50:15 [Speaker 3]
+So I think for me, that's one of the things that I wanted to see where it's like, I'm already on the second and third scroll, and by then, I'm completely turned off because I wanna do work.
+01:50:24 [Speaker 3]
+And then finally, I go into experience and it's all of these companies.
+01:50:27 [Speaker 3]
+And so I'm starting to ask, have a few questions about...
+01:50:32 [Speaker 3]
+Okay.
+
+01:50:32 [Speaker 3]
+What kind of role are you looking for?
+01:50:34 [Speaker 3]
+Are you looking for part time or full time?
+01:50:36 [Speaker 3]
+Because it sounds like you are in full time, but then there is that all of these that you've worked with.
+01:50:41 [Speaker 3]
+And so just...
+01:50:42 [Speaker 3]
+Those are some of the nuances that you just have to be mindful of of in terms of who will be seeing your portfolio and what will they prioritize.
+
+01:50:47 [Speaker 3]
+So, for example, if this is, like, for your consultancy and things like that, there is, there is absolutely no harm in making a second home screen or home page that is dedicated to that and just hiding it and not putting it as a link on the on the site.
+01:50:59 [Speaker 3]
+Just make it intro...
+01:51:00 [Speaker 3]
+Like, it's a holistic one paged, one pager that then it's just clear how you've worked across different, companies and, yeah, the services you might be providing.
+01:51:10 [Speaker 3]
+And I think by this time, I'm losing a lot of interest in just keep going.
+01:51:14 [Speaker 3]
+It's more just like, okay.
+
+01:51:15 [Speaker 3]
+Let me see what else is there.
+01:51:17 [Speaker 3]
+And I think this is a fantastic thing where you've got you've got this photo that has completely hit ridiculous numbers on on Flash.
+01:51:22 [Speaker 3]
+And for me, I instantly think back into this, and I'm wondering, how many seconds?
+01:51:25 [Speaker 3]
+That's my information that's there.
+01:51:27 [Speaker 3]
+You've leaned into the typical spiel of, hey.
+
+01:51:29 [Speaker 3]
+This is who I am.
+01:51:30 [Speaker 3]
+This I do.
+01:51:30 [Speaker 3]
+And then for designers, I feel like it's particularly intense because we then talk about all of these things like, hey.
+01:51:35 [Speaker 3]
+We can go from scale up to to start up and and things like that.
+01:51:37 [Speaker 3]
+And we use, like, these very broad statements around, hey.
+
+01:51:40 [Speaker 3]
+I'm shipping our company with craft and measurable impact experiences on the way...
+01:51:44 [Speaker 3]
+Experiencing that skill.
+01:51:45 [Speaker 3]
+Right?
+01:51:45 [Speaker 3]
+So, I'd say spend time rethinking how your site fits together.
+01:51:49 [Speaker 3]
+Ideally, it would be more of prioritizing this experience.
+
+01:51:52 [Speaker 3]
+I think it's nice and compact, and I love the, yeah, I love these.
+01:51:55 [Speaker 3]
+They're they're very nice to click across.
+01:51:57 [Speaker 3]
+For some reason, it's also not loading on my computer, so that's another thing that you want to just, as much as possible, do, just a performance check across all breakpoints across different browsers just to make sure things are shipshape with your, portfolio.
+01:52:08 [Speaker 3]
+And like I said, this information, how does this make this into the hero?
+01:52:10 [Speaker 3]
+How do you emote in your hero section just the right level of it where it is clear who you are as a designer?
+
+01:52:15 [Speaker 3]
+It is clear who you are as a person, and the things that you enjoy.
+01:52:18 [Speaker 3]
+And so right now, for me, your entire site does feel like it's more if you're trying to put all the different bits together, and it doesn't come across as though there's been a lot of sitting down to say, hey.
+01:52:27 [Speaker 3]
+Okay.
+01:52:27 [Speaker 3]
+There's so much to share.
+01:52:28 [Speaker 3]
+How would I begin to, introduce them into the world of writing gradually?
+
+01:52:32 [Speaker 3]
+Or, hey.
+01:52:33 [Speaker 3]
+This photograph that I am incredibly proud of that is doing so much numbers, could that make its way into the hero section and just, like, jokingly, showing some interaction around, like, the total number of views or, what was it now?
+01:52:43 [Speaker 3]
+Yeah.
+01:52:43 [Speaker 3]
+The the all time views on your particular photo and things like that.
+01:52:46 [Speaker 3]
+And so, I easily nearly scroll past, writing when I was looking at this.
+
+01:52:51 [Speaker 3]
+Like, it just feels sandwiched in between, and then you've got bookmarks, and I'm just not sure, what are you trying to communicate with this?
+01:52:57 [Speaker 3]
+And then you've got interviews and podcasts, and those are quite clear, and then you've got travel.
+01:53:01 [Speaker 3]
+So I think there's so many modular bits that perhaps deserve their own pages and deserve a proper treatment of what you're trying to communicate across those, as opposed to it's a single long one pager that by the third, fourth scroll, and that's even being generous.
+01:53:14 [Speaker 3]
+Most people already will make up their mind about if you are the right fit for whatever it is they might be, considering, and they would love to either have chat with you or absolutely not have a chat with you, like, regard...
+01:53:23 [Speaker 3]
+Yeah.
+
+01:53:23 [Speaker 3]
+Depending on what the scenario is.
+01:53:24 [Speaker 3]
+But it's just being mindful that there are so many factors that are not within your control.
+01:53:27 [Speaker 3]
+So your portfolio, you need to treat that as, like, as you would a window shop, where it's like, oh, someone spots something in the window shop, and then that makes them come into the store to learn more, to experience it.
+01:53:36 [Speaker 3]
+And so that would be my advice.
+01:53:37 [Speaker 3]
+And then I think the final part is just be mindful of things like Claude tells, where you've seen the the glowing details indicator of just something...
+
+01:53:44 [Speaker 3]
+Yeah.
+01:53:44 [Speaker 3]
+It's it's almost a combination of a status indicator.
+01:53:46 [Speaker 3]
+You've got a label, and then you've got the arrow showing that this will take you out of the site.
+01:53:50 [Speaker 3]
+And so...
+01:53:51 [Speaker 3]
+Yeah.
+
+01:53:51 [Speaker 3]
+I wish you all the best.
+
+01:53:56 [Speaker 2]
+What a closeout.
+01:53:58 [Speaker 2]
+That is so great, Eaney.
+01:54:01 [Speaker 2]
+You know what?
+01:54:01 [Speaker 2]
+How how do you feel about this?
+01:54:03 [Speaker 2]
+Oh, it's not loading for us either.
+
+01:54:05 [Speaker 1]
+Yeah.
+01:54:05 [Speaker 1]
+It wasn't loading for me either.
+
+01:54:07 [Speaker 2]
+So how do you feel about this, though, assuming work was loaded here?
+01:54:10 [Speaker 2]
+Bring this bring this up to the hero.
+01:54:14 [Speaker 2]
+Remove all of this text and cursors.
+01:54:17 [Speaker 2]
+Just right above right above here, just say, name one two liner of you, and then, like, start with the window shopping here.
+01:54:27 [Speaker 2]
+And then if you scroll down, reveal all of the, like, drill down information.
+
+01:54:36 [Speaker 2]
+Think that's think that's too abrupt?
+
+01:54:39 [Speaker 1]
+I think I have...
+01:54:39 [Speaker 1]
+I mean, no.
+01:54:41 [Speaker 1]
+But I think I have some issues with this component, this tab component to begin
+
+01:54:45 [Speaker 2]
+with.
+01:54:45 [Speaker 2]
+Oh, yeah.
+01:54:46 [Speaker 2]
+Let's hear it.
+
+01:54:47 [Speaker 1]
+It's just a lot of work to get through the work.
+01:54:49 [Speaker 1]
+Like, I wanna be able to just kinda do, like, some quick scrolls.
+01:54:52 [Speaker 1]
+I don't wanna have to, like, click into a bunch of things.
+01:54:54 [Speaker 1]
+You're just asking me to do more.
+01:54:55 [Speaker 1]
+I also think that choosing a portfolio template that gives you a single image to represent an entire case study is an old way of thinking about the journey of a hiring manager.
+
+01:55:07 [Speaker 1]
+It makes the homepage downplayed.
+01:55:09 [Speaker 1]
+It makes it more of an appendix.
+01:55:12 [Speaker 1]
+And the case study is, like, the consumption journey, but now everything's in the silo, and I have to go...
+01:55:18 [Speaker 1]
+It just takes more time.
+01:55:19 [Speaker 1]
+And I wanna get a read on you as a designer before you make me go into a case study, and I think you're doing yourself a disservice by giving yourself a single image and then making me click a bunch.
+
+01:55:31 [Speaker 1]
+So I would probably take a bigger step back even before thinking about that.
+01:55:34 [Speaker 1]
+I think one of the things that kinda frustrated me was I am trying to see work, and I'm almost trying to figure out, like, what is clickable that it's gonna take me to work because I'm not seeing work.
+01:55:44 [Speaker 1]
+There's a lot of things that I thought should be like, even like when you hover over these little, cursors, it's a cursor pointer interaction, but it's not clickable.
+01:55:52 [Speaker 1]
+I hate that.
+01:55:52 [Speaker 1]
+It like makes me feel like I had a page clicked it.
+
+01:55:54 [Speaker 1]
+I'm like, wait, why is it not doing anything?
+01:55:56 [Speaker 1]
+And then you scroll down and you see the work and none of those are clickable.
+01:55:59 [Speaker 1]
+It's like, okay.
+01:56:00 [Speaker 1]
+Well, now you've presented the logos of the places where you have worked twice to me, and I haven't been able to click on any of them.
+01:56:08 [Speaker 1]
+It just feel...
+
+01:56:09 [Speaker 1]
+It's a lot of clicks.
+01:56:10 [Speaker 1]
+It's just gotta be a little bit easier to see what I wanna see, I think.
+
+01:56:14 [Speaker 2]
+It's it's clear that you, Louis, enjoy these micro interactions.
+01:56:19 [Speaker 2]
+You have a lot of fun with it.
+01:56:21 [Speaker 2]
+What's not clear to me is whether or not...
+01:56:24 [Speaker 2]
+Or how good you are at knowing when to employ them and when to kind of pull back.
+01:56:29 [Speaker 2]
+It does seem like we have a lot of things vying for my attention.
+
+01:56:34 [Speaker 2]
+And some of that is labels.
+01:56:36 [Speaker 2]
+Some of that is, like, actual...
+01:56:37 [Speaker 2]
+These interactions.
+01:56:38 [Speaker 2]
+Some of that is the heuristic of the pointer showing up.
+01:56:40 [Speaker 2]
+In this case, it's like, do we need to see the URL here?
+
+01:56:43 [Speaker 2]
+No.
+01:56:43 [Speaker 2]
+You could probably just attach it right to the white
+
+01:56:45 [Speaker 1]
+so that
+
+01:56:46 [Speaker 2]
+it makes sense.
+01:56:46 [Speaker 2]
+You know?
+01:56:47 [Speaker 2]
+Like, little little details here.
+01:56:48 [Speaker 2]
+It obviously gets, like like, the choice to show an 800 pixel high wall of logos is is something that I would deduct a, a point from Yeah.
+
+01:56:59 [Speaker 1]
+Especially the white background on on dark mode.
+01:57:01 [Speaker 1]
+It's pretty tough.
+
+01:57:02 [Speaker 2]
+Yeah.
+01:57:03 [Speaker 2]
+Like this...
+01:57:03 [Speaker 2]
+And and, like, you know, to be totally frank, there's, like, one of these logos that might maybe go, cool.
+01:57:12 [Speaker 2]
+You know?
+01:57:12 [Speaker 2]
+Like, I don't know that, like, springboard maybe.
+
+01:57:14 [Speaker 2]
+Like, but still,
+
+01:57:15 [Speaker 1]
+at the
+
+01:57:15 [Speaker 4]
+end of the day...
+
+01:57:16 [Speaker 1]
+The average, not the sum.
+01:57:17 [Speaker 1]
+The average, not the sum.
+01:57:18 [Speaker 1]
+Almost everything comes back to that, dude.
+
+01:57:21 [Speaker 2]
+There's a there's a term, and I can't remember what it is, but it's where, like, in a debate, somebody might just sprinkle an overwhelming number of links, citations in support of their argument.
+01:57:32 [Speaker 2]
+There's a good word for this.
+01:57:33 [Speaker 2]
+But it's, like...
+01:57:34 [Speaker 2]
+And and it's not necessarily that the citations are in full backing of their argument, but it's that they provide so much that you're not possibly gonna open them all up to determine if they're right.
+01:57:46 [Speaker 2]
+But just by them being in your argument, you're hoping that helps you win.
+
+01:57:50 [Speaker 2]
+That's what this feels like.
+01:57:52 [Speaker 2]
+And I would say, don't do that.
+01:57:54 [Speaker 2]
+You know?
+
+01:57:55 [Speaker 1]
+I I think there's a lot of composition things that I actually do like, and he used the word modular.
+01:57:59 [Speaker 1]
+I got that vibe even on some of the case studies.
+01:58:02 [Speaker 1]
+I think the imagery was too small on the case studies, so I would probably at least intermingle some full width images to kind of balance and, like, mix up the composition.
+01:58:12 [Speaker 1]
+But I thought it was pretty cool.
+01:58:14 [Speaker 1]
+The way that the way that, he uses, like, the cards and the narrow container and some of the typographic layout.
+
+01:58:19 [Speaker 1]
+Like, I actually thought there was a lot to like.
+01:58:22 [Speaker 1]
+There there are good pieces in here.
+01:58:24 [Speaker 1]
+I think it's more the homepage is kind of everything.
+01:58:28 [Speaker 1]
+Like, nothing really matters if you don't get new with the homepage, and I think that's where this is lacking.
+
+01:58:33 [Speaker 2]
+Yeah.
+01:58:33 [Speaker 2]
+I would I would agree.
+01:58:38 [Speaker 2]
+I think that's probably what we're gonna get to for portfolio reviews today.
+01:58:42 [Speaker 2]
+Some days will be longer.
+01:58:43 [Speaker 2]
+Some days will be shorter.
+
+01:58:44 [Speaker 2]
+Kinda see where we can go with...
+01:58:46 [Speaker 2]
+You know?
+01:58:49 [Speaker 2]
+I got
+
+01:58:50 [Speaker 1]
+your outro music today.
+
+01:58:52 [Speaker 2]
+I remember.
+
+01:58:52 [Speaker 1]
+Proud of you.
+
+01:58:53 [Speaker 2]
+You know?
+01:58:54 [Speaker 2]
+Word for when you stuff an argument full of citations regardless of accuracy.
+01:59:03 [Speaker 2]
+I like this word
+
+01:59:04 [Speaker 1]
+a lot.
+
+01:59:05 [Speaker 4]
+You see...
+
+01:59:05 [Speaker 2]
+Do we think this is
+
+01:59:06 [Speaker 1]
+gonna work?
+01:59:06 [Speaker 1]
+Do you think you're gonna get this word from that?
+
+01:59:08 [Speaker 2]
+Yeah.
+01:59:08 [Speaker 2]
+Oh, yeah.
+01:59:11 [Speaker 2]
+Gish Gallop.
+01:59:13 [Speaker 2]
+Two words by the way.
+01:59:14 [Speaker 2]
+Gish, g I s h, Gallop is the closest established term overwhelming someone with lots of claims or supported...
+
+01:59:21 [Speaker 2]
+Supporting evidence regardless of accuracy so that rebuting everything becomes impractical.
+
+01:59:30 [Speaker 1]
+That's pretty good.
+01:59:31 [Speaker 1]
+Yeah.
+01:59:32 [Speaker 1]
+That was going deep in the bag there.
+01:59:33 [Speaker 1]
+Well done.
+
+01:59:34 [Speaker 4]
+Ish scallop.
+
+01:59:37 [Speaker 2]
+Yeah.
+01:59:38 [Speaker 2]
+What do you do after your...
+01:59:39 [Speaker 2]
+What do you do after you get off of these live streams, man?
+01:59:41 [Speaker 2]
+What do you...
+01:59:41 [Speaker 2]
+You go and...
+
+01:59:42 [Speaker 1]
+I'm East Coast time, man.
+01:59:44 [Speaker 1]
+It's dinner.
+
+01:59:45 [Speaker 2]
+It's dinner time.
+
+01:59:46 [Speaker 1]
+It's dinner time.
+01:59:48 [Speaker 1]
+And by that, I'm probably gonna open up Crockpot and look at the report of the last few hours.
+
+01:59:52 [Speaker 2]
+Yeah.
+01:59:53 [Speaker 2]
+Yeah.
+01:59:55 [Speaker 2]
+We have hail in Arizona.
+01:59:57 [Speaker 2]
+We have tornadoes in Arizona.
+02:00:00 [Speaker 2]
+That's new.
+
+02:00:01 [Speaker 1]
+I was about to say.
+02:00:02 [Speaker 1]
+So Probably not a frequent occasion.
+
+02:00:05 [Speaker 2]
+Not at all.
+02:00:06 [Speaker 2]
+Derek Bridges.
+
+02:00:07 [Speaker 1]
+Dude, I love this song.
+02:00:08 [Speaker 1]
+It's a good vibe.
+02:00:10 [Speaker 1]
+It's really good, man.
+02:00:11 [Speaker 1]
+It's really good.
+
+02:00:13 [Speaker 2]
+Speaking of music, Apple Music has some stuff I wanna talk about.
+02:00:16 [Speaker 2]
+I got a whole folder full of audio that we're gonna have a show on one day.
+02:00:20 [Speaker 2]
+So, thanks for tuning in.
+02:00:24 [Speaker 2]
+We appreciate you being here with us every week, and we look forward to seeing you next week.
+02:00:30 [Speaker 2]
+If you've got some dope, agentic workflows, personal agent stuff Yeah.
+
+02:00:36 [Speaker 2]
+And if you wanna proactive, please send me a video you'd like us to react to.
+02:00:40 [Speaker 2]
+Feel free to do that.
+02:00:41 [Speaker 2]
+Otherwise, I will be reaching out to you on the interlobes.
+02:00:45 [Speaker 2]
+Alright.
+02:00:46 [Speaker 2]
+See you next time.

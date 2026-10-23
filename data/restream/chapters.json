@@ -1,7 +1,7 @@
 {
   "version": 1,
   "promptVersion": 1,
-  "updatedAt": "2026-10-17T14:07:27.266Z",
+  "updatedAt": "2026-10-23T16:44:27.790Z",
   "provider": "anthropic",
   "model": null,
   "entries": {
@@ -414,88 +414,6 @@
       "promptVersion": 1,
       "model": "claude-fable-5",
       "writtenAt": "2026-09-02T00:42:51.728Z"
-    },
-    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
-      "sha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
-      "format": "captions",
-      "clock": "upload",
-      "status": "complete",
-      "chapters": [
-        {
-          "start": "00:04:41",
-          "seconds": 281,
-          "title": "Show open and the fiber internet saga",
-          "gist": "The hosts greet listeners and Rid tells the story of contractors cutting his brand new fiber line.",
-          "quote": "Top of the afternoon, my friend"
-        },
-        {
-          "start": "00:08:38",
-          "seconds": 518,
-          "title": "Designer of the week nominations begin",
-          "gist": "Last week's winner Dimmitri nominates Fay, and guest James McDonald nominates Anna for the weekly award.",
-          "quote": "super excited to be here on the Dive Radio podcast"
-        },
-        {
-          "start": "00:16:32",
-          "seconds": 992,
-          "title": "Reacting to Google's design post and Instagram's rebrand",
-          "gist": "Hosts react to a widely mocked Google concept post, then compare notes on Instagram's new logo mark.",
-          "quote": "I don't think he's confessing"
-        },
-        {
-          "start": "00:26:25",
-          "seconds": 1585,
-          "title": "Why more designers are not becoming founders",
-          "gist": "A clip of Lovable's founder asks why so few designers start companies, and the hosts debate the reasons.",
-          "quote": "we announced our series C yesterday"
-        },
-        {
-          "start": "00:32:09",
-          "seconds": 1929,
-          "title": "Grockbot and the little guyification of software",
-          "gist": "Hosts look at a new bot ecosystem and the trend of cute mascot little guys across AI products.",
-          "quote": "the entire Grockbot ecosystem"
-        },
-        {
-          "start": "00:40:54",
-          "seconds": 2454,
-          "title": "Notion as code and agent friendly backends",
-          "gist": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
-          "quote": "They recently announced notion as code"
-        },
-        {
-          "start": "00:48:33",
-          "seconds": 2913,
-          "title": "How prototyping workflows are changing",
-          "gist": "Rid shows his shift to throwaway HTML mockups and a playground with dummy data running parallel to production.",
-          "quote": "want to talk about prototyping for a second"
-        },
-        {
-          "start": "01:10:30",
-          "seconds": 4230,
-          "title": "Community clips on new prototyping setups",
-          "gist": "Guest videos from Seb and Cl Marin show how their prototyping workflows have evolved with new tools.",
-          "quote": "prototyping has completely changed for me"
-        },
-        {
-          "start": "01:20:21",
-          "seconds": 4821,
-          "title": "Call-in line opens and the OneUp Weekly finds",
-          "gist": "The hosts invite live calls and trade finds including a shader lab, a bro skill, and a watercolor drawing toy.",
-          "quote": "try to oneup each other with cool finds"
-        },
-        {
-          "start": "01:29:58",
-          "seconds": 5398,
-          "title": "Winner announcement and closing",
-          "gist": "Fay is announced as designer of the week and the hosts wrap up with plans and thanks for next week.",
-          "quote": "congratulations Dive Club's designer of the week"
-        }
-      ],
-      "dropped": 0,
-      "promptVersion": 1,
-      "model": "claude-fable-5",
-      "writtenAt": "2026-09-02T00:44:20.166Z"
     },
     "2026-08-20-dive-radio-the-mascot-industrial-complex": {
       "sha256": "e59dca596134380a83862ea62c303b9fe60a80e9d52da854c63b98c69c9d084d",
@@ -1149,6 +1067,174 @@
       "promptVersion": 1,
       "model": "claude-sonnet-5-5",
       "writtenAt": "2026-10-17T14:07:27.266Z"
+    },
+    "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal": {
+      "sha256": "e4090db000879b13585440529b2b57c11122fff1cd2907480c2bc1f2179f91ce",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:19",
+          "seconds": 199,
+          "title": "Cold open clips, welcome, and the fiber internet saga",
+          "gist": "Montage clips on AI tooling, then the hosts greet listeners and Ridd explains how contractors cut his fiber line.",
+          "quote": "Show up, try things, be curious."
+        },
+        {
+          "start": "00:08:02",
+          "seconds": 482,
+          "title": "Designer of the week nominees",
+          "gist": "Dimitri and James send video nominations for Faye and Anna, and the hosts champion Rejo and Logan.",
+          "quote": "we will announce the winner at the end of the show"
+        },
+        {
+          "start": "00:15:32",
+          "seconds": 932,
+          "title": "Fast mode, Google's design post backlash, and Instagram's new logo",
+          "gist": "Hosts discuss a faster AI coding mode, the online reaction to a Google design post, and Instagram's logo refresh.",
+          "quote": "I saw OpenAI just dropped the ultra fast mode"
+        },
+        {
+          "start": "00:25:12",
+          "seconds": 1512,
+          "title": "Lovable's big raise and why designers aren't founding startups",
+          "gist": "Nad from Lovable asks why designer founders are rare, and the hosts offer theories about pragmatism and distribution.",
+          "quote": "When did lovable start?"
+        },
+        {
+          "start": "00:32:19",
+          "seconds": 1939,
+          "title": "Grok bot and its mascots, plus a Cursor design lead's departure",
+          "gist": "Hosts admire a new bot app with playful mascots, compare AI lab mascots, and react to a design leader leaving Cursor.",
+          "quote": "the entire Grok bot ecosystem, very interesting"
+        },
+        {
+          "start": "00:40:53",
+          "seconds": 2453,
+          "title": "Notion as code and the Craft Deck card game",
+          "gist": "Tommy and Ridd show Notion databases powering their tools and a card game's review pipeline, then check the live vote.",
+          "quote": "They recently announced Notion as code."
+        },
+        {
+          "start": "00:48:33",
+          "seconds": 2913,
+          "title": "Prototyping then and now: Ridd's HTML mock-ups and playground",
+          "gist": "Tommy recalls his blank-canvas process while Ridd demos HTML mock-ups and a duplicated component playground.",
+          "quote": "I wanna talk about prototyping for a second"
+        },
+        {
+          "start": "01:05:44",
+          "seconds": 3944,
+          "title": "Charlie Dietz's clip and community prototyping workflows",
+          "gist": "A guest clip on design over execution sparks Ridd's reaction, then two community members share prototype labs.",
+          "quote": "I can write code, and I can write production code now"
+        },
+        {
+          "start": "01:19:35",
+          "seconds": 4775,
+          "title": "Call-in line opens and the One Up Weekly segment",
+          "gist": "Tommy opens the phone line as the hosts trade finds: a shader tool, a plain-talk skill, and two playful web demos.",
+          "quote": "we are getting close to wrapping up the show"
+        },
+        {
+          "start": "01:28:41",
+          "seconds": 5321,
+          "title": "Empty call-in queue, the winner reveal, and sign-off",
+          "gist": "No callers appear, Faye is named designer of the week, and the hosts talk weekend plans before signing off.",
+          "quote": "No one wants to call and chat with us"
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-sonnet-5-5",
+      "writtenAt": "2026-10-23T16:41:52.190Z",
+      "rederivedFrom": {
+        "sha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
+        "promptVersion": 1
+      }
+    },
+    "2026-10-22-dive-radio-how-to-design-an-mcp": {
+      "sha256": "c5625b043b5791186876a61e78efad7b8a4edce22c1146ec97859013c7726d1d",
+      "format": "speaker",
+      "clock": "stream",
+      "status": "complete",
+      "chapters": [
+        {
+          "start": "00:03:20",
+          "seconds": 200,
+          "title": "Cold open, welcome, and community shoutouts",
+          "gist": "The hosts open the show, mark three months on air, and shout out a Dive Club tribute site and a poster series.",
+          "quote": "Show up, try things, be curious."
+        },
+        {
+          "start": "00:13:27",
+          "seconds": 807,
+          "title": "Cybersecurity scare: a wave of severe server vulnerabilities",
+          "gist": "The hosts walk through a cluster of severe security incidents, bank worries about rogue agents, and advice to patch.",
+          "quote": "people calling this the cybersecurity Black October"
+        },
+        {
+          "start": "00:22:54",
+          "seconds": 1374,
+          "title": "Why top designers hop between companies and the role of personal brand",
+          "gist": "Brad Young asks why star designers keep switching companies; the hosts discuss skill, brand, and showing work.",
+          "quote": "a lot of people in the community who are moving"
+        },
+        {
+          "start": "00:37:32",
+          "seconds": 2252,
+          "title": "MCPs for designers: agent workflows and Jitter's open editor",
+          "gist": "Clips from Brett of DesignJoy and Jitter's CEO, plus the hosts on living inside agents and judging an MCP.",
+          "quote": "MCPs and how designers are operating with them"
+        },
+        {
+          "start": "00:50:10",
+          "seconds": 3010,
+          "title": "Magic OS and what designing an MCP really involves",
+          "gist": "A Magic Patterns clip on agent-first products, then the hosts on tool chaining and keeping an MCP discoverable.",
+          "quote": "the team at Magic Patterns, who just released Magic OS"
+        },
+        {
+          "start": "01:00:44",
+          "seconds": 3644,
+          "title": "Personal MCPs: a saved-reference database and Mobbin inside Paper",
+          "gist": "A designer demos Basket, his own MCP, and Thomas Meyer pairs Mobbin with Paper while the hosts react.",
+          "quote": "an example of how personal MCPs can become extremely helpful"
+        },
+        {
+          "start": "01:09:50",
+          "seconds": 4190,
+          "title": "Framer's new MCP, teams with personal agents, and designer demand",
+          "gist": "The hosts react to the Framer MCP launch, compare agent-equipped teams, and weigh how designer hiring is shifting.",
+          "quote": "Framer today just launched their MCP"
+        },
+        {
+          "start": "01:25:48",
+          "seconds": 5148,
+          "title": "What makes a great MCP server, from a framework maintainer",
+          "gist": "A maintainer of an MCP framework shows an MCP app in chat and explains clear tool names and error recovery.",
+          "quote": "I'm a founding agent here at Manufact"
+        },
+        {
+          "start": "01:32:14",
+          "seconds": 5534,
+          "title": "A viral portfolio film, told by its designer and filmmaker",
+          "gist": "Darshita and her brother Vikrant explain how they made a film pitching her career, and the hosts react.",
+          "quote": "I'm Darshita, and I'm a designer"
+        },
+        {
+          "start": "01:37:50",
+          "seconds": 5870,
+          "title": "Portfolio reviews and sign-off",
+          "gist": "The hosts discuss two recorded portfolio critiques and add their own takes, then close the show.",
+          "quote": "Let's get into some portfolio reviews."
+        }
+      ],
+      "dropped": 0,
+      "promptVersion": 1,
+      "model": "claude-sonnet-5-5",
+      "writtenAt": "2026-10-23T16:44:27.790Z"
     }
   },
   "superseded": [
@@ -1252,6 +1338,93 @@
           "promptVersion": 1
         },
         "retries": 1
+      }
+    },
+    {
+      "slug": "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+      "supersededOn": "2026-10-23",
+      "why": "transcript changed",
+      "entry": {
+        "sha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
+        "format": "captions",
+        "clock": "upload",
+        "status": "complete",
+        "chapters": [
+          {
+            "start": "00:04:41",
+            "seconds": 281,
+            "title": "Show open and the fiber internet saga",
+            "gist": "The hosts greet listeners and Rid tells the story of contractors cutting his brand new fiber line.",
+            "quote": "Top of the afternoon, my friend"
+          },
+          {
+            "start": "00:08:38",
+            "seconds": 518,
+            "title": "Designer of the week nominations begin",
+            "gist": "Last week's winner Dimmitri nominates Fay, and guest James McDonald nominates Anna for the weekly award.",
+            "quote": "super excited to be here on the Dive Radio podcast"
+          },
+          {
+            "start": "00:16:32",
+            "seconds": 992,
+            "title": "Reacting to Google's design post and Instagram's rebrand",
+            "gist": "Hosts react to a widely mocked Google concept post, then compare notes on Instagram's new logo mark.",
+            "quote": "I don't think he's confessing"
+          },
+          {
+            "start": "00:26:25",
+            "seconds": 1585,
+            "title": "Why more designers are not becoming founders",
+            "gist": "A clip of Lovable's founder asks why so few designers start companies, and the hosts debate the reasons.",
+            "quote": "we announced our series C yesterday"
+          },
+          {
+            "start": "00:32:09",
+            "seconds": 1929,
+            "title": "Grockbot and the little guyification of software",
+            "gist": "Hosts look at a new bot ecosystem and the trend of cute mascot little guys across AI products.",
+            "quote": "the entire Grockbot ecosystem"
+          },
+          {
+            "start": "00:40:54",
+            "seconds": 2454,
+            "title": "Notion as code and agent friendly backends",
+            "gist": "Tommy demos Notion as code powering show tools, and the hosts admire a card game built on a Notion pipeline.",
+            "quote": "They recently announced notion as code"
+          },
+          {
+            "start": "00:48:33",
+            "seconds": 2913,
+            "title": "How prototyping workflows are changing",
+            "gist": "Rid shows his shift to throwaway HTML mockups and a playground with dummy data running parallel to production.",
+            "quote": "want to talk about prototyping for a second"
+          },
+          {
+            "start": "01:10:30",
+            "seconds": 4230,
+            "title": "Community clips on new prototyping setups",
+            "gist": "Guest videos from Seb and Cl Marin show how their prototyping workflows have evolved with new tools.",
+            "quote": "prototyping has completely changed for me"
+          },
+          {
+            "start": "01:20:21",
+            "seconds": 4821,
+            "title": "Call-in line opens and the OneUp Weekly finds",
+            "gist": "The hosts invite live calls and trade finds including a shader lab, a bro skill, and a watercolor drawing toy.",
+            "quote": "try to oneup each other with cool finds"
+          },
+          {
+            "start": "01:29:58",
+            "seconds": 5398,
+            "title": "Winner announcement and closing",
+            "gist": "Fay is announced as designer of the week and the hosts wrap up with plans and thanks for next week.",
+            "quote": "congratulations Dive Club's designer of the week"
+          }
+        ],
+        "dropped": 0,
+        "promptVersion": 1,
+        "model": "claude-fable-5",
+        "writtenAt": "2026-09-02T00:44:20.166Z"
       }
     }
   ]

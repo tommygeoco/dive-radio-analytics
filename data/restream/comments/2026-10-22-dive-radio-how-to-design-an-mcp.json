@@ -1,0 +1,118 @@
+{
+  "slug": "2026-10-22-dive-radio-how-to-design-an-mcp",
+  "title": "Dive Radio: How to Design an MCP",
+  "date": "2026-10-22",
+  "comments": [
+    {
+      "id": "yt:UgzQT0yxisiDx0mR5HR4AaABAg",
+      "source": "yt",
+      "channel": "yt:joindiveclub",
+      "sourceObjectId": "uwUqcQKx6Ww",
+      "author": "scottchristensen88",
+      "authorId": "UC5m_yz2JoVTnIZPX0ZNK1qw",
+      "text": "Designing our MCP right now. Super relatable. Thx for this!",
+      "likes": 0,
+      "publishedAt": "2026-10-23T04:55:02Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "UgzQT0yxisiDx0mR5HR4AaABAg",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-23T16:35:41.472Z"
+    },
+    {
+      "id": "x:2113413442506051695",
+      "source": "x",
+      "channel": "x:ridd_design",
+      "sourceObjectId": "2113359887963189554",
+      "author": "@Teddarific",
+      "authorId": "113197616",
+      "text": "super interesting topic. MCPs to most def still feel like some black box that engineers are responsible for. \n\nbut they absolutely need to be “designed” as they are becoming a massive part of a product’s experience. the modern day’s landing page.",
+      "likes": 0,
+      "publishedAt": "2026-10-22T23:33:24.000Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2113413442506051695",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-23T16:35:41.472Z"
+    }
+  ],
+  "capture": {
+    "checkedAt": "2026-10-23T16:35:41.472Z",
+    "state": "ready",
+    "sources": [
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "uwUqcQKx6Ww",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 1
+      },
+      {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "WUDpGhamUic",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2113359887963189554",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 1
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2112579115811303663",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2113359897392030170",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2113285499682955400",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 0
+      },
+      {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2112579114871742566",
+        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "state": "ready",
+        "count": 0
+      }
+    ]
+  },
+  "xCoverage": "covered",
+  "updatedAt": "2026-10-23T16:35:41.472Z"
+}

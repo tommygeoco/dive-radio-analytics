@@ -1,0 +1,291 @@
+{
+  "slug": "2026-10-22-dive-radio-how-to-design-an-mcp",
+  "title": "Dive Radio: How to Design an MCP",
+  "date": "2026-10-22",
+  "snapshots": [
+    {
+      "ts": "2026-10-23T16:34:28.182Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "postlive",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "pulledAt": "2026-10-23T16:34:28.182Z",
+        "state": "ready"
+      },
+      "metrics": {
+        "yt:joindiveclub": {
+          "views": 1814,
+          "detail": {
+            "views": 1814,
+            "likes": 23,
+            "comments": 1,
+            "title": "Dive Radio: How to Design an MCP",
+            "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+          },
+          "sources": [
+            {
+              "objectId": "uwUqcQKx6Ww",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "uwUqcQKx6Ww",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 1814,
+              "detail": {
+                "views": 1814,
+                "likes": 23,
+                "comments": 1,
+                "title": "Dive Radio: How to Design an MCP",
+                "channelId": "UCkCnraWwlnBw1_i7C9-3p0w"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+            "objectId": "uwUqcQKx6Ww",
+            "pulledAt": "2026-10-23T16:34:28.182Z",
+            "state": "ready"
+          }
+        },
+        "yt:designertom": {
+          "views": 1417,
+          "detail": {
+            "views": 1417,
+            "likes": 27,
+            "comments": 0,
+            "title": "Dive Radio: How to Design an MCP",
+            "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+          },
+          "sources": [
+            {
+              "objectId": "WUDpGhamUic",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "youtube-data",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "WUDpGhamUic",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 1417,
+              "detail": {
+                "views": 1417,
+                "likes": 27,
+                "comments": 0,
+                "title": "Dive Radio: How to Design an MCP",
+                "channelId": "UC4_qP33t3TGpEM0-96WfC6Q"
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "youtube-data",
+            "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+            "objectId": "WUDpGhamUic",
+            "pulledAt": "2026-10-23T16:34:28.182Z",
+            "state": "ready"
+          }
+        },
+        "x:ridd_design": {
+          "views": 4466,
+          "detail": {
+            "views": 4466,
+            "likes": 24,
+            "replies": 1,
+            "reposts": 1,
+            "bookmarks": 19,
+            "quotes": 0
+          },
+          "plays": 952,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 345,
+          "sources": [
+            {
+              "objectId": "2113359887963189554",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "2113359887963189554",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 1968,
+              "detail": {
+                "views": 1968,
+                "likes": 13,
+                "replies": 1,
+                "reposts": 1,
+                "bookmarks": 9,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2112579115811303663",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "2112579115811303663",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 2498,
+              "detail": {
+                "views": 2498,
+                "likes": 11,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 10,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+            "objectId": "2112579115811303663,2113359887963189554",
+            "pulledAt": "2026-10-23T16:34:28.182Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+            "objectId": "1kKzDPjYLmZJv",
+            "pulledAt": "2026-10-23T16:34:28.182Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1kKzDPjYLmZJv",
+              "views": 952,
+              "peakConcurrent": 345,
+              "liveStatus": "was_live"
+            }
+          ]
+        },
+        "x:designertom": {
+          "views": 2322,
+          "detail": {
+            "views": 2322,
+            "likes": 23,
+            "replies": 0,
+            "reposts": 0,
+            "bookmarks": 14,
+            "quotes": 0
+          },
+          "plays": 572,
+          "playsSource": "x-broadcast",
+          "peakConcurrent": 272,
+          "sources": [
+            {
+              "objectId": "2113359897392030170",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "2113359897392030170",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 852,
+              "detail": {
+                "views": 852,
+                "likes": 14,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 8,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2113285499682955400",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "2113285499682955400",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 393,
+              "detail": {
+                "views": 393,
+                "likes": 0,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 5,
+                "quotes": 0
+              }
+            },
+            {
+              "objectId": "2112579114871742566",
+              "reading": {
+                "schemaVersion": 1,
+                "source": "x-post",
+                "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+                "objectId": "2112579114871742566",
+                "pulledAt": "2026-10-23T16:34:28.182Z",
+                "state": "ready"
+              },
+              "views": 1077,
+              "detail": {
+                "views": 1077,
+                "likes": 9,
+                "replies": 0,
+                "reposts": 0,
+                "bookmarks": 1,
+                "quotes": 0
+              }
+            }
+          ],
+          "reading": {
+            "schemaVersion": 1,
+            "source": "x-post",
+            "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+            "objectId": "2112579114871742566,2113285499682955400,2113359897392030170",
+            "pulledAt": "2026-10-23T16:34:28.182Z",
+            "state": "ready"
+          },
+          "playsReading": {
+            "schemaVersion": 1,
+            "source": "x-broadcast",
+            "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+            "objectId": "1yKAPwWLYgWxb",
+            "pulledAt": "2026-10-23T16:34:28.182Z",
+            "state": "ready"
+          },
+          "broadcasts": [
+            {
+              "objectId": "1yKAPwWLYgWxb",
+              "views": 572,
+              "peakConcurrent": 272,
+              "liveStatus": "was_live"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "capture": {
+    "checkedAt": "2026-10-23T16:34:28.182Z",
+    "state": "ready",
+    "reason": null,
+    "reading": {
+      "schemaVersion": 1,
+      "source": "postlive",
+      "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+      "objectId": "2026-10-22-dive-radio-how-to-design-an-mcp",
+      "pulledAt": "2026-10-23T16:34:28.182Z",
+      "state": "ready"
+    }
+  }
+}

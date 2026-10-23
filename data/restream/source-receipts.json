@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T19:17:07.890Z",
-  "lastSuccessfulDiscoveryAt": "2026-10-22T19:15:07.633Z",
-  "lastSuccessfulSnapshotAt": "2026-10-22T19:17:07.890Z",
+  "updatedAt": "2026-10-23T16:35:03.271Z",
+  "lastSuccessfulDiscoveryAt": "2026-10-23T16:32:57.691Z",
+  "lastSuccessfulSnapshotAt": "2026-10-23T16:35:03.271Z",
   "discoveries": [
     {
       "startedAt": "2026-09-04T16:18:32.092Z",
@@ -6573,6 +6573,352 @@
       "episodeCoverage": [],
       "errors": [],
       "finishedAt": "2026-10-22T19:15:07.633Z"
+    },
+    {
+      "startedAt": "2026-10-23T14:00:02.439Z",
+      "status": "partial",
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": false,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "timeline: X app request returned HTTP 402"
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            }
+          ]
+        }
+      },
+      "episodeCoverage": [
+        {
+          "date": "2026-10-22",
+          "youtube": [
+            "joindiveclub",
+            "designertom"
+          ],
+          "x": [],
+          "complete": false
+        }
+      ],
+      "errors": [
+        "x discovery incomplete",
+        "2026-10-22: X missing ridd_design, designertom"
+      ],
+      "registrations": {
+        "attempted": false,
+        "success": false,
+        "planned": 1,
+        "completed": 0
+      },
+      "finishedAt": "2026-10-23T14:00:04.654Z"
+    },
+    {
+      "startedAt": "2026-10-23T14:01:04.701Z",
+      "status": "partial",
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": false,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            }
+          ]
+        }
+      },
+      "episodeCoverage": [
+        {
+          "date": "2026-10-22",
+          "youtube": [
+            "joindiveclub",
+            "designertom"
+          ],
+          "x": [],
+          "complete": false
+        }
+      ],
+      "errors": [
+        "x discovery incomplete",
+        "2026-10-22: X missing ridd_design, designertom"
+      ],
+      "registrations": {
+        "attempted": false,
+        "success": false,
+        "planned": 1,
+        "completed": 0
+      },
+      "finishedAt": "2026-10-23T14:01:06.264Z"
+    },
+    {
+      "startedAt": "2026-10-23T15:15:04.164Z",
+      "status": "partial",
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": false,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            }
+          ]
+        }
+      },
+      "episodeCoverage": [
+        {
+          "date": "2026-10-22",
+          "youtube": [
+            "joindiveclub",
+            "designertom"
+          ],
+          "x": [],
+          "complete": false
+        }
+      ],
+      "errors": [
+        "x discovery incomplete",
+        "2026-10-22: X missing ridd_design, designertom"
+      ],
+      "registrations": {
+        "attempted": false,
+        "success": false,
+        "planned": 1,
+        "completed": 0
+      },
+      "finishedAt": "2026-10-23T15:15:05.656Z"
+    },
+    {
+      "startedAt": "2026-10-23T15:16:05.699Z",
+      "status": "partial",
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": false,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": false,
+              "found": 0,
+              "error": "user lookup: X app request returned HTTP 402"
+            }
+          ]
+        }
+      },
+      "episodeCoverage": [
+        {
+          "date": "2026-10-22",
+          "youtube": [
+            "joindiveclub",
+            "designertom"
+          ],
+          "x": [],
+          "complete": false
+        }
+      ],
+      "errors": [
+        "x discovery incomplete",
+        "2026-10-22: X missing ridd_design, designertom"
+      ],
+      "registrations": {
+        "attempted": false,
+        "success": false,
+        "planned": 1,
+        "completed": 0
+      },
+      "finishedAt": "2026-10-23T15:16:07.095Z"
+    },
+    {
+      "startedAt": "2026-10-23T16:32:53.911Z",
+      "status": "ok",
+      "lookbackDays": 10,
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "found": 2,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "found": 4,
+              "error": null
+            }
+          ]
+        }
+      },
+      "found": {
+        "youtube": 2,
+        "x": 6
+      },
+      "deferredBroadcasts": [],
+      "registrations": {
+        "attempted": true,
+        "success": true,
+        "planned": 2,
+        "completed": 2
+      },
+      "episodeCoverage": [
+        {
+          "date": "2026-10-22",
+          "youtube": [
+            "joindiveclub",
+            "designertom"
+          ],
+          "x": [
+            "ridd_design",
+            "designertom"
+          ],
+          "complete": true
+        }
+      ],
+      "errors": [],
+      "finishedAt": "2026-10-23T16:32:57.691Z"
     }
   ],
   "snapshots": [
@@ -15641,6 +15987,111 @@
         "2026-07-17-dive-radio-bumpy-takeoff"
       ],
       "finishedAt": "2026-10-22T19:17:07.890Z"
+    },
+    {
+      "ts": "2026-10-23T16:35:03.271Z",
+      "startedAt": "2026-10-23T16:34:28.174Z",
+      "status": "ok",
+      "currentEpisodeDates": [
+        "2026-10-22"
+      ],
+      "sources": {
+        "youtube": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "joindiveclub",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 1,
+              "found": 1,
+              "error": null
+            }
+          ]
+        },
+        "x": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "expected": 2,
+              "found": 2,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 3,
+              "found": 3,
+              "error": null
+            }
+          ]
+        },
+        "xBroadcast": {
+          "attempted": true,
+          "success": true,
+          "accounts": [
+            {
+              "account": "ridd_design",
+              "attempted": true,
+              "success": true,
+              "expected": 2,
+              "found": 2,
+              "error": null
+            },
+            {
+              "account": "designertom",
+              "attempted": true,
+              "success": true,
+              "expected": 3,
+              "found": 3,
+              "error": null
+            }
+          ]
+        }
+      },
+      "requested": {
+        "youtube": 30,
+        "x": 55,
+        "xBroadcast": 30
+      },
+      "found": {
+        "youtube": 30,
+        "x": 55,
+        "xBroadcast": 30
+      },
+      "errors": [],
+      "promoted": [
+        "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "2026-10-15-dive-radio-get-your-portfolio-reviewed",
+        "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
+        "2026-10-01-dive-radio-anyone-can-animate-now-and-ho",
+        "2026-09-24-dive-radio-just-in-time-interfaces",
+        "2026-09-17-dive-radio-how-to-become-a-founding-desi",
+        "2026-09-10-dive-radio-how-designers-are-getting-hir",
+        "2026-09-02-dive-radio-how-to-engineer-a-brand-unive",
+        "2026-08-28-dive-radio-steal-these-ai-design-pattern",
+        "2026-08-20-dive-radio-the-mascot-industrial-complex",
+        "2026-08-13-dive-radio-goodbye-blank-canvas-live-cal",
+        "2026-08-06-dive-radio-backyard-designers-behind-the",
+        "2026-07-30-dive-radio-mixed-media-workflows-game-de",
+        "2026-07-23-dive-radio-data-vs-intuition-web-designe",
+        "2026-07-17-dive-radio-bumpy-takeoff"
+      ],
+      "finishedAt": "2026-10-23T16:35:03.271Z"
     }
   ]
 }

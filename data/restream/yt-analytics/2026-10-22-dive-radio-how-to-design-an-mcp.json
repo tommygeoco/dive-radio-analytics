@@ -1,0 +1,31 @@
+{
+  "slug": "2026-10-22-dive-radio-how-to-design-an-mcp",
+  "title": "Dive Radio: How to Design an MCP",
+  "premiere": "2026-10-22",
+  "channels": {},
+  "watchReport": {
+    "state": "pending",
+    "checkedAt": "2026-10-23T16:35:03.320Z",
+    "missingChannels": [
+      "yt:joindiveclub",
+      "yt:designertom"
+    ],
+    "reason": "YouTube Analytics has not returned this episode's watch data yet",
+    "targetFingerprint": "yt:designertom:WUDpGhamUic|yt:joindiveclub:uwUqcQKx6Ww",
+    "probes": [
+      {
+        "key": "yt:joindiveclub",
+        "videoId": "uwUqcQKx6Ww",
+        "result": "no-row",
+        "observed": null
+      },
+      {
+        "key": "yt:designertom",
+        "videoId": "WUDpGhamUic",
+        "result": "no-row",
+        "observed": null
+      }
+    ],
+    "pendingSince": "2026-10-23T16:35:03.320Z"
+  }
+}

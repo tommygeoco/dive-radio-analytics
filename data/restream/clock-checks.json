@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "method": "6-word phrases that occur once in both the transcript and the upload's English auto-captions; offset = median(caption time − transcript time); spread = 90th − 10th percentile",
-  "updatedAt": "2026-10-17T14:02:24.865Z",
+  "updatedAt": "2026-10-23T16:36:51.957Z",
   "entries": {
     "2026-07-17-dive-radio-bumpy-takeoff": {
       "uploads": {
@@ -103,21 +103,21 @@
       "uploads": {
         "yt:designertom": {
           "videoId": "G2_F3dd3RkA",
-          "transcriptSha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
-          "checkedAt": "2026-10-16T23:39:45.987Z",
+          "transcriptSha256": "e4090db000879b13585440529b2b57c11122fff1cd2907480c2bc1f2179f91ce",
+          "checkedAt": "2026-10-23T16:36:51.957Z",
           "state": "ready",
-          "anchors": 1963,
-          "offsetSec": 0.5,
+          "anchors": 707,
+          "offsetSec": 0.6,
           "spreadSec": 0.8,
           "reason": null
         },
         "yt:joindiveclub": {
           "videoId": "njOU7GKZcvc",
-          "transcriptSha256": "ca405bcf4644a748593b7b0b7ed6d50580f825a62d9b8427559d891df86c3e03",
-          "checkedAt": "2026-10-11T16:32:50.900Z",
+          "transcriptSha256": "e4090db000879b13585440529b2b57c11122fff1cd2907480c2bc1f2179f91ce",
+          "checkedAt": "2026-10-23T16:36:51.957Z",
           "state": "ready",
-          "anchors": 2034,
-          "offsetSec": 0.5,
+          "anchors": 709,
+          "offsetSec": 0.6,
           "spreadSec": 0.8,
           "reason": null
         }
@@ -334,6 +334,30 @@
           "state": "ready",
           "anchors": 1080,
           "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
+        }
+      }
+    },
+    "2026-10-22-dive-radio-how-to-design-an-mcp": {
+      "uploads": {
+        "yt:designertom": {
+          "videoId": "WUDpGhamUic",
+          "transcriptSha256": "c5625b043b5791186876a61e78efad7b8a4edce22c1146ec97859013c7726d1d",
+          "checkedAt": "2026-10-23T16:36:51.957Z",
+          "state": "ready",
+          "anchors": 1027,
+          "offsetSec": -1.4,
+          "spreadSec": 0.8,
+          "reason": null
+        },
+        "yt:joindiveclub": {
+          "videoId": "uwUqcQKx6Ww",
+          "transcriptSha256": "c5625b043b5791186876a61e78efad7b8a4edce22c1146ec97859013c7726d1d",
+          "checkedAt": "2026-10-23T16:36:51.957Z",
+          "state": "ready",
+          "anchors": 1027,
+          "offsetSec": 0.6,
           "spreadSec": 0.8,
           "reason": null
         }

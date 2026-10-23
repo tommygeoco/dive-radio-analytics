@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-22T19:17:45.403Z",
+  "updatedAt": "2026-10-23T16:35:55.146Z",
   "configurations": {
     "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39": {
       "classifierVersion": 1,
@@ -29,20 +29,207 @@
     }
   },
   "episodes": {
-    "2026-10-15-dive-radio-get-your-portfolio-reviewed": {
+    "2026-10-22-dive-radio-how-to-design-an-mcp": {
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         }
       },
       "processing": {
         "pending": 0,
-        "review": 94
+        "review": 21
+      },
+      "list": [
+        {
+          "id": "x:2113413442506051695",
+          "source": "x",
+          "author": "@Teddarific",
+          "text": "@ridd_design super interesting topic. MCPs to most def still feel like some black box that engineers are responsible for. \n\nbut they absolutely need to be “designed” as they are becoming a massive part of a product’s experience. the modern day’s landing page.",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-22T23:33:24.000Z",
+          "url": "https://x.com/i/status/2113413442506051695",
+          "likes": 0,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "ebd602464d5fbd70a444112bc0df0f99e6807c4f0013dc52b3ec362cf9c1074f",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "topic choice"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        },
+        {
+          "id": "chat:d5ec808dbdcfe7994f851a3399d033019af0265a9149f263f3ff8b0a49fa504a:1",
+          "source": "live-chat",
+          "author": "Person 11",
+          "text": "Love the intro! Hoping for a halloween-themed version next week. Build up the suspense/drama for some fun.",
+          "platform": "YouTube",
+          "channel": "Tommy Geoco",
+          "at": "2026-10-22T20:06:28Z",
+          "url": "https://www.youtube.com/watch?v=WUDpGhamUic",
+          "likes": null,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "1a17d30b253e23a428d22cbd5d26999664958e98d3b87322efe2260db051e90b",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "format"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        },
+        {
+          "id": "chat:e031c39f99004863d0c50d1ff695a8ef5d58ddc43d2c6e410db65d8f4646de90:1",
+          "source": "live-chat",
+          "author": "Person 1",
+          "text": "ooooo this is so cool",
+          "platform": "YouTube",
+          "channel": "Dive Club ?",
+          "at": "2026-10-22T20:09:35Z",
+          "url": "https://www.youtube.com/watch?v=uwUqcQKx6Ww",
+          "likes": null,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "898557f411de840a76feece4c5b3f4b4629f760af805f4c56ad6ca936209b13e",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        },
+        {
+          "id": "chat:d19ed289a86130dd7a287f7b5898fc2e82f1c5ae0b07f4ab01f2c879161c3ed7:1",
+          "source": "live-chat",
+          "author": "Person 7",
+          "text": "woah this is cool",
+          "platform": "YouTube",
+          "channel": "Dive Club ?",
+          "at": "2026-10-22T20:09:53Z",
+          "url": "https://www.youtube.com/watch?v=uwUqcQKx6Ww",
+          "likes": null,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "0809c1c4225b754c223ad30620ea3f30eae79a43502e5a00500dfe065c86d60e",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        },
+        {
+          "id": "chat:d037a030c7342fd2ded4b2acb4b7445b2c95c1f053a65528b4804195c2f88b4a:1",
+          "source": "live-chat",
+          "author": "Person 55",
+          "text": "So wholesome. That video blew me away",
+          "platform": "YouTube",
+          "channel": "Tommy Geoco",
+          "at": "2026-10-22T21:33:58Z",
+          "url": "https://www.youtube.com/watch?v=WUDpGhamUic",
+          "likes": null,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "812c82b41e3fdad1cb69b3e00d4c12e1e65cc826115c2c9d81aee317293e1269",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        },
+        {
+          "id": "chat:7e901ce83ed6738e31babf7d72612af7845c25835b528f7be2e112e2726178d3:1",
+          "source": "live-chat",
+          "author": "Host",
+          "text": "this is making me so happy",
+          "platform": "Restream",
+          "channel": null,
+          "at": "2026-10-22T21:34:13Z",
+          "url": null,
+          "likes": null,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "b66e995947d155fac24b021a12898ea847b204ddb21ce5ab1c99f75ecd726651",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        },
+        {
+          "id": "chat:23890d227a819b390f7fc879b89e4f18baabfbaea30cb0798333e242c7761c8a:1",
+          "source": "live-chat",
+          "author": "Person 61",
+          "text": "tf is she saying bro.. long monologue and terrible delivery",
+          "platform": "YouTube",
+          "channel": "Tommy Geoco",
+          "at": "2026-10-22T21:54:39Z",
+          "url": "https://www.youtube.com/watch?v=WUDpGhamUic",
+          "likes": null,
+          "capturedAt": "2026-10-23T16:32:57.730Z",
+          "contentHash": "5ff1fdccd2550c4c0f67f85dc858b8b94450f3ef38f3a57e34020ce494c7aa6a",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "negative",
+            "themes": [
+              "format",
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T16:35:55.146Z"
+          }
+        }
+      ]
+    },
+    "2026-10-15-dive-radio-get-your-portfolio-reviewed": {
+      "sources": {
+        "x": {
+          "state": "ready",
+          "checkedAt": "2026-10-23T16:32:57.730Z"
+        },
+        "live-chat": {
+          "state": "ready",
+          "checkedAt": "2026-10-23T16:32:57.730Z"
+        }
+      },
+      "processing": {
+        "pending": 0,
+        "review": 99
       },
       "list": [
         {
@@ -676,11 +863,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         }
       },
       "processing": {
@@ -1078,11 +1265,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         }
       },
       "processing": {
@@ -1312,11 +1499,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-22T19:15:07.695Z"
+          "checkedAt": "2026-10-23T16:32:57.730Z"
         }
       },
       "processing": {
