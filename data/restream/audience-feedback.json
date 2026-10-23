@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-23T16:35:55.146Z",
+  "updatedAt": "2026-10-23T21:22:00.328Z",
   "configurations": {
     "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39": {
       "classifierVersion": 1,
@@ -33,11 +33,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         }
       },
       "processing": {
@@ -220,16 +220,16 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         }
       },
       "processing": {
         "pending": 0,
-        "review": 99
+        "review": 103
       },
       "list": [
         {
@@ -856,6 +856,54 @@
             "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
             "classifiedAt": "2026-10-22T14:02:51.481Z"
           }
+        },
+        {
+          "id": "x:2113703984984739907",
+          "source": "x",
+          "author": "@TyroneC__",
+          "text": "@designertom @gt Man we are blessed to have you in the design community",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-23T18:47:55.000Z",
+          "url": "https://x.com/i/status/2113703984984739907",
+          "likes": 1,
+          "capturedAt": "2026-10-23T21:20:20.054Z",
+          "contentHash": "890fb40e0d81072617d9833036669bb54737517790fb707a0233c26ecb571687",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.85,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T21:22:00.328Z"
+          }
+        },
+        {
+          "id": "x:2113686665030152408",
+          "source": "x",
+          "author": "@mikegonz",
+          "text": "@designertom @gt catching up on this episode this morning and my immediate takeaway is i'm past due for a portfolio redesign\n\nthis content is gold, big ups to you and @ridd_design for organizing it",
+          "platform": "X",
+          "channel": null,
+          "at": "2026-10-23T17:39:05.000Z",
+          "url": "https://x.com/i/status/2113686665030152408",
+          "likes": 1,
+          "capturedAt": "2026-10-23T21:20:20.054Z",
+          "contentHash": "f0934c0b869e6b546c164d6b190bb75e31f6f094a4e027076f576a64c539dfdf",
+          "label": {
+            "state": "ready",
+            "relevance": "feedback",
+            "sentiment": "positive",
+            "themes": [
+              "other"
+            ],
+            "confidence": 0.93,
+            "configHash": "54c461e9348766e7f72195f608e02d42ddba72f5817d4a5fbb28cc8a05e70d39",
+            "classifiedAt": "2026-10-23T21:22:00.328Z"
+          }
         }
       ]
     },
@@ -863,11 +911,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         }
       },
       "processing": {
@@ -1265,11 +1313,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         }
       },
       "processing": {
@@ -1499,11 +1547,11 @@
       "sources": {
         "x": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         },
         "live-chat": {
           "state": "ready",
-          "checkedAt": "2026-10-23T16:32:57.730Z"
+          "checkedAt": "2026-10-23T21:20:20.054Z"
         }
       },
       "processing": {

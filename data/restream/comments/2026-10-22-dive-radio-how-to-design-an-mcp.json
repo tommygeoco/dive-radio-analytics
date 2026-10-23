@@ -11,7 +11,7 @@
       "author": "scottchristensen88",
       "authorId": "UC5m_yz2JoVTnIZPX0ZNK1qw",
       "text": "Designing our MCP right now. Super relatable. Thx for this!",
-      "likes": 0,
+      "likes": 1,
       "publishedAt": "2026-10-23T04:55:02Z",
       "reading": {
         "schemaVersion": 1,
@@ -21,7 +21,15 @@
         "pulledAt": "2026-10-23T16:35:41.472Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-23T16:35:41.472Z"
+      "firstSeenAt": "2026-10-23T16:35:41.472Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "UgzQT0yxisiDx0mR5HR4AaABAg",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
+        "state": "ready"
+      }
     },
     {
       "id": "x:2113413442506051695",
@@ -41,11 +49,39 @@
         "pulledAt": "2026-10-23T16:35:41.472Z",
         "state": "ready"
       },
-      "firstSeenAt": "2026-10-23T16:35:41.472Z"
+      "firstSeenAt": "2026-10-23T16:35:41.472Z",
+      "likesReading": {
+        "schemaVersion": 1,
+        "source": "x-replies",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "2113413442506051695",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
+        "state": "ready"
+      }
+    },
+    {
+      "id": "yt:UgwVxmYOjkeQKfdOp194AaABAg",
+      "source": "yt",
+      "channel": "yt:designertom",
+      "sourceObjectId": "WUDpGhamUic",
+      "author": "BentoBox",
+      "authorId": "UCqbVH4eQULKu2n7lT8aEFlg",
+      "text": "About the gish-galloping, maybe do leave (some of) the companies if you feel they are recognized in the country/city you reside in or if they're particularly resonant in the sectors you're applying for~ \n\nIt's tough because the world is bigger than the companies at the leading edge, and you don't want to feel like any experience built away from these is ultimately meaningless when presented as testimonies... So if you feel like they would resonate with the audience you have in mind when working ",
+      "likes": 0,
+      "publishedAt": "2026-10-23T20:37:29Z",
+      "reading": {
+        "schemaVersion": 1,
+        "source": "youtube-comments",
+        "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
+        "objectId": "UgwVxmYOjkeQKfdOp194AaABAg",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
+        "state": "ready"
+      },
+      "firstSeenAt": "2026-10-23T21:21:47.333Z"
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-23T16:35:41.472Z",
+    "checkedAt": "2026-10-23T21:21:47.333Z",
     "state": "ready",
     "sources": [
       {
@@ -53,7 +89,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "uwUqcQKx6Ww",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 1
       },
@@ -62,16 +98,16 @@
         "source": "youtube-comments",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "WUDpGhamUic",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
-        "count": 0
+        "count": 1
       },
       {
         "schemaVersion": 1,
         "source": "x-replies",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "2113359887963189554",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 1
       },
@@ -80,7 +116,7 @@
         "source": "x-replies",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "2112579115811303663",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 0
       },
@@ -89,7 +125,7 @@
         "source": "x-replies",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "2113359897392030170",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 0
       },
@@ -98,7 +134,7 @@
         "source": "x-replies",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "2113285499682955400",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 0
       },
@@ -107,12 +143,12 @@
         "source": "x-replies",
         "episode": "2026-10-22-dive-radio-how-to-design-an-mcp",
         "objectId": "2112579114871742566",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 0
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-23T16:35:41.472Z"
+  "updatedAt": "2026-10-23T21:21:47.333Z"
 }

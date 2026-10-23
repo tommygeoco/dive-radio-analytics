@@ -18,7 +18,7 @@
     "thumbnail/title",
     "other"
   ],
-  "updatedAt": "2026-10-23T16:35:51.409Z",
+  "updatedAt": "2026-10-23T21:21:54.334Z",
   "classified": {
     "yt:UgxBZWwh2mfJS8CqpDJ4AaABAg": {
       "state": "ready",
@@ -1910,6 +1910,25 @@
       "promptVersion": 3,
       "model": "claude-sonnet-5-5",
       "classifiedAt": "2026-10-23T16:35:51.409Z"
+    },
+    "yt:UgwVxmYOjkeQKfdOp194AaABAg": {
+      "state": "ready",
+      "relevance": "noise",
+      "sentiment": "neutral",
+      "themes": [],
+      "confidence": 0.72,
+      "classifierVersion": 1,
+      "promptVersion": 3,
+      "model": "claude-sonnet-5-5",
+      "classifiedAt": "2026-10-23T21:21:54.334Z",
+      "audit": {
+        "at": "2026-10-23T21:21:54.334Z",
+        "agreed": true,
+        "relevance": "noise",
+        "sentiment": "neutral",
+        "themes": [],
+        "confidence": 0.78
+      }
     }
   },
   "golden": {
@@ -1930,9 +1949,9 @@
     "misses": []
   },
   "lastRun": {
-    "at": "2026-10-23T16:35:51.409Z",
+    "at": "2026-10-23T21:21:54.334Z",
     "status": "complete",
-    "added": 2,
+    "added": 1,
     "reviewed": 0,
     "pendingIds": []
   },

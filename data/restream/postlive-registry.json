@@ -45,7 +45,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1025,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -59,7 +59,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 763,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -109,7 +109,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 641,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -122,7 +122,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 1189,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -173,7 +173,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1472,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -187,7 +187,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 2844,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -238,7 +238,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1377,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -251,7 +251,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 551,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -302,7 +302,7 @@
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
             "value": 1188,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -315,8 +315,8 @@
           "broadcastId": "1AxRnZZeVNzxl",
           "broadcastIdSource": "entities.urls backfill 2026-08-21",
           "playsHighWater": {
-            "value": 1165,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1167,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -366,7 +366,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 860,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -379,7 +379,7 @@
           "broadcastResolved": true,
           "playsHighWater": {
             "value": 347,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -439,7 +439,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1126,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -473,7 +473,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 2002,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -545,7 +545,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1536,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -559,7 +559,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 2657,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -604,7 +604,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1842,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -618,7 +618,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 2180,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -690,7 +690,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 748,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -713,7 +713,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1134,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -794,7 +794,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1284,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -808,7 +808,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1570,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -822,7 +822,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1570,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
@@ -857,8 +857,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1721,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1722,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -871,8 +871,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1721,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1722,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -886,7 +886,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1434,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -900,11 +900,20 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1434,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "linkedin": {
+        "urn": "urn:li:ugcPost:7511329951132971008",
+        "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7511329951132971008/",
+        "account": "michaelriddering",
+        "channelId": "17833475",
+        "eventId": "6c44d163-2284-408c-91db-fd5d644c8fa6",
+        "source": "restream",
+        "discoveredAt": "2026-10-02T14:04:25.005Z"
+      }
     },
     {
       "slug": "2026-10-08-dive-radio-rise-of-the-playable-portfoli",
@@ -936,7 +945,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1338,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -950,7 +959,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 1338,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -964,7 +973,7 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 852,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -978,11 +987,20 @@
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
             "value": 852,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "linkedin": {
+        "urn": "urn:li:ugcPost:7513849983599632384",
+        "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7513849983599632384/",
+        "account": "michaelriddering",
+        "channelId": "17833475",
+        "eventId": "c9274a9d-b121-4774-bfc4-b9c03f178975",
+        "source": "restream",
+        "discoveredAt": "2026-10-09T14:02:13.420Z"
+      }
     },
     {
       "slug": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
@@ -1013,8 +1031,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1800,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1826,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1027,8 +1045,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1800,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1826,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1041,8 +1059,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1109,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1138,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1055,8 +1073,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 1109,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1138,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1069,7 +1087,16 @@
           "playsStatus": "none",
           "role": "promo"
         }
-      ]
+      ],
+      "linkedin": {
+        "urn": "urn:li:ugcPost:7514584496805953536",
+        "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7514584496805953536/",
+        "account": "michaelriddering",
+        "channelId": "17833475",
+        "eventId": "7b9067a1-cff9-4b11-9018-d5150b58c5f8",
+        "source": "restream",
+        "discoveredAt": "2026-10-16T14:01:01.375Z"
+      }
     },
     {
       "slug": "2026-10-22-dive-radio-how-to-design-an-mcp",
@@ -1100,8 +1127,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 952,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1048,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1114,8 +1141,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 952,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 1048,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1128,8 +1155,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 572,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 615,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1142,8 +1169,8 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 572,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 615,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         },
@@ -1156,12 +1183,21 @@
           "broadcastResolved": true,
           "broadcastIdSource": "entities.urls",
           "playsHighWater": {
-            "value": 572,
-            "asOf": "2026-10-23T16:34:28.182Z"
+            "value": 615,
+            "asOf": "2026-10-23T21:20:46.547Z"
           },
           "playsStatus": "ok"
         }
-      ]
+      ],
+      "linkedin": {
+        "urn": "urn:li:ugcPost:7518344798278275072",
+        "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7518344798278275072/",
+        "account": "michaelriddering",
+        "channelId": "17833475",
+        "eventId": "f337dc18-ffd3-42a3-8f31-c22279bc4364",
+        "source": "restream",
+        "discoveredAt": "2026-10-23T16:36:47.516Z"
+      }
     }
   ]
 }

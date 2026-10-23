@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "Dive Radio episode notes (owner vault, the published #episode-notes drafts): every SUBMISSION line, and every portfolio “reviewed by” a named reviewer, above “Didn't make the show”",
-  "updatedAt": "2026-10-16T23:41:19.339Z",
+  "updatedAt": "2026-10-23T21:22:17.124Z",
   "episodes": {
     "2026-08-06-dive-radio-backyard-designers-behind-the": {
       "ep": 4,
@@ -673,6 +673,59 @@
           "kind": "portfolio",
           "who": "Julio Romero",
           "reviewedBy": "MDS of Shift Nudge"
+        }
+      ]
+    },
+    "2026-10-22-dive-radio-how-to-design-an-mcp": {
+      "ep": 15,
+      "airDate": "2026-10-22",
+      "notes": "e15-episode-notes-2026-10-22.md",
+      "notesSha256": "aae101ce6e6b612de17b70f07abd461282402b1bf80e340e9b532dd70b7b924f",
+      "callIns": [
+        {
+          "kind": "submission",
+          "who": "Brett Williams, DesignJoy",
+          "about": "no rule files, no skills, just MCP"
+        },
+        {
+          "kind": "submission",
+          "who": "Robi Robaszkiewicz, Jitter",
+          "about": "the whole editor, driven by an agent"
+        },
+        {
+          "kind": "submission",
+          "who": "Alex Danilowicz and Teddy, Magic Patterns",
+          "about": "build MCP-first, agents get the same tools we do"
+        },
+        {
+          "kind": "submission",
+          "who": "Shahriyer, Basket",
+          "about": "an inspiration library your agent can search"
+        },
+        {
+          "kind": "submission",
+          "who": "Thomas Meijer",
+          "about": "Mobbin MCP for ideas, then five layouts in Paper"
+        },
+        {
+          "kind": "submission",
+          "who": "Andrew Khadder, Manufact",
+          "about": "what makes a good MCP server"
+        },
+        {
+          "kind": "submission",
+          "who": "Darshita and Vikrant Patankar",
+          "about": "how they made Design Is Dead"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Fathima Ashraf",
+          "reviewedBy": "MDS of Shift Nudge"
+        },
+        {
+          "kind": "portfolio",
+          "who": "Lewis Ngugi",
+          "reviewedBy": "Ini Abíódún"
         }
       ]
     }

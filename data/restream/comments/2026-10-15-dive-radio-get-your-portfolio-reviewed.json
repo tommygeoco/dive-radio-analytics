@@ -27,7 +27,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "Ugw6bREaYo6OIqH8Pj54AaABAg",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready"
       }
     },
@@ -55,7 +55,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "Ugw6bREaYo6OIqH8Pj54AaABAg.Ac0L7Qlo-_oAc0NIMNk7i7",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready"
       }
     },
@@ -83,7 +83,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "Ugzw11U67cN2ZLu4yH14AaABAg",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready"
       }
     },
@@ -223,13 +223,13 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "Ugw9x0oZfPFqrJRUY0V4AaABAg",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready"
       }
     }
   ],
   "capture": {
-    "checkedAt": "2026-10-23T16:35:41.472Z",
+    "checkedAt": "2026-10-23T21:21:47.333Z",
     "state": "ready",
     "sources": [
       {
@@ -237,7 +237,7 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "J3NB3migbE0",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 3
       },
@@ -246,48 +246,12 @@
         "source": "youtube-comments",
         "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
         "objectId": "YmC8feEgGDw",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
+        "pulledAt": "2026-10-23T21:21:47.333Z",
         "state": "ready",
         "count": 1
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-        "objectId": "2110823157116661822",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
-        "state": "ready",
-        "count": 0
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-        "objectId": "2108818810580926824",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
-        "state": "ready",
-        "count": 0
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-        "objectId": "2110823157649285553",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
-        "state": "ready",
-        "count": 0
-      },
-      {
-        "schemaVersion": 1,
-        "source": "x-replies",
-        "episode": "2026-10-15-dive-radio-get-your-portfolio-reviewed",
-        "objectId": "2108823591399891441",
-        "pulledAt": "2026-10-23T16:35:41.472Z",
-        "state": "ready",
-        "count": 0
       }
     ]
   },
   "xCoverage": "covered",
-  "updatedAt": "2026-10-23T16:35:41.472Z"
+  "updatedAt": "2026-10-23T21:21:47.333Z"
 }
