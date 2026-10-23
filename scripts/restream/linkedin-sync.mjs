@@ -5,14 +5,14 @@ import { join, resolve, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
-import { readLinkedinSources, validateMetricImport, validateLinkedinStore } from '../../tools/dive-analytics/linkedin.mjs';
+import { readLinkedinSources, validateMetricImport, validateLinkedinStore, unidentifiedLinkedin } from '../../tools/dive-analytics/linkedin.mjs';
 import { atomicWriteJson, withSourceLock } from '../../tools/dive-analytics/source-io.mjs';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export async function syncLinkedin({ root = ROOT, inbox = join(homedir(), 'Library/Application Support/Dive Radio Analytics/linkedin-imports'), now = Date.now() } = {}) {
   const path = join(root, 'data/restream/postlive-registry.json');
   return withSourceLock(path, async () => {
     const registry = JSON.parse(readFileSync(path, 'utf8'));
-    const { discovered } = readLinkedinSources(root, registry.shows);
+    const { discovered, events } = readLinkedinSources(root, registry.shows);
     const metricsPath = join(root, 'data/restream/linkedin-metrics.json');
     const store = existsSync(metricsPath) ? JSON.parse(readFileSync(metricsPath, 'utf8')) : { version: 1, episodes: {} };
     validateLinkedinStore(store, discovered, now);
@@ -41,7 +41,10 @@ export async function syncLinkedin({ root = ROOT, inbox = join(homedir(), 'Libra
     if (added) atomicWriteJson(metricsPath, store);
     atomicWriteJson(path, registry);
     console.log(`LinkedIn: ${Object.keys(discovered).length} registered broadcasts; ${added} owner observations imported; API access not connected`);
-    return { discovered, added };
+    // A discovery gap warns; it never fails the step or the daily build.
+    const gaps = unidentifiedLinkedin(registry.shows, events, discovered);
+    for (const gap of gaps) console.log(`WARN  LinkedIn: ${gap.slug} carried a LinkedIn post on unverified Restream channel ${gap.channelId}; not registered until the owner confirms it is Ridd's (LINKEDIN_CHANNELS in tools/dive-analytics/linkedin.mjs)`);
+    return { discovered, added, gaps };
   });
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) syncLinkedin().catch(e => { console.error(e.message); process.exitCode = 1; });

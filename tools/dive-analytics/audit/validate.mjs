@@ -36,7 +36,7 @@ import { completeYoutubeWatchCohort, summedYoutubeMetric, weightedYoutubeMetric,
 import { discoveryShareOf, subsPer1kOf } from "../baselines.mjs";
 
 import { assertFrozenRatingsUnchanged, FROZEN_BASELINE, checkedTime, currentAnalyticsCohort, monotonicDrops, verifiedYoutubeRevision, activeSnapshotFreshnessErrors, sourceStoreIntegrityErrors } from "../source-integrity.mjs";
-import { readLinkedinSources, validateLinkedinStore, projectLinkedin, LINKEDIN_KEY } from "../linkedin.mjs";
+import { readLinkedinSources, validateLinkedinStore, projectLinkedin, unidentifiedLinkedin, LINKEDIN_KEY } from "../linkedin.mjs";
 import { PUBLIC_ARTIFACTS } from "../public-artifacts.mjs";
 import { matchRestreamDestination } from "./restream-destination.mjs";
 
@@ -3075,6 +3075,14 @@ try {
       const expected = projectLinkedin(source, events.find(raw => raw.event.id === source.eventId), store.episodes[e.slug]?.readings || [], Date.parse(data.generatedAt));
       if (JSON.stringify(e.linkedin) !== JSON.stringify(expected) || e.links?.[LINKEDIN_KEY] !== source.url) { bad++; fail(`${e.slug}: LinkedIn metrics or link do not reproduce from evidence`); }
       for (const row of e.audience?.list || []) if (row.platform === 'LinkedIn' && row.url && row.url !== source.url) { bad++; fail(`${e.slug}: LinkedIn feedback links to a different broadcast`); }
+    }
+    // A session that carried LinkedIn with no identified broadcast is a discovery
+    // gap: a warning in the chain output, never a failure of the daily build.
+    const gaps = unidentifiedLinkedin(registry.shows, events, discovered);
+    for (const e of eps) {
+      if (e.sourceStates?.linkedin?.state !== 'missing') continue;
+      const channels = [...new Set(gaps.filter(g => g.slug === e.slug).map(g => g.channelId))];
+      warn(`LinkedIn: ${e.slug} — the Restream session carried LinkedIn, but no broadcast was identified${channels.length ? ` (unverified Restream channel ${channels.join(', ')}; confirm it is Ridd's, then add it to LINKEDIN_CHANNELS)` : ''}`);
     }
   } catch (error) { bad++; fail(`LinkedIn source contract: ${error.message}`); }
   if (!bad) ok('LinkedIn: exact broadcast identity, owner observation provenance, chat-only Restream coverage and public projection agree');

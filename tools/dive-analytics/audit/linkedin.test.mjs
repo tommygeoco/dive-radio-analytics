@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { linkedinIdentity, discoverLinkedin, projectLinkedin, validateMetricImport, LINKEDIN_CHANNEL } from '../linkedin.mjs';
+import { linkedinIdentity, discoverLinkedin, projectLinkedin, validateMetricImport, unidentifiedLinkedin, isLinkedinChannel, LINKEDIN_CHANNELS } from '../linkedin.mjs';
+const LINKEDIN_CHANNEL = LINKEDIN_CHANNELS[0];
 import { syncLinkedin } from '../../../scripts/restream/linkedin-sync.mjs';
 import { collectFacts } from '../recommendations.mjs';
 import { computeAll, trendsLines, projectLiveSession } from '../build-data.mjs';
@@ -25,6 +26,36 @@ test('discovery uses exact shared broadcast identity, pins the approved channel 
   assert.deepEqual(discoverLinkedin(shows, [changed]), {});
   assert.equal(linkedinIdentity('https://linkedin.com.evil.test/feed/update/urn:li:ugcPost:123/'), null);
   assert.equal(linkedinIdentity('https://www.linkedin.com/in/michaelriddering/'), null);
+});
+test('both verified Ridd channels register, each recording the channel its event used', () => {
+  assert.deepEqual([...LINKEDIN_CHANNELS], ['17403676', '17833475']);
+  assert(isLinkedinChannel(17403676) && isLinkedinChannel('17833475') && !isLinkedinChannel('999'));
+  assert.equal(source.channelId, '17403676');
+  const moved = structuredClone(raw);
+  moved.event.destinations[0].channelId = 17833475;
+  moved.messages.byChannel = { '17833475': { messagesTotal: 3, chattersTotal: 2 } };
+  const next = discoverLinkedin(shows, [moved])[shows[0].slug];
+  assert.equal(next.url, url);
+  assert.equal(next.channelId, '17833475', 'records the actual channel, not a pinned constant');
+  assert.equal(projectLinkedin(next, moved, [], now).liveChat.messages, 3, 'chat is read from the channel that carried it');
+  assert.deepEqual(unidentifiedLinkedin(shows, [moved]), []);
+  const both = structuredClone(moved); both.event.destinations.push({ channelId: '17403676', externalUrl: url.replace('123456', '777') });
+  assert.throws(() => discoverLinkedin(shows, [both]), /ambiguous/);
+});
+test('an unverified LinkedIn channel is reported as a discovery gap, never registered', async () => {
+  const unknown = structuredClone(raw); unknown.event.destinations[0].channelId = 555;
+  assert.deepEqual(discoverLinkedin(shows, [unknown]), {});
+  assert.deepEqual(unidentifiedLinkedin(shows, [unknown]), [{ slug: shows[0].slug, channelId: '555', eventId: 'event-1' }]);
+  const root = mkdtempSync(join(tmpdir(), 'linkedin-gap-'));
+  const data = join(root, 'data/restream'); mkdirSync(join(data, 'events'), { recursive: true });
+  writeFileSync(join(data, 'postlive-registry.json'), JSON.stringify({ shows })); writeFileSync(join(data, 'events/event.json'), JSON.stringify(unknown));
+  const logged = []; const log = console.log; console.log = (m) => logged.push(String(m));
+  try {
+    const result = await syncLinkedin({ root, inbox: join(root, 'none'), now });
+    assert.equal(result.gaps.length, 1);
+    assert(logged.some(l => /^WARN  LinkedIn: .*unverified Restream channel 555/.test(l)), 'the step warns instead of failing');
+    assert.equal(JSON.parse(readFileSync(join(data, 'postlive-registry.json'))).shows[0].linkedin, undefined);
+  } finally { console.log = log; rmSync(root, { recursive: true, force: true }); }
 });
 test('missing viewer access stays null while real chat and real observed zero survive', () => {
   const li = projectLinkedin(source, raw, [], now);

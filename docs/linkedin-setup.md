@@ -1,6 +1,6 @@
 # LinkedIn analytics setup
 
-LinkedIn broadcasts are discovered daily from the exact destination in the matching Restream event. The verified source is Ridd's Restream channel 17403676. No LinkedIn scraping, password, cookie, or developer app is needed for episode links and available live chat.
+LinkedIn broadcasts are discovered daily from the exact destination in the matching Restream event. The verified sources are Ridd's Restream LinkedIn channels 17403676 (E1–E10) and 17833475 (E12 onward, after Ridd reconnected LinkedIn in Restream; owner-confirmed 2026-10-23), listed in `LINKEDIN_CHANNELS` in `tools/dive-analytics/linkedin.mjs`. If Ridd reconnects LinkedIn again, Restream issues a new channel id: the validator warns that a session carried LinkedIn but no broadcast was identified, and the owner must confirm the new id before it is added. No LinkedIn scraping, password, cookie, or developer app is needed for episode links and available live chat.
 
 ## What works without API approval
 

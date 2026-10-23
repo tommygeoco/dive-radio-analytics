@@ -258,7 +258,7 @@ The publisher is the only writer of the approved store. Build-data reads only co
 
 ## LinkedIn source extension (September 2026)
 
-`linkedin-sync.mjs` runs before audience feedback and after Restream live ingestion. It registers `shows[].linkedin` from an exact shared YouTube/X broadcast in the same event, pinned to Ridd's existing Restream channel 17403676. Title similarity is never an identity proof. Existing transport targets are preserved.
+`linkedin-sync.mjs` runs before audience feedback and after Restream live ingestion. It registers `shows[].linkedin` from an exact shared YouTube/X broadcast in the same event, pinned to Ridd's verified Restream LinkedIn channels (`LINKEDIN_CHANNELS` in `linkedin.mjs`): 17403676 for E1–E10 and 17833475 after Ridd reconnected LinkedIn in Restream (E12 onward, owner-confirmed 2026-10-23). Each registration records the channel its event actually used, so chat is read from that channel. A session that carried LinkedIn but matched no broadcast is a validator warning, never silent. Title similarity is never an identity proof. Existing transport targets are preserved.
 
 `tools/dive-analytics/linkedin.mjs` projects `episodes[].linkedin`: exact URL, source status, nullable owner metrics, immutable observation history, Restream live chat and measurement notes. The build checks import provenance and re-derives identity from raw events. The validator checks the registered identity, public projection, safe URLs and feedback links. `data/restream/linkedin-metrics.json` contains only validated, timestamped owner observations; source input lives in the private `linkedin-imports` inbox. Daily ingestion is idempotent. Invalid or conflicting evidence fails the step.
 
